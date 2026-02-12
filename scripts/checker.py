@@ -51,6 +51,7 @@ DEFAULT_STATE = {
     "players": {},
     "removed_players": {},
     "message_counts": {},
+    "last_roster": {},
 }
 
 
@@ -374,6 +375,90 @@ def check_player_activity(config: dict, state: dict):
         }
 
 
+ROSTER_INTERVAL_DAYS = 3
+
+
+# ------------------------------------------------------------------ #
+#  Party roster summary (every 3 days)
+# ------------------------------------------------------------------ #
+def post_roster_summary(config: dict, state: dict):
+    """Post a summary of all tracked players per campaign to CHAT topics."""
+    group_id = config["group_id"]
+    now = datetime.now(timezone.utc)
+
+    if "last_roster" not in state:
+        state["last_roster"] = {}
+
+    # Build lookup: pbp_topic_id -> chat_topic_id
+    chat_topics = {}
+    campaign_names = {}
+    for pair in config["topic_pairs"]:
+        pid = str(pair["pbp_topic_id"])
+        chat_topics[pid] = pair["chat_topic_id"]
+        campaign_names[pid] = pair["name"]
+
+    # Group players by campaign (pbp_topic_id)
+    campaigns = {}
+    for player_key, player in state.get("players", {}).items():
+        pid = player["pbp_topic_id"]
+        if pid not in campaigns:
+            campaigns[pid] = []
+        campaigns[pid].append(player)
+
+    # Also include GM message counts
+    gm_ids = set(str(uid) for uid in config.get("gm_user_ids", []))
+
+    for pid, chat_topic_id in chat_topics.items():
+        # Check if we posted a roster recently
+        last_roster_str = state["last_roster"].get(pid)
+        if last_roster_str:
+            last_roster = datetime.fromisoformat(last_roster_str)
+            days_since = (now - last_roster).total_seconds() / 86400
+            if days_since < ROSTER_INTERVAL_DAYS:
+                continue
+
+        name = campaign_names.get(pid, "Unknown")
+        players = campaigns.get(pid, [])
+        counts = state.get("message_counts", {}).get(pid, {})
+
+        if not players and not counts:
+            # No data yet for this campaign
+            continue
+
+        # Build player lines sorted by message count (descending)
+        lines = []
+        for player in sorted(players, key=lambda p: counts.get(p["user_id"], 0), reverse=True):
+            uid = player["user_id"]
+            display = player["first_name"]
+            count = counts.get(uid, 0)
+            last_post = datetime.fromisoformat(player["last_post_time"])
+            days_ago = int((now - last_post).total_seconds() / 86400)
+
+            if days_ago == 0:
+                time_str = "today"
+            elif days_ago == 1:
+                time_str = "yesterday"
+            else:
+                time_str = f"{days_ago}d ago"
+
+            lines.append(f"  {display}: {count} posts (last: {time_str})")
+
+        # Add GM stats if present
+        for gm_id in gm_ids:
+            gm_count = counts.get(gm_id, 0)
+            if gm_count > 0:
+                lines.insert(0, f"  GM: {gm_count} posts")
+
+        if not lines:
+            continue
+
+        message = f"Party roster for {name}:\n" + "\n".join(lines)
+
+        print(f"Posting roster for {name}")
+        if send_message(group_id, chat_topic_id, message):
+            state["last_roster"][pid] = now.isoformat()
+
+
 # ------------------------------------------------------------------ #
 #  Main
 # ------------------------------------------------------------------ #
@@ -402,6 +487,9 @@ def main():
 
     # Player inactivity checks (weekly)
     check_player_activity(config, state)
+
+    # Party roster summary (every 3 days)
+    post_roster_summary(config, state)
 
     # Save
     save_state_to_gist(state)
