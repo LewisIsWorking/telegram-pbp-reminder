@@ -1,9 +1,13 @@
 """
 PBP Inactivity Checker for GitHub Actions
 
-Runs hourly via cron. Processes Telegram updates to track last message
-times in PBP topics. Sends alerts to OOC chat topics when a PBP topic
-has been inactive for the configured threshold.
+Runs hourly via cron. Two features:
+1. TOPIC ALERTS: Sends alerts to OOC chat when a PBP topic has been
+   inactive for the configured threshold (default 4 hours).
+2. PLAYER TRACKING: Auto-detects players by their posts. If a player
+   hasn't posted in a PBP topic for 1 week, @mentions them weekly.
+   After 4 weeks, announces they're out and stops tracking them.
+   They can rejoin simply by posting again.
 
 State is persisted between runs using a GitHub Gist.
 """
@@ -28,6 +32,9 @@ STATE_FILENAME = "pbp_state.json"
 
 CONFIG_PATH = Path(__file__).parent.parent / "config.json"
 
+PLAYER_WARN_WEEKS = [1, 2, 3]
+PLAYER_REMOVE_WEEKS = 4
+
 
 def load_config() -> dict:
     with open(CONFIG_PATH) as f:
@@ -37,11 +44,19 @@ def load_config() -> dict:
 # ------------------------------------------------------------------ #
 #  Gist state storage
 # ------------------------------------------------------------------ #
+DEFAULT_STATE = {
+    "offset": 0,
+    "topics": {},
+    "last_alerts": {},
+    "players": {},
+    "removed_players": {},
+}
+
+
 def load_state_from_gist() -> dict:
-    """Load state from GitHub Gist."""
     if not GIST_ID or not GIST_TOKEN:
         print("Warning: No GIST_ID or GIST_TOKEN set, starting with empty state")
-        return {"offset": 0, "topics": {}, "last_alerts": {}}
+        return dict(DEFAULT_STATE)
 
     resp = requests.get(
         GIST_API,
@@ -53,20 +68,24 @@ def load_state_from_gist() -> dict:
 
     if resp.status_code != 200:
         print(f"Warning: Could not load gist (HTTP {resp.status_code}), starting fresh")
-        return {"offset": 0, "topics": {}, "last_alerts": {}}
+        return dict(DEFAULT_STATE)
 
     gist_data = resp.json()
     files = gist_data.get("files", {})
 
     if STATE_FILENAME in files:
         content = files[STATE_FILENAME]["content"]
-        return json.loads(content)
+        state = json.loads(content)
+        # Backwards compat: ensure all keys exist
+        for key, default in DEFAULT_STATE.items():
+            if key not in state:
+                state[key] = default
+        return state
 
-    return {"offset": 0, "topics": {}, "last_alerts": {}}
+    return dict(DEFAULT_STATE)
 
 
 def save_state_to_gist(state: dict):
-    """Save state to GitHub Gist."""
     if not GIST_ID or not GIST_TOKEN:
         print("Warning: No GIST_ID or GIST_TOKEN set, cannot save state")
         return
@@ -96,7 +115,6 @@ def save_state_to_gist(state: dict):
 #  Telegram API helpers
 # ------------------------------------------------------------------ #
 def get_updates(offset: int) -> list:
-    """Fetch new updates from Telegram."""
     resp = requests.get(
         f"{TELEGRAM_API}/getUpdates",
         params={
@@ -120,7 +138,6 @@ def get_updates(offset: int) -> list:
 
 
 def send_message(chat_id: int, thread_id: int, text: str) -> bool:
-    """Send a message to a specific topic thread."""
     resp = requests.post(
         f"{TELEGRAM_API}/sendMessage",
         json={
@@ -139,13 +156,13 @@ def send_message(chat_id: int, thread_id: int, text: str) -> bool:
 
 
 # ------------------------------------------------------------------ #
-#  Main logic
+#  Process updates
 # ------------------------------------------------------------------ #
 def process_updates(updates: list, config: dict, state: dict) -> int:
-    """Process updates and track last message times. Returns new offset."""
     group_id = config["group_id"]
-    pbp_topic_ids = {}
+    gm_ids = set(str(uid) for uid in config.get("gm_user_ids", []))
 
+    pbp_topic_ids = {}
     for pair in config["topic_pairs"]:
         pbp_topic_ids[str(pair["pbp_topic_id"])] = pair["name"]
 
@@ -169,34 +186,57 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
         thread_id_str = str(thread_id)
 
-        if thread_id_str in pbp_topic_ids:
-            # Ignore bot's own messages
-            from_user = msg.get("from", {})
-            if from_user.get("is_bot", False):
-                continue
+        if thread_id_str not in pbp_topic_ids:
+            continue
 
-            user_name = from_user.get("first_name", "Someone")
-            campaign_name = pbp_topic_ids[thread_id_str]
+        from_user = msg.get("from", {})
+        if from_user.get("is_bot", False):
+            continue
 
-            state["topics"][thread_id_str] = {
-                "last_message_time": datetime.now(timezone.utc).isoformat(),
-                "last_user": user_name,
+        user_id = str(from_user.get("id", ""))
+        user_name = from_user.get("first_name", "Someone")
+        username = from_user.get("username", "")
+        campaign_name = pbp_topic_ids[thread_id_str]
+        now_iso = datetime.now(timezone.utc).isoformat()
+
+        # Update topic-level tracking (for 4-hour alerts)
+        state["topics"][thread_id_str] = {
+            "last_message_time": now_iso,
+            "last_user": user_name,
+            "campaign_name": campaign_name,
+        }
+
+        # Update player-level tracking (skip GM)
+        if user_id and user_id not in gm_ids:
+            player_key = f"{thread_id_str}:{user_id}"
+            was_removed = player_key in state["removed_players"]
+
+            state["players"][player_key] = {
+                "user_id": user_id,
+                "first_name": user_name,
+                "username": username,
                 "campaign_name": campaign_name,
+                "pbp_topic_id": thread_id_str,
+                "last_post_time": now_iso,
+                "last_warned_week": 0,
             }
 
-            print(f"Tracked message in {campaign_name} from {user_name}")
+            if was_removed:
+                del state["removed_players"][player_key]
+                print(f"Player {user_name} rejoined {campaign_name}")
+
+        print(f"Tracked message in {campaign_name} from {user_name}")
 
     return new_offset
 
 
+# ------------------------------------------------------------------ #
+#  Topic inactivity alerts (4-hour)
+# ------------------------------------------------------------------ #
 def check_and_alert(config: dict, state: dict):
-    """Check for inactive topics and send alerts."""
     group_id = config["group_id"]
     alert_hours = config.get("alert_after_hours", 4)
     now = datetime.now(timezone.utc)
-
-    if "last_alerts" not in state:
-        state["last_alerts"] = {}
 
     for pair in config["topic_pairs"]:
         pbp_id_str = str(pair["pbp_topic_id"])
@@ -209,32 +249,25 @@ def check_and_alert(config: dict, state: dict):
 
         topic_state = state["topics"][pbp_id_str]
         last_time = datetime.fromisoformat(topic_state["last_message_time"])
-        elapsed = now - last_time
-        elapsed_hours = elapsed.total_seconds() / 3600
+        elapsed_hours = (now - last_time).total_seconds() / 3600
 
         if elapsed_hours < alert_hours:
-            # Not inactive long enough
             continue
 
-        # Check if we already alerted recently (within alert_hours)
+        # Don't re-alert within alert_hours
         last_alert_str = state["last_alerts"].get(pbp_id_str)
         if last_alert_str:
-            last_alert = datetime.fromisoformat(last_alert_str)
-            since_last_alert = (now - last_alert).total_seconds() / 3600
-            if since_last_alert < alert_hours:
-                print(f"{name}: Already alerted {since_last_alert:.1f}h ago, skipping")
+            since_last = (now - datetime.fromisoformat(last_alert_str)).total_seconds() / 3600
+            if since_last < alert_hours:
+                print(f"{name}: Already alerted {since_last:.1f}h ago, skipping")
                 continue
 
-        # Build the message
         hours_int = int(elapsed_hours)
         days = hours_int // 24
         remaining_hours = hours_int % 24
         last_user = topic_state.get("last_user", "someone")
 
-        if days > 0:
-            time_str = f"{days}d {remaining_hours}h"
-        else:
-            time_str = f"{hours_int}h"
+        time_str = f"{days}d {remaining_hours}h" if days > 0 else f"{hours_int}h"
 
         message = (
             f"No new posts in {name} PBP for {time_str}.\n"
@@ -242,14 +275,93 @@ def check_and_alert(config: dict, state: dict):
         )
 
         print(f"Sending alert for {name}: {time_str} inactive")
-
         if send_message(group_id, chat_topic_id, message):
             state["last_alerts"][pbp_id_str] = now.isoformat()
-            print(f"Alert sent for {name}")
-        else:
-            print(f"Failed to send alert for {name}")
 
 
+# ------------------------------------------------------------------ #
+#  Player inactivity tracking (weekly)
+# ------------------------------------------------------------------ #
+def check_player_activity(config: dict, state: dict):
+    group_id = config["group_id"]
+    now = datetime.now(timezone.utc)
+
+    # Build lookup: pbp_topic_id -> chat_topic_id
+    chat_topics = {}
+    for pair in config["topic_pairs"]:
+        chat_topics[str(pair["pbp_topic_id"])] = pair["chat_topic_id"]
+
+    players_to_remove = []
+
+    for player_key, player in state["players"].items():
+        pbp_topic_id = player["pbp_topic_id"]
+        chat_topic_id = chat_topics.get(pbp_topic_id)
+        if not chat_topic_id:
+            continue
+
+        last_post = datetime.fromisoformat(player["last_post_time"])
+        elapsed_weeks = (now - last_post).total_seconds() / (7 * 86400)
+        current_week = int(elapsed_weeks)
+        last_warned = player.get("last_warned_week", 0)
+
+        first_name = player["first_name"]
+        username = player.get("username", "")
+        campaign = player["campaign_name"]
+        mention = f"@{username}" if username else first_name
+        days_inactive = int((now - last_post).total_seconds() / 86400)
+
+        # 4+ weeks: remove
+        if current_week >= PLAYER_REMOVE_WEEKS:
+            if last_warned < PLAYER_REMOVE_WEEKS:
+                message = (
+                    f"{mention} has not posted in {campaign} PBP for "
+                    f"{days_inactive} days. They are no longer tracked "
+                    f"as an active player in this campaign."
+                )
+                print(f"Removing {first_name} from {campaign} ({days_inactive}d)")
+                send_message(group_id, chat_topic_id, message)
+                players_to_remove.append(player_key)
+            continue
+
+        # 1, 2, 3 week warnings
+        for week_mark in PLAYER_WARN_WEEKS:
+            if current_week >= week_mark and last_warned < week_mark:
+                if week_mark == 1:
+                    message = (
+                        f"{mention} hasn't posted in {campaign} PBP "
+                        f"for {days_inactive} days. Everything okay?"
+                    )
+                elif week_mark == 2:
+                    message = (
+                        f"{mention} still no post in {campaign} PBP. "
+                        f"It's been {days_inactive} days now."
+                    )
+                else:
+                    message = (
+                        f"{mention} it's been {days_inactive} days without "
+                        f"a post in {campaign} PBP. 1 week until "
+                        f"auto-removal from the campaign."
+                    )
+
+                print(f"Warning {first_name} in {campaign}: week {week_mark}")
+                if send_message(group_id, chat_topic_id, message):
+                    player["last_warned_week"] = week_mark
+                break  # One warning per player per run
+
+    # Move removed players out
+    for key in players_to_remove:
+        removed = state["players"].pop(key)
+        state["removed_players"][key] = {
+            "removed_at": now.isoformat(),
+            "first_name": removed["first_name"],
+            "username": removed.get("username", ""),
+            "campaign_name": removed["campaign_name"],
+        }
+
+
+# ------------------------------------------------------------------ #
+#  Main
+# ------------------------------------------------------------------ #
 def main():
     if not TELEGRAM_TOKEN:
         print("Error: TELEGRAM_BOT_TOKEN not set")
@@ -258,8 +370,9 @@ def main():
     config = load_config()
     state = load_state_from_gist()
 
-    print(f"Loaded state. Current offset: {state.get('offset', 0)}")
-    print(f"Tracking {len(state.get('topics', {}))} topics")
+    print(f"Loaded state. Offset: {state.get('offset', 0)}")
+    print(f"Tracking {len(state.get('topics', {}))} topics, "
+          f"{len(state.get('players', {}))} players")
 
     # Fetch and process new messages
     offset = state.get("offset", 0)
@@ -267,15 +380,16 @@ def main():
     print(f"Received {len(updates)} new updates")
 
     if updates:
-        new_offset = process_updates(updates, config, state)
-        state["offset"] = new_offset
+        state["offset"] = process_updates(updates, config, state)
 
-    # Check for inactivity and send alerts
+    # Topic inactivity alerts (4-hour)
     check_and_alert(config, state)
 
-    # Save state
-    save_state_to_gist(state)
+    # Player inactivity checks (weekly)
+    check_player_activity(config, state)
 
+    # Save
+    save_state_to_gist(state)
     print("Done")
 
 
