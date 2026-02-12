@@ -50,6 +50,7 @@ DEFAULT_STATE = {
     "last_alerts": {},
     "players": {},
     "removed_players": {},
+    "message_counts": {},
 }
 
 
@@ -203,8 +204,17 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         state["topics"][thread_id_str] = {
             "last_message_time": now_iso,
             "last_user": user_name,
+            "last_user_id": user_id,
             "campaign_name": campaign_name,
         }
+
+        # Increment message count for this user in this topic
+        if "message_counts" not in state:
+            state["message_counts"] = {}
+        if thread_id_str not in state["message_counts"]:
+            state["message_counts"][thread_id_str] = {}
+        user_counts = state["message_counts"][thread_id_str]
+        user_counts[user_id] = user_counts.get(user_id, 0) + 1
 
         # Update player-level tracking (skip GM)
         if user_id and user_id not in gm_ids:
@@ -266,12 +276,17 @@ def check_and_alert(config: dict, state: dict):
         days = hours_int // 24
         remaining_hours = hours_int % 24
         last_user = topic_state.get("last_user", "someone")
+        last_user_id = topic_state.get("last_user_id", "")
 
         time_str = f"{days}d {remaining_hours}h" if days > 0 else f"{hours_int}h"
 
+        # Look up total message count for last poster
+        count = state.get("message_counts", {}).get(pbp_id_str, {}).get(last_user_id, 0)
+        count_str = f" ({count} total posts)" if count > 0 else ""
+
         message = (
             f"No new posts in {name} PBP for {time_str}.\n"
-            f"Last post was from {last_user}."
+            f"Last post was from {last_user}{count_str}."
         )
 
         print(f"Sending alert for {name}: {time_str} inactive")
