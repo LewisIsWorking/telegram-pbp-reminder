@@ -39,6 +39,7 @@ PLAYER_REMOVE_WEEKS = 4
 ROSTER_INTERVAL_DAYS = 3
 POTW_INTERVAL_DAYS = 7
 POTW_MIN_POSTS = 5
+PACE_INTERVAL_DAYS = 7
 
 
 def load_config() -> dict:
@@ -59,6 +60,8 @@ DEFAULT_STATE = {
     "last_roster": {},
     "post_timestamps": {},
     "last_potw": {},
+    "last_pace": {},
+    "last_anniversary": {},
 }
 
 
@@ -584,7 +587,7 @@ def player_of_the_week(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 def cleanup_timestamps(state: dict):
     """Prune old timestamps to prevent gist from growing indefinitely."""
-    cutoff = (datetime.now(timezone.utc) - timedelta(days=10)).isoformat()
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=15)).isoformat()
 
     for pid in list(state.get("post_timestamps", {}).keys()):
         for uid in list(state["post_timestamps"][pid].keys()):
@@ -598,6 +601,135 @@ def cleanup_timestamps(state: dict):
                 del state["post_timestamps"][pid][uid]
         if not state["post_timestamps"][pid]:
             del state["post_timestamps"][pid]
+
+
+# ------------------------------------------------------------------ #
+#  Weekly pace report
+# ------------------------------------------------------------------ #
+def post_pace_report(config: dict, state: dict):
+    """Post weekly pace comparison: posts/day this week vs last week."""
+    group_id = config["group_id"]
+    now = datetime.now(timezone.utc)
+
+    if "last_pace" not in state:
+        state["last_pace"] = {}
+
+    chat_topics = {}
+    campaign_names = {}
+    for pair in config["topic_pairs"]:
+        pid = str(pair["pbp_topic_id"])
+        chat_topics[pid] = pair["chat_topic_id"]
+        campaign_names[pid] = pair["name"]
+
+    week_ago = now - timedelta(days=7)
+    two_weeks_ago = now - timedelta(days=14)
+
+    for pid, chat_topic_id in chat_topics.items():
+        last_pace_str = state["last_pace"].get(pid)
+        if last_pace_str:
+            days_since = (now - datetime.fromisoformat(last_pace_str)).total_seconds() / 86400
+            if days_since < PACE_INTERVAL_DAYS:
+                continue
+
+        name = campaign_names.get(pid, "Unknown")
+        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+
+        if not topic_timestamps:
+            continue
+
+        # Count all posts this week and last week across all users
+        this_week = 0
+        last_week = 0
+        for uid, timestamps in topic_timestamps.items():
+            for ts in timestamps:
+                post_time = datetime.fromisoformat(ts)
+                if post_time >= week_ago:
+                    this_week += 1
+                elif post_time >= two_weeks_ago:
+                    last_week += 1
+
+        this_avg = this_week / 7.0
+        last_avg = last_week / 7.0
+
+        # Determine trend
+        if last_avg == 0 and this_avg == 0:
+            continue  # No data
+        elif last_avg == 0:
+            trend = "NEW"
+            trend_icon = "🆕"
+        elif this_avg > last_avg * 1.15:
+            trend = "UP"
+            trend_icon = "📈"
+        elif this_avg < last_avg * 0.85:
+            trend = "DOWN"
+            trend_icon = "📉"
+        else:
+            trend = "STEADY"
+            trend_icon = "➡️"
+
+        message = (
+            f"{trend_icon} Weekly pace for {name}:\n"
+            f"This week: {this_week} posts ({this_avg:.1f}/day)\n"
+            f"Last week: {last_week} posts ({last_avg:.1f}/day)\n"
+            f"Trend: {trend}"
+        )
+
+        print(f"Pace report for {name}: {this_week} vs {last_week} ({trend})")
+        if send_message(group_id, chat_topic_id, message):
+            state["last_pace"][pid] = now.isoformat()
+
+
+# ------------------------------------------------------------------ #
+#  Campaign anniversary alerts
+# ------------------------------------------------------------------ #
+def check_anniversaries(config: dict, state: dict):
+    """Post a celebration when a campaign hits a yearly anniversary."""
+    group_id = config["group_id"]
+    now = datetime.now(timezone.utc)
+    today = now.date()
+
+    if "last_anniversary" not in state:
+        state["last_anniversary"] = {}
+
+    for pair in config["topic_pairs"]:
+        pid = str(pair["pbp_topic_id"])
+        chat_topic_id = pair["chat_topic_id"]
+        name = pair["name"]
+        created_str = pair.get("created")
+
+        if not created_str:
+            continue
+
+        created = datetime.strptime(created_str, "%Y-%m-%d").date()
+
+        # Check if today is the anniversary (same month and day)
+        if today.month != created.month or today.day != created.day:
+            continue
+
+        # How many years?
+        years = today.year - created.year
+        if years < 1:
+            continue
+
+        # Don't post the same anniversary twice
+        anniversary_key = f"{pid}:{years}"
+        if anniversary_key in state["last_anniversary"]:
+            continue
+
+        if years == 1:
+            year_str = "1 year"
+        else:
+            year_str = f"{years} years"
+
+        message = (
+            f"🎂 {name} is {year_str} old today!\n\n"
+            f"Campaign started {created.strftime('%B %d, %Y')}. "
+            f"Here's to more adventures ahead."
+        )
+
+        print(f"Anniversary for {name}: {year_str}")
+        if send_message(group_id, chat_topic_id, message):
+            state["last_anniversary"][anniversary_key] = now.isoformat()
 
 
 # ------------------------------------------------------------------ #
@@ -634,6 +766,12 @@ def main():
 
     # Player of the Week (weekly)
     player_of_the_week(config, state)
+
+    # Weekly pace report
+    post_pace_report(config, state)
+
+    # Campaign anniversaries
+    check_anniversaries(config, state)
 
     # Prune old timestamps
     cleanup_timestamps(state)
