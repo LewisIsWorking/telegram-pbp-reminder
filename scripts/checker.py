@@ -15,8 +15,9 @@ State is persisted between runs using a GitHub Gist.
 import os
 import sys
 import json
+import random
 import requests
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # ------------------------------------------------------------------ #
@@ -31,9 +32,13 @@ GIST_API = f"https://api.github.com/gists/{GIST_ID}"
 STATE_FILENAME = "pbp_state.json"
 
 CONFIG_PATH = Path(__file__).parent.parent / "config.json"
+BOONS_PATH = Path(__file__).parent.parent / "boons.json"
 
 PLAYER_WARN_WEEKS = [1, 2, 3]
 PLAYER_REMOVE_WEEKS = 4
+ROSTER_INTERVAL_DAYS = 3
+POTW_INTERVAL_DAYS = 7
+POTW_MIN_POSTS = 5
 
 
 def load_config() -> dict:
@@ -52,6 +57,8 @@ DEFAULT_STATE = {
     "removed_players": {},
     "message_counts": {},
     "last_roster": {},
+    "post_timestamps": {},
+    "last_potw": {},
 }
 
 
@@ -217,6 +224,15 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         user_counts = state["message_counts"][thread_id_str]
         user_counts[user_id] = user_counts.get(user_id, 0) + 1
 
+        # Track post timestamps for Player of the Week gap calculation
+        if "post_timestamps" not in state:
+            state["post_timestamps"] = {}
+        if thread_id_str not in state["post_timestamps"]:
+            state["post_timestamps"][thread_id_str] = {}
+        if user_id not in state["post_timestamps"][thread_id_str]:
+            state["post_timestamps"][thread_id_str][user_id] = []
+        state["post_timestamps"][thread_id_str][user_id].append(now_iso)
+
         # Update player-level tracking (skip GM)
         if user_id and user_id not in gm_ids:
             player_key = f"{thread_id_str}:{user_id}"
@@ -375,7 +391,6 @@ def check_player_activity(config: dict, state: dict):
         }
 
 
-ROSTER_INTERVAL_DAYS = 3
 
 
 # ------------------------------------------------------------------ #
@@ -460,6 +475,132 @@ def post_roster_summary(config: dict, state: dict):
 
 
 # ------------------------------------------------------------------ #
+#  Player of the Week (weekly, consistency-based)
+# ------------------------------------------------------------------ #
+def player_of_the_week(config: dict, state: dict):
+    """Award Player of the Week based on smallest average gap between posts."""
+    group_id = config["group_id"]
+    now = datetime.now(timezone.utc)
+    gm_ids = set(str(uid) for uid in config.get("gm_user_ids", []))
+
+    if "last_potw" not in state:
+        state["last_potw"] = {}
+
+    # Load boons
+    try:
+        with open(BOONS_PATH) as f:
+            boons = json.load(f)
+    except Exception as e:
+        print(f"Warning: Could not load boons: {e}")
+        boons = ["Something mildly beneficial happens to you today."]
+
+    # Build lookup
+    chat_topics = {}
+    campaign_names = {}
+    for pair in config["topic_pairs"]:
+        pid = str(pair["pbp_topic_id"])
+        chat_topics[pid] = pair["chat_topic_id"]
+        campaign_names[pid] = pair["name"]
+
+    week_ago = now - timedelta(days=7)
+
+    for pid, chat_topic_id in chat_topics.items():
+        # Check if we already awarded this week
+        last_potw_str = state["last_potw"].get(pid)
+        if last_potw_str:
+            last_potw = datetime.fromisoformat(last_potw_str)
+            days_since = (now - last_potw).total_seconds() / 86400
+            if days_since < POTW_INTERVAL_DAYS:
+                continue
+
+        name = campaign_names.get(pid, "Unknown")
+        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+
+        # Calculate average gap for each player this week
+        candidates = []
+
+        for user_id, timestamps in topic_timestamps.items():
+            if user_id in gm_ids:
+                continue
+
+            # Filter to this week's posts only
+            week_posts = []
+            for ts in timestamps:
+                post_time = datetime.fromisoformat(ts)
+                if post_time >= week_ago:
+                    week_posts.append(post_time)
+
+            if len(week_posts) < POTW_MIN_POSTS:
+                continue
+
+            # Sort and calculate gaps
+            week_posts.sort()
+            gaps = []
+            for i in range(1, len(week_posts)):
+                gap_hours = (week_posts[i] - week_posts[i - 1]).total_seconds() / 3600
+                gaps.append(gap_hours)
+
+            avg_gap = sum(gaps) / len(gaps) if gaps else float("inf")
+
+            # Find player name
+            player_key = f"{pid}:{user_id}"
+            player = state.get("players", {}).get(player_key, {})
+            first_name = player.get("first_name", "Unknown")
+            username = player.get("username", "")
+
+            candidates.append({
+                "user_id": user_id,
+                "first_name": first_name,
+                "username": username,
+                "avg_gap_hours": avg_gap,
+                "post_count": len(week_posts),
+            })
+
+        if not candidates:
+            print(f"No POTW candidates for {name} (need {POTW_MIN_POSTS}+ posts)")
+            continue
+
+        # Winner = smallest average gap
+        winner = min(candidates, key=lambda c: c["avg_gap_hours"])
+        mention = f"@{winner['username']}" if winner["username"] else winner["first_name"]
+        avg_gap_str = f"{winner['avg_gap_hours']:.1f}h"
+        boon = random.choice(boons)
+
+        message = (
+            f"Player of the Week for {name}: {mention}!\n\n"
+            f"{winner['post_count']} posts this week with an average "
+            f"gap of {avg_gap_str} between posts. The most consistent "
+            f"driver of the story.\n\n"
+            f"Your boon: {boon}"
+        )
+
+        print(f"POTW for {name}: {winner['first_name']} (avg gap {avg_gap_str})")
+        if send_message(group_id, chat_topic_id, message):
+            state["last_potw"][pid] = now.isoformat()
+
+
+# ------------------------------------------------------------------ #
+#  Timestamp cleanup (keep only last 10 days)
+# ------------------------------------------------------------------ #
+def cleanup_timestamps(state: dict):
+    """Prune old timestamps to prevent gist from growing indefinitely."""
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=10)).isoformat()
+
+    for pid in list(state.get("post_timestamps", {}).keys()):
+        for uid in list(state["post_timestamps"][pid].keys()):
+            filtered = [
+                ts for ts in state["post_timestamps"][pid][uid]
+                if ts >= cutoff
+            ]
+            if filtered:
+                state["post_timestamps"][pid][uid] = filtered
+            else:
+                del state["post_timestamps"][pid][uid]
+        if not state["post_timestamps"][pid]:
+            del state["post_timestamps"][pid]
+
+
+# ------------------------------------------------------------------ #
 #  Main
 # ------------------------------------------------------------------ #
 def main():
@@ -482,7 +623,7 @@ def main():
     if updates:
         state["offset"] = process_updates(updates, config, state)
 
-    # Topic inactivity alerts (4-hour)
+    # Topic inactivity alerts (12-hour)
     check_and_alert(config, state)
 
     # Player inactivity checks (weekly)
@@ -490,6 +631,12 @@ def main():
 
     # Party roster summary (every 3 days)
     post_roster_summary(config, state)
+
+    # Player of the Week (weekly)
+    player_of_the_week(config, state)
+
+    # Prune old timestamps
+    cleanup_timestamps(state)
 
     # Save
     save_state_to_gist(state)
