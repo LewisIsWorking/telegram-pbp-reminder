@@ -40,6 +40,7 @@ ROSTER_INTERVAL_DAYS = 3
 POTW_INTERVAL_DAYS = 7
 POTW_MIN_POSTS = 5
 PACE_INTERVAL_DAYS = 7
+COMBAT_PING_HOURS = 4
 
 
 def load_config() -> dict:
@@ -62,6 +63,7 @@ DEFAULT_STATE = {
     "last_potw": {},
     "last_pace": {},
     "last_anniversary": {},
+    "combat": {},
 }
 
 
@@ -210,6 +212,59 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         username = from_user.get("username", "")
         campaign_name = pbp_topic_ids[thread_id_str]
         now_iso = datetime.now(timezone.utc).isoformat()
+        text = msg.get("text", "").strip().lower()
+
+        # ---- Combat commands (GM only) ----
+        if "combat" not in state:
+            state["combat"] = {}
+
+        if user_id in gm_ids:
+            if text.startswith("/combat"):
+                parts = text.split()
+                players_first = True
+                if len(parts) > 1 and parts[1] == "enemies":
+                    players_first = False
+
+                state["combat"][thread_id_str] = {
+                    "active": True,
+                    "campaign_name": campaign_name,
+                    "players_first": players_first,
+                    "current_phase": "players" if players_first else "enemies",
+                    "round": 1,
+                    "phase_started_at": now_iso,
+                    "players_acted": [],
+                    "last_ping_at": None,
+                }
+                phase = "Players" if players_first else "Enemies"
+                print(f"Combat started in {campaign_name}: {phase} go first")
+
+            elif text.startswith("/round"):
+                combat = state["combat"].get(thread_id_str)
+                if combat and combat["active"]:
+                    old_phase = combat["current_phase"]
+                    if old_phase == "players":
+                        combat["current_phase"] = "enemies"
+                    else:
+                        combat["current_phase"] = "players"
+                        combat["round"] += 1
+                        combat["players_acted"] = []
+                    combat["phase_started_at"] = now_iso
+                    combat["last_ping_at"] = None
+                    print(f"Combat round advance in {campaign_name}: "
+                          f"round {combat['round']}, phase: {combat['current_phase']}")
+
+            elif text.startswith("/endcombat"):
+                if thread_id_str in state["combat"]:
+                    del state["combat"][thread_id_str]
+                    print(f"Combat ended in {campaign_name}")
+
+        # ---- Track player action during combat ----
+        combat = state["combat"].get(thread_id_str)
+        if (combat and combat["active"]
+                and combat["current_phase"] == "players"
+                and user_id not in gm_ids
+                and user_id not in combat.get("players_acted", [])):
+            combat["players_acted"].append(user_id)
 
         # Update topic-level tracking (for 4-hour alerts)
         state["topics"][thread_id_str] = {
@@ -583,7 +638,80 @@ def player_of_the_week(config: dict, state: dict):
 
 
 # ------------------------------------------------------------------ #
-#  Timestamp cleanup (keep only last 10 days)
+#  Combat turn pinger (side-based initiative)
+# ------------------------------------------------------------------ #
+def check_combat_turns(config: dict, state: dict):
+    """During players' phase, ping players who haven't acted yet."""
+    group_id = config["group_id"]
+    now = datetime.now(timezone.utc)
+
+    if "combat" not in state:
+        return
+
+    # Build lookup: pbp_topic_id -> chat_topic_id
+    chat_topics = {}
+    for pair in config["topic_pairs"]:
+        chat_topics[str(pair["pbp_topic_id"])] = pair["chat_topic_id"]
+
+    for pid, combat in list(state["combat"].items()):
+        if not combat.get("active"):
+            continue
+
+        if combat["current_phase"] != "players":
+            continue
+
+        # Check if enough time has passed since phase started
+        phase_start = datetime.fromisoformat(combat["phase_started_at"])
+        hours_elapsed = (now - phase_start).total_seconds() / 3600
+
+        if hours_elapsed < COMBAT_PING_HOURS:
+            continue
+
+        # Don't re-ping within COMBAT_PING_HOURS
+        last_ping_str = combat.get("last_ping_at")
+        if last_ping_str:
+            since_ping = (now - datetime.fromisoformat(last_ping_str)).total_seconds() / 3600
+            if since_ping < COMBAT_PING_HOURS:
+                continue
+
+        # Find all known players in this campaign who haven't acted
+        acted = set(combat.get("players_acted", []))
+        missing = []
+
+        for player_key, player in state.get("players", {}).items():
+            if player["pbp_topic_id"] != pid:
+                continue
+            if player["user_id"] in acted:
+                continue
+
+            uname = player.get("username", "")
+            mention = f"@{uname}" if uname else player["first_name"]
+            missing.append(mention)
+
+        if not missing:
+            continue
+
+        campaign_name = combat.get("campaign_name", "Unknown")
+        round_num = combat.get("round", 1)
+        hours_int = int(hours_elapsed)
+
+        chat_topic_id = chat_topics.get(pid)
+        if not chat_topic_id:
+            continue
+
+        missing_str = ", ".join(missing)
+        message = (
+            f"Round {round_num} - waiting on: {missing_str}\n"
+            f"({hours_int}h since players' phase started)"
+        )
+
+        print(f"Combat ping in {campaign_name}: waiting on {missing_str}")
+        if send_message(group_id, chat_topic_id, message):
+            combat["last_ping_at"] = now.isoformat()
+
+
+# ------------------------------------------------------------------ #
+#  Timestamp cleanup (keep only last 15 days)
 # ------------------------------------------------------------------ #
 def cleanup_timestamps(state: dict):
     """Prune old timestamps to prevent gist from growing indefinitely."""
@@ -772,6 +900,9 @@ def main():
 
     # Campaign anniversaries
     check_anniversaries(config, state)
+
+    # Combat turn pinger
+    check_combat_turns(config, state)
 
     # Prune old timestamps
     cleanup_timestamps(state)
