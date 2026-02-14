@@ -809,10 +809,17 @@ def post_pace_report(config: dict, state: dict):
 
         message = (
             f"{trend_icon} Weekly pace for {name}:\n"
-            f"GM: {gm_this} posts ({gm_this / 7.0:.1f}/day)\n"
-            f"Players: {player_this} posts ({player_this / 7.0:.1f}/day)\n"
-            f"Total: {this_week} posts ({this_avg:.1f}/day)\n"
-            f"Last week: {last_week} ({last_avg:.1f}/day)\n"
+            f"\n"
+            f"This week:\n"
+            f"  GM: {gm_this} posts ({gm_this / 7.0:.1f}/day)\n"
+            f"  Players: {player_this} posts ({player_this / 7.0:.1f}/day)\n"
+            f"  Total: {this_week} posts ({this_avg:.1f}/day)\n"
+            f"\n"
+            f"Last week:\n"
+            f"  GM: {gm_last} posts ({gm_last / 7.0:.1f}/day)\n"
+            f"  Players: {player_last} posts ({player_last / 7.0:.1f}/day)\n"
+            f"  Total: {last_week} posts ({last_avg:.1f}/day)\n"
+            f"\n"
             f"Trend: {trend}"
         )
 
