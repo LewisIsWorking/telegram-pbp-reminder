@@ -1303,7 +1303,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
         rank = rank_icons[i] if i < 3 else f"{i + 1}."
         lines.append(
             f"\n{rank} {c['name']} {c['trend_icon']}\n"
-            f"   {posts_str(c['total_7d'])} ({c['player_7d']} player, {c['gm_7d']} GM)\n"
+            f"   {c['player_7d']} player posts ({posts_str(c['total_7d'])} total, {c['gm_7d']} GM)\n"
             f"   Avg gap: {c['avg_gap_str']} | Last post: {c['last_post_str']}"
         )
 
