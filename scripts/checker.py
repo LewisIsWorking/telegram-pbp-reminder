@@ -427,48 +427,47 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             state["combat"] = {}
 
         if user_id in gm_ids:
-            if text.startswith("/combat"):
+            # /round <number> <players|enemies>
+            # e.g. /round 1 enemies, /round 2 players
+            if text.startswith("/round"):
                 parts = text.split()
-                players_first = True
-                if len(parts) > 1 and parts[1] == "enemies":
-                    players_first = False
+                if len(parts) >= 3:
+                    try:
+                        round_num = int(parts[1])
+                    except ValueError:
+                        round_num = None
+                    phase = parts[2].lower()
+                    if round_num and phase in ("players", "enemies"):
+                        # Create combat if it doesn't exist yet
+                        if thread_id_str not in state["combat"]:
+                            state["combat"][thread_id_str] = {
+                                "active": True,
+                                "campaign_name": campaign_name,
+                                "round": round_num,
+                                "current_phase": phase,
+                                "phase_started_at": now_iso,
+                                "players_acted": [],
+                                "last_ping_at": None,
+                            }
+                        else:
+                            combat = state["combat"][thread_id_str]
+                            # Reset players_acted when switching to a new player phase
+                            if phase == "players" and (
+                                combat["current_phase"] != "players"
+                                or combat["round"] != round_num
+                            ):
+                                combat["players_acted"] = []
+                            combat["round"] = round_num
+                            combat["current_phase"] = phase
+                            combat["phase_started_at"] = now_iso
+                            combat["last_ping_at"] = None
 
-                state["combat"][thread_id_str] = {
-                    "active": True,
-                    "campaign_name": campaign_name,
-                    "players_first": players_first,
-                    "current_phase": "players" if players_first else "enemies",
-                    "round": 1,
-                    "phase_started_at": now_iso,
-                    "players_acted": [],
-                    "last_ping_at": None,
-                }
-                phase = "Players" if players_first else "Enemies"
-                print(f"Combat started in {campaign_name}: {phase} go first")
-                send_message(
-                    config["group_id"], thread_id,
-                    f"COMBAT STARTED in {campaign_name}! Round 1. {phase} go first."
-                )
-
-            elif text.startswith("/round"):
-                combat = state["combat"].get(thread_id_str)
-                if combat and combat["active"]:
-                    old_phase = combat["current_phase"]
-                    if old_phase == "players":
-                        combat["current_phase"] = "enemies"
-                    else:
-                        combat["current_phase"] = "players"
-                        combat["round"] += 1
-                        combat["players_acted"] = []
-                    combat["phase_started_at"] = now_iso
-                    combat["last_ping_at"] = None
-                    print(f"Combat round advance in {campaign_name}: "
-                          f"round {combat['round']}, phase: {combat['current_phase']}")
-                    phase_label = "Players" if combat["current_phase"] == "players" else "Enemies"
-                    send_message(
-                        config["group_id"], thread_id,
-                        f"Round {combat['round']}. {phase_label}' turn."
-                    )
+                        phase_label = "Players" if phase == "players" else "Enemies"
+                        print(f"Combat in {campaign_name}: Round {round_num}, {phase_label}")
+                        send_message(
+                            config["group_id"], thread_id,
+                            f"Round {round_num}. {phase_label}' turn."
+                        )
 
             elif text.startswith("/endcombat"):
                 if thread_id_str in state["combat"]:
