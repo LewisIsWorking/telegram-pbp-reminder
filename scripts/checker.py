@@ -445,6 +445,10 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 }
                 phase = "Players" if players_first else "Enemies"
                 print(f"Combat started in {campaign_name}: {phase} go first")
+                send_message(
+                    config["group_id"], thread_id,
+                    f"COMBAT STARTED in {campaign_name}! Round 1. {phase} go first."
+                )
 
             elif text.startswith("/round"):
                 combat = state["combat"].get(thread_id_str)
@@ -460,11 +464,20 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                     combat["last_ping_at"] = None
                     print(f"Combat round advance in {campaign_name}: "
                           f"round {combat['round']}, phase: {combat['current_phase']}")
+                    phase_label = "Players" if combat["current_phase"] == "players" else "Enemies"
+                    send_message(
+                        config["group_id"], thread_id,
+                        f"Round {combat['round']}. {phase_label}' turn."
+                    )
 
             elif text.startswith("/endcombat"):
                 if thread_id_str in state["combat"]:
                     del state["combat"][thread_id_str]
                     print(f"Combat ended in {campaign_name}")
+                    send_message(
+                        config["group_id"], thread_id,
+                        f"Combat ended in {campaign_name}."
+                    )
 
         # ---- Track player action during combat ----
         combat = state["combat"].get(thread_id_str)
