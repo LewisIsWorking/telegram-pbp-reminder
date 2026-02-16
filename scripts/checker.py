@@ -58,6 +58,35 @@ def display_name(first_name: str, username: str = "", last_name: str = "") -> st
     return full
 
 
+def deduplicate_posts(timestamps: list[datetime]) -> list[datetime]:
+    """Collapse posts within POST_SESSION_MINUTES into single sessions.
+
+    Returns the timestamp of the first post in each session.
+    """
+    if not timestamps:
+        return []
+    sorted_ts = sorted(timestamps)
+    sessions = [sorted_ts[0]]
+    for ts in sorted_ts[1:]:
+        if (ts - sessions[-1]).total_seconds() > POST_SESSION_MINUTES * 60:
+            sessions.append(ts)
+    return sessions
+
+
+MECHANICAL_BOONS = [
+    "+1 circumstance bonus on your next skill check.",
+    "Recover 1d6 extra HP during your next rest.",
+    "Your next critical failure on a skill check is a regular failure instead.",
+    "Gain a +1 circumstance bonus to initiative in your next combat.",
+    "+1 circumstance bonus to your next saving throw.",
+    "Your next successful Strike deals 1 extra damage.",
+    "Gain 1 temporary HP at the start of your next combat.",
+    "Your next Recall Knowledge check gains a +2 circumstance bonus.",
+    "+10 feet to your Speed for your first turn of your next combat.",
+    "The DC of your next skill check is reduced by 1.",
+]
+
+
 def posts_str(n: int) -> str:
     """Return '1 post' or 'N posts'."""
     return f"{n} post" if n == 1 else f"{n} posts"
@@ -84,6 +113,7 @@ LEADERBOARD_INTERVAL_DAYS = 3
 COMBAT_PING_HOURS = 4
 RECRUITMENT_INTERVAL_DAYS = 14
 REQUIRED_PLAYERS = 6
+POST_SESSION_MINUTES = 10  # Posts within this window count as one session
 
 
 def load_config() -> dict:
@@ -807,14 +837,17 @@ def player_of_the_week(config: dict, state: dict):
                 if post_time >= week_ago:
                     week_posts.append(post_time)
 
-            if len(week_posts) < POTW_MIN_POSTS:
+            # Deduplicate: posts within 10 min = one session
+            sessions = deduplicate_posts(week_posts)
+
+            if len(sessions) < POTW_MIN_POSTS:
                 continue
 
-            # Sort and calculate gaps
-            week_posts.sort()
+            # Sort and calculate gaps between sessions
+            sessions.sort()
             gaps = []
-            for i in range(1, len(week_posts)):
-                gap_hours = (week_posts[i] - week_posts[i - 1]).total_seconds() / 3600
+            for i in range(1, len(sessions)):
+                gap_hours = (sessions[i] - sessions[i - 1]).total_seconds() / 3600
                 gaps.append(gap_hours)
 
             avg_gap = sum(gaps) / len(gaps) if gaps else float("inf")
@@ -832,7 +865,7 @@ def player_of_the_week(config: dict, state: dict):
                 "last_name": last_name,
                 "username": username,
                 "avg_gap_hours": avg_gap,
-                "post_count": len(week_posts),
+                "post_count": len(sessions),
             })
 
         if not candidates:
@@ -848,8 +881,10 @@ def player_of_the_week(config: dict, state: dict):
         date_from = fmt_date(week_ago)
         date_to = fmt_date(now)
 
-        # Pick 3 random boons
+        # Pick 3 random flavour boons + 1 mechanical boon
         chosen_boons = random.sample(boons, min(3, len(boons)))
+        mech_boon = random.choice(MECHANICAL_BOONS)
+        chosen_boons.append(mech_boon)
 
         base_message = (
             f"Player of the Week for {name}: {mention}!\n"
