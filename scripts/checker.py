@@ -499,7 +499,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                             f"Round {round_num}. {phase_label}' turn."
                         )
 
-            elif text.startswith("/endcombat"):
+            elif text.startswith("/endcombat") or text == "/combat end":
                 if thread_id_str in state["combat"]:
                     del state["combat"][thread_id_str]
                     print(f"Combat ended in {campaign_name}")
