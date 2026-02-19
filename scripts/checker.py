@@ -769,21 +769,22 @@ def post_roster_summary(config: dict, state: dict):
             last_post = datetime.fromisoformat(player["last_post_time"])
             time_str = fmt_relative_date(now, last_post)
 
-            # Posts in last 7 days
+            # Posts in last 7 days (deduped into sessions)
             user_timestamps = topic_timestamps.get(uid, [])
             week_posts = [
                 datetime.fromisoformat(ts) for ts in user_timestamps
                 if datetime.fromisoformat(ts) >= week_ago
             ]
-            week_count = len(week_posts)
+            week_count = len(deduplicate_posts(week_posts))
 
-            # Average gap
+            # Average gap (using deduped sessions)
             avg_gap_str = "N/A"
-            if len(user_timestamps) >= 2:
-                sorted_ts = sorted(datetime.fromisoformat(ts) for ts in user_timestamps)
+            all_posts = sorted(datetime.fromisoformat(ts) for ts in user_timestamps)
+            sessions = deduplicate_posts(all_posts)
+            if len(sessions) >= 2:
                 gaps = []
-                for i in range(1, len(sorted_ts)):
-                    gap_h = (sorted_ts[i] - sorted_ts[i - 1]).total_seconds() / 3600
+                for i in range(1, len(sessions)):
+                    gap_h = (sessions[i] - sessions[i - 1]).total_seconds() / 3600
                     gaps.append(gap_h)
                 avg = sum(gaps) / len(gaps)
                 if avg < 1:
@@ -811,14 +812,15 @@ def post_roster_summary(config: dict, state: dict):
                     datetime.fromisoformat(ts) for ts in gm_timestamps
                     if datetime.fromisoformat(ts) >= week_ago
                 ]
-                gm_week_count = len(gm_week_posts)
+                gm_week_count = len(deduplicate_posts(gm_week_posts))
 
                 gm_avg_gap_str = "N/A"
-                if len(gm_timestamps) >= 2:
-                    sorted_ts = sorted(datetime.fromisoformat(ts) for ts in gm_timestamps)
+                gm_all_posts = sorted(datetime.fromisoformat(ts) for ts in gm_timestamps)
+                gm_sessions = deduplicate_posts(gm_all_posts)
+                if len(gm_sessions) >= 2:
                     gaps = []
-                    for i in range(1, len(sorted_ts)):
-                        gap_h = (sorted_ts[i] - sorted_ts[i - 1]).total_seconds() / 3600
+                    for i in range(1, len(gm_sessions)):
+                        gap_h = (gm_sessions[i] - gm_sessions[i - 1]).total_seconds() / 3600
                         gaps.append(gap_h)
                     avg = sum(gaps) / len(gaps)
                     if avg < 1:
@@ -1117,20 +1119,27 @@ def archive_weekly_data(config: dict, state: dict):
             player_key = f"{pid}:{uid}"
             player_info = state.get("players", {}).get(player_key, {})
 
+            user_week_posts = []
             for ts in timestamps:
                 post_time = datetime.fromisoformat(ts)
                 if week_start <= post_time < week_end:
-                    if is_gm:
-                        gm_posts += 1
-                    else:
-                        player_posts += 1
-                        player_post_times.append(post_time)
-                        p_name = display_name(
-                            player_info.get("first_name", "Unknown"),
-                            player_info.get("username", ""),
-                            player_info.get("last_name", ""),
-                        )
-                        player_counts[p_name] = player_counts.get(p_name, 0) + 1
+                    user_week_posts.append(post_time)
+
+            user_sessions = deduplicate_posts(user_week_posts)
+            session_count = len(user_sessions)
+
+            if is_gm:
+                gm_posts += session_count
+            else:
+                player_posts += session_count
+                player_post_times.extend(user_sessions)
+                if session_count > 0:
+                    p_name = display_name(
+                        player_info.get("first_name", "Unknown"),
+                        player_info.get("username", ""),
+                        player_info.get("last_name", ""),
+                    )
+                    player_counts[p_name] = player_counts.get(p_name, 0) + session_count
 
         # Calculate player avg gap
         player_avg_gap = None
@@ -1397,31 +1406,41 @@ def post_campaign_leaderboard(config: dict, state: dict):
             p_last_name = player_info.get("last_name", "")
             p_username = player_info.get("username", "")
 
+            # Collect this user's 7d posts, then dedup into sessions
+            user_7d_posts = []
             for ts in timestamps:
                 post_time = datetime.fromisoformat(ts)
 
                 # 7-day window
                 if post_time >= seven_days_ago:
-                    all_post_times_7d.append(post_time)
-                    if is_gm:
-                        gm_7d += 1
-                    else:
-                        player_7d += 1
-                        player_post_times_7d.append(post_time)
-                        if uid not in player_post_counts:
-                            player_post_counts[uid] = {
-                                "name": p_name,
-                                "last_name": p_last_name,
-                                "username": p_username,
-                                "count": 0,
-                            }
-                        player_post_counts[uid]["count"] += 1
+                    user_7d_posts.append(post_time)
 
-                # 3-day trend windows
+                # 3-day trend windows (raw counts, no dedup needed)
                 if post_time >= three_days_ago:
                     posts_recent_3d += 1
                 elif post_time >= six_days_ago:
                     posts_prev_3d += 1
+
+            # Dedup this user's posts into sessions
+            user_sessions = deduplicate_posts(user_7d_posts)
+            session_count = len(user_sessions)
+
+            # Add deduped sessions to combined pools
+            all_post_times_7d.extend(user_sessions)
+            if is_gm:
+                gm_7d += session_count
+            else:
+                player_7d += session_count
+                player_post_times_7d.extend(user_sessions)
+                if session_count > 0 and uid not in player_post_counts:
+                    player_post_counts[uid] = {
+                        "name": p_name,
+                        "last_name": p_last_name,
+                        "username": p_username,
+                        "count": 0,
+                    }
+                if uid in player_post_counts:
+                    player_post_counts[uid]["count"] += session_count
 
         total_7d = gm_7d + player_7d
 
