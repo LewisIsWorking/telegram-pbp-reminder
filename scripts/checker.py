@@ -845,7 +845,7 @@ def post_roster_summary(config: dict, state: dict):
         if not lines:
             continue
 
-        message = f"Party roster for {name}:\n" + "\n\n".join(lines)
+        message = f"Party roster for {name}:\n\n" + "\n\n".join(lines)
 
         print(f"Posting roster for {name}")
         if send_message(group_id, chat_topic_id, message):
