@@ -797,6 +797,7 @@ def post_roster_summary(config: dict, state: dict):
                 block += f"- @{uname}.\n"
             block += (
                 f"- {posts_str(count)} total.\n"
+                f"- {len(sessions)} posting session{'s' if len(sessions) != 1 else ''}.\n"
                 f"- {posts_str(week_count)} in the last week.\n"
                 f"- Average gap between posting: {avg_gap_str}.\n"
                 f"- Last post: {time_str}."
@@ -838,6 +839,7 @@ def post_roster_summary(config: dict, state: dict):
                 gm_block = (
                     f"GM\n"
                     f"- {posts_str(gm_count)} total.\n"
+                    f"- {len(gm_sessions)} posting session{'s' if len(gm_sessions) != 1 else ''}.\n"
                     f"- {posts_str(gm_week_count)} in the last week.\n"
                     f"- Average gap between posting: {gm_avg_gap_str}.\n"
                     f"- Last post: {gm_last_str}."
