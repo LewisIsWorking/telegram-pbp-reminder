@@ -793,12 +793,12 @@ def post_roster_summary(config: dict, state: dict):
 
             block = f"{full}\n"
             if uname:
-                block += f"  - @{uname}.\n"
+                block += f"- @{uname}.\n"
             block += (
-                f"  - {posts_str(count)} total.\n"
-                f"  - {posts_str(week_count)} in the last week.\n"
-                f"  - Average gap between posting: {avg_gap_str}.\n"
-                f"  - Last post: {time_str}."
+                f"- {posts_str(count)} total.\n"
+                f"- {posts_str(week_count)} in the last week.\n"
+                f"- Average gap between posting: {avg_gap_str}.\n"
+                f"- Last post: {time_str}."
             )
             lines.append(block)
 
@@ -835,10 +835,10 @@ def post_roster_summary(config: dict, state: dict):
 
                 gm_block = (
                     f"GM\n"
-                    f"  - {posts_str(gm_count)} total.\n"
-                    f"  - {posts_str(gm_week_count)} in the last week.\n"
-                    f"  - Average gap between posting: {gm_avg_gap_str}.\n"
-                    f"  - Last post: {gm_last_str}."
+                    f"- {posts_str(gm_count)} total.\n"
+                    f"- {posts_str(gm_week_count)} in the last week.\n"
+                    f"- Average gap between posting: {gm_avg_gap_str}.\n"
+                    f"- Last post: {gm_last_str}."
                 )
                 lines.insert(0, gm_block)
 
@@ -1602,7 +1602,7 @@ def check_recruitment_needs(config: dict, state: dict):
 
         # Build roster display
         if active:
-            roster_lines = "\n".join(f"  - {p}" for p in active)
+            roster_lines = "\n".join(f"- {p}" for p in active)
             roster_section = f"Current roster ({player_count}/{REQUIRED_PLAYERS}):\n{roster_lines}"
         else:
             roster_section = f"Current roster: 0/{REQUIRED_PLAYERS} (no active players)"
