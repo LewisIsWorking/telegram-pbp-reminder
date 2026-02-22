@@ -1560,7 +1560,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
     for i, c in enumerate(active):
         rank = rank_icons[i] if i < 3 else f"{i + 1}."
         campaign_block = (
-            f"{rank} {c['name']} {c['trend_icon']}\n"
+            f"[{rank} {c['name']} {c['trend_icon']}]\n"
             f"- {c['player_7d']} player posts.\n"
             f"- {posts_str(c['total_7d'])} total.\n"
             f"- {c['gm_7d']} GM posts.\n"
@@ -1579,12 +1579,12 @@ def post_campaign_leaderboard(config: dict, state: dict):
             block += f"- {posts_str(p['count'])}"
             player_blocks.append(block)
 
-        lines.append("\n━━━━━━━━━━━━━━━━\n\n" + campaign_block + "\n\n" + "\n\n".join(player_blocks))
+        lines.append("\n━━━━━━━━━━━━━━━━\n\n" + campaign_block + "\n\n" + "\n".join(player_blocks))
 
     if dead:
         lines.append("\n⚠️ Dead campaigns (0 posts in 7 days):")
         for c in dead:
-            lines.append(f"💀 {c['name']} (last post: {c['last_post_str']})")
+            lines.append(f"💀 [{c['name']}] (last post: {c['last_post_str']})")
 
     # Player-only avg gap ranking
     gap_ranked = [
