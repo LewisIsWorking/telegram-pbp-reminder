@@ -1514,11 +1514,16 @@ def post_campaign_leaderboard(config: dict, state: dict):
 
         # Accumulate into global player tracker
         for uid, pdata in player_post_counts.items():
-            dname = display_name(pdata["name"], pdata.get("username", ""), pdata.get("last_name", ""))
-            if dname not in global_player_posts:
-                global_player_posts[dname] = {"count": 0, "campaigns": 0}
-            global_player_posts[dname]["count"] += pdata["count"]
-            global_player_posts[dname]["campaigns"] += 1
+            if uid not in global_player_posts:
+                full = f"{pdata['name']} {pdata.get('last_name', '')}".strip()
+                global_player_posts[uid] = {
+                    "full_name": full,
+                    "username": pdata.get("username", ""),
+                    "count": 0,
+                    "campaigns": 0,
+                }
+            global_player_posts[uid]["count"] += pdata["count"]
+            global_player_posts[uid]["campaigns"] += 1
 
         campaign_stats.append({
             "name": name,
@@ -1587,12 +1592,17 @@ def post_campaign_leaderboard(config: dict, state: dict):
             global_player_posts.items(),
             key=lambda x: x[1]["count"],
             reverse=True,
-        )[:10]
-        lines.append("\n⭐ Top Players of the Week:")
-        for i, (pname, pdata) in enumerate(top_global):
-            icon = rank_icons[i] if i < 3 else f"   {i + 1}."
+        )
+        player_blocks = []
+        for i, (uid, pdata) in enumerate(top_global):
+            icon = rank_icons[i] if i < 3 else f"{i + 1}."
             campaign_word = "campaign" if pdata["campaigns"] == 1 else "campaigns"
-            lines.append(f"   {icon} {pname}: {posts_str(pdata['count'])} across {pdata['campaigns']} {campaign_word}")
+            block = f"{icon} {pdata['full_name']}\n"
+            if pdata["username"]:
+                block += f"- @{pdata['username']}\n"
+            block += f"- {posts_str(pdata['count'])} across {pdata['campaigns']} {campaign_word}"
+            player_blocks.append(block)
+        lines.append("\n⭐ Top Players of the Week:\n\n" + "\n\n".join(player_blocks))
 
     message = "\n".join(lines)
 
