@@ -1555,25 +1555,36 @@ def post_campaign_leaderboard(config: dict, state: dict):
     rank_icons = ["🥇", "🥈", "🥉"]
     player_medals = ["🥇", "🥈", "🥉"]
 
-    lines = [f"📊 Weekly Campaign Leaderboard ({date_from} to {date_to})\n"]
+    lines = [f"📊 Weekly Campaign Leaderboard ({date_from} to {date_to})"]
 
     for i, c in enumerate(active):
         rank = rank_icons[i] if i < 3 else f"{i + 1}."
-        lines.append(
-            f"\n{rank} {c['name']} {c['trend_icon']}\n"
-            f"   {c['player_7d']} player posts ({posts_str(c['total_7d'])} total, {c['gm_7d']} GM)\n"
-            f"   Avg gap: {c['avg_gap_str']} | Last post: {c['last_post_str']}"
+        campaign_block = (
+            f"{rank} {c['name']} {c['trend_icon']}\n"
+            f"- {c['player_7d']} player posts.\n"
+            f"- {posts_str(c['total_7d'])} total.\n"
+            f"- {c['gm_7d']} GM posts.\n"
+            f"- Avg gap: {c['avg_gap_str']}.\n"
+            f"- Last post: {c['last_post_str']}."
         )
 
+        player_blocks = []
         for j, p in enumerate(c["top_players"]):
-            medal = player_medals[j] if j < 3 else f"   {j + 1}."
-            display = display_name(p["name"], p.get("username", ""), p.get("last_name", ""))
-            lines.append(f"   {medal} {display}: {posts_str(p['count'])}")
+            medal = player_medals[j] if j < 3 else f"{j + 1}."
+            full = f"{p['name']} {p.get('last_name', '')}".strip()
+            uname = p.get("username", "")
+            block = f"{medal} {full}\n"
+            if uname:
+                block += f"- @{uname}\n"
+            block += f"- {posts_str(p['count'])}"
+            player_blocks.append(block)
+
+        lines.append("\n" + campaign_block + "\n\n" + "\n\n".join(player_blocks))
 
     if dead:
         lines.append("\n⚠️ Dead campaigns (0 posts in 7 days):")
         for c in dead:
-            lines.append(f"   💀 {c['name']} (last post: {c['last_post_str']})")
+            lines.append(f"💀 {c['name']} (last post: {c['last_post_str']})")
 
     # Player-only avg gap ranking
     gap_ranked = [
@@ -1584,7 +1595,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
         lines.append("\n⏱ Fastest player response gaps:")
         for i, c in enumerate(gap_ranked):
             icon = rank_icons[i] if i < 3 else f"{i + 1}."
-            lines.append(f"   {icon} {c['name']}: {c['player_avg_gap_str']}")
+            lines.append(f"{icon} {c['name']}: {c['player_avg_gap_str']}")
 
     # Overall top players (most sessions across all campaigns)
     if global_player_posts:
