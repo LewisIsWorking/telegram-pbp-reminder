@@ -1592,13 +1592,14 @@ def post_campaign_leaderboard(config: dict, state: dict):
     ]
     if gap_ranked:
         gap_ranked.sort(key=lambda c: c["player_avg_gap"])
-        lines.append("\n⏱ Fastest player response gaps:")
+        lines.append("\n━━━━━━━━━━━━━━━━\n\n⏱ Fastest player response gaps:")
         for i, c in enumerate(gap_ranked):
             icon = rank_icons[i] if i < 3 else f"{i + 1}."
             lines.append(f"{icon} {c['name']}: {c['player_avg_gap_str']}")
 
     # Overall top players (most sessions across all campaigns)
     if global_player_posts:
+        lines.append("\n━━━━━━━━━━━━━━━━")
         top_global = sorted(
             global_player_posts.items(),
             key=lambda x: x[1]["count"],
