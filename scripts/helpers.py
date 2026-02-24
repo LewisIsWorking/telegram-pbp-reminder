@@ -149,6 +149,11 @@ def players_by_campaign(state: dict) -> dict:
     return campaigns
 
 
+def get_topic_timestamps(state: dict, pid: str) -> dict:
+    """Get per-user timestamp dict for a campaign. Returns {uid: [iso_str, ...]}."""
+    return state.get("post_timestamps", {}).get(pid, {})
+
+
 RANK_ICONS = ["🥇", "🥈", "🥉"]
 
 

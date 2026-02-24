@@ -488,7 +488,7 @@ def post_roster_summary(config: dict, state: dict) -> None:
         name = maps.to_name.get(pid, "Unknown")
         players = campaigns.get(pid, [])
         counts = state.get("message_counts", {}).get(pid, {})
-        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         if not players and not counts:
             continue
@@ -574,7 +574,7 @@ def player_of_the_week(config: dict, state: dict) -> None:
             continue
 
         name = maps.to_name.get(pid, "Unknown")
-        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         candidates = _gather_potw_candidates(topic_timestamps, gm_ids, week_ago, pid, state)
         if not candidates:
@@ -721,7 +721,7 @@ def archive_weekly_data(config: dict, state: dict) -> None:
     all_campaigns = helpers.players_by_campaign(state)
 
     for pid, name in maps.to_name.items():
-        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         gm_posts = 0
         player_posts = 0
@@ -820,7 +820,7 @@ def post_pace_report(config: dict, state: dict) -> None:
             continue
 
         name = maps.to_name.get(pid, "Unknown")
-        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         if not topic_timestamps:
             continue
@@ -940,7 +940,7 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
     maps = build_topic_maps(config)
 
     for pid, name in maps.to_name.items():
-        topic_timestamps = state.get("post_timestamps", {}).get(pid, {})
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         gm_7d = 0
         player_7d = 0

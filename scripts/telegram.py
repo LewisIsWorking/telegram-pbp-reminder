@@ -12,6 +12,17 @@ def init(token: str) -> None:
     TELEGRAM_API = f"https://api.telegram.org/bot{token}"
 
 
+def _post(method: str, payload: dict, label: str = "request") -> dict | None:
+    """POST to Telegram API, return parsed result on success or None on failure."""
+    resp = requests.post(f"{TELEGRAM_API}/{method}", json=payload)
+    if resp.status_code == 200:
+        data = resp.json()
+        if data.get("ok"):
+            return data.get("result")
+    print(f"Telegram {label} failed: {resp.text}")
+    return None
+
+
 def get_updates(offset: int) -> list:
     """Fetch new messages and callbacks from Telegram Bot API."""
     resp = requests.get(
@@ -38,43 +49,27 @@ def get_updates(offset: int) -> list:
 
 def send_message(chat_id: int, thread_id: int, text: str) -> bool:
     """Send a text message to a specific thread. Returns True on success."""
-    resp = requests.post(
-        f"{TELEGRAM_API}/sendMessage",
-        json={
-            "chat_id": chat_id,
-            "message_thread_id": thread_id,
-            "text": text,
-            "disable_notification": False,
-        },
-    )
-
-    if resp.status_code == 200 and resp.json().get("ok"):
-        return True
-    else:
-        print(f"Failed to send message: {resp.text}")
-        return False
+    result = _post("sendMessage", {
+        "chat_id": chat_id,
+        "message_thread_id": thread_id,
+        "text": text,
+        "disable_notification": False,
+    }, "send_message")
+    return result is not None
 
 
 def send_message_with_buttons(
     chat_id: int, thread_id: int, text: str, buttons: list
 ) -> int | None:
     """Send a message with inline keyboard buttons. Returns message_id or None."""
-    keyboard = {"inline_keyboard": [buttons]}
-    resp = requests.post(
-        f"{TELEGRAM_API}/sendMessage",
-        json={
-            "chat_id": chat_id,
-            "message_thread_id": thread_id,
-            "text": text,
-            "disable_notification": False,
-            "reply_markup": keyboard,
-        },
-    )
-    if resp.status_code == 200 and resp.json().get("ok"):
-        return resp.json()["result"]["message_id"]
-    else:
-        print(f"Failed to send button message: {resp.text}")
-        return None
+    result = _post("sendMessage", {
+        "chat_id": chat_id,
+        "message_thread_id": thread_id,
+        "text": text,
+        "disable_notification": False,
+        "reply_markup": {"inline_keyboard": [buttons]},
+    }, "send_button_message")
+    return result["message_id"] if result else None
 
 
 def edit_message(chat_id: int, message_id: int, text: str, parse_mode: str = None) -> bool:
@@ -86,24 +81,12 @@ def edit_message(chat_id: int, message_id: int, text: str, parse_mode: str = Non
     }
     if parse_mode:
         payload["parse_mode"] = parse_mode
-    resp = requests.post(
-        f"{TELEGRAM_API}/editMessageText",
-        json=payload,
-    )
-    if resp.status_code == 200 and resp.json().get("ok"):
-        return True
-    else:
-        print(f"Failed to edit message: {resp.text}")
-        return False
+    return _post("editMessageText", payload, "edit_message") is not None
 
 
 def answer_callback(callback_id: str, text: str = "") -> bool:
     """Answer a callback query to dismiss the loading spinner."""
-    resp = requests.post(
-        f"{TELEGRAM_API}/answerCallbackQuery",
-        json={
-            "callback_query_id": callback_id,
-            "text": text,
-        },
-    )
-    return resp.status_code == 200
+    return _post("answerCallbackQuery", {
+        "callback_query_id": callback_id,
+        "text": text,
+    }, "answer_callback") is not None
