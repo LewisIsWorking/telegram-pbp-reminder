@@ -26,7 +26,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
-        run: python scripts/checker.py
+        run: cd scripts && python checker.py
 
       - name: Commit archive data
         run: |

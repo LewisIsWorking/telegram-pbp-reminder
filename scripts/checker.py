@@ -1,361 +1,28 @@
 """
 PBP Inactivity Checker for GitHub Actions
 
-Runs hourly via cron. Two features:
-1. TOPIC ALERTS: Sends alerts to OOC chat when a PBP topic has been
-   inactive for the configured threshold (default 4 hours).
-2. PLAYER TRACKING: Auto-detects players by their posts. If a player
-   hasn't posted in a PBP topic for 1 week, @mentions them weekly.
-   After 4 weeks, announces they're out and stops tracking them.
-   They can rejoin simply by posting again.
+Orchestrator that runs hourly via cron. Processes Telegram messages
+and triggers all bot features (alerts, rosters, POTW, leaderboards, etc).
 
 State is persisted between runs using a GitHub Gist.
+Modules: telegram.py (API), state.py (persistence), helpers.py (utilities).
 """
 
 import os
 import sys
 import json
 import random
-import requests
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 
-# ------------------------------------------------------------------ #
-#  Config
-# ------------------------------------------------------------------ #
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-GIST_TOKEN = os.environ.get("GIST_TOKEN", "")
-GIST_ID = os.environ.get("GIST_ID", "")
+import helpers
+import telegram as tg
+import state as state_store
 
-TELEGRAM_API = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
-GIST_API = f"https://api.github.com/gists/{GIST_ID}"
-STATE_FILENAME = "pbp_state.json"
+from helpers import (
+    fmt_date, fmt_relative_date, html_escape, display_name,
+    posts_str, deduplicate_posts, calc_avg_gap_str, build_topic_maps,
+)
 
-CONFIG_PATH = Path(__file__).parent.parent / "config.json"
-BOONS_PATH = Path(__file__).parent.parent / "boons.json"
-ARCHIVE_PATH = Path(__file__).parent.parent / "data" / "weekly_archive.json"
-
-
-def fmt_date(dt: datetime) -> str:
-    """Format a datetime as YYYY-MM-DD."""
-    return dt.strftime("%Y-%m-%d")
-
-
-def html_escape(text: str) -> str:
-    """Escape HTML special characters for Telegram HTML parse mode."""
-    return (
-        text.replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-    )
-
-
-def display_name(first_name: str, username: str = "", last_name: str = "") -> str:
-    """Format a player name as 'First Last (@username)' or 'First Last' or 'First'."""
-    full = f"{first_name} {last_name}".strip() if last_name else first_name
-    if username:
-        return f"{full} (@{username})"
-    return full
-
-
-def deduplicate_posts(timestamps: list[datetime]) -> list[datetime]:
-    """Collapse posts within POST_SESSION_MINUTES into single sessions.
-
-    Returns the timestamp of the first post in each session.
-    """
-    if not timestamps:
-        return []
-    sorted_ts = sorted(timestamps)
-    sessions = [sorted_ts[0]]
-    for ts in sorted_ts[1:]:
-        if (ts - sessions[-1]).total_seconds() > POST_SESSION_MINUTES * 60:
-            sessions.append(ts)
-    return sessions
-
-
-def calc_avg_gap_str(timestamps_iso: list[str]) -> str:
-    """Calculate deduped average gap from ISO timestamp strings. Returns formatted string."""
-    all_posts = sorted(datetime.fromisoformat(ts) for ts in timestamps_iso)
-    sessions = deduplicate_posts(all_posts)
-    if len(sessions) < 2:
-        return "N/A"
-    gaps = []
-    for i in range(1, len(sessions)):
-        gap_h = (sessions[i] - sessions[i - 1]).total_seconds() / 3600
-        gaps.append(gap_h)
-    avg = sum(gaps) / len(gaps)
-    if avg < 1:
-        return f"{avg * 60:.0f} minutes"
-    return f"{avg:.1f} hours"
-
-
-def build_topic_maps(config: dict):
-    """Build lookup dicts from config's topic_pairs.
-
-    Returns:
-        topic_to_canonical: maps any pbp_topic_id (str) -> canonical pid (str, first in list)
-        canonical_to_chat: maps canonical pid -> chat_topic_id
-        canonical_to_name: maps canonical pid -> campaign name
-        all_pbp_ids: set of all pbp topic id strings
-    """
-    topic_to_canonical = {}
-    canonical_to_chat = {}
-    canonical_to_name = {}
-    all_pbp_ids = set()
-    for pair in config["topic_pairs"]:
-        ids = pair["pbp_topic_ids"]
-        canonical = str(ids[0])
-        canonical_to_chat[canonical] = pair["chat_topic_id"]
-        canonical_to_name[canonical] = pair["name"]
-        for tid in ids:
-            tid_str = str(tid)
-            topic_to_canonical[tid_str] = canonical
-            all_pbp_ids.add(tid_str)
-    return topic_to_canonical, canonical_to_chat, canonical_to_name, all_pbp_ids
-
-
-MECHANICAL_BOONS = [
-    "+1 circumstance bonus on your next skill check.",
-    "Recover 1d6 extra HP during your next rest.",
-    "Your next critical failure on a skill check is a regular failure instead.",
-    "Gain a +1 circumstance bonus to initiative in your next combat.",
-    "+1 circumstance bonus to your next saving throw.",
-    "Your next successful Strike deals 1 extra damage.",
-    "Gain 1 temporary HP at the start of your next combat.",
-    "Your next Recall Knowledge check gains a +2 circumstance bonus.",
-    "+10 feet to your Speed for your first turn of your next combat.",
-    "The DC of your next skill check is reduced by 1.",
-]
-
-
-def posts_str(n: int) -> str:
-    """Return '1 post' or 'N posts'."""
-    return f"{n} post" if n == 1 else f"{n} posts"
-
-
-def fmt_relative_date(now: datetime, then: datetime) -> str:
-    """Format as relative + absolute, e.g. '5d ago (2026-02-10)'."""
-    days_ago = int((now - then).total_seconds() / 86400)
-    date_str = fmt_date(then)
-    if days_ago == 0:
-        return f"today ({date_str})"
-    elif days_ago == 1:
-        return f"yesterday ({date_str})"
-    else:
-        return f"{days_ago}d ago ({date_str})"
-
-PLAYER_WARN_WEEKS = [1, 2, 3]  # defaults, overridden by config
-PLAYER_REMOVE_WEEKS = 4
-ROSTER_INTERVAL_DAYS = 3
-POTW_INTERVAL_DAYS = 7
-POTW_MIN_POSTS = 5
-PACE_INTERVAL_DAYS = 7
-LEADERBOARD_INTERVAL_DAYS = 3
-COMBAT_PING_HOURS = 4
-RECRUITMENT_INTERVAL_DAYS = 14
-REQUIRED_PLAYERS = 6
-POST_SESSION_MINUTES = 10
-
-
-def load_settings(config: dict):
-    """Load tunable settings from config, applying defaults for any missing keys."""
-    global PLAYER_WARN_WEEKS, PLAYER_REMOVE_WEEKS, ROSTER_INTERVAL_DAYS
-    global POTW_INTERVAL_DAYS, POTW_MIN_POSTS, PACE_INTERVAL_DAYS
-    global LEADERBOARD_INTERVAL_DAYS, COMBAT_PING_HOURS
-    global RECRUITMENT_INTERVAL_DAYS, REQUIRED_PLAYERS, POST_SESSION_MINUTES
-
-    s = config.get("settings", {})
-    PLAYER_WARN_WEEKS = s.get("player_warn_weeks", PLAYER_WARN_WEEKS)
-    PLAYER_REMOVE_WEEKS = s.get("player_remove_weeks", PLAYER_REMOVE_WEEKS)
-    ROSTER_INTERVAL_DAYS = s.get("roster_interval_days", ROSTER_INTERVAL_DAYS)
-    POTW_INTERVAL_DAYS = s.get("potw_interval_days", POTW_INTERVAL_DAYS)
-    POTW_MIN_POSTS = s.get("potw_min_posts", POTW_MIN_POSTS)
-    PACE_INTERVAL_DAYS = s.get("pace_interval_days", PACE_INTERVAL_DAYS)
-    LEADERBOARD_INTERVAL_DAYS = s.get("leaderboard_interval_days", LEADERBOARD_INTERVAL_DAYS)
-    COMBAT_PING_HOURS = s.get("combat_ping_hours", COMBAT_PING_HOURS)
-    RECRUITMENT_INTERVAL_DAYS = s.get("recruitment_interval_days", RECRUITMENT_INTERVAL_DAYS)
-    REQUIRED_PLAYERS = s.get("required_players", REQUIRED_PLAYERS)
-    POST_SESSION_MINUTES = s.get("post_session_minutes", POST_SESSION_MINUTES)
-
-
-def load_config() -> dict:
-    with open(CONFIG_PATH) as f:
-        return json.load(f)
-
-
-# ------------------------------------------------------------------ #
-#  Gist state storage
-# ------------------------------------------------------------------ #
-DEFAULT_STATE = {
-    "offset": 0,
-    "topics": {},
-    "last_alerts": {},
-    "players": {},
-    "removed_players": {},
-    "message_counts": {},
-    "last_roster": {},
-    "post_timestamps": {},
-    "last_potw": {},
-    "last_pace": {},
-    "last_anniversary": {},
-    "combat": {},
-}
-
-
-def load_state_from_gist() -> dict:
-    if not GIST_ID or not GIST_TOKEN:
-        print("Warning: No GIST_ID or GIST_TOKEN set, starting with empty state")
-        return dict(DEFAULT_STATE)
-
-    resp = requests.get(
-        GIST_API,
-        headers={
-            "Authorization": f"token {GIST_TOKEN}",
-            "Accept": "application/vnd.github.v3+json",
-        },
-    )
-
-    if resp.status_code != 200:
-        print(f"Warning: Could not load gist (HTTP {resp.status_code}), starting fresh")
-        return dict(DEFAULT_STATE)
-
-    gist_data = resp.json()
-    files = gist_data.get("files", {})
-
-    if STATE_FILENAME in files:
-        content = files[STATE_FILENAME]["content"]
-        state = json.loads(content)
-        # Backwards compat: ensure all keys exist
-        for key, default in DEFAULT_STATE.items():
-            if key not in state:
-                state[key] = default
-        return state
-
-    return dict(DEFAULT_STATE)
-
-
-def save_state_to_gist(state: dict):
-    if not GIST_ID or not GIST_TOKEN:
-        print("Warning: No GIST_ID or GIST_TOKEN set, cannot save state")
-        return
-
-    resp = requests.patch(
-        GIST_API,
-        headers={
-            "Authorization": f"token {GIST_TOKEN}",
-            "Accept": "application/vnd.github.v3+json",
-        },
-        json={
-            "files": {
-                STATE_FILENAME: {
-                    "content": json.dumps(state, indent=2)
-                }
-            }
-        },
-    )
-
-    if resp.status_code == 200:
-        print("State saved to gist")
-    else:
-        print(f"Warning: Failed to save state (HTTP {resp.status_code})")
-
-
-# ------------------------------------------------------------------ #
-#  Telegram API helpers
-# ------------------------------------------------------------------ #
-def get_updates(offset: int) -> list:
-    resp = requests.get(
-        f"{TELEGRAM_API}/getUpdates",
-        params={
-            "offset": offset,
-            "limit": 100,
-            "timeout": 5,
-            "allowed_updates": json.dumps(["message", "callback_query"]),
-        },
-    )
-
-    if resp.status_code != 200:
-        print(f"Error fetching updates: HTTP {resp.status_code}")
-        return []
-
-    data = resp.json()
-    if not data.get("ok"):
-        print(f"Telegram API error: {data}")
-        return []
-
-    return data.get("result", [])
-
-
-def send_message(chat_id: int, thread_id: int, text: str) -> bool:
-    resp = requests.post(
-        f"{TELEGRAM_API}/sendMessage",
-        json={
-            "chat_id": chat_id,
-            "message_thread_id": thread_id,
-            "text": text,
-            "disable_notification": False,
-        },
-    )
-
-    if resp.status_code == 200 and resp.json().get("ok"):
-        return True
-    else:
-        print(f"Failed to send message: {resp.text}")
-        return False
-
-
-def send_message_with_buttons(
-    chat_id: int, thread_id: int, text: str, buttons: list
-) -> int | None:
-    """Send a message with inline keyboard buttons. Returns message_id or None."""
-    keyboard = {"inline_keyboard": [buttons]}
-    resp = requests.post(
-        f"{TELEGRAM_API}/sendMessage",
-        json={
-            "chat_id": chat_id,
-            "message_thread_id": thread_id,
-            "text": text,
-            "disable_notification": False,
-            "reply_markup": keyboard,
-        },
-    )
-    if resp.status_code == 200 and resp.json().get("ok"):
-        return resp.json()["result"]["message_id"]
-    else:
-        print(f"Failed to send button message: {resp.text}")
-        return None
-
-
-def edit_message(chat_id: int, message_id: int, text: str, parse_mode: str = None) -> bool:
-    """Edit an existing message, removing inline keyboard."""
-    payload = {
-        "chat_id": chat_id,
-        "message_id": message_id,
-        "text": text,
-    }
-    if parse_mode:
-        payload["parse_mode"] = parse_mode
-    resp = requests.post(
-        f"{TELEGRAM_API}/editMessageText",
-        json=payload,
-    )
-    if resp.status_code == 200 and resp.json().get("ok"):
-        return True
-    else:
-        print(f"Failed to edit message: {resp.text}")
-        return False
-
-
-def answer_callback(callback_id: str, text: str = "") -> bool:
-    """Answer a callback query to dismiss the loading spinner."""
-    resp = requests.post(
-        f"{TELEGRAM_API}/answerCallbackQuery",
-        json={
-            "callback_query_id": callback_id,
-            "text": text,
-        },
-    )
-    return resp.status_code == 200
 
 
 # ------------------------------------------------------------------ #
@@ -377,29 +44,29 @@ def process_boon_callback(cb: dict, config: dict, state: dict):
     # Parse: boon:<topic_id>:<choice_index>
     parts = cb_data.split(":")
     if len(parts) != 3:
-        answer_callback(cb_id, "Invalid choice.")
+        tg.answer_callback(cb_id, "Invalid choice.")
         return
 
     topic_id = parts[1]
     try:
         choice_idx = int(parts[2])
     except ValueError:
-        answer_callback(cb_id, "Invalid choice.")
+        tg.answer_callback(cb_id, "Invalid choice.")
         return
 
     # Check pending choices
     pending = state.get("pending_potw_boons", {}).get(topic_id)
     if not pending:
-        answer_callback(cb_id, "This choice has expired.")
+        tg.answer_callback(cb_id, "This choice has expired.")
         return
 
     # Only the winner can choose
     if user_id != pending["winner_user_id"]:
-        answer_callback(cb_id, "Only the Player of the Week can choose!")
+        tg.answer_callback(cb_id, "Only the Player of the Week can choose!")
         return
 
     if choice_idx < 0 or choice_idx >= len(pending["boons"]):
-        answer_callback(cb_id, "Invalid choice.")
+        tg.answer_callback(cb_id, "Invalid choice.")
         return
 
     chosen_boon = pending["boons"][choice_idx]
@@ -417,8 +84,8 @@ def process_boon_callback(cb: dict, config: dict, state: dict):
     base_escaped = html_escape(pending["base_message"])
     new_text = f"{base_escaped}\n\nChosen boon:{boon_lines}"
 
-    edit_message(chat_id, message_id, new_text, parse_mode="HTML")
-    answer_callback(cb_id, f"You chose boon #{choice_idx + 1}!")
+    tg.edit_message(chat_id, message_id, new_text, parse_mode="HTML")
+    tg.answer_callback(cb_id, f"You chose boon #{choice_idx + 1}!")
 
     # Clean up pending state
     del state["pending_potw_boons"][topic_id]
@@ -449,7 +116,7 @@ def expire_pending_boons(config: dict, state: dict):
             base_escaped = html_escape(entry["base_message"])
             new_text = f"{base_escaped}\n\nBoon (auto-selected):{boon_lines}"
 
-            edit_message(group_id, entry["message_id"], new_text, parse_mode="HTML")
+            tg.edit_message(group_id, entry["message_id"], new_text, parse_mode="HTML")
             del pending[topic_id]
             print(f"POTW boon auto-expired for topic {topic_id}, picked #1")
 
@@ -556,7 +223,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
                         phase_label = "Players" if phase == "players" else "Enemies"
                         print(f"Combat in {campaign_name}: Round {round_num}, {phase_label}")
-                        send_message(
+                        tg.send_message(
                             config["group_id"], thread_id,
                             f"Round {round_num}. {phase_label}' turn."
                         )
@@ -565,7 +232,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 if pid in state["combat"]:
                     del state["combat"][pid]
                     print(f"Combat ended in {campaign_name}")
-                    send_message(
+                    tg.send_message(
                         config["group_id"], thread_id,
                         f"Combat ended in {campaign_name}."
                     )
@@ -681,7 +348,7 @@ def check_and_alert(config: dict, state: dict):
         )
 
         print(f"Sending alert for {name}: {time_str} inactive")
-        if send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, chat_topic_id, message):
             state["last_alerts"][pid] = now.isoformat()
 
 
@@ -717,20 +384,20 @@ def check_player_activity(config: dict, state: dict):
         last_date = fmt_date(last_post)
 
         # 4+ weeks: remove
-        if current_week >= PLAYER_REMOVE_WEEKS:
-            if last_warned < PLAYER_REMOVE_WEEKS:
+        if current_week >= helpers.PLAYER_REMOVE_WEEKS:
+            if last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
                     f"{mention} has not posted in {campaign} PBP for "
                     f"{days_inactive} days (last: {last_date}). They are no longer tracked "
                     f"as an active player in this campaign."
                 )
                 print(f"Removing {first_name} from {campaign} ({days_inactive}d)")
-                send_message(group_id, chat_topic_id, message)
+                tg.send_message(group_id, chat_topic_id, message)
                 players_to_remove.append(player_key)
             continue
 
         # 1, 2, 3 week warnings
-        for week_mark in PLAYER_WARN_WEEKS:
+        for week_mark in helpers.PLAYER_WARN_WEEKS:
             if current_week >= week_mark and last_warned < week_mark:
                 if week_mark == 1:
                     message = (
@@ -750,7 +417,7 @@ def check_player_activity(config: dict, state: dict):
                     )
 
                 print(f"Warning {first_name} in {campaign}: week {week_mark}")
-                if send_message(group_id, chat_topic_id, message):
+                if tg.send_message(group_id, chat_topic_id, message):
                     player["last_warned_week"] = week_mark
                 break  # One warning per player per run
 
@@ -798,7 +465,7 @@ def post_roster_summary(config: dict, state: dict):
         if last_roster_str:
             last_roster = datetime.fromisoformat(last_roster_str)
             days_since = (now - last_roster).total_seconds() / 86400
-            if days_since < ROSTER_INTERVAL_DAYS:
+            if days_since < helpers.ROSTER_INTERVAL_DAYS:
                 continue
 
         name = campaign_names.get(pid, "Unknown")
@@ -887,7 +554,7 @@ def post_roster_summary(config: dict, state: dict):
         message = f"Party roster for {name}:\n\n" + "\n\n".join(lines)
 
         print(f"Posting roster for {name}")
-        if send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, chat_topic_id, message):
             state["last_roster"][pid] = now.isoformat()
 
 
@@ -905,7 +572,7 @@ def player_of_the_week(config: dict, state: dict):
 
     # Load boons
     try:
-        with open(BOONS_PATH) as f:
+        with open(helpers.BOONS_PATH) as f:
             boons = json.load(f)
     except Exception as e:
         print(f"Warning: Could not load boons: {e}")
@@ -922,7 +589,7 @@ def player_of_the_week(config: dict, state: dict):
         if last_potw_str:
             last_potw = datetime.fromisoformat(last_potw_str)
             days_since = (now - last_potw).total_seconds() / 86400
-            if days_since < POTW_INTERVAL_DAYS:
+            if days_since < helpers.POTW_INTERVAL_DAYS:
                 continue
 
         name = campaign_names.get(pid, "Unknown")
@@ -945,7 +612,7 @@ def player_of_the_week(config: dict, state: dict):
             # Deduplicate: posts within 10 min = one session
             sessions = deduplicate_posts(week_posts)
 
-            if len(sessions) < POTW_MIN_POSTS:
+            if len(sessions) < helpers.POTW_MIN_POSTS:
                 continue
 
             # Sort and calculate gaps between sessions
@@ -974,7 +641,7 @@ def player_of_the_week(config: dict, state: dict):
             })
 
         if not candidates:
-            print(f"No POTW candidates for {name} (need {POTW_MIN_POSTS}+ posts)")
+            print(f"No POTW candidates for {name} (need {helpers.POTW_MIN_POSTS}+ posts)")
             continue
 
         # Winner = smallest average gap
@@ -988,7 +655,7 @@ def player_of_the_week(config: dict, state: dict):
 
         # Pick 3 random flavour boons + 1 mechanical boon
         chosen_boons = random.sample(boons, min(3, len(boons)))
-        mech_boon = random.choice(MECHANICAL_BOONS)
+        mech_boon = random.choice(helpers.MECHANICAL_BOONS)
         chosen_boons.append(mech_boon)
 
         base_message = (
@@ -1014,7 +681,7 @@ def player_of_the_week(config: dict, state: dict):
             })
 
         print(f"POTW for {name}: {winner['first_name']} (avg gap {avg_gap_str})")
-        msg_id = send_message_with_buttons(group_id, chat_topic_id, full_text, buttons)
+        msg_id = tg.send_message_with_buttons(group_id, chat_topic_id, full_text, buttons)
         if msg_id:
             state["last_potw"][pid] = now.isoformat()
 
@@ -1055,14 +722,14 @@ def check_combat_turns(config: dict, state: dict):
         phase_start = datetime.fromisoformat(combat["phase_started_at"])
         hours_elapsed = (now - phase_start).total_seconds() / 3600
 
-        if hours_elapsed < COMBAT_PING_HOURS:
+        if hours_elapsed < helpers.COMBAT_PING_HOURS:
             continue
 
-        # Don't re-ping within COMBAT_PING_HOURS
+        # Don't re-ping within helpers.COMBAT_PING_HOURS
         last_ping_str = combat.get("last_ping_at")
         if last_ping_str:
             since_ping = (now - datetime.fromisoformat(last_ping_str)).total_seconds() / 3600
-            if since_ping < COMBAT_PING_HOURS:
+            if since_ping < helpers.COMBAT_PING_HOURS:
                 continue
 
         # Find all known players in this campaign who haven't acted
@@ -1097,7 +764,7 @@ def check_combat_turns(config: dict, state: dict):
         )
 
         print(f"Combat ping in {campaign_name}: waiting on {missing_str}")
-        if send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, chat_topic_id, message):
             combat["last_ping_at"] = now.isoformat()
 
 
@@ -1124,9 +791,9 @@ def archive_weekly_data(config: dict, state: dict):
         return
 
     # Load existing archive from repo file
-    ARCHIVE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    helpers.ARCHIVE_PATH.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with open(ARCHIVE_PATH) as f:
+        with open(helpers.ARCHIVE_PATH) as f:
             archive = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         archive = {}
@@ -1202,11 +869,11 @@ def archive_weekly_data(config: dict, state: dict):
         }
 
     # Write archive to repo file
-    with open(ARCHIVE_PATH, "w") as f:
+    with open(helpers.ARCHIVE_PATH, "w") as f:
         json.dump(archive, f, indent=2)
 
     state["last_archived_week"] = week_key
-    print(f"Archived weekly data for {week_key} to {ARCHIVE_PATH}")
+    print(f"Archived weekly data for {week_key} to {helpers.ARCHIVE_PATH}")
 
 
 # ------------------------------------------------------------------ #
@@ -1251,7 +918,7 @@ def post_pace_report(config: dict, state: dict):
         last_pace_str = state["last_pace"].get(pid)
         if last_pace_str:
             days_since = (now - datetime.fromisoformat(last_pace_str)).total_seconds() / 86400
-            if days_since < PACE_INTERVAL_DAYS:
+            if days_since < helpers.PACE_INTERVAL_DAYS:
                 continue
 
         name = campaign_names.get(pid, "Unknown")
@@ -1323,7 +990,7 @@ def post_pace_report(config: dict, state: dict):
         )
 
         print(f"Pace report for {name}: {this_week} vs {last_week} ({trend})")
-        if send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, chat_topic_id, message):
             state["last_pace"][pid] = now.isoformat()
 
 
@@ -1376,7 +1043,7 @@ def check_anniversaries(config: dict, state: dict):
         )
 
         print(f"Anniversary for {name}: {year_str}")
-        if send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, chat_topic_id, message):
             state["last_anniversary"][anniversary_key] = now.isoformat()
 
 
@@ -1400,7 +1067,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
     last_lb_str = state["last_leaderboard"]
     if last_lb_str:
         days_since = (now - datetime.fromisoformat(last_lb_str)).total_seconds() / 86400
-        if days_since < LEADERBOARD_INTERVAL_DAYS:
+        if days_since < helpers.LEADERBOARD_INTERVAL_DAYS:
             return
 
     seven_days_ago = now - timedelta(days=7)
@@ -1642,7 +1309,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
     message = "\n".join(lines)
 
     print(f"Posting campaign leaderboard to ISSUES topic")
-    if send_message(group_id, leaderboard_topic, message):
+    if tg.send_message(group_id, leaderboard_topic, message):
         state["last_leaderboard"] = now.isoformat()
 
 
@@ -1650,7 +1317,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
 #  Recruitment check (campaigns needing players)
 # ------------------------------------------------------------------ #
 def check_recruitment_needs(config: dict, state: dict):
-    """If a campaign has fewer than REQUIRED_PLAYERS, post a notice."""
+    """If a campaign has fewer than helpers.REQUIRED_PLAYERS, post a notice."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
 
@@ -1667,7 +1334,7 @@ def check_recruitment_needs(config: dict, state: dict):
         last_check_str = state["last_recruitment_check"].get(pid)
         if last_check_str:
             days_since = (now - datetime.fromisoformat(last_check_str)).total_seconds() / 86400
-            if days_since < RECRUITMENT_INTERVAL_DAYS:
+            if days_since < helpers.RECRUITMENT_INTERVAL_DAYS:
                 continue
 
         # Count active players (excluding GM)
@@ -1682,7 +1349,7 @@ def check_recruitment_needs(config: dict, state: dict):
                 active.append(p_display)
 
         player_count = len(active)
-        needed = REQUIRED_PLAYERS - player_count
+        needed = helpers.REQUIRED_PLAYERS - player_count
 
         if needed <= 0:
             # Full roster, reset timer
@@ -1692,9 +1359,9 @@ def check_recruitment_needs(config: dict, state: dict):
         # Build roster display
         if active:
             roster_lines = "\n".join(f"- {p}" for p in active)
-            roster_section = f"Current roster ({player_count}/{REQUIRED_PLAYERS}):\n{roster_lines}"
+            roster_section = f"Current roster ({player_count}/{helpers.REQUIRED_PLAYERS}):\n{roster_lines}"
         else:
-            roster_section = f"Current roster: 0/{REQUIRED_PLAYERS} (no active players)"
+            roster_section = f"Current roster: 0/{helpers.REQUIRED_PLAYERS} (no active players)"
 
         message = (
             f"📢 {name} needs {needed} more player{'s' if needed != 1 else ''}!\n\n"
@@ -1702,8 +1369,8 @@ def check_recruitment_needs(config: dict, state: dict):
             f"Know anyone who'd like to join? Send them to the recruitment topic!"
         )
 
-        print(f"Recruitment notice for {name}: {player_count}/{REQUIRED_PLAYERS}")
-        if send_message(group_id, chat_topic_id, message):
+        print(f"Recruitment notice for {name}: {player_count}/{helpers.REQUIRED_PLAYERS}")
+        if tg.send_message(group_id, chat_topic_id, message):
             state["last_recruitment_check"][pid] = now.isoformat()
 
 
@@ -1711,64 +1378,72 @@ def check_recruitment_needs(config: dict, state: dict):
 #  Main
 # ------------------------------------------------------------------ #
 def main():
-    if not TELEGRAM_TOKEN:
+    telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    gist_token = os.environ.get("GIST_TOKEN", "")
+    gist_id = os.environ.get("GIST_ID", "")
+
+    if not telegram_token:
         print("Error: TELEGRAM_BOT_TOKEN not set")
         sys.exit(1)
 
-    config = load_config()
-    load_settings(config)
-    state = load_state_from_gist()
+    # Initialize modules
+    tg.init(telegram_token)
+    state_store.init(gist_token, gist_id)
 
-    print(f"Loaded state. Offset: {state.get('offset', 0)}")
-    print(f"Tracking {len(state.get('topics', {}))} topics, "
-          f"{len(state.get('players', {}))} players")
+    config = helpers.load_config()
+    helpers.load_settings(config)
+    bot_state = state_store.load()
+
+    print(f"Loaded state. Offset: {bot_state.get('offset', 0)}")
+    print(f"Tracking {len(bot_state.get('topics', {}))} topics, "
+          f"{len(bot_state.get('players', {}))} players")
 
     # Fetch and process new messages
-    offset = state.get("offset", 0)
-    updates = get_updates(offset)
+    offset = bot_state.get("offset", 0)
+    updates = tg.get_updates(offset)
     print(f"Received {len(updates)} new updates")
 
     if updates:
-        state["offset"] = process_updates(updates, config, state)
+        bot_state["offset"] = process_updates(updates, config, bot_state)
 
     # Topic inactivity alerts (12-hour)
-    check_and_alert(config, state)
+    check_and_alert(config, bot_state)
 
     # Player inactivity checks (weekly)
-    check_player_activity(config, state)
+    check_player_activity(config, bot_state)
 
     # Party roster summary (every 3 days)
-    post_roster_summary(config, state)
+    post_roster_summary(config, bot_state)
 
     # Player of the Week (weekly)
-    player_of_the_week(config, state)
+    player_of_the_week(config, bot_state)
 
     # Expire unclaimed boon choices (48h)
-    expire_pending_boons(config, state)
+    expire_pending_boons(config, bot_state)
 
     # Weekly pace report
-    post_pace_report(config, state)
+    post_pace_report(config, bot_state)
 
     # Campaign anniversaries
-    check_anniversaries(config, state)
+    check_anniversaries(config, bot_state)
 
     # Combat turn pinger
-    check_combat_turns(config, state)
+    check_combat_turns(config, bot_state)
 
     # Campaign leaderboard (every 3 days, ISSUES topic)
-    post_campaign_leaderboard(config, state)
+    post_campaign_leaderboard(config, bot_state)
 
     # Recruitment notices (every 2 weeks, campaigns under 6 players)
-    check_recruitment_needs(config, state)
+    check_recruitment_needs(config, bot_state)
 
     # Archive weekly summaries (before pruning timestamps)
-    archive_weekly_data(config, state)
+    archive_weekly_data(config, bot_state)
 
     # Prune old timestamps
-    cleanup_timestamps(state)
+    cleanup_timestamps(bot_state)
 
     # Save
-    save_state_to_gist(state)
+    state_store.save(bot_state)
     print("Done")
 
 
