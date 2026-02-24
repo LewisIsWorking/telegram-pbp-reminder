@@ -6,7 +6,7 @@ import requests
 TELEGRAM_API = ""
 
 
-def init(token: str):
+def init(token: str) -> None:
     """Set the API base URL from bot token."""
     global TELEGRAM_API
     TELEGRAM_API = f"https://api.telegram.org/bot{token}"

@@ -28,7 +28,7 @@ from helpers import (
 # ------------------------------------------------------------------ #
 #  Boon choice callback handler
 # ------------------------------------------------------------------ #
-def process_boon_callback(cb: dict, config: dict, state: dict):
+def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
     """Handle a player clicking a boon choice button."""
     cb_id = cb.get("id", "")
     cb_data = cb.get("data", "")
@@ -92,7 +92,7 @@ def process_boon_callback(cb: dict, config: dict, state: dict):
     print(f"POTW boon chosen for topic {topic_id}: #{choice_idx + 1}")
 
 
-def expire_pending_boons(config: dict, state: dict):
+def expire_pending_boons(config: dict, state: dict) -> None:
     """Auto-pick boon #1 if winner hasn't chosen within 48 hours."""
     now = datetime.now(timezone.utc)
     group_id = config["group_id"]
@@ -125,7 +125,7 @@ def expire_pending_boons(config: dict, state: dict):
 #  Process updates
 # ------------------------------------------------------------------ #
 def _handle_round_command(text: str, pid: str, campaign_name: str,
-                          now_iso: str, group_id: int, thread_id: int, state: dict):
+                          now_iso: str, group_id: int, thread_id: int, state: dict) -> None:
     """Parse and execute /round <N> <players|enemies> command."""
     parts = text.split()
     if len(parts) < 3:
@@ -170,7 +170,7 @@ def _handle_round_command(text: str, pid: str, campaign_name: str,
 def _handle_combat_message(
     text: str, user_id: str, gm_ids: set, pid: str, campaign_name: str,
     now_iso: str, group_id: int, thread_id: int, state: dict,
-):
+) -> None:
     """Process GM combat commands (/round, /endcombat) and track player actions."""
     if user_id in gm_ids:
         if text.startswith("/round"):
@@ -297,7 +297,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 # ------------------------------------------------------------------ #
 #  Topic inactivity alerts (4-hour)
 # ------------------------------------------------------------------ #
-def check_and_alert(config: dict, state: dict):
+def check_and_alert(config: dict, state: dict) -> None:
     """Send alerts to campaigns inactive beyond alert_after_hours."""
     group_id = config["group_id"]
     alert_hours = config.get("alert_after_hours", 4)
@@ -355,7 +355,7 @@ def check_and_alert(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Player inactivity tracking (weekly)
 # ------------------------------------------------------------------ #
-def check_player_activity(config: dict, state: dict):
+def check_player_activity(config: dict, state: dict) -> None:
     """Warn inactive players at 1/2/3 weeks, remove at 4 weeks."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -472,7 +472,7 @@ def _roster_block(label: str, username: str, stats: dict) -> str:
     return block
 
 
-def post_roster_summary(config: dict, state: dict):
+def post_roster_summary(config: dict, state: dict) -> None:
     """Post a summary of all tracked players per campaign to CHAT topics."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -553,7 +553,7 @@ def _gather_potw_candidates(
     return candidates
 
 
-def player_of_the_week(config: dict, state: dict):
+def player_of_the_week(config: dict, state: dict) -> None:
     """Award Player of the Week based on smallest average gap between posts."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -622,7 +622,7 @@ def player_of_the_week(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Combat turn pinger (side-based initiative)
 # ------------------------------------------------------------------ #
-def check_combat_turns(config: dict, state: dict):
+def check_combat_turns(config: dict, state: dict) -> None:
     """During players' phase, ping players who haven't acted yet."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -687,7 +687,7 @@ def check_combat_turns(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Weekly data archive (preserves long-term trends)
 # ------------------------------------------------------------------ #
-def archive_weekly_data(config: dict, state: dict):
+def archive_weekly_data(config: dict, state: dict) -> None:
     """Archive weekly summaries to a JSON file in the repo.
 
     Stores compact per-campaign stats keyed by ISO week (e.g. '2026-W07').
@@ -782,7 +782,7 @@ def archive_weekly_data(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Timestamp cleanup (keep only last 15 days)
 # ------------------------------------------------------------------ #
-def cleanup_timestamps(state: dict):
+def cleanup_timestamps(state: dict) -> None:
     """Prune old timestamps to prevent gist from growing."""
     cutoff = (datetime.now(timezone.utc) - timedelta(days=15)).isoformat()
 
@@ -803,7 +803,7 @@ def cleanup_timestamps(state: dict):
 # ------------------------------------------------------------------ #
 #  Weekly pace report
 # ------------------------------------------------------------------ #
-def post_pace_report(config: dict, state: dict):
+def post_pace_report(config: dict, state: dict) -> None:
     """Post weekly pace comparison: posts/day this week vs last week, split GM/players."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -876,7 +876,7 @@ def post_pace_report(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Campaign anniversary alerts
 # ------------------------------------------------------------------ #
-def check_anniversaries(config: dict, state: dict):
+def check_anniversaries(config: dict, state: dict) -> None:
     """Post a celebration when a campaign hits a yearly anniversary."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -927,7 +927,7 @@ def check_anniversaries(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Campaign Leaderboard (cross-campaign dashboard)
 # ------------------------------------------------------------------ #
-def _gather_leaderboard_stats(config: dict, state: dict, now: datetime):
+def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple:
     """Collect per-campaign stats and global player rankings for the leaderboard."""
     gm_ids = helpers.gm_id_set(config)
     seven_days_ago = now - timedelta(days=7)
@@ -1104,7 +1104,7 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict, now: da
     return "\n".join(lines)
 
 
-def post_campaign_leaderboard(config: dict, state: dict):
+def post_campaign_leaderboard(config: dict, state: dict) -> None:
     """Post a cross-campaign activity leaderboard to the ISSUES topic."""
     group_id = config["group_id"]
     leaderboard_topic = config.get("leaderboard_topic_id")
@@ -1132,7 +1132,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Recruitment check (campaigns needing players)
 # ------------------------------------------------------------------ #
-def check_recruitment_needs(config: dict, state: dict):
+def check_recruitment_needs(config: dict, state: dict) -> None:
     """If a campaign has fewer than helpers.REQUIRED_PLAYERS, post a notice."""
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
@@ -1185,7 +1185,7 @@ def check_recruitment_needs(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Main
 # ------------------------------------------------------------------ #
-def main():
+def main() -> None:
     """Entry point: load config/state, process updates, run all scheduled checks, save."""
     telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     gist_token = os.environ.get("GIST_TOKEN", "")

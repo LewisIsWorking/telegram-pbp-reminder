@@ -26,7 +26,7 @@ DEFAULT_STATE = {
 }
 
 
-def init(gist_token: str, gist_id: str):
+def init(gist_token: str, gist_id: str) -> None:
     """Set gist credentials."""
     global GIST_TOKEN, GIST_API
     GIST_TOKEN = gist_token
@@ -66,7 +66,7 @@ def load() -> dict:
     return dict(DEFAULT_STATE)
 
 
-def save(state: dict):
+def save(state: dict) -> None:
     """Persist bot state to GitHub Gist."""
     if not GIST_API or not GIST_TOKEN:
         print("Warning: No GIST_ID or GIST_TOKEN set, cannot save state")

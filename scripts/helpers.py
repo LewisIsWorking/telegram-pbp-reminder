@@ -64,7 +64,7 @@ _SETTINGS_MAP = {
 }
 
 
-def load_settings(config: dict):
+def load_settings(config: dict) -> None:
     """Load tunable settings from config, applying defaults for any missing keys."""
     g = globals()
     s = config.get("settings", {})
