@@ -252,21 +252,11 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         }
 
         # Increment message count for this user in this topic
-        if "message_counts" not in state:
-            state["message_counts"] = {}
-        if pid not in state["message_counts"]:
-            state["message_counts"][pid] = {}
-        user_counts = state["message_counts"][pid]
+        user_counts = state["message_counts"].setdefault(pid, {})
         user_counts[user_id] = user_counts.get(user_id, 0) + 1
 
         # Track post timestamps for Player of the Week gap calculation
-        if "post_timestamps" not in state:
-            state["post_timestamps"] = {}
-        if pid not in state["post_timestamps"]:
-            state["post_timestamps"][pid] = {}
-        if user_id not in state["post_timestamps"][pid]:
-            state["post_timestamps"][pid][user_id] = []
-        state["post_timestamps"][pid][user_id].append(msg_time_iso)
+        state["post_timestamps"].setdefault(pid, {}).setdefault(user_id, []).append(msg_time_iso)
 
         # Update player-level tracking (skip GM)
         if user_id and user_id not in gm_ids:
@@ -933,18 +923,7 @@ def post_pace_report(config: dict, state: dict):
         # Determine trend
         if last_avg == 0 and this_avg == 0:
             continue  # No data
-        elif last_avg == 0:
-            trend = "NEW"
-            trend_icon = "🆕"
-        elif this_avg > last_avg * 1.15:
-            trend = "UP"
-            trend_icon = "📈"
-        elif this_avg < last_avg * 0.85:
-            trend = "DOWN"
-            trend_icon = "📉"
-        else:
-            trend = "STEADY"
-            trend_icon = "➡️"
+        icon = helpers.trend_icon(int(this_avg * 100), int(last_avg * 100))
 
         this_week_start = fmt_date(week_ago)
         this_week_end = fmt_date(now)
@@ -952,7 +931,7 @@ def post_pace_report(config: dict, state: dict):
         last_week_end = fmt_date(week_ago)
 
         message = (
-            f"{trend_icon} Weekly pace for {name}:\n"
+            f"{icon} Weekly pace for {name}:\n"
             f"\n"
             f"This week ({this_week_start} to {this_week_end}):\n"
             f"  GM: {gm_this} posts ({gm_this / 7.0:.1f}/day)\n"
@@ -1139,32 +1118,10 @@ def post_campaign_leaderboard(config: dict, state: dict):
                 if last_post_time is None or pt > last_post_time:
                     last_post_time = pt
 
-        if last_post_time:
-            days_since_last = (now - last_post_time).total_seconds() / 86400
-            if days_since_last < 0.04:  # ~1 hour
-                last_post_str = "today"
-            elif days_since_last < 1:
-                hours = int(days_since_last * 24)
-                last_post_str = f"{hours}h ago"
-            elif days_since_last < 2:
-                last_post_str = "yesterday"
-            else:
-                last_post_str = f"{int(days_since_last)}d ago"
-        else:
-            days_since_last = 999
-            last_post_str = "never"
+        last_post_str, days_since_last = helpers.fmt_brief_relative(now, last_post_time)
 
         # 3-day trend
-        if posts_prev_3d == 0 and posts_recent_3d == 0:
-            trend_icon = "💤"
-        elif posts_prev_3d == 0:
-            trend_icon = "🆕"
-        elif posts_recent_3d > posts_prev_3d * 1.15:
-            trend_icon = "📈"
-        elif posts_recent_3d < posts_prev_3d * 0.85:
-            trend_icon = "📉"
-        else:
-            trend_icon = "➡️"
+        trend = helpers.trend_icon(posts_recent_3d, posts_prev_3d)
 
         # All players by post count
         top_players = sorted(
@@ -1191,7 +1148,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
             "total_7d": total_7d,
             "player_7d": player_7d,
             "gm_7d": gm_7d,
-            "trend_icon": trend_icon,
+            "trend_icon": trend,
             "avg_gap_str": avg_gap_str,
             "player_avg_gap": player_avg_gap,
             "player_avg_gap_str": player_avg_gap_str,
@@ -1213,13 +1170,11 @@ def post_campaign_leaderboard(config: dict, state: dict):
 
     date_from = fmt_date(seven_days_ago)
     date_to = fmt_date(now)
-    rank_icons = ["🥇", "🥈", "🥉"]
-    player_medals = ["🥇", "🥈", "🥉"]
 
     lines = [f"📊 Weekly Campaign Leaderboard ({date_from} to {date_to})"]
 
     for i, c in enumerate(active):
-        rank = rank_icons[i] if i < 3 else f"{i + 1}."
+        rank = helpers.rank_icon(i)
         campaign_block = (
             f"[{rank} {c['name']} {c['trend_icon']}]\n"
             f"- {c['player_7d']} player posts.\n"
@@ -1231,7 +1186,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
 
         player_blocks = []
         for j, p in enumerate(c["top_players"]):
-            medal = player_medals[j] if j < 3 else f"{j + 1}."
+            medal = helpers.rank_icon(j)
             full = f"{p['name']} {p.get('last_name', '')}".strip()
             uname = p.get("username", "")
             block = f"{medal} {full}\n"
@@ -1255,8 +1210,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
         gap_ranked.sort(key=lambda c: c["player_avg_gap"])
         lines.append("\n━━━━━━━━━━━━━━━━\n\n⏱ Fastest player response gaps:")
         for i, c in enumerate(gap_ranked):
-            icon = rank_icons[i] if i < 3 else f"{i + 1}."
-            lines.append(f"{icon} {c['name']}: {c['player_avg_gap_str']}")
+            lines.append(f"{helpers.rank_icon(i)} {c['name']}: {c['player_avg_gap_str']}")
 
     # Overall top players (most sessions across all campaigns)
     if global_player_posts:
@@ -1268,7 +1222,7 @@ def post_campaign_leaderboard(config: dict, state: dict):
         )
         player_blocks = []
         for i, (uid, pdata) in enumerate(top_global):
-            icon = rank_icons[i] if i < 3 else f"{i + 1}."
+            icon = helpers.rank_icon(i)
             campaign_word = "campaign" if pdata["campaigns"] == 1 else "campaigns"
             block = f"{icon} {pdata['full_name']}\n"
             if pdata["username"]:

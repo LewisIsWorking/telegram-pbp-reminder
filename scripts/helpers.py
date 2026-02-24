@@ -81,6 +81,46 @@ def interval_elapsed(last_iso: str | None, interval_days: float, now: datetime) 
     return (now - datetime.fromisoformat(last_iso)).total_seconds() / 86400 >= interval_days
 
 
+def fmt_brief_relative(now: datetime, then: datetime | None) -> tuple[str, float]:
+    """Short relative time (no date). Returns (string, days_since).
+    
+    Used by leaderboard for compact display: 'today', '5h ago', 'yesterday', '3d ago', 'never'.
+    """
+    if not then:
+        return "never", 999.0
+    days = (now - then).total_seconds() / 86400
+    if days < 0.04:  # ~1 hour
+        return "today", days
+    elif days < 1:
+        return f"{int(days * 24)}h ago", days
+    elif days < 2:
+        return "yesterday", days
+    else:
+        return f"{int(days)}d ago", days
+
+
+def trend_icon(recent: int, previous: int) -> str:
+    """Return trend emoji comparing recent vs previous period post counts."""
+    if previous == 0 and recent == 0:
+        return "💤"
+    elif previous == 0:
+        return "🆕"
+    elif recent > previous * 1.15:
+        return "📈"
+    elif recent < previous * 0.85:
+        return "📉"
+    else:
+        return "➡️"
+
+
+RANK_ICONS = ["🥇", "🥈", "🥉"]
+
+
+def rank_icon(index: int) -> str:
+    """Return medal emoji for top 3, or 'N.' for the rest."""
+    return RANK_ICONS[index] if index < 3 else f"{index + 1}."
+
+
 # ------------------------------------------------------------------ #
 #  Formatting helpers
 # ------------------------------------------------------------------ #
