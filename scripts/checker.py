@@ -28,6 +28,18 @@ from helpers import (
 # ------------------------------------------------------------------ #
 #  Boon choice callback handler
 # ------------------------------------------------------------------ #
+def _format_boon_result(boons: list[str], chosen_idx: int, base_message: str, label: str) -> str:
+    """Format POTW boon result message with chosen boon highlighted in HTML."""
+    boon_lines = ""
+    for i, b in enumerate(boons):
+        escaped = html_escape(b)
+        if i == chosen_idx:
+            boon_lines += f"\n{i + 1}. {escaped} ✓\n"
+        else:
+            boon_lines += f"\n<s>{i + 1}. {escaped}</s>\n"
+    return f"{html_escape(base_message)}\n\n{label}:{boon_lines}"
+
+
 def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
     """Handle a player clicking a boon choice button."""
     cb_id = cb.get("id", "")
@@ -69,20 +81,7 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
         tg.answer_callback(cb_id, "Invalid choice.")
         return
 
-    chosen_boon = pending["boons"][choice_idx]
-
-    # Build message with chosen boon highlighted, others struck through
-    boon_lines = ""
-    for i, b in enumerate(pending["boons"]):
-        escaped = html_escape(b)
-        if i == choice_idx:
-            boon_lines += f"\n{i + 1}. {escaped} ✓\n"
-        else:
-            boon_lines += f"\n<s>{i + 1}. {escaped}</s>\n"
-
-    # Escape the base message too for HTML mode
-    base_escaped = html_escape(pending["base_message"])
-    new_text = f"{base_escaped}\n\nChosen boon:{boon_lines}"
+    new_text = _format_boon_result(pending["boons"], choice_idx, pending["base_message"], "Chosen boon")
 
     tg.edit_message(chat_id, message_id, new_text, parse_mode="HTML")
     tg.answer_callback(cb_id, f"You chose boon #{choice_idx + 1}!")
@@ -104,17 +103,7 @@ def expire_pending_boons(config: dict, state: dict) -> None:
         hours_since = (now - posted_at).total_seconds() / 3600
 
         if hours_since >= 48:
-            chosen_boon = entry["boons"][0]
-            boon_lines = ""
-            for i, b in enumerate(entry["boons"]):
-                escaped = html_escape(b)
-                if i == 0:
-                    boon_lines += f"\n{i + 1}. {escaped} ✓\n"
-                else:
-                    boon_lines += f"\n<s>{i + 1}. {escaped}</s>\n"
-
-            base_escaped = html_escape(entry["base_message"])
-            new_text = f"{base_escaped}\n\nBoon (auto-selected):{boon_lines}"
+            new_text = _format_boon_result(entry["boons"], 0, entry["base_message"], "Boon (auto-selected)")
 
             tg.edit_message(group_id, entry["message_id"], new_text, parse_mode="HTML")
             del pending[topic_id]
@@ -355,6 +344,13 @@ def check_and_alert(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Player inactivity tracking (weekly)
 # ------------------------------------------------------------------ #
+_INACTIVITY_TEMPLATES = {
+    1: "{mention} hasn't posted in {campaign} PBP for {days} days (last: {date}). Everything okay?",
+    2: "{mention} still no post in {campaign} PBP. It's been {days} days now (last: {date}).",
+    3: "{mention} it's been {days} days without a post in {campaign} PBP (last: {date}). 1 week until auto-removal from the campaign.",
+}
+
+
 def check_player_activity(config: dict, state: dict) -> None:
     """Warn inactive players at 1/2/3 weeks, remove at 4 weeks."""
     group_id = config["group_id"]
@@ -400,23 +396,11 @@ def check_player_activity(config: dict, state: dict) -> None:
         # 1, 2, 3 week warnings
         for week_mark in helpers.PLAYER_WARN_WEEKS:
             if current_week >= week_mark and last_warned < week_mark:
-                if week_mark == 1:
-                    message = (
-                        f"{mention} hasn't posted in {campaign} PBP "
-                        f"for {days_inactive} days (last: {last_date}). Everything okay?"
-                    )
-                elif week_mark == 2:
-                    message = (
-                        f"{mention} still no post in {campaign} PBP. "
-                        f"It's been {days_inactive} days now (last: {last_date})."
-                    )
-                else:
-                    message = (
-                        f"{mention} it's been {days_inactive} days without "
-                        f"a post in {campaign} PBP (last: {last_date}). 1 week until "
-                        f"auto-removal from the campaign."
-                    )
-
+                template = _INACTIVITY_TEMPLATES.get(week_mark, _INACTIVITY_TEMPLATES[3])
+                message = template.format(
+                    mention=mention, campaign=campaign,
+                    days=days_inactive, date=last_date,
+                )
                 print(f"Warning {first_name} in {campaign}: week {week_mark}")
                 if tg.send_message(group_id, chat_topic_id, message):
                     player["last_warned_week"] = week_mark
@@ -1006,16 +990,15 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
         )
 
         for uid, pdata in player_post_counts.items():
-            if uid not in global_player_posts:
-                full = f"{pdata['name']} {pdata.get('last_name', '')}".strip()
-                global_player_posts[uid] = {
-                    "full_name": full,
-                    "username": pdata.get("username", ""),
-                    "count": 0,
-                    "campaigns": 0,
-                }
-            global_player_posts[uid]["count"] += pdata["count"]
-            global_player_posts[uid]["campaigns"] += 1
+            full = f"{pdata['name']} {pdata.get('last_name', '')}".strip()
+            entry = global_player_posts.setdefault(uid, {
+                "full_name": full,
+                "username": pdata.get("username", ""),
+                "count": 0,
+                "campaigns": 0,
+            })
+            entry["count"] += pdata["count"]
+            entry["campaigns"] += 1
 
         campaign_stats.append({
             "name": name,
