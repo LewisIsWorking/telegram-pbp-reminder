@@ -611,7 +611,6 @@ def check_combat_turns(config: dict, state: dict) -> None:
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
 
-
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
     maps = build_topic_maps(config)
     all_campaigns = helpers.players_by_campaign(state)
@@ -793,7 +792,6 @@ def post_pace_report(config: dict, state: dict) -> None:
     now = datetime.now(timezone.utc)
     gm_ids = helpers.gm_id_set(config)
 
-
     maps = build_topic_maps(config)
 
     week_ago = now - timedelta(days=7)
@@ -865,7 +863,6 @@ def check_anniversaries(config: dict, state: dict) -> None:
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
     today = now.date()
-
 
     for pair in config["topic_pairs"]:
         pid = str(pair["pbp_topic_ids"][0])
@@ -1120,12 +1117,10 @@ def check_recruitment_needs(config: dict, state: dict) -> None:
     group_id = config["group_id"]
     now = datetime.now(timezone.utc)
 
-
     maps = build_topic_maps(config)
     all_campaigns = helpers.players_by_campaign(state)
 
-    for pid in maps.to_chat:
-        chat_topic_id = maps.to_chat[pid]
+    for pid, chat_topic_id in maps.to_chat.items():
         name = maps.to_name[pid]
 
         # Check interval
