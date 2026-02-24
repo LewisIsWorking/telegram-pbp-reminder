@@ -73,6 +73,22 @@ def deduplicate_posts(timestamps: list[datetime]) -> list[datetime]:
     return sessions
 
 
+def calc_avg_gap_str(timestamps_iso: list[str]) -> str:
+    """Calculate deduped average gap from ISO timestamp strings. Returns formatted string."""
+    all_posts = sorted(datetime.fromisoformat(ts) for ts in timestamps_iso)
+    sessions = deduplicate_posts(all_posts)
+    if len(sessions) < 2:
+        return "N/A"
+    gaps = []
+    for i in range(1, len(sessions)):
+        gap_h = (sessions[i] - sessions[i - 1]).total_seconds() / 3600
+        gaps.append(gap_h)
+    avg = sum(gaps) / len(gaps)
+    if avg < 1:
+        return f"{avg * 60:.0f} minutes"
+    return f"{avg:.1f} hours"
+
+
 def build_topic_maps(config: dict):
     """Build lookup dicts from config's topic_pairs.
 
@@ -128,7 +144,7 @@ def fmt_relative_date(now: datetime, then: datetime) -> str:
     else:
         return f"{days_ago}d ago ({date_str})"
 
-PLAYER_WARN_WEEKS = [1, 2, 3]
+PLAYER_WARN_WEEKS = [1, 2, 3]  # defaults, overridden by config
 PLAYER_REMOVE_WEEKS = 4
 ROSTER_INTERVAL_DAYS = 3
 POTW_INTERVAL_DAYS = 7
@@ -138,7 +154,28 @@ LEADERBOARD_INTERVAL_DAYS = 3
 COMBAT_PING_HOURS = 4
 RECRUITMENT_INTERVAL_DAYS = 14
 REQUIRED_PLAYERS = 6
-POST_SESSION_MINUTES = 10  # Posts within this window count as one session
+POST_SESSION_MINUTES = 10
+
+
+def load_settings(config: dict):
+    """Load tunable settings from config, applying defaults for any missing keys."""
+    global PLAYER_WARN_WEEKS, PLAYER_REMOVE_WEEKS, ROSTER_INTERVAL_DAYS
+    global POTW_INTERVAL_DAYS, POTW_MIN_POSTS, PACE_INTERVAL_DAYS
+    global LEADERBOARD_INTERVAL_DAYS, COMBAT_PING_HOURS
+    global RECRUITMENT_INTERVAL_DAYS, REQUIRED_PLAYERS, POST_SESSION_MINUTES
+
+    s = config.get("settings", {})
+    PLAYER_WARN_WEEKS = s.get("player_warn_weeks", PLAYER_WARN_WEEKS)
+    PLAYER_REMOVE_WEEKS = s.get("player_remove_weeks", PLAYER_REMOVE_WEEKS)
+    ROSTER_INTERVAL_DAYS = s.get("roster_interval_days", ROSTER_INTERVAL_DAYS)
+    POTW_INTERVAL_DAYS = s.get("potw_interval_days", POTW_INTERVAL_DAYS)
+    POTW_MIN_POSTS = s.get("potw_min_posts", POTW_MIN_POSTS)
+    PACE_INTERVAL_DAYS = s.get("pace_interval_days", PACE_INTERVAL_DAYS)
+    LEADERBOARD_INTERVAL_DAYS = s.get("leaderboard_interval_days", LEADERBOARD_INTERVAL_DAYS)
+    COMBAT_PING_HOURS = s.get("combat_ping_hours", COMBAT_PING_HOURS)
+    RECRUITMENT_INTERVAL_DAYS = s.get("recruitment_interval_days", RECRUITMENT_INTERVAL_DAYS)
+    REQUIRED_PLAYERS = s.get("required_players", REQUIRED_PLAYERS)
+    POST_SESSION_MINUTES = s.get("post_session_minutes", POST_SESSION_MINUTES)
 
 
 def load_config() -> dict:
@@ -796,19 +833,9 @@ def post_roster_summary(config: dict, state: dict):
             week_count = len(deduplicate_posts(week_posts))
 
             # Average gap (using deduped sessions)
-            avg_gap_str = "N/A"
+            avg_gap_str = calc_avg_gap_str(user_timestamps)
             all_posts = sorted(datetime.fromisoformat(ts) for ts in user_timestamps)
             sessions = deduplicate_posts(all_posts)
-            if len(sessions) >= 2:
-                gaps = []
-                for i in range(1, len(sessions)):
-                    gap_h = (sessions[i] - sessions[i - 1]).total_seconds() / 3600
-                    gaps.append(gap_h)
-                avg = sum(gaps) / len(gaps)
-                if avg < 1:
-                    avg_gap_str = f"{avg * 60:.0f} minutes"
-                else:
-                    avg_gap_str = f"{avg:.1f} hours"
 
             block = f"{full}\n"
             if uname:
@@ -833,19 +860,9 @@ def post_roster_summary(config: dict, state: dict):
                 ]
                 gm_week_count = len(deduplicate_posts(gm_week_posts))
 
-                gm_avg_gap_str = "N/A"
+                gm_avg_gap_str = calc_avg_gap_str(gm_timestamps)
                 gm_all_posts = sorted(datetime.fromisoformat(ts) for ts in gm_timestamps)
                 gm_sessions = deduplicate_posts(gm_all_posts)
-                if len(gm_sessions) >= 2:
-                    gaps = []
-                    for i in range(1, len(gm_sessions)):
-                        gap_h = (gm_sessions[i] - gm_sessions[i - 1]).total_seconds() / 3600
-                        gaps.append(gap_h)
-                    avg = sum(gaps) / len(gaps)
-                    if avg < 1:
-                        gm_avg_gap_str = f"{avg * 60:.0f} minutes"
-                    else:
-                        gm_avg_gap_str = f"{avg:.1f} hours"
 
                 # Find GM's last post time
                 if gm_timestamps:
@@ -1699,6 +1716,7 @@ def main():
         sys.exit(1)
 
     config = load_config()
+    load_settings(config)
     state = load_state_from_gist()
 
     print(f"Loaded state. Offset: {state.get('offset', 0)}")

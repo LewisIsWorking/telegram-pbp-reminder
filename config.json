@@ -63,5 +63,22 @@
         107171
       ]
     }
-  ]
+  ],
+  "settings": {
+    "roster_interval_days": 3,
+    "potw_interval_days": 7,
+    "potw_min_posts": 5,
+    "pace_interval_days": 7,
+    "leaderboard_interval_days": 3,
+    "combat_ping_hours": 4,
+    "recruitment_interval_days": 14,
+    "required_players": 6,
+    "post_session_minutes": 10,
+    "player_warn_weeks": [
+      1,
+      2,
+      3
+    ],
+    "player_remove_weeks": 4
+  }
 }
