@@ -49,25 +49,28 @@ def load_config() -> dict:
         return json.load(f)
 
 
+_SETTINGS_MAP = {
+    "player_warn_weeks": "PLAYER_WARN_WEEKS",
+    "player_remove_weeks": "PLAYER_REMOVE_WEEKS",
+    "roster_interval_days": "ROSTER_INTERVAL_DAYS",
+    "potw_interval_days": "POTW_INTERVAL_DAYS",
+    "potw_min_posts": "POTW_MIN_POSTS",
+    "pace_interval_days": "PACE_INTERVAL_DAYS",
+    "leaderboard_interval_days": "LEADERBOARD_INTERVAL_DAYS",
+    "combat_ping_hours": "COMBAT_PING_HOURS",
+    "recruitment_interval_days": "RECRUITMENT_INTERVAL_DAYS",
+    "required_players": "REQUIRED_PLAYERS",
+    "post_session_minutes": "POST_SESSION_MINUTES",
+}
+
+
 def load_settings(config: dict):
     """Load tunable settings from config, applying defaults for any missing keys."""
-    global PLAYER_WARN_WEEKS, PLAYER_REMOVE_WEEKS, ROSTER_INTERVAL_DAYS
-    global POTW_INTERVAL_DAYS, POTW_MIN_POSTS, PACE_INTERVAL_DAYS
-    global LEADERBOARD_INTERVAL_DAYS, COMBAT_PING_HOURS
-    global RECRUITMENT_INTERVAL_DAYS, REQUIRED_PLAYERS, POST_SESSION_MINUTES
-
+    g = globals()
     s = config.get("settings", {})
-    PLAYER_WARN_WEEKS = s.get("player_warn_weeks", PLAYER_WARN_WEEKS)
-    PLAYER_REMOVE_WEEKS = s.get("player_remove_weeks", PLAYER_REMOVE_WEEKS)
-    ROSTER_INTERVAL_DAYS = s.get("roster_interval_days", ROSTER_INTERVAL_DAYS)
-    POTW_INTERVAL_DAYS = s.get("potw_interval_days", POTW_INTERVAL_DAYS)
-    POTW_MIN_POSTS = s.get("potw_min_posts", POTW_MIN_POSTS)
-    PACE_INTERVAL_DAYS = s.get("pace_interval_days", PACE_INTERVAL_DAYS)
-    LEADERBOARD_INTERVAL_DAYS = s.get("leaderboard_interval_days", LEADERBOARD_INTERVAL_DAYS)
-    COMBAT_PING_HOURS = s.get("combat_ping_hours", COMBAT_PING_HOURS)
-    RECRUITMENT_INTERVAL_DAYS = s.get("recruitment_interval_days", RECRUITMENT_INTERVAL_DAYS)
-    REQUIRED_PLAYERS = s.get("required_players", REQUIRED_PLAYERS)
-    POST_SESSION_MINUTES = s.get("post_session_minutes", POST_SESSION_MINUTES)
+    for config_key, global_name in _SETTINGS_MAP.items():
+        if config_key in s:
+            g[global_name] = s[config_key]
 
 
 def gm_id_set(config: dict) -> set:
