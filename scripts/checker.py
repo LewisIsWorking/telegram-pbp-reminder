@@ -123,48 +123,57 @@ def expire_pending_boons(config: dict, state: dict):
 # ------------------------------------------------------------------ #
 #  Process updates
 # ------------------------------------------------------------------ #
+def _handle_round_command(text: str, pid: str, campaign_name: str,
+                          now_iso: str, group_id: int, thread_id: int, state: dict):
+    """Parse and execute /round <N> <players|enemies> command."""
+    parts = text.split()
+    if len(parts) < 3:
+        return
+
+    try:
+        round_num = int(parts[1])
+    except ValueError:
+        return
+
+    phase = parts[2].lower()
+    if not round_num or phase not in ("players", "enemies"):
+        return
+
+    if pid not in state["combat"]:
+        state["combat"][pid] = {
+            "active": True,
+            "campaign_name": campaign_name,
+            "round": round_num,
+            "current_phase": phase,
+            "phase_started_at": now_iso,
+            "players_acted": [],
+            "last_ping_at": None,
+        }
+    else:
+        combat = state["combat"][pid]
+        if phase == "players" and (
+            combat["current_phase"] != "players"
+            or combat["round"] != round_num
+        ):
+            combat["players_acted"] = []
+        combat["round"] = round_num
+        combat["current_phase"] = phase
+        combat["phase_started_at"] = now_iso
+        combat["last_ping_at"] = None
+
+    phase_label = "Players" if phase == "players" else "Enemies"
+    print(f"Combat in {campaign_name}: Round {round_num}, {phase_label}")
+    tg.send_message(group_id, thread_id, f"Round {round_num}. {phase_label}' turn.")
+
+
 def _handle_combat_message(
     text: str, user_id: str, gm_ids: set, pid: str, campaign_name: str,
     now_iso: str, group_id: int, thread_id: int, state: dict,
 ):
     """Process GM combat commands (/round, /endcombat) and track player actions."""
-    # GM commands
     if user_id in gm_ids:
         if text.startswith("/round"):
-            parts = text.split()
-            if len(parts) >= 3:
-                try:
-                    round_num = int(parts[1])
-                except ValueError:
-                    round_num = None
-                phase = parts[2].lower()
-                if round_num and phase in ("players", "enemies"):
-                    if pid not in state["combat"]:
-                        state["combat"][pid] = {
-                            "active": True,
-                            "campaign_name": campaign_name,
-                            "round": round_num,
-                            "current_phase": phase,
-                            "phase_started_at": now_iso,
-                            "players_acted": [],
-                            "last_ping_at": None,
-                        }
-                    else:
-                        combat = state["combat"][pid]
-                        if phase == "players" and (
-                            combat["current_phase"] != "players"
-                            or combat["round"] != round_num
-                        ):
-                            combat["players_acted"] = []
-                        combat["round"] = round_num
-                        combat["current_phase"] = phase
-                        combat["phase_started_at"] = now_iso
-                        combat["last_ping_at"] = None
-
-                    phase_label = "Players" if phase == "players" else "Enemies"
-                    print(f"Combat in {campaign_name}: Round {round_num}, {phase_label}")
-                    tg.send_message(group_id, thread_id, f"Round {round_num}. {phase_label}' turn.")
-
+            _handle_round_command(text, pid, campaign_name, now_iso, group_id, thread_id, state)
         elif text.startswith("/endcombat") or text == "/combat end":
             if pid in state["combat"]:
                 del state["combat"][pid]
