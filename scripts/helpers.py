@@ -154,6 +154,11 @@ def get_topic_timestamps(state: dict, pid: str) -> dict:
     return state.get("post_timestamps", {}).get(pid, {})
 
 
+def get_player(state: dict, pid: str, uid: str) -> dict:
+    """Look up a player dict by campaign and user ID. Returns {} if not found."""
+    return state.get("players", {}).get(f"{pid}:{uid}", {})
+
+
 RANK_ICONS = ["🥇", "🥈", "🥉"]
 
 
@@ -179,12 +184,31 @@ def html_escape(text: str) -> str:
     )
 
 
+def hours_since(now: datetime, then: datetime) -> float:
+    """Return fractional hours between two datetimes."""
+    return (now - then).total_seconds() / 3600
+
+
+def days_since(now: datetime, then: datetime) -> float:
+    """Return fractional days between two datetimes."""
+    return (now - then).total_seconds() / 86400
+
+
 def display_name(first_name: str, username: str = "", last_name: str = "") -> str:
     """Format a player name as 'First Last (@username)' or 'First Last' or 'First'."""
     full = f"{first_name} {last_name}".strip() if last_name else first_name
     if username:
         return f"{full} (@{username})"
     return full
+
+
+def player_mention(player: dict) -> str:
+    """Extract display_name from a player state dict."""
+    return display_name(
+        player.get("first_name", "Unknown"),
+        player.get("username", ""),
+        player.get("last_name", ""),
+    )
 
 
 def posts_str(n: int) -> str:

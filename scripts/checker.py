@@ -19,7 +19,7 @@ import telegram as tg
 import state as state_store
 
 from helpers import (
-    fmt_date, fmt_relative_date, html_escape, display_name,
+    fmt_date, fmt_relative_date, html_escape,
     posts_str, deduplicate_posts, calc_avg_gap_str, build_topic_maps,
     timestamps_in_window,
 )
@@ -100,7 +100,7 @@ def expire_pending_boons(config: dict, state: dict) -> None:
     for topic_id in list(pending.keys()):
         entry = pending[topic_id]
         posted_at = datetime.fromisoformat(entry["posted_at"])
-        hours_since = (now - posted_at).total_seconds() / 3600
+        hours_since = helpers.hours_since(now, posted_at)
 
         if hours_since >= 48:
             new_text = _format_boon_result(entry["boons"], 0, entry["base_message"], "Boon (auto-selected)")
@@ -303,7 +303,7 @@ def check_and_alert(config: dict, state: dict) -> None:
 
         topic_state = state["topics"][pid]
         last_time = datetime.fromisoformat(topic_state["last_message_time"])
-        elapsed_hours = (now - last_time).total_seconds() / 3600
+        elapsed_hours = helpers.hours_since(now, last_time)
 
         if elapsed_hours < alert_hours:
             continue
@@ -311,7 +311,7 @@ def check_and_alert(config: dict, state: dict) -> None:
         # Don't re-alert within alert_hours
         last_alert_str = state["last_alerts"].get(pid)
         if last_alert_str:
-            since_last = (now - datetime.fromisoformat(last_alert_str)).total_seconds() / 3600
+            since_last = helpers.hours_since(now, datetime.fromisoformat(last_alert_str))
             if since_last < alert_hours:
                 print(f"{name}: Already alerted {since_last:.1f}h ago, skipping")
                 continue
@@ -368,16 +368,14 @@ def check_player_activity(config: dict, state: dict) -> None:
             continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])
-        elapsed_weeks = (now - last_post).total_seconds() / (7 * 86400)
+        elapsed_weeks = helpers.days_since(now, last_post) / 7
         current_week = int(elapsed_weeks)
         last_warned = player.get("last_warned_week", 0)
 
         first_name = player["first_name"]
-        last_name = player.get("last_name", "")
-        username = player.get("username", "")
         campaign = player["campaign_name"]
-        mention = display_name(first_name, username, last_name)
-        days_inactive = int((now - last_post).total_seconds() / 86400)
+        mention = helpers.player_mention(player)
+        days_inactive = int(helpers.days_since(now, last_post))
         last_date = fmt_date(last_post)
 
         # 4+ weeks: remove
@@ -525,7 +523,7 @@ def _gather_potw_candidates(
         sessions.sort()
         avg_gap = helpers.avg_gap_hours(sessions) or float("inf")
 
-        player = state.get("players", {}).get(f"{pid}:{user_id}", {})
+        player = helpers.get_player(state, pid, user_id)
         candidates.append({
             "user_id": user_id,
             "first_name": player.get("first_name", "Unknown"),
@@ -566,7 +564,7 @@ def player_of_the_week(config: dict, state: dict) -> None:
             continue
 
         winner = min(candidates, key=lambda c: c["avg_gap_hours"])
-        mention = display_name(winner["first_name"], winner["username"], winner["last_name"])
+        mention = helpers.player_mention(winner)
         avg_gap_str = f"{winner['avg_gap_hours']:.1f}h"
 
         # Pick 3 random flavour boons + 1 mechanical boon
@@ -624,7 +622,7 @@ def check_combat_turns(config: dict, state: dict) -> None:
 
         # Check if enough time has passed since phase started
         phase_start = datetime.fromisoformat(combat["phase_started_at"])
-        hours_elapsed = (now - phase_start).total_seconds() / 3600
+        hours_elapsed = helpers.hours_since(now, phase_start)
 
         if hours_elapsed < helpers.COMBAT_PING_HOURS:
             continue
@@ -632,14 +630,14 @@ def check_combat_turns(config: dict, state: dict) -> None:
         # Don't re-ping within helpers.COMBAT_PING_HOURS
         last_ping_str = combat.get("last_ping_at")
         if last_ping_str:
-            since_ping = (now - datetime.fromisoformat(last_ping_str)).total_seconds() / 3600
+            since_ping = helpers.hours_since(now, datetime.fromisoformat(last_ping_str))
             if since_ping < helpers.COMBAT_PING_HOURS:
                 continue
 
         # Find all known players in this campaign who haven't acted
         acted = set(combat.get("players_acted", []))
         missing = [
-            display_name(p["first_name"], p.get("username", ""), p.get("last_name", ""))
+            helpers.player_mention(p)
             for p in all_campaigns.get(pid, [])
             if p["user_id"] not in acted
         ]
@@ -713,8 +711,7 @@ def archive_weekly_data(config: dict, state: dict) -> None:
 
         for uid, timestamps in topic_timestamps.items():
             is_gm = uid in gm_ids
-            player_key = f"{pid}:{uid}"
-            player_info = state.get("players", {}).get(player_key, {})
+            player_info = helpers.get_player(state, pid, uid)
 
             user_sessions = deduplicate_posts(
                 timestamps_in_window(timestamps, week_start, week_end)
@@ -727,11 +724,7 @@ def archive_weekly_data(config: dict, state: dict) -> None:
                 player_posts += session_count
                 player_post_times.extend(user_sessions)
                 if session_count > 0:
-                    p_name = display_name(
-                        player_info.get("first_name", "Unknown"),
-                        player_info.get("username", ""),
-                        player_info.get("last_name", ""),
-                    )
+                    p_name = helpers.player_mention(player_info)
                     player_counts[p_name] = player_counts.get(p_name, 0) + session_count
 
         # Calculate player avg gap
@@ -933,8 +926,7 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
 
         for uid, timestamps in topic_timestamps.items():
             is_gm = uid in gm_ids
-            player_key = f"{pid}:{uid}"
-            player_info = state.get("players", {}).get(player_key, {})
+            player_info = helpers.get_player(state, pid, uid)
             p_name = player_info.get("first_name", "Unknown")
             p_last_name = player_info.get("last_name", "")
             p_username = player_info.get("username", "")
@@ -1130,7 +1122,7 @@ def check_recruitment_needs(config: dict, state: dict) -> None:
         # Count active players (excluding GM)
         campaign_players = all_campaigns.get(pid, [])
         active = [
-            display_name(p["first_name"], p.get("username", ""), p.get("last_name", ""))
+            helpers.player_mention(p)
             for p in campaign_players
         ]
 
