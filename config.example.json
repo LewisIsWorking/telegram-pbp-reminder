@@ -14,7 +14,8 @@
             "name": "Second Campaign",
             "chat_topic_id": 33333,
             "pbp_topic_ids": [44444, 55555],
-            "created": "2024-06-01"
+            "created": "2024-06-01",
+            "disabled_features": ["recruitment", "potw"]
         }
     ],
     "settings": {

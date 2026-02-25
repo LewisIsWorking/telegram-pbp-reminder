@@ -73,9 +73,89 @@ def load_settings(config: dict) -> None:
             g[global_name] = s[config_key]
 
 
+def validate_config(config: dict) -> list[str]:
+    """Validate config structure and return a list of error/warning strings.
+
+    Fatal errors are prefixed with 'ERROR:'. Warnings with 'WARNING:'.
+    Caller should abort if any ERROR lines are returned.
+    """
+    issues = []
+
+    # Required top-level keys
+    gid = config.get("group_id")
+    if not isinstance(gid, int) or gid >= 0:
+        issues.append("ERROR: group_id must be a negative integer")
+
+    if not config.get("gm_user_ids"):
+        issues.append("WARNING: gm_user_ids is empty; GM posts will count as player posts")
+
+    pairs = config.get("topic_pairs")
+    if not pairs or not isinstance(pairs, list):
+        issues.append("ERROR: topic_pairs must be a non-empty list")
+        return issues
+
+    # Per-campaign validation
+    all_pbp_ids = set()
+    all_chat_ids = set()
+    all_names = set()
+
+    for i, pair in enumerate(pairs):
+        label = pair.get("name", f"topic_pairs[{i}]")
+
+        if not pair.get("name"):
+            issues.append(f"ERROR: {label} missing 'name'")
+
+        if "chat_topic_id" not in pair:
+            issues.append(f"ERROR: {label} missing 'chat_topic_id'")
+
+        pbp_ids = pair.get("pbp_topic_ids")
+        if not pbp_ids or not isinstance(pbp_ids, list):
+            issues.append(f"ERROR: {label} 'pbp_topic_ids' must be a non-empty list")
+            continue
+
+        # Check for duplicates
+        if pair.get("name") in all_names:
+            issues.append(f"WARNING: duplicate campaign name '{pair['name']}'")
+        all_names.add(pair.get("name"))
+
+        chat_id = pair.get("chat_topic_id")
+        if chat_id in all_chat_ids:
+            issues.append(f"WARNING: {label} chat_topic_id {chat_id} used by another campaign")
+        all_chat_ids.add(chat_id)
+
+        for tid in pbp_ids:
+            tid_str = str(tid)
+            if tid_str in all_pbp_ids:
+                issues.append(f"ERROR: {label} pbp_topic_id {tid} used by another campaign")
+            all_pbp_ids.add(tid_str)
+
+        # Validate disabled_features if present
+        valid_features = {"roster", "potw", "pace", "recruitment", "combat", "anniversary", "alerts", "warnings"}
+        disabled = pair.get("disabled_features", [])
+        for feat in disabled:
+            if feat not in valid_features:
+                issues.append(f"WARNING: {label} unknown feature '{feat}' in disabled_features "
+                              f"(valid: {', '.join(sorted(valid_features))})")
+
+    # Leaderboard topic collision
+    lb = config.get("leaderboard_topic_id")
+    if lb and str(lb) in all_pbp_ids:
+        issues.append("WARNING: leaderboard_topic_id collides with a PBP topic ID")
+
+    return issues
+
+
 def gm_id_set(config: dict) -> set:
     """Return GM user IDs as a set of strings."""
     return set(str(uid) for uid in config.get("gm_user_ids", []))
+
+
+def feature_enabled(config: dict, pid: str, feature: str) -> bool:
+    """Return True unless the campaign has this feature in its disabled_features list."""
+    for pair in config.get("topic_pairs", []):
+        if str(pair["pbp_topic_ids"][0]) == pid:
+            return feature not in pair.get("disabled_features", [])
+    return True
 
 
 def interval_elapsed(last_iso: str | None, interval_days: float, now: datetime) -> bool:

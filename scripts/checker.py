@@ -297,6 +297,9 @@ def check_and_alert(config: dict, state: dict) -> None:
     for pid, chat_topic_id in maps.to_chat.items():
         name = maps.to_name[pid]
 
+        if not helpers.feature_enabled(config, pid, "alerts"):
+            continue
+
         if pid not in state.get("topics", {}):
             print(f"No messages tracked yet for {name}, skipping")
             continue
@@ -364,6 +367,8 @@ def check_player_activity(config: dict, state: dict) -> None:
         pbp_topic_id = player["pbp_topic_id"]
         chat_topic_id = maps.to_chat.get(pbp_topic_id)
         if not chat_topic_id:
+            continue
+        if not helpers.feature_enabled(config, pbp_topic_id, "warnings"):
             continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])
@@ -463,6 +468,8 @@ def post_roster_summary(config: dict, state: dict) -> None:
     gm_ids = helpers.gm_id_set(config)
 
     for pid, chat_topic_id in maps.to_chat.items():
+        if not helpers.feature_enabled(config, pid, "roster"):
+            continue
         if not helpers.interval_elapsed(state["last_roster"].get(pid), helpers.ROSTER_INTERVAL_DAYS, now):
             continue
 
@@ -558,6 +565,8 @@ def player_of_the_week(config: dict, state: dict) -> None:
     week_ago = now - timedelta(days=7)
 
     for pid, chat_topic_id in maps.to_chat.items():
+        if not helpers.feature_enabled(config, pid, "potw"):
+            continue
         if not helpers.interval_elapsed(state["last_potw"].get(pid), helpers.POTW_INTERVAL_DAYS, now):
             continue
 
@@ -621,6 +630,9 @@ def check_combat_turns(config: dict, state: dict) -> None:
 
     for pid, combat in list(state["combat"].items()):
         if not combat.get("active"):
+            continue
+
+        if not helpers.feature_enabled(config, pid, "combat"):
             continue
 
         if combat["current_phase"] != "players":
@@ -797,6 +809,8 @@ def post_pace_report(config: dict, state: dict) -> None:
     two_weeks_ago = now - timedelta(days=14)
 
     for pid, chat_topic_id in maps.to_chat.items():
+        if not helpers.feature_enabled(config, pid, "pace"):
+            continue
         if not helpers.interval_elapsed(state["last_pace"].get(pid), helpers.PACE_INTERVAL_DAYS, now):
             continue
 
@@ -867,6 +881,10 @@ def check_anniversaries(config: dict, state: dict) -> None:
         pid = str(pair["pbp_topic_ids"][0])
         chat_topic_id = pair["chat_topic_id"]
         name = pair["name"]
+
+        if not helpers.feature_enabled(config, pid, "anniversary"):
+            continue
+
         created_str = pair.get("created")
 
         if not created_str:
@@ -1116,6 +1134,9 @@ def check_recruitment_needs(config: dict, state: dict) -> None:
     for pid, chat_topic_id in maps.to_chat.items():
         name = maps.to_name[pid]
 
+        if not helpers.feature_enabled(config, pid, "recruitment"):
+            continue
+
         # Check interval
         if not helpers.interval_elapsed(state["last_recruitment_check"].get(pid), helpers.RECRUITMENT_INTERVAL_DAYS, now):
             continue
@@ -1194,6 +1215,14 @@ def main() -> None:
 
     config = helpers.load_config()
     helpers.load_settings(config)
+
+    issues = helpers.validate_config(config)
+    for issue in issues:
+        print(issue)
+    if any(i.startswith("ERROR:") for i in issues):
+        print("Fatal config errors found, aborting")
+        sys.exit(1)
+
     bot_state = state_store.load()
 
     print(f"Loaded state. Offset: {bot_state.get('offset', 0)}")
