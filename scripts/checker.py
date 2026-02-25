@@ -113,6 +113,30 @@ def expire_pending_boons(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Process updates
 # ------------------------------------------------------------------ #
+_HELP_TEXT = (
+    "PBP Reminder Bot\n"
+    "\n"
+    "I track activity across PBP campaigns and post automated summaries.\n"
+    "\n"
+    "What I do:\n"
+    "- Alert when a campaign goes quiet (configurable hours)\n"
+    "- Warn inactive players at 1, 2, 3 weeks; auto-remove at 4\n"
+    "- Post party rosters every few days\n"
+    "- Award Player of the Week (most consistent poster)\n"
+    "- Post weekly pace reports comparing this week vs last\n"
+    "- Cross-campaign leaderboard\n"
+    "- Ping players who haven't acted during combat\n"
+    "- Recruitment notices when a party is under capacity\n"
+    "- Campaign anniversary celebrations\n"
+    "\n"
+    "GM commands:\n"
+    "/round <N> players - Start round N, players' turn\n"
+    "/round <N> enemies - Start round N, enemies' turn\n"
+    "/endcombat - End combat tracking\n"
+    "\n"
+    "Everyone:\n"
+    "/help - Show this message"
+)
 def _handle_round_command(text: str, pid: str, campaign_name: str,
                           now_iso: str, group_id: int, thread_id: int, state: dict) -> None:
     """Parse and execute /round <N> <players|enemies> command."""
@@ -236,6 +260,10 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             msg_time_iso = now_iso
         raw_text = msg.get("text", "").strip()
         text = raw_text.lower()
+
+        # ---- /help command ----
+        if text in ("/help", "/pbphelp"):
+            tg.send_message(group_id, thread_id, _HELP_TEXT)
 
         # ---- Combat commands and tracking ----
         _handle_combat_message(
