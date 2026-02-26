@@ -89,13 +89,13 @@ or between arcs. Pause reason displayed in `/status` and `/campaign`.
 
 ---
 
-## v1.6.0 — GM Tools
+## v1.6.0 — GM Roster Management
 
-### 📋 `/kick <player>`
+### ✅ `/kick @player`
 Manually remove a player from tracking without waiting for the 4-week
 auto-removal.
 
-### 📋 `/addplayer <@mention>`
+### ✅ `/addplayer @username Name`
 Manually register a player who hasn't posted yet so they appear in
 the roster and get tracked.
 

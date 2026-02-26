@@ -11,6 +11,37 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.6.0] - 2026-02-26
+
+### Summary
+GM roster management commands. GMs can now manually add and remove players
+from campaign tracking without waiting for automatic processes.
+
+### Added — `/kick` command (GM only)
+- `/kick @username` or `/kick PlayerName` removes a player from this
+  campaign's roster immediately.
+- Player is moved to the removed list (same as auto-removal at 4 weeks).
+- Kicked players can rejoin by posting in PBP again.
+- Matches by username, first name, or full name (case-insensitive).
+
+### Added — `/addplayer` command (GM only)
+- `/addplayer @username Player Name` pre-registers a player on the roster
+  before they've posted.
+- Creates a placeholder entry that updates with full stats on first post.
+- Prevents duplicates (checks existing roster).
+- Clears any previous removal record for that player.
+
+### Added
+- 2 new daily tips for `/kick` and `/addplayer`.
+- Help text updated with new commands.
+
+### Tests
+- 6 new tests: kick by username, kick by name, kick no match,
+  addplayer, addplayer duplicate, addplayer clears removed.
+- Total: 160 tests (37 helpers + 107 checker + 16 import).
+
+---
+
 ## [1.5.0] - 2026-02-26
 
 ### Summary

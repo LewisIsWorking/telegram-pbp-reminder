@@ -1793,6 +1793,97 @@ def test_parse_message_captures_media():
 
 
 # ------------------------------------------------------------------ #
+#  /kick and /addplayer tests
+# ------------------------------------------------------------------ #
+def test_kick_by_username():
+    _reset()
+    state = _make_state()
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "alice99", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": "2026-01-01T00:00:00",
+        "last_warned_week": 0,
+    }
+    checker._handle_kick("100", "TestCampaign", "alice99", state, -100, 200)
+    assert "100:42" not in state["players"]
+    assert "100:42" in state["removed_players"]
+    assert state["removed_players"]["100:42"]["kicked"] is True
+    assert any("removed" in m.get("text", "").lower() for m in _sent_messages)
+
+
+def test_kick_by_first_name():
+    _reset()
+    state = _make_state()
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "Smith",
+        "username": "alice99", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": "2026-01-01T00:00:00",
+        "last_warned_week": 0,
+    }
+    checker._handle_kick("100", "TestCampaign", "Alice Smith", state, -100, 200)
+    assert "100:42" not in state["players"]
+
+
+def test_kick_no_match():
+    _reset()
+    state = _make_state()
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "alice99", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": "2026-01-01T00:00:00",
+        "last_warned_week": 0,
+    }
+    checker._handle_kick("100", "TestCampaign", "nobody", state, -100, 200)
+    assert "100:42" in state["players"]  # Not removed
+    assert any("no player" in m.get("text", "").lower() for m in _sent_messages)
+
+
+def test_addplayer():
+    _reset()
+    state = _make_state()
+    now_iso = datetime.now(timezone.utc).isoformat()
+    checker._handle_addplayer("100", "TestCampaign", "@bob Bob Jones",
+                              now_iso, state, -100, 200)
+    key = "100:pending_bob"
+    assert key in state["players"]
+    assert state["players"][key]["first_name"] == "Bob"
+    assert state["players"][key]["last_name"] == "Jones"
+    assert state["players"][key]["username"] == "bob"
+    assert any("added" in m.get("text", "").lower() for m in _sent_messages)
+
+
+def test_addplayer_duplicate():
+    _reset()
+    state = _make_state()
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "bob", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": "2026-01-01T00:00:00",
+        "last_warned_week": 0,
+    }
+    now_iso = datetime.now(timezone.utc).isoformat()
+    checker._handle_addplayer("100", "TestCampaign", "@bob Bob",
+                              now_iso, state, -100, 200)
+    assert "100:pending_bob" not in state["players"]  # Not added
+    assert any("already tracked" in m.get("text", "").lower() for m in _sent_messages)
+
+
+def test_addplayer_clears_removed():
+    _reset()
+    state = _make_state()
+    state["removed_players"]["100:42"] = {
+        "removed_at": "2026-01-01T00:00:00",
+        "first_name": "Bob", "username": "bob",
+        "campaign_name": "TestCampaign",
+    }
+    now_iso = datetime.now(timezone.utc).isoformat()
+    checker._handle_addplayer("100", "TestCampaign", "@bob Bob",
+                              now_iso, state, -100, 200)
+    assert "100:42" not in state["removed_players"]
+    assert "100:pending_bob" in state["players"]
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():
