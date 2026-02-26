@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+      - name: Run tests
+        run: cd scripts && python test_helpers.py && python test_checker.py
+
       - name: Run inactivity checker
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

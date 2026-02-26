@@ -237,13 +237,18 @@ Top-level settings:
 
 ---
 
-## Combat tracking
+## Commands
 
-The bot supports side-based initiative with two GM commands:
+The bot responds to these commands in any monitored PBP topic:
 
-- `/round 1 players` starts round 1 player phase.
-- `/round 1 enemies` starts round 1 enemy phase.
-- `/endcombat` ends combat tracking.
+**Everyone:**
+- `/help` - List bot features and commands.
+- `/status` - Campaign health snapshot: party size, last post, posts this week, at-risk players.
+
+**GM only:**
+- `/round 1 players` - Start round 1 player phase.
+- `/round 1 enemies` - Start round 1 enemy phase.
+- `/endcombat` - End combat tracking.
 
 During the player phase, the bot tracks which players have posted.
 After `combat_ping_hours` hours, it pings players who haven't acted yet.

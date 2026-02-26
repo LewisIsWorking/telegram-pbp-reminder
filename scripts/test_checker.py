@@ -411,6 +411,74 @@ def test_check_and_alert_respects_feature_toggle():
     assert len(_sent_messages) == 0  # Feature disabled, no alert
 
 
+def test_build_status_basic():
+    _reset()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["topics"]["100"] = {
+        "last_message_time": (now - timedelta(hours=3)).isoformat(),
+        "last_user": "Alice",
+        "last_user_id": "42",
+        "campaign_name": "TestCampaign",
+    }
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(hours=3)).isoformat(),
+        "last_warned_week": 0,
+    }
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=h)).isoformat() for h in [3, 24, 48]],
+    }
+
+    result = checker._build_status("100", "TestCampaign", state, {"999"})
+    assert "Status for TestCampaign" in result
+    assert "1/6" in result  # 1 player
+    assert "3h ago" in result
+    assert "player" in result
+
+
+def test_build_status_at_risk():
+    _reset()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=10)).isoformat(),
+        "last_warned_week": 0,
+    }
+
+    result = checker._build_status("100", "TestCampaign", state, {"999"})
+    assert "At risk" in result
+    assert "Bob" in result
+    assert "10d" in result
+
+
+def test_process_updates_status_command():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [{
+        "update_id": 5001,
+        "message": {
+            "chat": {"id": -100},
+            "message_thread_id": 100,
+            "from": {"id": 42, "first_name": "Test"},
+            "date": now_ts,
+            "text": "/status",
+        },
+    }]
+
+    checker.process_updates(updates, config, state)
+    status_msgs = [m for m in _sent_messages if "Status for" in m.get("text", "")]
+    assert len(status_msgs) == 1
+
+
 # ------------------------------------------------------------------ #
 #  Config validation tests
 # ------------------------------------------------------------------ #

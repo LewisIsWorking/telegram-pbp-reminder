@@ -91,9 +91,9 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
     print(f"POTW boon chosen for topic {topic_id}: #{choice_idx + 1}")
 
 
-def expire_pending_boons(config: dict, state: dict) -> None:
+def expire_pending_boons(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Auto-pick boon #1 if winner hasn't chosen within 48 hours."""
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
     group_id = config["group_id"]
     pending = state.get("pending_potw_boons", {})
 
@@ -135,8 +135,75 @@ _HELP_TEXT = (
     "/endcombat - End combat tracking\n"
     "\n"
     "Everyone:\n"
-    "/help - Show this message"
+    "/help - Show this message\n"
+    "/status - Campaign health snapshot"
 )
+
+
+def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str:
+    """Build a quick campaign health snapshot for /status command."""
+    now = datetime.now(timezone.utc)
+    week_ago = now - timedelta(days=7)
+
+    # Player count
+    players = [
+        p for p in state.get("players", {}).values()
+        if p.get("pbp_topic_id") == pid
+    ]
+    player_count = len(players)
+
+    # Last post
+    topic_state = state.get("topics", {}).get(pid)
+    if topic_state:
+        last_time = datetime.fromisoformat(topic_state["last_message_time"])
+        elapsed = helpers.hours_since(now, last_time)
+        if elapsed < 1:
+            last_str = "just now"
+        elif elapsed < 24:
+            last_str = f"{int(elapsed)}h ago"
+        else:
+            last_str = f"{int(elapsed / 24)}d {int(elapsed % 24)}h ago"
+    else:
+        last_str = "no posts tracked yet"
+
+    # Posts this week
+    topic_ts = helpers.get_topic_timestamps(state, pid)
+    gm_week = player_week = 0
+    for uid, timestamps in topic_ts.items():
+        count = len(timestamps_in_window(timestamps, week_ago))
+        if uid in gm_ids:
+            gm_week += count
+        else:
+            player_week += count
+
+    # At-risk players (1+ weeks inactive)
+    at_risk = []
+    for p in players:
+        last_post = datetime.fromisoformat(p["last_post_time"])
+        days_inactive = helpers.days_since(now, last_post)
+        if days_inactive >= 7:
+            at_risk.append(f"{p['first_name']} ({int(days_inactive)}d)")
+
+    # Active combat
+    combat = state.get("combat", {}).get(pid)
+    combat_str = ""
+    if combat and combat.get("active"):
+        combat_str = f"\nCombat: Round {combat['round']}, {combat['current_phase']}' turn"
+
+    lines = [
+        f"Status for {campaign_name}:",
+        f"Party: {player_count}/{helpers.REQUIRED_PLAYERS}",
+        f"Last post: {last_str}",
+        f"This week: {player_week} player + {gm_week} GM posts",
+    ]
+    if at_risk:
+        lines.append(f"At risk: {', '.join(at_risk)}")
+    if combat_str:
+        lines.append(combat_str)
+
+    return "\n".join(lines)
+
+
 def _handle_round_command(text: str, pid: str, campaign_name: str,
                           now_iso: str, group_id: int, thread_id: int, state: dict) -> None:
     """Parse and execute /round <N> <players|enemies> command."""
@@ -265,6 +332,11 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         if text in ("/help", "/pbphelp"):
             tg.send_message(group_id, thread_id, _HELP_TEXT)
 
+        # ---- /status command ----
+        if text == "/status":
+            status = _build_status(pid, campaign_name, state, gm_ids)
+            tg.send_message(group_id, thread_id, status)
+
         # ---- Combat commands and tracking ----
         _handle_combat_message(
             text, user_id, gm_ids, pid, campaign_name,
@@ -314,13 +386,13 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 # ------------------------------------------------------------------ #
 #  Topic inactivity alerts (4-hour)
 # ------------------------------------------------------------------ #
-def check_and_alert(config: dict, state: dict) -> None:
+def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Send alerts to campaigns inactive beyond alert_after_hours."""
     group_id = config["group_id"]
     alert_hours = config.get("alert_after_hours", 4)
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
 
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
 
     for pid, chat_topic_id in maps.to_chat.items():
         name = maps.to_name[pid]
@@ -381,13 +453,13 @@ _INACTIVITY_TEMPLATES = {
 }
 
 
-def check_player_activity(config: dict, state: dict) -> None:
+def check_player_activity(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Warn inactive players at 1/2/3 weeks, remove at 4 weeks."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
 
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
 
     players_to_remove = []
 
@@ -486,12 +558,12 @@ def _roster_block(label: str, username: str, stats: dict) -> str:
     return block
 
 
-def post_roster_summary(config: dict, state: dict) -> None:
+def post_roster_summary(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post a summary of all tracked players per campaign to CHAT topics."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
 
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
     campaigns = helpers.players_by_campaign(state)
     gm_ids = helpers.gm_id_set(config)
 
@@ -576,10 +648,10 @@ def _gather_potw_candidates(
     return candidates
 
 
-def player_of_the_week(config: dict, state: dict) -> None:
+def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Award Player of the Week based on smallest average gap between posts."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
     gm_ids = helpers.gm_id_set(config)
 
     try:
@@ -589,7 +661,7 @@ def player_of_the_week(config: dict, state: dict) -> None:
         print(f"Warning: Could not load boons: {e}")
         boons = ["Something mildly beneficial happens to you today."]
 
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
     week_ago = now - timedelta(days=7)
 
     for pid, chat_topic_id in maps.to_chat.items():
@@ -647,13 +719,13 @@ def player_of_the_week(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Combat turn pinger (side-based initiative)
 # ------------------------------------------------------------------ #
-def check_combat_turns(config: dict, state: dict) -> None:
+def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """During players' phase, ping players who haven't acted yet."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
 
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
     all_campaigns = helpers.players_by_campaign(state)
 
     for pid, combat in list(state["combat"].items()):
@@ -714,14 +786,14 @@ def check_combat_turns(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Weekly data archive (preserves long-term trends)
 # ------------------------------------------------------------------ #
-def archive_weekly_data(config: dict, state: dict) -> None:
+def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Archive weekly summaries to a JSON file in the repo.
 
     Stores compact per-campaign stats keyed by ISO week (e.g. '2026-W07').
     The file is committed back to the repo by the GitHub Actions workflow,
     giving full git history and no gist size concerns.
     """
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
     gm_ids = helpers.gm_id_set(config)
 
     # Use last week's ISO week number (since current week is still in progress)
@@ -825,13 +897,13 @@ def cleanup_timestamps(state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Weekly pace report
 # ------------------------------------------------------------------ #
-def post_pace_report(config: dict, state: dict) -> None:
+def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post weekly pace comparison: posts/day this week vs last week, split GM/players."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
     gm_ids = helpers.gm_id_set(config)
 
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
 
     week_ago = now - timedelta(days=7)
     two_weeks_ago = now - timedelta(days=14)
@@ -899,10 +971,10 @@ def post_pace_report(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Campaign anniversary alerts
 # ------------------------------------------------------------------ #
-def check_anniversaries(config: dict, state: dict) -> None:
+def check_anniversaries(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Post a celebration when a campaign hits a yearly anniversary."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
     today = now.date()
 
     for pair in config["topic_pairs"]:
@@ -1123,14 +1195,14 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict, now: da
     return "\n".join(lines)
 
 
-def post_campaign_leaderboard(config: dict, state: dict) -> None:
+def post_campaign_leaderboard(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post a cross-campaign activity leaderboard to the ISSUES topic."""
     group_id = config["group_id"]
     leaderboard_topic = config.get("leaderboard_topic_id")
     if not leaderboard_topic:
         return
 
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
 
     if not helpers.interval_elapsed(state.get("last_leaderboard"), helpers.LEADERBOARD_INTERVAL_DAYS, now):
         return
@@ -1151,12 +1223,12 @@ def post_campaign_leaderboard(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 #  Recruitment check (campaigns needing players)
 # ------------------------------------------------------------------ #
-def check_recruitment_needs(config: dict, state: dict) -> None:
+def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """If a campaign has fewer than helpers.REQUIRED_PLAYERS, post a notice."""
     group_id = config["group_id"]
-    now = datetime.now(timezone.utc)
+    now = now or datetime.now(timezone.utc)
 
-    maps = build_topic_maps(config)
+    maps = maps or build_topic_maps(config)
     all_campaigns = helpers.players_by_campaign(state)
 
     for pid, chat_topic_id in maps.to_chat.items():
@@ -1207,6 +1279,9 @@ def check_recruitment_needs(config: dict, state: dict) -> None:
 # ------------------------------------------------------------------ #
 def _run_checks(config: dict, bot_state: dict) -> None:
     """Run all scheduled checks, isolating failures so one crash doesn't block others."""
+    now = datetime.now(timezone.utc)
+    maps = build_topic_maps(config)
+
     checks = [
         ("Topic alerts", check_and_alert),
         ("Player activity", check_player_activity),
@@ -1222,7 +1297,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
     ]
     for label, func in checks:
         try:
-            func(config, bot_state)
+            func(config, bot_state, now=now, maps=maps)
         except Exception as e:
             print(f"Error in {label}: {e}")
 
