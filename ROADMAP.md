@@ -61,19 +61,29 @@ attention without reading every stat.
 - Filterable date range
 - Mobile-responsive layout
 
-### 📋 Personal history
+### ✅ Personal history
 `/myhistory` shows a player's posting pattern over time: weekly post
 counts for the last 8 weeks as a text sparkline chart.
 
 ---
 
-## Future Ideas (unscheduled)
+## v1.5.0 — GM Tools (partially complete)
 
-### 💡 GM tools
-- `/pause` and `/resume` to temporarily disable inactivity tracking
-  (for planned breaks, holidays, between arcs)
-- `/kick <player>` to manually remove a player from tracking
-- `/addplayer <@mention>` to manually register someone who hasn't posted yet
+### ✅ `/pause` and `/resume`
+Temporarily disable inactivity tracking for planned breaks, holidays,
+or between arcs. Pause reason displayed in `/status` and `/campaign`.
+
+### 📋 `/kick <player>`
+Manually remove a player from tracking without waiting for the 4-week
+auto-removal.
+
+### 📋 `/addplayer <@mention>`
+Manually register a player who hasn't posted yet so they appear in
+the roster and get tracked.
+
+---
+
+## Future Ideas (unscheduled)
 
 ### 💡 Smart alerts
 - Detect when a campaign's pace drops significantly week-over-week and

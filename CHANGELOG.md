@@ -11,6 +11,39 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.3.0] - 2026-02-26
+
+### Summary
+GM tools and personal history. GMs can now pause/resume inactivity tracking
+for breaks between arcs or holidays. Players can view their 8-week posting
+history as a text sparkline chart.
+
+### Added — New Commands
+- **/myhistory**: Shows a text sparkline of your weekly post counts over
+  the last 8 weeks. Includes total posts, peak week, current week, and
+  trend direction. The sparkline uses Unicode block characters (▁▂▃▄▅▆▇█)
+  for a compact visual at-a-glance view of posting patterns.
+- **/pause [reason]** (GM only): Pauses inactivity tracking for the campaign.
+  All topic alerts and player warnings are suppressed while paused. The
+  pause reason is shown in `/status` and `/campaign`. Use for planned breaks,
+  holidays, or between-arc downtime. Non-GMs cannot use this command.
+- **/resume** (GM only): Resumes inactivity tracking after a pause. Confirms
+  in chat when tracking is re-enabled.
+
+### Changed
+- `/status` and `/campaign` now show ⏸️ PAUSED with reason when a campaign
+  is paused.
+- `check_and_alert` and `check_player_activity` both skip paused campaigns.
+- 2 new daily tips added (covering /myhistory and /pause).
+- Help text updated with all new commands.
+
+### Tests
+- 13 new tests: sparkline (3), myhistory (3), /pause command (2),
+  /resume command (1), pause blocking (2), pause display (2).
+- Total: 128 tests (34 helpers + 94 checker).
+
+---
+
 ## [1.2.0] - 2026-02-26
 
 ### Summary

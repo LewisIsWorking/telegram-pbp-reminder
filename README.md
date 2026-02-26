@@ -246,7 +246,16 @@ The bot responds to these commands in any monitored PBP topic:
 - `/status` - Campaign health snapshot: party size, last post, posts this week, at-risk players.
 - `/campaign` - Full scoreboard: header, weekly pace with trends, complete roster with stats, at-risk warnings, combat state.
 - `/mystats` (alias `/me`) - Your personal stats: total posts, sessions, average gap, weekly count, streak.
+- `/myhistory` - 8-week posting sparkline with trend.
 - `/whosturn` - Combat status: who has acted, who the party is waiting on.
+
+### GM commands
+
+- `/round <N> players` - Start round N, players' turn.
+- `/round <N> enemies` - Start round N, enemies' turn.
+- `/endcombat` - End combat tracking.
+- `/pause [reason]` - Pause inactivity tracking (for breaks, holidays, between arcs).
+- `/resume` - Resume inactivity tracking.
 
 ## Versioning
 
@@ -300,7 +309,7 @@ scripts/
   state.py              # Gist-based state persistence
   post_changelog.py     # Changelog parser and Telegram poster
   test_helpers.py       # Test suite for helpers (34 tests)
-  test_checker.py       # Test suite for checker (73 tests)
+  test_checker.py       # Test suite for checker (94 tests)
 config.json             # Your configuration
 config.example.json     # Template configuration
 boons.json              # Flavour boons for POTW (optional)

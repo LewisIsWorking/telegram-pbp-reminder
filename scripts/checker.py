@@ -134,12 +134,15 @@ _HELP_TEXT = (
     "/round <N> players - Start round N, players' turn\n"
     "/round <N> enemies - Start round N, enemies' turn\n"
     "/endcombat - End combat tracking\n"
+    "/pause [reason] - Pause inactivity tracking (planned breaks)\n"
+    "/resume - Resume inactivity tracking\n"
     "\n"
     "Everyone:\n"
     "/help - Show this message\n"
     "/status - Campaign health snapshot\n"
     "/campaign - Full scoreboard with roster and stats\n"
     "/mystats - Your personal stats (also: /me)\n"
+    "/myhistory - 8-week posting sparkline\n"
     "/whosturn - Who has acted in combat and who hasn't"
 )
 
@@ -205,6 +208,10 @@ def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str
     if combat_str:
         lines.append(combat_str)
 
+    paused = state.get("paused_campaigns", {}).get(pid)
+    if paused:
+        lines.append(f"⏸️ PAUSED: {paused.get('reason', 'No reason')}")
+
     return "\n".join(lines)
 
 
@@ -226,6 +233,11 @@ def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> 
 
     # Header
     lines = [f"━━ {name} ━━"]
+
+    paused = state.get("paused_campaigns", {}).get(pid)
+    if paused:
+        lines.append(f"⏸️ PAUSED: {paused.get('reason', 'No reason')}")
+
     if created_str:
         created = datetime.strptime(created_str, "%Y-%m-%d").date()
         age_days = (now.date() - created).days
@@ -346,6 +358,67 @@ def _build_mystats(pid: str, user_id: str, campaign_name: str,
     return "\n".join(lines)
 
 
+_SPARK_CHARS = " ▁▂▃▄▅▆▇█"
+
+
+def _sparkline(values: list[int]) -> str:
+    """Convert a list of integers into a text sparkline using block characters."""
+    if not values or max(values) == 0:
+        return "▁" * len(values)
+    peak = max(values)
+    return "".join(
+        _SPARK_CHARS[min(round(v / peak * 8), 8)] for v in values
+    )
+
+
+def _build_myhistory(pid: str, user_id: str, campaign_name: str,
+                     state: dict, gm_ids: set) -> str:
+    """Build a posting history sparkline for the last 8 weeks."""
+    now = datetime.now(timezone.utc)
+    is_gm = user_id in gm_ids
+    role = "GM" if is_gm else "Player"
+
+    topic_ts = helpers.get_topic_timestamps(state, pid)
+    raw_ts = topic_ts.get(user_id, [])
+
+    if not raw_ts:
+        return f"No posting history yet in {campaign_name}."
+
+    # Calculate weekly post counts for last 8 weeks
+    weeks = []
+    for w in range(7, -1, -1):
+        start = now - timedelta(weeks=w + 1)
+        end = now - timedelta(weeks=w)
+        count = len(timestamps_in_window(raw_ts, start, end))
+        weeks.append(count)
+
+    spark = _sparkline(weeks)
+    total = sum(weeks)
+    peak = max(weeks)
+    current = weeks[-1]
+
+    # Week labels
+    label_start = fmt_date(now - timedelta(weeks=8))
+    label_end = fmt_date(now)
+
+    lines = [
+        f"Posting history in {campaign_name} ({role}):",
+        f"",
+        f"{label_start}  {spark}  {label_end}",
+        f"",
+        f"8 weeks: {posts_str(total)} total",
+        f"Peak week: {posts_str(peak)}",
+        f"This week: {posts_str(current)}",
+    ]
+
+    # Trend
+    if len(weeks) >= 2 and weeks[-2] > 0:
+        trend = helpers.trend_icon(weeks[-1], weeks[-2])
+        lines.append(f"Trend: {trend}")
+
+    return "\n".join(lines)
+
+
 def _calc_streak(raw_timestamps: list[str], now: datetime) -> int:
     """Count consecutive days with at least one post, ending at today or yesterday.
 
@@ -458,6 +531,12 @@ _TIPS = [
 
     "💡 <b>Posting streaks</b> — Post on consecutive days to build a streak. "
     "Check yours with /mystats. The longer the streak, the bigger the 🔥!",
+
+    "💡 <b>/myhistory</b> — See a visual sparkline of your posting activity over the last 8 weeks. "
+    "Track your peak weeks and whether you're trending up or down.",
+
+    "💡 <b>/pause</b> and <b>/resume</b> (GM only) — Going on holiday or taking a break between arcs? "
+    "Type <code>/pause on holiday</code> to stop inactivity warnings. <code>/resume</code> to restart.",
 ]
 
 
@@ -665,6 +744,33 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             turn_report = _build_whosturn(pid, campaign_name, state)
             tg.send_message(group_id, thread_id, turn_report)
 
+        # ---- /myhistory command ----
+        if text == "/myhistory":
+            history = _build_myhistory(pid, user_id, campaign_name, state, gm_ids)
+            tg.send_message(group_id, thread_id, history)
+
+        # ---- /pause command (GM only) ----
+        if text.startswith("/pause") and user_id in gm_ids:
+            reason = parsed["raw_text"][6:].strip() or "No reason given"
+            state.setdefault("paused_campaigns", {})[pid] = {
+                "paused_at": now_iso,
+                "reason": reason,
+            }
+            tg.send_message(group_id, thread_id,
+                            f"⏸️ {campaign_name} paused. Inactivity tracking disabled.\nReason: {reason}")
+            print(f"Paused {campaign_name}: {reason}")
+
+        # ---- /resume command (GM only) ----
+        if text == "/resume" and user_id in gm_ids:
+            paused = state.get("paused_campaigns", {})
+            if pid in paused:
+                del paused[pid]
+                tg.send_message(group_id, thread_id,
+                                f"▶️ {campaign_name} resumed. Inactivity tracking re-enabled.")
+                print(f"Resumed {campaign_name}")
+            else:
+                tg.send_message(group_id, thread_id, f"{campaign_name} is not paused.")
+
         # ---- Combat commands and tracking ----
         _handle_combat_message(
             text, user_id, gm_ids, pid, campaign_name,
@@ -728,7 +834,11 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         if not helpers.feature_enabled(config, pid, "alerts"):
             continue
 
+        if pid in state.get("paused_campaigns", {}):
+            continue
+
         if pid not in state.get("topics", {}):
+            continue
             print(f"No messages tracked yet for {name}, skipping")
             continue
 
@@ -797,6 +907,8 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         if not chat_topic_id:
             continue
         if not helpers.feature_enabled(config, pbp_topic_id, "warnings"):
+            continue
+        if pbp_topic_id in state.get("paused_campaigns", {}):
             continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])

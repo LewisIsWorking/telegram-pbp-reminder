@@ -1481,6 +1481,208 @@ def test_roster_block_hides_short_streak():
 
 
 # ------------------------------------------------------------------ #
+#  Sparkline and /myhistory tests
+# ------------------------------------------------------------------ #
+def test_sparkline_basic():
+    result = checker._sparkline([0, 2, 4, 8, 4, 2, 0, 1])
+    assert len(result) == 8
+    assert result[3] == "█"  # Peak
+    assert result[0] == " "  # Zero
+
+
+def test_sparkline_all_zeros():
+    result = checker._sparkline([0, 0, 0])
+    assert result == "▁▁▁"
+
+
+def test_sparkline_uniform():
+    result = checker._sparkline([5, 5, 5])
+    assert all(c == "█" for c in result)
+
+
+def test_build_myhistory_basic():
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+
+    state["message_counts"]["100"] = {"42": 30}
+    state["post_timestamps"]["100"] = {
+        "42": [
+            (now - timedelta(weeks=w, hours=h)).isoformat()
+            for w in range(4)
+            for h in [2, 24, 48]
+        ],
+    }
+
+    result = checker._build_myhistory("100", "42", "TestCampaign", state, {"999"})
+    assert "Posting history" in result
+    assert "Player" in result
+    assert "8 weeks" in result
+    assert "Peak week" in result
+
+
+def test_build_myhistory_no_posts():
+    _reset()
+    state = _make_state()
+    result = checker._build_myhistory("100", "42", "TestCampaign", state, {"999"})
+    assert "No posting history" in result
+
+
+def test_process_updates_myhistory_command():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [{
+        "update_id": 8001,
+        "message": {
+            "chat": {"id": -100},
+            "message_thread_id": 100,
+            "from": {"id": 42, "first_name": "Test"},
+            "date": now_ts,
+            "text": "/myhistory",
+        },
+    }]
+
+    checker.process_updates(updates, config, state)
+    history_msgs = [m for m in _sent_messages if "No posting history" in m.get("text", "") or "Posting history" in m.get("text", "")]
+    assert len(history_msgs) >= 1
+
+
+# ------------------------------------------------------------------ #
+#  /pause and /resume tests
+# ------------------------------------------------------------------ #
+def test_pause_command():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [{
+        "update_id": 9001,
+        "message": {
+            "chat": {"id": -100},
+            "message_thread_id": 100,
+            "from": {"id": 999, "first_name": "GM"},
+            "date": now_ts,
+            "text": "/pause Holiday break",
+        },
+    }]
+
+    checker.process_updates(updates, config, state)
+    assert "100" in state.get("paused_campaigns", {})
+    assert state["paused_campaigns"]["100"]["reason"] == "Holiday break"
+    pause_msgs = [m for m in _sent_messages if "paused" in m.get("text", "").lower()]
+    assert len(pause_msgs) == 1
+
+
+def test_pause_non_gm_ignored():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [{
+        "update_id": 9002,
+        "message": {
+            "chat": {"id": -100},
+            "message_thread_id": 100,
+            "from": {"id": 42, "first_name": "Player"},
+            "date": now_ts,
+            "text": "/pause trying to pause",
+        },
+    }]
+
+    checker.process_updates(updates, config, state)
+    assert "100" not in state.get("paused_campaigns", {})
+
+
+def test_resume_command():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["paused_campaigns"] = {"100": {"paused_at": "now", "reason": "test"}}
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [{
+        "update_id": 9003,
+        "message": {
+            "chat": {"id": -100},
+            "message_thread_id": 100,
+            "from": {"id": 999, "first_name": "GM"},
+            "date": now_ts,
+            "text": "/resume",
+        },
+    }]
+
+    checker.process_updates(updates, config, state)
+    assert "100" not in state.get("paused_campaigns", {})
+    resume_msgs = [m for m in _sent_messages if "resumed" in m.get("text", "").lower()]
+    assert len(resume_msgs) == 1
+
+
+def test_pause_stops_alerts():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["topics"]["100"] = {
+        "last_message_time": (now - timedelta(hours=10)).isoformat(),
+        "last_user": "Alice",
+        "last_user_id": "42",
+        "campaign_name": "TestCampaign",
+    }
+    state["paused_campaigns"] = {"100": {"paused_at": now.isoformat(), "reason": "break"}}
+
+    checker.check_and_alert(config, state, now=now)
+    alert_msgs = [m for m in _sent_messages if "No new posts" in m.get("text", "")]
+    assert len(alert_msgs) == 0
+
+
+def test_pause_stops_player_warnings():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=10)).isoformat(),
+        "last_warned_week": 0,
+    }
+    state["paused_campaigns"] = {"100": {"paused_at": now.isoformat(), "reason": "break"}}
+
+    checker.check_player_activity(config, state, now=now)
+    assert len(_sent_messages) == 0
+
+
+def test_pause_shows_in_status():
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    state["paused_campaigns"] = {"100": {"paused_at": now.isoformat(), "reason": "Holiday"}}
+
+    result = checker._build_status("100", "TestCampaign", state, {"999"})
+    assert "PAUSED" in result
+    assert "Holiday" in result
+
+
+def test_pause_shows_in_campaign():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+    state["paused_campaigns"] = {"100": {"paused_at": now.isoformat(), "reason": "Between arcs"}}
+
+    result = checker._build_campaign_report("100", config, state, {"999"})
+    assert "PAUSED" in result
+    assert "Between arcs" in result
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():
