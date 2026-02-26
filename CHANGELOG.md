@@ -11,6 +11,36 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.8.0] - 2026-02-26
+
+### Summary
+Message milestone celebrations. The bot now celebrates every 500th PBP
+message per campaign and every 5,000th message across all campaigns.
+
+### Added — Message milestones
+- Campaign milestones: every 500 messages (500, 1000, 1500, ...) posted
+  to the campaign's chat topic with a unique icon per tier.
+- Global milestones: every 5,000 messages across all campaigns, posted
+  to the leaderboard topic.
+- Tracked in `state["celebrated_milestones"]` to prevent duplicate posts.
+- Icons progress: 🎯 → 🏅 → ⚡ → 🔥 → ⭐ → 💎 → 🌟 → 👑 → 🏆 → 🎆
+
+### Added
+- New daily tip for message milestones.
+- Added to `_run_checks` scheduler.
+
+### Note
+Milestones are based on the bot's live message count (messages tracked
+since the bot was deployed). Historical imports populate transcripts
+but don't retroactively update the live counts. Milestones will fire
+naturally as campaigns continue posting.
+
+### Tests
+- 4 new tests: campaign 500, not repeated, campaign 1000, global 5000.
+- Total: 172 tests (37 helpers + 117 checker + 18 import).
+
+---
+
 ## [1.7.0] - 2026-02-26
 
 ### Summary

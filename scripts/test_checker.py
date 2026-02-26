@@ -2002,6 +2002,69 @@ def test_overview_multi_campaign():
 
 
 # ------------------------------------------------------------------ #
+#  Message milestone tests
+# ------------------------------------------------------------------ #
+def test_milestone_campaign_500():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    # Give the campaign 500 messages
+    state["message_counts"]["100"] = {"42": 300, "50": 200}
+    state["celebrated_milestones"] = {}
+
+    checker.check_message_milestones(config, state)
+    assert state["celebrated_milestones"].get("campaign:100") == 500
+    assert any("500" in m.get("text", "") for m in _sent_messages)
+
+
+def test_milestone_campaign_not_repeated():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["message_counts"]["100"] = {"42": 300, "50": 200}
+    state["celebrated_milestones"] = {"campaign:100": 500}
+
+    checker.check_message_milestones(config, state)
+    # No new messages sent — already celebrated
+    milestone_msgs = [m for m in _sent_messages if "500" in m.get("text", "")]
+    assert len(milestone_msgs) == 0
+
+
+def test_milestone_campaign_1000():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["message_counts"]["100"] = {"42": 600, "50": 400}
+    state["celebrated_milestones"] = {"campaign:100": 500}
+
+    checker.check_message_milestones(config, state)
+    assert state["celebrated_milestones"]["campaign:100"] == 1000
+    assert any("1,000" in m.get("text", "") for m in _sent_messages)
+
+
+def test_milestone_global():
+    _reset()
+    config = {
+        "group_id": -100,
+        "gm_user_ids": [999],
+        "leaderboard_topic_id": 9999,
+        "topic_pairs": [
+            {"name": "A", "chat_topic_id": 200, "pbp_topic_ids": [100]},
+            {"name": "B", "chat_topic_id": 400, "pbp_topic_ids": [300]},
+        ],
+    }
+    state = _make_state()
+    state["message_counts"]["100"] = {"42": 3000}
+    state["message_counts"]["300"] = {"50": 2000}
+    state["celebrated_milestones"] = {}
+
+    checker.check_message_milestones(config, state)
+    assert state["celebrated_milestones"].get("global") == 5000
+    assert any("5,000" in m.get("text", "") and "Path Wars" in m.get("text", "")
+               for m in _sent_messages)
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():

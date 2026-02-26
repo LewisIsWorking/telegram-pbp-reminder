@@ -310,8 +310,8 @@ scripts/
   state.py              # Gist-based state persistence
   post_changelog.py     # Changelog parser and Telegram poster
   test_helpers.py       # Test suite for helpers (37 tests)
-  test_checker.py       # Test suite for checker (112 tests)
-  test_import_history.py # Test suite for import (16 tests)
+  test_checker.py       # Test suite for checker (117 tests)
+  test_import_history.py # Test suite for import (18 tests)
   import_history.py     # Historical transcript backfill from Telegram export
 config.json             # Your configuration
 config.example.json     # Template configuration

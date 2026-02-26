@@ -101,6 +101,16 @@ the roster and get tracked.
 
 ---
 
+## v1.8.0 — Message Milestones
+
+### ✅ Campaign milestones (every 500 messages)
+Celebrates in the campaign's chat topic with escalating icons.
+
+### ✅ Global milestones (every 5,000 messages)
+Celebrates across all campaigns in the leaderboard topic.
+
+---
+
 ## v1.7.0 — Player Catch-Up
 
 ### ✅ `/catchup`
