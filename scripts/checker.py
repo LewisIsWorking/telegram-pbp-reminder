@@ -763,6 +763,14 @@ _TIPS = [
 
     "💡 <b>/party</b> — See the in-fiction party composition: character names, "
     "who plays them, and when they were last active. Requires character config.",
+
+    "💡 <b>Smart alerts</b> — The bot watches for campaigns that lose momentum. "
+    "If weekly posts drop by 40%+, or if everyone goes silent for 2+ days, "
+    "you'll get a gentle heads-up. Use /pause to silence during planned breaks.",
+
+    "💡 <b>/overview</b> — See a compact summary of ALL campaigns at once: "
+    "health status, weekly posts, player count, and last post time. "
+    "Perfect for GMs juggling multiple games.",
 ]
 
 
@@ -1798,6 +1806,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
         player_posts = 0
         player_counts = {}
         player_post_times = []
+        player_details = {}  # name -> {posts, sessions (unique days), timestamps}
 
         for uid, timestamps in topic_timestamps.items():
             is_gm = uid in gm_ids
@@ -1816,6 +1825,14 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
                 if session_count > 0:
                     p_name = helpers.player_mention(player_info)
                     player_counts[p_name] = player_counts.get(p_name, 0) + session_count
+                    # Collect per-player detail
+                    unique_days = len({ts.date() for ts in user_sessions})
+                    p_gap = helpers.avg_gap_hours(sorted(user_sessions))
+                    player_details[p_name] = {
+                        "posts": session_count,
+                        "sessions": unique_days,
+                        "avg_gap_h": round(p_gap, 1) if p_gap is not None else None,
+                    }
 
         # Calculate player avg gap
         raw_gap = helpers.avg_gap_hours(sorted(player_post_times))
@@ -1835,6 +1852,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
             "top_players": dict(sorted(
                 player_counts.items(), key=lambda x: x[1], reverse=True
             )[:5]),
+            "player_breakdown": player_details,
         }
 
     # Write archive to repo file
@@ -2479,6 +2497,143 @@ def post_weekly_digest(config: dict, state: dict, *, now: datetime | None = None
 
 
 # ------------------------------------------------------------------ #
+#  Smart alerts: pace drop & conversation dying
+# ------------------------------------------------------------------ #
+def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
+    """Alert when a campaign's weekly posts drop >40% vs the previous week.
+
+    Checks once per week (tied to archive cadence). Sends a gentle nudge
+    to the campaign's chat topic so the GM is aware without being pushy.
+    """
+    group_id = config["group_id"]
+    now = now or datetime.now(timezone.utc)
+    maps = maps or build_topic_maps(config)
+
+    # Only run on archive day (weekly)
+    if not helpers.interval_elapsed(state.get("last_pace_drop_check"), 7, now):
+        return
+
+    week_ago = now - timedelta(days=7)
+    two_weeks_ago = now - timedelta(days=14)
+
+    alerts_sent = False
+    for pid, chat_topic_id in maps.to_chat.items():
+        if not helpers.feature_enabled(config, pid, "smart_alerts"):
+            continue
+
+        name = maps.to_name.get(pid, "Unknown")
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
+        gm_ids = helpers.gm_ids_for_campaign(config, pid)
+
+        if not topic_timestamps:
+            continue
+
+        pace = helpers.pace_split(topic_timestamps, gm_ids, now)
+        this_week = pace["gm_this"] + pace["player_this"]
+        last_week = pace["gm_last"] + pace["player_last"]
+
+        # Skip if last week had very few posts (avoid noisy alerts)
+        if last_week < 5:
+            continue
+
+        if this_week == 0 and last_week > 0:
+            drop_pct = 100
+        elif last_week > 0:
+            drop_pct = ((last_week - this_week) / last_week) * 100
+        else:
+            continue
+
+        if drop_pct > 40:
+            message = (
+                f"📉 Pace check for {name}:\n"
+                f"\n"
+                f"Posts dropped from {last_week} last week to {this_week} "
+                f"this week ({drop_pct:.0f}% decrease).\n"
+                f"\n"
+                f"Just a heads-up — no action needed if the break is "
+                f"intentional. Type /pause to silence alerts during "
+                f"planned downtime."
+            )
+            print(f"Pace drop alert for {name}: {last_week} -> {this_week} ({drop_pct:.0f}%)")
+            tg.send_message(group_id, chat_topic_id, message)
+            alerts_sent = True
+
+    state["last_pace_drop_check"] = now.isoformat()
+    if not alerts_sent:
+        print("Pace drop check: no significant drops detected")
+
+
+def check_conversation_dying(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
+    """Warn when ALL participants (including GM) are silent for 48h+.
+
+    Distinct from the 4-hour nudge (which just prompts the next post) — this
+    fires once when a campaign crosses the 48h threshold, suggesting the
+    campaign may need attention or a deliberate pause.
+    """
+    group_id = config["group_id"]
+    now = now or datetime.now(timezone.utc)
+    maps = maps or build_topic_maps(config)
+    threshold = timedelta(hours=48)
+
+    state.setdefault("dying_alerts_sent", {})
+
+    for pid, chat_topic_id in maps.to_chat.items():
+        if not helpers.feature_enabled(config, pid, "smart_alerts"):
+            continue
+        # Skip paused campaigns — they're intentionally quiet
+        if state.get("paused", {}).get(pid):
+            continue
+
+        name = maps.to_name.get(pid, "Unknown")
+        topic_timestamps = helpers.get_topic_timestamps(state, pid)
+
+        if not topic_timestamps:
+            continue
+
+        # Find the most recent post from ANYONE
+        latest = None
+        for uid, timestamps in topic_timestamps.items():
+            for ts in timestamps:
+                if latest is None or ts > latest:
+                    latest = ts
+
+        if latest is None:
+            continue
+
+        try:
+            latest_dt = datetime.fromisoformat(latest)
+        except (TypeError, ValueError):
+            continue
+
+        silence_hours = (now - latest_dt).total_seconds() / 3600.0
+
+        if silence_hours >= threshold.total_seconds() / 3600.0:
+            # Only alert once per silence period
+            if state["dying_alerts_sent"].get(pid) == "active":
+                continue
+
+            days_silent = silence_hours / 24.0
+            message = (
+                f"💤 {name} has been completely silent for "
+                f"{days_silent:.1f} days.\n"
+                f"\n"
+                f"No posts from anyone — GM or players — since "
+                f"{latest_dt.strftime('%b %d')}.\n"
+                f"\n"
+                f"If this is a planned break, use /pause to silence "
+                f"these alerts. Otherwise, a quick post can get "
+                f"things moving again!"
+            )
+            print(f"Conversation dying alert for {name}: {days_silent:.1f} days silent")
+            if tg.send_message(group_id, chat_topic_id, message):
+                state["dying_alerts_sent"][pid] = "active"
+        else:
+            # Reset the flag when activity resumes
+            if state["dying_alerts_sent"].get(pid):
+                del state["dying_alerts_sent"][pid]
+
+
+# ------------------------------------------------------------------ #
 #  Main
 # ------------------------------------------------------------------ #
 def _run_checks(config: dict, bot_state: dict) -> None:
@@ -2501,6 +2656,8 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Weekly digest", post_weekly_digest),
         ("Recruitment", check_recruitment_needs),
         ("Archive", archive_weekly_data),
+        ("Pace drop", check_pace_drop),
+        ("Conversation dying", check_conversation_dying),
         ("Daily tip", post_daily_tip),
     ]
     for label, func in checks:

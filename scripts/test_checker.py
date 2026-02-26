@@ -68,6 +68,9 @@ import tempfile as _tempfile
 _test_log_dir = _tempfile.mkdtemp()
 checker._LOGS_DIR = __import__("pathlib").Path(_test_log_dir)
 
+# Redirect archive to temp file so tests don't write to repo
+helpers.ARCHIVE_PATH = __import__("pathlib").Path(_test_log_dir) / "weekly_archive.json"
+
 
 def _make_config(pairs=None, gm_ids=None):
     return {
@@ -2175,6 +2178,188 @@ def test_transcript_with_character():
     assert "I rage!" in content
 
     shutil.rmtree(test_dir)
+
+
+# ------------------------------------------------------------------ #
+#  Archive player_breakdown
+# ------------------------------------------------------------------ #
+def test_archive_includes_player_breakdown():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)  # Friday
+
+    state = _make_state()
+    # Plant timestamps for player 42 (not GM 999) in last week
+    week_start = now - timedelta(days=now.weekday() + 7)
+    ts1 = (week_start + timedelta(hours=2)).isoformat()
+    ts2 = (week_start + timedelta(days=1, hours=3)).isoformat()
+    ts3 = (week_start + timedelta(days=2, hours=4)).isoformat()
+    state["post_timestamps"]["100"] = {
+        "42": [ts1, ts2, ts3],
+        "999": [(week_start + timedelta(hours=5)).isoformat()],
+    }
+    state["players"]["100:42"] = {
+        "first_name": "Alice",
+        "last_post_time": ts3,
+        "pbp_topic_id": "100",
+        "campaign_name": "TestCampaign",
+    }
+
+    # Ensure archive file doesn't exist yet
+    import pathlib
+    archive_path = helpers.ARCHIVE_PATH
+    if archive_path.exists():
+        archive_path.unlink()
+
+    checker.archive_weekly_data(config, state, now=now)
+
+    # Read the archive
+    import json
+    with open(archive_path) as f:
+        archive = json.load(f)
+
+    # Find our entry
+    entries = [v for v in archive.values() if v["campaign"] == "TestCampaign"]
+    assert len(entries) == 1
+    entry = entries[0]
+
+    assert "player_breakdown" in entry
+    pb = entry["player_breakdown"]
+    # Alice should be in the breakdown
+    alice_entries = [v for k, v in pb.items() if "Alice" in k]
+    assert len(alice_entries) == 1
+    assert alice_entries[0]["posts"] == 3
+    assert alice_entries[0]["sessions"] >= 1
+    assert alice_entries[0]["avg_gap_h"] is not None
+
+
+# ------------------------------------------------------------------ #
+#  Smart alerts: pace drop
+# ------------------------------------------------------------------ #
+def test_pace_drop_detected():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+
+    # Last week had 20 posts, this week has 5 -> 75% drop
+    week_ago = now - timedelta(days=7)
+    two_weeks_ago = now - timedelta(days=14)
+
+    last_week_times = [(two_weeks_ago + timedelta(hours=i * 6)).isoformat() for i in range(20)]
+    this_week_times = [(week_ago + timedelta(hours=i * 24)).isoformat() for i in range(5)]
+
+    state["post_timestamps"]["100"] = {
+        "42": last_week_times + this_week_times,
+    }
+    state["players"]["100"] = {
+        "42": {"first_name": "Alice", "last_post": this_week_times[-1]},
+    }
+
+    checker.check_pace_drop(config, state, now=now)
+    assert any("Pace check" in m.get("text", "") or "📉" in m.get("text", "") for m in _sent_messages)
+    assert "last_pace_drop_check" in state
+
+
+def test_pace_drop_skips_low_activity():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+
+    # Last week had only 3 posts (below threshold of 5) — should not alert
+    two_weeks_ago = now - timedelta(days=14)
+    last_week_times = [(two_weeks_ago + timedelta(hours=i * 24)).isoformat() for i in range(3)]
+
+    state["post_timestamps"]["100"] = {
+        "42": last_week_times,
+    }
+    state["players"]["100"] = {
+        "42": {"first_name": "Alice", "last_post": last_week_times[-1]},
+    }
+
+    checker.check_pace_drop(config, state, now=now)
+    pace_msgs = [m for m in _sent_messages if "Pace check" in m.get("text", "") or "📉" in m.get("text", "")]
+    assert len(pace_msgs) == 0
+
+
+def test_pace_drop_weekly_gating():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+    # Already checked recently
+    state["last_pace_drop_check"] = (now - timedelta(days=1)).isoformat()
+
+    checker.check_pace_drop(config, state, now=now)
+    assert len(_sent_messages) == 0  # Should not run
+
+
+# ------------------------------------------------------------------ #
+#  Smart alerts: conversation dying
+# ------------------------------------------------------------------ #
+def test_conversation_dying_48h():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+
+    # Last post was 60h ago
+    last_post = (now - timedelta(hours=60)).isoformat()
+    state["post_timestamps"]["100"] = {
+        "42": [last_post],
+        "999": [(now - timedelta(hours=55)).isoformat()],
+    }
+
+    checker.check_conversation_dying(config, state, now=now)
+    dying_msgs = [m for m in _sent_messages if "💤" in m.get("text", "") or "silent" in m.get("text", "")]
+    assert len(dying_msgs) == 1
+    assert state.get("dying_alerts_sent", {}).get("100") == "active"
+
+
+def test_conversation_dying_not_repeated():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+
+    last_post = (now - timedelta(hours=60)).isoformat()
+    state["post_timestamps"]["100"] = {"42": [last_post]}
+    state["dying_alerts_sent"] = {"100": "active"}
+
+    checker.check_conversation_dying(config, state, now=now)
+    # Should NOT send again — already flagged
+    assert len(_sent_messages) == 0
+
+
+def test_conversation_dying_resets_on_activity():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+
+    # Recent post (1h ago) — should clear the flag
+    recent = (now - timedelta(hours=1)).isoformat()
+    state["post_timestamps"]["100"] = {"42": [recent]}
+    state["dying_alerts_sent"] = {"100": "active"}
+
+    checker.check_conversation_dying(config, state, now=now)
+    assert "100" not in state.get("dying_alerts_sent", {})
+    assert len(_sent_messages) == 0
+
+
+def test_conversation_dying_skips_paused():
+    _reset()
+    config = _make_config()
+    now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
+    state = _make_state()
+
+    last_post = (now - timedelta(hours=72)).isoformat()
+    state["post_timestamps"]["100"] = {"42": [last_post]}
+    state["paused"] = {"100": "on holiday"}
+
+    checker.check_conversation_dying(config, state, now=now)
+    assert len(_sent_messages) == 0
 
 
 # ------------------------------------------------------------------ #

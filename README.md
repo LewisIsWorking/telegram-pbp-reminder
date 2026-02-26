@@ -189,7 +189,7 @@ Key fields:
 - **gm_user_ids** (per-campaign): Optional override that replaces the global GM list for this campaign only. Useful when a campaign has a different GM.
 - **characters** (per-campaign): Optional mapping of `"user_id": "Character Name"`. Enables `/party` command and shows character names in rosters, stats, and transcripts.
 - **disabled_features**: Optional list of features to disable for this campaign.
-  Valid values: `alerts`, `warnings`, `roster`, `potw`, `pace`, `recruitment`, `combat`, `anniversary`.
+  Valid values: `alerts`, `warnings`, `roster`, `potw`, `pace`, `recruitment`, `combat`, `anniversary`, `smart_alerts`.
 
 ### 7. Add boons (optional)
 

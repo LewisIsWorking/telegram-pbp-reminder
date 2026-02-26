@@ -11,6 +11,46 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.0.0] - 2026-02-26
+
+### Summary
+Dashboard v2 and smart alerts. The GitHub Pages dashboard now has summary
+cards, week filtering, sortable columns, and click-to-expand player
+drill-downs. Smart alerts detect pace drops (>40% week-over-week) and
+total silence (48h+ from everyone including GM).
+
+### Added — Dashboard v2
+- **Summary cards**: campaigns, weekly posts, active players, avg response gap.
+- **Week filter**: dropdown to view any archived week's data.
+- **Sortable columns**: click any table header to sort asc/desc.
+- **Player drill-down**: click a campaign row to see per-player stats
+  (posts, sessions, avg gap) for that week.
+- **Health indicators**: colour-coded dots (green/yellow/orange/red) by
+  weekly post volume.
+- **Trend arrows**: week-over-week change shown with colour-coded percentages.
+- **Mobile-responsive**: works on phone screens with adapted grid layout.
+
+### Added — Player breakdown in archive
+- `player_breakdown` field in `weekly_archive.json` stores per-player
+  stats for each week: posts, sessions (unique days), and avg gap.
+- Powers the dashboard drill-down feature.
+
+### Added — Smart alerts
+- **Pace drop detection**: if a campaign's posts drop >40% vs the
+  previous week (minimum 5 posts/week baseline), a gentle alert is sent
+  to the chat topic. Weekly cadence, won't spam.
+- **Conversation dying**: if ALL participants (including GM) go silent
+  for 48h+, a one-time alert fires. Resets automatically when anyone
+  posts. Skips paused campaigns. Use `/pause` to silence during breaks.
+- Both gated behind `smart_alerts` feature flag (enabled by default,
+  disable per-campaign via `disabled_features`).
+
+### Added — New daily tips
+- Tip explaining smart alerts and how to silence them with `/pause`.
+- Tip explaining the `/overview` command for cross-campaign monitoring.
+
+---
+
 ## [1.9.0] - 2026-02-26
 
 ### Summary

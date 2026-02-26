@@ -61,10 +61,11 @@ in the repo. Monthly files per campaign at `data/pbp_logs/`. Media is
 tagged with type markers. Auto-generated README index. A complete
 disaster-recovery backup of every campaign's story.
 
-### 📋 GitHub Pages dashboard improvements
+### ✅ GitHub Pages dashboard v2
 - Player-level drill-down (click a campaign to see individual stats)
-- Historical streak tracking
-- Filterable date range
+- Summary cards, week filter, sortable columns
+- Health indicator dots (green/yellow/orange/red)
+- Trend arrows (week-over-week change)
 - Mobile-responsive layout
 
 ### ✅ Personal history
@@ -130,13 +131,21 @@ time since last post, and combat state. Essential for returning PBP players.
 
 ---
 
-## Future Ideas (unscheduled)
+## v2.0.0 — Dashboard v2 & Smart Alerts
 
-### 💡 Smart alerts
-- Detect when a campaign's pace drops significantly week-over-week and
-  send a gentle nudge to the GM (privately or in chat)
-- "Conversation dying" warning when no posts for 48h+ across ALL users
-  (including GM), distinct from the per-player inactivity alerts
+### ✅ Dashboard v2
+Summary cards, week filter, sortable columns, player drill-down,
+health indicators, trend arrows, mobile-responsive. Powered by
+`player_breakdown` data in the weekly archive.
+
+### ✅ Smart alerts
+Pace drop detection (>40% week-over-week) and conversation dying
+warning (48h+ total silence). Both gated behind `smart_alerts` feature
+flag (enabled by default). Use `/pause` to silence during planned breaks.
+
+---
+
+## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)
 - Optional AI-generated "story so far" recap using Anthropic API
