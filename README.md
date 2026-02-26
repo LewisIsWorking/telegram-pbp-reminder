@@ -2,7 +2,7 @@
 
 A free, serverless bot for **play-by-post tabletop RPG groups on Telegram**.
 Runs hourly via GitHub Actions, tracks activity across campaigns, and posts
-summaries, nudges, and awards directly into your group topics.
+summaries, nudges and awards directly into your group topics.
 
 No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config file.
 
@@ -10,19 +10,19 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 
 ## Features
 
-| Feature | Frequency | Where it posts |
-|---|---|---|
-| **Inactivity alerts** | Every N hours of silence | Campaign chat topics |
-| **Player warnings** | At 1, 2, 3 weeks inactive | Campaign chat topics |
-| **Auto-removal** | At 4 weeks inactive | Campaign chat topics |
-| **Party roster** | Every 3 days | Campaign chat topics |
-| **Player of the Week** | Weekly | Campaign chat topics |
-| **Pace report** | Weekly | Campaign chat topics |
-| **Campaign leaderboard** | Every 3 days | Dedicated topic |
-| **Combat turn pinger** | During combat | Campaign PBP topics |
-| **Recruitment notices** | Every 2 weeks (if under capacity) | Campaign chat topics |
-| **Campaign anniversaries** | Yearly | Campaign chat topics |
-| **Weekly archive** | Weekly | `data/weekly_archive.json` |
+| Feature                    | Frequency                         | Where it posts             |
+|----------------------------|-----------------------------------|----------------------------|
+| **Inactivity alerts**      | Every N hours of silence          | Campaign chat topics       |
+| **Player warnings**        | At 1, 2, 3 weeks inactive         | Campaign chat topics       |
+| **Auto-removal**           | At 4 weeks inactive               | Campaign chat topics       |
+| **Party roster**           | Every 3 days                      | Campaign chat topics       |
+| **Player of the Week**     | Weekly                            | Campaign chat topics       |
+| **Pace report**            | Weekly                            | Campaign chat topics       |
+| **Campaign leaderboard**   | Every 3 days                      | Dedicated topic            |
+| **Combat turn pinger**     | During combat                     | Campaign PBP topics        |
+| **Recruitment notices**    | Every 2 weeks (if under capacity) | Campaign chat topics       |
+| **Campaign anniversaries** | Yearly                            | Campaign chat topics       |
+| **Weekly archive**         | Weekly                            | `data/weekly_archive.json` |
 
 All intervals are configurable. All features run automatically once set up.
 
@@ -153,11 +153,11 @@ Note down:
 1. Fork this repo (or create a new one and copy the files).
 2. Go to **Settings > Secrets and variables > Actions** and add:
 
-| Secret | Value |
-|---|---|
-| `TELEGRAM_BOT_TOKEN` | Bot token from BotFather |
-| `GIST_TOKEN` | GitHub PAT with gist scope |
-| `GIST_ID` | Gist ID from step 3 |
+| Secret               | Value                      |
+|----------------------|----------------------------|
+| `TELEGRAM_BOT_TOKEN` | Bot token from BotFather   |
+| `GIST_TOKEN`         | GitHub PAT with gist scope |
+| `GIST_ID`            | Gist ID from step 3        |
 
 ### 6. Configure
 
@@ -215,25 +215,25 @@ will activate once enough data has accumulated.
 All settings go in the `settings` block of `config.json`.
 Every setting has a sensible default, so the entire block is optional.
 
-| Setting | Default | Description |
-|---|---|---|
-| `roster_interval_days` | 3 | Days between party roster posts |
-| `potw_interval_days` | 7 | Days between Player of the Week awards |
-| `potw_min_posts` | 5 | Minimum posting sessions to qualify for POTW |
-| `pace_interval_days` | 7 | Days between pace comparison reports |
-| `leaderboard_interval_days` | 3 | Days between cross-campaign leaderboard |
-| `combat_ping_hours` | 4 | Hours before pinging players who haven't acted |
-| `recruitment_interval_days` | 14 | Days between recruitment notices |
-| `required_players` | 6 | Target party size (triggers recruitment notices) |
-| `post_session_minutes` | 10 | Posts within this window count as one session |
-| `player_warn_weeks` | [1, 2, 3] | Weeks of inactivity before each warning |
-| `player_remove_weeks` | 4 | Weeks of inactivity before auto-removal |
+| Setting                     | Default   | Description                                      |
+|-----------------------------|-----------|--------------------------------------------------|
+| `roster_interval_days`      | 3         | Days between party roster posts                  |
+| `potw_interval_days`        | 7         | Days between Player of the Week awards           |
+| `potw_min_posts`            | 5         | Minimum posting sessions to qualify for POTW     |
+| `pace_interval_days`        | 7         | Days between pace comparison reports             |
+| `leaderboard_interval_days` | 3         | Days between cross-campaign leaderboard          |
+| `combat_ping_hours`         | 4         | Hours before pinging players who haven't acted   |
+| `recruitment_interval_days` | 14        | Days between recruitment notices                 |
+| `required_players`          | 6         | Target party size (triggers recruitment notices) |
+| `post_session_minutes`      | 10        | Posts within this window count as one session    |
+| `player_warn_weeks`         | [1, 2, 3] | Weeks of inactivity before each warning          |
+| `player_remove_weeks`       | 4         | Weeks of inactivity before auto-removal          |
 
 Top-level settings:
 
-| Setting | Default | Description |
-|---|---|---|
-| `alert_after_hours` | 4 | Hours of topic silence before inactivity alert |
+| Setting             | Default | Description                                    |
+|---------------------|---------|------------------------------------------------|
+| `alert_after_hours` | 4       | Hours of topic silence before inactivity alert |
 
 ---
 
