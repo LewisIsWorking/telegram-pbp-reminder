@@ -11,6 +11,49 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.2.0] - 2026-02-26
+
+### Summary
+Streaks, celebrations, and cross-campaign intelligence. The bot now celebrates
+posting milestones, shows streaks in rosters and leaderboards, and posts a
+compact weekly digest with health-scored campaign summaries.
+
+### Added — Streak Milestones
+- The bot automatically celebrates when a player crosses a streak milestone:
+  7, 14, 30, 60, or 90 consecutive days of posting. Each milestone has a
+  unique message (scaling from 🔥 to 👑). Milestones are tracked per player
+  per campaign and never posted twice for the same milestone. The streak must
+  be continuous — missing a single day resets it.
+
+### Added — Streak in Roster & Leaderboard
+- **Roster**: Each player's entry now shows their current streak with a 🔥
+  emoji if 2+ days. Adds one line to roster blocks only when relevant.
+- **Leaderboard**: New "🔥 Longest Active Streaks" section at the bottom of
+  the weekly leaderboard. Shows top 5 players across all campaigns, with
+  streak length and campaign name.
+
+### Added — Weekly Digest
+- A compact one-line-per-campaign newsletter posted to the leaderboard topic
+  once per week. Each line shows: health icon (🟢🟡🟠🔴 based on post volume),
+  campaign name, post count with trend arrow, party size, active combat flag,
+  and the week's MVP (most active player). Includes a colour legend.
+  Designed to be scannable in under 10 seconds.
+- Health scoring: 🟢 = 20+ posts/week, 🟡 = 10-19, 🟠 = 5-9, 🔴 = under 5.
+
+### Changed
+- `_gather_leaderboard_stats` now returns a 3-tuple including streak data.
+- `_format_leaderboard` accepts optional `streaks` parameter.
+- `_roster_user_stats` return dict now includes `streak` field.
+- `_roster_block` displays streak when ≥ 2 days.
+- `_run_checks` now includes streak milestones (14 scheduled checks total).
+
+### Tests
+- 8 new tests: streak milestones (3), weekly digest (2), leaderboard streaks (1),
+  roster streak display (2).
+- Total: 115 tests (34 helpers + 81 checker).
+
+---
+
 ## [1.1.0] - 2026-02-26
 
 ### Summary

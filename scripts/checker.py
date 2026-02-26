@@ -853,7 +853,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
 def _roster_user_stats(raw_timestamps: list[str], total_count: int, now: datetime) -> dict:
     """Compute roster stats from raw ISO timestamp strings.
 
-    Returns dict with: total, sessions, week_count, avg_gap_str, last_post_str.
+    Returns dict with: total, sessions, week_count, avg_gap_str, last_post_str, streak.
     """
     week_ago = now - timedelta(days=7)
     all_posts = sorted(datetime.fromisoformat(ts) for ts in raw_timestamps)
@@ -861,12 +861,14 @@ def _roster_user_stats(raw_timestamps: list[str], total_count: int, now: datetim
     week_count = len(deduplicate_posts(timestamps_in_window(raw_timestamps, week_ago)))
     avg_gap_str = calc_avg_gap_str(raw_timestamps)
     last_post_str = fmt_relative_date(now, all_posts[-1]) if all_posts else "N/A"
+    streak = _calc_streak(raw_timestamps, now)
     return {
         "total": total_count,
         "sessions": len(sessions),
         "week_count": week_count,
         "avg_gap_str": avg_gap_str,
         "last_post_str": last_post_str,
+        "streak": streak,
     }
 
 
@@ -883,6 +885,9 @@ def _roster_block(label: str, username: str, stats: dict) -> str:
         f"- Average gap between posting: {stats['avg_gap_str']}.\n"
         f"- Last post: {stats['last_post_str']}."
     )
+    streak = stats.get("streak", 0)
+    if streak >= 2:
+        block += f"\n- 🔥 {streak}-day streak!"
     return block
 
 
@@ -1291,6 +1296,64 @@ def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, 
 
 
 # ------------------------------------------------------------------ #
+#  Streak milestone celebrations
+# ------------------------------------------------------------------ #
+_STREAK_MILESTONES = [7, 14, 30, 60, 90]
+
+_STREAK_MESSAGES = {
+    7: "🔥 {name} is on a 7-day posting streak in {campaign}! One full week of consistency.",
+    14: "🔥🔥 {name} has hit a 14-day streak in {campaign}! Two solid weeks.",
+    30: "🔥🔥🔥 {name} has reached a 30-day streak in {campaign}! A full month of daily posts. Legendary.",
+    60: "🌟 {name} has been posting daily for 60 days straight in {campaign}. Absolute dedication.",
+    90: "👑 {name} has hit 90 days in {campaign}. Three months without missing a day. Unbelievable.",
+}
+
+
+def check_streak_milestones(config: dict, state: dict, *, now: datetime | None = None, maps=None, **_kw) -> None:
+    """Celebrate when a player crosses a streak milestone (7, 14, 30, 60, 90 days)."""
+    group_id = config["group_id"]
+    now = now or datetime.now(timezone.utc)
+    gm_ids = helpers.gm_id_set(config)
+
+    maps = maps or build_topic_maps(config)
+    celebrated = state.setdefault("celebrated_streaks", {})
+
+    for pid, chat_topic_id in maps.to_chat.items():
+        name = maps.to_name.get(pid, "Unknown")
+        topic_ts = helpers.get_topic_timestamps(state, pid)
+
+        for uid, raw_ts in topic_ts.items():
+            if uid in gm_ids:
+                continue
+
+            streak = _calc_streak(raw_ts, now)
+            if streak < _STREAK_MILESTONES[0]:
+                continue
+
+            # Find the highest milestone crossed
+            milestone = 0
+            for m in _STREAK_MILESTONES:
+                if streak >= m:
+                    milestone = m
+
+            key = f"{pid}:{uid}"
+            last_celebrated = celebrated.get(key, 0)
+
+            if milestone <= last_celebrated:
+                continue
+
+            player = helpers.get_player(state, pid, uid)
+            player_name = player.get("first_name", "Someone") if player else "Someone"
+
+            message = _STREAK_MESSAGES.get(milestone, "🔥 {name} is on a {streak}-day streak in {campaign}!")
+            message = message.format(name=player_name, campaign=name, streak=streak)
+
+            print(f"Streak milestone: {player_name} hit {milestone}d in {name}")
+            if tg.send_message(group_id, chat_topic_id, message):
+                celebrated[key] = milestone
+
+
+# ------------------------------------------------------------------ #
 #  Campaign anniversary alerts
 # ------------------------------------------------------------------ #
 def check_anniversaries(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
@@ -1347,8 +1410,8 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
 # ------------------------------------------------------------------ #
 #  Campaign Leaderboard (cross-campaign dashboard)
 # ------------------------------------------------------------------ #
-def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple[list, dict]:
-    """Collect per-campaign stats and global player rankings for the leaderboard."""
+def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple[list, dict, list]:
+    """Collect per-campaign stats, global player rankings, and top streaks for the leaderboard."""
     gm_ids = helpers.gm_id_set(config)
     seven_days_ago = now - timedelta(days=7)
     three_days_ago = now - timedelta(days=3)
@@ -1356,6 +1419,7 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
 
     campaign_stats = []
     global_player_posts = {}
+    all_streaks = []
 
     maps = build_topic_maps(config)
 
@@ -1395,6 +1459,16 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
                         "count": 0,
                     })
                     player_post_counts[uid]["count"] += session_count
+
+            # Collect streak data (players only)
+            if not is_gm:
+                streak = _calc_streak(timestamps, now)
+                if streak >= 2 and player_info:
+                    all_streaks.append({
+                        "name": helpers.player_full_name(player_info),
+                        "streak": streak,
+                        "campaign": name,
+                    })
 
         total_7d = gm_7d + player_7d
 
@@ -1445,10 +1519,11 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
             "top_players": top_players,
         })
 
-    return campaign_stats, global_player_posts
+    return campaign_stats, global_player_posts, all_streaks
 
 
-def _format_leaderboard(campaign_stats: list, global_player_posts: dict, now: datetime) -> str:
+def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
+                        now: datetime, streaks: list | None = None) -> str:
     """Format the leaderboard message from collected stats."""
     seven_days_ago = now - timedelta(days=7)
 
@@ -1514,6 +1589,15 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict, now: da
             player_blocks.append(block)
         lines.append("\n⭐ Top Players of the Week:\n\n" + "\n\n".join(player_blocks))
 
+    # Streak leaderboard
+    if streaks:
+        top_streaks = sorted(streaks, key=lambda s: s["streak"], reverse=True)[:5]
+        streak_lines = []
+        for i, s in enumerate(top_streaks):
+            icon = helpers.rank_icon(i)
+            streak_lines.append(f"{icon} {s['name']} — {s['streak']}d streak ({s['campaign']})")
+        lines.append("\n━━━━━━━━━━━━━━━━\n\n🔥 Longest Active Streaks:\n\n" + "\n".join(streak_lines))
+
     return "\n".join(lines)
 
 
@@ -1529,13 +1613,13 @@ def post_campaign_leaderboard(config: dict, state: dict, *, now: datetime | None
     if not helpers.interval_elapsed(state.get("last_leaderboard"), helpers.LEADERBOARD_INTERVAL_DAYS, now):
         return
 
-    campaign_stats, global_player_posts = _gather_leaderboard_stats(config, state, now)
+    campaign_stats, global_player_posts, all_streaks = _gather_leaderboard_stats(config, state, now)
 
     if not campaign_stats:
         print("No campaign data for leaderboard")
         return
 
-    message = _format_leaderboard(campaign_stats, global_player_posts, now)
+    message = _format_leaderboard(campaign_stats, global_player_posts, now, all_streaks)
 
     print(f"Posting campaign leaderboard ({len(campaign_stats)} campaigns)")
     if tg.send_message(group_id, leaderboard_topic, message):
@@ -1597,6 +1681,98 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
 
 
 # ------------------------------------------------------------------ #
+#  Weekly digest (compact cross-campaign newsletter)
+# ------------------------------------------------------------------ #
+_HEALTH_THRESHOLDS = [(20, "🟢"), (10, "🟡"), (5, "🟠"), (0, "🔴")]
+
+
+def _health_icon(total_posts_7d: int) -> str:
+    """Return a traffic-light icon based on weekly post volume."""
+    for threshold, icon in _HEALTH_THRESHOLDS:
+        if total_posts_7d >= threshold:
+            return icon
+    return "🔴"
+
+
+def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
+    """Build a compact one-line-per-campaign weekly digest."""
+    gm_ids = helpers.gm_id_set(config)
+    maps = build_topic_maps(config)
+    week_ago = now - timedelta(days=7)
+
+    campaign_lines = []
+    all_campaigns = helpers.players_by_campaign(state)
+
+    for pid, name in maps.to_name.items():
+        topic_ts = helpers.get_topic_timestamps(state, pid)
+        pace = helpers.pace_split(topic_ts, gm_ids, now)
+        total = pace["gm_this"] + pace["player_this"]
+        total_last = pace["gm_last"] + pace["player_last"]
+        trend = helpers.trend_icon(total, total_last)
+        health = _health_icon(total)
+
+        # Top contributor this week
+        player_week_counts = {}
+        for uid, timestamps in topic_ts.items():
+            if uid in gm_ids:
+                continue
+            count = len(timestamps_in_window(timestamps, week_ago))
+            if count > 0:
+                player = helpers.get_player(state, pid, uid)
+                name_str = player.get("first_name", "?") if player else "?"
+                player_week_counts[name_str] = count
+
+        top_name = ""
+        if player_week_counts:
+            top_name = max(player_week_counts, key=player_week_counts.get)
+
+        # Party size
+        players = all_campaigns.get(pid, [])
+        party = f"{len(players)}/{helpers.REQUIRED_PLAYERS}"
+
+        # Combat?
+        combat = state.get("combat", {}).get(pid, {})
+        combat_str = " ⚔️" if combat.get("active") else ""
+
+        line = f"{health} {name}: {posts_str(total)} {trend} ({party}){combat_str}"
+        if top_name:
+            line += f" — MVP: {top_name}"
+
+        campaign_lines.append((total, line))
+
+    # Sort by post count descending
+    campaign_lines.sort(key=lambda x: x[0], reverse=True)
+
+    date_str = fmt_date(now)
+    header = f"📰 Weekly Digest — {date_str}"
+    body = "\n".join(line for _, line in campaign_lines)
+
+    legend = "\n\n🟢 20+ posts | 🟡 10-19 | 🟠 5-9 | 🔴 <5"
+
+    return f"{header}\n\n{body}{legend}"
+
+
+def post_weekly_digest(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
+    """Post a compact weekly digest to the leaderboard topic."""
+    group_id = config["group_id"]
+    leaderboard_topic = config.get("leaderboard_topic_id")
+    if not leaderboard_topic:
+        return
+
+    now = now or datetime.now(timezone.utc)
+
+    # Weekly interval (separate from leaderboard)
+    if not helpers.interval_elapsed(state.get("last_weekly_digest"), 7, now):
+        return
+
+    message = _build_weekly_digest(config, state, now)
+
+    print(f"Posting weekly digest")
+    if tg.send_message(group_id, leaderboard_topic, message):
+        state["last_weekly_digest"] = now.isoformat()
+
+
+# ------------------------------------------------------------------ #
 #  Main
 # ------------------------------------------------------------------ #
 def _run_checks(config: dict, bot_state: dict) -> None:
@@ -1611,9 +1787,11 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Player of the Week", player_of_the_week),
         ("Boon expiry", expire_pending_boons),
         ("Pace report", post_pace_report),
+        ("Streak milestones", check_streak_milestones),
         ("Anniversaries", check_anniversaries),
         ("Combat pings", check_combat_turns),
         ("Leaderboard", post_campaign_leaderboard),
+        ("Weekly digest", post_weekly_digest),
         ("Recruitment", check_recruitment_needs),
         ("Archive", archive_weekly_data),
         ("Daily tip", post_daily_tip),

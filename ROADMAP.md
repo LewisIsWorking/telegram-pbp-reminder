@@ -26,12 +26,12 @@ features so each one gets explained eventually.
 
 ## v1.2.0 — Streaks & Celebrations
 
-### 📋 Posting streaks
+### ✅ Posting streaks
 Track consecutive days each player posts. Display in `/mystats` and roster.
 Milestone celebrations at 7, 14, 30, 60, 90 days ("🔥 Alice is on a 30-day
 streak!"). Could feed into POTW weighting or be a standalone shout-out.
 
-### 📋 Streak leaderboard
+### ✅ Streak leaderboard
 Add a "longest active streak" section to the weekly leaderboard. Show top 5
 across all campaigns. Encourage consistent engagement over burst posting.
 
@@ -39,16 +39,16 @@ across all campaigns. Encourage consistent engagement over burst posting.
 
 ## v1.3.0 — Cross-Campaign Intelligence
 
-### 📋 Weekly digest
+### ✅ Weekly digest
 A compact newsletter posted to the leaderboard topic once per week.
 One-line summary per campaign: name, post count, trend, top contributor,
 notable events (new player joined, combat started, anniversary). Designed
 to be scannable in 10 seconds.
 
-### 📋 Campaign health scoring
-Assign each campaign a simple health score (1-5 stars or traffic light)
-based on: posting pace trend, player activity ratio, response gap averages.
-Show in digest and `/campaign`. Helps the GM spot campaigns that need
+### ✅ Campaign health scoring
+Assign each campaign a simple health score (traffic light)
+based on weekly post volume.
+Show in digest. Helps the GM spot campaigns that need
 attention without reading every stat.
 
 ---

@@ -861,7 +861,7 @@ def test_gather_leaderboard_stats_basic():
         "999": [(now - timedelta(hours=h)).isoformat() for h in [1, 12, 36, 60, 96]],
     }
 
-    stats, global_players = checker._gather_leaderboard_stats(config, state, now)
+    stats, global_players, streaks = checker._gather_leaderboard_stats(config, state, now)
     assert len(stats) == 1
     assert stats[0]["name"] == "TestCampaign"
     assert stats[0]["total_7d"] > 0
@@ -877,10 +877,11 @@ def test_gather_leaderboard_stats_empty():
     config = _make_config()
     state = _make_state()
 
-    stats, global_players = checker._gather_leaderboard_stats(config, state, now)
+    stats, global_players, streaks = checker._gather_leaderboard_stats(config, state, now)
     assert len(stats) == 1  # Campaign exists but with no data
     assert stats[0]["total_7d"] == 0
     assert len(global_players) == 0
+    assert len(streaks) == 0
 
 
 # ------------------------------------------------------------------ #
@@ -1321,6 +1322,162 @@ def test_post_daily_tip_resets_cycle():
     assert len(_sent_messages) == 1
     # Cycle should have reset - used_tip_indices should have exactly 1 entry
     assert len(state["used_tip_indices"]) == 1
+
+
+# ------------------------------------------------------------------ #
+#  Streak milestone tests
+# ------------------------------------------------------------------ #
+def test_streak_milestone_fires_at_7():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    # 8 consecutive days of posts
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(days=d, hours=3)).isoformat() for d in range(8)],
+    }
+
+    checker.check_streak_milestones(config, state, now=now)
+    streak_msgs = [m for m in _sent_messages if "7-day" in m.get("text", "")]
+    assert len(streak_msgs) == 1
+    assert state["celebrated_streaks"]["100:42"] == 7
+
+
+def test_streak_milestone_no_duplicate():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(days=d, hours=3)).isoformat() for d in range(8)],
+    }
+    state["celebrated_streaks"] = {"100:42": 7}  # Already celebrated
+
+    checker.check_streak_milestones(config, state, now=now)
+    assert len(_sent_messages) == 0
+
+
+def test_streak_milestone_escalates():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    # 15 consecutive days
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(days=d, hours=3)).isoformat() for d in range(15)],
+    }
+    state["celebrated_streaks"] = {"100:42": 7}
+
+    checker.check_streak_milestones(config, state, now=now)
+    streak_msgs = [m for m in _sent_messages if "14-day" in m.get("text", "")]
+    assert len(streak_msgs) == 1
+    assert state["celebrated_streaks"]["100:42"] == 14
+
+
+# ------------------------------------------------------------------ #
+#  Weekly digest tests
+# ------------------------------------------------------------------ #
+def test_build_weekly_digest_basic():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["message_counts"]["100"] = {"42": 15, "999": 10}
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=h)).isoformat() for h in range(1, 16)],
+        "999": [(now - timedelta(hours=h)).isoformat() for h in range(1, 11)],
+    }
+
+    result = checker._build_weekly_digest(config, state, now)
+    assert "Weekly Digest" in result
+    assert "TestCampaign" in result
+    assert "MVP" in result
+    assert "Alice" in result
+
+
+def test_build_weekly_digest_health_icons():
+    assert checker._health_icon(25) == "🟢"
+    assert checker._health_icon(15) == "🟡"
+    assert checker._health_icon(7) == "🟠"
+    assert checker._health_icon(2) == "🔴"
+    assert checker._health_icon(0) == "🔴"
+
+
+def test_leaderboard_includes_streaks():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "B",
+        "username": "alice", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["message_counts"]["100"] = {"42": 10, "999": 20}
+    # 5 consecutive days of posts
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(days=d, hours=3)).isoformat() for d in range(5)],
+        "999": [(now - timedelta(hours=h)).isoformat() for h in [1, 12, 36, 60, 96]],
+    }
+
+    stats, global_players, streaks = checker._gather_leaderboard_stats(config, state, now)
+    assert len(streaks) >= 1
+    assert streaks[0]["name"] == "Alice B"
+    assert streaks[0]["streak"] >= 2
+
+    result = checker._format_leaderboard(stats, global_players, now, streaks)
+    assert "Longest Active Streaks" in result
+    assert "Alice B" in result
+
+
+def test_roster_block_shows_streak():
+    now = datetime.now(timezone.utc)
+    stats = {
+        "total": 20, "sessions": 15, "week_count": 5,
+        "avg_gap_str": "4.2h", "last_post_str": "2h ago", "streak": 8,
+    }
+    result = checker._roster_block("Alice", "alice", stats)
+    assert "8-day streak" in result
+    assert "🔥" in result
+
+
+def test_roster_block_hides_short_streak():
+    stats = {
+        "total": 20, "sessions": 15, "week_count": 5,
+        "avg_gap_str": "4.2h", "last_post_str": "2h ago", "streak": 1,
+    }
+    result = checker._roster_block("Alice", "alice", stats)
+    assert "streak" not in result
 
 
 # ------------------------------------------------------------------ #
