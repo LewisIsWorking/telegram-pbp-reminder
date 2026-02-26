@@ -1884,6 +1884,85 @@ def test_addplayer_clears_removed():
 
 
 # ------------------------------------------------------------------ #
+#  /catchup tests
+# ------------------------------------------------------------------ #
+def test_catchup_no_history():
+    _reset()
+    state = _make_state()
+    result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
+    assert "no posting history" in result.lower()
+
+
+def test_catchup_caught_up():
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    # Player posted just now
+    state["post_timestamps"]["100"] = {
+        "42": [now.isoformat()],
+    }
+    result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
+    assert "caught up" in result.lower()
+
+
+def test_catchup_nobody_posted():
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    # Player posted 5 hours ago, nobody else has posted since
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=5)).isoformat()],
+    }
+    result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
+    assert "nobody" in result.lower()
+    assert "floor is yours" in result.lower()
+
+
+def test_catchup_with_messages():
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    # Player posted 24 hours ago, others posted since
+    my_post = (now - timedelta(hours=24)).isoformat()
+    gm_post = (now - timedelta(hours=12)).isoformat()
+    other_post1 = (now - timedelta(hours=6)).isoformat()
+    other_post2 = (now - timedelta(hours=3)).isoformat()
+
+    state["post_timestamps"]["100"] = {
+        "42": [my_post],
+        "999": [gm_post],
+        "50": [other_post1, other_post2],
+    }
+    state["players"]["100:50"] = {
+        "user_id": "50", "first_name": "Bob", "last_name": "",
+        "username": "bob", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": other_post2,
+        "last_warned_week": 0,
+    }
+
+    result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
+    assert "GM" in result
+    assert "Bob" in result
+    assert "3 posts" in result  # 1 GM + 2 Bob
+    assert "2 people" in result
+
+
+def test_catchup_with_combat():
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=5)).isoformat()],
+        "999": [(now - timedelta(hours=2)).isoformat()],
+    }
+    state["combat"]["100"] = {"active": True, "round": 3, "phase": "Players"}
+
+    result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
+    assert "combat" in result.lower()
+    assert "Round 3" in result
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():

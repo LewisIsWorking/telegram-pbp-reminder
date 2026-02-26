@@ -146,7 +146,8 @@ _HELP_TEXT = (
     "/campaign - Full scoreboard with roster and stats\n"
     "/mystats - Your personal stats (also: /me)\n"
     "/myhistory - 8-week posting sparkline\n"
-    "/whosturn - Who has acted in combat and who hasn't"
+    "/whosturn - Who has acted in combat and who hasn't\n"
+    "/catchup - What happened since you last posted"
 )
 
 
@@ -422,6 +423,74 @@ def _build_myhistory(pid: str, user_id: str, campaign_name: str,
     return "\n".join(lines)
 
 
+def _build_catchup(pid: str, user_id: str, campaign_name: str,
+                   state: dict, gm_ids: set) -> str:
+    """Build a catch-up summary: what happened since the player last posted."""
+    now = datetime.now(timezone.utc)
+    topic_ts = helpers.get_topic_timestamps(state, pid)
+    my_ts = topic_ts.get(user_id, [])
+
+    if not my_ts:
+        return f"No posting history in {campaign_name}. Post something first!"
+
+    last_post = max(datetime.fromisoformat(ts) for ts in my_ts)
+    hours_ago = (now - last_post).total_seconds() / 3600
+
+    if hours_ago < 1:
+        return f"You posted in {campaign_name} less than an hour ago. You're caught up!"
+
+    # Count messages from others since our last post
+    poster_counts = {}
+    total_since = 0
+    for uid, timestamps in topic_ts.items():
+        if uid == user_id:
+            continue
+        is_gm = uid in gm_ids
+        count = len(timestamps_in_window(timestamps, last_post))
+        if count > 0:
+            player = helpers.get_player(state, pid, uid)
+            if is_gm:
+                name = "GM"
+            elif player:
+                name = player.get("first_name", "?")
+            else:
+                name = "?"
+            poster_counts[name] = count
+            total_since += count
+
+    if total_since == 0:
+        time_str = f"{hours_ago:.0f}h" if hours_ago < 48 else f"{hours_ago / 24:.0f}d"
+        return (f"Nobody has posted in {campaign_name} since your last message "
+                f"({time_str} ago). The floor is yours!")
+
+    # Build summary
+    time_str = f"{hours_ago:.0f}h" if hours_ago < 48 else f"{hours_ago / 24:.0f}d"
+
+    lines = [
+        f"Catch-up for {campaign_name}:",
+        f"",
+        f"Since your last post ({time_str} ago):",
+        f"",
+    ]
+
+    # Sort by count descending
+    for name, count in sorted(poster_counts.items(), key=lambda x: -x[1]):
+        lines.append(f"  {name}: {posts_str(count)}")
+
+    lines.append(f"")
+    lines.append(f"Total: {posts_str(total_since)} from {len(poster_counts)} people")
+
+    # Combat state
+    combat = state.get("combat", {}).get(pid, {})
+    if combat.get("active"):
+        round_num = combat.get("round", "?")
+        phase = combat.get("phase", "?")
+        lines.append(f"")
+        lines.append(f"⚔️ Combat is active (Round {round_num}, {phase})")
+
+    return "\n".join(lines)
+
+
 def _calc_streak(raw_timestamps: list[str], now: datetime) -> int:
     """Count consecutive days with at least one post, ending at today or yesterday.
 
@@ -547,6 +616,9 @@ _TIPS = [
 
     "💡 <b>/addplayer</b> (GM only) — Want someone on the roster before they've posted? "
     "Type <code>/addplayer @username Player Name</code> to pre-register them.",
+
+    "💡 <b>/catchup</b> — Been away for a while? Type <code>/catchup</code> to see "
+    "how many messages were posted since your last one, and who posted them.",
 ]
 
 
@@ -1011,6 +1083,11 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         if text == "/myhistory":
             history = _build_myhistory(pid, user_id, campaign_name, state, gm_ids)
             tg.send_message(group_id, thread_id, history)
+
+        # ---- /catchup command ----
+        if text == "/catchup":
+            catchup = _build_catchup(pid, user_id, campaign_name, state, gm_ids)
+            tg.send_message(group_id, thread_id, catchup)
 
         # ---- /pause command (GM only) ----
         if text.startswith("/pause") and user_id in gm_ids:

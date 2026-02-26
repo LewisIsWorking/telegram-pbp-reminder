@@ -11,6 +11,27 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.7.0] - 2026-02-26
+
+### Summary
+New `/catchup` command shows players what happened since they last posted.
+Perfect for PBP where you might come back after a few days to find 30+ new
+messages across multiple people.
+
+### Added — `/catchup` command
+- Shows how many messages were posted since your last one and who posted them.
+- Tells you if combat started while you were away (round, phase).
+- Handles edge cases: no history, just posted, nobody posted since you.
+- New daily tip for `/catchup`.
+- Added to help text.
+
+### Tests
+- 5 new tests: no history, caught up, nobody posted, messages with counts,
+  combat awareness.
+- Total: 165 tests (37 helpers + 112 checker + 16 import).
+
+---
+
 ## [1.6.0] - 2026-02-26
 
 ### Summary

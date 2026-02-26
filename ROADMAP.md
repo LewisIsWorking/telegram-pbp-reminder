@@ -101,6 +101,14 @@ the roster and get tracked.
 
 ---
 
+## v1.7.0 — Player Catch-Up
+
+### ✅ `/catchup`
+Shows what happened since you last posted: message counts by person,
+time since last post, and combat state. Essential for returning PBP players.
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 Smart alerts
