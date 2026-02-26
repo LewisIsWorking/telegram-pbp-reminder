@@ -479,6 +479,80 @@ def test_process_updates_status_command():
     assert len(status_msgs) == 1
 
 
+def test_build_campaign_report_basic():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config(pairs=[
+        {"name": "TestCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100], "created": "2025-01-15"},
+    ])
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "B",
+        "username": "alice", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(hours=5)).isoformat(),
+        "last_warned_week": 0,
+    }
+    state["message_counts"]["100"] = {"42": 20, "999": 30}
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=h)).isoformat() for h in [5, 24, 48, 72, 120]],
+        "999": [(now - timedelta(hours=h)).isoformat() for h in [1, 6, 12, 30, 60]],
+    }
+
+    result = checker._build_campaign_report("100", config, state, {"999"})
+    assert "TestCampaign" in result
+    assert "1/6" in result
+    assert "Roster" in result
+    assert "Alice B" in result
+    assert "@alice" in result
+    assert "GM" in result
+    assert "Running since" in result
+
+
+def test_build_campaign_report_at_risk():
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=12)).isoformat(),
+        "last_warned_week": 0,
+    }
+    state["message_counts"]["100"] = {"42": 5}
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(days=d)).isoformat() for d in [12, 13, 14]],
+    }
+
+    result = checker._build_campaign_report("100", config, state, {"999"})
+    assert "At Risk" in result
+    assert "Bob" in result
+
+
+def test_process_updates_campaign_command():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [{
+        "update_id": 6001,
+        "message": {
+            "chat": {"id": -100},
+            "message_thread_id": 100,
+            "from": {"id": 42, "first_name": "Test"},
+            "date": now_ts,
+            "text": "/campaign",
+        },
+    }]
+
+    checker.process_updates(updates, config, state)
+    campaign_msgs = [m for m in _sent_messages if "TestCampaign" in m.get("text", "")]
+    assert len(campaign_msgs) >= 1
+
+
 # ------------------------------------------------------------------ #
 #  Config validation tests
 # ------------------------------------------------------------------ #
@@ -519,6 +593,243 @@ def test_feature_enabled():
     assert helpers.feature_enabled(config, "100", "roster") is False
     assert helpers.feature_enabled(config, "100", "alerts") is True
     assert helpers.feature_enabled(config, "999", "roster") is True
+
+
+# ------------------------------------------------------------------ #
+#  _parse_message tests
+# ------------------------------------------------------------------ #
+def test_parse_message_valid():
+    maps = helpers.build_topic_maps({"topic_pairs": [
+        {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
+    ]})
+    msg = {
+        "chat": {"id": -100},
+        "message_thread_id": 100,
+        "from": {"id": 42, "first_name": "Alice", "last_name": "B", "username": "alice"},
+        "date": int(datetime.now(timezone.utc).timestamp()),
+        "text": "Hello world",
+    }
+    result = checker._parse_message(msg, -100, maps)
+    assert result is not None
+    assert result["pid"] == "100"
+    assert result["user_id"] == "42"
+    assert result["user_name"] == "Alice"
+    assert result["text"] == "hello world"
+
+
+def test_parse_message_wrong_group():
+    maps = helpers.build_topic_maps({"topic_pairs": [
+        {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
+    ]})
+    msg = {"chat": {"id": -999}, "message_thread_id": 100, "from": {"id": 42}}
+    assert checker._parse_message(msg, -100, maps) is None
+
+
+def test_parse_message_unknown_topic():
+    maps = helpers.build_topic_maps({"topic_pairs": [
+        {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
+    ]})
+    msg = {"chat": {"id": -100}, "message_thread_id": 999, "from": {"id": 42}}
+    assert checker._parse_message(msg, -100, maps) is None
+
+
+def test_parse_message_bot_skipped():
+    maps = helpers.build_topic_maps({"topic_pairs": [
+        {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
+    ]})
+    msg = {"chat": {"id": -100}, "message_thread_id": 100, "from": {"id": 42, "is_bot": True}}
+    assert checker._parse_message(msg, -100, maps) is None
+
+
+# ------------------------------------------------------------------ #
+#  Combat tests
+# ------------------------------------------------------------------ #
+def test_handle_round_command():
+    _reset()
+    state = _make_state()
+    checker._handle_round_command("/round 1 players", "100", "Test", "now", -100, 100, state)
+    assert "100" in state["combat"]
+    assert state["combat"]["100"]["round"] == 1
+    assert state["combat"]["100"]["current_phase"] == "players"
+    assert len(_sent_messages) == 1
+    assert "Round 1" in _sent_messages[0]["text"]
+
+
+def test_handle_round_command_enemies():
+    _reset()
+    state = _make_state()
+    checker._handle_round_command("/round 2 enemies", "100", "Test", "now", -100, 100, state)
+    assert state["combat"]["100"]["current_phase"] == "enemies"
+
+
+def test_handle_round_command_resets_players_acted():
+    _reset()
+    state = _make_state()
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "enemies",
+        "players_acted": ["42"], "last_ping_at": None,
+        "campaign_name": "Test", "phase_started_at": "now",
+    }
+    checker._handle_round_command("/round 2 players", "100", "Test", "now", -100, 100, state)
+    assert state["combat"]["100"]["players_acted"] == []
+    assert state["combat"]["100"]["round"] == 2
+
+
+def test_handle_combat_message_tracks_player():
+    _reset()
+    state = _make_state()
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": [], "last_ping_at": None,
+        "campaign_name": "Test", "phase_started_at": "now",
+    }
+    checker._handle_combat_message("I attack!", "42", {"999"}, "100", "Test", "now", -100, 100, state)
+    assert "42" in state["combat"]["100"]["players_acted"]
+
+
+def test_handle_combat_message_gm_not_tracked():
+    _reset()
+    state = _make_state()
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": [], "last_ping_at": None,
+        "campaign_name": "Test", "phase_started_at": "now",
+    }
+    checker._handle_combat_message("narrative text", "999", {"999"}, "100", "Test", "now", -100, 100, state)
+    assert "999" not in state["combat"]["100"]["players_acted"]
+
+
+def test_handle_combat_endcombat():
+    _reset()
+    state = _make_state()
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": [], "last_ping_at": None,
+        "campaign_name": "Test", "phase_started_at": "now",
+    }
+    checker._handle_combat_message("/endcombat", "999", {"999"}, "100", "Test", "now", -100, 100, state)
+    assert "100" not in state["combat"]
+
+
+# ------------------------------------------------------------------ #
+#  Boon tests
+# ------------------------------------------------------------------ #
+def test_process_boon_callback_valid():
+    _reset()
+    state = _make_state()
+    state["pending_potw_boons"]["100"] = {
+        "message_id": 555,
+        "winner_user_id": "42",
+        "boons": ["Boon A", "Boon B", "Boon C"],
+        "base_message": "Winner!",
+        "posted_at": datetime.now(timezone.utc).isoformat(),
+    }
+    cb = {
+        "id": "cb1", "data": "boon:100:1",
+        "from": {"id": 42},
+        "message": {"chat": {"id": -100}, "message_id": 555},
+    }
+    checker.process_boon_callback(cb, _make_config(), state)
+    assert "100" not in state["pending_potw_boons"]  # Cleaned up
+    edit_msgs = [m for m in _sent_messages if "message_id" in m]
+    assert len(edit_msgs) == 1
+
+
+def test_process_boon_callback_wrong_user():
+    _reset()
+    state = _make_state()
+    state["pending_potw_boons"]["100"] = {
+        "message_id": 555,
+        "winner_user_id": "42",
+        "boons": ["Boon A"],
+        "base_message": "Winner!",
+        "posted_at": datetime.now(timezone.utc).isoformat(),
+    }
+    cb = {
+        "id": "cb1", "data": "boon:100:0",
+        "from": {"id": 99},  # Wrong user
+        "message": {"chat": {"id": -100}, "message_id": 555},
+    }
+    checker.process_boon_callback(cb, _make_config(), state)
+    assert "100" in state["pending_potw_boons"]  # Not cleaned up
+    reject_msgs = [m for m in _sent_messages if "Only the Player" in m.get("text", "")]
+    assert len(reject_msgs) == 1
+
+
+def test_expire_pending_boons():
+    _reset()
+    state = _make_state()
+    old_time = (datetime.now(timezone.utc) - timedelta(hours=50)).isoformat()
+    state["pending_potw_boons"]["100"] = {
+        "message_id": 555,
+        "winner_user_id": "42",
+        "boons": ["Boon A", "Boon B"],
+        "base_message": "Winner!",
+        "posted_at": old_time,
+    }
+    checker.expire_pending_boons(_make_config(), state)
+    assert "100" not in state["pending_potw_boons"]
+    edit_msgs = [m for m in _sent_messages if "auto-selected" in m.get("text", "")]
+    assert len(edit_msgs) == 1
+
+
+# ------------------------------------------------------------------ #
+#  Player activity tests
+# ------------------------------------------------------------------ #
+def test_check_player_activity_warns_at_1_week():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "alice", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=8)).isoformat(),
+        "last_warned_week": 0,
+    }
+
+    checker.check_player_activity(config, state)
+    warn_msgs = [m for m in _sent_messages if "hasn't posted" in m.get("text", "")]
+    assert len(warn_msgs) == 1
+    assert state["players"]["100:42"]["last_warned_week"] == 1
+
+
+def test_check_player_activity_removes_at_4_weeks():
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=30)).isoformat(),
+        "last_warned_week": 3,
+    }
+
+    checker.check_player_activity(config, state)
+    assert "100:42" not in state["players"]
+    assert "100:42" in state["removed_players"]
+
+
+def test_check_player_activity_respects_toggle():
+    _reset()
+    config = _make_config(pairs=[
+        {"name": "NoWarn", "chat_topic_id": 200, "pbp_topic_ids": [100], "disabled_features": ["warnings"]},
+    ])
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "NoWarn",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=15)).isoformat(),
+        "last_warned_week": 0,
+    }
+
+    checker.check_player_activity(config, state)
+    assert len(_sent_messages) == 0  # No warning sent
 
 
 # ------------------------------------------------------------------ #

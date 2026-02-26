@@ -136,7 +136,8 @@ _HELP_TEXT = (
     "\n"
     "Everyone:\n"
     "/help - Show this message\n"
-    "/status - Campaign health snapshot"
+    "/status - Campaign health snapshot\n"
+    "/campaign - Full scoreboard with roster and stats"
 )
 
 
@@ -200,6 +201,116 @@ def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str
         lines.append(f"At risk: {', '.join(at_risk)}")
     if combat_str:
         lines.append(combat_str)
+
+    return "\n".join(lines)
+
+
+def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> str:
+    """Build a comprehensive campaign scoreboard for /campaign command.
+
+    Combines: header, roster with full stats, weekly pace, at-risk players, combat state.
+    """
+    now = datetime.now(timezone.utc)
+    week_ago = now - timedelta(days=7)
+    two_weeks_ago = now - timedelta(days=14)
+
+    # Campaign metadata
+    pair = None
+    for p in config.get("topic_pairs", []):
+        if str(p["pbp_topic_ids"][0]) == pid:
+            pair = p
+            break
+    name = pair["name"] if pair else "Unknown"
+    created_str = pair.get("created", "") if pair else ""
+
+    # Header
+    lines = [f"━━ {name} ━━"]
+    if created_str:
+        from datetime import date as date_type
+        created = datetime.strptime(created_str, "%Y-%m-%d").date()
+        age_days = (now.date() - created).days
+        if age_days >= 365:
+            years = age_days // 365
+            lines.append(f"Running since {created.strftime('%B %d, %Y')} ({years}y {age_days % 365}d)")
+        else:
+            lines.append(f"Running since {created.strftime('%B %d, %Y')} ({age_days}d)")
+
+    # Players and counts
+    players = [
+        p_val for p_val in state.get("players", {}).values()
+        if p_val.get("pbp_topic_id") == pid
+    ]
+    counts = state.get("message_counts", {}).get(pid, {})
+    topic_ts = helpers.get_topic_timestamps(state, pid)
+    player_count = len(players)
+
+    lines.append(f"\nParty: {player_count}/{helpers.REQUIRED_PLAYERS}")
+    if player_count < helpers.REQUIRED_PLAYERS:
+        needed = helpers.REQUIRED_PLAYERS - player_count
+        lines[-1] += f" (needs {needed} more)"
+
+    # Weekly pace
+    gm_this = gm_last = player_this = player_last = 0
+    for uid, timestamps in topic_ts.items():
+        this_count = len(timestamps_in_window(timestamps, week_ago))
+        last_count = len(timestamps_in_window(timestamps, two_weeks_ago, week_ago))
+        if uid in gm_ids:
+            gm_this += this_count
+            gm_last += last_count
+        else:
+            player_this += this_count
+            player_last += last_count
+
+    total_this = gm_this + player_this
+    total_last = gm_last + player_last
+    trend = helpers.trend_icon(total_this, total_last)
+
+    lines.append(f"\n{trend} This week: {posts_str(total_this)} ({player_this} player, {gm_this} GM)")
+    if total_last > 0:
+        lines.append(f"Last week: {posts_str(total_last)} ({player_last} player, {gm_last} GM)")
+
+    # Roster
+    lines.append("\n━━ Roster ━━")
+    sorted_players = sorted(players, key=lambda p: counts.get(p["user_id"], 0), reverse=True)
+
+    # GM first
+    for gm_id in gm_ids:
+        gm_count = counts.get(gm_id, 0)
+        raw_ts = topic_ts.get(gm_id, [])
+        if gm_count > 0 and raw_ts:
+            stats = _roster_user_stats(raw_ts, gm_count, now)
+            lines.append("\n" + _roster_block("GM", "", stats))
+
+    for player in sorted_players:
+        uid = player["user_id"]
+        raw_ts = topic_ts.get(uid, [])
+        if not raw_ts:
+            continue
+        full = helpers.player_full_name(player)
+        stats = _roster_user_stats(raw_ts, counts.get(uid, 0), now)
+        lines.append("\n" + _roster_block(full, player.get("username", ""), stats))
+
+    # At-risk players
+    at_risk = []
+    for p in players:
+        last_post = datetime.fromisoformat(p["last_post_time"])
+        inactive_days = helpers.days_since(now, last_post)
+        if inactive_days >= 7:
+            week_num = int(inactive_days / 7)
+            at_risk.append(f"- {p['first_name']}: {int(inactive_days)}d inactive (warning {week_num}/3)")
+
+    if at_risk:
+        lines.append("\n⚠️ At Risk:")
+        lines.extend(at_risk)
+
+    # Active combat
+    combat = state.get("combat", {}).get(pid)
+    if combat and combat.get("active"):
+        acted = set(combat.get("players_acted", []))
+        missing = [p["first_name"] for p in players if p["user_id"] not in acted]
+        lines.append(f"\n⚔️ Combat: Round {combat['round']}, {combat['current_phase']}' turn")
+        if missing and combat["current_phase"] == "players":
+            lines.append(f"Waiting on: {', '.join(missing)}")
 
     return "\n".join(lines)
 
@@ -270,6 +381,43 @@ def _handle_combat_message(
         combat["players_acted"].append(user_id)
 
 
+def _parse_message(msg: dict, group_id: int, maps) -> dict | None:
+    """Validate and extract fields from a Telegram message. Returns None if skipped."""
+    chat_id = msg.get("chat", {}).get("id")
+    if chat_id != group_id:
+        return None
+
+    thread_id = msg.get("message_thread_id")
+    if thread_id is None:
+        return None
+
+    thread_id_str = str(thread_id)
+    if thread_id_str not in maps.all_pbp_ids:
+        return None
+
+    from_user = msg.get("from", {})
+    if from_user.get("is_bot", False):
+        return None
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    msg_date = msg.get("date")
+    msg_time_iso = datetime.fromtimestamp(msg_date, tz=timezone.utc).isoformat() if msg_date else now_iso
+
+    return {
+        "thread_id": thread_id,
+        "pid": maps.to_canonical[thread_id_str],
+        "campaign_name": maps.to_name[maps.to_canonical[thread_id_str]],
+        "user_id": str(from_user.get("id", "")),
+        "user_name": from_user.get("first_name", "Someone"),
+        "user_last_name": from_user.get("last_name", ""),
+        "username": from_user.get("username", ""),
+        "now_iso": now_iso,
+        "msg_time_iso": msg_time_iso,
+        "text": msg.get("text", "").strip().lower(),
+        "raw_text": msg.get("text", "").strip(),
+    }
+
+
 def process_updates(updates: list, config: dict, state: dict) -> int:
     """Process new Telegram updates, tracking posts and handling commands. Returns new offset."""
     group_id = config["group_id"]
@@ -294,39 +442,18 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         if not msg:
             continue
 
-        chat_id = msg.get("chat", {}).get("id")
-        if chat_id != group_id:
+        parsed = _parse_message(msg, group_id, maps)
+        if not parsed:
             continue
 
-        thread_id = msg.get("message_thread_id")
-        if thread_id is None:
-            continue
-
-        thread_id_str = str(thread_id)
-
-        if thread_id_str not in maps.all_pbp_ids:
-            continue
-
-        from_user = msg.get("from", {})
-        if from_user.get("is_bot", False):
-            continue
-
-        user_id = str(from_user.get("id", ""))
-        user_name = from_user.get("first_name", "Someone")
-        user_last_name = from_user.get("last_name", "")
-        username = from_user.get("username", "")
-        # Map to canonical topic ID so split topics merge
-        pid = maps.to_canonical[thread_id_str]
-        campaign_name = maps.to_name[pid]
-        now_iso = datetime.now(timezone.utc).isoformat()
-        # Use the actual Telegram message timestamp for gap calculations
-        msg_date = msg.get("date")
-        if msg_date:
-            msg_time_iso = datetime.fromtimestamp(msg_date, tz=timezone.utc).isoformat()
-        else:
-            msg_time_iso = now_iso
-        raw_text = msg.get("text", "").strip()
-        text = raw_text.lower()
+        pid = parsed["pid"]
+        thread_id = parsed["thread_id"]
+        user_id = parsed["user_id"]
+        user_name = parsed["user_name"]
+        campaign_name = parsed["campaign_name"]
+        now_iso = parsed["now_iso"]
+        msg_time_iso = parsed["msg_time_iso"]
+        text = parsed["text"]
 
         # ---- /help command ----
         if text in ("/help", "/pbphelp"):
@@ -336,6 +463,11 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         if text == "/status":
             status = _build_status(pid, campaign_name, state, gm_ids)
             tg.send_message(group_id, thread_id, status)
+
+        # ---- /campaign command ----
+        if text == "/campaign":
+            report = _build_campaign_report(pid, config, state, gm_ids)
+            tg.send_message(group_id, thread_id, report)
 
         # ---- Combat commands and tracking ----
         _handle_combat_message(
@@ -366,8 +498,8 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             state["players"][player_key] = {
                 "user_id": user_id,
                 "first_name": user_name,
-                "last_name": user_last_name,
-                "username": username,
+                "last_name": parsed["user_last_name"],
+                "username": parsed["username"],
                 "campaign_name": campaign_name,
                 "pbp_topic_id": pid,
                 "last_post_time": msg_time_iso,

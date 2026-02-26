@@ -244,6 +244,7 @@ The bot responds to these commands in any monitored PBP topic:
 **Everyone:**
 - `/help` - List bot features and commands.
 - `/status` - Campaign health snapshot: party size, last post, posts this week, at-risk players.
+- `/campaign` - Full scoreboard: header, weekly pace with trends, complete roster with stats, at-risk warnings, combat state.
 
 **GM only:**
 - `/round 1 players` - Start round 1 player phase.
