@@ -246,6 +246,20 @@ The bot responds to these commands in any monitored PBP topic:
 - `/status` - Campaign health snapshot: party size, last post, posts this week, at-risk players.
 - `/campaign` - Full scoreboard: header, weekly pace with trends, complete roster with stats, at-risk warnings, combat state.
 
+## Versioning
+
+The bot uses [Semantic Versioning](https://semver.org/). The current version is in `VERSION`.
+All changes are documented in `CHANGELOG.md`.
+
+When a new version is pushed, the changelog is automatically posted to the
+[Foundry & GitHub](https://t.me/Path_Wars/71537) Telegram topic via the
+`changelog-notify.yml` workflow.
+
+Version bumps:
+- **MAJOR** (x.0.0): Breaking config changes or workflow restructuring.
+- **MINOR** (0.x.0): New commands, new features, new bot behaviours.
+- **PATCH** (0.0.x): Bug fixes, test additions, refactors, documentation.
+
 **GM only:**
 - `/round 1 players` - Start round 1 player phase.
 - `/round 1 enemies` - Start round 1 enemy phase.
@@ -274,22 +288,27 @@ are merged for stats, rosters, POTW, and leaderboards.
 ## File structure
 
 ```
-.github/workflows/pbp-reminder.yml   # Hourly cron job
+.github/workflows/
+  pbp-reminder.yml      # Hourly cron job (tests + checker)
+  changelog-notify.yml  # Posts changelog to Telegram on push
 scripts/
-  checker.py      # Main orchestrator (all features)
-  helpers.py      # Utilities, formatting, topic maps
-  telegram.py     # Telegram Bot API wrapper
-  state.py        # Gist-based state persistence
-  test_helpers.py # Test suite for helpers (31 tests)
-  test_checker.py # Test suite for checker (22 tests)
-config.json           # Your configuration
-config.example.json   # Template configuration
-boons.json            # Flavour boons for POTW (optional)
-boons.example.json    # Sample boons file
+  checker.py            # Main orchestrator (all features)
+  helpers.py            # Utilities, formatting, topic maps
+  telegram.py           # Telegram Bot API wrapper
+  state.py              # Gist-based state persistence
+  post_changelog.py     # Changelog parser and Telegram poster
+  test_helpers.py       # Test suite for helpers (34 tests)
+  test_checker.py       # Test suite for checker (55 tests)
+config.json             # Your configuration
+config.example.json     # Template configuration
+boons.json              # Flavour boons for POTW (optional)
+boons.example.json      # Sample boons file
 docs/
-  index.html          # Archive dashboard (Chart.js)
+  index.html            # Archive dashboard (Chart.js)
 data/
-  weekly_archive.json # Auto-committed weekly stats archive
+  weekly_archive.json   # Auto-committed weekly stats archive
+VERSION                 # Current semver version
+CHANGELOG.md            # Release notes
 ```
 
 ---
