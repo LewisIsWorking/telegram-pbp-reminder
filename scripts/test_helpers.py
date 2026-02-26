@@ -272,6 +272,25 @@ def test_build_topic_maps_caching():
     assert m1 is m2
 
 
+def test_pace_split():
+    now = datetime(2025, 3, 15, 12, 0, 0, tzinfo=timezone.utc)
+    topic_ts = {
+        "42": [  # Player
+            (now - timedelta(hours=h)).isoformat()
+            for h in [2, 24, 48, 200]  # 3 this week, 1 last week
+        ],
+        "999": [  # GM
+            (now - timedelta(hours=h)).isoformat()
+            for h in [1, 12, 168 + 12]  # 2 this week, 1 last week
+        ],
+    }
+    result = helpers.pace_split(topic_ts, {"999"}, now)
+    assert result["player_this"] == 3
+    assert result["player_last"] == 1
+    assert result["gm_this"] == 2
+    assert result["gm_last"] == 1
+
+
 # ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #

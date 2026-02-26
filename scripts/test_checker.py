@@ -586,6 +586,14 @@ def test_validate_config_unknown_feature():
     assert any("bogus" in i for i in issues)
 
 
+def test_validate_config_bad_created_date():
+    config = _make_config(pairs=[
+        {"name": "A", "chat_topic_id": 1, "pbp_topic_ids": [100], "created": "15-01-2025"},
+    ])
+    issues = helpers.validate_config(config)
+    assert any("YYYY-MM-DD" in i for i in issues)
+
+
 def test_feature_enabled():
     config = _make_config(pairs=[
         {"name": "A", "chat_topic_id": 1, "pbp_topic_ids": [100], "disabled_features": ["roster"]},

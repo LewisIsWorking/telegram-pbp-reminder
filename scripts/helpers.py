@@ -1,7 +1,7 @@
 """Shared utilities, constants, and config loading."""
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 # ------------------------------------------------------------------ #
@@ -73,6 +73,30 @@ def load_settings(config: dict) -> None:
             g[global_name] = s[config_key]
 
 
+def pace_split(topic_ts: dict[str, list[str]], gm_ids: set[str],
+               now: datetime) -> dict:
+    """Compute GM/player post splits for this week vs last week.
+
+    Returns dict with: gm_this, gm_last, player_this, player_last.
+    """
+    week_ago = now - timedelta(days=7)
+    two_weeks_ago = now - timedelta(days=14)
+    gm_this = gm_last = player_this = player_last = 0
+    for uid, timestamps in topic_ts.items():
+        this_count = len(timestamps_in_window(timestamps, week_ago))
+        last_count = len(timestamps_in_window(timestamps, two_weeks_ago, week_ago))
+        if uid in gm_ids:
+            gm_this += this_count
+            gm_last += last_count
+        else:
+            player_this += this_count
+            player_last += last_count
+    return {
+        "gm_this": gm_this, "gm_last": gm_last,
+        "player_this": player_this, "player_last": player_last,
+    }
+
+
 def validate_config(config: dict) -> list[str]:
     """Validate config structure and return a list of error/warning strings.
 
@@ -136,6 +160,14 @@ def validate_config(config: dict) -> list[str]:
             if feat not in valid_features:
                 issues.append(f"WARNING: {label} unknown feature '{feat}' in disabled_features "
                               f"(valid: {', '.join(sorted(valid_features))})")
+
+        # Validate created date format if present
+        created = pair.get("created")
+        if created:
+            try:
+                datetime.strptime(created, "%Y-%m-%d")
+            except (ValueError, TypeError):
+                issues.append(f"ERROR: {label} 'created' must be YYYY-MM-DD format, got '{created}'")
 
     # Leaderboard topic collision
     lb = config.get("leaderboard_topic_id")

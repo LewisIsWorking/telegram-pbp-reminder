@@ -211,8 +211,6 @@ def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> 
     Combines: header, roster with full stats, weekly pace, at-risk players, combat state.
     """
     now = datetime.now(timezone.utc)
-    week_ago = now - timedelta(days=7)
-    two_weeks_ago = now - timedelta(days=14)
 
     # Campaign metadata
     pair = None
@@ -226,7 +224,6 @@ def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> 
     # Header
     lines = [f"━━ {name} ━━"]
     if created_str:
-        from datetime import date as date_type
         created = datetime.strptime(created_str, "%Y-%m-%d").date()
         age_days = (now.date() - created).days
         if age_days >= 365:
@@ -250,24 +247,14 @@ def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> 
         lines[-1] += f" (needs {needed} more)"
 
     # Weekly pace
-    gm_this = gm_last = player_this = player_last = 0
-    for uid, timestamps in topic_ts.items():
-        this_count = len(timestamps_in_window(timestamps, week_ago))
-        last_count = len(timestamps_in_window(timestamps, two_weeks_ago, week_ago))
-        if uid in gm_ids:
-            gm_this += this_count
-            gm_last += last_count
-        else:
-            player_this += this_count
-            player_last += last_count
-
-    total_this = gm_this + player_this
-    total_last = gm_last + player_last
+    pace = helpers.pace_split(topic_ts, gm_ids, now)
+    total_this = pace["gm_this"] + pace["player_this"]
+    total_last = pace["gm_last"] + pace["player_last"]
     trend = helpers.trend_icon(total_this, total_last)
 
-    lines.append(f"\n{trend} This week: {posts_str(total_this)} ({player_this} player, {gm_this} GM)")
+    lines.append(f"\n{trend} This week: {posts_str(total_this)} ({pace['player_this']} player, {pace['gm_this']} GM)")
     if total_last > 0:
-        lines.append(f"Last week: {posts_str(total_last)} ({player_last} player, {gm_last} GM)")
+        lines.append(f"Last week: {posts_str(total_last)} ({pace['player_last']} player, {pace['gm_last']} GM)")
 
     # Roster
     lines.append("\n━━ Roster ━━")
@@ -1052,17 +1039,11 @@ def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, 
         if not topic_timestamps:
             continue
 
-        # Count posts split by GM vs players, this week vs last week
-        gm_this = gm_last = player_this = player_last = 0
-        for uid, timestamps in topic_timestamps.items():
-            this_count = len(timestamps_in_window(timestamps, week_ago))
-            last_count = len(timestamps_in_window(timestamps, two_weeks_ago, week_ago))
-            if uid in gm_ids:
-                gm_this += this_count
-                gm_last += last_count
-            else:
-                player_this += this_count
-                player_last += last_count
+        pace = helpers.pace_split(topic_timestamps, gm_ids, now)
+        gm_this = pace["gm_this"]
+        gm_last = pace["gm_last"]
+        player_this = pace["player_this"]
+        player_last = pace["player_last"]
 
         this_week = gm_this + player_this
         last_week = gm_last + player_last
