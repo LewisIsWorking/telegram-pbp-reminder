@@ -2151,6 +2151,84 @@ def test_mystats_with_character():
     assert "Cardigan" in result
 
 
+def test_word_count_tracking():
+    """Word counts are accumulated per-user per-campaign during message processing."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+
+    updates = [
+        {
+            "update_id": 2001,
+            "message": {
+                "chat": {"id": -100},
+                "message_thread_id": 100,
+                "from": {"id": 42, "first_name": "Alice", "last_name": "", "username": "alice"},
+                "date": now_ts,
+                "text": "Cardigan draws her blade and charges forward",
+            },
+        },
+        {
+            "update_id": 2002,
+            "message": {
+                "chat": {"id": -100},
+                "message_thread_id": 100,
+                "from": {"id": 42, "first_name": "Alice", "last_name": "", "username": "alice"},
+                "date": now_ts + 60,
+                "text": "She strikes true",
+            },
+        },
+    ]
+    checker.process_updates(updates, config, state)
+    # 7 words + 3 words = 10
+    assert state["word_counts"]["100"]["42"] == 10
+
+
+def test_mystats_shows_word_count():
+    """The /mystats output includes word count when available."""
+    _reset()
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=h)).isoformat() for h in range(5)],
+    }
+    state["message_counts"]["100"] = {"42": 5}
+    state["word_counts"] = {"100": {"42": 250}}
+
+    result = checker._build_mystats("100", "42", "Test", state, {"999"})
+    assert "250" in result
+    assert "50/post" in result
+
+
+def test_profile_shows_word_count():
+    """The /profile output includes word count when available."""
+    _reset()
+    now = datetime.now(timezone.utc)
+    config = {
+        "group_id": -100,
+        "gm_user_ids": [999],
+        "topic_pairs": [
+            {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
+        ],
+    }
+    state = _make_state()
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "alice", "campaign_name": "Test",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["message_counts"]["100"] = {"42": 20}
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=h)).isoformat() for h in range(20)],
+    }
+    state["word_counts"] = {"100": {"42": 1500}}
+
+    result = checker._build_profile("alice", config, state)
+    assert "1,500 words" in result
+
+
 def test_transcript_with_character():
     _reset()
     import shutil

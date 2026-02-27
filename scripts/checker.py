@@ -388,6 +388,13 @@ def _build_mystats(pid: str, user_id: str, campaign_name: str,
         f"Avg gap: {avg_gap}",
         f"Last post: {last_post_str}",
     ]
+
+    # Word count stats
+    total_words = state.get("word_counts", {}).get(pid, {}).get(user_id, 0)
+    if total_words > 0 and total_count > 0:
+        avg_words = total_words / total_count
+        lines.append(f"Words written: {total_words:,} (~{avg_words:.0f}/post)")
+
     if streak > 1:
         lines.append(f"🔥 Streak: {streak} consecutive days")
     elif streak == 1:
@@ -795,6 +802,7 @@ def _build_profile(target_name: str, config: dict, state: dict) -> str:
     lines = [f"👤 {display_name}", ""]
     total_posts = 0
     total_campaigns = 0
+    total_words = 0
 
     for key, player in found_entries:
         pid = player["pbp_topic_id"]
@@ -826,11 +834,17 @@ def _build_profile(target_name: str, config: dict, state: dict) -> str:
         streak = _calc_streak(raw_ts, datetime.now(timezone.utc))
         streak_str = f" | 🔥 {streak}d streak" if streak >= 3 else ""
 
+        # Word count
+        words = state.get("word_counts", {}).get(pid, {}).get(user_id, 0)
+        words_str = f" | {words:,} words" if words > 0 else ""
+        total_words += words
+
         lines.append(f"📖 {campaign_name}{char_tag}")
-        lines.append(f"   {post_count} posts | Last: {last_str}{streak_str}")
+        lines.append(f"   {post_count} posts{words_str} | Last: {last_str}{streak_str}")
 
     lines.append("")
-    lines.append(f"Total: {total_posts} posts across {total_campaigns} campaign{'s' if total_campaigns != 1 else ''}")
+    words_summary = f" ({total_words:,} words)" if total_words > 0 else ""
+    lines.append(f"Total: {total_posts} posts{words_summary} across {total_campaigns} campaign{'s' if total_campaigns != 1 else ''}")
 
     return "\n".join(lines)
 
@@ -993,6 +1007,10 @@ _TIPS = [
     "💡 <b>/profile</b> — Look up any player across all campaigns. "
     "Type <code>/profile @alice</code> to see their character, post counts, "
     "streaks, and last activity in every game they're in.",
+
+    "💡 <b>Word Count Tracking</b> — The bot now tracks total words written per player. "
+    "Check /mystats to see your word count and average words per post. "
+    "Quality and quantity both matter in PBP!",
 ]
 
 
@@ -1606,6 +1624,12 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         user_counts = state["message_counts"].setdefault(pid, {})
         user_counts[user_id] = user_counts.get(user_id, 0) + 1
 
+        # Track word count (measures RP engagement depth, not just frequency)
+        raw_text = parsed["raw_text"] or ""
+        word_count = len(raw_text.split()) if raw_text.strip() else 0
+        user_words = state.setdefault("word_counts", {}).setdefault(pid, {})
+        user_words[user_id] = user_words.get(user_id, 0) + word_count
+
         # Track post timestamps for Player of the Week gap calculation
         state["post_timestamps"].setdefault(pid, {}).setdefault(user_id, []).append(msg_time_iso)
 
@@ -2131,6 +2155,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
                         "posts": session_count,
                         "sessions": unique_days,
                         "avg_gap_h": round(p_gap, 1) if p_gap is not None else None,
+                        "words": state.get("word_counts", {}).get(pid, {}).get(uid, 0),
                     }
 
         # Calculate player avg gap
@@ -2148,6 +2173,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
             "total_posts": gm_posts + player_posts,
             "player_avg_gap_h": player_avg_gap,
             "active_players": active_players,
+            "total_words": sum(state.get("word_counts", {}).get(pid, {}).values()),
             "top_players": dict(sorted(
                 player_counts.items(), key=lambda x: x[1], reverse=True
             )[:5]),

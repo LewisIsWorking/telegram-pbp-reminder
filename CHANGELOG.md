@@ -11,6 +11,18 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.3.0] - 2026-02-27
+
+### Added — Word Count Tracking
+- Every PBP message now tracks word count per-user per-campaign
+- `/mystats` shows total words written and average words per post
+- `/profile` shows word counts per-campaign and total across all campaigns
+- Weekly archive includes per-player word counts and campaign totals
+- New daily tip explaining the word count feature
+- 3 new tests (word count accumulation, mystats output, profile output)
+
+---
+
 ## [2.2.1] - 2026-02-27
 
 ### Changed — Dashboard v2
