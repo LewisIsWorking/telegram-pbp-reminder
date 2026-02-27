@@ -2850,8 +2850,7 @@ def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, m
                 f"this week ({drop_pct:.0f}% decrease).\n"
                 f"\n"
                 f"Just a heads-up — no action needed if the break is "
-                f"intentional. Type /pause to silence alerts during "
-                f"planned downtime."
+                f"intentional."
             )
             print(f"Pace drop alert for {name}: {last_week} -> {this_week} ({drop_pct:.0f}%)")
             tg.send_message(group_id, chat_topic_id, message)
@@ -2917,11 +2916,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
                 f"{days_silent:.1f} days.\n"
                 f"\n"
                 f"No posts from anyone — GM or players — since "
-                f"{latest_dt.strftime('%b %d')}.\n"
-                f"\n"
-                f"If this is a planned break, use /pause to silence "
-                f"these alerts. Otherwise, a quick post can get "
-                f"things moving again!"
+                f"{latest_dt.strftime('%b %d')}."
             )
             print(f"Conversation dying alert for {name}: {days_silent:.1f} days silent")
             if tg.send_message(group_id, chat_topic_id, message):

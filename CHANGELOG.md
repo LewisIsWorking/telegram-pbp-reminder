@@ -11,6 +11,22 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.2.1] - 2026-02-27
+
+### Changed — Dashboard v2
+- Rebuilt GitHub Pages dashboard with summary cards (campaigns, posts, players, avg gap)
+- Week selector filter to view any archived week
+- Sortable campaign table with column headers
+- Click-to-expand player drill-down rows showing per-player posts, sessions, avg gap
+- Campaign health indicators (colour-coded dots)
+- Week-over-week trend percentages with colour coding
+- Mobile-responsive layout (2-column summary on small screens)
+
+### Changed — Cleaner alerts
+- Removed `/pause` suggestion from silence alerts and pace drop alerts (less noise)
+
+---
+
 ## [2.2.0] - 2026-02-26
 
 ### Summary
