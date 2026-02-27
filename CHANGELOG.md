@@ -11,6 +11,37 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.4.0] - 2026-02-27
+
+### Added — Absence Tracking & Recap
+
+#### `/away` command
+- Players declare absences: `/away 3 days vacation`, `/away 2 weeks`,
+  `/away busy with work` (indefinite)
+- Supports duration parsing: N days, N weeks, or freeform text
+- Away players are **skipped** in inactivity warnings and combat pings
+- Away status shown in `/status` (✈️ Away line) and `/party` output
+- Auto-clears when the player posts a non-command message
+- Timed absences auto-expire when their `until` date passes
+
+#### `/back` command
+- Manually clear away status before the timer expires
+- Sends a welcome-back message with character name if configured
+
+#### `/recap [N]` command
+- Shows the last N transcript entries (default 10, max 25)
+- Reads from `data/pbp_logs/` archive files — works with historical imports
+- Compact format: `[date time] Name: message snippet`
+- Spans multiple month files if needed
+
+#### Integration
+- 2 new daily tips (away and recap features)
+- `helpers.is_away()` centralises away checking with auto-expiry
+- `helpers.parse_away_duration()` handles duration parsing
+- 17 new tests covering all commands, integrations, and edge cases
+
+---
+
 ## [2.3.0] - 2026-02-27
 
 ### Added — Word Count Tracking

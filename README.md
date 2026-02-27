@@ -256,6 +256,9 @@ The bot responds to these commands in any monitored PBP topic:
 - `/notes` - View GM notes for the current campaign.
 - `/activity` - Posting patterns: busiest hours, days, and time blocks.
 - `/profile @player` - Cross-campaign stats for any player.
+- `/away [duration] [reason]` - Declare an absence (skips warnings/combat pings).
+- `/back` - Return from absence.
+- `/recap [N]` - Show last N transcript entries (default 10, max 25).
 
 ### GM commands
 

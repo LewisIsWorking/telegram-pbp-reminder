@@ -155,7 +155,10 @@ _HELP_TEXT = (
     "/party - In-fiction party composition\n"
     "/notes - View GM notes for this campaign\n"
     "/activity - Posting patterns: busiest hours and days\n"
-    "/profile @player - Cross-campaign stats for a player"
+    "/profile @player - Cross-campaign stats for a player\n"
+    "/away [duration] [reason] - Declare an absence (skip warnings)\n"
+    "/back - Return from absence\n"
+    "/recap [N] - Show last N transcript entries (default 10)"
 )
 
 
@@ -217,6 +220,17 @@ def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str
     ]
     if at_risk:
         lines.append(f"At risk: {', '.join(at_risk)}")
+
+    # Away players
+    away_names = []
+    for p in players:
+        uid = p.get("user_id", "")
+        record = helpers.is_away(state, pid, uid, now)
+        if record:
+            away_names.append(p["first_name"])
+    if away_names:
+        lines.append(f"✈️ Away: {', '.join(away_names)}")
+
     if combat_str:
         lines.append(combat_str)
 
@@ -434,7 +448,11 @@ def _build_party(pid: str, campaign_name: str, config: dict, state: dict) -> str
             player_name = helpers.player_full_name(player)
             last_post = datetime.fromisoformat(player["last_post_time"])
             days_ago = helpers.days_since(now, last_post)
-            if days_ago < 1:
+            away_record = helpers.is_away(state, pid, uid, now)
+            if away_record:
+                reason = away_record.get("reason", "Away")
+                active_str = f"✈️ away ({reason})"
+            elif days_ago < 1:
                 active_str = "active today"
             elif days_ago < 7:
                 active_str = f"active {int(days_ago)}d ago"
@@ -849,6 +867,71 @@ def _build_profile(target_name: str, config: dict, state: dict) -> str:
     return "\n".join(lines)
 
 
+def _build_recap(pid: str, campaign_name: str, config: dict, count: int = 10) -> str:
+    """Build a compact recap of the last N transcript entries.
+
+    Reads from the campaign's pbp_logs directory, pulling from the
+    most recent month file(s) until we have enough entries.
+    """
+    import re
+    count = max(1, min(count, 25))  # clamp 1-25
+
+    dir_name = helpers.campaign_dir_name(campaign_name)
+    campaign_dir = _LOGS_DIR / dir_name
+
+    if not campaign_dir.exists():
+        return f"No transcript archive found for {campaign_name}."
+
+    # Get month files sorted newest first
+    month_files = sorted(campaign_dir.glob("*.md"), reverse=True)
+    if not month_files:
+        return f"No transcript entries for {campaign_name}."
+
+    # Parse entries from newest files until we have enough
+    entries = []
+    # Entry pattern: **Name** (optional char/GM) (timestamp):\ncontent\n
+    entry_re = re.compile(
+        r"^\*\*(.+?)\*\*(?:\s*\(.+?\))?\s*(?:\[GM\])?\s*\((\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\):\n(.*?)(?=\n\*\*|\n---|\Z)",
+        re.MULTILINE | re.DOTALL,
+    )
+
+    for month_file in month_files:
+        if len(entries) >= count:
+            break
+        try:
+            text = month_file.read_text(encoding="utf-8")
+        except OSError:
+            continue
+
+        file_entries = []
+        for m in entry_re.finditer(text):
+            name = m.group(1).strip()
+            timestamp = m.group(2).strip()
+            content = m.group(3).strip()
+            # Truncate very long content
+            if len(content) > 120:
+                content = content[:117] + "..."
+            file_entries.append((timestamp, name, content))
+
+        # Add from this file (they're in chronological order within the file)
+        entries = file_entries + entries
+        if len(entries) > count:
+            entries = entries[-count:]
+
+    if not entries:
+        return f"No transcript entries found for {campaign_name}."
+
+    lines = [f"📜 Last {len(entries)} messages in {campaign_name}:", ""]
+    for ts, name, content in entries:
+        # Compact: just time (HH:MM), name, snippet
+        time_str = ts[11:16]  # HH:MM
+        date_str = ts[:10]     # YYYY-MM-DD
+        content_line = content.replace("\n", " ").strip()
+        lines.append(f"[{date_str} {time_str}] {name}: {content_line}")
+
+    return "\n".join(lines)
+
+
 def _calc_streak(raw_timestamps: list[str], now: datetime) -> int:
     """Count consecutive days with at least one post, ending at today or yesterday.
 
@@ -1011,6 +1094,14 @@ _TIPS = [
     "💡 <b>Word Count Tracking</b> — The bot now tracks total words written per player. "
     "Check /mystats to see your word count and average words per post. "
     "Quality and quantity both matter in PBP!",
+
+    "💡 <b>/away</b> — Going on holiday? Type <code>/away 5 days vacation</code> "
+    "and the bot will skip you for inactivity warnings and combat pings. "
+    "Use /back when you return, or the bot clears it automatically when you post.",
+
+    "💡 <b>/recap</b> — Missed a few days? Type <code>/recap</code> to see the last "
+    "10 transcript entries, or <code>/recap 20</code> for more. A quick way to "
+    "catch up on the story without scrolling.",
 ]
 
 
@@ -1606,6 +1697,50 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 tg.send_message(group_id, thread_id,
                                 "Usage: /delnote <number>\ne.g. /delnote 3")
 
+        # ---- /away command (everyone) ----
+        if text.startswith("/away"):
+            args = parsed["raw_text"][5:].strip()
+            now_dt = datetime.fromisoformat(now_iso)
+            until_dt, reason = helpers.parse_away_duration(args, now_dt)
+            away_key = f"{pid}:{user_id}"
+            state.setdefault("away", {})[away_key] = {
+                "until": until_dt.isoformat() if until_dt else None,
+                "reason": reason,
+                "set_at": now_iso,
+            }
+            if until_dt:
+                until_str = until_dt.strftime("%b %d")
+                msg = f"✈️ {user_name} marked as away until {until_str}.\nReason: {reason}"
+            else:
+                msg = f"✈️ {user_name} marked as away (indefinite).\nReason: {reason}"
+            msg += "\nUse /back when you return."
+            print(f"Away: {user_name} in {campaign_name} — {reason}")
+            tg.send_message(group_id, thread_id, msg)
+
+        # ---- /back command (everyone) ----
+        if text == "/back":
+            away_key = f"{pid}:{user_id}"
+            if away_key in state.get("away", {}):
+                del state["away"][away_key]
+                char_name = helpers.character_name(config, pid, user_id)
+                char_tag = f" ({char_name})" if char_name else ""
+                tg.send_message(group_id, thread_id,
+                                f"👋 {user_name}{char_tag} is back!")
+                print(f"Back: {user_name} in {campaign_name}")
+            else:
+                tg.send_message(group_id, thread_id,
+                                f"You're not currently marked as away.")
+
+        # ---- /recap command (everyone) ----
+        if text.startswith("/recap"):
+            args = parsed["raw_text"][6:].strip()
+            try:
+                count = int(args) if args else 10
+            except ValueError:
+                count = 10
+            recap = _build_recap(pid, campaign_name, config, count)
+            tg.send_message(group_id, thread_id, recap)
+
         # ---- Combat commands and tracking ----
         _handle_combat_message(
             text, user_id, gm_ids, pid, campaign_name,
@@ -1644,8 +1779,17 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
         # Update player-level tracking (skip GM)
         if user_id and user_id not in gm_ids:
+            # Auto-clear away status when player posts (non-command only)
+            if not text.startswith("/"):
+                away_key = f"{pid}:{user_id}"
+                if away_key in state.get("away", {}):
+                    del state["away"][away_key]
+                    print(f"Auto-cleared away for {user_name} in {campaign_name} (posted)")
+
             player_key = f"{pid}:{user_id}"
             was_removed = player_key in state["removed_players"]
+            old_player = state.get("players", {}).get(player_key, {})
+            old_warn_level = old_player.get("last_warned_week", 0)
 
             state["players"][player_key] = {
                 "user_id": user_id,
@@ -1661,6 +1805,22 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             if was_removed:
                 del state["removed_players"][player_key]
                 print(f"Player {user_name} rejoined {campaign_name}")
+                # Welcome back notification
+                char_name = helpers.character_name(config, pid, user_id)
+                char_tag = f" ({char_name})" if char_name else ""
+                tg.send_message(
+                    group_id, chat_topic_id,
+                    f"👋 {user_name}{char_tag} is back in {campaign_name}!"
+                )
+            elif old_warn_level >= 2:
+                # Player was warned for 2+ weeks of inactivity — acknowledge return
+                print(f"Warned player {user_name} returned to {campaign_name} (was week {old_warn_level})")
+                char_name = helpers.character_name(config, pid, user_id)
+                char_tag = f" as {char_name}" if char_name else ""
+                tg.send_message(
+                    group_id, chat_topic_id,
+                    f"🎉 {user_name} is back{char_tag}! Good to see you."
+                )
 
         # Log to persistent PBP transcript
         if not text.startswith("/"):
@@ -1763,6 +1923,10 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         if not helpers.feature_enabled(config, pbp_topic_id, "warnings"):
             continue
         if pbp_topic_id in state.get("paused_campaigns", {}):
+            continue
+        # Skip players who are marked as away
+        user_id = player.get("user_id", "")
+        if helpers.is_away(state, pbp_topic_id, user_id, now):
             continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])
@@ -2061,6 +2225,7 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
             helpers.player_mention(p)
             for p in all_campaigns.get(pid, [])
             if p["user_id"] not in acted
+            and not helpers.is_away(state, pid, p["user_id"], now)
         ]
 
         if not missing:

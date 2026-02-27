@@ -104,6 +104,26 @@ def _make_state():
     }
 
 
+def _make_msg(update_id, topic_id, text, user_id=42, first_name="TestPlayer",
+              username="tp", last_name="", group_id=-100, date_ts=None):
+    """Convenience factory for a Telegram update dict."""
+    return {
+        "update_id": update_id,
+        "message": {
+            "chat": {"id": group_id},
+            "message_thread_id": topic_id,
+            "from": {
+                "id": user_id,
+                "first_name": first_name,
+                "last_name": last_name,
+                "username": username,
+            },
+            "date": date_ts or int(datetime.now(timezone.utc).timestamp()),
+            "text": text,
+        },
+    }
+
+
 # ------------------------------------------------------------------ #
 #  Pure function tests
 # ------------------------------------------------------------------ #
@@ -2904,6 +2924,333 @@ def test_profile_cross_campaign():
     assert "Campaign A" in result
     assert "Campaign B" in result
     assert "25 posts across 2 campaigns" in result
+
+
+# ------------------------------------------------------------------ #
+#  /away and /back command tests
+# ------------------------------------------------------------------ #
+def test_away_command():
+    """/away marks player as away and skips warnings."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["players"] = {
+        "100:42": {
+            "user_id": "42", "first_name": "Alice", "last_name": "",
+            "username": "alice", "campaign_name": "TestCampaign",
+            "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+            "last_warned_week": 0,
+        },
+    }
+
+    updates = [_make_msg(1, 100, "/away 3 days vacation", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    assert "100:42" in state.get("away", {}), "Away record should be created"
+    record = state["away"]["100:42"]
+    assert record["reason"] == "vacation"
+    assert record["until"] is not None
+    assert "✈️" in _sent_messages[-1]["text"]
+
+
+def test_away_indefinite():
+    """/away without duration is indefinite."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+
+    updates = [_make_msg(1, 100, "/away busy with work", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    record = state["away"]["100:42"]
+    assert record["until"] is None
+    assert record["reason"] == "busy with work"
+
+
+def test_back_command():
+    """/back clears away status."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["away"] = {
+        "100:42": {"until": None, "reason": "holiday", "set_at": now.isoformat()}
+    }
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+
+    updates = [_make_msg(1, 100, "/back", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    assert "100:42" not in state.get("away", {}), "Away record should be cleared"
+    assert "👋" in _sent_messages[-1]["text"]
+
+
+def test_away_auto_clear_on_post():
+    """Posting a non-command message auto-clears away status."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["away"] = {
+        "100:42": {"until": None, "reason": "holiday", "set_at": now.isoformat()}
+    }
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+
+    updates = [_make_msg(1, 100, "I check the chest for traps.", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    assert "100:42" not in state.get("away", {}), "Away should auto-clear on post"
+
+
+def test_away_skips_warnings():
+    """Away players should be skipped in inactivity warnings."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    old = (now - timedelta(days=10)).isoformat()
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": old,
+        "last_warned_week": 0,
+    }
+    # Mark as away
+    state["away"] = {
+        "100:42": {"until": None, "reason": "holiday", "set_at": now.isoformat()}
+    }
+
+    _sent_messages.clear()
+    checker.check_player_activity(config, state, now=now)
+
+    # Should NOT have sent any warning
+    warning_msgs = [m for m in _sent_messages if "Alice" in m["text"] and "not posted" in m["text"]]
+    assert len(warning_msgs) == 0, f"Away player should not get warned, got: {_sent_messages}"
+
+
+def test_away_skips_combat_ping():
+    """Away players should be excluded from combat ping missing list."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    old = (now - timedelta(hours=5)).isoformat()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "alice", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": old,
+        "last_warned_week": 0,
+    }
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "phase_started_at": old, "last_ping_at": None,
+        "players_acted": [], "campaign_name": "TestCampaign",
+    }
+    # Mark as away
+    state["away"] = {
+        "100:42": {"until": None, "reason": "holiday", "set_at": now.isoformat()}
+    }
+
+    _sent_messages.clear()
+    checker.check_combat_turns(config, state, now=now)
+
+    # Should NOT ping Alice
+    pings = [m for m in _sent_messages if "Alice" in m["text"]]
+    assert len(pings) == 0, f"Away player should not be pinged, got: {_sent_messages}"
+
+
+def test_away_shows_in_status():
+    """Away players should appear in /status output."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["away"] = {
+        "100:42": {"until": None, "reason": "holiday", "set_at": now.isoformat()}
+    }
+
+    result = checker._build_status("100", "TestCampaign", state, {"999"})
+    assert "✈️ Away:" in result
+    assert "Alice" in result
+
+
+def test_away_expiry():
+    """Away records with passed 'until' date should auto-expire."""
+    state = {"away": {
+        "100:42": {
+            "until": (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat(),
+            "reason": "short break",
+            "set_at": datetime.now(timezone.utc).isoformat(),
+        }
+    }}
+    result = helpers.is_away(state, "100", "42", datetime.now(timezone.utc))
+    assert result is None, "Expired away should return None"
+    assert "100:42" not in state["away"], "Expired record should be cleaned up"
+
+
+def test_away_shows_in_party():
+    """Away players should be marked in /party output."""
+    _reset()
+    config = _make_config(pairs=[{
+        "name": "TestCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100],
+        "characters": {"42": "Cardigan"},
+    }])
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["away"] = {
+        "100:42": {"until": None, "reason": "vacation", "set_at": now.isoformat()}
+    }
+
+    result = checker._build_party("100", "TestCampaign", config, state)
+    assert "✈️ away" in result
+    assert "vacation" in result
+
+
+# ------------------------------------------------------------------ #
+#  /recap command tests
+# ------------------------------------------------------------------ #
+def test_recap_basic():
+    """_build_recap returns recent transcript entries."""
+    import pathlib
+    campaign_dir = pathlib.Path(checker._LOGS_DIR) / "TestCampaign"
+    campaign_dir.mkdir(parents=True, exist_ok=True)
+
+    # Write a test transcript file
+    content = (
+        "# TestCampaign — 2026-02\n\n"
+        "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
+        "**Alice** (2026-02-26 10:00:00):\nI search the room.\n\n"
+        "**Bob** [GM] (2026-02-26 10:05:00):\nYou find a hidden door.\n\n"
+        "**Alice** (2026-02-26 10:10:00):\nI open the door cautiously.\n\n"
+    )
+    (campaign_dir / "2026-02.md").write_text(content, encoding="utf-8")
+
+    config = _make_config()
+    result = checker._build_recap("100", "TestCampaign", config, 10)
+
+    assert "📜 Last" in result
+    assert "Alice" in result
+    assert "Bob" in result
+    assert "I search the room" in result
+
+
+def test_recap_no_transcript():
+    """_build_recap handles missing transcripts gracefully."""
+    config = _make_config()
+    result = checker._build_recap("100", "NoCampaign", config, 10)
+    assert "No transcript archive" in result
+
+
+def test_recap_command():
+    """/recap command sends transcript entries."""
+    import pathlib
+    _reset()
+    campaign_dir = pathlib.Path(checker._LOGS_DIR) / "TestCampaign"
+    campaign_dir.mkdir(parents=True, exist_ok=True)
+    content = (
+        "# TestCampaign — 2026-02\n\n"
+        "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
+        "**Alice** (2026-02-26 10:00:00):\nHello world.\n\n"
+    )
+    (campaign_dir / "2026-02.md").write_text(content, encoding="utf-8")
+
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/recap", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    recap_msgs = [m for m in _sent_messages if "📜" in m["text"]]
+    assert len(recap_msgs) >= 1, "Should send recap message"
+
+
+def test_recap_with_count():
+    """/recap 5 limits to 5 entries."""
+    import pathlib
+    campaign_dir = pathlib.Path(checker._LOGS_DIR) / "TestCampaign"
+    campaign_dir.mkdir(parents=True, exist_ok=True)
+    entries = ""
+    for i in range(20):
+        entries += f"**Alice** (2026-02-26 {10+i//60:02d}:{i%60:02d}:00):\nEntry {i+1}.\n\n"
+    content = (
+        "# TestCampaign — 2026-02\n\n"
+        "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
+        + entries
+    )
+    (campaign_dir / "2026-02.md").write_text(content, encoding="utf-8")
+
+    config = _make_config()
+    result = checker._build_recap("100", "TestCampaign", config, 5)
+    # Should show exactly 5 entries
+    assert "Last 5" in result
+
+
+# ------------------------------------------------------------------ #
+#  helpers.parse_away_duration tests
+# ------------------------------------------------------------------ #
+def test_parse_away_duration_days():
+    """Parse '3 days reason'."""
+    now = datetime(2026, 2, 27, 12, 0, tzinfo=timezone.utc)
+    until, reason = helpers.parse_away_duration("3 days vacation", now)
+    assert until is not None
+    assert (until - now).days == 3
+    assert reason == "vacation"
+
+
+def test_parse_away_duration_weeks():
+    """Parse '2 weeks'."""
+    now = datetime(2026, 2, 27, 12, 0, tzinfo=timezone.utc)
+    until, reason = helpers.parse_away_duration("2 weeks", now)
+    assert until is not None
+    assert (until - now).days == 14
+    assert reason == "Away"
+
+
+def test_parse_away_duration_indefinite():
+    """Parse plain text as indefinite."""
+    now = datetime(2026, 2, 27, 12, 0, tzinfo=timezone.utc)
+    until, reason = helpers.parse_away_duration("busy with real life stuff", now)
+    assert until is None
+    assert reason == "busy with real life stuff"
+
+
+def test_parse_away_duration_empty():
+    """Empty text gives indefinite with default reason."""
+    now = datetime(2026, 2, 27, 12, 0, tzinfo=timezone.utc)
+    until, reason = helpers.parse_away_duration("", now)
+    assert until is None
+    assert reason == "No reason given"
 
 
 # ------------------------------------------------------------------ #

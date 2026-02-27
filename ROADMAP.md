@@ -176,6 +176,19 @@ Matches by username, first name, or full name.
 
 ---
 
+## v2.4.0 — Absence Tracking & Recap
+
+### ✅ `/away` and `/back`
+Players declare absences with duration or indefinitely. Away players
+are skipped in inactivity warnings and combat pings. Auto-clears on
+post or timer expiry.
+
+### ✅ `/recap [N]`
+Show the last N transcript entries from the campaign's archive.
+Quick catch-up for returning players using the persistent log files.
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)
