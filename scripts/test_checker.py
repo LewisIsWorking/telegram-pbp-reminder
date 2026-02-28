@@ -720,7 +720,7 @@ def test_handle_combat_message_tracks_player():
         "players_acted": [], "last_ping_at": None,
         "campaign_name": "Test", "phase_started_at": "now",
     }
-    checker._handle_combat_message("I attack!", "42", {"999"}, "100", "Test", "now", -100, 100, state)
+    checker._handle_combat_message("I attack!", "I attack!", "42", "Player", {"999"}, "100", "Test", "now", -100, 100, state)
     assert "42" in state["combat"]["100"]["players_acted"]
 
 
@@ -732,7 +732,7 @@ def test_handle_combat_message_gm_not_tracked():
         "players_acted": [], "last_ping_at": None,
         "campaign_name": "Test", "phase_started_at": "now",
     }
-    checker._handle_combat_message("narrative text", "999", {"999"}, "100", "Test", "now", -100, 100, state)
+    checker._handle_combat_message("narrative text", "narrative text", "999", "GM", {"999"}, "100", "Test", "now", -100, 100, state)
     assert "999" not in state["combat"]["100"]["players_acted"]
 
 
@@ -744,7 +744,7 @@ def test_handle_combat_endcombat():
         "players_acted": [], "last_ping_at": None,
         "campaign_name": "Test", "phase_started_at": "now",
     }
-    checker._handle_combat_message("/endcombat", "999", {"999"}, "100", "Test", "now", -100, 100, state)
+    checker._handle_combat_message("/endcombat", "/endcombat", "999", "GM", {"999"}, "100", "Test", "now", -100, 100, state)
     assert "100" not in state["combat"]
 
 
@@ -3863,6 +3863,236 @@ def test_condition_non_gm():
     checker.process_updates(updates, config, state)
 
     assert len(state.get("conditions", {}).get("100", [])) == 0
+
+
+# ------------------------------------------------------------------ #
+#  Combat system v2 tests
+# ------------------------------------------------------------------ #
+def test_combat_start():
+    """/combat starts combat with enemy roster."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/combat Ogre, 2 Skeletons", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    combat = state["combat"].get("100")
+    assert combat is not None
+    assert combat["active"] is True
+    assert combat["round"] == 1
+    assert combat["current_phase"] == "players"
+    assert combat["enemies"] == ["Ogre", "2 Skeletons"]
+    assert "⚔️" in _sent_messages[-1]["text"]
+    assert "Ogre" in _sent_messages[-1]["text"]
+
+
+def test_combat_start_no_enemies():
+    """/combat works without enemy list."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/combat", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    combat = state["combat"].get("100")
+    assert combat is not None
+    assert combat["enemies"] == []
+
+
+def test_next_players_to_enemies():
+    """/next advances from players to enemies phase."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": {}, "last_ping_at": None, "enemies": [],
+        "combat_log": [], "campaign_name": "TestCampaign",
+        "phase_started_at": now.isoformat(), "started_at": now.isoformat(),
+        "all_players_notified": False,
+    }
+
+    updates = [_make_msg(1, 100, "/next", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["combat"]["100"]["current_phase"] == "enemies"
+    assert "Enemies" in _sent_messages[-1]["text"]
+
+
+def test_next_enemies_to_new_round():
+    """/next advances from enemies to next round players."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "enemies",
+        "players_acted": {}, "last_ping_at": None, "enemies": [],
+        "combat_log": [], "campaign_name": "TestCampaign",
+        "phase_started_at": now.isoformat(), "started_at": now.isoformat(),
+        "all_players_notified": False,
+    }
+
+    updates = [_make_msg(1, 100, "/next", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["combat"]["100"]["round"] == 2
+    assert state["combat"]["100"]["current_phase"] == "players"
+    assert state["combat"]["100"]["players_acted"] == {}
+    assert "Round 2" in _sent_messages[-1]["text"]
+
+
+def test_combat_auto_notify():
+    """GM gets pinged when all players have acted."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    # Register two players
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["players"]["100:43"] = {
+        "user_id": "43", "first_name": "Bob", "last_name": "",
+        "username": "", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": {"42": now.isoformat()}, "last_ping_at": None,
+        "enemies": [], "combat_log": [], "campaign_name": "TestCampaign",
+        "phase_started_at": now.isoformat(), "started_at": now.isoformat(),
+        "all_players_notified": False,
+    }
+
+    # Bob posts — now everyone has acted
+    updates = [_make_msg(1, 100, "I swing my axe!", user_id=43, first_name="Bob")]
+    checker.process_updates(updates, config, state)
+
+    # Should see auto-notify
+    notify_msgs = [m for m in _sent_messages if "All players have posted" in m.get("text", "")]
+    assert len(notify_msgs) >= 1
+    assert state["combat"]["100"]["all_players_notified"] is True
+
+
+def test_clog():
+    """/clog adds a combat log entry."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["combat"]["100"] = {
+        "active": True, "round": 2, "current_phase": "players",
+        "players_acted": {}, "last_ping_at": None, "enemies": [],
+        "combat_log": [], "campaign_name": "TestCampaign",
+        "phase_started_at": now.isoformat(), "started_at": now.isoformat(),
+        "all_players_notified": False,
+    }
+
+    updates = [_make_msg(1, 100, "/clog The ogre crits Cardigan for 28!", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    log = state["combat"]["100"]["combat_log"]
+    assert len(log) == 1
+    assert log[0]["round"] == 2
+    assert "ogre crits" in log[0]["text"]
+
+
+def test_combatlog_view():
+    """/combatlog shows the log."""
+    state = {"combat": {"100": {
+        "active": True, "round": 3, "current_phase": "players",
+        "combat_log": [
+            {"round": 1, "text": "Combat begins!", "at": "2026-02-28T10:00:00+00:00"},
+            {"round": 2, "text": "Ogre drops to 0 HP", "at": "2026-02-28T11:00:00+00:00"},
+        ],
+        "phase_started_at": "2026-02-28T12:00:00+00:00",
+    }}}
+    result = checker._build_combatlog("100", "TestCampaign", state)
+    assert "Combat begins!" in result
+    assert "Ogre drops" in result
+    assert "R1:" in result
+    assert "R2:" in result
+
+
+def test_enemies_set():
+    """/enemies sets enemy roster mid-combat."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": {}, "last_ping_at": None, "enemies": [],
+        "combat_log": [], "campaign_name": "TestCampaign",
+        "phase_started_at": now.isoformat(), "started_at": now.isoformat(),
+        "all_players_notified": False,
+    }
+
+    updates = [_make_msg(1, 100, "/enemies Dragon, 3 Kobolds", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["combat"]["100"]["enemies"] == ["Dragon", "3 Kobolds"]
+
+
+def test_endcombat_summary():
+    """/endcombat shows combat log summary."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+    state["combat"]["100"] = {
+        "active": True, "round": 3, "current_phase": "enemies",
+        "players_acted": {}, "last_ping_at": None, "enemies": ["Ogre"],
+        "combat_log": [
+            {"round": 1, "text": "Combat begins!", "at": now.isoformat()},
+            {"round": 3, "text": "Ogre falls!", "at": now.isoformat()},
+        ],
+        "campaign_name": "TestCampaign",
+        "phase_started_at": now.isoformat(), "started_at": now.isoformat(),
+        "all_players_notified": False,
+    }
+
+    updates = [_make_msg(1, 100, "/endcombat", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    end_msgs = [m for m in _sent_messages if "Combat ended" in m.get("text", "")]
+    assert len(end_msgs) >= 1
+    assert "3 rounds" in end_msgs[0]["text"]
+    assert "Ogre falls!" in end_msgs[0]["text"]
+    assert "100" not in state["combat"]
+
+
+def test_whosturn_with_enemies():
+    """/whosturn shows enemy roster."""
+    now = datetime.now(timezone.utc)
+    state = _make_state()
+    state["combat"]["100"] = {
+        "active": True, "round": 1, "current_phase": "players",
+        "players_acted": {}, "last_ping_at": None,
+        "enemies": ["Ogre", "2 Skeletons"],
+        "combat_log": [], "campaign_name": "TestCampaign",
+        "phase_started_at": (now - timedelta(hours=1)).isoformat(),
+        "started_at": now.isoformat(), "all_players_notified": False,
+    }
+    result = checker._build_whosturn("100", "TestCampaign", state)
+    assert "Ogre" in result
+    assert "2 Skeletons" in result
+
+
+def test_format_elapsed():
+    """_format_elapsed formats times correctly."""
+    assert "30m" in checker._format_elapsed(0.5)
+    assert "3h" in checker._format_elapsed(3.2)
+    assert "1d" in checker._format_elapsed(26.5)
 
 
 # ------------------------------------------------------------------ #

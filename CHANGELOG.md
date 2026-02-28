@@ -11,6 +11,47 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.0.0] - 2026-02-28
+
+### Changed — Combat System Rebuild (Foundry-compatible)
+
+Rebuilt the combat tracker to complement Foundry VTT rather than replace it.
+Foundry handles mechanics; the bot handles async turn coordination.
+
+#### New workflow
+1. `/combat Ogre, 2 Skeletons` — starts combat with named enemy roster
+2. Players post their actions naturally (bot tracks who's posted)
+3. **Auto-notify**: GM gets pinged when all players have acted
+4. `/next` — advance phase (players→enemies→next round). No more `/round N phase`
+5. `/clog The ogre crits Cardigan!` — log key combat moments
+6. `/endcombat` — end combat with a log summary
+
+#### New commands
+- `/combat [enemies]` (GM): start combat with optional enemy list
+- `/next` (GM): advance to next phase/round automatically
+- `/enemies [list]` (GM): view or update enemy roster mid-combat
+- `/clog <event>` (GM): add combat log entry
+- `/combatlog` (everyone): view combat log
+- `/round N phase` still works for manual overrides
+
+#### Improvements
+- **Auto-GM-ping**: When every non-away player has posted actions, bot notifies GM
+- **Per-player timestamps**: `/whosturn` now shows how long each player has been waiting
+- **Enemy roster**: visible in `/whosturn` and stored in combat state
+- **Combat log**: narrative record of key moments, shown in `/endcombat` summary
+- **Elapsed time formatting**: "30m", "3h", "1d 6h" instead of raw hours
+- `players_acted` changed from list to dict (auto-migrates old format)
+
+#### Breaking changes
+- Combat state format changed (auto-migrates old list format)
+- `_handle_combat_message()` signature changed (added raw_text, user_name)
+
+### Other
+- 11 new tests (312 total)
+- Updated daily tips for new combat workflow
+
+---
+
 ## [2.9.0] - 2026-02-28
 
 ### Added — HP Tracker, Progress Clocks & Status Integration

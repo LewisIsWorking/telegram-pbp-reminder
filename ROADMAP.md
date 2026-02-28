@@ -249,6 +249,15 @@ HP tracker, conditions, and clocks now shown in `/status` and `/summary`.
 
 ---
 
+## v3.0.0 — Combat System Rebuild
+
+### ✅ Foundry-compatible combat tracking
+Rebuilt for async PBP alongside Foundry VTT. `/combat` to start, `/next` to
+advance phases, auto-notify GM when all players have acted, combat log with
+`/clog`, enemy roster with `/enemies`, summary on `/endcombat`.
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)

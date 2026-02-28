@@ -250,6 +250,7 @@ The bot responds to these commands in any monitored PBP topic:
 - `/mystats` (alias `/me`) - Your personal stats: total posts, sessions, average gap, weekly count, streak.
 - `/myhistory` - 8-week posting sparkline with trend.
 - `/whosturn` - Combat status: who has acted, who the party is waiting on.
+- `/combatlog` - View combat log entries.
 - `/catchup` - What happened since your last post.
 - `/overview` - Compact summary of all campaigns.
 - `/party` - In-fiction party composition (requires character config).
@@ -271,9 +272,12 @@ The bot responds to these commands in any monitored PBP topic:
 
 ### GM commands
 
-- `/round <N> players` - Start round N, players' turn.
-- `/round <N> enemies` - Start round N, enemies' turn.
-- `/endcombat` - End combat tracking.
+- `/combat [enemies]` - Start combat (e.g. `/combat Ogre, 2 Skeletons`).
+- `/next` - Advance to next phase (players→enemies→next round).
+- `/round <N> <players|enemies>` - Set specific round and phase.
+- `/endcombat` - End combat with log summary.
+- `/enemies [list]` - View or set enemy roster.
+- `/clog <event>` - Add combat log entry.
 - `/pause [reason]` - Pause inactivity tracking (for breaks, holidays, between arcs).
 - `/resume` - Resume inactivity tracking.
 - `/kick @player` - Remove a player from tracking.
@@ -319,11 +323,13 @@ Version bumps:
 - **PATCH** (0.0.x): Bug fixes, test additions, refactors, documentation.
 
 **GM only:**
-- `/round 1 players` - Start round 1 player phase.
-- `/round 1 enemies` - Start round 1 enemy phase.
-- `/endcombat` - End combat tracking.
+- `/combat Ogre, 2 Skeletons` - Start combat with enemy roster.
+- `/next` - Advance phase (players→enemies→next round).
+- `/clog The ogre crits!` - Log combat events.
+- `/endcombat` - End combat with summary.
 
 During the player phase, the bot tracks which players have posted.
+When all players have acted, the GM is automatically notified.
 After `combat_ping_hours` hours, it pings players who haven't acted yet.
 
 ---

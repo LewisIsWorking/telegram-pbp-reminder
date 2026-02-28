@@ -132,9 +132,12 @@ _HELP_TEXT = (
     "- Daily tips about bot features (posted randomly across campaigns)\n"
     "\n"
     "GM commands:\n"
-    "/round <N> players - Start round N, players' turn\n"
-    "/round <N> enemies - Start round N, enemies' turn\n"
-    "/endcombat - End combat tracking\n"
+    "/combat [enemies] - Start combat (e.g. /combat Ogre, 2 Skeletons)\n"
+    "/round <N> <players|enemies> - Set specific round and phase\n"
+    "/next - Advance to next phase (players→enemies→next round)\n"
+    "/endcombat - End combat (shows log summary)\n"
+    "/enemies [list] - View or set enemy roster\n"
+    "/clog <event> - Add combat log entry\n"
     "/pause [reason] - Pause inactivity tracking (planned breaks)\n"
     "/resume - Resume inactivity tracking\n"
     "/kick @player - Remove a player from tracking\n"
@@ -177,6 +180,7 @@ _HELP_TEXT = (
     "/mystats - Your personal stats (also: /me)\n"
     "/myhistory - 8-week posting sparkline\n"
     "/whosturn - Who has acted in combat and who hasn't\n"
+    "/combatlog - View combat log entries\n"
     "/catchup - What happened since you last posted\n"
     "/party - In-fiction party composition\n"
     "/notes - View GM notes for this campaign\n"
@@ -1430,31 +1434,93 @@ def _build_whosturn(pid: str, campaign_name: str, state: dict) -> str:
     phase_label = "Players" if phase == "players" else "Enemies"
 
     phase_start = datetime.fromisoformat(combat["phase_started_at"])
-    elapsed = helpers.hours_since(datetime.now(timezone.utc), phase_start)
+    now = datetime.now(timezone.utc)
+    elapsed = helpers.hours_since(now, phase_start)
 
     lines = [
         f"⚔️ {campaign_name} — Round {round_num}, {phase_label}' turn",
-        f"Phase started: {int(elapsed)}h ago",
+        f"Phase started: {_format_elapsed(elapsed)} ago",
     ]
 
+    # Enemy roster
+    enemies = combat.get("enemies", [])
+    if enemies:
+        lines.append(f"Enemies: {', '.join(enemies)}")
+
+    lines.append("")
+
     if phase == "players":
-        acted = set(combat.get("players_acted", []))
+        acted_dict = combat.get("players_acted", {})
+        # Migrate old list format
+        if isinstance(acted_dict, list):
+            acted_dict = {uid: combat.get("phase_started_at", "") for uid in acted_dict}
+
+        acted_ids = set(acted_dict.keys())
         players = [
             p for p in state.get("players", {}).values()
             if p.get("pbp_topic_id") == pid
         ]
-        acted_names = [p["first_name"] for p in players if p["user_id"] in acted]
-        waiting_names = [p["first_name"] for p in players if p["user_id"] not in acted]
 
-        if acted_names:
-            lines.append(f"✅ Acted: {', '.join(sorted(acted_names))}")
-        if waiting_names:
-            lines.append(f"⏳ Waiting: {', '.join(sorted(waiting_names))}")
-        else:
-            lines.append("Everyone has acted!")
+        acted_list = []
+        waiting_list = []
+        for p in sorted(players, key=lambda x: x["first_name"]):
+            uid = p["user_id"]
+            if helpers.is_away(state, pid, uid, now):
+                continue  # Skip away players entirely
+            if uid in acted_ids:
+                ts = acted_dict[uid]
+                if ts:
+                    acted_time = datetime.fromisoformat(ts)
+                    ago = helpers.hours_since(now, acted_time)
+                    acted_list.append(f"  ✅ {p['first_name']} ({_format_elapsed(ago)} ago)")
+                else:
+                    acted_list.append(f"  ✅ {p['first_name']}")
+            else:
+                # How long have they been holding things up?
+                wait_h = helpers.hours_since(now, phase_start)
+                wait_str = f" — waiting {_format_elapsed(wait_h)}" if wait_h >= 1 else ""
+                waiting_list.append(f"  ⏳ {p['first_name']}{wait_str}")
+
+        if waiting_list:
+            lines.append("Waiting on:")
+            lines.extend(waiting_list)
+        if acted_list:
+            lines.append("Acted:")
+            lines.extend(acted_list)
+        if not waiting_list and acted_list:
+            lines.append("✅ Everyone has acted! GM can use /next")
     else:
         lines.append("Waiting for GM to resolve enemy turns.")
+        lines.append("Use /next when done.")
 
+    return "\n".join(lines)
+
+
+def _format_elapsed(hours: float) -> str:
+    """Format elapsed hours as a readable string."""
+    if hours < 1:
+        return f"{int(hours * 60)}m"
+    elif hours < 24:
+        return f"{int(hours)}h"
+    else:
+        days = int(hours / 24)
+        remaining = int(hours % 24)
+        return f"{days}d {remaining}h"
+
+
+def _build_combatlog(pid: str, campaign_name: str, state: dict) -> str:
+    """Build the combat log for /combatlog command."""
+    combat = state.get("combat", {}).get(pid)
+    if not combat or not combat.get("active"):
+        return f"No active combat in {campaign_name}."
+
+    log = combat.get("combat_log", [])
+    if not log:
+        return f"No combat log entries yet.\nGMs: /clog <event> to add entries."
+
+    lines = [f"📝 Combat Log — {campaign_name} (Round {combat['round']}):", ""]
+    for entry in log:
+        lines.append(f"  R{entry['round']}: {entry['text']}")
     return "\n".join(lines)
 
 
@@ -1483,12 +1549,14 @@ _TIPS = [
     "Week 1: friendly nudge. Week 2: concerned check-in. Week 3: urgent. Week 4: removed from roster. "
     "Just post to reset the timer!",
 
-    "💡 <b>Combat tracking</b> — When the GM types <code>/round 1 players</code>, "
-    "the bot tracks who has acted. Post anything during the players' phase and you're marked as done. "
-    "If players go quiet, the bot pings those who haven't acted yet.",
+    "💡 <b>Combat tracking</b> — Type <code>/combat Ogre, 2 Skeletons</code> to start. "
+    "The bot tracks who posts their actions. When everyone's done, the GM gets auto-pinged! "
+    "Use /whosturn to see who's still needed.",
 
-    "💡 <b>GM commands</b> — GMs can use <code>/round N players</code> or "
-    "<code>/round N enemies</code> to advance combat, and <code>/endcombat</code> to wrap it up.",
+    "💡 <b>/next</b> — Advance combat phases: players → enemies → next round. "
+    "No more typing <code>/round 2 players</code> — just /next! "
+    "Use <code>/clog The ogre crits Cardigan!</code> to log key moments, "
+    "and /endcombat for a summary.",
 
     "💡 <b>Roster reports</b> — Every few days the bot posts a roster showing everyone's "
     "post count, sessions, weekly activity, average gap, and last post time. "
@@ -1706,26 +1774,226 @@ def _handle_round_command(text: str, pid: str, campaign_name: str,
 
 
 def _handle_combat_message(
-    text: str, user_id: str, gm_ids: set, pid: str, campaign_name: str,
+    text: str, raw_text: str, user_id: str, user_name: str, gm_ids: set, pid: str, campaign_name: str,
     now_iso: str, group_id: int, thread_id: int, state: dict,
 ) -> None:
-    """Process GM combat commands (/round, /endcombat) and track player actions."""
+    """Process GM combat commands and track player actions.
+
+    Combat state structure:
+        active: bool
+        campaign_name: str
+        round: int
+        current_phase: "players" | "enemies"
+        phase_started_at: ISO timestamp
+        players_acted: {user_id: timestamp}  (dict now, not list)
+        last_ping_at: ISO timestamp or None
+        enemies: [str]              — named enemy roster
+        combat_log: [{round, text, at}]  — key moment log
+        started_at: ISO timestamp
+        all_players_notified: bool  — have we pinged GM that everyone's done?
+    """
     if user_id in gm_ids:
         if text.startswith("/round"):
             _handle_round_command(text, pid, campaign_name, now_iso, group_id, thread_id, state)
-        elif text.startswith("/endcombat") or text == "/combat end":
-            if pid in state["combat"]:
-                del state["combat"][pid]
-                print(f"Combat ended in {campaign_name}")
-                tg.send_message(group_id, thread_id, f"Combat ended in {campaign_name}.")
 
-    # Track player action during combat
+        elif text.startswith("/next"):
+            _handle_next_command(pid, campaign_name, now_iso, group_id, thread_id, state)
+
+        elif text.startswith("/endcombat") or text == "/combat end":
+            _handle_endcombat(pid, campaign_name, group_id, thread_id, state)
+
+        elif text.startswith("/combat") and not text.startswith("/combatlog"):
+            combat_args = raw_text[7:].strip()
+            _handle_combat_start(combat_args, pid, campaign_name, now_iso, group_id, thread_id, state)
+
+        elif text.startswith("/enemies"):
+            enemy_args = raw_text[8:].strip()
+            _handle_enemies_command(enemy_args, pid, campaign_name, now_iso, group_id, thread_id, state)
+
+        elif text.startswith("/clog"):
+            clog_args = raw_text[5:].strip()
+            if clog_args:
+                combat = state["combat"].get(pid)
+                if combat and combat.get("active"):
+                    log = combat.setdefault("combat_log", [])
+                    log.append({"round": combat["round"], "text": clog_args, "at": now_iso})
+                    tg.send_message(group_id, thread_id, f"📝 R{combat['round']}: {clog_args}")
+                else:
+                    tg.send_message(group_id, thread_id, "No active combat. Start with /combat")
+            else:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /clog <event>\ne.g. /clog The ogre crits Cardigan for 28 damage!")
+
+    # Track player action during combat (with timestamp)
     combat = state["combat"].get(pid)
-    if (combat and combat["active"]
+    if (combat and combat.get("active")
             and combat["current_phase"] == "players"
-            and user_id not in gm_ids
-            and user_id not in combat.get("players_acted", [])):
-        combat["players_acted"].append(user_id)
+            and user_id not in gm_ids):
+        acted = combat.get("players_acted", {})
+        # Migrate old list format to dict
+        if isinstance(acted, list):
+            acted = {uid: now_iso for uid in acted}
+            combat["players_acted"] = acted
+        if user_id not in acted:
+            acted[user_id] = now_iso
+            # Check if all players have now acted
+            if not combat.get("all_players_notified"):
+                _check_all_acted(pid, campaign_name, group_id, thread_id, state, gm_ids)
+
+
+def _check_all_acted(pid: str, campaign_name: str, group_id: int, thread_id: int,
+                     state: dict, gm_ids: set) -> None:
+    """If all non-away players have acted, notify the GM."""
+    combat = state["combat"].get(pid)
+    if not combat or not combat.get("active"):
+        return
+    acted = set(combat.get("players_acted", {}).keys())
+    now = datetime.now(timezone.utc)
+    players = [
+        p for p in state.get("players", {}).values()
+        if p.get("pbp_topic_id") == pid
+    ]
+    waiting = [
+        p for p in players
+        if p["user_id"] not in acted
+        and not helpers.is_away(state, pid, p["user_id"], now)
+    ]
+    if not waiting and len(acted) > 0:
+        combat["all_players_notified"] = True
+        # Mention all GMs
+        gm_mentions = []
+        for p in state.get("players", {}).values():
+            if p.get("user_id") in gm_ids and p.get("pbp_topic_id") == pid:
+                gm_mentions.append(helpers.player_mention(p))
+        gm_str = " ".join(gm_mentions) if gm_mentions else "GM"
+        tg.send_message(group_id, thread_id,
+                        f"✅ All players have posted their actions for Round {combat['round']}!\n"
+                        f"{gm_str} — ready to resolve.")
+
+
+def _handle_combat_start(args: str, pid: str, campaign_name: str,
+                          now_iso: str, group_id: int, thread_id: int, state: dict) -> None:
+    """Start combat with optional enemy list: /combat Ogre, 2 Skeletons"""
+    enemies = [e.strip() for e in args.split(",") if e.strip()] if args else []
+
+    state["combat"][pid] = {
+        "active": True,
+        "campaign_name": campaign_name,
+        "round": 1,
+        "current_phase": "players",
+        "phase_started_at": now_iso,
+        "players_acted": {},
+        "last_ping_at": None,
+        "enemies": enemies,
+        "combat_log": [],
+        "started_at": now_iso,
+        "all_players_notified": False,
+    }
+
+    lines = [f"⚔️ Combat started in {campaign_name}!",
+             f"Round 1 — Players' turn."]
+    if enemies:
+        lines.append("")
+        lines.append("Enemies:")
+        for e in enemies:
+            lines.append(f"  • {e}")
+    lines.append("")
+    lines.append("Post your actions. Use /whosturn to see who's still needed.")
+
+    print(f"Combat started in {campaign_name}: {enemies}")
+    tg.send_message(group_id, thread_id, "\n".join(lines))
+
+
+def _handle_next_command(pid: str, campaign_name: str, now_iso: str,
+                         group_id: int, thread_id: int, state: dict) -> None:
+    """Advance to next phase: players→enemies→next round players."""
+    combat = state["combat"].get(pid)
+    if not combat or not combat.get("active"):
+        tg.send_message(group_id, thread_id, "No active combat. Start with /combat")
+        return
+
+    old_round = combat["round"]
+    old_phase = combat["current_phase"]
+
+    if old_phase == "players":
+        # Advance to enemies
+        combat["current_phase"] = "enemies"
+        combat["phase_started_at"] = now_iso
+        combat["last_ping_at"] = None
+        tg.send_message(group_id, thread_id,
+                        f"Round {old_round} — Enemies' turn.")
+    else:
+        # Advance to next round, players
+        new_round = old_round + 1
+        combat["round"] = new_round
+        combat["current_phase"] = "players"
+        combat["phase_started_at"] = now_iso
+        combat["players_acted"] = {}
+        combat["last_ping_at"] = None
+        combat["all_players_notified"] = False
+        tg.send_message(group_id, thread_id,
+                        f"Round {new_round} — Players' turn.\n"
+                        f"Post your actions!")
+
+    print(f"Combat in {campaign_name}: Round {combat['round']}, {combat['current_phase']}")
+
+
+def _handle_endcombat(pid: str, campaign_name: str,
+                      group_id: int, thread_id: int, state: dict) -> None:
+    """End combat with a summary."""
+    combat = state["combat"].get(pid)
+    if not combat:
+        tg.send_message(group_id, thread_id, f"No active combat in {campaign_name}.")
+        return
+
+    # Build summary
+    rounds = combat.get("round", 1)
+    started = combat.get("started_at", "")
+    log = combat.get("combat_log", [])
+
+    lines = [f"⚔️ Combat ended in {campaign_name}.",
+             f"Lasted {rounds} round{'s' if rounds != 1 else ''}."]
+
+    if log:
+        lines.append("")
+        lines.append("Combat log:")
+        for entry in log[-8:]:  # Last 8 entries
+            lines.append(f"  R{entry['round']}: {entry['text']}")
+        if len(log) > 8:
+            lines.append(f"  ... and {len(log) - 8} earlier entries")
+
+    del state["combat"][pid]
+    print(f"Combat ended in {campaign_name}")
+    tg.send_message(group_id, thread_id, "\n".join(lines))
+
+
+def _handle_enemies_command(args: str, pid: str, campaign_name: str,
+                             now_iso: str, group_id: int, thread_id: int, state: dict) -> None:
+    """/enemies — view or set enemy roster."""
+    combat = state["combat"].get(pid)
+    if not combat or not combat.get("active"):
+        tg.send_message(group_id, thread_id, "No active combat. Start with /combat")
+        return
+
+    if not args:
+        # View enemies
+        enemies = combat.get("enemies", [])
+        if enemies:
+            lines = [f"⚔️ Enemies in {campaign_name}:"]
+            for e in enemies:
+                lines.append(f"  • {e}")
+            tg.send_message(group_id, thread_id, "\n".join(lines))
+        else:
+            tg.send_message(group_id, thread_id,
+                            "No enemies listed. Use /enemies Ogre, Skeleton, etc.")
+    else:
+        # Set enemies
+        enemies = [e.strip() for e in args.split(",") if e.strip()]
+        combat["enemies"] = enemies
+        lines = [f"⚔️ Updated enemies:"]
+        for e in enemies:
+            lines.append(f"  • {e}")
+        tg.send_message(group_id, thread_id, "\n".join(lines))
 
 
 def _parse_message(msg: dict, group_id: int, maps) -> dict | None:
@@ -2089,6 +2357,11 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         if text == "/whosturn":
             turn_report = _build_whosturn(pid, campaign_name, state)
             tg.send_message(group_id, thread_id, turn_report)
+
+        # ---- /combatlog command (everyone) ----
+        if text == "/combatlog":
+            log_report = _build_combatlog(pid, campaign_name, state)
+            tg.send_message(group_id, thread_id, log_report)
 
         # ---- /party command ----
         if text == "/party":
@@ -2913,7 +3186,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
         # ---- Combat commands and tracking ----
         _handle_combat_message(
-            text, user_id, gm_ids, pid, campaign_name,
+            text, parsed["raw_text"], user_id, user_name, gm_ids, pid, campaign_name,
             now_iso, group_id, thread_id, state,
         )
 
@@ -3390,7 +3663,8 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
                 continue
 
         # Find all known players in this campaign who haven't acted
-        acted = set(combat.get("players_acted", []))
+        acted_raw = combat.get("players_acted", {})
+        acted = set(acted_raw.keys()) if isinstance(acted_raw, dict) else set(acted_raw)
         missing = [
             helpers.player_mention(p)
             for p in all_campaigns.get(pid, [])
