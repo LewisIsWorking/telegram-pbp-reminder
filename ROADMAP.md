@@ -234,6 +234,21 @@ Track buffs, debuffs, and persistent effects during combat and RP.
 
 ---
 
+## v2.9.0 — HP Tracker & Progress Clocks
+
+### ✅ HP Tracker
+`/hp set`, `/hp d`, `/hp h`, `/hp remove`, `/hp clear`, `/hp` view.
+Visual HP bars with colour-coded status icons. Combat enemy management.
+
+### ✅ Progress Clocks
+`/clock`, `/tick`, `/untick`, `/delclock`, `/clocks`.
+Blades-in-the-Dark style progress clocks for investigations, rituals, countdowns.
+
+### ✅ Status integration
+HP tracker, conditions, and clocks now shown in `/status` and `/summary`.
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)

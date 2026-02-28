@@ -265,6 +265,8 @@ The bot responds to these commands in any monitored PBP topic:
 - `/lootlist` - View party loot.
 - `/npcs` - View tracked NPCs.
 - `/conditions` - View active conditions/buffs/debuffs.
+- `/hp` - View enemy HP tracker with visual bars.
+- `/clocks` - View progress clocks.
 - `/dc <level> [difficulty]` - PF2e DC lookup (e.g. `/dc 5 hard`).
 
 ### GM commands
@@ -291,6 +293,15 @@ The bot responds to these commands in any monitored PBP topic:
 - `/condition <target> — <effect> [| duration]` - Track a condition.
 - `/endcondition <N>` - Remove a condition.
 - `/clearconditions` - Clear all conditions.
+- `/hp set <n> <cur>/<max>` - Track enemy HP.
+- `/hp d <n> <amount>` - Deal damage.
+- `/hp h <n> <amount>` - Heal.
+- `/hp remove <n>` - Remove HP entry.
+- `/hp clear` - Clear all HP entries.
+- `/clock <n> <segments>` - Create a progress clock.
+- `/tick <n> [N]` - Advance a clock.
+- `/untick <n> [N]` - Reverse a clock.
+- `/delclock <n>` - Delete a clock.
 - `/gm` - GM dashboard: all campaigns at a glance.
 
 ## Versioning

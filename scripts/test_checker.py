@@ -3866,6 +3866,583 @@ def test_condition_non_gm():
 
 
 # ------------------------------------------------------------------ #
+#  HP Tracker tests
+# ------------------------------------------------------------------ #
+def test_hp_set():
+    """/hp set creates an HP entry."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/hp set Ogre 45/45", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    hp = state.get("hp_tracker", {}).get("100", {})
+    assert "Ogre" in hp
+    assert hp["Ogre"]["current"] == 45
+    assert hp["Ogre"]["max"] == 45
+    assert "█" in _sent_messages[-1]["text"]
+
+
+def test_hp_damage():
+    """/hp d deals damage."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {"Ogre": {"current": 45, "max": 45}}}
+
+    updates = [_make_msg(1, 100, "/hp d Ogre 12", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["hp_tracker"]["100"]["Ogre"]["current"] == 33
+    assert "12 damage" in _sent_messages[-1]["text"]
+
+
+def test_hp_heal():
+    """/hp h heals."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {"Ogre": {"current": 20, "max": 45}}}
+
+    updates = [_make_msg(1, 100, "/hp h Ogre 10", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["hp_tracker"]["100"]["Ogre"]["current"] == 30
+    assert "healed" in _sent_messages[-1]["text"]
+
+
+def test_hp_kill():
+    """/hp d that kills shows DOWN."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {"Ogre": {"current": 5, "max": 45}}}
+
+    updates = [_make_msg(1, 100, "/hp d Ogre 20", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["hp_tracker"]["100"]["Ogre"]["current"] == 0
+    assert "DOWN" in _sent_messages[-1]["text"]
+
+
+def test_hp_remove():
+    """/hp remove removes an entry."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {"Ogre": {"current": 45, "max": 45}}}
+
+    updates = [_make_msg(1, 100, "/hp remove Ogre", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert "Ogre" not in state["hp_tracker"]["100"]
+
+
+def test_hp_clear():
+    """/hp clear removes all entries."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {
+        "Ogre": {"current": 45, "max": 45},
+        "Goblin": {"current": 10, "max": 10},
+    }}
+
+    updates = [_make_msg(1, 100, "/hp clear", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert len(state["hp_tracker"]["100"]) == 0
+
+
+def test_hp_view():
+    """/hp shows HP tracker."""
+    state = {"hp_tracker": {"100": {
+        "Ogre": {"current": 30, "max": 45},
+        "Goblin": {"current": 0, "max": 10},
+    }}}
+    result = checker._build_hp_tracker("100", "TestCampaign", state)
+    assert "Ogre" in result
+    assert "Goblin" in result
+    assert "█" in result
+    assert "💀" in result  # Goblin at 0 HP
+
+
+def test_hp_non_gm_view():
+    """/hp from non-GM shows tracker (read-only)."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {"Ogre": {"current": 45, "max": 45}}}
+
+    updates = [_make_msg(1, 100, "/hp", user_id=42, first_name="Player")]
+    checker.process_updates(updates, config, state)
+
+    hp_msgs = [m for m in _sent_messages if "Ogre" in m.get("text", "")]
+    assert len(hp_msgs) >= 1
+
+
+def test_hp_no_heal_over_max():
+    """/hp h doesn't overheal past max."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["hp_tracker"] = {"100": {"Ogre": {"current": 40, "max": 45}}}
+
+    updates = [_make_msg(1, 100, "/hp h Ogre 100", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["hp_tracker"]["100"]["Ogre"]["current"] == 45
+
+
+# ------------------------------------------------------------------ #
+#  Progress Clock tests
+# ------------------------------------------------------------------ #
+def test_clock_create():
+    """/clock creates a progress clock."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/clock Investigation 6", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    clocks = state.get("clocks", {}).get("100", {})
+    assert "Investigation" in clocks
+    assert clocks["Investigation"]["segments"] == 6
+    assert clocks["Investigation"]["filled"] == 0
+    assert "○" in _sent_messages[-1]["text"]
+
+
+def test_tick():
+    """/tick advances a clock."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["clocks"] = {"100": {"Investigation": {"filled": 2, "segments": 6}}}
+
+    updates = [_make_msg(1, 100, "/tick Investigation", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["clocks"]["100"]["Investigation"]["filled"] == 3
+
+
+def test_tick_amount():
+    """/tick with amount advances multiple segments."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["clocks"] = {"100": {"Investigation": {"filled": 1, "segments": 6}}}
+
+    updates = [_make_msg(1, 100, "/tick Investigation 3", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["clocks"]["100"]["Investigation"]["filled"] == 4
+
+
+def test_tick_complete():
+    """/tick that completes a clock shows COMPLETE."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["clocks"] = {"100": {"Investigation": {"filled": 5, "segments": 6}}}
+
+    updates = [_make_msg(1, 100, "/tick Investigation", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["clocks"]["100"]["Investigation"]["filled"] == 6
+    assert "COMPLETE" in _sent_messages[-1]["text"]
+
+
+def test_untick():
+    """/untick reverses a clock."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["clocks"] = {"100": {"Investigation": {"filled": 3, "segments": 6}}}
+
+    updates = [_make_msg(1, 100, "/untick Investigation", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["clocks"]["100"]["Investigation"]["filled"] == 2
+
+
+def test_delclock():
+    """/delclock removes a clock."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["clocks"] = {"100": {"Investigation": {"filled": 3, "segments": 6}}}
+
+    updates = [_make_msg(1, 100, "/delclock Investigation", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert "Investigation" not in state["clocks"]["100"]
+
+
+def test_clocks_list():
+    """/clocks shows all clocks."""
+    state = {"clocks": {"100": {
+        "Investigation": {"filled": 3, "segments": 6},
+        "Ritual": {"filled": 4, "segments": 4},
+    }}}
+    result = checker._build_clocks("100", "TestCampaign", state)
+    assert "Investigation" in result
+    assert "Ritual" in result
+    assert "◉" in result
+    assert "✅" in result  # Ritual is complete
+
+
+def test_clock_non_gm():
+    """/clock from non-GM is ignored."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/clock Cheat 6", user_id=42, first_name="Player")]
+    checker.process_updates(updates, config, state)
+
+    assert len(state.get("clocks", {}).get("100", {})) == 0
+
+
+# ------------------------------------------------------------------ #
+#  HP helper tests
+# ------------------------------------------------------------------ #
+def test_hp_bar():
+    """HP bar renders correctly."""
+    import helpers
+    result = helpers.hp_bar(30, 45, 10)
+    assert "30/45" in result
+    assert "█" in result
+    assert "░" in result
+
+
+def test_hp_bar_full():
+    """Full HP bar is all filled."""
+    import helpers
+    result = helpers.hp_bar(100, 100, 10)
+    assert "100/100" in result
+    assert "░" not in result
+
+
+def test_hp_bar_empty():
+    """Empty HP bar is all empty."""
+    import helpers
+    result = helpers.hp_bar(0, 100, 10)
+    assert "0/100" in result
+    assert "█" not in result
+
+
+def test_clock_display():
+    """Clock display renders correctly."""
+    import helpers
+    result = helpers.clock_display(3, 6)
+    assert "◉◉◉○○○" in result
+    assert "3/6" in result
+
+
+def test_clock_display_full():
+    """Full clock is all filled."""
+    import helpers
+    result = helpers.clock_display(6, 6)
+    assert "◉◉◉◉◉◉" in result
+    assert "○" not in result
+
+
+# ------------------------------------------------------------------ #
+#  Vote tests
+# ------------------------------------------------------------------ #
+def test_vote_start():
+    """/vote creates a vote with options."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/vote Where next? | North | South | Stay", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    vote = state.get("votes", {}).get("100")
+    assert vote is not None
+    assert vote["question"] == "Where next?"
+    assert vote["options"] == ["North", "South", "Stay"]
+    assert not vote["closed"]
+    assert "🗳️" in _sent_messages[-1]["text"]
+
+
+def test_vote_too_few_options():
+    """/vote with only 1 option rejected."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/vote Bad vote | Only one", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert "100" not in state.get("votes", {})
+
+
+def test_pick_vote():
+    """/pick casts a vote."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["votes"] = {"100": {
+        "question": "Left or right?",
+        "options": ["Left", "Right"],
+        "results": {"1": [], "2": []},
+        "closed": False,
+        "created_at": "2026-02-28T10:00:00+00:00",
+    }}
+
+    updates = [_make_msg(1, 100, "/pick 2", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    assert "Alice" in state["votes"]["100"]["results"]["2"]
+    assert "✅" in _sent_messages[-1]["text"]
+
+
+def test_pick_changes_vote():
+    """/pick changes previous vote."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["votes"] = {"100": {
+        "question": "A or B?",
+        "options": ["A", "B"],
+        "results": {"1": ["Alice"], "2": []},
+        "closed": False,
+        "created_at": "2026-02-28T10:00:00+00:00",
+    }}
+
+    updates = [_make_msg(1, 100, "/pick 2", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    assert "Alice" not in state["votes"]["100"]["results"]["1"]
+    assert "Alice" in state["votes"]["100"]["results"]["2"]
+
+
+def test_endvote():
+    """/endvote closes and shows results."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["votes"] = {"100": {
+        "question": "A or B?",
+        "options": ["A", "B"],
+        "results": {"1": ["Alice", "Bob"], "2": ["Charlie"]},
+        "closed": False,
+        "created_at": "2026-02-28T10:00:00+00:00",
+    }}
+
+    updates = [_make_msg(1, 100, "/endvote", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert state["votes"]["100"]["closed"]
+    last = _sent_messages[-1]["text"]
+    assert "Winner" in last or "Tied" in last
+    assert "A" in last
+
+
+def test_showvote():
+    """/showvote displays current vote."""
+    state = {"votes": {"100": {
+        "question": "Go where?",
+        "options": ["Left", "Right"],
+        "results": {"1": ["Alice"], "2": []},
+        "closed": False,
+    }}}
+    result = checker._build_vote("100", "TestCampaign", state)
+    assert "Go where?" in result
+    assert "Left" in result
+    assert "Alice" in result
+
+
+def test_vote_non_gm():
+    """/vote from non-GM is ignored."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/vote Cheat? | Yes | No", user_id=42, first_name="Player")]
+    checker.process_updates(updates, config, state)
+
+    assert "100" not in state.get("votes", {})
+
+
+# ------------------------------------------------------------------ #
+#  Timer tests
+# ------------------------------------------------------------------ #
+def test_timer_set():
+    """/timer sets a deadline."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/timer 24h Post your actions", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    timer = state.get("timers", {}).get("100")
+    assert timer is not None
+    assert timer["reason"] == "Post your actions"
+    assert "⏳" in _sent_messages[-1]["text"]
+
+
+def test_timer_bad_duration():
+    """/timer with bad duration gives error."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/timer blah", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert "100" not in state.get("timers", {})
+    assert "parse" in _sent_messages[-1]["text"].lower() or "Nh" in _sent_messages[-1]["text"]
+
+
+def test_showtimer():
+    """/showtimer displays timer."""
+    from datetime import timezone
+    state = {"timers": {"100": {
+        "deadline": (datetime.now(timezone.utc) + timedelta(hours=5)).isoformat(),
+        "reason": "Act now!",
+        "set_at": datetime.now(timezone.utc).isoformat(),
+    }}}
+    result = checker._build_timer("100", "TestCampaign", state)
+    assert "remaining" in result
+    assert "Act now!" in result
+
+
+def test_canceltimer():
+    """/canceltimer removes the timer."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["timers"] = {"100": {
+        "deadline": (datetime.now(timezone.utc) + timedelta(hours=5)).isoformat(),
+        "reason": "test",
+        "set_at": datetime.now(timezone.utc).isoformat(),
+    }}
+
+    updates = [_make_msg(1, 100, "/canceltimer", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert "100" not in state.get("timers", {})
+
+
+def test_timer_expiry_notification():
+    """check_expired_timers posts notification."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["timers"] = {"100": {
+        "deadline": (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat(),
+        "reason": "Time's up!",
+        "set_at": datetime.now(timezone.utc).isoformat(),
+    }}
+
+    checker.check_expired_timers(config, state)
+
+    expired_msgs = [m for m in _sent_messages if "expired" in m.get("text", "").lower()]
+    assert len(expired_msgs) >= 1
+    assert state["timers"]["100"].get("notified")
+
+
+def test_timer_non_gm():
+    """/timer from non-GM is ignored."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/timer 24h hack", user_id=42, first_name="Player")]
+    checker.process_updates(updates, config, state)
+
+    assert "100" not in state.get("timers", {})
+
+
+# ------------------------------------------------------------------ #
+#  Summary tests
+# ------------------------------------------------------------------ #
+def test_summary_basic():
+    """/summary shows campaign state."""
+    state = {
+        "quests": {"100": [{"text": "Find the key", "status": "active", "created_at": ""}]},
+        "npcs": {"100": [{"name": "Gorund", "desc": "Smith", "added_at": ""}]},
+        "loot": {"100": [{"text": "Sword", "added_at": ""}]},
+        "pins": {"100": [{"text": "Clue", "created_at": "", "author": ""}]},
+        "conditions": {"100": [{"target": "Bob", "effect": "Stunned", "duration": "", "added_at": ""}]},
+    }
+    config = _make_config()
+    result = checker._build_summary("100", "TestCampaign", state, config)
+    assert "Find the key" in result
+    assert "1 NPC" in result
+    assert "1 loot" in result
+    assert "1 pin" in result
+    assert "Stunned" in result
+
+
+def test_summary_empty():
+    """/summary with nothing tracked."""
+    state = {}
+    config = _make_config()
+    result = checker._build_summary("100", "TestCampaign", state, config)
+    assert "Nothing special" in result
+
+
+def test_summary_command():
+    """/summary command sends result."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/summary", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    summary_msgs = [m for m in _sent_messages if "Summary" in m.get("text", "")]
+    assert len(summary_msgs) >= 1
+
+
+# ------------------------------------------------------------------ #
+#  Timer duration parsing tests
+# ------------------------------------------------------------------ #
+def test_parse_timer_hours():
+    """Parse '24h' duration."""
+    now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
+    deadline, reason = helpers.parse_timer_duration("24h", now)
+    assert deadline == datetime(2026, 3, 1, 12, 0, 0, tzinfo=timezone.utc)
+    assert reason == ""
+
+
+def test_parse_timer_minutes():
+    """Parse '30m' duration."""
+    now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
+    deadline, reason = helpers.parse_timer_duration("30m", now)
+    assert deadline == datetime(2026, 2, 28, 12, 30, 0, tzinfo=timezone.utc)
+
+
+def test_parse_timer_days():
+    """Parse '2d' duration."""
+    now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
+    deadline, reason = helpers.parse_timer_duration("2d", now)
+    assert deadline == datetime(2026, 3, 2, 12, 0, 0, tzinfo=timezone.utc)
+
+
+def test_parse_timer_with_reason():
+    """Parse '24h Post your actions'."""
+    now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
+    deadline, reason = helpers.parse_timer_duration("24h Post your actions", now)
+    assert deadline is not None
+    assert reason == "Post your actions"
+
+
+def test_parse_timer_invalid():
+    """Invalid duration returns None."""
+    now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
+    deadline, reason = helpers.parse_timer_duration("blah", now)
+    assert deadline is None
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():

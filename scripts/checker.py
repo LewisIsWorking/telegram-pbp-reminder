@@ -154,6 +154,19 @@ _HELP_TEXT = (
     "/condition <target> — <effect> [| duration] - Track a condition\n"
     "/endcondition <N> - Remove a condition\n"
     "/clearconditions - Clear all conditions\n"
+    "/hp set <n> <cur>/<max> - Track enemy HP\n"
+    "/hp d <n> <amount> - Deal damage\n"
+    "/hp h <n> <amount> - Heal\n"
+    "/hp remove <n> - Remove an entry\n"
+    "/hp clear - Clear all HP entries\n"
+    "/clock <n> <segments> - Create a progress clock\n"
+    "/tick <n> [N] - Advance a clock\n"
+    "/untick <n> [N] - Reverse a clock\n"
+    "/delclock <n> - Delete a clock\n"
+    "/vote <q> | <opt1> | <opt2> [| ...] - Start a vote\n"
+    "/endvote - Close voting and show results\n"
+    "/timer <duration> [reason] - Set a response deadline\n"
+    "/canceltimer - Cancel the active timer\n"
     "/gm - GM dashboard: all campaigns at a glance\n"
     "\n"
     "Everyone:\n"
@@ -172,7 +185,13 @@ _HELP_TEXT = (
     "/lootlist - View party loot\n"
     "/npcs - View tracked NPCs\n"
     "/conditions - View active conditions/buffs\n"
+    "/hp - View enemy HP tracker\n"
+    "/clocks - View progress clocks\n"
     "/dc <level> [difficulty] - PF2e DC lookup\n"
+    "/pick <N> - Vote in an active poll\n"
+    "/showvote - Show current vote status\n"
+    "/showtimer - Show active timer\n"
+    "/summary - Full campaign state at a glance\n"
     "/activity - Posting patterns: busiest hours and days\n"
     "/profile @player - Cross-campaign stats for a player\n"
     "/away [duration] [reason] - Declare an absence (skip warnings)\n"
@@ -266,6 +285,23 @@ def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str
                      if q.get("status") == "active"]
     if active_quests:
         lines.append(f"📋 {len(active_quests)} active quest{'s' if len(active_quests) != 1 else ''}")
+
+    # HP tracker count
+    hp_entries = state.get("hp_tracker", {}).get(pid, {})
+    if hp_entries:
+        alive = sum(1 for h in hp_entries.values() if h["current"] > 0)
+        lines.append(f"❤️ {alive}/{len(hp_entries)} enemies standing (/hp)")
+
+    # Conditions count
+    conds = state.get("conditions", {}).get(pid, [])
+    if conds:
+        lines.append(f"⚡ {len(conds)} active condition{'s' if len(conds) != 1 else ''}")
+
+    # Active clocks
+    clocks = state.get("clocks", {}).get(pid, {})
+    if clocks:
+        incomplete = sum(1 for c in clocks.values() if c["filled"] < c["segments"])
+        lines.append(f"⏱️ {incomplete}/{len(clocks)} clock{'s' if len(clocks) != 1 else ''} ticking")
 
     return "\n".join(lines)
 
@@ -828,6 +864,221 @@ def _build_conditions(pid: str, campaign_name: str, state: dict, config: dict) -
     return "\n".join(lines)
 
 
+def _build_vote(pid: str, campaign_name: str, state: dict) -> str:
+    """Build the current vote display for /vote (no args) or /showvote."""
+    vote = state.get("votes", {}).get(pid)
+    if not vote or vote.get("closed"):
+        return "No active vote. GMs can start one with /vote <question> | <option1> | <option2> [| ...]"
+
+    lines = [f"🗳️ Vote — {campaign_name}:", ""]
+    lines.append(f"❓ {vote['question']}")
+    lines.append("")
+
+    results = vote.get("results", {})
+    total = sum(len(v) for v in results.values())
+
+    for i, option in enumerate(vote["options"], 1):
+        voters = results.get(str(i), [])
+        count = len(voters)
+        bar = "█" * count + "░" * max(0, 5 - count) if total > 0 else "░" * 5
+        voter_names = ", ".join(voters) if voters else ""
+        voter_str = f"  ({voter_names})" if voter_names else ""
+        lines.append(f"  {i}. {option}  [{bar}] {count}{voter_str}")
+
+    lines.append("")
+    lines.append(f"{total} vote{'s' if total != 1 else ''} cast. Use /pick <N> to vote.")
+    return "\n".join(lines)
+
+
+def _build_timer(pid: str, campaign_name: str, state: dict) -> str:
+    """Build the timer display for /showtimer."""
+    timer = state.get("timers", {}).get(pid)
+    if not timer:
+        return "No active timer. GMs: /timer <duration> [reason]"
+
+    now = datetime.now(timezone.utc)
+    deadline = datetime.fromisoformat(timer["deadline"])
+    remaining = deadline - now
+
+    if remaining.total_seconds() <= 0:
+        return f"⏰ Timer EXPIRED for {campaign_name}!\n{timer.get('reason', '')}\nGMs: /canceltimer to clear"
+
+    # Format remaining time
+    hours = int(remaining.total_seconds() // 3600)
+    mins = int((remaining.total_seconds() % 3600) // 60)
+    if hours >= 24:
+        days = hours // 24
+        time_str = f"{days}d {hours % 24}h"
+    elif hours > 0:
+        time_str = f"{hours}h {mins}m"
+    else:
+        time_str = f"{mins}m"
+
+    reason = timer.get("reason", "")
+    reason_str = f"\n📝 {reason}" if reason else ""
+
+    return (
+        f"⏳ Timer — {campaign_name}\n"
+        f"⏰ {time_str} remaining (deadline: {deadline.strftime('%b %d %H:%M UTC')})"
+        f"{reason_str}\n"
+        f"GMs: /canceltimer to clear"
+    )
+
+
+def _build_summary(pid: str, campaign_name: str, state: dict, config: dict) -> str:
+    """Build a one-stop campaign state summary."""
+    lines = [f"📖 Summary — {campaign_name}", ""]
+
+    # Current scene
+    scene = state.get("current_scene", {}).get(pid)
+    if scene:
+        lines.append(f"🎬 Scene: {scene}")
+
+    # Combat state
+    combat = state.get("combat", {}).get(pid, {})
+    if combat.get("active"):
+        phase = combat.get("phase", "?")
+        round_num = combat.get("round", "?")
+        lines.append(f"⚔️ Combat: Round {round_num} — {phase}")
+
+    # Timer
+    timer = state.get("timers", {}).get(pid)
+    if timer:
+        now = datetime.now(timezone.utc)
+        deadline = datetime.fromisoformat(timer["deadline"])
+        remaining = deadline - now
+        if remaining.total_seconds() > 0:
+            hours = int(remaining.total_seconds() // 3600)
+            mins = int((remaining.total_seconds() % 3600) // 60)
+            time_str = f"{hours}h {mins}m" if hours > 0 else f"{mins}m"
+            reason = timer.get("reason", "")
+            lines.append(f"⏳ Timer: {time_str} left" + (f" — {reason}" if reason else ""))
+        else:
+            lines.append("⏰ Timer EXPIRED!")
+
+    # Active vote
+    vote = state.get("votes", {}).get(pid)
+    if vote and not vote.get("closed"):
+        total = sum(len(v) for v in vote.get("results", {}).values())
+        lines.append(f"🗳️ Vote: {vote['question']} ({total} votes)")
+
+    # Away players
+    away_list = []
+    for key, info in state.get("away", {}).items():
+        if key.startswith(f"{pid}:"):
+            if helpers.is_away(state, pid, key.split(":")[1]):
+                reason = info.get("reason", "")
+                away_list.append(reason if reason else "away")
+    if away_list:
+        lines.append(f"✈️ {len(away_list)} player{'s' if len(away_list) != 1 else ''} away")
+
+    if len(lines) == 2:
+        lines.append("Nothing special happening right now.")
+
+    lines.append("")
+
+    # Active quests
+    quests = [q for q in state.get("quests", {}).get(pid, []) if q.get("status") == "active"]
+    if quests:
+        lines.append(f"📋 Quests ({len(quests)} active):")
+        for i, q in enumerate(quests[:5], 1):
+            lines.append(f"  {i}. {q['text']}")
+        if len(quests) > 5:
+            lines.append(f"  ... and {len(quests) - 5} more (/quests)")
+        lines.append("")
+
+    # Active conditions
+    conds = state.get("conditions", {}).get(pid, [])
+    if conds:
+        lines.append(f"⚡ Conditions ({len(conds)}):")
+        for c in conds[:5]:
+            dur = f" ({c['duration']})" if c.get("duration") else ""
+            lines.append(f"  • {c['target']}: {c['effect']}{dur}")
+        if len(conds) > 5:
+            lines.append(f"  ... and {len(conds) - 5} more (/conditions)")
+        lines.append("")
+
+    # NPC count
+    npcs = state.get("npcs", {}).get(pid, [])
+    if npcs:
+        lines.append(f"🎭 {len(npcs)} NPC{'s' if len(npcs) != 1 else ''} tracked (/npcs)")
+
+    # Loot count
+    loot = state.get("loot", {}).get(pid, [])
+    if loot:
+        lines.append(f"💰 {len(loot)} loot item{'s' if len(loot) != 1 else ''} (/lootlist)")
+
+    # Pins count
+    pins = state.get("pins", {}).get(pid, [])
+    if pins:
+        lines.append(f"📌 {len(pins)} pin{'s' if len(pins) != 1 else ''} (/pins)")
+
+    # HP tracker
+    hp_entries = state.get("hp_tracker", {}).get(pid, {})
+    if hp_entries:
+        lines.append("")
+        lines.append(f"❤️ HP Tracker ({len(hp_entries)}):")
+        for name, hp in sorted(hp_entries.items()):
+            icon = helpers.hp_status_icon(hp["current"], hp["max"])
+            bar = helpers.hp_bar(hp["current"], hp["max"], 8)
+            lines.append(f"  {icon} {name}: {bar}")
+
+    # Progress clocks
+    clocks = state.get("clocks", {}).get(pid, {})
+    if clocks:
+        lines.append("")
+        lines.append(f"⏱️ Clocks ({len(clocks)}):")
+        for name, clock in sorted(clocks.items()):
+            display = helpers.clock_display(clock["filled"], clock["segments"])
+            lines.append(f"  {name}: {display}")
+
+    return "\n".join(lines)
+
+
+_MAX_HP_ENTRIES = 20
+_MAX_CLOCKS = 15
+
+
+def _build_hp_tracker(pid: str, campaign_name: str, state: dict) -> str:
+    """Build HP tracker display for /hp (no args)."""
+    hp_entries = state.get("hp_tracker", {}).get(pid, {})
+    if not hp_entries:
+        return (f"No HP tracked in {campaign_name}.\n"
+                "GMs: /hp set <name> <current>/<max>\n"
+                "      /hp d <name> <amount>   (damage)\n"
+                "      /hp h <name> <amount>   (heal)")
+
+    lines = [f"❤️ HP Tracker — {campaign_name}:", ""]
+    for name, hp in sorted(hp_entries.items()):
+        icon = helpers.hp_status_icon(hp["current"], hp["max"])
+        bar = helpers.hp_bar(hp["current"], hp["max"])
+        lines.append(f"  {icon} {name}: {bar}")
+    lines.append("")
+    lines.append(f"{len(hp_entries)}/{_MAX_HP_ENTRIES} entries.")
+    lines.append("GMs: /hp set, /hp d(amage), /hp h(eal), /hp remove, /hp clear")
+    return "\n".join(lines)
+
+
+def _build_clocks(pid: str, campaign_name: str, state: dict) -> str:
+    """Build progress clocks display for /clocks."""
+    clocks = state.get("clocks", {}).get(pid, {})
+    if not clocks:
+        return (f"No clocks in {campaign_name}.\n"
+                "GMs: /clock <name> <segments>  (create)\n"
+                "      /tick <name> [N]          (advance)\n"
+                "      /untick <name> [N]        (reverse)")
+
+    lines = [f"⏱️ Progress Clocks — {campaign_name}:", ""]
+    for name, clock in sorted(clocks.items()):
+        display = helpers.clock_display(clock["filled"], clock["segments"])
+        complete = " ✅" if clock["filled"] >= clock["segments"] else ""
+        lines.append(f"  {name}: {display}{complete}")
+    lines.append("")
+    lines.append(f"{len(clocks)}/{_MAX_CLOCKS} clocks.")
+    lines.append("GMs: /clock, /tick, /untick, /delclock")
+    return "\n".join(lines)
+
+
 def _build_gm_dashboard(config: dict, state: dict) -> str:
     """Build a compact GM overview of all campaigns."""
     now = datetime.now(timezone.utc)
@@ -1344,6 +1595,30 @@ _TIPS = [
     "<code>/condition Cardigan — Frightened 2 | until end of next turn</code>. "
     "View active conditions with /conditions, end them with /endcondition, "
     "or /clearconditions to wipe the slate.",
+
+    "💡 <b>/hp</b> — Track enemy HP in combat! "
+    "<code>/hp set Ogre 45/45</code> to start, "
+    "<code>/hp d Ogre 12</code> to deal damage, "
+    "<code>/hp h Ogre 5</code> to heal. "
+    "Visual HP bars show who's hurting. /hp clear when combat ends.",
+
+    "💡 <b>/clocks</b> — Progress clocks for investigations, rituals, countdowns. "
+    "<code>/clock Investigation 6</code> creates a 6-segment clock. "
+    "<code>/tick Investigation</code> fills a segment. "
+    "Great for tracking anything that builds over time. ◉◉◉○○○",
+
+    "💡 <b>/vote</b> — Stuck on a group decision? GMs can start a vote: "
+    "<code>/vote Where do we go? | North gate | Sewers | Rest first</code>. "
+    "Players use /pick N to cast their vote. /endvote closes it and shows the winner.",
+
+    "💡 <b>/timer</b> — Set a response deadline for the party. "
+    "<code>/timer 24h Post your combat actions</code>. "
+    "The bot will post a notification when time's up. "
+    "Check with /showtimer, cancel with /canceltimer.",
+
+    "💡 <b>/summary</b> — Everything at a glance: current scene, combat state, "
+    "active quests, conditions, NPCs, loot, and pins. "
+    "One command to see the full state of your campaign.",
 ]
 
 
@@ -2194,6 +2469,360 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             state.setdefault("conditions", {})[pid] = []
             tg.send_message(group_id, thread_id,
                             f"✅ Cleared {count} condition{'s' if count != 1 else ''} from {campaign_name}.")
+
+        # ---- /hp command (GM set/damage/heal/remove/clear, everyone view) ----
+        if text.startswith("/hp"):
+            hp_args = parsed["raw_text"][3:].strip()
+            hp_tracker = state.setdefault("hp_tracker", {}).setdefault(pid, {})
+
+            if not hp_args or hp_args == "show":
+                # View HP tracker
+                report = _build_hp_tracker(pid, campaign_name, state)
+                tg.send_message(group_id, thread_id, report)
+
+            elif user_id in gm_ids:
+                parts = hp_args.split(None, 1)
+                sub = parts[0].lower()
+                rest = parts[1] if len(parts) > 1 else ""
+
+                if sub == "set":
+                    # /hp set <name> <current>/<max>
+                    set_parts = rest.rsplit(None, 1)
+                    if len(set_parts) == 2 and "/" in set_parts[1]:
+                        name = set_parts[0].strip()
+                        try:
+                            cur, mx = set_parts[1].split("/", 1)
+                            cur, mx = int(cur), int(mx)
+                            if mx <= 0 or mx > 9999:
+                                tg.send_message(group_id, thread_id, "Max HP must be 1–9999.")
+                            elif len(hp_tracker) >= _MAX_HP_ENTRIES and name not in hp_tracker:
+                                tg.send_message(group_id, thread_id,
+                                                f"Max {_MAX_HP_ENTRIES} entries. Use /hp remove <name> first.")
+                            else:
+                                hp_tracker[name] = {"current": min(cur, mx), "max": mx}
+                                icon = helpers.hp_status_icon(min(cur, mx), mx)
+                                bar = helpers.hp_bar(min(cur, mx), mx)
+                                tg.send_message(group_id, thread_id,
+                                                f"{icon} {name}: {bar}")
+                        except ValueError:
+                            tg.send_message(group_id, thread_id,
+                                            "Usage: /hp set <name> <current>/<max>\ne.g. /hp set Ogre 45/45")
+                    else:
+                        tg.send_message(group_id, thread_id,
+                                        "Usage: /hp set <name> <current>/<max>\ne.g. /hp set Ogre 45/45")
+
+                elif sub in ("d", "damage"):
+                    # /hp d <name> <amount>
+                    dmg_parts = rest.rsplit(None, 1)
+                    if len(dmg_parts) == 2:
+                        name = dmg_parts[0].strip()
+                        try:
+                            amount = int(dmg_parts[1])
+                            if name in hp_tracker:
+                                hp = hp_tracker[name]
+                                hp["current"] = max(0, hp["current"] - amount)
+                                icon = helpers.hp_status_icon(hp["current"], hp["max"])
+                                bar = helpers.hp_bar(hp["current"], hp["max"])
+                                status = " 💀 DOWN!" if hp["current"] == 0 else ""
+                                tg.send_message(group_id, thread_id,
+                                                f"{icon} {name} takes {amount} damage!\n{bar}{status}")
+                            else:
+                                tg.send_message(group_id, thread_id,
+                                                f"No HP entry for '{name}'. Use /hp set {name} <hp>/<max> first.")
+                        except ValueError:
+                            tg.send_message(group_id, thread_id,
+                                            "Usage: /hp d <name> <amount>\ne.g. /hp d Ogre 12")
+                    else:
+                        tg.send_message(group_id, thread_id,
+                                        "Usage: /hp d <name> <amount>\ne.g. /hp d Ogre 12")
+
+                elif sub in ("h", "heal"):
+                    # /hp h <name> <amount>
+                    heal_parts = rest.rsplit(None, 1)
+                    if len(heal_parts) == 2:
+                        name = heal_parts[0].strip()
+                        try:
+                            amount = int(heal_parts[1])
+                            if name in hp_tracker:
+                                hp = hp_tracker[name]
+                                hp["current"] = min(hp["max"], hp["current"] + amount)
+                                icon = helpers.hp_status_icon(hp["current"], hp["max"])
+                                bar = helpers.hp_bar(hp["current"], hp["max"])
+                                tg.send_message(group_id, thread_id,
+                                                f"{icon} {name} healed {amount}!\n{bar}")
+                            else:
+                                tg.send_message(group_id, thread_id,
+                                                f"No HP entry for '{name}'. Use /hp set {name} <hp>/<max> first.")
+                        except ValueError:
+                            tg.send_message(group_id, thread_id,
+                                            "Usage: /hp h <name> <amount>\ne.g. /hp h Ogre 10")
+                    else:
+                        tg.send_message(group_id, thread_id,
+                                        "Usage: /hp h <name> <amount>\ne.g. /hp h Ogre 10")
+
+                elif sub == "remove":
+                    name = rest.strip()
+                    if name in hp_tracker:
+                        del hp_tracker[name]
+                        tg.send_message(group_id, thread_id, f"🗑️ Removed {name} from HP tracker.")
+                    else:
+                        tg.send_message(group_id, thread_id,
+                                        f"No HP entry for '{name}'. Use /hp to see entries.")
+
+                elif sub == "clear":
+                    count = len(hp_tracker)
+                    state["hp_tracker"][pid] = {}
+                    tg.send_message(group_id, thread_id,
+                                    f"✅ Cleared {count} HP entr{'ies' if count != 1 else 'y'}.")
+
+                else:
+                    tg.send_message(group_id, thread_id,
+                                    "Usage: /hp set <n> <cur>/<max> | /hp d <n> <amt> | "
+                                    "/hp h <n> <amt> | /hp remove <n> | /hp clear")
+
+        # ---- /clock command (GM only) ----
+        if text.startswith("/clock") and not text.startswith("/clocks") and user_id in gm_ids:
+            clock_args = parsed["raw_text"][6:].strip()
+            if not clock_args:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /clock <name> <segments>\ne.g. /clock Investigation 6\ne.g. /clock Ritual 4")
+            else:
+                clock_parts = clock_args.rsplit(None, 1)
+                if len(clock_parts) == 2:
+                    name = clock_parts[0].strip()
+                    try:
+                        segments = int(clock_parts[1])
+                        if segments < 2 or segments > 12:
+                            tg.send_message(group_id, thread_id, "Segments must be 2–12.")
+                        else:
+                            clocks = state.setdefault("clocks", {}).setdefault(pid, {})
+                            if len(clocks) >= _MAX_CLOCKS and name not in clocks:
+                                tg.send_message(group_id, thread_id,
+                                                f"Max {_MAX_CLOCKS} clocks. Use /delclock <name> first.")
+                            else:
+                                clocks[name] = {"filled": 0, "segments": segments}
+                                display = helpers.clock_display(0, segments)
+                                tg.send_message(group_id, thread_id,
+                                                f"⏱️ Clock: {name}\n{display}")
+                    except ValueError:
+                        tg.send_message(group_id, thread_id,
+                                        "Usage: /clock <name> <segments>\ne.g. /clock Investigation 6")
+                else:
+                    tg.send_message(group_id, thread_id,
+                                    "Usage: /clock <name> <segments>\ne.g. /clock Investigation 6")
+
+        # ---- /clocks command (everyone) ----
+        if text == "/clocks":
+            clocks_report = _build_clocks(pid, campaign_name, state)
+            tg.send_message(group_id, thread_id, clocks_report)
+
+        # ---- /tick command (GM only) ----
+        if text.startswith("/tick") and not text.startswith("/ticker") and user_id in gm_ids:
+            tick_args = parsed["raw_text"][5:].strip()
+            clocks = state.get("clocks", {}).get(pid, {})
+            if not tick_args:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /tick <name> [N]\ne.g. /tick Investigation 2")
+            else:
+                tick_parts = tick_args.rsplit(None, 1)
+                amount = 1
+                name = tick_args
+                if len(tick_parts) == 2:
+                    try:
+                        amount = int(tick_parts[1])
+                        name = tick_parts[0]
+                    except ValueError:
+                        name = tick_args
+                        amount = 1
+                name = name.strip()
+                if name in clocks:
+                    clock = clocks[name]
+                    clock["filled"] = min(clock["segments"], clock["filled"] + amount)
+                    display = helpers.clock_display(clock["filled"], clock["segments"])
+                    complete = " ✅ COMPLETE!" if clock["filled"] >= clock["segments"] else ""
+                    tg.send_message(group_id, thread_id,
+                                    f"⏱️ {name}\n{display}{complete}")
+                else:
+                    tg.send_message(group_id, thread_id,
+                                    f"No clock named '{name}'. Use /clocks to see all.")
+
+        # ---- /untick command (GM only) ----
+        if text.startswith("/untick") and user_id in gm_ids:
+            tick_args = parsed["raw_text"][7:].strip()
+            clocks = state.get("clocks", {}).get(pid, {})
+            if not tick_args:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /untick <name> [N]\ne.g. /untick Investigation 1")
+            else:
+                tick_parts = tick_args.rsplit(None, 1)
+                amount = 1
+                name = tick_args
+                if len(tick_parts) == 2:
+                    try:
+                        amount = int(tick_parts[1])
+                        name = tick_parts[0]
+                    except ValueError:
+                        name = tick_args
+                        amount = 1
+                name = name.strip()
+                if name in clocks:
+                    clock = clocks[name]
+                    clock["filled"] = max(0, clock["filled"] - amount)
+                    display = helpers.clock_display(clock["filled"], clock["segments"])
+                    tg.send_message(group_id, thread_id, f"⏱️ {name}\n{display}")
+                else:
+                    tg.send_message(group_id, thread_id,
+                                    f"No clock named '{name}'. Use /clocks to see all.")
+
+        # ---- /delclock command (GM only) ----
+        if text.startswith("/delclock") and user_id in gm_ids:
+            name = parsed["raw_text"][9:].strip()
+            clocks = state.get("clocks", {}).get(pid, {})
+            if name in clocks:
+                del clocks[name]
+                tg.send_message(group_id, thread_id, f"🗑️ Removed clock: {name}")
+            else:
+                tg.send_message(group_id, thread_id,
+                                f"No clock named '{name}'. Use /clocks to see all.")
+
+        # ---- /vote command (GM only) ----
+        if text.startswith("/vote") and not text.startswith("/votes") and user_id in gm_ids:
+            raw_args = parsed["raw_text"][5:].strip()
+            if not raw_args:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /vote <question> | <option1> | <option2> [| ...]\n"
+                                "e.g. /vote Where do we go? | North gate | Sewers | Stay and rest")
+            else:
+                parts = [p.strip() for p in raw_args.split("|")]
+                if len(parts) < 3:
+                    tg.send_message(group_id, thread_id,
+                                    "Need a question and at least 2 options, separated by |\n"
+                                    "e.g. /vote Left or right? | Left | Right")
+                else:
+                    question = parts[0]
+                    options = parts[1:]
+                    if len(options) > 6:
+                        tg.send_message(group_id, thread_id, "Maximum 6 options per vote.")
+                    else:
+                        state.setdefault("votes", {})[pid] = {
+                            "question": question,
+                            "options": options,
+                            "results": {str(i): [] for i in range(1, len(options) + 1)},
+                            "closed": False,
+                            "created_at": now_iso,
+                        }
+                        # Build display
+                        option_lines = "\n".join(f"  {i}. {opt}" for i, opt in enumerate(options, 1))
+                        tg.send_message(group_id, thread_id,
+                                        f"🗳️ Vote started!\n\n❓ {question}\n\n{option_lines}\n\n"
+                                        f"Use /pick <N> to cast your vote.")
+                        print(f"Vote started in {campaign_name}: {question}")
+
+        # ---- /pick command (everyone) ----
+        if text.startswith("/pick"):
+            pick_str = parsed["raw_text"][5:].strip()
+            vote = state.get("votes", {}).get(pid)
+            if not vote or vote.get("closed"):
+                tg.send_message(group_id, thread_id, "No active vote. GMs can start one with /vote")
+            else:
+                try:
+                    choice = int(pick_str)
+                    if 1 <= choice <= len(vote["options"]):
+                        # Remove previous vote by this user
+                        for key in vote["results"]:
+                            vote["results"][key] = [n for n in vote["results"][key] if n != user_name]
+                        # Add new vote
+                        vote["results"][str(choice)].append(user_name)
+                        tg.send_message(group_id, thread_id,
+                                        f"✅ {user_name} voted for: {vote['options'][choice - 1]}")
+                    else:
+                        tg.send_message(group_id, thread_id,
+                                        f"Pick a number 1–{len(vote['options'])}.")
+                except (ValueError, TypeError):
+                    tg.send_message(group_id, thread_id,
+                                    f"Usage: /pick <number>\ne.g. /pick 2")
+
+        # ---- /showvote command (everyone) ----
+        if text == "/showvote":
+            vote_report = _build_vote(pid, campaign_name, state)
+            tg.send_message(group_id, thread_id, vote_report)
+
+        # ---- /endvote command (GM only) ----
+        if text == "/endvote" and user_id in gm_ids:
+            vote = state.get("votes", {}).get(pid)
+            if not vote or vote.get("closed"):
+                tg.send_message(group_id, thread_id, "No active vote to close.")
+            else:
+                vote["closed"] = True
+                # Find winner
+                results = vote["results"]
+                best_count = max(len(v) for v in results.values())
+                total = sum(len(v) for v in results.values())
+                winners = [vote["options"][int(k) - 1] for k, v in results.items() if len(v) == best_count]
+
+                lines = [f"🗳️ Vote closed — {vote['question']}", ""]
+                for i, option in enumerate(vote["options"], 1):
+                    voters = results.get(str(i), [])
+                    count = len(voters)
+                    marker = " 👑" if count == best_count and count > 0 else ""
+                    voter_names = ", ".join(voters) if voters else "—"
+                    lines.append(f"  {i}. {option}: {count} ({voter_names}){marker}")
+                lines.append("")
+                if len(winners) == 1:
+                    lines.append(f"Winner: {winners[0]} ({best_count}/{total} votes)")
+                elif best_count > 0:
+                    lines.append(f"Tied: {', '.join(winners)} ({best_count} each)")
+                else:
+                    lines.append("No votes were cast.")
+                tg.send_message(group_id, thread_id, "\n".join(lines))
+
+        # ---- /timer command (GM only) ----
+        if text.startswith("/timer") and not text.startswith("/timers") and user_id in gm_ids:
+            raw_args = parsed["raw_text"][6:].strip()
+            if not raw_args:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /timer <duration> [reason]\n"
+                                "e.g. /timer 24h Post your combat actions\n"
+                                "e.g. /timer 2d\n"
+                                "Durations: Nh (hours), Nm (minutes), Nd (days)")
+            else:
+                now_dt = datetime.fromisoformat(now_iso)
+                deadline, reason = helpers.parse_timer_duration(raw_args, now_dt)
+                if deadline is None:
+                    tg.send_message(group_id, thread_id,
+                                    "Couldn't parse duration. Use Nh, Nm, or Nd.\n"
+                                    "e.g. /timer 24h Post your actions")
+                else:
+                    state.setdefault("timers", {})[pid] = {
+                        "deadline": deadline.isoformat(),
+                        "reason": reason,
+                        "set_at": now_iso,
+                        "set_by": user_name,
+                    }
+                    time_fmt = deadline.strftime("%b %d %H:%M UTC")
+                    reason_str = f"\n📝 {reason}" if reason else ""
+                    tg.send_message(group_id, thread_id,
+                                    f"⏳ Timer set! Deadline: {time_fmt}{reason_str}\n"
+                                    f"Use /showtimer to check remaining time.")
+                    print(f"Timer set in {campaign_name}: deadline {time_fmt}")
+
+        # ---- /showtimer command (everyone) ----
+        if text == "/showtimer":
+            timer_report = _build_timer(pid, campaign_name, state)
+            tg.send_message(group_id, thread_id, timer_report)
+
+        # ---- /canceltimer command (GM only) ----
+        if text == "/canceltimer" and user_id in gm_ids:
+            if state.get("timers", {}).get(pid):
+                del state["timers"][pid]
+                tg.send_message(group_id, thread_id, f"⏳ Timer cancelled for {campaign_name}.")
+            else:
+                tg.send_message(group_id, thread_id, "No active timer to cancel.")
+
+        # ---- /summary command (everyone) ----
+        if text == "/summary":
+            summary = _build_summary(pid, campaign_name, state, config)
+            tg.send_message(group_id, thread_id, summary)
 
         # ---- /dc command (everyone) ----
         if text.startswith("/dc"):
@@ -3659,6 +4288,35 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
                 del state["dying_alerts_sent"][pid]
 
 
+def check_expired_timers(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
+    """Check for expired timers and post notifications."""
+    if not maps:
+        maps = build_topic_maps(config)
+    if not now:
+        now = datetime.now(timezone.utc)
+
+    group_id = config.get("group_id")
+    for pid, timer in list(state.get("timers", {}).items()):
+        deadline = datetime.fromisoformat(timer["deadline"])
+        if now >= deadline:
+            # Check if we already notified
+            if timer.get("notified"):
+                continue
+
+            chat_topic_id = maps.to_chat.get(pid)
+            if not chat_topic_id:
+                continue
+            campaign_name = maps.to_name.get(pid, pid)
+            reason = timer.get("reason", "")
+            reason_str = f"\n📝 {reason}" if reason else ""
+
+            tg.send_message(group_id, chat_topic_id,
+                            f"⏰ Timer expired for {campaign_name}!{reason_str}\n"
+                            f"GMs: /canceltimer to clear.")
+            timer["notified"] = True
+            print(f"Timer expired in {campaign_name}")
+
+
 # ------------------------------------------------------------------ #
 #  Main
 # ------------------------------------------------------------------ #
@@ -3684,6 +4342,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Archive", archive_weekly_data),
         ("Pace drop", check_pace_drop),
         ("Conversation dying", check_conversation_dying),
+        ("Timer expiry", check_expired_timers),
         ("Daily tip", post_daily_tip),
     ]
     for label, func in checks:

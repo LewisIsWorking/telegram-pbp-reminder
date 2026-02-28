@@ -11,6 +11,40 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.9.0] - 2026-02-28
+
+### Added — HP Tracker, Progress Clocks & Status Integration
+
+#### HP Tracker (combat management)
+- `/hp set <n> <current>/<max>` (GM): set up enemy HP with visual bars
+- `/hp d <n> <amount>` (GM): deal damage, shows 💀 DOWN! at 0 HP
+- `/hp h <n> <amount>` (GM): heal (capped at max)
+- `/hp remove <n>` (GM): remove a single entry
+- `/hp clear` (GM): wipe all HP entries after combat
+- `/hp` (everyone): view HP tracker with colour-coded bars ████░░
+- Max 20 HP entries per campaign
+
+#### Progress Clocks (investigations, rituals, countdowns)
+- `/clock <n> <segments>` (GM): create a 2–12 segment clock ◉◉◉○○○
+- `/tick <n> [N]` (GM): advance a clock (default 1 segment)
+- `/untick <n> [N]` (GM): reverse a clock
+- `/delclock <n>` (GM): remove a clock
+- `/clocks` (everyone): view all clocks, ✅ shown when complete
+- Max 15 clocks per campaign
+
+#### Status integration
+- `/status` now shows HP tracker (alive/total), conditions, clocks
+- `/summary` shows full HP bars and clock progress
+
+### Fixed
+- Timer expiry notification crash (was trying to unpack chat_topic_id as tuple)
+
+#### Other
+- 2 new daily tips (HP tracker, progress clocks)
+- 22 new tests (301 total)
+
+---
+
 ## [2.8.0] - 2026-02-28
 
 ### Added — NPC Tracker & Condition Tracker
