@@ -145,7 +145,7 @@ async function init(){
         Object.entries(r.pb).map(([n,i])=>({name:n,...i})).sort((a,b)=>(b.posts||0)-(a.posts||0)).forEach(p=>{
           const pr=document.createElement('tr');pr.className='pr';
           const pg=p.avg_gap_h!=null?p.avg_gap_h.toFixed(1)+'h':'--';
-          pr.innerHTML='<td>'+p.name+'</td><td class="num">'+(p.posts||0)+'</td><td class="num" colspan="2">'+(p.sessions||'--')+' sessions</td><td class="num">'+pg+'</td><td class="num" colspan="2"></td>';
+          var sess=p.sessions!=null?p.sessions+' sessions':'';pr.innerHTML='<td>'+p.name+'</td><td class="num">'+(p.posts||0)+'</td><td class="num" colspan="2">'+sess+'</td><td class="num">'+pg+'</td><td class="num" colspan="2"></td>';
           tb.appendChild(pr);
         });
       }else if(o){const er=document.createElement('tr');er.className='pr';er.innerHTML='<td colspan="7" style="text-align:center;font-style:italic">No player breakdown for this week</td>';tb.appendChild(er);}
