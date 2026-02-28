@@ -145,6 +145,10 @@ _HELP_TEXT = (
     "/quest <text> - Add an active quest/objective\n"
     "/done <N> - Mark quest N as completed\n"
     "/delquest <N> - Delete quest N\n"
+    "/pin <text> - Bookmark a story moment or key info\n"
+    "/delpin <N> - Delete a pin\n"
+    "/loot <text> - Add item to party loot tracker\n"
+    "/delloot <N> - Remove item from loot\n"
     "/gm - GM dashboard: all campaigns at a glance\n"
     "\n"
     "Everyone:\n"
@@ -159,6 +163,9 @@ _HELP_TEXT = (
     "/party - In-fiction party composition\n"
     "/notes - View GM notes for this campaign\n"
     "/quests - View active and completed quests\n"
+    "/pins - View bookmarked story moments\n"
+    "/lootlist - View party loot\n"
+    "/dc <level> [difficulty] - PF2e DC lookup\n"
     "/activity - Posting patterns: busiest hours and days\n"
     "/profile @player - Cross-campaign stats for a player\n"
     "/away [duration] [reason] - Declare an absence (skip warnings)\n"
@@ -739,6 +746,44 @@ def _build_quests(pid: str, campaign_name: str, state: dict) -> str:
     return "\n".join(lines)
 
 
+_MAX_PINS_PER_CAMPAIGN = 30
+_MAX_LOOT_PER_CAMPAIGN = 50
+
+
+def _build_pins(pid: str, campaign_name: str, state: dict) -> str:
+    """Build the pins list for /pins command."""
+    pins = state.get("pins", {}).get(pid, [])
+    if not pins:
+        return f"No pins for {campaign_name}.\nGMs can bookmark moments with /pin <text>"
+
+    lines = [f"📌 Pins — {campaign_name}:", ""]
+    for i, pin in enumerate(pins, 1):
+        created = pin.get("created_at", "")[:10]
+        author = pin.get("author", "")
+        author_tag = f" — {author}" if author else ""
+        lines.append(f"{i}. {pin['text']}")
+        if created:
+            lines.append(f"   ({created}{author_tag})")
+    lines.append("")
+    lines.append(f"{len(pins)}/{_MAX_PINS_PER_CAMPAIGN} pins. GMs: /pin <text>, /delpin <N>")
+    return "\n".join(lines)
+
+
+def _build_lootlist(pid: str, campaign_name: str, state: dict) -> str:
+    """Build the loot list for /lootlist command."""
+    loot = state.get("loot", {}).get(pid, [])
+    if not loot:
+        return f"No loot tracked for {campaign_name}.\nGMs can add items with /loot <text>"
+
+    lines = [f"💰 Party Loot — {campaign_name}:", ""]
+    for i, item in enumerate(loot, 1):
+        added = item.get("added_at", "")[:10]
+        lines.append(f"  {i}. {item['text']}")
+    lines.append("")
+    lines.append(f"{len(loot)}/{_MAX_LOOT_PER_CAMPAIGN} items. GMs: /loot <text>, /delloot <N>")
+    return "\n".join(lines)
+
+
 def _build_gm_dashboard(config: dict, state: dict) -> str:
     """Build a compact GM overview of all campaigns."""
     now = datetime.now(timezone.utc)
@@ -1233,6 +1278,19 @@ _TIPS = [
     "💡 <b>/gm</b> (GM only) — A compact dashboard showing every campaign's health "
     "at a glance: weekly post count, player count, away/at-risk flags, "
     "active quests, and combat status. One command to check all your games.",
+
+    "💡 <b>/dc</b> — Quick DC lookup for Pathfinder 2e! "
+    "<code>/dc 5</code> shows all difficulty DCs for level 5. "
+    "<code>/dc 5 hard</code> gives just the hard DC. "
+    "<code>/dc trained</code> for proficiency DCs. Never flip through the CRB again.",
+
+    "💡 <b>/pins</b> — The GM can bookmark key story moments with "
+    "<code>/pin The party found the dragon's weakness</code>. "
+    "View them with /pins. Great for tracking reveals, clues, and plot twists.",
+
+    "💡 <b>/lootlist</b> — Track party loot with "
+    "<code>/loot +1 striking longsword</code>. View everything with /lootlist. "
+    "Remove claimed items with /delloot. Never forget what you picked up!",
 ]
 
 
@@ -1891,6 +1949,90 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         if text == "/gm" and user_id in gm_ids:
             dashboard = _build_gm_dashboard(config, state)
             tg.send_message(group_id, thread_id, dashboard)
+
+        # ---- /pin command (GM only) ----
+        if text.startswith("/pin") and not text.startswith("/pins") and user_id in gm_ids:
+            pin_text = parsed["raw_text"][4:].strip()
+            if not pin_text:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /pin <text>\ne.g. /pin The party discovered the hidden temple entrance")
+            else:
+                pins = state.setdefault("pins", {}).setdefault(pid, [])
+                if len(pins) >= _MAX_PINS_PER_CAMPAIGN:
+                    tg.send_message(group_id, thread_id,
+                                    f"Maximum {_MAX_PINS_PER_CAMPAIGN} pins reached. Use /delpin <N> to remove old ones.")
+                else:
+                    pins.append({"text": pin_text, "created_at": now_iso, "author": user_name})
+                    tg.send_message(group_id, thread_id,
+                                    f"📌 Pin #{len(pins)} saved: {pin_text}")
+                    print(f"Pin added to {campaign_name}: {pin_text[:50]}")
+
+        # ---- /pins command (everyone) ----
+        if text == "/pins":
+            pins_report = _build_pins(pid, campaign_name, state)
+            tg.send_message(group_id, thread_id, pins_report)
+
+        # ---- /delpin command (GM only) ----
+        if text.startswith("/delpin") and user_id in gm_ids:
+            num_str = parsed["raw_text"][7:].strip()
+            pins = state.get("pins", {}).get(pid, [])
+            try:
+                idx = int(num_str) - 1
+                if 0 <= idx < len(pins):
+                    removed = pins.pop(idx)
+                    tg.send_message(group_id, thread_id,
+                                    f"🗑️ Deleted pin #{idx + 1}: {removed['text'][:60]}")
+                else:
+                    tg.send_message(group_id, thread_id,
+                                    f"Pin #{num_str} not found. Use /pins to see current pins.")
+            except (ValueError, TypeError):
+                tg.send_message(group_id, thread_id,
+                                "Usage: /delpin <number>\ne.g. /delpin 3")
+
+        # ---- /loot command (GM only) ----
+        if text.startswith("/loot") and not text.startswith("/lootlist") and user_id in gm_ids:
+            loot_text = parsed["raw_text"][5:].strip()
+            if not loot_text:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /loot <item>\ne.g. /loot +1 striking longsword")
+            else:
+                loot = state.setdefault("loot", {}).setdefault(pid, [])
+                if len(loot) >= _MAX_LOOT_PER_CAMPAIGN:
+                    tg.send_message(group_id, thread_id,
+                                    f"Maximum {_MAX_LOOT_PER_CAMPAIGN} items. Use /delloot <N> to remove.")
+                else:
+                    loot.append({"text": loot_text, "added_at": now_iso})
+                    tg.send_message(group_id, thread_id,
+                                    f"💰 Loot #{len(loot)}: {loot_text}")
+                    print(f"Loot added to {campaign_name}: {loot_text[:50]}")
+
+        # ---- /lootlist command (everyone) ----
+        if text == "/lootlist":
+            loot_report = _build_lootlist(pid, campaign_name, state)
+            tg.send_message(group_id, thread_id, loot_report)
+
+        # ---- /delloot command (GM only) ----
+        if text.startswith("/delloot") and user_id in gm_ids:
+            num_str = parsed["raw_text"][8:].strip()
+            loot = state.get("loot", {}).get(pid, [])
+            try:
+                idx = int(num_str) - 1
+                if 0 <= idx < len(loot):
+                    removed = loot.pop(idx)
+                    tg.send_message(group_id, thread_id,
+                                    f"🗑️ Removed loot #{idx + 1}: {removed['text'][:60]}")
+                else:
+                    tg.send_message(group_id, thread_id,
+                                    f"Loot #{num_str} not found. Use /lootlist to see items.")
+            except (ValueError, TypeError):
+                tg.send_message(group_id, thread_id,
+                                "Usage: /delloot <number>\ne.g. /delloot 3")
+
+        # ---- /dc command (everyone) ----
+        if text.startswith("/dc"):
+            dc_query = parsed["raw_text"][3:].strip()
+            result = helpers.dc_lookup(dc_query)
+            tg.send_message(group_id, thread_id, result)
 
         # ---- /away command (everyone) ----
         if text.startswith("/away"):

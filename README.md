@@ -261,6 +261,9 @@ The bot responds to these commands in any monitored PBP topic:
 - `/recap [N]` - Show last N transcript entries (default 10, max 25).
 - `/roll <dice> [label]` - Roll dice (e.g. `1d20+5 Stealth`, `4d6kh3`).
 - `/quests` - View active and completed quest objectives.
+- `/pins` - View bookmarked story moments and clues.
+- `/lootlist` - View party loot.
+- `/dc <level> [difficulty]` - PF2e DC lookup (e.g. `/dc 5 hard`).
 
 ### GM commands
 
@@ -277,6 +280,10 @@ The bot responds to these commands in any monitored PBP topic:
 - `/quest <text>` - Add an active quest/objective.
 - `/done <N>` - Mark quest N as completed.
 - `/delquest <N>` - Delete quest N.
+- `/pin <text>` - Bookmark a story moment or key info.
+- `/delpin <N>` - Delete a pin.
+- `/loot <item>` - Add item to party loot tracker.
+- `/delloot <N>` - Remove item from loot.
 - `/gm` - GM dashboard: all campaigns at a glance.
 
 ## Versioning

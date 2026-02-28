@@ -3521,6 +3521,184 @@ def test_gm_command_works_for_gm():
 
 
 # ------------------------------------------------------------------ #
+#  Pin tests
+# ------------------------------------------------------------------ #
+def test_pin_add():
+    """/pin adds a bookmark."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/pin The dragon revealed its weakness", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    pins = state.get("pins", {}).get("100", [])
+    assert len(pins) == 1
+    assert pins[0]["text"] == "The dragon revealed its weakness"
+    assert pins[0]["author"] == "GM"
+    assert "📌" in _sent_messages[-1]["text"]
+
+
+def test_pin_non_gm():
+    """/pin from non-GM is ignored."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/pin some note", user_id=42, first_name="Player")]
+    checker.process_updates(updates, config, state)
+
+    pins = state.get("pins", {}).get("100", [])
+    assert len(pins) == 0
+
+
+def test_pins_list():
+    """/pins shows all bookmarks."""
+    state = {"pins": {"100": [
+        {"text": "Found the key", "created_at": "2026-02-27T10:00:00+00:00", "author": "GM"},
+        {"text": "Met the dragon", "created_at": "2026-02-28T10:00:00+00:00", "author": "GM"},
+    ]}}
+    result = checker._build_pins("100", "TestCampaign", state)
+    assert "Found the key" in result
+    assert "Met the dragon" in result
+    assert "2/30 pins" in result
+
+
+def test_delpin():
+    """/delpin removes a pin."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["pins"] = {"100": [
+        {"text": "Pin one", "created_at": "2026-02-27T10:00:00+00:00", "author": "GM"},
+    ]}
+
+    updates = [_make_msg(1, 100, "/delpin 1", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert len(state["pins"]["100"]) == 0
+    assert "🗑️" in _sent_messages[-1]["text"]
+
+
+# ------------------------------------------------------------------ #
+#  Loot tests
+# ------------------------------------------------------------------ #
+def test_loot_add():
+    """/loot adds an item."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/loot +1 striking longsword", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    loot = state.get("loot", {}).get("100", [])
+    assert len(loot) == 1
+    assert loot[0]["text"] == "+1 striking longsword"
+    assert "💰" in _sent_messages[-1]["text"]
+
+
+def test_loot_non_gm():
+    """/loot from non-GM is ignored."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/loot stolen gem", user_id=42, first_name="Player")]
+    checker.process_updates(updates, config, state)
+
+    loot = state.get("loot", {}).get("100", [])
+    assert len(loot) == 0
+
+
+def test_lootlist():
+    """/lootlist shows all items."""
+    state = {"loot": {"100": [
+        {"text": "+1 longsword", "added_at": "2026-02-27T10:00:00+00:00"},
+        {"text": "500 gp", "added_at": "2026-02-28T10:00:00+00:00"},
+    ]}}
+    result = checker._build_lootlist("100", "TestCampaign", state)
+    assert "+1 longsword" in result
+    assert "500 gp" in result
+    assert "2/50 items" in result
+
+
+def test_delloot():
+    """/delloot removes an item."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["loot"] = {"100": [
+        {"text": "+1 longsword", "added_at": "2026-02-27T10:00:00+00:00"},
+    ]}
+
+    updates = [_make_msg(1, 100, "/delloot 1", user_id=999, first_name="GM")]
+    checker.process_updates(updates, config, state)
+
+    assert len(state["loot"]["100"]) == 0
+    assert "🗑️" in _sent_messages[-1]["text"]
+
+
+# ------------------------------------------------------------------ #
+#  DC lookup tests
+# ------------------------------------------------------------------ #
+def test_dc_level():
+    """DC lookup for level 5."""
+    result = helpers.dc_lookup("5")
+    assert "Level 5" in result
+    assert "DC 20" in result  # Standard DC for level 5
+
+
+def test_dc_level_hard():
+    """DC lookup for level 5 hard."""
+    result = helpers.dc_lookup("5 hard")
+    assert "DC 22" in result  # 20 + 2
+
+
+def test_dc_proficiency():
+    """Proficiency DC lookup."""
+    result = helpers.dc_lookup("trained")
+    assert "15" in result
+
+
+def test_dc_legendary():
+    """Legendary proficiency DC."""
+    result = helpers.dc_lookup("legendary")
+    assert "40" in result
+
+
+def test_dc_alias():
+    """Short alias works."""
+    result = helpers.dc_lookup("vh")
+    assert "Very Hard" in result
+
+
+def test_dc_empty():
+    """Empty query shows help."""
+    result = helpers.dc_lookup("")
+    assert "Usage" in result
+
+
+def test_dc_command():
+    """/dc command sends result."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/dc 10", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    dc_msgs = [m for m in _sent_messages if "Level 10" in m.get("text", "")]
+    assert len(dc_msgs) >= 1
+
+
+def test_dc_out_of_range():
+    """Level out of range gives error."""
+    result = helpers.dc_lookup("25")
+    assert "0–20" in result
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():

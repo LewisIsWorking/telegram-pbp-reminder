@@ -11,6 +11,34 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.7.0] - 2026-02-28
+
+### Added — DC Lookup, Pins & Loot Tracker
+
+#### `/dc` command (everyone)
+- PF2e DC lookup: `/dc 5` shows all DCs for level 5, `/dc 5 hard` for specific
+- Proficiency DCs: `/dc trained`, `/dc master`, `/dc legendary`
+- Short aliases: `e`, `h`, `vh`, `ih`, `t`, `ex`, `m`, `l`
+- Covers levels 0–20, all 7 difficulty adjustments, 5 proficiency tiers
+
+#### Pin system (story bookmarks)
+- `/pin <text>` (GM): bookmark a key story moment, clue, or revelation
+- `/pins`: view all bookmarks with dates and author
+- `/delpin <N>` (GM): remove a pin
+- Max 30 pins per campaign
+
+#### Loot tracker
+- `/loot <item>` (GM): add item to party loot
+- `/lootlist`: view all party loot
+- `/delloot <N>` (GM): remove claimed/sold item
+- Max 50 items per campaign
+
+#### Other
+- 3 new daily tips (DC, pins, loot)
+- 16 new tests (247 total)
+
+---
+
 ## [2.6.0] - 2026-02-27
 
 ### Added — Quest Tracker & GM Dashboard

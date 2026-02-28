@@ -210,6 +210,19 @@ combat/pause/away/quest flags. One command to check everything.
 
 ---
 
+## v2.7.0 — DC Lookup, Pins & Loot
+
+### ✅ `/dc`
+PF2e DC lookup by level and difficulty. Proficiency DCs. Short aliases.
+
+### ✅ Pins
+`/pin`, `/pins`, `/delpin`. Bookmark key story moments, clues, reveals.
+
+### ✅ Loot tracker
+`/loot`, `/lootlist`, `/delloot`. Track party treasure and equipment.
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)
