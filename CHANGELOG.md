@@ -11,6 +11,13 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.0.1] - 2026-02-28
+
+### Improved
+- Pace report now shows ISO week numbers (e.g. "This week W09", "Last week W08")
+
+---
+
 ## [3.0.0] - 2026-02-28
 
 ### Changed — Combat System Rebuild (Foundry-compatible)
