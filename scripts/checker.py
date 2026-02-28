@@ -248,6 +248,11 @@ def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str
     if scene:
         lines.append(f"🎭 Scene: {scene}")
 
+    active_quests = [q for q in state.get("quests", {}).get(pid, [])
+                     if q.get("status") == "active"]
+    if active_quests:
+        lines.append(f"📋 {len(active_quests)} active quest{'s' if len(active_quests) != 1 else ''}")
+
     return "\n".join(lines)
 
 
