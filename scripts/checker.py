@@ -4624,7 +4624,20 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
     date_from = fmt_date(seven_days_ago)
     date_to = fmt_date(now)
 
-    lines = [f"📊 Weekly Campaign Leaderboard ({date_from} to {date_to})"]
+    # Week number from the end date
+    _, iso_week, _ = now.isocalendar()
+
+    lines = [f"📊 Weekly Campaign Leaderboard — Week {iso_week} ({date_from} to {date_to})"]
+
+    # Compute week totals across all campaigns
+    week_total_player = sum(c["player_7d"] for c in campaign_stats)
+    week_total_gm = sum(c["gm_7d"] for c in campaign_stats)
+    week_total_all = sum(c["total_7d"] for c in campaign_stats)
+    lines.append(
+        f"\n📬 This week: {week_total_all} posts "
+        f"({week_total_player} player, {week_total_gm} GM) "
+        f"across {len(active)} active campaigns."
+    )
 
     for i, c in enumerate(active):
         rank = helpers.rank_icon(i)
@@ -4678,6 +4691,19 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
             block += f"- {posts_str(pdata['count'])} across {pdata['campaigns']} {campaign_word}"
             player_blocks.append(block)
         lines.append("\n⭐ Top Players of the Week:\n\n" + "\n\n".join(player_blocks))
+
+        # MVP of the Week prize (most active by volume)
+        if top_global:
+            winner_uid, winner_data = top_global[0]
+            winner_name = winner_data["full_name"]
+            campaign_word = "campaign" if winner_data["campaigns"] == 1 else "campaigns"
+            lines.append(
+                f"\n━━━━━━━━━━━━━━━━\n\n"
+                f"🏆 MVP of the Week: {winner_name}!\n"
+                f"- {posts_str(winner_data['count'])} across "
+                f"{winner_data['campaigns']} {campaign_word}.\n"
+                f"- Prize: 1 Hero Point in a campaign of your choice! 🎲"
+            )
 
     # Streak leaderboard
     if streaks:

@@ -11,6 +11,16 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [3.1.2] - 2026-02-28
+
+### Improved — Weekly Leaderboard
+
+- **Week number**: Header now shows ISO week number (e.g. "Week 9")
+- **Weekly totals**: Summary line with total posts (player/GM split) across all active campaigns
+- **MVP of the Week**: Top poster by volume gets a 🏆 callout and earns 1 Hero Point in a campaign of their choice
+
+---
+
 ## [3.1.1] - 2026-02-28
 
 ### Improved — Transcript Readability

@@ -1489,7 +1489,40 @@ def test_leaderboard_includes_streaks():
     assert "Alice B" in result
 
 
-def test_roster_block_shows_streak():
+def test_leaderboard_week_number_and_totals_and_mvp():
+    """Week number, totals line, and MVP prize appear in leaderboard."""
+    _reset()
+    now = datetime(2026, 3, 4, 12, 0, tzinfo=timezone.utc)  # Week 10
+
+    config = _make_config()
+    state = _make_state()
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Alice", "last_name": "B",
+        "username": "alice", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
+        "last_warned_week": 0,
+    }
+    state["message_counts"]["100"] = {"42": 10, "999": 20}
+    state["post_timestamps"]["100"] = {
+        "42": [(now - timedelta(hours=h)).isoformat() for h in range(10)],
+        "999": [(now - timedelta(hours=h)).isoformat() for h in [1, 12, 36, 60, 96]],
+    }
+
+    stats, global_players, streaks = checker._gather_leaderboard_stats(config, state, now)
+    result = checker._format_leaderboard(stats, global_players, now, streaks)
+
+    # Week number in header
+    assert "Week 10" in result
+
+    # Totals line
+    assert "This week:" in result
+    assert "player" in result and "GM" in result
+
+    # MVP prize
+    assert "MVP of the Week" in result
+    assert "Hero Point" in result
+    assert "Alice B" in result
     now = datetime.now(timezone.utc)
     stats = {
         "total": 20, "sessions": 15, "week_count": 5,
