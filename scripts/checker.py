@@ -158,7 +158,8 @@ _HELP_TEXT = (
     "/profile @player - Cross-campaign stats for a player\n"
     "/away [duration] [reason] - Declare an absence (skip warnings)\n"
     "/back - Return from absence\n"
-    "/recap [N] - Show last N transcript entries (default 10)"
+    "/recap [N] - Show last N transcript entries (default 10)\n"
+    "/roll <dice> [label] - Roll dice (e.g. 1d20+5 Stealth)"
 )
 
 
@@ -1102,6 +1103,12 @@ _TIPS = [
     "💡 <b>/recap</b> — Missed a few days? Type <code>/recap</code> to see the last "
     "10 transcript entries, or <code>/recap 20</code> for more. A quick way to "
     "catch up on the story without scrolling.",
+
+    "💡 <b>/roll</b> — Roll dice right in chat! "
+    "<code>/roll 1d20+5 Stealth</code> for a skill check, "
+    "<code>/roll 2d6+3</code> for damage, or "
+    "<code>/roll 4d6kh3</code> to keep the highest 3. "
+    "Uses your character name if one is configured.",
 ]
 
 
@@ -1740,6 +1747,43 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 count = 10
             recap = _build_recap(pid, campaign_name, config, count)
             tg.send_message(group_id, thread_id, recap)
+
+        # ---- /roll command (everyone) ----
+        if text.startswith("/roll"):
+            dice_expr = parsed["raw_text"][5:].strip()
+            if not dice_expr:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /roll <dice> [label]\n"
+                                "e.g. /roll 1d20+5 Stealth\n"
+                                "e.g. /roll 2d6+3\n"
+                                "e.g. /roll 4d6kh3 (keep highest 3)")
+            else:
+                result = helpers.roll_dice(dice_expr)
+                if result.get("error"):
+                    tg.send_message(group_id, thread_id, result["error"])
+                else:
+                    char_name = helpers.character_name(config, pid, user_id)
+                    roller = char_name or user_name
+                    label = result["label"]
+
+                    lines = []
+                    grand_total = 0
+                    for r in result["results"]:
+                        grand_total += r["total"]
+                        lines.append(f"  {r['expr']}: {r['detail']} = {r['total']}")
+
+                    header = f"🎲 {roller}"
+                    if label:
+                        header += f" — {label}"
+                    header += ":"
+
+                    if len(result["results"]) == 1:
+                        r = result["results"][0]
+                        msg = f"{header}\n  {r['detail']} = {r['total']}"
+                    else:
+                        msg = header + "\n" + "\n".join(lines) + f"\n  Total: {grand_total}"
+
+                    tg.send_message(group_id, thread_id, msg)
 
         # ---- Combat commands and tracking ----
         _handle_combat_message(

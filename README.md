@@ -259,6 +259,7 @@ The bot responds to these commands in any monitored PBP topic:
 - `/away [duration] [reason]` - Declare an absence (skips warnings/combat pings).
 - `/back` - Return from absence.
 - `/recap [N]` - Show last N transcript entries (default 10, max 25).
+- `/roll <dice> [label]` - Roll dice (e.g. `1d20+5 Stealth`, `4d6kh3`).
 
 ### GM commands
 

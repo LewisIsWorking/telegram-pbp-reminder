@@ -189,6 +189,15 @@ Quick catch-up for returning players using the persistent log files.
 
 ---
 
+## v2.5.0 — Dice Roller
+
+### ✅ `/roll`
+Roll dice inline with Pathfinder-standard notation. Supports modifiers,
+keep-highest/lowest, multiple dice groups, and labels. Uses character
+name when configured.
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)

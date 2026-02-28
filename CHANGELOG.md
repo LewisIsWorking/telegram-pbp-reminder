@@ -11,6 +11,21 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.5.0] - 2026-02-27
+
+### Added — Dice Roller
+- `/roll <dice> [label]`: roll dice with Pathfinder-standard notation
+  - `1d20+5 Stealth` — attack/skill rolls with labels
+  - `2d6+3` — damage rolls with modifiers
+  - `4d6kh3` — keep highest (ability scores)
+  - `2d20kl1` — keep lowest (disadvantage)
+  - Multiple dice groups: `1d20+5 2d6+3`
+- Uses character name when configured (e.g. "🎲 Cardigan — Stealth:")
+- Strikethrough on dropped dice in keep-highest/lowest rolls
+- 1 new daily tip, 12 new tests (222 total)
+
+---
+
 ## [2.4.0] - 2026-02-27
 
 ### Added — Absence Tracking & Recap

@@ -3254,6 +3254,122 @@ def test_parse_away_duration_empty():
 
 
 # ------------------------------------------------------------------ #
+#  Dice roller tests
+# ------------------------------------------------------------------ #
+def test_roll_basic():
+    """Basic 1d20 roll."""
+    result = helpers.roll_dice("1d20")
+    assert result["error"] is None
+    assert len(result["results"]) == 1
+    r = result["results"][0]
+    assert 1 <= r["total"] <= 20
+    assert len(r["rolls"]) == 1
+
+
+def test_roll_with_modifier():
+    """1d20+5 adds modifier to total."""
+    result = helpers.roll_dice("1d20+5")
+    assert result["error"] is None
+    r = result["results"][0]
+    assert r["modifier"] == 5
+    assert r["total"] == r["rolls"][0] + 5
+
+
+def test_roll_negative_modifier():
+    """1d20-3 subtracts modifier."""
+    result = helpers.roll_dice("1d20-3")
+    assert result["error"] is None
+    r = result["results"][0]
+    assert r["modifier"] == -3
+    assert r["total"] == r["rolls"][0] - 3
+
+
+def test_roll_multiple_dice():
+    """2d6 rolls two dice."""
+    result = helpers.roll_dice("2d6")
+    assert result["error"] is None
+    r = result["results"][0]
+    assert len(r["rolls"]) == 2
+    assert all(1 <= x <= 6 for x in r["rolls"])
+    assert r["total"] == sum(r["rolls"])
+
+
+def test_roll_keep_highest():
+    """4d6kh3 keeps highest 3."""
+    result = helpers.roll_dice("4d6kh3")
+    assert result["error"] is None
+    r = result["results"][0]
+    assert len(r["rolls"]) == 4
+    assert len(r["kept"]) == 3
+    assert r["total"] == sum(r["kept"])
+    # Kept should be the 3 highest
+    assert sorted(r["kept"], reverse=True) == r["kept"]
+
+
+def test_roll_keep_lowest():
+    """2d20kl1 keeps lowest."""
+    result = helpers.roll_dice("2d20kl1")
+    assert result["error"] is None
+    r = result["results"][0]
+    assert len(r["rolls"]) == 2
+    assert len(r["kept"]) == 1
+    assert r["total"] == min(r["rolls"])
+
+
+def test_roll_with_label():
+    """1d20+12 Stealth extracts label."""
+    result = helpers.roll_dice("1d20+12 Stealth")
+    assert result["error"] is None
+    assert result["label"] == "Stealth"
+    assert len(result["results"]) == 1
+
+
+def test_roll_multiple_expressions():
+    """1d20+5 2d6+3 rolls both."""
+    result = helpers.roll_dice("1d20+5 2d6+3")
+    assert result["error"] is None
+    assert len(result["results"]) == 2
+
+
+def test_roll_no_dice():
+    """Invalid expression returns error."""
+    result = helpers.roll_dice("hello")
+    assert result["error"] is not None
+
+
+def test_roll_empty():
+    """Empty expression returns error."""
+    result = helpers.roll_dice("")
+    assert result["error"] is not None
+
+
+def test_roll_command():
+    """/roll processes dice and sends result."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/roll 1d20+5 Stealth", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    roll_msgs = [m for m in _sent_messages if "🎲" in m.get("text", "")]
+    assert len(roll_msgs) >= 1, f"Should send dice result, got: {_sent_messages}"
+    assert "Stealth" in roll_msgs[0]["text"]
+
+
+def test_roll_command_no_args():
+    """/roll with no args shows usage."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+
+    updates = [_make_msg(1, 100, "/roll", user_id=42, first_name="Alice")]
+    checker.process_updates(updates, config, state)
+
+    assert any("Usage" in m.get("text", "") for m in _sent_messages)
+
+
+# ------------------------------------------------------------------ #
 #  Runner
 # ------------------------------------------------------------------ #
 def _run_all():
