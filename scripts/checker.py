@@ -338,9 +338,9 @@ def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> 
         age_days = (now.date() - created).days
         if age_days >= 365:
             years = age_days // 365
-            lines.append(f"Running since {created.strftime('%B %d, %Y')} ({years}y {age_days % 365}d)")
+            lines.append(f"Running since {created.strftime('%B %d, %Y')} W{created.isocalendar()[1]} ({years}y {age_days % 365}d)")
         else:
-            lines.append(f"Running since {created.strftime('%B %d, %Y')} ({age_days}d)")
+            lines.append(f"Running since {created.strftime('%B %d, %Y')} W{created.isocalendar()[1]} ({age_days}d)")
 
     # Players and counts
     players = [
@@ -3544,7 +3544,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 "set_at": now_iso,
             }
             if until_dt:
-                until_str = until_dt.strftime("%b %d")
+                until_str = f"{until_dt.strftime('%b %d')} (W{until_dt.isocalendar()[1]})"
                 msg = f"✈️ {user_name} marked as away until {until_str}.\nReason: {reason}"
             else:
                 msg = f"✈️ {user_name} marked as away (indefinite).\nReason: {reason}"
@@ -4029,10 +4029,9 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         chosen_boons = random.sample(boons, min(3, len(boons)))
         chosen_boons.append(random.choice(helpers.MECHANICAL_BOONS))
 
-        _, iso_week, _ = now.isocalendar()
         base_message = (
             f"Player of the Week for {name}: {mention}!\n"
-            f"Week {iso_week} ({fmt_date(week_ago)} to {fmt_date(now)})\n\n"
+            f"({fmt_date(week_ago)} to {fmt_date(now)})\n\n"
             f"{posts_str(winner['post_count'])} this week with an average "
             f"gap of {avg_gap_str} between posts. The most consistent "
             f"driver of the story."
@@ -4426,7 +4425,7 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
 
         message = (
             f"🎂 {name} is {year_str} old today!\n\n"
-            f"Campaign started {created.strftime('%B %d, %Y')}. "
+            f"Campaign started {created.strftime('%B %d, %Y')} (W{created.isocalendar()[1]}). "
             f"Here's to more adventures ahead."
         )
 
@@ -5011,7 +5010,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
                 f"{days_silent:.1f} days.\n"
                 f"\n"
                 f"No posts from anyone — GM or players — since "
-                f"{latest_dt.strftime('%b %d')}."
+                f"{fmt_date(latest_dt)}."
             )
             print(f"Conversation dying alert for {name}: {days_silent:.1f} days silent")
             if tg.send_message(group_id, chat_topic_id, message):
