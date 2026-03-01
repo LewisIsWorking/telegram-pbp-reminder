@@ -3681,7 +3681,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 char_name = helpers.character_name(config, pid, user_id)
                 char_tag = f" ({char_name})" if char_name else ""
                 tg.send_message(
-                    group_id, chat_topic_id,
+                    group_id, thread_id,
                     f"👋 {user_name}{char_tag} is back in {campaign_name}!"
                 )
             elif old_warn_level >= 2:
@@ -3690,7 +3690,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 char_name = helpers.character_name(config, pid, user_id)
                 char_tag = f" as {char_name}" if char_name else ""
                 tg.send_message(
-                    group_id, chat_topic_id,
+                    group_id, thread_id,
                     f"🎉 {user_name} is back{char_tag}! Good to see you."
                 )
 
