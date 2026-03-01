@@ -138,7 +138,7 @@ def test_deduplicate_posts_empty():
 #  Formatting
 # ------------------------------------------------------------------ #
 def test_fmt_date():
-    assert helpers.fmt_date(_utc(2026, 2, 14, 0, 0)) == "2026-02-14"
+    assert helpers.fmt_date(_utc(2026, 2, 14, 0, 0)) == "2026-02-14 (W7)"
 
 
 def test_html_escape():

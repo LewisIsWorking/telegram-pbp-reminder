@@ -1512,8 +1512,8 @@ def test_leaderboard_week_number_and_totals_and_mvp():
     stats, global_players, streaks = checker._gather_leaderboard_stats(config, state, now)
     result = checker._format_leaderboard(stats, global_players, now, streaks)
 
-    # Week number in header
-    assert "Week 10" in result
+    # Week number in dates
+    assert "(W10)" in result
 
     # Totals line
     assert "This week:" in result

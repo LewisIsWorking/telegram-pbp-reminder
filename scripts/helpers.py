@@ -299,8 +299,9 @@ def rank_icon(index: int) -> str:
 #  Formatting helpers
 # ------------------------------------------------------------------ #
 def fmt_date(dt: datetime) -> str:
-    """Format a datetime as YYYY-MM-DD."""
-    return dt.strftime("%Y-%m-%d")
+    """Format a datetime as YYYY-MM-DD (Wn)."""
+    _, week, _ = dt.isocalendar()
+    return f"{dt.strftime('%Y-%m-%d')} (W{week})"
 
 
 def html_escape(text: str) -> str:

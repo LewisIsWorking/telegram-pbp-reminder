@@ -4628,10 +4628,7 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
     date_from = fmt_date(seven_days_ago)
     date_to = fmt_date(now)
 
-    # Week number from the end date
-    _, iso_week, _ = now.isocalendar()
-
-    lines = [f"📊 Weekly Campaign Leaderboard — Week {iso_week} ({date_from} to {date_to})"]
+    lines = [f"📊 Weekly Campaign Leaderboard ({date_from} to {date_to})"]
 
     # Compute week totals across all campaigns
     week_total_player = sum(c["player_7d"] for c in campaign_stats)
