@@ -3675,12 +3675,12 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             }
 
             if was_removed:
-                del state["removed_players"][player_key]
+                removed_data = state["removed_players"].pop(player_key)
                 print(f"Player {user_name} rejoined {campaign_name}")
                 # Welcome back notification
                 char_name = helpers.character_name(config, pid, user_id)
                 char_tag = f" ({char_name})" if char_name else ""
-                uname = parsed.get("username", "")
+                uname = parsed.get("username", "") or removed_data.get("username", "")
                 mention = f" @{uname}" if uname else ""
                 tg.send_message(
                     group_id, thread_id,
@@ -3691,7 +3691,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 print(f"Warned player {user_name} returned to {campaign_name} (was week {old_warn_level})")
                 char_name = helpers.character_name(config, pid, user_id)
                 char_tag = f" as {char_name}" if char_name else ""
-                uname = parsed.get("username", "")
+                uname = parsed.get("username", "") or old_player.get("username", "")
                 mention = f" @{uname}" if uname else ""
                 tg.send_message(
                     group_id, thread_id,
