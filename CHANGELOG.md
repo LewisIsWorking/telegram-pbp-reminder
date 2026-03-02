@@ -11,6 +11,20 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.0.0] - 2026-03-02
+
+### Refactored — Codebase Modularization (Chunk 1)
+
+- **Boons extracted**: `boons/handler.py` (94 lines) — boon callback handling, auto-expiry
+- **Directory scaffold**: Created package directories for future extraction (combat, commands, transcript, scheduled, dispatch, parsing, players, helpers_pkg)
+- **Bug fix**: Slash commands with `@botname` suffix (e.g. `/lootlist@PathWarsNudgeBot`) now work correctly in group chats
+- **Bug fix**: Fixed `entry_re` and `scene_re` variable names broken by earlier regex import cleanup
+- **Config**: Added Grand Explorers dream channel (topic 56842) to tracked PBP topics
+- **Target**: All files under 200 lines (SOLID principles, no code removal or compression)
+- `checker.py`: 5155 → 5074 lines
+
+---
+
 ## [3.1.2] - 2026-02-28
 
 ### Improved — Weekly Leaderboard
