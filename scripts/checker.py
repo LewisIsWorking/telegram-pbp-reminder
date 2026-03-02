@@ -11,6 +11,7 @@ Modules: telegram.py (API), state.py (persistence), helpers.py (utilities).
 import os
 import sys
 import json
+import re
 import random
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -735,7 +736,7 @@ def _get_recent_transcript_posts(campaign_name: str, since: datetime,
         except OSError:
             continue
 
-        for m in entry_re.finditer(text):
+        for m in entryre.finditer(text):
             name = m.group(1).strip()
             char_name = m.group(2).strip() if m.group(2) else None
             is_gm = bool(m.group(3))
@@ -1465,13 +1466,13 @@ def _build_recap(pid: str, campaign_name: str, config: dict, count: int = 10) ->
         file_entries = []
 
         # Find scene markers
-        for m in scene_re.finditer(text):
+        for m in scenere.finditer(text):
             scene_name = m.group(1).strip()
             ts = m.group(2).strip() + ":00"
             file_entries.append((ts, "", "", False, scene_name, "scene"))
 
         # Find message entries
-        for m in entry_re.finditer(text):
+        for m in entryre.finditer(text):
             name = m.group(1).strip()
             char_name = m.group(2).strip() if m.group(2) else None
             is_gm = bool(m.group(3))
@@ -2207,6 +2208,11 @@ def _parse_message(msg: dict, group_id: int, maps) -> dict | None:
     # Caption on media messages
     caption = msg.get("caption", "").strip()
 
+    # Strip @botname suffix from slash commands (Telegram appends it in groups)
+    _lower = raw_text.lower() if raw_text else (caption.lower() if caption else "")
+    if _lower.startswith("/"):
+        _lower = re.sub(r"^(/\w+)@\S+", r"\1", _lower)
+
     return {
         "thread_id": thread_id,
         "pid": maps.to_canonical[thread_id_str],
@@ -2217,7 +2223,7 @@ def _parse_message(msg: dict, group_id: int, maps) -> dict | None:
         "username": from_user.get("username", ""),
         "now_iso": now_iso,
         "msg_time_iso": msg_time_iso,
-        "text": raw_text.lower() if raw_text else (caption.lower() if caption else ""),
+        "text": _lower,
         "raw_text": raw_text,
         "media_type": media_type,
         "caption": caption,
@@ -2275,10 +2281,10 @@ def _format_log_entry(parsed: dict, gm_ids: set, char_name: str | None = None) -
     return f"**{name}**{char_tag}{role_tag} ({ts}):\n{content}\n"
 
 
-import re as _re
+# re already imported at top
 
 # Patterns that indicate mechanical/dice content (case-insensitive)
-_MECHANICAL_PATTERNS = _re.compile(
+_MECHANICAL_PATTERNS = re.compile(
     r"^("
     r"DC \d+|"                          # DC 14
     r"Rank \d+|"                         # Rank 4
@@ -2291,7 +2297,7 @@ _MECHANICAL_PATTERNS = _re.compile(
     r".*rolled? (?:a )?\d+|"            # rolled a 17
     r"@\w+\s*$"                         # Just a @mention (pinging for turn)
     r")",
-    _re.IGNORECASE
+    re.IGNORECASE
 )
 
 
@@ -2374,7 +2380,7 @@ def _append_to_transcript(parsed: dict, gm_ids: set, config: dict | None = None)
         if last_week is None:
             try:
                 content = log_file.read_text(encoding="utf-8")
-                week_matches = _re.findall(r"## Week (\d+)", content)
+                week_matches = re.findall(r"## Week (\d+)", content)
                 last_week = int(week_matches[-1]) if week_matches else 0
             except Exception:
                 last_week = 0
@@ -2388,7 +2394,7 @@ def _append_to_transcript(parsed: dict, gm_ids: set, config: dict | None = None)
             try:
                 if not is_new:
                     content = log_file.read_text(encoding="utf-8") if "content" not in dir() else content
-                    date_matches = _re.findall(
+                    date_matches = re.findall(
                         r"\((\d{4}-\d{2}-\d{2}) \d{2}:\d{2}:\d{2}\):", content
                     )
                     last_date = date_matches[-1] if date_matches else ""
@@ -2496,7 +2502,7 @@ def _finalize_previous_month(campaign_dir: Path, current_month: str,
         # Extract name and role
         # Format: **Name** [GM] (2026-02-28 14:30:05):
         # or:     **Name** (CharName) (2026-02-28 14:30:05):
-        name_match = _re.match(r"\*\*(.+?)\*\*(?:\s*\(.*?\))?\s*(?:\[GM\])?\s*\((\d{4}-\d{2}-\d{2})", line)
+        name_match = re.match(r"\*\*(.+?)\*\*(?:\s*\(.*?\))?\s*(?:\[GM\])?\s*\((\d{4}-\d{2}-\d{2})", line)
         if name_match:
             poster_name = name_match.group(1)
             date_str = name_match.group(2)
