@@ -258,6 +258,72 @@ advance phases, auto-notify GM when all players have acted, combat log with
 
 ---
 
+## v4.0.0 — Codebase Modularization (In Progress)
+
+Refactor all Python files to a **200-line hard maximum**. No code removal,
+no compression, no comment removal. Pure extraction, OOP, and SOLID
+principles. Incremental commits, each chunk tested and deployed.
+
+### 🔧 Chunk 1 — Scaffold & Boons
+- Create package directories (boons, combat, commands, transcript,
+  scheduled, dispatch, parsing, players, helpers_pkg)
+- Extract `boons/handler.py` (94 lines)
+
+### 📋 Chunk 2 — Combat & Parsing
+- Extract `combat/handler.py` (combat start, round, next, end, enemies)
+- Extract `combat/display.py` (whosturn, combatlog, HP tracker)
+- Extract `parsing/message.py` (_parse_message, related utilities)
+
+### 📋 Chunk 3 — Commands (status/info)
+- Extract `commands/status.py` (_build_status, _build_overview,
+  _build_gm_dashboard, _build_summary)
+- Extract `commands/player.py` (_build_mystats, _build_party,
+  _build_profile, _build_myhistory, _build_catchup, _build_activity)
+
+### 📋 Chunk 4 — Commands (trackers)
+- Extract `commands/trackers.py` (_build_notes, _build_quests,
+  _build_pins, _build_lootlist, _build_npcs, _build_conditions,
+  _build_vote, _build_timer, _build_hp_tracker, _build_clocks)
+- Extract `commands/recap.py` (_build_recap, related transcript reading)
+
+### 📋 Chunk 5 — Transcript
+- Extract `transcript/logger.py` (append, format, sanitize)
+- Extract `transcript/index.py` (update_transcript_index, finalize)
+
+### 📋 Chunk 6 — Scheduled Tasks
+- Extract `scheduled/alerts.py` (check_and_alert, check_player_activity)
+- Extract `scheduled/reports.py` (roster, POTW, pace, leaderboard, digest)
+- Extract `scheduled/milestones.py` (streaks, anniversaries, message)
+- Extract `scheduled/maintenance.py` (archive, cleanup, recruitment, timers)
+- Extract `scheduled/tips.py` (daily tip rotation)
+
+### 📋 Chunk 7 — Dispatch & Players
+- Extract `dispatch/processor.py` (process_updates command router)
+- Extract `players/management.py` (kick, addplayer)
+
+### 📋 Chunk 8 — Split helpers.py
+- Extract `helpers_pkg/config.py` (load, validate, settings)
+- Extract `helpers_pkg/formatting.py` (display_name, rank_icon, etc.)
+- Extract `helpers_pkg/time_utils.py` (intervals, timestamps, gaps)
+- Extract `helpers_pkg/topic_maps.py` (TopicMaps class)
+- Extract `helpers_pkg/dice.py` (roll_dice, dc_lookup)
+- Extract `helpers_pkg/character.py` (character names, away tracking)
+- Extract `helpers_pkg/trackers.py` (hp_bar, clock_display, timers)
+
+### 📋 Chunk 9 — Split Test Files
+- Split `test_checker.py` (5042 lines) to match new module structure
+- Split `test_helpers.py` (385 lines)
+- Adjust `test_import_history.py` (334 lines) and `import_history.py` (312)
+
+### 📋 Chunk 10 — Final Cleanup
+- Thin `checker.py` to orchestrator-only (~50 lines)
+- Verify all files under 200 lines
+- Update workflow, README, and documentation
+- Full live test
+
+
+---
+
 ## Future Ideas (unscheduled)
 
 ### 💡 AI summaries (revisited)

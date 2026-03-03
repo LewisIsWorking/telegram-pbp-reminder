@@ -130,10 +130,10 @@ def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str
     now = datetime.now(timezone.utc)
     week_ago = now - timedelta(days=7)
 
-    # Player count
+    # Player count (excluding GMs)
     players = [
         p for p in state.get("players", {}).values()
-        if p.get("pbp_topic_id") == pid
+        if p.get("pbp_topic_id") == pid and p.get("user_id", "") not in gm_ids
     ]
     player_count = len(players)
 
@@ -262,10 +262,10 @@ def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> 
         else:
             lines.append(f"Running since {created.strftime('%B %d, %Y')} W{created.isocalendar()[1]} ({age_days}d)")
 
-    # Players and counts
+    # Players and counts (excluding GMs)
     players = [
         p_val for p_val in state.get("players", {}).values()
-        if p_val.get("pbp_topic_id") == pid
+        if p_val.get("pbp_topic_id") == pid and p_val.get("user_id", "") not in gm_ids
     ]
     counts = state.get("message_counts", {}).get(pid, {})
     topic_ts = helpers.get_topic_timestamps(state, pid)
@@ -719,9 +719,9 @@ def _build_overview(config: dict, state: dict) -> str:
         else:
             age = "—"
 
-        # Player count
+        # Player count (excluding GMs)
         players = [p for p in state.get("players", {}).values()
-                    if p.get("pbp_topic_id") == pid]
+                    if p.get("pbp_topic_id") == pid and p.get("user_id", "") not in gm_ids]
         player_count = len(players)
         total_players_all += player_count
 
@@ -1109,7 +1109,7 @@ def _build_gm_dashboard(config: dict, state: dict) -> str:
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
         topic_ts = helpers.get_topic_timestamps(state, pid)
         players = [p for p in state.get("players", {}).values()
-                   if p.get("pbp_topic_id") == pid]
+                   if p.get("pbp_topic_id") == pid and p.get("user_id", "") not in gm_ids]
         player_count = len(players)
         total_players += player_count
 
@@ -3875,7 +3875,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         if not lines:
             continue
 
-        player_count = len(players)
+        player_count = len([p for p in players if p.get("user_id", "") not in gm_ids])
         footer = f"\n\n———\n\n📋 {name} Party Size\n"
         footer += f"Party size: {player_count}/{helpers.REQUIRED_PLAYERS}."
         if player_count < helpers.REQUIRED_PLAYERS:
@@ -4134,7 +4134,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
         raw_gap = helpers.avg_gap_hours(sorted(player_post_times))
         player_avg_gap = round(raw_gap, 1) if raw_gap is not None else None
 
-        active_players = len(all_campaigns.get(pid, []))
+        active_players = len([p for p in all_campaigns.get(pid, []) if p.get("user_id", "") not in gm_ids])
 
         archive_key = f"{pid}:{week_key}"
         archive[archive_key] = {
@@ -4695,10 +4695,12 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
             continue
 
         # Count active players (excluding GM)
+        gm_ids = helpers.gm_ids_for_campaign(config, pid)
         campaign_players = all_campaigns.get(pid, [])
         active = [
             helpers.player_mention(p)
             for p in campaign_players
+            if p.get("user_id", "") not in gm_ids
         ]
 
         player_count = len(active)
@@ -4773,9 +4775,9 @@ def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
         if player_week_counts:
             top_name = max(player_week_counts, key=player_week_counts.get)
 
-        # Party size
+        # Party size (excluding GMs)
         players = all_campaigns.get(pid, [])
-        party = f"{len(players)}/{helpers.REQUIRED_PLAYERS}"
+        party = f"{len([p for p in players if p['user_id'] not in gm_ids])}/{helpers.REQUIRED_PLAYERS}"
 
         # Combat?
         combat = state.get("combat", {}).get(pid, {})

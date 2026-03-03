@@ -11,17 +11,22 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.0.0] - 2026-03-02
+## [4.0.0] - 2026-03-03
 
 ### Refactored — Codebase Modularization (Chunk 1)
 
 - **Boons extracted**: `boons/handler.py` (94 lines) — boon callback handling, auto-expiry
 - **Directory scaffold**: Created package directories for future extraction (combat, commands, transcript, scheduled, dispatch, parsing, players, helpers_pkg)
-- **Bug fix**: Slash commands with `@botname` suffix (e.g. `/lootlist@PathWarsNudgeBot`) now work correctly in group chats
-- **Bug fix**: Fixed `entry_re` and `scene_re` variable names broken by earlier regex import cleanup
-- **Config**: Added Grand Explorers dream channel (topic 56842) to tracked PBP topics
+- **Roadmap**: Full 10-chunk refactoring plan added to ROADMAP.md
 - **Target**: All files under 200 lines (SOLID principles, no code removal or compression)
 - `checker.py`: 5155 → 5074 lines
+
+### Fixed — GM Exclusion Bugs
+
+- **GM counted as player in party size**: Roster, status, overview, dashboard, recruitment, archive, and weekly digest all now correctly exclude GM IDs from player counts. Previously the GM was counted as a player everywhere, inflating party sizes by 1.
+- **Theria POTW awarded to GM**: Added Link (@Linksanelf2006, user 7863964681) as per-campaign GM for Theria via `gm_user_ids` config override. POTW already filtered GMs but only knew about the global GM (Lewis). Link will no longer be eligible for Theria POTW.
+- **Slash commands with @botname suffix**: Commands like `/lootlist@PathWarsNudgeBot` now work in group chats. Telegram appends the bot username, which broke exact-match command detection.
+- **Broken regex variables**: Fixed `entry_re` and `scene_re` variable names that were mangled by an earlier `sed` operation (`_re.` → `re.` also hit `entry_re.` → `entryre.`).
 
 ---
 
