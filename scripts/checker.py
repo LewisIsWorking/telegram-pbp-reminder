@@ -28,7 +28,10 @@ from helpers import (
 
 
 # Extracted modules
-from boons.handler import _format_boon_result, process_boon_callback, expire_pending_boons
+from boons.handler import (
+    _format_boon_result, process_boon_callback, expire_pending_boons,
+    choose_boon_by_text, build_boons, build_boons_all,
+)
 
 
 # ------------------------------------------------------------------ #
@@ -121,7 +124,10 @@ _HELP_TEXT = (
     "/away [duration] [reason] - Declare an absence (skip warnings)\n"
     "/back - Return from absence\n"
     "/recap [N] - Show last N transcript entries (default 10)\n"
-    "/roll <dice> [label] - Roll dice (e.g. 1d20+5 Stealth)"
+    "/roll <dice> [label] - Roll dice (e.g. 1d20+5 Stealth)\n"
+    "/chooseboon <N> - Pick your POTW boon (if buttons don't work)\n"
+    "/boons - View your held boons in this campaign\n"
+    "/boonsall - View all your boons across all campaigns"
 )
 
 
@@ -2146,6 +2152,7 @@ def _parse_message(msg: dict, group_id: int, maps) -> dict | None:
         "raw_text": raw_text,
         "media_type": media_type,
         "caption": caption,
+        "chat_topic_id": maps.to_chat.get(maps.to_canonical[thread_id_str], thread_id),
     }
 
 
@@ -2683,54 +2690,68 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # Per-campaign GM IDs (supports per-campaign overrides)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
+        # Read-only commands: redirect response from PBP topic to chat topic
+        _READ_CMDS = frozenset({
+            "/help", "/pbphelp", "/status", "/overview", "/campaign",
+            "/mystats", "/me", "/myhistory", "/whosturn", "/combatlog",
+            "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
+            "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
+            "/summary", "/activity", "/profile", "/recap", "/gm",
+            "/boons", "/boonsall",
+        })
+        cmd_word = text.split()[0] if text.startswith("/") else ""
+        # /hp alone = read (view tracker), /hp set|d|h|... = write
+        is_read = cmd_word in _READ_CMDS or (cmd_word == "/hp" and text.strip() == "/hp")
+        reply_topic = parsed["chat_topic_id"] if is_read else thread_id
+
         # ---- /help command ----
         if text in ("/help", "/pbphelp"):
-            tg.send_message(group_id, thread_id, _HELP_TEXT)
+            tg.send_message(group_id, reply_topic, _HELP_TEXT)
 
         # ---- /status command ----
         if text == "/status":
             status = _build_status(pid, campaign_name, state, gm_ids)
-            tg.send_message(group_id, thread_id, status)
+            tg.send_message(group_id, reply_topic, status)
 
         # ---- /overview command ----
         if text == "/overview":
             overview = _build_overview(config, state)
-            tg.send_message(group_id, thread_id, overview)
+            tg.send_message(group_id, reply_topic, overview)
 
         # ---- /campaign command ----
         if text == "/campaign":
             report = _build_campaign_report(pid, config, state, gm_ids)
-            tg.send_message(group_id, thread_id, report)
+            tg.send_message(group_id, reply_topic, report)
 
         # ---- /mystats command ----
         if text in ("/mystats", "/me"):
             my_report = _build_mystats(pid, user_id, campaign_name, state, gm_ids, config)
-            tg.send_message(group_id, thread_id, my_report)
+            tg.send_message(group_id, reply_topic, my_report)
 
         # ---- /whosturn command ----
         if text == "/whosturn":
             turn_report = _build_whosturn(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, turn_report)
+            tg.send_message(group_id, reply_topic, turn_report)
 
         # ---- /combatlog command (everyone) ----
         if text == "/combatlog":
             log_report = _build_combatlog(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, log_report)
+            tg.send_message(group_id, reply_topic, log_report)
 
         # ---- /party command ----
         if text == "/party":
             party_report = _build_party(pid, campaign_name, config, state)
-            tg.send_message(group_id, thread_id, party_report)
+            tg.send_message(group_id, reply_topic, party_report)
 
         # ---- /myhistory command ----
         if text == "/myhistory":
             history = _build_myhistory(pid, user_id, campaign_name, state, gm_ids)
-            tg.send_message(group_id, thread_id, history)
+            tg.send_message(group_id, reply_topic, history)
 
         # ---- /catchup command ----
         if text == "/catchup":
             catchup = _build_catchup(pid, user_id, campaign_name, state, gm_ids, config)
-            tg.send_message(group_id, thread_id, catchup)
+            tg.send_message(group_id, reply_topic, catchup)
 
         # ---- /pause command (GM only) ----
         if text.startswith("/pause") and user_id in gm_ids:
@@ -2806,22 +2827,22 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /notes command (everyone) ----
         if text == "/notes":
             notes_report = _build_notes(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, notes_report)
+            tg.send_message(group_id, reply_topic, notes_report)
 
         # ---- /activity command (everyone) ----
         if text == "/activity":
             activity_report = _build_activity(pid, campaign_name, state, gm_ids)
-            tg.send_message(group_id, thread_id, activity_report)
+            tg.send_message(group_id, reply_topic, activity_report)
 
         # ---- /profile command (everyone) ----
         if text.startswith("/profile"):
             target = parsed["raw_text"][8:].strip()
             if not target:
-                tg.send_message(group_id, thread_id,
+                tg.send_message(group_id, reply_topic,
                                 "Usage: /profile @username or /profile PlayerName")
             else:
                 profile = _build_profile(target, config, state)
-                tg.send_message(group_id, thread_id, profile)
+                tg.send_message(group_id, reply_topic, profile)
 
         # ---- /delnote command (GM only) ----
         if text.startswith("/delnote") and user_id in gm_ids:
@@ -2861,7 +2882,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /quests command (everyone) ----
         if text == "/quests":
             quests_report = _build_quests(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, quests_report)
+            tg.send_message(group_id, reply_topic, quests_report)
 
         # ---- /done command (GM only) ----
         if text.startswith("/done") and user_id in gm_ids:
@@ -2903,7 +2924,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /gm command (GM only) ----
         if text == "/gm" and user_id in gm_ids:
             dashboard = _build_gm_dashboard(config, state)
-            tg.send_message(group_id, thread_id, dashboard)
+            tg.send_message(group_id, reply_topic, dashboard)
 
         # ---- /pin command (GM only) ----
         if text.startswith("/pin") and not text.startswith("/pins") and user_id in gm_ids:
@@ -2925,7 +2946,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /pins command (everyone) ----
         if text == "/pins":
             pins_report = _build_pins(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, pins_report)
+            tg.send_message(group_id, reply_topic, pins_report)
 
         # ---- /delpin command (GM only) ----
         if text.startswith("/delpin") and user_id in gm_ids:
@@ -2964,7 +2985,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /lootlist command (everyone) ----
         if text == "/lootlist":
             loot_report = _build_lootlist(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, loot_report)
+            tg.send_message(group_id, reply_topic, loot_report)
 
         # ---- /delloot command (GM only) ----
         if text.startswith("/delloot") and user_id in gm_ids:
@@ -3013,7 +3034,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /npcs command (everyone) ----
         if text == "/npcs":
             npcs_report = _build_npcs(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, npcs_report)
+            tg.send_message(group_id, reply_topic, npcs_report)
 
         # ---- /delnpc command (GM only) ----
         if text.startswith("/delnpc") and user_id in gm_ids:
@@ -3070,7 +3091,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /conditions command (everyone) ----
         if text == "/conditions":
             conds_report = _build_conditions(pid, campaign_name, state, config)
-            tg.send_message(group_id, thread_id, conds_report)
+            tg.send_message(group_id, reply_topic, conds_report)
 
         # ---- /endcondition command (GM only) ----
         if text.startswith("/endcondition") and user_id in gm_ids:
@@ -3105,7 +3126,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             if not hp_args or hp_args == "show":
                 # View HP tracker
                 report = _build_hp_tracker(pid, campaign_name, state)
-                tg.send_message(group_id, thread_id, report)
+                tg.send_message(group_id, reply_topic, report)
 
             elif user_id in gm_ids:
                 parts = hp_args.split(None, 1)
@@ -3241,7 +3262,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /clocks command (everyone) ----
         if text == "/clocks":
             clocks_report = _build_clocks(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, clocks_report)
+            tg.send_message(group_id, reply_topic, clocks_report)
 
         # ---- /tick command (GM only) ----
         if text.startswith("/tick") and not text.startswith("/ticker") and user_id in gm_ids:
@@ -3372,7 +3393,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /showvote command (everyone) ----
         if text == "/showvote":
             vote_report = _build_vote(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, vote_report)
+            tg.send_message(group_id, reply_topic, vote_report)
 
         # ---- /endvote command (GM only) ----
         if text == "/endvote" and user_id in gm_ids:
@@ -3436,7 +3457,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /showtimer command (everyone) ----
         if text == "/showtimer":
             timer_report = _build_timer(pid, campaign_name, state)
-            tg.send_message(group_id, thread_id, timer_report)
+            tg.send_message(group_id, reply_topic, timer_report)
 
         # ---- /canceltimer command (GM only) ----
         if text == "/canceltimer" and user_id in gm_ids:
@@ -3449,13 +3470,13 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         # ---- /summary command (everyone) ----
         if text == "/summary":
             summary = _build_summary(pid, campaign_name, state, config)
-            tg.send_message(group_id, thread_id, summary)
+            tg.send_message(group_id, reply_topic, summary)
 
         # ---- /dc command (everyone) ----
         if text.startswith("/dc"):
             dc_query = parsed["raw_text"][3:].strip()
             result = helpers.dc_lookup(dc_query)
-            tg.send_message(group_id, thread_id, result)
+            tg.send_message(group_id, reply_topic, result)
 
         # ---- /away command (everyone) ----
         if text.startswith("/away"):
@@ -3499,7 +3520,28 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             except ValueError:
                 count = 10
             recap = _build_recap(pid, campaign_name, config, count)
-            tg.send_message(group_id, thread_id, recap)
+            tg.send_message(group_id, reply_topic, recap)
+
+        # ---- /chooseboon command (POTW winner fallback for broken buttons) ----
+        if text.startswith("/chooseboon"):
+            num_str = parsed["raw_text"][11:].strip()
+            try:
+                choice = int(num_str)
+            except ValueError:
+                tg.send_message(group_id, thread_id, "Usage: /chooseboon <number>")
+            else:
+                result = choose_boon_by_text(pid, user_id, choice, config, state)
+                tg.send_message(group_id, thread_id, result)
+
+        # ---- /boons command (everyone, read-only) ----
+        if text == "/boons":
+            report = build_boons(pid, user_id, campaign_name, state)
+            tg.send_message(group_id, reply_topic, report)
+
+        # ---- /boonsall command (everyone, read-only) ----
+        if text == "/boonsall":
+            report = build_boons_all(user_id, state)
+            tg.send_message(group_id, reply_topic, report)
 
         # ---- /roll command (everyone) ----
         if text.startswith("/roll"):
@@ -3983,6 +4025,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
             state["pending_potw_boons"][pid] = {
                 "message_id": msg_id,
                 "winner_user_id": winner["user_id"],
+                "campaign_name": name,
                 "boons": chosen_boons,
                 "base_message": base_message,
                 "posted_at": now.isoformat(),
@@ -4313,6 +4356,45 @@ def check_streak_milestones(config: dict, state: dict, *, now: datetime | None =
 # ------------------------------------------------------------------ #
 #  Campaign anniversary alerts
 # ------------------------------------------------------------------ #
+def _next_anniversary(config: dict, today) -> str | None:
+    """Find the next upcoming campaign anniversary after today."""
+    upcoming = []
+    for pair in config["topic_pairs"]:
+        created_str = pair.get("created")
+        if not created_str:
+            continue
+        created = datetime.strptime(created_str, "%Y-%m-%d").date()
+        name = pair["name"]
+
+        # This year's anniversary
+        try:
+            ann_this_year = created.replace(year=today.year)
+        except ValueError:
+            continue  # Feb 29 edge case
+
+        if ann_this_year > today:
+            years = today.year - created.year
+            if years >= 1:
+                upcoming.append((ann_this_year, name, years))
+        else:
+            # Next year's anniversary
+            try:
+                ann_next_year = created.replace(year=today.year + 1)
+            except ValueError:
+                continue
+            years = today.year + 1 - created.year
+            if years >= 1:
+                upcoming.append((ann_next_year, name, years))
+
+    if not upcoming:
+        return None
+    upcoming.sort()
+    date, name, years = upcoming[0]
+    days_until = (date - today).days
+    year_str = f"{years} year{'s' if years != 1 else ''}"
+    return f"📅 Next anniversary: {name} turns {year_str} old on {date.strftime('%B %d')} ({days_until}d away)"
+
+
 def check_anniversaries(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Post a celebration when a campaign hits a yearly anniversary."""
     group_id = config["group_id"]
@@ -4358,6 +4440,11 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
             f"Campaign started {created.strftime('%B %d, %Y')} (W{created.isocalendar()[1]}). "
             f"Here's to more adventures ahead."
         )
+
+        # Append next upcoming anniversary
+        next_ann = _next_anniversary(config, today)
+        if next_ann:
+            message += f"\n\n———\n\n{next_ann}"
 
         print(f"Anniversary for {name}: {year_str}")
         if tg.send_message(group_id, chat_topic_id, message):

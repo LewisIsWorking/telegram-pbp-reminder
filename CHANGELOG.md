@@ -15,18 +15,198 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ### Refactored — Codebase Modularization (Chunk 1)
 
-- **Boons extracted**: `boons/handler.py` (94 lines) — boon callback handling, auto-expiry
-- **Directory scaffold**: Created package directories for future extraction (combat, commands, transcript, scheduled, dispatch, parsing, players, helpers_pkg)
-- **Roadmap**: Full 10-chunk refactoring plan added to ROADMAP.md
-- **Target**: All files under 200 lines (SOLID principles, no code removal or compression)
-- `checker.py`: 5155 → 5074 lines
+Extracted the boon callback system into `scripts/boons/handler.py` (190 lines).
+Created package directories with `__init__.py` for all planned modules:
+`boons/`, `combat/`, `commands/`, `transcript/`, `scheduled/`, `dispatch/`,
+`parsing/`, `players/`, `helpers_pkg/`.
 
-### Fixed — GM Exclusion Bugs
+```python
+# checker.py — old (inline, 85 lines in checker.py):
+def _format_boon_result(...): ...
+def process_boon_callback(...): ...
+def expire_pending_boons(...): ...
 
-- **GM counted as player in party size**: Roster, status, overview, dashboard, recruitment, archive, and weekly digest all now correctly exclude GM IDs from player counts. Previously the GM was counted as a player everywhere, inflating party sizes by 1.
-- **Theria POTW awarded to GM**: Added Link (@Linksanelf2006, user 7863964681) as per-campaign GM for Theria via `gm_user_ids` config override. POTW already filtered GMs but only knew about the global GM (Lewis). Link will no longer be eligible for Theria POTW.
-- **Slash commands with @botname suffix**: Commands like `/lootlist@PathWarsNudgeBot` now work in group chats. Telegram appends the bot username, which broke exact-match command detection.
-- **Broken regex variables**: Fixed `entry_re` and `scene_re` variable names that were mangled by an earlier `sed` operation (`_re.` → `re.` also hit `entry_re.` → `entryre.`).
+# checker.py — new (3-line import):
+from boons.handler import (
+    _format_boon_result, process_boon_callback, expire_pending_boons,
+    choose_boon_by_text, build_boons, build_boons_all,
+)
+```
+
+Full 10-chunk refactoring plan added to `ROADMAP.md`. Target: every `.py` file
+under 200 lines via extraction and OOP — never by removing or compressing code.
+
+`checker.py`: 5155 → 5095 lines (will drop to ~50 once extraction completes).
+
+---
+
+### Fixed — GM Excluded From Player Counts
+
+The GM was counted as a player everywhere, inflating party sizes by 1.
+Root cause: `players_by_campaign()` returns all tracked users including GMs,
+and no caller filtered before counting.
+
+Fixed in **7 locations** — every `player_count = len(players)` now filters:
+
+```python
+# Before (all 7 sites):
+players = [p for p in state.get("players", {}).values()
+           if p.get("pbp_topic_id") == pid]
+player_count = len(players)
+
+# After:
+players = [p for p in state.get("players", {}).values()
+           if p.get("pbp_topic_id") == pid
+           and p.get("user_id", "") not in gm_ids]
+player_count = len(players)
+```
+
+Affected functions: `_build_status` (line 134), `_build_campaign_report` (line 266),
+`_build_overview` (line 722), `_build_gm_dashboard` (line 1110),
+`post_roster_summary` (line 3878), `archive_weekly_data` (line 4137),
+`check_recruitment_needs` (line 4700), `_build_weekly_digest` (line 4778).
+
+Used `.get("user_id", "")` instead of `["user_id"]` for defensive access —
+some test player dicts lack `user_id` and shouldn't crash.
+
+---
+
+### Fixed — Theria POTW Awarded to GM
+
+Link (@Linksanelf2006, user ID `7863964681`) is the Theria GM but wasn't
+in any GM list. The `_gather_potw_candidates()` function already filters
+`if user_id in gm_ids: continue` but only knew the global GM (Lewis).
+
+Fix: Added per-campaign `gm_user_ids` override in `config.json`:
+
+```json
+{
+    "name": "Theria",
+    "gm_user_ids": [1698524397, 7863964681],
+    "disabled_features": ["warnings", "recruitment"]
+}
+```
+
+`helpers.gm_ids_for_campaign()` already supported per-campaign overrides —
+the config just needed the data.
+
+---
+
+### Fixed — Read-Only Commands Responding in PBP Topics
+
+Commands like `/lootlist`, `/status`, `/notes` were responding directly in
+the PBP narrative topic, cluttering the story. Root cause: `_parse_message()`
+only processes PBP topic messages (`maps.all_pbp_ids`), and all command
+responses used `thread_id` (the PBP topic) regardless.
+
+Fix: Added `chat_topic_id` to the parsed message dict and a read-command
+router that redirects query responses to the chat topic:
+
+```python
+# In _parse_message() return dict:
+"chat_topic_id": maps.to_chat.get(maps.to_canonical[thread_id_str], thread_id),
+
+# In process_updates(), after parsing:
+_READ_CMDS = frozenset({
+    "/help", "/pbphelp", "/status", "/overview", "/campaign",
+    "/mystats", "/me", "/myhistory", "/whosturn", "/combatlog",
+    "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
+    "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
+    "/summary", "/activity", "/profile", "/recap", "/gm",
+    "/boons", "/boonsall",
+})
+cmd_word = text.split()[0] if text.startswith("/") else ""
+is_read = cmd_word in _READ_CMDS or (cmd_word == "/hp" and text.strip() == "/hp")
+reply_topic = parsed["chat_topic_id"] if is_read else thread_id
+```
+
+27 `tg.send_message()` calls updated from `thread_id` to `reply_topic`.
+Action commands (`/combat`, `/roll`, `/loot`, `/hp set`, etc.) stay in PBP.
+
+---
+
+### Fixed — Broken Regex Variable Names
+
+Earlier `sed` that replaced `import _re` → `import re` also hit local
+variable names: `entry_re.finditer` became `entryre.finditer`,
+`scene_re.finditer` became `scenere.finditer`. Caused `NameError` in
+`_build_catchup()` and `_build_recap()`.
+
+```bash
+# The fix:
+sed -i 's/entryre\./entry_re./g' scripts/checker.py
+sed -i 's/scenere\./scene_re./g' scripts/checker.py
+```
+
+---
+
+### New — `/chooseboon` Text Fallback for POTW Buttons
+
+Inline keyboard buttons silently fail because the bot runs hourly via cron.
+Telegram's callback window expires in ~30 seconds, so users see "bot not
+responding" when they click. The callback IS queued and processed on the
+next run, but the UX is broken.
+
+Added `/chooseboon <N>` as a text-based fallback:
+
+```python
+# In boons/handler.py:
+def choose_boon_by_text(pid, user_id, choice_num, config, state) -> str:
+    """Handle /chooseboon N command. Returns response message."""
+    pending = state.get("pending_potw_boons", {}).get(pid)
+    # ... validates winner, resolves choice, edits original message ...
+    return f"✅ Boon chosen: {chosen}"
+```
+
+Also updates the original button message via `tg.edit_message()` so the
+POTW post shows the chosen boon.
+
+---
+
+### New — Boon Storage (`/boons`, `/boonsall`)
+
+Chosen boons are now persisted in state for retrieval:
+
+```python
+# State structure:
+state["player_boons"][pid][user_id] = [
+    {"text": "A cloud of steam obscures you...",
+     "date": "2026-03-02", "campaign": "Kibwe", "week": "W10"}
+]
+```
+
+Stored on callback choice, text choice (`/chooseboon`), and auto-expiry.
+Campaign-specific: a Kibwe boon only shows under Kibwe.
+
+- `/boons` — Your boons in the current campaign
+- `/boonsall` — All your boons across every campaign
+
+---
+
+### New — Anniversary Next-Up Reminder
+
+Anniversary messages now include the next upcoming anniversary:
+
+```
+🎂 Magni Watch is 1 year old today!
+
+Campaign started March 04, 2025 (W10). Here's to more adventures ahead.
+
+———
+
+📅 Next anniversary: Kibwe turns 2 years old on April 06 (33d away)
+```
+
+Added `_next_anniversary(config, today)` helper that scans all campaign
+`created` dates, finds the soonest future anniversary, and returns a
+formatted line with days-until countdown.
+
+---
+
+### Config Changes
+
+- **Theria**: Added `gm_user_ids: [1698524397, 7863964681]` (Lewis + Link)
+- **Grand Explorers**: Added dream channel topic `56842` to `pbp_topic_ids`
 
 ---
 
