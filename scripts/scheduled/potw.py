@@ -89,6 +89,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         boon_text = "\n\nChoose your boon:\n"
         for i, b in enumerate(chosen_boons):
             boon_text += f"\n{i + 1}. {b}\n"
+        boon_text += "\nTap a button below, or type /chooseboon N"
 
         buttons = [
             {"text": f"Boon #{i + 1}", "callback_data": f"boon:{pid}:{i}"}

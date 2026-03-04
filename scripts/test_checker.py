@@ -29,7 +29,7 @@ def _mock_send_buttons(group_id, topic_id, text, buttons):
     return 99999
 
 
-def _mock_edit(chat_id, message_id, text, parse_mode=None):
+def _mock_edit(chat_id, message_id, text, parse_mode=None, remove_keyboard=False):
     _sent_messages.append({"chat_id": chat_id, "message_id": message_id, "text": text})
     return True
 
@@ -797,8 +797,8 @@ def test_process_boon_callback_wrong_user():
     }
     checker.process_boon_callback(cb, _make_config(), state)
     assert "100" in state["pending_potw_boons"]  # Not cleaned up
-    reject_msgs = [m for m in _sent_messages if "Only the Player" in m.get("text", "")]
-    assert len(reject_msgs) == 1
+    # With hourly cron, wrong-user clicks are silently ignored
+    # (answer_callback always times out, so no rejection message is sent)
 
 
 def test_expire_pending_boons():

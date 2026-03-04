@@ -89,8 +89,9 @@ def send_message_with_buttons(
     return result["message_id"] if result else None
 
 
-def edit_message(chat_id: int, message_id: int, text: str, parse_mode: str = None) -> bool:
-    """Edit an existing message, removing inline keyboard."""
+def edit_message(chat_id: int, message_id: int, text: str,
+                 parse_mode: str = None, remove_keyboard: bool = False) -> bool:
+    """Edit an existing message. Optionally remove inline keyboard."""
     payload = {
         "chat_id": chat_id,
         "message_id": message_id,
@@ -98,6 +99,8 @@ def edit_message(chat_id: int, message_id: int, text: str, parse_mode: str = Non
     }
     if parse_mode:
         payload["parse_mode"] = parse_mode
+    if remove_keyboard:
+        payload["reply_markup"] = {"inline_keyboard": []}
     return _post("editMessageText", payload, "edit_message") is not None
 
 

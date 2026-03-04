@@ -60,50 +60,57 @@ def _resolve_boon(state: dict, topic_id: str, choice_idx: int, label: str,
 
 
 def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
-    """Handle a player clicking a boon choice button."""
-    cb_id = cb.get("id", "")
+    """Handle a player clicking a boon choice button.
+
+    Note: answer_callback will always fail with hourly cron (Telegram
+    requires a response within ~10s). We skip it and send a confirmation
+    message instead, which the user sees on the next cron run.
+    """
     cb_data = cb.get("data", "")
     from_user = cb.get("from", {})
     user_id = str(from_user.get("id", ""))
     msg = cb.get("message", {})
     chat_id = msg.get("chat", {}).get("id")
     message_id = msg.get("message_id")
+    thread_id = msg.get("message_thread_id")
 
     if not cb_data.startswith("boon:"):
         return
 
-    # Parse: boon:<topic_id>:<choice_index>
     parts = cb_data.split(":")
     if len(parts) != 3:
-        tg.answer_callback(cb_id, "Invalid choice.")
         return
 
     topic_id = parts[1]
     try:
         choice_idx = int(parts[2])
     except ValueError:
-        tg.answer_callback(cb_id, "Invalid choice.")
         return
 
     pending = state.get("pending_potw_boons", {}).get(topic_id)
     if not pending:
-        tg.answer_callback(cb_id, "This choice has expired.")
         return
 
     if user_id != pending["winner_user_id"]:
-        tg.answer_callback(cb_id, "Only the Player of the Week can choose!")
         return
 
     new_text, _ = _resolve_boon(state, topic_id, choice_idx, "Chosen boon")
     if not new_text:
-        tg.answer_callback(cb_id, "Invalid choice.")
         return
 
-    tg.edit_message(chat_id, message_id, new_text, parse_mode="HTML")
-    tg.answer_callback(cb_id, f"You chose boon #{choice_idx + 1}!")
+    # Edit original message: update text and remove inline buttons
+    tg.edit_message(chat_id, message_id, new_text,
+                    parse_mode="HTML", remove_keyboard=True)
+
+    # Send confirmation (since answer_callback always times out with hourly cron)
+    chosen = pending["boons"][choice_idx]
+    user_name = from_user.get("first_name", "Winner")
+    confirm_tid = thread_id or topic_id
+    tg.send_message(config["group_id"], int(confirm_tid),
+                    f"\u2705 {user_name} chose boon #{choice_idx + 1}: {chosen}")
 
     del state["pending_potw_boons"][topic_id]
-    print(f"POTW boon chosen for topic {topic_id}: #{choice_idx + 1}")
+    print(f"POTW boon chosen via button for topic {topic_id}: #{choice_idx + 1}")
 
 
 def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
@@ -126,7 +133,8 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
         return "Something went wrong."
 
     # Update the original button message
-    tg.edit_message(group_id, pending["message_id"], new_text, parse_mode="HTML")
+    tg.edit_message(group_id, pending["message_id"], new_text,
+                    parse_mode="HTML", remove_keyboard=True)
 
     chosen = pending["boons"][choice_idx]
     del state["pending_potw_boons"][pid]
@@ -148,7 +156,8 @@ def expire_pending_boons(config: dict, state: dict, *, now: datetime | None = No
         if elapsed >= 48:
             new_text, _ = _resolve_boon(state, topic_id, 0, "Boon (auto-selected)", now)
             if new_text:
-                tg.edit_message(group_id, entry["message_id"], new_text, parse_mode="HTML")
+                tg.edit_message(group_id, entry["message_id"], new_text,
+                                parse_mode="HTML", remove_keyboard=True)
             del pending[topic_id]
             print(f"POTW boon auto-expired for topic {topic_id}, picked #1")
 
