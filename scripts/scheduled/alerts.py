@@ -97,6 +97,10 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         user_id = player.get("user_id", "")
         if helpers.is_away(state, pbp_topic_id, user_id, now):
             continue
+        # Skip GMs (per-campaign or global)
+        gm_ids = helpers.gm_ids_for_campaign(config, pbp_topic_id)
+        if user_id in gm_ids:
+            continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])
         elapsed_days = helpers.days_since(now, last_post)

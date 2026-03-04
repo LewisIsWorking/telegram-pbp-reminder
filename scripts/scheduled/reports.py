@@ -37,6 +37,8 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
 
         for player in sorted(players, key=lambda p: counts.get(p["user_id"], 0), reverse=True):
             uid = player["user_id"]
+            if uid in gm_ids:
+                continue
             raw_ts = topic_timestamps.get(uid, [])
             if not raw_ts:
                 continue
