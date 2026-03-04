@@ -2,39 +2,28 @@
 """Import historical PBP messages from a Telegram Desktop JSON export.
 
 Usage:
-    1. In Telegram Desktop: Settings → Advanced → Export chat history
-       - Select the Path_Wars supergroup
-       - Format: Machine-readable JSON
-       - Uncheck everything except "Text messages" (media metadata is kept)
-       - Export
-    2. Run this script:
-       python3 scripts/import_history.py path/to/result.json [--dry-run]
+    python3 scripts/import_history.py path/to/result.json [--dry-run]
 
-The script reads config.json to map message_thread_id values to campaign
-names, then writes historical messages to data/pbp_logs/{Campaign}/{YYYY-MM}.md
-in the same format the live bot uses.
-
-Existing transcript files are respected: the script tracks message IDs
-already imported and only appends new ones. Safe to run multiple times.
+Export: Telegram Desktop → Settings → Advanced → Export → Machine-readable JSON.
+Maps message_thread_id to campaigns via config.json, writes to data/pbp_logs/.
+Tracks imported message IDs so it's safe to run multiple times.
 """
 
 import argparse
 import json
 import sys
-from datetime import datetime
 from pathlib import Path
 
+from import_formatting import format_entry, extract_text, detect_media
 
 SCRIPT_DIR = Path(__file__).parent
 ROOT_DIR = SCRIPT_DIR.parent
 LOGS_DIR = ROOT_DIR / "data" / "pbp_logs"
 CONFIG_PATH = ROOT_DIR / "config.json"
 
-
 def load_config() -> dict:
     with open(CONFIG_PATH) as f:
         return json.load(f)
-
 
 def build_thread_map(config: dict) -> dict:
     """Map thread_id (int) → campaign name for all PBP topics."""
@@ -44,7 +33,6 @@ def build_thread_map(config: dict) -> dict:
         for tid in pair.get("pbp_topic_ids", []):
             mapping[tid] = name
     return mapping
-
 
 def build_gm_map(config: dict) -> dict:
     """Map campaign name → set of GM user ID strings."""
@@ -58,104 +46,8 @@ def build_gm_map(config: dict) -> dict:
             gm_map[name] = global_gms
     return gm_map
 
-
 def sanitize_dirname(name: str) -> str:
     return "".join(c if c.isalnum() or c in (" ", "-", "_") else "" for c in name).strip().replace(" ", "_")
-
-
-def extract_text(msg: dict) -> str:
-    """Extract readable text from a Telegram export message.
-
-    The 'text' field can be a plain string OR a list of mixed text/entity
-    objects like [{"type": "bold", "text": "hello"}, " world"].
-
-    Desktop exports may also use 'text_entities' as a list of
-    {"type": "...", "text": "..."} objects.
-    """
-    raw = msg.get("text", "")
-    if isinstance(raw, str) and raw.strip():
-        return raw.strip()
-    if isinstance(raw, list) and raw:
-        parts = []
-        for chunk in raw:
-            if isinstance(chunk, str):
-                parts.append(chunk)
-            elif isinstance(chunk, dict):
-                parts.append(chunk.get("text", ""))
-        result = "".join(parts).strip()
-        if result:
-            return result
-
-    # Fallback: text_entities (Telegram Desktop export format)
-    entities = msg.get("text_entities", [])
-    if entities:
-        parts = [e.get("text", "") for e in entities if isinstance(e, dict)]
-        return "".join(parts).strip()
-
-    return ""
-
-
-def detect_media(msg: dict) -> str | None:
-    """Detect media type from Telegram export message.
-
-    Handles both Bot API format and Desktop export format.
-    """
-    # Desktop export format
-    media_type = msg.get("media_type")
-    if media_type == "animation":
-        return "gif"
-    if media_type == "video_file":
-        return "video"
-    if media_type == "voice_message":
-        return "voice message"
-    if media_type == "video_message":
-        return "video note"
-    if media_type == "sticker":
-        emoji = msg.get("sticker_emoji", "?")
-        return f"sticker:{emoji}"
-
-    # Photo (Desktop export uses "photo" as a file path string)
-    if msg.get("photo"):
-        return "image"
-
-    # Document/file
-    if msg.get("file") and not media_type:
-        fname = str(msg.get("file", "")).split("/")[-1] if msg.get("file") else "file"
-        return f"document:{fname}"
-
-    return None
-
-
-def format_entry(msg: dict, is_gm: bool) -> str:
-    """Format a message as a transcript entry."""
-    # Parse timestamp
-    date_str = msg.get("date", "")
-    ts = date_str[:19].replace("T", " ")  # 2025-01-15 14:30:05
-
-    # Name
-    name = msg.get("from", "Unknown")
-    role_tag = " [GM]" if is_gm else ""
-
-    # Content
-    text = extract_text(msg)
-    media = detect_media(msg)
-
-    parts = []
-    if media:
-        if media.startswith("sticker:"):
-            parts.append(f"*[sticker {media[8:]}]*")
-        elif media.startswith("document:"):
-            parts.append(f"*[{media[9:]}]*")
-        else:
-            parts.append(f"*[{media}]*")
-
-    if text:
-        parts.append(text)
-
-    content = " ".join(parts) if parts else "*[empty message]*"
-
-    return f"**{name}**{role_tag} ({ts}):\n{content}\n"
-
 
 def get_imported_ids(campaign_dir: Path) -> set:
     """Read the tracking file of already-imported message IDs."""
@@ -164,12 +56,10 @@ def get_imported_ids(campaign_dir: Path) -> set:
         return set(tracker.read_text().strip().split("\n"))
     return set()
 
-
 def save_imported_ids(campaign_dir: Path, ids: set) -> None:
     """Save the set of imported message IDs."""
     tracker = campaign_dir / ".imported_ids"
     tracker.write_text("\n".join(sorted(ids)) + "\n", encoding="utf-8")
-
 
 def import_messages(export_path: str, *, dry_run: bool = False) -> dict:
     """Import messages from a Telegram Desktop export JSON file.
@@ -284,7 +174,6 @@ def import_messages(export_path: str, *, dry_run: bool = False) -> dict:
 
     return results
 
-
 def main():
     parser = argparse.ArgumentParser(
         description="Import PBP history from Telegram Desktop JSON export"
@@ -306,7 +195,6 @@ def main():
     else:
         print(f"\nImport complete. {total} new messages imported.")
         print("Run 'git add data/pbp_logs && git commit' to save to repo.")
-
 
 if __name__ == "__main__":
     main()

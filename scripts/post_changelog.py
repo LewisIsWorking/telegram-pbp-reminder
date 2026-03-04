@@ -1,10 +1,7 @@
 """Post the latest CHANGELOG.md entry to a Telegram topic.
 
-Usage (via GitHub Actions or manually):
-    TELEGRAM_BOT_TOKEN=xxx python scripts/post_changelog.py
-
-Reads the latest version block from CHANGELOG.md, formats it for Telegram,
-and posts it to the configured topic. Skips if no token is set.
+Usage: TELEGRAM_BOT_TOKEN=xxx python scripts/post_changelog.py
+Reads the latest version block, formats for Telegram, posts to topic.
 """
 
 import os
@@ -19,7 +16,6 @@ from pathlib import Path
 CHANGELOG_CHAT_ID = os.environ.get("CHANGELOG_CHAT_ID", "@Path_Wars")
 CHANGELOG_THREAD_ID = int(os.environ.get("CHANGELOG_THREAD_ID", "71537"))
 TELEGRAM_MAX_LENGTH = 4096
-
 
 def read_latest_entry(changelog_path: Path) -> tuple[str, str]:
     """Extract the latest version entry from CHANGELOG.md.
@@ -44,7 +40,6 @@ def read_latest_entry(changelog_path: Path) -> tuple[str, str]:
     body = lines[1].strip() if len(lines) > 1 else ""
 
     return header, body
-
 
 def markdown_to_telegram(header: str, body: str) -> str:
     """Convert changelog markdown to Telegram-friendly format.
@@ -100,7 +95,6 @@ def markdown_to_telegram(header: str, body: str) -> str:
 
     return result.strip()
 
-
 def split_message(text: str, max_length: int = TELEGRAM_MAX_LENGTH) -> list[str]:
     """Split a long message into chunks that fit Telegram's limit.
 
@@ -138,7 +132,6 @@ def split_message(text: str, max_length: int = TELEGRAM_MAX_LENGTH) -> list[str]
 
     return chunks
 
-
 def post_to_telegram(text: str, token: str) -> bool:
     """Post a message to the configured Telegram topic. Returns True on success."""
     chunks = split_message(text)
@@ -173,7 +166,6 @@ def post_to_telegram(text: str, token: str) -> bool:
 
     return success
 
-
 def main() -> int:
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     if not token:
@@ -201,7 +193,6 @@ def main() -> int:
     else:
         print("Failed to post changelog")
         return 1
-
 
 if __name__ == "__main__":
     sys.exit(main())
