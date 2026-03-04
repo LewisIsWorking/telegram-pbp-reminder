@@ -68,6 +68,11 @@ import tempfile as _tempfile
 _test_log_dir = _tempfile.mkdtemp()
 checker._LOGS_DIR = __import__("pathlib").Path(_test_log_dir)
 
+# Also patch extracted modules that have their own _LOGS_DIR
+from commands import recap as _recap_mod, catchup as _catchup_mod
+_recap_mod._LOGS_DIR = checker._LOGS_DIR
+_catchup_mod._LOGS_DIR = checker._LOGS_DIR
+
 # Redirect archive to temp file so tests don't write to repo
 helpers.ARCHIVE_PATH = __import__("pathlib").Path(_test_log_dir) / "weekly_archive.json"
 
