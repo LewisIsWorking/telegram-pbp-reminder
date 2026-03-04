@@ -314,9 +314,20 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `scheduled/combat_ping.py` (102 lines): combat turns, expired timers
 - checker.py: 3055 → 1632 lines (−1423)
 
-### 📋 Chunk 7 — Dispatch & Players
-- Extract `dispatch/processor.py` (process_updates command router)
-- Extract `players/management.py` (kick, addplayer)
+### 🔧 Chunk 7 — Dispatch & Players
+- Extract `dispatch/router.py` (116 lines): process_updates main loop
+- Extract `dispatch/cmd_info.py` (168 lines): 28 read-only info commands
+- Extract `dispatch/cmd_gm.py` (81 lines): pause, resume, kick, addplayer, scene
+- Extract `dispatch/cmd_trackers.py` (122 lines): note, quest CRUD
+- Extract `dispatch/cmd_trackers_items.py` (144 lines): pin, loot, NPC CRUD
+- Extract `dispatch/cmd_conditions_hp.py` (199 lines): condition + HP tracker writes
+- Extract `dispatch/cmd_clocks.py` (127 lines): clock, tick, untick, delclock
+- Extract `dispatch/cmd_votes_timers.py` (155 lines): vote, pick, endvote, timer
+- Extract `dispatch/cmd_player.py` (112 lines): away, back, chooseboon, roll
+- Extract `dispatch/tracking.py` (125 lines): post-message state tracking
+- Extract `dispatch/help_text.py` (94 lines): _HELP_TEXT constant
+- Extract `players/management.py` (109 lines): handle_kick, handle_addplayer
+- checker.py: 1632 → 277 lines (−1355)
 
 ### 📋 Chunk 8 — Split helpers.py
 - Extract `helpers_pkg/config.py` (load, validate, settings)
