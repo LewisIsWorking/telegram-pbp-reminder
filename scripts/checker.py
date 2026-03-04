@@ -48,6 +48,25 @@ from combat.commands import (
     handle_enemies_command as _handle_enemies_command,
 )
 from parsing.message import parse_message as _parse_message
+from commands.status import (
+    build_status as _build_status,
+    build_overview as _build_overview,
+)
+from commands.campaign import (
+    build_campaign_report as _build_campaign_report,
+    roster_user_stats as _roster_user_stats,
+    roster_block as _roster_block,
+)
+from commands.player import (
+    build_mystats as _build_mystats,
+    build_myhistory as _build_myhistory,
+)
+
+# Backward-compat aliases for tests (functions moved to modules)
+_calc_streak = helpers.calc_streak
+_health_icon = helpers.health_icon
+
+from commands.player import _sparkline
 
 
 # ------------------------------------------------------------------ #
@@ -147,283 +166,6 @@ _HELP_TEXT = (
 )
 
 
-def _build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str:
-    """Build a quick campaign health snapshot for /status command."""
-    now = datetime.now(timezone.utc)
-    week_ago = now - timedelta(days=7)
-
-    # Player count (excluding GMs)
-    players = [
-        p for p in state.get("players", {}).values()
-        if p.get("pbp_topic_id") == pid and p.get("user_id", "") not in gm_ids
-    ]
-    player_count = len(players)
-
-    # Last post
-    topic_state = state.get("topics", {}).get(pid)
-    if topic_state:
-        last_time = datetime.fromisoformat(topic_state["last_message_time"])
-        elapsed = helpers.hours_since(now, last_time)
-        if elapsed < 1:
-            last_str = "just now"
-        elif elapsed < 24:
-            last_str = f"{int(elapsed)}h ago"
-        else:
-            last_str = f"{int(elapsed / 24)}d {int(elapsed % 24)}h ago"
-    else:
-        last_str = "no posts tracked yet"
-
-    # Posts this week
-    topic_ts = helpers.get_topic_timestamps(state, pid)
-    gm_week = player_week = 0
-    for uid, timestamps in topic_ts.items():
-        count = len(timestamps_in_window(timestamps, week_ago))
-        if uid in gm_ids:
-            gm_week += count
-        else:
-            player_week += count
-
-    # At-risk players (1+ weeks inactive)
-    at_risk = []
-    for p in players:
-        last_post = datetime.fromisoformat(p["last_post_time"])
-        days_inactive = helpers.days_since(now, last_post)
-        if days_inactive >= 7:
-            at_risk.append(f"{p['first_name']} ({int(days_inactive)}d)")
-
-    # Active combat
-    combat = state.get("combat", {}).get(pid)
-    combat_str = ""
-    if combat and combat.get("active"):
-        combat_str = f"\nCombat: Round {combat['round']}, {combat['current_phase']}' turn"
-
-    lines = [
-        f"Status for {campaign_name}:",
-        f"Party: {player_count}/{helpers.REQUIRED_PLAYERS}",
-        f"Last post: {last_str}",
-        f"This week: {player_week} player + {gm_week} GM posts",
-    ]
-    if at_risk:
-        lines.append(f"At risk: {', '.join(at_risk)}")
-
-    # Away players
-    away_names = []
-    for p in players:
-        uid = p.get("user_id", "")
-        record = helpers.is_away(state, pid, uid, now)
-        if record:
-            away_names.append(p["first_name"])
-    if away_names:
-        lines.append(f"✈️ Away: {', '.join(away_names)}")
-
-    if combat_str:
-        lines.append(combat_str)
-
-    paused = state.get("paused_campaigns", {}).get(pid)
-    if paused:
-        lines.append(f"⏸️ PAUSED: {paused.get('reason', 'No reason')}")
-
-    scene = state.get("current_scenes", {}).get(pid)
-    if scene:
-        lines.append(f"🎭 Scene: {scene}")
-
-    active_quests = [q for q in state.get("quests", {}).get(pid, [])
-                     if q.get("status") == "active"]
-    if active_quests:
-        lines.append(f"📋 {len(active_quests)} active quest{'s' if len(active_quests) != 1 else ''}")
-
-    # HP tracker count
-    hp_entries = state.get("hp_tracker", {}).get(pid, {})
-    if hp_entries:
-        alive = sum(1 for h in hp_entries.values() if h["current"] > 0)
-        lines.append(f"❤️ {alive}/{len(hp_entries)} enemies standing (/hp)")
-
-    # Conditions count
-    conds = state.get("conditions", {}).get(pid, [])
-    if conds:
-        lines.append(f"⚡ {len(conds)} active condition{'s' if len(conds) != 1 else ''}")
-
-    # Active clocks
-    clocks = state.get("clocks", {}).get(pid, {})
-    if clocks:
-        incomplete = sum(1 for c in clocks.values() if c["filled"] < c["segments"])
-        lines.append(f"⏱️ {incomplete}/{len(clocks)} clock{'s' if len(clocks) != 1 else ''} ticking")
-
-    return "\n".join(lines)
-
-
-def _build_campaign_report(pid: str, config: dict, state: dict, gm_ids: set) -> str:
-    """Build a comprehensive campaign scoreboard for /campaign command.
-
-    Combines: header, roster with full stats, weekly pace, at-risk players, combat state.
-    """
-    now = datetime.now(timezone.utc)
-
-    # Campaign metadata
-    pair = None
-    for p in config.get("topic_pairs", []):
-        if str(p["pbp_topic_ids"][0]) == pid:
-            pair = p
-            break
-    name = pair["name"] if pair else "Unknown"
-    created_str = pair.get("created", "") if pair else ""
-
-    # Header
-    lines = [f"━━ {name} ━━"]
-
-    paused = state.get("paused_campaigns", {}).get(pid)
-    if paused:
-        lines.append(f"⏸️ PAUSED: {paused.get('reason', 'No reason')}")
-
-    if created_str:
-        created = datetime.strptime(created_str, "%Y-%m-%d").date()
-        age_days = (now.date() - created).days
-        if age_days >= 365:
-            years = age_days // 365
-            lines.append(f"Running since {created.strftime('%B %d, %Y')} W{created.isocalendar()[1]} ({years}y {age_days % 365}d)")
-        else:
-            lines.append(f"Running since {created.strftime('%B %d, %Y')} W{created.isocalendar()[1]} ({age_days}d)")
-
-    # Players and counts (excluding GMs)
-    players = [
-        p_val for p_val in state.get("players", {}).values()
-        if p_val.get("pbp_topic_id") == pid and p_val.get("user_id", "") not in gm_ids
-    ]
-    counts = state.get("message_counts", {}).get(pid, {})
-    topic_ts = helpers.get_topic_timestamps(state, pid)
-    player_count = len(players)
-
-    lines.append(f"\nParty: {player_count}/{helpers.REQUIRED_PLAYERS}")
-    if player_count < helpers.REQUIRED_PLAYERS:
-        needed = helpers.REQUIRED_PLAYERS - player_count
-        lines[-1] += f" (needs {needed} more)"
-
-    # Weekly pace
-    pace = helpers.pace_split(topic_ts, gm_ids, now)
-    total_this = pace["gm_this"] + pace["player_this"]
-    total_last = pace["gm_last"] + pace["player_last"]
-    trend = helpers.trend_icon(total_this, total_last)
-
-    lines.append(f"\n{trend} This week: {posts_str(total_this)} ({pace['player_this']} player, {pace['gm_this']} GM)")
-    if total_last > 0:
-        lines.append(f"Last week: {posts_str(total_last)} ({pace['player_last']} player, {pace['gm_last']} GM)")
-
-    # Roster
-    lines.append("\n━━ Roster ━━")
-    sorted_players = sorted(players, key=lambda p: counts.get(p["user_id"], 0), reverse=True)
-
-    # GM first
-    for gm_id in gm_ids:
-        gm_count = counts.get(gm_id, 0)
-        raw_ts = topic_ts.get(gm_id, [])
-        if gm_count > 0 and raw_ts:
-            stats = _roster_user_stats(raw_ts, gm_count, now)
-            lines.append("\n" + _roster_block("GM", "", stats))
-
-    for player in sorted_players:
-        uid = player["user_id"]
-        raw_ts = topic_ts.get(uid, [])
-        if not raw_ts:
-            continue
-        full = helpers.player_full_name(player)
-        stats = _roster_user_stats(raw_ts, counts.get(uid, 0), now)
-        lines.append("\n" + _roster_block(full, player.get("username", ""), stats))
-
-    # At-risk players
-    at_risk = []
-    for p in players:
-        last_post = datetime.fromisoformat(p["last_post_time"])
-        inactive_days = helpers.days_since(now, last_post)
-        if inactive_days >= 7:
-            week_num = int(inactive_days / 7)
-            at_risk.append(f"- {p['first_name']}: {int(inactive_days)}d inactive (warning {week_num}/3)")
-
-    if at_risk:
-        lines.append("\n⚠️ At Risk:")
-        lines.extend(at_risk)
-
-    # Active combat
-    combat = state.get("combat", {}).get(pid)
-    if combat and combat.get("active"):
-        acted = set(combat.get("players_acted", []))
-        missing = [p["first_name"] for p in players if p["user_id"] not in acted]
-        lines.append(f"\n⚔️ Combat: Round {combat['round']}, {combat['current_phase']}' turn")
-        if missing and combat["current_phase"] == "players":
-            lines.append(f"Waiting on: {', '.join(missing)}")
-
-    # Current scene
-    scene = state.get("current_scenes", {}).get(pid)
-    if scene:
-        lines.append(f"\n🎭 Scene: {scene}")
-
-    # GM notes
-    notes = state.get("campaign_notes", {}).get(pid, [])
-    if notes:
-        lines.append(f"\n📝 Notes ({len(notes)}):")
-        for i, note in enumerate(notes[-3:], start=max(1, len(notes) - 2)):
-            lines.append(f"  {i}. {note['text']}")
-        if len(notes) > 3:
-            lines.append(f"  … and {len(notes) - 3} more (/notes to see all)")
-
-    return "\n".join(lines)
-
-
-def _build_mystats(pid: str, user_id: str, campaign_name: str,
-                   state: dict, gm_ids: set, config: dict | None = None) -> str:
-    """Build personal stats for a player's /mystats command."""
-    now = datetime.now(timezone.utc)
-    week_ago = now - timedelta(days=7)
-
-    is_gm = user_id in gm_ids
-    role = "GM" if is_gm else "Player"
-
-    # Character name
-    char_name = helpers.character_name(config, pid, user_id) if config else None
-
-    # Get their data
-    topic_ts = helpers.get_topic_timestamps(state, pid)
-    raw_ts = topic_ts.get(user_id, [])
-    total_count = state.get("message_counts", {}).get(pid, {}).get(user_id, 0)
-
-    if not raw_ts:
-        return f"No posts tracked yet for you in {campaign_name}. Post something and check back!"
-
-    all_posts = sorted(datetime.fromisoformat(ts) for ts in raw_ts)
-    sessions = deduplicate_posts(all_posts)
-    week_posts = deduplicate_posts(timestamps_in_window(raw_ts, week_ago))
-    avg_gap = calc_avg_gap_str(raw_ts)
-    last_post_str = fmt_relative_date(now, all_posts[-1])
-
-    # Calculate posting streak (consecutive days with posts)
-    streak = _calc_streak(raw_ts, now)
-
-    header = f"Your stats in {campaign_name} ({role})"
-    if char_name:
-        header += f" — playing {char_name}"
-    header += ":"
-
-    lines = [
-        header,
-        f"Total: {posts_str(total_count)} ({len(sessions)} sessions)",
-        f"This week: {posts_str(len(week_posts))}",
-        f"Avg gap: {avg_gap}",
-        f"Last post: {last_post_str}",
-    ]
-
-    # Word count stats
-    total_words = state.get("word_counts", {}).get(pid, {}).get(user_id, 0)
-    if total_words > 0 and total_count > 0:
-        avg_words = total_words / total_count
-        lines.append(f"Words written: {total_words:,} (~{avg_words:.0f}/post)")
-
-    if streak > 1:
-        lines.append(f"🔥 Streak: {streak} consecutive days")
-    elif streak == 1:
-        lines.append(f"Streak: 1 day (keep it going!)")
-
-    return "\n".join(lines)
-
-
 def _build_party(pid: str, campaign_name: str, config: dict, state: dict) -> str:
     """Build the in-fiction party composition for /party command."""
     characters = helpers.get_characters(config, pid)
@@ -476,67 +218,6 @@ def _build_party(pid: str, campaign_name: str, config: dict, state: dict) -> str
 
     lines.append("")
     lines.append(f"{len(active_chars)} active, {len(orphan_chars)} inactive")
-
-    return "\n".join(lines)
-
-
-_SPARK_CHARS = " ▁▂▃▄▅▆▇█"
-
-
-def _sparkline(values: list[int]) -> str:
-    """Convert a list of integers into a text sparkline using block characters."""
-    if not values or max(values) == 0:
-        return "▁" * len(values)
-    peak = max(values)
-    return "".join(
-        _SPARK_CHARS[min(round(v / peak * 8), 8)] for v in values
-    )
-
-
-def _build_myhistory(pid: str, user_id: str, campaign_name: str,
-                     state: dict, gm_ids: set) -> str:
-    """Build a posting history sparkline for the last 8 weeks."""
-    now = datetime.now(timezone.utc)
-    is_gm = user_id in gm_ids
-    role = "GM" if is_gm else "Player"
-
-    topic_ts = helpers.get_topic_timestamps(state, pid)
-    raw_ts = topic_ts.get(user_id, [])
-
-    if not raw_ts:
-        return f"No posting history yet in {campaign_name}."
-
-    # Calculate weekly post counts for last 8 weeks
-    weeks = []
-    for w in range(7, -1, -1):
-        start = now - timedelta(weeks=w + 1)
-        end = now - timedelta(weeks=w)
-        count = len(timestamps_in_window(raw_ts, start, end))
-        weeks.append(count)
-
-    spark = _sparkline(weeks)
-    total = sum(weeks)
-    peak = max(weeks)
-    current = weeks[-1]
-
-    # Week labels
-    label_start = fmt_date(now - timedelta(weeks=8))
-    label_end = fmt_date(now)
-
-    lines = [
-        f"Posting history in {campaign_name} ({role}):",
-        f"",
-        f"{label_start}  {spark}  {label_end}",
-        f"",
-        f"8 weeks: {posts_str(total)} total",
-        f"Peak week: {posts_str(peak)}",
-        f"This week: {posts_str(current)}",
-    ]
-
-    # Trend
-    if len(weeks) >= 2 and weeks[-2] > 0:
-        trend = helpers.trend_icon(weeks[-1], weeks[-2])
-        lines.append(f"Trend: {trend}")
 
     return "\n".join(lines)
 
@@ -698,82 +379,6 @@ def _get_recent_transcript_posts(campaign_name: str, since: datetime,
 
     entries.sort(key=lambda x: x[0])
     return entries[-max_posts:]
-
-
-def _build_overview(config: dict, state: dict) -> str:
-    """Build a compact cross-campaign overview for /overview command."""
-    now = datetime.now(timezone.utc)
-    week_ago = now - timedelta(days=7)
-    maps = build_topic_maps(config)
-
-    lines = ["Path Wars — Campaign Overview:", ""]
-
-    total_posts_all = 0
-    total_players_all = 0
-    campaigns_data = []
-
-    for pid, name in maps.to_name.items():
-        gm_ids = helpers.gm_ids_for_campaign(config, pid)
-        topic_ts = helpers.get_topic_timestamps(state, pid)
-        topic_state = state.get("topics", {}).get(pid)
-
-        # Weekly posts
-        gm_week = player_week = 0
-        for uid, timestamps in topic_ts.items():
-            count = len(timestamps_in_window(timestamps, week_ago))
-            if uid in gm_ids:
-                gm_week += count
-            else:
-                player_week += count
-        total_week = gm_week + player_week
-        total_posts_all += total_week
-
-        # Last post age
-        if topic_state:
-            last_time = datetime.fromisoformat(topic_state["last_message_time"])
-            hours = helpers.hours_since(now, last_time)
-            if hours < 1:
-                age = "<1h"
-            elif hours < 24:
-                age = f"{int(hours)}h"
-            else:
-                age = f"{int(hours / 24)}d"
-        else:
-            age = "—"
-
-        # Player count (excluding GMs)
-        players = [p for p in state.get("players", {}).values()
-                    if p.get("pbp_topic_id") == pid and p.get("user_id", "") not in gm_ids]
-        player_count = len(players)
-        total_players_all += player_count
-
-        # Combat
-        combat = state.get("combat", {}).get(pid, {})
-        combat_flag = " ⚔️" if combat.get("active") else ""
-
-        # Paused
-        paused = state.get("paused_campaigns", {}).get(pid)
-        pause_flag = " ⏸️" if paused else ""
-
-        # Health icon
-        health = _health_icon(total_week)
-
-        campaigns_data.append({
-            "name": name, "total": total_week, "players": player_count,
-            "age": age, "combat": combat_flag, "pause": pause_flag,
-            "health": health,
-        })
-
-    for c in campaigns_data:
-        line = f"{c['health']} {c['name']}: {posts_str(c['total'])} this week"
-        line += f" | {c['players']} players | Last: {c['age']}"
-        line += c["combat"] + c["pause"]
-        lines.append(line)
-
-    lines.append("")
-    lines.append(f"Total: {posts_str(total_posts_all)} across {len(campaigns_data)} campaigns, {total_players_all} active players")
-
-    return "\n".join(lines)
 
 
 def _build_notes(pid: str, campaign_name: str, state: dict) -> str:
@@ -1342,7 +947,7 @@ def _build_profile(target_name: str, config: dict, state: dict) -> str:
         # Streak
         topic_ts = helpers.get_topic_timestamps(state, pid)
         raw_ts = topic_ts.get(user_id, [])
-        streak = _calc_streak(raw_ts, datetime.now(timezone.utc))
+        streak = helpers.calc_streak(raw_ts, datetime.now(timezone.utc))
         streak_str = f" | 🔥 {streak}d streak" if streak >= 3 else ""
 
         # Word count
@@ -1497,35 +1102,6 @@ def _build_recap(pid: str, campaign_name: str, config: dict, count: int = 10) ->
 
     return "\n".join(lines)
 
-
-def _calc_streak(raw_timestamps: list[str], now: datetime) -> int:
-    """Count consecutive days with at least one post, ending at today or yesterday.
-
-    Returns 0 if no recent posts, otherwise the number of consecutive days.
-    """
-    if not raw_timestamps:
-        return 0
-
-    # Get unique posting dates
-    post_dates = sorted({datetime.fromisoformat(ts).date() for ts in raw_timestamps})
-    today = now.date()
-
-    # Streak must include today or yesterday
-    if post_dates[-1] < today - timedelta(days=1):
-        return 0
-
-    # Count backward from the most recent post date
-    streak = 1
-    for i in range(len(post_dates) - 1, 0, -1):
-        gap = (post_dates[i] - post_dates[i - 1]).days
-        if gap == 1:
-            streak += 1
-        elif gap == 0:
-            continue  # Same day, skip
-        else:
-            break
-
-    return streak
 
 
 # ------------------------------------------------------------------ #
@@ -3408,47 +2984,6 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
 # ------------------------------------------------------------------ #
 #  Party roster summary (every 3 days)
 # ------------------------------------------------------------------ #
-def _roster_user_stats(raw_timestamps: list[str], total_count: int, now: datetime) -> dict:
-    """Compute roster stats from raw ISO timestamp strings.
-
-    Returns dict with: total, sessions, week_count, avg_gap_str, last_post_str, streak.
-    """
-    week_ago = now - timedelta(days=7)
-    all_posts = sorted(datetime.fromisoformat(ts) for ts in raw_timestamps)
-    sessions = deduplicate_posts(all_posts)
-    week_count = len(deduplicate_posts(timestamps_in_window(raw_timestamps, week_ago)))
-    avg_gap_str = calc_avg_gap_str(raw_timestamps)
-    last_post_str = fmt_relative_date(now, all_posts[-1]) if all_posts else "N/A"
-    streak = _calc_streak(raw_timestamps, now)
-    return {
-        "total": total_count,
-        "sessions": len(sessions),
-        "week_count": week_count,
-        "avg_gap_str": avg_gap_str,
-        "last_post_str": last_post_str,
-        "streak": streak,
-    }
-
-
-def _roster_block(label: str, username: str, stats: dict) -> str:
-    """Format a single roster entry (player or GM)."""
-    s_suffix = "s" if stats["sessions"] != 1 else ""
-    block = f"{label}\n"
-    if username:
-        block += f"- @{username}.\n"
-    block += (
-        f"- {posts_str(stats['total'])} total.\n"
-        f"- {stats['sessions']} posting session{s_suffix}.\n"
-        f"- {posts_str(stats['week_count'])} in the last week.\n"
-        f"- Average gap between posting: {stats['avg_gap_str']}.\n"
-        f"- Last post: {stats['last_post_str']}."
-    )
-    streak = stats.get("streak", 0)
-    if streak >= 2:
-        block += f"\n- 🔥 {streak}-day streak!"
-    return block
-
-
 def post_roster_summary(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post a summary of all tracked players per campaign to CHAT topics."""
     group_id = config["group_id"]
@@ -3907,7 +3442,7 @@ def check_streak_milestones(config: dict, state: dict, *, now: datetime | None =
             if uid in gm_ids:
                 continue
 
-            streak = _calc_streak(raw_ts, now)
+            streak = helpers.calc_streak(raw_ts, now)
             if streak < _STREAK_MILESTONES[0]:
                 continue
 
@@ -4154,7 +3689,7 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
 
             # Collect streak data (players only)
             if not is_gm:
-                streak = _calc_streak(timestamps, now)
+                streak = helpers.calc_streak(timestamps, now)
                 if streak >= 2 and player_info:
                     all_streaks.append({
                         "name": helpers.player_full_name(player_info),
@@ -4400,15 +3935,7 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
 # ------------------------------------------------------------------ #
 #  Weekly digest (compact cross-campaign newsletter)
 # ------------------------------------------------------------------ #
-_HEALTH_THRESHOLDS = [(20, "🟢"), (10, "🟡"), (5, "🟠"), (0, "🔴")]
 
-
-def _health_icon(total_posts_7d: int) -> str:
-    """Return a traffic-light icon based on weekly post volume."""
-    for threshold, icon in _HEALTH_THRESHOLDS:
-        if total_posts_7d >= threshold:
-            return icon
-    return "🔴"
 
 
 def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
@@ -4426,7 +3953,7 @@ def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
         total = pace["gm_this"] + pace["player_this"]
         total_last = pace["gm_last"] + pace["player_last"]
         trend = helpers.trend_icon(total, total_last)
-        health = _health_icon(total)
+        health = helpers.health_icon(total)
 
         # Top contributor this week
         player_week_counts = {}

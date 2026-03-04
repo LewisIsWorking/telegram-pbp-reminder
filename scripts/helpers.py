@@ -821,3 +821,44 @@ def clock_display(filled: int, segments: int) -> str:
     filled = max(0, min(filled, segments))
     display = "◉" * filled + "○" * (segments - filled)
     return f"{display} {filled}/{segments}"
+
+
+def calc_streak(raw_timestamps: list[str], now: datetime) -> int:
+    """Count consecutive days with at least one post, ending at today or yesterday.
+
+    Returns 0 if no recent posts, otherwise the number of consecutive days.
+    """
+    if not raw_timestamps:
+        return 0
+
+    # Get unique posting dates
+    post_dates = sorted({datetime.fromisoformat(ts).date() for ts in raw_timestamps})
+    today = now.date()
+
+    # Streak must include today or yesterday
+    if post_dates[-1] < today - timedelta(days=1):
+        return 0
+
+    # Count backward from the most recent post date
+    streak = 1
+    for i in range(len(post_dates) - 1, 0, -1):
+        gap = (post_dates[i] - post_dates[i - 1]).days
+        if gap == 1:
+            streak += 1
+        elif gap == 0:
+            continue  # Same day, skip
+        else:
+            break
+
+    return streak
+
+
+_HEALTH_THRESHOLDS = [(20, "🟢"), (10, "🟡"), (5, "🟠"), (0, "🔴")]
+
+
+def health_icon(total_posts_7d: int) -> str:
+    """Return a traffic-light icon based on weekly post volume."""
+    for threshold, icon in _HEALTH_THRESHOLDS:
+        if total_posts_7d >= threshold:
+            return icon
+    return "🔴"

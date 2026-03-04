@@ -275,11 +275,12 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `combat/commands.py` (131 lines): start, next, end, enemies
 - Extract `parsing/message.py` (81 lines): Telegram message parser
 
-### 📋 Chunk 3 — Commands (status/info)
-- Extract `commands/status.py` (_build_status, _build_overview,
-  _build_gm_dashboard, _build_summary)
-- Extract `commands/player.py` (_build_mystats, _build_party,
-  _build_profile, _build_myhistory, _build_catchup, _build_activity)
+### 🔧 Chunk 3 — Commands (status/info)
+- Extract `commands/status.py` (194 lines): build_status, build_overview
+- Extract `commands/campaign.py` (168 lines): build_campaign_report, roster_user_stats, roster_block
+- Extract `commands/player.py` (130 lines): build_mystats, build_myhistory, sparkline
+- Moved `calc_streak` + `health_icon` to helpers.py (shared utilities)
+- Remaining: gm_dashboard, summary, party, profile, catchup, activity, recap → chunk 4
 
 ### 📋 Chunk 4 — Commands (trackers)
 - Extract `commands/trackers.py` (_build_notes, _build_quests,
