@@ -26,7 +26,6 @@ from helpers import (
     timestamps_in_window,
 )
 
-
 # Extracted modules
 from boons.handler import (
     _format_boon_result, process_boon_callback, expire_pending_boons,
@@ -136,56 +135,8 @@ from dispatch.router import process_updates
 from dispatch.help_text import _HELP_TEXT
 from players.management import handle_kick as _handle_kick, handle_addplayer as _handle_addplayer
 
-
-# ------------------------------------------------------------------ #
-#  Daily tips
 # ------------------------------------------------------------------ #
 
-
-# ------------------------------------------------------------------ #
-
-
-# Patterns that indicate mechanical/dice content (case-insensitive)
-
-
-# ------------------------------------------------------------------ #
-#  Player inactivity tracking (weekly)
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Player of the Week (weekly, consistency-based)
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Weekly data archive (preserves long-term trends)
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Weekly pace report
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Campaign anniversary alerts
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Campaign Leaderboard (cross-campaign dashboard)
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Weekly digest (compact cross-campaign newsletter)
-# ------------------------------------------------------------------ #
-
-
-# ------------------------------------------------------------------ #
-#  Main
-# ------------------------------------------------------------------ #
 def _run_checks(config: dict, bot_state: dict) -> None:
     """Run all scheduled checks, isolating failures so one crash doesn't block others."""
     now = datetime.now(timezone.utc)
@@ -216,7 +167,6 @@ def _run_checks(config: dict, bot_state: dict) -> None:
             func(config, bot_state, now=now, maps=maps)
         except Exception as e:
             print(f"Error in {label}: {e}")
-
 
 def main() -> None:
     """Entry point: load config/state, process updates, run all scheduled checks, save."""
@@ -271,7 +221,6 @@ def main() -> None:
     # Always save state, even if checks failed
     state_store.save(bot_state)
     print("Done")
-
 
 if __name__ == "__main__":
     main()

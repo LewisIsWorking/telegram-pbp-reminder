@@ -329,12 +329,16 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `players/management.py` (109 lines): handle_kick, handle_addplayer
 - checker.py: 1632 → 277 lines (−1355)
 
-### 📋 Chunk 8 — Split helpers.py
-- Extract `helpers_pkg/config.py` (load, validate, settings)
-- Extract `helpers_pkg/formatting.py` (display_name, rank_icon, etc.)
-- Extract `helpers_pkg/time_utils.py` (intervals, timestamps, gaps)
-- Extract `helpers_pkg/topic_maps.py` (TopicMaps class)
-- Extract `helpers_pkg/dice.py` (roll_dice, dc_lookup)
+### 🔧 Chunk 8 — Split helpers.py
+- Extract `helpers_pkg/constants.py` (60 lines): all config constants
+- Extract `helpers_pkg/config.py` (180 lines): load, validate, settings, GM helpers
+- Extract `helpers_pkg/formatting.py` (146 lines): display_name, rank_icon, fmt_*, html_escape, etc.
+- Extract `helpers_pkg/time_utils.py` (128 lines): intervals, timestamps, gaps, away
+- Extract `helpers_pkg/topic_maps.py` (92 lines): TopicMaps class, build_topic_maps
+- Extract `helpers_pkg/dice.py` (101 lines): roll_dice
+- Extract `helpers_pkg/dc_lookup.py` (127 lines): DC tables and lookup
+- Extract `helpers_pkg/mechanics.py` (124 lines): timer, HP, clock, streak, health
+- `helpers.py` → thin 49-line re-export facade (zero external import changes needed)
 - Extract `helpers_pkg/character.py` (character names, away tracking)
 - Extract `helpers_pkg/trackers.py` (hp_bar, clock_display, timers)
 
