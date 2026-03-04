@@ -210,6 +210,53 @@ formatted line with days-until countdown.
 
 ---
 
+### Refactored — Codebase Modularization (Chunk 2: Combat & Parsing)
+
+Extracted 10 functions (436 lines) into 4 new modules:
+
+**`combat/display.py`** (111 lines) — read-only combat display:
+```python
+# Extracted:
+build_whosturn()    # /whosturn command (74 lines)
+format_elapsed()    # "2d 5h" time formatter (12 lines)
+build_combatlog()   # /combatlog command (15 lines)
+```
+
+**`combat/tracker.py`** (159 lines) — message processing and action tracking:
+```python
+# Routes GM combat commands and tracks player PBP posts as combat actions.
+# When all non-away players have posted, auto-notifies the GM:
+handle_combat_message()  # main router (68 lines)
+_check_all_acted()       # GM auto-notification (30 lines)
+handle_round_command()   # /round N phase (43 lines)
+```
+
+**`combat/commands.py`** (131 lines) — combat lifecycle:
+```python
+handle_combat_start()    # /combat [enemies] (33 lines)
+handle_next_command()    # /next: players→enemies→next round (34 lines)
+handle_endcombat()       # /endcombat with summary (29 lines)
+handle_enemies_command() # /enemies view/set (29 lines)
+```
+
+**`parsing/message.py`** (81 lines) — Telegram message parser:
+```python
+parse_message()   # Validates group/thread, extracts fields, strips @bot suffix
+_detect_media()   # Classifies photo/sticker/gif/video/voice/document
+```
+
+All functions imported into `checker.py` with `as _original_name` aliases to
+maintain backward compatibility with the 286 existing tests:
+```python
+from combat.display import build_whosturn as _build_whosturn
+from parsing.message import parse_message as _parse_message
+# ... etc — tests still call checker._build_whosturn and pass
+```
+
+`checker.py`: 5095 → 4744 lines (−351)
+
+---
+
 ## [3.1.2] - 2026-02-28
 
 ### Improved — Weekly Leaderboard

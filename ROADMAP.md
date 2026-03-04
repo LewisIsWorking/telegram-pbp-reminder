@@ -269,10 +269,11 @@ principles. Incremental commits, each chunk tested and deployed.
   scheduled, dispatch, parsing, players, helpers_pkg)
 - Extract `boons/handler.py` (94 lines)
 
-### 📋 Chunk 2 — Combat & Parsing
-- Extract `combat/handler.py` (combat start, round, next, end, enemies)
-- Extract `combat/display.py` (whosturn, combatlog, HP tracker)
-- Extract `parsing/message.py` (_parse_message, related utilities)
+### 🔧 Chunk 2 — Combat & Parsing
+- Extract `combat/display.py` (111 lines): whosturn, combatlog, format_elapsed
+- Extract `combat/tracker.py` (159 lines): combat message routing, all-acted check
+- Extract `combat/commands.py` (131 lines): start, next, end, enemies
+- Extract `parsing/message.py` (81 lines): Telegram message parser
 
 ### 📋 Chunk 3 — Commands (status/info)
 - Extract `commands/status.py` (_build_status, _build_overview,
