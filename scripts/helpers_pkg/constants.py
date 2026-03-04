@@ -10,11 +10,11 @@ from datetime import datetime, timezone, timedelta
 # ------------------------------------------------------------------ #
 #  Paths
 # ------------------------------------------------------------------ #
-CONFIG_PATH = Path(__file__).parent.parent / "config.json"
+CONFIG_PATH = Path(__file__).parent.parent.parent / "config.json"
 
-BOONS_PATH = Path(__file__).parent.parent / "boons.json"
+BOONS_PATH = Path(__file__).parent.parent.parent / "boons.json"
 
-ARCHIVE_PATH = Path(__file__).parent.parent / "data" / "weekly_archive.json"
+ARCHIVE_PATH = Path(__file__).parent.parent.parent / "data" / "weekly_archive.json"
 
 # ------------------------------------------------------------------ #
 #  Tunable settings (defaults, overridden by config.json settings block)
