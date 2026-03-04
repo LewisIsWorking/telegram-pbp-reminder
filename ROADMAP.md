@@ -292,9 +292,11 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `commands/recap.py` (136 lines): rich transcript recap
 - checker.py: 4744 → 3431 lines (−1313)
 
-### 📋 Chunk 5 — Transcript
-- Extract `transcript/logger.py` (append, format, sanitize)
-- Extract `transcript/index.py` (update_transcript_index, finalize)
+### 🔧 Chunk 5 — Transcript
+- Extract `transcript/formatting.py` (94 lines): log entry + content formatting
+- Extract `transcript/logger.py` (154 lines): append_to_transcript, write_scene_marker, cache
+- Extract `transcript/finalize.py` (179 lines): month finalization + index generation
+- checker.py: 3431 → 3055 lines (−376)
 
 ### 📋 Chunk 6 — Scheduled Tasks
 - Extract `scheduled/alerts.py` (check_and_alert, check_player_activity)

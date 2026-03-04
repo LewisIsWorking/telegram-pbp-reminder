@@ -70,8 +70,11 @@ checker._LOGS_DIR = __import__("pathlib").Path(_test_log_dir)
 
 # Also patch extracted modules that have their own _LOGS_DIR
 from commands import recap as _recap_mod, catchup as _catchup_mod
+from transcript import logger as _logger_mod, finalize as _finalize_mod
 _recap_mod._LOGS_DIR = checker._LOGS_DIR
 _catchup_mod._LOGS_DIR = checker._LOGS_DIR
+_logger_mod._LOGS_DIR = checker._LOGS_DIR
+_finalize_mod._LOGS_DIR = checker._LOGS_DIR
 
 # Redirect archive to temp file so tests don't write to repo
 helpers.ARCHIVE_PATH = __import__("pathlib").Path(_test_log_dir) / "weekly_archive.json"
@@ -3011,9 +3014,11 @@ def test_notes_show_in_campaign():
 def test_write_scene_marker():
     """Scene marker writes correct markdown to transcript."""
     import tempfile, pathlib
-    original_dir = checker._LOGS_DIR
+    from transcript import logger as _lmod
+    original_dir = _lmod._LOGS_DIR
     with tempfile.TemporaryDirectory() as tmp:
-        checker._LOGS_DIR = pathlib.Path(tmp)
+        _lmod._LOGS_DIR = pathlib.Path(tmp)
+        checker._LOGS_DIR = _lmod._LOGS_DIR
         try:
             checker._write_scene_marker("Test Campaign", "The Final Battle")
             campaign_dir = pathlib.Path(tmp) / "Test_Campaign"
@@ -3023,6 +3028,7 @@ def test_write_scene_marker():
             content = md_files[0].read_text()
             assert "### 🎭 Scene: The Final Battle" in content
         finally:
+            _lmod._LOGS_DIR = original_dir
             checker._LOGS_DIR = original_dir
 
 
