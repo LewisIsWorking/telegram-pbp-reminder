@@ -282,11 +282,15 @@ principles. Incremental commits, each chunk tested and deployed.
 - Moved `calc_streak` + `health_icon` to helpers.py (shared utilities)
 - Remaining: gm_dashboard, summary, party, profile, catchup, activity, recap → chunk 4
 
-### 📋 Chunk 4 — Commands (trackers)
-- Extract `commands/trackers.py` (_build_notes, _build_quests,
-  _build_pins, _build_lootlist, _build_npcs, _build_conditions,
-  _build_vote, _build_timer, _build_hp_tracker, _build_clocks)
-- Extract `commands/recap.py` (_build_recap, related transcript reading)
+### 🔧 Chunk 4 — Commands (trackers, mechanics, summary, dashboard, profile, catchup, recap)
+- Extract `commands/trackers.py` (124 lines): notes, quests, pins, loot, npcs, conditions
+- Extract `commands/mechanics.py` (113 lines): vote, timer, hp_tracker, clocks
+- Extract `commands/summary.py` (175 lines): summary, party
+- Extract `commands/dashboard.py` (160 lines): gm_dashboard, activity
+- Extract `commands/profile.py` (83 lines): cross-campaign profile
+- Extract `commands/catchup.py` (167 lines): catchup + transcript post reader
+- Extract `commands/recap.py` (136 lines): rich transcript recap
+- checker.py: 4744 → 3431 lines (−1313)
 
 ### 📋 Chunk 5 — Transcript
 - Extract `transcript/logger.py` (append, format, sanitize)
