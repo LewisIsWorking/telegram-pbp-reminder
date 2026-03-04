@@ -298,12 +298,21 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `transcript/finalize.py` (179 lines): month finalization + index generation
 - checker.py: 3431 → 3055 lines (−376)
 
-### 📋 Chunk 6 — Scheduled Tasks
-- Extract `scheduled/alerts.py` (check_and_alert, check_player_activity)
-- Extract `scheduled/reports.py` (roster, POTW, pace, leaderboard, digest)
-- Extract `scheduled/milestones.py` (streaks, anniversaries, message)
-- Extract `scheduled/maintenance.py` (archive, cleanup, recruitment, timers)
-- Extract `scheduled/tips.py` (daily tip rotation)
+### 🔧 Chunk 6 — Scheduled Tasks
+- Extract `scheduled/tips_data.py` (164 lines): _TIPS constant
+- Extract `scheduled/tips.py` (49 lines): post_daily_tip
+- Extract `scheduled/alerts.py` (146 lines): check_and_alert, check_player_activity
+- Extract `scheduled/reports.py` (140 lines): post_roster_summary, post_pace_report
+- Extract `scheduled/potw.py` (109 lines): _gather_potw_candidates, player_of_the_week
+- Extract `scheduled/milestones.py` (157 lines): streak + anniversary milestones
+- Extract `scheduled/message_milestones.py` (69 lines): check_message_milestones
+- Extract `scheduled/leaderboard_data.py` (120 lines): _gather_leaderboard_stats
+- Extract `scheduled/leaderboard.py` (135 lines): _format_leaderboard, post_campaign_leaderboard
+- Extract `scheduled/maintenance.py` (180 lines): archive, cleanup, recruitment
+- Extract `scheduled/smart_alerts.py` (136 lines): pace_drop, conversation_dying
+- Extract `scheduled/digest.py` (87 lines): weekly digest
+- Extract `scheduled/combat_ping.py` (102 lines): combat turns, expired timers
+- checker.py: 3055 → 1632 lines (−1423)
 
 ### 📋 Chunk 7 — Dispatch & Players
 - Extract `dispatch/processor.py` (process_updates command router)
