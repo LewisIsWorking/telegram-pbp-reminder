@@ -16,13 +16,20 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 | **Player warnings**        | At 1, 2, 3 weeks inactive         | Campaign chat topics       |
 | **Auto-removal**           | At 4 weeks inactive               | Campaign chat topics       |
 | **Party roster**           | Every 3 days                      | Campaign chat topics       |
-| **Player of the Week**     | Weekly                            | Campaign chat topics       |
+| **Player of the Week**     | Weekly (with boon choice)         | Campaign chat topics       |
 | **Pace report**            | Weekly                            | Campaign chat topics       |
 | **Campaign leaderboard**   | Every 3 days                      | Dedicated topic            |
+| **Weekly digest**          | Weekly                            | Leaderboard topic          |
 | **Combat turn pinger**     | During combat                     | Campaign PBP topics        |
+| **Smart alerts**           | On pace drop or silence           | Campaign chat topics       |
 | **Recruitment notices**    | Every 2 weeks (if under capacity) | Campaign chat topics       |
 | **Campaign anniversaries** | Yearly                            | Campaign chat topics       |
+| **Streak milestones**      | On 7/14/30/60/90 day streaks      | Campaign chat topics       |
+| **Message milestones**     | Every 500/5000 messages           | Campaign/leaderboard topic |
+| **Daily tips**             | Daily (random topic)              | Campaign PBP topics        |
+| **PBP transcripts**        | Every message (auto-archived)     | `data/pbp_logs/`           |
 | **Weekly archive**         | Weekly                            | `data/weekly_archive.json` |
+| **Dashboard**              | On every archive update           | [GitHub Pages](https://lewisisworking.github.io/telegram-pbp-reminder/) |
 
 All intervals are configurable. All features run automatically once set up.
 
@@ -72,6 +79,8 @@ Choose your boon:
 2. You find a coin in your boot that wasn't there before.
 3. The next innkeeper insists your money is no good here.
 4. +1 circumstance bonus on your next skill check.
+
+Tap a button below, or type /chooseboon N
 ```
 
 ---
@@ -80,13 +89,25 @@ Choose your boon:
 
 ```
 GitHub Actions (hourly cron)
-    |
-    v
-checker.py  -->  Telegram Bot API (fetch messages, send alerts)
-    |
-    v
-GitHub Gist (persisted state between runs)
+    │
+    ▼
+checker.py (orchestrator)
+    │
+    ├── dispatch/       Process Telegram updates, route commands
+    ├── commands/       Build responses for /status, /campaign, etc.
+    ├── scheduled/      Run 18 cron tasks (alerts, rosters, POTW, etc.)
+    ├── combat/         Combat turn tracking
+    ├── boons/          Player of the Week boon system
+    ├── transcript/     PBP transcript archiving
+    ├── helpers_pkg/    Shared utilities (config, formatting, dice, DC)
+    │
+    ├── telegram.py     Telegram Bot API (fetch updates, send messages)
+    └── state.py        GitHub Gist (persist state between runs)
 ```
+
+The codebase is split into 69 production files across 9 packages, with every
+file held to a strict 200-line maximum. 341 tests (286 + 37 + 18) run on
+every push before deployment.
 
 The bot expects a Telegram supergroup with **forum topics** enabled.
 Each campaign needs two topics: a **PBP topic** (where the game happens)
@@ -269,6 +290,13 @@ The bot responds to these commands in any monitored PBP topic:
 - `/hp` - View enemy HP tracker with visual bars.
 - `/clocks` - View progress clocks.
 - `/dc <level> [difficulty]` - PF2e DC lookup (e.g. `/dc 5 hard`).
+- `/summary` - Campaign summary dashboard with trackers.
+- `/showvote` - View current vote/poll.
+- `/showtimer` - View active response timer.
+- `/boons` - View your POTW boons for this campaign.
+- `/boonsall` - View all your boons across campaigns.
+- `/chooseboon <N>` - Choose a POTW boon by number.
+- `/pick <choice>` - Vote in an active poll.
 
 ### GM commands
 
@@ -306,6 +334,10 @@ The bot responds to these commands in any monitored PBP topic:
 - `/tick <n> [N]` - Advance a clock.
 - `/untick <n> [N]` - Reverse a clock.
 - `/delclock <n>` - Delete a clock.
+- `/vote <question> | <opt1> | <opt2> [| ...]` - Start a vote/poll.
+- `/endvote` - End a vote and show results.
+- `/timer <duration> [reason]` - Set a response timer (e.g. `/timer 2h Post your actions`).
+- `/canceltimer` - Cancel active timer.
 - `/gm` - GM dashboard: all campaigns at a glance.
 
 ## Versioning
@@ -321,16 +353,6 @@ Version bumps:
 - **MAJOR** (x.0.0): Breaking config changes or workflow restructuring.
 - **MINOR** (0.x.0): New commands, new features, new bot behaviours.
 - **PATCH** (0.0.x): Bug fixes, test additions, refactors, documentation.
-
-**GM only:**
-- `/combat Ogre, 2 Skeletons` - Start combat with enemy roster.
-- `/next` - Advance phase (players→enemies→next round).
-- `/clog The ogre crits!` - Log combat events.
-- `/endcombat` - End combat with summary.
-
-During the player phase, the bot tracks which players have posted.
-When all players have acted, the GM is automatically notified.
-After `combat_ping_hours` hours, it pings players who haven't acted yet.
 
 ---
 
@@ -353,30 +375,94 @@ are merged for stats, rosters, POTW, and leaderboards.
 
 ```
 .github/workflows/
-  pbp-reminder.yml      # Hourly cron job (tests + checker)
-  changelog-notify.yml  # Posts changelog to Telegram on push
+  pbp-reminder.yml        # Hourly cron job (tests + checker)
+  changelog-notify.yml    # Posts changelog to Telegram on push
 scripts/
-  checker.py            # Main orchestrator (all features)
-  helpers.py            # Utilities, formatting, topic maps
-  telegram.py           # Telegram Bot API wrapper
-  state.py              # Gist-based state persistence
-  post_changelog.py     # Changelog parser and Telegram poster
-  test_helpers.py       # Test suite for helpers (37 tests)
-  test_checker.py       # Test suite for checker (123 tests)
-  test_import_history.py # Test suite for import (18 tests)
-  import_history.py     # Historical transcript backfill from Telegram export
-config.json             # Your configuration
-config.example.json     # Template configuration
-boons.json              # Flavour boons for POTW (optional)
-boons.example.json      # Sample boons file
+  checker.py              # Orchestrator: load → process → check → save
+  helpers.py              # Re-export facade for helpers_pkg/
+  telegram.py             # Telegram Bot API wrapper
+  state.py                # Gist-based state persistence
+  compat.py               # Backward-compat aliases for test suite
+  set_commands.py         # Register Telegram / command menu
+  post_changelog.py       # Changelog parser and Telegram poster
+  import_history.py       # Historical transcript backfill
+  import_formatting.py    # Message formatting for import
+  boons/                  # POTW boon system
+    handler.py            #   Boon callbacks, storage, expiry
+  combat/                 # Combat tracking
+    commands.py           #   /combat, /next, /endcombat, /enemies
+    display.py            #   /whosturn, /combatlog
+    tracker.py            #   Message routing, all-acted detection
+  commands/               # All /command output builders
+    campaign.py           #   /campaign, roster blocks
+    catchup.py            #   /catchup
+    dashboard.py          #   /gm, /activity
+    mechanics.py          #   /showvote, /showtimer, /hp, /clocks
+    player.py             #   /mystats, /myhistory
+    profile.py            #   /profile
+    recap.py              #   /recap
+    status.py             #   /status, /overview
+    summary.py            #   /summary, /party
+    trackers.py           #   /notes, /quests, /pins, /lootlist, /npcs, /conditions
+  dispatch/               # Command routing and message processing
+    router.py             #   Main update loop, context builder
+    cmd_info.py           #   28 read-only info commands
+    cmd_gm.py             #   GM control commands
+    cmd_trackers.py       #   Note/quest CRUD
+    cmd_trackers_items.py #   Pin/loot/NPC CRUD
+    cmd_conditions_hp.py  #   Condition + HP writes
+    cmd_clocks.py         #   Clock commands
+    cmd_votes_timers.py   #   Vote + timer commands
+    cmd_player.py         #   /away, /back, /roll, /chooseboon
+    tracking.py           #   Post-message state tracking
+    help_text.py          #   /help text constant
+  helpers_pkg/            # Shared utilities (re-exported via helpers.py)
+    constants.py          #   Paths, tunable defaults
+    config.py             #   Config loading, validation, GM helpers
+    formatting.py         #   Display names, dates, HTML escaping
+    time_utils.py         #   Intervals, timestamps, away tracking
+    topic_maps.py         #   Campaign↔topic lookups
+    dice.py               #   /roll dice parser
+    dc_lookup.py          #   PF2e DC tables
+    mechanics.py          #   HP bars, clocks, streaks, timers
+  parsing/                # Message parsing
+    message.py            #   Telegram message → structured data
+  players/                # Player management
+    management.py         #   /kick, /addplayer
+  scheduled/              # All hourly cron tasks
+    alerts.py             #   Inactivity alerts, player warnings
+    combat_ping.py        #   Combat turn pings, timer expiry
+    digest.py             #   Weekly cross-campaign digest
+    leaderboard.py        #   Leaderboard formatting + posting
+    leaderboard_data.py   #   Stats gathering for leaderboard
+    maintenance.py        #   Archive, cleanup, recruitment
+    message_milestones.py #   500/5000 message celebrations
+    milestones.py         #   Streak + anniversary milestones
+    potw.py               #   Player of the Week selection
+    reports.py            #   Roster + pace reports
+    smart_alerts.py       #   Pace drop + silence detection
+    tips.py               #   Daily tips
+    tips_data.py          #   Tip text constants
+  transcript/             # PBP transcript system
+    finalize.py           #   Month finalization + index generation
+    formatting.py         #   Log entry formatting
+    logger.py             #   Append to transcript, scene markers
+  test_checker.py         # 286 tests
+  test_helpers.py         # 37 tests
+  test_import_history.py  # 18 tests
+config.json               # Your configuration
+config.example.json       # Template configuration
+boons.json                # Flavour boons for POTW (optional)
+boons.example.json        # Sample boons file
 docs/
-  index.html            # Archive dashboard (Chart.js)
+  index.html              # Archive dashboard (Chart.js)
 data/
-  weekly_archive.json   # Auto-committed weekly stats archive
-  pbp_logs/             # PBP transcript archive (monthly .md per campaign)
-    README.md           # Auto-generated index of all transcripts
-VERSION                 # Current semver version
-CHANGELOG.md            # Release notes
+  weekly_archive.json     # Auto-committed weekly stats archive
+  pbp_logs/               # PBP transcript archive (monthly .md per campaign)
+    README.md             # Auto-generated index of all transcripts
+VERSION                   # Current semver version
+CHANGELOG.md              # Release notes
+ROADMAP.md                # Feature roadmap and modularization log
 ```
 
 ---
@@ -450,10 +536,14 @@ The Gist and Telegram Bot API are also free.
 
 ## Archive Dashboard
 
-The bot archives weekly stats to `data/weekly_archive.json`.
-A built-in dashboard at `docs/index.html` visualizes this data with charts and tables.
+**Live dashboard:** [lewisisworking.github.io/telegram-pbp-reminder](https://lewisisworking.github.io/telegram-pbp-reminder/)
 
-To enable it via GitHub Pages:
+The bot archives weekly stats to `data/weekly_archive.json`.
+The dashboard at `docs/index.html` visualizes this with charts and tables:
+summary cards, health indicators, trend arrows, player drill-down,
+week filter, and sortable columns. Mobile-responsive.
+
+To enable GitHub Pages on your own fork:
 1. Go to repo **Settings > Pages**.
 2. Set source to **Deploy from a branch**, branch `main`, folder `/docs`.
 3. Visit `https://yourusername.github.io/your-repo-name/`.
