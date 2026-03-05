@@ -12,248 +12,109 @@ Versioning: [Semantic Versioning](https://semver.org/).
 ---
 
 ## [4.0.0] - 2026-03-03
+## [4.1.0] - 2026-03-05
 
-### Refactored — Codebase Modularization (Chunk 1)
+### Added — Telegram Command Menu
 
-Extracted the boon callback system into `scripts/boons/handler.py` (190 lines).
-Created package directories with `__init__.py` for all planned modules:
-`boons/`, `combat/`, `commands/`, `transcript/`, `scheduled/`, `dispatch/`,
-`parsing/`, `players/`, `helpers_pkg/`.
+Registered a `/` command autocomplete menu via `setMyCommands`. Two scopes:
+- **All group members** (31 commands): read-only player commands
+- **Group admins** (63 commands): full set including GM tools
 
-```python
-# checker.py — old (inline, 85 lines in checker.py):
-def _format_boon_result(...): ...
-def process_boon_callback(...): ...
-def expire_pending_boons(...): ...
+Run `scripts/set_commands.py` after adding new commands to update the menu.
 
-# checker.py — new (3-line import):
-from boons.handler import (
-    _format_boon_result, process_boon_callback, expire_pending_boons,
-    choose_boon_by_text, build_boons, build_boons_all,
-)
-```
+### Fixed — POTW Boon Buttons
 
-Full 10-chunk refactoring plan added to `ROADMAP.md`. Target: every `.py` file
-under 200 lines via extraction and OOP — never by removing or compressing code.
+Boon inline keyboard buttons silently failed because Telegram requires
+`answerCallbackQuery` within ~10 seconds, but the bot runs hourly via cron.
 
-`checker.py`: 5155 → 5095 lines (will drop to ~50 once extraction completes).
+- Removed `answer_callback` calls (always timed out)
+- Button clicks now send a visible confirmation message instead
+- Added `remove_keyboard=True` to `edit_message` to strip buttons after selection
+- POTW announcement now includes "/chooseboon N" fallback instructions
+- Auto-expiry at 48h also strips the keyboard
+
+### Fixed — Per-Campaign GM Appearing Twice in Roster
+
+Link (`@Linksanelf2006`) showed as both "GM" and "Link" in the Theria roster.
+`post_roster_summary` iterated all players without filtering GMs, then added
+GM entries separately. Added `if uid in gm_ids: continue` to the player loop.
+
+### Updated — README
+
+Rewrote to reflect modular codebase: 9-package architecture diagram,
+full 69-file structure with descriptions, 18-entry feature table,
+live dashboard URL, 11 previously missing commands documented.
 
 ---
+
+## [4.0.0] - 2026-03-04
+
+### Refactored — Complete Codebase Modularization
+
+Refactored `checker.py` from a single 5,155-line file into 69 production
+files across 9 packages. Every file held to a strict 200-line maximum.
+341 tests passing throughout (286 + 37 + 18).
+
+**10-chunk extraction, executed incrementally with live deployment after each:**
+
+| Chunk | What | Lines moved |
+|-------|------|-------------|
+| 1 | Boons package + scaffold all directories | 60 |
+| 2 | Combat (3 modules) + message parsing | 482 |
+| 3 | Status, campaign, player command builders | 492 |
+| 4 | 17 more command builders → 7 modules | 958 |
+| 5 | Transcript system → 3 modules | 427 |
+| 6 | 23 scheduled tasks → 13 modules | 1,625 |
+| 7 | Command router → dispatch system (11 modules) + players | 1,355 |
+| 8 | helpers.py (864 lines) → 8 submodules | 864 |
+| 9-10 | Final cleanup, compat aliases, 200-line enforcement | — |
+
+**Result:** `checker.py` went from 5,155 lines to 126 (orchestrator only).
+`helpers.py` went from 864 lines to 49 (re-export facade).
+
+```
+scripts/
+  checker.py        126 lines  (orchestrator)
+  helpers.py         49 lines  (re-export facade)
+  boons/              2 files  (POTW boon system)
+  combat/             4 files  (combat tracker)
+  commands/          10 files  (all /command builders)
+  dispatch/          12 files  (command routing + tracking)
+  helpers_pkg/        9 files  (config, formatting, dice, DC, mechanics)
+  parsing/            2 files  (message parser)
+  players/            2 files  (kick, addplayer)
+  scheduled/         14 files  (all cron tasks)
+  transcript/         4 files  (PBP logging)
+```
 
 ### Fixed — GM Excluded From Player Counts
 
 The GM was counted as a player everywhere, inflating party sizes by 1.
-Root cause: `players_by_campaign()` returns all tracked users including GMs,
-and no caller filtered before counting.
+Fixed in 7 locations: every `player_count = len(players)` now filters GMs.
 
-Fixed in **7 locations** — every `player_count = len(players)` now filters:
+### Fixed — Per-Campaign GM Support
 
-```python
-# Before (all 7 sites):
-players = [p for p in state.get("players", {}).values()
-           if p.get("pbp_topic_id") == pid]
-player_count = len(players)
+Added `gm_user_ids` per topic_pair in config, replacing the global GM list
+for that campaign only. Link (`@Linksanelf2006`, user ID `7863964681`)
+configured as Theria's GM.
 
-# After:
-players = [p for p in state.get("players", {}).values()
-           if p.get("pbp_topic_id") == pid
-           and p.get("user_id", "") not in gm_ids]
-player_count = len(players)
-```
+### Added — Boon Storage System
 
-Affected functions: `_build_status` (line 134), `_build_campaign_report` (line 266),
-`_build_overview` (line 722), `_build_gm_dashboard` (line 1110),
-`post_roster_summary` (line 3878), `archive_weekly_data` (line 4137),
-`check_recruitment_needs` (line 4700), `_build_weekly_digest` (line 4778).
+- `/chooseboon N` text fallback for broken inline buttons
+- `/boons` shows your boons in the current campaign
+- `/boonsall` shows all boons across campaigns
+- Boons stored in state with date, campaign, week number
 
-Used `.get("user_id", "")` instead of `["user_id"]` for defensive access —
-some test player dicts lack `user_id` and shouldn't crash.
+### Added — Anniversary Next-Up Countdown
 
----
+Anniversary messages now include "Next up: Campaign X (Nd away)" showing
+which campaign's anniversary is coming next.
 
-### Fixed — Theria POTW Awarded to GM
+### Fixed — Slash Command Parsing
 
-Link (@Linksanelf2006, user ID `7863964681`) is the Theria GM but wasn't
-in any GM list. The `_gather_potw_candidates()` function already filters
-`if user_id in gm_ids: continue` but only knew the global GM (Lewis).
-
-Fix: Added per-campaign `gm_user_ids` override in `config.json`:
-
-```json
-{
-    "name": "Theria",
-    "gm_user_ids": [1698524397, 7863964681],
-    "disabled_features": ["warnings", "recruitment"]
-}
-```
-
-`helpers.gm_ids_for_campaign()` already supported per-campaign overrides —
-the config just needed the data.
-
----
-
-### Fixed — Read-Only Commands Responding in PBP Topics
-
-Commands like `/lootlist`, `/status`, `/notes` were responding directly in
-the PBP narrative topic, cluttering the story. Root cause: `_parse_message()`
-only processes PBP topic messages (`maps.all_pbp_ids`), and all command
-responses used `thread_id` (the PBP topic) regardless.
-
-Fix: Added `chat_topic_id` to the parsed message dict and a read-command
-router that redirects query responses to the chat topic:
-
-```python
-# In _parse_message() return dict:
-"chat_topic_id": maps.to_chat.get(maps.to_canonical[thread_id_str], thread_id),
-
-# In process_updates(), after parsing:
-_READ_CMDS = frozenset({
-    "/help", "/pbphelp", "/status", "/overview", "/campaign",
-    "/mystats", "/me", "/myhistory", "/whosturn", "/combatlog",
-    "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
-    "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
-    "/summary", "/activity", "/profile", "/recap", "/gm",
-    "/boons", "/boonsall",
-})
-cmd_word = text.split()[0] if text.startswith("/") else ""
-is_read = cmd_word in _READ_CMDS or (cmd_word == "/hp" and text.strip() == "/hp")
-reply_topic = parsed["chat_topic_id"] if is_read else thread_id
-```
-
-27 `tg.send_message()` calls updated from `thread_id` to `reply_topic`.
-Action commands (`/combat`, `/roll`, `/loot`, `/hp set`, etc.) stay in PBP.
-
----
-
-### Fixed — Broken Regex Variable Names
-
-Earlier `sed` that replaced `import _re` → `import re` also hit local
-variable names: `entry_re.finditer` became `entryre.finditer`,
-`scene_re.finditer` became `scenere.finditer`. Caused `NameError` in
-`_build_catchup()` and `_build_recap()`.
-
-```bash
-# The fix:
-sed -i 's/entryre\./entry_re./g' scripts/checker.py
-sed -i 's/scenere\./scene_re./g' scripts/checker.py
-```
-
----
-
-### New — `/chooseboon` Text Fallback for POTW Buttons
-
-Inline keyboard buttons silently fail because the bot runs hourly via cron.
-Telegram's callback window expires in ~30 seconds, so users see "bot not
-responding" when they click. The callback IS queued and processed on the
-next run, but the UX is broken.
-
-Added `/chooseboon <N>` as a text-based fallback:
-
-```python
-# In boons/handler.py:
-def choose_boon_by_text(pid, user_id, choice_num, config, state) -> str:
-    """Handle /chooseboon N command. Returns response message."""
-    pending = state.get("pending_potw_boons", {}).get(pid)
-    # ... validates winner, resolves choice, edits original message ...
-    return f"✅ Boon chosen: {chosen}"
-```
-
-Also updates the original button message via `tg.edit_message()` so the
-POTW post shows the chosen boon.
-
----
-
-### New — Boon Storage (`/boons`, `/boonsall`)
-
-Chosen boons are now persisted in state for retrieval:
-
-```python
-# State structure:
-state["player_boons"][pid][user_id] = [
-    {"text": "A cloud of steam obscures you...",
-     "date": "2026-03-02", "campaign": "Kibwe", "week": "W10"}
-]
-```
-
-Stored on callback choice, text choice (`/chooseboon`), and auto-expiry.
-Campaign-specific: a Kibwe boon only shows under Kibwe.
-
-- `/boons` — Your boons in the current campaign
-- `/boonsall` — All your boons across every campaign
-
----
-
-### New — Anniversary Next-Up Reminder
-
-Anniversary messages now include the next upcoming anniversary:
-
-```
-🎂 Magni Watch is 1 year old today!
-
-Campaign started March 04, 2025 (W10). Here's to more adventures ahead.
-
-———
-
-📅 Next anniversary: Kibwe turns 2 years old on April 06 (33d away)
-```
-
-Added `_next_anniversary(config, today)` helper that scans all campaign
-`created` dates, finds the soonest future anniversary, and returns a
-formatted line with days-until countdown.
-
----
-
-### Config Changes
-
-- **Theria**: Added `gm_user_ids: [1698524397, 7863964681]` (Lewis + Link)
-- **Grand Explorers**: Added dream channel topic `56842` to `pbp_topic_ids`
-
----
-
-### Refactored — Codebase Modularization (Chunk 2: Combat & Parsing)
-
-Extracted 10 functions (436 lines) into 4 new modules:
-
-**`combat/display.py`** (111 lines) — read-only combat display:
-```python
-# Extracted:
-build_whosturn()    # /whosturn command (74 lines)
-format_elapsed()    # "2d 5h" time formatter (12 lines)
-build_combatlog()   # /combatlog command (15 lines)
-```
-
-**`combat/tracker.py`** (159 lines) — message processing and action tracking:
-```python
-# Routes GM combat commands and tracks player PBP posts as combat actions.
-# When all non-away players have posted, auto-notifies the GM:
-handle_combat_message()  # main router (68 lines)
-_check_all_acted()       # GM auto-notification (30 lines)
-handle_round_command()   # /round N phase (43 lines)
-```
-
-**`combat/commands.py`** (131 lines) — combat lifecycle:
-```python
-handle_combat_start()    # /combat [enemies] (33 lines)
-handle_next_command()    # /next: players→enemies→next round (34 lines)
-handle_endcombat()       # /endcombat with summary (29 lines)
-handle_enemies_command() # /enemies view/set (29 lines)
-```
-
-**`parsing/message.py`** (81 lines) — Telegram message parser:
-```python
-parse_message()   # Validates group/thread, extracts fields, strips @bot suffix
-_detect_media()   # Classifies photo/sticker/gif/video/voice/document
-```
-
-All functions imported into `checker.py` with `as _original_name` aliases to
-maintain backward compatibility with the 286 existing tests:
-```python
-from combat.display import build_whosturn as _build_whosturn
-from parsing.message import parse_message as _parse_message
-# ... etc — tests still call checker._build_whosturn and pass
-```
-
-`checker.py`: 5095 → 4744 lines (−351)
+Commands with `@botname` suffix (e.g. `/status@PathWarsNudgeBot`) now
+strip the suffix correctly. Fixed `/lootlist` and other commands that
+weren't responding in group chats.
 
 ---
 
