@@ -11,7 +11,6 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.0.0] - 2026-03-03
 ## [4.1.0] - 2026-03-05
 
 ### Added — Telegram Command Menu
