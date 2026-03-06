@@ -26,6 +26,9 @@ DEFAULT_STATE = {
 }
 
 
+_loaded_from_gist = False
+
+
 def init(gist_token: str, gist_id: str) -> None:
     """Set gist credentials."""
     global GIST_TOKEN, GIST_API
@@ -35,6 +38,8 @@ def init(gist_token: str, gist_id: str) -> None:
 
 def load() -> dict:
     """Load bot state from GitHub Gist, or return defaults if unavailable."""
+    global _loaded_from_gist
+
     if not GIST_API or not GIST_TOKEN:
         print("Warning: No GIST_ID or GIST_TOKEN set, starting with empty state")
         return dict(DEFAULT_STATE)
@@ -49,12 +54,12 @@ def load() -> dict:
             timeout=30,
         )
     except requests.RequestException as e:
-        print(f"Warning: Could not connect to gist ({e}), starting fresh")
-        return dict(DEFAULT_STATE)
+        print(f"FATAL: Could not connect to gist ({e}), aborting to protect state")
+        raise SystemExit(1)
 
     if resp.status_code != 200:
-        print(f"Warning: Could not load gist (HTTP {resp.status_code}), starting fresh")
-        return dict(DEFAULT_STATE)
+        print(f"FATAL: Could not load gist (HTTP {resp.status_code}), aborting to protect state")
+        raise SystemExit(1)
 
     gist_data = resp.json()
     files = gist_data.get("files", {})
@@ -66,13 +71,23 @@ def load() -> dict:
         for key, default in DEFAULT_STATE.items():
             if key not in state:
                 state[key] = default
+        _loaded_from_gist = True
         return state
 
+    _loaded_from_gist = True
     return dict(DEFAULT_STATE)
 
 
 def save(state: dict) -> None:
-    """Persist bot state to GitHub Gist."""
+    """Persist bot state to GitHub Gist.
+
+    Refuses to save if the state was not successfully loaded from the gist
+    (prevents a failed load from wiping all data).
+    """
+    if not _loaded_from_gist:
+        print("REFUSING to save: state was not loaded from gist (would wipe data)")
+        return
+
     if not GIST_API or not GIST_TOKEN:
         print("Warning: No GIST_ID or GIST_TOKEN set, cannot save state")
         return
