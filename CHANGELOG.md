@@ -11,6 +11,34 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.1.1] - 2026-03-06
+
+### Fixed — CRITICAL: State Wipe on Failed Gist Load
+
+On March 5 at ~12:00 UTC, all bot state was wiped — 43 players and 952
+messages across 8 campaigns lost. Root cause: `state.py` `load()` returned
+empty `DEFAULT_STATE` on a transient gist API failure, then `save()` wrote
+that empty state back, overwriting everything.
+
+Two concurrent workflow runs (schedule + dynamic trigger) likely caused the
+gist read to fail or race.
+
+**Fix 1 — Fail-safe state loading (`state.py`):**
+- `load()` now aborts the run (`SystemExit(1)`) if the gist can't be read,
+  instead of silently returning empty state
+- `save()` refuses to write unless a `_loaded_from_gist` flag confirms data
+  was actually loaded from the gist
+- A transient error now safely kills the run instead of nuking all data
+
+**Fix 2 — Concurrency control (`pbp-reminder.yml`):**
+- Added `concurrency: group: pbp-checker` so two workflow runs can never
+  touch the gist simultaneously — the second run queues until the first finishes
+
+**State restored** from last good gist revision (Mar 5 11:14, 43 players,
+952 messages) via the gist API, with the current offset preserved.
+
+---
+
 ## [4.1.0] - 2026-03-05
 
 ### Added — Telegram Command Menu
