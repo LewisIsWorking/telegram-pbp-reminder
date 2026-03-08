@@ -7,6 +7,30 @@ from helpers import build_topic_maps, fmt_date
 import telegram as tg
 
 
+def _gm_note(config: dict, state: dict, pid: str, now: datetime) -> str:
+    """Return a GM inactivity note if the GM isn't the last poster, else ''."""
+    topic_state = state.get("topics", {}).get(pid, {})
+    last_user_id = topic_state.get("last_user_id", "")
+    gm_ids = helpers.gm_ids_for_campaign(config, pid)
+    if last_user_id in gm_ids:
+        return ""
+    topic_ts = helpers.get_topic_timestamps(state, pid)
+    gm_last = None
+    for gm_id in gm_ids:
+        gm_stamps = topic_ts.get(gm_id, [])
+        if gm_stamps:
+            gm_dt = datetime.fromisoformat(gm_stamps[-1])
+            if gm_last is None or gm_dt > gm_last:
+                gm_last = gm_dt
+    if not gm_last:
+        return ""
+    gm_elapsed = helpers.hours_since(now, gm_last)
+    gm_days = int(gm_elapsed) // 24
+    gm_hours = int(gm_elapsed) % 24
+    gm_time = f"{gm_days}d {gm_hours}h" if gm_days > 0 else f"{gm_hours}h"
+    return f"\n\nGM hasn't posted in {gm_time}."
+
+
 def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Send alerts to campaigns inactive beyond alert_after_hours."""
     group_id = config["group_id"]
@@ -25,8 +49,6 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
             continue
 
         if pid not in state.get("topics", {}):
-            continue
-            print(f"No messages tracked yet for {name}, skipping")
             continue
 
         topic_state = state["topics"][pid]
@@ -62,6 +84,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
             f"No new posts in {name} PBP for {time_str}.\n"
             f"Last post was from {last_user}{count_str} on {last_date}."
         )
+        message += _gm_note(config, state, pid, now)
 
         print(f"Sending alert for {name}: {time_str} inactive")
         if tg.send_message(group_id, chat_topic_id, message):
@@ -117,6 +140,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                     f"{days_inactive} days (last: {last_date}). They are no longer tracked "
                     f"as an active player in this campaign."
                 )
+                message += _gm_note(config, state, pbp_topic_id, now)
                 print(f"Removing {first_name} from {campaign} ({days_inactive}d)")
                 tg.send_message(group_id, chat_topic_id, message)
                 players_to_remove.append(player_key)
@@ -130,6 +154,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                     mention=mention, campaign=campaign,
                     days=days_inactive, date=last_date,
                 )
+                message += _gm_note(config, state, pbp_topic_id, now)
                 print(f"Warning {first_name} in {campaign}: week {week_mark}")
                 if tg.send_message(group_id, chat_topic_id, message):
                     player["last_warned_week"] = week_mark
