@@ -48,14 +48,19 @@ def pace_split(topic_ts: dict[str, list[str]], gm_ids: set[str],
                now: datetime) -> dict:
     """Compute GM/player post splits for this week vs last week.
 
+    Counts posting sessions (posts within POST_SESSION_MINUTES collapsed),
+    not raw messages.
+
     Returns dict with: gm_this, gm_last, player_this, player_last.
     """
+    from helpers_pkg.formatting import deduplicate_posts
+
     week_ago = now - timedelta(days=7)
     two_weeks_ago = now - timedelta(days=14)
     gm_this = gm_last = player_this = player_last = 0
     for uid, timestamps in topic_ts.items():
-        this_count = len(timestamps_in_window(timestamps, week_ago))
-        last_count = len(timestamps_in_window(timestamps, two_weeks_ago, week_ago))
+        this_count = len(deduplicate_posts(timestamps_in_window(timestamps, week_ago)))
+        last_count = len(deduplicate_posts(timestamps_in_window(timestamps, two_weeks_ago, week_ago)))
         if uid in gm_ids:
             gm_this += this_count
             gm_last += last_count
