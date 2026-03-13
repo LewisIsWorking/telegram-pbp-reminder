@@ -11,6 +11,51 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.2.0] - 2026-03-13
+
+### Added — GM Bottleneck Suppression
+
+If the GM hasn't posted in a campaign for 3+ days, the bot stops nagging
+players about inactivity. No warnings, no auto-removals — nothing until
+the GM posts again. Players can't do anything if the GM is the bottleneck.
+
+Topic silence alerts still fire (useful for the GM to see), with the
+existing "GM hasn't posted in Xd Yh" note appended.
+
+### Added — GM Inactivity Note on Alerts
+
+All inactivity alerts and player warnings now append a note when the GM
+isn't the last poster:
+
+```
+GM hasn't posted in 5d 2h.
+```
+
+Appears on topic silence alerts, 1/2/3 week player warnings, and
+4-week auto-removal messages. Skipped when the GM was the last to post.
+
+### Fixed — Pace Report Counting Raw Messages Instead of Sessions
+
+The weekly pace report was counting every individual Telegram message,
+not posting sessions. A single PBP scene posted line-by-line (50 messages
+in 2 hours) showed as "50 posts" instead of "~5 sessions."
+
+`pace_split()` now uses `deduplicate_posts()` to collapse messages within
+10 minutes into a single session, matching how rosters already count.
+
+### Added — Kibwe PBP 2/2 Topic
+
+Topic 137075 added to Kibwe's tracked PBP topics. Posts from both topics
+merge under the canonical ID for stats, rosters, POTW, and transcripts.
+
+### Changed — 200-Line Limit Enforced on All Files
+
+Extracted `compat.py` (test aliases) from `checker.py` and
+`import_formatting.py` from `import_history.py`. All 69 production
+files now at or under 200 lines with zero exceptions.
+
+---
+
 ## [4.1.1] - 2026-03-06
 
 ### Fixed — CRITICAL: State Wipe on Failed Gist Load
