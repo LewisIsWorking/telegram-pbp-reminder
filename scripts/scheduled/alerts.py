@@ -7,13 +7,9 @@ from helpers import build_topic_maps, fmt_date
 import telegram as tg
 
 
-def _gm_note(config: dict, state: dict, pid: str, now: datetime) -> str:
-    """Return a GM inactivity note if the GM isn't the last poster, else ''."""
-    topic_state = state.get("topics", {}).get(pid, {})
-    last_user_id = topic_state.get("last_user_id", "")
+def _gm_last_post(config: dict, state: dict, pid: str) -> datetime | None:
+    """Return the most recent GM post time for a campaign, or None."""
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
-    if last_user_id in gm_ids:
-        return ""
     topic_ts = helpers.get_topic_timestamps(state, pid)
     gm_last = None
     for gm_id in gm_ids:
@@ -22,6 +18,17 @@ def _gm_note(config: dict, state: dict, pid: str, now: datetime) -> str:
             gm_dt = datetime.fromisoformat(gm_stamps[-1])
             if gm_last is None or gm_dt > gm_last:
                 gm_last = gm_dt
+    return gm_last
+
+
+def _gm_note(config: dict, state: dict, pid: str, now: datetime) -> str:
+    """Return a GM inactivity note if the GM isn't the last poster, else ''."""
+    topic_state = state.get("topics", {}).get(pid, {})
+    last_user_id = topic_state.get("last_user_id", "")
+    gm_ids = helpers.gm_ids_for_campaign(config, pid)
+    if last_user_id in gm_ids:
+        return ""
+    gm_last = _gm_last_post(config, state, pid)
     if not gm_last:
         return ""
     gm_elapsed = helpers.hours_since(now, gm_last)
@@ -105,6 +112,9 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
     maps = maps or build_topic_maps(config)
 
+    # Cache GM last-post per campaign to avoid repeated lookups
+    _gm_bottleneck = {}
+
     players_to_remove = []
 
     for player_key, player in state["players"].items():
@@ -119,6 +129,14 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         # Skip players who are marked as away
         user_id = player.get("user_id", "")
         if helpers.is_away(state, pbp_topic_id, user_id, now):
+            continue
+        # Skip player warnings if GM is the bottleneck (3+ days inactive)
+        if pbp_topic_id not in _gm_bottleneck:
+            gm_last = _gm_last_post(config, state, pbp_topic_id)
+            _gm_bottleneck[pbp_topic_id] = (
+                gm_last is not None and helpers.days_since(now, gm_last) >= 3
+            )
+        if _gm_bottleneck[pbp_topic_id]:
             continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])
