@@ -65,12 +65,11 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         if elapsed_hours < alert_hours:
             continue
 
-        # Don't re-alert within alert_hours
+        # Don't re-alert within 24 hours (once per day max)
         last_alert_str = state["last_alerts"].get(pid)
         if last_alert_str:
             since_last = helpers.hours_since(now, datetime.fromisoformat(last_alert_str))
-            if since_last < alert_hours:
-                print(f"{name}: Already alerted {since_last:.1f}h ago, skipping")
+            if since_last < 24:
                 continue
 
         hours_int = int(elapsed_hours)

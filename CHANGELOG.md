@@ -11,6 +11,26 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.3.0] - 2026-03-16
+
+### Changed — Tips Post to Dedicated Bot Topic
+
+Tips and command hints now post to the new Bot Tips & Commands topic
+instead of randomly pinging PBP game chats. Changelog posts also go
+here now. Configure via `bot_topic_id` in config.json.
+
+### Changed — Once Per Day Alert Maximum
+
+Topic silence alerts now fire at most once every 24 hours per campaign
+(previously every 12 hours). Less noise, same information.
+
+### Changed — Alert Threshold Raised to 24h
+
+`alert_after_hours` bumped from 12 to 24. A campaign needs a full day
+of silence before the first alert fires, not half a day.
+
+---
+
 ## [4.2.0] - 2026-03-13
 
 ### Added — GM Bottleneck Suppression

@@ -11,10 +11,9 @@ import requests
 from pathlib import Path
 
 # ---- Configuration ----
-# Foundry & GitHub: feedback, improvements, questions, etc.
-# https://t.me/Path_Wars/71537
+# Bot Tips & Commands: https://t.me/Path_Wars/137393
 CHANGELOG_CHAT_ID = os.environ.get("CHANGELOG_CHAT_ID", "@Path_Wars")
-CHANGELOG_THREAD_ID = int(os.environ.get("CHANGELOG_THREAD_ID", "71537"))
+CHANGELOG_THREAD_ID = int(os.environ.get("CHANGELOG_THREAD_ID", "137393"))
 TELEGRAM_MAX_LENGTH = 4096
 
 def read_latest_entry(changelog_path: Path) -> tuple[str, str]:

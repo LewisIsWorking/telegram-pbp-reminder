@@ -86,6 +86,7 @@ def _make_config(pairs=None, gm_ids=None):
         "alert_after_hours": 4,
         "gm_user_ids": gm_ids or [999],
         "leaderboard_topic_id": None,
+        "bot_topic_id": 300,
         "topic_pairs": pairs or [
             {"name": "TestCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100]},
         ],
