@@ -48,6 +48,7 @@ EVERYONE_COMMANDS = [
     ("boonsall", "View all your boons"),
     ("chooseboon", "Choose POTW boon by number"),
     ("pick", "Vote in an active poll"),
+    ("search", "Search Archives of Nethys"),
 ]
 
 GM_COMMANDS = [

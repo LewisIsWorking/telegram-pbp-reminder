@@ -5,7 +5,7 @@ Parses Telegram updates, builds command context, dispatches to
 handler modules, and triggers post-message tracking.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 import helpers
 from helpers import build_topic_maps
@@ -17,6 +17,7 @@ from dispatch import cmd_info, cmd_gm, cmd_trackers, cmd_trackers_items
 from dispatch import cmd_conditions_hp, cmd_clocks, cmd_votes_timers
 from dispatch import cmd_player
 from dispatch.tracking import track_message
+from dispatch.bot_topic import handle_bot_topic_cmd
 from dispatch.help_text import _HELP_TEXT
 
 # Initialize cmd_info with help text
@@ -39,7 +40,7 @@ _READ_CMDS = frozenset({
     "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
     "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
     "/summary", "/activity", "/profile", "/recap", "/gm",
-    "/boons", "/boonsall",
+    "/boons", "/boonsall", "/search",
 })
 
 
@@ -64,6 +65,15 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             continue
 
         if not msg:
+            continue
+
+        # Handle commands from bot topic (read-only, campaign arg required)
+        bot_topic = config.get("bot_topic_id")
+        msg_thread = msg.get("message_thread_id")
+        if (bot_topic and msg_thread == bot_topic
+                and msg.get("chat", {}).get("id") == group_id):
+            handle_bot_topic_cmd(msg, config, state, maps, group_id, bot_topic,
+                                  _READ_CMDS, _HANDLERS)
             continue
 
         parsed = parse_message(msg, group_id, maps)
@@ -114,3 +124,5 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         track_message(parsed, state, config, gm_ids, maps)
 
     return new_offset
+
+

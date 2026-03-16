@@ -11,6 +11,39 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.4.0] - 2026-03-16
+
+### Added — Bot Channel Commands
+
+All read-only commands now work from the Bot Tips & Commands topic.
+Specify a campaign name as an argument:
+
+```
+/mystats kibwe
+/campaign riddleport
+/status metal city
+```
+
+Commands that don't need a campaign (`/gm`, `/overview`, `/help`,
+`/profile`, `/boonsall`) work without an argument. If you forget
+the campaign name, the bot lists all available campaigns.
+
+Write commands (combat, notes, HP, etc.) still only work from PBP topics.
+
+### Added — Archives of Nethys Search
+
+`/search <query>` searches AoN's Elasticsearch API and returns up to
+5 results with name, level, rarity, summary, and link. Works from
+any topic.
+
+```
+/search fireball
+/search +1 striking
+/search beastmaster dedication
+```
+
+---
+
 ## [4.3.0] - 2026-03-16
 
 ### Changed — Tips Post to Dedicated Bot Topic

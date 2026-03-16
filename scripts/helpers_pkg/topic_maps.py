@@ -9,13 +9,14 @@ import re
 # ------------------------------------------------------------------ #
 class TopicMaps:
     """Lookup container for campaign topic ID mappings."""
-    __slots__ = ("to_canonical", "to_chat", "to_name", "all_pbp_ids")
+    __slots__ = ("to_canonical", "to_chat", "to_name", "all_pbp_ids", "name_to_pid")
 
-    def __init__(self, to_canonical, to_chat, to_name, all_pbp_ids):
+    def __init__(self, to_canonical, to_chat, to_name, all_pbp_ids, name_to_pid):
         self.to_canonical = to_canonical  # any pbp_topic_id (str) -> canonical pid
         self.to_chat = to_chat            # canonical pid -> chat_topic_id
         self.to_name = to_name            # canonical pid -> campaign name
         self.all_pbp_ids = all_pbp_ids    # set of all pbp topic id strings
+        self.name_to_pid = name_to_pid    # lowercased name -> canonical pid
 
 
 
@@ -33,16 +34,23 @@ def build_topic_maps(config: dict) -> TopicMaps:
     to_chat = {}
     to_name = {}
     all_pbp_ids = set()
+    name_to_pid = {}
     for pair in config["topic_pairs"]:
         ids = pair["pbp_topic_ids"]
         canonical = str(ids[0])
+        name = pair["name"]
         to_chat[canonical] = pair["chat_topic_id"]
-        to_name[canonical] = pair["name"]
+        to_name[canonical] = name
+        # Map full name and individual words for flexible matching
+        name_to_pid[name.lower()] = canonical
+        for word in name.lower().split():
+            if len(word) >= 3 and word not in name_to_pid:
+                name_to_pid[word] = canonical
         for tid in ids:
             tid_str = str(tid)
             to_canonical[tid_str] = canonical
             all_pbp_ids.add(tid_str)
-    result = TopicMaps(to_canonical, to_chat, to_name, all_pbp_ids)
+    result = TopicMaps(to_canonical, to_chat, to_name, all_pbp_ids, name_to_pid)
     _topic_maps_cache = (id(config), result)
     return result
 

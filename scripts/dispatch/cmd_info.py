@@ -165,4 +165,10 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_boons_all(uid, state, config))
         return True
 
+    if cmd == "/search":
+        from dispatch.cmd_search import handle_search
+        query = text[7:].strip() if len(text) > 7 else ""
+        handle_search(query, gid, reply, tg)
+        return True
+
     return False
