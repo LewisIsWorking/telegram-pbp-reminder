@@ -72,6 +72,9 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         msg_thread = msg.get("message_thread_id")
         if (bot_topic and msg_thread == bot_topic
                 and msg.get("chat", {}).get("id") == group_id):
+            raw = msg.get("text", "")
+            who = msg.get("from", {}).get("first_name", "?")
+            print(f"Bot topic msg from {who}: {raw[:50]}")
             handle_bot_topic_cmd(msg, config, state, maps, group_id, bot_topic,
                                   _READ_CMDS, _HANDLERS)
             continue

@@ -49,12 +49,14 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
 
     # /search works without campaign context
     if cmd_word == "/search":
+        print(f"Bot topic: /search from {user_name}: {args}")
         handle_search(args, group_id, bot_topic, tg)
         return
 
     # Global commands don't need a campaign
     no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help", "/pbphelp"}
     if cmd_word in no_campaign:
+        print(f"Bot topic: {cmd_word} from {user_name} (global)")
         pid = next(iter(maps.to_name), None)
         if not pid:
             return

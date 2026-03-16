@@ -32,6 +32,7 @@ def handle_search(query: str, group_id: int, topic_id: int, tg) -> None:
                         "Usage: /search <query>\nExample: /search fireball")
         return
 
+    print(f"AoN search: '{query}'")
     try:
         resp = requests.post(AON_URL, json={
             "query": {
@@ -108,4 +109,6 @@ def handle_search(query: str, group_id: int, topic_id: int, tg) -> None:
 
         lines.append(entry)
 
-    tg.send_message(group_id, topic_id, "\n\n".join(lines))
+    result = "\n\n".join(lines)
+    print(f"AoN: {len(hits)} hits, sending {len(result)} chars")
+    tg.send_message(group_id, topic_id, result)
