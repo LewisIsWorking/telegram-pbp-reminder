@@ -32,7 +32,7 @@ Write commands (combat, notes, HP, etc.) still only work from PBP topics.
 
 ### Added — Archives of Nethys Search
 
-`/search <query>` searches AoN's Elasticsearch API and returns up to
+`/search [query]` searches AoN's Elasticsearch API and returns up to
 5 results with name, level, rarity, summary, and link. Works from
 any topic.
 
@@ -351,19 +351,19 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ### Added — HP Tracker, Progress Clocks & Status Integration
 
 #### HP Tracker (combat management)
-- `/hp set <n> <current>/<max>` (GM): set up enemy HP with visual bars
-- `/hp d <n> <amount>` (GM): deal damage, shows 💀 DOWN! at 0 HP
-- `/hp h <n> <amount>` (GM): heal (capped at max)
-- `/hp remove <n>` (GM): remove a single entry
+- `/hp set [name] <current>/<max>` (GM): set up enemy HP with visual bars
+- `/hp d [name] <amount>` (GM): deal damage, shows 💀 DOWN! at 0 HP
+- `/hp h [name] <amount>` (GM): heal (capped at max)
+- `/hp remove [name]` (GM): remove a single entry
 - `/hp clear` (GM): wipe all HP entries after combat
 - `/hp` (everyone): view HP tracker with colour-coded bars ████░░
 - Max 20 HP entries per campaign
 
 #### Progress Clocks (investigations, rituals, countdowns)
-- `/clock <n> <segments>` (GM): create a 2–12 segment clock ◉◉◉○○○
-- `/tick <n> [N]` (GM): advance a clock (default 1 segment)
-- `/untick <n> [N]` (GM): reverse a clock
-- `/delclock <n>` (GM): remove a clock
+- `/clock [name] <segments>` (GM): create a 2–12 segment clock ◉◉◉○○○
+- `/tick [name] [N]` (GM): advance a clock (default 1 segment)
+- `/untick [name] [N]` (GM): reverse a clock
+- `/delclock [name]` (GM): remove a clock
 - `/clocks` (everyone): view all clocks, ✅ shown when complete
 - Max 15 clocks per campaign
 
@@ -385,7 +385,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ### Added — NPC Tracker & Condition Tracker
 
 #### NPC tracker
-- `/npc <n> — <desc>` (GM): add NPC with name and description
+- `/npc [name] — <desc>` (GM): add NPC with name and description
 - `/npcs`: view all tracked NPCs — a living dramatis personae
 - `/delnpc <N>` (GM): remove an NPC
 - Supports em-dash, double-hyphen, or single-hyphen separators
