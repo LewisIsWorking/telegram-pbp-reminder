@@ -129,14 +129,12 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         user_id = player.get("user_id", "")
         if helpers.is_away(state, pbp_topic_id, user_id, now):
             continue
-        # Skip player warnings if GM is the bottleneck (3+ days inactive)
+        # Cache GM bottleneck status (3+ days inactive)
         if pbp_topic_id not in _gm_bottleneck:
             gm_last = _gm_last_post(config, state, pbp_topic_id)
             _gm_bottleneck[pbp_topic_id] = (
                 gm_last is not None and helpers.days_since(now, gm_last) >= 3
             )
-        if _gm_bottleneck[pbp_topic_id]:
-            continue
 
         last_post = datetime.fromisoformat(player["last_post_time"])
         elapsed_days = helpers.days_since(now, last_post)
@@ -149,7 +147,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         days_inactive = int(elapsed_days)
         last_date = fmt_date(last_post)
 
-        # 4+ weeks: remove
+        # 4+ weeks: remove (ALWAYS fires, even when GM is bottleneck)
         if current_week >= helpers.PLAYER_REMOVE_WEEKS:
             if last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
@@ -163,7 +161,9 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                 players_to_remove.append(player_key)
             continue
 
-        # 1, 2, 3 week warnings
+        # 1, 2, 3 week warnings (suppressed when GM is the bottleneck)
+        if _gm_bottleneck[pbp_topic_id]:
+            continue
         for week_mark in helpers.PLAYER_WARN_WEEKS:
             if current_week >= week_mark and last_warned < week_mark:
                 template = _INACTIVITY_TEMPLATES.get(week_mark, _INACTIVITY_TEMPLATES[3])
