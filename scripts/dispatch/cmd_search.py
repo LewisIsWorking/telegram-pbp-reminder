@@ -9,11 +9,9 @@ _CATEGORY_ICONS = {
     "spell": "🔮",
     "feat": "⭐",
     "action": "⚡",
-    "creature": "👹",
     "equipment": "🛡️",
     "weapon": "⚔️",
     "armor": "🛡️",
-    "hazard": "⚠️",
     "condition": "💫",
     "trait": "🏷️",
     "ancestry": "👤",
@@ -44,7 +42,11 @@ def handle_search(query: str, group_id: int, topic_id: int, tg) -> None:
                             "type": "best_fields",
                         }
                     },
-                    "must_not": {"term": {"exclude_from_search": True}},
+                    "must_not": [
+                        {"term": {"exclude_from_search": True}},
+                        {"term": {"category": "creature"}},
+                        {"term": {"category": "hazard"}},
+                    ],
                 }
             },
             "size": 5,
@@ -73,11 +75,16 @@ def handle_search(query: str, group_id: int, topic_id: int, tg) -> None:
 
     lines = [f"🔍 AoN: \"{query}\" ({total} results)\n"]
 
+    # Blocked categories (GM-only info that would spoil encounters)
+    _BLOCKED = {"creature", "hazard"}
     seen = set()
     for hit in hits:
         s = hit["_source"]
         name = s.get("name", "?")
         category = s.get("category", "")
+
+        if category in _BLOCKED:
+            continue
         url = s.get("url", "")
         level = s.get("level")
         rarity = s.get("rarity", "common")
