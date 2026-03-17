@@ -11,6 +11,21 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.4.2] - 2026-03-17
+
+### Added — MVP Win Tracking
+
+The weekly leaderboard now tracks how many times each player has won
+MVP of the Week. Repeat winners show their total:
+
+```
+🏆 MVP of the Week: Link! (MVP x3)
+```
+
+Historical wins backfilled from the weekly archive (W07-W12).
+
+---
+
 ## [4.4.1] - 2026-03-17
 
 ### Fixed — /search Now Blocks Creatures and Hazards

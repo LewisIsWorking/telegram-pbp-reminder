@@ -130,6 +130,22 @@ def post_campaign_leaderboard(config: dict, state: dict, *, now: datetime | None
 
     message = _format_leaderboard(campaign_stats, global_player_posts, now, all_streaks)
 
+    # Track MVP win
+    if global_player_posts:
+        top = max(global_player_posts.items(), key=lambda x: x[1]["count"])
+        winner_uid, winner_data = top
+        mvp_wins = state.setdefault("mvp_wins", {})
+        entry = mvp_wins.setdefault(winner_uid, {"name": "", "count": 0})
+        entry["name"] = winner_data["full_name"]
+        entry["count"] += 1
+        total = entry["count"]
+        # Append MVP total to message
+        suffix = f" (MVP x{total})" if total > 1 else ""
+        message = message.replace(
+            f"🏆 MVP of the Week: {winner_data['full_name']}!",
+            f"🏆 MVP of the Week: {winner_data['full_name']}!{suffix}",
+        )
+
     print(f"Posting campaign leaderboard ({len(campaign_stats)} campaigns)")
     if tg.send_message(group_id, leaderboard_topic, message):
         state["last_leaderboard"] = now.isoformat()
