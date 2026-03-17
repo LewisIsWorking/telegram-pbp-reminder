@@ -11,6 +11,25 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.4.1] - 2026-03-17
+
+### Fixed — /search Now Blocks Creatures and Hazards
+
+Players could look up monster stat blocks and spoil encounters.
+Creatures and hazards are now excluded at both the Elasticsearch query
+level and client-side as a safety net.
+
+### Fixed — Auto-Removal Always Notifies
+
+The GM bottleneck suppression (v4.2.0) was incorrectly skipping 4-week
+auto-removals. Now:
+- **4-week removal: always fires**, even when the GM hasn't posted
+- **1/2/3 week warnings: suppressed** when GM is the bottleneck
+
+The group always needs to know when a player drops off the roster.
+
+---
+
 ## [4.4.0] - 2026-03-16
 
 ### Added — Bot Channel Commands
