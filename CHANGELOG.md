@@ -11,6 +11,20 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.4.4] - 2026-03-18
+
+### Fixed — /roll and /dc Now Work From Bot Channel
+
+These commands don't need campaign context but were being ignored
+when sent from the Bot Tips & Commands topic. Now both work directly:
+
+```
+/roll 1d20+5 Perception
+/dc 5 hard
+```
+
+---
+
 ## [4.4.3] - 2026-03-18
 
 ### Fixed — /roll Broken With @botname Suffix
