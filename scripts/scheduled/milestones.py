@@ -21,6 +21,7 @@ _STREAK_MESSAGES = {
 def check_streak_milestones(config: dict, state: dict, *, now: datetime | None = None, maps=None, **_kw) -> None:
     """Celebrate when a player crosses a streak milestone (7, 14, 30, 60, 90 days)."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)
@@ -58,7 +59,7 @@ def check_streak_milestones(config: dict, state: dict, *, now: datetime | None =
             message = message.format(name=player_name, campaign=name, streak=streak)
 
             print(f"Streak milestone: {player_name} hit {milestone}d in {name}")
-            if tg.send_message(group_id, chat_topic_id, message):
+            if tg.send_message(group_id, bot_topic or chat_topic_id, message):
                 celebrated[key] = milestone
 
 
@@ -153,5 +154,5 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
             message += f"\n\n———\n\n{next_ann}"
 
         print(f"Anniversary for {name}: {year_str}")
-        if tg.send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             state["last_anniversary"][anniversary_key] = now.isoformat()

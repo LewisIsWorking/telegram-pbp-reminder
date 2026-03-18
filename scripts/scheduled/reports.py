@@ -11,6 +11,7 @@ import telegram as tg
 def post_roster_summary(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post a summary of all tracked players per campaign to CHAT topics."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)
@@ -70,7 +71,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         message = f"Party roster for {name}:\n\n" + "\n\n".join(lines) + footer
 
         print(f"Posting roster for {name}")
-        if tg.send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             state["last_roster"][pid] = now.isoformat()
 
 
@@ -138,5 +139,5 @@ def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, 
         )
 
         print(f"Pace report for {name}: {this_week} vs {last_week} ({icon})")
-        if tg.send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             state["last_pace"][pid] = now.isoformat()

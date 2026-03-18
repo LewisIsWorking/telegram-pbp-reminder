@@ -17,6 +17,7 @@ _MILESTONE_ICONS = {
 def check_message_milestones(config: dict, state: dict, *, now: datetime | None = None, maps=None, **_kw) -> None:
     """Celebrate when a campaign or the global total crosses a message milestone."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     maps = maps or build_topic_maps(config)
     celebrated = state.setdefault("celebrated_milestones", {})
 
@@ -46,7 +47,7 @@ def check_message_milestones(config: dict, state: dict, *, now: datetime | None 
                     f"That's {milestone:,} posts of collaborative storytelling. "
                     f"Every single one moved the story forward."
                 )
-                if tg.send_message(group_id, chat_topic_id, message):
+                if tg.send_message(group_id, bot_topic or chat_topic_id, message):
                     celebrated[campaign_key] = milestone
                     print(f"Milestone: {name} hit {milestone:,} messages")
 

@@ -43,6 +43,7 @@ def _gather_potw_candidates(
 def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Award Player of the Week based on smallest average gap between posts."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     try:
@@ -97,7 +98,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         ]
 
         print(f"POTW for {name}: {winner['first_name']} (avg gap {avg_gap_str})")
-        msg_id = tg.send_message_with_buttons(group_id, chat_topic_id, base_message + boon_text, buttons)
+        msg_id = tg.send_message_with_buttons(group_id, bot_topic or chat_topic_id, base_message + boon_text, buttons)
         if msg_id:
             state["last_potw"][pid] = now.isoformat()
             state["pending_potw_boons"][pid] = {

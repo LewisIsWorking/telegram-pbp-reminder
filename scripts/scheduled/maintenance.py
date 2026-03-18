@@ -130,6 +130,7 @@ def cleanup_timestamps(state: dict) -> None:
 def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """If a campaign has fewer than helpers.REQUIRED_PLAYERS, post a notice."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)
@@ -176,5 +177,5 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
         )
 
         print(f"Recruitment notice for {name}: {player_count}/{helpers.REQUIRED_PLAYERS}")
-        if tg.send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             state["last_recruitment_check"][pid] = now.isoformat()

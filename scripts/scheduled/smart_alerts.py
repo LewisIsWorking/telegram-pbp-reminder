@@ -14,6 +14,7 @@ def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, m
     to the campaign's chat topic so the GM is aware without being pushy.
     """
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
     maps = maps or build_topic_maps(config)
 
@@ -62,7 +63,7 @@ def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, m
                 f"intentional."
             )
             print(f"Pace drop alert for {name}: {last_week} -> {this_week} ({drop_pct:.0f}%)")
-            tg.send_message(group_id, chat_topic_id, message)
+            tg.send_message(group_id, bot_topic or chat_topic_id, message)
             alerts_sent = True
 
     state["last_pace_drop_check"] = now.isoformat()
@@ -128,7 +129,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
                 f"{fmt_date(latest_dt)}."
             )
             print(f"Conversation dying alert for {name}: {days_silent:.1f} days silent")
-            if tg.send_message(group_id, chat_topic_id, message):
+            if tg.send_message(group_id, bot_topic or chat_topic_id, message):
                 state["dying_alerts_sent"][pid] = "active"
         else:
             # Reset the flag when activity resumes

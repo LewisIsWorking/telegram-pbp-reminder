@@ -41,6 +41,7 @@ def _gm_note(config: dict, state: dict, pid: str, now: datetime) -> str:
 def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Send alerts to campaigns inactive beyond alert_after_hours."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     alert_hours = config.get("alert_after_hours", 4)
     now = now or datetime.now(timezone.utc)
 
@@ -93,7 +94,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         message += _gm_note(config, state, pid, now)
 
         print(f"Sending alert for {name}: {time_str} inactive")
-        if tg.send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             state["last_alerts"][pid] = now.isoformat()
 
 _INACTIVITY_TEMPLATES = {
@@ -157,7 +158,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                 )
                 message += _gm_note(config, state, pbp_topic_id, now)
                 print(f"Removing {first_name} from {campaign} ({days_inactive}d)")
-                tg.send_message(group_id, chat_topic_id, message)
+                tg.send_message(group_id, bot_topic or chat_topic_id, message)
                 players_to_remove.append(player_key)
             continue
 
@@ -173,7 +174,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                 )
                 message += _gm_note(config, state, pbp_topic_id, now)
                 print(f"Warning {first_name} in {campaign}: week {week_mark}")
-                if tg.send_message(group_id, chat_topic_id, message):
+                if tg.send_message(group_id, bot_topic or chat_topic_id, message):
                     player["last_warned_week"] = week_mark
                 break  # One warning per player per run
 

@@ -10,6 +10,7 @@ import telegram as tg
 def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """During players' phase, ping players who haven't acted yet."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
@@ -69,7 +70,7 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
         )
 
         print(f"Combat ping in {campaign_name}: waiting on {missing_str}")
-        if tg.send_message(group_id, chat_topic_id, message):
+        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             combat["last_ping_at"] = now.isoformat()
 
 
@@ -95,7 +96,7 @@ def check_expired_timers(config: dict, state: dict, *, now: datetime | None = No
             reason = timer.get("reason", "")
             reason_str = f"\n📝 {reason}" if reason else ""
 
-            tg.send_message(group_id, chat_topic_id,
+            tg.send_message(group_id, bot_topic or chat_topic_id,
                             f"⏰ Timer expired for {campaign_name}!{reason_str}\n"
                             f"GMs: /canceltimer to clear.")
             timer["notified"] = True
