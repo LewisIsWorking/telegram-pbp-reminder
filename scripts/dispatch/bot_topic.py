@@ -53,6 +53,38 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         handle_search(args, group_id, bot_topic, tg)
         return
 
+    # /roll and /dc work without campaign context
+    if cmd_word in ("/roll", "/dc"):
+        print(f"Bot topic: {cmd_word} from {user_name}: {args}")
+        pid = next(iter(maps.to_name), None)
+        if not pid:
+            return
+        import re as _re
+        raw_text = msg.get("text", "").strip()
+        if cmd_word == "/roll":
+            dice = _re.sub(r"^/roll(@\S+)?", "", raw_text).strip()
+            result = helpers.roll_dice(dice) if dice else None
+            if not result or not dice:
+                tg.send_message(group_id, bot_topic,
+                                "Usage: /roll [dice] [label]\n"
+                                "e.g. /roll 1d20+5 Stealth\n"
+                                "e.g. /roll 4d6kh3")
+            elif result.get("error"):
+                tg.send_message(group_id, bot_topic, result["error"])
+            else:
+                label = result["label"]
+                header = f"🎲 {user_name}"
+                if label:
+                    header += f" — {label}"
+                header += ":"
+                r = result["results"][0]
+                tg.send_message(group_id, bot_topic,
+                                f"{header}\n  {r['detail']} = {r['total']}")
+        else:
+            tg.send_message(group_id, bot_topic,
+                            helpers.dc_lookup(args))
+        return
+
     # Global commands don't need a campaign
     no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help", "/pbphelp"}
     if cmd_word in no_campaign:
