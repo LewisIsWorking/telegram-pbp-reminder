@@ -11,6 +11,22 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.5.0] - 2026-03-18
+
+### Changed — All Bot Output Moved to Bot Topic
+
+Every scheduled bot post now goes to the Bot Tips & Commands topic
+instead of campaign chat topics. Campaign chats are now purely
+player and GM conversation with zero bot noise.
+
+**Moved:** rosters, pace reports, inactivity alerts, player warnings,
+auto-removals, combat pings, POTW awards, recruitment notices,
+streak milestones, message milestones, and smart alerts.
+
+Falls back to campaign chat topics if `bot_topic_id` is not configured.
+
+---
+
 ## [4.4.4] - 2026-03-18
 
 ### Fixed — /roll and /dc Now Work From Bot Channel
