@@ -73,7 +73,9 @@ def handle(ctx: dict) -> bool:
 
     # ---- /roll command (everyone) ----
     if text.startswith("/roll"):
-        dice_expr = parsed["raw_text"][5:].strip()
+        import re
+        raw = re.sub(r"^/roll(@\S+)?", "", parsed["raw_text"]).strip()
+        dice_expr = raw
         if not dice_expr:
             tg.send_message(group_id, thread_id,
                             "Usage: /roll <dice> [label]\n"

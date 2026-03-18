@@ -11,6 +11,26 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.4.3] - 2026-03-18
+
+### Fixed — /roll Broken With @botname Suffix
+
+Telegram appends `@PathWarsNudgeBot` to commands selected from the menu.
+The roll handler was stripping a hardcoded 5 characters (`/roll`) from
+the raw text, so `/roll@PathWarsNudgeBot 1d20-5 Will save` became
+`@PathWarsNudgeBot 1d20-5 Will save` which failed to parse as dice.
+
+Now uses a regex to strip `/roll` and any `@botname` suffix before
+parsing the dice expression. All roll formats work:
+
+```
+/roll 1d20-5 Will save
+/roll@PathWarsNudgeBot 1d20-5 Will save
+/roll 4d6kh3
+```
+
+---
+
 ## [4.4.2] - 2026-03-17
 
 ### Added — MVP Win Tracking
