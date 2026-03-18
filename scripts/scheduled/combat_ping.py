@@ -82,6 +82,7 @@ def check_expired_timers(config: dict, state: dict, *, now: datetime | None = No
         now = datetime.now(timezone.utc)
 
     group_id = config.get("group_id")
+    bot_topic = config.get("bot_topic_id")
     for pid, timer in list(state.get("timers", {}).items()):
         deadline = datetime.fromisoformat(timer["deadline"])
         if now >= deadline:

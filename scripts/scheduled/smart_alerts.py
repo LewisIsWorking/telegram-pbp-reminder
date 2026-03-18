@@ -79,6 +79,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
     campaign may need attention or a deliberate pause.
     """
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
     maps = maps or build_topic_maps(config)
     threshold = timedelta(hours=48)

@@ -105,6 +105,7 @@ def _next_anniversary(config: dict, today) -> str | None:
 def check_anniversaries(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Post a celebration when a campaign hits a yearly anniversary."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
     today = now.date()
 

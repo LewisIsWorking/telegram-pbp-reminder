@@ -107,6 +107,7 @@ _INACTIVITY_TEMPLATES = {
 def check_player_activity(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Warn inactive players at 1/2/3 weeks, remove at 4 weeks."""
     group_id = config["group_id"]
+    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
