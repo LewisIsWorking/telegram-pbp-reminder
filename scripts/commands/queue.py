@@ -1,4 +1,4 @@
-"""GM queue: track unreplied player messages."""
+"""GM reply queue: track unreplied player messages."""
 
 from datetime import datetime, timezone
 
@@ -6,53 +6,49 @@ import helpers
 
 
 def build_queue(config: dict, state: dict) -> str:
-    """Build /queue output: all player messages awaiting GM reply, across campaigns."""
+    """Build /queue output: unreplied player messages across all campaigns.
+
+    Each entry is a specific message a player sent that the GM has not
+    replied to (using Telegram's reply feature). Sorted oldest first.
+    """
     now = datetime.now(timezone.utc)
     gm_queue = state.get("gm_queue", {})
 
-    if not gm_queue:
+    if not any(gm_queue.values()):
         return "All caught up! No unreplied player messages."
 
     maps = helpers.build_topic_maps(config)
-    entries = []
+    lines = ["📋 GM Reply Queue:\n"]
+    total = 0
 
-    for pid, players in sorted(gm_queue.items()):
-        name = maps.to_name.get(pid, pid)
-        if not players:
+    for pair in config.get("topic_pairs", []):
+        pid = str(pair["pbp_topic_ids"][0])
+        name = pair["name"]
+        queue = gm_queue.get(pid, [])
+        if not queue:
             continue
-        for uid, info in sorted(players.items(), key=lambda x: x[1]["time"]):
-            posted = datetime.fromisoformat(info["time"])
-            elapsed = helpers.hours_since(now, posted)
-            days = int(elapsed) // 24
-            hours = int(elapsed) % 24
-            time_str = f"{days}d {hours}h" if days > 0 else f"{hours}h"
-            preview = info.get("preview", "")
+
+        total += len(queue)
+        lines.append(f"\n━━ {name} ({len(queue)}) ━━")
+
+        for entry in queue:
+            age = ""
+            try:
+                posted = datetime.fromisoformat(entry["time"])
+                hours = helpers.hours_since(now, posted)
+                if hours >= 24:
+                    age = f" ({int(hours // 24)}d ago)"
+                elif hours >= 1:
+                    age = f" ({int(hours)}h ago)"
+            except (ValueError, KeyError):
+                pass
+
+            icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
+            user = entry.get("user_name", "?")
+            preview = entry.get("preview", "")
             if len(preview) > 60:
                 preview = preview[:57] + "..."
-            entries.append({
-                "campaign": name,
-                "player": info["name"],
-                "elapsed": elapsed,
-                "time_str": time_str,
-                "preview": preview,
-            })
+            lines.append(f"{icon} {user}{age}: {preview}")
 
-    if not entries:
-        return "All caught up! No unreplied player messages."
-
-    # Sort by oldest first
-    entries.sort(key=lambda e: -e["elapsed"])
-
-    lines = [f"📋 GM Queue: {len(entries)} unreplied\n"]
-
-    current_campaign = None
-    for e in entries:
-        if e["campaign"] != current_campaign:
-            current_campaign = e["campaign"]
-            lines.append(f"\n━━ {current_campaign} ━━")
-        icon = "🔴" if e["elapsed"] >= 48 else "🟡" if e["elapsed"] >= 24 else "⚪"
-        lines.append(f"{icon} {e['player']} ({e['time_str']} ago)")
-        if e["preview"]:
-            lines.append(f"   {e['preview']}")
-
+    lines.insert(1, f"Total: {total} unreplied\n")
     return "\n".join(lines)

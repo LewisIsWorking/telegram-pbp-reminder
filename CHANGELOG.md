@@ -38,6 +38,34 @@ Works from the bot topic without a campaign arg.
 
 ---
 
+## [4.6.0] - 2026-03-19
+
+### Added — GM Reply Queue
+
+`/queue` shows all player messages the GM hasn't replied to, across
+all campaigns. Messages are only cleared when the GM uses Telegram's
+reply feature on that specific message — general narrative posts
+don't clear anything.
+
+```
+📋 GM Reply Queue:
+Total: 7 unreplied
+
+━━ Kibwe (3) ━━
+🔴 Ryo (2d ago): Fierce Leopard draws his blade and...
+🟡 Bruce (1d ago): Cho Kobo steps forward cautiously
+⚪ Awnii (3h ago): Leilani looks at Tal'lysae
+
+━━ Riddleport (4) ━━
+🔴 Lunnes (3d ago): Necrila checks the door for traps
+...
+```
+
+Color coding: 🔴 48h+, 🟡 24h+, ⚪ recent.
+GM-only. Works from bot topic and PBP topics.
+
+---
+
 ## [4.5.2] - 2026-03-19
 
 ### Changed — Boon Auto-Select Extended to 7 Days

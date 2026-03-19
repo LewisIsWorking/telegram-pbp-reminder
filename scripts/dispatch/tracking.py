@@ -58,16 +58,30 @@ def track_message(parsed: dict, state: dict, config: dict,
         _track_player(parsed, state, config, gm_ids, maps)
         # Add to GM reply queue (non-command player posts need a GM reply)
         if not text.startswith("/"):
-            queue = state.setdefault("gm_queue", {}).setdefault(pid, {})
-            queue[user_id] = {
-                "name": user_name,
-                "time": msg_time_iso,
-                "preview": (parsed["raw_text"] or "")[:80],
-            }
+            msg_id = parsed.get("message_id")
+            if msg_id:
+                queue = state.setdefault("gm_queue", {}).setdefault(pid, [])
+                existing_ids = {e["message_id"] for e in queue}
+                if msg_id not in existing_ids:
+                    queue.append({
+                        "message_id": msg_id,
+                        "user_id": user_id,
+                        "user_name": user_name,
+                        "time": msg_time_iso,
+                        "preview": (parsed["raw_text"] or "[media]")[:80],
+                    })
+                    # Cap queue size per campaign
+                    if len(queue) > 50:
+                        state["gm_queue"][pid] = queue[-50:]
     else:
-        # GM posted — clear the queue for this campaign
+        # GM replied to a specific message — clear only that one
         if not text.startswith("/"):
-            state.setdefault("gm_queue", {}).pop(pid, None)
+            reply_to = parsed.get("reply_to_message_id")
+            if reply_to:
+                queue = state.get("gm_queue", {}).get(pid, [])
+                state.setdefault("gm_queue", {})[pid] = [
+                    e for e in queue if e["message_id"] != reply_to
+                ]
 
     # Log to persistent PBP transcript
     if not text.startswith("/"):
