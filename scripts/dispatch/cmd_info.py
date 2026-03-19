@@ -162,7 +162,7 @@ def handle(ctx: dict) -> bool:
 
     if text == "/boonsall":
         from boons.handler import build_boons_all
-        tg.send_message(gid, reply, build_boons_all(uid, state, config))
+        tg.send_message(gid, reply, build_boons_all(uid, state))
         return True
 
     if cmd == "/search":
