@@ -35,7 +35,7 @@ def get_updates(offset: int) -> list:
                 "offset": offset,
                 "limit": 100,
                 "timeout": 5,
-                "allowed_updates": json.dumps(["message", "callback_query"]),
+                "allowed_updates": json.dumps(["message", "callback_query", "message_reaction"]),
             },
             timeout=30,
         )

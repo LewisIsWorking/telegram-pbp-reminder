@@ -176,4 +176,9 @@ def handle(ctx: dict) -> bool:
         handle_search(query, gid, reply, tg)
         return True
 
+    if cmd == "/reactions":
+        from commands.reactions import build_reactions
+        tg.send_message(gid, reply, build_reactions(config, state, pid, name))
+        return True
+
     return False

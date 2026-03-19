@@ -40,7 +40,7 @@ _READ_CMDS = frozenset({
     "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
     "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
     "/summary", "/activity", "/profile", "/recap", "/gm",
-    "/boons", "/boonsall", "/search", "/queue",
+    "/boons", "/boonsall", "/search", "/queue", "/reactions",
 })
 
 
@@ -63,6 +63,12 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         try:
             if cb:
                 process_boon_callback(cb, config, state)
+                continue
+
+            # Handle emoji reactions
+            if update.get("message_reaction"):
+                from commands.reactions import process_reaction
+                process_reaction(update, config, state, maps)
                 continue
 
             if not msg:

@@ -11,30 +11,32 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.6.0] - 2026-03-19
+## [4.7.0] - 2026-03-19
 
-### Added — GM Queue (/queue)
+### Added — Reaction Tracking
 
-Tracks player messages that haven't received a GM reply.
-When a player posts, they're added to the queue. When the GM
-posts, the queue for that campaign clears.
+The bot now tracks emoji reactions on PBP messages. View stats with
+`/reactions` (or `/reactions kibwe` from the bot channel):
 
 ```
-📋 GM Queue: 4 unreplied
+Top reactors:
+  Link: 12 reactions
+  Ryo: 8 reactions
 
-━━ Kibwe ━━
-🔴 Ryo (2d 5h ago)
-   Fierce Leopard steps forward and says...
-🟡 Bruce (1d 2h ago)
-   Master Cho examines the slime residue
-
-━━ Riddleport ━━
-⚪ Kaer'maga when? (8h ago)
-   Selenor checks the door for traps
+Popular: x15  x8  x5
 ```
 
-Colour coded: 🔴 48h+, 🟡 24h+, ⚪ recent.
-Works from the bot topic without a campaign arg.
+### Added — Player Availability
+
+Players can mark which days they're available to post:
+
+```
+/available mon wed fri
+/available         (show everyone's)
+/available clear   (remove yours)
+```
+
+Helps the GM and other players know when to expect responses.
 
 ---
 

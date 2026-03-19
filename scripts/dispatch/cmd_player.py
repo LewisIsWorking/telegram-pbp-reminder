@@ -59,6 +59,52 @@ def handle(ctx: dict) -> bool:
                             f"You're not currently marked as away.")
         return True
 
+    # ---- /available command (everyone) ----
+    if text.startswith("/available"):
+        args = parsed["raw_text"][10:].strip().lower()
+        avail = state.setdefault("availability", {}).setdefault(pid, {})
+
+        if not args or args == "show":
+            # Show this campaign's availability
+            if not avail:
+                tg.send_message(group_id, thread_id,
+                                f"No availability set in {campaign_name}.\n"
+                                f"Set yours: /available mon wed fri")
+            else:
+                lines = [f"📅 Availability for {campaign_name}:\n"]
+                day_order = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+                for uid, data in sorted(avail.items(), key=lambda x: x[1].get("name", "")):
+                    days = data.get("days", [])
+                    day_str = ", ".join(d.capitalize() for d in day_order if d in days)
+                    lines.append(f"  {data['name']}: {day_str or 'not set'}")
+                tg.send_message(group_id, thread_id, "\n".join(lines))
+        elif args == "clear":
+            avail.pop(user_id, None)
+            tg.send_message(group_id, thread_id,
+                            f"Cleared availability for {user_name}.")
+        else:
+            day_map = {
+                "mon": "mon", "monday": "mon", "tue": "tue", "tuesday": "tue",
+                "wed": "wed", "wednesday": "wed", "thu": "thu", "thursday": "thu",
+                "fri": "fri", "friday": "fri", "sat": "sat", "saturday": "sat",
+                "sun": "sun", "sunday": "sun",
+            }
+            days = []
+            for word in args.split():
+                d = day_map.get(word.rstrip(","))
+                if d and d not in days:
+                    days.append(d)
+            if not days:
+                tg.send_message(group_id, thread_id,
+                                "Usage: /available mon wed fri\n"
+                                "Or: /available clear")
+            else:
+                avail[user_id] = {"name": user_name, "days": days}
+                day_str = ", ".join(d.capitalize() for d in days)
+                tg.send_message(group_id, thread_id,
+                                f"📅 {user_name} available: {day_str}")
+        return True
+
     # ---- /chooseboon command (POTW winner fallback for broken buttons) ----
     if text.startswith("/chooseboon"):
         num_str = parsed["raw_text"][11:].strip()

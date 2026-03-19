@@ -43,12 +43,14 @@ EVERYONE_COMMANDS = [
     ("dc", "PF2e DC lookup by level"),
     ("roll", "Roll dice (e.g. /roll 2d20kh+5)"),
     ("away", "Mark yourself as away"),
+    ("available", "Set your posting days (e.g. mon wed fri)"),
     ("back", "Clear your away status"),
     ("boons", "View your POTW boons"),
     ("boonsall", "View all your boons"),
     ("chooseboon", "Choose POTW boon by number"),
     ("pick", "Vote in an active poll"),
     ("search", "Search Archives of Nethys"),
+    ("reactions", "Reaction stats for a campaign"),
 ]
 
 GM_COMMANDS = [
