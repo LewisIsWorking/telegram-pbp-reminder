@@ -11,6 +11,19 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.5.2] - 2026-03-19
+
+### Changed — Boon Auto-Select Extended to 7 Days
+
+Auto-selection was at 48 hours, now 7 days. Reminder timeline:
+
+- **24h** — gentle reminder
+- **3 days** — second nudge
+- **6 days** — last chance
+- **7 days** — auto-selects boon #1
+
+---
+
 ## [4.5.1] - 2026-03-19
 
 ### Added — Boon Reminders and Confirmations
