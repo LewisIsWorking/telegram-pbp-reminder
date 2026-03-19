@@ -60,71 +60,75 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         msg = update.get("message")
         cb = update.get("callback_query")
 
-        if cb:
-            process_boon_callback(cb, config, state)
-            continue
+        try:
+            if cb:
+                process_boon_callback(cb, config, state)
+                continue
 
-        if not msg:
-            continue
+            if not msg:
+                continue
 
-        # Handle commands from bot topic (read-only, campaign arg required)
-        bot_topic = config.get("bot_topic_id")
-        msg_thread = msg.get("message_thread_id")
-        if (bot_topic and msg_thread == bot_topic
-                and msg.get("chat", {}).get("id") == group_id):
-            raw = msg.get("text", "")
-            who = msg.get("from", {}).get("first_name", "?")
-            print(f"Bot topic msg from {who}: {raw[:50]}")
-            handle_bot_topic_cmd(msg, config, state, maps, group_id, bot_topic,
-                                  _READ_CMDS, _HANDLERS)
-            continue
+            # Handle commands from bot topic (read-only, campaign arg required)
+            bot_topic = config.get("bot_topic_id")
+            msg_thread = msg.get("message_thread_id")
+            if (bot_topic and msg_thread == bot_topic
+                    and msg.get("chat", {}).get("id") == group_id):
+                raw = msg.get("text", "")
+                who = msg.get("from", {}).get("first_name", "?")
+                print(f"Bot topic msg from {who}: {raw[:50]}")
+                handle_bot_topic_cmd(msg, config, state, maps, group_id, bot_topic,
+                                      _READ_CMDS, _HANDLERS)
+                continue
 
-        parsed = parse_message(msg, group_id, maps)
-        if not parsed:
-            continue
+            parsed = parse_message(msg, group_id, maps)
+            if not parsed:
+                continue
 
-        pid = parsed["pid"]
-        text = parsed["text"]
-        user_id = parsed["user_id"]
-        gm_ids = helpers.gm_ids_for_campaign(config, pid)
+            pid = parsed["pid"]
+            text = parsed["text"]
+            user_id = parsed["user_id"]
+            gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
-        cmd_word = text.split()[0] if text.startswith("/") else ""
-        is_read = cmd_word in _READ_CMDS or (cmd_word == "/hp" and text.strip() == "/hp")
+            cmd_word = text.split()[0] if text.startswith("/") else ""
+            is_read = cmd_word in _READ_CMDS or (cmd_word == "/hp" and text.strip() == "/hp")
 
-        ctx = {
-            "pid": pid,
-            "thread_id": parsed["thread_id"],
-            "reply_topic": parsed["chat_topic_id"] if is_read else parsed["thread_id"],
-            "user_id": user_id,
-            "user_name": parsed["user_name"],
-            "campaign_name": parsed["campaign_name"],
-            "now_iso": parsed["now_iso"],
-            "msg_time_iso": parsed["msg_time_iso"],
-            "text": text,
-            "cmd_word": cmd_word,
-            "gm_ids": gm_ids,
-            "group_id": group_id,
-            "config": config,
-            "state": state,
-            "maps": maps,
-            "parsed": parsed,
-        }
+            ctx = {
+                "pid": pid,
+                "thread_id": parsed["thread_id"],
+                "reply_topic": parsed["chat_topic_id"] if is_read else parsed["thread_id"],
+                "user_id": user_id,
+                "user_name": parsed["user_name"],
+                "campaign_name": parsed["campaign_name"],
+                "now_iso": parsed["now_iso"],
+                "msg_time_iso": parsed["msg_time_iso"],
+                "text": text,
+                "cmd_word": cmd_word,
+                "gm_ids": gm_ids,
+                "group_id": group_id,
+                "config": config,
+                "state": state,
+                "maps": maps,
+                "parsed": parsed,
+            }
 
-        # Dispatch to command handlers
-        if cmd_word:
-            for handler in _HANDLERS:
-                if handler(ctx):
-                    break
+            # Dispatch to command handlers
+            if cmd_word:
+                for handler in _HANDLERS:
+                    if handler(ctx):
+                        break
 
-        # Combat commands and tracking (always runs)
-        handle_combat_message(
-            text, parsed["raw_text"], user_id, parsed["user_name"],
-            gm_ids, pid, parsed["campaign_name"],
-            parsed["now_iso"], group_id, parsed["thread_id"], state,
-        )
+            # Combat commands and tracking (always runs)
+            handle_combat_message(
+                text, parsed["raw_text"], user_id, parsed["user_name"],
+                gm_ids, pid, parsed["campaign_name"],
+                parsed["now_iso"], group_id, parsed["thread_id"], state,
+            )
 
-        # Post-message state tracking
-        track_message(parsed, state, config, gm_ids, maps)
+            # Post-message state tracking
+            track_message(parsed, state, config, gm_ids, maps)
+
+        except Exception as e:
+            print(f"Error processing update {update_id}: {e}")
 
     return new_offset
 
