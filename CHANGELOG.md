@@ -11,6 +11,38 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.5.1] - 2026-03-19
+
+### Added — Boon Reminders and Confirmations
+
+Unclaimed POTW boons now get reminders at 12h and 24h:
+
+```
+🎁 @Player — you have an unclaimed boon for Kibwe!
+⚠️ @Player — pick your boon for Kibwe! Auto-selects in 24h.
+```
+
+At 48h, auto-pick fires with a notification:
+
+```
+⏰ @Player's boon in Kibwe was auto-selected (boon #1) after 48h.
+```
+
+Boon confirmations now post to the bot topic with campaign name:
+
+```
+✅ Link chose boon #2 for Theria: The crystal hums...
+```
+
+### Fixed — Per-Update Error Isolation
+
+One crashed command can no longer take down the entire bot. The
+update processing loop now wraps each message in try/except — a
+bad command gets logged, skipped, and the offset advances. Previously
+a single TypeError blocked all processing for 5 hours.
+
+---
+
 ## [4.5.0] - 2026-03-18
 
 ### Changed — All Bot Output Moved to Bot Topic

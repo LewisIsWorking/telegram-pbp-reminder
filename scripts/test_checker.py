@@ -811,12 +811,13 @@ def test_expire_pending_boons():
         "winner_user_id": "42",
         "boons": ["Boon A", "Boon B"],
         "base_message": "Winner!",
+        "campaign_name": "TestCampaign",
         "posted_at": old_time,
     }
     checker.expire_pending_boons(_make_config(), state)
     assert "100" not in state["pending_potw_boons"]
-    edit_msgs = [m for m in _sent_messages if "auto-selected" in m.get("text", "")]
-    assert len(edit_msgs) == 1
+    auto_msgs = [m for m in _sent_messages if "auto-selected" in m.get("text", "")]
+    assert len(auto_msgs) >= 1
 
 
 # ------------------------------------------------------------------ #

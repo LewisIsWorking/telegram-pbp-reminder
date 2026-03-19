@@ -102,12 +102,14 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
     tg.edit_message(chat_id, message_id, new_text,
                     parse_mode="HTML", remove_keyboard=True)
 
-    # Send confirmation (since answer_callback always times out with hourly cron)
+    # Send confirmation to bot topic
     chosen = pending["boons"][choice_idx]
     user_name = from_user.get("first_name", "Winner")
-    confirm_tid = thread_id or topic_id
-    tg.send_message(config["group_id"], int(confirm_tid),
-                    f"\u2705 {user_name} chose boon #{choice_idx + 1}: {chosen}")
+    campaign = pending.get("campaign_name", "Unknown")
+    bot_topic = config.get("bot_topic_id")
+    confirm_tid = bot_topic or thread_id or int(topic_id)
+    tg.send_message(config["group_id"], confirm_tid,
+                    f"\u2705 {user_name} chose boon #{choice_idx + 1} for {campaign}: {chosen}")
 
     del state["pending_potw_boons"][topic_id]
     print(f"POTW boon chosen via button for topic {topic_id}: #{choice_idx + 1}")
@@ -137,29 +139,28 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
                     parse_mode="HTML", remove_keyboard=True)
 
     chosen = pending["boons"][choice_idx]
+    campaign = pending.get("campaign_name", "Unknown")
     del state["pending_potw_boons"][pid]
+
+    # Notify bot topic
+    bot_topic = config.get("bot_topic_id")
+    if bot_topic:
+        winner_name = ""
+        for key, p in state.get("players", {}).items():
+            if p.get("user_id") == user_id:
+                winner_name = p["first_name"]
+                break
+        tg.send_message(group_id, bot_topic,
+                        f"\u2705 {winner_name or 'Winner'} chose boon #{choice_num} for {campaign}: {chosen}")
+
     print(f"POTW boon chosen via text for topic {pid}: #{choice_num}")
     return f"✅ Boon chosen: {chosen}"
 
 
 def expire_pending_boons(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
-    """Auto-pick boon #1 if winner hasn't chosen within 48 hours."""
-    now = now or datetime.now(timezone.utc)
-    group_id = config["group_id"]
-    pending = state.get("pending_potw_boons", {})
-
-    for topic_id in list(pending.keys()):
-        entry = pending[topic_id]
-        posted_at = datetime.fromisoformat(entry["posted_at"])
-        elapsed = helpers.hours_since(now, posted_at)
-
-        if elapsed >= 48:
-            new_text, _ = _resolve_boon(state, topic_id, 0, "Boon (auto-selected)", now)
-            if new_text:
-                tg.edit_message(group_id, entry["message_id"], new_text,
-                                parse_mode="HTML", remove_keyboard=True)
-            del pending[topic_id]
-            print(f"POTW boon auto-expired for topic {topic_id}, picked #1")
+    """Delegate to boons.reminders for reminders + expiry."""
+    from boons.reminders import check_boon_reminders
+    check_boon_reminders(config, state, now=now)
 
 
 def build_boons(pid: str, user_id: str, campaign_name: str, state: dict) -> str:
