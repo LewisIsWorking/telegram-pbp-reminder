@@ -19,6 +19,7 @@ from commands.recap import build_recap
 from commands.status import build_status, build_overview
 from commands.player import build_mystats, build_myhistory
 from commands.campaign import build_campaign_report
+from commands.queue import build_queue
 from combat.display import build_whosturn, build_combatlog
 
 _HELP_TEXT = ""
@@ -129,6 +130,10 @@ def handle(ctx: dict) -> bool:
 
     if text == "/gm" and uid in gm_ids:
         tg.send_message(gid, reply, build_gm_dashboard(config, state))
+        return True
+
+    if text == "/queue" and uid in gm_ids:
+        tg.send_message(gid, reply, build_queue(config, state))
         return True
 
     if cmd == "/activity":

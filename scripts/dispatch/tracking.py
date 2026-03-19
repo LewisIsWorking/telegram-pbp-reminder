@@ -56,6 +56,18 @@ def track_message(parsed: dict, state: dict, config: dict,
     # Player-level tracking (skip GM)
     if user_id and user_id not in gm_ids:
         _track_player(parsed, state, config, gm_ids, maps)
+        # Add to GM reply queue (non-command player posts need a GM reply)
+        if not text.startswith("/"):
+            queue = state.setdefault("gm_queue", {}).setdefault(pid, {})
+            queue[user_id] = {
+                "name": user_name,
+                "time": msg_time_iso,
+                "preview": (parsed["raw_text"] or "")[:80],
+            }
+    else:
+        # GM posted — clear the queue for this campaign
+        if not text.startswith("/"):
+            state.setdefault("gm_queue", {}).pop(pid, None)
 
     # Log to persistent PBP transcript
     if not text.startswith("/"):

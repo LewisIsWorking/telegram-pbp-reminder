@@ -53,6 +53,7 @@ EVERYONE_COMMANDS = [
 
 GM_COMMANDS = [
     ("gm", "GM dashboard overview"),
+    ("queue", "Unreplied player messages"),
     ("pause", "Pause inactivity tracking"),
     ("resume", "Resume inactivity tracking"),
     ("scene", "Mark a scene in transcript"),

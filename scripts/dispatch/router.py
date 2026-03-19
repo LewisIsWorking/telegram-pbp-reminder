@@ -40,7 +40,7 @@ _READ_CMDS = frozenset({
     "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
     "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
     "/summary", "/activity", "/profile", "/recap", "/gm",
-    "/boons", "/boonsall", "/search",
+    "/boons", "/boonsall", "/search", "/queue",
 })
 
 

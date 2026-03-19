@@ -11,6 +11,33 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.6.0] - 2026-03-19
+
+### Added — GM Queue (/queue)
+
+Tracks player messages that haven't received a GM reply.
+When a player posts, they're added to the queue. When the GM
+posts, the queue for that campaign clears.
+
+```
+📋 GM Queue: 4 unreplied
+
+━━ Kibwe ━━
+🔴 Ryo (2d 5h ago)
+   Fierce Leopard steps forward and says...
+🟡 Bruce (1d 2h ago)
+   Master Cho examines the slime residue
+
+━━ Riddleport ━━
+⚪ Kaer'maga when? (8h ago)
+   Selenor checks the door for traps
+```
+
+Colour coded: 🔴 48h+, 🟡 24h+, ⚪ recent.
+Works from the bot topic without a campaign arg.
+
+---
+
 ## [4.5.2] - 2026-03-19
 
 ### Changed — Boon Auto-Select Extended to 7 Days
