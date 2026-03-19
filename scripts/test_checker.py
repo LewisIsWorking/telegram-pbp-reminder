@@ -805,7 +805,7 @@ def test_process_boon_callback_wrong_user():
 def test_expire_pending_boons():
     _reset()
     state = _make_state()
-    old_time = (datetime.now(timezone.utc) - timedelta(hours=50)).isoformat()
+    old_time = (datetime.now(timezone.utc) - timedelta(hours=170)).isoformat()
     state["pending_potw_boons"]["100"] = {
         "message_id": 555,
         "winner_user_id": "42",
