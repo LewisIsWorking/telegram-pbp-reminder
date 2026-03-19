@@ -51,6 +51,15 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
             print(f"POTW boon auto-expired for topic {topic_id}, picked #1")
             continue
 
+        # 6 days — final reminder (1 day remaining)
+        if elapsed >= 144 and reminders_sent < 3:
+            tg.send_message(group_id, reply_to,
+                            f"⏳ {winner_mention} — last chance to pick your boon for {campaign}!\n"
+                            f"Use /chooseboon [number] in the {campaign} PBP topic.")
+            entry["reminders_sent"] = 3
+            print(f"Boon reminder #3 (6d) for topic {topic_id}")
+            continue
+
         # 3 days — second reminder
         if elapsed >= 72 and reminders_sent < 2:
             tg.send_message(group_id, reply_to,
