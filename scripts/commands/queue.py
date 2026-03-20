@@ -18,10 +18,8 @@ def _age_str(hours: float) -> str:
     days = int(hours // 24)
     h = int(hours % 24)
     if days > 0:
-        return f"{days}d {h}h ago"
-    elif hours >= 1:
-        return f"{int(hours)}h ago"
-    return "just now"
+        return f"{days}d {h}h"
+    return f"{h}h"
 
 
 def build_queue(config: dict, state: dict) -> str:
@@ -59,7 +57,7 @@ def build_queue(config: dict, state: dict) -> str:
             user = entry.get("name", "?")
             preview = _short_preview(entry.get("preview", ""))
             link = entry.get("link", "")
-            line = f"{icon} {user} ({_age_str(hours)}): {preview}"
+            line = f"{icon} {_age_str(hours)}. {user}: {preview}"
             if link:
                 line += f" {link}"
             lines.append(line)

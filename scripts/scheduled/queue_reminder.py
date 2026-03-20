@@ -10,16 +10,16 @@ from commands.queue_scan import scan_transcripts
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
     if not gm_ids:
-        return "GM"
+        return "@PathWars"
     names = []
     for uid in gm_ids:
         name = None
         for key, p in state.get("players", {}).items():
             if p.get("user_id") == str(uid):
                 uname = p.get("username", "")
-                name = f"@{uname}" if uname else p.get("first_name", "GM")
+                name = f"@{uname}" if uname else p.get("first_name", "@PathWars")
                 break
-        names.append(name or "GM")
+        names.append(name or "@PathWars")
     return ", ".join(names)
 
 
@@ -84,7 +84,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             user = entry.get("name", "?")
             preview = _short_preview(entry.get("preview", ""))
             link = entry.get("link", "")
-            line = f"{icon} {user} ({_age_str(hours)}): {preview}"
+            line = f"{icon} {_age_str(hours)}. {user}: {preview}"
             if link:
                 line += f" {link}"
             lines.append(line)
