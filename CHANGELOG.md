@@ -11,6 +11,35 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.8.0] - 2026-03-20
+
+### Added — Cross-Campaign Timeline
+
+`/timeline` shows a chronological feed of events across all campaigns.
+Works from both PBP topics and the bot channel.
+
+Pulls from: manual GM events, POTW awards, player removals, and
+campaign creation dates.
+
+GMs can log story beats with `/event`:
+
+```
+/event The party enters the Temple of Pharasma
+📜 Event logged for Doomsday Funtime: The party enters the Temple of Pharasma
+
+/timeline
+📅 Cross-Campaign Timeline:
+
+📜 Mar 20 — [Doomsday Funtime] The party enters the Temple of Pharasma
+🏅 Mar 18 — [Metal City] POTW: Metal City (W12)
+🏅 Mar 18 — [Theria] POTW: Theria (W12)
+👋 Mar 17 — [Kibwe] Anthony removed
+🏅 Mar 11 — [Kibwe] POTW: Kibwe (W11)
+🎬 Oct 06 — [Theria] Campaign started
+```
+
+---
+
 ## [4.7.1] - 2026-03-19
 
 ### Added — Daily Queue Reminder With Message Links

@@ -78,4 +78,10 @@ def handle(ctx: dict) -> bool:
             print(f"Scene marker in {name}: {scene_name}")
         return True
 
+    if cmd == "/event":
+        from commands.timeline import add_event
+        event_text = text[6:].strip() if len(text) > 6 else ""
+        tg.send_message(gid, tid, add_event(pid, name, event_text, state))
+        return True
+
     return False

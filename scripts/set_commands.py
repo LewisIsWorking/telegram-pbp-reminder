@@ -51,6 +51,7 @@ EVERYONE_COMMANDS = [
     ("pick", "Vote in an active poll"),
     ("search", "Search Archives of Nethys"),
     ("reactions", "Reaction stats for a campaign"),
+    ("timeline", "Cross-campaign event timeline"),
 ]
 
 GM_COMMANDS = [
@@ -59,6 +60,7 @@ GM_COMMANDS = [
     ("pause", "Pause inactivity tracking"),
     ("resume", "Resume inactivity tracking"),
     ("scene", "Mark a scene in transcript"),
+    ("event", "Log a story event to the timeline"),
     ("note", "Add a campaign note"),
     ("delnote", "Delete a campaign note"),
     ("quest", "Add a quest"),

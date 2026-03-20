@@ -181,4 +181,9 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_reactions(config, state, pid, name))
         return True
 
+    if cmd == "/timeline":
+        from commands.timeline import build_timeline
+        tg.send_message(gid, reply, build_timeline(config, state))
+        return True
+
     return False
