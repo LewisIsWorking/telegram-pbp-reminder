@@ -71,7 +71,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         name = data["campaign"]
         gm = _gm_mentions(config, state, pid)
 
-        lines = [f"━━ {name} ({len(entries)}) ━━", gm]
+        code = data.get("code", "")
+        label = f"{code}: {name}" if code else name
+        lines = [f"━━ {label} ({len(entries)}) ━━", gm]
 
         for entry in entries:
             hours = 0

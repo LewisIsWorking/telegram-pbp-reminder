@@ -49,6 +49,7 @@ def scan_transcripts(config: dict) -> dict:
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
         name = pair["name"]
+        code = pair.get("code", "")
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         dirname = name.replace(" ", "_").replace("'", "")
@@ -109,6 +110,7 @@ def scan_transcripts(config: dict) -> dict:
         if pending:
             result[pid] = {
                 "campaign": name,
+                "code": code,
                 "entries": pending,
             }
 

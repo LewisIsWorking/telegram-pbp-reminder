@@ -42,7 +42,9 @@ def build_queue(config: dict, state: dict) -> str:
         data = scanned[pid]
         entries = data["entries"]
         name = data["campaign"]
-        lines.append(f"\n━━ {name} ({len(entries)}) ━━")
+        code = data.get("code", "")
+        label = f"{code}: {name}" if code else name
+        lines.append(f"\n━━ {label} ({len(entries)}) ━━")
 
         for entry in entries:
             hours = 0
