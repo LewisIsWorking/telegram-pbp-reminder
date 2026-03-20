@@ -52,6 +52,7 @@ EVERYONE_COMMANDS = [
     ("search", "Search Archives of Nethys"),
     ("reactions", "Reaction stats for a campaign"),
     ("timeline", "Cross-campaign event timeline"),
+    ("waiting", "See what the GM owes you"),
 ]
 
 GM_COMMANDS = [

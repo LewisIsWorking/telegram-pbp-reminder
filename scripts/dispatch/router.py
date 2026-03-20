@@ -41,6 +41,7 @@ _READ_CMDS = frozenset({
     "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
     "/summary", "/activity", "/profile", "/recap", "/gm",
     "/boons", "/boonsall", "/search", "/queue", "/reactions", "/timeline",
+    "/waiting",
 })
 
 

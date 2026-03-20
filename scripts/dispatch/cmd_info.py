@@ -186,4 +186,9 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_timeline(config, state))
         return True
 
+    if cmd == "/waiting":
+        from commands.waiting import build_waiting
+        tg.send_message(gid, reply, build_waiting(uid, user_name, pid, name, config, state))
+        return True
+
     return False
