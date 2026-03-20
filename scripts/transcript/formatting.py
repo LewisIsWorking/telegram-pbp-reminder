@@ -91,4 +91,8 @@ def format_log_entry(parsed: dict, gm_ids: set, char_name: str | None = None) ->
 
     content = " ".join(parts) if parts else "*[empty message]*"
 
-    return f"**{name}**{char_tag}{role_tag} ({ts}):\n{content}\n"
+    # Include message_id for link building (msg#12345)
+    msg_id = parsed.get("message_id", "")
+    mid_tag = f" msg#{msg_id}" if msg_id else ""
+
+    return f"**{name}**{char_tag}{role_tag} ({ts}){mid_tag}:\n{content}\n"

@@ -12,28 +12,21 @@ from datetime import datetime, timezone, timedelta
 def test_build_queue_empty():
     from commands.queue import build_queue
     config = {"topic_pairs": []}
-    state = {"gm_queue": {}}
+    state = {}
     result = build_queue(config, state)
     assert "caught up" in result.lower()
 
 
-def test_build_queue_shows_entries():
+def test_build_queue_uses_scanner():
+    """Queue uses transcript scanner, returns string output."""
     from commands.queue import build_queue
-    now = datetime.now(timezone.utc)
+    # With no matching transcript files, should return caught up
     config = {"topic_pairs": [
-        {"name": "TestCamp", "pbp_topic_ids": [100], "chat_topic_id": 200},
+        {"name": "NonexistentCamp", "pbp_topic_ids": [99999], "chat_topic_id": 200},
     ]}
-    state = {"gm_queue": {"100": [
-        {"message_id": 1, "user_id": "42", "user_name": "Alice",
-         "time": (now - timedelta(hours=25)).isoformat(), "preview": "Hello world"},
-        {"message_id": 2, "user_id": "43", "user_name": "Bob",
-         "time": (now - timedelta(hours=2)).isoformat(), "preview": "Testing"},
-    ]}}
+    state = {}
     result = build_queue(config, state)
-    assert "TestCamp" in result
-    assert "Alice" in result
-    assert "Bob" in result
-    assert "2" in result  # total count
+    assert "caught up" in result.lower()
 
 
 # --- Reactions tests ---

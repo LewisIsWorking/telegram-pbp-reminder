@@ -3,39 +3,41 @@
 from datetime import datetime, timezone
 
 import helpers
+from commands.queue_scan import scan_transcripts
 
 
 def build_queue(config: dict, state: dict) -> str:
     """Build /queue output: unreplied player messages across all campaigns.
 
-    Each entry is a specific message a player sent that the GM has not
-    replied to (using Telegram's reply feature). Sorted oldest first.
+    Uses transcript scanning as the primary source. Includes links
+    when message_ids are available in transcripts (msg#12345 tags).
     """
     now = datetime.now(timezone.utc)
-    gm_queue = state.get("gm_queue", {})
+    scanned = scan_transcripts(config)
 
-    if not any(gm_queue.values()):
+    if not scanned:
         return "All caught up! No unreplied player messages."
 
-    group_user = "Path_Wars"
     lines = ["📋 GM Reply Queue:\n"]
     total = 0
 
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
-        name = pair["name"]
-        queue = gm_queue.get(pid, [])
-        if not queue:
+        if pid not in scanned:
             continue
 
-        total += len(queue)
-        lines.append(f"\n━━ {name} ({len(queue)}) ━━")
+        data = scanned[pid]
+        entries = data["entries"]
+        name = data["campaign"]
+        total += len(entries)
+        lines.append(f"\n━━ {name} ({len(entries)}) ━━")
 
-        for entry in queue:
+        for entry in entries:
             hours = 0
-            age = ""
+            age = "?"
             try:
-                posted = datetime.fromisoformat(entry["time"])
+                posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
+                posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
                 if hours >= 24:
                     age = f"{int(hours // 24)}d ago"
@@ -47,15 +49,16 @@ def build_queue(config: dict, state: dict) -> str:
                 pass
 
             icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
-            user = entry.get("user_name", "?")
-            msg_id = entry.get("message_id", "")
+            user = entry.get("name", "?")
             preview = entry.get("preview", "")
+            link = entry.get("link", "")
 
-            link = ""
-            if msg_id:
-                link = f" https://t.me/{group_user}/{pid}/{msg_id}"
-
-            lines.append(f"{icon} {user} ({age}): {preview}{link}")
+            line = f"{icon} {user} ({age}):"
+            if preview:
+                line += f"\n{preview}"
+            if link:
+                line += f"\n{link}"
+            lines.append(line)
 
     lines.insert(1, f"Total: {total} unreplied\n")
     return "\n".join(lines)

@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 
 import helpers
 import telegram as tg
+from commands.queue_scan import scan_transcripts
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -11,10 +12,8 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
     if not gm_ids:
         return "GM"
-
     names = []
     for uid in gm_ids:
-        # Look up name from players state
         name = None
         for key, p in state.get("players", {}).items():
             if p.get("user_id") == str(uid):
@@ -22,10 +21,8 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
                 name = f"@{uname}" if uname else p.get("first_name", "GM")
                 break
         if not name:
-            # Fallback: use config-level gm_username if exists
-            name = f"GM ({uid})"
+            name = "GM"
         names.append(name)
-
     return ", ".join(names)
 
 
@@ -37,40 +34,41 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     now = now or datetime.now(timezone.utc)
 
-    # Once per day
     last = state.get("last_queue_reminder")
     if last:
         elapsed = helpers.hours_since(now, datetime.fromisoformat(last))
         if elapsed < 22:
             return
 
-    gm_queue = state.get("gm_queue", {})
-    if not any(gm_queue.values()):
+    # Scan transcripts for the full picture
+    scanned = scan_transcripts(config)
+    if not scanned:
         state["last_queue_reminder"] = now.isoformat()
         return
 
     group_id = config["group_id"]
-    group_user = "Path_Wars"
-
     lines = ["📋 Unreplied messages:\n"]
     total = 0
 
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
-        name = pair["name"]
-        queue = gm_queue.get(pid, [])
-        if not queue:
+        if pid not in scanned:
             continue
 
-        total += len(queue)
-        gm = _gm_mentions(config, state, pid)
-        lines.append(f"━━ {name} ({len(queue)}) — {gm} ━━")
+        data = scanned[pid]
+        entries = data["entries"]
+        name = data["campaign"]
+        total += len(entries)
 
-        for entry in queue:
+        gm = _gm_mentions(config, state, pid)
+        lines.append(f"━━ {name} ({len(entries)}) — {gm} ━━")
+
+        for entry in entries:
             hours = 0
             age = ""
             try:
-                posted = datetime.fromisoformat(entry["time"])
+                posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
+                posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
                 if hours >= 24:
                     age = f"{int(hours // 24)}d"
@@ -80,17 +78,13 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 pass
 
             icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
-            user = entry.get("user_name", "?")
-            msg_id = entry.get("message_id", "")
-            preview = entry.get("preview", "")
-
-            link = ""
-            if msg_id:
-                link = f"https://t.me/{group_user}/{pid}/{msg_id}"
+            user = entry.get("name", "?")
 
             lines.append(f"{icon} {user} ({age}):")
+            preview = entry.get("preview", "")
             if preview:
                 lines.append(preview)
+            link = entry.get("link", "")
             if link:
                 lines.append(link)
             lines.append("")
