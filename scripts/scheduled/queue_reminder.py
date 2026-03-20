@@ -73,7 +73,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         return min(e.get("time", "9999") for e in entries)
 
     sorted_pids = sorted(scanned.keys(), key=oldest_time)
-    lines = [f"📋 Unreplied: {total}"]
+    from commands.queue_stats import get_today_clears
+    cleared_today = get_today_clears(state, now)
+    streak = f" | ✅ {cleared_today} cleared today" if cleared_today else ""
+    lines = [f"📋 Unreplied: {total}{streak}"]
 
     for pid in sorted_pids:
         data = scanned[pid]
@@ -82,7 +85,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         code = data.get("code", "")
         label = f"{code}: {name}" if code else name
         gm = _gm_mentions(config, state, pid)
-        lines.append(f"━━ {label} ({len(entries)}) ━━ {gm}")
+        scene = state.get("current_scenes", {}).get(pid, "")
+        scene_str = f" 🎭 {scene}" if scene else ""
+        lines.append(f"━━ {label} ({len(entries)}){scene_str} ━━ {gm}")
         for entry in entries:
             hours = 0
             try:
@@ -123,3 +128,51 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     if sent:
         state["last_queue_fingerprint"] = fingerprint
         print(f"Queue reminder: {total} unreplied ({len(msgs)} msg)")
+
+
+def check_queue_nudge(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
+    """Send a direct @mention when a queue entry crosses 48h."""
+    bot_topic = config.get("bot_topic_id")
+    if not bot_topic:
+        return
+    now = now or datetime.now(timezone.utc)
+    scanned = scan_transcripts(config, state)
+    if not scanned:
+        return
+
+    group_id = config["group_id"]
+    nudged = state.setdefault("queue_nudged", {})
+
+    for pid, data in scanned.items():
+        gm = _gm_mentions(config, state, pid)
+        name = data["campaign"]
+        code = data.get("code", "")
+        label = f"{code}: {name}" if code else name
+
+        for entry in data["entries"]:
+            try:
+                posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
+                posted = posted.replace(tzinfo=timezone.utc)
+                hours = helpers.hours_since(now, posted)
+            except (ValueError, KeyError):
+                continue
+
+            if hours < 48:
+                continue
+
+            nudge_key = f"{pid}:{entry['time']}"
+            if nudge_key in nudged:
+                continue
+
+            user = entry.get("name", "?")
+            tg.send_message(
+                group_id, bot_topic,
+                f"⚠️ {gm} — {user}'s message in {label} is {int(hours)}h old!")
+            nudged[nudge_key] = now.isoformat()
+            print(f"Queue nudge: {user} in {name} ({int(hours)}h)")
+
+    # Cleanup old nudge keys (keep last 200)
+    if len(nudged) > 200:
+        sorted_keys = sorted(nudged, key=lambda k: nudged[k])
+        for k in sorted_keys[:-200]:
+            del nudged[k]

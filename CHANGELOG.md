@@ -11,6 +11,31 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.11.0] - 2026-03-20
+
+### Queue Intelligence
+
+- **Reply streak**: Queue header shows `✅ 3 cleared today` as motivation.
+- **Estimated reply time**: `/waiting` shows "GM usually replies in ~12h"
+  so players know what to expect.
+- **`/queuestats`**: GM productivity dashboard — cleared today, this week,
+  and average reply time per campaign.
+
+### Queue Visibility
+
+- **Queue in `/status`**: Unreplied count shows in campaign status output.
+- **Thread context**: Current scene shown in queue campaign headers.
+- **48h nudge**: Bot @mentions the GM when an entry crosses 48 hours.
+- **Weekly queue report**: Clearance count added to the weekly leaderboard.
+
+### Refactored
+
+Extracted `cmd_info_ext.py` from `cmd_info.py` for newer commands
+(search, reactions, timeline, waiting, session, health, queuestats).
+All files under 200 lines.
+
+---
+
 ## [4.10.0] - 2026-03-20
 
 ### Added — Player-Facing Queue (/waiting)

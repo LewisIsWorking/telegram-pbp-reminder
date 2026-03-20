@@ -43,7 +43,7 @@ def handle(ctx: dict) -> bool:
         return True
 
     if text == "/status":
-        tg.send_message(gid, reply, build_status(pid, name, state, gm_ids))
+        tg.send_message(gid, reply, build_status(pid, name, state, gm_ids, config))
         return True
 
     if text == "/overview":
@@ -162,37 +162,6 @@ def handle(ctx: dict) -> bool:
     if text == "/boonsall":
         from boons.handler import build_boons_all
         tg.send_message(gid, reply, build_boons_all(uid, state))
-        return True
-
-    if cmd == "/search":
-        from dispatch.cmd_search import handle_search
-        query = text[7:].strip() if len(text) > 7 else ""
-        handle_search(query, gid, reply, tg)
-        return True
-
-    if cmd == "/reactions":
-        from commands.reactions import build_reactions
-        tg.send_message(gid, reply, build_reactions(config, state, pid, name))
-        return True
-
-    if cmd == "/timeline":
-        from commands.timeline import build_timeline
-        tg.send_message(gid, reply, build_timeline(config, state))
-        return True
-
-    if cmd == "/waiting":
-        from commands.waiting import build_waiting
-        tg.send_message(gid, reply, build_waiting(uid, user_name, pid, name, config, state))
-        return True
-
-    if cmd == "/session":
-        from commands.session import build_session
-        tg.send_message(gid, reply, build_session(pid, name, state, config))
-        return True
-
-    if cmd == "/health":
-        from commands.health import build_health
-        tg.send_message(gid, reply, build_health(config, state))
         return True
 
     return False

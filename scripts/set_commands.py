@@ -55,6 +55,7 @@ EVERYONE_COMMANDS = [
     ("waiting", "See what the GM owes you"),
     ("session", "Current session number"),
     ("health", "Campaign health dashboard"),
+    ("queuestats", "GM reply stats and productivity"),
 ]
 
 GM_COMMANDS = [

@@ -9,7 +9,8 @@ import telegram as tg
 
 
 def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
-                        now: datetime, streaks: list | None = None) -> str:
+                        now: datetime, streaks: list | None = None,
+                        state: dict | None = None) -> str:
     """Format the leaderboard message from collected stats."""
     seven_days_ago = now - timedelta(days=7)
 
@@ -111,6 +112,13 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
             streak_lines.append(f"{icon} {s['name']} — {s['streak']}d streak ({s['campaign']})")
         lines.append("\n━━━━━━━━━━━━━━━━\n\n🔥 Longest Active Streaks:\n\n" + "\n".join(streak_lines))
 
+    # Weekly queue clearance report
+    if state:
+        from commands.queue_stats import get_week_clears
+        week_clears = get_week_clears(state)
+        if week_clears:
+            lines.append(f"\n━━━━━━━━━━━━━━━━\n\n📬 GM Queue: {week_clears} replies cleared this week.")
+
     return "\n".join(lines)
 
 
@@ -132,7 +140,7 @@ def post_campaign_leaderboard(config: dict, state: dict, *, now: datetime | None
         print("No campaign data for leaderboard")
         return
 
-    message = _format_leaderboard(campaign_stats, global_player_posts, now, all_streaks)
+    message = _format_leaderboard(campaign_stats, global_player_posts, now, all_streaks, state)
 
     # Track MVP win
     if global_player_posts:

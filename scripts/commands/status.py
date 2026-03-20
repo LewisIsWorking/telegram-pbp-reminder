@@ -1,9 +1,4 @@
-"""
-Campaign health snapshot commands.
-
-/status — quick campaign health check
-/overview — cross-campaign summary
-"""
+"""Campaign health snapshot: /status and /overview."""
 
 from datetime import datetime, timezone, timedelta
 
@@ -12,8 +7,8 @@ from helpers import (
     build_topic_maps, timestamps_in_window, posts_str,
 )
 
-
-def build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str:
+def build_status(pid: str, campaign_name: str, state: dict, gm_ids: set,
+                 config: dict | None = None) -> str:
     """Build a quick campaign health snapshot for /status command."""
     now = datetime.now(timezone.utc)
     week_ago = now - timedelta(days=7)
@@ -115,8 +110,15 @@ def build_status(pid: str, campaign_name: str, state: dict, gm_ids: set) -> str:
         incomplete = sum(1 for c in clocks.values() if c["filled"] < c["segments"])
         lines.append(f"⏱️ {incomplete}/{len(clocks)} clock{'s' if len(clocks) != 1 else ''} ticking")
 
-    return "\n".join(lines)
+    # Queue count
+    if config:
+        from commands.queue_scan import scan_transcripts
+        scanned = scan_transcripts(config, state)
+        q = len(scanned.get(pid, {}).get("entries", []))
+        if q:
+            lines.append(f"📬 {q} unreplied player message{'s' if q != 1 else ''}")
 
+    return "\n".join(lines)
 
 def build_overview(config: dict, state: dict) -> str:
     """Build a compact cross-campaign overview for /overview command."""

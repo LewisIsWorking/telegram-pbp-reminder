@@ -112,12 +112,9 @@ def track_message(parsed: dict, state: dict, config: dict,
                 state.setdefault("gm_queue", {})[pid] = [
                     e for e in queue if e["message_id"] != reply_to
                 ]
-                # Mark cleared for transcript scanner (persists)
-                cleared = state.setdefault("queue_cleared", {}).setdefault(pid, [])
-                cleared.append({"message_id": reply_to})
-                # Cap at 200 per campaign
-                if len(cleared) > 200:
-                    state["queue_cleared"][pid] = cleared[-200:]
+                # Record for stats (streak, history)
+                from commands.queue_stats import record_reply
+                record_reply(pid, state)
 
     # Log to persistent PBP transcript
     if not text.startswith("/"):

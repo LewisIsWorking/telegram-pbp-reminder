@@ -44,7 +44,9 @@ def build_queue(config: dict, state: dict) -> str:
         name = data["campaign"]
         code = data.get("code", "")
         label = f"{code}: {name}" if code else name
-        lines.append(f"━━ {label} ({len(entries)}) ━━")
+        scene = state.get("current_scenes", {}).get(pid, "")
+        scene_str = f" 🎭 {scene}" if scene else ""
+        lines.append(f"━━ {label} ({len(entries)}){scene_str} ━━")
         for entry in entries:
             hours = 0
             try:

@@ -13,7 +13,7 @@ from parsing.message import parse_message
 from combat.tracker import handle_combat_message
 from boons.handler import process_boon_callback
 
-from dispatch import cmd_info, cmd_gm, cmd_trackers, cmd_trackers_items
+from dispatch import cmd_info, cmd_info_ext, cmd_gm, cmd_trackers, cmd_trackers_items
 from dispatch import cmd_conditions_hp, cmd_clocks, cmd_votes_timers
 from dispatch import cmd_player
 from dispatch.tracking import track_message
@@ -25,6 +25,7 @@ cmd_info.init(_HELP_TEXT)
 
 _HANDLERS = [
     cmd_info.handle,
+    cmd_info_ext.handle,
     cmd_gm.handle,
     cmd_trackers.handle,
     cmd_trackers_items.handle,
@@ -41,7 +42,7 @@ _READ_CMDS = frozenset({
     "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
     "/summary", "/activity", "/profile", "/recap", "/gm",
     "/boons", "/boonsall", "/search", "/queue", "/reactions", "/timeline",
-    "/waiting", "/session", "/health",
+    "/waiting", "/session", "/health", "/queuestats",
 })
 
 

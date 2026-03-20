@@ -38,7 +38,7 @@ from scheduled.maintenance import (
 from scheduled.smart_alerts import check_pace_drop, check_conversation_dying
 from scheduled.digest import post_weekly_digest
 from scheduled.combat_ping import check_combat_turns, check_expired_timers
-from scheduled.queue_reminder import post_queue_reminder
+from scheduled.queue_reminder import post_queue_reminder, check_queue_nudge
 from boons.handler import expire_pending_boons
 from transcript.finalize import update_transcript_index
 
@@ -71,6 +71,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Timer expiry", check_expired_timers),
         ("Daily tip", post_daily_tip),
         ("Queue reminder", post_queue_reminder),
+        ("Queue nudge", check_queue_nudge),
     ]
     for label, func in checks:
         try:

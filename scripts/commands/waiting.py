@@ -36,7 +36,15 @@ def build_waiting(user_id: str, user_name: str, pid: str,
     if not mine:
         return f"No pending messages from you in {campaign_name}."
 
-    lines = [f"⏳ Waiting on GM in {campaign_name}: {len(mine)}\n"]
+    lines = [f"⏳ Waiting on GM in {campaign_name}: {len(mine)}"]
+    # Show estimated reply time
+    from commands.queue_stats import avg_reply_hours
+    state.setdefault("_config_cache", config)
+    avg = avg_reply_hours(pid, state)
+    if avg is not None:
+        avg_str = f"{avg / 24:.1f}d" if avg >= 24 else f"{avg:.0f}h"
+        lines.append(f"GM usually replies in ~{avg_str}")
+    lines.append("")
     for entry in mine:
         hours = 0
         try:
