@@ -17,7 +17,7 @@ def build_queue(config: dict, state: dict) -> str:
     if not any(gm_queue.values()):
         return "All caught up! No unreplied player messages."
 
-    maps = helpers.build_topic_maps(config)
+    group_user = "Path_Wars"
     lines = ["📋 GM Reply Queue:\n"]
     total = 0
 
@@ -32,23 +32,30 @@ def build_queue(config: dict, state: dict) -> str:
         lines.append(f"\n━━ {name} ({len(queue)}) ━━")
 
         for entry in queue:
+            hours = 0
             age = ""
             try:
                 posted = datetime.fromisoformat(entry["time"])
                 hours = helpers.hours_since(now, posted)
                 if hours >= 24:
-                    age = f" ({int(hours // 24)}d ago)"
+                    age = f"{int(hours // 24)}d ago"
                 elif hours >= 1:
-                    age = f" ({int(hours)}h ago)"
+                    age = f"{int(hours)}h ago"
+                else:
+                    age = "just now"
             except (ValueError, KeyError):
                 pass
 
             icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
             user = entry.get("user_name", "?")
+            msg_id = entry.get("message_id", "")
             preview = entry.get("preview", "")
-            if len(preview) > 60:
-                preview = preview[:57] + "..."
-            lines.append(f"{icon} {user}{age}: {preview}")
+
+            link = ""
+            if msg_id:
+                link = f" https://t.me/{group_user}/{pid}/{msg_id}"
+
+            lines.append(f"{icon} {user} ({age}): {preview}{link}")
 
     lines.insert(1, f"Total: {total} unreplied\n")
     return "\n".join(lines)
