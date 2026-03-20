@@ -38,11 +38,11 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     group_user = "Path_Wars"
     result = {}
 
-    # Load cleared message_ids from state
-    cleared = {}
+    # Load replied entries from state (timestamps + msg:id keys)
+    replied = {}
     if state:
-        for pid, entries in state.get("queue_cleared", {}).items():
-            cleared[pid] = {str(e["message_id"]) for e in entries if e.get("message_id")}
+        for pid, entries in state.get("gm_queue_replied", {}).items():
+            replied[pid] = set(entries)
 
     # Load message_id lookup for backfilled links
     import json
@@ -116,10 +116,11 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
 
         if pending:
             # Filter out messages cleared via reply-to
-            pid_cleared = cleared.get(pid, set())
-            if pid_cleared:
+            pid_replied = replied.get(pid, set())
+            if pid_replied:
                 pending = [e for e in pending
-                           if not (e.get("message_id") and str(e["message_id"]) in pid_cleared)]
+                           if e["time"] not in pid_replied
+                           and f"msg:{e.get('message_id', '')}" not in pid_replied]
             if pending:
                 result[pid] = {
                     "campaign": name,

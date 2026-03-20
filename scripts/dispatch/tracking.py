@@ -79,23 +79,35 @@ def track_message(parsed: dict, state: dict, config: dict,
         if not text.startswith("/"):
             reply_to = parsed.get("reply_to_message_id")
             if reply_to:
-                # Clear from live queue
-                queue = state.get("gm_queue", {}).get(pid, [])
-                # Find the entry to get its timestamp for scanner matching
                 replied = state.setdefault("gm_queue_replied", {}).setdefault(pid, [])
+
+                # Store message_id key
+                mid_key = f"msg:{reply_to}"
+                if mid_key not in replied:
+                    replied.append(mid_key)
+
+                # Try to get timestamp from live queue entry
+                queue = state.get("gm_queue", {}).get(pid, [])
                 for e in queue:
                     if e["message_id"] == reply_to:
                         ts = e.get("time", "")[:19].replace("T", " ")
                         if ts and ts not in replied:
                             replied.append(ts)
                         break
-                # Also store message_id for entries with msg# tags
-                mid_key = f"msg:{reply_to}"
-                if mid_key not in replied:
-                    replied.append(mid_key)
+                else:
+                    # Entry not in live queue — use reply_to_date from Telegram
+                    reply_date = parsed.get("reply_to_date")
+                    if reply_date:
+                        from datetime import datetime as _dt
+                        ts = _dt.fromtimestamp(reply_date, tz=timezone.utc
+                                               ).strftime("%Y-%m-%d %H:%M:%S")
+                        if ts not in replied:
+                            replied.append(ts)
+
                 # Cap at 200 entries
                 if len(replied) > 200:
                     state["gm_queue_replied"][pid] = replied[-200:]
+
                 # Remove from live queue
                 state.setdefault("gm_queue", {})[pid] = [
                     e for e in queue if e["message_id"] != reply_to
