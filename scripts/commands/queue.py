@@ -25,7 +25,7 @@ def _age_str(hours: float) -> str:
 def build_queue(config: dict, state: dict) -> str:
     """Build /queue: unreplied messages, campaigns sorted by oldest."""
     now = datetime.now(timezone.utc)
-    scanned = scan_transcripts(config)
+    scanned = scan_transcripts(config, state)
     if not scanned:
         return "All caught up! No unreplied player messages."
 

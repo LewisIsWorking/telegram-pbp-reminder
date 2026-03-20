@@ -75,14 +75,37 @@ def track_message(parsed: dict, state: dict, config: dict,
                     if len(queue) > 50:
                         state["gm_queue"][pid] = queue[-50:]
     else:
-        # GM replied to a specific message — clear only that one
+        # GM replied to a specific message — mark it cleared
         if not text.startswith("/"):
             reply_to = parsed.get("reply_to_message_id")
             if reply_to:
+                # Clear from live queue
                 queue = state.get("gm_queue", {}).get(pid, [])
+                # Find the entry to get its timestamp for scanner matching
+                replied = state.setdefault("gm_queue_replied", {}).setdefault(pid, [])
+                for e in queue:
+                    if e["message_id"] == reply_to:
+                        ts = e.get("time", "")[:19].replace("T", " ")
+                        if ts and ts not in replied:
+                            replied.append(ts)
+                        break
+                # Also store message_id for entries with msg# tags
+                mid_key = f"msg:{reply_to}"
+                if mid_key not in replied:
+                    replied.append(mid_key)
+                # Cap at 200 entries
+                if len(replied) > 200:
+                    state["gm_queue_replied"][pid] = replied[-200:]
+                # Remove from live queue
                 state.setdefault("gm_queue", {})[pid] = [
                     e for e in queue if e["message_id"] != reply_to
                 ]
+                # Mark cleared for transcript scanner (persists)
+                cleared = state.setdefault("queue_cleared", {}).setdefault(pid, [])
+                cleared.append({"message_id": reply_to})
+                # Cap at 200 per campaign
+                if len(cleared) > 200:
+                    state["queue_cleared"][pid] = cleared[-200:]
 
     # Log to persistent PBP transcript
     if not text.startswith("/"):

@@ -26,16 +26,23 @@ _ENTRY_RE = re.compile(
 )
 
 
-def scan_transcripts(config: dict) -> dict:
+def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     """Scan recent transcripts for unreplied player messages.
 
-    Returns {pid: [entries]} where each entry has:
-      name, time, preview, message_id (or None), pid
+    Returns {pid: {campaign, code, entries}} where each entry has:
+      name, time, preview, message_id (or None), link
+    Filters out messages marked as cleared via reply-to tracking.
     """
     now = datetime.now(timezone.utc)
     month = now.strftime("%Y-%m")
     group_user = "Path_Wars"
     result = {}
+
+    # Load cleared message_ids from state
+    cleared = {}
+    if state:
+        for pid, entries in state.get("queue_cleared", {}).items():
+            cleared[pid] = {str(e["message_id"]) for e in entries if e.get("message_id")}
 
     # Load message_id lookup for backfilled links
     import json
@@ -108,10 +115,16 @@ def scan_transcripts(config: dict) -> dict:
                 })
 
         if pending:
-            result[pid] = {
-                "campaign": name,
-                "code": code,
-                "entries": pending,
-            }
+            # Filter out messages cleared via reply-to
+            pid_cleared = cleared.get(pid, set())
+            if pid_cleared:
+                pending = [e for e in pending
+                           if not (e.get("message_id") and str(e["message_id"]) in pid_cleared)]
+            if pending:
+                result[pid] = {
+                    "campaign": name,
+                    "code": code,
+                    "entries": pending,
+                }
 
     return result

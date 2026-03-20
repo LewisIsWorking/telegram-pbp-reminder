@@ -46,7 +46,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     if last:
         if helpers.hours_since(now, datetime.fromisoformat(last)) < 22:
             return
-    scanned = scan_transcripts(config)
+    scanned = scan_transcripts(config, state)
     if not scanned:
         state["last_queue_reminder"] = now.isoformat()
         return
