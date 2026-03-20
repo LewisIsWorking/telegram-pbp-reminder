@@ -11,6 +11,29 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.7.1] - 2026-03-19
+
+### Added — Daily Queue Reminder With Message Links
+
+The bot posts a daily reminder to the bot topic showing all unreplied
+player messages with direct links to each message:
+
+```
+📋 Unreplied messages:
+Total: 5
+
+━━ Kibwe (2) ━━
+🔴 Ryo (2d): Fierce Leopard steps... https://t.me/Path_Wars/40585/12345
+🟡 Bruce (1d): Cho Kobo examines... https://t.me/Path_Wars/40585/12350
+
+━━ Riddleport (3) ━━
+⚪ Lunnes (5h): Necrila checks... https://t.me/Path_Wars/66154/67890
+```
+
+Tap any link to jump straight to the message and reply.
+
+---
+
 ## [4.7.0] - 2026-03-19
 
 ### Added — Reaction Tracking

@@ -65,6 +65,7 @@ def track_message(parsed: dict, state: dict, config: dict,
                 if msg_id not in existing_ids:
                     queue.append({
                         "message_id": msg_id,
+                        "thread_id": parsed["thread_id"],
                         "user_id": user_id,
                         "user_name": user_name,
                         "time": msg_time_iso,
