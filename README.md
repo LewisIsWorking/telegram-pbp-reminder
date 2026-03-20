@@ -26,10 +26,15 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 | **Campaign anniversaries** | Yearly                            | Campaign chat topics       |
 | **Streak milestones**      | On 7/14/30/60/90 day streaks      | Campaign chat topics       |
 | **Message milestones**     | Every 500/5000 messages           | Campaign/leaderboard topic |
-| **Daily tips**             | Daily (random topic)              | Campaign PBP topics        |
+| **Daily tips**             | Daily                             | Bot topic                  |
 | **PBP transcripts**        | Every message (auto-archived)     | `data/pbp_logs/`           |
 | **Weekly archive**         | Weekly                            | `data/weekly_archive.json` |
 | **Dashboard**              | On every archive update           | [GitHub Pages](https://lewisisworking.github.io/telegram-pbp-reminder/) |
+| **AoN search**             | On demand (`/search`)             | Any topic                  |
+| **GM reply queue**         | On demand (`/queue`) + daily      | Bot topic                  |
+| **Reaction tracking**      | Automatic                         | On demand (`/reactions`)   |
+| **Player availability**    | On demand (`/available`)          | Campaign PBP topics        |
+| **Cross-campaign timeline**| On demand (`/timeline`)           | Any topic                  |
 
 All intervals are configurable. All features run automatically once set up.
 
@@ -105,8 +110,8 @@ checker.py (orchestrator)
     └── state.py        GitHub Gist (persist state between runs)
 ```
 
-The codebase is split into 69 production files across 9 packages, with every
-file held to a strict 200-line maximum. 341 tests (286 + 37 + 18) run on
+The codebase is split into 76 production files across 9 packages, with every
+file held to a strict 200-line maximum. 357 tests (286 + 37 + 18 + 16) run on
 every push before deployment.
 
 The bot expects a Telegram supergroup with **forum topics** enabled.
@@ -190,6 +195,7 @@ Copy `config.example.json` to `config.json` and fill it in:
     "alert_after_hours": 4,
     "gm_user_ids": [123456789],
     "leaderboard_topic_id": null,
+    "bot_topic_id": null,
     "topic_pairs": [
         {
             "name": "My Campaign",
@@ -205,6 +211,7 @@ Key fields:
 - **group_id**: Your supergroup's chat ID (negative number).
 - **gm_user_ids**: Array of GM Telegram user IDs. GMs are excluded from player stats.
 - **leaderboard_topic_id**: Topic ID for the cross-campaign leaderboard (or `null` to disable).
+- **bot_topic_id**: Topic ID for the dedicated bot channel. All scheduled output (rosters, alerts, tips, POTW, etc.) posts here instead of campaign chats. Also enables `/search`, `/queue`, `/timeline` from the bot channel. Set to `null` to post in campaign chat topics instead.
 - **topic_pairs**: One entry per campaign. Each needs a name, a chat topic, and one or more PBP topics.
 - **created**: Campaign start date for anniversary alerts (optional, `YYYY-MM-DD`).
 - **gm_user_ids** (per-campaign): Optional override that replaces the global GM list for this campaign only. Useful when a campaign has a different GM.
@@ -297,8 +304,17 @@ The bot responds to these commands in any monitored PBP topic:
 - `/boonsall` - View all your boons across campaigns.
 - `/chooseboon <N>` - Choose a POTW boon by number.
 - `/pick <choice>` - Vote in an active poll.
+- `/search <query>` - Search Archives of Nethys (spells, feats, items — no creatures).
+- `/reactions` - Reaction stats for the current campaign.
+- `/timeline` - Cross-campaign event timeline.
+- `/available <days>` - Set your posting days (e.g. `/available mon wed fri`).
+- `/available` - Show everyone's availability.
+- `/available clear` - Remove your availability.
 
 ### GM commands
+
+- `/queue` - Unreplied player messages across all campaigns. Messages clear when you reply to them using Telegram's reply feature.
+- `/event <text>` - Log a story event to the cross-campaign timeline.
 
 - `/combat [enemies]` - Start combat (e.g. `/combat Ogre, 2 Skeletons`).
 - `/next` - Advance to next phase (players→enemies→next round).
@@ -389,6 +405,7 @@ scripts/
   import_formatting.py    # Message formatting for import
   boons/                  # POTW boon system
     handler.py            #   Boon callbacks, storage, expiry
+    reminders.py          #   Boon reminders (24h, 3d, 6d, 7d auto-pick)
   combat/                 # Combat tracking
     commands.py           #   /combat, /next, /endcombat, /enemies
     display.py            #   /whosturn, /combatlog
@@ -404,8 +421,12 @@ scripts/
     status.py             #   /status, /overview
     summary.py            #   /summary, /party
     trackers.py           #   /notes, /quests, /pins, /lootlist, /npcs, /conditions
+    queue.py              #   /queue (GM reply queue)
+    reactions.py          #   /reactions (emoji tracking)
+    timeline.py           #   /timeline, /event
   dispatch/               # Command routing and message processing
     router.py             #   Main update loop, context builder
+    bot_topic.py          #   Bot topic command handler (campaign arg resolution)
     cmd_info.py           #   28 read-only info commands
     cmd_gm.py             #   GM control commands
     cmd_trackers.py       #   Note/quest CRUD
@@ -416,6 +437,7 @@ scripts/
     cmd_player.py         #   /away, /back, /roll, /chooseboon
     tracking.py           #   Post-message state tracking
     help_text.py          #   /help text constant
+    cmd_search.py         #   /search (Archives of Nethys)
   helpers_pkg/            # Shared utilities (re-exported via helpers.py)
     constants.py          #   Paths, tunable defaults
     config.py             #   Config loading, validation, GM helpers
@@ -443,6 +465,7 @@ scripts/
     smart_alerts.py       #   Pace drop + silence detection
     tips.py               #   Daily tips
     tips_data.py          #   Tip text constants
+    queue_reminder.py     #   Daily GM reply queue reminder with links
   transcript/             # PBP transcript system
     finalize.py           #   Month finalization + index generation
     formatting.py         #   Log entry formatting
@@ -450,6 +473,7 @@ scripts/
   test_checker.py         # 286 tests
   test_helpers.py         # 37 tests
   test_import_history.py  # 18 tests
+  test_new_features.py    # 16 tests (v4.4-4.8 features)
 config.json               # Your configuration
 config.example.json       # Template configuration
 boons.json                # Flavour boons for POTW (optional)

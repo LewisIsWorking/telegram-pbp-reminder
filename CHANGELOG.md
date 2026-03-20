@@ -11,6 +11,26 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.8.1] - 2026-03-20
+
+### Added — Tests for v4.4-4.8 Features
+
+New test suite `test_new_features.py` covering 16 tests:
+queue (build, entries), reactions (add, remove, display), timeline
+(creation dates, add event, empty), boon reminders (24h, 7d auto-pick),
+campaign resolution (exact, prefix, not found), queue reminder (skip empty).
+
+CI workflow now runs 4 test suites (357 total: 286 + 37 + 18 + 16).
+
+### Updated — README
+
+Documented all features added in v4.4-4.8: `/search`, `/queue`,
+`/reactions`, `/timeline`, `/event`, `/available`, `bot_topic_id` config,
+daily queue reminder. Updated features table (23 entries), file structure
+(76 production files), command list (35 player / 69 admin), and test count.
+
+---
+
 ## [4.8.0] - 2026-03-20
 
 ### Added — Cross-Campaign Timeline
