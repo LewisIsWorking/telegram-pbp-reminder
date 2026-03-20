@@ -69,7 +69,7 @@ def track_message(parsed: dict, state: dict, config: dict,
                         "user_id": user_id,
                         "user_name": user_name,
                         "time": msg_time_iso,
-                        "preview": (parsed["raw_text"] or "[media]")[:80],
+                        "preview": (parsed["raw_text"] or "[media]")[:500],
                     })
                     # Cap queue size per campaign
                     if len(queue) > 50:

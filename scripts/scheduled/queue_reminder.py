@@ -6,18 +6,27 @@ import helpers
 import telegram as tg
 
 
-def _gm_mention(config: dict, pid: str) -> str:
-    """Build HTML mention tags for campaign GMs."""
+def _gm_mentions(config: dict, state: dict, pid: str) -> str:
+    """Build mention string for campaign GMs using their actual names."""
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
-    mentions = []
+    if not gm_ids:
+        return "GM"
+
+    names = []
     for uid in gm_ids:
-        mentions.append(f'<a href="tg://user?id={uid}">GM</a>')
-    return ", ".join(mentions) if mentions else "GM"
+        # Look up name from players state
+        name = None
+        for key, p in state.get("players", {}).items():
+            if p.get("user_id") == str(uid):
+                uname = p.get("username", "")
+                name = f"@{uname}" if uname else p.get("first_name", "GM")
+                break
+        if not name:
+            # Fallback: use config-level gm_username if exists
+            name = f"GM ({uid})"
+        names.append(name)
 
-
-def _html_escape(text: str) -> str:
-    """Escape HTML special characters."""
-    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    return ", ".join(names)
 
 
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
@@ -43,7 +52,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     group_id = config["group_id"]
     group_user = "Path_Wars"
 
-    lines = ["📋 <b>Unreplied messages</b>\n"]
+    lines = ["📋 Unreplied messages:\n"]
     total = 0
 
     for pair in config.get("topic_pairs", []):
@@ -54,8 +63,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             continue
 
         total += len(queue)
-        gm = _gm_mention(config, pid)
-        lines.append(f"\n━━ {_html_escape(name)} ({len(queue)}) — {gm} ━━")
+        gm = _gm_mentions(config, state, pid)
+        lines.append(f"━━ {name} ({len(queue)}) — {gm} ━━")
 
         for entry in queue:
             hours = 0
@@ -71,24 +80,20 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 pass
 
             icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
-            user = _html_escape(entry.get("user_name", "?"))
+            user = entry.get("user_name", "?")
             msg_id = entry.get("message_id", "")
+            preview = entry.get("preview", "")
 
-            # Build link using pid as thread_id (they're the same)
             link = ""
             if msg_id:
                 link = f"https://t.me/{group_user}/{pid}/{msg_id}"
 
-            preview = _html_escape(entry.get("preview", ""))
-
-            if link:
-                lines.append(f'{icon} <a href="{link}">{user}</a> ({age})')
-            else:
-                lines.append(f"{icon} {user} ({age})")
+            lines.append(f"{icon} {user} ({age}):")
             if preview:
-                lines.append(f"   {preview}")
-
-        lines.append("")
+                lines.append(preview)
+            if link:
+                lines.append(link)
+            lines.append("")
 
     if total == 0:
         state["last_queue_reminder"] = now.isoformat()
@@ -97,6 +102,6 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     lines.insert(1, f"Total: {total}\n")
     message = "\n".join(lines).rstrip()
 
-    if tg.send_message(group_id, bot_topic, message, parse_mode="HTML"):
+    if tg.send_message(group_id, bot_topic, message):
         state["last_queue_reminder"] = now.isoformat()
         print(f"Queue reminder: {total} unreplied messages")
