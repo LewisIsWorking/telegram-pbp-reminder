@@ -42,19 +42,30 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     if not bot_topic:
         return
     now = now or datetime.now(timezone.utc)
-    last = state.get("last_queue_reminder")
-    if last:
-        if helpers.hours_since(now, datetime.fromisoformat(last)) < 22:
-            return
     scanned = scan_transcripts(config, state)
+
+    # Build a fingerprint of the current queue state
+    fingerprint_parts = []
+    for pid in sorted(scanned.keys()):
+        data = scanned[pid]
+        for entry in data["entries"]:
+            fingerprint_parts.append(f"{pid}:{entry['time']}")
+    fingerprint = "|".join(fingerprint_parts) if fingerprint_parts else "empty"
+
+    # Only post if queue changed since last post
+    if fingerprint == state.get("last_queue_fingerprint", ""):
+        return
+
     if not scanned:
-        state["last_queue_reminder"] = now.isoformat()
+        state["last_queue_fingerprint"] = "empty"
         return
 
     group_id = config["group_id"]
     total = sum(len(d["entries"]) for d in scanned.values())
     if total == 0:
-        state["last_queue_reminder"] = now.isoformat()
+        if state.get("last_queue_fingerprint", "empty") != "empty":
+            tg.send_message(group_id, bot_topic, "📋 All caught up! No unreplied messages.")
+        state["last_queue_fingerprint"] = fingerprint
         return
 
     def oldest_time(pid):
@@ -110,5 +121,5 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if tg.send_message(group_id, bot_topic, msg):
             sent = True
     if sent:
-        state["last_queue_reminder"] = now.isoformat()
+        state["last_queue_fingerprint"] = fingerprint
         print(f"Queue reminder: {total} unreplied ({len(msgs)} msg)")

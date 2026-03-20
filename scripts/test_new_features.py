@@ -247,7 +247,7 @@ def test_queue_reminder_skips_when_empty():
     finally:
         tg.send_message = orig
     assert len(sent) == 0
-    assert "last_queue_reminder" in state
+    assert "last_queue_fingerprint" in state
 
 
 # ------------------------------------------------------------------ #
