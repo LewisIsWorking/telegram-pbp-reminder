@@ -97,7 +97,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             link = entry.get("link", "")
             line = f"{icon} {_age_str(hours)}. {user}: {preview}"
             if link:
-                line += f" {link}"
+                line += f" 🔗 {link}"
             lines.append(line)
 
     message = "\n".join(lines)

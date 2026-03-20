@@ -34,8 +34,10 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
 
     for i, c in enumerate(active):
         rank = helpers.rank_icon(i)
+        code = c.get("code", "")
+        label = f"{code}: {c['name']}" if code else c["name"]
         campaign_block = (
-            f"[{rank} {c['name']} {c['trend_icon']}]\n"
+            f"[{rank} {label} {c['trend_icon']}]\n"
             f"- {c['player_7d']} player posts.\n"
             f"- {posts_str(c['total_7d'])} total.\n"
             f"- {c['gm_7d']} GM posts.\n"
@@ -65,7 +67,9 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
         gap_ranked.sort(key=lambda c: c["player_avg_gap"])
         lines.append("\n━━━━━━━━━━━━━━━━\n\n⏱ Fastest player response gaps:")
         for i, c in enumerate(gap_ranked):
-            lines.append(f"{helpers.rank_icon(i)} {c['name']}: {c['player_avg_gap_str']}")
+            code = c.get("code", "")
+            gl = f"{code}: {c['name']}" if code else c["name"]
+            lines.append(f"{helpers.rank_icon(i)} {gl}: {c['player_avg_gap_str']}")
 
     if global_player_posts:
         lines.append("\n━━━━━━━━━━━━━━━━")

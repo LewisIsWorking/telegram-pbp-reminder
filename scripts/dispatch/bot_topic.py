@@ -53,6 +53,15 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         handle_search(args, group_id, bot_topic, tg)
         return
 
+    # /mystats and /me: cross-campaign when no arg, per-campaign with arg
+    if cmd_word in ("/mystats", "/me"):
+        if not args.strip():
+            from commands.player import build_mystats_all
+            tg.send_message(group_id, bot_topic,
+                            build_mystats_all(user_id, user_name, config, state))
+            return
+        # With campaign arg, fall through to normal handler below
+
     # /roll and /dc work without campaign context
     if cmd_word in ("/roll", "/dc"):
         print(f"Bot topic: {cmd_word} from {user_name}: {args}")

@@ -103,8 +103,16 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
             entry["count"] += pdata["count"]
             entry["campaigns"] += 1
 
+        # Find campaign code from config
+        code = ""
+        for pair in config.get("topic_pairs", []):
+            if str(pair["pbp_topic_ids"][0]) == pid:
+                code = pair.get("code", "")
+                break
+
         campaign_stats.append({
             "name": name,
+            "code": code,
             "total_7d": total_7d,
             "player_7d": player_7d,
             "gm_7d": gm_7d,

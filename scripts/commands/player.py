@@ -128,3 +128,42 @@ def build_myhistory(pid: str, user_id: str, campaign_name: str,
         lines.append(f"Trend: {trend}")
 
     return "\n".join(lines)
+
+
+def build_mystats_all(user_id: str, user_name: str, config: dict, state: dict) -> str:
+    """Build cross-campaign stats for /mystats from bot topic."""
+    now = datetime.now(timezone.utc)
+    week_ago = now - timedelta(days=7)
+    lines = [f"📊 {user_name} — Cross-Campaign Stats\n"]
+    total_posts = 0
+    total_week = 0
+    campaigns_active = 0
+
+    for pair in config.get("topic_pairs", []):
+        pid = str(pair["pbp_topic_ids"][0])
+        name = pair["name"]
+        code = pair.get("code", "")
+        label = f"{code}: {name}" if code else name
+        gm_ids = helpers.gm_ids_for_campaign(config, pid)
+
+        raw_ts = helpers.get_topic_timestamps(state, pid).get(user_id, [])
+        count = state.get("message_counts", {}).get(pid, {}).get(user_id, 0)
+        if not count:
+            continue
+
+        campaigns_active += 1
+        total_posts += count
+        week = len(deduplicate_posts(timestamps_in_window(raw_ts, week_ago)))
+        total_week += week
+        role = "GM" if user_id in gm_ids else ""
+        role_tag = f" [GM]" if role else ""
+        streak = helpers.calc_streak(raw_ts, now)
+        streak_str = f" 🔥{streak}d" if streak >= 2 else ""
+
+        lines.append(f"{label}{role_tag}: {count} posts, {week}/wk{streak_str}")
+
+    if not campaigns_active:
+        return "No posts tracked yet. Post something and check back!"
+
+    lines.insert(1, f"Total: {total_posts} posts across {campaigns_active} campaigns, {total_week} this week\n")
+    return "\n".join(lines)

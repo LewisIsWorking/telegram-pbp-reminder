@@ -59,7 +59,7 @@ def build_queue(config: dict, state: dict) -> str:
             link = entry.get("link", "")
             line = f"{icon} {_age_str(hours)}. {user}: {preview}"
             if link:
-                line += f" {link}"
+                line += f" 🔗 {link}"
             lines.append(line)
 
     return "\n".join(lines)
