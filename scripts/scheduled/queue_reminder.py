@@ -26,6 +26,12 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
     return ", ".join(names)
 
 
+def _age_str(hours: float) -> str:
+    days = int(hours // 24)
+    remaining_h = int(hours % 24)
+    return f"{days}d {remaining_h}h" if days > 0 else f"{remaining_h}h"
+
+
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Post unreplied player messages to the bot topic once per day."""
     bot_topic = config.get("bot_topic_id")
@@ -47,14 +53,19 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     group_id = config["group_id"]
     total = sum(len(d["entries"]) for d in scanned.values())
+    if total == 0:
+        state["last_queue_reminder"] = now.isoformat()
+        return
 
-    # Build per-campaign blocks, send as separate messages if needed
+    # Sort campaigns by oldest unreplied message
+    def oldest_time(pid):
+        entries = scanned[pid]["entries"]
+        return min(e.get("time", "9999") for e in entries) if entries else "9999"
+
+    sorted_pids = sorted(scanned.keys(), key=oldest_time)
+
     blocks = []
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        if pid not in scanned:
-            continue
-
+    for pid in sorted_pids:
         data = scanned[pid]
         entries = data["entries"]
         name = data["campaign"]
@@ -64,17 +75,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
         for entry in entries:
             hours = 0
-            age = ""
             try:
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
                 posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
-                days = int(hours // 24)
-                remaining_h = int(hours % 24)
-                if days > 0:
-                    age = f"{days}d {remaining_h}h"
-                else:
-                    age = f"{remaining_h}h"
             except (ValueError, KeyError):
                 pass
 
@@ -85,7 +89,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 preview = preview[:197] + "..."
             link = entry.get("link", "")
 
-            lines.append(f"{icon} {user} ({age}):")
+            lines.append(f"{icon} {user} ({_age_str(hours)}):")
             if preview:
                 lines.append(preview)
             if link:
@@ -93,13 +97,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
         blocks.append("\n".join(lines))
 
-    if not blocks:
-        state["last_queue_reminder"] = now.isoformat()
-        return
+    header = f"📋 Unreplied messages: {total}\n"
 
-    header = f"📋 Unreplied messages:\nTotal: {total}\n"
-
-    # Pack blocks into messages under 4000 chars
+    # Split into messages under 3900 chars
     messages = []
     current = header
     for block in blocks:
@@ -117,4 +117,4 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     if sent:
         state["last_queue_reminder"] = now.isoformat()
-        print(f"Queue reminder: {total} unreplied messages ({len(messages)} msg)")
+        print(f"Queue reminder: {total} unreplied ({len(messages)} msg)")

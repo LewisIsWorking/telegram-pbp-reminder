@@ -6,11 +6,20 @@ import helpers
 from commands.queue_scan import scan_transcripts
 
 
-def build_queue(config: dict, state: dict) -> str:
-    """Build /queue output: unreplied player messages across all campaigns.
+def _age_str(hours: float) -> str:
+    days = int(hours // 24)
+    remaining_h = int(hours % 24)
+    if days > 0:
+        return f"{days}d {remaining_h}h ago"
+    elif hours >= 1:
+        return f"{int(hours)}h ago"
+    return "just now"
 
-    Uses transcript scanning as the primary source. Includes links
-    when message_ids are available in transcripts (msg#12345 tags).
+
+def build_queue(config: dict, state: dict) -> str:
+    """Build /queue output: unreplied messages grouped by campaign.
+
+    Campaigns sorted by their oldest unreplied message (most overdue first).
     """
     now = datetime.now(timezone.utc)
     scanned = scan_transcripts(config)
@@ -18,35 +27,29 @@ def build_queue(config: dict, state: dict) -> str:
     if not scanned:
         return "All caught up! No unreplied player messages."
 
-    lines = ["📋 GM Reply Queue:\n"]
-    total = 0
+    total = sum(len(d["entries"]) for d in scanned.values())
 
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        if pid not in scanned:
-            continue
+    # Sort campaigns by oldest unreplied message
+    def oldest_time(pid):
+        entries = scanned[pid]["entries"]
+        return min(e.get("time", "9999") for e in entries) if entries else "9999"
 
+    sorted_pids = sorted(scanned.keys(), key=oldest_time)
+
+    lines = [f"📋 GM Reply Queue: {total} unreplied\n"]
+
+    for pid in sorted_pids:
         data = scanned[pid]
         entries = data["entries"]
         name = data["campaign"]
-        total += len(entries)
         lines.append(f"\n━━ {name} ({len(entries)}) ━━")
 
         for entry in entries:
             hours = 0
-            age = "?"
             try:
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
                 posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
-                days = int(hours // 24)
-                remaining_h = int(hours % 24)
-                if days > 0:
-                    age = f"{days}d {remaining_h}h ago"
-                elif hours >= 1:
-                    age = f"{int(hours)}h ago"
-                else:
-                    age = "just now"
             except (ValueError, KeyError):
                 pass
 
@@ -55,12 +58,11 @@ def build_queue(config: dict, state: dict) -> str:
             preview = entry.get("preview", "")
             link = entry.get("link", "")
 
-            line = f"{icon} {user} ({age}):"
+            line = f"{icon} {user} ({_age_str(hours)}):"
             if preview:
                 line += f"\n{preview}"
             if link:
                 line += f"\n{link}"
             lines.append(line)
 
-    lines.insert(1, f"Total: {total} unreplied\n")
     return "\n".join(lines)
