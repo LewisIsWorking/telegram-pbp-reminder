@@ -11,6 +11,45 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.9.0] - 2026-03-20
+
+### Overhauled — GM Reply Queue
+
+Major upgrade to the queue system, now the bot's flagship feature.
+
+**Transcript-powered scanning**: Queue reads directly from PBP
+transcripts, catching all unreplied messages (not just since v4.6).
+
+**Hybrid reply tracking**: When you reply to a message using
+Telegram's reply feature, the bot records the original message's
+timestamp. The scanner filters it out on the next run. Works for
+old messages without message_ids too.
+
+**Live updates**: Queue reposts to the bot topic whenever it changes
+(new messages or replies). No more daily timer. Posts "All caught up!"
+when you clear everything.
+
+**Compact format**:
+```
+📋 Unreplied: 22
+━━ C7: Hopeful End-Times (5) ━━ @PathWars
+🔴 4d 5h. CzarChasm23: Lowda's gaze returns to normal...
+🔴 4d 0h. Dima: Alita keeps her low ready... t.me/...
+━━ C8: Theria (1) ━━ @Linksanelf2006
+⚪ 15h. Cannon McMahon: "Ah! Yeah, quite so..."...
+```
+
+**Other queue changes**:
+- Campaign codes in headers (C0, C1, etc.)
+- GM shown as @PathWars (your campaigns) or @username (others)
+- Time before name: "🔴 3d 10h. Ryo:" not "🔴 Ryo (3d 10h):"
+- 5-word previews, links inline, no paragraph gaps
+- message_ids.json lookup for backfilled links
+- msg# tags in transcripts for future link building
+- Campaigns sorted by oldest unreplied message
+
+---
+
 ## [4.8.1] - 2026-03-20
 
 ### Added — Tests for v4.4-4.8 Features
