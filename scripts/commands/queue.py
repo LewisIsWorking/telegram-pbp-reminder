@@ -39,8 +39,10 @@ def build_queue(config: dict, state: dict) -> str:
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
                 posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
-                if hours >= 24:
-                    age = f"{int(hours // 24)}d ago"
+                days = int(hours // 24)
+                remaining_h = int(hours % 24)
+                if days > 0:
+                    age = f"{days}d {remaining_h}h ago"
                 elif hours >= 1:
                     age = f"{int(hours)}h ago"
                 else:

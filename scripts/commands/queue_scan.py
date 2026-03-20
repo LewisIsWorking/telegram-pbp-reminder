@@ -13,6 +13,7 @@ from pathlib import Path
 import helpers
 
 _LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
+_IDS_FILE = Path(__file__).parent.parent.parent / "data" / "message_ids.json"
 
 # Matches: **Name** (char) [GM] (2026-03-16 18:02:46) msg#12345:
 _ENTRY_RE = re.compile(
@@ -35,6 +36,15 @@ def scan_transcripts(config: dict) -> dict:
     month = now.strftime("%Y-%m")
     group_user = "Path_Wars"
     result = {}
+
+    # Load message_id lookup for backfilled links
+    import json
+    id_lookup = {}
+    if _IDS_FILE.exists():
+        try:
+            id_lookup = json.loads(_IDS_FILE.read_text())
+        except (json.JSONDecodeError, OSError):
+            pass
 
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
@@ -78,14 +88,21 @@ def scan_transcripts(config: dict) -> dict:
             if is_gm:
                 pending = []
             else:
+                # Check inline msg# tag first, then lookup file
+                mid = msg_id
+                if not mid:
+                    lookup_key = f"{pid}:{timestamp}"
+                    mid_val = id_lookup.get(lookup_key)
+                    if mid_val:
+                        mid = str(mid_val)
                 link = ""
-                if msg_id:
-                    link = f"https://t.me/{group_user}/{pid}/{msg_id}"
+                if mid:
+                    link = f"https://t.me/{group_user}/{pid}/{mid}"
                 pending.append({
                     "name": author.strip(),
                     "time": timestamp,
                     "preview": preview,
-                    "message_id": msg_id,
+                    "message_id": mid,
                     "link": link,
                 })
 

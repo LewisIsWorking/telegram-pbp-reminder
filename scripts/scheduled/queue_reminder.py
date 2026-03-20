@@ -60,7 +60,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         name = data["campaign"]
         gm = _gm_mentions(config, state, pid)
 
-        lines = [f"━━ {name} ({len(entries)}) — {gm} ━━"]
+        lines = [f"━━ {name} ({len(entries)}) ━━", gm]
 
         for entry in entries:
             hours = 0
@@ -69,10 +69,12 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
                 posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
-                if hours >= 24:
-                    age = f"{int(hours // 24)}d"
+                days = int(hours // 24)
+                remaining_h = int(hours % 24)
+                if days > 0:
+                    age = f"{days}d {remaining_h}h"
                 else:
-                    age = f"{int(hours)}h"
+                    age = f"{remaining_h}h"
             except (ValueError, KeyError):
                 pass
 
