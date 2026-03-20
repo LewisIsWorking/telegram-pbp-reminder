@@ -122,7 +122,9 @@ def track_message(parsed: dict, state: dict, config: dict,
     # Log to persistent PBP transcript
     if not text.startswith("/"):
         append_to_transcript(parsed, gm_ids, config)
-
+        # Auto-increment session counter on new GM posting day
+        from commands.session import track_session
+        track_session(pid, user_id, gm_ids, msg_time_iso, state)
     print(f"Tracked message in {campaign_name} from {user_name}")
 
 
@@ -165,23 +167,34 @@ def _track_player(parsed: dict, state: dict, config: dict,
         print(f"Player {user_name} rejoined {campaign_name}")
         chat_tid = maps.to_chat.get(pid)
         if chat_tid:
-            char_name = helpers.character_name(config, pid, user_id)
-            char_tag = f" ({char_name})" if char_name else ""
+            char = helpers.character_name(config, pid, user_id)
             uname = parsed.get("username", "") or removed_data.get("username", "")
             mention = f" @{uname}" if uname else ""
-            tg.send_message(
-                group_id, chat_tid,
-                f"\U0001f44b{mention} {user_name}{char_tag} is back in {campaign_name}!"
-            )
+            tag = f" ({char})" if char else ""
+            tg.send_message(group_id, chat_tid,
+                            f"\U0001f44b{mention} {user_name}{tag} is back in {campaign_name}!")
     elif old_warn_level >= 2:
-        print(f"Warned player {user_name} returned to {campaign_name} (was week {old_warn_level})")
+        print(f"Warned player {user_name} returned to {campaign_name}")
         chat_tid = maps.to_chat.get(pid)
         if chat_tid:
-            char_name = helpers.character_name(config, pid, user_id)
-            char_tag = f" as {char_name}" if char_name else ""
+            char = helpers.character_name(config, pid, user_id)
             uname = parsed.get("username", "") or old_player.get("username", "")
             mention = f" @{uname}" if uname else ""
-            tg.send_message(
-                group_id, chat_tid,
-                f"\U0001f389{mention} {user_name} is back{char_tag}! Good to see you."
-            )
+            tag = f" as {char}" if char else ""
+            tg.send_message(group_id, chat_tid,
+                            f"\U0001f389{mention} {user_name} is back{tag}! Good to see you.")
+    elif old_player.get("last_post_time") and not text.startswith("/"):
+        try:
+            last = datetime.fromisoformat(old_player["last_post_time"])
+            gap = helpers.days_since(datetime.fromisoformat(msg_time_iso), last)
+            if gap >= 5:
+                bot_topic = config.get("bot_topic_id")
+                if bot_topic:
+                    char = helpers.character_name(config, pid, user_id)
+                    tag = f" ({char})" if char else ""
+                    tg.send_message(group_id, bot_topic,
+                                    f"👀 {user_name}{tag} posted in {campaign_name} "
+                                    f"after {int(gap)}d of silence!")
+                    print(f"Comeback: {user_name} in {campaign_name} ({int(gap)}d)")
+        except (ValueError, TypeError):
+            pass

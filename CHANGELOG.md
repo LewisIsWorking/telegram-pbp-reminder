@@ -11,6 +11,45 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.10.0] - 2026-03-20
+
+### Added — Player-Facing Queue (/waiting)
+
+Players can see what the GM owes them:
+- `/waiting` in a PBP topic: your unreplied messages in that campaign
+- `/waiting` from the bot topic: cross-campaign summary
+
+### Added — Session Counter (/session)
+
+Auto-increments when the GM posts on a new calendar day.
+- `/session` — shows current session number
+- `/session set 272` — initialize or correct (GM only)
+
+### Added — Campaign Health Dashboard (/health)
+
+Color-coded overview of all campaigns at a glance:
+```
+🟢 C9: Metal City S45 — 22/wk, 6p, last 3h
+🟡 C6: Kibwe S88 — 8/wk, 6p, last 1d 📋3
+🔴 C1: Doomsday Funtime S272 — 3/wk, 5p, last 3d 📋2
+```
+Shows posts/week, player count, last post age, queue count.
+
+### Added — Comeback Alert
+
+When a player breaks a 5+ day silence, the bot topic gets:
+```
+👀 Ryo (Fierce Leopard) posted in Kibwe after 8d of silence!
+```
+
+### Quick Wins
+
+- 🔗 link indicator in queue entries (entries without links have no icon)
+- `/mystats` from bot topic shows cross-campaign stats summary
+- Campaign codes in weekly leaderboard headers (C0, C1, etc.)
+
+---
+
 ## [4.9.0] - 2026-03-20
 
 ### Overhauled — GM Reply Queue

@@ -84,4 +84,14 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, tid, add_event(pid, name, event_text, state))
         return True
 
+    if text.startswith("/session set"):
+        from commands.session import set_session
+        num_str = text[12:].strip()
+        try:
+            num = int(num_str)
+            tg.send_message(gid, tid, set_session(pid, name, num, state))
+        except ValueError:
+            tg.send_message(gid, tid, "Usage: /session set <number>")
+        return True
+
     return False

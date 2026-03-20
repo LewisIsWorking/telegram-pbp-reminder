@@ -104,7 +104,7 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         return
 
     # Global commands don't need a campaign
-    no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help", "/pbphelp", "/queue", "/timeline"}
+    no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help", "/pbphelp", "/queue", "/timeline", "/health"}
     if cmd_word in no_campaign:
         print(f"Bot topic: {cmd_word} from {user_name} (global)")
         pid = next(iter(maps.to_name), None)

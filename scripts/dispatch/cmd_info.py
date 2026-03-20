@@ -1,8 +1,4 @@
-"""
-Read-only info commands.
-
-All commands here just build a report and send it. No state mutation.
-"""
+"""Read-only info commands. Build a report and send it, no state mutation."""
 
 import helpers
 import telegram as tg
@@ -24,12 +20,10 @@ from combat.display import build_whosturn, build_combatlog
 
 _HELP_TEXT = ""
 
-
 def init(help_text: str) -> None:
     """Initialise module with help text."""
     global _HELP_TEXT
     _HELP_TEXT = help_text
-
 
 def handle(ctx: dict) -> bool:
     """Handle read-only info commands. Returns True if handled."""
@@ -189,6 +183,16 @@ def handle(ctx: dict) -> bool:
     if cmd == "/waiting":
         from commands.waiting import build_waiting
         tg.send_message(gid, reply, build_waiting(uid, user_name, pid, name, config, state))
+        return True
+
+    if cmd == "/session":
+        from commands.session import build_session
+        tg.send_message(gid, reply, build_session(pid, name, state, config))
+        return True
+
+    if cmd == "/health":
+        from commands.health import build_health
+        tg.send_message(gid, reply, build_health(config, state))
         return True
 
     return False
