@@ -8,7 +8,7 @@ from commands.queue_scan import scan_transcripts
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
-    """Build mention string for campaign GMs using their actual names."""
+    """Build mention string for campaign GMs."""
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
     if not gm_ids:
         return "GM"
@@ -40,16 +40,16 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if elapsed < 22:
             return
 
-    # Scan transcripts for the full picture
     scanned = scan_transcripts(config)
     if not scanned:
         state["last_queue_reminder"] = now.isoformat()
         return
 
     group_id = config["group_id"]
-    lines = ["📋 Unreplied messages:\n"]
-    total = 0
+    total = sum(len(d["entries"]) for d in scanned.values())
 
+    # Build per-campaign blocks, send as separate messages if needed
+    blocks = []
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
         if pid not in scanned:
@@ -58,10 +58,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         data = scanned[pid]
         entries = data["entries"]
         name = data["campaign"]
-        total += len(entries)
-
         gm = _gm_mentions(config, state, pid)
-        lines.append(f"━━ {name} ({len(entries)}) — {gm} ━━")
+
+        lines = [f"━━ {name} ({len(entries)}) — {gm} ━━"]
 
         for entry in entries:
             hours = 0
@@ -79,23 +78,41 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
             icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
             user = entry.get("name", "?")
+            preview = entry.get("preview", "")
+            if len(preview) > 200:
+                preview = preview[:197] + "..."
+            link = entry.get("link", "")
 
             lines.append(f"{icon} {user} ({age}):")
-            preview = entry.get("preview", "")
             if preview:
                 lines.append(preview)
-            link = entry.get("link", "")
             if link:
                 lines.append(link)
-            lines.append("")
 
-    if total == 0:
+        blocks.append("\n".join(lines))
+
+    if not blocks:
         state["last_queue_reminder"] = now.isoformat()
         return
 
-    lines.insert(1, f"Total: {total}\n")
-    message = "\n".join(lines).rstrip()
+    header = f"📋 Unreplied messages:\nTotal: {total}\n"
 
-    if tg.send_message(group_id, bot_topic, message):
+    # Pack blocks into messages under 4000 chars
+    messages = []
+    current = header
+    for block in blocks:
+        if len(current) + len(block) + 2 > 3900:
+            messages.append(current.rstrip())
+            current = ""
+        current += "\n" + block + "\n"
+    if current.strip():
+        messages.append(current.rstrip())
+
+    sent = False
+    for msg in messages:
+        if tg.send_message(group_id, bot_topic, msg):
+            sent = True
+
+    if sent:
         state["last_queue_reminder"] = now.isoformat()
-        print(f"Queue reminder: {total} unreplied messages")
+        print(f"Queue reminder: {total} unreplied messages ({len(messages)} msg)")
