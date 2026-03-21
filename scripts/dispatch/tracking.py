@@ -5,7 +5,7 @@ Updates topic state, message counts, word counts, timestamps,
 activity patterns, player roster, and transcript logging.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 import helpers
 import telegram as tg
@@ -98,9 +98,8 @@ def track_message(parsed: dict, state: dict, config: dict,
                     # Entry not in live queue — use reply_to_date from Telegram
                     reply_date = parsed.get("reply_to_date")
                     if reply_date:
-                        from datetime import datetime as _dt
-                        ts = _dt.fromtimestamp(reply_date, tz=timezone.utc
-                                               ).strftime("%Y-%m-%d %H:%M:%S")
+                        ts = datetime.fromtimestamp(reply_date, tz=timezone.utc
+                                                    ).strftime("%Y-%m-%d %H:%M:%S")
                         if ts not in replied:
                             replied.append(ts)
 
