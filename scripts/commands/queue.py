@@ -31,11 +31,18 @@ def build_queue(config: dict, state: dict) -> str:
 
     total = sum(len(d["entries"]) for d in scanned.values())
 
-    def oldest_time(pid):
-        entries = scanned[pid]["entries"]
-        return min(e.get("time", "9999") for e in entries)
+    # Priority campaigns always sort first
+    priority_pids = set()
+    for pair in config.get("topic_pairs", []):
+        if pair.get("queue_priority"):
+            priority_pids.add(str(pair["pbp_topic_ids"][0]))
 
-    sorted_pids = sorted(scanned.keys(), key=oldest_time)
+    def sort_key(pid):
+        entries = scanned[pid]["entries"]
+        oldest = min(e.get("time", "9999") for e in entries)
+        return (0 if pid in priority_pids else 1, oldest)
+
+    sorted_pids = sorted(scanned.keys(), key=sort_key)
     lines = [f"📋 GM Reply Queue: {total} unreplied"]
 
     for pid in sorted_pids:
@@ -46,7 +53,8 @@ def build_queue(config: dict, state: dict) -> str:
         label = f"{code}: {name}" if code else name
         scene = state.get("current_scenes", {}).get(pid, "")
         scene_str = f" 🎭 {scene}" if scene else ""
-        lines.append(f"━━ {label} ({len(entries)}){scene_str} ━━")
+        pin = "📌 " if pid in priority_pids else ""
+        lines.append(f"━━ {pin}{label} ({len(entries)}){scene_str} ━━")
         for entry in entries:
             hours = 0
             try:

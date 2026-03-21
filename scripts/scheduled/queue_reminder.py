@@ -68,11 +68,18 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         state["last_queue_fingerprint"] = fingerprint
         return
 
-    def oldest_time(pid):
-        entries = scanned[pid]["entries"]
-        return min(e.get("time", "9999") for e in entries)
+    # Build priority set from config
+    priority_pids = set()
+    for pair in config.get("topic_pairs", []):
+        if pair.get("queue_priority"):
+            priority_pids.add(str(pair["pbp_topic_ids"][0]))
 
-    sorted_pids = sorted(scanned.keys(), key=oldest_time)
+    def sort_key(pid):
+        entries = scanned[pid]["entries"]
+        oldest = min(e.get("time", "9999") for e in entries)
+        return (0 if pid in priority_pids else 1, oldest)
+
+    sorted_pids = sorted(scanned.keys(), key=sort_key)
     from commands.queue_stats import get_today_clears
     cleared_today = get_today_clears(state, now)
     streak = f" | ✅ {cleared_today} cleared today" if cleared_today else ""
@@ -87,7 +94,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         gm = _gm_mentions(config, state, pid)
         scene = state.get("current_scenes", {}).get(pid, "")
         scene_str = f" 🎭 {scene}" if scene else ""
-        lines.append(f"━━ {label} ({len(entries)}){scene_str} ━━ {gm}")
+        pin = "📌 " if pid in priority_pids else ""
+        lines.append(f"━━ {pin}{label} ({len(entries)}){scene_str} ━━ {gm}")
         for entry in entries:
             hours = 0
             try:
