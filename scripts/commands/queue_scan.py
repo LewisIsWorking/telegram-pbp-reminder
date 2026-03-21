@@ -54,6 +54,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
             pass
 
     for pair in config.get("topic_pairs", []):
+        if pair.get("queue_exclude"):
+            continue
         pid = str(pair["pbp_topic_ids"][0])
         name = pair["name"]
         code = pair.get("code", "")
