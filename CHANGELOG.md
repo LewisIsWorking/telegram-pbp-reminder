@@ -11,6 +11,34 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.12.0] - 2026-03-22
+
+### Queue — Maximum Value Update
+
+**Header**: Per-campaign count summary for instant triage:
+`📋 Unreplied: 11 | ✅ 6 cleared today`
+`C06:2 C01:2 C00:3 C07:4`
+
+**Player momentum**: Fastest responder per campaign in headers:
+`━━ C06: Kibwe (2) ━━ @PathWars ⚡Link (~4h)`
+Reply to them first to keep pace up.
+
+**`/queuestats` upgraded**:
+- Progress bar: `[████████░░] 15 vs 8 last week 📈`
+- Peak player hours: `⏰ 14:00 (45), 18:00 (38)`
+- Queue age heatmap: `🌡️ C09:5d 3h  C01:5d 2h`
+- Cleared archive: last 5 items you replied to today
+
+**Daily queue at 9am UTC**: Posts even if no changes, as a morning nudge.
+
+**POTW post links**: Winner's posts linked in the award message.
+
+**Kibwe pinned first** via `queue_priority` config flag.
+**Theria excluded** from queue via `queue_exclude` flag.
+**Campaign codes** fixed to C00, C01, C04, etc.
+
+---
+
 ## [4.11.0] - 2026-03-20
 
 ### Queue Intelligence

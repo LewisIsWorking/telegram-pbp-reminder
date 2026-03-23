@@ -11,7 +11,6 @@ import helpers
 import telegram as tg
 from transcript.logger import append_to_transcript
 
-
 def track_message(parsed: dict, state: dict, config: dict,
                   gm_ids: set, maps) -> None:
     """Update all tracking state for a processed message."""
@@ -107,13 +106,19 @@ def track_message(parsed: dict, state: dict, config: dict,
                 if len(replied) > 200:
                     state["gm_queue_replied"][pid] = replied[-200:]
 
-                # Remove from live queue
-                state.setdefault("gm_queue", {})[pid] = [
-                    e for e in queue if e["message_id"] != reply_to
-                ]
-                # Record for stats (streak, history)
+                # Remove from live queue and record for stats
+                replied_entry = {}
+                new_queue = []
+                for e in queue:
+                    if e["message_id"] == reply_to:
+                        replied_entry = e
+                    else:
+                        new_queue.append(e)
+                state.setdefault("gm_queue", {})[pid] = new_queue
                 from commands.queue_stats import record_reply
-                record_reply(pid, state)
+                record_reply(pid, state,
+                             replied_entry.get("preview", ""),
+                             replied_entry.get("user_name", ""))
 
     # Log to persistent PBP transcript
     if not text.startswith("/"):
@@ -122,7 +127,6 @@ def track_message(parsed: dict, state: dict, config: dict,
         from commands.session import track_session
         track_session(pid, user_id, gm_ids, msg_time_iso, state)
     print(f"Tracked message in {campaign_name} from {user_name}")
-
 
 def _track_player(parsed: dict, state: dict, config: dict,
                   gm_ids: set, maps) -> None:

@@ -12,6 +12,48 @@ from helpers import (
 import telegram as tg
 
 
+import re
+from pathlib import Path
+from transcript.logger import sanitize_dirname
+
+_LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
+_ENTRY_RE = re.compile(
+    r'\*\*(.+?)\*\*(?:\s*\([^)]*\))?'
+    r'(?:\s*\[GM\])?\s*\((\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2})\)'
+    r'(?:\s*msg#(\d+))?:\s*$'
+)
+
+
+def _find_player_post_links(campaign_name: str, player_first_name: str,
+                            pid: str, since: datetime) -> list[str]:
+    """Find a player's recent posts with links from transcript."""
+    dirname = sanitize_dirname(campaign_name)
+    month = since.strftime("%Y-%m")
+    path = _LOGS_DIR / dirname / f"{month}.md"
+    if not path.exists():
+        return []
+    links = []
+    for line in path.read_text(encoding="utf-8").split("\n"):
+        m = _ENTRY_RE.match(line)
+        if not m:
+            continue
+        author, date_str, time_str, msg_id = m.groups()
+        if not author.startswith(player_first_name):
+            continue
+        try:
+            ts = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
+            ts = ts.replace(tzinfo=timezone.utc)
+            if ts < since:
+                continue
+        except ValueError:
+            continue
+        if msg_id:
+            links.append(f"🔗 https://t.me/Path_Wars/{pid}/{msg_id}")
+        else:
+            links.append(f"📝 {date_str} {time_str}")
+    return links
+
+
 def _gather_potw_candidates(
     topic_timestamps: dict, gm_ids: set, week_ago: datetime, pid: str, state: dict,
 ) -> list[dict]:
@@ -86,6 +128,14 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
             f"gap of {avg_gap_str} between posts. The most consistent "
             f"driver of the story."
         )
+
+        # Find winner's posts with links from transcripts
+        winner_links = _find_player_post_links(
+            name, winner["first_name"], pid, week_ago)
+        if winner_links:
+            base_message += "\n\nPosts this week:"
+            for link in winner_links:
+                base_message += f"\n{link}"
 
         boon_text = "\n\nChoose your boon:\n"
         for i, b in enumerate(chosen_boons):

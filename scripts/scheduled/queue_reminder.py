@@ -6,22 +6,20 @@ import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
 
-
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
     if not gm_ids:
         return "@PathWars"
     names = []
     for uid in gm_ids:
-        name = None
-        for key, p in state.get("players", {}).items():
-            if p.get("user_id") == str(uid):
-                uname = p.get("username", "")
-                name = f"@{uname}" if uname else p.get("first_name", "@PathWars")
-                break
-        names.append(name or "@PathWars")
+        match = next((p for p in state.get("players", {}).values()
+                       if p.get("user_id") == str(uid)), None)
+        if match:
+            u = match.get("username", "")
+            names.append(f"@{u}" if u else match.get("first_name", "@PathWars"))
+        else:
+            names.append("@PathWars")
     return ", ".join(names)
-
 
 def _short_preview(text: str, words: int = 5) -> str:
     w = text.replace("\n", " ").split()[:words]
@@ -30,12 +28,10 @@ def _short_preview(text: str, words: int = 5) -> str:
         result += "..."
     return result
 
-
 def _age_str(hours: float) -> str:
     days = int(hours // 24)
     h = int(hours % 24)
     return f"{days}d {h}h" if days > 0 else f"{h}h"
-
 
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     bot_topic = config.get("bot_topic_id")
@@ -52,8 +48,15 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             fingerprint_parts.append(f"{pid}:{entry['time']}")
     fingerprint = "|".join(fingerprint_parts) if fingerprint_parts else "empty"
 
-    # Only post if queue changed since last post
-    if fingerprint == state.get("last_queue_fingerprint", ""):
+    # Only post if queue changed since last post, OR it's the daily reminder hour
+    daily_hour = config.get("queue_daily_hour")
+    is_daily = False
+    if daily_hour is not None and now.hour == daily_hour:
+        last_daily = state.get("last_queue_daily", "")
+        if last_daily != now.date().isoformat():
+            is_daily = True
+
+    if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
         return
 
     if not scanned:
@@ -83,7 +86,23 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     from commands.queue_stats import get_today_clears
     cleared_today = get_today_clears(state, now)
     streak = f" | ✅ {cleared_today} cleared today" if cleared_today else ""
-    lines = [f"📋 Unreplied: {total}{streak}"]
+    # Per-campaign summary line
+    summary_parts = []
+    for pid in sorted_pids:
+        d = scanned[pid]
+        c = d.get("code", "")
+        summary_parts.append(f"{c}:{len(d['entries'])}" if c else f"{d['campaign']}:{len(d['entries'])}")
+    summary = " ".join(summary_parts)
+    # Precompute fastest responders per campaign
+    from commands.queue_analytics import player_momentum
+    state.setdefault("_config_cache", config)
+    momentum_lines = player_momentum(state, config)
+    momentum_map = {}
+    for m in momentum_lines:
+        if ": " in m:
+            k, v = m.split(": ", 1)
+            momentum_map[k] = v
+    lines = [f"📋 Unreplied: {total}{streak}", summary]
 
     for pid in sorted_pids:
         data = scanned[pid]
@@ -95,7 +114,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         scene = state.get("current_scenes", {}).get(pid, "")
         scene_str = f" 🎭 {scene}" if scene else ""
         pin = "📌 " if pid in priority_pids else ""
-        lines.append(f"━━ {pin}{label} ({len(entries)}){scene_str} ━━ {gm}")
+        fast_key = code if code else name
+        fast = f" ⚡{momentum_map[fast_key]}" if fast_key in momentum_map else ""
+        lines.append(f"━━ {pin}{label} ({len(entries)}){scene_str} ━━ {gm}{fast}")
         for entry in entries:
             hours = 0
             try:
@@ -135,52 +156,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             sent = True
     if sent:
         state["last_queue_fingerprint"] = fingerprint
+        if is_daily:
+            state["last_queue_daily"] = now.date().isoformat()
         print(f"Queue reminder: {total} unreplied ({len(msgs)} msg)")
 
-
-def check_queue_nudge(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
-    """Send a direct @mention when a queue entry crosses 48h."""
-    bot_topic = config.get("bot_topic_id")
-    if not bot_topic:
-        return
-    now = now or datetime.now(timezone.utc)
-    scanned = scan_transcripts(config, state)
-    if not scanned:
-        return
-
-    group_id = config["group_id"]
-    nudged = state.setdefault("queue_nudged", {})
-
-    for pid, data in scanned.items():
-        gm = _gm_mentions(config, state, pid)
-        name = data["campaign"]
-        code = data.get("code", "")
-        label = f"{code}: {name}" if code else name
-
-        for entry in data["entries"]:
-            try:
-                posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
-                posted = posted.replace(tzinfo=timezone.utc)
-                hours = helpers.hours_since(now, posted)
-            except (ValueError, KeyError):
-                continue
-
-            if hours < 48:
-                continue
-
-            nudge_key = f"{pid}:{entry['time']}"
-            if nudge_key in nudged:
-                continue
-
-            user = entry.get("name", "?")
-            tg.send_message(
-                group_id, bot_topic,
-                f"⚠️ {gm} — {user}'s message in {label} is {int(hours)}h old!")
-            nudged[nudge_key] = now.isoformat()
-            print(f"Queue nudge: {user} in {name} ({int(hours)}h)")
-
-    # Cleanup old nudge keys (keep last 200)
-    if len(nudged) > 200:
-        sorted_keys = sorted(nudged, key=lambda k: nudged[k])
-        for k in sorted_keys[:-200]:
-            del nudged[k]
