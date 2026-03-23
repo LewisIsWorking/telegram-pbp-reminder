@@ -1,9 +1,4 @@
-"""
-Post-message state tracking.
-
-Updates topic state, message counts, word counts, timestamps,
-activity patterns, player roster, and transcript logging.
-"""
+"""Post-message state tracking: topics, counts, timestamps, roster, transcripts."""
 
 from datetime import datetime, timezone
 
@@ -192,9 +187,14 @@ def _track_player(parsed: dict, state: dict, config: dict,
                 if bot_topic:
                     char = helpers.character_name(config, pid, user_id)
                     tag = f" ({char})" if char else ""
+                    gm_ids = helpers.gm_ids_for_campaign(config, pid)
+                    gm_at = next(
+                        (f"@{p.get('username')}" for p in state.get("players", {}).values()
+                         if p.get("user_id") in {str(u) for u in gm_ids} and p.get("username")),
+                        "@PathWars")
                     tg.send_message(group_id, bot_topic,
                                     f"👀 {user_name}{tag} posted in {campaign_name} "
-                                    f"after {int(gap)}d of silence!")
+                                    f"after {int(gap)}d of silence!\n{gm_at}")
                     print(f"Comeback: {user_name} in {campaign_name} ({int(gap)}d)")
         except (ValueError, TypeError):
             pass
