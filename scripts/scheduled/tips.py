@@ -35,7 +35,7 @@ def post_daily_tip(config: dict, state: dict, *, now: datetime | None = None, **
     tip_idx = random.choice(available)
 
     print(f"Daily tip #{tip_idx} to bot topic {bot_topic}")
-    if tg.send_message(group_id, bot_topic, _TIPS[tip_idx], parse_mode="HTML"):
+    if tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n" + _TIPS[tip_idx], parse_mode="HTML"):
         state["last_daily_tip"] = now.isoformat()
         used_tips.append(tip_idx)
         state["used_tip_indices"] = used_tips

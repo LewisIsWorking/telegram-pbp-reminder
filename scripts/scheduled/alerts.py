@@ -88,6 +88,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         last_date = fmt_date(last_time)
 
         message = (
+            f"━━━━━━━━━━━━━━━━\n"
             f"No new posts in {name} PBP for {time_str}.\n"
             f"Last post was from {last_user}{count_str} on {last_date}."
         )

@@ -179,22 +179,5 @@ def _track_player(parsed: dict, state: dict, config: dict,
             tg.send_message(group_id, chat_tid,
                             f"\U0001f389{mention} {user_name} is back{tag}! Good to see you.")
     elif old_player.get("last_post_time") and not text.startswith("/"):
-        try:
-            last = datetime.fromisoformat(old_player["last_post_time"])
-            gap = helpers.days_since(datetime.fromisoformat(msg_time_iso), last)
-            if gap >= 5:
-                bot_topic = config.get("bot_topic_id")
-                if bot_topic:
-                    char = helpers.character_name(config, pid, user_id)
-                    tag = f" ({char})" if char else ""
-                    gm_ids = helpers.gm_ids_for_campaign(config, pid)
-                    gm_at = next((f"@{p.get('username')}" for p in state.get("players", {}).values()
-                                  if p.get("user_id") in {str(u) for u in gm_ids}
-                                  and p.get("username")), "@PathWars")
-                    p_at = f" @{parsed.get('username')}" if parsed.get("username") else ""
-                    tg.send_message(group_id, bot_topic,
-                                    f"👀 {user_name}{tag} posted in {campaign_name} "
-                                    f"after {int(gap)}d of silence!\n{gm_at}{p_at}")
-                    print(f"Comeback: {user_name} in {campaign_name} ({int(gap)}d)")
-        except (ValueError, TypeError):
-            pass
+        from dispatch.comeback import check_comeback
+        check_comeback(parsed, old_player, state, config, gm_ids)

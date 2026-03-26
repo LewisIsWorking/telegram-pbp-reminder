@@ -42,6 +42,7 @@ def check_queue_nudge(config: dict, state: dict, *, now: datetime | None = None,
         code = data.get("code", "")
         label = f"{code}: {name}" if code else name
 
+        nudged_players = set()  # one nudge per player per campaign
         for entry in data["entries"]:
             try:
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
@@ -51,14 +52,20 @@ def check_queue_nudge(config: dict, state: dict, *, now: datetime | None = None,
                 continue
             if hours < 48:
                 continue
-            nudge_key = f"{pid}:{entry['time']}"
-            if nudge_key in nudged:
-                continue
             user = entry.get("name", "?")
+            player_key = f"{pid}:{user}"
+            if player_key in nudged_players or player_key in nudged:
+                continue
+            nudged_players.add(player_key)
+            count = sum(1 for e in data["entries"]
+                        if e.get("name") == user)
+            count_str = f" ({count} messages)" if count > 1 else ""
             tg.send_message(
                 group_id, bot_topic,
-                f"⚠️ {gm} — {user}'s message in {label} is {int(hours)}h old!")
-            nudged[nudge_key] = now.isoformat()
+                f"━━━━━━━━━━━━━━━━\n"
+                f"⚠️ {gm} — {user}'s message in {label} "
+                f"is {int(hours)}h old!{count_str}")
+            nudged[player_key] = now.isoformat()
             print(f"Queue nudge: {user} in {name} ({int(hours)}h)")
 
     if len(nudged) > 200:

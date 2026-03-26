@@ -68,7 +68,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             s = "s" if needed != 1 else ""
             footer += f"\n{name} needs {needed} more player{s}!"
 
-        message = f"Party roster for {name}:\n\n" + "\n\n".join(lines) + footer
+        message = f"━━━━━━━━━━━━━━━━\nParty roster for {name}:\n\n" + "\n\n".join(lines) + footer
 
         print(f"Posting roster for {name}")
         if tg.send_message(group_id, bot_topic or chat_topic_id, message):

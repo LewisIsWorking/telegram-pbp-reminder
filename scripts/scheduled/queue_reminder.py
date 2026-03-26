@@ -67,7 +67,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     total = sum(len(d["entries"]) for d in scanned.values())
     if total == 0:
         if state.get("last_queue_fingerprint", "empty") != "empty":
-            tg.send_message(group_id, bot_topic, "📋 All caught up! No unreplied messages.")
+            tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")
         state["last_queue_fingerprint"] = fingerprint
         return
 
@@ -102,7 +102,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if ": " in m:
             k, v = m.split(": ", 1)
             momentum_map[k] = v
-    lines = [f"📋 Unreplied: {total}{streak}", summary]
+    lines = [f"━━━━━━━━━━━━━━━━\n📋 Unreplied: {total}{streak}", summary]
 
     for pid in sorted_pids:
         data = scanned[pid]
