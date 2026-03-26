@@ -53,6 +53,20 @@ def announce_poll_result(config: dict, state: dict, *,
                f"Friday: {friday_count}, Saturday: {saturday_count}.\n"
                f"GM's call!")
 
+    # Archive this week's result
+    archive = state.setdefault("poll_results", [])
+    archive.append({
+        "week": f"{now.year}-W{week_num:02d}",
+        "date": now.strftime("%Y-%m-%d"),
+        "winner": winner,
+        "friday": friday_count,
+        "saturday": saturday_count,
+        "cant": cant_count,
+        "friday_uids": votes.get("friday", []),
+        "saturday_uids": votes.get("saturday", []),
+        "cant_uids": votes.get("cant", []),
+    })
+
     if cant_count:
         msg += f"\n({cant_count} can't make either)"
 

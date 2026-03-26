@@ -57,12 +57,12 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             roster_rank += 1
             full = helpers.player_full_name(player)
             char_name = characters.get(uid)
-            label = f"{full} ({char_name})" if char_name else full
+            player_label = f"{full} ({char_name})" if char_name else full
             registry_id = get_or_assign_id(pid, uid, full, False, state)
-            label = f"#{roster_rank:02d}: {label}"
+            player_label = f"#{roster_rank:02d}: {player_label}"
             stats = roster_user_stats(raw_ts, counts.get(uid, 0), now)
             extra_line = f"Player {registry_id}."
-            lines.append(roster_block(label, player.get("username", ""), stats, extra_line))
+            lines.append(roster_block(player_label, player.get("username", ""), stats, extra_line))
 
         # Add GM stats if present
         for gm_id in gm_ids:
