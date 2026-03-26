@@ -36,12 +36,15 @@ def roster_user_stats(raw_timestamps: list[str], total_count: int, now: datetime
     }
 
 
-def roster_block(label: str, username: str, stats: dict) -> str:
+def roster_block(label: str, username: str, stats: dict,
+                 extra_line: str = "") -> str:
     """Format a single roster entry (player or GM)."""
     s_suffix = "s" if stats["sessions"] != 1 else ""
     block = f"{label}\n"
     if username:
         block += f"- @{username}.\n"
+    if extra_line:
+        block += f"- {extra_line}\n"
     block += (
         f"- {posts_str(stats['total'])} total.\n"
         f"- {stats['sessions']} posting session{s_suffix}.\n"

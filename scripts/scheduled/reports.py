@@ -42,9 +42,10 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         lines = []
         characters = helpers.get_characters(config, pid)
 
-        from commands.player_registry import get_or_assign_id, format_id
+        from commands.player_registry import get_or_assign_id
 
         active_player_count = 0
+        roster_rank = 0
         for player in sorted(players, key=lambda p: counts.get(p["user_id"], 0), reverse=True):
             uid = player["user_id"]
             if uid in gm_ids:
@@ -53,13 +54,15 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             if not raw_ts:
                 continue
             active_player_count += 1
+            roster_rank += 1
             full = helpers.player_full_name(player)
             char_name = characters.get(uid)
             label = f"{full} ({char_name})" if char_name else full
-            pid_num = get_or_assign_id(pid, uid, full, False, state)
-            label = f"{format_id(pid_num)}: {label}"
+            registry_id = get_or_assign_id(pid, uid, full, False, state)
+            label = f"#{roster_rank:02d}: {label}"
             stats = roster_user_stats(raw_ts, counts.get(uid, 0), now)
-            lines.append(roster_block(label, player.get("username", ""), stats))
+            extra_line = f"Player {registry_id}."
+            lines.append(roster_block(label, player.get("username", ""), stats, extra_line))
 
         # Add GM stats if present
         for gm_id in gm_ids:
@@ -70,7 +73,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
                 gm_name = helpers.player_full_name(gm_player) if gm_player else "GM"
                 get_or_assign_id(pid, gm_id, gm_name, True, state)
                 stats = roster_user_stats(raw_ts, gm_count, now)
-                lines.insert(0, roster_block(f"{format_id(0)}: GM", "", stats))
+                lines.insert(0, roster_block("#00: GM", "", stats))
 
         if not lines:
             continue
