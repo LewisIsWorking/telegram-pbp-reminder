@@ -66,6 +66,7 @@ GM_COMMANDS = [
     ("resume", "Resume inactivity tracking"),
     ("scene", "Mark a scene in transcript"),
     ("event", "Log a story event to the timeline"),
+    ("setchar", "Set a player's character name: /setchar @user Name"),
     ("note", "Add a campaign note"),
     ("delnote", "Delete a campaign note"),
     ("quest", "Add a quest"),

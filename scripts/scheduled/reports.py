@@ -40,7 +40,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             continue
 
         lines = []
-        characters = helpers.get_characters(config, pid)
+        characters = helpers.get_characters(config, pid, state)
 
         from commands.player_registry import get_or_assign_id
 

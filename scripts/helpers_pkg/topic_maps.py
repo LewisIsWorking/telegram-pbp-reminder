@@ -56,20 +56,30 @@ def build_topic_maps(config: dict) -> TopicMaps:
 
 
 
-def get_characters(config: dict, pid: str) -> dict:
-    """Return {user_id_str: character_name} for a campaign, or empty dict."""
+def get_characters(config: dict, pid: str, state: dict | None = None) -> dict:
+    """Return {user_id_str: character_name} for a campaign.
+
+    Checks state['characters'] first (set via /setchar), then config.
+    """
+    result = {}
+    # Config characters (base)
     for pair in config.get("topic_pairs", []):
         all_ids = [str(pair.get("chat_topic_id", ""))] + [str(x) for x in pair.get("pbp_topic_ids", [])]
         if pid in all_ids:
             chars = pair.get("characters", {})
-            return {str(k): v for k, v in chars.items()}
-    return {}
+            result = {str(k): v for k, v in chars.items()}
+            break
+    # State overrides (from /setchar)
+    if state:
+        state_chars = state.get("characters", {}).get(pid, {})
+        result.update(state_chars)
+    return result
 
 
-
-def character_name(config: dict, pid: str, user_id: str) -> str | None:
+def character_name(config: dict, pid: str, user_id: str,
+                   state: dict | None = None) -> str | None:
     """Look up a user's character name for a campaign, or None."""
-    return get_characters(config, pid).get(str(user_id))
+    return get_characters(config, pid, state).get(str(user_id))
 
 
 

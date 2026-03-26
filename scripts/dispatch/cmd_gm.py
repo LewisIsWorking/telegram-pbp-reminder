@@ -94,4 +94,28 @@ def handle(ctx: dict) -> bool:
             tg.send_message(gid, tid, "Usage: /session set <number>")
         return True
 
+    if text.startswith("/setchar"):
+        args = text[8:].strip()
+        if not args or " " not in args:
+            tg.send_message(gid, tid, "Usage: /setchar @username CharacterName")
+            return True
+        parts = args.split(None, 1)
+        target_username = parts[0].lstrip("@")
+        char_name = parts[1]
+        # Find user_id from username
+        target_uid = None
+        for key, p in state.get("players", {}).items():
+            if p.get("username", "").lower() == target_username.lower():
+                if p.get("pbp_topic_id") == pid:
+                    target_uid = p.get("user_id")
+                    break
+        if not target_uid:
+            tg.send_message(gid, tid,
+                            f"Player @{target_username} not found in this campaign.")
+            return True
+        state.setdefault("characters", {}).setdefault(pid, {})[target_uid] = char_name
+        tg.send_message(gid, tid,
+                        f"✅ @{target_username} → {char_name}")
+        return True
+
     return False
