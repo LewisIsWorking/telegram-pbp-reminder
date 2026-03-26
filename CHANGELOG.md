@@ -11,6 +11,66 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.13.0] - 2026-03-26
+
+### Added — Player Registry & Character Names
+
+**Player Registry** (`commands/player_registry.py`):
+- Every player gets a permanent campaign ID on first post
+- GM is always Player 0. Players numbered sequentially
+- `/registry` shows all players who have ever been in a campaign
+- IDs persist even if a player leaves and returns
+
+**Character Names** (`/setchar @username CharacterName`):
+- Stored in state, shown on rosters and registry
+- Backward compatible: checks state first, then config
+
+**Roster overhaul**:
+```
+#01: Link
+- @Linksanelf2006.
+- Player 3.
+- 20 posts total.
+```
+- `#01` = rank by activity (most posts first)
+- `Player 3` = permanent campaign registry ID
+- Campaign code in header: `Party roster for C05: Grand Explorers`
+- Fixed: player count only counts players who have posted
+
+### Added — Weekly Campaign Table
+
+Posted weekly to bot topic, sorted by active players:
+```
+📊 Campaign Overview (W13)
+Campaign           Code Active Week  Last
+🔴 Doomsday Funtime  C01     1     3   3d
+🟢 Kibwe             C06     7    36   0h
+```
+
+### Improved — Visual Separators
+
+Every bot message starts with `━━━━━━━━━━━━━━━━` for clear
+visual breaks between consecutive messages in Telegram.
+
+### Fixed — Duplicate Nudges
+
+Nudge now fires once per player per campaign, not per message.
+Shows count: `⚠️ @PathWars — Dima's message in C07 is 48h old! (3 messages)`
+
+### Improved — Comeback Alerts
+
+Pings both GM and the returning player:
+```
+👀 Kaer'maga when? posted in Riddleport after 12d of silence!
+@PathWars @Nemesiux
+```
+
+### Refactored
+
+Extracted `dispatch/comeback.py` for comeback alert logic.
+
+---
+
 ## [4.12.0] - 2026-03-22
 
 ### Queue — Maximum Value Update
