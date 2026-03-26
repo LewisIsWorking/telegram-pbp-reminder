@@ -161,3 +161,13 @@ def post_campaign_leaderboard(config: dict, state: dict, *, now: datetime | None
     print(f"Posting campaign leaderboard ({len(campaign_stats)} campaigns)")
     if tg.send_message(group_id, leaderboard_topic, message):
         state["last_leaderboard"] = now.isoformat()
+        # MVP hero point reminder
+        if global_player_posts:
+            top = max(global_player_posts.items(), key=lambda x: x[1]["count"])
+            winner_uid, winner_data = top
+            uname = winner_data.get("username", "")
+            mention = f"@{uname}" if uname else winner_data["full_name"]
+            tg.send_message(group_id, leaderboard_topic,
+                            f"🎲 {mention} — don't forget to claim your "
+                            f"Hero Point! Tell me which campaign you want "
+                            f"it in.")
