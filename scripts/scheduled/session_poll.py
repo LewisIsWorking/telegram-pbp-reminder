@@ -17,7 +17,7 @@ def _next_friday(now: datetime) -> str:
     if days_until == 0:
         days_until = 0
     friday = now + timedelta(days=days_until)
-    return friday.strftime("%A %d %B")
+    return friday.strftime("%d %B")
 
 
 def _next_saturday(now: datetime) -> str:
@@ -26,7 +26,7 @@ def _next_saturday(now: datetime) -> str:
     if days_until == 0 and now.weekday() != 5:
         days_until = 7
     saturday = now + timedelta(days=days_until)
-    return saturday.strftime("%A %d %B")
+    return saturday.strftime("%d %B")
 
 
 def _get_poll_roster(config: dict, state: dict) -> dict:
@@ -62,8 +62,8 @@ def _get_poll_roster(config: dict, state: dict) -> dict:
     return roster
 
 
-def _unvoted_mentions(config: dict, state: dict) -> str:
-    """Build @mentions for players who haven't voted yet."""
+def _unvoted_mentions(config: dict, state: dict) -> list[str]:
+    """Build list of @mentions for players who haven't voted yet."""
     poll = state.get("session_poll", {})
     voted = set(str(uid) for uid in poll.get("voted_uids", []))
     roster = _get_poll_roster(config, state)
@@ -73,7 +73,15 @@ def _unvoted_mentions(config: dict, state: dict) -> str:
         if uid not in voted:
             uname = info.get("username", "")
             mentions.append(f"@{uname}" if uname else info["name"])
-    return " ".join(mentions)
+    return mentions
+
+
+def _vote_count(config: dict, state: dict) -> tuple[int, int]:
+    """Return (voted, total) for the current poll."""
+    poll = state.get("session_poll", {})
+    voted = len(poll.get("voted_uids", []))
+    total = len(_get_poll_roster(config, state))
+    return voted, total
 
 
 def post_session_poll(config: dict, state: dict, *,
@@ -101,10 +109,11 @@ def post_session_poll(config: dict, state: dict, *,
     if poll.get("week_iso") != current_week:
         friday = _next_friday(now)
         saturday = _next_saturday(now)
+        week_num = now.isocalendar()[1]
 
         msg_id = tg.send_poll(
             group_id, poll_topic,
-            f"🗳️ Session Poll — When are we playing?",
+            f"🗳️ Week {week_num}/52 — When are we playing?",
             [f"Friday {friday}", f"Saturday {saturday}"],
             is_anonymous=False,
             allows_multiple_answers=False,
@@ -125,15 +134,34 @@ def post_session_poll(config: dict, state: dict, *,
         return
 
     unvoted = _unvoted_mentions(config, state)
+    voted, total = _vote_count(config, state)
+    week_num = now.isocalendar()[1]
+
     if not unvoted:
-        return  # Everyone voted
+        # Everyone voted — post confirmation once
+        if not poll.get("all_voted_posted"):
+            tg.send_message(group_id, poll_topic,
+                            f"━━━━━━━━━━━━━━━━\n"
+                            f"✅ Week {week_num}/52 — All {total} players have voted!")
+            poll["all_voted_posted"] = True
+            print(f"Session poll: all {total} voted")
+        return
+
+    unvoted_list = "\n".join(unvoted)
 
     if weekday == 4:
-        ping_msg = f"━━━━━━━━━━━━━━━━\n⚠️ Last chance to vote! {unvoted}"
+        header = f"⚠️ Week {week_num}/52 — Last chance to vote!"
     elif weekday == 0:
-        ping_msg = f"━━━━━━━━━━━━━━━━\n🗳️ New session poll is up! {unvoted}"
+        header = f"🗳️ Week {week_num}/52 — New session poll is up!"
     else:
-        ping_msg = f"━━━━━━━━━━━━━━━━\n🗳️ Vote in the poll above! {unvoted}"
+        header = f"🗳️ Week {week_num}/52 — Vote in the poll above!"
+
+    ping_msg = (
+        f"━━━━━━━━━━━━━━━━\n"
+        f"{header}\n"
+        f"{voted}/{total} voted.\n\n"
+        f"Waiting on:\n{unvoted_list}"
+    )
 
     if tg.send_message(group_id, poll_topic, ping_msg):
         poll["last_ping_day"] = weekday
