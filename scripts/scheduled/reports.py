@@ -26,6 +26,12 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         name = maps.to_name.get(pid, "Unknown")
+        code = ""
+        for pair in config.get("topic_pairs", []):
+            if str(pair["pbp_topic_ids"][0]) == pid:
+                code = pair.get("code", "")
+                break
+        label = f"{code}: {name}" if code else name
         players = campaigns.get(pid, [])
         counts = state.get("message_counts", {}).get(pid, {})
         topic_timestamps = helpers.get_topic_timestamps(state, pid)
@@ -70,14 +76,14 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             continue
 
         player_count = active_player_count
-        footer = f"\n\n———\n\n📋 {name} Party Size\n"
+        footer = f"\n\n———\n\n📋 {label} Party Size\n"
         footer += f"Party size: {player_count}/{helpers.REQUIRED_PLAYERS}."
         if player_count < helpers.REQUIRED_PLAYERS:
             needed = helpers.REQUIRED_PLAYERS - player_count
             s = "s" if needed != 1 else ""
-            footer += f"\n{name} needs {needed} more player{s}!"
+            footer += f"\n{label} needs {needed} more player{s}!"
 
-        message = f"━━━━━━━━━━━━━━━━\nParty roster for {name}:\n\n" + "\n\n".join(lines) + footer
+        message = f"━━━━━━━━━━━━━━━━\nParty roster for {label}:\n\n" + "\n\n".join(lines) + footer
 
         print(f"Posting roster for {name}")
         if tg.send_message(group_id, bot_topic or chat_topic_id, message):
