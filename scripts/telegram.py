@@ -35,7 +35,7 @@ def get_updates(offset: int) -> list:
                 "offset": offset,
                 "limit": 100,
                 "timeout": 5,
-                "allowed_updates": json.dumps(["message", "callback_query", "message_reaction"]),
+                "allowed_updates": json.dumps(["message", "callback_query", "message_reaction", "poll_answer"]),
             },
             timeout=30,
         )
@@ -110,3 +110,22 @@ def answer_callback(callback_id: str, text: str = "") -> bool:
         "callback_query_id": callback_id,
         "text": text,
     }, "answer_callback") is not None
+
+
+def send_poll(chat_id: int, thread_id: int, question: str,
+              options: list[str], is_anonymous: bool = False,
+              allows_multiple_answers: bool = False) -> int | None:
+    """Send a native Telegram poll. Returns message_id or None."""
+    # Bot API 7.3+ requires InputPollOption objects
+    poll_options = [{"text": opt} for opt in options]
+    result = _post("sendPoll", {
+        "chat_id": chat_id,
+        "message_thread_id": thread_id,
+        "question": question,
+        "options": poll_options,
+        "is_anonymous": is_anonymous,
+        "allows_multiple_answers": allows_multiple_answers,
+    }, "send_poll")
+    if result:
+        return result.get("message_id")
+    return None

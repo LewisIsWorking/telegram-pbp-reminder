@@ -63,14 +63,19 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         cb = update.get("callback_query")
 
         try:
+            # Handle native poll votes
+            poll_answer = update.get("poll_answer")
+            if poll_answer:
+                uid = str(poll_answer.get("user", {}).get("id", ""))
+                voted = state.get("session_poll", {}).setdefault("voted_uids", [])
+                if uid and uid not in voted:
+                    voted.append(uid)
+                    name = poll_answer.get("user", {}).get("first_name", "?")
+                    print(f"Poll vote from {name} (uid {uid})")
+                continue
+
             if cb:
-                # Try poll vote first
-                from scheduled.poll_handler import handle_poll_vote
-                poll_result = handle_poll_vote(cb, state, config)
-                if poll_result:
-                    tg.answer_callback(cb.get("id", ""), poll_result)
-                else:
-                    process_boon_callback(cb, config, state)
+                process_boon_callback(cb, config, state)
                 continue
 
             # Handle emoji reactions
