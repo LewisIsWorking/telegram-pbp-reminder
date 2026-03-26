@@ -67,11 +67,25 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             poll_answer = update.get("poll_answer")
             if poll_answer:
                 uid = str(poll_answer.get("user", {}).get("id", ""))
-                voted = state.get("session_poll", {}).setdefault("voted_uids", [])
+                name = poll_answer.get("user", {}).get("first_name", "?")
+                option_ids = poll_answer.get("option_ids", [])
+                poll = state.get("session_poll", {})
+                voted = poll.setdefault("voted_uids", [])
                 if uid and uid not in voted:
                     voted.append(uid)
-                    name = poll_answer.get("user", {}).get("first_name", "?")
-                    print(f"Poll vote from {name} (uid {uid})")
+                # Track votes per option: 0=Friday, 1=Saturday, 2=Can't
+                votes = poll.setdefault("votes", {"friday": [], "saturday": [], "cant": []})
+                # Remove previous vote
+                for key in votes:
+                    votes[key] = [v for v in votes[key] if v != uid]
+                # Record new vote
+                if 0 in option_ids:
+                    votes["friday"].append(uid)
+                elif 1 in option_ids:
+                    votes["saturday"].append(uid)
+                elif 2 in option_ids:
+                    votes["cant"].append(uid)
+                print(f"Poll vote from {name}: option {option_ids}")
                 continue
 
             if cb:

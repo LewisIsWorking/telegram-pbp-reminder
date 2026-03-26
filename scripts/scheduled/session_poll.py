@@ -51,14 +51,14 @@ def _get_poll_roster(config: dict, state: dict) -> dict:
                 uname = p.get("username", "") if p else ""
                 roster[uid_str] = {"name": name, "username": uname}
         else:
+            # Include all players AND GMs in session poll
             for key, p in state.get("players", {}).items():
                 if p.get("pbp_topic_id") == pid:
                     uid = p.get("user_id", "")
-                    if uid not in gm_ids:
-                        roster[uid] = {
-                            "name": p.get("first_name", "?"),
-                            "username": p.get("username", ""),
-                        }
+                    roster[uid] = {
+                        "name": p.get("first_name", "?"),
+                        "username": p.get("username", ""),
+                    }
     return roster
 
 
@@ -111,13 +111,27 @@ def post_session_poll(config: dict, state: dict, *,
         saturday = _next_saturday(now)
         week_num = now.isocalendar()[1]
 
+        # Historical stats
+        history = state.get("poll_history", {"friday": 0, "saturday": 0})
+        total_polls = history["friday"] + history["saturday"]
+        hist_str = ""
+        if total_polls > 0:
+            hist_str = (f"\n\nHistory: Fridays {history['friday']}/"
+                        f"{total_polls}, Saturdays {history['saturday']}/"
+                        f"{total_polls}")
+
         msg_id = tg.send_poll(
             group_id, poll_topic,
             f"🗳️ Week {week_num}/52 — When are we playing?",
-            [f"Friday {friday}", f"Saturday {saturday}"],
+            [f"Friday {friday}", f"Saturday {saturday}", "Can't make either"],
             is_anonymous=False,
             allows_multiple_answers=False,
         )
+
+        # Post history as follow-up if available
+        if hist_str:
+            tg.send_message(group_id, poll_topic,
+                            f"━━━━━━━━━━━━━━━━{hist_str}")
 
         state["session_poll"] = {
             "week_iso": current_week,
@@ -166,3 +180,4 @@ def post_session_poll(config: dict, state: dict, *,
     if tg.send_message(group_id, poll_topic, ping_msg):
         poll["last_ping_day"] = weekday
         print(f"Session poll ping (day {weekday})")
+
