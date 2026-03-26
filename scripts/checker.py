@@ -41,6 +41,7 @@ from scheduled.combat_ping import check_combat_turns, check_expired_timers
 from scheduled.queue_reminder import post_queue_reminder
 from scheduled.queue_nudge import check_queue_nudge
 from scheduled.campaign_table import post_campaign_table
+from scheduled.session_poll import post_session_poll
 from boons.handler import expire_pending_boons
 from transcript.finalize import update_transcript_index
 
@@ -75,6 +76,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Queue reminder", post_queue_reminder),
         ("Queue nudge", check_queue_nudge),
         ("Campaign table", post_campaign_table),
+        ("Session poll", post_session_poll),
     ]
     for label, func in checks:
         try:

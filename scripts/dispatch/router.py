@@ -64,7 +64,13 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
         try:
             if cb:
-                process_boon_callback(cb, config, state)
+                # Try poll vote first
+                from scheduled.poll_handler import handle_poll_vote
+                poll_result = handle_poll_vote(cb, state, config)
+                if poll_result:
+                    tg.answer_callback(cb.get("id", ""), poll_result)
+                else:
+                    process_boon_callback(cb, config, state)
                 continue
 
             # Handle emoji reactions

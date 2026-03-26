@@ -10,6 +10,14 @@ from datetime import datetime, timezone, timedelta
 import helpers
 import telegram as tg
 
+# Last post age → health icon
+# 🟢 < 1 day   — healthy, active today
+# 🟡 1-3 days  — slowing down
+# 🟠 3-5 days  — concerning, needs attention
+# 🔴 5+ days   — stalled, no recent activity
+
+REQUIRED_PLAYERS = 6
+
 
 def build_campaign_table(config: dict, state: dict,
                          now: datetime | None = None) -> str:
@@ -20,21 +28,29 @@ def build_campaign_table(config: dict, state: dict,
 
     lines = [f"📊 Campaign Overview (W{week_num})\n"]
 
+    from commands.queue_scan import scan_transcripts
+    scanned = scan_transcripts(config, state)
+
     rows = []
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
         name = pair["name"]
         code = pair.get("code", "")
+        is_hybrid = pair.get("hybrid_live", False)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
-        # Active players (who have posted)
         topic_ts = helpers.get_topic_timestamps(state, pid)
         active = sum(
             1 for uid, ts in topic_ts.items()
             if uid not in gm_ids and ts
         )
 
-        # Posts this week
+        registry = state.get("player_registry", {}).get(pid, {})
+        total_registered = sum(
+            1 for uid, entry in registry.items()
+            if entry.get("id", 0) != 0
+        )
+
         week_posts = 0
         for uid, timestamps in topic_ts.items():
             for ts in timestamps:
@@ -44,66 +60,48 @@ def build_campaign_table(config: dict, state: dict,
                 except (ValueError, TypeError):
                     pass
 
-        # Last post age
         topic = state.get("topics", {}).get(pid, {})
         last_time = topic.get("last_message_time")
-        if last_time:
-            hours = helpers.hours_since(now, datetime.fromisoformat(last_time))
-            if hours < 24:
-                age = f"{int(hours)}h"
-            else:
-                age = f"{int(hours / 24)}d"
-        else:
-            age = "—"
+        age, days_val = _calc_age(last_time, now)
+        icon = _health_icon(days_val)
 
-        # Health icon
-        days = float(age.rstrip("dh")) if age != "—" else 99
-        if "d" in age:
-            days_val = days
-        else:
-            days_val = days / 24
-        if days_val < 1:
-            icon = "🟢"
-        elif days_val < 3:
-            icon = "🟡"
-        elif days_val < 5:
-            icon = "🟠"
-        else:
-            icon = "🔴"
-
-        # Queue count
-        from commands.queue_scan import scan_transcripts
-        scanned = scan_transcripts(config, state)
         queue = len(scanned.get(pid, {}).get("entries", []))
         q_str = f"📋{queue}" if queue else ""
 
         short_name = _truncate(name, 18)
         rows.append({
-            "code": code,
-            "name": short_name,
-            "active": active,
-            "week": week_posts,
-            "age": age,
-            "icon": icon,
-            "queue": q_str,
+            "code": code, "name": short_name,
+            "active": active, "total": total_registered,
+            "week": week_posts, "age": age,
+            "icon": icon, "queue": q_str,
+            "hybrid": is_hybrid,
         })
 
-    # Sort by active players, least to most
     rows.sort(key=lambda r: r["active"])
 
-    # Build table
-    lines.append("Campaign           Code Active Week  Last")
+    lines.append("Campaign           Code Players Total Week Last")
     for r in rows:
-        line = (f"{r['icon']} {r['name']:<18s} {r['code']:<4s} "
-                f"{r['active']:>4d}   {r['week']:>3d}  {r['age']:>3s}")
+        line = (f"{r['icon']} {r['name']:<18s} {r['code']:<5s}"
+                f"{r['active']:>3d}   {r['total']:>3d}  "
+                f"{r['week']:>3d}  {r['age']:>3s}")
         if r["queue"]:
             line += f"  {r['queue']}"
         lines.append(line)
 
-    # Totals
     total_active = sum(r["active"] for r in rows)
     total_week = sum(r["week"] for r in rows)
     lines.append(f"\nTotal: {total_active} active players, {total_week} posts this week")
+    lines.append("\n🟢 <1d  🟡 1-3d  🟠 3-5d  🔴 5d+")
+
+    eligible = [r for r in rows
+                if not r["hybrid"] and r["active"] < REQUIRED_PLAYERS]
+    if eligible:
+        neediest = eligible[0]
+        needed = REQUIRED_PLAYERS - neediest["active"]
+        lines.append(
+            f"\n⚠️ {neediest['code']}: {neediest['name']} needs players "
+            f"the most ({neediest['active']}/{REQUIRED_PLAYERS}, "
+            f"needs {needed} more)")
 
     return "\n".join(lines)
 
@@ -115,12 +113,9 @@ def post_campaign_table(config: dict, state: dict, *,
     if not bot_topic:
         return
     now = now or datetime.now(timezone.utc)
-
-    # Post once per week (alongside leaderboard)
     last = state.get("last_campaign_table")
     if last and not helpers.interval_elapsed(last, 6.5, now):
         return
-
     table = build_campaign_table(config, state, now)
     if tg.send_message(config["group_id"], bot_topic,
                        f"━━━━━━━━━━━━━━━━\n{table}"):
@@ -128,6 +123,24 @@ def post_campaign_table(config: dict, state: dict, *,
         print("Posted weekly campaign table")
 
 
+def _calc_age(last_time: str | None, now: datetime) -> tuple[str, float]:
+    if not last_time:
+        return "—", 99.0
+    hours = helpers.hours_since(now, datetime.fromisoformat(last_time))
+    if hours < 24:
+        return f"{int(hours)}h", hours / 24
+    return f"{int(hours / 24)}d", hours / 24
+
+
+def _health_icon(days_val: float) -> str:
+    if days_val < 1:
+        return "🟢"
+    elif days_val < 3:
+        return "🟡"
+    elif days_val < 5:
+        return "🟠"
+    return "🔴"
+
+
 def _truncate(s: str, length: int) -> str:
-    """Truncate a string with ellipsis if needed."""
     return s[:length - 1] + "…" if len(s) > length else s
