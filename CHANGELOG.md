@@ -11,6 +11,57 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.15.0] - 2026-03-26
+
+### DF Session Poll — Full Feature
+
+Native Telegram poll posted weekly in the DF chat topic.
+
+**Poll lifecycle (Mon–Fri):**
+- Monday: New poll + "New session poll is up!" ping
+- Tue–Thu: Daily "Vote in the poll above!" ping
+- Friday 15:00 UTC: Result announcement
+- Only pings players who haven't voted yet
+- Resets automatically each Monday
+
+**Poll options:** Friday / Saturday / Can't make either
+
+**Result announcement:**
+```
+🎲 Week 14/52 — Friday wins!
+See you Friday night!
+(1 can't make either)
+
+All-time: Fridays 8/13, Saturdays 5/13
+```
+
+**Ping format:**
+```
+🗳️ Week 14/52 — Vote in the poll above!
+1/4 voted.
+
+Waiting on:
+@Nemesiux
+@DragonFox2000
+```
+
+**All-voted confirmation:**
+```
+✅ Week 14/52 — All 4 players have voted!
+```
+
+**Other poll features:**
+- Historical win tracking (Fridays vs Saturdays all-time)
+- GM included in roster (votes too)
+- Vote change supported (native Telegram)
+- Per-option vote tracking in state
+
+### Refactored
+
+Extracted `poll_result.py` for Friday announcement.
+
+---
+
 ## [4.14.0] - 2026-03-26
 
 ### Added — DF Session Poll
