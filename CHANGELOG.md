@@ -11,6 +11,27 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.14.0] - 2026-03-26
+
+### Added — DF Session Poll
+
+Weekly poll in the Doomsday Funtime chat topic:
+- Posts Monday, daily reminders through Friday
+- Vote Friday or Saturday with inline buttons
+- Shows live results: who voted for what, leading option
+- Change your vote anytime by tapping the other button
+- Only pings players who haven't voted yet
+- Resets automatically each week
+
+### Improved — Campaign Overview Table
+
+- Renamed "Active" → "Players", added "Total" column (registered)
+- Color legend at bottom: 🟢 <1d  🟡 1-3d  🟠 3-5d  🔴 5d+
+- Footer: which campaign needs players most (excludes DF as hybrid)
+- DF flagged `hybrid_live` in config — excluded from "needs players"
+
+---
+
 ## [4.13.0] - 2026-03-26
 
 ### Added — Player Registry & Character Names
