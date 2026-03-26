@@ -56,6 +56,7 @@ EVERYONE_COMMANDS = [
     ("session", "Current session number"),
     ("health", "Campaign health dashboard"),
     ("queuestats", "GM reply stats and productivity"),
+    ("registry", "All players who have played in this campaign"),
 ]
 
 GM_COMMANDS = [

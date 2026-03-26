@@ -121,6 +121,9 @@ def track_message(parsed: dict, state: dict, config: dict,
         # Auto-increment session counter on new GM posting day
         from commands.session import track_session
         track_session(pid, user_id, gm_ids, msg_time_iso, state)
+        # Register player with permanent campaign ID
+        from commands.player_registry import get_or_assign_id
+        get_or_assign_id(pid, user_id, user_name, user_id in gm_ids, state)
     print(f"Tracked message in {campaign_name} from {user_name}")
 
 def _track_player(parsed: dict, state: dict, config: dict,

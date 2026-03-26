@@ -54,4 +54,9 @@ def handle(ctx: dict) -> bool:
         handle_search(query, gid, reply, tg)
         return True
 
+    if cmd == "/registry":
+        from commands.player_registry import build_registry
+        tg.send_message(gid, reply, build_registry(pid, name, config, state))
+        return True
+
     return False

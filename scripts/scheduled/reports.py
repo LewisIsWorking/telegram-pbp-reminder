@@ -36,6 +36,9 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         lines = []
         characters = helpers.get_characters(config, pid)
 
+        from commands.player_registry import get_or_assign_id, format_id
+
+        active_player_count = 0
         for player in sorted(players, key=lambda p: counts.get(p["user_id"], 0), reverse=True):
             uid = player["user_id"]
             if uid in gm_ids:
@@ -43,9 +46,12 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             raw_ts = topic_timestamps.get(uid, [])
             if not raw_ts:
                 continue
+            active_player_count += 1
             full = helpers.player_full_name(player)
             char_name = characters.get(uid)
             label = f"{full} ({char_name})" if char_name else full
+            pid_num = get_or_assign_id(pid, uid, full, False, state)
+            label = f"{format_id(pid_num)}: {label}"
             stats = roster_user_stats(raw_ts, counts.get(uid, 0), now)
             lines.append(roster_block(label, player.get("username", ""), stats))
 
@@ -54,13 +60,16 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
             gm_count = counts.get(gm_id, 0)
             raw_ts = topic_timestamps.get(gm_id, [])
             if gm_count > 0 and raw_ts:
+                gm_player = next((p for p in players if p.get("user_id") == gm_id), None)
+                gm_name = helpers.player_full_name(gm_player) if gm_player else "GM"
+                get_or_assign_id(pid, gm_id, gm_name, True, state)
                 stats = roster_user_stats(raw_ts, gm_count, now)
-                lines.insert(0, roster_block("GM", "", stats))
+                lines.insert(0, roster_block(f"{format_id(0)}: GM", "", stats))
 
         if not lines:
             continue
 
-        player_count = len([p for p in players if p.get("user_id", "") not in gm_ids])
+        player_count = active_player_count
         footer = f"\n\n———\n\n📋 {name} Party Size\n"
         footer += f"Party size: {player_count}/{helpers.REQUIRED_PLAYERS}."
         if player_count < helpers.REQUIRED_PLAYERS:
