@@ -27,14 +27,18 @@
       "last_state_backup",
       "last_queue_daily",
       "last_queue_fingerprint",
-      "queue_nudged"
+      "queue_nudged",
+      "paused_campaigns",
+      "current_scenes"
     ],
     "players": [
       "players",
       "removed_players",
       "player_registry",
       "player_boons",
-      "mvp_wins"
+      "mvp_wins",
+      "characters",
+      "away"
     ],
     "queue": [
       "gm_queue",
@@ -50,10 +54,27 @@
       "activity_days",
       "word_counts",
       "session_counts",
-      "session_last_day"
+      "session_last_day",
+      "poll_history",
+      "poll_results"
+    ],
+    "trackers": [
+      "clocks",
+      "conditions",
+      "hp_tracker",
+      "loot",
+      "npcs",
+      "pins",
+      "quests",
+      "reactions",
+      "timers",
+      "votes",
+      "campaign_notes"
     ]
   },
   "excluded_keys": [
     "_config_cache"
-  ]
+  ],
+  "updated_at": "2026-03-27T00:00:00+00:00",
+  "note": "Added trackers partition (v4.19.0): characters, away, clocks, conditions, hp_tracker, loot, npcs, pins, quests, reactions, timers, votes, campaign_notes, poll_history, poll_results, paused_campaigns, current_scenes"
 }

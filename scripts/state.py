@@ -23,10 +23,11 @@ PARTITIONS: dict[str, list[str]] = {
         "used_tip_indices", "last_pace_drop_check", "dying_alerts_sent",
         "last_campaign_table", "session_poll", "last_state_backup",
         "last_queue_daily", "last_queue_fingerprint", "queue_nudged",
+        "paused_campaigns", "current_scenes",
     ],
     "players": [
         "players", "removed_players", "player_registry",
-        "player_boons", "mvp_wins",
+        "player_boons", "mvp_wins", "characters", "away",
     ],
     "queue": [
         "gm_queue", "gm_queue_replied", "queue_history",
@@ -35,6 +36,12 @@ PARTITIONS: dict[str, list[str]] = {
     "activity": [
         "post_timestamps", "message_counts", "activity_hours",
         "activity_days", "word_counts", "session_counts", "session_last_day",
+        "poll_history", "poll_results",
+    ],
+    "trackers": [
+        "clocks", "conditions", "hp_tracker", "loot", "npcs",
+        "pins", "quests", "reactions", "timers", "votes",
+        "campaign_notes",
     ],
 }
 
@@ -44,6 +51,12 @@ DEFAULT_STATE: dict = {
     "post_timestamps": {}, "last_potw": {}, "last_pace": {},
     "last_anniversary": {}, "combat": {}, "pending_potw_boons": {},
     "last_leaderboard": None, "last_recruitment_check": {},
+    # Trackers (written by in-game commands)
+    "characters": {}, "away": {}, "paused_campaigns": {},
+    "clocks": {}, "conditions": {}, "hp_tracker": {}, "loot": {},
+    "npcs": {}, "pins": {}, "quests": {}, "reactions": {},
+    "timers": {}, "votes": {}, "campaign_notes": {}, "current_scenes": {},
+    "poll_history": {}, "poll_results": {},
 }
 
 STATE_FILENAME = "pbp_state.json"  # kept for gist compatibility
@@ -96,14 +109,23 @@ def _state_dir() -> Path:
 
 
 def _load_from_files() -> dict | None:
-    """Load and merge all partition files. Returns None if any file is missing."""
+    """Load and merge all partition files. Returns None if core files are missing.
+
+    The 'trackers' partition is optional — if absent (e.g. fresh checkout or
+    pre-v4.18 install) the bot will still load and write the file on next save.
+    """
     d = _state_dir()
-    if not all((d / f"{p}.json").exists() for p in PARTITIONS):
+    core = [p for p in PARTITIONS if p != "trackers"]
+    if not all((d / f"{p}.json").exists() for p in core):
         return None
     merged: dict = {}
     try:
-        for partition, keys in PARTITIONS.items():
-            raw = json.loads((d / f"{partition}.json").read_text(encoding="utf-8"))
+        for partition in PARTITIONS:
+            path = d / f"{partition}.json"
+            if not path.exists():
+                continue   # trackers.json may not exist yet
+            raw = json.loads(path.read_text(encoding="utf-8"))
+            keys = PARTITIONS[partition]
             merged.update({k: raw[k] for k in keys if k in raw})
         print(f"State loaded from files (offset={merged.get('offset', 0)})")
         return merged

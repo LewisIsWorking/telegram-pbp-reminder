@@ -57,6 +57,45 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.19.0] - 2026-03-27
+
+### Fixed — Silent Data Loss: 17 State Keys Missing from Partitions
+
+The file-primary state introduced in v4.18.0 had a critical gap: 17 keys
+written by active bot features were not mapped to any partition file, so
+their values were never written and would be silently reset to `{}` on
+the next load from files.
+
+**Affected keys (would have been lost on first file-primary run):**
+
+| Key | Written by |
+|---|---|
+| `characters` | `/setchar` — all character names |
+| `away` | `/away`, `/back` |
+| `paused_campaigns` | `/pause`, `/resume` |
+| `current_scenes` | `/scene` |
+| `clocks`, `conditions`, `hp_tracker` | In-game trackers |
+| `loot`, `npcs`, `pins`, `quests` | In-game trackers |
+| `reactions`, `timers`, `votes` | In-game trackers |
+| `campaign_notes` | `/note` |
+| `poll_history`, `poll_results` | DF session poll |
+
+**Fix:** Added a `trackers` partition (11 keys). Moved `characters`, `away`,
+`paused_campaigns`, `current_scenes`, `poll_history`, `poll_results` into
+appropriate existing partitions. `_load_from_files` is tolerant of a
+missing `trackers.json` for backwards compatibility with v4.18 checkouts.
+
+### Added — State Tests (expanded)
+
+`test_state.py` replaced by two files under 200 lines:
+- `test_state_partitions.py` — 11 tests (partition contract, critical key placement)
+- `test_state_io.py` — 11 tests (round-trip, missing files, public API, save guard)
+- Regression test: `characters` survives file round-trip
+
+Suite: 384 → 394 tests.
+
+---
+
 ## [4.18.0] - 2026-03-27
 
 ### Changed — File-Primary State (Data Migration)

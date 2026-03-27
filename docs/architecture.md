@@ -103,9 +103,9 @@ scripts/
   test_new_features.py    # 16 tests (v4.4-4.8 features)
   test_campaign_table.py  # 15 integration tests (campaign overview table)
   test_campaign_table_unit.py # 18 unit tests (age, health, post count, truncate)
-  test_state.py           # 12 tests (state partition contract, file round-trip)
+  test_state_partitions.py # 11 tests (partition contract, critical key placement)
+  test_state_io.py        # 11 tests (file round-trip, public API, save guard)
   migrate_gist_to_files.py # One-time migration script (gist → data/state/)
-  test_state.py           # 12 unit tests (state persistence, partition contract)
 config.json               # Your configuration
 config.example.json       # Template configuration
 boons.json                # Flavour boons for POTW (optional)

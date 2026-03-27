@@ -34,7 +34,8 @@ jobs:
             test_new_features.py \
             test_campaign_table.py \
             test_campaign_table_unit.py \
-            test_state.py \
+            test_state_partitions.py \
+            test_state_io.py \
             -q
 
       - name: Run inactivity checker
