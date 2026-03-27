@@ -38,6 +38,12 @@ from helpers_pkg.topic_maps import (
 
 from helpers_pkg.dice import roll_dice
 
+from helpers_pkg.campaigns import (
+    get_pair, get_code, get_name, get_label,
+    is_hybrid, is_priority, is_excluded,
+    all_pids, iter_campaigns,
+)
+
 from helpers_pkg.dc_lookup import (
     _STANDARD_DC, _DC_ADJUSTMENTS, _PROF_DC, _DC_ALIASES,
     dc_lookup, _dc_help,

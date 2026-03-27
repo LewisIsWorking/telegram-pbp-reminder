@@ -44,11 +44,9 @@ def age_heatmap(scanned: dict) -> str:
 def player_momentum(state: dict, config: dict) -> list[str]:
     """Find fastest-responding players per campaign."""
     lines = []
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        if pair.get("queue_exclude"):
+    for pid, code, name, pair in helpers.iter_campaigns(config):
+        if helpers.is_excluded(config, pid):
             continue
-        code = pair.get("code", "")
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
         topic_ts = helpers.get_topic_timestamps(state, pid)
         all_posts = []
@@ -73,6 +71,6 @@ def player_momentum(state: dict, config: dict) -> list[str]:
                           key=lambda x: sum(x[1]) / len(x[1]))
             avg = sum(fastest[1]) / len(fastest[1])
             avg_str = f"{avg:.0f}h" if avg < 24 else f"{avg/24:.1f}d"
-            label = code if code else pair["name"]
+            label = code if code else name
             lines.append(f"{label}: {fastest[0]} (~{avg_str})")
     return lines

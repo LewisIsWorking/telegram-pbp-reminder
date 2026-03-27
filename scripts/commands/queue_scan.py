@@ -53,12 +53,9 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
         except (json.JSONDecodeError, OSError):
             pass
 
-    for pair in config.get("topic_pairs", []):
-        if pair.get("queue_exclude"):
+    for pid, code, name, pair in helpers.iter_campaigns(config):
+        if helpers.is_excluded(config, pid):
             continue
-        pid = str(pair["pbp_topic_ids"][0])
-        name = pair["name"]
-        code = pair.get("code", "")
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         dirname = name.replace(" ", "_").replace("'", "")

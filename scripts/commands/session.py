@@ -7,6 +7,8 @@ Auto-increments when the GM posts on a new calendar day.
 
 from datetime import datetime, timezone
 
+import helpers
+
 
 def track_session(pid: str, user_id: str, gm_ids: set,
                   msg_time_iso: str, state: dict) -> None:
@@ -28,14 +30,9 @@ def track_session(pid: str, user_id: str, gm_ids: set,
 def build_session(pid: str, campaign_name: str, state: dict,
                   config: dict) -> str:
     """Build /session output."""
-    code = ""
-    for pair in config.get("topic_pairs", []):
-        if str(pair["pbp_topic_ids"][0]) == pid:
-            code = pair.get("code", "")
-            break
+    label = helpers.get_label(config, pid)
 
     count = state.get("session_counts", {}).get(pid, 0)
-    label = f"{code}: {campaign_name}" if code else campaign_name
 
     if count == 0:
         return f"No sessions tracked yet for {label}. Use /session set N to initialize."

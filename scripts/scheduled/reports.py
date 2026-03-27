@@ -26,12 +26,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         name = maps.to_name.get(pid, "Unknown")
-        code = ""
-        for pair in config.get("topic_pairs", []):
-            if str(pair["pbp_topic_ids"][0]) == pid:
-                code = pair.get("code", "")
-                break
-        label = f"{code}: {name}" if code else name
+        label = helpers.get_label(config, pid)
         players = campaigns.get(pid, [])
         counts = state.get("message_counts", {}).get(pid, {})
         topic_timestamps = helpers.get_topic_timestamps(state, pid)

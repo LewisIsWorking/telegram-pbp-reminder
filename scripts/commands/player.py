@@ -139,11 +139,8 @@ def build_mystats_all(user_id: str, user_name: str, config: dict, state: dict) -
     total_week = 0
     campaigns_active = 0
 
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        name = pair["name"]
-        code = pair.get("code", "")
-        label = f"{code}: {name}" if code else name
+    for pid, code, name, pair in helpers.iter_campaigns(config):
+        label = helpers.get_label(config, pid)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         raw_ts = helpers.get_topic_timestamps(state, pid).get(user_id, [])

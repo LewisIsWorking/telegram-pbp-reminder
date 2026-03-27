@@ -118,12 +118,10 @@ def build_queue_stats(config: dict, state: dict) -> str:
 
     # Avg reply time per campaign
     lines.append("")
-    for pair in config.get("topic_pairs", []):
-        if pair.get("queue_exclude"):
+    for pid, code, name, pair in helpers.iter_campaigns(config):
+        if helpers.is_excluded(config, pid):
             continue
-        pid = str(pair["pbp_topic_ids"][0])
-        code = pair.get("code", "")
-        label = code if code else pair["name"]
+        label = code if code else name
         avg = avg_reply_hours(pid, state)
         if avg is not None:
             avg_str = f"{avg / 24:.1f}d" if avg >= 24 else f"{avg:.0f}h"

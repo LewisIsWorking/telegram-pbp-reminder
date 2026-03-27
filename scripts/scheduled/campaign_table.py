@@ -32,11 +32,8 @@ def build_campaign_table(config: dict, state: dict,
     scanned = scan_transcripts(config, state)
 
     rows = []
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        name = pair["name"]
-        code = pair.get("code", "")
-        is_hybrid = pair.get("hybrid_live", False)
+    for pid, code, name, pair in helpers.iter_campaigns(config):
+        is_hybrid_camp = helpers.is_hybrid(config, pid)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         topic_ts = helpers.get_topic_timestamps(state, pid)
@@ -74,7 +71,7 @@ def build_campaign_table(config: dict, state: dict,
             "active": active, "total": total_registered,
             "week": week_posts, "age": age,
             "icon": icon, "queue": q_str,
-            "hybrid": is_hybrid,
+            "hybrid": is_hybrid_camp,
         })
 
     rows.sort(key=lambda r: r["active"])

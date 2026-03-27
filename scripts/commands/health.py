@@ -16,11 +16,8 @@ def build_health(config: dict, state: dict) -> str:
     week_ago = now - timedelta(days=7)
     lines = ["🏥 Campaign Health Dashboard\n"]
 
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        name = pair["name"]
-        code = pair.get("code", "")
-        label = f"{code}: {name}" if code else name
+    for pid, code, name, pair in helpers.iter_campaigns(config):
+        label = helpers.get_label(config, pid)
 
         # Last post
         topic = state.get("topics", {}).get(pid, {})

@@ -10,6 +10,8 @@ State key: "player_registry" → {pid: {uid: {"id": int, "name": str, "joined": 
 
 from datetime import datetime, timezone
 
+import helpers
+
 
 def get_or_assign_id(pid: str, user_id: str, user_name: str,
                      is_gm: bool, state: dict) -> int:
@@ -59,13 +61,7 @@ def build_registry(pid: str, campaign_name: str, config: dict,
     if not registry:
         return f"No players registered yet for {campaign_name}."
 
-    code = ""
-    for pair in config.get("topic_pairs", []):
-        if str(pair["pbp_topic_ids"][0]) == pid:
-            code = pair.get("code", "")
-            break
-
-    label = f"{code}: {campaign_name}" if code else campaign_name
+    label = helpers.get_label(config, pid)
     lines = [f"📋 {label} — Player Registry\n"]
 
     # Sort by ID
