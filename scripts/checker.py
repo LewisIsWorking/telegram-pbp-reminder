@@ -43,6 +43,7 @@ from scheduled.queue_nudge import check_queue_nudge
 from scheduled.campaign_table import post_campaign_table
 from scheduled.session_poll import post_session_poll
 from scheduled.poll_result import announce_poll_result
+from scheduled.state_backup import backup_state
 from boons.handler import expire_pending_boons
 from transcript.finalize import update_transcript_index
 
@@ -79,6 +80,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Campaign table", post_campaign_table),
         ("Session poll", post_session_poll),
         ("Poll result", announce_poll_result),
+        ("State backup", backup_state),
     ]
     for label, func in checks:
         try:

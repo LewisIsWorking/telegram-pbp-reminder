@@ -31,10 +31,20 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 | **Weekly archive**         | Weekly                            | `data/weekly_archive.json` |
 | **Dashboard**              | On every archive update           | [GitHub Pages](https://lewisisworking.github.io/telegram-pbp-reminder/) |
 | **AoN search**             | On demand (`/search`)             | Any topic                  |
-| **GM reply queue**         | On demand (`/queue`) + daily      | Bot topic                  |
+| **GM reply queue**         | On change + daily 9am             | Bot topic                  |
+| **Queue nudge**            | When entry crosses 48h            | Bot topic                  |
 | **Reaction tracking**      | Automatic                         | On demand (`/reactions`)   |
 | **Player availability**    | On demand (`/available`)          | Campaign PBP topics        |
 | **Cross-campaign timeline**| On demand (`/timeline`)           | Any topic                  |
+| **Player registry**        | Automatic (on first post)         | On demand (`/registry`)    |
+| **Weekly campaign table**  | Weekly                            | Bot topic                  |
+| **Campaign health**        | On demand (`/health`)             | Any topic                  |
+| **Session counter**        | Auto-increment on GM post day     | On demand (`/session`)     |
+| **Player waiting queue**   | On demand (`/waiting`)            | Any topic                  |
+| **Queue stats**            | On demand (`/queuestats`)         | Any topic                  |
+| **DF session poll**        | Weekly (Mon-Fri, native Telegram) | Campaign chat topic        |
+| **Comeback alerts**        | On player return after 5d+        | Bot topic                  |
+| **State backup**           | Daily                             | `data/state_backup.json`   |
 
 All intervals are configurable. All features run automatically once set up.
 
@@ -110,8 +120,8 @@ checker.py (orchestrator)
     └── state.py        GitHub Gist (persist state between runs)
 ```
 
-The codebase is split into 76 production files across 9 packages, with every
-file held to a strict 200-line maximum. 357 tests (286 + 37 + 18 + 16) run on
+The codebase is split into 91 production files across 9 packages, with every
+file held to a strict 200-line maximum. 339 tests (286 + 37 + 16) run on
 every push before deployment.
 
 The bot expects a Telegram supergroup with **forum topics** enabled.
@@ -310,11 +320,18 @@ The bot responds to these commands in any monitored PBP topic:
 - `/available <days>` - Set your posting days (e.g. `/available mon wed fri`).
 - `/available` - Show everyone's availability.
 - `/available clear` - Remove your availability.
+- `/waiting` - See what the GM owes you (unreplied messages).
+- `/session` - Current session number for this campaign.
+- `/health` - Campaign health dashboard (color-coded overview of all campaigns).
+- `/queuestats` - GM reply stats: cleared today/week, progress bar, avg reply time, peak hours.
+- `/registry` - All players who have ever played in this campaign (with permanent IDs).
 
 ### GM commands
 
-- `/queue` - Unreplied player messages across all campaigns. Messages clear when you reply to them using Telegram's reply feature.
+- `/queue` - Unreplied player messages across all campaigns. Messages clear when you reply to them using Telegram's reply feature. Priority campaigns pinned first. Shows player momentum.
 - `/event <text>` - Log a story event to the cross-campaign timeline.
+- `/session set <N>` - Set session counter for the current campaign.
+- `/setchar @username CharacterName` - Set a player's character name (shown on rosters).
 
 - `/combat [enemies]` - Start combat (e.g. `/combat Ogre, 2 Skeletons`).
 - `/next` - Advance to next phase (players→enemies→next round).
@@ -355,6 +372,20 @@ The bot responds to these commands in any monitored PBP topic:
 - `/timer <duration> [reason]` - Set a response timer (e.g. `/timer 2h Post your actions`).
 - `/canceltimer` - Cancel active timer.
 - `/gm` - GM dashboard: all campaigns at a glance.
+
+## Data storage
+
+| Data | Location | Persistence |
+|------|----------|-------------|
+| Bot state (players, counts, queue, registry, poll results, MVP wins) | GitHub Gist | Real-time, single source of truth |
+| State backup | `data/state_backup.json` | Daily snapshot committed to repo |
+| PBP transcripts | `data/pbp_logs/` | Per-campaign monthly markdown files |
+| Weekly archive | `data/weekly_archive.json` | Leaderboard history |
+| Message ID lookup | `data/message_ids.json` | Backfilled message links |
+| Poll results archive | Gist `poll_results` key | Per-week voting data with UIDs |
+
+The daily state backup ensures all data is recoverable from the repo's git history
+even if the gist is corrupted or deleted.
 
 ## Versioning
 

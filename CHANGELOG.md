@@ -11,6 +11,33 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.16.0] - 2026-03-27
+
+### Added — Daily State Backup
+
+Full gist state now backed up daily to `data/state_backup.json`.
+Auto-committed to the repo by the existing workflow, creating a
+git history of every state change. Protects against gist corruption.
+
+### Added — Campaign Helpers Module
+
+New `helpers_pkg/campaigns.py` centralizing all campaign config
+lookups. Refactored 10 files from repeated for/if/break patterns
+to single-line calls: `get_label`, `get_code`, `iter_campaigns`,
+`is_excluded`, `is_hybrid`, `is_priority`.
+
+### Fixed — Roster Label Bug
+
+Variable shadowing caused `Party roster for #04: Bruce` instead
+of the campaign name. Renamed player loop variable.
+
+### Updated — README
+
+Added 14 missing features to the table, 7 new commands,
+data storage documentation, corrected file/test counts.
+
+---
+
 ## [4.15.0] - 2026-03-26
 
 ### DF Session Poll — Full Feature
