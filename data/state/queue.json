@@ -2,14 +2,6 @@
   "gm_queue": {
     "107151": [
       {
-        "message_id": 139342,
-        "thread_id": 107151,
-        "user_id": "7077683276",
-        "user_name": "Bruce",
-        "time": "2026-03-24T19:49:44+00:00",
-        "preview": "Berekit swings his bow towards the dragon as he was preparing to cast runic weapon on it.  As the dragon lands he releases his shot and the arrow is knocked wide by the gust of its landing.  The shot so bad that no twist of fate could save it. (Hp spent)"
-      },
-      {
         "message_id": 139354,
         "thread_id": 107151,
         "user_id": "6482311444",
@@ -400,6 +392,14 @@
         "user_name": "Moss",
         "time": "2026-03-27T11:14:40+00:00",
         "preview": "Heron's stare softens when the situation get diffused, and he lets out a breath. \n\"Please forgive me, just two weeks ago the only magic that was known to me were the children's tales to scare kids into behaving, and the miracles of the divine, treated as the ultimate power. To let a body of the divine go, without even an explanation seemed like a failure of duty,  but an explanation was given, and I'll accept it.\"\n\nHeron would nod, and would try to discreetly listen in to Quicksalver and the Mot"
+      },
+      {
+        "message_id": 140008,
+        "thread_id": 107151,
+        "user_id": "7077683276",
+        "user_name": "Bruce",
+        "time": "2026-03-27T18:47:42+00:00",
+        "preview": "Berekit clears his throat before speaking once more. \"Could you use the flower to resurrect the goddess?  Or did you have an alternate path for her?\""
       }
     ],
     "40585": [
@@ -1069,7 +1069,8 @@
       "2026-03-26T23:08:52.536813+00:00",
       "2026-03-26T23:08:52.538311+00:00",
       "2026-03-27T00:30:04.503601+00:00",
-      "2026-03-27T16:19:57.448028+00:00"
+      "2026-03-27T16:19:57.448028+00:00",
+      "2026-03-27T19:18:34.375575+00:00"
     ],
     "25059": [
       "2026-03-22T16:07:31.368637+00:00",
@@ -1844,6 +1845,12 @@
     {
       "pid": "40585",
       "time": "2026-03-27T16:19:57.448757+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "107151",
+      "time": "2026-03-27T19:18:34.375575+00:00",
       "player": "",
       "preview": ""
     }
