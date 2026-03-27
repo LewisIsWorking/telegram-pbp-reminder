@@ -70,7 +70,7 @@ checker.py (orchestrator)
     └── state.py        GitHub Gist (persist state between runs)
 ```
 
-91 production files, 339 tests, 40 player commands, 75 admin commands.
+91 production files, 372 tests, 40 player commands, 75 admin commands.
 Every file held to a strict 200-line maximum.
 
 ---

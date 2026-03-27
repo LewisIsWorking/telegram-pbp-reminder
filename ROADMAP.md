@@ -357,6 +357,35 @@ principles. Incremental commits, each chunk tested and deployed.
 
 ## Future Ideas (unscheduled)
 
+### 🔧 Data Migration — Gist → Structured Repo JSON
+
+The live state in the GitHub Gist (`pbp_state.json`) is a single flat blob
+containing historical data that does not need to be loaded on every run.
+Migrating it to structured JSON files in the repo will:
+
+- Reduce gist payload size and read/write latency on every hourly run
+- Give historical data a proper git history (diffable, auditable)
+- Separate hot operational state (offsets, last-alert timestamps) from cold
+  historical data (player registry, post timestamps archive, roster snapshots)
+
+**Proposed split:**
+
+| File | Contents | Access pattern |
+|---|---|---|
+| `data/state_live.json` | offset, last_alerts, last_* timestamps | Read+write every run |
+| `data/players.json` | player registry, permanent IDs | Read every run, write on change |
+| `data/post_history.json` | post_timestamps (full archive) | Read for stats, write on new post |
+| `data/roster_snapshots.json` | last_roster, removed_players | Write weekly |
+
+**Migration steps:**
+1. Write `scripts/migrate_gist_to_files.py` — one-time split script
+2. Update `helpers_pkg/state.py` (or add new module) to load/save each file
+3. Update `checker.py` to use file-based state alongside gist for rollback safety
+4. Run migration, verify parity, then deprecate gist writes
+5. Keep gist as emergency read-only backup for one release cycle
+
+
+
 ### 💡 AI summaries (revisited)
 - Optional AI-generated "story so far" recap using Anthropic API
 - Posts to chat topic on a configurable schedule

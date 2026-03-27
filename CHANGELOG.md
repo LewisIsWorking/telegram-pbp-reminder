@@ -11,6 +11,38 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.17.0] - 2026-03-27
+
+### Fixed — Campaign Table Alignment
+
+The weekly Campaign Overview table was rendering as mangled,
+misaligned text because it was sent without a parse mode, causing
+Telegram to use a proportional font where spaces collapse.
+
+**Changes:**
+- Table is now wrapped in `<pre>…</pre>` and sent with
+  `parse_mode="HTML"` so Telegram always uses its fixed-width font
+- Header gets a 3-space prefix to compensate for emoji being
+  2 display-cells wide in monospace, keeping "Campaign" visually
+  aligned with the name column
+- `<` in the legend is HTML-escaped to `&lt;` (required in HTML mode)
+- Dropped the noisy "Total registered" column; the active-player
+  count is more meaningful
+- Extracted `_collect_rows`, `_count_week_posts`, and `_build_warning`
+  into named helper functions (SOLID / single-responsibility)
+
+### Added — Campaign Table Tests
+
+33 new tests across two new files:
+- `test_campaign_table.py` — integration tests (HTML structure,
+  column alignment, queue indicator, warning banner)
+- `test_campaign_table_unit.py` — unit tests for `_calc_age`,
+  `_health_icon`, `_truncate`, `_count_week_posts`
+
+Suite: 339 → 372 tests.
+
+---
+
 ## [4.16.0] - 2026-03-27
 
 ### Added — Daily State Backup

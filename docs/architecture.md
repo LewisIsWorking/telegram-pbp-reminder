@@ -79,6 +79,7 @@ scripts/
     management.py         #   /kick, /addplayer
   scheduled/              # All hourly cron tasks
     alerts.py             #   Inactivity alerts, player warnings
+    campaign_table.py     #   Weekly campaign overview table (HTML <pre>)
     combat_ping.py        #   Combat turn pings, timer expiry
     digest.py             #   Weekly cross-campaign digest
     leaderboard.py        #   Leaderboard formatting + posting
@@ -100,6 +101,8 @@ scripts/
   test_helpers.py         # 37 tests
   test_import_history.py  # 18 tests
   test_new_features.py    # 16 tests (v4.4-4.8 features)
+  test_campaign_table.py  # 15 integration tests (campaign overview table)
+  test_campaign_table_unit.py # 18 unit tests (age, health, post count, truncate)
 config.json               # Your configuration
 config.example.json       # Template configuration
 boons.json                # Flavour boons for POTW (optional)
