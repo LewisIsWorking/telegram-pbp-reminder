@@ -23,10 +23,19 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests pytest
 
       - name: Run tests
-        run: cd scripts && python test_helpers.py && python test_checker.py && python test_import_history.py && python test_new_features.py
+        run: |
+          cd scripts && python -m pytest \
+            test_helpers.py \
+            test_checker.py \
+            test_import_history.py \
+            test_new_features.py \
+            test_campaign_table.py \
+            test_campaign_table_unit.py \
+            test_state.py \
+            -q
 
       - name: Run inactivity checker
         env:
@@ -35,12 +44,12 @@ jobs:
           GIST_ID: ${{ secrets.GIST_ID }}
         run: cd scripts && python checker.py
 
-      - name: Commit data (archive + transcripts)
+      - name: Commit data (archive + transcripts + state)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p docs/data
           cp -f data/weekly_archive.json docs/data/weekly_archive.json 2>/dev/null || true
           git add data/ docs/data/
-          git diff --cached --quiet || git commit -m "Update archive and PBP transcripts [skip ci]"
+          git diff --cached --quiet || git commit -m "Update archive, transcripts and state [skip ci]"
           git push || echo "Nothing to push"

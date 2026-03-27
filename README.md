@@ -67,10 +67,14 @@ checker.py (orchestrator)
     ├── helpers_pkg/    Shared utilities (config, formatting, dice, campaigns)
     │
     ├── telegram.py     Telegram Bot API (fetch updates, send messages, polls)
-    └── state.py        GitHub Gist (persist state between runs)
+    └── state.py        State persistence (files primary, Gist backup)
 ```
 
-91 production files, 372 tests, 40 player commands, 75 admin commands.
+`data/state/` holds the live state as four versioned JSON files:
+`live.json`, `players.json`, `queue.json`, `activity.json`.
+The GitHub Gist is written on every run as an emergency backup.
+
+91 production files, 384 tests, 40 player commands, 75 admin commands.
 Every file held to a strict 200-line maximum.
 
 ---

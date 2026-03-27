@@ -1,0 +1,59 @@
+{
+  "migrated_at": "2026-03-27T01:17:48.110031+00:00",
+  "source": "gist:5856006edec8033bbf53f205ff0bff7d",
+  "total_keys_in_gist": 42,
+  "partitions": {
+    "live": [
+      "offset",
+      "topics",
+      "last_alerts",
+      "last_roster",
+      "last_potw",
+      "last_pace",
+      "last_anniversary",
+      "combat",
+      "last_leaderboard",
+      "last_recruitment_check",
+      "last_archived_week",
+      "celebrated_streaks",
+      "celebrated_milestones",
+      "last_weekly_digest",
+      "last_daily_tip",
+      "used_tip_indices",
+      "last_pace_drop_check",
+      "dying_alerts_sent",
+      "last_campaign_table",
+      "session_poll",
+      "last_state_backup",
+      "last_queue_daily",
+      "last_queue_fingerprint",
+      "queue_nudged"
+    ],
+    "players": [
+      "players",
+      "removed_players",
+      "player_registry",
+      "player_boons",
+      "mvp_wins"
+    ],
+    "queue": [
+      "gm_queue",
+      "gm_queue_replied",
+      "queue_history",
+      "queue_archive",
+      "pending_potw_boons"
+    ],
+    "activity": [
+      "post_timestamps",
+      "message_counts",
+      "activity_hours",
+      "activity_days",
+      "word_counts",
+      "session_counts",
+      "session_last_day"
+    ]
+  },
+  "excluded_keys": [
+    "_config_cache"
+  ]
+}

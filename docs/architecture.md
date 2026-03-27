@@ -23,7 +23,7 @@ scripts/
   checker.py              # Orchestrator: load → process → check → save
   helpers.py              # Re-export facade for helpers_pkg/
   telegram.py             # Telegram Bot API wrapper
-  state.py                # Gist-based state persistence
+  state.py                # File-primary state persistence (gist backup)
   compat.py               # Backward-compat aliases for test suite
   set_commands.py         # Register Telegram / command menu
   post_changelog.py       # Changelog parser and Telegram poster
@@ -103,6 +103,9 @@ scripts/
   test_new_features.py    # 16 tests (v4.4-4.8 features)
   test_campaign_table.py  # 15 integration tests (campaign overview table)
   test_campaign_table_unit.py # 18 unit tests (age, health, post count, truncate)
+  test_state.py           # 12 tests (state partition contract, file round-trip)
+  migrate_gist_to_files.py # One-time migration script (gist → data/state/)
+  test_state.py           # 12 unit tests (state persistence, partition contract)
 config.json               # Your configuration
 config.example.json       # Template configuration
 boons.json                # Flavour boons for POTW (optional)
@@ -110,7 +113,14 @@ boons.example.json        # Sample boons file
 docs/
   index.html              # Archive dashboard (Chart.js)
 data/
+  state/                  # Live bot state (committed every hourly run)
+    live.json             #   offset, timestamps, combat, session (~8 KB)
+    players.json          #   player registry, boons, MVP wins (~17 KB)
+    queue.json            #   GM reply queue, history, archive (~62 KB)
+    activity.json         #   post timestamps, message counts (~35 KB)
+    manifest.json         #   migration metadata
   weekly_archive.json     # Auto-committed weekly stats archive
+  state_backup.json       # Legacy full-state backup (kept for reference)
   pbp_logs/               # PBP transcript archive (monthly .md per campaign)
     README.md             # Auto-generated index of all transcripts
 VERSION                   # Current semver version

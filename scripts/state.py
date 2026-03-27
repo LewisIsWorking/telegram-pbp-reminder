@@ -1,118 +1,171 @@
-"""Gist-based state persistence."""
+"""
+State persistence — file-primary with gist backup.
+
+Primary:  data/state/{live,players,queue,activity}.json (git-committed each run)
+Fallback: GitHub Gist (read if files absent; always written for safety)
+
+Public API is unchanged: init(token, gist_id) / load() / save(state).
+"""
 
 import json
 import requests
+from pathlib import Path
 
-GIST_TOKEN = ""
-GIST_API = ""
-STATE_FILENAME = "pbp_state.json"
+# ── Partition map ─────────────────────────────────────────────────────────────
+# Keys not listed here (e.g. _config_cache) are transient and not persisted.
 
-DEFAULT_STATE = {
-    "offset": 0,
-    "topics": {},
-    "last_alerts": {},
-    "players": {},
-    "removed_players": {},
-    "message_counts": {},
-    "last_roster": {},
-    "post_timestamps": {},
-    "last_potw": {},
-    "last_pace": {},
-    "last_anniversary": {},
-    "combat": {},
-    "pending_potw_boons": {},
-    "last_recruitment_check": {},
-    "last_leaderboard": None,
+PARTITIONS: dict[str, list[str]] = {
+    "live": [
+        "offset", "topics", "last_alerts", "last_roster", "last_potw",
+        "last_pace", "last_anniversary", "combat", "last_leaderboard",
+        "last_recruitment_check", "last_archived_week", "celebrated_streaks",
+        "celebrated_milestones", "last_weekly_digest", "last_daily_tip",
+        "used_tip_indices", "last_pace_drop_check", "dying_alerts_sent",
+        "last_campaign_table", "session_poll", "last_state_backup",
+        "last_queue_daily", "last_queue_fingerprint", "queue_nudged",
+    ],
+    "players": [
+        "players", "removed_players", "player_registry",
+        "player_boons", "mvp_wins",
+    ],
+    "queue": [
+        "gm_queue", "gm_queue_replied", "queue_history",
+        "queue_archive", "pending_potw_boons",
+    ],
+    "activity": [
+        "post_timestamps", "message_counts", "activity_hours",
+        "activity_days", "word_counts", "session_counts", "session_last_day",
+    ],
 }
 
+DEFAULT_STATE: dict = {
+    "offset": 0, "topics": {}, "last_alerts": {}, "players": {},
+    "removed_players": {}, "message_counts": {}, "last_roster": {},
+    "post_timestamps": {}, "last_potw": {}, "last_pace": {},
+    "last_anniversary": {}, "combat": {}, "pending_potw_boons": {},
+    "last_leaderboard": None, "last_recruitment_check": {},
+}
 
-_loaded_from_gist = False
+STATE_FILENAME = "pbp_state.json"  # kept for gist compatibility
+
+# ── Module-level credentials ───────────────────────────────────────────────────
+
+_GIST_TOKEN = ""
+_GIST_API   = ""
+_loaded_ok  = False   # guards against saving after a failed load
 
 
 def init(gist_token: str, gist_id: str) -> None:
-    """Set gist credentials."""
-    global GIST_TOKEN, GIST_API
-    GIST_TOKEN = gist_token
-    GIST_API = f"https://api.github.com/gists/{gist_id}"
+    """Set gist credentials (called by checker.py — signature unchanged)."""
+    global _GIST_TOKEN, _GIST_API
+    _GIST_TOKEN = gist_token
+    _GIST_API   = f"https://api.github.com/gists/{gist_id}" if gist_id else ""
 
+
+# ── Public API ─────────────────────────────────────────────────────────────────
 
 def load() -> dict:
-    """Load bot state from GitHub Gist, or return defaults if unavailable."""
-    global _loaded_from_gist
-
-    if not GIST_API or not GIST_TOKEN:
-        print("Warning: No GIST_ID or GIST_TOKEN set, starting with empty state")
-        return dict(DEFAULT_STATE)
-
-    try:
-        resp = requests.get(
-            GIST_API,
-            headers={
-                "Authorization": f"token {GIST_TOKEN}",
-                "Accept": "application/vnd.github.v3+json",
-            },
-            timeout=30,
-        )
-    except requests.RequestException as e:
-        print(f"FATAL: Could not connect to gist ({e}), aborting to protect state")
-        raise SystemExit(1)
-
-    if resp.status_code != 200:
-        print(f"FATAL: Could not load gist (HTTP {resp.status_code}), aborting to protect state")
-        raise SystemExit(1)
-
-    gist_data = resp.json()
-    files = gist_data.get("files", {})
-
-    if STATE_FILENAME in files:
-        content = files[STATE_FILENAME]["content"]
-        state = json.loads(content)
-        # Backwards compat: ensure all keys exist
-        for key, default in DEFAULT_STATE.items():
-            if key not in state:
-                state[key] = default
-        _loaded_from_gist = True
-        return state
-
-    _loaded_from_gist = True
-    return dict(DEFAULT_STATE)
+    """Load state — files first, gist fallback, then defaults."""
+    global _loaded_ok
+    state = _load_from_files()
+    if state is None:
+        print("State files absent — falling back to gist")
+        state = _load_from_gist()
+    if state is None:
+        print("Warning: could not load state from files or gist; using defaults")
+        state = dict(DEFAULT_STATE)
+    for key, default in DEFAULT_STATE.items():
+        state.setdefault(key, default)
+    _loaded_ok = True
+    return state
 
 
 def save(state: dict) -> None:
-    """Persist bot state to GitHub Gist.
-
-    Refuses to save if the state was not successfully loaded from the gist
-    (prevents a failed load from wiping all data).
-    """
-    if not _loaded_from_gist:
-        print("REFUSING to save: state was not loaded from gist (would wipe data)")
+    """Persist state — writes files (primary) and gist (safety backup)."""
+    if not _loaded_ok:
+        print("REFUSING to save: state was not successfully loaded")
         return
+    _save_to_files(state)
+    _save_to_gist(state)   # dual-write; gist becomes emergency read-only backup
 
-    if not GIST_API or not GIST_TOKEN:
-        print("Warning: No GIST_ID or GIST_TOKEN set, cannot save state")
+
+# ── File I/O ───────────────────────────────────────────────────────────────────
+
+def _state_dir() -> Path:
+    return Path(__file__).parent.parent / "data" / "state"
+
+
+def _load_from_files() -> dict | None:
+    """Load and merge all partition files. Returns None if any file is missing."""
+    d = _state_dir()
+    if not all((d / f"{p}.json").exists() for p in PARTITIONS):
+        return None
+    merged: dict = {}
+    try:
+        for partition, keys in PARTITIONS.items():
+            raw = json.loads((d / f"{partition}.json").read_text(encoding="utf-8"))
+            merged.update({k: raw[k] for k in keys if k in raw})
+        print(f"State loaded from files (offset={merged.get('offset', 0)})")
+        return merged
+    except (OSError, json.JSONDecodeError, KeyError) as e:
+        print(f"Warning: failed reading state files ({e}), falling back to gist")
+        return None
+
+
+def _save_to_files(state: dict) -> None:
+    """Write each partition file atomically."""
+    d = _state_dir()
+    d.mkdir(parents=True, exist_ok=True)
+    for partition, keys in PARTITIONS.items():
+        data = {k: state[k] for k in keys if k in state}
+        path = d / f"{partition}.json"
+        path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+    print("State saved to files")
+
+
+# ── Gist I/O ──────────────────────────────────────────────────────────────────
+
+def _gist_headers() -> dict:
+    return {
+        "Authorization": f"token {_GIST_TOKEN}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+
+
+def _load_from_gist() -> dict | None:
+    """Load state blob from gist. Returns None on any failure."""
+    if not _GIST_API or not _GIST_TOKEN:
+        return None
+    try:
+        resp = requests.get(_GIST_API, headers=_gist_headers(), timeout=30)
+    except requests.RequestException as e:
+        print(f"FATAL: Could not connect to gist ({e}), aborting to protect state")
+        raise SystemExit(1)
+    if resp.status_code != 200:
+        print(f"FATAL: Gist returned HTTP {resp.status_code}, aborting")
+        raise SystemExit(1)
+    files = resp.json().get("files", {})
+    if STATE_FILENAME not in files:
+        return None
+    state = json.loads(files[STATE_FILENAME]["content"])
+    print(f"State loaded from gist (offset={state.get('offset', 0)})")
+    return state
+
+
+def _save_to_gist(state: dict) -> None:
+    """Write full state blob to gist as backup. Logs but never raises."""
+    if not _GIST_API or not _GIST_TOKEN:
         return
-
     try:
         resp = requests.patch(
-            GIST_API,
-            headers={
-                "Authorization": f"token {GIST_TOKEN}",
-                "Accept": "application/vnd.github.v3+json",
-            },
-            json={
-                "files": {
-                    STATE_FILENAME: {
-                        "content": json.dumps(state, indent=2)
-                    }
-                }
-            },
-            timeout=30,
+            _GIST_API, headers=_gist_headers(), timeout=30,
+            json={"files": {STATE_FILENAME: {
+                "content": json.dumps(state, indent=2, default=str)
+            }}},
         )
+        if resp.status_code == 200:
+            print("State backup saved to gist")
+        else:
+            print(f"Warning: gist backup failed (HTTP {resp.status_code})")
     except requests.RequestException as e:
-        print(f"Warning: Failed to save state ({e})")
-        return
-
-    if resp.status_code == 200:
-        print("State saved to gist")
-    else:
-        print(f"Warning: Failed to save state (HTTP {resp.status_code})")
+        print(f"Warning: gist backup failed ({e})")

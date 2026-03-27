@@ -2,15 +2,36 @@
 
 | Data | Location | Persistence |
 |------|----------|-------------|
-| Bot state (players, counts, queue, registry, poll results, MVP wins) | GitHub Gist | Real-time, single source of truth |
-| State backup | `data/state_backup.json` | Daily snapshot committed to repo |
+| Live state — operational | `data/state/live.json` | Written every run, git-committed |
+| Live state — players | `data/state/players.json` | Written every run, git-committed |
+| Live state — GM queue | `data/state/queue.json` | Written every run, git-committed |
+| Live state — activity | `data/state/activity.json` | Written every run, git-committed |
+| Emergency backup | GitHub Gist `pbp_state.json` | Written every run (read-only fallback) |
+| Legacy state backup | `data/state_backup.json` | Daily snapshot (superseded by state files) |
 | PBP transcripts | `data/pbp_logs/` | Per-campaign monthly markdown files |
 | Weekly archive | `data/weekly_archive.json` | Leaderboard history |
 | Message ID lookup | `data/message_ids.json` | Backfilled message links |
-| Poll results archive | Gist `poll_results` key | Per-week voting data with UIDs |
 
-The daily state backup ensures all data is recoverable from the repo's git history
-even if the gist is corrupted or deleted.
+### Load order
+
+1. **Files** — `data/state/*.json` (all four partitions must exist)
+2. **Gist** — fallback if any file is missing (e.g. first run after a fresh checkout)
+3. **Defaults** — empty state if neither source is available
+
+The bot refuses to save if no source loaded successfully, preventing an
+empty-state write from wiping data.
+
+### State partition layout
+
+| File | Keys | Typical size |
+|---|---|---|
+| `live.json` | offset, timestamps, combat, session poll | ~8 KB |
+| `players.json` | players, registry, boons, MVP wins | ~17 KB |
+| `queue.json` | gm_queue, queue_history, queue_archive | ~62 KB |
+| `activity.json` | post_timestamps, message_counts, word counts | ~35 KB |
+
+Every file is committed to the repo by the workflow on each run,
+giving a complete git history of all state changes.
 
 ## Versioning
 

@@ -11,6 +11,104 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.18.0] - 2026-03-27
+
+### Changed — State Persistence: File-Primary with Gist Backup
+
+The bot's state is now stored in versioned JSON files in the repository
+instead of a single GitHub Gist blob. The Gist is still written on every
+run as an emergency backup, but is no longer the primary source of truth.
+
+**Why:** The Gist was a 121 KB single-point-of-failure. Files give full
+git history, are diffable, and load faster with no API round-trip needed.
+
+**New files (`data/state/`):**
+
+| File | Keys | Size |
+|---|---|---|
+| `live.json` | offset, timestamps, combat, session | ~8 KB |
+| `players.json` | players, registry, boons, MVP wins | ~17 KB |
+| `queue.json` | gm_queue, queue_history, queue_archive | ~62 KB |
+| `activity.json` | post_timestamps, message_counts, word counts | ~35 KB |
+
+**Load order:** files → gist fallback → defaults. The bot refuses to save
+if no source loaded successfully (existing data-protection behaviour
+preserved).
+
+### Added — State Tests
+
+12 new tests in `test_state.py`: partition contract, file round-trip,
+partial-file fallback, save guard, default backfill.
+
+Suite: 372 → 384 tests.
+
+### Added — Migration Script
+
+`scripts/migrate_gist_to_files.py` — one-time script used to perform the
+migration. Validates all gist keys are mapped, writes partition files,
+and produces a `manifest.json` with metadata.
+
+### Changed — Workflow
+
+- `pip install pytest` added to dependencies (was running test files
+  directly with `python`, now uses `pytest -q` consistently)
+- All 7 test files enumerated explicitly in the test step
+- Commit step message updated to reflect state files being committed
+
+---
+
+## [4.18.0] - 2026-03-27
+
+### Changed — File-Primary State (Data Migration)
+
+State is now stored in four JSON files in the repo (`data/state/`)
+instead of a single flat GitHub Gist blob.
+
+**Before:** every hourly run read and wrote a 121 KB JSON blob to the
+gist. All 42 keys — hot operational data and cold history alike — in one
+file with no git history.
+
+**After:**
+
+| File | Contents | Size |
+|---|---|---|
+| `data/state/live.json` | offset, timestamps, combat, session | 8 KB |
+| `data/state/players.json` | player registry, boons, MVP wins | 17 KB |
+| `data/state/queue.json` | GM reply queue, history, archive | 62 KB |
+| `data/state/activity.json` | post timestamps, message counts, streaks | 35 KB |
+
+The gist is still written every run as an emergency backup (dual-write).
+If files are absent on load, the bot falls back to the gist automatically,
+so the transition is zero-downtime.
+
+Files are committed to the repo by the existing hourly workflow step
+(`git add data/ && git commit`), giving every state change a full git
+history — diffable, auditable, and recoverable.
+
+### Added — Migration Script
+
+`scripts/migrate_gist_to_files.py` — one-time script used to seed the
+partition files from the live gist. Validates all keys are mapped and
+prints a summary. Safe to re-run if needed.
+
+### Added — State Tests
+
+12 new tests in `test_state.py`:
+- Partition contract (no key in two partitions, all DEFAULT_STATE keys mapped)
+- File round-trip (save → load recovers all keys identically)
+- Fallback behaviour (missing or partial files → None → gist fallback)
+- Save guard (refuses to write if load never succeeded)
+
+Suite: 372 → 384 tests.
+
+### Changed — Workflow
+
+- Added `pytest` to `pip install` in `pbp-reminder.yml`
+- Replaced chained `python test_X.py &&` calls with a single
+  `python -m pytest … -q` covering all 7 test files
+
+---
+
 ## [4.17.0] - 2026-03-27
 
 ### Fixed — Campaign Table Alignment
