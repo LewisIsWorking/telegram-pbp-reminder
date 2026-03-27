@@ -2,9 +2,12 @@
 Weekly campaign overview table.
 
 Posts a monospaced summary of all campaigns showing
-player counts, activity, and health status.
+player counts, activity, and health status. Rendered
+using HTML <pre> blocks so Telegram uses a fixed-width
+font and columns stay aligned.
 """
 
+import html
 from datetime import datetime, timezone, timedelta
 
 import helpers
@@ -18,89 +21,106 @@ import telegram as tg
 
 REQUIRED_PLAYERS = 6
 
+# In Telegram <pre> blocks, emoji glyphs are 2 display-cells wide.
+# Each data row starts with: emoji (2 cells) + space (1 cell) = 3 cells.
+# The header uses 3 leading spaces so "Campaign" aligns under data names.
+_HEADER = "   {:<18s} {:>4s} {:>4s} {:>5s} {:>4s}"
+_ROW    = "{} {:<18s} {:>4s} {:>4d} {:>5d} {:>4s}{}"
+
 
 def build_campaign_table(config: dict, state: dict,
                          now: datetime | None = None) -> str:
-    """Build the campaign overview table."""
+    """Build the campaign overview table as HTML with monospaced alignment."""
     now = now or datetime.now(timezone.utc)
     week_ago = now - timedelta(days=7)
     week_num = now.isocalendar()[1]
 
-    lines = [f"📊 Campaign Overview (W{week_num})\n"]
-
     from commands.queue_scan import scan_transcripts
     scanned = scan_transcripts(config, state)
 
-    rows = []
-    for pid, code, name, pair in helpers.iter_campaigns(config):
-        is_hybrid_camp = helpers.is_hybrid(config, pid)
-        gm_ids = helpers.gm_ids_for_campaign(config, pid)
+    rows = _collect_rows(config, state, scanned, week_ago)
+    rows.sort(key=lambda r: r["active"])
 
+    header = _HEADER.format("Campaign", "Code", "Act", "Week", "Last")
+    table_lines = [header]
+    for r in rows:
+        name_safe = html.escape(r["name"])
+        line = _ROW.format(
+            r["icon"], name_safe, r["code"],
+            r["active"], r["week"], r["age"], r["queue"],
+        )
+        table_lines.append(line)
+
+    total_active = sum(r["active"] for r in rows)
+    total_week   = sum(r["week"]   for r in rows)
+
+    title    = f"📊 Campaign Overview (W{week_num})"
+    pre      = "<pre>" + "\n".join(table_lines) + "</pre>"
+    totals   = (f"Total: {total_active} active players, "
+                f"{total_week} posts this week")
+    legend   = "🟢 &lt;1d  🟡 1-3d  🟠 3-5d  🔴 5d+"
+
+    parts = [title, "", pre, "", totals, legend]
+    parts.extend(_build_warning(rows))
+    return "\n".join(parts)
+
+
+def _collect_rows(config: dict, state: dict,
+                  scanned: dict, week_ago: datetime) -> list[dict]:
+    """Gather per-campaign data rows."""
+    rows = []
+    now = datetime.now(timezone.utc)
+    for pid, code, name, _pair in helpers.iter_campaigns(config):
+        gm_ids = helpers.gm_ids_for_campaign(config, pid)
         topic_ts = helpers.get_topic_timestamps(state, pid)
+
         active = sum(
             1 for uid, ts in topic_ts.items()
             if uid not in gm_ids and ts
         )
+        week_posts = _count_week_posts(topic_ts, week_ago)
 
-        registry = state.get("player_registry", {}).get(pid, {})
-        total_registered = sum(
-            1 for uid, entry in registry.items()
-            if entry.get("id", 0) != 0
-        )
-
-        week_posts = 0
-        for uid, timestamps in topic_ts.items():
-            for ts in timestamps:
-                try:
-                    if datetime.fromisoformat(ts) > week_ago:
-                        week_posts += 1
-                except (ValueError, TypeError):
-                    pass
-
-        topic = state.get("topics", {}).get(pid, {})
+        topic     = state.get("topics", {}).get(pid, {})
         last_time = topic.get("last_message_time")
         age, days_val = _calc_age(last_time, now)
-        icon = _health_icon(days_val)
 
         queue = len(scanned.get(pid, {}).get("entries", []))
-        q_str = f"📋{queue}" if queue else ""
-
-        short_name = _truncate(name, 18)
         rows.append({
-            "code": code, "name": short_name,
-            "active": active, "total": total_registered,
-            "week": week_posts, "age": age,
-            "icon": icon, "queue": q_str,
-            "hybrid": is_hybrid_camp,
+            "code": code, "name": _truncate(name, 18),
+            "active": active, "week": week_posts,
+            "age": age, "icon": _health_icon(days_val),
+            "queue": f"  📋{queue}" if queue else "",
+            "hybrid": helpers.is_hybrid(config, pid),
         })
+    return rows
 
-    rows.sort(key=lambda r: r["active"])
 
-    lines.append("Campaign           Code Players Total Week Last")
-    for r in rows:
-        line = (f"{r['icon']} {r['name']:<18s} {r['code']:<5s}"
-                f"{r['active']:>3d}   {r['total']:>3d}  "
-                f"{r['week']:>3d}  {r['age']:>3s}")
-        if r["queue"]:
-            line += f"  {r['queue']}"
-        lines.append(line)
+def _count_week_posts(topic_ts: dict, week_ago: datetime) -> int:
+    """Count posts in the last 7 days across all users."""
+    count = 0
+    for timestamps in topic_ts.values():
+        for ts in timestamps:
+            try:
+                if datetime.fromisoformat(ts) > week_ago:
+                    count += 1
+            except (ValueError, TypeError):
+                pass
+    return count
 
-    total_active = sum(r["active"] for r in rows)
-    total_week = sum(r["week"] for r in rows)
-    lines.append(f"\nTotal: {total_active} active players, {total_week} posts this week")
-    lines.append("\n🟢 <1d  🟡 1-3d  🟠 3-5d  🔴 5d+")
 
+def _build_warning(rows: list[dict]) -> list[str]:
+    """Return a warning line if any non-hybrid campaign is under-staffed."""
     eligible = [r for r in rows
                 if not r["hybrid"] and r["active"] < REQUIRED_PLAYERS]
-    if eligible:
-        neediest = eligible[0]
-        needed = REQUIRED_PLAYERS - neediest["active"]
-        lines.append(
-            f"\n⚠️ {neediest['code']}: {neediest['name']} needs players "
-            f"the most ({neediest['active']}/{REQUIRED_PLAYERS}, "
-            f"needs {needed} more)")
-
-    return "\n".join(lines)
+    if not eligible:
+        return []
+    n = eligible[0]
+    needed = REQUIRED_PLAYERS - n["active"]
+    return [
+        f"\n⚠️ {html.escape(n['code'])}: {html.escape(n['name'])} "
+        f"needs players the most "
+        f"({n['active']}/{REQUIRED_PLAYERS}, needs {needed} more)"
+    ]
 
 
 def post_campaign_table(config: dict, state: dict, *,
@@ -115,7 +135,8 @@ def post_campaign_table(config: dict, state: dict, *,
         return
     table = build_campaign_table(config, state, now)
     if tg.send_message(config["group_id"], bot_topic,
-                       f"━━━━━━━━━━━━━━━━\n{table}"):
+                       f"━━━━━━━━━━━━━━━━\n{table}",
+                       parse_mode="HTML"):
         state["last_campaign_table"] = now.isoformat()
         print("Posted weekly campaign table")
 
