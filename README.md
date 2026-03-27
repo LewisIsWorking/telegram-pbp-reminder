@@ -18,14 +18,14 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 | **Party roster**           | Every 3 days                      | Campaign chat topics       |
 | **Player of the Week**     | Weekly (with boon choice)         | Campaign chat topics       |
 | **Pace report**            | Weekly                            | Campaign chat topics       |
-| **Campaign leaderboard**   | Every 3 days                      | Dedicated topic            |
-| **Weekly digest**          | Weekly                            | Leaderboard topic          |
+| **Campaign leaderboard**   | Every 3 days                      | Bot topic                  |
+| **Weekly digest**          | Weekly                            | Bot topic                  |
 | **Combat turn pinger**     | During combat                     | Campaign PBP topics        |
 | **Smart alerts**           | On pace drop or silence           | Campaign chat topics       |
 | **Recruitment notices**    | Every 2 weeks (if under capacity) | Campaign chat topics       |
 | **Campaign anniversaries** | Yearly                            | Campaign chat topics       |
 | **Streak milestones**      | On 7/14/30/60/90 day streaks      | Campaign chat topics       |
-| **Message milestones**     | Every 500/5000 messages           | Campaign/leaderboard topic |
+| **Message milestones**     | Every 500/5000 messages           | Campaign/bot topic         |
 | **Daily tips**             | Daily                             | Bot topic                  |
 | **PBP transcripts**        | Every message (auto-archived)     | `data/pbp_logs/`           |
 | **Weekly archive**         | Weekly                            | `data/weekly_archive.json` |
@@ -42,61 +42,11 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 | **Session counter**        | Auto-increment on GM post day     | On demand (`/session`)     |
 | **Player waiting queue**   | On demand (`/waiting`)            | Any topic                  |
 | **Queue stats**            | On demand (`/queuestats`)         | Any topic                  |
-| **DF session poll**        | Weekly (Mon-Fri, native Telegram) | Campaign chat topic        |
+| **Session poll**           | Weekly (Mon-Fri, native Telegram) | Campaign chat topic        |
 | **Comeback alerts**        | On player return after 5d+        | Bot topic                  |
 | **State backup**           | Daily                             | `data/state_backup.json`   |
 
 All intervals are configurable. All features run automatically once set up.
-
----
-
-## Example output
-
-**Inactivity alert:**
-```
-No new posts in Grand Explorers PBP for 1d 6h.
-Last post was from Tyler Link (42 total posts) on 2026-02-20.
-```
-
-**Party roster:**
-```
-Party roster for Riddleport:
-
-GM
-- 60 posts total.
-- 12 posting sessions.
-- 9 posts in the last week.
-- Average gap between posting: 21.4 hours.
-- Last post: today (2026-02-24).
-
-Lunnes
-- @LuNneS_B.
-- 15 posts total.
-- 6 posting sessions.
-- 4 posts in the last week.
-- Average gap between posting: 47.5 hours.
-- Last post: today (2026-02-24).
-
-Party size: 5/6.
-Riddleport needs 1 more player!
-```
-
-**Player of the Week:**
-```
-Player of the Week for Riddleport: Lunnes (@LuNneS_B)!
-(2026-02-17 to 2026-02-24)
-
-6 posts this week with an average gap of 18.3h between posts.
-The most consistent driver of the story.
-
-Choose your boon:
-1. A stray cat follows you and hisses at anyone who lies to you.
-2. You find a coin in your boot that wasn't there before.
-3. The next innkeeper insists your money is no good here.
-4. +1 circumstance bonus on your next skill check.
-
-Tap a button below, or type /chooseboon N
-```
 
 ---
 
@@ -110,497 +60,57 @@ checker.py (orchestrator)
     │
     ├── dispatch/       Process Telegram updates, route commands
     ├── commands/       Build responses for /status, /campaign, etc.
-    ├── scheduled/      Run 18 cron tasks (alerts, rosters, POTW, etc.)
+    ├── scheduled/      Run 20+ cron tasks (alerts, rosters, POTW, etc.)
     ├── combat/         Combat turn tracking
     ├── boons/          Player of the Week boon system
     ├── transcript/     PBP transcript archiving
-    ├── helpers_pkg/    Shared utilities (config, formatting, dice, DC)
+    ├── helpers_pkg/    Shared utilities (config, formatting, dice, campaigns)
     │
-    ├── telegram.py     Telegram Bot API (fetch updates, send messages)
+    ├── telegram.py     Telegram Bot API (fetch updates, send messages, polls)
     └── state.py        GitHub Gist (persist state between runs)
 ```
 
-The codebase is split into 91 production files across 9 packages, with every
-file held to a strict 200-line maximum. 339 tests (286 + 37 + 16) run on
-every push before deployment.
-
-The bot expects a Telegram supergroup with **forum topics** enabled.
-Each campaign needs two topics: a **PBP topic** (where the game happens)
-and a **Chat topic** (where the bot posts summaries and alerts).
-
-Posts within 10 minutes of each other are treated as a single "posting session"
-so rapid back-and-forth doesn't inflate counts.
-
-Campaigns can have multiple PBP topics (e.g. if you split scenes across threads).
-The bot merges them under one canonical ID for all tracking.
+91 production files, 339 tests, 40 player commands, 75 admin commands.
+Every file held to a strict 200-line maximum.
 
 ---
 
-## Setup
+## Documentation
 
-Takes about 15 minutes.
-
-### 1. Create a Telegram bot
-
-1. Message **@BotFather** on Telegram.
-2. Send `/newbot`, follow the prompts, copy the **bot token**.
-3. Send `/setprivacy`, select your bot, set to **Disable**
-   (so it can read all messages, not just `/commands`).
-4. Add the bot to your supergroup.
-5. Make it an **admin** (needs: Read Messages, Send Messages).
-
-### 2. Find your topic IDs
-
-Open this URL in a browser (replace `YOUR_TOKEN`):
-```
-https://api.telegram.org/botYOUR_TOKEN/getUpdates
-```
-
-Send one message in each PBP topic and each Chat topic, then refresh.
-You'll see JSON like:
-```json
-{
-  "message": {
-    "chat": { "id": -1001234567890 },
-    "message_thread_id": 12345
-  }
-}
-```
-
-Note down:
-- `chat.id` is your **group_id** (same for all topics).
-- `message_thread_id` is the **topic ID** (unique per topic).
-- Your Telegram **user ID** (visible in the `from.id` field). This is your GM ID.
-
-### 3. Create a GitHub Gist
-
-1. Go to [gist.github.com](https://gist.github.com).
-2. Create a gist with filename `pbp_state.json` and content `{}`.
-3. Save it. Copy the **Gist ID** from the URL.
-
-### 4. Create a GitHub token
-
-1. Go to [github.com/settings/tokens](https://github.com/settings/tokens).
-2. Generate a classic token with the **gist** scope only.
-3. Copy the token.
-
-### 5. Fork or create the repo
-
-1. Fork this repo (or create a new one and copy the files).
-2. Go to **Settings > Secrets and variables > Actions** and add:
-
-| Secret               | Value                      |
-|----------------------|----------------------------|
-| `TELEGRAM_BOT_TOKEN` | Bot token from BotFather   |
-| `GIST_TOKEN`         | GitHub PAT with gist scope |
-| `GIST_ID`            | Gist ID from step 3        |
-
-### 6. Configure
-
-Copy `config.example.json` to `config.json` and fill it in:
-
-```json
-{
-    "group_id": -1001234567890,
-    "alert_after_hours": 4,
-    "gm_user_ids": [123456789],
-    "leaderboard_topic_id": null,
-    "bot_topic_id": null,
-    "topic_pairs": [
-        {
-            "name": "My Campaign",
-            "chat_topic_id": 11111,
-            "pbp_topic_ids": [22222],
-            "created": "2025-01-15"
-        }
-    ]
-}
-```
-
-Key fields:
-- **group_id**: Your supergroup's chat ID (negative number).
-- **gm_user_ids**: Array of GM Telegram user IDs. GMs are excluded from player stats.
-- **leaderboard_topic_id**: Topic ID for the cross-campaign leaderboard (or `null` to disable).
-- **bot_topic_id**: Topic ID for the dedicated bot channel. All scheduled output (rosters, alerts, tips, POTW, etc.) posts here instead of campaign chats. Also enables `/search`, `/queue`, `/timeline` from the bot channel. Set to `null` to post in campaign chat topics instead.
-- **topic_pairs**: One entry per campaign. Each needs a name, a chat topic, and one or more PBP topics.
-- **created**: Campaign start date for anniversary alerts (optional, `YYYY-MM-DD`).
-- **gm_user_ids** (per-campaign): Optional override that replaces the global GM list for this campaign only. Useful when a campaign has a different GM.
-- **characters** (per-campaign): Optional mapping of `"user_id": "Character Name"`. Enables `/party` command and shows character names in rosters, stats, and transcripts.
-- **disabled_features**: Optional list of features to disable for this campaign.
-  Valid values: `alerts`, `warnings`, `roster`, `potw`, `pace`, `recruitment`, `combat`, `anniversary`, `smart_alerts`.
-
-### 7. Add boons (optional)
-
-The Player of the Week feature picks 3 random flavour boons from `boons.json`
-plus 1 mechanical boon. Copy `boons.example.json` to `boons.json` and add your own,
-or use the example as-is. Each entry is a plain string.
-
-### 8. Test
-
-Go to **Actions > PBP Inactivity Reminder > Run workflow**.
-Check the logs. You should see:
-```
-Loaded state. Offset: 0 | Tracking 0 topics, 0 players
-Received N new updates
-Done
-```
-
-The bot will start tracking from this point. Features like rosters and POTW
-will activate once enough data has accumulated.
+| Doc | Contents |
+|-----|----------|
+| [Setup Guide](docs/setup.md) | Create bot, find topic IDs, configure, deploy |
+| [Commands](docs/commands.md) | All player and GM commands |
+| [Configuration](docs/configuration.md) | config.json reference |
+| [Data Storage](docs/data-storage.md) | Where data lives, backup strategy |
+| [Architecture](docs/architecture.md) | File structure, multi-topic campaigns |
+| [Examples](docs/examples.md) | Sample bot output |
+| [Importing History](docs/importing-history.md) | Backfill from Telegram exports |
+| [Troubleshooting](docs/troubleshooting.md) | Common issues and fixes |
+| [CHANGELOG.md](CHANGELOG.md) | Full version history |
 
 ---
 
-## Configuration reference
+## Quick start
 
-All settings go in the `settings` block of `config.json`.
-Every setting has a sensible default, so the entire block is optional.
+1. Create a Telegram bot via [@BotFather](https://t.me/BotFather) with group privacy **disabled**.
+2. Add the bot to your supergroup (forum topics enabled).
+3. Fork this repo, add secrets (`TELEGRAM_BOT_TOKEN`, `GIST_TOKEN`, `GIST_ID`).
+4. Edit `config.json` with your group ID and topic IDs.
+5. Push — the bot starts running on the next hourly cron.
 
-| Setting                     | Default   | Description                                      |
-|-----------------------------|-----------|--------------------------------------------------|
-| `roster_interval_days`      | 3         | Days between party roster posts                  |
-| `potw_interval_days`        | 7         | Days between Player of the Week awards           |
-| `potw_min_posts`            | 5         | Minimum posting sessions to qualify for POTW     |
-| `pace_interval_days`        | 7         | Days between pace comparison reports             |
-| `leaderboard_interval_days` | 3         | Days between cross-campaign leaderboard          |
-| `combat_ping_hours`         | 4         | Hours before pinging players who haven't acted   |
-| `recruitment_interval_days` | 14        | Days between recruitment notices                 |
-| `required_players`          | 6         | Target party size (triggers recruitment notices) |
-| `post_session_minutes`      | 10        | Posts within this window count as one session    |
-| `player_warn_weeks`         | [1, 2, 3] | Weeks of inactivity before each warning          |
-| `player_remove_weeks`       | 4         | Weeks of inactivity before auto-removal          |
-
-Top-level settings:
-
-| Setting             | Default | Description                                    |
-|---------------------|---------|------------------------------------------------|
-| `alert_after_hours` | 4       | Hours of topic silence before inactivity alert |
+See [Setup Guide](docs/setup.md) for detailed instructions.
 
 ---
-
-## Commands
-
-The bot responds to these commands in any monitored PBP topic:
-
-**Everyone:**
-- `/help` - List bot features and commands.
-- `/status` - Campaign health snapshot: party size, last post, posts this week, at-risk players, current scene.
-- `/campaign` - Full scoreboard: header, weekly pace with trends, complete roster with stats, at-risk warnings, combat state, scene, notes.
-- `/mystats` (alias `/me`) - Your personal stats: total posts, sessions, average gap, weekly count, streak.
-- `/myhistory` - 8-week posting sparkline with trend.
-- `/whosturn` - Combat status: who has acted, who the party is waiting on.
-- `/combatlog` - View combat log entries.
-- `/catchup` - What happened since your last post.
-- `/overview` - Compact summary of all campaigns.
-- `/party` - In-fiction party composition (requires character config).
-- `/notes` - View GM notes for the current campaign.
-- `/activity` - Posting patterns: busiest hours, days, and time blocks.
-- `/profile @player` - Cross-campaign stats for any player.
-- `/away [duration] [reason]` - Declare an absence (skips warnings/combat pings).
-- `/back` - Return from absence.
-- `/recap [N]` - Show last N transcript entries (default 10, max 25).
-- `/roll <dice> [label]` - Roll dice (e.g. `1d20+5 Stealth`, `4d6kh3`).
-- `/quests` - View active and completed quest objectives.
-- `/pins` - View bookmarked story moments and clues.
-- `/lootlist` - View party loot.
-- `/npcs` - View tracked NPCs.
-- `/conditions` - View active conditions/buffs/debuffs.
-- `/hp` - View enemy HP tracker with visual bars.
-- `/clocks` - View progress clocks.
-- `/dc <level> [difficulty]` - PF2e DC lookup (e.g. `/dc 5 hard`).
-- `/summary` - Campaign summary dashboard with trackers.
-- `/showvote` - View current vote/poll.
-- `/showtimer` - View active response timer.
-- `/boons` - View your POTW boons for this campaign.
-- `/boonsall` - View all your boons across campaigns.
-- `/chooseboon <N>` - Choose a POTW boon by number.
-- `/pick <choice>` - Vote in an active poll.
-- `/search <query>` - Search Archives of Nethys (spells, feats, items — no creatures).
-- `/reactions` - Reaction stats for the current campaign.
-- `/timeline` - Cross-campaign event timeline.
-- `/available <days>` - Set your posting days (e.g. `/available mon wed fri`).
-- `/available` - Show everyone's availability.
-- `/available clear` - Remove your availability.
-- `/waiting` - See what the GM owes you (unreplied messages).
-- `/session` - Current session number for this campaign.
-- `/health` - Campaign health dashboard (color-coded overview of all campaigns).
-- `/queuestats` - GM reply stats: cleared today/week, progress bar, avg reply time, peak hours.
-- `/registry` - All players who have ever played in this campaign (with permanent IDs).
-
-### GM commands
-
-- `/queue` - Unreplied player messages across all campaigns. Messages clear when you reply to them using Telegram's reply feature. Priority campaigns pinned first. Shows player momentum.
-- `/event <text>` - Log a story event to the cross-campaign timeline.
-- `/session set <N>` - Set session counter for the current campaign.
-- `/setchar @username CharacterName` - Set a player's character name (shown on rosters).
-
-- `/combat [enemies]` - Start combat (e.g. `/combat Ogre, 2 Skeletons`).
-- `/next` - Advance to next phase (players→enemies→next round).
-- `/round <N> <players|enemies>` - Set specific round and phase.
-- `/endcombat` - End combat with log summary.
-- `/enemies [list]` - View or set enemy roster.
-- `/clog <event>` - Add combat log entry.
-- `/pause [reason]` - Pause inactivity tracking (for breaks, holidays, between arcs).
-- `/resume` - Resume inactivity tracking.
-- `/kick @player` - Remove a player from tracking.
-- `/addplayer @user Name` - Pre-register a player before they post.
-- `/scene <n>` - Mark a scene boundary in the transcript.
-- `/note <text>` - Add a persistent GM note (max 20 per campaign).
-- `/delnote <N>` - Delete a GM note by number.
-- `/quest <text>` - Add an active quest/objective.
-- `/done <N>` - Mark quest N as completed.
-- `/delquest <N>` - Delete quest N.
-- `/pin <text>` - Bookmark a story moment or key info.
-- `/delpin <N>` - Delete a pin.
-- `/loot <item>` - Add item to party loot tracker.
-- `/delloot <N>` - Remove item from loot.
-- `/npc <n> — <desc>` - Add NPC to tracker.
-- `/delnpc <N>` - Remove NPC.
-- `/condition <target> — <effect> [| duration]` - Track a condition.
-- `/endcondition <N>` - Remove a condition.
-- `/clearconditions` - Clear all conditions.
-- `/hp set <n> <cur>/<max>` - Track enemy HP.
-- `/hp d <n> <amount>` - Deal damage.
-- `/hp h <n> <amount>` - Heal.
-- `/hp remove <n>` - Remove HP entry.
-- `/hp clear` - Clear all HP entries.
-- `/clock <n> <segments>` - Create a progress clock.
-- `/tick <n> [N]` - Advance a clock.
-- `/untick <n> [N]` - Reverse a clock.
-- `/delclock <n>` - Delete a clock.
-- `/vote <question> | <opt1> | <opt2> [| ...]` - Start a vote/poll.
-- `/endvote` - End a vote and show results.
-- `/timer <duration> [reason]` - Set a response timer (e.g. `/timer 2h Post your actions`).
-- `/canceltimer` - Cancel active timer.
-- `/gm` - GM dashboard: all campaigns at a glance.
-
-## Data storage
-
-| Data | Location | Persistence |
-|------|----------|-------------|
-| Bot state (players, counts, queue, registry, poll results, MVP wins) | GitHub Gist | Real-time, single source of truth |
-| State backup | `data/state_backup.json` | Daily snapshot committed to repo |
-| PBP transcripts | `data/pbp_logs/` | Per-campaign monthly markdown files |
-| Weekly archive | `data/weekly_archive.json` | Leaderboard history |
-| Message ID lookup | `data/message_ids.json` | Backfilled message links |
-| Poll results archive | Gist `poll_results` key | Per-week voting data with UIDs |
-
-The daily state backup ensures all data is recoverable from the repo's git history
-even if the gist is corrupted or deleted.
 
 ## Versioning
 
-The bot uses [Semantic Versioning](https://semver.org/). The current version is in `VERSION`.
-All changes are documented in `CHANGELOG.md`.
-
-When a new version is pushed, the changelog is automatically posted to the
-[Foundry & GitHub](https://t.me/Path_Wars/71537) Telegram topic via the
-`changelog-notify.yml` workflow.
-
-Version bumps:
-- **MAJOR** (x.0.0): Breaking config changes or workflow restructuring.
-- **MINOR** (0.x.0): New commands, new features, new bot behaviours.
-- **PATCH** (0.0.x): Bug fixes, test additions, refactors, documentation.
-
----
-
-## Multi-topic campaigns
-
-If a campaign uses multiple PBP threads (e.g. split scenes), list them all:
-```json
-{
-    "name": "My Campaign",
-    "chat_topic_id": 11111,
-    "pbp_topic_ids": [22222, 33333, 44444]
-}
-```
-The first ID becomes the canonical ID. All posts across the listed topics
-are merged for stats, rosters, POTW, and leaderboards.
-
----
-
-## File structure
-
-```
-.github/workflows/
-  pbp-reminder.yml        # Hourly cron job (tests + checker)
-  changelog-notify.yml    # Posts changelog to Telegram on push
-scripts/
-  checker.py              # Orchestrator: load → process → check → save
-  helpers.py              # Re-export facade for helpers_pkg/
-  telegram.py             # Telegram Bot API wrapper
-  state.py                # Gist-based state persistence
-  compat.py               # Backward-compat aliases for test suite
-  set_commands.py         # Register Telegram / command menu
-  post_changelog.py       # Changelog parser and Telegram poster
-  import_history.py       # Historical transcript backfill
-  import_formatting.py    # Message formatting for import
-  boons/                  # POTW boon system
-    handler.py            #   Boon callbacks, storage, expiry
-    reminders.py          #   Boon reminders (24h, 3d, 6d, 7d auto-pick)
-  combat/                 # Combat tracking
-    commands.py           #   /combat, /next, /endcombat, /enemies
-    display.py            #   /whosturn, /combatlog
-    tracker.py            #   Message routing, all-acted detection
-  commands/               # All /command output builders
-    campaign.py           #   /campaign, roster blocks
-    catchup.py            #   /catchup
-    dashboard.py          #   /gm, /activity
-    mechanics.py          #   /showvote, /showtimer, /hp, /clocks
-    player.py             #   /mystats, /myhistory
-    profile.py            #   /profile
-    recap.py              #   /recap
-    status.py             #   /status, /overview
-    summary.py            #   /summary, /party
-    trackers.py           #   /notes, /quests, /pins, /lootlist, /npcs, /conditions
-    queue.py              #   /queue (GM reply queue)
-    reactions.py          #   /reactions (emoji tracking)
-    timeline.py           #   /timeline, /event
-  dispatch/               # Command routing and message processing
-    router.py             #   Main update loop, context builder
-    bot_topic.py          #   Bot topic command handler (campaign arg resolution)
-    cmd_info.py           #   28 read-only info commands
-    cmd_gm.py             #   GM control commands
-    cmd_trackers.py       #   Note/quest CRUD
-    cmd_trackers_items.py #   Pin/loot/NPC CRUD
-    cmd_conditions_hp.py  #   Condition + HP writes
-    cmd_clocks.py         #   Clock commands
-    cmd_votes_timers.py   #   Vote + timer commands
-    cmd_player.py         #   /away, /back, /roll, /chooseboon
-    tracking.py           #   Post-message state tracking
-    help_text.py          #   /help text constant
-    cmd_search.py         #   /search (Archives of Nethys)
-  helpers_pkg/            # Shared utilities (re-exported via helpers.py)
-    constants.py          #   Paths, tunable defaults
-    config.py             #   Config loading, validation, GM helpers
-    formatting.py         #   Display names, dates, HTML escaping
-    time_utils.py         #   Intervals, timestamps, away tracking
-    topic_maps.py         #   Campaign↔topic lookups
-    dice.py               #   /roll dice parser
-    dc_lookup.py          #   PF2e DC tables
-    mechanics.py          #   HP bars, clocks, streaks, timers
-  parsing/                # Message parsing
-    message.py            #   Telegram message → structured data
-  players/                # Player management
-    management.py         #   /kick, /addplayer
-  scheduled/              # All hourly cron tasks
-    alerts.py             #   Inactivity alerts, player warnings
-    combat_ping.py        #   Combat turn pings, timer expiry
-    digest.py             #   Weekly cross-campaign digest
-    leaderboard.py        #   Leaderboard formatting + posting
-    leaderboard_data.py   #   Stats gathering for leaderboard
-    maintenance.py        #   Archive, cleanup, recruitment
-    message_milestones.py #   500/5000 message celebrations
-    milestones.py         #   Streak + anniversary milestones
-    potw.py               #   Player of the Week selection
-    reports.py            #   Roster + pace reports
-    smart_alerts.py       #   Pace drop + silence detection
-    tips.py               #   Daily tips
-    tips_data.py          #   Tip text constants
-    queue_reminder.py     #   Daily GM reply queue reminder with links
-  transcript/             # PBP transcript system
-    finalize.py           #   Month finalization + index generation
-    formatting.py         #   Log entry formatting
-    logger.py             #   Append to transcript, scene markers
-  test_checker.py         # 286 tests
-  test_helpers.py         # 37 tests
-  test_import_history.py  # 18 tests
-  test_new_features.py    # 16 tests (v4.4-4.8 features)
-config.json               # Your configuration
-config.example.json       # Template configuration
-boons.json                # Flavour boons for POTW (optional)
-boons.example.json        # Sample boons file
-docs/
-  index.html              # Archive dashboard (Chart.js)
-data/
-  weekly_archive.json     # Auto-committed weekly stats archive
-  pbp_logs/               # PBP transcript archive (monthly .md per campaign)
-    README.md             # Auto-generated index of all transcripts
-VERSION                   # Current semver version
-CHANGELOG.md              # Release notes
-ROADMAP.md                # Feature roadmap and modularization log
-```
-
----
-
-## Importing Historical Messages
-
-The bot only logs messages going forward. To backfill transcripts with
-historical PBP messages, export the chat from Telegram Desktop and run
-the import script.
-
-### Steps
-
-1. **Export from Telegram Desktop:**
-   - Settings → Advanced → Export chat history
-   - Select the Path_Wars supergroup
-   - Format: **Machine-readable JSON**
-   - Uncheck everything except "Text messages" (media metadata is preserved)
-   - Click Export
-
-2. **Run the import script:**
-   ```bash
-   # Preview what would be imported (no files written)
-   python3 scripts/import_history.py path/to/result.json --dry-run
-
-   # Actually import
-   python3 scripts/import_history.py path/to/result.json
-   ```
-
-3. **Commit the transcripts:**
-   ```bash
-   git add data/pbp_logs
-   git commit -m "Import historical PBP transcripts"
-   git push
-   ```
-
-The script is idempotent — safe to run multiple times on the same export.
-It tracks imported message IDs per campaign and only appends new ones.
-
----
-
-## Troubleshooting
-
-**Bot not seeing messages:**
-Privacy mode must be disabled (`/setprivacy` > Disable via @BotFather)
-and the bot must be a group admin.
-
-**No updates showing:**
-Send a message in a monitored topic after the bot is added, then check logs.
-
-**Wrong topic IDs:**
-Topic IDs are the `message_thread_id` field in the Telegram API response,
-not the message ID. Each forum topic has a unique thread ID.
-
-**GitHub Actions not running:**
-Check the Actions tab for errors. Free tier allows 2,000 minutes/month;
-this bot uses roughly 30 minutes/month.
-
-**Features not activating:**
-Most features need accumulated data. Rosters need posts with timestamps,
-POTW needs a week of data, pace reports need two weeks. Give it time.
+[Semantic Versioning](https://semver.org/). Current version in `VERSION`.
+All changes in `CHANGELOG.md`, auto-posted to Telegram on push.
 
 ---
 
 ## Cost
 
-Zero. GitHub Actions free tier gives 2,000 minutes/month.
-This bot uses about 30 seconds per run, 720 runs/month = ~36 minutes.
-The Gist and Telegram Bot API are also free.
-
----
-
-## Archive Dashboard
-
-**Live dashboard:** [lewisisworking.github.io/telegram-pbp-reminder](https://lewisisworking.github.io/telegram-pbp-reminder/)
-
-The bot archives weekly stats to `data/weekly_archive.json`.
-The dashboard at `docs/index.html` visualizes this with charts and tables:
-summary cards, health indicators, trend arrows, player drill-down,
-week filter, and sortable columns. Mobile-responsive.
-
-To enable GitHub Pages on your own fork:
-1. Go to repo **Settings > Pages**.
-2. Set source to **Deploy from a branch**, branch `main`, folder `/docs`.
-3. Visit `https://yourusername.github.io/your-repo-name/`.
-
-Or open `docs/index.html` locally (it fetches the JSON via relative path).
+**Free.** GitHub Actions free tier gives 2,000 minutes/month.
+The bot uses ~1 minute per run × 24 runs/day = ~720 minutes/month.
