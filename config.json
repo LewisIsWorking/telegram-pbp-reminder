@@ -27,7 +27,12 @@
         "Can't make it this week"
       ],
       "allows_multiple_answers": false,
-      "poll_any_day": false
+      "poll_any_day": false,
+      "poll_user_ids": [
+        5443237599,
+        6144366145,
+        7916471490
+      ]
     },
     {
       "name": "Riddleport",
