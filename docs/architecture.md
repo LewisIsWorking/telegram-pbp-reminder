@@ -104,7 +104,7 @@ scripts/
     finalize.py           #   Month finalization + index generation
     formatting.py         #   Log entry formatting
     logger.py             #   Append to transcript, scene markers
-  test_checker.py         # 286 tests
+  test_checker.py         # 291 tests
   test_helpers.py         # 37 tests
   test_import_history.py  # 18 tests
   test_new_features.py    # 16 tests (v4.4-4.8 features)
@@ -120,12 +120,13 @@ boons.json                # Flavour boons for POTW (optional)
 boons.example.json        # Sample boons file
 docs/
   index.html              # Archive dashboard (Chart.js)
-data/
+  data/
   state/                  # Live bot state (committed every hourly run)
     live.json             #   offset, timestamps, combat, session (~8 KB)
-    players.json          #   player registry, boons, MVP wins (~17 KB)
+    players.json          #   player registry, characters, boons (~17 KB)
     queue.json            #   GM reply queue, history, archive (~62 KB)
     activity.json         #   post timestamps, message counts (~35 KB)
+    trackers.json         #   clocks, conditions, HP, loot, npcs, pins, quests
     manifest.json         #   migration metadata
   weekly_archive.json     # Auto-committed weekly stats archive
   state_backup.json       # Legacy full-state backup (kept for reference)
