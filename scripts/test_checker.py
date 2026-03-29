@@ -1,55 +1,17 @@
 """Tests for checker.py logic.
 
-Uses a lightweight mock for the telegram module so no real API calls are made.
+The telegram module is mocked globally by conftest.py before any test
+module is imported. This file references the shared _sent_messages list
+and _mock_tg from conftest so all modules bound to the same mock object.
 """
 
 import sys
-import types
 from datetime import datetime, timezone, timedelta
 
-# ------------------------------------------------------------------ #
-#  Mock telegram module before importing checker
-# ------------------------------------------------------------------ #
-_sent_messages = []
-_mock_tg = types.ModuleType("telegram")
-_mock_tg.TELEGRAM_API = ""
-
-
-def _mock_init(token):
-    pass
-
-
-def _mock_send(group_id, topic_id, text, parse_mode=None):
-    _sent_messages.append({"group_id": group_id, "topic_id": topic_id, "text": text})
-    return True
-
-
-def _mock_send_buttons(group_id, topic_id, text, buttons):
-    _sent_messages.append({"group_id": group_id, "topic_id": topic_id, "text": text, "buttons": buttons})
-    return 99999
-
-
-def _mock_edit(chat_id, message_id, text, parse_mode=None, remove_keyboard=False):
-    _sent_messages.append({"chat_id": chat_id, "message_id": message_id, "text": text})
-    return True
-
-
-def _mock_answer(cb_id, text):
-    _sent_messages.append({"cb_id": cb_id, "text": text})
-    return True
-
-
-def _mock_get_updates(offset):
-    return []
-
-
-_mock_tg.init = _mock_init
-_mock_tg.send_message = _mock_send
-_mock_tg.send_message_with_buttons = _mock_send_buttons
-_mock_tg.edit_message = _mock_edit
-_mock_tg.answer_callback = _mock_answer
-_mock_tg.get_updates = _mock_get_updates
-sys.modules["telegram"] = _mock_tg
+# _sent_messages and _mock_tg come from conftest.py (loaded before this module)
+import conftest as _conftest
+_sent_messages = _conftest._sent_messages
+_mock_tg = _conftest._mock_tg
 
 import checker
 import helpers

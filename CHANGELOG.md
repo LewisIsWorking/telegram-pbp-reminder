@@ -57,6 +57,36 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.23.0] - 2026-03-29
+
+### Fixed — Test Suite Contamination (22 failing tests in combined run)
+
+Running `pytest scripts/` collected 454 tests but only 432 passed.
+22 tests in `test_checker.py` failed when preceded by the campaign_table
+test files, while passing in isolation.
+
+**Root cause:** `test_campaign_table.py` imports `scheduled.campaign_table`
+which does `import telegram as tg` at module level. When pytest collected
+test files alphabetically, `campaign_table` ran first and bound `tg` to the
+real `telegram` module. `test_checker.py` installed its own mock via
+`sys.modules["telegram"] = _mock_tg` — a *different* object. Subsequent
+calls from checker tests that passed through `campaign_table`'s `tg` binding
+hit the real (unconfigured) module, raising `Invalid URL` errors that were
+swallowed by try/except, silently zeroing the sent-message count.
+
+**Fix:** `conftest.py` (new) — pytest loads this before collecting any test
+module. It installs the complete mock telegram (9 functions: `send_message`,
+`send_poll`, `pin_message`, `message_link`, etc.) into `sys.modules` once,
+as the single authoritative mock. All modules that `import telegram` at any
+point get the same mock object.
+
+`test_checker.py` updated to import `_sent_messages` and `_mock_tg` from
+`conftest` rather than reinstalling its own copy.
+
+Suite: 432 → 454 passing (all 454 pass in combined and isolated runs).
+
+---
+
 ## [4.22.0] - 2026-03-29
 
 ### Changed — Poll Overhaul: Sunday Start, Pinned, Daily Links, New Options

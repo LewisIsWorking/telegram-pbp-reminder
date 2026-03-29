@@ -104,15 +104,16 @@ scripts/
     finalize.py           #   Month finalization + index generation
     formatting.py         #   Log entry formatting
     logger.py             #   Append to transcript, scene markers
-  test_checker.py         # 291 tests
+  test_checker.py         # 286 tests
   test_helpers.py         # 37 tests
   test_import_history.py  # 18 tests
   test_new_features.py    # 16 tests (v4.4-4.8 features)
-  test_campaign_table.py  # 15 integration tests (campaign overview table)
-  test_campaign_table_unit.py # 18 unit tests (age, health, post count, truncate)
+  test_campaign_table.py  # 12 integration tests (campaign overview table)
+  test_campaign_table_unit.py # 21 unit tests (age, health, post count, truncate)
   test_state_partitions.py # 11 tests (partition contract, critical key placement)
   test_state_io.py        # 11 tests (file round-trip, public API, save guard)
   test_queue_format.py    # 42 tests (8-tier age icons, age_str, preview)
+  conftest.py             # Shared mock telegram — installed before all test imports
   migrate_gist_to_files.py # One-time migration script (gist → data/state/)
 config.json               # Your configuration
 config.example.json       # Template configuration
