@@ -57,6 +57,30 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.25.0] - 2026-03-29
+
+### Fixed — Poll notification phrasing
+
+Vote notifications now read `"voted X in C01"` instead of
+`"voted X (C01)"` — the campaign is part of the verb phrase,
+making it unambiguous which poll the voter participated in.
+
+Before: `🗳️ @DragonFox2000 (C01) voted Friday`
+After:  `🗳️ @DragonFox2000 voted Friday in C01`
+
+### Added — C11 Weekly Day Poll (manual trigger)
+
+Utility path established for posting a dated day-of-week poll
+directly via the Telegram API when the weekly result shows a
+clear winner (e.g. "Weekday") and a follow-up specific-day
+poll is needed mid-week without waiting for Sunday.
+
+First use: C11 Week 13/52 — Mon 30 March to Sun 5 April,
+posted and pinned to the Dark Pockets chat manually after
+the Weekday option won the weekly session poll.
+
+---
+
 ## [4.24.0] - 2026-03-29
 
 ### Added — Auto-Capture Unknown Poll Voter IDs

@@ -366,13 +366,25 @@ retained as an emergency dual-write backup. See CHANGELOG for details.
 
 ### ✅ C11 Dark Pockets — Multi-Group Campaign Support
 
-Completed in v4.21.0–v4.22.0. C11 runs in a separate Telegram group
-(`-1003496373617`). Full PBP tracking, weekly session poll (any day,
-multiple choice, Sunday start, pinned, daily link), and cross-campaign
-live vote notifications with C01. Both polls start Sunday 7am UTC.
-See CHANGELOG for full details.
+Completed in v4.21.0–v4.25.0. C11 runs in a separate Telegram group
+(`-1003496373617`). Full PBP tracking, weekly session poll (Mon–Sun,
+multiple choice, Sunday start, pinned, daily link with @mentions), and
+cross-campaign live vote notifications with C01. Both polls start Sunday
+7am UTC. See CHANGELOG v4.21.0–v4.25.0 for full details.
+
+**C11 player roster:** 8 players. Real Telegram IDs confirmed for
+Sparkleslayer, Jack, Natasha, Craig. Remaining 4 (Malia, Safrah, Rino,
+Elicia) auto-capture on next vote via `promote_poll_voters.py`.
 
 ---
+
+### 💡 C11 Remaining Player IDs
+
+IDs still pending for 4 C11 players (placeholders in config):
+`@molluggg` (Malia), `@Brookm126` (Safrah),
+`@Luke_Skillen` (Rino), `@EliciaRoseT` (Elicia).
+IDs auto-captured when they vote next Sunday.
+Run `python3 scripts/promote_poll_voters.py --commit` after to promote.
 
 
 - Optional AI-generated "story so far" recap using Anthropic API
