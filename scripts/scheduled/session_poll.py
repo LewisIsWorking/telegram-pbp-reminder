@@ -1,18 +1,18 @@
 """
 Weekly session poll for hybrid live campaigns.
 
-Supports multiple campaigns (C01, C11, etc.), each with their own poll
-slot in state["session_poll"][code]. C11-style campaigns can run any day;
-C01-style are Mon–Fri only.
+Both polls (C01, C11) start early Sunday and run all week.
+Poll message is pinned. Daily pings include a link to the poll.
+State stored per-code: state["session_poll"][code].
 """
 
 from datetime import datetime, timezone
 
 import helpers
 import telegram as tg
-from helpers_pkg.groups import group_id_for_campaign, pid_for_code
+from helpers_pkg.groups import group_id_for_campaign
 from scheduled.session_poll_build import (
-    poll_options_for, build_history_str,
+    sunday_week_key, poll_options_for, build_history_str,
     build_ping_message, build_all_voted_message,
 )
 
@@ -28,7 +28,6 @@ def _poll_roster(config: dict, state: dict, pid: str, pair: dict) -> dict:
     """Return {uid: {name, username}} for all players to be polled."""
     roster = {}
     poll_uids = pair.get("poll_user_ids")
-    gm_ids = helpers.gm_ids_for_campaign(config, pid)
     if poll_uids:
         for uid in poll_uids:
             uid_str = str(uid)
@@ -57,30 +56,38 @@ def _unvoted_mentions(roster: dict, voted_uids: list) -> list[str]:
     return mentions
 
 
-def _post_one(config: dict, state: dict, pair: dict,
-              now: datetime) -> None:
+def _poll_link(config: dict, pair: dict, msg_id: int | None) -> str:
+    """Build a t.me link to the poll message."""
+    if not msg_id:
+        return ""
+    pid = str(pair["pbp_topic_ids"][0])
+    gid = group_id_for_campaign(config, pid)
+    tid = pair.get("chat_topic_id")
+    username = pair.get("group_username", config.get("group_username"))
+    return tg.message_link(gid, tid, msg_id, username)
+
+
+def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     """Post or ping the poll for a single hybrid campaign."""
     pid = str(pair["pbp_topic_ids"][0])
     code = pair.get("code", pid)
     gid = group_id_for_campaign(config, pid)
     poll_tid = pair.get("chat_topic_id")
-    any_day = pair.get("poll_any_day", False)
-    weekday = now.weekday()  # 0=Mon, 6=Sun
-
-    if not any_day and weekday > 4:
-        return
+    post_hour = config.get("poll_post_hour", 7)
+    weekday = now.weekday()  # 6 = Sunday
 
     _migrate_flat_poll(state)
     polls = state.setdefault("session_poll", {})
     poll = polls.get(code, {})
-    current_week = now.strftime("%Y-W%W")
+    week_key = sunday_week_key(now)
     week_num = now.isocalendar()[1]
 
-    # New week — post fresh poll
-    if poll.get("week_iso") != current_week:
+    # New week starts Sunday at or after poll_post_hour
+    is_sunday = (weekday == 6)
+    if poll.get("week_iso") != week_key and is_sunday and now.hour >= post_hour:
         options = poll_options_for(pair, now)
         hist_str = build_history_str(
-            state.get("poll_history", {}).get(code, {})
+            state.get("poll_history", {}).get(code, {}), options
         )
         question = f"🗳️ {code} Week {week_num}/52 — When are we playing?"
         multi = pair.get("allows_multiple_answers", False)
@@ -88,24 +95,33 @@ def _post_one(config: dict, state: dict, pair: dict,
                               is_anonymous=False,
                               allows_multiple_answers=multi)
         msg_id, poll_id = result if result else (None, None)
+
+        # Pin the poll
+        if msg_id:
+            tg.pin_message(gid, msg_id)
+
         if hist_str:
             tg.send_message(gid, poll_tid,
                             f"━━━━━━━━━━━━━━━━{hist_str}")
+
         polls[code] = {
-            "week_iso": current_week,
+            "week_iso": week_key,
             "poll_id": poll_id or "",
             "poll_message_id": msg_id,
             "voted_uids": [],
             "last_ping_day": -1,
-            "votes": {"friday": [], "saturday": [], "cant": []},
+            "votes": {},   # index-based: {"0": [uids], "1": [uids], ...}
         }
         poll = polls[code]
-        print(f"Session poll created: {code} week {current_week}")
+        print(f"Session poll posted + pinned: {code} week {week_key}")
 
-    # Daily ping (once per weekday index, or once per day for any_day)
-    last_ping = poll.get("last_ping_day", -1)
-    ping_key = weekday if not any_day else now.toordinal()
-    if ping_key <= last_ping:
+    # Don't ping before poll is up
+    if poll.get("week_iso") != week_key:
+        return
+
+    # Daily ping — once per calendar day (ordinal)
+    today_ord = now.toordinal()
+    if today_ord <= poll.get("last_ping_day", -1):
         return
 
     roster = _poll_roster(config, state, pid, pair)
@@ -119,10 +135,11 @@ def _post_one(config: dict, state: dict, pair: dict,
             poll["all_voted_posted"] = True
         return
 
-    msg = build_ping_message(pair, poll, unvoted, len(voted_uids),
-                             len(roster), weekday, week_num, any_day)
+    link = _poll_link(config, pair, poll.get("poll_message_id"))
+    msg = build_ping_message(pair, unvoted, len(voted_uids),
+                             len(roster), week_num, link)
     if tg.send_message(gid, poll_tid, msg):
-        poll["last_ping_day"] = ping_key
+        poll["last_ping_day"] = today_ord
         print(f"Session poll ping: {code} day {weekday}")
 
 
@@ -135,4 +152,4 @@ def post_session_poll(config: dict, state: dict, *,
             try:
                 _post_one(config, state, pair, now)
             except Exception as e:
-                print(f"Session poll error ({pair.get('code','?')}): {e}")
+                print(f"Session poll error ({pair.get('code', '?')}): {e}")

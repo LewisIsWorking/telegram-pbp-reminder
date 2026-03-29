@@ -81,17 +81,13 @@ def _handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     if uid and uid not in voted:
         voted.append(uid)
 
-    votes = poll.setdefault("votes", {"friday": [], "saturday": [], "cant": []})
+    votes = poll.setdefault("votes", {})
+    # Remove previous votes from this user across all options
     for key in votes:
         votes[key] = [v for v in votes[key] if v != uid]
-
-    # Map option index to slot — supports arbitrary options (first=fri, second=sat, rest=cant)
-    if 0 in option_ids:
-        votes["friday"].append(uid)
-    elif 1 in option_ids:
-        votes["saturday"].append(uid)
-    else:
-        votes["cant"].append(uid)
+    # Record new vote(s) by option index string
+    for idx in option_ids:
+        votes.setdefault(str(idx), []).append(uid)
 
     # Cross-notification
     pair = _find_pair(config, code)

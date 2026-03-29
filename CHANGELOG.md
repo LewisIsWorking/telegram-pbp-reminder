@@ -57,6 +57,39 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.22.0] - 2026-03-29
+
+### Changed — Poll Overhaul: Sunday Start, Pinned, Daily Links, New Options
+
+**Both C01 and C11 polls now:**
+- Start early Sunday (7am UTC) and run all week (Mon–Sun)
+- Poll message is **pinned** to the chat topic immediately after posting
+- Daily ping includes a **direct link** to the pinned poll message
+- Tally uses option-index-based vote storage (flexible, supports any options)
+
+**C01 new options** (single-choice):
+`Friday / Saturday / Both / Neither / Can't make it this week`
+
+**C11 options** (multiple-choice, any day):
+`Friday / Saturday / Sunday / Weekday / Can't make it`
+
+**New in `telegram.py`:**
+- `pin_message(chat_id, message_id)` — pins via `pinChatMessage`
+- `message_link(group_id, topic_id, message_id, group_username)` — builds
+  `t.me/Username/topic/msg` for public groups or `t.me/c/digits/msg` for private
+
+**Vote storage** changed from `{"friday": [], "saturday": [], "cant": []}` to
+`{"0": [], "1": [], "2": []}` (option index → uid list). Supports any poll
+shape without code changes. Old state auto-migrates.
+
+**`poll_result.py`** — finds winner by max votes across any-length option list;
+all-time history tracked by option index.
+
+**`session_poll_build.py`** — `sunday_week_key()` replaces Mon-based week key;
+`option_tally()` and `build_history_str()` work with index-based votes.
+
+---
+
 ## [4.21.0] - 2026-03-29
 
 ### Added — C11 Dark Pockets: Multi-Group Campaign Support

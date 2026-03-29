@@ -131,3 +131,29 @@ def send_poll(chat_id: int, thread_id: int, question: str,
         poll_id = result.get("poll", {}).get("id", "")
         return (msg_id, poll_id)
     return None
+
+
+def pin_message(chat_id: int, message_id: int,
+                disable_notification: bool = True) -> bool:
+    """Pin a message in a chat. Returns True on success."""
+    return _post("pinChatMessage", {
+        "chat_id": chat_id,
+        "message_id": message_id,
+        "disable_notification": disable_notification,
+    }, "pin_message") is not None
+
+
+def message_link(group_id: int, topic_id: int, message_id: int,
+                 group_username: str | None = None) -> str:
+    """Build a t.me deep link to a specific message.
+
+    Uses username form (t.me/GroupName/topic/msg) for public groups,
+    or private form (t.me/c/groupdigits/msg) for private groups.
+    """
+    if group_username:
+        return f"https://t.me/{group_username}/{topic_id}/{message_id}"
+    # Private group: strip leading -100 from group_id
+    digits = str(abs(group_id))
+    if digits.startswith("100"):
+        digits = digits[3:]
+    return f"https://t.me/c/{digits}/{message_id}"

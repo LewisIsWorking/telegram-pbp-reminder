@@ -18,7 +18,16 @@
       "hybrid_live": true,
       "linked_polls": [
         "C11"
-      ]
+      ],
+      "poll_options": [
+        "Friday",
+        "Saturday",
+        "Both",
+        "Neither",
+        "Can't make it this week"
+      ],
+      "allows_multiple_answers": false,
+      "poll_any_day": false
     },
     {
       "name": "Riddleport",
@@ -116,7 +125,8 @@
         "Sunday",
         "Weekday",
         "Can't make it"
-      ]
+      ],
+      "group_username": null
     }
   ],
   "settings": {
@@ -136,5 +146,7 @@
     ],
     "player_remove_weeks": 4
   },
-  "queue_daily_hour": 9
+  "queue_daily_hour": 9,
+  "group_username": "Path_Wars",
+  "poll_post_hour": 7
 }
