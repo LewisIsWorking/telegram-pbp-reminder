@@ -22,7 +22,7 @@ are merged for stats, rosters, POTW, and leaderboards.
 scripts/
   checker.py              # Orchestrator: load → process → check → save
   helpers.py              # Re-export facade for helpers_pkg/
-  telegram.py             # Telegram Bot API wrapper
+  telegram.py             # Telegram Bot API wrapper (send, poll, pin, message_link)
   state.py                # File-primary state persistence (gist backup)
   compat.py               # Backward-compat aliases for test suite
   set_commands.py         # Register Telegram / command menu

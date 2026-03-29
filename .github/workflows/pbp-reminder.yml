@@ -26,18 +26,7 @@ jobs:
         run: pip install requests pytest
 
       - name: Run tests
-        run: |
-          cd scripts && python -m pytest \
-            test_helpers.py \
-            test_checker.py \
-            test_import_history.py \
-            test_new_features.py \
-            test_campaign_table.py \
-            test_campaign_table_unit.py \
-            test_state_partitions.py \
-            test_state_io.py \
-            test_queue_format.py \
-            -q
+        run: cd scripts && python -m pytest . -q
 
       - name: Run inactivity checker
         env:

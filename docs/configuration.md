@@ -22,6 +22,43 @@ Top-level settings:
 | Setting             | Default | Description                                    |
 |---------------------|---------|------------------------------------------------|
 | `alert_after_hours` | 4       | Hours of topic silence before inactivity alert |
+| `group_username`    | —       | Public @username for t.me message links        |
+| `poll_post_hour`    | 7       | UTC hour on Sunday to post the weekly poll     |
+
+### Per-campaign topic_pair fields
+
+Fields set inside each entry in `topic_pairs`:
+
+| Field                    | Description |
+|--------------------------|-------------|
+| `hybrid_live`            | `true` — campaign has live sessions; enables the session poll |
+| `group_id`               | Override Telegram group ID (for campaigns in a separate group, e.g. C11) |
+| `group_username`         | Override `@username` for message links in this group |
+| `linked_polls`           | List of campaign codes whose polls are cross-notified with this one |
+| `poll_options`           | Custom poll answer labels (default: dynamic Fri/Sat/Can't dates) |
+| `allows_multiple_answers`| `true` — players can pick more than one option (e.g. C11) |
+| `poll_any_day`           | `true` — daily ping runs every day of the week (default: Mon–Sun anyway) |
+| `poll_user_ids`          | Explicit list of Telegram user IDs to ping (overrides PBP roster) |
+| `queue_priority`         | `true` — campaign always sorts first in the GM reply queue |
+| `queue_exclude`          | `true` — campaign is excluded from the GM reply queue entirely |
+
+### Example: C11 Dark Pockets (separate group, linked poll)
+
+```json
+{
+  "name": "Dark Pockets",
+  "code": "C11",
+  "group_id": -1003496373617,
+  "chat_topic_id": 1068,
+  "pbp_topic_ids": [1242],
+  "hybrid_live": true,
+  "poll_any_day": true,
+  "allows_multiple_answers": true,
+  "poll_options": ["Friday", "Saturday", "Sunday", "Weekday", "Can't make it"],
+  "linked_polls": ["C01"],
+  "created": "2026-03-29"
+}
+```
 
 ---
 
