@@ -125,10 +125,13 @@
       "poll_any_day": true,
       "allows_multiple_answers": true,
       "poll_options": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
         "Friday",
         "Saturday",
         "Sunday",
-        "Weekday",
         "Can't make it"
       ],
       "group_username": null,

@@ -94,7 +94,7 @@ def _handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     pid = str(pair["pbp_topic_ids"][0]) if pair else None
     option_label = votes_to_option_label(option_ids, pair or {}, datetime.now(timezone.utc))
     if pid:
-        notify_vote(config, state, name, option_label, pid)
+        notify_vote(config, state, name, uid, code, option_label, pid)
     print(f"Poll vote: {name} ({code}) → option {option_ids}")
 
 
