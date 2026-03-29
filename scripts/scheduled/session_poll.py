@@ -28,14 +28,17 @@ def _poll_roster(config: dict, state: dict, pid: str, pair: dict) -> dict:
     """Return {uid: {name, username}} for all players to be polled."""
     roster = {}
     poll_uids = pair.get("poll_user_ids")
+    # Optional {uid_str: username} map for players not in PBP registry
+    name_map = {str(k): v for k, v in pair.get("poll_user_names", {}).items()}
     if poll_uids:
         for uid in poll_uids:
             uid_str = str(uid)
             p = next((p for p in state.get("players", {}).values()
                       if p.get("user_id") == uid_str), None)
+            fallback_username = name_map.get(uid_str, "")
             roster[uid_str] = {
-                "name": p.get("first_name", uid_str) if p else uid_str,
-                "username": p.get("username", "") if p else "",
+                "name": p.get("first_name", fallback_username or uid_str) if p else (fallback_username or uid_str),
+                "username": p.get("username", fallback_username) if p else fallback_username,
             }
     else:
         for key, p in state.get("players", {}).items():
