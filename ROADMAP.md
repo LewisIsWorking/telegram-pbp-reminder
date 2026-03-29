@@ -364,7 +364,13 @@ Completed in v4.18.0. State is now stored in four partition files under
 retained as an emergency dual-write backup. See CHANGELOG for details.
 
 
-### 🔧 C11 Dark Pockets — Multi-Group Campaign Support
+### ✅ C11 Dark Pockets — Multi-Group Campaign Support
+
+Completed in v4.21.0–v4.22.0. C11 runs in a separate Telegram group
+(`-1003496373617`). Full PBP tracking, weekly session poll (any day,
+multiple choice), and cross-campaign live vote notifications with C01.
+Both polls start Sunday 7am UTC, are pinned, and include daily links.
+See CHANGELOG for full details.
 
 C11 (Dark Pockets) runs in a separate Telegram group:
 - Chat topic: `https://t.me/c/3496373617/1068`

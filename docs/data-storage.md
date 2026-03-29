@@ -14,12 +14,20 @@
 
 ### Load order
 
-1. **Files** — `data/state/*.json` (all four partitions must exist)
+1. **Files** — `data/state/*.json` (all four core partitions must exist)
 2. **Gist** — fallback if any file is missing (e.g. first run after a fresh checkout)
 3. **Defaults** — empty state if neither source is available
 
 The bot refuses to save if no source loaded successfully, preventing an
 empty-state write from wiping data.
+
+### Multi-group operation
+
+Campaigns in separate Telegram groups (e.g. C11 Dark Pockets) carry a
+`group_id` override in their `config.json` topic pair. The bot operates
+across all groups simultaneously in each hourly run. `send_message` and
+`send_poll` accept any `chat_id`, so no extra authentication is needed —
+just ensure the bot is a member of each group.
 
 ### State partition layout
 

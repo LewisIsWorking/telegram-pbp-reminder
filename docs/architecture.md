@@ -66,6 +66,7 @@ scripts/
     tracking.py           #   Post-message state tracking
     help_text.py          #   /help text constant
     cmd_search.py         #   /search (Archives of Nethys)
+    poll_notify.py        #   Cross-campaign vote tally notifications
   helpers_pkg/            # Shared utilities (re-exported via helpers.py)
     constants.py          #   Paths, tunable defaults
     config.py             #   Config loading, validation, GM helpers
@@ -75,6 +76,7 @@ scripts/
     dice.py               #   /roll dice parser
     dc_lookup.py          #   PF2e DC tables
     mechanics.py          #   HP bars, clocks, streaks, timers
+    groups.py             #   Multi-group helpers (group_id_for_campaign, linked_poll_codes)
   parsing/                # Message parsing
     message.py            #   Telegram message → structured data
   players/                # Player management
@@ -95,6 +97,9 @@ scripts/
     tips.py               #   Daily tips
     tips_data.py          #   Tip text constants
     queue_reminder.py     #   Daily GM reply queue reminder with links
+    session_poll.py       #   Weekly session poll (Sunday start, pin, daily link)
+    session_poll_build.py #   Pure poll message builders (options, pings, history)
+    poll_result.py        #   Friday result announcement (all hybrid campaigns)
   transcript/             # PBP transcript system
     finalize.py           #   Month finalization + index generation
     formatting.py         #   Log entry formatting

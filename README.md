@@ -1,8 +1,8 @@
 # PBP Reminder Bot
 
 A free, serverless bot for **play-by-post tabletop RPG groups on Telegram**.
-Runs hourly via GitHub Actions, tracks activity across campaigns, and posts
-summaries, nudges and awards directly into your group topics.
+Runs hourly via GitHub Actions, tracks activity across campaigns and multiple
+groups, and posts summaries, nudges and awards directly into your group topics.
 
 No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config file.
 
