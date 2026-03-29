@@ -1,5 +1,5 @@
 {
-  "offset": 619321558,
+  "offset": 619321562,
   "topics": {
     "52083": {
       "last_message_time": "2026-03-27T15:46:18+00:00",
@@ -163,17 +163,29 @@
       "week_iso": "sun2026-03-29",
       "poll_id": "5929114438442419183",
       "poll_message_id": 140158,
-      "voted_uids": [],
+      "voted_uids": [
+        "1698524397"
+      ],
       "last_ping_day": 739704,
-      "votes": {}
+      "votes": {
+        "2": [
+          "1698524397"
+        ]
+      }
     },
     "C11": {
       "week_iso": "sun2026-03-29",
       "poll_id": "5931602989738361910",
       "poll_message_id": 1451,
-      "voted_uids": [],
+      "voted_uids": [
+        "1698524397"
+      ],
       "last_ping_day": -1,
-      "votes": {},
+      "votes": {
+        "3": [
+          "1698524397"
+        ]
+      },
       "all_voted_posted": true
     }
   },
