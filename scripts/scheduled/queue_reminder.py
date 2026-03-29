@@ -5,6 +5,8 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
+from commands.queue_format import entry_age_icon, age_str, short_preview
+
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
@@ -20,18 +22,6 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
         else:
             names.append("@PathWars")
     return ", ".join(names)
-
-def _short_preview(text: str, words: int = 5) -> str:
-    w = text.replace("\n", " ").split()[:words]
-    result = " ".join(w)
-    if len(text.split()) > words:
-        result += "..."
-    return result
-
-def _age_str(hours: float) -> str:
-    days = int(hours // 24)
-    h = int(hours % 24)
-    return f"{days}d {h}h" if days > 0 else f"{h}h"
 
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     bot_topic = config.get("bot_topic_id")
@@ -125,11 +115,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 hours = helpers.hours_since(now, posted)
             except (ValueError, KeyError):
                 pass
-            icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
+            icon = entry_age_icon(hours)
             user = entry.get("name", "?")
-            preview = _short_preview(entry.get("preview", ""))
+            preview = short_preview(entry.get("preview", ""))
             link = entry.get("link", "")
-            line = f"{icon} {_age_str(hours)}. {user}: {preview}"
+            line = f"{icon} {age_str(hours)}. {user}: {preview}"
             if link:
                 line += f" 🔗 {link}"
             lines.append(line)

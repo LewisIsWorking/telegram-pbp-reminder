@@ -4,22 +4,7 @@ from datetime import datetime, timezone
 
 import helpers
 from commands.queue_scan import scan_transcripts
-
-
-def _short_preview(text: str, words: int = 5) -> str:
-    w = text.replace("\n", " ").split()[:words]
-    result = " ".join(w)
-    if len(text.split()) > words:
-        result += "..."
-    return result
-
-
-def _age_str(hours: float) -> str:
-    days = int(hours // 24)
-    h = int(hours % 24)
-    if days > 0:
-        return f"{days}d {h}h"
-    return f"{h}h"
+from commands.queue_format import entry_age_icon, age_str, short_preview
 
 
 def build_queue(config: dict, state: dict) -> str:
@@ -56,18 +41,18 @@ def build_queue(config: dict, state: dict) -> str:
         pin = "📌 " if pid in priority_pids else ""
         lines.append(f"━━ {pin}{label} ({len(entries)}){scene_str} ━━")
         for entry in entries:
-            hours = 0
+            hours = 0.0
             try:
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
                 posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
             except (ValueError, KeyError):
                 pass
-            icon = "🔴" if hours >= 48 else "🟡" if hours >= 24 else "⚪"
+            icon = entry_age_icon(hours)
             user = entry.get("name", "?")
-            preview = _short_preview(entry.get("preview", ""))
+            preview = short_preview(entry.get("preview", ""))
             link = entry.get("link", "")
-            line = f"{icon} {_age_str(hours)}. {user}: {preview}"
+            line = f"{icon} {age_str(hours)}. {user}: {preview}"
             if link:
                 line += f" 🔗 {link}"
             lines.append(line)

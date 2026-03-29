@@ -57,6 +57,42 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.20.0] - 2026-03-29
+
+### Changed — Queue Entry Age Icons: 3 Tiers → 5 Tiers
+
+The GM reply queue previously used only 3 icons. Long-overdue messages
+all showed the same 🔴, making it impossible to tell a 2-day-old entry
+from a 10-day-old one.
+
+New scale:
+
+| Icon | Age | Meaning |
+|---|---|---|
+| ⚪ | < 24 h | Fresh |
+| 🟡 | 1–2 d | Getting old |
+| 🟠 | 2–4 d | Overdue |
+| 🔴 | 4–7 d | Stalled |
+| 🟣 | 7 d + | Critically overdue |
+
+Applies to both the `/queue` command and the daily queue reminder post.
+
+### Refactored — `queue_format.py` Shared Helpers
+
+Extracted `entry_age_icon`, `age_str`, and `short_preview` from
+`commands/queue.py` and `scheduled/queue_reminder.py` (both had identical
+copies) into a new `commands/queue_format.py` module. DRY, SOLID.
+
+### Added — Queue Format Tests
+
+32 new tests in `test_queue_format.py`: full parametrized coverage of all
+5 icon tiers including boundary values, `age_str` formatting, and
+`short_preview` truncation.
+
+Suite: 394 → 426 tests.
+
+---
+
 ## [4.19.0] - 2026-03-27
 
 ### Fixed — Silent Data Loss: 17 State Keys Missing from Partitions

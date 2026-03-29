@@ -36,6 +36,7 @@ jobs:
             test_campaign_table_unit.py \
             test_state_partitions.py \
             test_state_io.py \
+            test_queue_format.py \
             -q
 
       - name: Run inactivity checker
