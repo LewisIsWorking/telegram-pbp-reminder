@@ -364,7 +364,33 @@ Completed in v4.18.0. State is now stored in four partition files under
 retained as an emergency dual-write backup. See CHANGELOG for details.
 
 
-### 💡 AI summaries (revisited)
+### 🔧 C11 Dark Pockets — Multi-Group Campaign Support
+
+C11 (Dark Pockets) runs in a separate Telegram group:
+- Chat topic: `https://t.me/c/3496373617/1068`
+- PBP topic:  `https://t.me/c/3496373617/1242`
+
+Three features required:
+1. **PBP tracking** — post_timestamps, activity, queue scan, transcript archiving
+   (same as all other campaigns, but against a different group_id)
+2. **Weekly session poll** — identical to C01 DF poll (Mon–Fri, ping unvoted,
+   result announcement Friday)
+3. **Cross-campaign live vote notifications** — C01 and C11 polls are
+   intertwined (same session date). When any player votes in either poll,
+   post a tally update to *both* chat topics:
+   `"C01: Horis voted for Friday. 4 votes for Friday."`
+   `"C11: Craig voted for Saturday. 3 votes for Saturday."`
+
+**Design considerations:**
+- Bot must be a member of the Dark Pockets group and have send-message permission
+- Config needs a `group_id` per campaign (or a `groups` map at the top level)
+  to support multi-group operation
+- Cross-poll notifications require the vote handler to know about sibling polls
+- `telegram.py` `send_message` already accepts any `chat_id` — API layer is ready
+
+---
+
+
 - Optional AI-generated "story so far" recap using Anthropic API
 - Posts to chat topic on a configurable schedule
 - Requires ANTHROPIC_API_KEY secret (see removed pbp_summary_feature.py

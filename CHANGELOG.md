@@ -85,11 +85,16 @@ copies) into a new `commands/queue_format.py` module. DRY, SOLID.
 
 ### Added — Queue Format Tests
 
-32 new tests in `test_queue_format.py`: full parametrized coverage of all
-5 icon tiers including boundary values, `age_str` formatting, and
+42 new tests in `test_queue_format.py`: full parametrized coverage of all
+8 icon tiers including boundary values, `age_str` formatting, and
 `short_preview` truncation.
 
-Suite: 394 → 426 tests.
+Suite: 394 → 436 tests.
+
+### Updated — Docs
+
+- `docs/architecture.md` — `queue_format.py` and `test_queue_format.py` added
+- `ROADMAP.md` — C11 Dark Pockets multi-group feature spec added
 
 ---
 

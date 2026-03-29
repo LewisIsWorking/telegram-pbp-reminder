@@ -48,6 +48,8 @@ scripts/
     summary.py            #   /summary, /party
     trackers.py           #   /notes, /quests, /pins, /lootlist, /npcs, /conditions
     queue.py              #   /queue (GM reply queue)
+    queue_format.py       #   Shared queue formatting (age icons, age_str, preview)
+    queue_scan.py         #   Transcript scanning for unreplied messages
     reactions.py          #   /reactions (emoji tracking)
     timeline.py           #   /timeline, /event
   dispatch/               # Command routing and message processing
@@ -105,6 +107,7 @@ scripts/
   test_campaign_table_unit.py # 18 unit tests (age, health, post count, truncate)
   test_state_partitions.py # 11 tests (partition contract, critical key placement)
   test_state_io.py        # 11 tests (file round-trip, public API, save guard)
+  test_queue_format.py    # 42 tests (8-tier age icons, age_str, preview)
   migrate_gist_to_files.py # One-time migration script (gist → data/state/)
 config.json               # Your configuration
 config.example.json       # Template configuration
