@@ -64,7 +64,7 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
         tally_lines.append(_tally_line(code, slot, options))
 
     msg = (f"━━━━━━━━━━━━━━━━\n"
-           f"🗳️ {mention} ({voting_code}) voted {option_label}\n"
+           f"🗳️ {mention} voted {option_label} in {voting_code}\n"
            + "\n".join(tally_lines))
 
     for code in all_codes:
