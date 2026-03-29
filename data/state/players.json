@@ -140,16 +140,6 @@
       "last_post_time": "2026-03-16T09:37:33+00:00",
       "last_warned_week": 1
     },
-    "51357:6144366145": {
-      "user_id": "6144366145",
-      "first_name": "Anthony",
-      "last_name": "NegetZ",
-      "username": "MrNegetZ",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-02-28T23:58:16+00:00",
-      "last_warned_week": 3
-    },
     "107171:8117756377": {
       "user_id": "8117756377",
       "first_name": "Laetheron",
@@ -461,6 +451,12 @@
       "first_name": "Moss",
       "username": "Mossssssssssssssssssssssssss",
       "campaign_name": "Doomsday Funtime"
+    },
+    "51357:6144366145": {
+      "removed_at": "2026-03-29T00:31:34.453848+00:00",
+      "first_name": "Anthony",
+      "username": "MrNegetZ",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -572,6 +568,28 @@
         "id": 0,
         "name": "GM",
         "joined": "2026-03-27T17:19:51.259987+00:00"
+      }
+    },
+    "76799": {
+      "7454623139": {
+        "id": 1,
+        "name": "Cannon McMahon",
+        "joined": "2026-03-29T00:31:35.507850+00:00"
+      },
+      "8353586922": {
+        "id": 2,
+        "name": "Chase Darkthorne",
+        "joined": "2026-03-29T00:31:35.507919+00:00"
+      },
+      "7863964681": {
+        "id": 3,
+        "name": "Link",
+        "joined": "2026-03-29T00:31:35.507963+00:00"
+      },
+      "1698524397": {
+        "id": 0,
+        "name": "GM",
+        "joined": "2026-03-29T00:31:35.507986+00:00"
       }
     }
   },
