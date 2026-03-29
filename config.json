@@ -22,8 +22,8 @@
       "poll_options": [
         "Friday",
         "Saturday",
+        "Either Friday or Saturday",
         "Both",
-        "Neither",
         "Can't make it this week"
       ],
       "allows_multiple_answers": false,
