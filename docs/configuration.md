@@ -39,6 +39,7 @@ Fields set inside each entry in `topic_pairs`:
 | `allows_multiple_answers`| `true` — players can pick more than one option (e.g. C11) |
 | `poll_any_day`           | `true` — daily ping runs every day of the week (default: Mon–Sun anyway) |
 | `poll_user_ids`          | Explicit list of Telegram user IDs to ping (overrides PBP roster) |
+| `poll_user_names`        | `{uid: username}` map — fallback @mention for players not in PBP registry |
 | `queue_priority`         | `true` — campaign always sorts first in the GM reply queue |
 | `queue_exclude`          | `true` — campaign is excluded from the GM reply queue entirely |
 

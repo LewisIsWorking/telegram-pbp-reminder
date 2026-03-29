@@ -66,7 +66,7 @@ scripts/
     tracking.py           #   Post-message state tracking
     help_text.py          #   /help text constant
     cmd_search.py         #   /search (Archives of Nethys)
-    poll_notify.py        #   Cross-campaign vote tally notifications
+    poll_notify.py        #   Cross-campaign vote tally notifications + ID capture
   helpers_pkg/            # Shared utilities (re-exported via helpers.py)
     constants.py          #   Paths, tunable defaults
     config.py             #   Config loading, validation, GM helpers
@@ -115,6 +115,7 @@ scripts/
   test_queue_format.py    # 42 tests (8-tier age icons, age_str, preview)
   conftest.py             # Shared mock telegram — installed before all test imports
   migrate_gist_to_files.py # One-time migration script (gist → data/state/)
+  promote_poll_voters.py  # Promote captured unknown voter IDs into config
 config.json               # Your configuration
 config.example.json       # Template configuration
 boons.json                # Flavour boons for POTW (optional)

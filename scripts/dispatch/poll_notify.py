@@ -79,3 +79,24 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
                 break
         if chat_tid:
             tg.send_message(gid, chat_tid, msg)
+
+
+def capture_unknown_voter(uid: str, code: str,
+                          config: dict, state: dict) -> None:
+    """Store unrecognised voter IDs for later promotion via promote_poll_voters.py.
+
+    Called when a poll_answer arrives from a UID not in poll_user_ids.
+    Recorded in state['poll_unknown_voters'][code] so it can be matched
+    to a placeholder on the next Sunday after enough players have voted.
+    """
+    pair = next((p for p in config.get("topic_pairs", [])
+                 if p.get("code") == code), None)
+    if not pair:
+        return
+    known = {str(u) for u in pair.get("poll_user_ids", [])}
+    if uid in known:
+        return
+    bucket = state.setdefault("poll_unknown_voters", {}).setdefault(code, [])
+    if uid not in bucket:
+        bucket.append(uid)
+        print(f"Unknown voter captured: {uid} in {code}")

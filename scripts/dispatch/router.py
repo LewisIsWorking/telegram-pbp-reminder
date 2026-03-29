@@ -22,7 +22,7 @@ from dispatch import cmd_player
 from dispatch.tracking import track_message
 from dispatch.bot_topic import handle_bot_topic_cmd
 from dispatch.help_text import _HELP_TEXT
-from dispatch.poll_notify import notify_vote
+from dispatch.poll_notify import notify_vote, capture_unknown_voter
 from scheduled.session_poll_build import votes_to_option_label
 
 cmd_info.init(_HELP_TEXT)
@@ -80,6 +80,7 @@ def _handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     voted = poll.setdefault("voted_uids", [])
     if uid and uid not in voted:
         voted.append(uid)
+        capture_unknown_voter(uid, code, config, state)
 
     votes = poll.setdefault("votes", {})
     # Remove previous votes from this user across all options

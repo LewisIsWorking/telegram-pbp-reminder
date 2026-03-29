@@ -57,6 +57,53 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.24.0] - 2026-03-29
+
+### Added — Auto-Capture Unknown Poll Voter IDs
+
+When a `poll_answer` arrives from a Telegram user ID that is not in a
+campaign's `poll_user_ids` list (e.g. a player with a placeholder ID),
+the real ID is now stored in `state["poll_unknown_voters"][code]`.
+
+After each Sunday vote session, running:
+```
+python3 scripts/promote_poll_voters.py [--commit]
+```
+prints the captured IDs alongside their vote patterns and remaining
+placeholders. Where there's a 1:1 match it auto-promotes. `--commit`
+writes the result to `config.json` and clears the capture buffer.
+
+This resolved Jack (`6452663252`) and Natasha (`8018921976`) automatically
+after this week's C11 poll — no manual ID lookup required.
+
+### Changed — Poll Notifications: @mention + Campaign Code
+
+Vote notifications now show `@username (CODE)` instead of just first name:
+```
+🗳️ @Nemesiux (C01) voted Saturday
+C01: Saturday: 2, Either: 2
+C11: Weekday: 1
+```
+Username resolved from: player registry → `poll_user_names` config → first name.
+
+### Changed — C11 Poll: Monday–Sunday
+
+C11 (Dark Pockets) poll options updated from Fri/Sat/Sun/Weekday/Can't
+to the full week: Mon / Tue / Wed / Thu / Fri / Sat / Sun / Can't make it.
+
+### Fixed — Raw UID in Ping ("8030796908" instead of "@Sparkleslayer")
+
+Added `poll_user_names: {uid: username}` config field. When a player is
+in `poll_user_ids` but not in the PBP player registry, their username is
+looked up from this map instead of falling back to the raw numeric ID.
+
+### Added — `promote_poll_voters.py`
+
+One-shot utility script (96 lines) to promote unknown voter IDs from
+state into config after a vote session.
+
+---
+
 ## [4.23.0] - 2026-03-29
 
 ### Fixed — Test Suite Contamination (22 failing tests in combined run)
