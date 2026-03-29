@@ -57,6 +57,79 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.21.0] - 2026-03-29
+
+### Added — C11 Dark Pockets: Multi-Group Campaign Support
+
+C11 (Dark Pockets) runs in a separate Telegram group. Full integration:
+
+**1. PBP tracking** — C11's PBP topic (`1242`) is now a tracked campaign.
+Post timestamps, activity, queue scan, transcripts all work the same as
+every other campaign. Players are added to the roster as they post.
+
+**2. Weekly session poll** — C11 gets its own native Telegram poll, posted
+to its chat topic (`1068`) in the Dark Pockets group. Differences from C01:
+- `poll_any_day: true` — poll posts and pings run any day of the week,
+  not just Mon–Fri
+- `allows_multiple_answers: true` — multiple choice
+- Configurable options: Friday / Saturday / Sunday / Weekday / Can't make it
+
+**3. Cross-campaign live vote notifications** — when anyone votes in
+either C01 or C11's poll, both chat topics receive a tally update
+immediately:
+```
+🗳️ Craig voted Friday
+C01: 3 Fri / 1 Sat
+C11: 2 Fri / 1 Sat
+```
+Both campaigns list both tallies. All four combinations notify both chats.
+
+### Changed — Multi-Group Architecture
+
+The bot now operates across multiple Telegram groups simultaneously:
+
+- `helpers_pkg/groups.py` (new) — `group_id_for_campaign`,
+  `linked_poll_codes`, `all_group_ids`, `pid_for_code`
+- `helpers_pkg/topic_maps.py` — `TopicMaps` gains `to_group` dict
+  (pid → group_id); `build_topic_maps` populates it from pair-level
+  `group_id` overrides
+- `parsing/message.py` — `parse_message(msg, maps)` replaces
+  `parse_message(msg, group_id, maps)`; verifies group via `maps.to_group`
+- `dispatch/router.py` — multi-group aware; routes `poll_answer` by
+  `poll_id` (not by campaign assumption); passes correct `group_id`
+  per-campaign to all downstream handlers
+- `dispatch/poll_notify.py` (new) — `notify_vote` posts combined tally
+  to own + all linked campaigns' chat topics on every vote
+- `scheduled/session_poll.py` — fully rewritten; iterates all hybrid
+  campaigns; per-code state slot; stores `poll_id` for answer matching
+- `scheduled/session_poll_build.py` (new) — pure message builders
+  extracted from `session_poll.py` (poll options, ping text, history)
+- `scheduled/poll_result.py` — rewritten to iterate all hybrid campaigns
+  and announce in each campaign's own group
+- `telegram.py` — `send_poll` now returns `(message_id, poll_id)` tuple
+- `state["session_poll"]` — migrated from flat dict to `{code: slot}` map;
+  backwards-compat migration runs automatically on first load
+
+### Updated — config.json
+
+```json
+C01: { "linked_polls": ["C11"] }
+C11: {
+  "group_id": -1003496373617,
+  "chat_topic_id": 1068,
+  "pbp_topic_ids": [1242],
+  "hybrid_live": true,
+  "poll_any_day": true,
+  "allows_multiple_answers": true,
+  "poll_options": ["Friday","Saturday","Sunday","Weekday","Can't make it"],
+  "linked_polls": ["C01"]
+}
+```
+
+Production files: 92 → 96. Suite: 436 passing.
+
+---
+
 ## [4.20.0] - 2026-03-29
 
 ### Changed — Queue Entry Age Icons: 3 Tiers → 5 Tiers

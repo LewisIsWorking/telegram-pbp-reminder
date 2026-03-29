@@ -15,7 +15,10 @@
         25059
       ],
       "code": "C01",
-      "hybrid_live": true
+      "hybrid_live": true,
+      "linked_polls": [
+        "C11"
+      ]
     },
     {
       "name": "Riddleport",
@@ -91,6 +94,29 @@
       ],
       "code": "C08",
       "queue_exclude": true
+    },
+    {
+      "name": "Dark Pockets",
+      "code": "C11",
+      "group_id": -1003496373617,
+      "chat_topic_id": 1068,
+      "pbp_topic_ids": [
+        1242
+      ],
+      "hybrid_live": true,
+      "linked_polls": [
+        "C01"
+      ],
+      "created": "2026-03-29",
+      "poll_any_day": true,
+      "allows_multiple_answers": true,
+      "poll_options": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Weekday",
+        "Can't make it"
+      ]
     }
   ],
   "settings": {

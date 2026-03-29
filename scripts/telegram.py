@@ -114,8 +114,8 @@ def answer_callback(callback_id: str, text: str = "") -> bool:
 
 def send_poll(chat_id: int, thread_id: int, question: str,
               options: list[str], is_anonymous: bool = False,
-              allows_multiple_answers: bool = False) -> int | None:
-    """Send a native Telegram poll. Returns message_id or None."""
+              allows_multiple_answers: bool = False) -> tuple[int, str] | None:
+    """Send a native Telegram poll. Returns (message_id, poll_id) or None."""
     # Bot API 7.3+ requires InputPollOption objects
     poll_options = [{"text": opt} for opt in options]
     result = _post("sendPoll", {
@@ -127,5 +127,7 @@ def send_poll(chat_id: int, thread_id: int, question: str,
         "allows_multiple_answers": allows_multiple_answers,
     }, "send_poll")
     if result:
-        return result.get("message_id")
+        msg_id = result.get("message_id")
+        poll_id = result.get("poll", {}).get("id", "")
+        return (msg_id, poll_id)
     return None

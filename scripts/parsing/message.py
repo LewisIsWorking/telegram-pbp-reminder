@@ -9,18 +9,20 @@ import re
 from datetime import datetime, timezone
 
 
-def parse_message(msg: dict, group_id: int, maps) -> dict | None:
+def parse_message(msg: dict, maps) -> dict | None:
     """Validate and extract fields from a Telegram message. Returns None if skipped."""
     chat_id = msg.get("chat", {}).get("id")
-    if chat_id != group_id:
-        return None
-
     thread_id = msg.get("message_thread_id")
     if thread_id is None:
         return None
 
     thread_id_str = str(thread_id)
     if thread_id_str not in maps.all_pbp_ids:
+        return None
+
+    # Verify the message came from the correct group for this topic
+    pid = maps.to_canonical[thread_id_str]
+    if chat_id != maps.to_group.get(pid):
         return None
 
     from_user = msg.get("from", {})

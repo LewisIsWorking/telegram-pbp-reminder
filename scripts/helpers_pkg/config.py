@@ -183,3 +183,4 @@ def feature_enabled(config: dict, pid: str, feature: str) -> bool:
         if str(pair["pbp_topic_ids"][0]) == pid:
             return feature not in pair.get("disabled_features", [])
     return True
+

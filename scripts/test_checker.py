@@ -645,7 +645,7 @@ def test_feature_enabled():
 #  _parse_message tests
 # ------------------------------------------------------------------ #
 def test_parse_message_valid():
-    maps = helpers.build_topic_maps({"topic_pairs": [
+    maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
     ]})
     msg = {
@@ -655,7 +655,7 @@ def test_parse_message_valid():
         "date": int(datetime.now(timezone.utc).timestamp()),
         "text": "Hello world",
     }
-    result = checker._parse_message(msg, -100, maps)
+    result = checker._parse_message(msg, maps)
     assert result is not None
     assert result["pid"] == "100"
     assert result["user_id"] == "42"
@@ -664,27 +664,27 @@ def test_parse_message_valid():
 
 
 def test_parse_message_wrong_group():
-    maps = helpers.build_topic_maps({"topic_pairs": [
+    maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
     ]})
     msg = {"chat": {"id": -999}, "message_thread_id": 100, "from": {"id": 42}}
-    assert checker._parse_message(msg, -100, maps) is None
+    assert checker._parse_message(msg, maps) is None
 
 
 def test_parse_message_unknown_topic():
-    maps = helpers.build_topic_maps({"topic_pairs": [
+    maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
     ]})
     msg = {"chat": {"id": -100}, "message_thread_id": 999, "from": {"id": 42}}
-    assert checker._parse_message(msg, -100, maps) is None
+    assert checker._parse_message(msg, maps) is None
 
 
 def test_parse_message_bot_skipped():
-    maps = helpers.build_topic_maps({"topic_pairs": [
+    maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
     ]})
     msg = {"chat": {"id": -100}, "message_thread_id": 100, "from": {"id": 42, "is_bot": True}}
-    assert checker._parse_message(msg, -100, maps) is None
+    assert checker._parse_message(msg, maps) is None
 
 
 # ------------------------------------------------------------------ #
@@ -2076,7 +2076,7 @@ def test_transcript_monthly_stats_footer():
 
 
 def test_parse_message_captures_media():
-    maps = helpers.build_topic_maps({"topic_pairs": [
+    maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
     ]})
     msg = {
@@ -2087,7 +2087,7 @@ def test_parse_message_captures_media():
         "photo": [{"file_id": "abc"}],
         "caption": "battle map",
     }
-    result = checker._parse_message(msg, -100, maps)
+    result = checker._parse_message(msg, maps)
     assert result["media_type"] == "image"
     assert result["caption"] == "battle map"
     assert result["text"] == "battle map"  # Falls back to caption
