@@ -115,6 +115,18 @@ def track_message(parsed: dict, state: dict, config: dict,
                              replied_entry.get("preview", ""),
                              replied_entry.get("user_name", ""))
 
+                # Permanent reply log — audit trail of every GM reply
+                log = state.setdefault("gm_reply_log", [])
+                log.append({
+                    "t":       msg_time_iso,
+                    "pid":     pid,
+                    "msg_id":  str(reply_to),
+                    "player":  replied_entry.get("user_name", "?"),
+                    "preview": replied_entry.get("preview", "")[:80],
+                })
+                if len(log) > 500:
+                    state["gm_reply_log"] = log[-500:]
+
     # Log to persistent PBP transcript
     if not text.startswith("/"):
         append_to_transcript(parsed, gm_ids, config)

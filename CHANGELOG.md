@@ -11,6 +11,49 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.29.0] - 2026-03-30
+
+### Fixed — Queue showing too few entries (floor too aggressive)
+
+`queue_scan_floor` was set to `2026-03-30` (today), suppressing all
+messages before today including legitimate recent ones. Reset to
+`2026-03-16` (2 weeks ago) — kills the ancient 29d backlog but restores
+🔵🟣🔴 entries from the past fortnight.
+
+The real fix is a proper reply audit trail (below) rather than a floor.
+
+### Added — GM Reply Audit Log (`gm_reply_log`)
+
+Every GM reply-to event is now permanently recorded in
+`state["gm_reply_log"]` (queue partition, capped at 500):
+
+```json
+{"t": "2026-03-30T19:00:00+00:00", "pid": "40585",
+ "msg_id": "140368", "player": "Anthony NegetZ",
+ "preview": "That's not a bug...", "via": "reply"}
+```
+
+`"via"` is `"reply"` for Telegram reply-to events and `"markdone"` for
+manual clears. Provides a searchable history of all GM responses.
+
+### Added — `/markdone` GM Command
+
+Manually clear queue entries the bot missed (e.g. pre-history replies,
+or messages handled outside Telegram's reply-to feature):
+
+| Usage | Effect |
+|---|---|
+| `/markdone` | Clear oldest unreplied entry in this campaign |
+| `/markdone 3` | Clear entry #3 from the queue list |
+| `/markdone 140368` | Clear by Telegram message ID |
+| `/markdone all` | Clear all entries for this campaign |
+
+Each clear is written to `gm_reply_log` for audit purposes.
+
+105 production files, 456 tests passing.
+
+---
+
 ## [4.28.0] - 2026-03-30
 
 ### Fixed — Queue nudges re-firing every hour

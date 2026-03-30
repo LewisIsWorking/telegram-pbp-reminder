@@ -8,6 +8,34 @@ a response across all campaigns.
 
 ---
 
+## Reply audit log
+
+Every GM reply is permanently recorded in `state["gm_reply_log"]`
+(capped at 500 entries). Each record stores the timestamp, campaign PID,
+message ID, player name, message preview, and how it was cleared
+(`"reply"` for Telegram reply-to, `"markdone"` for manual clears).
+
+This log survives state resets and provides a full history of GM
+responses across all campaigns.
+
+---
+
+## Manual queue management — `/markdone`
+
+If a message was replied to outside Telegram's reply feature, or before
+the bot started tracking replies, use `/markdone` in the PBP topic:
+
+| Command | Effect |
+|---|---|
+| `/markdone` | Clear the oldest unreplied entry |
+| `/markdone 3` | Clear entry #3 from the queue list |
+| `/markdone 140368` | Clear by Telegram message ID |
+| `/markdone all` | Clear all entries for this campaign |
+
+Each manual clear is written to `gm_reply_log` with `"via": "markdone"`.
+
+---
+
 ## Viewing the queue
 
 `/queue` — posts the full queue sorted by:

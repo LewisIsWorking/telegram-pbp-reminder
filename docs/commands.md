@@ -62,6 +62,7 @@ The bot responds to these commands in any monitored PBP topic:
 - `/clog <event>` - Add combat log entry.
 - `/pause [reason]` - Pause inactivity tracking (for breaks, holidays, between arcs).
 - `/resume` - Resume inactivity tracking.
+- `/markdone [N|msg_id|all]` - Manually clear queue entries (oldest, by number, by message ID, or all).
 - `/kick @player` - Remove a player from tracking.
 - `/addplayer @user Name` - Pre-register a player before they post.
 - `/scene <n>` - Mark a scene boundary in the transcript.
