@@ -107,7 +107,9 @@ def handle(ctx: dict) -> bool:
 
     # ---- /chooseboon command (POTW winner fallback for broken buttons) ----
     if text.startswith("/chooseboon"):
-        num_str = parsed["raw_text"][11:].strip()
+        import re as _re
+        cleaned = _re.sub(r"^(/\w+)@\S+", r"\1", parsed["raw_text"])
+        num_str = cleaned[11:].strip()
         try:
             choice = int(num_str)
         except ValueError:

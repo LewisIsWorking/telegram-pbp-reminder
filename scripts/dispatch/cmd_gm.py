@@ -2,9 +2,20 @@
 GM-only control commands: pause, resume, kick, addplayer, scene.
 """
 
+import re
 import telegram as tg
 from players.management import handle_kick, handle_addplayer
 from transcript.logger import write_scene_marker
+
+
+def _arg(raw_text: str, cmd_len: int) -> str:
+    """Extract argument from raw_text, stripping any @BotName suffix.
+
+    e.g. '/scene@PathWarsNudgeBot The Docks' → 'The Docks'
+    """
+    # Strip @BotName appended by Telegram in group commands
+    cleaned = re.sub(r"^(/\w+)@\S+", r"\1", raw_text)
+    return cleaned[cmd_len:].strip()
 
 
 def handle(ctx: dict) -> bool:
@@ -25,7 +36,7 @@ def handle(ctx: dict) -> bool:
         return False
 
     if text.startswith("/pause"):
-        reason = raw_text[6:].strip() or "No reason given"
+        reason = _arg(raw_text, 6) or "No reason given"
         state.setdefault("paused_campaigns", {})[pid] = {
             "paused_at": now_iso,
             "reason": reason,
@@ -47,7 +58,7 @@ def handle(ctx: dict) -> bool:
         return True
 
     if text.startswith("/kick"):
-        target = raw_text[5:].strip().lstrip("@")
+        target = _arg(raw_text, 5).lstrip("@")
         if not target:
             tg.send_message(gid, tid,
                             "Usage: /kick @username or /kick PlayerName")
@@ -56,7 +67,7 @@ def handle(ctx: dict) -> bool:
         return True
 
     if text.startswith("/addplayer"):
-        raw_args = raw_text[10:].strip()
+        raw_args = _arg(raw_text, 10)
         if not raw_args:
             tg.send_message(gid, tid,
                             "Usage: /addplayer @username PlayerName\n"
@@ -66,7 +77,7 @@ def handle(ctx: dict) -> bool:
         return True
 
     if text.startswith("/scene"):
-        scene_name = raw_text[6:].strip()
+        scene_name = _arg(raw_text, 6)
         if not scene_name:
             tg.send_message(gid, tid,
                             "Usage: /scene <n>\ne.g. /scene The Docks at Midnight")
