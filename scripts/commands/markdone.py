@@ -122,8 +122,8 @@ def _clear_entries(entries: list[dict], pid: str,
         ]
         cleared += 1
 
-    if len(replied) > 200:
-        state["gm_queue_replied"][pid] = replied[-200:]
+    if len(replied) > 2000:
+        state["gm_queue_replied"][pid] = replied[-2000:]
     if len(log) > 500:
         state["gm_reply_log"] = log[-500:]
 

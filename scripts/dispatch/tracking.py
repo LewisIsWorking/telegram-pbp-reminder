@@ -97,9 +97,10 @@ def track_message(parsed: dict, state: dict, config: dict,
                         if ts not in replied:
                             replied.append(ts)
 
-                # Cap at 200 entries
-                if len(replied) > 200:
-                    state["gm_queue_replied"][pid] = replied[-200:]
+                # Cap at 2000 entries per campaign (was 200 — too low,
+                # caused old replies to be evicted and flood back into queue)
+                if len(replied) > 2000:
+                    state["gm_queue_replied"][pid] = replied[-2000:]
 
                 # Remove from live queue and record for stats
                 replied_entry = {}
