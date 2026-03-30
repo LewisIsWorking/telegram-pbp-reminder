@@ -22,7 +22,8 @@ _SWIMMERS: list[tuple[int, str]] = [
     (9100000001,   "deft_369"),       # ⏳ placeholder
     (9100000002,   "Verminatrix"),    # ⏳ placeholder
     (9100000003,   "anweshaborah190"),# ⏳ placeholder
-    (9100000004,   "TwoBad22"),       # ⏳ placeholder
+    (9100000004,   "TwoBad22"),       # Reece    ⏳ placeholder
+    (9100000005,   "BronwynLiddle"), # Bronwyn  ⏳ placeholder
 ]
 
 _OPTIONS = [
