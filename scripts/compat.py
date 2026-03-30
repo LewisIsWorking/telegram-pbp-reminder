@@ -30,8 +30,9 @@ import helpers
 
 from boons.handler import (
     _format_boon_result, process_boon_callback,
-    choose_boon_by_text, build_boons, build_boons_all,
+    choose_boon_by_text,
 )
+from boons.display import build_boons, build_boons_all
 from combat.display import (
     build_whosturn as _build_whosturn,
     format_elapsed as _format_elapsed,

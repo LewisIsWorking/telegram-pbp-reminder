@@ -93,7 +93,10 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
             preview = "\n".join(content_lines).strip()
 
             if is_gm:
-                pending = []
+                # A GM message does NOT clear pending entries — only a direct
+                # reply (tracked via gm_queue_replied in state) clears a specific
+                # player message. A GM posting generally shouldn't wipe the queue.
+                pass
             else:
                 # Check inline msg# tag first, then lookup file
                 mid = msg_id

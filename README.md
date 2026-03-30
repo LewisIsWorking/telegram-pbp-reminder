@@ -74,7 +74,7 @@ checker.py (orchestrator)
 `live.json`, `players.json`, `queue.json`, `activity.json`.
 The GitHub Gist is written on every run as an emergency backup.
 
-98 production files, 454 tests, 9 campaigns, 40 player commands, 75 admin commands.
+102 production files, 454 tests, 9 campaigns, 40 player commands, 75 admin commands.
 Every file held to a strict 200-line maximum.
 
 ---
@@ -88,6 +88,10 @@ Every file held to a strict 200-line maximum.
 | [Configuration](docs/configuration.md) | config.json reference |
 | [Data Storage](docs/data-storage.md) | Where data lives, backup strategy |
 | [Architecture](docs/architecture.md) | File structure, multi-topic campaigns |
+| [Intended Behaviour](docs/behaviour.md) | How features work and why |
+| [GM Queue](docs/gm-queue.md) | Queue mechanics, clearing, reminders |
+| [Polls](docs/polls.md) | Session polls, swimming poll, cross-notifications |
+| [Player of the Week](docs/potw.md) | POTW selection, boons, streaks |
 | [Examples](docs/examples.md) | Sample bot output |
 | [Importing History](docs/importing-history.md) | Backfill from Telegram exports |
 | [Troubleshooting](docs/troubleshooting.md) | Common issues and fixes |

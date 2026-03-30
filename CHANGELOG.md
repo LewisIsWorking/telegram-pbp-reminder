@@ -57,6 +57,74 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.26.0] - 2026-03-30
+
+### Fixed — GM Queue Clearing Bug
+
+**The GM queue was clearing all entries whenever the GM sent any message
+in a topic, not just when they replied to a specific message.**
+
+Root cause: `queue_scan.py` reset `pending = []` on any GM transcript
+entry. Fixed to `pass` — the scanner now only filters entries via
+`gm_queue_replied` state, which is populated exclusively by direct
+Telegram reply-to events.
+
+### Added — POTW History
+
+Every Player of the Week event is now permanently recorded in
+`state["potw_history"]` with: week, campaign, winner ID/name, post count,
+average gap, all 4 boons offered, and chosen boon (backfilled by
+`_store_boon` on pick). 9 historical records backfilled from `player_boons`.
+
+### Added — POTW Streaks
+
+`scheduled/potw_streaks.py` — campaign and community consecutive-week
+win streaks with milestone announcements:
+- Campaign: 2 / 3 / 5 / 10 weeks → posted in campaign chat topic
+- Community: 2 / 3 / 5 weeks → posted in bot topic
+
+### Added — Week Welcome Post
+
+`scheduled/week_welcome.py` — "🗳️ Welcome to Week X/YYYY!" posted to bot
+topic each Sunday at `poll_post_hour` UTC alongside the session polls.
+
+### Added — Swimming Poll
+
+`scheduled/swimming_poll.py` — weekly poll in the Dark Pockets group
+main chat (topic 1). Sunday start, pinned, daily pings, Mon–Sun options
+with multiple choice. 7 swimmers; IDs auto-captured on first vote.
+
+### Changed — Queue Reminder Doubled
+
+`queue_daily_hours: [9, 21]` — queue reminder now posts at 9am **and**
+9pm UTC daily (was 9am only). Tracking upgraded from date string to
+slot-based (`last_queue_daily_slots`) so both daily slots fire reliably.
+
+### Refactored — `boons/display.py`
+
+`build_boons` and `build_boons_all` extracted from `boons/handler.py`
+into new `boons/display.py` to keep handler under 200 lines.
+
+### Fixed — `@BotName` suffix in command arguments
+
+`/chooseboon`, `/scene`, `/pause`, `/kick`, `/addplayer` all used
+fixed-length slices on `raw_text`, which included the `@BotName` suffix
+that Telegram appends in groups (e.g. `/chooseboon@PathWarsNudgeBot 1`).
+Fixed with `_arg(raw_text, n)` helper in `cmd_gm.py` and equivalent
+regex strip in `cmd_player.py`.
+
+### Added — Documentation
+
+Four new docs files:
+- `docs/behaviour.md` — intended behaviour for all major features
+- `docs/gm-queue.md` — queue mechanics, clearing rules, reminders
+- `docs/polls.md` — session polls, swimming poll, cross-notifications
+- `docs/potw.md` — POTW selection, boons, streaks, history
+
+102 production files, 454 tests passing.
+
+---
+
 ## [4.25.0] - 2026-03-29
 
 ### Fixed — Poll notification phrasing

@@ -26,7 +26,7 @@ def _format_boon_result(boons: list[str], chosen_idx: int, base_message: str, la
 
 def _store_boon(state: dict, pid: str, user_id: str, boon_text: str,
                 campaign_name: str, now: datetime) -> None:
-    """Persist a chosen boon in state for later retrieval."""
+    """Persist a chosen boon in state and update potw_history."""
     boons = state.setdefault("player_boons", {}).setdefault(pid, {}).setdefault(user_id, [])
     _, week, _ = now.isocalendar()
     boons.append({
@@ -35,6 +35,12 @@ def _store_boon(state: dict, pid: str, user_id: str, boon_text: str,
         "campaign": campaign_name,
         "week": f"W{week}",
     })
+    # Backfill boon_chosen in most recent matching potw_history record
+    for record in reversed(state.get("potw_history", [])):
+        if record.get("user_id") == user_id and record.get("campaign_pid") == pid:
+            if record.get("boon_chosen") is None:
+                record["boon_chosen"] = boon_text
+            break
     print(f"Stored boon for user {user_id} in {campaign_name}: {boon_text[:50]}")
 
 
@@ -162,39 +168,3 @@ def expire_pending_boons(config: dict, state: dict, *, now: datetime | None = No
     from boons.reminders import check_boon_reminders
     check_boon_reminders(config, state, now=now)
 
-
-def build_boons(pid: str, user_id: str, campaign_name: str, state: dict) -> str:
-    """Build /boons output: current player's boons in this campaign."""
-    boons = state.get("player_boons", {}).get(pid, {}).get(user_id, [])
-    if not boons:
-        return f"No boons held in {campaign_name}."
-
-    lines = [f"🎁 Your boons in {campaign_name}:\n"]
-    for i, b in enumerate(boons, 1):
-        lines.append(f"{i}. {b['text']}")
-        lines.append(f"   Earned: {b['date']} ({b.get('week', '?')})")
-    return "\n".join(lines)
-
-
-def build_boons_all(user_id: str, state: dict) -> str:
-    """Build /boonsall output: all boons for this player across all campaigns."""
-    all_boons = state.get("player_boons", {})
-    found = []
-    for pid, users in all_boons.items():
-        for b in users.get(user_id, []):
-            found.append(b)
-
-    if not found:
-        return "No boons held in any campaign."
-
-    lines = ["🎁 All your boons:\n"]
-    by_campaign = {}
-    for b in found:
-        by_campaign.setdefault(b["campaign"], []).append(b)
-
-    for camp, boons in sorted(by_campaign.items()):
-        lines.append(f"📜 {camp}:")
-        for i, b in enumerate(boons, 1):
-            lines.append(f"  {i}. {b['text']}  ({b['date']})")
-        lines.append("")
-    return "\n".join(lines).rstrip()

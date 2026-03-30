@@ -151,6 +151,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         msg_id = tg.send_message_with_buttons(group_id, bot_topic or chat_topic_id, base_message + boon_text, buttons)
         if msg_id:
             state["last_potw"][pid] = now.isoformat()
+            _, week_num, _ = now.isocalendar()
             state["pending_potw_boons"][pid] = {
                 "message_id": msg_id,
                 "winner_user_id": winner["user_id"],
@@ -159,3 +160,29 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
                 "base_message": base_message,
                 "posted_at": now.isoformat(),
             }
+            # Permanent POTW history record
+            history = state.setdefault("potw_history", [])
+            history.append({
+                "week":        f"W{week_num}",
+                "year":        now.year,
+                "date":        now.strftime("%Y-%m-%d"),
+                "campaign":    name,
+                "campaign_pid": pid,
+                "user_id":     winner["user_id"],
+                "first_name":  winner["first_name"],
+                "username":    winner.get("username", ""),
+                "post_count":  winner["post_count"],
+                "avg_gap_h":   round(winner["avg_gap_hours"], 1),
+                "boons_offered": chosen_boons,
+                "boon_chosen": None,  # updated by boons/handler.py on pick
+            })
+            # Update mvp_wins counter
+            uid = winner["user_id"]
+            wins = state.setdefault("mvp_wins", {})
+            entry = wins.setdefault(uid, {"name": helpers.player_mention(winner), "count": 0})
+            entry["count"] += 1
+            # Check and announce streaks
+            from scheduled.potw_streaks import announce_streaks
+            announce_streaks(config, state, winner, name, pid,
+                             group_id, bot_topic or chat_topic_id)
+

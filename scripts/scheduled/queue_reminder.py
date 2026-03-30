@@ -38,12 +38,18 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             fingerprint_parts.append(f"{pid}:{entry['time']}")
     fingerprint = "|".join(fingerprint_parts) if fingerprint_parts else "empty"
 
-    # Only post if queue changed since last post, OR it's the daily reminder hour
-    daily_hour = config.get("queue_daily_hour")
+    # Only post if queue changed since last post, OR it's a scheduled reminder hour
+    # queue_daily_hours: list of UTC hours to post (e.g. [9, 21])
+    # queue_daily_hour: legacy single-hour setting
+    raw = config.get("queue_daily_hours") or (
+        [config["queue_daily_hour"]] if config.get("queue_daily_hour") is not None else []
+    )
+    daily_hours = raw if isinstance(raw, list) else [raw]
     is_daily = False
-    if daily_hour is not None and now.hour == daily_hour:
-        last_daily = state.get("last_queue_daily", "")
-        if last_daily != now.date().isoformat():
+    if now.hour in daily_hours:
+        slot_key = f"{now.date().isoformat()}:{now.hour:02d}"
+        posted_slots = state.get("last_queue_daily_slots", [])
+        if slot_key not in posted_slots:
             is_daily = True
 
     if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
@@ -147,6 +153,12 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     if sent:
         state["last_queue_fingerprint"] = fingerprint
         if is_daily:
-            state["last_queue_daily"] = now.date().isoformat()
+            slot_key = f"{now.date().isoformat()}:{now.hour:02d}"
+            slots = state.setdefault("last_queue_daily_slots", [])
+            if slot_key not in slots:
+                slots.append(slot_key)
+            # Keep only last 14 slots (7 days × 2 posts/day)
+            state["last_queue_daily_slots"] = slots[-14:]
+            state["last_queue_daily"] = now.date().isoformat()  # backwards compat
         print(f"Queue reminder: {total} unreplied ({len(msgs)} msg)")
 

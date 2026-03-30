@@ -155,12 +155,12 @@ def handle(ctx: dict) -> bool:
         return True
 
     if text == "/boons":
-        from boons.handler import build_boons
+        from boons.display import build_boons
         tg.send_message(gid, reply, build_boons(pid, uid, name, state))
         return True
 
     if text == "/boonsall":
-        from boons.handler import build_boons_all
+        from boons.display import build_boons_all
         tg.send_message(gid, reply, build_boons_all(uid, state))
         return True
 
