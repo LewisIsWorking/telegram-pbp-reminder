@@ -51,8 +51,9 @@ def post_swimming_poll(config: dict, state: dict, *,
     week_num = now.isocalendar()[1]
     question = f"🏊 Week {week_num}/52 — Swimming this week?"
 
+    # topic_id=1 is the main chat — send without thread_id
     result = tg.send_poll(
-        _GROUP_ID, _TOPIC_ID, question, _OPTIONS,
+        _GROUP_ID, None, question, _OPTIONS,
         is_anonymous=False, allows_multiple_answers=True,
     )
     msg_id, poll_id = result if result else (None, None)
@@ -106,6 +107,6 @@ def post_swimming_ping(config: dict, state: dict, *,
            f"🏊 Week {week_num}/52 — Vote in the swimming poll!{link}\n\n"
            f"Waiting on:\n" + "\n".join(unvoted))
 
-    if tg.send_message(_GROUP_ID, _TOPIC_ID, msg):
+    if tg.send_message(_GROUP_ID, None, msg):
         swim_state["last_ping_day"] = today_ord
         print(f"Swimming poll ping sent (W{week_num})")

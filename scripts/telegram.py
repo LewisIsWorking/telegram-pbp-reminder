@@ -60,15 +60,16 @@ def get_updates(offset: int) -> list:
     return data.get("result", [])
 
 
-def send_message(chat_id: int, thread_id: int, text: str,
+def send_message(chat_id: int, thread_id: int | None, text: str,
                  parse_mode: str | None = None) -> bool:
-    """Send a text message to a specific thread. Returns True on success."""
-    payload = {
+    """Send a text message. If thread_id is None, sends to main chat."""
+    payload: dict = {
         "chat_id": chat_id,
-        "message_thread_id": thread_id,
         "text": text,
         "disable_notification": False,
     }
+    if thread_id is not None:
+        payload["message_thread_id"] = thread_id
     if parse_mode:
         payload["parse_mode"] = parse_mode
     result = _post("sendMessage", payload, "send_message")
@@ -112,20 +113,21 @@ def answer_callback(callback_id: str, text: str = "") -> bool:
     }, "answer_callback") is not None
 
 
-def send_poll(chat_id: int, thread_id: int, question: str,
+def send_poll(chat_id: int, thread_id: int | None, question: str,
               options: list[str], is_anonymous: bool = False,
               allows_multiple_answers: bool = False) -> tuple[int, str] | None:
     """Send a native Telegram poll. Returns (message_id, poll_id) or None."""
-    # Bot API 7.3+ requires InputPollOption objects
     poll_options = [{"text": opt} for opt in options]
-    result = _post("sendPoll", {
+    payload: dict = {
         "chat_id": chat_id,
-        "message_thread_id": thread_id,
         "question": question,
         "options": poll_options,
         "is_anonymous": is_anonymous,
         "allows_multiple_answers": allows_multiple_answers,
-    }, "send_poll")
+    }
+    if thread_id is not None:
+        payload["message_thread_id"] = thread_id
+    result = _post("sendPoll", payload, "send_poll")
     if result:
         msg_id = result.get("message_id")
         poll_id = result.get("poll", {}).get("id", "")
