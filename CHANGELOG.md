@@ -57,6 +57,44 @@ and produces a `manifest.json` with metadata.
 
 ---
 
+## [4.27.0] - 2026-03-30
+
+### Fixed — Queue scanner flooding with 29-day-old entries
+
+After the v4.26.0 queue clearing fix (GM messages no longer wipe pending
+entries), all previously-suppressed transcript entries flooded back into
+the queue. Entries going back 29 days appeared because the transcript
+scanner had no knowledge of which ones had genuinely been replied to
+before reply-to tracking was introduced.
+
+**Fix:** `queue_scan_floor` state key — the scanner ignores any transcript
+entry older than this date. Set to `2026-03-30` on deployment, giving a
+clean slate. Future sessions build a clean `gm_queue_replied` record.
+
+### Fixed — Missing links in queue nudge warnings
+
+The `⚠️ @PathWars — X's message is Nh old!` warnings posted to the
+bot topic now include a direct 🔗 link to the oldest message from that
+player when available.
+
+### Changed — Age icon scale: 9 tiers (added ⚫ 30d+)
+
+| Icon | Age |
+|---|---|
+| 🟢 | < 6 h |
+| ⚪ | 6–24 h |
+| 🟡 | 1–2 d |
+| 🟠 | 2–3 d |
+| 🔴 | 3–5 d |
+| 🟣 | 5–7 d |
+| 🔵 | 7–14 d |
+| 🟤 | 14–30 d |
+| ⚫ | 30 d + |
+
+`test_queue_format.py` updated for 9-tier scale (456 tests).
+
+---
+
 ## [4.26.0] - 2026-03-30
 
 ### Fixed — GM Queue Clearing Bug

@@ -31,12 +31,19 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
 
     Returns {pid: {campaign, code, entries}} where each entry has:
       name, time, preview, message_id (or None), link
-    Filters out messages marked as cleared via reply-to tracking.
+    Filters out messages marked as cleared via reply-to tracking,
+    and entries older than state['queue_scan_floor'] (suppresses
+    pre-fix backlog from before direct-reply tracking was introduced).
     """
     now = datetime.now(timezone.utc)
     month = now.strftime("%Y-%m")
     group_user = "Path_Wars"
     result = {}
+
+    # Floor timestamp — ignore entries older than this (ISO date string YYYY-MM-DD)
+    floor_date = None
+    if state:
+        floor_date = state.get("queue_scan_floor")
 
     # Load replied entries from state (timestamps + msg:id keys)
     replied = {}
@@ -98,6 +105,10 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                 # player message. A GM posting generally shouldn't wipe the queue.
                 pass
             else:
+                # Skip entries before the scan floor (suppresses pre-fix backlog)
+                if floor_date and timestamp[:10] < floor_date:
+                    i += 1
+                    continue
                 # Check inline msg# tag first, then lookup file
                 mid = msg_id
                 if not mid:

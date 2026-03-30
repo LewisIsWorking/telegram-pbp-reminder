@@ -15,7 +15,8 @@ def entry_age_icon(hours: float) -> str:
     🔴  3–5 d   — stalled
     🟣  5–7 d   — critically overdue
     🔵  7–14 d  — alarming
-    🟤  14 d +  — abandoned
+    🟤  14–30 d — abandoned
+    ⚫  30 d +  — ancient
     """
     if hours < 6:
         return "🟢"
@@ -31,7 +32,9 @@ def entry_age_icon(hours: float) -> str:
         return "🟣"
     if hours < 336:
         return "🔵"
-    return "🟤"
+    if hours < 720:
+        return "🟤"
+    return "⚫"
 
 
 def age_str(hours: float) -> str:

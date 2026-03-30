@@ -46,7 +46,9 @@ from commands.queue_format import entry_age_icon, age_str, short_preview
     (335.9,  "🔵"),
     # 🟤 14 d+
     (336,    "🟤"),
-    (720,    "🟤"),
+    (719,    "🟤"),
+    (720,    "⚫"),
+    (1000,   "⚫"),
 ])
 def test_entry_age_icon(hours, expected):
     assert entry_age_icon(hours) == expected

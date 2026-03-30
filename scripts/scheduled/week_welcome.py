@@ -35,11 +35,16 @@ def post_week_welcome(config: dict, state: dict, *,
 
     week_num  = now.isocalendar()[1]
     year      = now.year
+    legend = (
+        "🟢 < 6h  ⚪ same day  🟡 1–2d  🟠 2–3d\n"
+        "🔴 3–5d  🟣 5–7d  🔵 7–14d  🟤 14–30d  ⚫ 30d+"
+    )
     msg = (
         f"━━━━━━━━━━━━━━━━\n"
         f"🗓️ Welcome to Week {week_num}/{year}!\n\n"
         f"Session polls are up — check your campaign chats.\n"
-        f"New week, new stories. Let's go! 🎲"
+        f"New week, new stories. Let's go! 🎲\n\n"
+        f"📋 Queue age icons:\n{legend}"
     )
 
     if tg.send_message(group_id, bot_topic, msg):
