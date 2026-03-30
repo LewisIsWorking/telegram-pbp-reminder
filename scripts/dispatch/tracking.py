@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from transcript.logger import append_to_transcript
+from commands import queue_io
 
 def track_message(parsed: dict, state: dict, config: dict,
                   gm_ids: set, maps) -> None:
@@ -54,10 +55,10 @@ def track_message(parsed: dict, state: dict, config: dict,
         if not text.startswith("/"):
             msg_id = parsed.get("message_id")
             if msg_id:
-                queue = state.setdefault("gm_queue", {}).setdefault(pid, [])
-                existing_ids = {e["message_id"] for e in queue}
+                cq = queue_io.load(pid)
+                existing_ids = {e["message_id"] for e in cq.get("unreplied", [])}
                 if msg_id not in existing_ids:
-                    queue.append({
+                    cq.setdefault("unreplied", []).append({
                         "message_id": msg_id,
                         "thread_id": parsed["thread_id"],
                         "user_id": user_id,
@@ -65,68 +66,48 @@ def track_message(parsed: dict, state: dict, config: dict,
                         "time": msg_time_iso,
                         "preview": (parsed["raw_text"] or "[media]")[:500],
                     })
-                    # Cap queue size per campaign
-                    if len(queue) > 50:
-                        state["gm_queue"][pid] = queue[-50:]
+                    queue_io.save(pid, cq)
     else:
         # GM replied to a specific message — mark it cleared
         if not text.startswith("/"):
             reply_to = parsed.get("reply_to_message_id")
             if reply_to:
-                replied = state.setdefault("gm_queue_replied", {}).setdefault(pid, [])
+                cq = queue_io.load(pid)
+                replied = cq.get("replied", [])
 
-                # Store message_id key
                 mid_key = f"msg:{reply_to}"
-                if mid_key not in replied:
-                    replied.append(mid_key)
+                ts_key = None
 
-                # Try to get timestamp from live queue entry
-                queue = state.get("gm_queue", {}).get(pid, [])
-                for e in queue:
-                    if e["message_id"] == reply_to:
-                        ts = e.get("time", "")[:19].replace("T", " ")
-                        if ts and ts not in replied:
-                            replied.append(ts)
-                        break
-                else:
-                    # Entry not in live queue — use reply_to_date from Telegram
-                    reply_date = parsed.get("reply_to_date")
-                    if reply_date:
-                        ts = datetime.fromtimestamp(reply_date, tz=timezone.utc
-                                                    ).strftime("%Y-%m-%d %H:%M:%S")
-                        if ts not in replied:
-                            replied.append(ts)
-
-                # Cap at 2000 entries per campaign (was 200 — too low,
-                # caused old replies to be evicted and flood back into queue)
-                if len(replied) > 2000:
-                    state["gm_queue_replied"][pid] = replied[-2000:]
-
-                # Remove from live queue and record for stats
+                # Try to get timestamp from campaign queue
                 replied_entry = {}
-                new_queue = []
-                for e in queue:
+                unreplied = cq.get("unreplied", [])
+                for e in unreplied:
                     if e["message_id"] == reply_to:
                         replied_entry = e
-                    else:
-                        new_queue.append(e)
-                state.setdefault("gm_queue", {})[pid] = new_queue
-                from commands.queue_stats import record_reply
-                record_reply(pid, state,
-                             replied_entry.get("preview", ""),
-                             replied_entry.get("user_name", ""))
+                        ts = e.get("time", "")[:19].replace("T", " ")
+                        ts_key = ts if ts else None
+                        break
+                else:
+                    reply_date = parsed.get("reply_to_date")
+                    if reply_date:
+                        ts_key = datetime.fromtimestamp(
+                            reply_date, tz=timezone.utc
+                        ).strftime("%Y-%m-%d %H:%M:%S")
 
-                # Permanent reply log — audit trail of every GM reply
-                log = state.setdefault("gm_reply_log", [])
-                log.append({
+                log_entry = {
                     "t":       msg_time_iso,
                     "pid":     pid,
                     "msg_id":  str(reply_to),
                     "player":  replied_entry.get("user_name", "?"),
                     "preview": replied_entry.get("preview", "")[:80],
-                })
-                if len(log) > 500:
-                    state["gm_reply_log"] = log[-500:]
+                    "via":     "reply",
+                }
+                queue_io.mark_replied(pid, mid_key, ts_key, log_entry)
+
+                from commands.queue_stats import record_reply
+                record_reply(pid, state,
+                             replied_entry.get("preview", ""),
+                             replied_entry.get("user_name", ""))
 
     # Log to persistent PBP transcript
     if not text.startswith("/"):

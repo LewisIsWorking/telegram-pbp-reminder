@@ -11,6 +11,43 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.30.0] - 2026-03-30
+
+### Refactored — Per-Campaign Queue Partitions
+
+Each campaign now has its own queue file at `data/state/queues/{pid}.json`
+instead of all campaigns sharing keys in `queue.json`.
+
+**Before:** `state["gm_queue_replied"]["40585"]` — shared dict, capped at
+2000 entries, cross-campaign eviction possible.
+
+**After:** `data/state/queues/40585.json`:
+```json
+{
+  "pid": "40585",
+  "unreplied": [...],
+  "replied":   [...],
+  "reply_log": [...]
+}
+```
+
+**Benefits:**
+- `replied` has no cap — every reply is remembered forever
+- `reply_log` is per-campaign — full searchable audit trail
+- No cross-campaign contamination or eviction
+- `queue.json` slimmed to: `queue_history`, `queue_archive`, `pending_potw_boons`
+
+**Migration:** 8 campaigns migrated from `gm_queue_replied` on deploy.
+`data/` commit in the hourly workflow already covers `data/state/queues/`.
+
+**New module:** `commands/queue_io.py` — load/save/mark_replied/migrate
+per-campaign queue files. All queue touches in `tracking.py`,
+`queue_scan.py`, and `markdone.py` now route through this module.
+
+106 production files, 456 tests passing.
+
+---
+
 ## [4.29.0] - 2026-03-30
 
 ### Fixed — Queue showing too few entries (floor too aggressive)

@@ -65,8 +65,8 @@ def test_poll_keys_in_activity_partition():
     assert "poll_results" in PARTITIONS["activity"]
 
 
-def test_gm_queue_in_queue_partition():
-    assert "gm_queue" in PARTITIONS["queue"]
+def test_queue_history_in_queue_partition():
+    assert "queue_history" in PARTITIONS["queue"]
     assert "queue_archive" in PARTITIONS["queue"]
 
 

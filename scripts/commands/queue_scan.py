@@ -45,11 +45,17 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     if state:
         floor_date = state.get("queue_scan_floor")
 
-    # Load replied entries from state (timestamps + msg:id keys)
-    replied = {}
+    # Load replied entries from per-campaign queue files (authoritative source)
+    # Falls back to legacy state["gm_queue_replied"] for campaigns not yet migrated
+    replied: dict[str, set[str]] = {}
+    from commands.queue_io import replied_set as _replied_set, all_pids as _all_pids
+    for pid in _all_pids():
+        replied[pid] = _replied_set(pid)
+    # Legacy fallback
     if state:
         for pid, entries in state.get("gm_queue_replied", {}).items():
-            replied[pid] = set(entries)
+            if pid not in replied:
+                replied[pid] = set(entries)
 
     # Load message_id lookup for backfilled links
     import json

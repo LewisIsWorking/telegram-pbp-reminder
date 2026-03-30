@@ -32,8 +32,7 @@ PARTITIONS: dict[str, list[str]] = {
         "player_boons", "mvp_wins", "characters", "away",
     ],
     "queue": [
-        "gm_queue", "gm_queue_replied", "gm_reply_log", "queue_history",
-        "queue_archive", "pending_potw_boons",
+        "queue_history", "queue_archive", "pending_potw_boons",
     ],
     "activity": [
         "post_timestamps", "message_counts", "activity_hours",
@@ -53,7 +52,6 @@ DEFAULT_STATE: dict = {
     "post_timestamps": {}, "last_potw": {}, "last_pace": {},
     "last_anniversary": {}, "combat": {}, "pending_potw_boons": {},
     "last_leaderboard": None, "last_recruitment_check": {},
-    "gm_reply_log": [],
     # Trackers (written by in-game commands)
     "characters": {}, "away": {}, "paused_campaigns": {},
     "clocks": {}, "conditions": {}, "hp_tracker": {}, "loot": {},

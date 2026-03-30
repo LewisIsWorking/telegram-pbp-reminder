@@ -91,22 +91,23 @@ def handle_markdone(ctx: dict) -> bool:
 
 def _clear_entries(entries: list[dict], pid: str,
                    state: dict, now: datetime) -> int:
-    """Mark entries as replied in gm_queue_replied and gm_reply_log."""
-    replied = state.setdefault("gm_queue_replied", {}).setdefault(pid, [])
-    log     = state.setdefault("gm_reply_log", [])
+    """Mark entries as replied in per-campaign queue file."""
+    from commands.queue_io import load as _load, save as _save
+    cq = _load(pid)
     cleared = 0
 
     for e in entries:
-        mid = e.get("message_id")
-        ts  = e.get("time", "")
-
+        mid    = e.get("message_id")
+        ts     = e.get("time", "")[:19].replace("T", " ")
         mid_key = f"msg:{mid}" if mid else None
+
+        replied = cq.setdefault("replied", [])
         if mid_key and mid_key not in replied:
             replied.append(mid_key)
         if ts and ts not in replied:
             replied.append(ts)
 
-        log.append({
+        cq.setdefault("reply_log", []).append({
             "t":       now.isoformat(),
             "pid":     pid,
             "msg_id":  str(mid or ""),
@@ -115,16 +116,12 @@ def _clear_entries(entries: list[dict], pid: str,
             "via":     "markdone",
         })
 
-        # Remove from live gm_queue
-        queue = state.get("gm_queue", {}).get(pid, [])
-        state["gm_queue"][pid] = [
-            q for q in queue if q.get("message_id") != mid
+        # Remove from unreplied
+        cq["unreplied"] = [
+            q for q in cq.get("unreplied", [])
+            if q.get("message_id") != mid
         ]
         cleared += 1
 
-    if len(replied) > 2000:
-        state["gm_queue_replied"][pid] = replied[-2000:]
-    if len(log) > 500:
-        state["gm_reply_log"] = log[-500:]
-
+    _save(pid, cq)
     return cleared

@@ -5,6 +5,7 @@
 | Live state — operational | `data/state/live.json` | Written every run, git-committed |
 | Live state — players | `data/state/players.json` | Written every run, git-committed |
 | Live state — GM queue | `data/state/queue.json` | Written every run, git-committed |
+| Per-campaign queues | `data/state/queues/{pid}.json` | Written on each reply/markdone, git-committed |
 | Live state — activity | `data/state/activity.json` | Written every run, git-committed |
 | Live state — trackers | `data/state/trackers.json` | Written every run, git-committed |
 | Emergency backup | GitHub Gist `pbp_state.json` | Written every run (read-only fallback) |
@@ -36,7 +37,8 @@ just ensure the bot is a member of each group.
 |---|---|---|
 | `live.json` | offset, timestamps, combat, session poll | ~8 KB |
 | `players.json` | players, registry, characters, boons, MVP wins | ~17 KB |
-| `queue.json` | gm_queue, queue_history, queue_archive | ~62 KB |
+| `queue.json` | queue_history, queue_archive, pending_potw_boons | ~5 KB |
+| `queues/{pid}.json` | unreplied, replied (no cap), reply_log per campaign | ~2–10 KB each |
 | `activity.json` | post_timestamps, message_counts, word counts | ~35 KB |
 | `trackers.json` | clocks, conditions, HP, loot, NPCs, pins, quests, votes | ~1 KB |
 

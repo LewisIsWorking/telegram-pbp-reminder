@@ -37,6 +37,8 @@ scripts/
     display.py            #   /whosturn, /combatlog
     tracker.py            #   Message routing, all-acted detection
   commands/               # All /command output builders
+    queue_io.py           #   Per-campaign queue load/save (data/state/queues/{pid}.json)
+    markdone.py           #   /markdone — manual queue entry clearing
     campaign.py           #   /campaign, roster blocks
     catchup.py            #   /catchup
     dashboard.py          #   /gm, /activity
