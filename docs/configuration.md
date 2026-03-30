@@ -24,6 +24,8 @@ Top-level settings:
 | `alert_after_hours` | 4       | Hours of topic silence before inactivity alert |
 | `group_username`    | —       | Public @username for t.me message links        |
 | `poll_post_hour`    | 7       | UTC hour on Sunday to post the weekly poll     |
+| `queue_daily_hours` | [9, 21] | UTC hours to post the GM queue reminder daily  |
+| `diagnostic_hour`   | 8       | UTC hour to run the daily bot health diagnostic |
 
 ### Per-campaign topic_pair fields
 

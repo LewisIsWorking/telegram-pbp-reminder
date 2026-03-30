@@ -150,3 +150,41 @@ Dark Pockets group main chat (topic 1). Covers Monday–Sunday with
 multiple choice, pinging 7 players daily until they vote.
 
 Voter IDs for new swimmers are captured the same way as C11 session poll IDs.
+
+---
+
+## Daily Diagnostic
+
+At `diagnostic_hour` UTC (default 8am) the bot fetches the last 25
+GitHub Actions run logs and scans for:
+
+- Rate limit hits (HTTP 429)
+- Fatal errors and save refusals
+- Failed Telegram sends
+- Unknown voter IDs captured
+- State and backup warnings
+
+A summary is posted to the bot topic. If everything is clean:
+`✅ All clear across 22 hourly runs`. Issues are shown with an example
+line from the log.
+
+**Activity summary** also shown: poll votes recorded, POTW awards,
+queue peak unreplied count.
+
+---
+
+## Rate Limiting
+
+Telegram limits message bursts. The bot automatically retries once on
+HTTP 429, waiting the `retry_after` duration specified in the response
+before retrying. If the retry also fails, the message is dropped and
+logged.
+
+---
+
+## Queue Nudge Key Format
+
+`state["queue_nudged"]` tracks which players have already been nudged
+using `pid:username` keys (e.g. `"40585:Anthony NegetZ"`). Once a player
+is nudged, they won't be nudged again until the key expires or is manually
+cleared. The key cap is 200 entries (oldest evicted first).

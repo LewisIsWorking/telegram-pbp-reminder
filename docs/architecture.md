@@ -92,14 +92,24 @@ scripts/
     message_milestones.py #   500/5000 message celebrations
     milestones.py         #   Streak + anniversary milestones
     potw.py               #   Player of the Week selection
+    potw_streaks.py       #   Campaign + community POTW streak tracking
     reports.py            #   Roster + pace reports
     smart_alerts.py       #   Pace drop + silence detection
     tips.py               #   Daily tips
     tips_data.py          #   Tip text constants
     queue_reminder.py     #   Daily GM reply queue reminder with links
+    queue_nudge.py        #   Per-player 48h+ stale queue nudge
     session_poll.py       #   Weekly session poll (Sunday start, pin, daily link)
     session_poll_build.py #   Pure poll message builders (options, pings, history)
     poll_result.py        #   Friday result announcement (all hybrid campaigns)
+    week_welcome.py       #   Sunday 'Welcome to Week X' + colour legend
+    swimming_poll.py      #   Weekly swimming poll (Dark Pockets main chat)
+    diagnostic.py         #   Daily health check — analyses run logs, posts report
+    diagnostic_analysis.py #  Log scanning helpers for diagnostic.py
+  boons/                  # Player of the Week boon system
+    handler.py            #   Boon resolution, /chooseboon, expiry
+    display.py            #   /boons, /boonsall display formatters
+    reminders.py          #   Boon expiry reminders
   transcript/             # PBP transcript system
     finalize.py           #   Month finalization + index generation
     formatting.py         #   Log entry formatting
@@ -112,7 +122,7 @@ scripts/
   test_campaign_table_unit.py # 21 unit tests (age, health, post count, truncate)
   test_state_partitions.py # 11 tests (partition contract, critical key placement)
   test_state_io.py        # 11 tests (file round-trip, public API, save guard)
-  test_queue_format.py    # 42 tests (8-tier age icons, age_str, preview)
+  test_queue_format.py    # 44 tests (9-tier age icons, age_str, preview)
   conftest.py             # Shared mock telegram — installed before all test imports
   migrate_gist_to_files.py # One-time migration script (gist → data/state/)
   promote_poll_voters.py  # Promote captured unknown voter IDs into config
