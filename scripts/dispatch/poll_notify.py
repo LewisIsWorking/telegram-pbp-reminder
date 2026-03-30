@@ -37,7 +37,29 @@ def _voter_mention(uid: str, name: str, config: dict, state: dict) -> str:
 def _tally_line(code: str, poll_slot: dict, options: list[str]) -> str:
     votes = poll_slot.get("votes", {})
     parts = option_tally(votes, options)
-    return f"{code}: {', '.join(parts)}" if parts else f"{code}: no votes yet"
+    if not parts:
+        return f"{code}: no votes yet"
+    tally = ", ".join(parts)
+    lead_str = _lead_summary(votes, options)
+    return f"{code}: {tally}{lead_str}"
+
+
+def _lead_summary(votes: dict, options: list[str]) -> str:
+    """Return ' — X leads' or ' — X & Y tied' based on current vote counts."""
+    counts: dict[str, int] = {}
+    for i, label in enumerate(options):
+        count = len(votes.get(str(i), []))
+        if count > 0:
+            counts[label.split()[0]] = count  # first word only
+    if not counts:
+        return ""
+    max_votes = max(counts.values())
+    leaders = [label for label, c in counts.items() if c == max_votes]
+    if len(leaders) == 1:
+        return f" — {leaders[0]} leads"
+    if len(leaders) == 2:
+        return f" — {leaders[0]} & {leaders[1]} tied"
+    return f" — {len(leaders)}-way tie"
 
 
 def _options_for_code(config: dict, code: str) -> list[str]:
