@@ -11,6 +11,41 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.28.0] - 2026-03-30
+
+### Fixed — Queue nudges re-firing every hour
+
+`queue_nudged` state had 73 stale `pid:timestamp` keys from an old format.
+The current code uses `pid:username` keys — the formats never matched, so
+every run treated all players as un-nudged and fired again. Fixed by
+clearing stale keys and pre-marking the current backlog players.
+
+### Fixed — Telegram rate limiting (HTTP 429)
+
+Queue nudge fired 16 messages in rapid succession, hitting Telegram's
+burst limit. `telegram._post` now retries once on 429, waiting the
+`retry_after` duration from the response before retrying.
+
+### Added — Daily Diagnostic
+
+`scheduled/diagnostic.py` + `scheduled/diagnostic_analysis.py` — runs
+at `diagnostic_hour` (default 8am UTC) daily. Fetches the last 25
+GitHub Actions run logs, scans for rate limits, errors, warnings,
+unknown voters, queue peaks, and posts a summary to the bot topic:
+
+```
+🔍 Daily Diagnostic — 2026-03-31
+⚠️ 1 issue type(s) found across 22 hourly runs
+  ⚠️ Rate limited ×3
+Activity:
+  🗳️ 5 poll vote(s) recorded
+  📋 Queue: 207 unreplied at peak
+```
+
+104 production files, 456 tests passing.
+
+---
+
 ## [4.27.0] - 2026-03-30
 
 ### Fixed — Queue scanner flooding with 29-day-old entries

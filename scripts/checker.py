@@ -46,6 +46,7 @@ from scheduled.poll_result import announce_poll_result
 from scheduled.state_backup import backup_state
 from scheduled.week_welcome import post_week_welcome
 from scheduled.swimming_poll import post_swimming_poll, post_swimming_ping
+from scheduled.diagnostic import run_daily_diagnostic
 from boons.handler import expire_pending_boons
 from transcript.finalize import update_transcript_index
 
@@ -85,6 +86,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Week welcome", post_week_welcome),
         ("Swimming poll", post_swimming_poll),
         ("Swimming ping", post_swimming_ping),
+        ("Daily diagnostic", run_daily_diagnostic),
         ("State backup", backup_state),
     ]
     for label, func in checks:

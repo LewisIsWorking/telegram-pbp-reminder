@@ -1,6 +1,7 @@
 """Telegram Bot API helpers."""
 
 import json
+import time
 import requests
 
 TELEGRAM_API = ""
@@ -13,16 +14,27 @@ def init(token: str) -> None:
 
 
 def _post(method: str, payload: dict, label: str = "request") -> dict | None:
-    """POST to Telegram API, return parsed result on success or None on failure."""
-    try:
-        resp = requests.post(f"{TELEGRAM_API}/{method}", json=payload, timeout=30)
-        if resp.status_code == 200:
-            data = resp.json()
-            if data.get("ok"):
-                return data.get("result")
-        print(f"Telegram {label} failed: {resp.text[:200]}")
-    except requests.RequestException as e:
-        print(f"Telegram {label} network error: {e}")
+    """POST to Telegram API, return parsed result on success or None on failure.
+
+    Automatically retries once on HTTP 429 (rate limit), waiting the
+    retry_after duration specified in the response.
+    """
+    for attempt in range(2):
+        try:
+            resp = requests.post(f"{TELEGRAM_API}/{method}", json=payload, timeout=30)
+            if resp.status_code == 200:
+                data = resp.json()
+                if data.get("ok"):
+                    return data.get("result")
+            elif resp.status_code == 429:
+                retry_after = resp.json().get("parameters", {}).get("retry_after", 5)
+                print(f"Telegram rate limit on {label}, waiting {retry_after}s")
+                time.sleep(retry_after + 1)
+                continue  # retry once
+            print(f"Telegram {label} failed: {resp.text[:200]}")
+        except requests.RequestException as e:
+            print(f"Telegram {label} network error: {e}")
+        break
     return None
 
 
