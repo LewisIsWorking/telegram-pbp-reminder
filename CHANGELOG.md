@@ -11,52 +11,6 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.18.0] - 2026-03-27
-
-### Changed — State Persistence: File-Primary with Gist Backup
-
-The bot's state is now stored in versioned JSON files in the repository
-instead of a single GitHub Gist blob. The Gist is still written on every
-run as an emergency backup, but is no longer the primary source of truth.
-
-**Why:** The Gist was a 121 KB single-point-of-failure. Files give full
-git history, are diffable, and load faster with no API round-trip needed.
-
-**New files (`data/state/`):**
-
-| File | Keys | Size |
-|---|---|---|
-| `live.json` | offset, timestamps, combat, session | ~8 KB |
-| `players.json` | players, registry, boons, MVP wins | ~17 KB |
-| `queue.json` | gm_queue, queue_history, queue_archive | ~62 KB |
-| `activity.json` | post_timestamps, message_counts, word counts | ~35 KB |
-
-**Load order:** files → gist fallback → defaults. The bot refuses to save
-if no source loaded successfully (existing data-protection behaviour
-preserved).
-
-### Added — State Tests
-
-12 new tests in `test_state.py`: partition contract, file round-trip,
-partial-file fallback, save guard, default backfill.
-
-Suite: 372 → 384 tests.
-
-### Added — Migration Script
-
-`scripts/migrate_gist_to_files.py` — one-time script used to perform the
-migration. Validates all gist keys are mapped, writes partition files,
-and produces a `manifest.json` with metadata.
-
-### Changed — Workflow
-
-- `pip install pytest` added to dependencies (was running test files
-  directly with `python`, now uses `pytest -q` consistently)
-- All 7 test files enumerated explicitly in the test step
-- Commit step message updated to reflect state files being committed
-
----
-
 ## [4.27.0] - 2026-03-30
 
 ### Fixed — Queue scanner flooding with 29-day-old entries
@@ -94,7 +48,6 @@ player when available.
 `test_queue_format.py` updated for 9-tier scale (456 tests).
 
 ---
-
 ## [4.26.0] - 2026-03-30
 
 ### Fixed — GM Queue Clearing Bug
@@ -162,7 +115,6 @@ Four new docs files:
 102 production files, 454 tests passing.
 
 ---
-
 ## [4.25.0] - 2026-03-29
 
 ### Fixed — Poll notification phrasing
@@ -186,7 +138,6 @@ posted and pinned to the Dark Pockets chat manually after
 the Weekday option won the weekly session poll.
 
 ---
-
 ## [4.24.0] - 2026-03-29
 
 ### Added — Auto-Capture Unknown Poll Voter IDs
@@ -233,7 +184,6 @@ One-shot utility script (96 lines) to promote unknown voter IDs from
 state into config after a vote session.
 
 ---
-
 ## [4.23.0] - 2026-03-29
 
 ### Fixed — Test Suite Contamination (22 failing tests in combined run)
@@ -263,7 +213,6 @@ point get the same mock object.
 Suite: 432 → 454 passing (all 454 pass in combined and isolated runs).
 
 ---
-
 ## [4.22.0] - 2026-03-29
 
 ### Changed — Poll Overhaul: Sunday Start, Pinned, Daily Links, New Options
@@ -296,7 +245,6 @@ all-time history tracked by option index.
 `option_tally()` and `build_history_str()` work with index-based votes.
 
 ---
-
 ## [4.21.0] - 2026-03-29
 
 ### Added — C11 Dark Pockets: Multi-Group Campaign Support
@@ -369,7 +317,6 @@ C11: {
 Production files: 92 → 96. Suite: 436 passing.
 
 ---
-
 ## [4.20.0] - 2026-03-29
 
 ### Changed — Queue Entry Age Icons: 3 Tiers → 5 Tiers
@@ -410,7 +357,6 @@ Suite: 394 → 436 tests.
 - `ROADMAP.md` — C11 Dark Pockets multi-group feature spec added
 
 ---
-
 ## [4.19.0] - 2026-03-27
 
 ### Fixed — Silent Data Loss: 17 State Keys Missing from Partitions
@@ -449,7 +395,51 @@ missing `trackers.json` for backwards compatibility with v4.18 checkouts.
 Suite: 384 → 394 tests.
 
 ---
+## [4.18.0] - 2026-03-27
 
+### Changed — State Persistence: File-Primary with Gist Backup
+
+The bot's state is now stored in versioned JSON files in the repository
+instead of a single GitHub Gist blob. The Gist is still written on every
+run as an emergency backup, but is no longer the primary source of truth.
+
+**Why:** The Gist was a 121 KB single-point-of-failure. Files give full
+git history, are diffable, and load faster with no API round-trip needed.
+
+**New files (`data/state/`):**
+
+| File | Keys | Size |
+|---|---|---|
+| `live.json` | offset, timestamps, combat, session | ~8 KB |
+| `players.json` | players, registry, boons, MVP wins | ~17 KB |
+| `queue.json` | gm_queue, queue_history, queue_archive | ~62 KB |
+| `activity.json` | post_timestamps, message_counts, word counts | ~35 KB |
+
+**Load order:** files → gist fallback → defaults. The bot refuses to save
+if no source loaded successfully (existing data-protection behaviour
+preserved).
+
+### Added — State Tests
+
+12 new tests in `test_state.py`: partition contract, file round-trip,
+partial-file fallback, save guard, default backfill.
+
+Suite: 372 → 384 tests.
+
+### Added — Migration Script
+
+`scripts/migrate_gist_to_files.py` — one-time script used to perform the
+migration. Validates all gist keys are mapped, writes partition files,
+and produces a `manifest.json` with metadata.
+
+### Changed — Workflow
+
+- `pip install pytest` added to dependencies (was running test files
+  directly with `python`, now uses `pytest -q` consistently)
+- All 7 test files enumerated explicitly in the test step
+- Commit step message updated to reflect state files being committed
+
+---
 ## [4.18.0] - 2026-03-27
 
 ### Changed — File-Primary State (Data Migration)
@@ -501,7 +491,6 @@ Suite: 372 → 384 tests.
   `python -m pytest … -q` covering all 7 test files
 
 ---
-
 ## [4.17.0] - 2026-03-27
 
 ### Fixed — Campaign Table Alignment
@@ -533,7 +522,6 @@ Telegram to use a proportional font where spaces collapse.
 Suite: 339 → 372 tests.
 
 ---
-
 ## [4.16.0] - 2026-03-27
 
 ### Added — Daily State Backup
@@ -560,7 +548,6 @@ Added 14 missing features to the table, 7 new commands,
 data storage documentation, corrected file/test counts.
 
 ---
-
 ## [4.15.0] - 2026-03-26
 
 ### DF Session Poll — Full Feature
@@ -611,7 +598,6 @@ Waiting on:
 Extracted `poll_result.py` for Friday announcement.
 
 ---
-
 ## [4.14.0] - 2026-03-26
 
 ### Added — DF Session Poll
@@ -632,7 +618,6 @@ Weekly poll in the Doomsday Funtime chat topic:
 - DF flagged `hybrid_live` in config — excluded from "needs players"
 
 ---
-
 ## [4.13.0] - 2026-03-26
 
 ### Added — Player Registry & Character Names
@@ -692,7 +677,6 @@ Pings both GM and the returning player:
 Extracted `dispatch/comeback.py` for comeback alert logic.
 
 ---
-
 ## [4.12.0] - 2026-03-22
 
 ### Queue — Maximum Value Update
@@ -720,7 +704,6 @@ Reply to them first to keep pace up.
 **Campaign codes** fixed to C00, C01, C04, etc.
 
 ---
-
 ## [4.11.0] - 2026-03-20
 
 ### Queue Intelligence
@@ -745,7 +728,6 @@ Extracted `cmd_info_ext.py` from `cmd_info.py` for newer commands
 All files under 200 lines.
 
 ---
-
 ## [4.10.0] - 2026-03-20
 
 ### Added — Player-Facing Queue (/waiting)
@@ -784,7 +766,6 @@ When a player breaks a 5+ day silence, the bot topic gets:
 - Campaign codes in weekly leaderboard headers (C0, C1, etc.)
 
 ---
-
 ## [4.9.0] - 2026-03-20
 
 ### Overhauled — GM Reply Queue
@@ -823,7 +804,6 @@ when you clear everything.
 - Campaigns sorted by oldest unreplied message
 
 ---
-
 ## [4.8.1] - 2026-03-20
 
 ### Added — Tests for v4.4-4.8 Features
@@ -843,7 +823,6 @@ daily queue reminder. Updated features table (23 entries), file structure
 (76 production files), command list (35 player / 69 admin), and test count.
 
 ---
-
 ## [4.8.0] - 2026-03-20
 
 ### Added — Cross-Campaign Timeline
@@ -872,7 +851,6 @@ GMs can log story beats with `/event`:
 ```
 
 ---
-
 ## [4.7.1] - 2026-03-19
 
 ### Added — Daily Queue Reminder With Message Links
@@ -895,7 +873,6 @@ Total: 5
 Tap any link to jump straight to the message and reply.
 
 ---
-
 ## [4.7.0] - 2026-03-19
 
 ### Added — Reaction Tracking
@@ -924,7 +901,6 @@ Players can mark which days they're available to post:
 Helps the GM and other players know when to expect responses.
 
 ---
-
 ## [4.6.0] - 2026-03-19
 
 ### Added — GM Reply Queue
@@ -952,7 +928,6 @@ Color coding: 🔴 48h+, 🟡 24h+, ⚪ recent.
 GM-only. Works from bot topic and PBP topics.
 
 ---
-
 ## [4.5.2] - 2026-03-19
 
 ### Changed — Boon Auto-Select Extended to 7 Days
@@ -965,7 +940,6 @@ Auto-selection was at 48 hours, now 7 days. Reminder timeline:
 - **7 days** — auto-selects boon #1
 
 ---
-
 ## [4.5.1] - 2026-03-19
 
 ### Added — Boon Reminders and Confirmations
@@ -997,7 +971,6 @@ bad command gets logged, skipped, and the offset advances. Previously
 a single TypeError blocked all processing for 5 hours.
 
 ---
-
 ## [4.5.0] - 2026-03-18
 
 ### Changed — All Bot Output Moved to Bot Topic
@@ -1013,7 +986,6 @@ streak milestones, message milestones, and smart alerts.
 Falls back to campaign chat topics if `bot_topic_id` is not configured.
 
 ---
-
 ## [4.4.4] - 2026-03-18
 
 ### Fixed — /roll and /dc Now Work From Bot Channel
@@ -1027,7 +999,6 @@ when sent from the Bot Tips & Commands topic. Now both work directly:
 ```
 
 ---
-
 ## [4.4.3] - 2026-03-18
 
 ### Fixed — /roll Broken With @botname Suffix
@@ -1047,7 +1018,6 @@ parsing the dice expression. All roll formats work:
 ```
 
 ---
-
 ## [4.4.2] - 2026-03-17
 
 ### Added — MVP Win Tracking
@@ -1062,7 +1032,6 @@ MVP of the Week. Repeat winners show their total:
 Historical wins backfilled from the weekly archive (W07-W12).
 
 ---
-
 ## [4.4.1] - 2026-03-17
 
 ### Fixed — /search Now Blocks Creatures and Hazards
@@ -1081,7 +1050,6 @@ auto-removals. Now:
 The group always needs to know when a player drops off the roster.
 
 ---
-
 ## [4.4.0] - 2026-03-16
 
 ### Added — Bot Channel Commands
@@ -1114,7 +1082,6 @@ any topic.
 ```
 
 ---
-
 ## [4.3.0] - 2026-03-16
 
 ### Changed — Tips Post to Dedicated Bot Topic
@@ -1134,7 +1101,6 @@ Topic silence alerts now fire at most once every 24 hours per campaign
 of silence before the first alert fires, not half a day.
 
 ---
-
 ## [4.2.0] - 2026-03-13
 
 ### Added — GM Bottleneck Suppression
@@ -1179,7 +1145,6 @@ Extracted `compat.py` (test aliases) from `checker.py` and
 files now at or under 200 lines with zero exceptions.
 
 ---
-
 ## [4.1.1] - 2026-03-06
 
 ### Fixed — CRITICAL: State Wipe on Failed Gist Load
@@ -1207,7 +1172,6 @@ gist read to fail or race.
 952 messages) via the gist API, with the current offset preserved.
 
 ---
-
 ## [4.1.0] - 2026-03-05
 
 ### Added — Telegram Command Menu
@@ -1242,7 +1206,6 @@ full 69-file structure with descriptions, 18-entry feature table,
 live dashboard URL, 11 previously missing commands documented.
 
 ---
-
 ## [4.0.0] - 2026-03-04
 
 ### Refactored — Complete Codebase Modularization
@@ -1313,7 +1276,6 @@ strip the suffix correctly. Fixed `/lootlist` and other commands that
 weren't responding in group chats.
 
 ---
-
 ## [3.1.2] - 2026-02-28
 
 ### Improved — Weekly Leaderboard
@@ -1323,7 +1285,6 @@ weren't responding in group chats.
 - **MVP of the Week**: Top poster by volume gets a 🏆 callout and earns 1 Hero Point in a campaign of their choice
 
 ---
-
 ## [3.1.1] - 2026-02-28
 
 ### Improved — Transcript Readability
@@ -1341,7 +1302,6 @@ weren't responding in group chats.
 - **341 total**
 
 ---
-
 ## [3.1.0] - 2026-02-28
 
 ### Improved — Reading Experience
@@ -1366,7 +1326,6 @@ weren't responding in group chats.
 - Updated daily tips for /recap and /catchup
 
 ---
-
 ## [3.0.1] - 2026-02-28
 
 ### Improved
@@ -1375,7 +1334,6 @@ weren't responding in group chats.
 - Week headers make it easy to find specific weeks when scrolling through monthly logs
 
 ---
-
 ## [3.0.0] - 2026-02-28
 
 ### Changed — Combat System Rebuild (Foundry-compatible)
@@ -1416,7 +1374,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - Updated daily tips for new combat workflow
 
 ---
-
 ## [2.9.0] - 2026-02-28
 
 ### Added — HP Tracker, Progress Clocks & Status Integration
@@ -1450,7 +1407,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 22 new tests (301 total)
 
 ---
-
 ## [2.8.0] - 2026-02-28
 
 ### Added — NPC Tracker & Condition Tracker
@@ -1474,7 +1430,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 11 new tests (258 total)
 
 ---
-
 ## [2.7.0] - 2026-02-28
 
 ### Added — DC Lookup, Pins & Loot Tracker
@@ -1502,7 +1457,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 16 new tests (247 total)
 
 ---
-
 ## [2.6.0] - 2026-02-27
 
 ### Added — Quest Tracker & GM Dashboard
@@ -1525,7 +1479,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 9 new tests (231 total)
 
 ---
-
 ## [2.5.0] - 2026-02-27
 
 ### Added — Dice Roller
@@ -1540,7 +1493,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 1 new daily tip, 12 new tests (222 total)
 
 ---
-
 ## [2.4.0] - 2026-02-27
 
 ### Added — Absence Tracking & Recap
@@ -1571,7 +1523,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 17 new tests covering all commands, integrations, and edge cases
 
 ---
-
 ## [2.3.0] - 2026-02-27
 
 ### Added — Word Count Tracking
@@ -1583,7 +1534,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - 3 new tests (word count accumulation, mystats output, profile output)
 
 ---
-
 ## [2.2.1] - 2026-02-27
 
 ### Changed — Dashboard v2
@@ -1599,7 +1549,6 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - Removed `/pause` suggestion from silence alerts and pace drop alerts (less noise)
 
 ---
-
 ## [2.2.0] - 2026-02-26
 
 ### Summary
@@ -1634,7 +1583,6 @@ profiles. Know when your campaigns are most active.
 - Total: 208 tests (37 helpers + 153 checker + 18 import).
 
 ---
-
 ## [2.1.0] - 2026-02-26
 
 ### Summary
@@ -1668,7 +1616,6 @@ in transcripts and maintain persistent notes per campaign.
 - Total: 200 tests (37 helpers + 145 checker + 18 import).
 
 ---
-
 ## [2.0.0] - 2026-02-26
 
 ### Summary
@@ -1708,7 +1655,6 @@ total silence (48h+ from everyone including GM).
 - Tip explaining the `/overview` command for cross-campaign monitoring.
 
 ---
-
 ## [1.9.0] - 2026-02-26
 
 ### Summary
@@ -1736,7 +1682,6 @@ Characters appear in rosters, `/mystats`, `/party`, and transcripts.
 - Total: 178 tests (37 helpers + 123 checker + 18 import).
 
 ---
-
 ## [1.8.0] - 2026-02-26
 
 ### Summary
@@ -1766,7 +1711,6 @@ naturally as campaigns continue posting.
 - Total: 172 tests (37 helpers + 117 checker + 18 import).
 
 ---
-
 ## [1.7.0] - 2026-02-26
 
 ### Summary
@@ -1787,7 +1731,6 @@ messages across multiple people.
 - Total: 165 tests (37 helpers + 112 checker + 16 import).
 
 ---
-
 ## [1.6.0] - 2026-02-26
 
 ### Summary
@@ -1818,7 +1761,6 @@ from campaign tracking without waiting for automatic processes.
 - Total: 160 tests (37 helpers + 107 checker + 16 import).
 
 ---
-
 ## [1.5.0] - 2026-02-26
 
 ### Summary
@@ -1848,7 +1790,6 @@ Also adds Theria (C08) to the tracked campaigns with per-campaign GM support.
 - CI updated to run import tests.
 
 ---
-
 ## [1.4.0] - 2026-02-26
 
 ### Summary
@@ -1902,7 +1843,6 @@ The goblin shrieks as the blade connects. Roll damage.
 - Total: 135 tests (34 helpers + 101 checker).
 
 ---
-
 ## [1.3.0] - 2026-02-26
 
 ### Summary
@@ -1935,7 +1875,6 @@ history as a text sparkline chart.
 - Total: 128 tests (34 helpers + 94 checker).
 
 ---
-
 ## [1.2.0] - 2026-02-26
 
 ### Summary
@@ -1978,7 +1917,6 @@ compact weekly digest with health-scored campaign summaries.
 - Total: 115 tests (34 helpers + 81 checker).
 
 ---
-
 ## [1.1.0] - 2026-02-26
 
 ### Summary
@@ -2032,7 +1970,6 @@ versioning pipeline, and 20 new tests.
 - Total: 107 tests (34 helpers + 73 checker).
 
 ---
-
 ## [1.0.0] - 2026-02-26
 
 ### Summary
