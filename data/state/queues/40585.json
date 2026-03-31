@@ -2,62 +2,6 @@
   "pid": "40585",
   "unreplied": [
     {
-      "message_id": 139151,
-      "thread_id": 40585,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-24T14:19:47+00:00",
-      "preview": "Kieran will do slime lore"
-    },
-    {
-      "message_id": 139152,
-      "thread_id": 40585,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-24T14:20:33+00:00",
-      "preview": "He has a +15"
-    },
-    {
-      "message_id": 139157,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-03-24T14:21:12+00:00",
-      "preview": "master cho would use esoteric lore substituted as well to +15;  occultism was 11"
-    },
-    {
-      "message_id": 139171,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-03-24T14:29:25+00:00",
-      "preview": "I am also a master in esoteric lore at +17. Subing into slime lore or any other lore drops it to 15."
-    },
-    {
-      "message_id": 139182,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-03-24T15:03:58+00:00",
-      "preview": "Tarsus will prepare for combat since we have people with specific lores here"
-    },
-    {
-      "message_id": 139187,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-03-24T15:34:52+00:00",
-      "preview": "I'll use that if it does"
-    },
-    {
-      "message_id": 139208,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-03-24T16:46:07+00:00",
-      "preview": "Then i'll do that."
-    },
-    {
       "message_id": 139215,
       "thread_id": 40585,
       "user_id": "6144366145",
@@ -341,7 +285,21 @@
     "msg:137024",
     "2026-03-11 18:01:01",
     "msg:139107",
-    "2026-03-24 10:49:40"
+    "2026-03-24 10:49:40",
+    "msg:139151",
+    "2026-03-24 14:19:47",
+    "msg:139152",
+    "2026-03-24 14:20:33",
+    "msg:139157",
+    "2026-03-24 14:21:12",
+    "msg:139171",
+    "2026-03-24 14:29:25",
+    "msg:139182",
+    "2026-03-24 15:03:58",
+    "msg:139187",
+    "2026-03-24 15:34:52",
+    "msg:139208",
+    "2026-03-24 16:46:07"
   ],
   "reply_log": [
     {
@@ -790,6 +748,62 @@
       "msg_id": "139107",
       "player": "Kaer'maga when?",
       "preview": "Lorn then says \"my phalanx piercer should be able to handle the slimes\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:12:35+00:00",
+      "pid": "40585",
+      "msg_id": "139151",
+      "player": "Link",
+      "preview": "Kieran will do slime lore",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:17:40+00:00",
+      "pid": "40585",
+      "msg_id": "139152",
+      "player": "Link",
+      "preview": "He has a +15",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:18:22+00:00",
+      "pid": "40585",
+      "msg_id": "139157",
+      "player": "Bruce",
+      "preview": "master cho would use esoteric lore substituted as well to +15;  occultism was 11",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:22:36+00:00",
+      "pid": "40585",
+      "msg_id": "139171",
+      "player": "Bruce",
+      "preview": "I am also a master in esoteric lore at +17. Subing into slime lore or any other ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:24:20+00:00",
+      "pid": "40585",
+      "msg_id": "139182",
+      "player": "Buffet",
+      "preview": "Tarsus will prepare for combat since we have people with specific lores here",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:24:41+00:00",
+      "pid": "40585",
+      "msg_id": "139187",
+      "player": "Anthony",
+      "preview": "I'll use that if it does",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:24:56+00:00",
+      "pid": "40585",
+      "msg_id": "139208",
+      "player": "Anthony",
+      "preview": "Then i'll do that.",
       "via": "reply"
     }
   ]
