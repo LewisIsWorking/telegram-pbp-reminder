@@ -8,6 +8,21 @@ a response across all campaigns.
 
 ---
 
+## Why some entries have no link
+
+Direct 🔗 links to messages require a `msg#12345` tag in the transcript.
+These tags started being written on **20 March 2026 (v4.18.0)** when live
+message ID tracking was introduced.
+
+Entries from before that date show in the queue without a link — the
+Telegram Bot API cannot retroactively fetch message IDs for historical
+messages. This only affects pre-v4.18 entries and resolves naturally as
+old 🟤 entries are replied to and cleared.
+
+All new messages since 20 March have links.
+
+---
+
 ## Reply audit log
 
 Every GM reply is permanently recorded in `state["gm_reply_log"]`
