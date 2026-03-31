@@ -106,22 +106,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 140503,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-03-30T14:00:36+00:00",
-      "preview": "[media]"
-    },
-    {
-      "message_id": 140504,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-03-30T14:00:37+00:00",
-      "preview": "[media]"
-    },
-    {
       "message_id": 140515,
       "thread_id": 40585,
       "user_id": "7130942567",
@@ -292,7 +276,9 @@
     "2026-03-24 15:34:52",
     "msg:139208",
     "2026-03-24 16:46:07",
-    "msg:139231"
+    "msg:139231",
+    "msg:140504",
+    "msg:140503"
   ],
   "reply_log": [
     {
@@ -806,6 +792,22 @@
       "player": "Anthony NegetZ",
       "preview": "*Former (deleted message)",
       "via": "manual"
+    },
+    {
+      "t": "2026-03-31T03:45:54.624777+00:00",
+      "pid": "40585",
+      "msg_id": "140504",
+      "player": "Ryo Yamakawa",
+      "preview": "*[image] (media group duplicate)",
+      "via": "dedup"
+    },
+    {
+      "t": "2026-03-31T03:45:54.624777+00:00",
+      "pid": "40585",
+      "msg_id": "140503",
+      "player": "Ryo Yamakawa",
+      "preview": "*[image] (media group duplicate)",
+      "via": "dedup"
     }
   ]
 }

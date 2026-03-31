@@ -54,10 +54,15 @@ def track_message(parsed: dict, state: dict, config: dict,
         # Add to GM reply queue (non-command player posts need a GM reply)
         if not text.startswith("/"):
             msg_id = parsed.get("message_id")
+            media_group_id = parsed.get("media_group_id")
             if msg_id:
                 cq = queue_io.load(pid)
                 existing_ids = {e["message_id"] for e in cq.get("unreplied", [])}
-                if msg_id not in existing_ids:
+                # Skip if same media group already queued (multi-image message)
+                existing_groups = {e.get("media_group_id") for e in cq.get("unreplied", [])
+                                   if e.get("media_group_id")}
+                if msg_id not in existing_ids and (
+                        not media_group_id or media_group_id not in existing_groups):
                     cq.setdefault("unreplied", []).append({
                         "message_id": msg_id,
                         "thread_id": parsed["thread_id"],
@@ -65,6 +70,7 @@ def track_message(parsed: dict, state: dict, config: dict,
                         "user_name": user_name,
                         "time": msg_time_iso,
                         "preview": (parsed["raw_text"] or "[media]")[:500],
+                        "media_group_id": media_group_id,
                     })
                     queue_io.save(pid, cq)
     else:

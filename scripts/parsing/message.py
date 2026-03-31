@@ -72,6 +72,7 @@ def parse_message(msg: dict, maps) -> dict | None:
         "message_id": msg.get("message_id"),
         "reply_to_message_id": _real_reply_id(msg),
         "reply_to_date": msg.get("reply_to_message", {}).get("date"),
+        "media_group_id": msg.get("media_group_id"),
         "pid": maps.to_canonical[thread_id_str],
         "campaign_name": maps.to_name[maps.to_canonical[thread_id_str]],
         "user_id": str(from_user.get("id", "")),
