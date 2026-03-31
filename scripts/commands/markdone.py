@@ -77,6 +77,9 @@ def handle_markdone(ctx: dict) -> bool:
             _clear_entries(match, pid, state, now)
             tg.send_message(gid, tid,
                             f"✅ Cleared message {arg} from {name} queue.")
+        elif _clear_by_msg_id(arg, pid, state, now):
+            tg.send_message(gid, tid,
+                            f"✅ Cleared message {arg} from {name} queue.")
         else:
             tg.send_message(gid, tid, f"Message ID {arg} not found in {name} queue.")
         return True
@@ -104,7 +107,8 @@ def _clear_entries(entries: list[dict], pid: str,
     for e in entries:
         mid    = e.get("message_id")
         ts     = e.get("time", "")[:19].replace("T", " ")
-        mid_key = f"msg:{mid}" if mid else None
+        mid_str = str(mid) if mid is not None else None
+        mid_key = f"msg:{mid_str}" if mid_str else None
 
         replied = cq.setdefault("replied", [])
         if mid_key and mid_key not in replied:
@@ -115,18 +119,52 @@ def _clear_entries(entries: list[dict], pid: str,
         cq.setdefault("reply_log", []).append({
             "t":       now.isoformat(),
             "pid":     pid,
-            "msg_id":  str(mid or ""),
+            "msg_id":  mid_str or "",
             "player":  e.get("name", "?"),
             "preview": e.get("preview", "")[:80],
             "via":     "markdone",
         })
 
-        # Remove from unreplied
+        # Remove from unreplied — compare as strings to handle int/str mismatch
         cq["unreplied"] = [
             q for q in cq.get("unreplied", [])
-            if q.get("message_id") != mid
+            if str(q.get("message_id", "")) != mid_str
         ]
         cleared += 1
 
     _save(pid, cq)
     return cleared
+
+
+def _clear_by_msg_id(msg_id: str, pid: str, state: dict, now: datetime) -> bool:
+    """Directly clear a message ID from queue_io even if not in transcript scan.
+
+    Fallback for recent messages not yet in transcript, or scan misses.
+    Returns True if found and cleared.
+    """
+    from commands.queue_io import load as _load, save as _save
+    cq = _load(pid)
+    mid_key = f"msg:{msg_id}"
+    match = [e for e in cq.get("unreplied", [])
+             if str(e.get("message_id", "")) == msg_id]
+    if not match:
+        return False
+    e = match[0]
+    ts = e.get("time", "")[:19].replace("T", " ")
+    replied = cq.setdefault("replied", [])
+    if mid_key not in replied:
+        replied.append(mid_key)
+    if ts and ts not in replied:
+        replied.append(ts)
+    cq.setdefault("reply_log", []).append({
+        "t":       now.isoformat(),
+        "pid":     pid,
+        "msg_id":  msg_id,
+        "player":  e.get("user_name", "?"),
+        "preview": e.get("preview", "")[:80],
+        "via":     "markdone",
+    })
+    cq["unreplied"] = [q for q in cq.get("unreplied", [])
+                       if str(q.get("message_id", "")) != msg_id]
+    _save(pid, cq)
+    return True
