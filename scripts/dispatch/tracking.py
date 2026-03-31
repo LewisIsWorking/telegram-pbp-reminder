@@ -71,6 +71,11 @@ def track_message(parsed: dict, state: dict, config: dict,
         # GM replied to a specific message — mark it cleared
         if not text.startswith("/"):
             reply_to = parsed.get("reply_to_message_id")
+            # DEBUG: log raw reply structure to diagnose forum topic reply IDs
+            _raw_reply = parsed.get("_raw_reply_to", {})
+            if reply_to:
+                print(f"GM reply detected: reply_to_message_id={reply_to} "
+                      f"raw_reply_keys={list(_raw_reply.keys()) if _raw_reply else 'none'}")
             if reply_to:
                 cq = queue_io.load(pid)
                 replied = cq.get("replied", [])
