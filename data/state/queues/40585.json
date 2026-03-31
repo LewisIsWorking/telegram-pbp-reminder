@@ -50,14 +50,6 @@
       "preview": "I should have master Kibwe lore or at least expert."
     },
     {
-      "message_id": 139231,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-03-24T17:04:31+00:00",
-      "preview": "*Former"
-    },
-    {
       "message_id": 139837,
       "thread_id": 40585,
       "user_id": "138025700",
@@ -299,7 +291,8 @@
     "msg:139187",
     "2026-03-24 15:34:52",
     "msg:139208",
-    "2026-03-24 16:46:07"
+    "2026-03-24 16:46:07",
+    "msg:139231"
   ],
   "reply_log": [
     {
@@ -805,6 +798,14 @@
       "player": "Anthony",
       "preview": "Then i'll do that.",
       "via": "reply"
+    },
+    {
+      "t": "2026-03-31T03:33:11.126017+00:00",
+      "pid": "40585",
+      "msg_id": "139231",
+      "player": "Anthony NegetZ",
+      "preview": "*Former (deleted message)",
+      "via": "manual"
     }
   ]
 }
