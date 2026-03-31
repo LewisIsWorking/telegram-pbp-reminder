@@ -98,7 +98,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if ": " in m:
             k, v = m.split(": ", 1)
             momentum_map[k] = v
-    lines = [f"━━━━━━━━━━━━━━━━\n📋 Unreplied: {total}{streak}\n{summary}\nAge: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+"]
+    queue_num = state.get("queue_post_count", 0) + 1
+    lines = [f"━━━━━━━━━━━━━━━━\n📋 GM Queue #{queue_num} — Unreplied: {total}{streak}\n{summary}\nAge: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+"]
 
     for pid in sorted_pids:
         data = scanned[pid]
@@ -167,6 +168,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             tg.pin_message(group_id, first_msg_id)
             state["last_queue_pin_id"] = first_msg_id
         state["last_queue_fingerprint"] = fingerprint
+        state["queue_post_count"] = queue_num
         if is_daily:
             slot_key = f"{now.date().isoformat()}:{now.hour:02d}"
             slots = state.setdefault("last_queue_daily_slots", [])

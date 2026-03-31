@@ -57,6 +57,10 @@ def build_topic_maps(config: dict) -> TopicMaps:
             tid_str = str(tid)
             to_canonical[tid_str] = canonical
             all_pbp_ids.add(tid_str)
+        # Also map the chat topic so commands typed there resolve correctly
+        chat_tid = str(pair.get("chat_topic_id", ""))
+        if chat_tid and chat_tid not in to_canonical:
+            to_canonical[chat_tid] = canonical
     result = TopicMaps(to_canonical, to_chat, to_name, all_pbp_ids,
                        name_to_pid, to_group)
     _topic_maps_cache = (id(config), result)

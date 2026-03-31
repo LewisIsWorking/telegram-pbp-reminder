@@ -26,6 +26,7 @@ PARTITIONS: dict[str, list[str]] = {
         "paused_campaigns", "current_scenes", "poll_unknown_voters",
         "last_week_welcome", "last_queue_daily_slots", "swimming_poll",
         "queue_scan_floor", "last_diagnostic", "last_queue_pin_id",
+        "queue_post_count",
     ],
     "players": [
         "players", "removed_players", "player_registry",
@@ -60,7 +61,8 @@ DEFAULT_STATE: dict = {
     "poll_history": {}, "poll_results": {}, "poll_unknown_voters": {},
     "potw_history": [], "last_week_welcome": None,
     "last_queue_daily_slots": [], "swimming_poll": {},
-    "queue_scan_floor": None, "last_diagnostic": None, "last_queue_pin_id": None,
+    "queue_scan_floor": None, "last_diagnostic": None,
+    "last_queue_pin_id": None, "queue_post_count": 0,
 }
 
 STATE_FILENAME = "pbp_state.json"  # kept for gist compatibility
