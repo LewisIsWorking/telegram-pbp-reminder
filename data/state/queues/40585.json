@@ -24,15 +24,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 140849,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-03-31T03:32:12+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -210,7 +201,9 @@
     "2026-03-30 14:00:36",
     "2026-03-30 14:00:37",
     "msg:140516",
-    "2026-03-30 15:32:59"
+    "2026-03-30 15:32:59",
+    "msg:140849",
+    "2026-03-31 03:32:12"
   ],
   "reply_log": [
     {
@@ -858,6 +851,14 @@
       "pid": "40585",
       "msg_id": "140516",
       "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T05:00:02+00:00",
+      "pid": "40585",
+      "msg_id": "140849",
+      "player": "Bruce",
       "preview": "[media]",
       "via": "reply"
     }
