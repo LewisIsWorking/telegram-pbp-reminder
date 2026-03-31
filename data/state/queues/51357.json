@@ -2,101 +2,12 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 138852,
-      "thread_id": 51357,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-22T03:39:55+00:00",
-      "preview": "[media]"
-    },
-    {
-      "message_id": 138911,
-      "thread_id": 51357,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-22T16:59:16+00:00",
-      "preview": "Axtra's work looks impeccable, the precision of the weaves she makes throughout the bridge is reminiscent of a spider's webbing. Each section of rope supports the next section of rope as they become intertwined.\n\n\"There! Probably some of my best work!\""
-    },
-    {
-      "message_id": 139046,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-03-23T23:56:06+00:00",
-      "preview": "Illiani still seems a bit concerned.\n\n\"Should we still go one at a time, just to be safe?\""
-    },
-    {
-      "message_id": 139047,
-      "thread_id": 51357,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-23T23:59:48+00:00",
-      "preview": "Upon hearing the words, Axtra turns towards Illiani. Her lower lip begins to tremble slightly as a discernible frown replaces the proud smile she had moments ago. \n\nHer eyes grow glossy as they slowly well up with tears. \"But... I did so good...\""
-    },
-    {
-      "message_id": 139048,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-03-24T00:01:13+00:00",
-      "preview": "Illi immediately backpedals and attempts to explain herself.\n\n\"OH! nonono, I mean, what if they have people watching the bridge, and have some other traps left to spring! You did a wonderful job!\""
-    },
-    {
-      "message_id": 139051,
-      "thread_id": 51357,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-24T00:06:02+00:00",
-      "preview": "Between her sniffles and face wiping, Axtra manages to let out a few words.\n\n\"Okay... sniff That makes sniff sense...\""
-    },
-    {
-      "message_id": 140686,
-      "thread_id": 51357,
-      "user_id": "894369591",
-      "user_name": "Lavender",
-      "time": "2026-03-31T01:12:56+00:00",
-      "preview": "Yes. She likes being in fox form"
-    },
-    {
-      "message_id": 140688,
-      "thread_id": 51357,
-      "user_id": "894369591",
-      "user_name": "Lavender",
-      "time": "2026-03-31T01:13:11+00:00",
-      "preview": "Sorry been a whirlwind of a few weeks"
-    },
-    {
       "message_id": 140690,
       "thread_id": 51357,
       "user_id": "138025700",
       "user_name": "Ryo",
       "time": "2026-03-31T01:15:28+00:00",
       "preview": "So, nothing huh? As a player I'm completely and 100% suspicious, especially with such an innocent description. lol"
-    },
-    {
-      "message_id": 140706,
-      "thread_id": 51357,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-03-31T01:29:38+00:00",
-      "preview": "\"So what order is everyone thinking about crossing? If we're worried about other traps or being attacked from afar while on the bridge perhaps I should cross first since I'm the biggest target.\""
-    },
-    {
-      "message_id": 140714,
-      "thread_id": 51357,
-      "user_id": "8511309197",
-      "user_name": "King",
-      "time": "2026-03-31T01:39:58+00:00",
-      "preview": "\"I'm heavily armored as well, I can either join in the front or take up the rear,\" Caspian said, looking at the bridge. \"I'm not sure how much of this place the rest of you have explored this place, but I don't exactly trust a place that kept me in pods. We wouldn't want to be ambushed from behind if we can avoid that.\""
-    },
-    {
-      "message_id": 140896,
-      "thread_id": 51357,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-03-31T03:53:06+00:00",
-      "preview": "\"Ooo oo! I want to cross the bridge first!\" Axtra exclaims. \n\nShe then begins to cross the bridge, forgetting the conversation she had with Illiani moments ago about other potential dangers.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -141,7 +52,29 @@
     "msg:138844",
     "2026-03-21 23:32:11",
     "msg:138831",
-    "2026-03-21 20:50:42"
+    "2026-03-21 20:50:42",
+    "msg:138852",
+    "2026-03-22 03:39:55",
+    "msg:138911",
+    "2026-03-22 16:59:16",
+    "msg:139046",
+    "2026-03-23 23:56:06",
+    "msg:139047",
+    "2026-03-23 23:59:48",
+    "msg:139048",
+    "2026-03-24 00:01:13",
+    "msg:139051",
+    "2026-03-24 00:06:02",
+    "msg:140686",
+    "2026-03-31 01:12:56",
+    "msg:140688",
+    "2026-03-31 01:13:11",
+    "msg:140706",
+    "2026-03-31 01:29:38",
+    "msg:140714",
+    "2026-03-31 01:39:58",
+    "msg:140896",
+    "2026-03-31 03:53:06"
   ],
   "reply_log": [
     {
@@ -278,6 +211,94 @@
       "msg_id": "138831",
       "player": "Cannon",
       "preview": "Illiani will prepare to magically fortify Axtra if they're going to try to reinf",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:17:10+00:00",
+      "pid": "51357",
+      "msg_id": "138852",
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:18:20+00:00",
+      "pid": "51357",
+      "msg_id": "138911",
+      "player": "Link",
+      "preview": "Axtra's work looks impeccable, the precision of the weaves she makes throughout ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:19:08+00:00",
+      "pid": "51357",
+      "msg_id": "139046",
+      "player": "Cannon",
+      "preview": "Illiani still seems a bit concerned.\n\n\"Should we still go one at a time, just to",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:20:20+00:00",
+      "pid": "51357",
+      "msg_id": "139047",
+      "player": "Link",
+      "preview": "Upon hearing the words, Axtra turns towards Illiani. Her lower lip begins to tre",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:20:46+00:00",
+      "pid": "51357",
+      "msg_id": "139048",
+      "player": "Cannon",
+      "preview": "Illi immediately backpedals and attempts to explain herself.\n\n\"OH! nonono, I mea",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:21:49+00:00",
+      "pid": "51357",
+      "msg_id": "139051",
+      "player": "Link",
+      "preview": "Between her sniffles and face wiping, Axtra manages to let out a few words.\n\n\"Ok",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:22:11+00:00",
+      "pid": "51357",
+      "msg_id": "140686",
+      "player": "Lavender",
+      "preview": "Yes. She likes being in fox form",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:22:30+00:00",
+      "pid": "51357",
+      "msg_id": "140688",
+      "player": "Lavender",
+      "preview": "Sorry been a whirlwind of a few weeks",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:26:23+00:00",
+      "pid": "51357",
+      "msg_id": "140706",
+      "player": "Ryo",
+      "preview": "\"So what order is everyone thinking about crossing? If we're worried about other",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:27:11+00:00",
+      "pid": "51357",
+      "msg_id": "140714",
+      "player": "King",
+      "preview": "\"I'm heavily armored as well, I can either join in the front or take up the rear",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T13:28:07+00:00",
+      "pid": "51357",
+      "msg_id": "140896",
+      "player": "Link",
+      "preview": "\"Ooo oo! I want to cross the bridge first!\" Axtra exclaims. \n\nShe then begins to",
       "via": "reply"
     }
   ]

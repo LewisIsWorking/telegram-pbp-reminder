@@ -38,7 +38,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-03-24T12:56:50+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "52083:7863964681": {
       "user_id": "7863964681",
@@ -48,7 +48,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-03-16T16:45:13+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "25059:5443237599": {
       "user_id": "5443237599",
@@ -158,7 +158,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-03-16T14:15:41+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "76799:138025700": {
       "user_id": "138025700",
@@ -299,16 +299,6 @@
       "pbp_topic_id": "107151",
       "last_post_time": "2026-03-29T00:40:13+00:00",
       "last_warned_week": 0
-    },
-    "25059:7916471490": {
-      "user_id": "7916471490",
-      "first_name": "DragonFox2000",
-      "last_name": "",
-      "username": "DragonFox2000",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-03-03T13:33:24+00:00",
-      "last_warned_week": 3
     },
     "51357:894369591": {
       "user_id": "894369591",
@@ -467,6 +457,12 @@
       "first_name": "Anthony",
       "username": "MrNegetZ",
       "campaign_name": "Grand Explorers"
+    },
+    "25059:7916471490": {
+      "removed_at": "2026-03-31T13:34:20.547806+00:00",
+      "first_name": "DragonFox2000",
+      "username": "DragonFox2000",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -577,7 +573,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.414530+00:00"
       }
     },
@@ -802,6 +798,16 @@
           "date": "2026-03-18",
           "campaign": "Metal City",
           "week": "W12"
+        }
+      ]
+    },
+    "52083": {
+      "5190471248": [
+        {
+          "text": "The merchant's scale is off by a hair. In your favor this time.",
+          "date": "2026-03-31",
+          "campaign": "Hopeful End-Times",
+          "week": "W14"
         }
       ]
     }
