@@ -1,5 +1,5 @@
 {
-  "offset": 619322280,
+  "offset": 619322296,
   "topics": {
     "52083": {
       "last_message_time": "2026-03-27T15:46:18+00:00",
@@ -299,5 +299,6 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": null,
-  "last_queue_pin_id": 140740
+  "last_queue_pin_id": 140740,
+  "queue_post_count": 0
 }
