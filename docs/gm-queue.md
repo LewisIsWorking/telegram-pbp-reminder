@@ -51,6 +51,25 @@ Each manual clear is written to `gm_reply_log` with `"via": "markdone"`.
 
 ---
 
+## Queue format
+
+Every queue post has this structure:
+```
+━━━━━━━━━━━━━━━━
+📋 GM Queue #42 — Unreplied: 90 | ✅ 34 cleared today
+C06:23 C09:17 C00:7 ...
+Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
+━━ 📌 🦠 C06: Kibwe (23) ━━ @PathWars ⚡Caelum (~0h)
+01 🟣 6d 12h. Link: Kieran will do slime lore... 🔗 https://t.me/...
+02 🟣 6d 12h. Link: He has a +15... 🔗 https://t.me/...
+```
+
+- **GM Queue #N** — increments every post
+- **Position numbers** — 01–99 across all campaigns; Kibwe always starts at 01
+- **Campaign emoji** — matches the Telegram chat emoji
+- **15-word previews** — enough context to recognise the message
+- **Pinned** — latest queue post is always pinned in the bot topic
+
 ## Viewing the queue
 
 `/queue` — posts the full queue sorted by:

@@ -188,3 +188,21 @@ logged.
 using `pid:username` keys (e.g. `"40585:Anthony NegetZ"`). Once a player
 is nudged, they won't be nudged again until the key expires or is manually
 cleared. The key cap is 200 entries (oldest evicted first).
+
+---
+
+## Media Group Deduplication
+
+Telegram sends each image in a multi-photo post as a separate message
+update, each with the same `media_group_id`. Only the **first** message
+of a group is added to the GM reply queue — subsequent images in the
+same group are skipped. Replying to the first image clears the group.
+
+---
+
+## Forum Topic Reply Detection
+
+In Telegram forum topics, every message has `reply_to_message` set to
+the topic's root header (same message ID as the thread ID, contains
+`forum_topic_created`). The bot ignores these — only genuine
+reply-to-a-specific-message events clear queue entries.

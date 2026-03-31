@@ -11,6 +11,79 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.32.0] - 2026-03-31
+
+### Fixed — Forum topic header false-positive in reply tracking
+
+Every message in a Telegram forum topic technically has `reply_to_message`
+set to the topic's root/header message (same ID as `message_thread_id`,
+contains `forum_topic_created`). The bot was treating these as GM replies
+to player messages, recording `msg=40585` (thread ID) for every GM post.
+
+`_real_reply_id()` helper in `parsing/message.py` now filters out:
+- `reply_to_message` with `forum_topic_created` key
+- `reply_to_message` where `message_id == message_thread_id`
+
+Confirmed working: reply to Kibwe message 140732 correctly recorded.
+
+### Fixed — `/chooseboon` and all commands silently dropped from chat topics
+
+`chat_topic_id` was not included in `to_canonical` mapping in
+`topic_maps.py`. Messages from chat topics (e.g. 21528 = Kibwe chat)
+were dropped before reaching any command handler. Added chat topic ID
+to the canonical map so commands work from either chat or PBP topics.
+
+### Fixed — Media group deduplication in GM queue
+
+Telegram sends each image in a multi-photo post as a separate update
+with the same `media_group_id`. Only the first message of a group is
+now queued — subsequent images are skipped. `media_group_id` stored
+in queue entries. Cleaned 2 existing Kibwe duplicates (140503, 140504).
+
+### Fixed — `/markdone` accepts full t.me URLs
+
+`/markdone https://t.me/Path_Wars/40585/139231` now works — the trailing
+message ID is extracted from the URL automatically.
+
+### Added — GM Queue sequential position numbers
+
+Each queue entry is now prefixed with its position across all campaigns:
+```
+01 🟣 6d 12h. Link: Kieran will do slime lore... 🔗 ...
+02 🟣 6d 12h. Link: He has a +15... 🔗 ...
+```
+Kibwe (priority) always starts at 01. Resets on each post.
+
+### Changed — Queue preview length: 5 → 15 words
+
+Message previews in the GM queue now show 15 words instead of 5.
+
+### Added — GM Queue #N counter
+
+Queue header now shows `📋 GM Queue #N` where N increments on every post.
+Stored in `state["queue_post_count"]`.
+
+### Added — Campaign emojis in queue section headers
+
+Each campaign section prefixed with its emoji matching the Telegram chat:
+`C00 💰 C01 📆 C04 🔍 C05 🔭 C06 🦠 C07 ⭐️ C08 🦄 C09 🤖 C11 🌑`
+Stored as `emoji` field in `config.json` `topic_pairs`.
+
+### Added — Queue auto-pin / unpin
+
+After each queue reminder post, the first message is pinned to the bot
+topic and the previously pinned queue message is unpinned. Tracked in
+`state["last_queue_pin_id"]`. New `telegram.send_message_id()` and
+`telegram.unpin_message()`.
+
+### Added — Age legend in every queue header
+
+`Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+`
+
+106 production files, 456 tests passing.
+
+---
+
 ## [4.31.0] - 2026-03-31
 
 ### Added — Queue reminder auto-pins latest post, unpins previous
