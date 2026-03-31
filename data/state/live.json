@@ -1,5 +1,5 @@
 {
-  "offset": 619322733,
+  "offset": 619322742,
   "topics": {
     "52083": {
       "last_message_time": "2026-03-31T13:10:43+00:00",
@@ -38,9 +38,9 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-03-31T13:30:09+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-03-31T14:33:01+00:00",
+      "last_user": "Link",
+      "last_user_id": "7863964681",
       "campaign_name": "Magni Watch"
     },
     "107151": {
@@ -234,7 +234,7 @@
   },
   "last_state_backup": "2026-03-31T03:26:05.920255+00:00",
   "last_queue_daily": "2026-03-31",
-  "last_queue_fingerprint": "51357:2026-03-31 01:15:28",
+  "last_queue_fingerprint": "76799:2026-03-31 14:33:01",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -296,6 +296,6 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": null,
-  "last_queue_pin_id": 141123,
-  "queue_post_count": 8
+  "last_queue_pin_id": 141133,
+  "queue_post_count": 9
 }
