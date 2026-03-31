@@ -101,6 +101,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     queue_num = state.get("queue_post_count", 0) + 1
     lines = [f"━━━━━━━━━━━━━━━━\n📋 GM Queue #{queue_num} — Unreplied: {total}{streak}\n{summary}\nAge: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+"]
 
+    entry_num = 1
     for pid in sorted_pids:
         data = scanned[pid]
         entries = data["entries"]
@@ -130,10 +131,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             user = entry.get("name", "?")
             preview = short_preview(entry.get("preview", ""))
             link = entry.get("link", "")
-            line = f"{icon} {age_str(hours)}. {user}: {preview}"
+            line = f"{entry_num:02d} {icon} {age_str(hours)}. {user}: {preview}"
             if link:
                 line += f" 🔗 {link}"
             lines.append(line)
+            entry_num += 1
 
     message = "\n".join(lines)
 
