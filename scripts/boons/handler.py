@@ -123,8 +123,22 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
 
 def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
                         config: dict, state: dict) -> str:
-    """Handle /chooseboon N command. Returns response message."""
-    pending = state.get("pending_potw_boons", {}).get(pid)
+    """Handle /chooseboon N command. Returns response message.
+
+    Looks up pending boon by pid first, then falls back to searching by
+    winner_user_id — handles the case where the command is typed in a
+    chat topic rather than the PBP topic the boon was issued from.
+    """
+    all_pending = state.get("pending_potw_boons", {})
+    pending = all_pending.get(pid)
+    actual_pid = pid
+    if not pending:
+        # Fallback: find by winner_user_id (command typed in chat topic)
+        for p_pid, p_data in all_pending.items():
+            if p_data.get("winner_user_id") == user_id:
+                pending = p_data
+                actual_pid = p_pid
+                break
     if not pending:
         return "No pending boon choice for this campaign."
 
@@ -136,7 +150,7 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
         return f"Pick a number between 1 and {len(pending['boons'])}."
 
     group_id = config["group_id"]
-    new_text, _ = _resolve_boon(state, pid, choice_idx, "Chosen boon")
+    new_text, _ = _resolve_boon(state, actual_pid, choice_idx, "Chosen boon")
     if not new_text:
         return "Something went wrong."
 
@@ -146,7 +160,7 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
 
     chosen = pending["boons"][choice_idx]
     campaign = pending.get("campaign_name", "Unknown")
-    del state["pending_potw_boons"][pid]
+    del state["pending_potw_boons"][actual_pid]
 
     # Notify bot topic
     bot_topic = config.get("bot_topic_id")
