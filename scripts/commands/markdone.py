@@ -38,6 +38,11 @@ def handle_markdone(ctx: dict) -> bool:
 
     arg = text[len("/markdone"):].strip()
 
+    # Accept full t.me links — extract the trailing message ID
+    # e.g. https://t.me/Path_Wars/40585/139231 → "139231"
+    if arg.startswith("http") and "/" in arg:
+        arg = arg.rstrip("/").rsplit("/", 1)[-1]
+
     # Build current queue entries for this campaign
     scanned = scan_transcripts(config, state)
     entries = scanned.get(pid, {}).get("entries", []) if scanned else []
