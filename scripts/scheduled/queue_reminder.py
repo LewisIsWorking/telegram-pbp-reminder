@@ -105,6 +105,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         entries = data["entries"]
         name = data["campaign"]
         code = data.get("code", "")
+        # Look up campaign emoji from config
+        emoji = next((p.get("emoji", "") for p in config.get("topic_pairs", [])
+                      if p.get("code") == code), "")
         label = f"{code}: {name}" if code else name
         gm = _gm_mentions(config, state, pid)
         scene = state.get("current_scenes", {}).get(pid, "")
@@ -112,7 +115,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         pin = "📌 " if pid in priority_pids else ""
         fast_key = code if code else name
         fast = f" ⚡{momentum_map[fast_key]}" if fast_key in momentum_map else ""
-        lines.append(f"━━ {pin}{label} ({len(entries)}){scene_str} ━━ {gm}{fast}")
+        emoji_prefix = f"{emoji} " if emoji else ""
+        lines.append(f"━━ {pin}{emoji_prefix}{label} ({len(entries)}){scene_str} ━━ {gm}{fast}")
         for entry in entries:
             hours = 0
             try:
