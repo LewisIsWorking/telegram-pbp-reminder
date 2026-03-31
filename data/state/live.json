@@ -1,5 +1,5 @@
 {
-  "offset": 619322812,
+  "offset": 619322873,
   "topics": {
     "52083": {
       "last_message_time": "2026-03-31T15:18:59+00:00",
@@ -121,7 +121,7 @@
     "campaign:40585": 500
   },
   "last_weekly_digest": "2026-03-27T14:23:08.283230+00:00",
-  "last_daily_tip": "2026-03-30T23:13:04.684296+00:00",
+  "last_daily_tip": "2026-03-31T21:14:25.720913+00:00",
   "used_tip_indices": [
     3,
     4,
@@ -157,7 +157,8 @@
     26,
     5,
     2,
-    23
+    23,
+    40
   ],
   "last_pace_drop_check": "2026-03-27T14:23:08.283230+00:00",
   "dying_alerts_sent": {},
@@ -285,7 +286,8 @@
   "last_week_welcome": null,
   "last_queue_daily_slots": [
     "2026-03-30:21",
-    "2026-03-31:09"
+    "2026-03-31:09",
+    "2026-03-31:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-03-29",
@@ -296,6 +298,6 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": null,
-  "last_queue_pin_id": 141207,
-  "queue_post_count": 15
+  "last_queue_pin_id": 141268,
+  "queue_post_count": 16
 }
