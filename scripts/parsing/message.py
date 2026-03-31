@@ -9,6 +9,27 @@ import re
 from datetime import datetime, timezone
 
 
+def _real_reply_id(msg: dict) -> int | None:
+    """Return the replied-to message ID only if it's a genuine reply.
+
+    In Telegram forum topics, every message has reply_to_message set to
+    the topic header (forum_topic_created). We must ignore those — they
+    are not actual replies to a player message.
+    """
+    r = msg.get("reply_to_message", {})
+    if not r:
+        return None
+    # Skip forum topic header (has forum_topic_created key)
+    if "forum_topic_created" in r:
+        return None
+    # Skip if message_id matches the thread_id (topic root message)
+    thread_id = msg.get("message_thread_id")
+    r_id = r.get("message_id")
+    if thread_id and r_id == thread_id:
+        return None
+    return r_id
+
+
 def parse_message(msg: dict, maps) -> dict | None:
     """Validate and extract fields from a Telegram message. Returns None if skipped."""
     chat_id = msg.get("chat", {}).get("id")
@@ -49,9 +70,8 @@ def parse_message(msg: dict, maps) -> dict | None:
     return {
         "thread_id": thread_id,
         "message_id": msg.get("message_id"),
-        "reply_to_message_id": msg.get("reply_to_message", {}).get("message_id"),
+        "reply_to_message_id": _real_reply_id(msg),
         "reply_to_date": msg.get("reply_to_message", {}).get("date"),
-        "_raw_reply_to": msg.get("reply_to_message", {}),
         "pid": maps.to_canonical[thread_id_str],
         "campaign_name": maps.to_name[maps.to_canonical[thread_id_str]],
         "user_id": str(from_user.get("id", "")),
