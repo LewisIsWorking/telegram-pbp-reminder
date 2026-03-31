@@ -73,6 +73,11 @@ def markdown_to_telegram(header: str, body: str) -> str:
             processed.append(f"\n<b>{section_name}</b>")
             continue
 
+        # Escape bare < and > that aren't part of our own HTML tags
+        # (e.g. age legend "<6h" breaks Telegram's HTML parser)
+        line = re.sub(r"<(?!/?(?:b|i|code|pre|a|s|u|spoiler)[\s>])", r"&lt;", line)
+        line = re.sub(r"(?<!>)>(?!\s*<)", r"&gt;", line)
+
         # Bold: **text** -> <b>text</b>
         line = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", line)
 

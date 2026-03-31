@@ -78,7 +78,7 @@ topic and the previously pinned queue message is unpinned. Tracked in
 
 ### Added — Age legend in every queue header
 
-`Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+`
+`Age: 🟢 <6h  🟡 1d  🟠 2d  🔴 3d  🟣 5d  🔵 7d  🟤 14d  ⚫ 30d+`
 
 106 production files, 456 tests passing.
 
