@@ -99,7 +99,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             k, v = m.split(": ", 1)
             momentum_map[k] = v
     queue_num = state.get("queue_post_count", 0) + 1
-    lines = [f"━━━━━━━━━━━━━━━━\n📋 GM Queue #{queue_num} — Unreplied: {total}{streak}\n{summary}\nAge: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+"]
+    lines = [f"━━━━━━━━━━━━━━━━\n📋 GM Queue #{queue_num} — Unreplied: {total}{streak}\n{summary}\nAge: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d 🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d 🟤14d 🟫15d ⚫16d ⬛17d 💀21d ☠️"]
 
     entry_num = 1
     for pid in sorted_pids:

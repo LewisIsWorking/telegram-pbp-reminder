@@ -74,7 +74,7 @@ checker.py (orchestrator)
 `live.json`, `players.json`, `queue.json`, `activity.json`.
 The GitHub Gist is written on every run as an emergency backup.
 
-106 production files, 456 tests, 9 campaigns, 40 player commands, 75 admin commands.
+106 production files, 479 tests, 9 campaigns, 40 player commands, 75 admin commands.
 Every file held to a strict 200-line maximum.
 
 ---

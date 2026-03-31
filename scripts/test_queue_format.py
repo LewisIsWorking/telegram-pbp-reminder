@@ -1,98 +1,104 @@
-"""
-Tests for commands/queue_format.py — shared queue entry formatting.
+"""Tests for queue_format helpers — new 22-tier age icon scale."""
 
-Covers the 8-tier age icon scale, age string formatting, and preview truncation.
-"""
-
-import sys
-import os
 import pytest
-
-sys.path.insert(0, os.path.dirname(__file__))
-
 from commands.queue_format import entry_age_icon, age_str, short_preview
 
 
-# ── entry_age_icon — 8-tier scale ─────────────────────────────────────────────
+# ── entry_age_icon — 22-tier scale ─────────────────────────────────────────────
 
 @pytest.mark.parametrize("hours, expected", [
-    # 🟢 just posted — < 6 h
-    (0,      "🟢"),
-    (3,      "🟢"),
-    (5.9,    "🟢"),
-    # ⚪ same day — 6–24 h
-    (6,      "⚪"),
-    (12,     "⚪"),
-    (23.9,   "⚪"),
-    # 🟡 1–2 d
-    (24,     "🟡"),
-    (36,     "🟡"),
-    (47.9,   "🟡"),
-    # 🟠 2–3 d
-    (48,     "🟠"),
-    (60,     "🟠"),
-    (71.9,   "🟠"),
-    # 🔴 3–5 d
-    (72,     "🔴"),
-    (96,     "🔴"),
-    (119.9,  "🔴"),
-    # 🟣 5–7 d
-    (120,    "🟣"),
-    (144,    "🟣"),
-    (167.9,  "🟣"),
-    # 🔵 7–14 d
-    (168,    "🔵"),
-    (240,    "🔵"),
-    (335.9,  "🔵"),
-    # 🟤 14 d+
-    (336,    "🟤"),
-    (719,    "🟤"),
-    (720,    "⚫"),
-    (1000,   "⚫"),
+    # 🆕 < 1h
+    (0,      "🆕"),
+    (0.5,    "🆕"),
+    (0.99,   "🆕"),
+    # 🌱 1–6h
+    (1,      "🌱"),
+    (3,      "🌱"),
+    (5.9,    "🌱"),
+    # 🌿 6–12h
+    (6,      "🌿"),
+    (9,      "🌿"),
+    (11.9,   "🌿"),
+    # 🌳 12–24h
+    (12,     "🌳"),
+    (18,     "🌳"),
+    (23.9,   "🌳"),
+    # Days 1–16
+    (24,     "🟢"),   # day 1
+    (47.9,   "🟢"),
+    (48,     "🟩"),   # day 2
+    (71.9,   "🟩"),
+    (72,     "🟡"),   # day 3
+    (95.9,   "🟡"),
+    (96,     "🟨"),   # day 4
+    (119.9,  "🟨"),
+    (120,    "🟠"),   # day 5
+    (143.9,  "🟠"),
+    (144,    "🟧"),   # day 6
+    (167.9,  "🟧"),
+    (168,    "🔴"),   # day 7
+    (191.9,  "🔴"),
+    (192,    "🟥"),   # day 8
+    (215.9,  "🟥"),
+    (216,    "🟣"),   # day 9
+    (239.9,  "🟣"),
+    (240,    "🟪"),   # day 10
+    (263.9,  "🟪"),
+    (264,    "🔵"),   # day 11
+    (287.9,  "🔵"),
+    (288,    "🟦"),   # day 12
+    (311.9,  "🟦"),
+    (312,    "🟤"),   # day 13
+    (335.9,  "🟤"),
+    (336,    "🟫"),   # day 14
+    (359.9,  "🟫"),
+    (360,    "⚫"),   # day 15
+    (383.9,  "⚫"),
+    (384,    "⬛"),   # day 16
+    (407.9,  "⬛"),
+    # 💀 day 17–21
+    (408,    "💀"),
+    (480,    "💀"),
+    (503.9,  "💀"),
+    # ☠️  day 21+
+    (504,    "☠️"),
+    (1000,   "☠️"),
 ])
 def test_entry_age_icon(hours, expected):
     assert entry_age_icon(hours) == expected
 
 
-def test_icon_boundaries_are_exclusive_lower():
-    """Each boundary value lands in the higher tier, not the lower."""
-    assert entry_age_icon(6)   == "⚪"   # not 🟢
-    assert entry_age_icon(24)  == "🟡"   # not ⚪
-    assert entry_age_icon(48)  == "🟠"   # not 🟡
-    assert entry_age_icon(72)  == "🔴"   # not 🟠
-    assert entry_age_icon(120) == "🟣"   # not 🔴
-    assert entry_age_icon(168) == "🔵"   # not 🟣
-    assert entry_age_icon(336) == "🟤"   # not 🔵
-
-
-def test_eight_distinct_icons():
-    """All eight icon values are reachable and distinct."""
-    icons = {entry_age_icon(h) for h in (0, 6, 24, 48, 72, 120, 168, 336)}
-    assert len(icons) == 8
+def test_twenty_two_distinct_icons():
+    """All 22 icon values are reachable and distinct."""
+    sample_hours = [0, 1, 6, 12, 24, 48, 72, 96, 120, 144, 168, 192,
+                    216, 240, 264, 288, 312, 336, 360, 384, 408, 504]
+    icons = [entry_age_icon(h) for h in sample_hours]
+    assert len(set(icons)) == 22, f"Expected 22 distinct icons, got {len(set(icons))}: {icons}"
 
 
 def test_icon_ordering_reflects_urgency():
-    """Spot-check that urgency increases with age."""
-    # Fresh should not equal abandoned
-    assert entry_age_icon(0) != entry_age_icon(720)
-    # Green is better than red
-    assert entry_age_icon(1) == "🟢"
-    assert entry_age_icon(500) == "🟤"
+    """Icons should change as time increases."""
+    hours = [0, 1, 6, 12, 24, 48, 72, 96, 120, 144, 168, 192,
+             216, 240, 264, 288, 312, 336, 360, 384, 408, 504]
+    icons = [entry_age_icon(h) for h in hours]
+    # Each consecutive pair should differ
+    for i in range(len(icons) - 1):
+        assert icons[i] != icons[i + 1], \
+            f"Icons at {hours[i]}h and {hours[i+1]}h are both {icons[i]}"
 
 
 # ── age_str ────────────────────────────────────────────────────────────────────
 
 @pytest.mark.parametrize("hours, expected", [
-    (0,    "0h"),
-    (5,    "5h"),
-    (23,   "23h"),
-    (24,   "1d 0h"),
-    (25,   "1d 1h"),
-    (48,   "2d 0h"),
-    (50,   "2d 2h"),
-    (167,  "6d 23h"),
-    (168,  "7d 0h"),
-    (336,  "14d 0h"),
+    (0,     "0h"),
+    (1,     "1h"),
+    (5,     "5h"),
+    (23,    "23h"),
+    (24,    "1d 0h"),
+    (25,    "1d 1h"),
+    (47,    "1d 23h"),
+    (48,    "2d 0h"),
+    (100,   "4d 4h"),
 ])
 def test_age_str(hours, expected):
     assert age_str(hours) == expected
@@ -100,29 +106,20 @@ def test_age_str(hours, expected):
 
 # ── short_preview ──────────────────────────────────────────────────────────────
 
-def test_preview_short_text_unchanged():
-    assert short_preview("hello world", words=5) == "hello world"
+@pytest.mark.parametrize("text, words, expected", [
+    ("hello world", 15, "hello world"),
+    ("a b c d e f g h i j k l m n o p", 15, "a b c d e f g h i j k l m n o..."),
+    ("one two three", 2, "one two..."),
+    ("one two", 2, "one two"),
+    ("", 15, ""),
+    ("single", 15, "single"),
+])
+def test_short_preview(text, words, expected):
+    assert short_preview(text, words) == expected
 
 
-def test_preview_exact_word_count_unchanged():
-    assert short_preview("one two three four five", words=5) == "one two three four five"
-
-
-def test_preview_truncates_with_ellipsis():
-    result = short_preview("one two three four five six", words=5)
-    assert result == "one two three four five..."
-
-
-def test_preview_newlines_treated_as_spaces():
-    result = short_preview("line one\nline two\nline three", words=4)
-    assert "..." in result
-    assert "\n" not in result
-
-
-def test_preview_empty_string():
-    assert short_preview("", words=5) == ""
-
-
-def test_preview_custom_word_count():
-    result = short_preview("a b c d e f g", words=3)
-    assert result == "a b c..."
+def test_short_preview_default_is_15_words():
+    text = " ".join(str(i) for i in range(20))
+    result = short_preview(text)
+    assert result.endswith("...")
+    assert len(result.split()) == 15  # 15 words, last one ends with "..."

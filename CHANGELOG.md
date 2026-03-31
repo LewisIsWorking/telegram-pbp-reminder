@@ -11,6 +11,35 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.33.0] - 2026-03-31
+
+### Changed — 22-tier age icon scale
+
+Completely redesigned queue age icons. Old 9-tier circle scale replaced
+with a 22-tier system:
+
+**Under 24h — growth sequence:**
+| Icon | Age |
+|---|---|
+| 🆕 | < 1h |
+| 🌱 | 1–6h |
+| 🌿 | 6–12h |
+| 🌳 | 12–24h |
+
+**Days 1–16 — one icon per day (circle then square per colour):**
+🟢 🟩 🟡 🟨 🟠 🟧 🔴 🟥 🟣 🟪 🔵 🟦 🟤 🟫 ⚫ ⬛
+
+**Beyond day 16:**
+| Icon | Age |
+|---|---|
+| 💀 | 17–21d |
+| ☠️ | 21d+ |
+
+Queue header legend and week welcome legend both updated.
+`test_queue_format.py` fully rewritten: 23 tests → 479 total.
+
+---
+
 ## [4.32.0] - 2026-03-31
 
 ### Fixed — Forum topic header false-positive in reply tracking

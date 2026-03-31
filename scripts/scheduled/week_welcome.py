@@ -36,8 +36,10 @@ def post_week_welcome(config: dict, state: dict, *,
     week_num  = now.isocalendar()[1]
     year      = now.year
     legend = (
-        "🟢 < 6h  ⚪ same day  🟡 1–2d  🟠 2–3d\n"
-        "🔴 3–5d  🟣 5–7d  🔵 7–14d  🟤 14–30d  ⚫ 30d+"
+        "🆕 <1h  🌱 6h  🌿 12h  🌳 1d\n"
+        "🟢 2d  🟩 3d  🟡 4d  🟨 5d  🟠 6d  🟧 7d\n"
+        "🔴 8d  🟥 9d  🟣 10d  🟪 11d  🔵 12d  🟦 13d\n"
+        "🟤 14d  🟫 15d  ⚫ 16d  ⬛ 17d  💀 21d  ☠️ beyond"
     )
     msg = (
         f"━━━━━━━━━━━━━━━━\n"
