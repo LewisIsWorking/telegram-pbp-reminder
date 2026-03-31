@@ -11,6 +11,35 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.31.0] - 2026-03-31
+
+### Added — Queue reminder auto-pins latest post, unpins previous
+
+After each queue reminder is sent, the first message is pinned to the
+bot topic and the previously pinned queue message is unpinned. Tracked
+in `state["last_queue_pin_id"]`.
+
+New `telegram.send_message_id()` — like `send_message` but returns the
+message_id. New `telegram.unpin_message()`.
+
+### Added — Age legend in every queue reminder header
+
+Every queue post now opens with:
+```
+📋 Unreplied: 103 | ✅ 39 cleared today
+C06:35 C09:17 ...
+Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
+```
+
+### Verified — Reply tracking working correctly
+
+Tested with 6 manual replies to Grand Explorers entries — all captured
+in `data/state/queues/51357.json` reply_log with `via=reply`. Pre-link-era
+entries (player=?) record the message ID correctly even without a live
+queue entry to resolve the player name from.
+
+---
+
 ## [4.30.0] - 2026-03-30
 
 ### Refactored — Per-Campaign Queue Partitions

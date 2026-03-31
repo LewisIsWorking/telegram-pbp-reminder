@@ -58,22 +58,30 @@ Each manual clear is written to `gm_reply_log` with `"via": "markdone"`.
 2. Oldest unreplied message first within each campaign
 
 Each entry shows:
-- Age icon (⚪🟡🟠🔴🟣🔵🟤 — see below)
+- Age icon (see legend below)
 - Time since posted
 - Player name and message preview
-- Direct Telegram link to the message
+- Direct Telegram link to the message (where available)
 
-### Age icon scale
+The queue reminder is **pinned** to the bot topic automatically —
+the previous pin is unpinned when a new one is posted.
 
-| Icon | Age | Meaning |
-|---|---|---|
-| ⚪ | < 6 h | Fresh |
-| 🟡 | 6–24 h | Same day |
-| 🟠 | 1–2 d | Getting old |
-| 🔴 | 2–3 d | Overdue |
-| 🟣 | 3–5 d | Stalled |
-| 🔵 | 5–7 d | Alarming |
-| 🟤 | 7 d + | Abandoned |
+### Age icon legend
+
+Every queue post includes this in the header:
+`Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+`
+
+| Icon | Age |
+|---|---|
+| 🟢 | < 6 h |
+| ⚪ | 6–24 h |
+| 🟡 | 1–2 d |
+| 🟠 | 2–3 d |
+| 🔴 | 3–5 d |
+| 🟣 | 5–7 d |
+| 🔵 | 7–14 d |
+| 🟤 | 14–30 d |
+| ⚫ | 30 d + |
 
 ---
 

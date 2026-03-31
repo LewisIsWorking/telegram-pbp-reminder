@@ -98,7 +98,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if ": " in m:
             k, v = m.split(": ", 1)
             momentum_map[k] = v
-    lines = [f"━━━━━━━━━━━━━━━━\n📋 Unreplied: {total}{streak}", summary]
+    lines = [f"━━━━━━━━━━━━━━━━\n📋 Unreplied: {total}{streak}\n{summary}\nAge: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+"]
 
     for pid in sorted_pids:
         data = scanned[pid]
@@ -147,10 +147,21 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             msgs.append(current.rstrip())
 
     sent = False
-    for msg in msgs:
-        if tg.send_message(group_id, bot_topic, msg):
+    first_msg_id = None
+    for i, msg in enumerate(msgs):
+        result = tg.send_message_id(group_id, bot_topic, msg)
+        if result:
             sent = True
+            if i == 0:
+                first_msg_id = result
     if sent:
+        # Pin the new message, unpin the previous one
+        if first_msg_id:
+            prev_pin = state.get("last_queue_pin_id")
+            if prev_pin:
+                tg.unpin_message(group_id, prev_pin)
+            tg.pin_message(group_id, first_msg_id)
+            state["last_queue_pin_id"] = first_msg_id
         state["last_queue_fingerprint"] = fingerprint
         if is_daily:
             slot_key = f"{now.date().isoformat()}:{now.hour:02d}"

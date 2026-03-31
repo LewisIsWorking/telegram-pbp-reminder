@@ -88,6 +88,22 @@ def send_message(chat_id: int, thread_id: int | None, text: str,
     return result is not None
 
 
+def send_message_id(chat_id: int, thread_id: int | None, text: str,
+                    parse_mode: str | None = None) -> int | None:
+    """Send a text message and return the message_id, or None on failure."""
+    payload: dict = {
+        "chat_id": chat_id,
+        "text": text,
+        "disable_notification": False,
+    }
+    if thread_id is not None:
+        payload["message_thread_id"] = thread_id
+    if parse_mode:
+        payload["parse_mode"] = parse_mode
+    result = _post("sendMessage", payload, "send_message")
+    return result.get("message_id") if result else None
+
+
 def send_message_with_buttons(
     chat_id: int, thread_id: int, text: str, buttons: list
 ) -> int | None:
@@ -155,6 +171,14 @@ def pin_message(chat_id: int, message_id: int,
         "message_id": message_id,
         "disable_notification": disable_notification,
     }, "pin_message") is not None
+
+
+def unpin_message(chat_id: int, message_id: int) -> bool:
+    """Unpin a specific message in a chat. Returns True on success."""
+    return _post("unpinChatMessage", {
+        "chat_id": chat_id,
+        "message_id": message_id,
+    }, "unpin_message") is not None
 
 
 def message_link(group_id: int, topic_id: int, message_id: int,
