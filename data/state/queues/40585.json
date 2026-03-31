@@ -2,14 +2,6 @@
   "pid": "40585",
   "unreplied": [
     {
-      "message_id": 139107,
-      "thread_id": 40585,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-03-24T10:49:40+00:00",
-      "preview": "Lorn then says \"my phalanx piercer should be able to handle the slimes\""
-    },
-    {
       "message_id": 139151,
       "thread_id": 40585,
       "user_id": "7863964681",
@@ -347,7 +339,9 @@
     "msg:140732",
     "2026-03-31 01:59:58",
     "msg:137024",
-    "2026-03-11 18:01:01"
+    "2026-03-11 18:01:01",
+    "msg:139107",
+    "2026-03-24 10:49:40"
   ],
   "reply_log": [
     {
@@ -788,6 +782,14 @@
       "msg_id": "137024",
       "player": "?",
       "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-03-31T02:56:58+00:00",
+      "pid": "40585",
+      "msg_id": "139107",
+      "player": "Kaer'maga when?",
+      "preview": "Lorn then says \"my phalanx piercer should be able to handle the slimes\"",
       "via": "reply"
     }
   ]
