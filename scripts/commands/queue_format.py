@@ -46,7 +46,7 @@ def age_str(hours: float) -> str:
     return f"{h}h"
 
 
-def short_preview(text: str, words: int = 5) -> str:
+def short_preview(text: str, words: int = 15) -> str:
     """Return the first N words of text, with '...' if truncated."""
     w = text.replace("\n", " ").split()[:words]
     result = " ".join(w)
