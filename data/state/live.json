@@ -1,5 +1,5 @@
 {
-  "offset": 619323048,
+  "offset": 619323070,
   "topics": {
     "52083": {
       "last_message_time": "2026-03-31T15:18:59+00:00",
@@ -50,9 +50,9 @@
       "campaign_name": "Theria"
     },
     "1242": {
-      "last_message_time": "2026-04-01T21:49:23+00:00",
-      "last_user": "Craig",
-      "last_user_id": "503940482",
+      "last_message_time": "2026-04-01T22:44:24+00:00",
+      "last_user": "NJ",
+      "last_user_id": "8030796908",
       "campaign_name": "Dark Pockets"
     }
   },
@@ -237,7 +237,7 @@
   },
   "last_state_backup": "2026-04-01T05:00:07.290605+00:00",
   "last_queue_daily": "2026-03-31",
-  "last_queue_fingerprint": "1242:2026-04-01 21:48:54|1242:2026-04-01 21:49:23|66154:2026-04-01 21:33:16",
+  "last_queue_fingerprint": "1242:2026-04-01 21:48:54|1242:2026-04-01 21:49:23|1242:2026-04-01 22:27:16|1242:2026-04-01 22:32:21|1242:2026-04-01 22:32:37|1242:2026-04-01 22:44:24|66154:2026-04-01 21:33:16",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -300,6 +300,6 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": null,
-  "last_queue_pin_id": 141441,
-  "queue_post_count": 18
+  "last_queue_pin_id": 141455,
+  "queue_post_count": 19
 }
