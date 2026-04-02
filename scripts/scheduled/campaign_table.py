@@ -1,10 +1,10 @@
 """
 Weekly campaign overview table.
 
-Posts a monospaced summary of all campaigns showing
-player counts, activity, and health status. Rendered
-using HTML <pre> blocks so Telegram uses a fixed-width
-font and columns stay aligned.
+Posts a per-line summary of all campaigns showing
+player counts, activity, and health status. Uses plain
+text lines rather than column alignment so emoji widths
+don't cause mobile rendering issues.
 """
 
 import html
@@ -13,7 +13,7 @@ from datetime import datetime, timezone, timedelta
 import helpers
 import telegram as tg
 
-# Last post age → health icon
+# Last post age -> health icon
 # 🟢 < 1 day   — healthy, active today
 # 🟡 1-3 days  — slowing down
 # 🟠 3-5 days  — concerning, needs attention
@@ -21,16 +21,10 @@ import telegram as tg
 
 REQUIRED_PLAYERS = 6
 
-# In Telegram <pre> blocks, emoji glyphs are 2 display-cells wide.
-# Each data row starts with: emoji (2 cells) + space (1 cell) = 3 cells.
-# The header uses 3 leading spaces so "Campaign" aligns under data names.
-_HEADER = "   {:<18s} {:>4s} {:>4s} {:>5s} {:>4s}"
-_ROW    = "{} {:<18s} {:>4s} {:>4d} {:>5d} {:>4s}{}"
-
 
 def build_campaign_table(config: dict, state: dict,
                          now: datetime | None = None) -> str:
-    """Build the campaign overview table as HTML with monospaced alignment."""
+    """Build the campaign overview as HTML, one line per campaign."""
     now = now or datetime.now(timezone.utc)
     week_ago = now - timedelta(days=7)
     week_num = now.isocalendar()[1]
@@ -41,24 +35,23 @@ def build_campaign_table(config: dict, state: dict,
     rows = _collect_rows(config, state, scanned, week_ago)
     rows.sort(key=lambda r: r["active"])
 
-    header = _HEADER.format("Campaign", "Code", "Act", "Week", "Last")
-    table_lines = [header]
+    lines = []
     for r in rows:
         name_safe = html.escape(r["name"])
-        line = _ROW.format(
-            r["icon"], name_safe, r["code"],
-            r["active"], r["week"], r["age"], r["queue"],
+        q_str = f"  📋{r['qcount']}" if r["qcount"] else ""
+        lines.append(
+            f"{r['icon']} {name_safe} ({r['code']})"
+            f"  {r['active']}p · {r['week']}/wk · {r['age']}{q_str}"
         )
-        table_lines.append(line)
 
     total_active = sum(r["active"] for r in rows)
     total_week   = sum(r["week"]   for r in rows)
 
-    title    = f"📊 Campaign Overview (W{week_num})"
-    pre      = "<pre>" + "\n".join(table_lines) + "</pre>"
-    totals   = (f"Total: {total_active} active players, "
-                f"{total_week} posts this week")
-    legend   = "🟢 &lt;1d  🟡 1-3d  🟠 3-5d  🔴 5d+"
+    title   = f"📊 Campaign Overview (W{week_num})"
+    pre     = "<pre>" + "\n".join(lines) + "</pre>"
+    totals  = (f"Total: {total_active} active players, "
+               f"{total_week} posts this week")
+    legend  = "🟢 &lt;1d  🟡 1-3d  🟠 3-5d  🔴 5d+"
 
     parts = [title, "", pre, "", totals, legend]
     parts.extend(_build_warning(rows))
@@ -86,10 +79,10 @@ def _collect_rows(config: dict, state: dict,
 
         queue = len(scanned.get(pid, {}).get("entries", []))
         rows.append({
-            "code": code, "name": _truncate(name, 18),
+            "code": code, "name": _truncate(name, 20),
             "active": active, "week": week_posts,
             "age": age, "icon": _health_icon(days_val),
-            "queue": f"  📋{queue}" if queue else "",
+            "qcount": queue,
             "hybrid": helpers.is_hybrid(config, pid),
         })
     return rows

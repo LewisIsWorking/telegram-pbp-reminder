@@ -1,8 +1,5 @@
 """
-Integration tests for campaign_table.py.
-
-Covers HTML structure, column alignment, and full build_campaign_table output.
-Unit tests for helper functions live in test_campaign_table_unit.py.
+Tests for campaign_table.py — per-line format (no column alignment).
 """
 
 import sys
@@ -13,20 +10,14 @@ from unittest.mock import patch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 
-from scheduled.campaign_table import (
-    build_campaign_table,
-    _HEADER,
-    _ROW,
-)
-
-# ── Shared fixtures ────────────────────────────────────────────────────────────
+from scheduled.campaign_table import build_campaign_table
 
 NOW       = datetime(2026, 3, 27, 12, 0, 0, tzinfo=timezone.utc)
 RECENT_TS = (NOW - timedelta(hours=2)).isoformat()
-STALE_TS  = (NOW - timedelta(days=8)).isoformat()  # outside 7-day window
+STALE_TS  = (NOW - timedelta(days=8)).isoformat()
 
 
-def _make_config(pairs: list[dict] | None = None) -> dict:
+def _make_config(pairs=None):
     topic_pairs = pairs or [
         {"pbp_topic_ids": [100], "code": "C00", "name": "Riddleport",
          "gm_user_ids": [999]},
@@ -41,7 +32,7 @@ def _make_config(pairs: list[dict] | None = None) -> dict:
     }
 
 
-def _make_state(topic_ts: dict | None = None) -> dict:
+def _make_state(topic_ts=None):
     ts = topic_ts or {
         "100": {"111": [RECENT_TS], "222": [RECENT_TS]},
         "101": {"333": [RECENT_TS]},
@@ -69,11 +60,19 @@ def test_output_contains_pre_block(mock_scan):
 
 
 @patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
-def test_header_inside_pre(mock_scan):
+def test_campaign_names_in_pre(mock_scan):
     result = build_campaign_table(_make_config(), _make_state(), now=NOW)
     pre_content = result.split("<pre>")[1].split("</pre>")[0]
-    for col in ("Campaign", "Code", "Act", "Week", "Last"):
-        assert col in pre_content
+    assert "Riddleport" in pre_content
+    assert "Doomsday Funtime" in pre_content
+
+
+@patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
+def test_campaign_codes_in_pre(mock_scan):
+    result = build_campaign_table(_make_config(), _make_state(), now=NOW)
+    pre_content = result.split("<pre>")[1].split("</pre>")[0]
+    assert "C00" in pre_content
+    assert "C01" in pre_content
 
 
 @patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
@@ -95,31 +94,26 @@ def test_totals_outside_pre(mock_scan):
 def test_legend_outside_pre(mock_scan):
     result = build_campaign_table(_make_config(), _make_state(), now=NOW)
     post_pre = result.split("</pre>")[1]
-    assert "&lt;1d" in post_pre   # < must be HTML-escaped
+    assert "&lt;1d" in post_pre
 
 
-# ── Column alignment ───────────────────────────────────────────────────────────
+# ── Per-line format ────────────────────────────────────────────────────────────
 
-def test_header_prefix_is_three_spaces():
-    """Header must start with 3 spaces to align under emoji+space data rows."""
-    header = _HEADER.format("Campaign", "Code", "Act", "Week", "Last")
-    assert header.startswith("   "), f"Expected 3-space prefix, got: {header!r}"
-
-
-def test_row_name_padded_to_18():
-    """Name field is left-aligned and padded to exactly 18 chars."""
-    row = _ROW.format("🟢", "Short", "C00", 3, 42, "1d", "")
-    name_field = row[2:20]   # skip emoji (1 char) + space (1 char)
-    assert len(name_field) == 18
-    assert name_field.startswith("Short")
+@patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
+def test_each_campaign_on_own_line(mock_scan):
+    result = build_campaign_table(_make_config(), _make_state(), now=NOW)
+    pre_content = result.split("<pre>")[1].split("</pre>")[0]
+    lines = [l for l in pre_content.strip().split("\n") if l.strip()]
+    # One line per campaign
+    assert len(lines) == 2
 
 
-def test_header_and_row_name_column_align():
-    """Campaign header column aligns visually with name data column."""
-    header = _HEADER.format("Campaign", "Code", "Act", "Week", "Last")
-    row    = _ROW.format("🟢", "Kibwe", "C06", 7, 125, "0h", "")
-    assert header[3] == "C"   # 'C' of Campaign
-    assert row[2] == "K"      # 'K' of Kibwe
+@patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
+def test_line_contains_player_count_and_posts(mock_scan):
+    result = build_campaign_table(_make_config(), _make_state(), now=NOW)
+    pre_content = result.split("<pre>")[1].split("</pre>")[0]
+    assert "p" in pre_content   # player count marker
+    assert "/wk" in pre_content  # weekly posts marker
 
 
 # ── Queue indicator ────────────────────────────────────────────────────────────
@@ -141,14 +135,12 @@ def test_no_queue_indicator_when_empty(mock_scan):
 
 @patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
 def test_warning_shown_for_understaffed_non_hybrid(mock_scan):
-    # Only 2 active players for C00 (non-hybrid), below REQUIRED_PLAYERS=6
     result = build_campaign_table(_make_config(), _make_state(), now=NOW)
     assert "⚠️" in result
 
 
 @patch("commands.queue_scan.scan_transcripts", side_effect=_scan_empty)
 def test_no_warning_for_hybrid_only_camps(mock_scan):
-    """If the only understaffed campaign is hybrid, no warning should appear."""
     config = _make_config([
         {"pbp_topic_ids": [101], "code": "C01", "name": "Doomsday Funtime",
          "gm_user_ids": [999], "hybrid_live": True},
