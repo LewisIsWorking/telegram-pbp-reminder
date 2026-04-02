@@ -53,6 +53,26 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         handle_search(args, group_id, bot_topic, tg)
         return
 
+    # /chooseboon: resolves campaign by winner_user_id, works anywhere
+    if cmd_word == "/chooseboon":
+        import re as _re
+        from boons.handler import choose_boon_by_text
+        num_str = _re.sub(r"^(/\w+)@\S+", r"\1", raw_text)[len("/chooseboon"):].strip()
+        try:
+            choice = int(num_str)
+        except ValueError:
+            tg.send_message(group_id, bot_topic, "Usage: /chooseboon <number>")
+            return
+        # Try each campaign's pending boon to find this user's
+        result = "No pending boon choice for you."
+        for pid in list(state.get("pending_potw_boons", {}).keys()):
+            r = choose_boon_by_text(pid, user_id, choice, config, state)
+            if r != "No pending boon choice for this campaign.":
+                result = r
+                break
+        tg.send_message(group_id, bot_topic, result)
+        return
+
     # /mystats and /me: cross-campaign when no arg, per-campaign with arg
     if cmd_word in ("/mystats", "/me"):
         if not args.strip():
