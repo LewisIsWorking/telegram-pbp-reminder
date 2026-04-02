@@ -34,17 +34,30 @@ def parse_message(msg: dict, maps) -> dict | None:
     """Validate and extract fields from a Telegram message. Returns None if skipped."""
     chat_id = msg.get("chat", {}).get("id")
     thread_id = msg.get("message_thread_id")
+
+    # Allow /chooseboon from the main group chat (no thread_id)
+    # by using a sentinel pid — boon handler finds the right campaign by user_id
+    raw_text = msg.get("text", "") or msg.get("caption", "")
+    _cmd = raw_text.lower().strip().split()[0] if raw_text.strip() else ""
+    _cmd = re.sub(r"@\S+", "", _cmd)  # strip @botname
     if thread_id is None:
-        return None
+        if _cmd == "/chooseboon":
+            thread_id = 0  # sentinel — no real topic, boon handler resolves by uid
+        else:
+            return None
 
     thread_id_str = str(thread_id)
-    if thread_id_str not in maps.all_pbp_ids:
+    if thread_id_str not in maps.all_pbp_ids and thread_id != 0:
         return None
 
     # Verify the message came from the correct group for this topic
-    pid = maps.to_canonical[thread_id_str]
-    if chat_id != maps.to_group.get(pid):
-        return None
+    if thread_id == 0:
+        # /chooseboon from main chat — use sentinel pid, skip group check
+        pid = "__main__"
+    else:
+        pid = maps.to_canonical[thread_id_str]
+        if chat_id != maps.to_group.get(pid):
+            return None
 
     from_user = msg.get("from", {})
     if from_user.get("is_bot", False):
