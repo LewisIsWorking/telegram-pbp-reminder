@@ -63,14 +63,19 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         except ValueError:
             tg.send_message(group_id, bot_topic, "Usage: /chooseboon <number>")
             return
-        # Try each campaign's pending boon to find this user's
-        result = "No pending boon choice for you."
-        for pid in list(state.get("pending_potw_boons", {}).keys()):
-            r = choose_boon_by_text(pid, user_id, choice, config, state)
-            if r != "No pending boon choice for this campaign.":
-                result = r
-                break
+        # Find the campaign where this user is the winner
+        pending = state.get("pending_potw_boons", {})
+        target_pid = next(
+            (pid for pid, b in pending.items()
+             if b.get("winner_user_id") == user_id),
+            None
+        )
+        if not target_pid:
+            tg.send_message(group_id, bot_topic, "No pending boon choice for you.")
+            return
+        result = choose_boon_by_text(target_pid, user_id, choice, config, state)
         tg.send_message(group_id, bot_topic, result)
+        print(f"Bot topic: /chooseboon {choice} from {user_name} → {target_pid}")
         return
 
     # /mystats and /me: cross-campaign when no arg, per-campaign with arg
