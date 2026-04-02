@@ -1,5 +1,5 @@
 {
-  "offset": 619323227,
+  "offset": 619323229,
   "topics": {
     "52083": {
       "last_message_time": "2026-03-31T15:18:59+00:00",
@@ -163,7 +163,9 @@
     0
   ],
   "last_pace_drop_check": "2026-03-27T14:23:08.283230+00:00",
-  "dying_alerts_sent": {},
+  "dying_alerts_sent": {
+    "25059": "active"
+  },
   "last_campaign_table": "2026-04-02T11:19:04.496261+00:00",
   "session_poll": {
     "C01": {
