@@ -7,7 +7,7 @@ and links when available (msg#12345 tags in transcripts).
 """
 
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import helpers
@@ -37,6 +37,10 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     """
     now = datetime.now(timezone.utc)
     month = now.strftime("%Y-%m")
+    # Also scan the previous month to catch entries posted near month boundaries
+    prev_month_dt = (now.replace(day=1) - timedelta(days=1))
+    prev_month = prev_month_dt.strftime("%Y-%m")
+    months_to_scan = [prev_month, month] if prev_month != month else [month]
     group_user = "Path_Wars"
     result = {}
 
@@ -72,66 +76,67 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         dirname = name.replace(" ", "_").replace("'", "")
-        path = _LOGS_DIR / dirname / f"{month}.md"
-        if not path.exists():
-            continue
-
-        content = path.read_text(encoding="utf-8")
-        lines = content.split("\n")
-
         pending = []
-        i = 0
-        while i < len(lines):
-            m = _ENTRY_RE.match(lines[i])
-            if not m:
-                i += 1
+        for month_str in months_to_scan:
+            path = _LOGS_DIR / dirname / f"{month_str}.md"
+            if not path.exists():
                 continue
 
-            author = m.group(1)
-            is_gm = bool(m.group(2))
-            timestamp = m.group(3)
-            msg_id = m.group(4)
+            content = path.read_text(encoding="utf-8")
+            lines = content.split("\n")
 
-            # Collect content lines
-            i += 1
-            content_lines = []
-            while i < len(lines) and not _ENTRY_RE.match(lines[i]):
-                if lines[i].startswith("## ") or lines[i].startswith("### "):
-                    break
-                if lines[i].startswith("*—") and "silence" in lines[i]:
-                    break
-                content_lines.append(lines[i])
-                i += 1
-
-            preview = "\n".join(content_lines).strip()
-
-            if is_gm:
-                # A GM message does NOT clear pending entries — only a direct
-                # reply (tracked via gm_queue_replied in state) clears a specific
-                # player message. A GM posting generally shouldn't wipe the queue.
-                pass
-            else:
-                # Skip entries before the scan floor (suppresses pre-fix backlog)
-                if floor_date and timestamp[:10] < floor_date:
+            i = 0
+            while i < len(lines):
+                m = _ENTRY_RE.match(lines[i])
+                if not m:
                     i += 1
                     continue
-                # Check inline msg# tag first, then lookup file
-                mid = msg_id
-                if not mid:
-                    lookup_key = f"{pid}:{timestamp}"
-                    mid_val = id_lookup.get(lookup_key)
-                    if mid_val:
-                        mid = str(mid_val)
-                link = ""
-                if mid:
-                    link = f"https://t.me/{group_user}/{pid}/{mid}"
-                pending.append({
-                    "name": author.strip(),
-                    "time": timestamp,
-                    "preview": preview,
-                    "message_id": mid,
-                    "link": link,
-                })
+
+                author = m.group(1)
+                is_gm = bool(m.group(2))
+                timestamp = m.group(3)
+                msg_id = m.group(4)
+
+                # Collect content lines
+                i += 1
+                content_lines = []
+                while i < len(lines) and not _ENTRY_RE.match(lines[i]):
+                    if lines[i].startswith("## ") or lines[i].startswith("### "):
+                        break
+                    if lines[i].startswith("*—") and "silence" in lines[i]:
+                        break
+                    content_lines.append(lines[i])
+                    i += 1
+
+                preview = "\n".join(content_lines).strip()
+
+                if is_gm:
+                    # A GM message does NOT clear pending entries — only a direct
+                    # reply (tracked via gm_queue_replied in state) clears a specific
+                    # player message. A GM posting generally shouldn't wipe the queue.
+                    pass
+                else:
+                    # Skip entries before the scan floor (suppresses pre-fix backlog)
+                    if floor_date and timestamp[:10] < floor_date:
+                        i += 1
+                        continue
+                    # Check inline msg# tag first, then lookup file
+                    mid = msg_id
+                    if not mid:
+                        lookup_key = f"{pid}:{timestamp}"
+                        mid_val = id_lookup.get(lookup_key)
+                        if mid_val:
+                            mid = str(mid_val)
+                    link = ""
+                    if mid:
+                        link = f"https://t.me/{group_user}/{pid}/{mid}"
+                    pending.append({
+                        "name": author.strip(),
+                        "time": timestamp,
+                        "preview": preview,
+                        "message_id": mid,
+                        "link": link,
+                    })
 
         if pending:
             # Filter out messages cleared via reply-to
