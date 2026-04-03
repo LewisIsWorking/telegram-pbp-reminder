@@ -99,6 +99,11 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
                               allows_multiple_answers=multi)
         msg_id, poll_id = result if result else (None, None)
 
+        # Unpin previous week's poll before pinning the new one
+        old_msg_id = poll.get("poll_message_id")
+        if old_msg_id:
+            tg.unpin_message(gid, old_msg_id)
+
         # Pin the poll
         if msg_id:
             tg.pin_message(gid, msg_id)
