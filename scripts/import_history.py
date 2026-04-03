@@ -196,5 +196,5 @@ def main():
         print(f"\nImport complete. {total} new messages imported.")
         print("Run 'git add data/pbp_logs && git commit' to save to repo.")
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

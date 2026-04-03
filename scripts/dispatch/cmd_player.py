@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 
 import helpers
 import telegram as tg
+from boons.handler import choose_boon_by_text
 
 
 def handle(ctx: dict) -> bool:

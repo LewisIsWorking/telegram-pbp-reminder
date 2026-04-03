@@ -141,5 +141,5 @@ def main() -> None:
 
     state_store.save(bot_state)
     print("Done")
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

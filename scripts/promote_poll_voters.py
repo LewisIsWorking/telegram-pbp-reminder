@@ -102,5 +102,5 @@ def _promote(pair: dict, placeholder: str, real_uid: str, uname: str) -> None:
     names[real_uid] = uname
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

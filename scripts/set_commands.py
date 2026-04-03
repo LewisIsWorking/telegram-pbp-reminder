@@ -139,7 +139,7 @@ def set_commands(token: str) -> None:
     print("Done!")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     if not token:
         print("Set TELEGRAM_BOT_TOKEN environment variable")

@@ -135,5 +135,5 @@ def _print_summary(state: dict) -> None:
     print("─" * 50)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

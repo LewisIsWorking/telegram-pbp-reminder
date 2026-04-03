@@ -56,7 +56,7 @@ def is_away(state: dict, pid: str, user_id: str, now: datetime | None = None) ->
 
     Auto-expires timed absences (returns None and cleans up state).
     """
-    now = now or datetime.now(timedelta(0))  # UTC
+    now = now or datetime.now(timezone.utc)
     key = f"{pid}:{user_id}"
     record = state.get("away", {}).get(key)
     if not record:
