@@ -1,0 +1,45 @@
+{
+  "pid": "100",
+  "unreplied": [],
+  "replied": [
+    "msg:1",
+    "2026-03-01 10:00:00",
+    "msg:2",
+    "2026-03-02 10:00:00",
+    "msg:42"
+  ],
+  "reply_log": [
+    {
+      "t": "2026-04-03T11:16:57.890008+00:00",
+      "pid": "100",
+      "msg_id": "1",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T11:16:57.890008+00:00",
+      "pid": "100",
+      "msg_id": "2",
+      "player": "Bob",
+      "preview": "yo",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T11:16:57.890951+00:00",
+      "pid": "100",
+      "msg_id": "42",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T11:16:57.895519+00:00",
+      "pid": "100",
+      "msg_id": "1",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    }
+  ]
+}
