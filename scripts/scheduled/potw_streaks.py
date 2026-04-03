@@ -10,6 +10,9 @@ when they reach 2, 3, 5, 10 weeks (campaign) or 2, 3, 5 (community).
 
 from datetime import datetime
 
+import helpers
+import telegram as tg
+
 
 # Announce at these streak lengths
 CAMPAIGN_MILESTONES  = {2, 3, 5, 10}
@@ -95,8 +98,6 @@ def announce_streaks(config: dict, state: dict, winner: dict,
                      campaign_name: str, pid: str,
                      group_id: int, topic_id: int) -> None:
     """Post streak celebration messages to campaign topic + bot topic."""
-    import helpers
-    import telegram as tg
     history = state.get("potw_history", [])
     uid  = winner["user_id"]
     name = helpers.player_mention(winner)

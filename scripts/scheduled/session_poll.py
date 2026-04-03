@@ -107,16 +107,19 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
             tg.send_message(gid, poll_tid,
                             f"━━━━━━━━━━━━━━━━{hist_str}")
 
-        polls[code] = {
-            "week_iso": week_key,
-            "poll_id": poll_id or "",
-            "poll_message_id": msg_id,
-            "voted_uids": [],
-            "last_ping_day": -1,
-            "votes": {},   # index-based: {"0": [uids], "1": [uids], ...}
-        }
-        poll = polls[code]
-        print(f"Session poll posted + pinned: {code} week {week_key}")
+        if msg_id:
+            polls[code] = {
+                "week_iso": week_key,
+                "poll_id": poll_id or "",
+                "poll_message_id": msg_id,
+                "voted_uids": [],
+                "last_ping_day": -1,
+                "votes": {},
+            }
+            poll = polls[code]
+            print(f"Session poll posted + pinned: {code} week {week_key}")
+        else:
+            print(f"Session poll FAILED for {code} week {week_key} — will retry next run")
 
     # Don't ping before poll is up
     if poll.get("week_iso") != week_key:
