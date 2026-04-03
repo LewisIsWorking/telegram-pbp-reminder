@@ -1,12 +1,23 @@
 {
   "pid": "100",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 42,
+      "thread_id": "100",
+      "user_id": "U1",
+      "user_name": "Alice",
+      "time": "2026-04-03T12:16:19.301952+00:00",
+      "preview": "Hi!",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:1",
     "2026-03-01 10:00:00",
     "msg:2",
     "2026-03-02 10:00:00",
-    "msg:42"
+    "msg:42",
+    "msg:140368"
   ],
   "reply_log": [
     {
@@ -35,6 +46,46 @@
     },
     {
       "t": "2026-04-03T11:16:57.895519+00:00",
+      "pid": "100",
+      "msg_id": "1",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T12:16:18.901905+00:00",
+      "pid": "100",
+      "msg_id": "140368",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T12:16:19.188361+00:00",
+      "pid": "100",
+      "msg_id": "1",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T12:16:19.188361+00:00",
+      "pid": "100",
+      "msg_id": "2",
+      "player": "Bob",
+      "preview": "yo",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T12:16:19.189465+00:00",
+      "pid": "100",
+      "msg_id": "42",
+      "player": "Alice",
+      "preview": "hi",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-03T12:16:19.194258+00:00",
       "pid": "100",
       "msg_id": "1",
       "player": "Alice",
