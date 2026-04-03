@@ -1,0 +1,12 @@
+[run]
+source = scripts
+
+[report]
+omit =
+    scripts/test_*.py
+    scripts/conftest.py
+    scripts/run_coverage.py
+exclude_lines =
+    if __name__ == .__main__.:
+    pragma: no cover
+    @abc.abstractmethod
