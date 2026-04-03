@@ -27,7 +27,7 @@ def _is_placeholder(uid: int) -> bool:
     return PLACEHOLDER_PREFIX <= uid < PLACEHOLDER_PREFIX + 100
 
 
-def main() -> None:
+def main() -> None:  # pragma: no cover
     commit = "--commit" in sys.argv
     config = json.loads(CONFIG.read_text())
     state  = json.loads(STATE.read_text())

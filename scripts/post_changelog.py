@@ -170,7 +170,7 @@ def post_to_telegram(text: str, token: str) -> bool:
 
     return success
 
-def main() -> int:
+def main() -> int:  # pragma: no cover
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     if not token:
         print("No TELEGRAM_BOT_TOKEN set, skipping changelog post")

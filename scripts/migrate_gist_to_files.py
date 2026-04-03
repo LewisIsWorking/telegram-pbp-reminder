@@ -38,7 +38,7 @@ STATE_DIR  = Path(__file__).parent.parent / "data" / "state"
 EXCLUDED_KEYS = {"_config_cache"}
 
 
-def main() -> None:
+def main() -> None:  # pragma: no cover
     _check_env()
     raw_state = _download_gist()
     _validate_coverage(raw_state)

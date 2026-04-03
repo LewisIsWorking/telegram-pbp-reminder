@@ -174,7 +174,7 @@ def import_messages(export_path: str, *, dry_run: bool = False) -> dict:
 
     return results
 
-def main():
+def main():  # pragma: no cover
     parser = argparse.ArgumentParser(
         description="Import PBP history from Telegram Desktop JSON export"
     )
