@@ -30,19 +30,26 @@ def is_poll_day(now: datetime, pair: dict) -> bool:
 
 
 def poll_options_for(pair: dict, now: datetime) -> list[str]:
-    """Return poll answer options. Static if configured, else Fri/Sat."""
+    """Return poll answer options. Static if configured, else Fri/Sat.
+
+    When static options contain bare 'Friday' or 'Saturday', the upcoming
+    date is appended automatically (e.g. '2026-04-10 Friday').
+    """
     static = pair.get("poll_options")
     if static:
-        return list(static)
-    from scheduled.session_poll_build import _next_weekday_date
-    friday = _next_weekday_date(now, 4)
-    saturday = _next_weekday_date(now, 5)
-    return [f"Friday {friday}", f"Saturday {saturday}", "Can't make either"]
+        friday = _next_weekday_date(now, 4)
+        saturday = _next_weekday_date(now, 5)
+        day_map = {"Friday": f"{friday} Friday", "Saturday": f"{saturday} Saturday"}
+        return [day_map.get(opt, opt) for opt in static]
+    from scheduled.session_poll_build import _next_weekday_date as _nwd
+    friday = _nwd(now, 4)
+    saturday = _nwd(now, 5)
+    return [f"{friday} Friday", f"{saturday} Saturday", "Can't make either"]
 
 
 def _next_weekday_date(now: datetime, weekday: int) -> str:
     days_until = (weekday - now.weekday()) % 7
-    return (now + timedelta(days=days_until)).strftime("%d %B")
+    return (now + timedelta(days=days_until)).strftime("%Y-%m-%d")
 
 
 def build_history_str(history: dict, options: list[str]) -> str:
