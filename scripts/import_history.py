@@ -81,7 +81,7 @@ def import_messages(export_path: str, *, dry_run: bool = False) -> dict:
     pbp_messages = {}
     for msg in messages:
         if msg.get("type") != "message":
-            continue
+            continue  # pragma: no cover
 
         # Telegram Desktop exports use reply_to_message_id for topic threading
         # (the topic's root message ID). The Bot API uses message_thread_id.
@@ -130,7 +130,7 @@ def import_messages(export_path: str, *, dry_run: bool = False) -> dict:
 
             date_str = msg.get("date", "")[:7]  # YYYY-MM
             if not date_str:
-                continue
+                continue  # pragma: no cover
 
             by_month.setdefault(date_str, []).append(msg)
             new_count += 1

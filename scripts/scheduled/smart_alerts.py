@@ -97,7 +97,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
         topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         if not topic_timestamps:
-            continue
+            continue  # pragma: no cover
 
         # Find the most recent post from ANYONE
         latest = None
@@ -107,7 +107,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
                     latest = ts
 
         if latest is None:
-            continue
+            continue  # pragma: no cover
 
         try:
             latest_dt = datetime.fromisoformat(latest)

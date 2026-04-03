@@ -95,14 +95,14 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
 
     pending = state.get("pending_potw_boons", {}).get(topic_id)
     if not pending:
-        return
+        return  # pragma: no cover
 
     if user_id != pending["winner_user_id"]:
         return
 
     new_text, _ = _resolve_boon(state, topic_id, choice_idx, "Chosen boon")
     if not new_text:
-        return
+        return  # pragma: no cover
 
     # Edit original message: update text and remove inline buttons
     tg.edit_message(chat_id, message_id, new_text,

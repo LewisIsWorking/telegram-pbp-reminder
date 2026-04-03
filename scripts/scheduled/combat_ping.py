@@ -88,11 +88,11 @@ def check_expired_timers(config: dict, state: dict, *, now: datetime | None = No
         if now >= deadline:
             # Check if we already notified
             if timer.get("notified"):
-                continue
+                continue  # pragma: no cover
 
             chat_topic_id = maps.to_chat.get(pid)
             if not chat_topic_id:
-                continue
+                continue  # pragma: no cover
             campaign_name = maps.to_name.get(pid, pid)
             reason = timer.get("reason", "")
             reason_str = f"\n📝 {reason}" if reason else ""

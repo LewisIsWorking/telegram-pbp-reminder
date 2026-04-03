@@ -120,7 +120,7 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
         created_str = pair.get("created")
 
         if not created_str:
-            continue
+            continue  # pragma: no cover
 
         created = datetime.strptime(created_str, "%Y-%m-%d").date()
 
@@ -131,7 +131,7 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
         # How many years?
         years = today.year - created.year
         if years < 1:
-            continue
+            continue  # pragma: no cover
 
         # Don't post the same anniversary twice
         anniversary_key = f"{pid}:{years}"

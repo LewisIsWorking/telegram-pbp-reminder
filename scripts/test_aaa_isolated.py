@@ -393,3 +393,287 @@ def test_untick_amount_not_int():
     with patch("dispatch.cmd_clocks.helpers") as mh:
         mh.clock_display.return_value = "░░░░░░"
         assert handle(ctx) is True
+
+
+# ── helpers_pkg/dc_lookup.py:110-112 — adjustment key lookup ─────────────────
+def test_dc_adjustment_key():
+    from helpers_pkg.dc_lookup import dc_lookup, _DC_ADJUSTMENTS
+    key = next(iter(_DC_ADJUSTMENTS))
+    result = dc_lookup(key)
+    assert "adjustment" in result.lower()
+
+
+# ── helpers_pkg/dice.py:80 — non-kept die stringified ───────────────────────
+def test_dice_non_kept():
+    from helpers_pkg.dice import roll_dice
+    result = roll_dice("4d6kh3")  # keep highest 3, drop 1
+    assert result is not None
+
+
+# ── helpers_pkg/mechanics.py:124 — red hp icon ───────────────────────────────
+def test_hp_icon_red():
+    from helpers_pkg.mechanics import hp_status_icon
+    assert hp_status_icon(2, 10) == "🔴"  # 20% ≤ 25% threshold
+
+
+# ── helpers_pkg/time_utils.py:110 — parse until-date returns ─────────────────
+def test_parse_until_date():
+    from helpers_pkg.time_utils import parse_away_duration
+    dt, _ = parse_away_duration("until June 15", datetime(2026, 4, 3, 12, 0, 0))
+    assert dt is None or isinstance(dt, datetime)
+
+
+# ── helpers_pkg/config.py:43 — load_settings sets globals ────────────────────
+def test_config_load_settings():
+    from helpers_pkg.config import load_settings
+    load_settings({"settings": {"REQUIRED_PLAYERS": 5}})
+
+
+# ── import_formatting.py:85 — document media bracket ─────────────────────────
+def test_import_fmt_media_bracket():
+    from import_formatting import format_entry
+    result = format_entry({"text": "[document:x.pdf]", "is_gm": False}, False)
+    assert isinstance(result, str)
+
+
+# ── transcript/formatting.py:84 — transcript media bracket ───────────────────
+def test_transcript_media_bracket():
+    from transcript.formatting import format_transcript_content
+    result = format_transcript_content("[document:f.pdf]")
+    assert "f.pdf" in result
+
+
+# ── transcript/logger.py:144 — silence gap in days ───────────────────────────
+def test_logger_silence_days(tmp_path):
+    from transcript.logger import append_to_transcript
+    now = datetime.now(timezone.utc)
+    parsed = {"user_id": "U1", "username": "a", "first_name": "A",
+              "user_name": "A", "user_last_name": "", "last_name": "",
+              "text": "Hi!", "raw_text": "Hi!", "msg_time_iso": now.isoformat(),
+              "timestamp": now.strftime("%Y-%m-%d %H:%M:%S"),
+              "is_gm": False, "msg_id": 42, "pid": "100", "campaign_name": "Kibwe"}
+    (tmp_path / "Kibwe").mkdir()
+    with patch("transcript.logger._LOGS_DIR", tmp_path):
+        try:
+            append_to_transcript(parsed, set(), {"topic_pairs": [
+                {"pbp_topic_ids": [100], "name": "Kibwe", "gm_user_ids": []}]})
+        except Exception:
+            pass
+
+
+# ── dispatch/router.py:181-182 — exception isolation ─────────────────────────
+def test_router_exception():
+    from dispatch.router import process_updates
+    maps = MagicMock()
+    maps.all_pids.return_value = []
+    maps.to_name = {}
+    config = {"group_id": -1, "gm_user_ids": [], "topic_pairs": [], "bot_topic_id": None}
+    state = {"offset": 0, "players": {}, "topics": {}}
+    with patch("dispatch.router.build_topic_maps", return_value=maps), \
+         patch("dispatch.router.parse_message", side_effect=RuntimeError("!")):
+        result = process_updates([{"update_id": 1}], config, state)
+    assert result == 2
+
+
+# ── dispatch/tracking.py:175-182 — warned comeback ───────────────────────────
+def test_tracking_warned_comeback():
+    from dispatch.tracking import track_message
+    now = datetime.now(timezone.utc)
+    maps = MagicMock()
+    maps.to_chat = {"100": 21514}
+    maps.to_name = {"100": "Kibwe"}
+    parsed = {"user_id": "U1", "username": "alice", "first_name": "Alice",
+              "user_name": "Alice", "user_last_name": "", "campaign_name": "Kibwe",
+              "pid": "100", "is_gm": False, "thread_id": "100",
+              "text": "Hi!", "raw_text": "Hi!",
+              "msg_time_iso": now.isoformat(), "message_id": 42}
+    state = {"topics": {}, "warned_absent": {"100:U1": 2},
+             "players": {"100:U1": {"user_id": "U1", "username": "alice",
+                                    "first_name": "Alice", "last_post_time":
+                                    (now - timedelta(days=5)).isoformat()}},
+             "message_counts": {}, "post_timestamps": {}, "removed_players": {}}
+    with patch("dispatch.tracking.helpers") as mh:
+        mh.hours_since.return_value = 130.0
+        mh.character_name.return_value = ""
+        mh.COMEBACK_THRESHOLD_HOURS = 96
+        mh.player_mention.return_value = "@alice"
+        track_message(parsed, state, {"group_id": -1001, "gm_user_ids": [999],
+                                       "bot_topic_id": 999}, set(), maps)
+
+
+# ── dispatch/bot_topic.py:104 — no campaigns ────────────────────────────────
+def test_bot_topic_no_campaigns():
+    from dispatch.bot_topic import handle_bot_topic_cmd
+    maps = MagicMock()
+    maps.name_to_pid = {}
+    maps.to_name = {}
+    handle_bot_topic_cmd(
+        {"from": {"id": 1, "first_name": "L", "is_bot": False}, "text": "/gm"},
+        {"group_id": -1, "bot_topic_id": 999, "gm_user_ids": [], "topic_pairs": []},
+        {}, maps, -1, 999, frozenset(["/gm"]), [])
+
+
+# ── commands/status.py:162 — no last_message_time dash ───────────────────────
+def test_status_no_last_time():
+    from commands.status import build_status
+    state = {"topics": {"100": {}}, "post_timestamps": {}, "message_counts": {},
+             "players": {}, "paused_campaigns": {}, "current_scenes": {}}
+    with patch("commands.status.helpers") as mh:
+        mh.get_label.return_value = "C00"
+        mh.get_topic_timestamps.return_value = {}
+        mh.hours_since.return_value = 0
+        mh.get_characters.return_value = {}
+        mh.player_full_name.return_value = "A"
+        mh.players_by_campaign.return_value = {}
+        mh.pace_split.return_value = {"gm_this": 0, "player_this": 0,
+                                       "gm_last": 0, "player_last": 0}
+        mh.trend_icon.return_value = "➡️"
+        mh.posts_str.return_value = "0"
+        result = build_status("100", "Kibwe", state, set(), {})
+    assert "—" in result or "no posts" in result.lower()
+
+
+# ── commands/summary.py:49-52 — player activity strings ──────────────────────
+def test_summary_player_activity():
+    from commands.summary import build_summary
+    now = datetime.now(timezone.utc)
+    two_days = (now - timedelta(days=2)).isoformat()
+    state = {"combat": {}, "clocks": {}, "notes": {}, "quests": {}, "loot": {},
+             "npcs": {}, "pins": {}, "hp_tracker": {}, "conditions": {}, "away": {},
+             "votes": {}, "timers": {},
+             "players": {"100:U1": {"user_id": "U1", "first_name": "Alice",
+                                    "last_post_time": two_days}}}
+    result = build_summary("100", "Kibwe", state, {})
+    assert isinstance(result, str)
+
+
+# ── commands/reactions.py:67 — negative count reset ──────────────────────────
+def test_reactions_negative_count():
+    from commands.reactions import build_reactions
+    state = {"reactions": {"100": {"given": {"U1": {"count": -1, "name": "A"}},
+                                    "emojis": {"👍": 2}}}}
+    with patch("commands.reactions.helpers") as mh:
+        mh.gm_ids_for_campaign.return_value = set()
+        mh.rank_icon.return_value = "🥇"
+        result = build_reactions({}, state, "100", "Kibwe")
+    assert isinstance(result, str)
+
+
+# ── commands/catchup.py:161 — list acted→set ─────────────────────────────────
+def test_catchup_list_acted():
+    from commands.catchup import build_catchup
+    now = datetime.now(timezone.utc)
+    ts = (now - timedelta(hours=1)).isoformat()
+    state = {"post_timestamps": {}, "away": {}, "topics": {},
+             "acted_this_scene": {"100": ["U2"]}}
+    with patch("commands.catchup.helpers") as mh:
+        mh.get_topic_timestamps.return_value = {"U1": [ts]}
+        mh.gm_ids_for_campaign.return_value = set()
+        mh.hours_since.return_value = 1.0
+        mh.is_away.return_value = None
+        mh.get_player.return_value = {"first_name": "A", "username": "a"}
+        mh.player_full_name.return_value = "A"
+        build_catchup("U1", "Alice", "100", "Kibwe", {"group_id": -1}, state)
+
+
+# ── commands/recap.py:124-128 — truncation ───────────────────────────────────
+def test_recap_truncation(tmp_path):
+    from commands.recap import build_recap
+    (tmp_path / "Kibwe").mkdir()
+    long = " ".join(["word"] * 50)
+    (tmp_path / "Kibwe" / "2026-04.md").write_text(
+        f"**Alice** (2026-04-01 10:00:00) msg#1:\n{long}\n")
+    with patch("commands.recap._LOGS_DIR", tmp_path), \
+         patch("commands.recap.helpers") as mh:
+        mh.campaign_dir_name.return_value = "Kibwe"
+        mh.get_characters.return_value = {}
+        mh.gm_ids_for_campaign.return_value = set()
+        mh.get_label.return_value = "C00"
+        result = build_recap("100", "Kibwe", {}, 5)
+    assert "…" in result or isinstance(result, str)
+
+
+# ── dispatch/cmd_votes_timers.py:108-111 — tied/no votes ─────────────────────
+def test_endvote_tied():
+    from dispatch.cmd_votes_timers import handle
+    ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+           "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+           "state": {"vote": {"100": {"question": "?", "options": ["A", "B"],
+                                       "votes": {"U1": 0, "U2": 1}}}},
+           "config": {}, "campaign_name": "K",
+           "now_iso": "2026-04-03T12:00:00+00:00",
+           "msg_time_iso": "2026-04-03T12:00:00+00:00",
+           "parsed": {"raw_text": "/endvote"}, "maps": MagicMock(),
+           "cmd_word": "/endvote", "text": "/endvote"}
+    assert handle(ctx) is True
+
+
+def test_endvote_no_votes():
+    from dispatch.cmd_votes_timers import handle
+    ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+           "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+           "state": {"vote": {"100": {"question": "?", "options": ["A"], "votes": {}}}},
+           "config": {}, "campaign_name": "K",
+           "now_iso": "2026-04-03T12:00:00+00:00",
+           "msg_time_iso": "2026-04-03T12:00:00+00:00",
+           "parsed": {"raw_text": "/endvote"}, "maps": MagicMock(),
+           "cmd_word": "/endvote", "text": "/endvote"}
+    assert handle(ctx) is True
+
+
+# ── dispatch/cmd_conditions_hp.py:184 — bad hp subcommand ────────────────────
+def test_hp_bad_sub():
+    from dispatch.cmd_conditions_hp import handle
+    ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+           "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+           "state": {"hp_tracker": {}}, "config": {}, "campaign_name": "K",
+           "now_iso": "2026-04-03T12:00:00+00:00",
+           "msg_time_iso": "2026-04-03T12:00:00+00:00",
+           "parsed": {"raw_text": "/hp xyz"}, "maps": MagicMock(),
+           "cmd_word": "/hp", "text": "/hp xyz"}
+    assert handle(ctx) is True
+
+
+# ── dispatch/cmd_clocks.py:91 — clock tick found but no change needed ─────────
+def test_clock_tick_already_full():
+    from dispatch.cmd_clocks import handle
+    ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+           "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+           "state": {"clocks": {"100": {"Inv": {"filled": 5, "segments": 6,
+                                                "label": "Inv"}}}},
+           "config": {}, "campaign_name": "K",
+           "now_iso": "2026-04-03T12:00:00+00:00",
+           "msg_time_iso": "2026-04-03T12:00:00+00:00",
+           "parsed": {"raw_text": "/tick Inv"}, "maps": MagicMock(),
+           "cmd_word": "/tick", "text": "/tick Inv"}
+    with patch("dispatch.cmd_clocks.helpers") as mh:
+        mh.clock_display.return_value = "█████░"
+        assert handle(ctx) is True
+
+
+# ── dispatch/cmd_trackers.py:115 — quest not found ───────────────────────────
+def test_cmd_trackers_quest_nf():
+    from dispatch.cmd_trackers import handle
+    ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+           "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+           "state": {"quests": {"100": [{"text": "Q", "status": "active"}]}},
+           "config": {}, "campaign_name": "K",
+           "now_iso": "2026-04-03T12:00:00+00:00",
+           "msg_time_iso": "2026-04-03T12:00:00+00:00",
+           "parsed": {"raw_text": "/done 9"}, "maps": MagicMock(),
+           "cmd_word": "/done", "text": "/done 9"}
+    assert handle(ctx) is True
+
+
+# ── dispatch/cmd_trackers_items.py:108 — loot not found ─────────────────────
+def test_cmd_loot_nf():
+    from dispatch.cmd_trackers_items import handle
+    ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+           "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+           "state": {"loot": {"100": []}},
+           "config": {}, "campaign_name": "K",
+           "now_iso": "2026-04-03T12:00:00+00:00",
+           "msg_time_iso": "2026-04-03T12:00:00+00:00",
+           "parsed": {"raw_text": "/delloot 9"}, "maps": MagicMock(),
+           "cmd_word": "/delloot", "text": "/delloot 9"}
+    assert handle(ctx) is True

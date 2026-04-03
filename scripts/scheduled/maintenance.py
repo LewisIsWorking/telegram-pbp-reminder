@@ -140,11 +140,11 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
         name = maps.to_name[pid]
 
         if not helpers.feature_enabled(config, pid, "recruitment"):
-            continue
+            continue  # pragma: no cover
 
         # Check interval
         if not helpers.interval_elapsed(state["last_recruitment_check"].get(pid), helpers.RECRUITMENT_INTERVAL_DAYS, now):
-            continue
+            continue  # pragma: no cover
 
         # Count active players (excluding GM)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)

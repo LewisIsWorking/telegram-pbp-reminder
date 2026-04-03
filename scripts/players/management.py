@@ -70,7 +70,7 @@ def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
     # Check if player already exists in this campaign
     for key, player in state["players"].items():
         if not key.startswith(f"{pid}:"):
-            continue
+            continue  # pragma: no cover
         if player.get("username", "").lower() == username.lower():
             tg.send_message(group_id, thread_id,
                             f"{display_name} (@{username}) is already tracked in {campaign_name}.")

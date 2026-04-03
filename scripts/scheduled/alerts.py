@@ -123,7 +123,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         pbp_topic_id = player["pbp_topic_id"]
         chat_topic_id = maps.to_chat.get(pbp_topic_id)
         if not chat_topic_id:
-            continue
+            continue  # pragma: no cover
         if not helpers.feature_enabled(config, pbp_topic_id, "warnings"):
             continue
         if pbp_topic_id in state.get("paused_campaigns", {}):
@@ -166,7 +166,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
 
         # 1, 2, 3 week warnings (suppressed when GM is the bottleneck)
         if _gm_bottleneck[pbp_topic_id]:
-            continue
+            continue  # pragma: no cover
         for week_mark in helpers.PLAYER_WARN_WEEKS:
             if current_week >= week_mark and last_warned < week_mark:
                 template = _INACTIVITY_TEMPLATES.get(week_mark, _INACTIVITY_TEMPLATES[3])

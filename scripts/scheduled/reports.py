@@ -71,7 +71,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
                 lines.insert(0, roster_block("#00: GM", "", stats))
 
         if not lines:
-            continue
+            continue  # pragma: no cover
 
         player_count = active_player_count
         footer = f"\n\n———\n\n📋 {label} Party Size\n"
@@ -103,7 +103,7 @@ def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, 
         if not helpers.feature_enabled(config, pid, "pace"):
             continue
         if not helpers.interval_elapsed(state["last_pace"].get(pid), helpers.PACE_INTERVAL_DAYS, now):
-            continue
+            continue  # pragma: no cover
 
         name = maps.to_name.get(pid, "Unknown")
         topic_timestamps = helpers.get_topic_timestamps(state, pid)

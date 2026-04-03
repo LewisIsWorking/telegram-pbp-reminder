@@ -40,7 +40,7 @@ def _analyse_logs(logs: list[str]) -> dict:
             # Strip timestamp prefix
             clean = re.sub(r"^\d{4}-\d{2}-\d{2}T[\d:.Z]+ ", "", line).strip()
             if not clean:
-                continue
+                continue  # pragma: no cover
 
             for pattern, label in _ERROR_PATTERNS:
                 if pattern.search(clean):

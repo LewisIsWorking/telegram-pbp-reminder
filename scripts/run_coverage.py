@@ -1,41 +1,46 @@
 #!/usr/bin/env python3
 """
-Run tests in two phases for accurate coverage:
-1. test_aaa_isolated.py first (seeds edge-case branches)
-2. Full suite with --cov-append
+Two-phase coverage measurement using separate processes to avoid module caching.
+
+Phase 1: run test_aaa_isolated.py in its own process (seeds edge-case branches)
+Phase 2: run full suite in its own process with --cov-append
+
+Each phase starts fresh, so module imports don't shadow earlier patches.
 
 Usage:
     python3 scripts/run_coverage.py
-    python3 scripts/run_coverage.py --html  # generate HTML report
+    python3 scripts/run_coverage.py --html
 """
 import subprocess, sys, os
 
-os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(ROOT)
 
-COV_ARGS = [
-    "--cov=scripts",
-    "--cov-config=.coveragerc",
-]
-REPORT_ARGS = ["--cov-report=term-missing"]
+COVRC = "--cov-config=.coveragerc"
 
-def run(args, extra_cov=None):
-    cmd = ["python3", "-m", "pytest"] + args + COV_ARGS
-    if extra_cov:
-        cmd += extra_cov
-    result = subprocess.run(cmd, capture_output=False)
-    return result.returncode
 
-# Phase 1: isolated edge-case tests (seed coverage)
-print("=" * 60)
-print("Phase 1: Isolated edge-case tests")
-print("=" * 60)
-rc1 = run(["scripts/test_aaa_isolated.py", "-q"], ["--cov-append"])
+def phase(label, test_args, append=False, report=False, html=False):
+    print(f"\n{'='*60}\n{label}\n{'='*60}")
+    cmd = (
+        ["python3", "-m", "pytest"]
+        + test_args
+        + [f"--cov=scripts", COVRC]
+        + (["--cov-append"] if append else [])
+        + (["--cov-report=term-missing"] if report else ["--cov-report="])
+        + (["--cov-report=html"] if html else [])
+        + ["-q"]
+    )
+    return subprocess.run(cmd).returncode
 
-# Phase 2: full suite with append
-print("\n" + "=" * 60)
-print("Phase 2: Full test suite")
-print("=" * 60)
-html = ["--cov-report=html"] if "--html" in sys.argv else []
-rc2 = run(["scripts/", "-q"], ["--cov-append"] + REPORT_ARGS + html)
+
+rc1 = phase("Phase 1 — isolated edge-case tests",
+            ["scripts/test_aaa_isolated.py"],
+            append=False, report=False)
+
+html = "--html" in sys.argv
+rc2 = phase("Phase 2 — full test suite",
+            ["scripts/"],
+            append=True, report=True, html=html)
 
 sys.exit(rc1 or rc2)
+

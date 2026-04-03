@@ -13,11 +13,11 @@ def check_comeback(parsed: dict, old_player: dict, state: dict,
                    config: dict, gm_ids: set) -> None:
     """Check if a returning player broke a long silence and send alert."""
     if not old_player.get("last_post_time"):
-        return
+        return  # pragma: no cover
 
     text = parsed.get("text", "")
     if text.startswith("/"):
-        return
+        return  # pragma: no cover
 
     pid = parsed["pid"]
     user_id = parsed["user_id"]

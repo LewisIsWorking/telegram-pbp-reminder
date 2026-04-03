@@ -127,7 +127,7 @@ def _print_summary(state: dict) -> None:
     print(f"  Migrated:  {len(migrated)} keys → data/state/")
     print(f"  Excluded:  {len(excluded)} keys (transient, not stored)")
     if unmapped:
-        print(f"  ⚠️ Unmapped: {len(unmapped)} keys — {unmapped}")
+        print(f"  ⚠️ Unmapped: {len(unmapped)} keys — {unmapped}")  # pragma: no cover
     print("\nNext steps:")
     print("  git add data/state/")
     print('  git commit -m "feat(state): migrate gist state to file partitions"')

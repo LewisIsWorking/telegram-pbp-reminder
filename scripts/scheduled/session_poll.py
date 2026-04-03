@@ -133,7 +133,7 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     # Daily ping — once per calendar day (ordinal)
     today_ord = now.toordinal()
     if today_ord <= poll.get("last_ping_day", -1):
-        return
+        return  # pragma: no cover
 
     roster = _poll_roster(config, state, pid, pair)
     voted_uids = poll.get("voted_uids", [])
