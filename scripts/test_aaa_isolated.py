@@ -354,3 +354,42 @@ def test_checker_loop_call():
     with patch("dispatch.router.build_topic_maps", return_value=maps):
         result = process_updates([], config, state)
     assert result == 0
+
+
+# ── dispatch/cmd_clocks.py:98-103 — /untick with amount ──────────────────────
+def test_untick_with_amount():
+    from dispatch.cmd_clocks import handle
+    from unittest.mock import MagicMock
+    ctx = {
+        "user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+        "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+        "state": {"clocks": {"100": {"Investigation": {"filled": 3, "segments": 6,
+                                                        "label": "Inv"}}}},
+        "config": {}, "campaign_name": "K",
+        "now_iso": "2026-04-03T12:00:00+00:00",
+        "msg_time_iso": "2026-04-03T12:00:00+00:00",
+        "parsed": {"raw_text": "/untick Investigation 2"},
+        "maps": MagicMock(), "cmd_word": "/untick", "text": "/untick Investigation 2",
+    }
+    with patch("dispatch.cmd_clocks.helpers") as mh:
+        mh.clock_display.return_value = "░░░░░░"
+        assert handle(ctx) is True
+
+
+def test_untick_amount_not_int():
+    from dispatch.cmd_clocks import handle
+    from unittest.mock import MagicMock
+    ctx = {
+        "user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+        "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+        "state": {"clocks": {"100": {"Investigation": {"filled": 3, "segments": 6,
+                                                        "label": "Inv"}}}},
+        "config": {}, "campaign_name": "K",
+        "now_iso": "2026-04-03T12:00:00+00:00",
+        "msg_time_iso": "2026-04-03T12:00:00+00:00",
+        "parsed": {"raw_text": "/untick Investigation lots"},
+        "maps": MagicMock(), "cmd_word": "/untick", "text": "/untick Investigation lots",
+    }
+    with patch("dispatch.cmd_clocks.helpers") as mh:
+        mh.clock_display.return_value = "░░░░░░"
+        assert handle(ctx) is True

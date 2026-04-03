@@ -497,8 +497,13 @@ def test_markdone_found_real(tmp_path, monkeypatch):
     (tmp_path / "100.json").write_text(json.dumps(cq))
     with patch("commands.markdone.scan_transcripts",
                return_value={"100": {"entries": []}}):
-        from test_close_gaps import _ctx
-        ctx = _ctx(cmd_word="/markdone", text="/markdone 99")
+        ctx = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+               "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+               "state": {}, "config": {}, "campaign_name": "Kibwe",
+               "now_iso": "2026-04-03T12:00:00+00:00",
+               "msg_time_iso": "2026-04-03T12:00:00+00:00",
+               "parsed": {"raw_text": "/markdone 99"}, "maps": MagicMock(),
+               "cmd_word": "/markdone", "text": "/markdone 99"}
         handle_markdone(ctx)
 
 
@@ -508,8 +513,13 @@ def test_markdone_not_found_real(tmp_path, monkeypatch):
     monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
     with patch("commands.markdone.scan_transcripts",
                return_value={"100": {"entries": []}}):
-        from test_close_gaps import _ctx
-        ctx = _ctx(cmd_word="/markdone", text="/markdone 12345")
+        ctx = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+               "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+               "state": {}, "config": {}, "campaign_name": "Kibwe",
+               "now_iso": "2026-04-03T12:00:00+00:00",
+               "msg_time_iso": "2026-04-03T12:00:00+00:00",
+               "parsed": {"raw_text": "/markdone 12345"}, "maps": MagicMock(),
+               "cmd_word": "/markdone", "text": "/markdone 12345"}
         handle_markdone(ctx)
 
 
