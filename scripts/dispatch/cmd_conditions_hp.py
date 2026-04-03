@@ -4,7 +4,7 @@ Condition and HP tracker write commands.
 
 import helpers
 import telegram as tg
-from commands.mechanics import _MAX_HP_ENTRIES
+from commands.mechanics import _MAX_HP_ENTRIES, build_hp_tracker
 
 
 def handle(ctx: dict) -> bool:
