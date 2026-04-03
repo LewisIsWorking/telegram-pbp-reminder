@@ -152,25 +152,36 @@ def test_catchup_list_acted():
 
 # ── commands/markdone.py:80-84 — by id ───────────────────────────────────────
 def test_markdone_id_found(tmp_path, monkeypatch):
+    # Lines 80-82: scan has entries but msg_id doesn't match any →
+    # falls to _clear_by_msg_id which finds it in queue file
     from commands.markdone import handle_markdone
     from commands import queue_io
     monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
-    cq = {"unreplied": [{"message_id": 55, "time": "2026-03-01 10:00:00",
-                          "user_name": "A", "preview": "x"}],
+    cq = {"unreplied": [{"message_id": 140368, "time": "2026-03-01 10:00:00",
+                          "user_name": "Alice", "preview": "hi"}],
           "replied": [], "reply_log": []}
     (tmp_path / "100.json").write_text(json.dumps(cq))
+    # Scan returns a DIFFERENT entry so match=[] but entries is non-empty
+    other_entry = {"name": "Bob", "time": "2026-03-01 09:00:00",
+                   "preview": "other", "message_id": "999999", "link": ""}
     with patch("commands.markdone.scan_transcripts",
-               return_value={"100": {"entries": []}}):
-        handle_markdone(_ctx(cmd_word="/markdone", text="/markdone 55"))
+               return_value={"100": {"entries": [other_entry]}}):
+        handle_markdone(_ctx(cmd_word="/markdone", text="/markdone 140368"))
 
 
 def test_markdone_id_not_found(tmp_path, monkeypatch):
+    # Lines 83-84: scan has entries, msg_id not in scan, _clear_by_msg_id returns False
     from commands.markdone import handle_markdone
     from commands import queue_io
     monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
+    # Queue file is empty (different msg_id) → _clear_by_msg_id returns False
+    (tmp_path / "100.json").write_text(json.dumps(
+        {"unreplied": [], "replied": [], "reply_log": []}))
+    other_entry = {"name": "Bob", "time": "2026-03-01 09:00:00",
+                   "preview": "other", "message_id": "999999", "link": ""}
     with patch("commands.markdone.scan_transcripts",
-               return_value={"100": {"entries": []}}):
-        handle_markdone(_ctx(cmd_word="/markdone", text="/markdone 99999"))
+               return_value={"100": {"entries": [other_entry]}}):
+        handle_markdone(_ctx(cmd_word="/markdone", text="/markdone 140999"))
 
 
 # ── commands/campaign.py:169 — notes >3 ──────────────────────────────────────
