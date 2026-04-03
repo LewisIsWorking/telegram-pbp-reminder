@@ -99,7 +99,7 @@ def handle(ctx: dict) -> bool:
         return True
 
     if text == "/conditions":
-        tg.send_message(gid, reply, build_conditions(pid, name, state))
+        tg.send_message(gid, reply, build_conditions(pid, name, state, config))
         return True
 
     if text == "/hp" and text.strip() == "/hp":
