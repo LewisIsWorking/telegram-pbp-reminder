@@ -20,27 +20,6 @@ _REPO       = "LewisIsWorking/telegram-pbp-reminder"
 _WORKFLOW   = "233336939"  # PBP Inactivity Reminder
 
 # Patterns that indicate problems
-_ERROR_PATTERNS = [
-    (re.compile(r"rate limit|429", re.I),         "⚠️ Rate limited"),
-    (re.compile(r"FATAL|SystemExit",   re.I),     "🚨 Fatal error"),
-    (re.compile(r"Error processing update"),       "🔴 Update error"),
-    (re.compile(r"Telegram.*failed",   re.I),     "🔴 Send failed"),
-    (re.compile(r"network error",      re.I),     "🔴 Network error"),
-    (re.compile(r"State backup failed",re.I),     "⚠️ Backup failed"),
-    (re.compile(r"REFUSING to save",   re.I),     "🚨 Save refused"),
-    (re.compile(r"Warning:.*state",    re.I),     "⚠️ State warning"),
-    (re.compile(r"could not load gist",re.I),     "⚠️ Gist load failed"),
-]
-
-# Patterns that are informational (good signals)
-_INFO_PATTERNS = [
-    re.compile(r"Poll vote: (.+?) \((\w+)\)"),
-    re.compile(r"Session poll (posted|ping): (\S+)"),
-    re.compile(r"POTW for (.+?): (.+?) \("),
-    re.compile(r"Queue reminder: (\d+) unreplied"),
-    re.compile(r"Unknown voter captured: (\S+) in (\S+)"),
-]
-
 
 def _gh_request(path: str) -> dict | None:
     token = os.environ.get("GIST_TOKEN", "")
@@ -80,7 +59,7 @@ def _fetch_run_log(run_id: int) -> str:
     return ""
 
 
-from scheduled.diagnostic_analysis import _analyse_logs, _build_report
+from scheduled.diagnostic_analysis import _analyse_logs, _build_report, _ERROR_PATTERNS, _INFO_PATTERNS
 
 def run_daily_diagnostic(config: dict, state: dict, *,
                          now: datetime | None = None, **_kw) -> None:

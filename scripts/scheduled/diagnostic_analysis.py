@@ -6,6 +6,28 @@ Extracted from diagnostic.py to keep both files under 200 lines.
 import re
 from datetime import datetime
 
+# Error patterns — lines matching these are bucketed as issues
+_ERROR_PATTERNS = [
+    (re.compile(r"rate limit|429",      re.I), "Warning: Rate limited"),
+    (re.compile(r"FATAL|SystemExit",    re.I), "Fatal error"),
+    (re.compile(r"Error processing update"),   "Update error"),
+    (re.compile(r"Telegram.*failed",    re.I), "Send failed"),
+    (re.compile(r"network error",       re.I), "Network error"),
+    (re.compile(r"State backup failed", re.I), "Backup failed"),
+    (re.compile(r"REFUSING to save",    re.I), "Save refused"),
+    (re.compile(r"Warning:.*state",     re.I), "State warning"),
+    (re.compile(r"could not load gist", re.I), "Gist load failed"),
+]
+
+# Info patterns — lines matching these are surfaced as activity events
+_INFO_PATTERNS = [
+    re.compile(r"Poll vote"),
+    re.compile(r"Session poll (posted|ping)"),
+    re.compile(r"POTW for"),
+    re.compile(r"Queue reminder: \d+ unreplied"),
+    re.compile(r"Unknown voter captured"),
+]
+
 def _analyse_logs(logs: list[str]) -> dict:
     """Scan all log lines and bucket them into issues and events."""
     issues: dict[str, list[str]] = {}

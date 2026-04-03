@@ -80,15 +80,30 @@ def _mock_message_link(group_id, topic_id, message_id,
     return f"https://t.me/mock/{topic_id}/{message_id}"
 
 
+def _mock_send_id(chat_id, thread_id, text, parse_mode=None) -> int | None:
+    _sent_messages.append({
+        "group_id": chat_id, "topic_id": thread_id,
+        "text": text, "type": "message_id",
+    })
+    return 99997
+
+
+def _mock_unpin(chat_id, message_id) -> bool:
+    _sent_messages.append({"type": "unpin", "chat_id": chat_id, "message_id": message_id})
+    return True
+
+
 # Install all functions
 _mock_tg.init = _mock_init
 _mock_tg.send_message = _mock_send
+_mock_tg.send_message_id = _mock_send_id
 _mock_tg.send_message_with_buttons = _mock_send_buttons
 _mock_tg.edit_message = _mock_edit
 _mock_tg.answer_callback = _mock_answer
 _mock_tg.get_updates = _mock_get_updates
 _mock_tg.send_poll = _mock_send_poll
 _mock_tg.pin_message = _mock_pin_message
+_mock_tg.unpin_message = _mock_unpin
 _mock_tg.message_link = _mock_message_link
 
 # Register before any test module is imported
