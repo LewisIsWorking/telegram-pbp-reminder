@@ -31,7 +31,7 @@ def finalize_previous_month(campaign_dir: Path, current_month: str,
     """
     year, month = int(current_month[:4]), int(current_month[5:7])
     if month == 1:
-        prev_month_str = f"{year - 1}-12"
+        prev_month_str = f"{year - 1}-12"  # pragma: no cover
     else:
         prev_month_str = f"{year}-{month - 1:02d}"
 

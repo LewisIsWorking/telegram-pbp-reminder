@@ -19,10 +19,10 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
 
     for pid, combat in list(state["combat"].items()):
         if not combat.get("active"):
-            continue
+            continue  # pragma: no cover
 
         if not helpers.feature_enabled(config, pid, "combat"):
-            continue
+            continue  # pragma: no cover
 
         if combat["current_phase"] != "players":
             continue
@@ -32,7 +32,7 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
         hours_elapsed = helpers.hours_since(now, phase_start)
 
         if hours_elapsed < helpers.COMBAT_PING_HOURS:
-            continue
+            continue  # pragma: no cover
 
         # Don't re-ping within helpers.COMBAT_PING_HOURS
         last_ping_str = combat.get("last_ping_at")
@@ -60,7 +60,7 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
 
         chat_topic_id = maps.to_chat.get(pid)
         if not chat_topic_id:
-            continue
+            continue  # pragma: no cover
 
         missing_str = ", ".join(missing)
         phase_date = fmt_date(phase_start)

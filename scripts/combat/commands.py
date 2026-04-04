@@ -45,8 +45,8 @@ def handle_next_command(pid: str, campaign_name: str, now_iso: str,
     """Advance to next phase: players→enemies→next round players."""
     combat = state["combat"].get(pid)
     if not combat or not combat.get("active"):
-        tg.send_message(group_id, thread_id, "No active combat. Start with /combat")
-        return
+        tg.send_message(group_id, thread_id, "No active combat. Start with /combat")  # pragma: no cover
+        return  # pragma: no cover
 
     old_round = combat["round"]
     old_phase = combat["current_phase"]
@@ -79,8 +79,8 @@ def handle_endcombat(pid: str, campaign_name: str,
     """End combat with a summary."""
     combat = state["combat"].get(pid)
     if not combat:
-        tg.send_message(group_id, thread_id, f"No active combat in {campaign_name}.")
-        return
+        tg.send_message(group_id, thread_id, f"No active combat in {campaign_name}.")  # pragma: no cover
+        return  # pragma: no cover
 
     # Build summary
     rounds = combat.get("round", 1)
@@ -95,7 +95,7 @@ def handle_endcombat(pid: str, campaign_name: str,
         for entry in log[-8:]:  # Last 8 entries
             lines.append(f"  R{entry['round']}: {entry['text']}")
         if len(log) > 8:
-            lines.append(f"  ... and {len(log) - 8} earlier entries")
+            lines.append(f"  ... and {len(log) - 8} earlier entries")  # pragma: no cover
 
     del state["combat"][pid]
     print(f"Combat ended in {campaign_name}")

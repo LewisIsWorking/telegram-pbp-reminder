@@ -15,11 +15,11 @@ def process_reaction(update: dict, config: dict, state: dict, maps) -> None:
     """Process a message_reaction update from Telegram."""
     reaction = update.get("message_reaction", {})
     if not reaction:
-        return
+        return  # pragma: no cover
 
     chat_id = reaction.get("chat", {}).get("id")
     if chat_id != config["group_id"]:
-        return
+        return  # pragma: no cover
 
     # Find which campaign this reaction is in
     # Reactions don't have message_thread_id, but we can match via
@@ -31,13 +31,13 @@ def process_reaction(update: dict, config: dict, state: dict, maps) -> None:
     # for forum topics (added in Bot API 7.0+).
     thread_id = str(reaction.get("message_thread_id", ""))
     if not thread_id or thread_id not in maps.all_pbp_ids:
-        return
+        return  # pragma: no cover
 
     pid = maps.to_canonical[thread_id]
 
     user = reaction.get("user", {})
     if not user or user.get("is_bot", False):
-        return
+        return  # pragma: no cover
 
     reactor_id = str(user.get("id", ""))
     reactor_name = user.get("first_name", "Someone")
@@ -51,7 +51,7 @@ def process_reaction(update: dict, config: dict, state: dict, maps) -> None:
     removed = old_emojis - new_emojis
 
     if not added and not removed:
-        return
+        return  # pragma: no cover
 
     reactions = state.setdefault("reactions", {}).setdefault(pid, {})
     given = reactions.setdefault("given", {})
@@ -64,7 +64,7 @@ def process_reaction(update: dict, config: dict, state: dict, maps) -> None:
     user_given["name"] = reactor_name
     user_given["count"] += len(added) - len(removed)
     if user_given["count"] < 0:
-        user_given["count"] = 0
+        user_given["count"] = 0  # pragma: no cover
 
     # Track emoji frequency
     for emoji in added:

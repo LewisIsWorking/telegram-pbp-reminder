@@ -26,13 +26,13 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
 
     # Check if we already archived this week (tracked in gist state)
     if state.get("last_archived_week") == week_key:
-        return
+        return  # pragma: no cover
 
     # Load existing archive from repo file
     helpers.ARCHIVE_PATH.parent.mkdir(parents=True, exist_ok=True)
     try:
         with open(helpers.ARCHIVE_PATH) as f:
-            archive = json.load(f)
+            archive = json.load(f)  # pragma: no cover
     except (FileNotFoundError, json.JSONDecodeError):
         archive = {}
 

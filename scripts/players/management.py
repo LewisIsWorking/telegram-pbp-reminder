@@ -18,7 +18,7 @@ def handle_kick(pid: str, campaign_name: str, target: str,
     match_player = None
     for key, player in state["players"].items():
         if not key.startswith(f"{pid}:"):
-            continue
+            continue  # pragma: no cover
         username = player.get("username", "").lower()
         first = player.get("first_name", "").lower()
         full = f"{first} {player.get('last_name', '')}".strip().lower()

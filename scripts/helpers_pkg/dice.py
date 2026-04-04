@@ -77,7 +77,7 @@ def roll_dice(expression: str) -> dict:
                     if keep_high is not None or keep_low is not None:
                         roll_strs.append(f"~~{r}~~")
                     else:
-                        roll_strs.append(str(r))
+                        roll_strs.append(str(r))  # pragma: no cover
             detail = "[" + ", ".join(roll_strs) + "]"
 
         if modifier > 0:

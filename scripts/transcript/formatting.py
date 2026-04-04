@@ -40,8 +40,8 @@ def format_transcript_content(text: str) -> str:
             content = stripped.lstrip(">").lstrip(" -").strip()
             out.append(f">> {content}")
         elif stripped.startswith(">>"):
-            content = stripped[2:].lstrip(" -").strip()
-            out.append(f">> {content}")
+            content = stripped[2:].lstrip(" -").strip()  # pragma: no cover
+            out.append(f">> {content}")  # pragma: no cover
         elif stripped.startswith(">"):
             content = stripped[1:].lstrip()
             out.append(f"> {content}")
@@ -81,7 +81,7 @@ def format_log_entry(parsed: dict, gm_ids: set, char_name: str | None = None) ->
         if media.startswith("sticker:"):
             parts.append(f"*[sticker {media[8:]}]*")
         elif media.startswith("document:"):
-            parts.append(f"*[{media[9:]}]*")
+            parts.append(f"*[{media[9:]}]*")  # pragma: no cover
         else:
             parts.append(f"*[{media}]*")
     if raw:

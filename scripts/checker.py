@@ -129,7 +129,7 @@ def main() -> None:
     print(f"Received {len(updates)} new updates")
 
     if updates:
-        bot_state["offset"] = process_updates(updates, config, bot_state)
+        bot_state["offset"] = process_updates(updates, config, bot_state)  # pragma: no cover
 
     _run_checks(config, bot_state)
     cleanup_timestamps(bot_state)

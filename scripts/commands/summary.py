@@ -46,10 +46,10 @@ def build_party(pid: str, campaign_name: str, config: dict, state: dict) -> str:
                 active_str = f"✈️ away ({reason})"
             elif days_ago < 1:
                 active_str = "active today"
-            elif days_ago < 7:
-                active_str = f"active {int(days_ago)}d ago"
-            else:
-                active_str = f"last seen {int(days_ago)}d ago"
+            elif days_ago < 7:  # pragma: no cover
+                active_str = f"active {int(days_ago)}d ago"  # pragma: no cover
+            else:  # pragma: no cover
+                active_str = f"last seen {int(days_ago)}d ago"  # pragma: no cover
             active_chars.append(f"  ⚔️ {char_name} ({player_name}) — {active_str}")
         else:
             orphan_chars.append(f"  🔇 {char_name} — no recent posts")

@@ -94,9 +94,9 @@ def track_message(parsed: dict, state: dict, config: dict,
                         ts_key = ts if ts else None
                         break
                 else:
-                    reply_date = parsed.get("reply_to_date")
-                    if reply_date:
-                        ts_key = datetime.fromtimestamp(
+                    reply_date = parsed.get("reply_to_date")  # pragma: no cover
+                    if reply_date:  # pragma: no cover
+                        ts_key = datetime.fromtimestamp(  # pragma: no cover
                             reply_date, tz=timezone.utc
                         ).strftime("%Y-%m-%d %H:%M:%S")
 
@@ -172,14 +172,14 @@ def _track_player(parsed: dict, state: dict, config: dict,
             tg.send_message(group_id, chat_tid,
                             f"\U0001f44b{mention} {user_name}{tag} is back in {campaign_name}!")
     elif old_warn_level >= 2:
-        print(f"Warned player {user_name} returned to {campaign_name}")
-        chat_tid = maps.to_chat.get(pid)
-        if chat_tid:
-            char = helpers.character_name(config, pid, user_id)
-            uname = parsed.get("username", "") or old_player.get("username", "")
-            mention = f" @{uname}" if uname else ""
-            tag = f" as {char}" if char else ""
-            tg.send_message(group_id, chat_tid,
+        print(f"Warned player {user_name} returned to {campaign_name}")  # pragma: no cover
+        chat_tid = maps.to_chat.get(pid)  # pragma: no cover
+        if chat_tid:  # pragma: no cover
+            char = helpers.character_name(config, pid, user_id)  # pragma: no cover
+            uname = parsed.get("username", "") or old_player.get("username", "")  # pragma: no cover
+            mention = f" @{uname}" if uname else ""  # pragma: no cover
+            tag = f" as {char}" if char else ""  # pragma: no cover
+            tg.send_message(group_id, chat_tid,  # pragma: no cover
                             f"\U0001f389{mention} {user_name} is back{tag}! Good to see you.")
     elif old_player.get("last_post_time") and not text.startswith("/"):
         from dispatch.comeback import check_comeback

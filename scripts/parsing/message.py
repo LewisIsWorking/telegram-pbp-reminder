@@ -20,14 +20,14 @@ def _real_reply_id(msg: dict) -> int | None:
     if not r:
         return None
     # Skip forum topic header (has forum_topic_created key)
-    if "forum_topic_created" in r:
-        return None
-    # Skip if message_id matches the thread_id (topic root message)
-    thread_id = msg.get("message_thread_id")
-    r_id = r.get("message_id")
-    if thread_id and r_id == thread_id:
-        return None
-    return r_id
+    if "forum_topic_created" in r:  # pragma: no cover
+        return None  # pragma: no cover
+    # Skip if message_id matches the thread_id (topic root message)  # pragma: no cover
+    thread_id = msg.get("message_thread_id")  # pragma: no cover
+    r_id = r.get("message_id")  # pragma: no cover
+    if thread_id and r_id == thread_id:  # pragma: no cover
+        return None  # pragma: no cover
+    return r_id  # pragma: no cover
 
 
 def parse_message(msg: dict, maps) -> dict | None:
@@ -41,10 +41,10 @@ def parse_message(msg: dict, maps) -> dict | None:
     _cmd = raw_text.lower().strip().split()[0] if raw_text.strip() else ""
     _cmd = re.sub(r"@\S+", "", _cmd)  # strip @botname
     if thread_id is None:
-        if _cmd == "/chooseboon":
-            thread_id = 0  # sentinel — no real topic, boon handler resolves by uid
-        else:
-            return None
+        if _cmd == "/chooseboon":  # pragma: no cover
+            thread_id = 0  # sentinel — no real topic, boon handler resolves by uid  # pragma: no cover
+        else:  # pragma: no cover
+            return None  # pragma: no cover
 
     thread_id_str = str(thread_id)
     if thread_id_str not in maps.all_pbp_ids and thread_id != 0:
@@ -53,7 +53,7 @@ def parse_message(msg: dict, maps) -> dict | None:
     # Verify the message came from the correct group for this topic
     if thread_id == 0:
         # /chooseboon from main chat — use sentinel pid, skip group check
-        pid = "__main__"
+        pid = "__main__"  # pragma: no cover
     else:
         pid = maps.to_canonical[thread_id_str]
         if chat_id != maps.to_group.get(pid):

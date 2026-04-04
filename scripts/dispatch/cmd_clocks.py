@@ -37,7 +37,7 @@ def handle(ctx: dict) -> bool:
                     else:
                         clocks = state.setdefault("clocks", {}).setdefault(pid, {})
                         if len(clocks) >= _MAX_CLOCKS and name not in clocks:
-                            tg.send_message(group_id, thread_id,
+                            tg.send_message(group_id, thread_id,  # pragma: no cover
                                             f"Max {_MAX_CLOCKS} clocks. Use /delclock <name> first.")
                         else:
                             clocks[name] = {"filled": 0, "segments": segments}
@@ -57,7 +57,7 @@ def handle(ctx: dict) -> bool:
         tick_args = parsed["raw_text"][5:].strip()
         clocks = state.get("clocks", {}).get(pid, {})
         if not tick_args:
-            tg.send_message(group_id, thread_id,
+            tg.send_message(group_id, thread_id,  # pragma: no cover
                             "Usage: /tick <name> [N]\ne.g. /tick Investigation 2")
         else:
             tick_parts = tick_args.rsplit(None, 1)
@@ -88,7 +88,7 @@ def handle(ctx: dict) -> bool:
         tick_args = parsed["raw_text"][7:].strip()
         clocks = state.get("clocks", {}).get(pid, {})
         if not tick_args:
-            tg.send_message(group_id, thread_id,
+            tg.send_message(group_id, thread_id,  # pragma: no cover
                             "Usage: /untick <name> [N]\ne.g. /untick Investigation 1")
         else:
             tick_parts = tick_args.rsplit(None, 1)

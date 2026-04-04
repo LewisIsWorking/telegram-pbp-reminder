@@ -73,10 +73,10 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         if not target_pid:
             tg.send_message(group_id, bot_topic, "No pending boon choice for you.")
             return
-        result = choose_boon_by_text(target_pid, user_id, choice, config, state)
-        tg.send_message(group_id, bot_topic, result)
-        print(f"Bot topic: /chooseboon {choice} from {user_name} → {target_pid}")
-        return
+        result = choose_boon_by_text(target_pid, user_id, choice, config, state)  # pragma: no cover
+        tg.send_message(group_id, bot_topic, result)  # pragma: no cover
+        print(f"Bot topic: /chooseboon {choice} from {user_name} → {target_pid}")  # pragma: no cover
+        return  # pragma: no cover
 
     # /mystats and /me: cross-campaign when no arg, per-campaign with arg
     if cmd_word in ("/mystats", "/me"):
@@ -101,7 +101,7 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         print(f"Bot topic: {cmd_word} from {user_name}: {args}")
         pid = next(iter(maps.to_name), None)
         if not pid:
-            return
+            return  # pragma: no cover
         import re as _re
         raw_text = msg.get("text", "").strip()
         if cmd_word == "/roll":

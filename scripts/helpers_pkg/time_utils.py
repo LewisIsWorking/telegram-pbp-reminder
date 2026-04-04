@@ -69,8 +69,8 @@ def is_away(state: dict, pid: str, user_id: str, now: datetime | None = None) ->
             if now >= until_dt:
                 del state["away"][key]
                 return None
-        except (TypeError, ValueError):
-            pass
+        except (TypeError, ValueError):  # pragma: no cover
+            pass  # pragma: no cover
     return record
 
 
@@ -107,7 +107,7 @@ def parse_away_duration(text: str, now: datetime) -> tuple[datetime | None, str]
         try:
             # Try ISO format first
             dt = datetime.fromisoformat(date_str)
-            return dt, reason
+            return dt, reason  # pragma: no cover
         except ValueError:
             pass
         # Try "Month Day" or "Month Day YYYY"

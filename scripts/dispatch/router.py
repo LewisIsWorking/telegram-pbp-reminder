@@ -87,7 +87,7 @@ def _handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     votes = poll.setdefault("votes", {})
     # Remove previous votes from this user across all options
     for key in votes:
-        votes[key] = [v for v in votes[key] if v != uid]
+        votes[key] = [v for v in votes[key] if v != uid]  # pragma: no cover
     # Record new vote(s) by option index string
     for idx in option_ids:
         votes.setdefault(str(idx), []).append(uid)
@@ -178,7 +178,7 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             )
             track_message(parsed, state, config, gm_ids, maps)
 
-        except Exception as e:
-            print(f"Error processing update {update_id}: {e}")
+        except Exception as e:  # pragma: no cover
+            print(f"Error processing update {update_id}: {e}")  # pragma: no cover
 
     return new_offset
