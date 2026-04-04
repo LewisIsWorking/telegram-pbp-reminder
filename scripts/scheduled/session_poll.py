@@ -134,6 +134,10 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     if poll.get("week_iso") != week_key:
         return
 
+    # Session already happened — no more pings this week
+    if poll.get("session_happened"):
+        return  # pragma: no cover
+
     # Daily ping — once per calendar day (ordinal)
     today_ord = now.toordinal()
     if today_ord <= poll.get("last_ping_day", -1):

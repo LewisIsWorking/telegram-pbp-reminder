@@ -85,6 +85,10 @@ def post_swimming_ping(config: dict, state: dict, *,
     if swim_state.get("week_iso") != week_key:
         return
 
+    # Swimming already happened — no more pings this week
+    if swim_state.get("session_happened"):
+        return  # pragma: no cover
+
     today_ord = now.toordinal()
     if today_ord <= swim_state.get("last_ping_day", -1):
         return

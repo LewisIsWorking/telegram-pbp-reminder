@@ -243,7 +243,8 @@
           "7754924188"
         ]
       },
-      "all_voted_posted": true
+      "all_voted_posted": true,
+      "session_happened": true
     }
   },
   "last_state_backup": "2026-04-03T05:34:54.549589+00:00",
@@ -321,7 +322,8 @@
     "poll_id": "",
     "poll_message_id": 1506,
     "voted_uids": [],
-    "last_ping_day": 739710
+    "last_ping_day": 739710,
+    "session_happened": true
   },
   "queue_scan_floor": null,
   "last_diagnostic": null,
