@@ -29,7 +29,7 @@ def _poll_roster(config: dict, state: dict, pid: str, pair: dict) -> dict:
     roster = {}
     poll_uids = pair.get("poll_user_ids")
     # Optional {uid_str: username} map for players not in PBP registry
-    name_map = {str(k): v for k, v in pair.get("poll_user_names", {}).items()}
+    name_map = {str(k): v for k, v in (pair.get("poll_user_names") or {}).items()}
     if poll_uids:
         for uid in poll_uids:
             uid_str = str(uid)
@@ -55,7 +55,11 @@ def _unvoted_mentions(roster: dict, voted_uids: list) -> list[str]:
     for uid, info in roster.items():
         if uid not in voted:
             u = info.get("username", "")
-            mentions.append(f"@{u}" if u else info["name"])
+            name = info["name"]
+            # If name is just the raw UID (player not in registry), show friendly fallback
+            if name == uid:
+                name = f"Unknown ({uid})"  # pragma: no cover
+            mentions.append(f"@{u}" if u else name)
     return mentions
 
 
