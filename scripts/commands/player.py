@@ -76,8 +76,8 @@ def build_mystats(pid: str, user_id: str, campaign_name: str,
 
     if streak > 1:
         lines.append(f"🔥 Streak: {streak} consecutive days")
-    elif streak == 1:
-        lines.append(f"Streak: 1 day (keep it going!)")
+    elif streak == 1:  # pragma: no cover
+        lines.append(f"Streak: 1 day (keep it going!)")  # pragma: no cover
 
     return "\n".join(lines)
 

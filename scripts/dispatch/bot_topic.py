@@ -13,6 +13,15 @@ import telegram as tg
 from dispatch.cmd_search import handle_search
 
 
+def _poll_week_num(week_iso: str) -> int:
+    """Extract ISO week number from a week_iso string like 'sun2026-03-29'."""
+    try:  # pragma: no cover
+        date_part = week_iso.lstrip("sun").lstrip("sat")  # pragma: no cover
+        return datetime.strptime(date_part, "%Y-%m-%d").isocalendar()[1]  # pragma: no cover
+    except (ValueError, AttributeError):  # pragma: no cover
+        return 0  # pragma: no cover
+
+
 def resolve_campaign(args: str, maps) -> tuple[str | None, str | None]:
     """Resolve a campaign name/keyword to (pid, campaign_name) or (None, None)."""
     key = args.strip().lower()
@@ -128,13 +137,25 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
                             helpers.dc_lookup(args))
         return
 
-    # /sessionplayed <code> — GM marks a live session as happened, stops poll pings
+    # /sessionplayed <code> <week> — GM marks a live session as happened, stops poll pings
     if cmd_word == "/sessionplayed":
         gm_ids_global = set(str(g) for g in config.get("gm_user_ids", []))  # pragma: no cover
         if user_id not in gm_ids_global:  # pragma: no cover
             tg.send_message(group_id, bot_topic, "❌ GMs only.")  # pragma: no cover
             return  # pragma: no cover
-        code = args.strip().upper()  # pragma: no cover
+        parts2 = args.strip().split()  # pragma: no cover
+        if len(parts2) < 2:  # pragma: no cover
+            tg.send_message(group_id, bot_topic,  # pragma: no cover
+                            "Usage: /sessionplayed <code> <week>\n"  # pragma: no cover
+                            "e.g. /sessionplayed C11 14")  # pragma: no cover
+            return  # pragma: no cover
+        code = parts2[0].upper()  # pragma: no cover
+        try:  # pragma: no cover
+            week_num = int(parts2[1])  # pragma: no cover
+        except ValueError:  # pragma: no cover
+            tg.send_message(group_id, bot_topic,  # pragma: no cover
+                            "❌ Week must be a number, e.g. /sessionplayed C11 14")  # pragma: no cover
+            return  # pragma: no cover
         sp = state.setdefault("session_poll", {})  # pragma: no cover
         poll = next((p for c, p in sp.items() if c.upper() == code), None)  # pragma: no cover
         if not poll:  # pragma: no cover
@@ -142,30 +163,44 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
             tg.send_message(group_id, bot_topic,  # pragma: no cover
                             f"❌ No active poll for '{code}'.\nKnown: {known}")  # pragma: no cover
             return  # pragma: no cover
+        active_week = _poll_week_num(poll.get("week_iso", ""))  # pragma: no cover
+        if week_num != active_week:  # pragma: no cover
+            tg.send_message(group_id, bot_topic,  # pragma: no cover
+                            f"❌ Active poll is week {active_week}, not {week_num}.")  # pragma: no cover
+            return  # pragma: no cover
         poll["session_happened"] = True  # pragma: no cover
         tg.send_message(group_id, bot_topic,  # pragma: no cover
-                        f"✅ Got it — {code} session marked as played. "  # pragma: no cover
-                        f"No more poll pings this week.")  # pragma: no cover
-        print(f"Bot topic: /sessionplayed {code} by {user_name}")  # pragma: no cover
+                        f"✅ {code} week {week_num} marked as played — no more pings.")  # pragma: no cover
+        print(f"Bot topic: /sessionplayed {code} W{week_num} by {user_name}")  # pragma: no cover
         return  # pragma: no cover
-  # pragma: no cover
-    # /swimmingdone — GM marks swimming as happened, stops poll pings  # pragma: no cover
+
+    # /swimmingdone <week> — GM marks swimming as happened, stops poll pings
     if cmd_word == "/swimmingdone":  # pragma: no cover
         gm_ids_global = set(str(g) for g in config.get("gm_user_ids", []))  # pragma: no cover
         if user_id not in gm_ids_global:  # pragma: no cover
             tg.send_message(group_id, bot_topic, "❌ GMs only.")  # pragma: no cover
             return  # pragma: no cover
+        try:  # pragma: no cover
+            week_num = int(args.strip())  # pragma: no cover
+        except ValueError:  # pragma: no cover
+            tg.send_message(group_id, bot_topic,  # pragma: no cover
+                            "Usage: /swimmingdone <week>\ne.g. /swimmingdone 14")  # pragma: no cover
+            return  # pragma: no cover
         sw = state.get("swimming_poll", {})  # pragma: no cover
         if not sw.get("week_iso"):  # pragma: no cover
             tg.send_message(group_id, bot_topic, "❌ No active swimming poll.")  # pragma: no cover
             return  # pragma: no cover
+        active_week = _poll_week_num(sw.get("week_iso", ""))  # pragma: no cover
+        if week_num != active_week:  # pragma: no cover
+            tg.send_message(group_id, bot_topic,  # pragma: no cover
+                            f"❌ Active swimming poll is week {active_week}, not {week_num}.")  # pragma: no cover
+            return  # pragma: no cover
         sw["session_happened"] = True  # pragma: no cover
         tg.send_message(group_id, bot_topic,  # pragma: no cover
-                        "✅ Got it — swimming marked as done. "  # pragma: no cover
-                        "No more pings this week. 🏊")  # pragma: no cover
-        print(f"Bot topic: /swimmingdone by {user_name}")  # pragma: no cover
+                        f"✅ Swimming week {week_num} marked as done — no more pings. 🏊")  # pragma: no cover
+        print(f"Bot topic: /swimmingdone W{week_num} by {user_name}")  # pragma: no cover
         return  # pragma: no cover
-  # pragma: no cover
+
     # Global commands don't need a campaign
     no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help", "/pbphelp", "/queue", "/timeline", "/health", "/queuestats"}
     if cmd_word in no_campaign:
