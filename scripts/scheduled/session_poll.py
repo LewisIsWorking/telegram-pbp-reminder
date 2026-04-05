@@ -96,11 +96,17 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
         hist_str = build_history_str(
             state.get("poll_history", {}).get(code, {}), options
         )
-        question = f"🗳️ {code} Week {week_num}/52 — When are we playing?"
+        emoji = pair.get("emoji", "🗳️")
+        question = f"{emoji} {code} Week {week_num}/52 — When are we playing?"
         multi = pair.get("allows_multiple_answers", False)
+        # open_period: 6 days (518400s) — poll auto-closes Saturday night
         result = tg.send_poll(gid, poll_tid, question, options,
                               is_anonymous=False,
-                              allows_multiple_answers=multi)
+                              allows_multiple_answers=multi,
+                              allows_adding_options=True,
+                              allows_revoting=True,
+                              open_period=518400,
+                              explanation=hist_str or None)
         msg_id, poll_id = result if result else (None, None)
 
         # Unpin previous week's poll before pinning the new one

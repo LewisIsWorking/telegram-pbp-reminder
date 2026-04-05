@@ -59,7 +59,9 @@ def _mock_get_updates(offset: int) -> list:
 
 
 def _mock_send_poll(chat_id, thread_id, question, options,
-                    is_anonymous=False, allows_multiple_answers=False):
+                    is_anonymous=False, allows_multiple_answers=False,
+                    allows_adding_options=False, allows_revoting=False,
+                    open_period=None, explanation=None):
     _sent_messages.append({
         "type": "poll", "chat_id": chat_id,
         "question": question, "options": options,

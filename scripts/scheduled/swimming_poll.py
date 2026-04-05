@@ -56,6 +56,9 @@ def post_swimming_poll(config: dict, state: dict, *,
     result = tg.send_poll(
         _GROUP_ID, None, question, _OPTIONS,
         is_anonymous=False, allows_multiple_answers=True,
+        allows_adding_options=True,
+        allows_revoting=True,
+        open_period=518400,  # 6 days — auto-closes Saturday night
     )
     msg_id, poll_id = result if result else (None, None)
     if not msg_id:

@@ -9,8 +9,6 @@ import re
 import sys
 import requests
 from pathlib import Path
-
-# ---- Configuration ----
 # Bot Tips & Commands: https://t.me/Path_Wars/137393
 CHANGELOG_CHAT_ID = os.environ.get("CHANGELOG_CHAT_ID", "@Path_Wars")
 CHANGELOG_THREAD_ID = int(os.environ.get("CHANGELOG_THREAD_ID", "137393"))

@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 # ─── dispatch/router.py: _build_poll_id_map, _find_pair, _handle_poll_answer ─
 
 def test_build_poll_id_map():
-    from dispatch.router import _build_poll_id_map
+    from dispatch.poll_router import build_poll_id_map as _build_poll_id_map
     state = {"session_poll": {
         "C01": {"poll_id": "p1"},
         "C02": {"poll_id": "p2"},
@@ -25,18 +25,18 @@ def test_build_poll_id_map():
 
 
 def test_find_pair_found():
-    from dispatch.router import _find_pair
+    from dispatch.poll_router import find_pair as _find_pair
     config = {"topic_pairs": [{"code": "C01", "pbp_topic_ids": [100]}]}
     assert _find_pair(config, "C01")["pbp_topic_ids"] == [100]
 
 
 def test_find_pair_not_found():
-    from dispatch.router import _find_pair
+    from dispatch.poll_router import find_pair as _find_pair
     assert _find_pair({"topic_pairs": []}, "C99") is None
 
 
 def test_handle_poll_answer_known_poll():
-    from dispatch.router import _handle_poll_answer
+    from dispatch.poll_router import handle_poll_answer as _handle_poll_answer
     config = {"topic_pairs": [
         {"code": "C01", "pbp_topic_ids": [100],
          "poll_options": ["Friday", "Saturday"],
@@ -45,14 +45,14 @@ def test_handle_poll_answer_known_poll():
     state = {"session_poll": {"C01": {"poll_id": "p1", "voted_uids": [], "votes": {}}}}
     poll_answer = {"poll_id": "p1", "option_ids": [0],
                    "user": {"id": 111, "first_name": "Alice"}}
-    with patch("dispatch.router.notify_vote"), \
-         patch("dispatch.router.capture_unknown_voter"):
+    with patch("dispatch.poll_router.notify_vote"), \
+         patch("dispatch.poll_router.capture_unknown_voter"):
         _handle_poll_answer(poll_answer, config, state)
     assert "111" in state["session_poll"]["C01"]["voted_uids"]
 
 
 def test_handle_poll_answer_unknown_poll():
-    from dispatch.router import _handle_poll_answer
+    from dispatch.poll_router import handle_poll_answer as _handle_poll_answer
     _handle_poll_answer({"poll_id": "unknown", "option_ids": [],
                          "user": {"id": 1, "first_name": "?"}},
                         {}, {"session_poll": {}})
@@ -67,8 +67,8 @@ def test_process_updates_poll_answer():
     state = {"offset": 0, "players": {}, "topics": {},
              "session_poll": {"C01": {"poll_id": "p1", "voted_uids": [], "votes": {}}}}
     with patch("dispatch.router.build_topic_maps", return_value=maps), \
-         patch("dispatch.router.notify_vote"), \
-         patch("dispatch.router.capture_unknown_voter"):
+         patch("dispatch.poll_router.notify_vote"), \
+         patch("dispatch.poll_router.capture_unknown_voter"):
         result = process_updates(
             [{"update_id": 1, "poll_answer": {
                 "poll_id": "p1", "option_ids": [0],

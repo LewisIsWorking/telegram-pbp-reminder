@@ -2,20 +2,14 @@
 Main update processing router.
 
 Parses Telegram updates from all groups, dispatches commands, and
-triggers post-message tracking. Handles poll_answer by poll_id so
-votes from any group are routed to the correct campaign.
+triggers post-message tracking. Poll vote/close handling is in poll_router.py.
 """
-
-from datetime import datetime, timezone
 
 import helpers
 from helpers import build_topic_maps
-from helpers_pkg.campaigns import get_code
-from helpers_pkg.groups import group_id_for_campaign
 from parsing.message import parse_message
 from combat.tracker import handle_combat_message
 from boons.handler import process_boon_callback
-
 from dispatch import cmd_info, cmd_info_ext, cmd_gm, cmd_trackers, cmd_trackers_items
 from commands.markdone import handle_markdone as _handle_markdone
 from dispatch import cmd_conditions_hp, cmd_clocks, cmd_votes_timers
@@ -23,8 +17,7 @@ from dispatch import cmd_player
 from dispatch.tracking import track_message
 from dispatch.bot_topic import handle_bot_topic_cmd
 from dispatch.help_text import _HELP_TEXT
-from dispatch.poll_notify import notify_vote, capture_unknown_voter
-from scheduled.session_poll_build import votes_to_option_label
+from dispatch.poll_router import handle_poll_answer, handle_poll_closed
 
 cmd_info.init(_HELP_TEXT)
 
@@ -47,60 +40,6 @@ _READ_CMDS = frozenset({
 })
 
 
-def _build_poll_id_map(state: dict) -> dict[str, str]:
-    """Return {poll_id: campaign_code} from current session_poll state."""
-    result = {}
-    polls = state.get("session_poll", {})
-    for code, slot in polls.items():
-        pid = slot.get("poll_id", "")
-        if pid:
-            result[pid] = code
-    return result
-
-
-def _find_pair(config: dict, code: str) -> dict | None:
-    for pair in config.get("topic_pairs", []):
-        if pair.get("code") == code:
-            return pair
-    return None
-
-
-def _handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
-    """Record a poll vote and fire cross-campaign notifications."""
-    uid = str(poll_answer.get("user", {}).get("id", ""))
-    name = poll_answer.get("user", {}).get("first_name", "?")
-    option_ids = poll_answer.get("option_ids", [])
-    incoming_poll_id = poll_answer.get("poll_id", "")
-
-    poll_id_map = _build_poll_id_map(state)
-    code = poll_id_map.get(incoming_poll_id)
-    if not code:
-        return  # vote for an unrecognised poll
-
-    polls = state.setdefault("session_poll", {})
-    poll = polls.setdefault(code, {})
-    voted = poll.setdefault("voted_uids", [])
-    if uid and uid not in voted:
-        voted.append(uid)
-        capture_unknown_voter(uid, code, config, state)
-
-    votes = poll.setdefault("votes", {})
-    # Remove previous votes from this user across all options
-    for key in votes:
-        votes[key] = [v for v in votes[key] if v != uid]  # pragma: no cover
-    # Record new vote(s) by option index string
-    for idx in option_ids:
-        votes.setdefault(str(idx), []).append(uid)
-
-    # Cross-notification
-    pair = _find_pair(config, code)
-    pid = str(pair["pbp_topic_ids"][0]) if pair else None
-    option_label = votes_to_option_label(option_ids, pair or {}, datetime.now(timezone.utc))
-    if pid:
-        notify_vote(config, state, name, uid, code, option_label, pid)
-    print(f"Poll vote: {name} ({code}) → option {option_ids}")
-
-
 def process_updates(updates: list, config: dict, state: dict) -> int:
     """Process Telegram updates. Returns new offset for next poll."""
     group_id = config["group_id"]
@@ -116,8 +55,14 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
         try:
             poll_answer = update.get("poll_answer")
             if poll_answer:
-                _handle_poll_answer(poll_answer, config, state)
+                handle_poll_answer(poll_answer, config, state)
                 continue
+
+            # poll update: sent when a poll closes (is_closed=True)
+            poll_update = update.get("poll")
+            if poll_update and poll_update.get("is_closed"):
+                handle_poll_closed(poll_update, config, state)  # pragma: no cover
+                continue  # pragma: no cover
 
             if cb:
                 process_boon_callback(cb, config, state)
