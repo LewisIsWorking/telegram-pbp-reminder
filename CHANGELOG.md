@@ -11,6 +11,45 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.34.0] - 2026-04-06
+
+### Added — Per-topic pinned queue + telegram.delete_message
+
+**Per-topic pinned queue** (`commands/topic_queue_format.py`, `scheduled/topic_queue_poster.py`)
+
+Each PBP topic now gets its own pinned queue message showing only that
+topic's unreplied entries. The message uses the same age-icon scale and
+entry format as the bot-topic queue but omits the campaign header (you're
+already in context). State is stored per campaign in the existing
+`data/state/queues/{pid}.json` files as two new fields:
+- `topic_msg_id` — message_id of the current pinned message
+- `topic_fingerprint` — change-detection string; post is skipped if unchanged
+
+Lifecycle per hourly run:
+- Entries exist, no pin → post and pin (with notification)
+- Entries exist, pin exists, fingerprint unchanged → skip
+- Entries exist, fingerprint changed → delete old, post and pin new
+- No entries, pin exists → send "✅ All caught up!", unpin and delete old pin
+
+**`telegram.delete_message`**
+
+New `delete_message(chat_id, message_id)` helper added to `telegram.py`
+and registered in `conftest.py`'s mock.
+
+**`/markdone` context-awareness** — no code change required. The existing
+`pid`-scoped dispatch already scopes entry numbers to the current PBP
+topic when the command is used there, and requires a campaign name arg
+when used from the bot topic.
+
+### Changed
+
+`scheduled/queue_reminder.py` — calls `post_topic_queues(config, scanned, now)`
+immediately after `scan_transcripts` on every hourly tick, before the
+bot-topic fingerprint check. Per-topic queue maintenance is therefore
+independent of whether the bot-topic queue changes.
+
+---
+
 ## [4.33.0] - 2026-03-31
 
 ### Changed — 22-tier age icon scale
