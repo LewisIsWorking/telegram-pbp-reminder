@@ -27,7 +27,7 @@ def _post(method: str, payload: dict, label: str = "request") -> dict | None:
                 print(f"Telegram rate limit on {label}, waiting {retry_after}s")
                 time.sleep(retry_after + 1)
                 continue
-            print(f"Telegram {label} failed: {resp.text[:200]}")
+            print(f"Telegram {label} failed: {resp.text[:500]}")
         except requests.RequestException as e:
             print(f"Telegram {label} network error: {e}")
         break

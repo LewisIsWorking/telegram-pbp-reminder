@@ -30,20 +30,24 @@ def is_poll_day(now: datetime, pair: dict) -> bool:
 
 
 def poll_options_for(pair: dict, now: datetime) -> list[str]:
-    """Return poll answer options. Static if configured, else Fri/Sat.
+    """Return poll answer options with dates prepended to all day names.
 
-    When static options contain bare 'Friday' or 'Saturday', the upcoming
-    date is appended automatically (e.g. '2026-04-10 Friday').
+    Any option that is a bare weekday name gets the upcoming date prepended
+    automatically (e.g. 'Monday' -> '2026-04-07 Monday').
     """
+    _DAY_NAMES = {
+        "Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3,
+        "Friday": 4, "Saturday": 5, "Sunday": 6,
+    }
     static = pair.get("poll_options")
     if static:
-        friday = _next_weekday_date(now, 4)
-        saturday = _next_weekday_date(now, 5)
-        day_map = {"Friday": f"{friday} Friday", "Saturday": f"{saturday} Saturday"}
+        day_map = {
+            name: f"{_next_weekday_date(now, idx)} {name}"
+            for name, idx in _DAY_NAMES.items()
+        }
         return [day_map.get(opt, opt) for opt in static]
-    from scheduled.session_poll_build import _next_weekday_date as _nwd
-    friday = _nwd(now, 4)
-    saturday = _nwd(now, 5)
+    friday = _next_weekday_date(now, 4)
+    saturday = _next_weekday_date(now, 5)
     return [f"{friday} Friday", f"{saturday} Saturday", "Can't make either"]
 
 
