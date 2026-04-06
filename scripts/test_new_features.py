@@ -242,10 +242,11 @@ def test_queue_reminder_skips_when_empty():
     sent = []
     orig = tg.send_message
     tg.send_message = lambda *a, **k: sent.append(a) or True
-    try:
-        post_queue_reminder(config, state)
-    finally:
-        tg.send_message = orig
+    with patch("scheduled.queue_reminder.post_topic_queues"):
+        try:
+            post_queue_reminder(config, state)
+        finally:
+            tg.send_message = orig
     assert len(sent) == 0
     assert "last_queue_fingerprint" in state
 
