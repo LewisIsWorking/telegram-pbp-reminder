@@ -466,3 +466,24 @@ def test_notify_vote_no_chat_topic():
     state = {"session_poll": {"C01": {"votes": {}, "voted_uids": []}}}
     notify_vote(config, state, "Alice", "U1", "C01", "Friday", "100")
     # No chat_topic_id → no send, no crash
+
+
+# ── commands/queue_scan._build_link ──────────────────────────────────────────
+
+def test_build_link_public_group():
+    from commands.queue_scan import _build_link
+    link = _build_link(-1001661053273, "Path_Wars", "1242", "1540")
+    assert link == "https://t.me/Path_Wars/1242/1540"
+
+
+def test_build_link_private_group():
+    from commands.queue_scan import _build_link
+    # C11: group_id=-1003496373617, no username → c/ format stripping leading 100
+    link = _build_link(-1003496373617, None, "1242", "1540")
+    assert link == "https://t.me/c/3496373617/1242/1540"
+
+
+def test_build_link_private_group_empty_username():
+    from commands.queue_scan import _build_link
+    link = _build_link(-1003496373617, "", "1242", "1540")
+    assert link == "https://t.me/c/3496373617/1242/1540"
