@@ -108,5 +108,13 @@ _mock_tg.pin_message = _mock_pin_message
 _mock_tg.unpin_message = _mock_unpin
 _mock_tg.message_link = _mock_message_link
 
+
+def _mock_delete(chat_id: int, message_id: int) -> bool:
+    _sent_messages.append({"type": "delete", "chat_id": chat_id, "message_id": message_id})
+    return True
+
+
+_mock_tg.delete_message = _mock_delete
+
 # Register before any test module is imported
 sys.modules["telegram"] = _mock_tg
