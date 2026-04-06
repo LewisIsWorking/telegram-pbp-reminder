@@ -1,25 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 141195,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-03-31T18:43:54+00:00",
-      "preview": "Arktos glances upward as Oofy says that, \"Hmm, I had suspected as much. Would anyone mind an interview discussing any changes they've noticed after this business has concluded?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 141203,
-      "thread_id": 107171,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-03-31T20:00:28+00:00",
-      "preview": "Holis turns to Arktos \"As long as it is not in conflict with my current sponsorship.  I have no problem.  However we have some pirate removal first.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -77,7 +58,11 @@
     "msg:137525",
     "2026-03-16 12:41:50",
     "msg:137663",
-    "2026-03-16 18:45:40"
+    "2026-03-16 18:45:40",
+    "msg:141195",
+    "2026-03-31 18:43:54",
+    "msg:141203",
+    "2026-03-31 20:00:28"
   ],
   "reply_log": [
     {
@@ -335,8 +320,26 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-06T13:39:47+00:00",
+      "pid": "107171",
+      "msg_id": "141195",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos glances upward as Oofy says that, \"Hmm, I had suspected as much. Would an",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-06T13:40:10+00:00",
+      "pid": "107171",
+      "msg_id": "141203",
+      "thread_id": 107171,
+      "player": "Bruce",
+      "preview": "Holis turns to Arktos \"As long as it is not in conflict with my current sponsors",
+      "via": "reply"
     }
   ],
-  "topic_msg_id": 142819,
-  "topic_fingerprint": "2026-03-31 18:43:54|2026-03-31 20:00:28"
+  "topic_msg_id": null,
+  "topic_fingerprint": ""
 }
