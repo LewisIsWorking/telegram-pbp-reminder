@@ -446,16 +446,18 @@ def _qr_config():
     }
 
 
+@patch("scheduled.queue_reminder.post_topic_queues")
 @patch("scheduled.queue_reminder.scan_transcripts", return_value={})
-def test_queue_reminder_no_entries_no_post(mock_scan):
+def test_queue_reminder_no_entries_no_post(mock_scan, mock_ptq):
     state = {"last_queue_fingerprint": None, "queue_post_count": 0,
              "last_queue_pin_id": None, "last_queue_daily_slots": []}
     now = datetime(2026, 4, 3, 9, 0, tzinfo=timezone.utc)
     post_queue_reminder(_qr_config(), state, now=now)
 
 
+@patch("scheduled.queue_reminder.post_topic_queues")
 @patch("scheduled.queue_reminder.scan_transcripts")
-def test_queue_reminder_same_fingerprint_skips(mock_scan):
+def test_queue_reminder_same_fingerprint_skips(mock_scan, mock_ptq):
     # Use hour 10 — not in queue_daily_hours [9, 21], so daily override won't fire
     now = datetime(2026, 4, 3, 10, 0, tzinfo=timezone.utc)
     t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
@@ -470,8 +472,9 @@ def test_queue_reminder_same_fingerprint_skips(mock_scan):
     assert state["queue_post_count"] == 0
 
 
+@patch("scheduled.queue_reminder.post_topic_queues")
 @patch("scheduled.queue_reminder.scan_transcripts")
-def test_queue_reminder_posts_on_change(mock_scan):
+def test_queue_reminder_posts_on_change(mock_scan, mock_ptq):
     now = datetime(2026, 4, 3, 9, 0, tzinfo=timezone.utc)
     t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
     entries = [{"name": "Alice", "time": t, "preview": "hi", "link": "", "message_id": "1"}]
