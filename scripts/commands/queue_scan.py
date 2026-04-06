@@ -26,6 +26,21 @@ _ENTRY_RE = re.compile(
 )
 
 
+def _build_link(group_id: int, group_username: str | None,
+                topic: str, message_id: str) -> str:
+    """Build a t.me deep link for a message, handling public and private groups.
+
+    Public groups (group_username set): https://t.me/{username}/{topic}/{mid}
+    Private groups (numeric only):      https://t.me/c/{digits}/{topic}/{mid}
+    """
+    if group_username:
+        return f"https://t.me/{group_username}/{topic}/{message_id}"
+    digits = str(abs(group_id))
+    if digits.startswith("100"):
+        digits = digits[3:]
+    return f"https://t.me/c/{digits}/{topic}/{message_id}"
+
+
 def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     """Scan recent transcripts for unreplied player messages.
 
@@ -41,7 +56,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     prev_month_dt = (now.replace(day=1) - timedelta(days=1))
     prev_month = prev_month_dt.strftime("%Y-%m")
     months_to_scan = [prev_month, month] if prev_month != month else [month]
-    group_user = "Path_Wars"
+    global_group_id = config.get("group_id", 0)
+    global_group_user = config.get("group_username", "Path_Wars")
     result = {}
 
     # Floor timestamp — ignore entries older than this (ISO date string YYYY-MM-DD)
@@ -91,6 +107,9 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
         if helpers.is_excluded(config, pid):
             continue
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
+        # Per-campaign group — C11 and future cross-group campaigns differ
+        camp_group_id = pair.get("group_id", global_group_id)
+        camp_group_user = pair.get("group_username", global_group_user)
 
         dirname = name.replace(" ", "_").replace("'", "")
         pending = []
@@ -149,7 +168,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                     if mid:
                         # Priority: persisted queue thread_id > transcript @tag > canonical pid
                         topic = thread_lookup.get(str(mid)) or entry_thread or pid
-                        link = f"https://t.me/{group_user}/{topic}/{mid}"
+                        link = _build_link(camp_group_id, camp_group_user,
+                                           topic, mid)
                     pending.append({
                         "name": author.strip(),
                         "time": timestamp,
