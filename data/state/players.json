@@ -238,7 +238,7 @@
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
       "last_post_time": "2026-03-30T09:29:12+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "76799:7863964681": {
       "user_id": "7863964681",
@@ -668,7 +668,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T00:31:35.507986+00:00"
       },
       "138025700": {
@@ -811,6 +811,14 @@
           "date": "2026-04-02",
           "campaign": "Kibwe",
           "week": "W14"
+        }
+      ],
+      "7130942567": [
+        {
+          "text": "Your next critical failure on a skill check is a regular failure instead.",
+          "date": "2026-04-06",
+          "campaign": "Kibwe",
+          "week": "W15"
         }
       ]
     },

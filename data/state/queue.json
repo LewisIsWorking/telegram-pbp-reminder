@@ -268,7 +268,9 @@
       "2026-04-06T07:35:19.624262+00:00",
       "2026-04-06T08:35:11.932174+00:00",
       "2026-04-06T08:35:11.934828+00:00",
-      "2026-04-06T08:35:12.925500+00:00"
+      "2026-04-06T08:35:12.925500+00:00",
+      "2026-04-06T09:31:06.043598+00:00",
+      "2026-04-06T09:31:06.201942+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -375,7 +377,9 @@
       "2026-03-31T06:31:49.497729+00:00",
       "2026-03-31T06:31:49.498201+00:00",
       "2026-03-31T06:31:49.498670+00:00",
-      "2026-03-31T13:34:20.547520+00:00"
+      "2026-03-31T13:34:20.547520+00:00",
+      "2026-04-06T09:31:05.165491+00:00",
+      "2026-04-06T09:31:05.166196+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -423,30 +427,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-03-29T17:58:32.334825+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-03-29T17:58:32.335324+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-03-29T17:58:34.390091+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-03-29T17:58:34.390310+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "40585",
       "time": "2026-03-29T17:58:34.390414+00:00",
@@ -1622,6 +1602,30 @@
       "time": "2026-04-06T08:35:12.925500+00:00",
       "player": "Buffet",
       "preview": "[media]"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-06T09:31:05.165491+00:00",
+      "player": "Link",
+      "preview": "Akuma just rolls his eyes, \"B\u00e1yakan, stop teasing the murder"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-06T09:31:05.166196+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-06T09:31:06.043598+00:00",
+      "player": "Anthony",
+      "preview": "Low roll bro"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-06T09:31:06.201942+00:00",
+      "player": "Ryo",
+      "preview": "That was the first swing, I wanted to check before I swung a"
     }
   ],
   "pending_potw_boons": {
@@ -1652,19 +1656,6 @@
       "base_message": "Player of the Week for Riddleport: Bo (@bogonzomd)!\n(2026-03-24 (W13) to 2026-03-31 (W14))\n\n5 posts this week with an average gap of 35.9h between posts. The most consistent driver of the story.\n\nPosts this week:\n\ud83d\udd17 https://t.me/Path_Wars/66154/139637\n\ud83d\udd17 https://t.me/Path_Wars/66154/141138\n\ud83d\udd17 https://t.me/Path_Wars/66154/141139\n\ud83d\udd17 https://t.me/Path_Wars/66154/141169\n\ud83d\udd17 https://t.me/Path_Wars/66154/141289",
       "posted_at": "2026-03-31T22:12:03.300138+00:00",
       "reminders_sent": 2
-    },
-    "40585": {
-      "message_id": 142427,
-      "winner_user_id": "7130942567",
-      "campaign_name": "Kibwe",
-      "boons": [
-        "A shadow falls across you at just the right moment. Nobody sees you move.",
-        "Your sneeze startles a rat that was about to chew through your rope.",
-        "A puddle reflects something on the ceiling you wouldn't have seen otherwise.",
-        "Your next critical failure on a skill check is a regular failure instead."
-      ],
-      "base_message": "Player of the Week for Kibwe: Buffet Raider (@buffetraider)!\n(2026-03-30 (W14) to 2026-04-06 (W15))\n\n5 posts this week with an average gap of 40.2h between posts. The most consistent driver of the story.\n\nPosts this week:\n\ud83d\udd17 https://t.me/Path_Wars/40585/140514\n\ud83d\udd17 https://t.me/Path_Wars/40585/140515\n\ud83d\udd17 https://t.me/Path_Wars/40585/140516",
-      "posted_at": "2026-04-06T08:35:12.928308+00:00"
     }
   }
 }
