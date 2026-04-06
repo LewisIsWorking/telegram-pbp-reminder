@@ -696,15 +696,16 @@ def test_queue_reminder_momentum_real():
               "queue_daily_hours": [], "topic_pairs": [
                   {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
                    "gm_user_ids": [999]}]}
-    with patch("scheduled.queue_reminder.scan_transcripts") as ms, \
+    scanned = {"100": {"campaign": "Kibwe", "code": "C00",
+                       "entries": [{"name": "Alice", "time": t,
+                                    "preview": "hi", "link": "",
+                                    "message_id": "1"}]}}
+    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
+             "last_queue_pin_id": None, "last_queue_daily_slots": []}
+    with patch("scheduled.queue_reminder.scan_transcripts", return_value=scanned), \
          patch("commands.queue_analytics.player_momentum",
-               return_value=["Kibwe: Alice (~2h)"]):
-        ms.return_value = {"100": {"campaign": "Kibwe", "code": "C00",
-                                   "entries": [{"name": "Alice", "time": t,
-                                                "preview": "hi", "link": "",
-                                                "message_id": "1"}]}}
-        state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-                 "last_queue_pin_id": None, "last_queue_daily_slots": []}
+               return_value=["Kibwe: Alice (~2h)"]), \
+         patch("scheduled.queue_reminder.post_topic_queues"):
         post_queue_reminder(config, state, now=now)
     assert state["queue_post_count"] == 1
 
