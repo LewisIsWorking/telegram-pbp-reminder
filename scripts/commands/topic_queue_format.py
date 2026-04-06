@@ -35,7 +35,7 @@ def format_topic_queue(entries: list, now: datetime) -> str:
         hours = _entry_hours(entry, now)
         icon = entry_age_icon(hours)
         user = entry.get("name", "?")
-        preview = short_preview(entry.get("preview", ""), words=40)
+        preview = short_preview(entry.get("preview", ""), words=80)
         line = f"{i:02d} {icon} {age_str(hours)}. {user}: {preview}"
         link = entry.get("link", "")
         if link:
