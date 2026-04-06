@@ -370,9 +370,10 @@ def test_queue_reminder_empty_queue():
               "queue_daily_hours": [], "topic_pairs": [
                   {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
                    "gm_user_ids": [999]}]}
-    with patch("scheduled.queue_reminder.scan_transcripts", return_value={}):
-        state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-                 "last_queue_pin_id": None, "last_queue_daily_slots": []}
+    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
+             "last_queue_pin_id": None, "last_queue_daily_slots": []}
+    with patch("scheduled.queue_reminder.scan_transcripts", return_value={}), \
+         patch("scheduled.queue_reminder.post_topic_queues"):
         post_queue_reminder(config, state, now=now)
     assert state.get("last_queue_fingerprint") == "empty"
 
