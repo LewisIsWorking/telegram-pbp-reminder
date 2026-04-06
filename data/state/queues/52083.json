@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 141140,
-      "thread_id": 52083,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-03-31T15:18:59+00:00",
-      "preview": "Lowda watches Tego storm out. Doesn't call after him. Just lets the door close. \"Hope he finds his way back.\"\nThat's all he says. No lecture, no last word. Just a quiet hope.\n\nHe turns back to the counter, eyeing the credits but not reaching for them. \"I'll wait for the split on that. Plenty of time.\"\n\nHis stomach makes another cavernous roiling sound. He digs into his own pouch instead, pulling out a few credits and sliding them across the counter toward Manee.\n\n\"Couple bowls of whatever's hot.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -73,7 +63,9 @@
     "msg:142800",
     "2026-04-06 11:22:06",
     "msg:106345",
-    "2025-08-31 18:12:00"
+    "2025-08-31 18:12:00",
+    "msg:141140",
+    "2026-03-31 15:18:59"
   ],
   "reply_log": [
     {
@@ -350,8 +342,17 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-06T11:58:16+00:00",
+      "pid": "52083",
+      "msg_id": "141140",
+      "thread_id": 52083,
+      "player": "CzarChasm23",
+      "preview": "Lowda watches Tego storm out. Doesn't call after him. Just lets the door close. ",
+      "via": "reply"
     }
   ],
-  "topic_msg_id": 142817,
-  "topic_fingerprint": "2026-03-31 15:18:59"
+  "topic_msg_id": null,
+  "topic_fingerprint": ""
 }
