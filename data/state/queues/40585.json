@@ -42,6 +42,60 @@
       "time": "2026-04-06T07:27:22+00:00",
       "preview": "That was the first swing, I wanted to check before I swung again because that would cancel the grabbed",
       "media_group_id": null
+    },
+    {
+      "message_id": 142398,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-04-06T07:40:55+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 142412,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-04-06T07:53:46+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 142413,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-04-06T08:03:29+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 142415,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-04-06T08:11:20+00:00",
+      "preview": "(also knocked 10 feet away if still alive)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 142420,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-04-06T08:19:38+00:00",
+      "preview": "it's just a basic reflex",
+      "media_group_id": null
+    },
+    {
+      "message_id": 142421,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-04-06T08:20:02+00:00",
+      "preview": "the attack roll doesn't change the outcome of the saving throw",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -231,7 +285,13 @@
     "msg:142334",
     "2026-04-06 07:24:54",
     "msg:142345",
-    "2026-04-06 07:28:06"
+    "2026-04-06 07:28:06",
+    "msg:142368",
+    "2026-04-06 07:32:12",
+    "msg:142390",
+    "2026-04-06 07:36:42",
+    "msg:142414",
+    "2026-04-06 08:04:13"
   ],
   "reply_log": [
     {
@@ -927,6 +987,30 @@
       "pid": "40585",
       "msg_id": "142345",
       "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-06T07:32:39+00:00",
+      "pid": "40585",
+      "msg_id": "142368",
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-06T07:38:08+00:00",
+      "pid": "40585",
+      "msg_id": "142390",
+      "player": "Ryo",
+      "preview": "And enfeebled 1 and clumsy 1 and prone if it fails its reflex save vs dc 24",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-06T08:18:52+00:00",
+      "pid": "40585",
+      "msg_id": "142414",
+      "player": "Buffet",
       "preview": "[media]",
       "via": "reply"
     }
