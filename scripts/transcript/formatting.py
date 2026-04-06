@@ -91,8 +91,13 @@ def format_log_entry(parsed: dict, gm_ids: set, char_name: str | None = None) ->
 
     content = " ".join(parts) if parts else "*[empty message]*"
 
-    # Include message_id for link building (msg#12345)
+    # Include message_id and thread_id for accurate link building
+    # Format: msg#12345 or msg#12345@137075 (thread suffix when known)
     msg_id = parsed.get("message_id", "")
-    mid_tag = f" msg#{msg_id}" if msg_id else ""
+    thread_id = parsed.get("thread_id", "")
+    if msg_id:
+        mid_tag = f" msg#{msg_id}@{thread_id}" if thread_id else f" msg#{msg_id}"
+    else:
+        mid_tag = ""
 
     return f"**{name}**{char_tag}{role_tag} ({ts}){mid_tag}:\n{content}\n"

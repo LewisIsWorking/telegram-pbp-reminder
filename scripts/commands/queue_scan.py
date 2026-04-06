@@ -21,7 +21,7 @@ _ENTRY_RE = re.compile(
     r'(?:\s*\([^)]*\))?'                     # optional (char_name)
     r'(\s*\[GM\])?'                          # optional [GM]
     r'\s*\((\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\)'  # timestamp
-    r'(?:\s*msg#(\d+))?'                     # optional msg#id
+    r'(?:\s*msg#(\d+)(?:@(\d+))?)?'         # optional msg#id[@thread_id]
     r':\s*$'
 )
 
@@ -96,6 +96,7 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                 is_gm = bool(m.group(2))
                 timestamp = m.group(3)
                 msg_id = m.group(4)
+                entry_thread = m.group(5)  # thread_id from msg#id@thread_id tag
 
                 # Collect content lines
                 i += 1
@@ -129,7 +130,10 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                             mid = str(mid_val)
                     link = ""
                     if mid:
-                        link = f"https://t.me/{group_user}/{pid}/{mid}"
+                        # Use thread_id from transcript tag if present (multi-topic
+                        # campaigns like C06 have RP and Combat topics)
+                        topic = entry_thread or pid
+                        link = f"https://t.me/{group_user}/{topic}/{mid}"
                     pending.append({
                         "name": author.strip(),
                         "time": timestamp,
