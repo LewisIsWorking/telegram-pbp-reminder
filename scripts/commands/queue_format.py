@@ -25,8 +25,8 @@ def entry_age_icon(hours: float) -> str:
       ⚫  day 15  ⬛  day 16
 
     Beyond day 16:
-      💀  day 17–21
-      ☠️   day 21+
+      💀  day 17–25
+      ☠️   day 25+
     """
     if hours < 1:
         return "🆕"
@@ -54,7 +54,7 @@ def entry_age_icon(hours: float) -> str:
     if days < 15:  return "🟫"
     if days < 16:  return "⚫"
     if days < 17:  return "⬛"
-    if days < 21:  return "💀"
+    if days < 25:  return "💀"
     return "☠️"
 
 

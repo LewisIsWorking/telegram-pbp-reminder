@@ -56,12 +56,14 @@ from commands.queue_format import entry_age_icon, age_str, short_preview
     (383.9,  "⚫"),
     (384,    "⬛"),   # day 16
     (407.9,  "⬛"),
-    # 💀 day 17–21
+    # 💀 day 17–25
     (408,    "💀"),
     (480,    "💀"),
     (503.9,  "💀"),
-    # ☠️  day 21+
-    (504,    "☠️"),
+    (503.9,  "💀"),
+    (504,    "💀"),
+    # ☠️  day 25+
+    (600,    "☠️"),
     (1000,   "☠️"),
 ])
 def test_entry_age_icon(hours, expected):
@@ -71,7 +73,7 @@ def test_entry_age_icon(hours, expected):
 def test_twenty_two_distinct_icons():
     """All 22 icon values are reachable and distinct."""
     sample_hours = [0, 1, 6, 12, 24, 48, 72, 96, 120, 144, 168, 192,
-                    216, 240, 264, 288, 312, 336, 360, 384, 408, 504]
+                    216, 240, 264, 288, 312, 336, 360, 384, 408, 600]
     icons = [entry_age_icon(h) for h in sample_hours]
     assert len(set(icons)) == 22, f"Expected 22 distinct icons, got {len(set(icons))}: {icons}"
 
@@ -79,7 +81,7 @@ def test_twenty_two_distinct_icons():
 def test_icon_ordering_reflects_urgency():
     """Icons should change as time increases."""
     hours = [0, 1, 6, 12, 24, 48, 72, 96, 120, 144, 168, 192,
-             216, 240, 264, 288, 312, 336, 360, 384, 408, 504]
+             216, 240, 264, 288, 312, 336, 360, 384, 408, 600]
     icons = [entry_age_icon(h) for h in hours]
     # Each consecutive pair should differ
     for i in range(len(icons) - 1):

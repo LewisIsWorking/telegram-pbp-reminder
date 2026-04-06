@@ -39,7 +39,7 @@ def post_week_welcome(config: dict, state: dict, *,
         "🆕 <1h  🌱 6h  🌿 12h  🌳 1d\n"
         "🟢 2d  🟩 3d  🟡 4d  🟨 5d  🟠 6d  🟧 7d\n"
         "🔴 8d  🟥 9d  🟣 10d  🟪 11d  🔵 12d  🟦 13d\n"
-        "🟤 14d  🟫 15d  ⚫ 16d  ⬛ 17d  💀 21d  ☠️ beyond"
+        "🟤 14d  🟫 15d  ⚫ 16d  ⬛ 17d  💀 21d  ☠️ 25d"
     )
     msg = (
         f"━━━━━━━━━━━━━━━━\n"
