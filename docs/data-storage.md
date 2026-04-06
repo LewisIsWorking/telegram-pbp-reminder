@@ -45,6 +45,20 @@ just ensure the bot is a member of each group.
 Every file is committed to the repo by the workflow on each run,
 giving a complete git history of all state changes.
 
+
+### Per-campaign queue files — topic pin state
+
+Each `data/state/queues/{pid}.json` now carries two additional fields
+alongside `unreplied`, `replied`, and `reply_log`:
+
+| Field | Type | Description |
+|---|---|---|
+| `topic_msg_id` | `int \| null` | `message_id` of the currently pinned per-topic queue message. `null` when no pin exists. |
+| `topic_fingerprint` | `string` | Change-detection string (`"t1\|t2\|…"` or `"empty"`). The hourly poster skips reposting if this matches the current entries. |
+
+These fields are managed exclusively by `scheduled/topic_queue_poster.py`
+and require no manual migration — they default to absent/null on first run.
+
 ## Versioning
 
 The bot uses [Semantic Versioning](https://semver.org/). The current version is in `VERSION`.
