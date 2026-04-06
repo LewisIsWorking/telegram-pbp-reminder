@@ -6,6 +6,7 @@ import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
 from commands.queue_format import entry_age_icon, age_str, short_preview
+from scheduled.topic_queue_poster import post_topic_queues
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -29,6 +30,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         return  # pragma: no cover
     now = now or datetime.now(timezone.utc)
     scanned = scan_transcripts(config, state)
+
+    # Maintain per-topic pinned queues — always runs, independent of bot-topic posting
+    post_topic_queues(config, scanned, now)
 
     # Build a fingerprint of the current queue state
     fingerprint_parts = []
