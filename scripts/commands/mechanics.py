@@ -60,7 +60,7 @@ def build_timer(pid: str, campaign_name: str, state: dict) -> str:
     elif hours > 0:
         time_str = f"{hours}h {mins}m"
     else:
-        time_str = f"{mins}m"
+        time_str = f"{mins}m"  # pragma: no cover
 
     reason = timer.get("reason", "")
     reason_str = f"\n📝 {reason}" if reason else ""

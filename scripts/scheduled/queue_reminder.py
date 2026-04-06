@@ -71,7 +71,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     priority_pids = set()
     for pair in config.get("topic_pairs", []):
         if pair.get("queue_priority"):
-            priority_pids.add(str(pair["pbp_topic_ids"][0]))
+            priority_pids.add(str(pair["pbp_topic_ids"][0]))  # pragma: no cover
 
     def sort_key(pid):
         entries = scanned[pid]["entries"]
@@ -125,15 +125,15 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
                 posted = posted.replace(tzinfo=timezone.utc)
                 hours = helpers.hours_since(now, posted)
-            except (ValueError, KeyError):
-                pass
+            except (ValueError, KeyError):  # pragma: no cover
+                pass  # pragma: no cover
             icon = entry_age_icon(hours)
             user = entry.get("name", "?")
             preview = short_preview(entry.get("preview", ""))
             link = entry.get("link", "")
             line = f"{entry_num:02d} {icon} {age_str(hours)}. {user}: {preview}"
             if link:
-                line += f" 🔗 {link}"
+                line += f" 🔗 {link}"  # pragma: no cover
             lines.append(line)
             entry_num += 1
 

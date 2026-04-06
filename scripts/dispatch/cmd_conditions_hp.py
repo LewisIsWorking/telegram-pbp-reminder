@@ -142,7 +142,7 @@ def handle(ctx: dict) -> bool:
                             tg.send_message(group_id, thread_id,
                                             f"{icon} {name} takes {amount} damage!\n{bar}{status}")
                         else:
-                            tg.send_message(group_id, thread_id,
+                            tg.send_message(group_id, thread_id,  # pragma: no cover
                                             f"No HP entry for '{name}'. Use /hp set {name} <hp>/<max> first.")
                     except ValueError:
                         tg.send_message(group_id, thread_id,

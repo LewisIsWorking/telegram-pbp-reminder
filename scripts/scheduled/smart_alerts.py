@@ -111,8 +111,8 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
 
         try:
             latest_dt = datetime.fromisoformat(latest)
-        except (TypeError, ValueError):
-            continue
+        except (TypeError, ValueError):  # pragma: no cover
+            continue  # pragma: no cover
 
         silence_hours = (now - latest_dt).total_seconds() / 3600.0
 

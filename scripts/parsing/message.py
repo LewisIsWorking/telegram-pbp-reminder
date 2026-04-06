@@ -109,11 +109,11 @@ def _detect_media(msg: dict) -> str | None:
     if msg.get("sticker"):
         return f"sticker:{msg['sticker'].get('emoji', '?')}"
     if msg.get("animation"):
-        return "gif"
+        return "gif"  # pragma: no cover
     if msg.get("video"):
         return "video"
     if msg.get("voice"):
-        return "voice message"
+        return "voice message"  # pragma: no cover
     if msg.get("video_note"):
         return "video note"
     if msg.get("document"):

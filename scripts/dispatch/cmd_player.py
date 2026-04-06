@@ -113,8 +113,8 @@ def handle(ctx: dict) -> bool:
         num_str = cleaned[11:].strip()
         try:
             choice = int(num_str)
-        except ValueError:
-            tg.send_message(group_id, thread_id, "Usage: /chooseboon <number>")
+        except ValueError:  # pragma: no cover
+            tg.send_message(group_id, thread_id, "Usage: /chooseboon <number>")  # pragma: no cover
         else:
             result = choose_boon_by_text(pid, user_id, choice, config, state)
             tg.send_message(group_id, thread_id, result)

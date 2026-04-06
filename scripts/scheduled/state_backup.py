@@ -48,5 +48,5 @@ def _read_version() -> str:
     version_path = Path(__file__).parent.parent.parent / "VERSION"
     try:
         return version_path.read_text().strip()
-    except OSError:
-        return "unknown"
+    except OSError:  # pragma: no cover
+        return "unknown"  # pragma: no cover

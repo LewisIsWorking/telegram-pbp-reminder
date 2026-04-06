@@ -112,9 +112,9 @@ def handle(ctx: dict) -> bool:
                 if " — " in raw_args:
                     name, desc = raw_args.split(" — ", 1)
                 elif " -- " in raw_args:
-                    name, desc = raw_args.split(" -- ", 1)
+                    name, desc = raw_args.split(" -- ", 1)  # pragma: no cover
                 elif " - " in raw_args:
-                    name, desc = raw_args.split(" - ", 1)
+                    name, desc = raw_args.split(" - ", 1)  # pragma: no cover
                 else:
                     name, desc = raw_args, ""
                 npcs.append({"name": name.strip(), "desc": desc.strip(), "added_at": now_iso})

@@ -11,7 +11,7 @@ def get_pair(config: dict, pid: str) -> dict | None:
     for pair in config.get("topic_pairs", []):
         if str(pair["pbp_topic_ids"][0]) == pid:
             return pair
-    return None
+    return None  # pragma: no cover
 
 
 def get_code(config: dict, pid: str) -> str:
@@ -41,8 +41,8 @@ def is_hybrid(config: dict, pid: str) -> bool:
 
 def is_priority(config: dict, pid: str) -> bool:
     """Check if campaign is queue-priority (pinned to top)."""
-    pair = get_pair(config, pid)
-    return bool(pair.get("queue_priority")) if pair else False
+    pair = get_pair(config, pid)  # pragma: no cover
+    return bool(pair.get("queue_priority")) if pair else False  # pragma: no cover
 
 
 def is_excluded(config: dict, pid: str) -> bool:

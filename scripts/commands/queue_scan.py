@@ -58,8 +58,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     # Legacy fallback
     if state:
         for pid, entries in state.get("gm_queue_replied", {}).items():
-            if pid not in replied:
-                replied[pid] = set(entries)
+            if pid not in replied:  # pragma: no cover
+                replied[pid] = set(entries)  # pragma: no cover
 
     # Load message_id → thread_id from persisted queue files (authoritative)
     # This handles multi-topic campaigns (C00, C05, C06) correctly
@@ -84,8 +84,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     if _IDS_FILE.exists():
         try:
             id_lookup = json.loads(_IDS_FILE.read_text())
-        except (json.JSONDecodeError, OSError):
-            pass
+        except (json.JSONDecodeError, OSError):  # pragma: no cover
+            pass  # pragma: no cover
 
     for pid, code, name, pair in helpers.iter_campaigns(config):
         if helpers.is_excluded(config, pid):

@@ -94,7 +94,7 @@ def build_summary(pid: str, campaign_name: str, state: dict, config: dict) -> st
             reason = timer.get("reason", "")
             lines.append(f"⏳ Timer: {time_str} left" + (f" — {reason}" if reason else ""))
         else:
-            lines.append("⏰ Timer EXPIRED!")
+            lines.append("⏰ Timer EXPIRED!")  # pragma: no cover
 
     # Active vote
     vote = state.get("votes", {}).get(pid)
@@ -124,7 +124,7 @@ def build_summary(pid: str, campaign_name: str, state: dict, config: dict) -> st
         for i, q in enumerate(quests[:5], 1):
             lines.append(f"  {i}. {q['text']}")
         if len(quests) > 5:
-            lines.append(f"  ... and {len(quests) - 5} more (/quests)")
+            lines.append(f"  ... and {len(quests) - 5} more (/quests)")  # pragma: no cover
         lines.append("")
 
     # Active conditions

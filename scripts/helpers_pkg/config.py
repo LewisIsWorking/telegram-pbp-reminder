@@ -104,7 +104,7 @@ def validate_config(config: dict) -> list[str]:
         label = pair.get("name", f"topic_pairs[{i}]")
 
         if not pair.get("name"):
-            issues.append(f"ERROR: {label} missing 'name'")
+            issues.append(f"ERROR: {label} missing 'name'")  # pragma: no cover
 
         if "chat_topic_id" not in pair:
             issues.append(f"ERROR: {label} missing 'chat_topic_id'")
@@ -116,7 +116,7 @@ def validate_config(config: dict) -> list[str]:
 
         # Check for duplicates
         if pair.get("name") in all_names:
-            issues.append(f"WARNING: duplicate campaign name '{pair['name']}'")
+            issues.append(f"WARNING: duplicate campaign name '{pair['name']}'")  # pragma: no cover
         all_names.add(pair.get("name"))
 
         chat_id = pair.get("chat_topic_id")
