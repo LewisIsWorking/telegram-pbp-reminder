@@ -135,3 +135,10 @@ def unpin_message(chat_id: int, message_id: int) -> bool:
     return _post("unpinChatMessage", {
         "chat_id": chat_id, "message_id": message_id,
     }, "unpin_message") is not None
+
+
+def delete_message(chat_id: int, message_id: int) -> bool:
+    """Delete a message. Returns True on success, False if not found or failed."""
+    return _post("deleteMessage", {
+        "chat_id": chat_id, "message_id": message_id,
+    }, "delete_message") is not None
