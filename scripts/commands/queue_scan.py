@@ -61,7 +61,19 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
             if pid not in replied:
                 replied[pid] = set(entries)
 
-    # Load message_id lookup for backfilled links
+    # Load message_id → thread_id from persisted queue files (authoritative)
+    # This handles multi-topic campaigns (C00, C05, C06) correctly
+    thread_lookup: dict[str, str] = {}
+    from commands.queue_io import load as _load_queue
+    for pid in _all_pids():
+        cq = _load_queue(pid)
+        for e in cq.get("unreplied", []):
+            mid = e.get("message_id")
+            tid = e.get("thread_id")
+            if mid and tid:
+                thread_lookup[str(mid)] = str(tid)
+
+    # Load message_id lookup for backfilled links (timestamp → message_id)
     import json
     id_lookup = {}
     if _IDS_FILE.exists():
@@ -130,9 +142,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                             mid = str(mid_val)
                     link = ""
                     if mid:
-                        # Use thread_id from transcript tag if present (multi-topic
-                        # campaigns like C06 have RP and Combat topics)
-                        topic = entry_thread or pid
+                        # Priority: persisted queue thread_id > transcript @tag > canonical pid
+                        topic = thread_lookup.get(str(mid)) or entry_thread or pid
                         link = f"https://t.me/{group_user}/{topic}/{mid}"
                     pending.append({
                         "name": author.strip(),
