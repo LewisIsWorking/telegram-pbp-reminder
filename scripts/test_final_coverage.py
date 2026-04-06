@@ -703,15 +703,15 @@ def test_queue_reminder_unpin_prev():
     t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
     entries = [{"name": "Alice", "time": t, "preview": "hi",
                 "link": "", "message_id": "1"}]
-    with patch("scheduled.queue_reminder.scan_transcripts") as ms:
-        ms.return_value = {"100": {"campaign": "Kibwe", "code": "C00",
-                                   "entries": entries}}
-        state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-                 "last_queue_pin_id": 777, "last_queue_daily_slots": []}
-        config = {"group_id": -1001, "bot_topic_id": 999,
-                  "gm_user_ids": [999], "queue_daily_hours": [9, 21],
-                  "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
-                                   "name": "Kibwe", "gm_user_ids": [999]}]}
+    scanned = {"100": {"campaign": "Kibwe", "code": "C00", "entries": entries}}
+    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
+             "last_queue_pin_id": 777, "last_queue_daily_slots": []}
+    config = {"group_id": -1001, "bot_topic_id": 999,
+              "gm_user_ids": [999], "queue_daily_hours": [9, 21],
+              "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
+                               "name": "Kibwe", "gm_user_ids": [999]}]}
+    with patch("scheduled.queue_reminder.scan_transcripts", return_value=scanned), \
+         patch("scheduled.queue_reminder.post_topic_queues"):
         post_queue_reminder(config, state, now=now)
     # unpin should have been called for the previous pin (777)
     # conftest mock tg records it
