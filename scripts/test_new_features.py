@@ -5,6 +5,7 @@ import os
 sys.path.insert(0, os.path.dirname(__file__))
 
 from datetime import datetime, timezone, timedelta
+from unittest.mock import patch
 
 
 # --- Queue tests ---
