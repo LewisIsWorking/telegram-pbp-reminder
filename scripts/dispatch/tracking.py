@@ -101,12 +101,13 @@ def track_message(parsed: dict, state: dict, config: dict,
                         ).strftime("%Y-%m-%d %H:%M:%S")
 
                 log_entry = {
-                    "t":       msg_time_iso,
-                    "pid":     pid,
-                    "msg_id":  str(reply_to),
-                    "player":  replied_entry.get("user_name", "?"),
-                    "preview": replied_entry.get("preview", "")[:80],
-                    "via":     "reply",
+                    "t":         msg_time_iso,
+                    "pid":       pid,
+                    "msg_id":    str(reply_to),
+                    "thread_id": replied_entry.get("thread_id", pid),
+                    "player":    replied_entry.get("user_name", "?"),
+                    "preview":   replied_entry.get("preview", "")[:80],
+                    "via":       "reply",
                 }
                 queue_io.mark_replied(pid, mid_key, ts_key, log_entry)
 

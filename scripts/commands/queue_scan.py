@@ -72,6 +72,11 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
             tid = e.get("thread_id")
             if mid and tid:
                 thread_lookup[str(mid)] = str(tid)
+        for e in cq.get("reply_log", []):
+            mid = e.get("msg_id")
+            tid = e.get("thread_id")
+            if mid and tid:
+                thread_lookup[str(mid)] = str(tid)
 
     # Load message_id lookup for backfilled links (timestamp → message_id)
     import json
