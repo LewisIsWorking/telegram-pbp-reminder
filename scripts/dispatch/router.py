@@ -111,6 +111,29 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 "maps": maps, "parsed": parsed,
             }
 
+            if cmd_word == "/chooseboon":
+                from boons.handler import choose_boon_by_text  # pragma: no cover
+                bot_topic = config.get("bot_topic_id")  # pragma: no cover
+                try:  # pragma: no cover
+                    choice = int(text[len("/chooseboon"):].strip())  # pragma: no cover
+                except ValueError:  # pragma: no cover
+                    tg.send_message(msg_gid, parsed["thread_id"],  # pragma: no cover
+                                    "Usage: /chooseboon <number>")  # pragma: no cover
+                else:  # pragma: no cover
+                    pending = state.get("pending_potw_boons", {})  # pragma: no cover
+                    target_pid = next(  # pragma: no cover
+                        (p for p, b in pending.items()  # pragma: no cover
+                         if b.get("winner_user_id") == user_id), None)  # pragma: no cover
+                    if target_pid:  # pragma: no cover
+                        result = choose_boon_by_text(  # pragma: no cover
+                            target_pid, user_id, choice, config, state)  # pragma: no cover
+                        reply_tid = bot_topic or parsed["thread_id"]  # pragma: no cover
+                        tg.send_message(msg_gid, reply_tid, result)  # pragma: no cover
+                    else:  # pragma: no cover
+                        tg.send_message(msg_gid, parsed["thread_id"],  # pragma: no cover
+                                        "No pending boon choice for you.")  # pragma: no cover
+                continue  # pragma: no cover
+
             if cmd_word:
                 for handler in _HANDLERS:
                     if handler(ctx):

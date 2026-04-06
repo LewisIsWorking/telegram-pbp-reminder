@@ -58,16 +58,31 @@ def handle_markdone(ctx: dict) -> bool:
         return True
 
     # Try numeric index (1-based from queue display)
-    if arg.isdigit() and len(arg) <= 4:
-        idx = int(arg) - 1
-        if 0 <= idx < len(entries):
-            _clear_entries([entries[idx]], pid, state, now)
-            tg.send_message(gid, tid,
-                            f"✅ Marked done: {entries[idx].get('name','?')} — "
-                            f"{entries[idx].get('preview','')[:60]}")
-            return True
-        tg.send_message(gid, tid, f"No entry #{arg} in {name} queue "
-                                  f"({len(entries)} entries).")
+    # Supports single: /markdone 3  or multiple: /markdone 1 2 5
+    nums = arg.split()
+    if nums and all(n.isdigit() and len(n) <= 4 for n in nums):
+        to_clear = []
+        bad = []
+        for n in nums:
+            idx = int(n) - 1
+            if 0 <= idx < len(entries):
+                to_clear.append(entries[idx])
+            else:
+                bad.append(n)
+        if bad:
+            tg.send_message(gid, tid, f"No entr{'ies' if len(bad)>1 else 'y'} "
+                                      f"{', '.join('#'+b for b in bad)} in {name} queue "
+                                      f"({len(entries)} entries).")
+        if to_clear:
+            _clear_entries(to_clear, pid, state, now)
+            if len(to_clear) == 1:
+                tg.send_message(gid, tid,
+                                f"✅ Marked done: {to_clear[0].get('name','?')} — "
+                                f"{to_clear[0].get('preview','')[:60]}")
+            else:
+                names = ", ".join(e.get("name", "?") for e in to_clear)  # pragma: no cover
+                tg.send_message(gid, tid,  # pragma: no cover
+                                f"✅ Marked {len(to_clear)} entries done: {names}")
         return True
 
     # Try message ID (longer number)
