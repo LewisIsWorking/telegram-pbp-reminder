@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 141138,
-      "thread_id": 66154,
-      "user_id": "6717906753",
-      "user_name": "Bo",
-      "time": "2026-03-31T14:59:12+00:00",
-      "preview": "\"He's a familiar. Kind of impossible for us not to fight together.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 141139,
       "thread_id": 66154,
       "user_id": "6717906753",
@@ -93,7 +84,9 @@
     "msg:139594",
     "2026-03-25 01:34:35",
     "msg:139637",
-    "2026-03-25 22:04:21"
+    "2026-03-25 22:04:21",
+    "msg:141138",
+    "2026-03-31 14:59:12"
   ],
   "reply_log": [
     {
@@ -287,6 +280,17 @@
       "player": "Bo",
       "preview": "\"Come on, Driftwood. Looks like we're wanted.\" The silver-haired woman follows b",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-06T11:42:21+00:00",
+      "pid": "66154",
+      "msg_id": "141138",
+      "thread_id": 66154,
+      "player": "Bo",
+      "preview": "\"He's a familiar. Kind of impossible for us not to fight together.\"",
+      "via": "reply"
     }
-  ]
+  ],
+  "topic_msg_id": 142815,
+  "topic_fingerprint": "2026-03-31 15:18:45|2026-03-31 15:46:55|2026-03-31 16:50:28|2026-03-31 21:37:24|2026-04-01 21:33:16"
 }
