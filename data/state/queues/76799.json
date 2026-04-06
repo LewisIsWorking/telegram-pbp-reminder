@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 142869,
+      "thread_id": 76799,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-06T14:46:11+00:00",
+      "preview": "Yes. Please.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -311,5 +321,7 @@
       "preview": "",
       "via": "reply"
     }
-  ]
+  ],
+  "topic_msg_id": 142916,
+  "topic_fingerprint": "2026-04-06 14:46:11"
 }

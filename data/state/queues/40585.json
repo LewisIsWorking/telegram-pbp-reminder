@@ -26,21 +26,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 142848,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-04-06T13:38:40+00:00",
-      "preview": "Alright will have to wait.  I did add the plus 2.. however it did not add it. Currently on way tonwork.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 142852,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-04-06T14:00:28+00:00",
-      "preview": "I guess i missed the add button.",
+      "message_id": 142863,
+      "thread_id": 40585,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-06T14:35:29+00:00",
+      "preview": "Kieran gets distracted for a moment. He hears the scream of those in danger and his first instinct is to jump over to help.\n\nBut before he does, he is reminded by Theron's gurgling laughter that he is helping. If he leaves this ritual now, far worse will happen. He reaches deep for the strength needed to trust in the others and to keep channeling the ritual.",
       "media_group_id": null
     }
   ],
@@ -257,7 +248,13 @@
     "msg:142834",
     "2026-04-06 13:02:56",
     "msg:142851",
-    "2026-04-06 13:54:55"
+    "2026-04-06 13:54:55",
+    "msg:142862",
+    "2026-04-06 14:31:41",
+    "msg:142852",
+    "2026-04-06 14:00:28",
+    "msg:142848",
+    "2026-04-06 13:38:40"
   ],
   "reply_log": [
     {
@@ -1076,8 +1073,35 @@
       "player": "Bruce",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-06T14:41:55+00:00",
+      "pid": "40585",
+      "msg_id": "142862",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-06T14:42:43+00:00",
+      "pid": "40585",
+      "msg_id": "142852",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "I guess i missed the add button.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-06T14:42:50+00:00",
+      "pid": "40585",
+      "msg_id": "142848",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "Alright will have to wait.  I did add the plus 2.. however it did not add it. Cu",
+      "via": "reply"
     }
   ],
-  "topic_msg_id": 142856,
-  "topic_fingerprint": "2026-04-06 13:38:40|2026-04-06 14:00:28"
+  "topic_msg_id": 142920,
+  "topic_fingerprint": "2026-04-06 14:35:29"
 }
