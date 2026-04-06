@@ -318,11 +318,11 @@ def test_queue_reminder_chunks_long_message():
               "queue_daily_hours": [9, 21],
               "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
                                "name": "Kibwe", "gm_user_ids": [999]}]}
-    with patch("scheduled.queue_reminder.scan_transcripts") as ms:
-        ms.return_value = {"100": {"campaign": "Kibwe", "code": "C00",
-                                   "entries": entries}}
-        state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-                 "last_queue_pin_id": None, "last_queue_daily_slots": []}
+    scanned = {"100": {"campaign": "Kibwe", "code": "C00", "entries": entries}}
+    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
+             "last_queue_pin_id": None, "last_queue_daily_slots": []}
+    with patch("scheduled.queue_reminder.scan_transcripts", return_value=scanned), \
+         patch("scheduled.queue_reminder.post_topic_queues"):
         post_queue_reminder(config, state, now=now)
     assert state["queue_post_count"] == 1
 
