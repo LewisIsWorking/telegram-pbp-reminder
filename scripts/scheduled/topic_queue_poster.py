@@ -11,6 +11,7 @@ files managed by commands/queue_io:
   topic_fingerprint — change-detection string; post is skipped if unchanged
 """
 
+import time
 from datetime import datetime
 
 import telegram as tg
@@ -87,7 +88,9 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime) -> None:
     """
     for pid, data in scanned.items():
         _post_topic_queue(config, pid, data["entries"], now)
+        time.sleep(1)  # avoid rate-limiting when several topics post at once
 
     for pid in _all_pids():
         if pid not in scanned:
             _clear_topic_queue(config, pid)
+            time.sleep(1)
