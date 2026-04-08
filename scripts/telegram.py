@@ -13,8 +13,13 @@ def init(token: str) -> None:
     TELEGRAM_API = f"https://api.telegram.org/bot{token}"
 
 
-def _post(method: str, payload: dict, label: str = "request") -> dict | None:
-    """POST to Telegram API. Retries once on HTTP 429."""
+def _post(method: str, payload: dict, label: str = "request",
+          suppress_errors: tuple = ()) -> dict | None:
+    """POST to Telegram API. Retries once on HTTP 429.
+
+    suppress_errors: tuple of substrings — if the 400 response body contains
+    any of them the failure is logged at DEBUG level only (not printed).
+    """
     for attempt in range(2):
         try:
             resp = requests.post(f"{TELEGRAM_API}/{method}", json=payload, timeout=30)
@@ -27,7 +32,9 @@ def _post(method: str, payload: dict, label: str = "request") -> dict | None:
                 print(f"Telegram rate limit on {label}, waiting {retry_after}s")
                 time.sleep(retry_after + 1)
                 continue
-            print(f"Telegram {label} failed: {resp.text[:500]}")
+            _body = resp.text[:500]
+            if not any(s in _body for s in suppress_errors):
+                print(f"Telegram {label} failed: {_body}")
         except requests.RequestException as e:
             print(f"Telegram {label} network error: {e}")
         break
@@ -131,14 +138,26 @@ def pin_message(chat_id: int, message_id: int,
 
 
 def unpin_message(chat_id: int, message_id: int) -> bool:
-    """Unpin a specific message in a chat. Returns True on success."""
+    """Unpin a specific message in a chat. Returns True on success.
+
+    Silently ignores 400 "message not found" errors — Telegram auto-unpins
+    expired polls, so the message may already be gone by the time we try.
+    """
     return _post("unpinChatMessage", {
         "chat_id": chat_id, "message_id": message_id,
-    }, "unpin_message") is not None
+    }, "unpin_message",
+    suppress_errors=("message to unpin not found", "MESSAGE_ID_INVALID",
+                     "message not found")) is not None
 
 
 def delete_message(chat_id: int, message_id: int) -> bool:
-    """Delete a message. Returns True on success, False if not found or failed."""
+    """Delete a message. Returns True on success, False if not found or failed.
+
+    Silently ignores "message not found" — the message may have been deleted
+    already (e.g. by Telegram when a poll expired).
+    """
     return _post("deleteMessage", {
         "chat_id": chat_id, "message_id": message_id,
-    }, "delete_message") is not None
+    }, "delete_message",
+    suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
+                     "message not found")) is not None
