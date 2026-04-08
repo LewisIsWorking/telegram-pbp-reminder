@@ -11,6 +11,58 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.35.0] - 2026-04-08
+
+### Fixed — Poll week number, date drift in vote notifications, per-campaign message links, rate limiting
+
+**Poll week number on Sunday** (`scheduled/session_poll.py`)
+
+Polls posted on Sunday (e.g. W14) were labelling themselves with the
+current ISO week instead of the upcoming week. A poll posted Sunday W14
+covers Mon–Sat of W15, so the title now correctly reads `W15/52`.
+Fix: `(now + timedelta(days=1)).isocalendar()[1]` when `weekday == 6`.
+
+**Vote notification date drift** (`scheduled/session_poll.py`, `dispatch/poll_notify.py`, `dispatch/poll_router.py`)
+
+Vote notifications mid-week were recalculating option dates from the
+current time (e.g. Tuesday) instead of from the poll-creation Sunday,
+causing labels like "Monday 2026-04-13" instead of "Monday 2026-04-06".
+
+Fix: poll options are now stored in `state["session_poll"][code]["options"]`
+at creation time. `_options_for_code` reads stored options first and
+only falls back to recalculation when absent. `handle_poll_answer` uses
+stored options for the voter label too.
+
+**Per-campaign message links for private groups** (`commands/queue_scan.py`)
+
+C11 (Dark Pockets) lives in a separate private group. The queue scanner
+was hardcoding `t.me/Path_Wars/…` for all campaigns. Added `_build_link`
+which checks `pair.get("group_username")` — if absent, builds a
+`t.me/c/{digits}/…` private-group link instead.
+
+**Telegram rate limiting** (`scheduled/topic_queue_poster.py`)
+
+Multiple per-topic queue posts in a single hourly run were triggering
+rate-limit warnings. Added 1s sleep between each campaign post/clear.
+
+**C09 combat topic** (`config.json`)
+
+Topic `142887` (Metal City Stargazers COMBAT) added to C09
+`pbp_topic_ids` — it's a PBP split topic, not a separate campaign.
+
+**Per-topic queue preview length** (`commands/topic_queue_format.py`)
+
+Bumped from 15 words to 80 words per entry. The longer entries give
+enough context to know what the player wrote without opening the link.
+
+**Poll username casing + placeholder detection** (`config.json`, `scripts/promote_poll_voters.py`)
+
+`thefununlce` corrected to `Thefununlce` (Patrick Coxx). Placeholder
+detection in `promote_poll_voters.py` now covers the `9100000xxx`
+range used for Patrick's placeholder UID, in addition to `9000000xxx`.
+
+---
+
 ## [4.34.0] - 2026-04-06
 
 ### Added — Per-topic pinned queue + telegram.delete_message
