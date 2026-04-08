@@ -62,7 +62,18 @@ def _lead_summary(votes: dict, options: list[str]) -> str:
     return f" — {len(leaders)}-way tie"
 
 
-def _options_for_code(config: dict, code: str) -> list[str]:
+def _options_for_code(config: dict, code: str,
+                       state: dict | None = None) -> list[str]:
+    """Return poll options for a campaign code.
+
+    Prefers options stored in poll state at creation time (avoids date
+    drift when votes arrive mid-week and now != poll-creation Sunday).
+    Falls back to recalculating from current time.
+    """
+    if state:
+        stored = state.get("session_poll", {}).get(code, {}).get("options")
+        if stored:
+            return stored
     now = datetime.now(timezone.utc)
     for pair in config.get("topic_pairs", []):
         if pair.get("code") == code:
@@ -82,7 +93,7 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
     tally_lines = []
     for code in all_codes:
         slot = polls.get(code, {})
-        options = _options_for_code(config, code)
+        options = _options_for_code(config, code, state)
         tally_lines.append(_tally_line(code, slot, options))
 
     msg = (f"━━━━━━━━━━━━━━━━\n"
