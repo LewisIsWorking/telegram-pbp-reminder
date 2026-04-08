@@ -91,9 +91,10 @@ def _build_report(analysis: dict, run_count: int, now: datetime) -> str:
             seen = set()
             for occ in occurrences:
                 if occ not in seen:
-                    lines.append(f"    └ {occ[:90]}")
+                    lines.append(f"    └ {occ[:120]}")
                     seen.add(occ)
-                    break
+                    if len(seen) >= 10:
+                        break
 
     if events:
         # Summarise notable events
