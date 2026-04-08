@@ -417,6 +417,7 @@ Dated log of discovered bugs — open and resolved.
 | 2026-04-08 | ✅ Fixed 2026-04-08 | Vote notification dates drift mid-week — Monday shown as Apr 14 instead of Apr 6 | Poll options stored in state at creation; all notifications use stored options |
 | 2026-04-08 | ✅ Fixed 2026-04-08 | `promote_poll_voters.py` missed `9100000xxx` placeholder range (Patrick Coxx) | Expanded `_is_placeholder` to cover `9100000xxx` |
 | 2026-04-08 | ✅ Fixed 2026-04-08 | Telegram rate-limit warnings from per-topic queue bursts | 1s sleep between campaign posts in `topic_queue_poster.py` |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Diagnostic showed `Worker ID: {...}` as rate-limit context — GitHub Actions infra lines not filtered correctly | Fixed filter to run on timestamp-stripped line; expanded infra prefix list |
 
 ---
 
