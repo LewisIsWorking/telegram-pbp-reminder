@@ -3,6 +3,8 @@
 Planned features and improvements for the PBP Reminder Bot.
 Status: ✅ Done | 🔧 In Progress | 📋 Planned | 💡 Idea
 
+Dates shown as `[YYYY-MM-DD]` next to status icons indicate when work was completed or the item was logged.
+
 ---
 
 ## v1.1.0 — Player Self-Service & Awareness
@@ -378,13 +380,14 @@ Elicia) auto-capture on next vote via `promote_poll_voters.py`.
 
 ---
 
-### 💡 C11 Remaining Player IDs
+### 💡 [2026-04-08] C11 Remaining Player IDs
 
 IDs still pending for 4 C11 players (placeholders in config):
-`@molluggg` (Malia), `@Brookm126` (Safrah),
-`@Luke_Skillen` (Rino), `@EliciaRoseT` (Elicia).
-IDs auto-captured when they vote next Sunday.
-Run `python3 scripts/promote_poll_voters.py --commit` after to promote.
+`@molluggg` (Molly Gibb), `@Brookm126` (Brook),
+`@Luke_Skillen` (Luke Skillen), `@EliciaRoseT` (Elicia Rose Taylor).
+Patrick Coxx (`@Thefununlce`, placeholder `9100000006`) also pending.
+IDs auto-captured when they vote. Run `promote_poll_voters.py --commit` after.
+Note: `9100000xxx` range now detected — fixed 2026-04-08.
 
 
 - Optional AI-generated "story so far" recap using Anthropic API
@@ -396,6 +399,24 @@ Run `python3 scripts/promote_poll_voters.py --commit` after to promote.
 - Allow per-campaign timezone config
 - Schedule posts for reasonable local times instead of UTC cron
 - Display "last post" times in local timezone
+
+---
+
+## Bug Log
+
+Dated log of discovered bugs — open and resolved.
+
+| Date | Status | Description | Fix |
+|------|--------|-------------|-----|
+| 2026-03-27 | ✅ Fixed 2026-03-27 | Unknown voter UIDs displayed as raw numbers in poll pings | Added `"Unknown (uid)"` fallback; added DragonFox2000 to C01 config |
+| 2026-03-27 | ✅ Fixed 2026-03-27 | `None.items()` crash in `session_poll.py` when `poll_user_names` is `null` | Guard added |
+| 2026-03-27 | ✅ Fixed 2026-03-27 | Missing `build_hp_tracker` import in `cmd_conditions_hp.py` (would NameError in production) | Import added |
+| 2026-04-06 | ✅ Fixed 2026-04-06 | C11 queue links broken — private group requires `t.me/c/…` not `t.me/Path_Wars/…` | `_build_link()` added to `queue_scan.py` using per-campaign `group_username` |
+| 2026-04-06 | ✅ Fixed 2026-04-06 | "Send failed ×7" — `unpin_message` logs 400 errors when Telegram already auto-unpinned expired polls | `suppress_errors` param added to `_post`; unpin and delete silently ignore "message not found" |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Poll week number wrong — Sunday W14 poll labelled "W14/52" instead of "W15/52" | Use Monday's ISO week number when posting on Sunday |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Vote notification dates drift mid-week — Monday shown as Apr 14 instead of Apr 6 | Poll options stored in state at creation; all notifications use stored options |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | `promote_poll_voters.py` missed `9100000xxx` placeholder range (Patrick Coxx) | Expanded `_is_placeholder` to cover `9100000xxx` |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Telegram rate-limit warnings from per-topic queue bursts | 1s sleep between campaign posts in `topic_queue_poster.py` |
 
 ---
 
