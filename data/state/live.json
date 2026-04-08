@@ -1,5 +1,5 @@
 {
-  "offset": 619324888,
+  "offset": 619324890,
   "topics": {
     "52083": {
       "last_message_time": "2026-04-06T15:27:09+00:00",
@@ -44,9 +44,9 @@
       "campaign_name": "Magni Watch"
     },
     "107151": {
-      "last_message_time": "2026-04-08T17:03:48+00:00",
-      "last_user": "Moss",
-      "last_user_id": "6482311444",
+      "last_message_time": "2026-04-08T20:59:38+00:00",
+      "last_user": "Cannon",
+      "last_user_id": "7454623139",
       "campaign_name": "Theria"
     },
     "1242": {
@@ -133,7 +133,8 @@
     "25059": "active",
     "66154": "active",
     "76799": "active",
-    "52083": "active"
+    "52083": "active",
+    "40585": "active"
   },
   "last_campaign_table": "2026-04-02T11:19:04.496261+00:00",
   "session_poll": {
@@ -246,7 +247,8 @@
     "107171:Cobalt Quail": "2026-03-30T19:24:36.242381+00:00",
     "66154:Lunnes": "2026-04-03T22:10:05.996620+00:00",
     "1242:Craig": "2026-04-03T22:10:05.996620+00:00",
-    "1242:NJ": "2026-04-03T23:11:30.220274+00:00"
+    "1242:NJ": "2026-04-03T23:11:30.220274+00:00",
+    "40585:Caelum (Thi\u00ean)": "2026-04-08T21:18:03.193043+00:00"
   },
   "paused_campaigns": {},
   "current_scenes": {},
@@ -267,7 +269,6 @@
   },
   "last_week_welcome": "sun2026-04-05",
   "last_queue_daily_slots": [
-    "2026-03-31:21",
     "2026-04-02:09",
     "2026-04-02:21",
     "2026-04-03:09",
@@ -280,7 +281,8 @@
     "2026-04-06:21",
     "2026-04-07:09",
     "2026-04-07:21",
-    "2026-04-08:09"
+    "2026-04-08:09",
+    "2026-04-08:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-04-05",
@@ -292,6 +294,6 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-04-08",
-  "last_queue_pin_id": 143242,
-  "queue_post_count": 50
+  "last_queue_pin_id": 143273,
+  "queue_post_count": 51
 }
