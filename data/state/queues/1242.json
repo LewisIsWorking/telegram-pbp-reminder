@@ -1,73 +1,23 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 1540,
-      "thread_id": 1242,
-      "user_id": "503940482",
-      "user_name": "Craig",
-      "time": "2026-04-01T21:48:54+00:00",
-      "preview": "I will treat Ger's wounds and attempt to use my my knowledge of occultism to attempt to determine how to reverse this loss of shadow",
-      "media_group_id": null
-    },
-    {
-      "message_id": 1541,
-      "thread_id": 1242,
-      "user_id": "503940482",
-      "user_name": "Craig",
-      "time": "2026-04-01T21:49:23+00:00",
-      "preview": "I believe I also need to reload my rifle",
-      "media_group_id": null
-    },
-    {
-      "message_id": 1542,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-04-01T22:27:16+00:00",
-      "preview": "Be careful Atticus there is a lot of shadow darkness that could be in those wounds, if the group is happy I could send batty to scout ahead for dangers \ud83e\udd87",
-      "media_group_id": null
-    },
-    {
-      "message_id": 1544,
-      "thread_id": 1242,
-      "user_id": "503940482",
-      "user_name": "Craig",
-      "time": "2026-04-01T22:32:21+00:00",
-      "preview": "I believe there are two other rooms left",
-      "media_group_id": null
-    },
-    {
-      "message_id": 1545,
-      "thread_id": 1242,
-      "user_id": "503940482",
-      "user_name": "Craig",
-      "time": "2026-04-01T22:32:37+00:00",
-      "preview": "But we also need to examine the corpses",
-      "media_group_id": null
-    },
-    {
-      "message_id": 1546,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-04-01T22:44:24+00:00",
-      "preview": "I could try and do a nature based magic check on the corpses to see if there are any traces left? Whilst batty scouts for danger in the other two rooms and reports back?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 1665,
-      "thread_id": 1242,
-      "user_id": "503940482",
-      "user_name": "Craig",
-      "time": "2026-04-07T02:25:12+00:00",
-      "preview": "I go to check on the 3 people waking up",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
-    "2026-03-14 09:11:59"
+    "2026-03-14 09:11:59",
+    "msg:1540",
+    "2026-04-01 21:48:54",
+    "msg:1541",
+    "2026-04-01 21:49:23",
+    "msg:1542",
+    "2026-04-01 22:27:16",
+    "msg:1544",
+    "2026-04-01 22:32:21",
+    "msg:1545",
+    "2026-04-01 22:32:37",
+    "msg:1546",
+    "2026-04-01 22:44:24",
+    "msg:1665",
+    "2026-04-07 02:25:12"
   ],
   "reply_log": [
     {
@@ -117,8 +67,71 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:04:39+00:00",
+      "pid": "1242",
+      "msg_id": "1540",
+      "thread_id": 1242,
+      "player": "Craig",
+      "preview": "I will treat Ger's wounds and attempt to use my my knowledge of occultism to att",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:04:55+00:00",
+      "pid": "1242",
+      "msg_id": "1541",
+      "thread_id": 1242,
+      "player": "Craig",
+      "preview": "I believe I also need to reload my rifle",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:05:43+00:00",
+      "pid": "1242",
+      "msg_id": "1542",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "Be careful Atticus there is a lot of shadow darkness that could be in those woun",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:05:53+00:00",
+      "pid": "1242",
+      "msg_id": "1544",
+      "thread_id": 1242,
+      "player": "Craig",
+      "preview": "I believe there are two other rooms left",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:06:11+00:00",
+      "pid": "1242",
+      "msg_id": "1545",
+      "thread_id": 1242,
+      "player": "Craig",
+      "preview": "But we also need to examine the corpses",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:06:25+00:00",
+      "pid": "1242",
+      "msg_id": "1546",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "I could try and do a nature based magic check on the corpses to see if there are",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-08T02:07:59+00:00",
+      "pid": "1242",
+      "msg_id": "1665",
+      "thread_id": 1242,
+      "player": "Craig",
+      "preview": "I go to check on the 3 people waking up",
+      "via": "reply"
     }
   ],
-  "topic_msg_id": 1666,
-  "topic_fingerprint": "2026-04-01 21:48:54|2026-04-01 21:49:23|2026-04-01 22:27:16|2026-04-01 22:32:21|2026-04-01 22:32:37|2026-04-01 22:44:24|2026-04-07 02:25:12"
+  "topic_msg_id": null,
+  "topic_fingerprint": ""
 }
