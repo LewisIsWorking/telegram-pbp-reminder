@@ -21,10 +21,12 @@ CONFIG = ROOT / "config.json"
 STATE  = ROOT / "data" / "state" / "live.json"
 
 PLACEHOLDER_PREFIX = 9000000000
+PLACEHOLDER_PREFIX_ALT = 9100000000  # second range used for some C11 placeholders
 
 
 def _is_placeholder(uid: int) -> bool:
-    return PLACEHOLDER_PREFIX <= uid < PLACEHOLDER_PREFIX + 100
+    return (PLACEHOLDER_PREFIX <= uid < PLACEHOLDER_PREFIX + 100
+            or PLACEHOLDER_PREFIX_ALT <= uid < PLACEHOLDER_PREFIX_ALT + 100)
 
 
 def main() -> None:  # pragma: no cover
