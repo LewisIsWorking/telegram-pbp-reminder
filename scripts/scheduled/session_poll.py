@@ -6,7 +6,7 @@ Poll message is pinned. Daily pings include a link to the poll.
 State stored per-code: state["session_poll"][code].
 """
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 import helpers
 import telegram as tg
@@ -87,7 +87,8 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     polls = state.setdefault("session_poll", {})
     poll = polls.get(code, {})
     week_key = sunday_week_key(now)
-    week_num = now.isocalendar()[1]
+    # Poll posted Sunday covers the upcoming week; use Monday's ISO week number
+    week_num = (now + timedelta(days=1)).isocalendar()[1] if now.weekday() == 6 else now.isocalendar()[1]
 
     # New week starts Sunday at or after poll_post_hour
     is_sunday = (weekday == 6)
@@ -127,6 +128,7 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
                 "week_iso": week_key,
                 "poll_id": poll_id or "",
                 "poll_message_id": msg_id,
+                "options": options,  # stored to avoid date drift in notifications
                 "voted_uids": [],
                 "last_ping_day": -1,
                 "votes": {},
