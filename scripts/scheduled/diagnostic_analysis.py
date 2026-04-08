@@ -37,11 +37,15 @@ def _analyse_logs(logs: list[str]) -> dict:
     for log in logs:
         run_had_error = False
         for line in log.splitlines():
-            # Skip GitHub Actions runner infrastructure lines
-            if line.lstrip().startswith(("[command]", "##[", "Run ", "  with:")):
-                continue  # pragma: no cover
             clean = re.sub(r"^\d{4}-\d{2}-\d{2}T[\d:.Z]+ ", "", line).strip()
             if not clean:
+                continue  # pragma: no cover
+            # Skip GitHub Actions infrastructure lines (on cleaned text)
+            _GH_PREFIXES = ("[command]", "##[", "Run ", "  with:",
+                            "Worker ID:", "Current runner version",
+                            "FORCE_JAVASCRIPT", "pythonLocation",
+                            "shell:", "env:")
+            if clean.startswith(_GH_PREFIXES):
                 continue  # pragma: no cover
 
             for pattern, label in _ERROR_PATTERNS:
