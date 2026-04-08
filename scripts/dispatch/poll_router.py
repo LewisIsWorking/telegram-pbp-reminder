@@ -96,7 +96,14 @@ def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     # Cross-campaign notification
     pair = find_pair(config, code)
     pid = str(pair["pbp_topic_ids"][0]) if pair else None
-    option_label = votes_to_option_label(option_ids, pair or {}, datetime.now(timezone.utc))
+    # Use stored options to avoid date drift (votes arrive days after poll was posted)
+    stored_options = poll.get("options", [])
+    if stored_options:
+        raw_labels = [stored_options[i].split()[0]
+                      for i in option_ids if i < len(stored_options)]
+        option_label = " & ".join(raw_labels) if raw_labels else "?"
+    else:
+        option_label = votes_to_option_label(option_ids, pair or {}, datetime.now(timezone.utc))
     if pid:
         notify_vote(config, state, name, uid, code, option_label, pid)
     print(f"Poll vote: {name} ({code}) → option {option_ids}")
