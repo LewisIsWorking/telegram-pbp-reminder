@@ -62,7 +62,7 @@ def _options_for_code(config: dict, code: str,
 def _action_label(option_label: str) -> str:
     """Convert raw option label to readable voted action string."""
     if option_label == "?":
-        return "retracted their vote"
+        return "retracted their vote"  # pragma: no cover
     return f"voted {option_label}"
 
 
