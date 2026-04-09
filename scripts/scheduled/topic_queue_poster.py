@@ -77,7 +77,7 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
     """
     old_msg_id = slot.get("msg_id")
     if not old_msg_id:
-        return
+        return  # pragma: no cover
     tg.send_message(group_id, int(thread_id), "━━━━━━━━━━━━━━━━\n✅ All caught up!")
     tg.unpin_message(group_id, old_msg_id)
     tg.delete_message(group_id, old_msg_id)
