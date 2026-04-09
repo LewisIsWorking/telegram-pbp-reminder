@@ -25,10 +25,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests pytest
+        run: pip install requests pytest pytest-cov
 
       - name: Run tests
-        run: cd scripts && python -m pytest . -q
+        run: cd scripts && python -m pytest . -q --cov=scripts --cov-config=../.coveragerc --cov-report=term-missing
 
       - name: Run inactivity checker
         env:
