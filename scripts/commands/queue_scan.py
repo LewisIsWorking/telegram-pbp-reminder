@@ -170,12 +170,16 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                         topic = thread_lookup.get(str(mid)) or entry_thread or pid
                         link = _build_link(camp_group_id, camp_group_user,
                                            topic, mid)
+                    # thread_id: the physical topic this message lives in
+                    # Used by topic_queue_poster to post to the correct thread
+                    entry_tid = thread_lookup.get(str(mid)) or entry_thread or pid
                     pending.append({
                         "name": author.strip(),
                         "time": timestamp,
                         "preview": preview,
                         "message_id": mid,
                         "link": link,
+                        "thread_id": entry_tid,
                     })
 
         if pending:
