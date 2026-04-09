@@ -12,12 +12,10 @@ from datetime import datetime, timezone, timedelta
 
 import helpers
 import telegram as tg
+from commands.queue_format import entry_age_icon
 
-# Last post age -> health icon
-# 🟢 < 1 day   — healthy, active today
-# 🟡 1-3 days  — slowing down
-# 🟠 3-5 days  — concerning, needs attention
-# 🔴 5+ days   — stalled, no recent activity
+# Last post age -> health icon uses the same 22-tier GM queue scale
+# (entry_age_icon from commands/queue_format.py, input in hours)
 
 REQUIRED_PLAYERS = 6
 
@@ -51,7 +49,9 @@ def build_campaign_table(config: dict, state: dict,
     pre     = "<pre>" + "\n".join(lines) + "</pre>"
     totals  = (f"Total: {total_active} active players, "
                f"{total_week} posts this week")
-    legend  = "🟢 &lt;1d  🟡 1-3d  🟠 3-5d  🔴 5d+"
+    legend  = ("🆕&lt;1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d "
+               "🟠6d 🟧7d 🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d "
+               "🟤14d 🟫15d ⚫16d ⬛17d 💀21d ☠️25d")
 
     parts = [title, "", pre, "", totals, legend]
     parts.extend(_build_warning(rows))
@@ -75,13 +75,13 @@ def _collect_rows(config: dict, state: dict,
 
         topic     = state.get("topics", {}).get(pid, {})
         last_time = topic.get("last_message_time")
-        age, days_val = _calc_age(last_time, now)
+        age, hours_val = _calc_age(last_time, now)
 
         queue = len(scanned.get(pid, {}).get("entries", []))
         rows.append({
             "code": code, "name": _truncate(name, 20),
             "active": active, "week": week_posts,
-            "age": age, "icon": _health_icon(days_val),
+            "age": age, "icon": entry_age_icon(hours_val),
             "qcount": queue,
             "hybrid": helpers.is_hybrid(config, pid),
         })
@@ -135,22 +135,15 @@ def post_campaign_table(config: dict, state: dict, *,
 
 
 def _calc_age(last_time: str | None, now: datetime) -> tuple[str, float]:
+    """Return (age_str, hours_elapsed) for a last-post timestamp."""
     if not last_time:
-        return "—", 99.0
+        return "—", 99.0 * 24
     hours = helpers.hours_since(now, datetime.fromisoformat(last_time))
     if hours < 24:
-        return f"{int(hours)}h", hours / 24
-    return f"{int(hours / 24)}d", hours / 24
+        return f"{int(hours)}h", hours
+    return f"{int(hours / 24)}d", hours
 
 
-def _health_icon(days_val: float) -> str:
-    if days_val < 1:
-        return "🟢"
-    elif days_val < 3:
-        return "🟡"
-    elif days_val < 5:
-        return "🟠"
-    return "🔴"
 
 
 def _truncate(s: str, length: int) -> str:
