@@ -94,7 +94,7 @@ def test_totals_outside_pre(mock_scan):
 def test_legend_outside_pre(mock_scan):
     result = build_campaign_table(_make_config(), _make_state(), now=NOW)
     post_pre = result.split("</pre>")[1]
-    assert "&lt;1d" in post_pre
+    assert "&lt;1h" in post_pre  # new 22-tier scale starts with 🆕<1h
 
 
 # ── Per-line format ────────────────────────────────────────────────────────────
