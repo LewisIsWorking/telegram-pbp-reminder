@@ -376,9 +376,8 @@ def test_handle_ext_unknown():
 # dispatch/poll_notify.py
 # ═══════════════════════════════════════════════════════════════════════════════
 
-from dispatch.poll_notify import (
-    _voter_mention, _tally_line, _lead_summary, notify_vote
-)
+from dispatch.poll_notify import _voter_mention, notify_vote
+from dispatch.poll_tally import _lead_summary, build_tally_block
 
 
 def _pn_config():
@@ -413,14 +412,17 @@ def test_voter_mention_fallback():
     assert _voter_mention("U99", "Fallback", {}, {}) == "Fallback"
 
 
-def test_tally_line_no_votes():
-    result = _tally_line("C01", {"votes": {}}, ["Friday", "Saturday"])
-    assert "no votes" in result
+def test_build_tally_block_no_votes():
+    result = build_tally_block("C01", {"votes": {}, "voted_uids": []},
+                               ["Friday", "Saturday"], _pn_config(), {})
+    assert "C01" in result
 
 
-def test_tally_line_with_votes():
-    slot = {"votes": {"0": ["U1", "U2"], "1": ["U3"]}}
-    result = _tally_line("C01", slot, ["Friday", "Saturday", "Both", "Can't"])
+def test_build_tally_block_with_votes():
+    slot = {"votes": {"0": ["U1", "U2"], "1": ["U3"]}, "voted_uids": ["U1", "U2", "U3"]}
+    result = build_tally_block("C01", slot,
+                               ["Friday", "Saturday", "Both", "Can't"],
+                               _pn_config(), {})
     assert "C01" in result
     assert "Friday" in result
 
