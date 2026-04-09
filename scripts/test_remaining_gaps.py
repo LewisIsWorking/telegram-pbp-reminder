@@ -607,7 +607,7 @@ def test_comeback_sends_alert():
 # ─── dispatch/poll_notify.py:62 — 3-way tie ──────────────────────────────────
 
 def test_poll_notify_three_way_tie():
-    from dispatch.poll_notify import _lead_summary
+    from dispatch.poll_tally import _lead_summary
     votes = {"0": ["U1"], "1": ["U2"], "2": ["U3"]}
     options = ["Friday", "Saturday", "Sunday"]
     result = _lead_summary(votes, options)
