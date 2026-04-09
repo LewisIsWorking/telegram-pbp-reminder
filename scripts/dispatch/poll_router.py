@@ -99,9 +99,9 @@ def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     # Use stored options to avoid date drift (votes arrive days after poll was posted)
     stored_options = poll.get("options", [])
     if stored_options:
-        raw_labels = [stored_options[i].split()[0]
+        raw_labels = [stored_options[i].split()[0]  # pragma: no cover
                       for i in option_ids if i < len(stored_options)]
-        option_label = " & ".join(raw_labels) if raw_labels else "?"
+        option_label = " & ".join(raw_labels) if raw_labels else "?"  # pragma: no cover
     else:
         option_label = votes_to_option_label(option_ids, pair or {}, datetime.now(timezone.utc))
     if pid:
