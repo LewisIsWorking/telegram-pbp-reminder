@@ -28,7 +28,7 @@ jobs:
         run: pip install requests pytest pytest-cov
 
       - name: Run tests
-        run: cd scripts && python -m pytest . -q --cov=scripts --cov-config=../.coveragerc --cov-report=term-missing
+        run: python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing
 
       - name: Run inactivity checker
         env:
