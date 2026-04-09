@@ -47,37 +47,45 @@ class TestFormatTopicQueue:
     def _e(self, name="A", t="2026-04-06 12:00:00", preview="text", link=""):
         return {"name": name, "time": t, "preview": preview, "link": link}
 
-    def test_header_shows_count(self):
+    def _full(self, entries, now=None):
         from commands.topic_queue_format import format_topic_queue
-        result = format_topic_queue([self._e()], self._NOW)
-        assert "📋 Unreplied: 1" in result
+        return "\n".join(format_topic_queue(entries, now or self._NOW))
+
+    def test_header_shows_count(self):
+        assert "📋 Unreplied: 1" in self._full([self._e()])
 
     def test_entry_with_link(self):
-        from commands.topic_queue_format import format_topic_queue
         e = self._e(link="https://t.me/Path_Wars/100/42")
-        result = format_topic_queue([e], self._NOW)
-        assert "🔗 https://t.me/Path_Wars/100/42" in result
+        assert "🔗 https://t.me/Path_Wars/100/42" in self._full([e])
 
     def test_entry_without_link(self):
-        from commands.topic_queue_format import format_topic_queue
-        result = format_topic_queue([self._e()], self._NOW)
-        assert "🔗" not in result
+        assert "🔗" not in self._full([self._e()])
 
     def test_multiple_entries_numbered(self):
-        from commands.topic_queue_format import format_topic_queue
         entries = [self._e("Alice"), self._e("Bob", "2026-04-05 09:00:00")]
-        result = format_topic_queue(entries, self._NOW)
+        result = self._full(entries)
         assert "📋 Unreplied: 2" in result and "01" in result and "02" in result
 
     def test_missing_time_falls_back_to_new_icon(self):
-        from commands.topic_queue_format import format_topic_queue
-        result = format_topic_queue([{"name": "C", "preview": "x", "link": ""}], self._NOW)
+        result = self._full([{"name": "C", "preview": "x", "link": ""}])
         assert "C" in result and "🆕" in result
 
     def test_age_legend_present(self):
+        result = self._full([self._e()])
+        assert "Age:" in result and "🆕<1h" in result
+
+    def test_returns_list(self):
         from commands.topic_queue_format import format_topic_queue
         result = format_topic_queue([self._e()], self._NOW)
-        assert "Age:" in result and "🆕<1h" in result
+        assert isinstance(result, list) and len(result) >= 1
+
+    def test_splits_long_message(self):
+        from commands.topic_queue_format import format_topic_queue
+        # 60 entries with long previews should produce multiple chunks
+        long_entry = self._e(preview="word " * 80)
+        result = format_topic_queue([long_entry] * 60, self._NOW)
+        assert len(result) > 1
+        assert all(len(chunk) <= 4096 for chunk in result)
 
 
 # ── topic_queue_poster — helpers ────────────────────────────────────────────
@@ -134,7 +142,7 @@ class TestPostThreadQueue:
         with patch("scheduled.topic_queue_poster.tg") as mock_tg:
             mock_tg.send_message_id.return_value = 9999
             _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            mock_tg.send_message_id.assert_called_once()
+            assert mock_tg.send_message_id.call_count >= 1  # ≥1 chunks
             mock_tg.pin_message.assert_called_once_with(-100, 9999, disable_notification=False)
             assert slot["msg_id"] == 9999
 
