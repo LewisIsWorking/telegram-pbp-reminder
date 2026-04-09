@@ -57,13 +57,17 @@ def _post_thread_queue(group_id: int, thread_id: str,
     if old_msg_id:
         tg.delete_message(group_id, old_msg_id)
 
-    text = format_topic_queue(entries, now)
-    new_msg_id = tg.send_message_id(group_id, int(thread_id), text)
-    if new_msg_id:
-        tg.pin_message(group_id, new_msg_id, disable_notification=False)
-        slot["msg_id"] = new_msg_id
+    chunks = format_topic_queue(entries, now)
+    first_msg_id = None
+    for chunk in chunks:
+        msg_id = tg.send_message_id(group_id, int(thread_id), chunk)
+        if msg_id and first_msg_id is None:
+            first_msg_id = msg_id
+    if first_msg_id:
+        tg.pin_message(group_id, first_msg_id, disable_notification=False)
+        slot["msg_id"] = first_msg_id
         slot["fingerprint"] = fingerprint
-        print(f"Topic queue posted: thread={thread_id} entries={len(entries)}")
+        print(f"Topic queue posted: thread={thread_id} entries={len(entries)} chunks={len(chunks)}")
 
 
 def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
