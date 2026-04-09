@@ -160,4 +160,4 @@ def delete_message(chat_id: int, message_id: int) -> bool:
         "chat_id": chat_id, "message_id": message_id,
     }, "delete_message",
     suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
-                     "message not found")) is not None
+                     "message not found", "message can't be deleted")) is not None
