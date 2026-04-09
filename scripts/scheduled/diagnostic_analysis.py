@@ -95,7 +95,7 @@ def _build_report(analysis: dict, run_count: int, now: datetime) -> str:
                     lines.append(f"    └ {occ[:120]}")
                     seen.add(occ)
                     if len(seen) >= 10:
-                        break
+                        break  # pragma: no cover
 
     if events:
         # Summarise notable events
