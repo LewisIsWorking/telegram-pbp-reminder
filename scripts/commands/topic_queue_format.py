@@ -20,17 +20,22 @@ _AGE_LEGEND = (
 )
 
 
-def format_topic_queue(entries: list, now: datetime) -> str:
-    """Format a per-topic queue message body.
+_MAX_MSG = 3900  # Telegram limit is 4096; leave headroom
+
+
+def format_topic_queue(entries: list, now: datetime) -> list[str]:
+    """Format a per-topic queue message body, split into ≤4096-char chunks.
 
     Args:
         entries: list of entry dicts with name, time, preview, link keys.
         now:     current UTC datetime used for age calculation.
 
     Returns:
-        Formatted multi-line string ready to send as a Telegram message.
+        List of message strings, each within Telegram's character limit.
+        The header (separator + count + legend) appears only in the first chunk.
     """
-    lines = [f"{_SEPARATOR}\n📋 Unreplied: {len(entries)}\n{_AGE_LEGEND}"]
+    header = f"{_SEPARATOR}\n📋 Unreplied: {len(entries)}\n{_AGE_LEGEND}"
+    entry_lines = []
     for i, entry in enumerate(entries, 1):
         hours = _entry_hours(entry, now)
         icon = entry_age_icon(hours)
@@ -40,8 +45,27 @@ def format_topic_queue(entries: list, now: datetime) -> str:
         link = entry.get("link", "")
         if link:
             line += f" 🔗 {link}"
-        lines.append(line)
-    return "\n".join(lines)
+        entry_lines.append(line)
+    return _chunk_lines(header, entry_lines)
+
+
+def _chunk_lines(header: str, entry_lines: list[str]) -> list[str]:
+    """Pack entry lines into chunks that each fit within _MAX_MSG chars."""
+    chunks = []
+    current_lines = [header]
+    current_len = len(header)
+    for line in entry_lines:
+        # +1 for the newline separator
+        if current_len + len(line) + 1 > _MAX_MSG and len(current_lines) > 1:
+            chunks.append("\n".join(current_lines))
+            current_lines = [line]
+            current_len = len(line)
+        else:
+            current_lines.append(line)
+            current_len += len(line) + 1
+    if current_lines:
+        chunks.append("\n".join(current_lines))
+    return chunks if chunks else [header]
 
 
 def _entry_hours(entry: dict, now: datetime) -> float:
