@@ -155,6 +155,12 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     voted_uids = poll.get("voted_uids", [])
     unvoted = _unvoted_mentions(roster, voted_uids)
 
+    # Re-pin the poll on every daily ping — guards against other messages
+    # (e.g. Matrix bridge) overriding the pin
+    poll_msg_id = poll.get("poll_message_id")
+    if poll_msg_id:
+        tg.pin_message(gid, poll_msg_id)
+
     if not unvoted:
         if not poll.get("all_voted_posted"):
             tg.send_message(gid, poll_tid,
@@ -162,8 +168,10 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
             poll["all_voted_posted"] = True
         return
 
-    link = _poll_link(config, pair, poll.get("poll_message_id"))
-    msg = build_ping_message(pair, unvoted, len(voted_uids),
+    # Count only roster members who voted (non-roster voters inflate voted_uids)
+    roster_voted = sum(1 for uid in roster if uid in set(str(v) for v in voted_uids))
+    link = _poll_link(config, pair, poll_msg_id)
+    msg = build_ping_message(pair, unvoted, roster_voted,
                              len(roster), week_num, link)
     if tg.send_message(gid, poll_tid, msg):
         poll["last_ping_day"] = today_ord
