@@ -6,60 +6,38 @@ tally update to every linked campaign's chat topic, including the voter's
 own campaign.
 
 Format:
-  🗳️ @username (C01) voted Friday
-  C01: Friday: 3, Either: 1
-  C11: Weekday: 2
+  🗳️ @username voted Friday in C01
+
+  C01 — 2/3 voted  |  waiting: @Alice @Bob
+    Friday:         1  @PathWars
+    Either:         2  @Elinoa @Selenor
+    → Either leads
+
+  C11 — 7/8 voted  |  waiting: @molluggg
+    2026-04-13 Mon: 4  @NJ @Craig @Jack @Sparkleslayer
+    → 2026-04-13 leads
 """
 
 import telegram as tg
 from datetime import datetime, timezone
 from helpers_pkg.groups import group_id_for_campaign, linked_poll_codes, pid_for_code
-from scheduled.session_poll_build import poll_options_for, option_tally
+from scheduled.session_poll_build import poll_options_for
+from dispatch.poll_tally import build_tally_block
 
 
 def _voter_mention(uid: str, name: str, config: dict, state: dict) -> str:
     """Return '@username' if known, else fallback to first name."""
-    # Check player registry first
     for p in state.get("players", {}).values():
         if str(p.get("user_id", "")) == uid:
             u = p.get("username", "")
             if u:
                 return f"@{u}"
             return p.get("first_name", name)
-    # Check poll_user_names in each pair
     for pair in config.get("topic_pairs", []):
         names = pair.get("poll_user_names", {})
         if uid in names:
             return f"@{names[uid]}"
     return name
-
-
-def _tally_line(code: str, poll_slot: dict, options: list[str]) -> str:
-    votes = poll_slot.get("votes", {})
-    parts = option_tally(votes, options)
-    if not parts:
-        return f"{code}: no votes yet"
-    tally = ", ".join(parts)
-    lead_str = _lead_summary(votes, options)
-    return f"{code}: {tally}{lead_str}"
-
-
-def _lead_summary(votes: dict, options: list[str]) -> str:
-    """Return ' — X leads' or ' — X & Y tied' based on current vote counts."""
-    counts: dict[str, int] = {}
-    for i, label in enumerate(options):
-        count = len(votes.get(str(i), []))
-        if count > 0:
-            counts[label.split()[0]] = count  # first word only
-    if not counts:
-        return ""
-    max_votes = max(counts.values())
-    leaders = [label for label, c in counts.items() if c == max_votes]
-    if len(leaders) == 1:
-        return f" — {leaders[0]} leads"
-    if len(leaders) == 2:
-        return f" — {leaders[0]} & {leaders[1]} tied"
-    return f" — {len(leaders)}-way tie"
 
 
 def _options_for_code(config: dict, code: str,
@@ -81,6 +59,13 @@ def _options_for_code(config: dict, code: str,
     return ["Friday", "Saturday", "Can't make it"]
 
 
+def _action_label(option_label: str) -> str:
+    """Convert raw option label to readable voted action string."""
+    if option_label == "?":
+        return "retracted their vote"
+    return f"voted {option_label}"
+
+
 def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
                 voting_code: str, option_label: str, voting_pid: str) -> None:
     """Post tally notification to own + all linked campaigns' chat topics."""
@@ -89,16 +74,17 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
     all_codes = [voting_code] + linked_codes
 
     mention = _voter_mention(voter_uid, voter_name, config, state)
+    action = _action_label(option_label)
 
-    tally_lines = []
+    tally_blocks = []
     for code in all_codes:
         slot = polls.get(code, {})
         options = _options_for_code(config, code, state)
-        tally_lines.append(_tally_line(code, slot, options))
+        tally_blocks.append(build_tally_block(code, slot, options, config, state))
 
     msg = (f"━━━━━━━━━━━━━━━━\n"
-           f"🗳️ {mention} voted {option_label} in {voting_code}\n"
-           + "\n".join(tally_lines))
+           f"🗳️ {mention} {action} in {voting_code}\n\n"
+           + "\n\n".join(tally_blocks))
 
     for code in all_codes:
         target_pid = pid_for_code(config, code)
