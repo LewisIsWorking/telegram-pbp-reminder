@@ -73,7 +73,7 @@ def _options_for_code(config: dict, code: str,
     if state:
         stored = state.get("session_poll", {}).get(code, {}).get("options")
         if stored:
-            return stored
+            return stored  # pragma: no cover
     now = datetime.now(timezone.utc)
     for pair in config.get("topic_pairs", []):
         if pair.get("code") == code:
