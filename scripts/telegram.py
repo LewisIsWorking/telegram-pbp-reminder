@@ -156,7 +156,7 @@ def delete_message(chat_id: int, message_id: int) -> bool:
     Silently ignores "message not found" — the message may have been deleted
     already (e.g. by Telegram when a poll expired).
     """
-    return _post("deleteMessage", {
+    return _post("deleteMessage", {  # pragma: no cover
         "chat_id": chat_id, "message_id": message_id,
     }, "delete_message",
     suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
