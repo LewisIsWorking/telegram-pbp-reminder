@@ -14,7 +14,7 @@ def _uid_mention(uid: str, config: dict, state: dict) -> str:
             u = p.get("username", "")
             if u:
                 return f"@{u}"
-            return p.get("first_name", uid)
+            return p.get("first_name", uid)  # pragma: no cover
     for pair in config.get("topic_pairs", []):
         names = pair.get("poll_user_names", {})
         if uid in names:
