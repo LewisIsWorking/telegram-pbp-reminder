@@ -11,6 +11,37 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.36.0] - 2026-04-09
+
+### Fixed — Per-topic queue posted to wrong thread in multi-topic campaigns
+
+**Root cause:** `topic_queue_poster.py` used the canonical campaign pid as both
+the state key and the Telegram destination thread. For campaigns with multiple
+PBP topics (e.g. C06 Kibwe: `40585` PBP + `137075` COMBAT), all entries were
+posted as a single queue to thread `40585`, regardless of which thread the
+entries actually came from.
+
+**Fix:** `queue_scan.py` now adds a `thread_id` field to each entry (the
+resolved physical topic the message was posted in). `topic_queue_poster.py`
+groups entries by `thread_id` before posting, sending a separate pinned queue
+to each active thread.
+
+**State schema change:** `topic_queues: {thread_id: {msg_id, fingerprint}}`
+replaces the old top-level `topic_msg_id` / `topic_fingerprint` fields.
+A one-time migration runs on first post: the old stale message is deleted
+and the new per-thread structure takes over.
+
+### Changed
+
+Campaign overview (`scheduled/campaign_table.py`) now uses the same 22-tier
+GM queue age scale (`entry_age_icon` from `commands/queue_format.py`) for
+health icons, replacing the old 4-tier 🟢🟡🟠🔴 scale. Legend updated to match.
+
+Diagnostic tool now shows up to 10 unique examples per issue type (was 1),
+and truncates at 120 characters (was 90).
+
+---
+
 ## [4.35.0] - 2026-04-08
 
 ### Fixed — Poll week number, date drift in vote notifications, per-campaign message links, rate limiting
