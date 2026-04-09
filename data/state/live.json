@@ -1,5 +1,5 @@
 {
-  "offset": 619325075,
+  "offset": 619325096,
   "topics": {
     "52083": {
       "last_message_time": "2026-04-06T15:27:09+00:00",
@@ -44,9 +44,9 @@
       "campaign_name": "Magni Watch"
     },
     "107151": {
-      "last_message_time": "2026-04-09T20:05:43+00:00",
-      "last_user": "Chase",
-      "last_user_id": "8353586922",
+      "last_message_time": "2026-04-09T20:24:56+00:00",
+      "last_user": "Bruce",
+      "last_user_id": "7077683276",
       "campaign_name": "Theria"
     },
     "1242": {
@@ -271,7 +271,6 @@
   },
   "last_week_welcome": "sun2026-04-05",
   "last_queue_daily_slots": [
-    "2026-04-02:21",
     "2026-04-03:09",
     "2026-04-03:21",
     "2026-04-04:09",
@@ -284,7 +283,8 @@
     "2026-04-07:21",
     "2026-04-08:09",
     "2026-04-08:21",
-    "2026-04-09:09"
+    "2026-04-09:09",
+    "2026-04-09:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-04-05",
@@ -296,6 +296,6 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-04-09",
-  "last_queue_pin_id": 143334,
-  "queue_post_count": 53
+  "last_queue_pin_id": 143453,
+  "queue_post_count": 54
 }
