@@ -44,7 +44,8 @@ def _analyse_logs(logs: list[str]) -> dict:
             _GH_PREFIXES = ("[command]", "##[", "Run ", "  with:",
                             "Worker ID:", "Current runner version",
                             "FORCE_JAVASCRIPT", "pythonLocation",
-                            "shell:", "env:")
+                            "shell:", "env:", "Temporarily overriding",
+                            "PKG_CONFIG", "Python_ROOT", "LD_LIBRARY")
             if clean.startswith(_GH_PREFIXES):
                 continue  # pragma: no cover
 
