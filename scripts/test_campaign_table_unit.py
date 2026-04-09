@@ -29,7 +29,7 @@ STALE_TS  = (NOW - timedelta(days=8)).isoformat()  # outside 7-day window
 
 @pytest.mark.parametrize("hours_val, expected", [
     (0.5,   "🆕"),   # < 1h
-    (12.0,  "🌿"),   # 6-12h
+    (12.0,  "🌳"),   # 12-24h
     (24.0,  "🟢"),   # day 1
     (60.0,  "🟩"),   # day 2-3
     (72.0,  "🟡"),   # day 3-4
