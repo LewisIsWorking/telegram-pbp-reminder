@@ -24,24 +24,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 143537,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-10T09:46:39+00:00",
-      "preview": "thanks. I got bit by an radioactive canadian.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 143538,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-10T10:03:09+00:00",
-      "preview": "Hunter's aim and then reload",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -279,7 +261,11 @@
     "msg:143511",
     "2026-04-10 02:08:41",
     "msg:143512",
-    "2026-04-10 02:08:48"
+    "2026-04-10 02:08:48",
+    "msg:143537",
+    "2026-04-10 09:46:39",
+    "msg:143538",
+    "2026-04-10 10:03:09"
   ],
   "reply_log": [
     {
@@ -1206,14 +1192,32 @@
       "player": "Caelum",
       "preview": "tks",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-10T10:47:24+00:00",
+      "pid": "40585",
+      "msg_id": "143537",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "thanks. I got bit by an radioactive canadian.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T10:47:30+00:00",
+      "pid": "40585",
+      "msg_id": "143538",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "Hunter's aim and then reload",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 143541,
-      "fingerprint": "2026-04-10 09:46:39|2026-04-10 10:03:09"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
