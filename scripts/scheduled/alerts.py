@@ -151,7 +151,10 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         last_date = fmt_date(last_post)
 
         # 4+ weeks: remove (ALWAYS fires, even when GM is bottleneck)
-        if current_week >= helpers.PLAYER_REMOVE_WEEKS:
+        # Permanent players are never removed — skip the removal block entirely
+        if player.get("permanent"):
+            pass  # fall through to warnings below (week 3 skipped separately)
+        elif current_week >= helpers.PLAYER_REMOVE_WEEKS:
             if last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
                     f"{mention} has not posted in {campaign} PBP for "
@@ -168,6 +171,9 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         if _gm_bottleneck[pbp_topic_id]:
             continue  # pragma: no cover
         for week_mark in helpers.PLAYER_WARN_WEEKS:
+            # Skip week-3 warning for permanent players (it mentions auto-removal)
+            if week_mark == 3 and player.get("permanent"):
+                continue
             if current_week >= week_mark and last_warned < week_mark:
                 template = _INACTIVITY_TEMPLATES.get(week_mark, _INACTIVITY_TEMPLATES[3])
                 message = template.format(
