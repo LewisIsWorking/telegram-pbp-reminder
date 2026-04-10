@@ -26,13 +26,22 @@
       "preview": "[media]"
     },
     {
-      "message_id": 143026,
+      "message_id": 143511,
       "thread_id": 137075,
       "user_id": "6023408187",
       "user_name": "Caelum",
-      "time": "2026-04-06T20:34:09+00:00",
-      "preview": "[media]",
-      "media_group_id": "14204061192873297"
+      "time": "2026-04-10T02:08:41+00:00",
+      "preview": "It aready applied",
+      "media_group_id": null
+    },
+    {
+      "message_id": 143512,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-04-10T02:08:48+00:00",
+      "preview": "tks",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -260,7 +269,13 @@
     "msg:143024",
     "2026-04-06 20:27:55",
     "msg:143025",
-    "2026-04-06 20:33:05"
+    "2026-04-06 20:33:05",
+    "msg:143029",
+    "2026-04-06 20:34:10",
+    "msg:143026",
+    "2026-04-06 20:34:09",
+    "msg:143027",
+    "msg:143028"
   ],
   "reply_log": [
     {
@@ -1133,14 +1148,50 @@
       "player": "Caelum",
       "preview": "Bold Defiance(free),Phase Eldamon(free), Jiufend Flamethrower target slime 05 an",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-10T02:03:22+00:00",
+      "pid": "40585",
+      "msg_id": "143029",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T02:07:20+00:00",
+      "pid": "40585",
+      "msg_id": "143026",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T02:08:01+00:00",
+      "pid": "40585",
+      "msg_id": "143027",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T02:08:14+00:00",
+      "pid": "40585",
+      "msg_id": "143028",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 143310,
-      "fingerprint": "2026-04-06 20:34:09|2026-04-06 20:34:09|2026-04-06 20:34:10|2026-04-06 20:34:10"
+      "msg_id": 143519,
+      "fingerprint": "2026-04-10 02:08:41|2026-04-10 02:08:48"
     }
   }
 }
