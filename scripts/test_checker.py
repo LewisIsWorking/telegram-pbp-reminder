@@ -822,6 +822,62 @@ def test_check_player_activity_removes_at_4_weeks():
     assert "100:42" in state["removed_players"]
 
 
+def test_check_player_activity_permanent_not_removed():
+    """Permanent players are never removed even at 4+ weeks."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "bobuser", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=30)).isoformat(),
+        "last_warned_week": 3, "permanent": True,
+    }
+
+    checker.check_player_activity(config, state)
+    assert "100:42" in state["players"], "Permanent player must not be removed"
+    assert "100:42" not in state["removed_players"]
+
+
+def test_check_player_activity_permanent_skips_week3_warning():
+    """Permanent players skip the week-3 warning (mentions auto-removal)."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "bobuser", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=22)).isoformat(),
+        "last_warned_week": 2, "permanent": True,
+    }
+
+    checker.check_player_activity(config, state)
+    # last_warned_week should still be 2 (week-3 skipped)
+    assert state["players"]["100:42"]["last_warned_week"] == 2
+
+
+def test_check_player_activity_permanent_gets_week1_warning():
+    """Permanent players still get week-1 inactivity pings."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    now = datetime.now(timezone.utc)
+
+    state["players"]["100:42"] = {
+        "user_id": "42", "first_name": "Bob", "last_name": "",
+        "username": "bobuser", "campaign_name": "TestCampaign",
+        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=8)).isoformat(),
+        "last_warned_week": 0, "permanent": True,
+    }
+
+    checker.check_player_activity(config, state)
+    assert state["players"]["100:42"]["last_warned_week"] == 1
+
+
 def test_check_player_activity_respects_toggle():
     _reset()
     config = _make_config(pairs=[
