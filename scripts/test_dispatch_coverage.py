@@ -489,3 +489,65 @@ def test_build_link_private_group_empty_username():
     from commands.queue_scan import _build_link
     link = _build_link(-1003496373617, "", "1242", "1540")
     assert link == "https://t.me/c/3496373617/1242/1540"
+
+
+# ── dispatch/cmd_gm.py — /setpermanent and /unsetpermanent ──────────────────
+
+def _gm_ctx(cmd: str, state: dict) -> dict:
+    """Build a minimal GM ctx for cmd_gm tests."""
+    return {
+        "cmd_word": cmd.split()[0],
+        "text": cmd,
+        "user_id": "999",
+        "gm_ids": ["999"],
+        "pid": "100",
+        "campaign_name": "TestCampaign",
+        "state": state,
+        "group_id": -1001,
+        "thread_id": 200,
+        "now_iso": "2026-04-10T00:00:00+00:00",
+        "parsed": {"raw_text": cmd},
+    }
+
+
+def test_setpermanent_marks_player():
+    from dispatch.cmd_gm import handle
+    state = {"players": {"100:42": {
+        "user_id": "42", "first_name": "Bob", "username": "bobuser",
+        "pbp_topic_id": "100", "campaign_name": "TestCampaign",
+        "last_post_time": "2026-04-01T00:00:00+00:00", "last_warned_week": 0,
+    }}, "paused_campaigns": {}}
+    ctx = _gm_ctx("/setpermanent @bobuser", state)
+    result = handle(ctx)
+    assert result is True
+    assert state["players"]["100:42"].get("permanent") is True
+
+
+def test_unsetpermanent_removes_flag():
+    from dispatch.cmd_gm import handle
+    state = {"players": {"100:42": {
+        "user_id": "42", "first_name": "Bob", "username": "bobuser",
+        "pbp_topic_id": "100", "campaign_name": "TestCampaign",
+        "last_post_time": "2026-04-01T00:00:00+00:00", "last_warned_week": 0,
+        "permanent": True,
+    }}, "paused_campaigns": {}}
+    ctx = _gm_ctx("/unsetpermanent @bobuser", state)
+    result = handle(ctx)
+    assert result is True
+    assert "permanent" not in state["players"]["100:42"]
+
+
+def test_setpermanent_unknown_player():
+    from dispatch.cmd_gm import handle
+    state = {"players": {}, "paused_campaigns": {}}
+    ctx = _gm_ctx("/setpermanent @nobody", state)
+    result = handle(ctx)
+    assert result is True  # handled but not found — sends error msg
+
+
+def test_setpermanent_no_arg():
+    from dispatch.cmd_gm import handle
+    state = {"players": {}, "paused_campaigns": {}}
+    ctx = _gm_ctx("/setpermanent", state)
+    result = handle(ctx)
+    assert result is True  # handled — sends usage msg
