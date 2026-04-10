@@ -26,21 +26,21 @@
       "preview": "[media]"
     },
     {
-      "message_id": 143511,
+      "message_id": 143537,
       "thread_id": 137075,
       "user_id": "6023408187",
       "user_name": "Caelum",
-      "time": "2026-04-10T02:08:41+00:00",
-      "preview": "It aready applied",
+      "time": "2026-04-10T09:46:39+00:00",
+      "preview": "thanks. I got bit by an radioactive canadian.",
       "media_group_id": null
     },
     {
-      "message_id": 143512,
+      "message_id": 143538,
       "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-10T02:08:48+00:00",
-      "preview": "tks",
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-04-10T10:03:09+00:00",
+      "preview": "Hunter's aim and then reload",
       "media_group_id": null
     }
   ],
@@ -275,7 +275,11 @@
     "msg:143026",
     "2026-04-06 20:34:09",
     "msg:143027",
-    "msg:143028"
+    "msg:143028",
+    "msg:143511",
+    "2026-04-10 02:08:41",
+    "msg:143512",
+    "2026-04-10 02:08:48"
   ],
   "reply_log": [
     {
@@ -1184,14 +1188,32 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-10T09:43:36+00:00",
+      "pid": "40585",
+      "msg_id": "143511",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "It aready applied",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T09:43:44+00:00",
+      "pid": "40585",
+      "msg_id": "143512",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "tks",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 143519,
-      "fingerprint": "2026-04-10 02:08:41|2026-04-10 02:08:48"
+      "msg_id": 143541,
+      "fingerprint": "2026-04-10 09:46:39|2026-04-10 10:03:09"
     }
   }
 }
