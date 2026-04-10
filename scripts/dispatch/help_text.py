@@ -27,6 +27,8 @@ _HELP_TEXT = (
     "/pause [reason] - Pause inactivity tracking (planned breaks)\n"
     "/resume - Resume inactivity tracking\n"
     "/kick @player - Remove a player from tracking\n"
+    "/setpermanent @player - Mark player as permanent (never auto-removed)\n"
+    "/unsetpermanent @player - Remove permanent status from a player\n"
     "/addplayer @user Name - Add a player to roster before they post\n"
     "/scene <name> - Mark a scene boundary in the transcript\n"
     "/note <text> - Add a persistent GM note to this campaign\n"
