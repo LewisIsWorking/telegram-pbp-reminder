@@ -26,30 +26,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 143677,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-10T18:36:17+00:00",
-      "preview": "use it resistant but i will take the dmg",
-      "media_group_id": null
-    },
-    {
-      "message_id": 143680,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-10T18:36:31+00:00",
-      "preview": "only hp",
-      "media_group_id": null
-    },
-    {
-      "message_id": 143686,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-10T18:37:25+00:00",
-      "preview": "ye",
+      "message_id": 143761,
+      "thread_id": 40585,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-10T19:39:44+00:00",
+      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -302,7 +284,15 @@
     "msg:143691",
     "2026-04-10 18:38:52",
     "msg:143702",
-    "2026-04-10 18:40:42"
+    "2026-04-10 18:40:42",
+    "msg:143713",
+    "2026-04-10 18:43:34",
+    "msg:143677",
+    "2026-04-10 18:36:17",
+    "msg:143680",
+    "2026-04-10 18:36:31",
+    "msg:143686",
+    "2026-04-10 18:37:25"
   ],
   "reply_log": [
     {
@@ -1301,14 +1291,54 @@
       "player": "Anthony",
       "preview": "Prone",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-10T18:46:07+00:00",
+      "pid": "40585",
+      "msg_id": "143713",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T19:27:38+00:00",
+      "pid": "40585",
+      "msg_id": "143677",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "use it resistant but i will take the dmg",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T19:27:51+00:00",
+      "pid": "40585",
+      "msg_id": "143680",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "only hp",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-10T19:27:59+00:00",
+      "pid": "40585",
+      "msg_id": "143686",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "ye",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 143748,
-      "fingerprint": "2026-04-10 18:36:17|2026-04-10 18:36:31|2026-04-10 18:37:25"
+      "msg_id": null,
+      "fingerprint": ""
+    },
+    "40585": {
+      "msg_id": 143779,
+      "fingerprint": "2026-04-10 19:39:44"
     }
   }
 }
