@@ -129,4 +129,31 @@ def handle(ctx: dict) -> bool:
                         f"✅ @{target_username} → {char_name}")
         return True
 
+    if text.startswith("/setpermanent") or text.startswith("/unsetpermanent"):
+        is_set = text.startswith("/setpermanent")
+        cmd_len = 13 if is_set else 15
+        target = _arg(raw_text, cmd_len).lstrip("@")
+        if not target:
+            tg.send_message(gid, tid,
+                            "Usage: /setpermanent @username or /unsetpermanent @username")
+            return True
+        matched = []
+        for key, p in state.get("players", {}).items():
+            if (p.get("username", "").lower() == target.lower()
+                    and p.get("pbp_topic_id") == pid):
+                if is_set:
+                    p["permanent"] = True
+                else:
+                    p.pop("permanent", None)
+                matched.append(p.get("first_name", target))
+        if matched:
+            verb = "permanently rostered" if is_set else "removed from permanent roster"
+            tg.send_message(gid, tid,
+                            f"✅ {matched[0]} (@{target}) {verb} in {name}.")
+            print(f"{verb}: {target} in {name}")
+        else:
+            tg.send_message(gid, tid,
+                            f"Player @{target} not found in {name}.")
+        return True
+
     return False
