@@ -24,24 +24,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 143761,
-      "thread_id": 40585,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-10T19:39:44+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 143858,
-      "thread_id": 137075,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-10T23:48:26+00:00",
-      "preview": "I am not ji yun",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -301,7 +283,13 @@
     "msg:143680",
     "2026-04-10 18:36:31",
     "msg:143686",
-    "2026-04-10 18:37:25"
+    "2026-04-10 18:37:25",
+    "msg:143858",
+    "2026-04-10 23:48:26",
+    "msg:144054",
+    "2026-04-11 03:58:18",
+    "msg:143761",
+    "2026-04-10 19:39:44"
   ],
   "reply_log": [
     {
@@ -1336,18 +1324,45 @@
       "player": "Caelum",
       "preview": "ye",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-11T03:53:42+00:00",
+      "pid": "40585",
+      "msg_id": "143858",
+      "thread_id": 137075,
+      "player": "Awnii",
+      "preview": "I am not ji yun",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T03:58:35+00:00",
+      "pid": "40585",
+      "msg_id": "144054",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:02:29+00:00",
+      "pid": "40585",
+      "msg_id": "143761",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 143867,
-      "fingerprint": "2026-04-10 23:48:26"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
-      "msg_id": 143779,
-      "fingerprint": "2026-04-10 19:39:44"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
