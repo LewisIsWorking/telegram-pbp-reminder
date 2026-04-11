@@ -24,6 +24,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 144142,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-04-11T04:40:04+00:00",
+      "preview": "Straight back",
+      "media_group_id": null
+    },
+    {
+      "message_id": 144145,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-04-11T04:40:25+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -289,7 +307,17 @@
     "msg:144054",
     "2026-04-11 03:58:18",
     "msg:143761",
-    "2026-04-10 19:39:44"
+    "2026-04-10 19:39:44",
+    "msg:144097",
+    "2026-04-11 04:19:38",
+    "msg:144122",
+    "2026-04-11 04:35:39",
+    "msg:144128",
+    "2026-04-11 04:36:35",
+    "msg:144132",
+    "2026-04-11 04:38:48",
+    "msg:144133",
+    "2026-04-11 04:39:04"
   ],
   "reply_log": [
     {
@@ -1351,14 +1379,59 @@
       "player": "Link",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:23:04+00:00",
+      "pid": "40585",
+      "msg_id": "144097",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:36:18+00:00",
+      "pid": "40585",
+      "msg_id": "144122",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:37:23+00:00",
+      "pid": "40585",
+      "msg_id": "144128",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "(28 has been a success so far)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:39:57+00:00",
+      "pid": "40585",
+      "msg_id": "144132",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:40:12+00:00",
+      "pid": "40585",
+      "msg_id": "144133",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 144193,
+      "fingerprint": "2026-04-11 04:40:04|2026-04-11 04:40:25"
     },
     "40585": {
       "msg_id": null,
