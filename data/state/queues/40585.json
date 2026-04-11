@@ -26,20 +26,47 @@
       "preview": "[media]"
     },
     {
-      "message_id": 144142,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-11T04:40:04+00:00",
-      "preview": "Straight back",
+      "message_id": 144199,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-04-11T06:02:00+00:00",
+      "preview": "Slime #13 plops to the floorbords, inside it appears to be boots, tunic and skirt, and a short walking stick, all thrashing about like the insides of the blue slime are already in turmoil.\n\nA moment later, it stands itself up on psudopods and ejects the articles, only they come as if connected to a singular unit. upon hitting the floor with a thud, a girl, halfling as it may seem based on size and stature, a young woman with violet colored eyes. finds herslef clutching her staff.\n\nWith panic in ",
       "media_group_id": null
     },
     {
-      "message_id": 144145,
+      "message_id": 144200,
       "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-11T04:40:25+00:00",
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-04-11T06:19:06+00:00",
+      "preview": "@PathWars",
+      "media_group_id": null
+    },
+    {
+      "message_id": 144201,
+      "thread_id": 137075,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-04-11T06:19:09+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 144202,
+      "thread_id": 137075,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-04-11T06:19:11+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 144203,
+      "thread_id": 137075,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-04-11T06:19:13+00:00",
       "preview": "[media]",
       "media_group_id": null
     }
@@ -317,7 +344,13 @@
     "msg:144132",
     "2026-04-11 04:38:48",
     "msg:144133",
-    "2026-04-11 04:39:04"
+    "2026-04-11 04:39:04",
+    "msg:144145",
+    "2026-04-11 04:40:25",
+    "msg:144172",
+    "2026-04-11 04:54:33",
+    "msg:144142",
+    "2026-04-11 04:40:04"
   ],
   "reply_log": [
     {
@@ -1424,18 +1457,63 @@
       "player": "Bruce",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:41:11+00:00",
+      "pid": "40585",
+      "msg_id": "144145",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:45:47+00:00",
+      "pid": "40585",
+      "msg_id": "144133",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T04:58:02+00:00",
+      "pid": "40585",
+      "msg_id": "144172",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus takes a moment to catch his breath and re-assess the situation. He then m",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T05:38:37+00:00",
+      "pid": "40585",
+      "msg_id": "144142",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Straight back",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-11T05:38:43+00:00",
+      "pid": "40585",
+      "msg_id": "144145",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 144193,
-      "fingerprint": "2026-04-11 04:40:04|2026-04-11 04:40:25"
+      "msg_id": 144206,
+      "fingerprint": "2026-04-11 06:19:06|2026-04-11 06:19:09|2026-04-11 06:19:11|2026-04-11 06:19:13"
     },
     "40585": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 144204,
+      "fingerprint": "2026-04-11 06:02:00"
     }
   }
 }
