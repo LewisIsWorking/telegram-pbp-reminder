@@ -84,6 +84,34 @@ def test_build_queue_priority_first(mock_scan):
 
 
 @patch("commands.queue.scan_transcripts")
+def test_build_queue_numeric_priority_ordering(mock_scan):
+    """Numeric queue_priority: lower number = higher position (0 > 1 > default 2)."""
+    now = datetime.now(timezone.utc)
+    t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
+    mock_scan.return_value = {
+        "100": {"campaign": "DarkPockets", "code": "C11",
+                "entries": [{"name": "A", "time": t, "preview": "x", "link": ""}]},
+        "200": {"campaign": "Kibwe",      "code": "C06",
+                "entries": [{"name": "B", "time": t, "preview": "y", "link": ""}]},
+        "300": {"campaign": "Other",      "code": "C00",
+                "entries": [{"name": "C", "time": t, "preview": "z", "link": ""}]},
+    }
+    config = {
+        "group_id": -1, "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C11", "name": "DarkPockets",
+             "gm_user_ids": [999], "queue_priority": 0},
+            {"pbp_topic_ids": [200], "code": "C06", "name": "Kibwe",
+             "gm_user_ids": [999], "queue_priority": 1},
+            {"pbp_topic_ids": [300], "code": "C00", "name": "Other", "gm_user_ids": [999]},
+        ]
+    }
+    result = build_queue(config, {})
+    assert result.index("DarkPockets") < result.index("Kibwe")
+    assert result.index("Kibwe") < result.index("Other")
+
+
+@patch("commands.queue.scan_transcripts")
 def test_build_queue_with_scene(mock_scan):
     now = datetime.now(timezone.utc)
     t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
