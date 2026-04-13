@@ -551,3 +551,74 @@ def test_setpermanent_no_arg():
     ctx = _gm_ctx("/setpermanent", state)
     result = handle(ctx)
     assert result is True  # handled — sends usage msg
+
+
+# ── dispatch/poll_notify.py — _poll_link_for and updated capture_unknown_voter ─
+
+def _pn_config_with_poll():
+    return {
+        "group_id": -1001, "bot_topic_id": 999,
+        "group_username": "Path_Wars",
+        "topic_pairs": [{
+            "pbp_topic_ids": [100], "code": "C01", "name": "DF",
+            "chat_topic_id": 21514, "poll_user_ids": [111],
+            "poll_user_names": {"111": "Alice"},
+            "poll_options": ["Friday", "Saturday"],
+        }],
+    }
+
+
+def test_poll_link_for_with_msg_id():
+    from dispatch.poll_notify import _poll_link_for
+    state = {"session_poll": {"C01": {"poll_message_id": 9999, "votes": {}}}}
+    result = _poll_link_for("C01", _pn_config_with_poll(), state)
+    assert "9999" in result
+
+
+def test_poll_link_for_no_msg_id():
+    from dispatch.poll_notify import _poll_link_for
+    state = {"session_poll": {"C01": {}}}
+    result = _poll_link_for("C01", _pn_config_with_poll(), state)
+    assert result == ""
+
+
+def test_poll_link_for_unknown_code():
+    from dispatch.poll_notify import _poll_link_for
+    state = {"session_poll": {}}
+    result = _poll_link_for("C99", _pn_config_with_poll(), state)
+    assert result == ""
+
+
+def test_capture_unknown_voter_posts_alert():
+    from dispatch.poll_notify import capture_unknown_voter
+    config = _pn_config_with_poll()
+    state = {"poll_unknown_voters": {}, "session_poll": {}}
+    capture_unknown_voter("999888", "C01", config, state)
+    assert "999888" in state["poll_unknown_voters"].get("C01", [])
+    # tg.send_message should have been called (conftest mock captures it)
+
+
+def test_capture_unknown_voter_skips_known_uid():
+    from dispatch.poll_notify import capture_unknown_voter
+    config = _pn_config_with_poll()
+    state = {"poll_unknown_voters": {}, "session_poll": {}}
+    # uid 111 is in poll_user_ids — should not be captured
+    capture_unknown_voter("111", "C01", config, state)
+    assert "C01" not in state["poll_unknown_voters"]
+
+
+def test_capture_unknown_voter_skips_known_name_uid():
+    from dispatch.poll_notify import capture_unknown_voter
+    config = _pn_config_with_poll()
+    state = {"poll_unknown_voters": {}, "session_poll": {}}
+    # uid "111" is in poll_user_names — should not be captured
+    capture_unknown_voter("111", "C01", config, state)
+    assert "C01" not in state["poll_unknown_voters"]
+
+
+def test_capture_unknown_voter_no_duplicate():
+    from dispatch.poll_notify import capture_unknown_voter
+    config = _pn_config_with_poll()
+    state = {"poll_unknown_voters": {"C01": ["999888"]}, "session_poll": {}}
+    capture_unknown_voter("999888", "C01", config, state)
+    assert state["poll_unknown_voters"]["C01"].count("999888") == 1
