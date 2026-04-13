@@ -24,6 +24,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 144457,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-04-13T18:24:57+00:00",
+      "preview": "Act together, Eidolon strike slime #10 hit 18 deal 18B, Phase Eldamon. Eidolon shove slime #1 (assurance) 30.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 144458,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-04-13T18:25:15+00:00",
+      "preview": "[media]",
+      "media_group_id": "14208837725552513"
     }
   ],
   "replied": [
@@ -1534,14 +1552,32 @@
       "player": "Awnii",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-13T17:47:50+00:00",
+      "pid": "40585",
+      "msg_id": "144203",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-13T17:49:28+00:00",
+      "pid": "40585",
+      "msg_id": "144203",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 144467,
+      "fingerprint": "2026-04-13 18:24:57|2026-04-13 18:25:15|2026-04-13 18:25:16"
     },
     "40585": {
       "msg_id": null,
