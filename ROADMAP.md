@@ -419,6 +419,7 @@ Dated log of discovered bugs — open and resolved.
 | 2026-04-08 | ✅ Fixed 2026-04-08 | Telegram rate-limit warnings from per-topic queue bursts | 1s sleep between campaign posts in `topic_queue_poster.py` |
 | 2026-04-08 | ✅ Fixed 2026-04-08 | Diagnostic showed `Worker ID: {...}` as rate-limit context — GitHub Actions infra lines not filtered correctly | Fixed filter to run on timestamp-stripped line; expanded infra prefix list |
 | 2026-04-09 | ✅ Fixed 2026-04-09 | Per-topic queue posted to wrong thread in multi-topic campaigns (C06 Kibwe combat entries posted to PBP thread) | Added `thread_id` to scan entries; poster groups by thread and posts to each separately |
+| 2026-04-13 | ✅ Fixed 2026-04-13 | Diagnostic showing git credential file paths as rate-limit context | Added path-based filter for `/home/runner` and `git-credentials-` lines; preview bumped to 200 chars |
 
 ---
 
