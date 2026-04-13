@@ -439,7 +439,8 @@
         "2026-04-11T06:19:09+00:00",
         "2026-04-11T06:19:11+00:00",
         "2026-04-11T06:19:13+00:00",
-        "2026-04-11T23:18:59+00:00"
+        "2026-04-11T23:18:59+00:00",
+        "2026-04-13T12:06:41+00:00"
       ],
       "6144366145": [
         "2026-03-30T03:41:16+00:00",
@@ -896,7 +897,7 @@
       "7130942567": 21,
       "138025700": 36,
       "5443237599": 12,
-      "7842002561": 10,
+      "7842002561": 11,
       "7077683276": 17,
       "7863964681": 27,
       "6023408187": 18
@@ -1422,7 +1423,8 @@
         "22": 1,
         "9": 1,
         "23": 2,
-        "6": 5
+        "6": 5,
+        "12": 1
       },
       "6144366145": {
         "15": 3,
@@ -1778,7 +1780,7 @@
         "4": 2
       },
       "7842002561": {
-        "0": 2,
+        "0": 3,
         "4": 1,
         "5": 6
       },
@@ -1875,7 +1877,7 @@
       "7863964681": 1181,
       "7130942567": 367,
       "5443237599": 333,
-      "7842002561": 294,
+      "7842002561": 295,
       "6144366145": 129,
       "6023408187": 106
     },
@@ -2120,6 +2122,25 @@
         "A crack in the wall lets you glimpse what's in the next room.",
         "The forge is at the perfect temperature when you arrive.",
         "Your next successful Strike deals 1 extra damage."
+      ],
+      "boon_chosen": null
+    },
+    {
+      "week": "W16",
+      "year": 2026,
+      "date": "2026-04-13",
+      "campaign": "Kibwe",
+      "campaign_pid": "40585",
+      "user_id": "7842002561",
+      "first_name": "Awnii",
+      "username": "Awnii_Vihn",
+      "post_count": 5,
+      "avg_gap_h": 15.1,
+      "boons_offered": [
+        "A bouncer at a club recognizes your name and lets you skip the line.",
+        "You flip a coin and it lands on its edge. Take that as a sign of extraordinary luck.",
+        "A horse at a stable nuzzles your hand. The stablemaster says it never does that.",
+        "Gain a +1 circumstance bonus to initiative in your next combat."
       ],
       "boon_chosen": null
     }
