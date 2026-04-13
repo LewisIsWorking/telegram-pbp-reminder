@@ -71,16 +71,21 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         state["last_queue_fingerprint"] = fingerprint  # pragma: no cover
         return  # pragma: no cover
 
-    # Build priority set from config
-    priority_pids = set()
+    # Build priority map from config — lower number = higher priority
+    # queue_priority: True (legacy) → level 1; numeric value used directly
+    # C11 uses level 0 (highest), C06 uses level 1, rest use level 2
+    priority_map: dict[str, int] = {}
     for pair in config.get("topic_pairs", []):
-        if pair.get("queue_priority"):
-            priority_pids.add(str(pair["pbp_topic_ids"][0]))  # pragma: no cover
+        qp = pair.get("queue_priority")
+        if qp is not None and qp is not False:
+            pid_str = str(pair["pbp_topic_ids"][0])
+            priority_map[pid_str] = int(qp) if isinstance(qp, int) else 1
+    priority_pids = set(priority_map.keys())  # kept for pin-icon display
 
     def sort_key(pid):
         entries = scanned[pid]["entries"]
         oldest = min(e.get("time", "9999") for e in entries)
-        return (0 if pid in priority_pids else 1, oldest)
+        return (priority_map.get(pid, 2), oldest)
 
     sorted_pids = sorted(scanned.keys(), key=sort_key)
     from commands.queue_stats import get_today_clears
