@@ -59,6 +59,26 @@ def _options_for_code(config: dict, code: str,
     return ["Friday", "Saturday", "Can't make it"]
 
 
+def _poll_link_for(code: str, config: dict, state: dict) -> str:
+    """Return a t.me link to the current week's poll message, or ''."""
+    from helpers_pkg.groups import group_id_for_campaign, pid_for_code
+    slot = state.get("session_poll", {}).get(code, {})
+    msg_id = slot.get("poll_message_id")
+    if not msg_id:
+        return ""
+    pid = pid_for_code(config, code)
+    if not pid:
+        return ""  # pragma: no cover
+    pair = next((p for p in config.get("topic_pairs", [])
+                 if str(p["pbp_topic_ids"][0]) == pid), None)
+    if not pair:
+        return ""  # pragma: no cover
+    gid = group_id_for_campaign(config, pid)
+    chat_tid = pair.get("chat_topic_id")
+    username = pair.get("group_username", config.get("group_username"))
+    return tg.message_link(gid, chat_tid, msg_id, username)
+
+
 def _action_label(option_label: str) -> str:
     """Convert raw option label to readable voted action string."""
     if option_label == "?":
@@ -82,8 +102,10 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
         options = _options_for_code(config, code, state)
         tally_blocks.append(build_tally_block(code, slot, options, config, state))
 
+    poll_link = _poll_link_for(voting_code, config, state)
+    link_line = f"\n🔗 {poll_link}" if poll_link else ""
     msg = (f"━━━━━━━━━━━━━━━━\n"
-           f"🗳️ {mention} {action} in {voting_code}\n\n"
+           f"🗳️ {mention} {action} in {voting_code}{link_line}\n\n"
            + "\n\n".join(tally_blocks))
 
     for code in all_codes:
