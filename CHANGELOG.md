@@ -11,6 +11,50 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.37.0] - 2026-04-13
+
+### Added
+
+**Poll link in vote notifications** (`dispatch/poll_notify.py`)
+
+Each vote notification now includes a `🔗` link directly to that week's
+pinned poll message, so players can tap through to vote immediately.
+
+**Unknown voter alert** (`dispatch/poll_notify.py`)
+
+When a completely unrecognised UID votes in a poll, the bot posts an
+immediate warning to the bot topic: `⚠️ Unknown voter in C01 poll: uid
+999888 — They voted but aren't on the roster.` The known-check now also
+covers `poll_user_names` keys, so named-but-unrostered voters (PathWars,
+Elinoa, Christopher) no longer trigger it.
+
+**Permanent player flag** (`scheduled/alerts.py`, `dispatch/cmd_gm.py`)
+
+Players with `permanent: true` in their player entry are never
+auto-removed and skip the week-3 warning (which references auto-removal).
+Week-1 and week-2 inactivity pings still fire normally.
+GM commands: `/setpermanent @username` / `/unsetpermanent @username`.
+
+Currently marked permanent: Anthony (@MrNegetZ), Horia (@Nemesiux)
+across all their campaigns; Ryo (@RyoYamakawa) across all 5 PBP campaigns.
+
+### Fixed
+
+**Diagnostic: git credential paths shown as rate-limit context**
+
+`/home/runner/…/git-credentials-*.config` lines were matching the
+rate-limit pattern and appearing as context in the diagnostic report.
+Added path-based filter (`/home/runner`, `/github/`, `git-credentials-`).
+Preview truncation bumped from 120 → 200 characters.
+
+**C01 poll roster** (`config.json`)
+
+Added Elinoa Wigglero (uid `8740050892`) and Christopher (uid `8787586972`)
+to C01 `poll_user_ids` and `poll_user_names`. PathWars (uid `1698524397`)
+labelled in C11 `poll_user_names`. All three cleared from `poll_unknown_voters`.
+
+---
+
 ## [4.36.0] - 2026-04-09
 
 ### Fixed — Per-topic queue posted to wrong thread in multi-topic campaigns
