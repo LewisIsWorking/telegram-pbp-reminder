@@ -129,15 +129,25 @@ def capture_unknown_voter(uid: str, code: str,
     Called when a poll_answer arrives from a UID not in poll_user_ids.
     Recorded in state['poll_unknown_voters'][code] so it can be matched
     to a placeholder on the next Sunday after enough players have voted.
+    Also posts an alert to the bot topic so the GM knows immediately.
     """
     pair = next((p for p in config.get("topic_pairs", [])
                  if p.get("code") == code), None)
     if not pair:
         return
     known = {str(u) for u in pair.get("poll_user_ids", [])}
+    # Also treat poll_user_names keys as known
+    known |= set(pair.get("poll_user_names", {}).keys())
     if uid in known:
         return
     bucket = state.setdefault("poll_unknown_voters", {}).setdefault(code, [])
     if uid not in bucket:
         bucket.append(uid)
         print(f"Unknown voter captured: {uid} in {code}")
+        bot_topic = config.get("bot_topic_id")
+        group_id = config.get("group_id")
+        if bot_topic and group_id:
+            tg.send_message(group_id, bot_topic,
+                            f"⚠️ Unknown voter in {code} poll: uid {uid}\n"
+                            f"They voted but aren't on the roster. "
+                            f"Run promote\_poll\_voters.py to identify them.")
