@@ -16,16 +16,20 @@ def build_queue(config: dict, state: dict) -> str:
 
     total = sum(len(d["entries"]) for d in scanned.values())
 
-    # Priority campaigns always sort first
-    priority_pids = set()
+    # Build numeric priority map — lower = higher position in queue
+    # queue_priority: True (legacy bool) → level 1; int used directly
+    priority_map: dict[str, int] = {}
     for pair in config.get("topic_pairs", []):
-        if pair.get("queue_priority"):
-            priority_pids.add(str(pair["pbp_topic_ids"][0]))
+        qp = pair.get("queue_priority")
+        if qp is not None and qp is not False:
+            pid_str = str(pair["pbp_topic_ids"][0])
+            priority_map[pid_str] = int(qp) if isinstance(qp, int) else 1
+    priority_pids = set(priority_map.keys())  # kept for pin-icon display
 
     def sort_key(pid):
         entries = scanned[pid]["entries"]
         oldest = min(e.get("time", "9999") for e in entries)
-        return (0 if pid in priority_pids else 1, oldest)
+        return (priority_map.get(pid, 2), oldest)
 
     sorted_pids = sorted(scanned.keys(), key=sort_key)
     lines = [f"📋 GM Reply Queue: {total} unreplied"]
