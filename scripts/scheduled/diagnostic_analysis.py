@@ -48,10 +48,15 @@ def _analyse_logs(logs: list[str]) -> dict:
                             "PKG_CONFIG", "Python_ROOT", "LD_LIBRARY")
             if clean.startswith(_GH_PREFIXES):
                 continue  # pragma: no cover
+            # Skip filesystem path lines (git credential files, runner paths)
+            if clean.startswith(("/home/runner", "/github/", "/opt/hosted")):
+                continue  # pragma: no cover
+            if "git-credentials-" in clean:
+                continue  # pragma: no cover
 
             for pattern, label in _ERROR_PATTERNS:
                 if pattern.search(clean):
-                    issues.setdefault(label, []).append(clean[:120])
+                    issues.setdefault(label, []).append(clean[:200])
                     run_had_error = True
                     break
 
@@ -92,7 +97,7 @@ def _build_report(analysis: dict, run_count: int, now: datetime) -> str:
             seen = set()
             for occ in occurrences:
                 if occ not in seen:
-                    lines.append(f"    └ {occ[:120]}")
+                    lines.append(f"    └ {occ[:200]}")
                     seen.add(occ)
                     if len(seen) >= 10:
                         break  # pragma: no cover
