@@ -83,7 +83,7 @@
         137075
       ],
       "code": "C06",
-      "queue_priority": true,
+      "queue_priority": 1,
       "emoji": "\ud83e\udda0"
     },
     {
@@ -174,7 +174,8 @@
         "9100000006": "Thefununlce",
         "1698524397": "PathWars"
       },
-      "emoji": "\ud83c\udf11"
+      "emoji": "\ud83c\udf11",
+      "queue_priority": 0
     }
   ],
   "settings": {
