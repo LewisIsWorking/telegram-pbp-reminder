@@ -14,8 +14,8 @@ _MILESTONE_ICONS = {
     3000: "💎", 3500: "🌟", 4000: "👑", 4500: "🏆", 5000: "🎆",
 }
 
-_DATA_JSON = os.path.join(
-    os.path.dirname(__file__), '..', '..', 'data', 'milestone_messages.json'
+_DATA_DIR = os.path.join(
+    os.path.dirname(__file__), '..', '..', 'data', 'milestone_messages'
 )
 
 _GENERIC_BODY = (
@@ -32,11 +32,18 @@ class _MilestoneMessages:
     @classmethod
     def _load(cls) -> dict:
         if cls._data is None:
-            try:
-                with open(_DATA_JSON, encoding='utf-8') as f:
-                    cls._data = json.load(f)
-            except (FileNotFoundError, json.JSONDecodeError):
-                cls._data = {}
+            merged: dict = {}
+            if os.path.isdir(_DATA_DIR):
+                for fname in os.listdir(_DATA_DIR):
+                    if not fname.endswith('.json'):
+                        continue
+                    fpath = os.path.join(_DATA_DIR, fname)
+                    try:
+                        with open(fpath, encoding='utf-8') as f:
+                            merged.update(json.load(f))
+                    except (FileNotFoundError, json.JSONDecodeError):
+                        pass
+            cls._data = merged
         return cls._data
 
     @classmethod
