@@ -1,6 +1,16 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 145187,
+      "thread_id": 51357,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-04-14T19:31:32+00:00",
+      "preview": "One at a time, Illiani silently projects a telepathic message to the party.\n\n<There are two voices beyond this door.>",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -373,8 +383,8 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 145192,
+      "fingerprint": "2026-04-14 19:31:32"
     }
   }
 }
