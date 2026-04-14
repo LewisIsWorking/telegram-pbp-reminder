@@ -11,6 +11,40 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.38.0] - 2026-04-14
+
+### Added
+
+**900 campaign-specific milestone messages** (`data/milestone_messages/`)
+
+Every PBP thread now receives a unique, flavour-specific message when it
+crosses a 500-post milestone, instead of the generic fallback. Messages
+are written specifically for each campaign's setting, characters, lore,
+and tone — 50 messages per thread, covering milestones 500 through 25,000.
+
+Messages are stored in per-campaign JSON files under `data/milestone_messages/`:
+
+| File | Threads |
+|------|---------|
+| `c00_riddleport.json` | PBP (66154), COMBAT (145053) |
+| `c01_doomsday_funtime.json` | PBP (25059), COMBAT (22566) |
+| `c04_magni_watch.json` | PBP (76799), COMBAT (144765) |
+| `c05_grand_explorers.json` | PBP (51357), Dream (56842), COMBAT (145040) |
+| `c06_kibwe.json` | PBP (40585), COMBAT (137075) |
+| `c07_hopeful_end_times.json` | PBP (52083), COMBAT (145045) |
+| `c08_theria.json` | PBP (107151) |
+| `c09_metal_city.json` | PBP (107171), COMBAT (142887) |
+| `c11_dark_pockets.json` | PBP (1242), COMBAT (1825) |
+
+**Per-campaign milestone message directory loader** (`scheduled/message_milestones.py`)
+
+`_MilestoneMessages._load()` now scans the `data/milestone_messages/`
+directory and merges all `.json` files, rather than reading a single
+`milestone_messages.json`. Non-JSON files are skipped. Corrupt or missing
+files are caught and skipped gracefully. Cache behaviour is unchanged.
+
+---
+
 ## [4.37.0] - 2026-04-13
 
 ### Added
