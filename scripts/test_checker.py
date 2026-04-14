@@ -2324,44 +2324,55 @@ def test_overview_multi_campaign():
 
 
 # ------------------------------------------------------------------ #
-#  Message milestone tests
+#  Message milestone tests (per-thread)
 # ------------------------------------------------------------------ #
-def test_milestone_campaign_500():
+def test_milestone_thread_500():
+    """Thread hitting 500 posts fires milestone in thread and bot topic."""
     _reset()
     config = _make_config()
     state = _make_state()
-    # Give the campaign 500 messages
-    state["message_counts"]["100"] = {"42": 300, "50": 200}
+    state["thread_message_counts"] = {"100": {"42": 300, "50": 200}}
     state["celebrated_milestones"] = {}
 
     checker.check_message_milestones(config, state)
-    assert state["celebrated_milestones"].get("campaign:100") == 500
+    assert state["celebrated_milestones"].get("thread:100") == 500
     assert any("500" in m.get("text", "") for m in _sent_messages)
 
 
-def test_milestone_campaign_not_repeated():
+def test_milestone_thread_not_repeated():
     _reset()
     config = _make_config()
     state = _make_state()
-    state["message_counts"]["100"] = {"42": 300, "50": 200}
-    state["celebrated_milestones"] = {"campaign:100": 500}
+    state["thread_message_counts"] = {"100": {"42": 300, "50": 200}}
+    state["celebrated_milestones"] = {"thread:100": 500}
 
     checker.check_message_milestones(config, state)
-    # No new messages sent — already celebrated
     milestone_msgs = [m for m in _sent_messages if "500" in m.get("text", "")]
     assert len(milestone_msgs) == 0
 
 
-def test_milestone_campaign_1000():
+def test_milestone_thread_1000():
     _reset()
     config = _make_config()
     state = _make_state()
-    state["message_counts"]["100"] = {"42": 600, "50": 400}
-    state["celebrated_milestones"] = {"campaign:100": 500}
+    state["thread_message_counts"] = {"100": {"42": 600, "50": 400}}
+    state["celebrated_milestones"] = {"thread:100": 500}
 
     checker.check_message_milestones(config, state)
-    assert state["celebrated_milestones"]["campaign:100"] == 1000
+    assert state["celebrated_milestones"]["thread:100"] == 1000
     assert any("1,000" in m.get("text", "") for m in _sent_messages)
+
+
+def test_milestone_thread_below_step():
+    """Threads under 500 messages don't fire."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    state["thread_message_counts"] = {"100": {"42": 100}}
+    state["celebrated_milestones"] = {}
+
+    checker.check_message_milestones(config, state)
+    assert "thread:100" not in state["celebrated_milestones"]
 
 
 def test_milestone_global():
@@ -2376,8 +2387,10 @@ def test_milestone_global():
         ],
     }
     state = _make_state()
-    state["message_counts"]["100"] = {"42": 3000}
-    state["message_counts"]["300"] = {"50": 2000}
+    state["thread_message_counts"] = {
+        "100": {"42": 3000},
+        "300": {"50": 2000},
+    }
     state["celebrated_milestones"] = {}
 
     checker.check_message_milestones(config, state)
