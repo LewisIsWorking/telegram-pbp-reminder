@@ -696,10 +696,11 @@ def test_message_milestones_skips_gm():
         {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
          "gm_user_ids": [999], "chat_topic_id": 21514}
     ]}
-    state = {"message_counts": {"100": {"999": 100}}}  # GM at milestone
-    with patch("helpers.iter_campaigns",
-               return_value=[("100", "C00", "Kibwe", {})]),          patch("helpers.gm_ids_for_campaign", return_value={"999"}),          patch("helpers.is_excluded", return_value=True):
-        check_message_milestones(config, state, now=now)  # excluded → skips
+    # New system: thread_message_counts with < 500 → no milestone fired
+    state = {"thread_message_counts": {"100": {"999": 100}},
+             "celebrated_milestones": {}}
+    check_message_milestones(config, state, now=now)
+    assert "thread:100" not in state["celebrated_milestones"]
 
 
 def test_health_2d_5posts_green():
