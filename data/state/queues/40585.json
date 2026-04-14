@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 145044,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-14T16:06:14+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 145049,
       "thread_id": 40585,
       "user_id": "7863964681",
@@ -344,7 +335,9 @@
     "msg:144855",
     "2026-04-14 14:04:07",
     "msg:144989",
-    "2026-04-14 15:41:32"
+    "2026-04-14 15:41:32",
+    "msg:145044",
+    "2026-04-14 16:06:14"
   ],
   "reply_log": [
     {
@@ -1667,14 +1660,23 @@
       "player": "Caelum",
       "preview": "Can i have an reaction ?",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T16:47:56+00:00",
+      "pid": "40585",
+      "msg_id": "145044",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145085,
-      "fingerprint": "2026-04-14 16:06:14"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": 145087,
