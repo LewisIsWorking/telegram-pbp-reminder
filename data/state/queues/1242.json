@@ -2,12 +2,12 @@
   "pid": "1242",
   "unreplied": [
     {
-      "message_id": 1816,
+      "message_id": 1820,
       "thread_id": 1242,
       "user_id": "8030796908",
       "user_name": "NJ",
-      "time": "2026-04-14T11:14:41+00:00",
-      "preview": "Another affected by shadow magic what should we do guys?",
+      "time": "2026-04-14T14:16:34+00:00",
+      "preview": "Oooh",
       "media_group_id": null
     }
   ],
@@ -29,7 +29,9 @@
     "msg:1665",
     "2026-04-07 02:25:12",
     "msg:1791",
-    "2026-04-13 17:47:31"
+    "2026-04-13 17:47:31",
+    "msg:1816",
+    "2026-04-14 11:14:41"
   ],
   "reply_log": [
     {
@@ -151,14 +153,23 @@
       "player": "NJ",
       "preview": "I would like to do a natural magic check on Olla to find out if she is under som",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T14:03:07+00:00",
+      "pid": "1242",
+      "msg_id": "1816",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "Another affected by shadow magic what should we do guys?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 1817,
-      "fingerprint": "2026-04-14 11:14:41"
+      "msg_id": 1821,
+      "fingerprint": "2026-04-14 14:16:34"
     }
   }
 }

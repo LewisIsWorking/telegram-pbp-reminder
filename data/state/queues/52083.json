@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 144858,
+      "thread_id": 52083,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T14:16:02+00:00",
+      "preview": "\"Don't know who this Nikk-Nakk fella is, but if you say we should talk to him, then I'll have to trust you.\" The lighting of Miyu's fur flutters as he hops off the stool. \n\"Heading to the community center!\" He shouts and waves as he walks out the door.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -401,8 +411,8 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 144868,
+      "fingerprint": "2026-04-14 14:16:02"
     }
   }
 }

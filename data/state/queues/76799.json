@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 144832,
-      "thread_id": 144765,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-14T12:23:30+00:00",
-      "preview": "Reacting swiftly to danger, B\u00e1yakan darts towards the kobolds. He considers his whip briefly, but the distance seems just a little too much. Instead he splays his fingers, producing a magical projectile that jabs into one of the crossbow wielding unpaid laborers.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -72,7 +62,9 @@
     "msg:141129",
     "2026-03-31 14:33:01",
     "msg:142869",
-    "2026-04-06 14:46:11"
+    "2026-04-06 14:46:11",
+    "msg:144832",
+    "2026-04-14 12:23:30"
   ],
   "reply_log": [
     {
@@ -331,6 +323,15 @@
       "player": "Link",
       "preview": "Yes. Please.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T14:32:16+00:00",
+      "pid": "76799",
+      "msg_id": "144832",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "Reacting swiftly to danger, B\u00e1yakan darts towards the kobolds. He considers his ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -341,8 +342,8 @@
       "fingerprint": ""
     },
     "144765": {
-      "msg_id": 144835,
-      "fingerprint": "2026-04-14 12:23:30"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
