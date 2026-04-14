@@ -10,41 +10,41 @@ No hosting, no server, no cost. Just a GitHub repo, a Telegram bot, and a config
 
 ## Features
 
-| Feature                    | Frequency                         | Where it posts             |
-|----------------------------|-----------------------------------|----------------------------|
-| **Inactivity alerts**      | Every N hours of silence          | Campaign chat topics       |
-| **Player warnings**        | At 1, 2, 3 weeks inactive         | Campaign chat topics       |
-| **Auto-removal**           | At 4 weeks inactive               | Campaign chat topics       |
-| **Party roster**           | Every 3 days                      | Campaign chat topics       |
-| **Player of the Week**     | Weekly (with boon choice)         | Campaign chat topics       |
-| **Pace report**            | Weekly                            | Campaign chat topics       |
-| **Campaign leaderboard**   | Every 3 days                      | Bot topic                  |
-| **Weekly digest**          | Weekly                            | Bot topic                  |
-| **Combat turn pinger**     | During combat                     | Campaign PBP topics        |
-| **Smart alerts**           | On pace drop or silence           | Campaign chat topics       |
-| **Recruitment notices**    | Every 2 weeks (if under capacity) | Campaign chat topics       |
-| **Campaign anniversaries** | Yearly                            | Campaign chat topics       |
-| **Streak milestones**      | On 7/14/30/60/90 day streaks      | Campaign chat topics       |
-| **Message milestones**     | Every 500/5000 messages           | Campaign/bot topic         |
-| **Daily tips**             | Daily                             | Bot topic                  |
-| **PBP transcripts**        | Every message (auto-archived)     | `data/pbp_logs/`           |
-| **Weekly archive**         | Weekly                            | `data/weekly_archive.json` |
-| **Dashboard**              | On every archive update           | [GitHub Pages](https://lewisisworking.github.io/telegram-pbp-reminder/) |
-| **AoN search**             | On demand (`/search`)             | Any topic                  |
-| **GM reply queue**         | On change + daily 9am             | Bot topic                  |
-| **Queue nudge**            | When entry crosses 48h            | Bot topic                  |
-| **Reaction tracking**      | Automatic                         | On demand (`/reactions`)   |
-| **Player availability**    | On demand (`/available`)          | Campaign PBP topics        |
-| **Cross-campaign timeline**| On demand (`/timeline`)           | Any topic                  |
-| **Player registry**        | Automatic (on first post)         | On demand (`/registry`)    |
-| **Weekly campaign table**  | Weekly                            | Bot topic                  |
-| **Campaign health**        | On demand (`/health`)             | Any topic                  |
-| **Session counter**        | Auto-increment on GM post day     | On demand (`/session`)     |
-| **Player waiting queue**   | On demand (`/waiting`)            | Any topic                  |
-| **Queue stats**            | On demand (`/queuestats`)         | Any topic                  |
-| **Session poll**           | Weekly (Mon-Fri, native Telegram) | Campaign chat topic        |
-| **Comeback alerts**        | On player return after 5d+        | Bot topic                  |
-| **State backup**           | Daily                             | `data/state_backup.json`   |
+| Feature                     | Frequency                         | Where it posts                                                          |
+|-----------------------------|-----------------------------------|-------------------------------------------------------------------------|
+| **Inactivity alerts**       | Every N hours of silence          | Campaign chat topics                                                    |
+| **Player warnings**         | At 1, 2, 3 weeks inactive         | Campaign chat topics                                                    |
+| **Auto-removal**            | At 4 weeks inactive               | Campaign chat topics                                                    |
+| **Party roster**            | Every 3 days                      | Campaign chat topics                                                    |
+| **Player of the Week**      | Weekly (with boon choice)         | Campaign chat topics                                                    |
+| **Pace report**             | Weekly                            | Campaign chat topics                                                    |
+| **Campaign leaderboard**    | Every 3 days                      | Bot topic                                                               |
+| **Weekly digest**           | Weekly                            | Bot topic                                                               |
+| **Combat turn pinger**      | During combat                     | Campaign PBP topics                                                     |
+| **Smart alerts**            | On pace drop or silence           | Campaign chat topics                                                    |
+| **Recruitment notices**     | Every 2 weeks (if under capacity) | Campaign chat topics                                                    |
+| **Campaign anniversaries**  | Yearly                            | Campaign chat topics                                                    |
+| **Streak milestones**       | On 7/14/30/60/90 day streaks      | Campaign chat topics                                                    |
+| **Message milestones**      | Every 500/5000 messages           | Campaign/bot topic                                                      |
+| **Daily tips**              | Daily                             | Bot topic                                                               |
+| **PBP transcripts**         | Every message (auto-archived)     | `data/pbp_logs/`                                                        |
+| **Weekly archive**          | Weekly                            | `data/weekly_archive.json`                                              |
+| **Dashboard**               | On every archive update           | [GitHub Pages](https://lewisisworking.github.io/telegram-pbp-reminder/) |
+| **AoN search**              | On demand (`/search`)             | Any topic                                                               |
+| **GM reply queue**          | On change + daily 9am             | Bot topic                                                               |
+| **Queue nudge**             | When entry crosses 48h            | Bot topic                                                               |
+| **Reaction tracking**       | Automatic                         | On demand (`/reactions`)                                                |
+| **Player availability**     | On demand (`/available`)          | Campaign PBP topics                                                     |
+| **Cross-campaign timeline** | On demand (`/timeline`)           | Any topic                                                               |
+| **Player registry**         | Automatic (on first post)         | On demand (`/registry`)                                                 |
+| **Weekly campaign table**   | Weekly                            | Bot topic                                                               |
+| **Campaign health**         | On demand (`/health`)             | Any topic                                                               |
+| **Session counter**         | Auto-increment on GM post day     | On demand (`/session`)                                                  |
+| **Player waiting queue**    | On demand (`/waiting`)            | Any topic                                                               |
+| **Queue stats**             | On demand (`/queuestats`)         | Any topic                                                               |
+| **Session poll**            | Weekly (Mon-Fri, native Telegram) | Campaign chat topic                                                     |
+| **Comeback alerts**         | On player return after 5d+        | Bot topic                                                               |
+| **State backup**            | Daily                             | `data/state_backup.json`                                                |
 
 All intervals are configurable. All features run automatically once set up.
 
@@ -81,21 +81,21 @@ Every file held to a strict 200-line maximum.
 
 ## Documentation
 
-| Doc | Contents |
-|-----|----------|
-| [Setup Guide](docs/setup.md) | Create bot, find topic IDs, configure, deploy |
-| [Commands](docs/commands.md) | All player and GM commands |
-| [Configuration](docs/configuration.md) | config.json reference |
-| [Data Storage](docs/data-storage.md) | Where data lives, backup strategy |
-| [Architecture](docs/architecture.md) | File structure, multi-topic campaigns |
-| [Intended Behaviour](docs/behaviour.md) | How features work and why |
-| [GM Queue](docs/gm-queue.md) | Queue mechanics, clearing, reminders |
-| [Polls](docs/polls.md) | Session polls, swimming poll, cross-notifications |
-| [Player of the Week](docs/potw.md) | POTW selection, boons, streaks |
-| [Examples](docs/examples.md) | Sample bot output |
-| [Importing History](docs/importing-history.md) | Backfill from Telegram exports |
-| [Troubleshooting](docs/troubleshooting.md) | Common issues and fixes |
-| [CHANGELOG.md](CHANGELOG.md) | Full version history |
+| Doc                                            | Contents                                          |
+|------------------------------------------------|---------------------------------------------------|
+| [Setup Guide](docs/setup.md)                   | Create bot, find topic IDs, configure, deploy     |
+| [Commands](docs/commands.md)                   | All player and GM commands                        |
+| [Configuration](docs/configuration.md)         | config.json reference                             |
+| [Data Storage](docs/data-storage.md)           | Where data lives, backup strategy                 |
+| [Architecture](docs/architecture.md)           | File structure, multi-topic campaigns             |
+| [Intended Behaviour](docs/behaviour.md)        | How features work and why                         |
+| [GM Queue](docs/gm-queue.md)                   | Queue mechanics, clearing, reminders              |
+| [Polls](docs/polls.md)                         | Session polls, swimming poll, cross-notifications |
+| [Player of the Week](docs/potw.md)             | POTW selection, boons, streaks                    |
+| [Examples](docs/examples.md)                   | Sample bot output                                 |
+| [Importing History](docs/importing-history.md) | Backfill from Telegram exports                    |
+| [Troubleshooting](docs/troubleshooting.md)     | Common issues and fixes                           |
+| [CHANGELOG.md](CHANGELOG.md)                   | Full version history                              |
 
 ---
 
