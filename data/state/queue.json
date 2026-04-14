@@ -347,7 +347,11 @@
       "2026-04-14T21:18:47.718623+00:00",
       "2026-04-14T21:18:47.720255+00:00",
       "2026-04-14T21:18:47.724788+00:00",
-      "2026-04-14T21:18:47.727781+00:00"
+      "2026-04-14T21:18:47.727781+00:00",
+      "2026-04-14T22:17:47.299439+00:00",
+      "2026-04-14T22:17:47.301256+00:00",
+      "2026-04-14T22:17:47.302925+00:00",
+      "2026-04-14T22:17:47.304625+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -544,30 +548,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-03-31T04:50:36.733957+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "107171",
-      "time": "2026-03-31T05:35:22.569457+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "107171",
-      "time": "2026-03-31T05:35:22.570680+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "107171",
-      "time": "2026-03-31T05:35:22.571231+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "107171",
       "time": "2026-03-31T05:35:22.571797+00:00",
@@ -1743,6 +1723,30 @@
       "time": "2026-04-14T21:18:47.727781+00:00",
       "player": "Link",
       "preview": "Keiran can feel the ritual drawing to a close. His form shud"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-14T22:17:47.299439+00:00",
+      "player": "Caelum",
+      "preview": "He get 1 hp and 40temp hp"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-14T22:17:47.301256+00:00",
+      "player": "Buffet",
+      "preview": "[media]"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-14T22:17:47.302925+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-14T22:17:47.304625+00:00",
+      "player": "",
+      "preview": ""
     }
   ],
   "pending_potw_boons": {
@@ -1758,7 +1762,7 @@
       ],
       "base_message": "Player of the Week for Theria: Chase Darkthorne (@ChaseDarkthorne)!\n(2026-04-01 (W14) to 2026-04-08 (W15))\n\n5 posts this week with an average gap of 34.1h between posts. The most consistent driver of the story.\n\nPosts this week:\n\ud83d\udd17 https://t.me/Path_Wars/107151/141611\n\ud83d\udd17 https://t.me/Path_Wars/107151/141755",
       "posted_at": "2026-04-08T22:15:29.107382+00:00",
-      "reminders_sent": 2
+      "reminders_sent": 3
     },
     "40585": {
       "message_id": 144399,

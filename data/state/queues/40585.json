@@ -18,30 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 145182,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-04-14T19:02:58+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 145264,
       "thread_id": 137075,
       "user_id": "6023408187",
       "user_name": "Caelum",
       "time": "2026-04-14T21:16:19+00:00",
       "preview": "ye",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145268,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-14T21:18:23+00:00",
-      "preview": "He get 1 hp and 40temp hp",
       "media_group_id": null
     }
   ],
@@ -365,7 +347,14 @@
     "msg:145265",
     "2026-04-14 21:16:36",
     "msg:145049",
-    "2026-04-14 16:08:27"
+    "2026-04-14 16:08:27",
+    "msg:145268",
+    "2026-04-14 21:18:23",
+    "msg:145182",
+    "2026-04-14 19:02:58",
+    "msg:145259",
+    "2026-04-14 21:15:37",
+    "msg:145260"
   ],
   "reply_log": [
     {
@@ -1742,14 +1731,50 @@
       "player": "Link",
       "preview": "Keiran can feel the ritual drawing to a close. His form shudders, reveling in th",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T21:20:25+00:00",
+      "pid": "40585",
+      "msg_id": "145268",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "He get 1 hp and 40temp hp",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T21:21:06+00:00",
+      "pid": "40585",
+      "msg_id": "145182",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T21:21:41+00:00",
+      "pid": "40585",
+      "msg_id": "145259",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T21:21:56+00:00",
+      "pid": "40585",
+      "msg_id": "145260",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145273,
-      "fingerprint": "2026-04-14 19:02:58|2026-04-14 21:15:37|2026-04-14 21:15:37|2026-04-14 21:15:38|2026-04-14 21:16:19|2026-04-14 21:18:23"
+      "msg_id": 145336,
+      "fingerprint": "2026-04-14 21:15:38|2026-04-14 21:16:19"
     },
     "40585": {
       "msg_id": null,
