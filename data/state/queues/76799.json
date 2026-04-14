@@ -1,6 +1,61 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 145118,
+      "thread_id": 144765,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T17:05:30+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145135,
+      "thread_id": 76799,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T17:09:45+00:00",
+      "preview": "Akuma, greatly irritated at how the events played out, rushes the weakest-looking Kobold and kicks him square in the solar plexus. Seeing him fall down, he turns and gives an extra hard headbutt to the other, knocking him down as well.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145137,
+      "thread_id": 76799,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-04-14T17:10:58+00:00",
+      "preview": "\"Well look at that,\" the fey grins. \"Managed to take both of them alive. Despite their clearly lethal best efforts. You alright, Nadya?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145143,
+      "thread_id": 144765,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T17:20:57+00:00",
+      "preview": "Oh! I know what you mean now.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145149,
+      "thread_id": 144765,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-04-14T17:22:42+00:00",
+      "preview": "k, well doesn't matter. Combat is over and I can't sustain it.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145150,
+      "thread_id": 76799,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T17:27:42+00:00",
+      "preview": "\"Little bastards. Can't wait to talk to this Rekarek guy.\"\n\nHe checks in on the kobold, \"how you holding up? Did that blast get you?\"\n\nHe eyes over at Nadya, seeing that she has plenty of aid from the rest of the team, and feels relieved.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -64,7 +119,19 @@
     "msg:142869",
     "2026-04-06 14:46:11",
     "msg:144832",
-    "2026-04-14 12:23:30"
+    "2026-04-14 12:23:30",
+    "msg:145102",
+    "2026-04-14 16:54:13",
+    "msg:145115",
+    "2026-04-14 17:04:52",
+    "msg:145116",
+    "2026-04-14 17:05:09",
+    "msg:145124",
+    "2026-04-14 17:07:29",
+    "msg:145136",
+    "2026-04-14 17:10:23",
+    "msg:145144",
+    "2026-04-14 17:21:00"
   ],
   "reply_log": [
     {
@@ -332,18 +399,81 @@
       "player": "Chase",
       "preview": "Reacting swiftly to danger, B\u00e1yakan darts towards the kobolds. He considers his ",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:06:17+00:00",
+      "pid": "76799",
+      "msg_id": "145102",
+      "thread_id": 144765,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:06:40+00:00",
+      "pid": "76799",
+      "msg_id": "145115",
+      "thread_id": 144765,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:07:27+00:00",
+      "pid": "76799",
+      "msg_id": "145116",
+      "thread_id": 144765,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:07:50+00:00",
+      "pid": "76799",
+      "msg_id": "145124",
+      "thread_id": 144765,
+      "player": "Link",
+      "preview": "Akuma's turn:\nStride -> Strike Kobold #1 (22 attack), Hit (6 non-lethal damage) ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:09:35+00:00",
+      "pid": "76799",
+      "msg_id": "145102",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:12:11+00:00",
+      "pid": "76799",
+      "msg_id": "145136",
+      "thread_id": 144765,
+      "player": "Link",
+      "preview": "I already did.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T17:22:03+00:00",
+      "pid": "76799",
+      "msg_id": "145144",
+      "thread_id": 144765,
+      "player": "Ryo",
+      "preview": "Ohh, I thought it did it automatically when you click to place the emination",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 145160,
+      "fingerprint": "2026-04-14 17:09:45|2026-04-14 17:10:58|2026-04-14 17:27:42"
     },
     "144765": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 145158,
+      "fingerprint": "2026-04-14 17:05:30|2026-04-14 17:20:57|2026-04-14 17:22:42"
     }
   }
 }

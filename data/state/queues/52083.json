@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 144858,
-      "thread_id": 52083,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-14T14:16:02+00:00",
-      "preview": "\"Don't know who this Nikk-Nakk fella is, but if you say we should talk to him, then I'll have to trust you.\" The lighting of Miyu's fur flutters as he hops off the stool. \n\"Heading to the community center!\" He shouts and waves as he walks out the door.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -83,7 +73,9 @@
     "msg:144612",
     "2026-04-14 07:13:41",
     "msg:144640",
-    "2026-04-14 07:43:28"
+    "2026-04-14 07:43:28",
+    "msg:144858",
+    "2026-04-14 14:16:02"
   ],
   "reply_log": [
     {
@@ -405,14 +397,23 @@
       "player": "Ryo",
       "preview": "Rune chuckles not-so softly at the way Manee sympathizes with the plight of work",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T16:50:43+00:00",
+      "pid": "52083",
+      "msg_id": "144858",
+      "thread_id": 52083,
+      "player": "Link",
+      "preview": "\"Don't know who this Nikk-Nakk fella is, but if you say we should talk to him, t",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "msg_id": 144868,
-      "fingerprint": "2026-04-14 14:16:02"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
