@@ -1,6 +1,16 @@
 {
   "pid": "1242",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 1816,
+      "thread_id": 1242,
+      "user_id": "8030796908",
+      "user_name": "NJ",
+      "time": "2026-04-14T11:14:41+00:00",
+      "preview": "Another affected by shadow magic what should we do guys?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -147,8 +157,8 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 1817,
+      "fingerprint": "2026-04-14 11:14:41"
     }
   }
 }
