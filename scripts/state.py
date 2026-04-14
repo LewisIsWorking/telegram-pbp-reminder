@@ -39,6 +39,7 @@ PARTITIONS: dict[str, list[str]] = {
         "post_timestamps", "message_counts", "activity_hours",
         "activity_days", "word_counts", "session_counts", "session_last_day",
         "poll_history", "poll_results", "potw_history",
+        "thread_message_counts",
     ],
     "trackers": [
         "clocks", "conditions", "hp_tracker", "loot", "npcs",
@@ -60,6 +61,7 @@ DEFAULT_STATE: dict = {
     "timers": {}, "votes": {}, "campaign_notes": {}, "current_scenes": {},
     "poll_history": {}, "poll_results": {}, "poll_unknown_voters": {},
     "potw_history": [], "last_week_welcome": None,
+    "thread_message_counts": {},
     "last_queue_daily_slots": [], "swimming_poll": {},
     "queue_scan_floor": None, "last_diagnostic": None,
     "last_queue_pin_id": None, "queue_post_count": 0,
