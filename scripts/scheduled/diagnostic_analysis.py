@@ -38,6 +38,7 @@ def _analyse_logs(logs: list[str]) -> dict:
         run_had_error = False
         for line in log.splitlines():
             clean = re.sub(r"^\d{4}-\d{2}-\d{2}T[\d:.Z]+ ", "", line).strip()
+            clean = clean.lstrip("\ufeff")  # strip BOM from some log lines
             if not clean:
                 continue  # pragma: no cover
             # Skip GitHub Actions infrastructure lines (on cleaned text)
@@ -45,13 +46,18 @@ def _analyse_logs(logs: list[str]) -> dict:
                             "Worker ID:", "Current runner version",
                             "FORCE_JAVASCRIPT", "pythonLocation",
                             "shell:", "env:", "Temporarily overriding",
-                            "PKG_CONFIG", "Python_ROOT", "LD_LIBRARY")
+                            "PKG_CONFIG", "Python_ROOT", "LD_LIBRARY",
+                            "* [", "From ", "Fetching ", "Already ",
+                            "Checking out")
             if clean.startswith(_GH_PREFIXES):
                 continue  # pragma: no cover
             # Skip filesystem path lines (git credential files, runner paths)
             if clean.startswith(("/home/runner", "/github/", "/opt/hosted")):
                 continue  # pragma: no cover
             if "git-credentials-" in clean:
+                continue  # pragma: no cover
+            # Skip bare git SHA hashes (40 hex chars)
+            if re.match(r"^[0-9a-f]{40}", clean):
                 continue  # pragma: no cover
 
             for pattern, label in _ERROR_PATTERNS:
