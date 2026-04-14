@@ -1,5 +1,7 @@
 """Per-thread and global message count milestones."""
 
+import json
+import os
 from datetime import datetime, timezone
 from helpers import build_topic_maps
 import telegram as tg
@@ -11,6 +13,41 @@ _MILESTONE_ICONS = {
     500: "🎯", 1000: "🏅", 1500: "⚡", 2000: "🔥", 2500: "⭐",
     3000: "💎", 3500: "🌟", 4000: "👑", 4500: "🏆", 5000: "🎆",
 }
+
+_DATA_JSON = os.path.join(
+    os.path.dirname(__file__), '..', '..', 'data', 'milestone_messages.json'
+)
+
+_GENERIC_BODY = (
+    "That's {n:,} posts of collaborative storytelling. "
+    "Every single one moved the story forward."
+)
+
+
+class _MilestoneMessages:
+    """Lazy-loaded campaign-specific milestone message bodies."""
+
+    _data: dict | None = None
+
+    @classmethod
+    def _load(cls) -> dict:
+        if cls._data is None:
+            try:
+                with open(_DATA_JSON, encoding='utf-8') as f:
+                    cls._data = json.load(f)
+            except (FileNotFoundError, json.JSONDecodeError):
+                cls._data = {}
+        return cls._data
+
+    @classmethod
+    def get(cls, thread_id: str, milestone: int) -> str | None:
+        """Return campaign-specific body text or None if not found."""
+        return cls._load().get(str(thread_id), {}).get(str(milestone))
+
+    @classmethod
+    def reset(cls) -> None:
+        """Clear cached data (for testing)."""
+        cls._data = None
 
 
 def _icon(milestone: int) -> str:
@@ -28,7 +65,6 @@ def _thread_label(thread_id: str, config: dict, maps) -> tuple[str, str]:
             name = pair.get("name", "Unknown")
             if len(ids) == 1:
                 return name, ""
-            # First id = PBP, rest = combat/other
             thread_type = "PBP" if ids[0] == thread_id else "COMBAT"
             return name, thread_type
     return "Unknown", ""
@@ -39,11 +75,18 @@ def _group_and_chat(thread_id: str, config: dict, maps) -> tuple[int, int | None
     for pair in config.get("topic_pairs", []):
         ids = [str(i) for i in pair.get("pbp_topic_ids", [])]
         if thread_id in ids:
-            pid = ids[0]
             gid = pair.get("group_id", config["group_id"])
             chat_tid = pair.get("chat_topic_id")
             return gid, chat_tid
     return config["group_id"], None  # pragma: no cover
+
+
+def _build_msg(thread_id: str, label: str, icon: str, milestone: int) -> str:
+    """Assemble milestone message, using campaign-specific body if available."""
+    body = _MilestoneMessages.get(thread_id, milestone)
+    if body is None:
+        body = _GENERIC_BODY.format(n=milestone)
+    return f"{icon} {label} has hit {milestone:,} messages!\n\n{body}"
 
 
 def check_message_milestones(config: dict, state: dict,
@@ -73,19 +116,13 @@ def check_message_milestones(config: dict, state: dict,
         name, thread_type = _thread_label(thread_id, config, maps)
         gid, chat_tid = _group_and_chat(thread_id, config, maps)
         icon = _icon(milestone)
-
         label = f"{name} {thread_type}" if thread_type else name
-        msg = (
-            f"{icon} {label} has hit {milestone:,} messages!\n\n"
-            f"That's {milestone:,} posts of collaborative storytelling. "
-            f"Every single one moved the story forward."
-        )
+
+        msg = _build_msg(thread_id, label, icon, milestone)
 
         sent = False
-        # Post in the thread itself
         if tg.send_message(gid, int(thread_id), msg):
             sent = True
-        # Also post in bot topic (may be different group)
         main_gid = config["group_id"]
         if bot_topic and (gid != main_gid or int(thread_id) != bot_topic):
             tg.send_message(main_gid, bot_topic, msg)
@@ -94,7 +131,6 @@ def check_message_milestones(config: dict, state: dict,
             celebrated[key] = milestone
             print(f"Thread milestone: {label} hit {milestone:,} messages")
 
-    # Global milestone
     if global_total >= _GLOBAL_STEP:
         global_milestone = (global_total // _GLOBAL_STEP) * _GLOBAL_STEP
         if global_milestone > celebrated.get("global", 0):
