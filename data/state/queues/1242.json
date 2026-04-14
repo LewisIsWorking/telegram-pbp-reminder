@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 1820,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-04-14T14:16:34+00:00",
-      "preview": "Oooh",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -31,7 +21,9 @@
     "msg:1791",
     "2026-04-13 17:47:31",
     "msg:1816",
-    "2026-04-14 11:14:41"
+    "2026-04-14 11:14:41",
+    "msg:1820",
+    "2026-04-14 14:16:34"
   ],
   "reply_log": [
     {
@@ -162,14 +154,23 @@
       "player": "NJ",
       "preview": "Another affected by shadow magic what should we do guys?",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T15:52:03+00:00",
+      "pid": "1242",
+      "msg_id": "1820",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "Oooh",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 1821,
-      "fingerprint": "2026-04-14 14:16:34"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
