@@ -2471,37 +2471,98 @@ def test_milestone_messages_milestone_missing_uses_generic():
     _MilestoneMessages.reset()
 
 
-def test_milestone_messages_file_not_found():
-    """Missing JSON file → falls back to empty dict gracefully."""
+
+
+
+
+
+
+def test_milestone_messages_dir_not_found():
+    """Missing data directory → falls back to empty dict gracefully."""
     from unittest.mock import patch
     from scheduled.message_milestones import _MilestoneMessages
     _MilestoneMessages.reset()
-    with patch("builtins.open", side_effect=FileNotFoundError):
+    with patch("os.path.isdir", return_value=False):
         result = _MilestoneMessages.get("66154", 500)
     assert result is None
     _MilestoneMessages.reset()
 
 
 def test_milestone_messages_json_decode_error():
-    """Corrupt JSON → falls back to empty dict gracefully."""
+    """Corrupt JSON file in directory → skipped gracefully."""
     from unittest.mock import patch, mock_open
     from scheduled.message_milestones import _MilestoneMessages
     _MilestoneMessages.reset()
-    with patch("builtins.open", mock_open(read_data="not-json")):
+    with patch("os.path.isdir", return_value=True), \
+         patch("os.listdir", return_value=["bad.json"]), \
+         patch("builtins.open", mock_open(read_data="not-json")):
         result = _MilestoneMessages.get("66154", 500)
     assert result is None
     _MilestoneMessages.reset()
 
 
-def test_milestone_messages_cached_after_first_load():
-    """Second call to _load() returns cached data without re-opening."""
+def test_milestone_messages_file_not_found():
+    """FileNotFoundError for a file in directory → skipped gracefully."""
+    from unittest.mock import patch
+    from scheduled.message_milestones import _MilestoneMessages
+    _MilestoneMessages.reset()
+    with patch("os.path.isdir", return_value=True), \
+         patch("os.listdir", return_value=["c00.json"]), \
+         patch("builtins.open", side_effect=FileNotFoundError):
+        result = _MilestoneMessages.get("66154", 500)
+    assert result is None
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_non_json_file_skipped():
+    """Non-.json files in the directory are ignored."""
     from unittest.mock import patch, mock_open
     from scheduled.message_milestones import _MilestoneMessages
     _MilestoneMessages.reset()
-    data = json.dumps({"66154": {"500": "cached"}})
-    with patch("builtins.open", mock_open(read_data=data)):
-        _MilestoneMessages._load()
-    # Now clear the patch — second load should use cache
+    with patch("os.path.isdir", return_value=True), \
+         patch("os.listdir", return_value=["README.md", "c00.json"]), \
+         patch("builtins.open", mock_open(
+             read_data=json.dumps({"66154": {"500": "found"}}))):
+        result = _MilestoneMessages.get("66154", 500)
+    assert result == "found"
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_multiple_files_merged():
+    """Multiple JSON files in directory are merged together."""
+    from unittest.mock import patch, MagicMock
+    from scheduled.message_milestones import _MilestoneMessages
+    _MilestoneMessages.reset()
+    file_data = {
+        "c00.json": json.dumps({"66154": {"500": "riddleport"}}),
+        "c01.json": json.dumps({"25059": {"500": "doomsday"}}),
+    }
+
+    def fake_open(path, **kw):
+        fname = path.split("/")[-1]
+        m = MagicMock()
+        m.__enter__ = lambda s: MagicMock(
+            read=lambda: file_data[fname],
+            **{"__iter__": lambda s2: iter([file_data[fname]])}
+        )
+        m.__exit__ = MagicMock(return_value=False)
+        import io
+        return io.StringIO(file_data[fname])
+
+    with patch("os.path.isdir", return_value=True), \
+         patch("os.listdir", return_value=list(file_data.keys())), \
+         patch("builtins.open", side_effect=fake_open):
+        assert _MilestoneMessages.get("66154", 500) == "riddleport"
+        assert _MilestoneMessages.get("25059", 500) == "doomsday"
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_cached_after_first_load():
+    """Second call to _load() returns cached data without re-reading files."""
+    from scheduled.message_milestones import _MilestoneMessages
+    _MilestoneMessages.reset()
+    # Inject data directly to simulate a loaded state
+    _MilestoneMessages._data = {"66154": {"500": "cached"}}
     result = _MilestoneMessages.get("66154", 500)
     assert result == "cached"
     _MilestoneMessages.reset()
