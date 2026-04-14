@@ -2516,13 +2516,14 @@ def test_milestone_messages_file_not_found():
 
 def test_milestone_messages_non_json_file_skipped():
     """Non-.json files in the directory are ignored."""
+    import json as _json
     from unittest.mock import patch, mock_open
     from scheduled.message_milestones import _MilestoneMessages
     _MilestoneMessages.reset()
     with patch("os.path.isdir", return_value=True), \
          patch("os.listdir", return_value=["README.md", "c00.json"]), \
          patch("builtins.open", mock_open(
-             read_data=json.dumps({"66154": {"500": "found"}}))):
+             read_data=_json.dumps({"66154": {"500": "found"}}))):
         result = _MilestoneMessages.get("66154", 500)
     assert result == "found"
     _MilestoneMessages.reset()
@@ -2530,24 +2531,19 @@ def test_milestone_messages_non_json_file_skipped():
 
 def test_milestone_messages_multiple_files_merged():
     """Multiple JSON files in directory are merged together."""
-    from unittest.mock import patch, MagicMock
+    import json as _json
+    import io as _io
+    from unittest.mock import patch
     from scheduled.message_milestones import _MilestoneMessages
     _MilestoneMessages.reset()
     file_data = {
-        "c00.json": json.dumps({"66154": {"500": "riddleport"}}),
-        "c01.json": json.dumps({"25059": {"500": "doomsday"}}),
+        "c00.json": _json.dumps({"66154": {"500": "riddleport"}}),
+        "c01.json": _json.dumps({"25059": {"500": "doomsday"}}),
     }
 
     def fake_open(path, **kw):
         fname = path.split("/")[-1]
-        m = MagicMock()
-        m.__enter__ = lambda s: MagicMock(
-            read=lambda: file_data[fname],
-            **{"__iter__": lambda s2: iter([file_data[fname]])}
-        )
-        m.__exit__ = MagicMock(return_value=False)
-        import io
-        return io.StringIO(file_data[fname])
+        return _io.StringIO(file_data[fname])
 
     with patch("os.path.isdir", return_value=True), \
          patch("os.listdir", return_value=list(file_data.keys())), \
