@@ -2399,6 +2399,41 @@ def test_milestone_global():
                for m in _sent_messages)
 
 
+
+
+def test_milestone_thread_combat_label():
+    """Multi-topic campaign: combat thread fires with COMBAT label."""
+    _reset()
+    config = {
+        "group_id": -100, "bot_topic_id": 999, "gm_user_ids": [999],
+        "topic_pairs": [{
+            "pbp_topic_ids": [100, 200], "code": "C06", "name": "Kibwe",
+            "gm_user_ids": [999], "chat_topic_id": 21514,
+        }],
+    }
+    state = _make_state()
+    state["thread_message_counts"] = {"200": {"42": 500}}
+    state["celebrated_milestones"] = {}
+
+    checker.check_message_milestones(config, state)
+    assert state["celebrated_milestones"].get("thread:200") == 500
+    msg_text = next((m.get("text", "") for m in _sent_messages if "500" in m.get("text", "")), "")
+    assert "COMBAT" in msg_text
+
+
+def test_milestone_thread_unknown_thread_skips():
+    """Thread not found in any campaign config is skipped gracefully."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    # Thread 999999 not in any pair
+    state["thread_message_counts"] = {"999999": {"42": 500}}
+    state["celebrated_milestones"] = {}
+
+    checker.check_message_milestones(config, state)
+    # Should not crash, and since group_and_chat returns defaults, it may or may not send
+    # The important thing: no unhandled exception
+
 # ------------------------------------------------------------------ #
 #  Character awareness and /party tests
 # ------------------------------------------------------------------ #
