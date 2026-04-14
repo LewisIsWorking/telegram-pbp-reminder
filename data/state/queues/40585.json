@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 145044,
+      "thread_id": 137075,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T16:06:14+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145049,
+      "thread_id": 40585,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-14T16:08:27+00:00",
+      "preview": "Keiran can feel the ritual drawing to a close. His form shudders, reveling in the energy and power that stirs within and about. He calms his breathing and steels his resolve. He is ready to take command of the slime and end this chaos.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1655,12 +1673,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 145085,
+      "fingerprint": "2026-04-14 16:06:14"
     },
     "40585": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 145087,
+      "fingerprint": "2026-04-14 16:08:27"
     }
   }
 }
