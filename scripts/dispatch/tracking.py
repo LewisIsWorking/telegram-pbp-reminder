@@ -26,9 +26,12 @@ def track_message(parsed: dict, state: dict, config: dict,
         "campaign_name": campaign_name,
     }
 
-    # Message count
+    # Message count — per canonical pid (existing) and per physical thread (new)
     user_counts = state["message_counts"].setdefault(pid, {})
     user_counts[user_id] = user_counts.get(user_id, 0) + 1
+    thread_id = parsed.get("thread_id", pid)
+    thread_counts = state.setdefault("thread_message_counts", {}).setdefault(thread_id, {})
+    thread_counts[user_id] = thread_counts.get(user_id, 0) + 1
 
     # Word count
     raw_text = parsed["raw_text"] or ""
