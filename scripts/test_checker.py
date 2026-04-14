@@ -2434,6 +2434,97 @@ def test_milestone_thread_unknown_thread_skips():
     # Should not crash, and since group_and_chat returns defaults, it may or may not send
     # The important thing: no unhandled exception
 
+
+
+# ------------------------------------------------------------------ #
+#  _MilestoneMessages — campaign-specific body lookup
+# ------------------------------------------------------------------ #
+
+def test_milestone_messages_specific_body_used():
+    """When thread_id + milestone are in JSON, specific body is sent."""
+    from scheduled.message_milestones import _MilestoneMessages, _build_msg
+    _MilestoneMessages.reset()
+    _MilestoneMessages._data = {"66154": {"500": "Bell tower. The beginning."}}
+    msg = _build_msg("66154", "Riddleport PBP", "🎯", 500)
+    assert "Bell tower. The beginning." in msg
+    assert "Riddleport PBP has hit 500 messages" in msg
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_generic_body_fallback():
+    """When thread_id not in JSON, generic body is used."""
+    from scheduled.message_milestones import _MilestoneMessages, _build_msg
+    _MilestoneMessages.reset()
+    _MilestoneMessages._data = {}
+    msg = _build_msg("99999", "Unknown", "🎯", 500)
+    assert "collaborative storytelling" in msg
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_milestone_missing_uses_generic():
+    """Thread is in JSON but milestone key missing — falls back to generic."""
+    from scheduled.message_milestones import _MilestoneMessages, _build_msg
+    _MilestoneMessages.reset()
+    _MilestoneMessages._data = {"66154": {"1000": "Different milestone."}}
+    msg = _build_msg("66154", "Riddleport PBP", "🎯", 500)
+    assert "collaborative storytelling" in msg
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_file_not_found():
+    """Missing JSON file → falls back to empty dict gracefully."""
+    from unittest.mock import patch
+    from scheduled.message_milestones import _MilestoneMessages
+    _MilestoneMessages.reset()
+    with patch("builtins.open", side_effect=FileNotFoundError):
+        result = _MilestoneMessages.get("66154", 500)
+    assert result is None
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_json_decode_error():
+    """Corrupt JSON → falls back to empty dict gracefully."""
+    from unittest.mock import patch, mock_open
+    from scheduled.message_milestones import _MilestoneMessages
+    _MilestoneMessages.reset()
+    with patch("builtins.open", mock_open(read_data="not-json")):
+        result = _MilestoneMessages.get("66154", 500)
+    assert result is None
+    _MilestoneMessages.reset()
+
+
+def test_milestone_messages_cached_after_first_load():
+    """Second call to _load() returns cached data without re-opening."""
+    from unittest.mock import patch, mock_open
+    from scheduled.message_milestones import _MilestoneMessages
+    _MilestoneMessages.reset()
+    data = json.dumps({"66154": {"500": "cached"}})
+    with patch("builtins.open", mock_open(read_data=data)):
+        _MilestoneMessages._load()
+    # Now clear the patch — second load should use cache
+    result = _MilestoneMessages.get("66154", 500)
+    assert result == "cached"
+    _MilestoneMessages.reset()
+
+
+def test_milestone_specific_body_appears_in_sent_message():
+    """End-to-end: specific body from patched JSON appears in Telegram send."""
+    from unittest.mock import patch
+    from scheduled.message_milestones import _MilestoneMessages
+    _reset()
+    _MilestoneMessages.reset()
+    _MilestoneMessages._data = {"100": {"500": "Custom Riddleport body."}}
+    config = _make_config()
+    state = _make_state()
+    state["thread_message_counts"] = {"100": {"42": 300, "50": 200}}
+    state["celebrated_milestones"] = {}
+
+    checker.check_message_milestones(config, state)
+
+    assert any("Custom Riddleport body." in m.get("text", "") for m in _sent_messages)
+    _MilestoneMessages.reset()
+
+
 # ------------------------------------------------------------------ #
 #  Character awareness and /party tests
 # ------------------------------------------------------------------ #
