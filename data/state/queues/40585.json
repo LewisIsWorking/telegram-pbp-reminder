@@ -24,15 +24,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 144630,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-14T07:29:20+00:00",
-      "preview": "Same actions",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -334,7 +325,11 @@
     "msg:144458",
     "2026-04-13 18:25:15",
     "msg:144457",
-    "2026-04-13 18:24:57"
+    "2026-04-13 18:24:57",
+    "msg:144630",
+    "2026-04-14 07:29:20",
+    "msg:144686",
+    "2026-04-14 08:24:59"
   ],
   "reply_log": [
     {
@@ -1603,14 +1598,32 @@
       "player": "Caelum",
       "preview": "Act together, Eidolon strike slime #10 hit 18 deal 18B, Phase Eldamon. Eidolon s",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-14T07:51:56+00:00",
+      "pid": "40585",
+      "msg_id": "144630",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "Same actions",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-14T08:26:47+00:00",
+      "pid": "40585",
+      "msg_id": "144686",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "Yee",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 144635,
-      "fingerprint": "2026-04-14 07:29:20"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": null,
