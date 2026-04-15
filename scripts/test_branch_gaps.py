@@ -1115,6 +1115,7 @@ def test_queue_reminder_silent_included_in_fingerprint():
             {"pbp_topic_ids": [200], "code": "C08", "name": "Silent"},
         ],
     }
+    # Fingerprint starts as "empty" but silent campaign makes it diverge → posts
     state = {
         "last_queue_fingerprint": "empty",
         "queue_post_count": 0, "last_queue_pin_id": None,
@@ -1128,3 +1129,33 @@ def test_queue_reminder_silent_included_in_fingerprint():
          patch("scheduled.queue_reminder.tg.unpin_message"):
         post_queue_reminder(config, state, now=now)
     assert "silent:" in state.get("last_queue_fingerprint", "")
+
+
+def test_queue_reminder_empty_scanned_no_silent_returns_early():
+    """Empty scanned with no silent campaigns updates fingerprint and returns."""
+    from scheduled.queue_reminder import post_queue_reminder
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    config = {
+        "group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
+        "queue_daily_hours": [now.hour],
+        "topic_pairs": [
+            {"pbp_topic_ids": [200], "code": "C08", "name": "Recent"},
+        ],
+    }
+    # Recent activity — not silent
+    recent_iso = (now - timedelta(days=2)).isoformat()
+    state = {
+        "last_queue_fingerprint": "OLD",
+        "queue_post_count": 0, "last_queue_pin_id": None,
+        "last_queue_daily_slots": [],
+        "topics": {"200": {"last_message_time": recent_iso}},
+    }
+    sent_texts = []
+    with patch("scheduled.queue_reminder.scan_transcripts", return_value={}), \
+         patch("scheduled.queue_reminder.post_topic_queues"), \
+         patch("scheduled.queue_reminder.tg.send_message_id",
+               side_effect=lambda g, t, m: sent_texts.append(m) or 42):
+        post_queue_reminder(config, state, now=now)
+    # Nothing sent — returned early via "not scanned and not silent_lines"
+    assert not any("Silent" in t for t in sent_texts)
+    assert state["last_queue_fingerprint"] == "empty"
