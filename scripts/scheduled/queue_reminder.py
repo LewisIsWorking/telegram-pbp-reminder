@@ -150,11 +150,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             lines.append(line)
             entry_num += 1
 
-    message = "\n".join(lines)
-
     if silent_lines:
         lines.append("━━ 💤 Silent campaigns ━━")
         lines.extend(silent_lines)
+
+    message = "\n".join(lines)
 
     # Split if needed
     if len(message) <= 4000:
