@@ -93,6 +93,7 @@ GM_COMMANDS = [
     ("endvote", "End vote and show results"),
     ("timer", "Set a response timer"),
     ("canceltimer", "Cancel active timer"),
+    ("markdone", "Mark queue entry as replied: /markdone [N|msg_id|all]"),
     ("kick", "Remove player from tracking"),
     ("addplayer", "Add player to tracking"),
 ]
