@@ -11,6 +11,38 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.39.0] - 2026-04-15
+
+### Added
+
+**Silent campaign detection in GM queue** (`scheduled/queue_silence.py`, `scheduled/queue_reminder.py`)
+
+When a campaign has zero unreplied entries AND its RP topic has had no messages
+for 10 or more days, it now appears at the bottom of the GM queue:
+
+```
+━━ 💤 Silent campaigns ━━
+  🟫 🦄 C08: Theria — no posts for 14d
+```
+
+Uses the same age icons as the queue. Campaigns with any unreplied entries are
+never listed here (they're already visible in the queue). The silence threshold
+is 10 days. Silent campaigns are included in the queue fingerprint so the bot
+re-posts when a campaign first crosses the threshold.
+
+**`/markdone` in GM Telegram command menu** (`set_commands.py`)
+
+`/markdone` is now listed in the `/` popup for group admins, with description:
+`Mark queue entry as replied: /markdone [N|msg_id|all]`
+
+**PathWars boon link in POTW message** (`scheduled/potw.py`)
+
+The Player of the Week boon selection message now includes a direct link to
+`https://comeonover.netlify.app/PathWars` below the `/chooseboon` instruction.
+Also corrected "PBP topic" → "RP topic" in the same line.
+
+---
+
 ## [4.38.0] - 2026-04-14
 
 ### Added
