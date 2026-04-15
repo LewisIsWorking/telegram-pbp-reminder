@@ -7,6 +7,7 @@ import telegram as tg
 from commands.queue_scan import scan_transcripts
 from commands.queue_format import entry_age_icon, age_str, short_preview
 from scheduled.topic_queue_poster import post_topic_queues
+from scheduled.queue_silence import silent_campaigns
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -65,7 +66,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     group_id = config["group_id"]
     total = sum(len(d["entries"]) for d in scanned.values())
-    if total == 0:
+    silent_lines = silent_campaigns(config, state, scanned, now)
+    if silent_lines:
+        fingerprint += "|silent:" + "|".join(silent_lines)
+    if total == 0 and not silent_lines:
         if state.get("last_queue_fingerprint", "empty") != "empty":  # pragma: no cover
             tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")  # pragma: no cover
         state["last_queue_fingerprint"] = fingerprint  # pragma: no cover
@@ -147,6 +151,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             entry_num += 1
 
     message = "\n".join(lines)
+
+    if silent_lines:
+        lines.append("━━ 💤 Silent campaigns ━━")
+        lines.extend(silent_lines)
 
     # Split if needed
     if len(message) <= 4000:
