@@ -420,6 +420,8 @@ Dated log of discovered bugs — open and resolved.
 | 2026-04-08 | ✅ Fixed 2026-04-08 | Diagnostic showed `Worker ID: {...}` as rate-limit context — GitHub Actions infra lines not filtered correctly | Fixed filter to run on timestamp-stripped line; expanded infra prefix list |
 | 2026-04-09 | ✅ Fixed 2026-04-09 | Per-topic queue posted to wrong thread in multi-topic campaigns (C06 Kibwe combat entries posted to PBP thread) | Added `thread_id` to scan entries; poster groups by thread and posts to each separately |
 | 2026-04-13 | ✅ Fixed 2026-04-13 | Diagnostic showing git credential file paths as rate-limit context | Added path-based filter for `/home/runner` and `git-credentials-` lines; preview bumped to 200 chars |
+| 2026-04-15 | ✅ Closed 2026-04-15 | C09 Metal City CHAT topic `104202` — decision on whether to track | Won't track. OOC/general discussion channel, not RP content. Queue, inactivity, and milestones don't apply. |
+| 2026-04-15 | ✅ Closed 2026-04-15 | C11 unknown poll UIDs `7754924188`, `6464119705`, `6234551152` | No action needed — `promote_poll_voters.py` auto-captures real UIDs on next Sunday vote. |
 
 ---
 
