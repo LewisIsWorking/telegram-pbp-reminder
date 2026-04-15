@@ -25,6 +25,24 @@
       "time": "2026-04-14T21:16:19+00:00",
       "preview": "ye",
       "media_group_id": null
+    },
+    {
+      "message_id": 145400,
+      "thread_id": 137075,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-04-14T23:59:35+00:00",
+      "preview": "Master Cho continues watching and manipulating the flows of fortune,  Using his mirror to trap the darkness and his fan to cycle the light of fortune and make it stronger in the area.  As he works he becomes distracted briefly until he heroically forces his concentration back on task.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145409,
+      "thread_id": 137075,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-04-15T00:13:58+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -354,7 +372,9 @@
     "2026-04-14 19:02:58",
     "msg:145259",
     "2026-04-14 21:15:37",
-    "msg:145260"
+    "msg:145260",
+    "msg:145393",
+    "2026-04-14 23:58:04"
   ],
   "reply_log": [
     {
@@ -1767,14 +1787,23 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-15T00:11:53+00:00",
+      "pid": "40585",
+      "msg_id": "145393",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145336,
-      "fingerprint": "2026-04-14 21:15:38|2026-04-14 21:16:19"
+      "msg_id": 145411,
+      "fingerprint": "2026-04-14 21:15:38|2026-04-14 21:16:19|2026-04-14 23:59:35|2026-04-15 00:13:58"
     },
     "40585": {
       "msg_id": null,
