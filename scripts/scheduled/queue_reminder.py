@@ -57,18 +57,18 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if slot_key not in posted_slots:
             is_daily = True
 
-    if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
-        return
-
-    if not scanned:
-        state["last_queue_fingerprint"] = "empty"
-        return
-
     group_id = config["group_id"]
-    total = sum(len(d["entries"]) for d in scanned.values())
     silent_lines = silent_campaigns(config, state, scanned, now)
     if silent_lines:
         fingerprint += "|silent:" + "|".join(silent_lines)
+    if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
+        return
+
+    if not scanned and not silent_lines:
+        state["last_queue_fingerprint"] = "empty"
+        return
+
+    total = sum(len(d["entries"]) for d in scanned.values())
     if total == 0 and not silent_lines:
         if state.get("last_queue_fingerprint", "empty") != "empty":  # pragma: no cover
             tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")  # pragma: no cover
