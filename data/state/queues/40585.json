@@ -45,15 +45,6 @@
       "media_group_id": null
     },
     {
-      "message_id": 145418,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-15T01:13:33+00:00",
-      "preview": "I'll reroll this and probably only take half?",
-      "media_group_id": null
-    },
-    {
       "message_id": 145419,
       "thread_id": 137075,
       "user_id": "6144366145",
@@ -401,7 +392,9 @@
     "2026-04-14 21:15:37",
     "msg:145260",
     "msg:145393",
-    "2026-04-14 23:58:04"
+    "2026-04-14 23:58:04",
+    "msg:145418",
+    "2026-04-15 01:13:33"
   ],
   "reply_log": [
     {
@@ -1823,14 +1816,23 @@
       "player": "Bruce",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-15T08:12:14+00:00",
+      "pid": "40585",
+      "msg_id": "145418",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "I'll reroll this and probably only take half?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145422,
-      "fingerprint": "2026-04-14 21:15:38|2026-04-14 21:16:19|2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 01:13:33|2026-04-15 01:13:58|2026-04-15 01:14:20"
+      "msg_id": 145474,
+      "fingerprint": "2026-04-14 21:15:38|2026-04-14 21:16:19|2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 01:13:58|2026-04-15 01:14:20"
     },
     "40585": {
       "msg_id": null,
