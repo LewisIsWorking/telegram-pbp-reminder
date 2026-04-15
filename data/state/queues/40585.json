@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 145264,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-14T21:16:19+00:00",
-      "preview": "ye",
-      "media_group_id": null
-    },
-    {
       "message_id": 145400,
       "thread_id": 137075,
       "user_id": "7077683276",
@@ -394,7 +385,9 @@
     "msg:145393",
     "2026-04-14 23:58:04",
     "msg:145418",
-    "2026-04-15 01:13:33"
+    "2026-04-15 01:13:33",
+    "msg:145264",
+    "2026-04-14 21:16:19"
   ],
   "reply_log": [
     {
@@ -1825,14 +1818,23 @@
       "player": "Anthony",
       "preview": "I'll reroll this and probably only take half?",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-15T12:54:54+00:00",
+      "pid": "40585",
+      "msg_id": "145264",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "ye",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145474,
-      "fingerprint": "2026-04-14 21:15:38|2026-04-14 21:16:19|2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 01:13:58|2026-04-15 01:14:20"
+      "msg_id": 145540,
+      "fingerprint": "2026-04-14 21:15:38|2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 01:13:58|2026-04-15 01:14:20"
     },
     "40585": {
       "msg_id": null,
