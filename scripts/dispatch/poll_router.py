@@ -83,7 +83,7 @@ def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
             voted.remove(uid)  # pragma: no cover
     elif uid and uid not in voted:
         voted.append(uid)
-        capture_unknown_voter(uid, code, config, state)
+        capture_unknown_voter(uid, code, config, state, option_ids)
 
     votes = poll.setdefault("votes", {})
     # Remove previous votes from this user across all options (handles revoting)
