@@ -123,7 +123,8 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
 
 
 def capture_unknown_voter(uid: str, code: str,
-                          config: dict, state: dict) -> None:
+                          config: dict, state: dict,
+                          option_ids: list | None = None) -> None:
     """Store unrecognised voter IDs for later promotion via promote_poll_voters.py.
 
     Called when a poll_answer arrives from a UID not in poll_user_ids.
@@ -147,7 +148,42 @@ def capture_unknown_voter(uid: str, code: str,
         bot_topic = config.get("bot_topic_id")
         group_id = config.get("group_id")
         if bot_topic and group_id:
+            sp_opts = state.get("session_poll", {}).get(code, {}).get("options", [])
+            voted = [sp_opts[i] for i in (option_ids or []) if i < len(sp_opts)]
+            voted_str = ", ".join(voted) if voted else "?"
+            placeholders = [
+                f"@{pair['poll_user_names'].get(str(u), str(u))}"
+                for u in pair.get("poll_user_ids", [])
+                if 9000000000 <= u < 9200000000
+            ]
+            ph_str = ", ".join(placeholders) if placeholders else "none"
             tg.send_message(group_id, bot_topic,
                             f"⚠️ Unknown voter in {code} poll: uid {uid}\n"
-                            f"They voted but aren't on the roster. "
-                            f"Run promote\_poll\_voters.py to identify them.")
+                            f"Voted: {voted_str}\n"
+                            f"Unresolved roster slots: {ph_str}\n"
+                            f"They will be identified when they next post.")
+
+def identify_unknown_voter(uid: str, username: str, first_name: str,
+                           code: str, config: dict, state: dict) -> None:
+    """Called when a message arrives from a UID that was previously unknown.
+
+    Stores the UID→username mapping in poll_identified_voters so that
+    promote_poll_voters.py can auto-match against placeholder config entries.
+    Removes the UID from poll_unknown_voters and posts a bot-topic alert.
+    """
+    bucket = state.get("poll_unknown_voters", {}).get(code, [])
+    if uid not in bucket:
+        return
+    state["poll_unknown_voters"][code] = [u for u in bucket if u != uid]
+    identified = state.setdefault("poll_identified_voters", {})
+    if uid in identified:
+        return
+    identified[uid] = {"username": username, "first_name": first_name, "code": code}
+    print(f"Identified unknown voter {uid} as @{username} in {code}")
+    bot_topic = config.get("bot_topic_id")
+    group_id = config.get("group_id")
+    if bot_topic and group_id:
+        tg.send_message(group_id, bot_topic,
+                        f"✅ Identified {code} unknown voter: "
+                        f"@{username} ({first_name}) — uid {uid}\n"
+                        f"Will be auto-promoted on next workflow run.")
