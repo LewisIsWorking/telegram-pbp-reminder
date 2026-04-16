@@ -1,5 +1,5 @@
 {
-  "offset": 619327546,
+  "offset": 619327554,
   "topics": {
     "52083": {
       "last_message_time": "2026-04-14T16:50:43+00:00",
@@ -50,7 +50,7 @@
       "campaign_name": "Theria"
     },
     "1242": {
-      "last_message_time": "2026-04-14T16:03:10+00:00",
+      "last_message_time": "2026-04-16T14:23:49+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Dark Pockets"
@@ -284,16 +284,7 @@
   },
   "paused_campaigns": {},
   "current_scenes": {},
-  "poll_unknown_voters": {
-    "C11": [
-      "7754924188",
-      "6464119705"
-    ],
-    "C01": [
-      "6464119705",
-      "7863964681"
-    ]
-  },
+  "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-04-12",
   "last_queue_daily_slots": [
     "2026-04-09:21",
@@ -322,5 +313,6 @@
   "queue_scan_floor": null,
   "last_diagnostic": "2026-04-16",
   "last_queue_pin_id": 145641,
-  "queue_post_count": 103
+  "queue_post_count": 103,
+  "poll_identified_voters": {}
 }
