@@ -11,6 +11,39 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.40.0] - 2026-04-16
+
+### Added
+
+**Richer unknown poll voter alert** (`dispatch/poll_notify.py`, `dispatch/poll_router.py`)
+
+When an unrecognised UID votes in a session poll, the bot topic alert now
+includes which options they voted for and which placeholder usernames remain
+unresolved in config. Example:
+
+> ⚠️ Unknown voter in C11 poll: uid 6234551152
+> Voted: Wednesday, Friday, Saturday, Sunday
+> Unresolved roster slots: @molluggg, @Brookm126, @Luke_Skillen, @EliciaRoseT, @Thefununlce
+> They will be identified when they next post.
+
+**Auto-identification of unknown voters** (`dispatch/tracking.py`, `dispatch/poll_notify.py`)
+
+When any message arrives from a UID that was previously captured as an unknown
+poll voter, the bot now:
+- Removes the UID from `poll_unknown_voters`
+- Stores the UID → username mapping in `poll_identified_voters`
+- Posts an identification alert to the bot topic immediately
+
+**Auto-promotion via workflow** (`scripts/promote_poll_voters.py`, `.github/workflows/pbp-reminder.yml`)
+
+`promote_poll_voters.py --commit` now runs every workflow cycle. It uses
+`poll_identified_voters` to match real UIDs to placeholder config entries by
+username, automatically updating `config.json` and committing it. Config is
+now included in the workflow's `git add` step so promotions are persisted
+without any manual intervention.
+
+---
+
 ## [4.39.0] - 2026-04-15
 
 ### Added
