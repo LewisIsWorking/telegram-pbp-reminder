@@ -30,6 +30,11 @@ jobs:
       - name: Run tests
         run: python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing
 
+      - name: Update bot command menu
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: cd scripts && python set_commands.py
+
       - name: Run inactivity checker
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
