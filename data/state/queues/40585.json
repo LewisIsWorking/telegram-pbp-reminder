@@ -36,30 +36,21 @@
       "media_group_id": null
     },
     {
-      "message_id": 145419,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-15T01:13:58+00:00",
-      "preview": "I need you online to reroll so if you could reroll for me.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145420,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-15T01:14:20+00:00",
-      "preview": "If i still go down then I'd like to use Rekindled light.",
-      "media_group_id": null
-    },
-    {
       "message_id": 145555,
       "thread_id": 137075,
       "user_id": "138025700",
       "user_name": "Ryo",
       "time": "2026-04-15T17:12:32+00:00",
       "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 145625,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-04-16T08:36:44+00:00",
+      "preview": "Apparently to reroll with a hero point from the interface i do.",
       "media_group_id": null
     }
   ],
@@ -396,7 +387,11 @@
     "msg:145418",
     "2026-04-15 01:13:33",
     "msg:145264",
-    "2026-04-14 21:16:19"
+    "2026-04-14 21:16:19",
+    "msg:145419",
+    "2026-04-15 01:13:58",
+    "msg:145420",
+    "2026-04-15 01:14:20"
   ],
   "reply_log": [
     {
@@ -1836,14 +1831,32 @@
       "player": "Caelum",
       "preview": "ye",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-16T08:36:20+00:00",
+      "pid": "40585",
+      "msg_id": "145419",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "I need you online to reroll so if you could reroll for me.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-16T08:36:33+00:00",
+      "pid": "40585",
+      "msg_id": "145420",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "If i still go down then I'd like to use Rekindled light.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145561,
-      "fingerprint": "2026-04-14 21:15:38|2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 01:13:58|2026-04-15 01:14:20|2026-04-15 17:12:32"
+      "msg_id": 145628,
+      "fingerprint": "2026-04-14 21:15:38|2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 17:12:32|2026-04-16 08:36:44"
     },
     "40585": {
       "msg_id": null,
