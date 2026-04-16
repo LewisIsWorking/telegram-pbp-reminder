@@ -225,12 +225,19 @@ def test_markdone_url_extracts_id(mock_scan):
 
 
 @patch("commands.markdone.scan_transcripts")
-def test_markdone_oldest(mock_scan):
+def test_markdone_no_arg_shows_usage(mock_scan):
+    """No argument shows usage message and clears nothing."""
     mock_scan.return_value = {"100": {"entries": [
         {"message_id": "1", "time": "2026-03-01 10:00:00", "name": "Alice", "preview": "hi"},
     ]}}
     ctx = _md_ctx("/markdone")
-    assert handle_markdone(ctx) is True
+    sent = []
+    with patch("commands.markdone.tg.send_message", side_effect=lambda g,t,m: sent.append(m)):
+        result = handle_markdone(ctx)
+    assert result is True
+    assert any("required" in m for m in sent), "Expected usage message"
+    # Nothing should have been cleared
+    assert mock_scan.call_count >= 1
 
 
 @patch("commands.markdone.scan_transcripts")
