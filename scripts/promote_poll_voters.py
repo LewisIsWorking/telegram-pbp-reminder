@@ -72,23 +72,33 @@ def main() -> None:  # pragma: no cover
             print("  (none — all placeholders resolved)")
             continue
 
-        if len(unknown_uids) == 1 and len(placeholders) == 1:
-            real_uid = unknown_uids[0]
-            ph_uid, uname = placeholders[0]
-            print(f"\nAuto-match: {ph_uid} (@{uname}) → {real_uid}")
-            if commit:
-                _promote(pair, ph_uid, real_uid, uname)
-        else:
-            print("\nMultiple unknowns — manual match required.")
-            print("Edit config.json manually or re-run after more votes narrow it down.")
+        identified = state.get("poll_identified_voters", {})
+        matched = []
+        for uid in list(unknown_uids):
+            info = identified.get(uid, {})
+            uname_real = info.get("username", "")
+            ph_match = [(ph, n) for ph, n in placeholders if n == uname_real]
+            if ph_match:
+                ph_uid, uname = ph_match[0]
+                print(f"\nIdentified match: {ph_uid} (@{uname}) → {uid}")
+                if commit:
+                    _promote(pair, ph_uid, uid, uname)
+                matched.append((uid, ph_uid))
+            elif len(unknown_uids) == 1 and len(placeholders) == 1:
+                ph_uid, uname = placeholders[0]
+                print(f"\nAuto-match (1:1): {ph_uid} (@{uname}) → {uid}")
+                if commit:
+                    _promote(pair, ph_uid, uid, uname)
+                matched.append((uid, ph_uid))
+        if not matched:
+            print("\nNo automatic matches — manual edit of config.json required.")
 
     if commit:
         CONFIG.write_text(json.dumps(config, indent=2))
-        STATE_live = state
-        STATE_live["poll_unknown_voters"] = {}
-        STATE.write_text(json.dumps(STATE_live, indent=2))
+        state["poll_unknown_voters"] = {}
+        state["poll_identified_voters"] = {}
+        STATE.write_text(json.dumps(state, indent=2))
         print("\nconfig.json and live.json updated.")
-        print("Run: git add config.json data/state/live.json && git commit && git push")
     else:
         print("\nDry run — pass --commit to apply changes.")
 
