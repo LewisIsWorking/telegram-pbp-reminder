@@ -119,6 +119,16 @@ def track_message(parsed: dict, state: dict, config: dict,
                              replied_entry.get("preview", ""),
                              replied_entry.get("user_name", ""))
 
+    # Auto-identify previously unknown poll voters when they post
+    unknown_polls = state.get("poll_unknown_voters", {})
+    for _code, _uids in unknown_polls.items():
+        if user_id in _uids:
+            from dispatch.poll_notify import identify_unknown_voter
+            identify_unknown_voter(user_id, user_name,
+                                   parsed.get("first_name", user_name),
+                                   _code, config, state)
+            break
+
     # Log to persistent PBP transcript
     if not text.startswith("/"):
         append_to_transcript(parsed, gm_ids, config)
