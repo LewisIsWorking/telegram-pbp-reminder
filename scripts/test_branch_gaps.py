@@ -234,33 +234,100 @@ def test_potw_winner_with_links(tmp_path):
     assert len(links) >= 0  # may or may not match depending on regex
 
 
-# ─── dispatch/poll_notify.py: capture_unknown_voter ──────────────────────────
+# ─── dispatch/poll_notify.py: capture_unknown_voter + identify_unknown_voter ──
+
+def _capture_config(placeholders=None):
+    return {"group_id": -1, "bot_topic_id": 999, "topic_pairs": [
+        {"code": "C01", "pbp_topic_ids": [100],
+         "poll_user_ids": placeholders or [111, 222],
+         "poll_user_names": {str(u): f"user{u}" for u in (placeholders or [111, 222])}}
+    ]}
+
 
 def test_capture_unknown_voter():
     from dispatch.poll_notify import capture_unknown_voter
-    config = {"topic_pairs": [
-        {"code": "C01", "pbp_topic_ids": [100],
-         "poll_user_ids": [111, 222]}
-    ]}
     state = {}
-    capture_unknown_voter("U99", "C01", config, state)
+    capture_unknown_voter("U99", "C01", _capture_config(), state)
     assert "U99" in state.get("poll_unknown_voters", {}).get("C01", [])
+
+
+def test_capture_unknown_voter_shows_voted_options():
+    """Richer alert includes voted option labels and placeholder names."""
+    from dispatch.poll_notify import capture_unknown_voter
+    sent = []
+    state = {"session_poll": {"C01": {"options": ["Mon", "Tue", "Wed"]}}}
+    with patch("dispatch.poll_notify.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        capture_unknown_voter("U99", "C01", _capture_config([9000000001]),
+                              state, option_ids=[0, 2])
+    assert sent, "Expected alert to be sent"
+    assert "Mon" in sent[0] and "Wed" in sent[0]
+    assert "user9000000001" in sent[0]
+
+
+def test_capture_unknown_voter_no_options():
+    """option_ids=None still sends alert without crashing."""
+    from dispatch.poll_notify import capture_unknown_voter
+    sent = []
+    state = {}
+    with patch("dispatch.poll_notify.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        capture_unknown_voter("U99", "C01", _capture_config(), state)
+    assert sent
 
 
 def test_capture_known_voter_skipped():
     from dispatch.poll_notify import capture_unknown_voter
-    config = {"topic_pairs": [
-        {"code": "C01", "pbp_topic_ids": [100],
-         "poll_user_ids": [111]}
-    ]}
     state = {}
-    capture_unknown_voter("111", "C01", config, state)
+    capture_unknown_voter("111", "C01", _capture_config(), state)
     assert state.get("poll_unknown_voters", {}).get("C01", []) == []
 
 
 def test_capture_unknown_no_pair():
     from dispatch.poll_notify import capture_unknown_voter
     capture_unknown_voter("U99", "C99", {}, {})  # no crash
+
+
+def test_identify_unknown_voter_posts_alert():
+    """identify_unknown_voter posts alert and moves UID to identified."""
+    from dispatch.poll_notify import identify_unknown_voter
+    state = {"poll_unknown_voters": {"C01": ["U99"]}}
+    sent = []
+    with patch("dispatch.poll_notify.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        identify_unknown_voter("U99", "alice", "Alice", "C01",
+                               _capture_config(), state)
+    assert sent, "Expected identification alert"
+    assert "@alice" in sent[0]
+    assert state["poll_identified_voters"]["U99"]["username"] == "alice"
+    assert "U99" not in state["poll_unknown_voters"]["C01"]
+
+
+def test_identify_unknown_voter_skips_already_identified():
+    """Calling identify twice for same UID is a no-op after first."""
+    from dispatch.poll_notify import identify_unknown_voter
+    state = {
+        "poll_unknown_voters": {"C01": []},
+        "poll_identified_voters": {"U99": {"username": "alice", "code": "C01"}},
+    }
+    sent = []
+    with patch("dispatch.poll_notify.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        identify_unknown_voter("U99", "alice", "Alice", "C01",
+                               _capture_config(), state)
+    assert not sent  # UID not in unknown bucket → no-op
+
+
+def test_identify_unknown_voter_uid_not_in_bucket():
+    """UID not in unknown_voters bucket → no alert, no crash."""
+    from dispatch.poll_notify import identify_unknown_voter
+    state = {"poll_unknown_voters": {"C01": ["OTHER"]}}
+    sent = []
+    with patch("dispatch.poll_notify.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        identify_unknown_voter("U99", "alice", "Alice", "C01",
+                               _capture_config(), state)
+    assert not sent
 
 
 # ─── scheduled/session_poll.py: exception isolation ──────────────────────────
