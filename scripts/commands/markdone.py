@@ -2,7 +2,7 @@
 /markdone — GM command to manually mark queue entries as replied.
 
 Usage (in any PBP topic or bot topic):
-  /markdone                 — clear the oldest unreplied entry in this campaign
+  /markdone                 — show usage (a message number or ID is required)
   /markdone 3               — clear entry #3 from the queue list
   /markdone 140368          — clear by Telegram message ID
   /markdone all             — clear ALL entries for this campaign
@@ -99,16 +99,15 @@ def handle_markdone(ctx: dict) -> bool:
             tg.send_message(gid, tid, f"Message ID {arg} not found in {name} queue.")
         return True
 
-    # No arg — clear oldest entry
+    # No arg — require explicit target, never clear silently
     if not arg:
-        _clear_entries([entries[0]], pid, state, now)
         tg.send_message(gid, tid,
-                        f"✅ Cleared oldest entry: {entries[0].get('name','?')} — "
-                        f"{entries[0].get('preview','')[:60]}")
+                        "Usage: /markdone 3  /markdone <msg_id>  /markdone all\n"
+                        "A message number or ID is required.")
         return True
 
     tg.send_message(gid, tid,
-                    "Usage: /markdone  /markdone 3  /markdone <msg_id>  /markdone all")
+                    "Usage: /markdone 3  /markdone <msg_id>  /markdone all\nA message number or ID is required.")
     return True
 
 
