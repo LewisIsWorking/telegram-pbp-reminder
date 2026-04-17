@@ -1226,3 +1226,92 @@ def test_queue_reminder_empty_scanned_no_silent_returns_early():
     # Nothing sent — returned early via "not scanned and not silent_lines"
     assert not any("Silent" in t for t in sent_texts)
     assert state["last_queue_fingerprint"] == "empty"
+
+# ─── boons/hero_point.py ──────────────────────────────────────────────────────
+
+def _hp_config():
+    return {
+        "group_id": -1001, "bot_topic_id": 999,
+        "leaderboard_topic_id": 888,
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "name": "Magni Watch"},
+            {"pbp_topic_ids": [200], "name": "Kibwe"},
+        ],
+    }
+
+
+def _hp_state(uid="U1"):
+    return {
+        "players": {
+            f"100:{uid}": {"user_id": uid, "pbp_topic_id": 100, "first_name": "Chase"},
+            f"200:{uid}": {"user_id": uid, "pbp_topic_id": 200, "first_name": "Chase"},
+        }
+    }
+
+
+def test_post_hero_point_picker_sends_buttons():
+    """post_hero_point_picker sends a button message and stores pending entry."""
+    from boons.hero_point import post_hero_point_picker
+    state = _hp_state()
+    sent_buttons = []
+    with patch("boons.hero_point.tg.send_message_with_buttons",
+               side_effect=lambda g, t, m, b: sent_buttons.append((m, b))):
+        post_hero_point_picker("U1", "Chase", _hp_config(), state)
+    assert sent_buttons, "Expected button message"
+    msg, buttons = sent_buttons[0]
+    assert "Chase" in msg
+    assert any("Magni Watch" in b["text"] for b in buttons)
+    assert any("Kibwe" in b["text"] for b in buttons)
+    assert "U1" in state.get("pending_hero_points", {})
+
+
+def test_post_hero_point_picker_no_campaigns():
+    """post_hero_point_picker does nothing if winner has no active campaigns."""
+    from boons.hero_point import post_hero_point_picker
+    state = {"players": {}}
+    sent = []
+    with patch("boons.hero_point.tg.send_message_with_buttons",
+               side_effect=lambda *a: sent.append(a)):
+        post_hero_point_picker("U1", "Chase", _hp_config(), state)
+    assert not sent
+
+
+def test_process_hero_campaign_callback_confirms():
+    """Tapping a campaign button confirms the Hero Point and clears pending."""
+    from boons.hero_point import process_hero_campaign_callback
+    state = {"pending_hero_points": {"U1": {"name": "Chase"}}}
+    sent = []
+    cb = {
+        "data": "herocampaign:U1:100",
+        "from": {"id": "U1"},
+        "message": {"chat": {"id": -1001}, "message_id": 42},
+    }
+    with patch("boons.hero_point.tg.edit_message"), \
+         patch("boons.hero_point.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        result = process_hero_campaign_callback(cb, _hp_config(), state)
+    assert result is True
+    assert any("Magni Watch" in m for m in sent)
+    assert "U1" not in state["pending_hero_points"]
+
+
+def test_process_hero_campaign_callback_wrong_user():
+    """A different user tapping the button is ignored."""
+    from boons.hero_point import process_hero_campaign_callback
+    state = {"pending_hero_points": {"U1": {"name": "Chase"}}}
+    cb = {"data": "herocampaign:U1:100", "from": {"id": "U2"}, "message": {}}
+    assert process_hero_campaign_callback(cb, _hp_config(), state) is False
+
+
+def test_process_hero_campaign_callback_wrong_prefix():
+    """Non-herocampaign callback data returns False immediately."""
+    from boons.hero_point import process_hero_campaign_callback
+    cb = {"data": "boon:100:0", "from": {"id": "U1"}, "message": {}}
+    assert process_hero_campaign_callback(cb, _hp_config(), {}) is False
+
+
+def test_process_hero_campaign_callback_no_pending():
+    """No pending entry for this user → returns False."""
+    from boons.hero_point import process_hero_campaign_callback
+    cb = {"data": "herocampaign:U1:100", "from": {"id": "U1"}, "message": {}}
+    assert process_hero_campaign_callback(cb, _hp_config(), {}) is False
