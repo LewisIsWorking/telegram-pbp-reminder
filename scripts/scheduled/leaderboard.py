@@ -167,7 +167,6 @@ def post_campaign_leaderboard(config: dict, state: dict, *, now: datetime | None
             winner_uid, winner_data = top
             uname = winner_data.get("username", "")
             mention = f"@{uname}" if uname else winner_data["full_name"]
-            tg.send_message(group_id, leaderboard_topic,
-                            f"🎲 {mention} — don't forget to claim your "
-                            f"Hero Point! Tell me which campaign you want "
-                            f"it in.")
+            from boons.hero_point import post_hero_point_picker
+            post_hero_point_picker(winner_uid, winner_data["full_name"],
+                                   config, state)
