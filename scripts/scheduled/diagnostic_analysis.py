@@ -48,7 +48,7 @@ def _analyse_logs(logs: list[str]) -> dict:
                             "shell:", "env:", "Temporarily overriding",
                             "PKG_CONFIG", "Python_ROOT", "LD_LIBRARY",
                             "* [", "From ", "Fetching ", "Already ",
-                            "Checking out")
+                            "Checking out", "fatal: not a git")
             if clean.startswith(_GH_PREFIXES):
                 continue  # pragma: no cover
             # Skip filesystem path lines (git credential files, runner paths)
