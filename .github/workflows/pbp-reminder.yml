@@ -48,7 +48,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p docs/data
           cp -f data/weekly_archive.json docs/data/weekly_archive.json 2>/dev/null || true
-          cd scripts && python promote_poll_voters.py --commit || true && cd ..
+          python scripts/promote_poll_voters.py --commit 2>/dev/null || true
           git add data/ docs/data/ config.json
           git diff --cached --quiet || git commit -m "Update archive, transcripts and state [skip ci]"
           git push || echo "Nothing to push"
