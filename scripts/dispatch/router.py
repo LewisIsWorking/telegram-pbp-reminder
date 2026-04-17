@@ -65,7 +65,9 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 continue  # pragma: no cover
 
             if cb:
-                process_boon_callback(cb, config, state)
+                from boons.hero_point import process_hero_campaign_callback
+                if not process_hero_campaign_callback(cb, config, state):
+                    process_boon_callback(cb, config, state)
                 continue
 
             if update.get("message_reaction"):
