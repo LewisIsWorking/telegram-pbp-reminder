@@ -11,7 +11,7 @@ Used by scheduled/topic_queue_poster.py.
 from datetime import datetime, timezone
 
 import helpers
-from commands.queue_format import entry_age_icon, age_str, short_preview
+from commands.queue_format import entry_age_icon, age_str, short_preview, format_queue_line
 
 _SEPARATOR = "━━━━━━━━━━━━━━━━"
 _AGE_LEGEND = (
@@ -38,10 +38,7 @@ def format_topic_queue(entries: list, now: datetime) -> list[str]:
     entry_lines = []
     for i, entry in enumerate(entries, 1):
         hours = _entry_hours(entry, now)
-        icon = entry_age_icon(hours)
-        user = entry.get("name", "?")
-        preview = short_preview(entry.get("preview", ""), words=80)
-        line = f"{i:02d} {icon} {age_str(hours)}. {user}: {preview}"
+        line = format_queue_line(i, entry, hours)
         link = entry.get("link", "")
         if link:
             line += f" 🔗 {link}"
