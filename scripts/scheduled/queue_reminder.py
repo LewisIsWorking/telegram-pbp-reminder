@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
-from commands.queue_format import entry_age_icon, age_str, short_preview
+from commands.queue_format import entry_age_icon, age_str, short_preview, format_queue_line
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import silent_campaigns
 
@@ -140,13 +140,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
                 hours = helpers.hours_since(now, posted)
             except (ValueError, KeyError):  # pragma: no cover
                 pass  # pragma: no cover
-            icon = entry_age_icon(hours)
-            user = entry.get("name", "?")
-            preview = short_preview(entry.get("preview", ""))
-            link = entry.get("link", "")
-            line = f"{entry_num:02d} {icon} {age_str(hours)}. {user}: {preview}"
-            if link:
-                line += f" 🔗 {link}"  # pragma: no cover
+            line = format_queue_line(entry_num, entry, hours)
             lines.append(line)
             entry_num += 1
 
