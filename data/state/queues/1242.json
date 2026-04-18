@@ -20,30 +20,39 @@
       "media_group_id": null
     },
     {
-      "message_id": 2093,
-      "thread_id": 1242,
-      "user_id": "6234551152",
-      "user_name": "THE FUN",
-      "time": "2026-04-18T10:19:18+00:00",
-      "preview": "\"Teach you how to die geeerr, if you know all prove it, tell me my name before you go\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2096,
+      "message_id": 2138,
       "thread_id": 1242,
       "user_id": "8018921976",
       "user_name": "Natasha",
-      "time": "2026-04-18T10:20:30+00:00",
-      "preview": "We go, and feyre says \"i accept your guidance\"",
+      "time": "2026-04-18T10:59:30+00:00",
+      "preview": "Let's get going people",
       "media_group_id": null
     },
     {
-      "message_id": 2098,
+      "message_id": 2156,
+      "thread_id": 1242,
+      "user_id": "6452663252",
+      "user_name": "Jack",
+      "time": "2026-04-18T11:03:39+00:00",
+      "preview": "You should be overjoyed",
+      "media_group_id": null
+    },
+    {
+      "message_id": 2157,
+      "thread_id": 1242,
+      "user_id": "6452663252",
+      "user_name": "Jack",
+      "time": "2026-04-18T11:03:47+00:00",
+      "preview": "I always am",
+      "media_group_id": null
+    },
+    {
+      "message_id": 2161,
       "thread_id": 1242,
       "user_id": "8018921976",
       "user_name": "Natasha",
-      "time": "2026-04-18T10:27:06+00:00",
-      "preview": "Feyre realises something bad happened to her mind",
+      "time": "2026-04-18T11:04:47+00:00",
+      "preview": "\"He needs it\"",
       "media_group_id": null
     }
   ],
@@ -199,7 +208,63 @@
     "msg:2088",
     "2026-04-18 10:17:53",
     "msg:2090",
-    "2026-04-18 10:18:17"
+    "2026-04-18 10:18:17",
+    "msg:2093",
+    "2026-04-18 10:19:18",
+    "msg:2096",
+    "2026-04-18 10:20:30",
+    "msg:2098",
+    "2026-04-18 10:27:06",
+    "msg:2099",
+    "2026-04-18 10:27:10",
+    "msg:2104",
+    "2026-04-18 10:36:00",
+    "msg:2105",
+    "2026-04-18 10:37:31",
+    "msg:2106",
+    "2026-04-18 10:38:11",
+    "msg:2107",
+    "2026-04-18 10:40:03",
+    "msg:2110",
+    "2026-04-18 10:41:10",
+    "msg:2114",
+    "2026-04-18 10:42:39",
+    "msg:2117",
+    "2026-04-18 10:43:51",
+    "msg:2118",
+    "2026-04-18 10:44:20",
+    "msg:2121",
+    "2026-04-18 10:53:36",
+    "msg:2129",
+    "2026-04-18 10:57:12",
+    "msg:2128",
+    "2026-04-18 10:56:58",
+    "msg:2132",
+    "2026-04-18 10:57:35",
+    "msg:2133",
+    "2026-04-18 10:57:46",
+    "msg:2135",
+    "2026-04-18 10:58:28",
+    "msg:2140",
+    "2026-04-18 11:00:02",
+    "msg:2141",
+    "2026-04-18 11:00:38",
+    "msg:2142",
+    "2026-04-18 11:00:59",
+    "msg:2143",
+    "2026-04-18 11:01:06",
+    "msg:2144",
+    "2026-04-18 11:01:36",
+    "msg:2146",
+    "2026-04-18 11:02:03",
+    "msg:2147",
+    "2026-04-18 11:02:19",
+    "msg:2148",
+    "2026-04-18 11:02:36",
+    "msg:2152",
+    "2026-04-18 11:03:06",
+    "msg:2154",
+    "2026-04-18 11:03:17"
   ],
   "reply_log": [
     {
@@ -996,14 +1061,266 @@
       "player": "Natasha",
       "preview": "Feyre feels unsettled but wants to find out more",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:32:52+00:00",
+      "pid": "1242",
+      "msg_id": "2093",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "\"Teach you how to die geeerr, if you know all prove it, tell me my name before y",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:34:04+00:00",
+      "pid": "1242",
+      "msg_id": "2096",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "We go, and feyre says \"i accept your guidance\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:34:53+00:00",
+      "pid": "1242",
+      "msg_id": "2098",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre realises something bad happened to her mind",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:35:29+00:00",
+      "pid": "1242",
+      "msg_id": "2099",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "But is it bad?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:40:11+00:00",
+      "pid": "1242",
+      "msg_id": "2104",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "\"Hmmmmmmm\" Ger gets a big grin, almost monster like. \"Leadeeerr... general..... ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:42:52+00:00",
+      "pid": "1242",
+      "msg_id": "2105",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "Ger tries to think where his swarm would be strongest",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:43:26+00:00",
+      "pid": "1242",
+      "msg_id": "2106",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre mentions to ger, we could go talk to the priest while I work with this sli",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:54:10+00:00",
+      "pid": "1242",
+      "msg_id": "2107",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "Mr serious stares at Tal'lysae's ass and tits",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:54:24+00:00",
+      "pid": "1242",
+      "msg_id": "2110",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "He comments that she could feed 2 baby elephants with her breasts, they are love",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:54:39+00:00",
+      "pid": "1242",
+      "msg_id": "2114",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre thinks how Mr serious's name does not mean he is serious",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:54:56+00:00",
+      "pid": "1242",
+      "msg_id": "2117",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "This is serious business, having children is very respectable",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:55:08+00:00",
+      "pid": "1242",
+      "msg_id": "2118",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "Mr serious twists his left nipple",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:56:00+00:00",
+      "pid": "1242",
+      "msg_id": "2121",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:57:25+00:00",
+      "pid": "1242",
+      "msg_id": "2129",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "did I like the dirt ?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:58:21+00:00",
+      "pid": "1242",
+      "msg_id": "2128",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "6\" crimson redhead with elven features, medium to large size tits and juicy ass,",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:59:07+00:00",
+      "pid": "1242",
+      "msg_id": "2132",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre suggests bringing olla home first and then going to the river and the chur",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:59:17+00:00",
+      "pid": "1242",
+      "msg_id": "2133",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "I want to impregnate a dirty wench",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:59:34+00:00",
+      "pid": "1242",
+      "msg_id": "2135",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "I give reno my favourite spider , Toomanylegs",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:01:38+00:00",
+      "pid": "1242",
+      "msg_id": "2140",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "How much dirt did I eat ?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:02:39+00:00",
+      "pid": "1242",
+      "msg_id": "2141",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "Very good, it has to be collected only from your holes though",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:02:48+00:00",
+      "pid": "1242",
+      "msg_id": "2142",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "Uhhhh yeah",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:03:03+00:00",
+      "pid": "1242",
+      "msg_id": "2143",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "Rino pulls the legs of the spider and leaves it",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:03:12+00:00",
+      "pid": "1242",
+      "msg_id": "2144",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "The tears really get me going",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:03:31+00:00",
+      "pid": "1242",
+      "msg_id": "2146",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "\"Tofewlegs now\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:03:50+00:00",
+      "pid": "1242",
+      "msg_id": "2147",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Poor spider\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:04:16+00:00",
+      "pid": "1242",
+      "msg_id": "2148",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "I want to spin my webs all over everyone",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:04:42+00:00",
+      "pid": "1242",
+      "msg_id": "2152",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "No, I'm just wanting to mess you up",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:04:50+00:00",
+      "pid": "1242",
+      "msg_id": "2154",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Mr serious, be serious:",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 2182,
-      "fingerprint": "2026-04-18 09:33:09|2026-04-18 10:02:55|2026-04-18 10:19:18|2026-04-18 10:20:30|2026-04-18 10:27:06"
+      "msg_id": 2211,
+      "fingerprint": "2026-04-18 09:33:09|2026-04-18 10:02:55|2026-04-18 10:59:30|2026-04-18 11:03:39|2026-04-18 11:03:47|2026-04-18 11:04:47"
     }
   }
 }
