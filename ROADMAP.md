@@ -429,3 +429,15 @@ Dated log of discovered bugs — open and resolved.
 
 Ideas and feedback welcome in the
 [Foundry & GitHub topic](https://t.me/Path_Wars/71537) or via GitHub issues.
+
+### Testing requirements
+
+All code must maintain **100% test coverage**. See [`docs/testing.md`](docs/testing.md)
+for the full testing guide, including the critical requirement to test
+falsy/absent inputs for every fallback path.
+
+**Key rule:** 100% coverage does not mean 100% correct. For any function
+with a fallback (`entry.get("x", "")`, `if value: ... else: ...`), tests
+must include cases where the primary value is `None`, missing, or empty —
+not just the happy path. Untested fallback paths are how bugs ship despite
+full coverage.
