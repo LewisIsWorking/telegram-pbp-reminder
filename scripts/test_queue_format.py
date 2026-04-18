@@ -125,3 +125,35 @@ def test_short_preview_default_is_15_words():
     result = short_preview(text)
     assert result.endswith("...")
     assert len(result.split()) == 15  # 15 words, last one ends with "..."
+
+# ── format_queue_line ──────────────────────────────────────────────────────────
+
+def test_format_queue_line_includes_message_id():
+    """Entry line includes [message_id] when present."""
+    from commands.queue_format import format_queue_line
+    entry = {"name": "Alice", "preview": "Hello world",
+             "message_id": "1970", "link": ""}
+    line = format_queue_line(1, entry, 2.0)
+    assert "[1970]" in line
+    assert "01" in line
+    assert "Alice" in line
+
+
+def test_format_queue_line_no_message_id():
+    """Entry line omits id bracket when message_id is absent."""
+    from commands.queue_format import format_queue_line
+    entry = {"name": "Bob", "preview": "Hey", "link": ""}
+    line = format_queue_line(3, entry, 0.5)
+    assert "[" not in line
+    assert "03" in line
+    assert "Bob" in line
+
+
+def test_format_queue_line_includes_link():
+    """Entry line appends link when present."""
+    from commands.queue_format import format_queue_line
+    entry = {"name": "Alice", "preview": "Hi", "message_id": "42",
+             "link": "https://t.me/Path_Wars/100/42"}
+    line = format_queue_line(1, entry, 1.5)
+    assert "https://t.me" in line
+    assert "🔗" in line
