@@ -157,3 +157,20 @@ def test_format_queue_line_includes_link():
     line = format_queue_line(1, entry, 1.5)
     assert "https://t.me" in line
     assert "🔗" in line
+
+def test_format_queue_line_extracts_id_from_link():
+    """When message_id is None, ID is extracted from the link URL."""
+    from commands.queue_format import format_queue_line
+    entry = {"name": "Alice", "preview": "Hi", "message_id": None,
+             "link": "https://t.me/Path_Wars/107171/1970"}
+    line = format_queue_line(1, entry, 2.0)
+    assert "[1970]" in line
+
+
+def test_format_queue_line_no_id_no_link():
+    """When both message_id and link are absent, no brackets shown."""
+    from commands.queue_format import format_queue_line
+    entry = {"name": "Bob", "preview": "Hey"}
+    line = format_queue_line(2, entry, 0.5)
+    assert "[" not in line
+    assert "02" in line
