@@ -11,6 +11,29 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.41.0] - 2026-04-18
+
+### Added
+
+**Message ID shown in GM queue entries** (`commands/queue_format.py`, `scheduled/queue_reminder.py`, `commands/topic_queue_format.py`)
+
+Every entry in the GM queue now shows its Telegram message ID in brackets:
+
+```
+01 [1970] 🌱 1h. Jack Graham: *[gif]* 🔗 https://t.me/c/.../1970
+02 [2062] 🌱 1h. THE FUN UNCLE: "Like me, did you die...
+```
+
+Use `/markdone 1970` to clear by ID — safe against renumbering regardless
+of how many other entries are cleared beforehand. To clear multiple entries
+atomically use `/markdone 1970 2062` (space-separated IDs or numbers).
+
+The ID is also shown in pinned per-thread queue messages.
+
+Logic extracted to `format_queue_line()` in `queue_format.py`.
+
+---
+
 ## [4.40.0] - 2026-04-16
 
 ### Added
