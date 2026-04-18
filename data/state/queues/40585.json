@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 145555,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-15T17:12:32+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 145625,
       "thread_id": 137075,
       "user_id": "6144366145",
@@ -383,7 +374,9 @@
     "msg:144899",
     "2026-04-14 15:18:19",
     "msg:145825",
-    "2026-04-18 08:01:09"
+    "2026-04-18 08:01:09",
+    "msg:145555",
+    "2026-04-15 17:12:32"
   ],
   "reply_log": [
     {
@@ -1904,14 +1897,41 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-18T08:44:03+00:00",
+      "pid": "40585",
+      "msg_id": "145555",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T08:45:57+00:00",
+      "pid": "40585",
+      "msg_id": "145555",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T08:46:13+00:00",
+      "pid": "40585",
+      "msg_id": "145555",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145834,
-      "fingerprint": "2026-04-15 17:12:32|2026-04-16 08:36:44"
+      "msg_id": 145845,
+      "fingerprint": "2026-04-16 08:36:44"
     },
     "40585": {
       "msg_id": null,
