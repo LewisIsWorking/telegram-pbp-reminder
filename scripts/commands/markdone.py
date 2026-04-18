@@ -4,6 +4,8 @@
 Usage (in any PBP topic or bot topic):
   /markdone                 — show usage (a message number or ID is required)
   /markdone 3               — clear entry #3 from the queue list
+  /markdone 2 3 5           — clear multiple entries atomically (use this!
+                              sequential single commands will renumber)
   /markdone 140368          — clear by Telegram message ID
   /markdone all             — clear ALL entries for this campaign
 
@@ -102,12 +104,14 @@ def handle_markdone(ctx: dict) -> bool:
     # No arg — require explicit target, never clear silently
     if not arg:
         tg.send_message(gid, tid,
-                        "Usage: /markdone 3  /markdone <msg_id>  /markdone all\n"
-                        "A message number or ID is required.")
+                        "Usage: /markdone 3  /markdone 2 3 5  /markdone <msg_id>  /markdone all\n"
+                        "Tip: use /markdone 2 3 to clear multiple at once — "
+                        "sequential commands renumber the queue.")
         return True
 
     tg.send_message(gid, tid,
-                    "Usage: /markdone 3  /markdone <msg_id>  /markdone all\nA message number or ID is required.")
+                    "Usage: /markdone 3  /markdone 2 3 5  /markdone <msg_id>  /markdone all\n"
+                    "Tip: use /markdone 2 3 to clear multiple at once.")
     return True
 
 
