@@ -39,9 +39,6 @@ def format_topic_queue(entries: list, now: datetime) -> list[str]:
     for i, entry in enumerate(entries, 1):
         hours = _entry_hours(entry, now)
         line = format_queue_line(i, entry, hours)
-        link = entry.get("link", "")
-        if link:
-            line += f" 🔗 {link}"
         entry_lines.append(line)
     return _chunk_lines(header, entry_lines)
 
