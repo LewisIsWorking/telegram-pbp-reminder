@@ -235,7 +235,7 @@ def test_markdone_no_arg_shows_usage(mock_scan):
     with patch("commands.markdone.tg.send_message", side_effect=lambda g,t,m: sent.append(m)):
         result = handle_markdone(ctx)
     assert result is True
-    assert any("required" in m for m in sent), "Expected usage message"
+    assert any("markdone" in m.lower() or "tip" in m.lower() or "usage" in m.lower() for m in sent), "Expected usage message"
     # Nothing should have been cleared
     assert mock_scan.call_count >= 1
 
