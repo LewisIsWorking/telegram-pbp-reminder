@@ -4,6 +4,8 @@ on:
   schedule:
     # Run every hour to process messages and check for inactivity
     - cron: '0 * * * *'
+  push:
+    branches: [main]
   workflow_dispatch: # Allow manual trigger for testing
 
 concurrency:
@@ -11,7 +13,50 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check-inactivity:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pytest pytest-cov
+
+      - name: Run tests
+        id: run_tests
+        run: python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing
+        continue-on-error: true
+
+      - name: Alert on test failure
+        if: steps.run_tests.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          python3 -c "
+          import os, requests
+          token = os.environ['TELEGRAM_BOT_TOKEN']
+          bot_id = token.split(':')[0]
+          # Post to bot topic — we need config but keep this simple with hardcoded IDs
+          # group_id and bot_topic_id from config
+          import json, sys
+          sys.path.insert(0, 'scripts')
+          from helpers_pkg.config import load_config
+          config = load_config()
+          gid = config['group_id']
+          tid = config.get('bot_topic_id')
+          if tid:
+              requests.post(f'https://api.telegram.org/bot{token}/sendMessage',
+                  json={'chat_id': gid, 'message_thread_id': tid,
+                        'text': '⚠️ Test suite failed on push to main — check GitHub Actions.'})
+          "
+
+  run:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -26,9 +71,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install requests pytest pytest-cov
-
-      - name: Run tests
-        run: python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing
 
       - name: Update bot command menu
         env:
