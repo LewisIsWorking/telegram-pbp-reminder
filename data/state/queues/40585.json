@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 145890,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-18T19:15:40+00:00",
-      "preview": "same actions bro",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -382,7 +373,13 @@
     "msg:145876",
     "2026-04-18 18:35:58",
     "msg:145887",
-    "2026-04-18 19:12:33"
+    "2026-04-18 19:12:33",
+    "msg:145890",
+    "2026-04-18 19:15:40",
+    "msg:144969",
+    "2026-04-14 15:37:33",
+    "msg:143640",
+    "2026-04-10 18:23:48"
   ],
   "reply_log": [
     {
@@ -1957,14 +1954,50 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-18T19:44:29+00:00",
+      "pid": "40585",
+      "msg_id": "145890",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "same actions bro",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T19:59:08+00:00",
+      "pid": "40585",
+      "msg_id": "145890",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T20:05:57+00:00",
+      "pid": "40585",
+      "msg_id": "144969",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T20:08:02+00:00",
+      "pid": "40585",
+      "msg_id": "143640",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145893,
-      "fingerprint": "2026-04-18 19:15:40"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": null,
