@@ -18,12 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 145625,
+      "message_id": 145890,
       "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-16T08:36:44+00:00",
-      "preview": "Apparently to reroll with a hero point from the interface i do.",
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-04-18T19:15:40+00:00",
+      "preview": "same actions bro",
       "media_group_id": null
     }
   ],
@@ -376,7 +376,13 @@
     "msg:145825",
     "2026-04-18 08:01:09",
     "msg:145555",
-    "2026-04-15 17:12:32"
+    "2026-04-15 17:12:32",
+    "msg:145625",
+    "2026-04-16 08:36:44",
+    "msg:145876",
+    "2026-04-18 18:35:58",
+    "msg:145887",
+    "2026-04-18 19:12:33"
   ],
   "reply_log": [
     {
@@ -1924,14 +1930,41 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-18T18:31:31+00:00",
+      "pid": "40585",
+      "msg_id": "145625",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Apparently to reroll with a hero point from the interface i do.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T18:55:11+00:00",
+      "pid": "40585",
+      "msg_id": "145876",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T19:12:47+00:00",
+      "pid": "40585",
+      "msg_id": "145887",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145845,
-      "fingerprint": "2026-04-16 08:36:44"
+      "msg_id": 145893,
+      "fingerprint": "2026-04-18 19:15:40"
     },
     "40585": {
       "msg_id": null,

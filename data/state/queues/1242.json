@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2138,
-      "thread_id": 1242,
-      "user_id": "8018921976",
-      "user_name": "Natasha",
-      "time": "2026-04-18T10:59:30+00:00",
-      "preview": "Let's get going people",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -251,7 +241,13 @@
     "msg:2197",
     "2026-04-18 11:27:17",
     "msg:2198",
-    "2026-04-18 11:27:37"
+    "2026-04-18 11:27:37",
+    "msg:2138",
+    "2026-04-18 10:59:30",
+    "msg:2234",
+    "2026-04-18 18:38:24",
+    "msg:2236",
+    "2026-04-18 19:11:11"
   ],
   "reply_log": [
     {
@@ -1480,14 +1476,41 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-18T18:30:12+00:00",
+      "pid": "1242",
+      "msg_id": "2138",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Let's get going people",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T19:08:27+00:00",
+      "pid": "1242",
+      "msg_id": "2234",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "Yess sounds goood where to next?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T19:12:13+00:00",
+      "pid": "1242",
+      "msg_id": "2236",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "Quiz had taken her hostage and infected her with some sort of shadow magic, but ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 2226,
-      "fingerprint": "2026-04-18 10:59:30"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
