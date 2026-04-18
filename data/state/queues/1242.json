@@ -2,15 +2,6 @@
   "pid": "1242",
   "unreplied": [
     {
-      "message_id": 1929,
-      "thread_id": 1242,
-      "user_id": "8018921976",
-      "user_name": "Natasha",
-      "time": "2026-04-18T08:59:42+00:00",
-      "preview": "Feyre looks confused",
-      "media_group_id": null
-    },
-    {
       "message_id": 1970,
       "thread_id": 1242,
       "user_id": "6452663252",
@@ -20,48 +11,39 @@
       "media_group_id": null
     },
     {
-      "message_id": 1973,
-      "thread_id": 1242,
-      "user_id": "6452663252",
-      "user_name": "Jack",
-      "time": "2026-04-18T09:34:14+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2019,
-      "thread_id": 1242,
-      "user_id": "8018921976",
-      "user_name": "Natasha",
-      "time": "2026-04-18T09:49:13+00:00",
-      "preview": "Feyre holds ollas hand tighter, nervous of their new companion",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2021,
-      "thread_id": 1242,
-      "user_id": "8018921976",
-      "user_name": "Natasha",
-      "time": "2026-04-18T09:49:58+00:00",
-      "preview": "Feyre does not like this conversion",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2022,
+      "message_id": 2062,
       "thread_id": 1242,
       "user_id": "6234551152",
       "user_name": "THE FUN",
-      "time": "2026-04-18T09:49:58+00:00",
-      "preview": "Ger follows. He was going that way anyway.....",
+      "time": "2026-04-18T10:02:55+00:00",
+      "preview": "\"Like me, did you die to feyre\"",
       "media_group_id": null
     },
     {
-      "message_id": 2024,
+      "message_id": 2093,
       "thread_id": 1242,
-      "user_id": "6452663252",
-      "user_name": "Jack",
-      "time": "2026-04-18T09:50:42+00:00",
-      "preview": "I would love many offspring, that is ideal",
+      "user_id": "6234551152",
+      "user_name": "THE FUN",
+      "time": "2026-04-18T10:19:18+00:00",
+      "preview": "\"Teach you how to die geeerr, if you know all prove it, tell me my name before you go\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 2096,
+      "thread_id": 1242,
+      "user_id": "8018921976",
+      "user_name": "Natasha",
+      "time": "2026-04-18T10:20:30+00:00",
+      "preview": "We go, and feyre says \"i accept your guidance\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 2098,
+      "thread_id": 1242,
+      "user_id": "8018921976",
+      "user_name": "Natasha",
+      "time": "2026-04-18T10:27:06+00:00",
+      "preview": "Feyre realises something bad happened to her mind",
       "media_group_id": null
     }
   ],
@@ -163,7 +145,61 @@
     "msg:2013",
     "2026-04-18 09:47:40",
     "msg:2015",
-    "2026-04-18 09:48:08"
+    "2026-04-18 09:48:08",
+    "msg:2019",
+    "2026-04-18 09:49:13",
+    "msg:2021",
+    "2026-04-18 09:49:58",
+    "msg:2022",
+    "msg:2024",
+    "2026-04-18 09:50:42",
+    "msg:2027",
+    "2026-04-18 09:51:17",
+    "msg:2028",
+    "2026-04-18 09:52:00",
+    "msg:2031",
+    "2026-04-18 09:52:35",
+    "msg:2035",
+    "2026-04-18 09:54:30",
+    "msg:2041",
+    "2026-04-18 09:57:21",
+    "msg:2042",
+    "2026-04-18 09:57:23",
+    "msg:2044",
+    "2026-04-18 09:58:50",
+    "msg:2048",
+    "2026-04-18 10:00:36",
+    "msg:2051",
+    "2026-04-18 10:00:51",
+    "msg:2055",
+    "2026-04-18 10:01:51",
+    "msg:2061",
+    "2026-04-18 10:02:40",
+    "msg:2050",
+    "msg:2066",
+    "2026-04-18 10:03:59",
+    "msg:2068",
+    "2026-04-18 10:06:04",
+    "msg:2071",
+    "2026-04-18 10:09:47",
+    "msg:2072",
+    "2026-04-18 10:10:09",
+    "msg:2074",
+    "2026-04-18 10:13:25",
+    "msg:2077",
+    "2026-04-18 10:14:36",
+    "msg:1929",
+    "2026-04-18 08:59:42",
+    "msg:1973",
+    "2026-04-18 09:34:14",
+    "msg:2079",
+    "2026-04-18 10:15:21",
+    "msg:2084",
+    "2026-04-18 10:17:04",
+    "msg:2088",
+    "2026-04-18 10:17:53",
+    "msg:2090",
+    "2026-04-18 10:18:17"
   ],
   "reply_log": [
     {
@@ -663,14 +699,311 @@
       "player": "THE FUN",
       "preview": "State your buisness or feel my sword fiend",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:52:17+00:00",
+      "pid": "1242",
+      "msg_id": "2019",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre holds ollas hand tighter, nervous of their new companion",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:53:38+00:00",
+      "pid": "1242",
+      "msg_id": "2021",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre does not like this conversion",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:54:48+00:00",
+      "pid": "1242",
+      "msg_id": "2022",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "Ger follows. He was going that way anyway.....",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:55:13+00:00",
+      "pid": "1242",
+      "msg_id": "2024",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "I would love many offspring, that is ideal",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:55:55+00:00",
+      "pid": "1242",
+      "msg_id": "2027",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Stalker, observer, same thing\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:57:05+00:00",
+      "pid": "1242",
+      "msg_id": "2028",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "\"What do you want geeerr\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:57:20+00:00",
+      "pid": "1242",
+      "msg_id": "2031",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Why?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:57:49+00:00",
+      "pid": "1242",
+      "msg_id": "2035",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"That is of no concern to..you\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:58:59+00:00",
+      "pid": "1242",
+      "msg_id": "2041",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "\"This aeon stone\" Ger looks at the floating abject round his head \"what the fuck",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T09:59:34+00:00",
+      "pid": "1242",
+      "msg_id": "2042",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Who is your master?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:00:32+00:00",
+      "pid": "1242",
+      "msg_id": "2044",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Why not, weirder things have happened\", feyre glances at Mr serious",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:00:43+00:00",
+      "pid": "1242",
+      "msg_id": "2048",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Lovely\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:01:21+00:00",
+      "pid": "1242",
+      "msg_id": "2051",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre feels the pain but manages it as she likes it ;)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:02:58+00:00",
+      "pid": "1242",
+      "msg_id": "2055",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Did you see anything interesting\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:03:27+00:00",
+      "pid": "1242",
+      "msg_id": "2061",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Who am I?\" Feyre questions her life which she never has before",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:03:46+00:00",
+      "pid": "1242",
+      "msg_id": "2061",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:05:48+00:00",
+      "pid": "1242",
+      "msg_id": "2050",
+      "thread_id": 1242,
+      "player": "Jack",
+      "preview": "My seed will empower you and bloom inside you like a tapeworm in a dog, it will ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:06:47+00:00",
+      "pid": "1242",
+      "msg_id": "2066",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"What building blocks?:",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:07:02+00:00",
+      "pid": "1242",
+      "msg_id": "2068",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Have you observed anything of a second portal?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:12:05+00:00",
+      "pid": "1242",
+      "msg_id": "2071",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "Ger \" Can this slime tell us anything helpful or is she here to just talk nonese",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:13:36+00:00",
+      "pid": "1242",
+      "msg_id": "2072",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre looks at the slime, awaiting a response",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:14:18+00:00",
+      "pid": "1242",
+      "msg_id": "2074",
+      "thread_id": 1242,
+      "player": "THE FUN",
+      "preview": "\"Geerrr, know much but say little\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:15:11+00:00",
+      "pid": "1242",
+      "msg_id": "2077",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"Can you explain to us how to build these structures?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:16:59+00:00",
+      "pid": "1242",
+      "msg_id": "1929",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre looks confused",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T11:15:12.607519+00:00",
+      "pid": "1242",
+      "msg_id": "1973",
+      "thread_id": "1242",
+      "player": "Jack Graham",
+      "preview": "*[gif]*",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-18T11:15:13.320837+00:00",
+      "pid": "1242",
+      "msg_id": "2079",
+      "thread_id": "1242",
+      "player": "Natasha",
+      "preview": "Damn",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-04-18T10:17:35+00:00",
+      "pid": "1242",
+      "msg_id": "2019",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:17:58+00:00",
+      "pid": "1242",
+      "msg_id": "2021",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:18:23+00:00",
+      "pid": "1242",
+      "msg_id": "2022",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:19:00+00:00",
+      "pid": "1242",
+      "msg_id": "2024",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:19:34+00:00",
+      "pid": "1242",
+      "msg_id": "2084",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "I take this advice and think about returning to my place of worship to discover ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:19:51+00:00",
+      "pid": "1242",
+      "msg_id": "2088",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "\"We will go now to your father\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T10:26:42+00:00",
+      "pid": "1242",
+      "msg_id": "2090",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre feels unsettled but wants to find out more",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 2081,
-      "fingerprint": "2026-04-18 08:59:42|2026-04-18 09:33:09|2026-04-18 09:34:14|2026-04-18 09:49:13|2026-04-18 09:49:58|2026-04-18 09:49:58|2026-04-18 09:50:42"
+      "msg_id": 2182,
+      "fingerprint": "2026-04-18 09:33:09|2026-04-18 10:02:55|2026-04-18 10:19:18|2026-04-18 10:20:30|2026-04-18 10:27:06"
     }
   }
 }
