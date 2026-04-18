@@ -18,24 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 145400,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-04-14T23:59:35+00:00",
-      "preview": "Master Cho continues watching and manipulating the flows of fortune,  Using his mirror to trap the darkness and his fan to cycle the light of fortune and make it stronger in the area.  As he works he becomes distracted briefly until he heroically forces his concentration back on task.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145409,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-15T00:13:58+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 145555,
       "thread_id": 137075,
       "user_id": "138025700",
@@ -393,7 +375,15 @@
     "msg:145420",
     "2026-04-15 01:14:20",
     "msg:145261",
-    "2026-04-14 21:15:38"
+    "2026-04-14 21:15:38",
+    "msg:145400",
+    "2026-04-14 23:59:35",
+    "msg:145409",
+    "2026-04-15 00:13:58",
+    "msg:144899",
+    "2026-04-14 15:18:19",
+    "msg:145825",
+    "2026-04-18 08:01:09"
   ],
   "reply_log": [
     {
@@ -1860,14 +1850,68 @@
       "player": "Caelum (Thi\u00ean)",
       "preview": "*[image]*",
       "via": "markdone"
+    },
+    {
+      "t": "2026-04-18T07:48:02+00:00",
+      "pid": "40585",
+      "msg_id": "145400",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "Master Cho continues watching and manipulating the flows of fortune,  Using his ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T07:48:42+00:00",
+      "pid": "40585",
+      "msg_id": "145409",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T07:51:30+00:00",
+      "pid": "40585",
+      "msg_id": "145409",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T07:51:36+00:00",
+      "pid": "40585",
+      "msg_id": "145409",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T07:59:02+00:00",
+      "pid": "40585",
+      "msg_id": "144899",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-18T08:02:13+00:00",
+      "pid": "40585",
+      "msg_id": "145825",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 145810,
-      "fingerprint": "2026-04-14 23:59:35|2026-04-15 00:13:58|2026-04-15 17:12:32|2026-04-16 08:36:44"
+      "msg_id": 145834,
+      "fingerprint": "2026-04-15 17:12:32|2026-04-16 08:36:44"
     },
     "40585": {
       "msg_id": null,
