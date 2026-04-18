@@ -74,3 +74,17 @@ def short_preview(text: str, words: int = 15) -> str:
     if len(text.split()) > words:
         result += "..."
     return result
+
+def format_queue_line(entry_num: int, entry: dict, hours: float) -> str:
+    """Format a single GM queue entry line with message ID prefix."""
+    icon = entry_age_icon(hours)
+    age = age_str(hours)
+    user = entry.get("name", "?")
+    preview = short_preview(entry.get("preview", ""))
+    mid = entry.get("message_id", "")
+    pfx = f"{entry_num:02d} [{mid}]" if mid else f"{entry_num:02d}"
+    line = f"{pfx} {icon} {age}. {user}: {preview}"
+    link = entry.get("link", "")
+    if link:
+        line += f" 🔗 {link}"
+    return line
