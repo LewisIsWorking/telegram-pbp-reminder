@@ -81,7 +81,12 @@ def format_queue_line(entry_num: int, entry: dict, hours: float) -> str:
     age = age_str(hours)
     user = entry.get("name", "?")
     preview = short_preview(entry.get("preview", ""))
-    mid = entry.get("message_id", "")
+    mid = entry.get("message_id") or ""
+    # Fallback: extract ID from link if transcript didn't have msg# tag
+    if not mid:
+        link_val = entry.get("link", "")
+        if link_val and "/" in link_val:
+            mid = link_val.rstrip("/").rsplit("/", 1)[-1]
     pfx = f"{entry_num:02d} [{mid}]" if mid else f"{entry_num:02d}"
     line = f"{pfx} {icon} {age}. {user}: {preview}"
     link = entry.get("link", "")
