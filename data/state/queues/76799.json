@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 145118,
-      "thread_id": 144765,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-14T17:05:30+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 145135,
       "thread_id": 76799,
       "user_id": "7863964681",
@@ -26,24 +17,6 @@
       "user_name": "Chase",
       "time": "2026-04-14T17:10:58+00:00",
       "preview": "\"Well look at that,\" the fey grins. \"Managed to take both of them alive. Despite their clearly lethal best efforts. You alright, Nadya?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145143,
-      "thread_id": 144765,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-14T17:20:57+00:00",
-      "preview": "Oh! I know what you mean now.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145149,
-      "thread_id": 144765,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-14T17:22:42+00:00",
-      "preview": "k, well doesn't matter. Combat is over and I can't sustain it.",
       "media_group_id": null
     },
     {
@@ -158,7 +131,13 @@
     "msg:145136",
     "2026-04-14 17:10:23",
     "msg:145144",
-    "2026-04-14 17:21:00"
+    "2026-04-14 17:21:00",
+    "msg:145118",
+    "2026-04-14 17:05:30",
+    "msg:145143",
+    "2026-04-14 17:20:57",
+    "msg:145149",
+    "2026-04-14 17:22:42"
   ],
   "reply_log": [
     {
@@ -489,6 +468,33 @@
       "player": "Ryo",
       "preview": "Ohh, I thought it did it automatically when you click to place the emination",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:08:33+00:00",
+      "pid": "76799",
+      "msg_id": "145118",
+      "thread_id": 144765,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:08:52+00:00",
+      "pid": "76799",
+      "msg_id": "145143",
+      "thread_id": 144765,
+      "player": "Link",
+      "preview": "Oh! I know what you mean now.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:09:07+00:00",
+      "pid": "76799",
+      "msg_id": "145149",
+      "thread_id": 144765,
+      "player": "Ryo",
+      "preview": "k, well doesn't matter. Combat is over and I can't sustain it.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -499,8 +505,8 @@
       "fingerprint": "2026-04-14 17:09:45|2026-04-14 17:10:58|2026-04-14 17:27:42|2026-04-14 18:54:06|2026-04-14 18:56:34|2026-04-14 19:07:12"
     },
     "144765": {
-      "msg_id": 145158,
-      "fingerprint": "2026-04-14 17:05:30|2026-04-14 17:20:57|2026-04-14 17:22:42"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
