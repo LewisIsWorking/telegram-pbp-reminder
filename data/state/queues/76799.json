@@ -2,57 +2,12 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 145135,
+      "message_id": 146172,
       "thread_id": 76799,
       "user_id": "7863964681",
       "user_name": "Link",
-      "time": "2026-04-14T17:09:45+00:00",
-      "preview": "Akuma, greatly irritated at how the events played out, rushes the weakest-looking Kobold and kicks him square in the solar plexus. Seeing him fall down, he turns and gives an extra hard headbutt to the other, knocking him down as well.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145137,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-14T17:10:58+00:00",
-      "preview": "\"Well look at that,\" the fey grins. \"Managed to take both of them alive. Despite their clearly lethal best efforts. You alright, Nadya?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145150,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-14T17:27:42+00:00",
-      "preview": "\"Little bastards. Can't wait to talk to this Rekarek guy.\"\n\nHe checks in on the kobold, \"how you holding up? Did that blast get you?\"\n\nHe eyes over at Nadya, seeing that she has plenty of aid from the rest of the team, and feels relieved.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145178,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-14T18:54:06+00:00",
-      "preview": "Nadya groans from the floor. She fiddles with her alchemy tools, downs a vial, and doesn't make much of an effort to get up for a while.\n\n\"Alive.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145180,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-14T18:56:34+00:00",
-      "preview": "With that established, the detective makes an effort to go towards the next area first. Actively looking for traps, or ambushes, he tries to take advantage of his size and quickness to get a look at whatever's next.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145183,
-      "thread_id": 76799,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-14T19:07:12+00:00",
-      "preview": "Unsure of what to do for the moment Kitt decides to inspect the lanterns that exploded to see if anything remains of whatever caused them to do so.",
+      "time": "2026-04-19T18:11:09+00:00",
+      "preview": "Once B\u00e1yakan indicates that the room are is clear of immediate dangers, Akuma will walk in and begin to remove his shoes.",
       "media_group_id": null
     }
   ],
@@ -137,7 +92,25 @@
     "msg:145143",
     "2026-04-14 17:20:57",
     "msg:145149",
-    "2026-04-14 17:22:42"
+    "2026-04-14 17:22:42",
+    "msg:145135",
+    "2026-04-14 17:09:45",
+    "msg:145137",
+    "2026-04-14 17:10:58",
+    "msg:145150",
+    "2026-04-14 17:27:42",
+    "msg:145178",
+    "2026-04-14 18:54:06",
+    "msg:145180",
+    "2026-04-14 18:56:34",
+    "msg:145183",
+    "2026-04-14 19:07:12",
+    "msg:146124",
+    "2026-04-19 17:22:33",
+    "msg:146129",
+    "2026-04-19 17:27:07",
+    "msg:146134",
+    "2026-04-19 17:38:29"
   ],
   "reply_log": [
     {
@@ -495,14 +468,95 @@
       "player": "Ryo",
       "preview": "k, well doesn't matter. Combat is over and I can't sustain it.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:17:19+00:00",
+      "pid": "76799",
+      "msg_id": "145135",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Akuma, greatly irritated at how the events played out, rushes the weakest-lookin",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:17:33+00:00",
+      "pid": "76799",
+      "msg_id": "145137",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "\"Well look at that,\" the fey grins. \"Managed to take both of them alive. Despite",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:20:23+00:00",
+      "pid": "76799",
+      "msg_id": "145150",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "\"Little bastards. Can't wait to talk to this Rekarek guy.\"\n\nHe checks in on the ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:20:55+00:00",
+      "pid": "76799",
+      "msg_id": "145178",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya groans from the floor. She fiddles with her alchemy tools, downs a vial, a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:21:11+00:00",
+      "pid": "76799",
+      "msg_id": "145180",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "With that established, the detective makes an effort to go towards the next area",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T17:22:00+00:00",
+      "pid": "76799",
+      "msg_id": "145183",
+      "thread_id": 76799,
+      "player": "Ryo",
+      "preview": "Unsure of what to do for the moment Kitt decides to inspect the lanterns that ex",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T18:00:17+00:00",
+      "pid": "76799",
+      "msg_id": "146124",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T18:02:21+00:00",
+      "pid": "76799",
+      "msg_id": "146129",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Akuma let's out a small sigh, and a look of disappointment crosses his face. Dis",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T18:02:34+00:00",
+      "pid": "76799",
+      "msg_id": "146134",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "\"Working on it.\"\n\nThere's a pause where he listens intently at the door. Then th",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 145190,
-      "fingerprint": "2026-04-14 17:09:45|2026-04-14 17:10:58|2026-04-14 17:27:42|2026-04-14 18:54:06|2026-04-14 18:56:34|2026-04-14 19:07:12"
+      "msg_id": 146174,
+      "fingerprint": "2026-04-19 18:11:09"
     },
     "144765": {
       "msg_id": null,
