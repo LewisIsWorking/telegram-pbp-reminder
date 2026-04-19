@@ -1,6 +1,25 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 146319,
+      "thread_id": 107171,
+      "user_id": "8748487163",
+      "user_name": "Cobalt",
+      "time": "2026-04-19T19:31:14+00:00",
+      "preview": "The Symposium floats in the room, having been distracted by something just as the skirmish broke out and wandered off. Their calming, murmuring, scholarly telepathy slips through the party's minds. \"All systems ebb and flow in their cause and effect. Lucky that we are knowledgeable on such systems. Let us see if our convergence bears the knowledge we seek!\" They spark with a magenta hue internally as they ready their tools.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 146349,
+      "thread_id": 107171,
+      "user_id": "8748487163",
+      "user_name": "Cobalt",
+      "time": "2026-04-19T20:11:22+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -131,7 +150,13 @@
     "msg:146130",
     "2026-04-19 17:30:28",
     "msg:146136",
-    "2026-04-19 17:44:49"
+    "2026-04-19 17:44:49",
+    "msg:146332",
+    "2026-04-19 19:53:48",
+    "msg:146331",
+    "2026-04-19 19:52:46",
+    "msg:146338",
+    "2026-04-19 19:56:39"
   ],
   "reply_log": [
     {
@@ -731,14 +756,59 @@
       "player": "Link",
       "preview": "Next, the group will move to the control room.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-19T19:54:01+00:00",
+      "pid": "107171",
+      "msg_id": "146332",
+      "thread_id": 107171,
+      "player": "Cobalt",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T19:54:24+00:00",
+      "pid": "107171",
+      "msg_id": "146332",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T19:55:08+00:00",
+      "pid": "107171",
+      "msg_id": "146331",
+      "thread_id": 107171,
+      "player": "Cobalt",
+      "preview": "The Symposium floats in the room, having been distracted by something just as th",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T20:05:03+00:00",
+      "pid": "107171",
+      "msg_id": "146338",
+      "thread_id": 107171,
+      "player": "Cobalt",
+      "preview": "They pulse contently and float backwards, quite proud of their deft work as they",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T20:06:24+00:00",
+      "pid": "107171",
+      "msg_id": "146338",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 146361,
+      "fingerprint": "2026-04-19 19:31:14|2026-04-19 20:11:22"
     },
     "142887": {
       "msg_id": null,

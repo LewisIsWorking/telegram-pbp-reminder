@@ -1,6 +1,25 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 146294,
+      "thread_id": 66154,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-04-19T19:01:48+00:00",
+      "preview": "yee",
+      "media_group_id": null
+    },
+    {
+      "message_id": 146295,
+      "thread_id": 66154,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-04-19T19:02:47+00:00",
+      "preview": "That's what I have been waiting for.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -301,5 +320,11 @@
     }
   ],
   "topic_msg_id": null,
-  "topic_fingerprint": ""
+  "topic_fingerprint": "",
+  "topic_queues": {
+    "66154": {
+      "msg_id": 146357,
+      "fingerprint": "2026-04-19 19:01:48|2026-04-19 19:02:47"
+    }
+  }
 }
