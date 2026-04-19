@@ -11,21 +11,12 @@
       "media_group_id": null
     },
     {
-      "message_id": 143109,
+      "message_id": 146073,
       "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-07T02:21:14+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 143110,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-07T02:23:11+00:00",
-      "preview": "(In case any of you want to do melee stuff, you all can ignore the difficult terrain. That bits only for people I choose.)",
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-19T16:07:01+00:00",
+      "preview": "\"Damon,\" she nods her head towards a bed, \"sit down, shut up. The sooner we look at that hand, the sooner we can be done with bothering you.\"\n\nMeanwhile, she collects the necessary supplies to assist in diagnosis.\n\n\"Besides, it will take some time for the centrifuge to do its job to create a sample to analyze. We are just going to get that process started.\"",
       "media_group_id": null
     }
   ],
@@ -131,7 +122,23 @@
     "msg:143106",
     "2026-04-07 02:19:44",
     "msg:143107",
-    "2026-04-07 02:20:27"
+    "2026-04-07 02:20:27",
+    "msg:143109",
+    "2026-04-07 02:21:14",
+    "msg:143110",
+    "2026-04-07 02:23:11",
+    "msg:146032",
+    "2026-04-19 15:37:56",
+    "msg:146034",
+    "2026-04-19 15:38:47",
+    "msg:146042",
+    "2026-04-19 15:47:40",
+    "msg:146049",
+    "2026-04-19 15:52:54",
+    "msg:146052",
+    "2026-04-19 15:54:59",
+    "msg:146066",
+    "2026-04-19 16:02:21"
   ],
   "reply_log": [
     {
@@ -596,14 +603,95 @@
       "player": "Laetheron",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:20:46+00:00",
+      "pid": "107171",
+      "msg_id": "143109",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:21:14+00:00",
+      "pid": "107171",
+      "msg_id": "143110",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "(In case any of you want to do melee stuff, you all can ignore the difficult ter",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:40:08+00:00",
+      "pid": "107171",
+      "msg_id": "146032",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "\"Gods,\" Joo-Dee mutters, \"these bastards were so damn luck that noise knocked us",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:41:08+00:00",
+      "pid": "107171",
+      "msg_id": "146034",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "\"Too bad their luck has run out.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:48:54+00:00",
+      "pid": "107171",
+      "msg_id": "146042",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "Joo-Dee heads over to Damon and checks his vitals, ensuring that his chest pain ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:49:38+00:00",
+      "pid": "107171",
+      "msg_id": "146042",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:53:52+00:00",
+      "pid": "107171",
+      "msg_id": "146049",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "Seeing the drip, Joo-Dee leans over to Damon and whispers \"you should come with ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T15:56:00+00:00",
+      "pid": "107171",
+      "msg_id": "146052",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "\"Oh?\" Joo-Dee responds in a playful mocking tone. \"Never knew you were part parr",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T16:02:59+00:00",
+      "pid": "107171",
+      "msg_id": "146066",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "Trying to protect her patient's privacy, Joo-Dee will turn towards the group. \"I",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": 145991,
-      "fingerprint": "2026-04-06 19:12:29|2026-04-07 02:21:14|2026-04-07 02:23:11"
+      "msg_id": 146078,
+      "fingerprint": "2026-04-06 19:12:29|2026-04-19 16:07:01"
     },
     "142887": {
       "msg_id": null,
