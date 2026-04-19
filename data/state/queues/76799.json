@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 146172,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-19T18:11:09+00:00",
-      "preview": "Once B\u00e1yakan indicates that the room are is clear of immediate dangers, Akuma will walk in and begin to remove his shoes.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -110,7 +100,11 @@
     "msg:146129",
     "2026-04-19 17:27:07",
     "msg:146134",
-    "2026-04-19 17:38:29"
+    "2026-04-19 17:38:29",
+    "msg:146172",
+    "2026-04-19 18:11:09",
+    "msg:146194",
+    "2026-04-19 18:18:16"
   ],
   "reply_log": [
     {
@@ -549,14 +543,32 @@
       "player": "Chase",
       "preview": "\"Working on it.\"\n\nThere's a pause where he listens intently at the door. Then th",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-19T18:15:20+00:00",
+      "pid": "76799",
+      "msg_id": "146172",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Once B\u00e1yakan indicates that the room are is clear of immediate dangers, Akuma wi",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-19T18:20:23+00:00",
+      "pid": "76799",
+      "msg_id": "146194",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 146174,
-      "fingerprint": "2026-04-19 18:11:09"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "144765": {
       "msg_id": null,

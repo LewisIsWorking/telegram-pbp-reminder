@@ -25,44 +25,44 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-04-18T07:53:56+00:00",
+      "last_message_time": "2026-04-19T18:49:04+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-04-18T08:46:13+00:00",
+      "last_message_time": "2026-04-19T06:19:47+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-04-14T19:07:12+00:00",
-      "last_user": "Ryo",
-      "last_user_id": "138025700",
+      "last_message_time": "2026-04-19T18:26:28+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Magni Watch"
     },
     "107151": {
-      "last_message_time": "2026-04-17T23:54:52+00:00",
-      "last_user": "Chase",
-      "last_user_id": "8353586922",
+      "last_message_time": "2026-04-19T03:36:29+00:00",
+      "last_user": "Bruce",
+      "last_user_id": "7077683276",
       "campaign_name": "Theria"
     },
     "1242": {
-      "last_message_time": "2026-04-18T11:04:50+00:00",
+      "last_message_time": "2026-04-19T16:04:28+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Dark Pockets"
     }
   },
   "last_alerts": {
-    "52083": "2026-04-18T18:21:10.350630+00:00",
-    "66154": "2026-04-18T18:21:10.350630+00:00",
-    "51357": "2026-04-18T01:36:34.630306+00:00",
-    "25059": "2026-04-18T18:21:10.350630+00:00",
-    "107171": "2026-04-17T08:57:57.508352+00:00",
+    "52083": "2026-04-19T19:17:57.174088+00:00",
+    "66154": "2026-04-19T19:17:57.174088+00:00",
+    "51357": "2026-04-19T03:07:20.203391+00:00",
+    "25059": "2026-04-19T19:17:57.174088+00:00",
+    "107171": "2026-04-19T08:22:55.001210+00:00",
     "40585": "2026-04-17T08:36:50.943502+00:00",
-    "76799": "2026-04-17T21:17:33.656271+00:00",
+    "76799": "2026-04-18T22:09:57.102630+00:00",
     "107151": "2026-04-12T23:12:19.825822+00:00",
     "1242": "2026-04-17T14:29:30.841825+00:00"
   },
@@ -73,7 +73,7 @@
     "52083": "2026-04-16T19:31:19.538736+00:00",
     "107171": "2026-04-16T19:31:19.538736+00:00",
     "40585": "2026-04-16T19:31:19.538736+00:00",
-    "76799": "2026-04-16T05:03:23.769497+00:00",
+    "76799": "2026-04-19T06:37:36.221148+00:00",
     "107151": "2026-04-17T05:02:10.581063+00:00",
     "1242": "2026-04-18T06:28:43.449000+00:00"
   },
@@ -82,7 +82,7 @@
     "52083": "2026-03-24T13:33:26.201157+00:00",
     "40585": "2026-04-13T12:26:28.314677+00:00",
     "25059": "2026-03-01T09:08:37.168518+00:00",
-    "107171": "2026-03-16T09:26:29.454101+00:00",
+    "107171": "2026-04-19T18:15:08.955729+00:00",
     "107151": "2026-04-15T22:16:46.614607+00:00",
     "76799": "2026-03-11T20:10:22.776423+00:00",
     "1242": "2026-04-18T10:16:39.980261+00:00"
@@ -91,8 +91,8 @@
     "76799": "2026-04-18T18:21:10.350630+00:00",
     "40585": "2026-04-17T13:34:22.167338+00:00",
     "51357": "2026-04-17T13:34:22.167338+00:00",
-    "25059": "2026-04-11T19:16:40.965143+00:00",
-    "66154": "2026-04-11T19:16:40.965143+00:00",
+    "25059": "2026-04-18T19:17:50.962957+00:00",
+    "66154": "2026-04-18T19:17:50.962957+00:00",
     "52083": "2026-04-17T13:34:22.167338+00:00",
     "107171": "2026-04-17T13:34:22.167338+00:00",
     "107151": "2026-04-17T13:34:22.167338+00:00",
@@ -131,7 +131,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-04-17T15:25:17.662561+00:00",
-  "last_daily_tip": "2026-04-18T18:21:10.350630+00:00",
+  "last_daily_tip": "2026-04-19T17:08:05.983894+00:00",
   "used_tip_indices": [
     28,
     16,
@@ -146,116 +146,84 @@
     13,
     32,
     3,
-    23
+    23,
+    14
   ],
   "last_pace_drop_check": "2026-04-17T15:25:17.662561+00:00",
   "dying_alerts_sent": {
     "25059": "active",
     "66154": "active",
     "52083": "active",
-    "76799": "active",
     "51357": "active"
   },
   "last_campaign_table": "2026-04-15T13:48:31.253781+00:00",
   "session_poll": {
     "C01": {
-      "week_iso": "sun2026-04-12",
-      "poll_id": "5969639031133176672",
-      "poll_message_id": 144306,
+      "week_iso": "sun2026-04-19",
+      "poll_id": "5992165095218611269",
+      "poll_message_id": 145949,
       "options": [
-        "2026-04-17 Friday",
-        "2026-04-18 Saturday",
+        "2026-04-24 Friday",
+        "2026-04-25 Saturday",
         "Either Friday or Saturday",
         "Both",
         "Can't make it this week"
       ],
       "voted_uids": [
-        "6144366145",
         "8740050892",
         "1698524397",
-        "8787586972",
-        "5443237599",
-        "6464119705",
-        "7863964681"
+        "5443237599"
       ],
-      "last_ping_day": 739724,
+      "last_ping_day": 739725,
       "votes": {
         "2": [
-          "6144366145",
-          "5443237599",
-          "6464119705"
-        ],
-        "0": [
           "8740050892"
         ],
         "3": [
-          "1698524397",
-          "8787586972"
+          "1698524397"
         ],
-        "4": [
-          "7863964681"
+        "1": [
+          "5443237599"
         ]
       }
     },
     "C11": {
-      "week_iso": "sun2026-04-12",
-      "poll_id": "5971897153138722091",
-      "poll_message_id": 1768,
+      "week_iso": "sun2026-04-19",
+      "poll_id": "5992146356276298481",
+      "poll_message_id": 2253,
       "options": [
-        "2026-04-13 Monday",
-        "2026-04-14 Tuesday",
-        "2026-04-15 Wednesday",
-        "2026-04-16 Thursday",
-        "2026-04-17 Friday",
-        "2026-04-18 Saturday",
-        "2026-04-12 Sunday",
+        "2026-04-20 Monday",
+        "2026-04-21 Tuesday",
+        "2026-04-22 Wednesday",
+        "2026-04-23 Thursday",
+        "2026-04-24 Friday",
+        "2026-04-25 Saturday",
+        "2026-04-19 Sunday",
         "Can't make it"
       ],
       "voted_uids": [
-        "503940482",
-        "8030796908",
-        "6234551152",
-        "6144366145",
-        "8018921976",
         "1698524397"
       ],
-      "last_ping_day": 739724,
+      "last_ping_day": 739725,
       "votes": {
-        "0": [],
+        "0": [
+          "1698524397"
+        ],
         "1": [
-          "503940482",
-          "8030796908"
+          "1698524397"
         ],
         "2": [
-          "503940482",
-          "6234551152",
-          "8030796908"
+          "1698524397"
         ],
         "3": [
-          "503940482"
-        ],
-        "4": [
-          "6234551152",
           "1698524397"
-        ],
-        "5": [
-          "6234551152",
-          "8018921976",
-          "1698524397"
-        ],
-        "6": [
-          "6234551152",
-          "1698524397"
-        ],
-        "7": [
-          "6144366145"
         ]
       }
     }
   },
-  "last_state_backup": "2026-04-17T11:21:32.891098+00:00",
-  "last_queue_daily": "2026-04-18",
-  "last_queue_fingerprint": "107171:2026-04-06 15:58:53|107171:2026-04-06 17:41:19|107171:2026-04-06 17:47:07|107171:2026-04-06 17:47:27|107171:2026-04-06 17:47:27|107171:2026-04-06 18:52:11|107171:2026-04-06 18:55:26|107171:2026-04-06 18:55:48|107171:2026-04-06 18:55:56|107171:2026-04-06 19:06:23|107171:2026-04-06 19:12:29|107171:2026-04-07 01:33:44|107171:2026-04-07 02:18:17|107171:2026-04-07 02:19:44|107171:2026-04-07 02:20:27|107171:2026-04-07 02:21:14|107171:2026-04-07 02:23:11|1242:2026-04-18 09:33:09|1242:2026-04-18 10:02:55|1242:2026-04-18 10:59:30|1242:2026-04-18 11:03:39|1242:2026-04-18 11:03:47|1242:2026-04-18 11:04:47|40585:2026-04-16 08:36:44|51357:2026-04-14 19:31:32|51357:2026-04-14 19:56:22|51357:2026-04-14 22:49:27|76799:2026-04-14 17:05:30|76799:2026-04-14 17:09:45|76799:2026-04-14 17:10:58|76799:2026-04-14 17:20:57|76799:2026-04-14 17:22:42|76799:2026-04-14 17:27:42|76799:2026-04-14 18:54:06|76799:2026-04-14 18:56:34|76799:2026-04-14 19:07:12",
+  "last_state_backup": "2026-04-18T18:21:10.350630+00:00",
+  "last_queue_daily": "2026-04-19",
+  "last_queue_fingerprint": "51357:2026-04-14 19:31:32|51357:2026-04-14 19:56:22|51357:2026-04-14 22:49:27",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -303,10 +271,8 @@
   "paused_campaigns": {},
   "current_scenes": {},
   "poll_unknown_voters": {},
-  "last_week_welcome": "sun2026-04-12",
+  "last_week_welcome": "sun2026-04-19",
   "last_queue_daily_slots": [
-    "2026-04-11:21",
-    "2026-04-12:09",
     "2026-04-12:21",
     "2026-04-13:09",
     "2026-04-13:21",
@@ -318,20 +284,22 @@
     "2026-04-16:21",
     "2026-04-17:09",
     "2026-04-17:21",
-    "2026-04-18:09"
+    "2026-04-18:09",
+    "2026-04-18:21",
+    "2026-04-19:09"
   ],
   "swimming_poll": {
-    "week_iso": "sun2026-04-12",
-    "poll_id": "5971897153138722092",
-    "poll_message_id": 1771,
+    "week_iso": "sun2026-04-19",
+    "poll_id": "5992146356276298482",
+    "poll_message_id": 2256,
     "voted_uids": [],
     "last_ping_day": -1,
     "session_happened": true
   },
   "queue_scan_floor": null,
-  "last_diagnostic": "2026-04-18",
-  "last_queue_pin_id": 145869,
-  "queue_post_count": 112,
+  "last_diagnostic": "2026-04-19",
+  "last_queue_pin_id": 146303,
+  "queue_post_count": 124,
   "players": {
     "66154:138025700": {
       "user_id": "138025700",
@@ -413,8 +381,8 @@
       "username": "Linksanelf2006",
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
-      "last_post_time": "2026-04-06T17:49:15+00:00",
-      "last_warned_week": 1
+      "last_post_time": "2026-04-19T17:44:49+00:00",
+      "last_warned_week": 0
     },
     "51357:7454623139": {
       "user_id": "7454623139",
@@ -494,7 +462,7 @@
       "username": "ChaseDarkthorne",
       "campaign_name": "Magni Watch",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-04-14T18:56:34+00:00",
+      "last_post_time": "2026-04-19T17:38:29+00:00",
       "last_warned_week": 0
     },
     "76799:7454623139": {
@@ -534,7 +502,7 @@
       "username": "Nemesiux",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-04-14T08:24:59+00:00",
+      "last_post_time": "2026-04-18T19:15:40+00:00",
       "last_warned_week": 0
     },
     "52083:8383886822": {
@@ -564,7 +532,7 @@
       "username": "Linksanelf2006",
       "campaign_name": "Magni Watch",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-04-14T17:27:42+00:00",
+      "last_post_time": "2026-04-19T18:11:09+00:00",
       "last_warned_week": 0
     },
     "52083:6144366145": {
@@ -595,7 +563,7 @@
       "username": "ChaseDarkthorne",
       "campaign_name": "Theria",
       "pbp_topic_id": "107151",
-      "last_post_time": "2026-04-17T23:54:52+00:00",
+      "last_post_time": "2026-04-18T17:15:38+00:00",
       "last_warned_week": 0
     },
     "107151:6482311444": {
@@ -615,7 +583,7 @@
       "username": "Ravnos1",
       "campaign_name": "Theria",
       "pbp_topic_id": "107151",
-      "last_post_time": "2026-04-17T19:37:10+00:00",
+      "last_post_time": "2026-04-19T03:36:29+00:00",
       "last_warned_week": 0
     },
     "51357:894369591": {
@@ -705,7 +673,7 @@
       "username": "ArtyArtillery",
       "campaign_name": "Theria",
       "pbp_topic_id": "107151",
-      "last_post_time": "2026-04-17T18:55:52+00:00",
+      "last_post_time": "2026-04-18T20:11:25+00:00",
       "last_warned_week": 0
     },
     "40585:6144366145": {
@@ -715,7 +683,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-04-16T08:36:44+00:00",
+      "last_post_time": "2026-04-18T20:25:17+00:00",
       "last_warned_week": 0
     },
     "40585:6023408187": {
@@ -755,7 +723,7 @@
       "username": "Sparkleslayer",
       "campaign_name": "Dark Pockets",
       "pbp_topic_id": "1242",
-      "last_post_time": "2026-04-14T14:16:34+00:00",
+      "last_post_time": "2026-04-18T19:11:11+00:00",
       "last_warned_week": 0
     },
     "1242:6452663252": {
@@ -765,7 +733,7 @@
       "username": "JackGrah",
       "campaign_name": "Dark Pockets",
       "pbp_topic_id": "1242",
-      "last_post_time": "2026-04-18T11:03:47+00:00",
+      "last_post_time": "2026-04-18T11:27:37+00:00",
       "last_warned_week": 0
     },
     "1242:8018921976": {
@@ -775,7 +743,7 @@
       "username": "NitNatty",
       "campaign_name": "Dark Pockets",
       "pbp_topic_id": "1242",
-      "last_post_time": "2026-04-18T11:04:47+00:00",
+      "last_post_time": "2026-04-18T11:26:34+00:00",
       "last_warned_week": 0
     },
     "1242:6234551152": {
@@ -901,7 +869,7 @@
       },
       "6144366145": {
         "id": 3,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-03-27T14:23:08.283060+00:00"
       },
       "7863964681": {
@@ -1024,7 +992,7 @@
       },
       "8353586922": {
         "id": 2,
-        "name": "Chase Darkthorne",
+        "name": "Chase",
         "joined": "2026-03-29T00:31:35.507919+00:00"
       },
       "7863964681": {
@@ -1034,7 +1002,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T00:31:35.507986+00:00"
       },
       "138025700": {
@@ -1270,7 +1238,7 @@
     },
     "7863964681": {
       "name": "Link (@Linksanelf2006)",
-      "count": 3
+      "count": 4
     },
     "138025700": {
       "name": "Ryo Yamakawa (@RyoYamakawa)",
@@ -1677,7 +1645,15 @@
       "2026-04-18T08:16:26.558459+00:00",
       "2026-04-18T09:18:48.202911+00:00",
       "2026-04-18T09:18:48.205337+00:00",
-      "2026-04-18T09:18:48.207149+00:00"
+      "2026-04-18T09:18:48.207149+00:00",
+      "2026-04-18T19:17:50.949121+00:00",
+      "2026-04-18T19:17:50.953812+00:00",
+      "2026-04-18T19:17:50.961110+00:00",
+      "2026-04-18T20:11:13.433229+00:00",
+      "2026-04-18T20:11:13.437230+00:00",
+      "2026-04-18T20:11:13.439807+00:00",
+      "2026-04-18T20:11:13.441616+00:00",
+      "2026-04-18T22:09:57.099495+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1713,7 +1689,34 @@
       "2026-04-16T08:37:24.334193+00:00",
       "2026-04-18T08:16:26.552729+00:00",
       "2026-04-18T08:16:26.553710+00:00",
-      "2026-04-18T08:16:26.554580+00:00"
+      "2026-04-18T08:16:26.554580+00:00",
+      "2026-04-19T15:15:40.353815+00:00",
+      "2026-04-19T15:15:40.356482+00:00",
+      "2026-04-19T15:15:40.357475+00:00",
+      "2026-04-19T15:15:40.358355+00:00",
+      "2026-04-19T15:15:40.359331+00:00",
+      "2026-04-19T15:15:40.360190+00:00",
+      "2026-04-19T15:15:40.361117+00:00",
+      "2026-04-19T15:15:40.362037+00:00",
+      "2026-04-19T15:15:40.362908+00:00",
+      "2026-04-19T15:15:40.812009+00:00",
+      "2026-04-19T15:15:40.812983+00:00",
+      "2026-04-19T15:15:40.813854+00:00",
+      "2026-04-19T15:15:40.814741+00:00",
+      "2026-04-19T16:12:32.963342+00:00",
+      "2026-04-19T16:12:32.965560+00:00",
+      "2026-04-19T16:12:33.489056+00:00",
+      "2026-04-19T16:12:33.489806+00:00",
+      "2026-04-19T16:12:33.491962+00:00",
+      "2026-04-19T16:12:33.492715+00:00",
+      "2026-04-19T16:12:33.494604+00:00",
+      "2026-04-19T16:12:33.496098+00:00",
+      "2026-04-19T16:12:33.498083+00:00",
+      "2026-04-19T17:08:05.982002+00:00",
+      "2026-04-19T18:15:08.935799+00:00",
+      "2026-04-19T18:15:08.943559+00:00",
+      "2026-04-19T18:15:08.946515+00:00",
+      "2026-04-19T18:15:08.949322+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1805,7 +1808,21 @@
       "2026-04-14T17:55:00.911895+00:00",
       "2026-04-14T17:55:00.912581+00:00",
       "2026-04-14T17:55:00.914653+00:00",
-      "2026-04-14T17:55:00.916294+00:00"
+      "2026-04-14T17:55:00.916294+00:00",
+      "2026-04-19T17:14:09.272867+00:00",
+      "2026-04-19T17:14:09.275355+00:00",
+      "2026-04-19T17:14:09.276273+00:00",
+      "2026-04-19T18:15:08.937061+00:00",
+      "2026-04-19T18:15:08.938091+00:00",
+      "2026-04-19T18:15:08.938936+00:00",
+      "2026-04-19T18:15:08.939779+00:00",
+      "2026-04-19T18:15:08.940635+00:00",
+      "2026-04-19T18:15:08.941446+00:00",
+      "2026-04-19T18:15:08.952605+00:00",
+      "2026-04-19T18:15:08.953563+00:00",
+      "2026-04-19T18:15:08.954385+00:00",
+      "2026-04-19T19:17:57.165456+00:00",
+      "2026-04-19T19:17:57.171133+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1973,436 +1990,32 @@
       "2026-04-18T18:21:10.345706+00:00",
       "2026-04-18T18:21:10.346972+00:00",
       "2026-04-18T18:21:10.348210+00:00",
-      "2026-04-18T18:21:10.350518+00:00"
+      "2026-04-18T18:21:10.350518+00:00",
+      "2026-04-18T18:29:50.837009+00:00",
+      "2026-04-18T18:29:50.841249+00:00",
+      "2026-04-18T18:29:50.842680+00:00",
+      "2026-04-18T18:29:50.846395+00:00",
+      "2026-04-18T18:29:50.851599+00:00",
+      "2026-04-18T18:29:50.853038+00:00",
+      "2026-04-18T18:29:50.854479+00:00",
+      "2026-04-18T18:29:50.857149+00:00",
+      "2026-04-18T18:29:51.982255+00:00",
+      "2026-04-18T18:29:51.983717+00:00",
+      "2026-04-18T18:29:51.985164+00:00",
+      "2026-04-18T18:29:51.986561+00:00",
+      "2026-04-18T18:29:51.988076+00:00",
+      "2026-04-18T18:29:51.991951+00:00",
+      "2026-04-18T18:29:51.993359+00:00",
+      "2026-04-18T18:29:51.998513+00:00",
+      "2026-04-18T18:29:51.999961+00:00",
+      "2026-04-18T18:29:52.001402+00:00",
+      "2026-04-18T18:29:52.005634+00:00",
+      "2026-04-18T19:17:50.944425+00:00",
+      "2026-04-18T19:17:50.955932+00:00",
+      "2026-04-18T19:17:50.958973+00:00"
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-04-10T01:37:27.244885+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "107171",
-      "time": "2026-04-10T01:37:27.245794+00:00",
-      "player": "CzarChasm23",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T03:07:33.235633+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T03:07:33.237937+00:00",
-      "player": "Caelum",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T03:07:33.239164+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T03:07:33.240377+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T10:24:19.714178+00:00",
-      "player": "Caelum",
-      "preview": "It aready applied"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T10:24:19.717178+00:00",
-      "player": "Caelum",
-      "preview": "tks"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T11:20:01.511520+00:00",
-      "player": "Caelum",
-      "preview": "thanks. I got bit by an radioactive canadian."
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T11:20:01.513230+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Hunter's aim and then reload"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T16:20:51.971390+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T19:20:53.930656+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T19:20:53.936821+00:00",
-      "player": "Caelum",
-      "preview": "Link hp"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T19:20:53.953168+00:00",
-      "player": "Caelum",
-      "preview": "Bottom right"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T19:20:53.954783+00:00",
-      "player": "Caelum",
-      "preview": "far away from party"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T19:20:53.957693+00:00",
-      "player": "Anthony",
-      "preview": "Prone"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T20:12:25.323563+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T20:12:25.326369+00:00",
-      "player": "Caelum",
-      "preview": "use it resistant but i will take the dmg"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T20:12:25.327795+00:00",
-      "player": "Caelum",
-      "preview": "only hp"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-10T20:12:25.329013+00:00",
-      "player": "Caelum",
-      "preview": "ye"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T04:40:43.700010+00:00",
-      "player": "Awnii",
-      "preview": "I am not ji yun"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T04:40:43.701902+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T04:40:43.703789+00:00",
-      "player": "Link",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T05:31:55.085785+00:00",
-      "player": "Ryo",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T05:31:55.088701+00:00",
-      "player": "Bruce",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T05:31:55.091295+00:00",
-      "player": "Bruce",
-      "preview": "(28 has been a success so far)"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T05:31:55.095189+00:00",
-      "player": "Anthony",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T05:31:55.097781+00:00",
-      "player": "Bruce",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T06:25:25.989738+00:00",
-      "player": "Anthony",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T06:25:25.991482+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T06:25:25.994714+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus takes a moment to catch his breath and re-assess the "
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T06:25:25.996250+00:00",
-      "player": "Anthony",
-      "preview": "Straight back"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-11T06:25:25.997739+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-12T21:11:27.419113+00:00",
-      "player": "Awnii",
-      "preview": "Slime #13 plops to the floorbords, inside it appears to be b"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-12T21:11:27.421222+00:00",
-      "player": "Awnii",
-      "preview": "She moves 15' to angle herself to push this slime off the ne"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-12T21:11:27.422619+00:00",
-      "player": "Awnii",
-      "preview": "@PathWars"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-13T17:27:18.275201+00:00",
-      "player": "Awnii",
-      "preview": "Inseed"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-13T17:27:18.279386+00:00",
-      "player": "Awnii",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-13T17:27:18.282187+00:00",
-      "player": "Awnii",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-13T17:27:18.284902+00:00",
-      "player": "Awnii",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-13T18:29:01.040220+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-13T18:29:01.042587+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-14T06:40:18.035027+00:00",
-      "player": "NJ",
-      "preview": "I would like to do a natural magic check on Olla to find out"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T06:40:18.037595+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T06:40:18.039431+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T06:40:18.041071+00:00",
-      "player": "Caelum",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T07:35:49.397522+00:00",
-      "player": "Caelum",
-      "preview": "Act together, Eidolon strike slime #10 hit 18 deal 18B, Phas"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-04-14T07:35:49.400403+00:00",
-      "player": "Link",
-      "preview": "With a mouth half full, Miyuu exhales rapidly, trying to coo"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-04-14T07:35:49.501470+00:00",
-      "player": "Ryo",
-      "preview": "Rune watches the others for a couple of minutes before bring"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-04-14T07:35:49.597848+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "52083",
-      "time": "2026-04-14T08:36:54.736176+00:00",
-      "player": "Ryo",
-      "preview": "Rune chuckles not-so softly at the way Manee sympathizes wit"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T08:36:54.738091+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Same actions"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-04-14T08:36:54.739257+00:00",
-      "player": "Link",
-      "preview": "Axtra immediately beeline to the captive gnomes and looks fo"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-04-14T08:36:54.740171+00:00",
-      "player": "Ryo",
-      "preview": "Cyrus hangs back for a moment to look around the alchemy lab"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-04-14T08:36:54.740883+00:00",
-      "player": "Cannon",
-      "preview": "Illiani moves towards the northern door and puts her head up"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-04-14T08:36:54.741635+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight will help Axtra look for a way to free the captives"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T08:36:54.744773+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Yee"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-14T08:51:35.656316+00:00",
-      "player": "Link",
-      "preview": "Yes. Please."
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-14T14:37:25.363090+00:00",
-      "player": "NJ",
-      "preview": "Another affected by shadow magic what should we do guys?"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T14:37:25.367366+00:00",
-      "player": "Link",
-      "preview": "I GAVE YOU MY RESULT AND RP MOMENT! FOR THE 3RD TIME, IT IS "
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-14T14:37:25.926044+00:00",
-      "player": "Chase",
-      "preview": "Reacting swiftly to danger, B\u00e1yakan darts towards the kobold"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T14:37:25.927750+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T14:37:25.929333+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T16:27:42.175040+00:00",
-      "player": "Caelum",
-      "preview": "Can i have an reaction ?"
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-14T16:27:42.176220+00:00",
-      "player": "NJ",
-      "preview": "Oooh"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-14T16:48:21.207888+00:00",
-      "player": "Link",
-      "preview": "[media]"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-04-14T17:54:59.427952+00:00",
-      "player": "Link",
-      "preview": "\"Don't know who this Nikk-Nakk fella is, but if you say we s"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-14T17:55:00.908577+00:00",
-      "player": "Ryo",
-      "preview": "[media]"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-14T17:55:00.909104+00:00",
-      "player": "Link",
-      "preview": "[media]"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-14T17:55:00.910849+00:00",
-      "player": "Link",
-      "preview": "[media]"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-14T17:55:00.911895+00:00",
-      "player": "Link",
-      "preview": "Akuma's turn:\nStride -> Strike Kobold #1 (22 attack), Hit (6"
-    },
     {
       "pid": "76799",
       "time": "2026-04-14T17:55:00.912581+00:00",
@@ -3176,6 +2789,432 @@
       "time": "2026-04-18T18:21:10.350518+00:00",
       "player": "Natasha",
       "preview": "\"Mr serious, be serious:"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.837009+00:00",
+      "player": "Jack",
+      "preview": "You should be overjoyed"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.841249+00:00",
+      "player": "Jack",
+      "preview": "I always am"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.842680+00:00",
+      "player": "Natasha",
+      "preview": "\"He needs it\""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.846395+00:00",
+      "player": "Jack",
+      "preview": "No, I just want to propel my progeny"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.851599+00:00",
+      "player": "Jack",
+      "preview": "I never would, I'd treat you with warmth, care and cock."
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.853038+00:00",
+      "player": "Jack",
+      "preview": "I want to impregnate you"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.854479+00:00",
+      "player": "Natasha",
+      "preview": "I knock the door"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:50.857149+00:00",
+      "player": "Natasha",
+      "preview": "We wait for a response"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.982255+00:00",
+      "player": "THE FUN",
+      "preview": "\"Like me, did you die to feyre\""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.983717+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.985164+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.986561+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.988076+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.991951+00:00",
+      "player": "Jack",
+      "preview": "What is the contract, I love magic pussy"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.993359+00:00",
+      "player": "Jack",
+      "preview": "Our bodies will be deeply connected"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.998513+00:00",
+      "player": "Natasha",
+      "preview": "\"Mr serious....no\""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:51.999961+00:00",
+      "player": "Jack",
+      "preview": "Will I finish inside of you"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:52.001402+00:00",
+      "player": "Jack",
+      "preview": "Don't worry, you can join us"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T18:29:52.005634+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T19:17:50.944425+00:00",
+      "player": "Natasha",
+      "preview": "Let's get going people"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T19:17:50.949121+00:00",
+      "player": "Anthony",
+      "preview": "Apparently to reroll with a hero point from the interface i "
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T19:17:50.953812+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T19:17:50.955932+00:00",
+      "player": "NJ",
+      "preview": "Yess sounds goood where to next?"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-04-18T19:17:50.958973+00:00",
+      "player": "NJ",
+      "preview": "Quiz had taken her hostage and infected her with some sort o"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T19:17:50.961110+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T20:11:13.433229+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "same actions bro"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T20:11:13.437230+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T20:11:13.439807+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T20:11:13.441616+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-18T22:09:57.099495+00:00",
+      "player": "Anthony",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.353815+00:00",
+      "player": "Link",
+      "preview": "\"By the sound of it, we may very well need these pods... Goo"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.356482+00:00",
+      "player": "Bruce",
+      "preview": "Holis attempts to look out a port window.  \"Bone ship.   It "
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.357475+00:00",
+      "player": "Link",
+      "preview": "Joo-Dee rushes into action. She slides behind a couch while "
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.358355+00:00",
+      "player": "Link",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.359331+00:00",
+      "player": "CzarChasm23",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.360190+00:00",
+      "player": "CzarChasm23",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.361117+00:00",
+      "player": "CzarChasm23",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.362037+00:00",
+      "player": "CzarChasm23",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.362908+00:00",
+      "player": "CzarChasm23",
+      "preview": "So that's: \n1A: Mobile Aim (Stride 25f and Aim at Nova Pirat"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.812009+00:00",
+      "player": "Bruce",
+      "preview": "Holis will act together giving his eidolon 2 actions which i"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.812983+00:00",
+      "player": "Laetheron",
+      "preview": "Arktos strides forward along LUKA to get a better angle on t"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.813854+00:00",
+      "player": "Laetheron",
+      "preview": "Free Action: Quantum Pulse \n\n1A: Command LUKA to move forwar"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T15:15:40.814741+00:00",
+      "player": "Laetheron",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:32.963342+00:00",
+      "player": "Laetheron",
+      "preview": "[media]"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:32.965560+00:00",
+      "player": "Laetheron",
+      "preview": "(In case any of you want to do melee stuff, you all can igno"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.489056+00:00",
+      "player": "Link",
+      "preview": "\"Gods,\" Joo-Dee mutters, \"these bastards were so damn luck t"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.489806+00:00",
+      "player": "Link",
+      "preview": "\"Too bad their luck has run out.\""
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.491962+00:00",
+      "player": "Link",
+      "preview": "Joo-Dee heads over to Damon and checks his vitals, ensuring "
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.492715+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.494604+00:00",
+      "player": "Link",
+      "preview": "Seeing the drip, Joo-Dee leans over to Damon and whispers \"y"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.496098+00:00",
+      "player": "Link",
+      "preview": "\"Oh?\" Joo-Dee responds in a playful mocking tone. \"Never kne"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T16:12:33.498083+00:00",
+      "player": "Link",
+      "preview": "Trying to protect her patient's privacy, Joo-Dee will turn t"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T17:08:05.982002+00:00",
+      "player": "Link",
+      "preview": "\"Damon,\" she nods her head towards a bed, \"sit down, shut up"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T17:14:09.272867+00:00",
+      "player": "Link",
+      "preview": "[media]"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T17:14:09.275355+00:00",
+      "player": "Link",
+      "preview": "Oh! I know what you mean now."
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T17:14:09.276273+00:00",
+      "player": "Ryo",
+      "preview": "k, well doesn't matter. Combat is over and I can't sustain i"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T18:15:08.935799+00:00",
+      "player": "Link",
+      "preview": "Joo-Dee heads over to Damon while responding to Oofy, \"Sorry"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.937061+00:00",
+      "player": "Link",
+      "preview": "Akuma, greatly irritated at how the events played out, rushe"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.938091+00:00",
+      "player": "Chase",
+      "preview": "\"Well look at that,\" the fey grins. \"Managed to take both of"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.938936+00:00",
+      "player": "Link",
+      "preview": "\"Little bastards. Can't wait to talk to this Rekarek guy.\"\n\n"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.939779+00:00",
+      "player": "Cannon",
+      "preview": "Nadya groans from the floor. She fiddles with her alchemy to"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.940635+00:00",
+      "player": "Chase",
+      "preview": "With that established, the detective makes an effort to go t"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.941446+00:00",
+      "player": "Ryo",
+      "preview": "Unsure of what to do for the moment Kitt decides to inspect "
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T18:15:08.943559+00:00",
+      "player": "Link",
+      "preview": "Joo-Dee is immediately confused. She is not one to hallucina"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T18:15:08.946515+00:00",
+      "player": "Link",
+      "preview": "\"All done wasting time.\" Joo-Dee smiles, showing she his unb"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-04-19T18:15:08.949322+00:00",
+      "player": "Link",
+      "preview": "Next, the group will move to the control room."
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.952605+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.953563+00:00",
+      "player": "Link",
+      "preview": "Akuma let's out a small sigh, and a look of disappointment c"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T18:15:08.954385+00:00",
+      "player": "Chase",
+      "preview": "\"Working on it.\"\n\nThere's a pause where he listens intently "
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T19:17:57.165456+00:00",
+      "player": "Link",
+      "preview": "Once B\u00e1yakan indicates that the room are is clear of immedia"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-04-19T19:17:57.171133+00:00",
+      "player": "",
+      "preview": ""
     }
   ],
   "pending_potw_boons": {
@@ -3191,7 +3230,7 @@
       ],
       "base_message": "Player of the Week for Theria: Cannon McMahon (@ArtyArtillery)!\n(2026-04-08 (W15) to 2026-04-15 (W16))\n\n11 posts this week with an average gap of 13.1h between posts. The most consistent driver of the story.",
       "posted_at": "2026-04-15T22:16:46.614607+00:00",
-      "reminders_sent": 1
+      "reminders_sent": 2
     },
     "40585": {
       "message_id": 144399,
@@ -3205,7 +3244,7 @@
       ],
       "base_message": "Player of the Week for Kibwe: Awnii Vihn (@Awnii_Vihn)!\n(2026-04-06 (W15) to 2026-04-13 (W16))\n\n5 posts this week with an average gap of 15.1h between posts. The most consistent driver of the story.",
       "posted_at": "2026-04-13T12:26:28.314677+00:00",
-      "reminders_sent": 2
+      "reminders_sent": 3
     },
     "1242": {
       "message_id": 145850,
@@ -3218,7 +3257,21 @@
         "Gain a +1 circumstance bonus to initiative in your next combat."
       ],
       "base_message": "Player of the Week for Dark Pockets: Natasha (@NitNatty)!\n(2026-04-11 (W15) to 2026-04-18 (W16))\n\n5 posts this week with an average gap of 0.2h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-04-18T10:16:39.980261+00:00"
+      "posted_at": "2026-04-18T10:16:39.980261+00:00",
+      "reminders_sent": 1
+    },
+    "107171": {
+      "message_id": 146173,
+      "winner_user_id": "7863964681",
+      "campaign_name": "Metal City",
+      "boons": [
+        "A clockwork compass in a junk shop spins to point at you, then settles on true north.",
+        "A natural chimney in the cave provides ventilation and a climbing route.",
+        "The cart's axle holds despite the rough road. Good craftsmanship.",
+        "Gain 1 temporary HP at the start of your next combat."
+      ],
+      "base_message": "Player of the Week for Metal City: Link (@Linksanelf2006)!\n(2026-04-12 (W15) to 2026-04-19 (W16))\n\n6 posts this week with an average gap of 0.4h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-04-19T18:15:08.955729+00:00"
     }
   },
   "post_timestamps": {
@@ -3300,12 +3353,79 @@
         "2026-04-14T17:22:03+00:00",
         "2026-04-14T17:22:09+00:00",
         "2026-04-14T17:22:15+00:00",
-        "2026-04-14T17:22:30+00:00"
+        "2026-04-14T17:22:30+00:00",
+        "2026-04-19T17:08:33+00:00",
+        "2026-04-19T17:08:52+00:00",
+        "2026-04-19T17:09:07+00:00",
+        "2026-04-19T17:17:19+00:00",
+        "2026-04-19T17:17:33+00:00",
+        "2026-04-19T17:20:23+00:00",
+        "2026-04-19T17:20:55+00:00",
+        "2026-04-19T17:21:11+00:00",
+        "2026-04-19T17:22:00+00:00",
+        "2026-04-19T17:22:22+00:00",
+        "2026-04-19T17:22:33+00:00",
+        "2026-04-19T18:00:17+00:00",
+        "2026-04-19T18:00:35+00:00",
+        "2026-04-19T18:02:21+00:00",
+        "2026-04-19T18:02:34+00:00",
+        "2026-04-19T18:04:57+00:00",
+        "2026-04-19T18:05:04+00:00",
+        "2026-04-19T18:15:20+00:00",
+        "2026-04-19T18:15:26+00:00",
+        "2026-04-19T18:17:20+00:00",
+        "2026-04-19T18:17:37+00:00",
+        "2026-04-19T18:17:43+00:00",
+        "2026-04-19T18:17:51+00:00",
+        "2026-04-19T18:17:53+00:00",
+        "2026-04-19T18:18:16+00:00",
+        "2026-04-19T18:18:23+00:00",
+        "2026-04-19T18:18:33+00:00",
+        "2026-04-19T18:18:35+00:00",
+        "2026-04-19T18:18:38+00:00",
+        "2026-04-19T18:18:45+00:00",
+        "2026-04-19T18:18:51+00:00",
+        "2026-04-19T18:18:53+00:00",
+        "2026-04-19T18:19:00+00:00",
+        "2026-04-19T18:19:02+00:00",
+        "2026-04-19T18:19:07+00:00",
+        "2026-04-19T18:19:15+00:00",
+        "2026-04-19T18:19:20+00:00",
+        "2026-04-19T18:19:39+00:00",
+        "2026-04-19T18:19:40+00:00",
+        "2026-04-19T18:19:44+00:00",
+        "2026-04-19T18:19:50+00:00",
+        "2026-04-19T18:20:23+00:00",
+        "2026-04-19T18:20:46+00:00",
+        "2026-04-19T18:20:58+00:00",
+        "2026-04-19T18:21:00+00:00",
+        "2026-04-19T18:21:11+00:00",
+        "2026-04-19T18:21:14+00:00",
+        "2026-04-19T18:21:20+00:00",
+        "2026-04-19T18:21:21+00:00",
+        "2026-04-19T18:21:32+00:00",
+        "2026-04-19T18:22:13+00:00",
+        "2026-04-19T18:22:21+00:00",
+        "2026-04-19T18:22:28+00:00",
+        "2026-04-19T18:23:23+00:00",
+        "2026-04-19T18:23:33+00:00",
+        "2026-04-19T18:23:38+00:00",
+        "2026-04-19T18:23:43+00:00",
+        "2026-04-19T18:23:49+00:00",
+        "2026-04-19T18:23:50+00:00",
+        "2026-04-19T18:23:56+00:00",
+        "2026-04-19T18:24:07+00:00",
+        "2026-04-19T18:24:26+00:00",
+        "2026-04-19T18:24:40+00:00",
+        "2026-04-19T18:24:52+00:00",
+        "2026-04-19T18:26:15+00:00",
+        "2026-04-19T18:26:28+00:00"
       ],
       "8353586922": [
         "2026-04-14T12:23:30+00:00",
         "2026-04-14T17:10:58+00:00",
-        "2026-04-14T18:56:34+00:00"
+        "2026-04-14T18:56:34+00:00",
+        "2026-04-19T17:38:29+00:00"
       ],
       "7863964681": [
         "2026-04-06T14:46:11+00:00",
@@ -3316,7 +3436,9 @@
         "2026-04-14T17:09:45+00:00",
         "2026-04-14T17:10:23+00:00",
         "2026-04-14T17:20:57+00:00",
-        "2026-04-14T17:27:42+00:00"
+        "2026-04-14T17:27:42+00:00",
+        "2026-04-19T17:27:07+00:00",
+        "2026-04-19T18:11:09+00:00"
       ],
       "138025700": [
         "2026-04-14T16:54:13+00:00",
@@ -3330,10 +3452,6 @@
     },
     "40585": {
       "1698524397": [
-        "2026-04-03T11:21:37+00:00",
-        "2026-04-04T01:23:39+00:00",
-        "2026-04-04T01:23:40+00:00",
-        "2026-04-04T01:23:51+00:00",
         "2026-04-05T22:30:31+00:00",
         "2026-04-05T22:30:42+00:00",
         "2026-04-06T06:46:10+00:00",
@@ -3777,7 +3895,33 @@
         "2026-04-18T08:05:45+00:00",
         "2026-04-18T08:44:03+00:00",
         "2026-04-18T08:45:57+00:00",
-        "2026-04-18T08:46:13+00:00"
+        "2026-04-18T08:46:13+00:00",
+        "2026-04-18T18:31:31+00:00",
+        "2026-04-18T18:35:58+00:00",
+        "2026-04-18T18:55:11+00:00",
+        "2026-04-18T18:55:31+00:00",
+        "2026-04-18T19:06:54+00:00",
+        "2026-04-18T19:06:55+00:00",
+        "2026-04-18T19:07:43+00:00",
+        "2026-04-18T19:09:21+00:00",
+        "2026-04-18T19:12:33+00:00",
+        "2026-04-18T19:12:47+00:00",
+        "2026-04-18T19:13:36+00:00",
+        "2026-04-18T19:44:29+00:00",
+        "2026-04-18T19:59:08+00:00",
+        "2026-04-18T20:00:22+00:00",
+        "2026-04-18T20:00:28+00:00",
+        "2026-04-18T20:01:44+00:00",
+        "2026-04-18T20:01:56+00:00",
+        "2026-04-18T20:02:16+00:00",
+        "2026-04-18T20:02:25+00:00",
+        "2026-04-18T20:02:29+00:00",
+        "2026-04-18T20:05:57+00:00",
+        "2026-04-18T20:08:02+00:00",
+        "2026-04-18T20:17:03+00:00",
+        "2026-04-18T20:17:18+00:00",
+        "2026-04-18T21:14:48+00:00",
+        "2026-04-19T06:19:47+00:00"
       ],
       "7130942567": [
         "2026-04-06T07:40:55+00:00",
@@ -3841,7 +3985,8 @@
         "2026-04-15T01:13:33+00:00",
         "2026-04-15T01:13:58+00:00",
         "2026-04-15T01:14:20+00:00",
-        "2026-04-16T08:36:44+00:00"
+        "2026-04-16T08:36:44+00:00",
+        "2026-04-18T20:25:17+00:00"
       ],
       "6023408187": [
         "2026-04-06T20:27:55+00:00",
@@ -3876,7 +4021,8 @@
       "5443237599": [
         "2026-04-10T10:03:09+00:00",
         "2026-04-14T07:29:20+00:00",
-        "2026-04-14T08:24:59+00:00"
+        "2026-04-14T08:24:59+00:00",
+        "2026-04-18T19:15:40+00:00"
       ]
     },
     "51357": {
@@ -3962,7 +4108,6 @@
     },
     "25059": {
       "1698524397": [
-        "2026-04-03T22:00:51+00:00",
         "2026-04-05T22:35:14+00:00",
         "2026-04-05T23:25:08+00:00",
         "2026-04-05T23:25:51+00:00",
@@ -4031,7 +4176,130 @@
         "2026-04-16T08:37:01+00:00",
         "2026-04-18T07:53:30+00:00",
         "2026-04-18T07:53:47+00:00",
-        "2026-04-18T07:53:56+00:00"
+        "2026-04-18T07:53:56+00:00",
+        "2026-04-19T14:53:34+00:00",
+        "2026-04-19T14:58:55+00:00",
+        "2026-04-19T15:00:20+00:00",
+        "2026-04-19T15:00:31+00:00",
+        "2026-04-19T15:00:40+00:00",
+        "2026-04-19T15:01:15+00:00",
+        "2026-04-19T15:01:55+00:00",
+        "2026-04-19T15:02:04+00:00",
+        "2026-04-19T15:02:14+00:00",
+        "2026-04-19T15:02:44+00:00",
+        "2026-04-19T15:07:41+00:00",
+        "2026-04-19T15:08:54+00:00",
+        "2026-04-19T15:12:29+00:00",
+        "2026-04-19T15:13:24+00:00",
+        "2026-04-19T15:13:36+00:00",
+        "2026-04-19T15:20:46+00:00",
+        "2026-04-19T15:21:14+00:00",
+        "2026-04-19T15:22:06+00:00",
+        "2026-04-19T15:22:07+00:00",
+        "2026-04-19T15:22:14+00:00",
+        "2026-04-19T15:22:24+00:00",
+        "2026-04-19T15:22:35+00:00",
+        "2026-04-19T15:23:41+00:00",
+        "2026-04-19T15:24:26+00:00",
+        "2026-04-19T15:25:10+00:00",
+        "2026-04-19T15:25:59+00:00",
+        "2026-04-19T15:26:34+00:00",
+        "2026-04-19T15:27:26+00:00",
+        "2026-04-19T15:27:30+00:00",
+        "2026-04-19T15:27:40+00:00",
+        "2026-04-19T15:28:23+00:00",
+        "2026-04-19T15:28:38+00:00",
+        "2026-04-19T15:28:43+00:00",
+        "2026-04-19T15:29:56+00:00",
+        "2026-04-19T15:30:16+00:00",
+        "2026-04-19T15:30:25+00:00",
+        "2026-04-19T15:30:58+00:00",
+        "2026-04-19T15:31:19+00:00",
+        "2026-04-19T15:31:34+00:00",
+        "2026-04-19T15:31:39+00:00",
+        "2026-04-19T15:31:46+00:00",
+        "2026-04-19T15:32:57+00:00",
+        "2026-04-19T15:33:04+00:00",
+        "2026-04-19T15:33:20+00:00",
+        "2026-04-19T15:33:55+00:00",
+        "2026-04-19T15:34:04+00:00",
+        "2026-04-19T15:34:25+00:00",
+        "2026-04-19T15:34:39+00:00",
+        "2026-04-19T15:34:46+00:00",
+        "2026-04-19T15:35:00+00:00",
+        "2026-04-19T15:35:04+00:00",
+        "2026-04-19T15:38:09+00:00",
+        "2026-04-19T15:39:36+00:00",
+        "2026-04-19T15:40:08+00:00",
+        "2026-04-19T15:41:08+00:00",
+        "2026-04-19T15:42:01+00:00",
+        "2026-04-19T15:42:08+00:00",
+        "2026-04-19T15:44:20+00:00",
+        "2026-04-19T15:45:49+00:00",
+        "2026-04-19T15:48:28+00:00",
+        "2026-04-19T15:48:54+00:00",
+        "2026-04-19T15:49:38+00:00",
+        "2026-04-19T15:50:21+00:00",
+        "2026-04-19T15:52:24+00:00",
+        "2026-04-19T15:52:28+00:00",
+        "2026-04-19T15:53:18+00:00",
+        "2026-04-19T15:53:52+00:00",
+        "2026-04-19T15:55:25+00:00",
+        "2026-04-19T15:56:00+00:00",
+        "2026-04-19T15:56:22+00:00",
+        "2026-04-19T15:57:01+00:00",
+        "2026-04-19T15:57:09+00:00",
+        "2026-04-19T15:57:15+00:00",
+        "2026-04-19T15:57:24+00:00",
+        "2026-04-19T15:59:13+00:00",
+        "2026-04-19T16:02:59+00:00",
+        "2026-04-19T16:03:08+00:00",
+        "2026-04-19T16:03:28+00:00",
+        "2026-04-19T16:03:42+00:00",
+        "2026-04-19T16:45:32+00:00",
+        "2026-04-19T16:50:41+00:00",
+        "2026-04-19T16:50:50+00:00",
+        "2026-04-19T17:15:55+00:00",
+        "2026-04-19T17:16:07+00:00",
+        "2026-04-19T17:16:17+00:00",
+        "2026-04-19T17:23:06+00:00",
+        "2026-04-19T17:23:11+00:00",
+        "2026-04-19T17:23:25+00:00",
+        "2026-04-19T17:23:38+00:00",
+        "2026-04-19T17:33:35+00:00",
+        "2026-04-19T17:33:59+00:00",
+        "2026-04-19T17:34:12+00:00",
+        "2026-04-19T17:45:36+00:00",
+        "2026-04-19T17:50:26+00:00",
+        "2026-04-19T17:50:44+00:00",
+        "2026-04-19T17:50:57+00:00",
+        "2026-04-19T17:51:05+00:00",
+        "2026-04-19T17:51:51+00:00",
+        "2026-04-19T17:52:11+00:00",
+        "2026-04-19T17:52:32+00:00",
+        "2026-04-19T17:52:56+00:00",
+        "2026-04-19T17:53:08+00:00",
+        "2026-04-19T17:54:04+00:00",
+        "2026-04-19T17:54:26+00:00",
+        "2026-04-19T17:54:34+00:00",
+        "2026-04-19T17:54:43+00:00",
+        "2026-04-19T17:54:59+00:00",
+        "2026-04-19T17:55:08+00:00",
+        "2026-04-19T17:55:32+00:00",
+        "2026-04-19T17:55:38+00:00",
+        "2026-04-19T17:56:25+00:00",
+        "2026-04-19T17:56:38+00:00",
+        "2026-04-19T17:56:49+00:00",
+        "2026-04-19T17:56:53+00:00",
+        "2026-04-19T18:08:56+00:00",
+        "2026-04-19T18:48:25+00:00",
+        "2026-04-19T18:48:25+00:00",
+        "2026-04-19T18:48:26+00:00",
+        "2026-04-19T18:48:37+00:00",
+        "2026-04-19T18:48:38+00:00",
+        "2026-04-19T18:48:53+00:00",
+        "2026-04-19T18:48:58+00:00",
+        "2026-04-19T18:49:04+00:00"
       ],
       "8117756377": [
         "2026-04-07T02:18:17+00:00",
@@ -4052,7 +4320,18 @@
         "2026-04-06T17:47:27+00:00",
         "2026-04-06T17:47:28+00:00",
         "2026-04-06T17:47:28+00:00",
-        "2026-04-06T17:49:15+00:00"
+        "2026-04-06T17:49:15+00:00",
+        "2026-04-19T15:37:56+00:00",
+        "2026-04-19T15:38:47+00:00",
+        "2026-04-19T15:47:40+00:00",
+        "2026-04-19T15:52:54+00:00",
+        "2026-04-19T15:54:59+00:00",
+        "2026-04-19T16:02:21+00:00",
+        "2026-04-19T16:07:01+00:00",
+        "2026-04-19T17:14:23+00:00",
+        "2026-04-19T17:22:15+00:00",
+        "2026-04-19T17:30:28+00:00",
+        "2026-04-19T17:44:49+00:00"
       ],
       "8383886822": [
         "2026-04-06T18:52:11+00:00",
@@ -4070,9 +4349,6 @@
     },
     "107151": {
       "7863964681": [
-        "2026-04-03T18:40:38+00:00",
-        "2026-04-03T18:42:54+00:00",
-        "2026-04-03T20:54:18+00:00",
         "2026-04-08T05:27:02+00:00",
         "2026-04-08T16:31:02+00:00",
         "2026-04-08T16:31:08+00:00",
@@ -4105,10 +4381,10 @@
         "2026-04-16T19:40:04+00:00",
         "2026-04-17T15:55:43+00:00",
         "2026-04-17T18:52:26+00:00",
-        "2026-04-17T18:58:36+00:00"
+        "2026-04-17T18:58:36+00:00",
+        "2026-04-18T16:15:00+00:00"
       ],
       "8353586922": [
-        "2026-04-03T19:42:06+00:00",
         "2026-04-07T15:14:20+00:00",
         "2026-04-08T05:40:17+00:00",
         "2026-04-08T14:00:28+00:00",
@@ -4131,11 +4407,10 @@
         "2026-04-17T06:01:58+00:00",
         "2026-04-17T06:38:58+00:00",
         "2026-04-17T08:01:07+00:00",
-        "2026-04-17T23:54:52+00:00"
+        "2026-04-17T23:54:52+00:00",
+        "2026-04-18T17:15:38+00:00"
       ],
       "6482311444": [
-        "2026-04-03T18:45:37+00:00",
-        "2026-04-03T20:49:24+00:00",
         "2026-04-08T10:00:15+00:00",
         "2026-04-08T17:03:48+00:00",
         "2026-04-09T17:02:55+00:00",
@@ -4150,8 +4425,6 @@
         "2026-04-17T19:03:00+00:00"
       ],
       "7077683276": [
-        "2026-04-03T20:45:13+00:00",
-        "2026-04-03T21:13:42+00:00",
         "2026-04-08T12:44:34+00:00",
         "2026-04-08T23:49:01+00:00",
         "2026-04-09T17:51:56+00:00",
@@ -4167,10 +4440,10 @@
         "2026-04-15T17:28:01+00:00",
         "2026-04-15T21:42:18+00:00",
         "2026-04-16T19:36:32+00:00",
-        "2026-04-17T19:37:10+00:00"
+        "2026-04-17T19:37:10+00:00",
+        "2026-04-19T03:36:29+00:00"
       ],
       "7454623139": [
-        "2026-04-03T20:24:46+00:00",
         "2026-04-08T05:59:58+00:00",
         "2026-04-08T20:59:38+00:00",
         "2026-04-09T18:44:36+00:00",
@@ -4191,7 +4464,8 @@
         "2026-04-17T06:59:42+00:00",
         "2026-04-17T08:50:49+00:00",
         "2026-04-17T18:19:35+00:00",
-        "2026-04-17T18:55:52+00:00"
+        "2026-04-17T18:55:52+00:00",
+        "2026-04-18T20:11:25+00:00"
       ]
     },
     "1242": {
@@ -4362,7 +4636,46 @@
         "2026-04-18T11:03:50+00:00",
         "2026-04-18T11:04:16+00:00",
         "2026-04-18T11:04:42+00:00",
-        "2026-04-18T11:04:50+00:00"
+        "2026-04-18T11:04:50+00:00",
+        "2026-04-18T11:05:05+00:00",
+        "2026-04-18T11:05:31+00:00",
+        "2026-04-18T11:05:45+00:00",
+        "2026-04-18T11:05:54+00:00",
+        "2026-04-18T11:06:06+00:00",
+        "2026-04-18T11:06:15+00:00",
+        "2026-04-18T11:07:59+00:00",
+        "2026-04-18T11:08:09+00:00",
+        "2026-04-18T11:09:34+00:00",
+        "2026-04-18T11:12:49+00:00",
+        "2026-04-18T11:12:53+00:00",
+        "2026-04-18T11:13:16+00:00",
+        "2026-04-18T11:21:22+00:00",
+        "2026-04-18T11:21:30+00:00",
+        "2026-04-18T11:22:23+00:00",
+        "2026-04-18T11:22:53+00:00",
+        "2026-04-18T11:23:08+00:00",
+        "2026-04-18T11:23:23+00:00",
+        "2026-04-18T11:23:31+00:00",
+        "2026-04-18T11:23:58+00:00",
+        "2026-04-18T11:25:41+00:00",
+        "2026-04-18T11:25:57+00:00",
+        "2026-04-18T11:30:22+00:00",
+        "2026-04-18T11:30:26+00:00",
+        "2026-04-18T11:30:34+00:00",
+        "2026-04-18T11:38:05+00:00",
+        "2026-04-18T11:38:29+00:00",
+        "2026-04-18T11:42:49+00:00",
+        "2026-04-18T11:43:06+00:00",
+        "2026-04-18T11:43:11+00:00",
+        "2026-04-18T11:43:17+00:00",
+        "2026-04-18T11:43:27+00:00",
+        "2026-04-18T17:38:46+00:00",
+        "2026-04-18T18:17:02+00:00",
+        "2026-04-18T18:24:49+00:00",
+        "2026-04-18T18:30:12+00:00",
+        "2026-04-18T19:08:27+00:00",
+        "2026-04-18T19:12:13+00:00",
+        "2026-04-19T16:04:28+00:00"
       ],
       "503940482": [
         "2026-04-07T02:25:12+00:00"
@@ -4370,7 +4683,9 @@
       "8030796908": [
         "2026-04-13T17:47:31+00:00",
         "2026-04-14T11:14:41+00:00",
-        "2026-04-14T14:16:34+00:00"
+        "2026-04-14T14:16:34+00:00",
+        "2026-04-18T18:38:24+00:00",
+        "2026-04-18T19:11:11+00:00"
       ],
       "6452663252": [
         "2026-04-18T08:27:43+00:00",
@@ -4398,7 +4713,14 @@
         "2026-04-18T11:02:36+00:00",
         "2026-04-18T11:03:06+00:00",
         "2026-04-18T11:03:39+00:00",
-        "2026-04-18T11:03:47+00:00"
+        "2026-04-18T11:03:47+00:00",
+        "2026-04-18T11:06:02+00:00",
+        "2026-04-18T11:06:43+00:00",
+        "2026-04-18T11:07:07+00:00",
+        "2026-04-18T11:25:03+00:00",
+        "2026-04-18T11:25:37+00:00",
+        "2026-04-18T11:27:17+00:00",
+        "2026-04-18T11:27:37+00:00"
       ],
       "8018921976": [
         "2026-04-18T08:53:36+00:00",
@@ -4447,7 +4769,10 @@
         "2026-04-18T10:59:30+00:00",
         "2026-04-18T11:02:19+00:00",
         "2026-04-18T11:03:17+00:00",
-        "2026-04-18T11:04:47+00:00"
+        "2026-04-18T11:04:47+00:00",
+        "2026-04-18T11:07:25+00:00",
+        "2026-04-18T11:11:50+00:00",
+        "2026-04-18T11:26:34+00:00"
       ],
       "6234551152": [
         "2026-04-18T09:01:03+00:00",
@@ -4520,45 +4845,45 @@
     },
     "107171": {
       "6134825204": 8,
-      "1698524397": 125,
-      "7863964681": 17,
+      "1698524397": 248,
+      "7863964681": 28,
       "7077683276": 17,
       "8117756377": 22,
       "8383886822": 16,
       "8748487163": 4
     },
     "40585": {
-      "6144366145": 52,
-      "1698524397": 965,
+      "6144366145": 53,
+      "1698524397": 991,
       "7130942567": 23,
       "138025700": 38,
-      "5443237599": 14,
+      "5443237599": 15,
       "7842002561": 11,
       "7077683276": 19,
       "7863964681": 30,
       "6023408187": 31
     },
     "76799": {
-      "1698524397": 164,
+      "1698524397": 230,
       "138025700": 11,
-      "8353586922": 16,
+      "8353586922": 17,
       "7454623139": 18,
-      "7863964681": 16
+      "7863964681": 18
     },
     "107151": {
-      "7863964681": 126,
-      "8353586922": 82,
+      "7863964681": 127,
+      "8353586922": 83,
       "6482311444": 57,
-      "7077683276": 58,
+      "7077683276": 59,
       "8383886822": 1,
-      "7454623139": 69
+      "7454623139": 70
     },
     "1242": {
-      "1698524397": 182,
+      "1698524397": 221,
       "503940482": 5,
-      "8030796908": 5,
-      "6452663252": 26,
-      "8018921976": 47,
+      "8030796908": 7,
+      "6452663252": 33,
+      "8018921976": 50,
       "6234551152": 22,
       "6464119705": 3
     }
@@ -4572,7 +4897,7 @@
         "18": 19,
         "19": 16,
         "17": 14,
-        "16": 30,
+        "16": 31,
         "22": 10,
         "3": 1,
         "0": 2,
@@ -4591,7 +4916,7 @@
         "1": 5,
         "18": 6,
         "5": 3,
-        "17": 4,
+        "17": 5,
         "0": 5,
         "23": 4,
         "15": 1,
@@ -4625,7 +4950,7 @@
         "22": 5,
         "5": 1,
         "15": 2,
-        "3": 2,
+        "3": 3,
         "12": 3,
         "18": 3,
         "19": 5,
@@ -4636,7 +4961,7 @@
         "2": 1
       },
       "7454623139": {
-        "20": 7,
+        "20": 8,
         "22": 19,
         "5": 7,
         "18": 8,
@@ -4783,7 +5108,7 @@
         "23": 3,
         "1": 8,
         "6": 1,
-        "17": 24,
+        "17": 35,
         "8": 13,
         "15": 7,
         "20": 1,
@@ -4792,7 +5117,8 @@
         "13": 1,
         "9": 29,
         "10": 23,
-        "14": 2
+        "14": 2,
+        "18": 55
       },
       "7454623139": {
         "0": 3,
@@ -4804,12 +5130,12 @@
         "23": 1
       },
       "7863964681": {
-        "18": 1,
+        "18": 2,
         "19": 1,
         "20": 1,
         "16": 1,
         "14": 2,
-        "17": 8
+        "17": 9
       },
       "138025700": {
         "19": 2,
@@ -4827,7 +5153,7 @@
         "0": 1,
         "5": 1,
         "12": 1,
-        "17": 1,
+        "17": 2,
         "18": 1
       }
     },
@@ -4875,12 +5201,15 @@
         "22": 6,
         "11": 5,
         "8": 5,
-        "15": 11,
+        "15": 84,
         "20": 7,
         "13": 2,
-        "14": 18,
+        "14": 20,
         "9": 1,
-        "7": 3
+        "7": 3,
+        "16": 7,
+        "17": 32,
+        "18": 9
       },
       "8117756377": {
         "6": 1,
@@ -4910,11 +5239,11 @@
       },
       "7863964681": {
         "18": 1,
-        "16": 2,
+        "16": 4,
         "2": 1,
         "3": 1,
-        "15": 1,
-        "17": 6
+        "15": 6,
+        "17": 10
       },
       "8383886822": {
         "19": 3,
@@ -5006,7 +5335,7 @@
     },
     "40585": {
       "1698524397": {
-        "21": 54,
+        "21": 55,
         "23": 4,
         "0": 27,
         "1": 64,
@@ -5021,14 +5350,14 @@
         "13": 16,
         "14": 37,
         "15": 150,
-        "20": 12,
-        "19": 15,
+        "20": 23,
+        "19": 24,
         "11": 8,
         "17": 41,
         "5": 5,
         "16": 8,
-        "6": 25,
-        "18": 82,
+        "6": 26,
+        "18": 86,
         "4": 18
       },
       "138025700": {
@@ -5081,7 +5410,7 @@
         "16": 2,
         "22": 3,
         "7": 2,
-        "19": 1,
+        "19": 2,
         "10": 4,
         "8": 1
       },
@@ -5104,7 +5433,8 @@
         "18": 1,
         "4": 3,
         "1": 3,
-        "8": 1
+        "8": 1,
+        "20": 1
       },
       "6023408187": {
         "1": 3,
@@ -5121,15 +5451,17 @@
         "1": 6,
         "3": 9,
         "2": 11,
-        "17": 1,
+        "17": 2,
         "6": 6,
         "14": 2,
         "15": 4,
-        "16": 3,
+        "16": 4,
         "8": 11,
         "9": 67,
         "10": 52,
-        "11": 10
+        "11": 42,
+        "18": 3,
+        "19": 2
       },
       "503940482": {
         "21": 2,
@@ -5140,19 +5472,21 @@
         "22": 2,
         "17": 1,
         "11": 1,
-        "14": 1
+        "14": 1,
+        "18": 1,
+        "19": 1
       },
       "6452663252": {
         "8": 5,
         "9": 7,
         "10": 7,
-        "11": 7
+        "11": 14
       },
       "8018921976": {
         "8": 3,
         "9": 22,
         "10": 19,
-        "11": 3
+        "11": 6
       },
       "6234551152": {
         "9": 14,
@@ -5174,7 +5508,7 @@
         "2": 25,
         "1": 34,
         "6": 2,
-        "5": 1
+        "5": 2
       },
       "8353586922": {
         "3": 20,
@@ -5182,7 +5516,7 @@
         "2": 13,
         "4": 17,
         "1": 25,
-        "5": 2
+        "5": 3
       },
       "6482311444": {
         "3": 10,
@@ -5199,7 +5533,7 @@
         "2": 12,
         "4": 13,
         "1": 17,
-        "6": 2,
+        "6": 3,
         "0": 3
       },
       "8383886822": {
@@ -5209,7 +5543,7 @@
         "2": 8,
         "3": 15,
         "4": 15,
-        "5": 7,
+        "5": 8,
         "6": 3,
         "0": 5,
         "1": 16
@@ -5303,7 +5637,7 @@
     "76799": {
       "1698524397": {
         "5": 15,
-        "6": 17,
+        "6": 83,
         "1": 101,
         "0": 14
       },
@@ -5315,7 +5649,8 @@
       },
       "7863964681": {
         "0": 3,
-        "1": 11
+        "1": 11,
+        "6": 2
       },
       "138025700": {
         "0": 1,
@@ -5324,7 +5659,7 @@
       "8353586922": {
         "0": 6,
         "1": 7,
-        "6": 1
+        "6": 2
       }
     },
     "25059": {
@@ -5352,7 +5687,7 @@
     "107171": {
       "1698524397": {
         "5": 11,
-        "6": 21,
+        "6": 144,
         "3": 3,
         "0": 35,
         "1": 21,
@@ -5380,7 +5715,8 @@
       "7863964681": {
         "0": 9,
         "1": 1,
-        "2": 2
+        "2": 2,
+        "6": 11
       },
       "8383886822": {
         "1": 1,
@@ -5440,8 +5776,8 @@
     },
     "40585": {
       "1698524397": {
-        "5": 78,
-        "6": 100,
+        "5": 103,
+        "6": 101,
         "0": 143,
         "1": 269,
         "2": 74,
@@ -5483,7 +5819,8 @@
       "5443237599": {
         "1": 10,
         "2": 1,
-        "4": 2
+        "4": 2,
+        "5": 1
       },
       "7842002561": {
         "0": 3,
@@ -5494,7 +5831,7 @@
         "1": 14,
         "4": 4,
         "0": 6,
-        "5": 3,
+        "5": 4,
         "2": 3,
         "3": 1
       },
@@ -5511,7 +5848,8 @@
         "2": 11,
         "0": 1,
         "3": 1,
-        "5": 140
+        "5": 178,
+        "6": 1
       },
       "503940482": {
         "2": 4,
@@ -5520,13 +5858,14 @@
       "8030796908": {
         "2": 2,
         "0": 1,
-        "1": 2
+        "1": 2,
+        "5": 2
       },
       "6452663252": {
-        "5": 26
+        "5": 33
       },
       "8018921976": {
-        "5": 47
+        "5": 50
       },
       "6234551152": {
         "5": 22
@@ -5539,11 +5878,11 @@
   "word_counts": {
     "107151": {
       "6482311444": 2490,
-      "7863964681": 8774,
+      "7863964681": 8840,
       "7077683276": 2304,
-      "8353586922": 4031,
+      "8353586922": 4093,
       "8383886822": 1,
-      "7454623139": 3483
+      "7454623139": 3567
     },
     "52083": {
       "138025700": 380,
@@ -5564,11 +5903,11 @@
       "8203214315": 46
     },
     "76799": {
-      "1698524397": 1835,
+      "1698524397": 2283,
       "7454623139": 551,
-      "7863964681": 325,
+      "7863964681": 379,
       "138025700": 264,
-      "8353586922": 624
+      "8353586922": 691
     },
     "25059": {
       "1698524397": 839,
@@ -5577,11 +5916,11 @@
       "5443237599": 469
     },
     "107171": {
-      "1698524397": 1488,
+      "1698524397": 2652,
       "8117756377": 537,
       "7077683276": 309,
       "6134825204": 198,
-      "7863964681": 427,
+      "7863964681": 973,
       "8383886822": 1555,
       "8748487163": 590
     },
@@ -5596,47 +5935,47 @@
       "7863964681": 643
     },
     "40585": {
-      "1698524397": 13503,
+      "1698524397": 13699,
       "138025700": 400,
       "7077683276": 324,
       "7863964681": 1241,
       "7130942567": 367,
-      "5443237599": 336,
+      "5443237599": 339,
       "7842002561": 295,
       "6144366145": 174,
       "6023408187": 162
     },
     "1242": {
-      "1698524397": 2016,
+      "1698524397": 2370,
       "503940482": 60,
-      "8030796908": 98,
-      "6452663252": 274,
-      "8018921976": 347,
+      "8030796908": 125,
+      "6452663252": 324,
+      "8018921976": 358,
       "6234551152": 227,
       "6464119705": 23
     }
   },
   "session_counts": {
     "51357": 6,
-    "40585": 25,
-    "107171": 7,
-    "107151": 20,
+    "40585": 26,
+    "107171": 8,
+    "107151": 21,
     "25059": 7,
-    "76799": 4,
+    "76799": 5,
     "66154": 4,
     "52083": 4,
-    "1242": 7
+    "1242": 8
   },
   "session_last_day": {
     "51357": "2026-04-14",
-    "40585": "2026-04-18",
-    "107171": "2026-04-18",
-    "107151": "2026-04-17",
+    "40585": "2026-04-19",
+    "107171": "2026-04-19",
+    "107151": "2026-04-18",
     "25059": "2026-04-14",
-    "76799": "2026-04-14",
+    "76799": "2026-04-19",
     "66154": "2026-04-14",
     "52083": "2026-04-14",
-    "1242": "2026-04-18"
+    "1242": "2026-04-19"
   },
   "poll_history": {
     "C01": {
@@ -5911,14 +6250,30 @@
         "Gain a +1 circumstance bonus to initiative in your next combat."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W16",
+      "year": 2026,
+      "date": "2026-04-19",
+      "campaign": "Metal City",
+      "campaign_pid": "107171",
+      "user_id": "7863964681",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "post_count": 6,
+      "avg_gap_h": 0.4,
+      "boons_offered": [
+        "A clockwork compass in a junk shop spins to point at you, then settles on true north.",
+        "A natural chimney in the cave provides ventilation and a climbing route.",
+        "The cart's axle holds despite the rough road. Good craftsmanship.",
+        "Gain 1 temporary HP at the start of your next combat."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
     "66154": {
       "1698524397": 1
-    },
-    "145053": {
-      "1698524397": 2
     },
     "25059": {
       "1698524397": 1
@@ -5927,14 +6282,12 @@
       "_seed": 292
     },
     "76799": {
-      "7454623139": 1,
-      "8353586922": 1,
-      "138025700": 1
+      "1698524397": 14,
+      "7863964681": 2,
+      "8353586922": 1
     },
     "144765": {
-      "138025700": 3,
-      "7863964681": 6,
-      "1698524397": 16
+      "1698524397": 3
     },
     "51357": {
       "8117756377": 1
@@ -5946,10 +6299,10 @@
       "1698524397": 3
     },
     "40585": {
-      "1698524397": 5
+      "1698524397": 2
     },
     "137075": {
-      "1698524397": 3
+      "1698524397": 1
     },
     "52083": {
       "1698524397": 1
@@ -5958,29 +6311,30 @@
       "1698524397": 2
     },
     "107151": {
-      "8353586922": 1
+      "7077683276": 1
     },
     "107171": {
-      "1698524397": 1
+      "7863964681": 4,
+      "1698524397": 33
     },
     "142887": {
-      "1698524397": 3
+      "1698524397": 29
     },
     "1242": {
-      "8018921976": 19,
-      "6234551152": 6,
-      "1698524397": 44,
-      "6452663252": 1
+      "1698524397": 1
     },
     "1825": {
       "1698524397": 3
     },
-    "1242": {
-      "8018921976": 8,
-      "1698524397": 31,
-      "6234551152": 4,
-      "6452663252": 13,
-      "6464119705": 3
+    "133428": {},
+    "76799": {
+      "1698524397": 7
+    },
+    "144765": {
+      "1698524397": 42
+    },
+    "107171": {
+      "1698524397": 8
     }
   },
   "clocks": {},
@@ -5994,6 +6348,6 @@
   "timers": {},
   "votes": {},
   "campaign_notes": {},
-  "_backup_timestamp": "2026-04-18T18:21:10.350630+00:00",
+  "_backup_timestamp": "2026-04-19T19:17:57.174088+00:00",
   "_backup_version": "4.41.0"
 }
