@@ -164,4 +164,10 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_boons_all(uid, state))
         return True
 
+    if cmd == "/roster":
+        from commands.roster import build_roster
+        arg = text[7:].strip()  # everything after '/roster'
+        tg.send_message(gid, reply, build_roster(arg, config, state))
+        return True
+
     return False
