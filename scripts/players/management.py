@@ -35,6 +35,9 @@ def handle_kick(pid: str, campaign_name: str, target: str,
 
     # Remove player
     removed = state["players"].pop(match_key)
+    from players.history import on_leave
+    on_leave(pid, str(removed.get("user_id", "")),
+             removed["first_name"], removed.get("username", ""), state)
     state["removed_players"][match_key] = {
         "removed_at": datetime.now(timezone.utc).isoformat(),
         "first_name": removed["first_name"],
@@ -106,4 +109,6 @@ def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
     tg.send_message(group_id, thread_id,
                     f"\u2705 {display_name} (@{username}) added to {campaign_name} roster.\n"
                     f"Their tracking will update with full stats when they first post.")
+    from players.history import on_join
+    on_join(pid, placeholder_id, first_name, username, state)
     print(f"Added {display_name} (@{username}) to {campaign_name}")
