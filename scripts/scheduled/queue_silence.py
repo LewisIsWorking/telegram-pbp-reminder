@@ -2,14 +2,14 @@
 
 A campaign is considered silent when:
   - It has zero unreplied entries in the GM queue, AND
-  - Its RP topic has had no messages for 10 or more days.
+  - Its RP topic has had no messages for 5 or more days.
 """
 
 from datetime import datetime
 
 from commands.queue_format import entry_age_icon
 
-_SILENCE_THRESHOLD_DAYS = 10
+_SILENCE_THRESHOLD_DAYS = 5
 
 
 def silent_campaigns(config: dict, state: dict,
