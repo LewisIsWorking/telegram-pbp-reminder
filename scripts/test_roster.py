@@ -170,3 +170,77 @@ def test_history_multiple_events_accumulate():
     assert len(state["player_history"]) == 3
     events = [e["event"] for e in state["player_history"]]
     assert events == ["join", "leave", "join"]
+
+# ── players/history.py — _post_roster ────────────────────────────────────────
+
+def _hist_config():
+    return {
+        "group_id": -1001,
+        "topic_pairs": [
+            {"code": "C04", "name": "Magni Watch",
+             "pbp_topic_ids": [100], "chat_topic_id": 999},
+        ],
+    }
+
+
+def test_on_join_posts_roster_to_chat_topic():
+    """on_join posts updated roster to campaign chat topic when config given."""
+    from players.history import on_join
+    sent = []
+    state = {"players": {}, "player_history": []}
+    with patch("players.history.tg.send_message",
+               side_effect=lambda g, t, m: sent.append((g, t, m))):
+        on_join("100", "U1", "Alice", "alice", state, _hist_config())
+    assert sent, "Expected roster post to chat topic"
+    gid, tid, msg = sent[0]
+    assert tid == 999
+    assert "Magni Watch" in msg
+
+
+def test_on_leave_posts_roster_to_chat_topic():
+    """on_leave posts updated roster to campaign chat topic when config given."""
+    from players.history import on_leave
+    sent = []
+    state = {"players": {}, "player_history": []}
+    with patch("players.history.tg.send_message",
+               side_effect=lambda g, t, m: sent.append((g, t, m))):
+        on_leave("100", "U1", "Alice", "alice", state, _hist_config())
+    assert sent
+    assert sent[0][1] == 999
+
+
+def test_on_rejoin_posts_roster_to_chat_topic():
+    """on_rejoin posts updated roster to campaign chat topic when config given."""
+    from players.history import on_rejoin
+    sent = []
+    state = {"players": {}, "player_history": []}
+    with patch("players.history.tg.send_message",
+               side_effect=lambda g, t, m: sent.append((g, t, m))):
+        on_rejoin("100", "U1", "Alice", "alice", state, _hist_config())
+    assert sent
+    assert sent[0][1] == 999
+
+
+def test_no_roster_post_without_config():
+    """on_join without config arg does not attempt to post roster."""
+    from players.history import on_join
+    sent = []
+    state = {"players": {}, "player_history": []}
+    with patch("players.history.tg.send_message",
+               side_effect=lambda g, t, m: sent.append((g, t, m))):
+        on_join("100", "U1", "Alice", "alice", state)
+    assert not sent
+
+
+def test_no_roster_post_when_no_chat_topic():
+    """_post_roster silently skips campaigns with no chat_topic_id."""
+    from players.history import on_join
+    config = {"group_id": -1001, "topic_pairs": [
+        {"code": "C04", "name": "Test", "pbp_topic_ids": [100]},
+    ]}
+    sent = []
+    state = {"players": {}, "player_history": []}
+    with patch("players.history.tg.send_message",
+               side_effect=lambda g, t, m: sent.append((g, t, m))):
+        on_join("100", "U1", "Alice", "alice", state, config)
+    assert not sent
