@@ -1,6 +1,25 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 146602,
+      "thread_id": 107171,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-20T13:50:50+00:00",
+      "preview": "\"Upstairs next,\" Joo-Dee responds.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 146606,
+      "thread_id": 142887,
+      "user_id": "8748487163",
+      "user_name": "Cobalt",
+      "time": "2026-04-20T14:20:31+00:00",
+      "preview": "It was only one damage, I don\u2019t feel the need to spend one of my resolve points on that, even if the RP moment was nice!",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -155,7 +174,9 @@
     "msg:146379",
     "2026-04-19 20:55:39",
     "msg:146380",
-    "2026-04-19 20:55:40"
+    "2026-04-19 20:55:40",
+    "msg:146603",
+    "2026-04-20 13:51:28"
   ],
   "reply_log": [
     {
@@ -890,18 +911,27 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-20T14:01:25+00:00",
+      "pid": "107171",
+      "msg_id": "146603",
+      "thread_id": 142887,
+      "player": "Link",
+      "preview": "Let me have my RP moment!",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 146610,
+      "fingerprint": "2026-04-20 13:50:50"
     },
     "142887": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 146612,
+      "fingerprint": "2026-04-20 14:20:31"
     }
   }
 }
