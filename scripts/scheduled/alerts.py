@@ -189,6 +189,9 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
     # Move removed players out
     for key in players_to_remove:
         removed = state["players"].pop(key)
+        __import__("players.history", fromlist=["on_leave"]).on_leave(
+            str(removed.get("pbp_topic_id", "")), str(removed.get("user_id", "")),
+            removed["first_name"], removed.get("username", ""), state)
         state["removed_players"][key] = {
             "removed_at": now.isoformat(),
             "first_name": removed["first_name"],
