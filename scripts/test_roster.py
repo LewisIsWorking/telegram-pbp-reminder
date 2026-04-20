@@ -288,4 +288,4 @@ def test_roster_active_player_missing_last_post():
                    "pbp_topic_id": 100},  # missing key
     }}
     result = build_roster_overview(config, state)
-    assert "0 players" in result
+    assert "0/6" in result
