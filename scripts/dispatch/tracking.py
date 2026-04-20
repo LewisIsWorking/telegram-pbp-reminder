@@ -176,7 +176,7 @@ def _track_player(parsed: dict, state: dict, config: dict,
 
     if was_removed:
         removed_data = state["removed_players"].pop(player_key)
-        print(f"Player {user_name} rejoined {campaign_name}")
+        __import__("players.history", fromlist=["on_rejoin"]).on_rejoin(pid, user_id, user_name, parsed.get("username", ""), state)
         chat_tid = maps.to_chat.get(pid)
         if chat_tid:
             char = helpers.character_name(config, pid, user_id)
