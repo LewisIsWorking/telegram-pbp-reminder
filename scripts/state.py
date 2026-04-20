@@ -29,7 +29,7 @@ PARTITIONS: dict[str, list[str]] = {
         "queue_post_count",
     ],
     "players": [
-        "players", "removed_players", "player_registry",
+        "players", "removed_players", "player_registry", "player_history",
         "player_boons", "mvp_wins", "characters", "away",
     ],
     "queue": [
@@ -50,7 +50,7 @@ PARTITIONS: dict[str, list[str]] = {
 
 DEFAULT_STATE: dict = {
     "offset": 0, "topics": {}, "last_alerts": {}, "players": {},
-    "removed_players": {}, "message_counts": {}, "last_roster": {},
+    "removed_players": {}, "player_history": [], "message_counts": {}, "last_roster": {},
     "post_timestamps": {}, "last_potw": {}, "last_pace": {},
     "last_anniversary": {}, "combat": {}, "pending_potw_boons": {},
     "last_leaderboard": None, "last_recruitment_check": {},
