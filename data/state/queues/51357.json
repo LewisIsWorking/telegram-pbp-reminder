@@ -1,25 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 145204,
-      "thread_id": 51357,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-14T19:56:22+00:00",
-      "preview": "Axtra gets ready to bust down the cage but stops when she hears Illiani's voice in her head. \n\nAs much as she wants to free the gnomes, they are unconscious. The noise of the cage would only increase the danger to them. \n\nAxtra will let out a shallow breath and walk towards Illiani, preparing herself for what lies inside.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 145348,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-14T22:49:27+00:00",
-      "preview": "As Twilight recognizes the gnomes, his paws tense in anger. They seems raring to help... or to break the intruder's faces. They creep over to the door alongside the others, expectant.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -100,7 +81,11 @@
     "msg:143087",
     "2026-04-07 01:23:26",
     "msg:145187",
-    "2026-04-14 19:31:32"
+    "2026-04-14 19:31:32",
+    "msg:145204",
+    "2026-04-14 19:56:22",
+    "msg:145348",
+    "2026-04-14 22:49:27"
   ],
   "reply_log": [
     {
@@ -397,14 +382,32 @@
       "player": "Cannon",
       "preview": "One at a time, Illiani silently projects a telepathic message to the party.\n\n<Th",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-20T12:09:15+00:00",
+      "pid": "51357",
+      "msg_id": "145204",
+      "thread_id": 51357,
+      "player": "Link",
+      "preview": "Axtra gets ready to bust down the cage but stops when she hears Illiani's voice ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T12:09:41+00:00",
+      "pid": "51357",
+      "msg_id": "145348",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "As Twilight recognizes the gnomes, his paws tense in anger. They seems raring to",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "msg_id": 146359,
-      "fingerprint": "2026-04-14 19:56:22|2026-04-14 22:49:27"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
