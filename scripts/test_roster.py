@@ -244,3 +244,48 @@ def test_no_roster_post_when_no_chat_topic():
                side_effect=lambda g, t, m: sent.append((g, t, m))):
         on_join("100", "U1", "Alice", "alice", state, config)
     assert not sent
+
+def test_post_roster_unknown_pid_no_crash():
+    """_post_roster with a pid not in config exits silently."""
+    from players.history import on_join
+    state = {"players": {}, "player_history": []}
+    config = {"group_id": -1, "topic_pairs": [
+        {"code": "C04", "name": "Test", "pbp_topic_ids": [100], "chat_topic_id": 999}
+    ]}
+    sent = []
+    with patch("players.history.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        on_join("999", "U1", "Alice", "alice", state, config)
+    assert not sent  # unknown pid — no pair found, no post
+
+
+def test_roster_campaign_history_shows_leave():
+    """Drill-down shows leave events with correct icon."""
+    from commands.roster import build_roster_campaign
+    config = _config()
+    pair = config["topic_pairs"][0]
+    state = {
+        "players": {},
+        "player_history": [
+            {"event": "leave", "pid": "100", "user_id": "U1",
+             "name": "Alice", "username": "alice",
+             "at": "2026-04-20T09:00:00+00:00"},
+        ],
+    }
+    result = build_roster_campaign(pair, config, state)
+    assert "left" in result
+    assert "➖" in result
+
+
+def test_roster_active_player_missing_last_post():
+    """Players with missing/invalid last_post_time are excluded from active count."""
+    from commands.roster import build_roster_overview
+    config = _config([("C04", "Test")])
+    state = {"players": {
+        "100:U1": {"user_id": "U1", "first_name": "Alice",
+                   "pbp_topic_id": 100, "last_post_time": "invalid"},
+        "100:U2": {"user_id": "U2", "first_name": "Bob",
+                   "pbp_topic_id": 100},  # missing key
+    }}
+    result = build_roster_overview(config, state)
+    assert "0 players" in result
