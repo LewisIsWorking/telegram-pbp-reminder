@@ -1035,11 +1035,11 @@ def test_silent_campaigns_skips_when_has_entries():
 
 
 def test_silent_campaigns_skips_when_recent():
-    """Campaign last posted 5 days ago is not silent (under 10-day threshold)."""
+    """Campaign last posted 3 days ago is not silent (under 5-day threshold)."""
     from scheduled.queue_silence import silent_campaigns
     now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
     config = {"topic_pairs": [{"pbp_topic_ids": [100], "code": "C00", "name": "Test"}]}
-    last = (now - timedelta(days=5)).isoformat()
+    last = (now - timedelta(days=3)).isoformat()
     state = {"topics": {"100": {"last_message_time": last}}}
     assert silent_campaigns(config, state, {}, now) == []
 
