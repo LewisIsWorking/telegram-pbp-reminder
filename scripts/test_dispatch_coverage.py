@@ -400,7 +400,8 @@ def test_voter_mention_by_player_username():
 
 def test_voter_mention_by_first_name():
     state = {"players": {"x": {"user_id": "U1", "username": "", "first_name": "Alice"}}}
-    assert _voter_mention("U1", "Alice", {}, state) == "Alice"
+    result = _voter_mention("U1", "Alice", {}, state)
+    assert "Alice" in result and "⚠️" in result
 
 
 def test_voter_mention_from_poll_names():
@@ -409,7 +410,8 @@ def test_voter_mention_from_poll_names():
 
 
 def test_voter_mention_fallback():
-    assert _voter_mention("U99", "Fallback", {}, {}) == "Fallback"
+    result = _voter_mention("U99", "Fallback", {}, {})
+    assert "Fallback" in result and "⚠️" in result
 
 
 def test_build_tally_block_no_votes():
@@ -507,6 +509,7 @@ def _gm_ctx(cmd: str, state: dict) -> dict:
         "group_id": -1001,
         "thread_id": 200,
         "now_iso": "2026-04-10T00:00:00+00:00",
+        "config": {"topic_pairs": [{"pbp_topic_ids": [100], "name": "TestCampaign"}]},
         "parsed": {"raw_text": cmd},
     }
 
