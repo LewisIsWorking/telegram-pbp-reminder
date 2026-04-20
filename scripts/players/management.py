@@ -9,7 +9,8 @@ import telegram as tg
 
 
 def handle_kick(pid: str, campaign_name: str, target: str,
-                state: dict, group_id: int, thread_id: int) -> None:
+                state: dict, group_id: int, thread_id: int,
+                config: dict | None = None) -> None:
     """Remove a player from the campaign roster by username or name."""
     target_lower = target.lower()
 
@@ -37,7 +38,7 @@ def handle_kick(pid: str, campaign_name: str, target: str,
     removed = state["players"].pop(match_key)
     from players.history import on_leave
     on_leave(pid, str(removed.get("user_id", "")),
-             removed["first_name"], removed.get("username", ""), state)
+             removed["first_name"], removed.get("username", ""), state, config)
     state["removed_players"][match_key] = {
         "removed_at": datetime.now(timezone.utc).isoformat(),
         "first_name": removed["first_name"],
@@ -54,7 +55,8 @@ def handle_kick(pid: str, campaign_name: str, target: str,
 
 
 def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
-                     now_iso: str, state: dict, group_id: int, thread_id: int) -> None:
+                     now_iso: str, state: dict, group_id: int, thread_id: int,
+                     config: dict | None = None) -> None:
     """Manually register a player who hasn't posted yet.
 
     Format: /addplayer @username FirstName [LastName]
@@ -110,5 +112,5 @@ def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
                     f"\u2705 {display_name} (@{username}) added to {campaign_name} roster.\n"
                     f"Their tracking will update with full stats when they first post.")
     from players.history import on_join
-    on_join(pid, placeholder_id, first_name, username, state)
+    on_join(pid, placeholder_id, first_name, username, state, config)
     print(f"Added {display_name} (@{username}) to {campaign_name}")
