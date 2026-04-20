@@ -28,18 +28,17 @@ jobs:
       - name: Install dependencies
         run: pip install requests pytest pytest-cov
 
-      - name: Run tests
-        id: run_tests
-        run: python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing
-        continue-on-error: true
-
-      - name: Alert on test failure
-        if: steps.run_tests.outcome == 'failure'
+      - name: Run tests and alert on failure
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
         run: |
-          python3 -c "
+          set +e
+          python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing
+          EXIT_CODE=$?
+          set -e
+          if [ $EXIT_CODE -ne 0 ]; then
+            python3 -c "
           import os, requests
           token = os.environ['TELEGRAM_BOT_TOKEN']
           sha = os.environ.get('GITHUB_SHA', '?')[:8]
@@ -52,8 +51,9 @@ jobs:
           if tid:
               requests.post(f'https://api.telegram.org/bot{token}/sendMessage',
                   json={'chat_id': gid, 'message_thread_id': tid,
-                        'text': f'⚠️ Test suite failed on push to main (sha: {sha}) — check GitHub Actions.'})
+                        'text': f'\u26a0\ufe0f Test suite failed on push (sha: {sha}) — check GitHub Actions.'})
           "
+          fi
 
   run:
     runs-on: ubuntu-latest
