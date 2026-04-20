@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 146556,
-      "thread_id": 137075,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-20T11:59:50+00:00",
-      "preview": "Will do my turn in approximately 1 hour",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -390,7 +381,9 @@
     "msg:143640",
     "2026-04-10 18:23:48",
     "msg:145922",
-    "2026-04-18 20:25:17"
+    "2026-04-18 20:25:17",
+    "msg:146556",
+    "2026-04-20 11:59:50"
   ],
   "reply_log": [
     {
@@ -2010,14 +2003,23 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-20T12:07:34+00:00",
+      "pid": "40585",
+      "msg_id": "146556",
+      "thread_id": 137075,
+      "player": "Awnii",
+      "preview": "Will do my turn in approximately 1 hour",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 146571,
-      "fingerprint": "2026-04-20 11:59:50"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": null,
