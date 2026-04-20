@@ -50,7 +50,7 @@ def test_roster_overview_shows_deficit():
     config = _config([("C04", "Magni Watch")])
     state = {"players": {"100:U1": _player(100, "U1", "Alice")}}
     result = build_roster_overview(config, state)
-    assert "(-5)" in result
+    assert "1/6" in result
     assert "⚠️" in result
 
 
@@ -62,7 +62,7 @@ def test_roster_overview_satisfied_at_target():
     }}
     result = build_roster_overview(config, state)
     assert "✅" in result
-    assert "(-" not in result
+    assert "6/6" in result
 
 
 def test_roster_overview_excludes_inactive():
@@ -73,7 +73,7 @@ def test_roster_overview_excludes_inactive():
         "100:U2": _player(100, "U2", "Inactive", days_ago=45),
     }}
     result = build_roster_overview(config, state)
-    assert "1 player" in result
+    assert "1/6" in result
 
 
 def test_roster_campaign_drill_down():
