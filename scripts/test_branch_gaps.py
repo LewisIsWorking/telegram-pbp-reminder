@@ -1354,3 +1354,45 @@ def test_campaign_name_found():
 def test_campaign_name_not_found():
     from dispatch.cmd_gm import _campaign_name
     assert _campaign_name("99999", _gm_config()) == ""
+
+# ─── dispatch/poll_notify.py: _voter_mention ─────────────────────────────────
+
+def _mention_config():
+    return {"topic_pairs": [
+        {"code": "C01", "pbp_topic_ids": [100],
+         "poll_user_names": {"8787": "Sestina_The_Banner_Witch"}},
+    ]}
+
+
+def test_voter_mention_from_players_state():
+    """Returns @username when player is in state with username set."""
+    from dispatch.poll_notify import _voter_mention
+    state = {"players": {"100:U1": {"user_id": "U1", "username": "alice", "first_name": "Alice"}}}
+    assert _voter_mention("U1", "Alice", _mention_config(), state) == "@alice"
+
+
+def test_voter_mention_from_poll_user_names():
+    """Falls back to poll_user_names when not in state."""
+    from dispatch.poll_notify import _voter_mention
+    state = {"players": {}}
+    result = _voter_mention("8787", "Chris", _mention_config(), state)
+    assert result == "@Sestina_The_Banner_Witch"
+
+
+def test_voter_mention_flags_missing_username_in_state():
+    """Flags visibly when player is in state but has no username."""
+    from dispatch.poll_notify import _voter_mention
+    state = {"players": {"100:U1": {"user_id": "U1", "username": "", "first_name": "Chris"}}}
+    result = _voter_mention("U1", "Chris", _mention_config(), state)
+    assert "⚠️" in result
+    assert "username unknown" in result
+    assert "U1" in result
+
+
+def test_voter_mention_flags_missing_username_not_in_state():
+    """Flags visibly when uid not found in state or poll_user_names."""
+    from dispatch.poll_notify import _voter_mention
+    state = {"players": {}}
+    result = _voter_mention("UNKNOWN", "Ghost", _mention_config(), state)
+    assert "⚠️" in result
+    assert "username unknown" in result
