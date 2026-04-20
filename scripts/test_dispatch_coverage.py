@@ -503,6 +503,7 @@ def _gm_ctx(cmd: str, state: dict) -> dict:
         "pid": "100",
         "campaign_name": "TestCampaign",
         "state": state,
+        "config": {"topic_pairs": [{"pbp_topic_ids": [100], "name": "TestCampaign"}]},
         "group_id": -1001,
         "thread_id": 200,
         "now_iso": "2026-04-10T00:00:00+00:00",
