@@ -8,6 +8,25 @@ from players.management import handle_kick, handle_addplayer
 from transcript.logger import write_scene_marker
 
 
+
+def _canonical_pid(pid: str, config: dict) -> str:
+    """Return the primary pbp_topic_id for the campaign containing pid."""
+    for pair in config.get("topic_pairs", []):
+        all_pids = [str(t) for t in pair.get("pbp_topic_ids", [])]
+        chat = str(pair.get("chat_topic_id", ""))
+        if pid in all_pids or pid == chat:
+            return str(pair["pbp_topic_ids"][0])
+    return pid
+
+
+def _campaign_name(pid: str, config: dict) -> str:
+    """Return campaign name for a given primary pid."""
+    for pair in config.get("topic_pairs", []):
+        if str(pair["pbp_topic_ids"][0]) == pid:
+            return pair.get("name", "")
+    return ""
+
+
 def _arg(raw_text: str, cmd_len: int) -> str:
     """Extract argument from raw_text, stripping any @BotName suffix.
 
@@ -31,6 +50,7 @@ def handle(ctx: dict) -> bool:
     tid = ctx["thread_id"]
     now_iso = ctx["now_iso"]
     raw_text = ctx["parsed"]["raw_text"]
+    config = ctx["config"]
 
     if uid not in gm_ids:
         return False
@@ -63,7 +83,9 @@ def handle(ctx: dict) -> bool:
             tg.send_message(gid, tid,
                             "Usage: /kick @username or /kick PlayerName")
         else:
-            handle_kick(pid, name, target, state, gid, tid)  # pragma: no cover
+            kick_pid = _canonical_pid(pid, config)
+            kick_name = _campaign_name(kick_pid, config) or name
+            handle_kick(kick_pid, kick_name, target, state, gid, tid, config)  # pragma: no cover
         return True
 
     if text.startswith("/addplayer"):
@@ -73,7 +95,9 @@ def handle(ctx: dict) -> bool:
                             "Usage: /addplayer @username PlayerName\n"  # pragma: no cover
                             "e.g. /addplayer @alice Alice Smith")  # pragma: no cover
         else:  # pragma: no cover
-            handle_addplayer(pid, name, raw_args, now_iso, state, gid, tid)  # pragma: no cover
+            add_pid = _canonical_pid(pid, config)  # pragma: no cover
+            add_name = _campaign_name(add_pid, config) or name  # pragma: no cover
+            handle_addplayer(add_pid, add_name, raw_args, now_iso, state, gid, tid, config)  # pragma: no cover
         return True  # pragma: no cover
 
     if text.startswith("/scene"):
