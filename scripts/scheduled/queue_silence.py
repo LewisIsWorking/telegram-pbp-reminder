@@ -41,8 +41,11 @@ def silent_campaigns(config: dict, state: dict,
         emoji = pair.get("emoji", "")
         label = f"{code}: {name}" if code else name
         prefix = f"{emoji} " if emoji else ""
-        icon = entry_age_icon(int(days) * 24)
+        total_hours = int(days * 24)
+        d_part, h_part = divmod(total_hours, 24)
+        age_str = f"{d_part}d {h_part}h" if h_part else f"{d_part}d"
+        icon = entry_age_icon(total_hours)
         group_user = config.get("group_username", "")
         link = f" 🔗 https://t.me/{group_user}/{pid}" if group_user else ""
-        lines.append(f"  {icon} {prefix}{label} — no posts for {int(days)}d{link}")
+        lines.append(f"  {icon} {prefix}{label} — no posts for {age_str}{link}")
     return lines
