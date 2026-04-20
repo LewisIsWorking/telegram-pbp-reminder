@@ -1,52 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 146378,
-      "thread_id": 107171,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-19T20:54:54+00:00",
-      "preview": "Joo-Dee will walk over to Kae-Vo and spray some local anesthetic on the electrical burn to ease the pain, and wrap it in a clean bandage to reduce risk of infection.\n\n\"Doesn't look bad at all. I appreciate you getting that fixed for us. Sorry you got zapped for it.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146379,
-      "thread_id": 142887,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-19T20:55:39+00:00",
-      "preview": "[media]",
-      "media_group_id": "14213057115772833"
-    },
-    {
-      "message_id": 146381,
-      "thread_id": 142887,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-19T20:56:52+00:00",
-      "preview": "Joo-Dee will perform a DC 15 treat wounds on Kae-Vo to remove the damage.\n22 Medicine Check, Success\n6 Restoration",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146384,
-      "thread_id": 107171,
-      "user_id": "8748487163",
-      "user_name": "Cobalt",
-      "time": "2026-04-19T21:01:52+00:00",
-      "preview": "Psychic murmurs of appreciation amble through Joo-Dee\u2019s mind as the Symposium holds their bandaged tendril gingerly. \u201cPerfectly alright, thank you kindly! Our research and instruments are our most valuable contribution to this wider meeting of comrades. We are glad it was applicable to one of our dilemmas\u2026\u201d",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146421,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-20T04:59:17+00:00",
-      "preview": "Arktos drifts in to the medbay, after checking it is no longer in use. They set up a small station using the equipment and start testing the slime sample, using the data they've already gathered as a baseline. \n\nThey seem to almost be whistling as they work.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -189,7 +143,19 @@
     "msg:146319",
     "2026-04-19 19:31:14",
     "msg:146367",
-    "2026-04-19 20:19:17"
+    "2026-04-19 20:19:17",
+    "msg:146378",
+    "2026-04-19 20:54:54",
+    "msg:146384",
+    "2026-04-19 21:01:52",
+    "msg:146421",
+    "2026-04-20 04:59:17",
+    "msg:146381",
+    "2026-04-19 20:56:52",
+    "msg:146379",
+    "2026-04-19 20:55:39",
+    "msg:146380",
+    "2026-04-19 20:55:40"
   ],
   "reply_log": [
     {
@@ -861,18 +827,81 @@
       "player": "Cobalt",
       "preview": "I don't believe they have hero points remaining.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-20T07:59:24+00:00",
+      "pid": "107171",
+      "msg_id": "146378",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "Joo-Dee will walk over to Kae-Vo and spray some local anesthetic on the electric",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:00:06+00:00",
+      "pid": "107171",
+      "msg_id": "146384",
+      "thread_id": 107171,
+      "player": "Cobalt",
+      "preview": "Psychic murmurs of appreciation amble through Joo-Dee\u2019s mind as the Symposium ho",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:00:26+00:00",
+      "pid": "107171",
+      "msg_id": "146421",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos drifts in to the medbay, after checking it is no longer in use. They set ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:01:43+00:00",
+      "pid": "107171",
+      "msg_id": "146381",
+      "thread_id": 142887,
+      "player": "Link",
+      "preview": "Joo-Dee will perform a DC 15 treat wounds on Kae-Vo to remove the damage.\n22 Med",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:02:01+00:00",
+      "pid": "107171",
+      "msg_id": "146379",
+      "thread_id": 142887,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:02:25+00:00",
+      "pid": "107171",
+      "msg_id": "146379",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:02:52+00:00",
+      "pid": "107171",
+      "msg_id": "146380",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": 146424,
-      "fingerprint": "2026-04-19 20:54:54|2026-04-19 21:01:52|2026-04-20 04:59:17"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "142887": {
-      "msg_id": 146388,
-      "fingerprint": "2026-04-19 20:55:39|2026-04-19 20:55:40|2026-04-19 20:56:52"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

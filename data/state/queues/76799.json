@@ -1,43 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 146394,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-19T21:46:40+00:00",
-      "preview": "Nadya tosses a chirurgeon vial at Akuma to heal for 6 @Linksanelf2006",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146395,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-19T21:49:07+00:00",
-      "preview": "she'll prep another vial for healing but that's her turn",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146428,
-      "thread_id": 144765,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-20T05:58:57+00:00",
-      "preview": "Moving into the room, B\u00e1yakan takes his toolkit to the exposed dart launcher in an attempt to disable the thing before it maims anyone else.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146429,
-      "thread_id": 144765,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-20T05:59:18+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -141,7 +104,21 @@
     "msg:146172",
     "2026-04-19 18:11:09",
     "msg:146194",
-    "2026-04-19 18:18:16"
+    "2026-04-19 18:18:16",
+    "msg:146429",
+    "2026-04-20 05:59:18",
+    "msg:146428",
+    "2026-04-20 05:58:57",
+    "msg:146394",
+    "2026-04-19 21:46:40",
+    "msg:146395",
+    "2026-04-19 21:49:07",
+    "msg:146460",
+    "2026-04-20 08:01:35",
+    "msg:146462",
+    "2026-04-20 08:01:47",
+    "msg:146468",
+    "2026-04-20 08:03:27"
   ],
   "reply_log": [
     {
@@ -598,6 +575,69 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-20T07:57:16+00:00",
+      "pid": "76799",
+      "msg_id": "146429",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T07:57:52+00:00",
+      "pid": "76799",
+      "msg_id": "146428",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "Moving into the room, B\u00e1yakan takes his toolkit to the exposed dart launcher in ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T07:58:31+00:00",
+      "pid": "76799",
+      "msg_id": "146394",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "Nadya tosses a chirurgeon vial at Akuma to heal for 6 @Linksanelf2006",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T07:58:39+00:00",
+      "pid": "76799",
+      "msg_id": "146395",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "she'll prep another vial for healing but that's her turn",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:02:59+00:00",
+      "pid": "76799",
+      "msg_id": "146460",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "nope",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:03:11+00:00",
+      "pid": "76799",
+      "msg_id": "146462",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "pretty much, but at range",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-20T08:03:52+00:00",
+      "pid": "76799",
+      "msg_id": "146468",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "yes",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -608,8 +648,8 @@
       "fingerprint": ""
     },
     "144765": {
-      "msg_id": 146433,
-      "fingerprint": "2026-04-19 21:46:40|2026-04-19 21:49:07|2026-04-20 05:58:57|2026-04-20 05:59:18"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
