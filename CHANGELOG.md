@@ -11,6 +11,34 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.42.0] - 2026-04-20
+
+### Added
+
+**`/roster` command** (`commands/roster.py`, `dispatch/cmd_info.py`)
+
+Available to everyone. Two modes:
+
+- `/roster` — all campaigns ordered fewest to most active players (last 30
+  days), with ✅ at 6+ and ⚠️ + deficit count below target
+- `/roster C04` or `/roster 04` — drill-down for one campaign: current
+  active players plus full join/leave history with dates
+
+**Player join/leave history log** (`players/history.py`)
+
+New `state["player_history"]` list — a permanent append-only audit log of
+every join and leave event, with timestamp, player name, username, and
+campaign pid. Events recorded:
+
+- **join** — when a player is added via `/addplayer`
+- **join** — when a previously removed player posts again (rejoin)
+- **leave** — when a player is kicked via `/kick`
+- **leave** — when a player is auto-removed after 3 weeks of inactivity
+
+History only starts accumulating from this release onward.
+
+---
+
 ## [4.41.0] - 2026-04-18
 
 ### Added
