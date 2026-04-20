@@ -1315,3 +1315,42 @@ def test_process_hero_campaign_callback_no_pending():
     from boons.hero_point import process_hero_campaign_callback
     cb = {"data": "herocampaign:U1:100", "from": {"id": "U1"}, "message": {}}
     assert process_hero_campaign_callback(cb, _hp_config(), {}) is False
+
+# ─── dispatch/cmd_gm.py: _canonical_pid and kick from chat topic ──────────────
+
+def _gm_config():
+    return {"topic_pairs": [
+        {"code": "C00", "name": "Riddleport",
+         "pbp_topic_ids": [66154, 133428],
+         "chat_topic_id": 91008},
+    ]}
+
+
+def test_canonical_pid_from_pbp_topic():
+    from dispatch.cmd_gm import _canonical_pid
+    assert _canonical_pid("66154", _gm_config()) == "66154"
+
+
+def test_canonical_pid_from_chat_topic():
+    from dispatch.cmd_gm import _canonical_pid
+    assert _canonical_pid("91008", _gm_config()) == "66154"
+
+
+def test_canonical_pid_from_combat_topic():
+    from dispatch.cmd_gm import _canonical_pid
+    assert _canonical_pid("133428", _gm_config()) == "66154"
+
+
+def test_canonical_pid_unknown_returns_self():
+    from dispatch.cmd_gm import _canonical_pid
+    assert _canonical_pid("99999", _gm_config()) == "99999"
+
+
+def test_campaign_name_found():
+    from dispatch.cmd_gm import _campaign_name
+    assert _campaign_name("66154", _gm_config()) == "Riddleport"
+
+
+def test_campaign_name_not_found():
+    from dispatch.cmd_gm import _campaign_name
+    assert _campaign_name("99999", _gm_config()) == ""
