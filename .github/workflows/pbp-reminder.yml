@@ -37,14 +37,13 @@ jobs:
         if: steps.run_tests.outcome == 'failure'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GITHUB_SHA: ${{ github.sha }}
         run: |
           python3 -c "
           import os, requests
           token = os.environ['TELEGRAM_BOT_TOKEN']
-          bot_id = token.split(':')[0]
-          # Post to bot topic — we need config but keep this simple with hardcoded IDs
-          # group_id and bot_topic_id from config
-          import json, sys
+          sha = os.environ.get('GITHUB_SHA', '?')[:8]
+          import sys
           sys.path.insert(0, 'scripts')
           from helpers_pkg.config import load_config
           config = load_config()
@@ -53,7 +52,7 @@ jobs:
           if tid:
               requests.post(f'https://api.telegram.org/bot{token}/sendMessage',
                   json={'chat_id': gid, 'message_thread_id': tid,
-                        'text': '⚠️ Test suite failed on push to main — check GitHub Actions.'})
+                        'text': f'⚠️ Test suite failed on push to main (sha: {sha}) — check GitHub Actions.'})
           "
 
   run:
