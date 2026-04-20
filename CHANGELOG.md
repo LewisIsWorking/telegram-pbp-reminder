@@ -11,6 +11,65 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.43.0] - 2026-04-20
+
+### Added
+
+**Unknown voter alert improvements** (`dispatch/poll_notify.py`)
+
+When an unrecognised UID votes, the alert now shows which options they voted for
+and which placeholder usernames remain unresolved. When they later send any
+message, the bot posts an identification alert and auto-promotes them on the
+next workflow run.
+
+**`/roster` command** (`commands/roster.py`, `dispatch/cmd_info.py`, `dispatch/bot_topic.py`)
+
+Available to everyone from any topic including the bot topic.
+- `/roster` — all campaigns ordered fewest to most active players (last 30d),
+  shown as `4/6`, `8/6` etc with ✅ at target and ⚠️ below
+- `/roster C04` or `/roster 04` — current active players + full join/leave history
+
+**Player join/leave history** (`players/history.py`)
+
+Permanent append-only log in `state["player_history"]`. Fires on `/addplayer`,
+`/kick`, auto-removal, and rejoin. Updated roster automatically posts to the
+campaign's chat topic on each event.
+
+**`/kick` and `/addplayer` from any topic** (`dispatch/cmd_gm.py`)
+
+Both commands now work from the PBP topic, COMBAT topic, or CHAT topic.
+The bot resolves whichever topic you're in back to the canonical campaign.
+
+**Hero Point campaign picker for MVP of the Week** (`boons/hero_point.py`)
+
+After the leaderboard MVP is announced, the bot posts inline buttons — one per
+campaign the winner is active in. Tapping one posts `✅ +1 Hero Point for
+Magni Watch — Chase` to the bot topic.
+
+**Silent campaign links** (`scheduled/queue_silence.py`)
+
+Silent campaign entries in the GM queue now include the RP topic link and show
+`Xd Yh` elapsed time. Threshold lowered from 10 days to 5 days.
+
+**CI alert with failure details** (`scripts/ci_alert.py`)
+
+Test failure alerts now include the specific FAILED test names and any coverage
+gaps, so failures are diagnosable without opening GitHub Actions.
+
+### Fixed
+
+- `_voter_mention` now flags missing usernames visibly as
+  `Christopher (⚠️ username unknown — uid 8787586972)` instead of silently
+  using the display name as if it were a username
+- Christopher (@Sestina_The_Banner_Witch) corrected in C01 `poll_user_names`
+- C00 Riddleport COMBAT topic corrected (145053 → 133428)
+- Workflow YAML repaired after inline Python f-string broke the parser
+- C01 poll options merged: "Either Friday or Saturday" + "Both" → "Both/Either"
+- Message IDs shown in queue entries now extracted from link when transcript
+  lacks a `msg#` tag
+
+---
+
 ## [4.42.0] - 2026-04-20
 
 ### Added
