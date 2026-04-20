@@ -26,18 +26,20 @@ from dispatch.poll_tally import build_tally_block
 
 
 def _voter_mention(uid: str, name: str, config: dict, state: dict) -> str:
-    """Return '@username' if known, else fallback to first name."""
+    """Return '@username' if known, else a flagged fallback so missing usernames are visible."""
     for p in state.get("players", {}).values():
         if str(p.get("user_id", "")) == uid:
             u = p.get("username", "")
             if u:
                 return f"@{u}"
-            return p.get("first_name", name)
+            first = p.get("first_name", name)
+            return f"{first} (⚠️ username unknown — uid {uid})"
     for pair in config.get("topic_pairs", []):
         names = pair.get("poll_user_names", {})
         if uid in names:
-            return f"@{names[uid]}"
-    return name
+            uname = names[uid]
+            return f"@{uname}"
+    return f"{name} (⚠️ username unknown — uid {uid})"
 
 
 def _options_for_code(config: dict, code: str,
