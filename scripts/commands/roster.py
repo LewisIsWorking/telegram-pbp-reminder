@@ -51,8 +51,7 @@ def build_roster_overview(config: dict, state: dict) -> str:
     for count, code, name in rows:
         icon = "✅" if count >= _TARGET else "⚠️"
         label = f"{code}: {name}" if code else name
-        deficit = f" (-{_TARGET - count})" if count < _TARGET else ""
-        lines.append(f"{icon} {label} — {count} player{'s' if count != 1 else ''}{deficit}")
+        lines.append(f"{icon} {label} — {count}/{_TARGET}")
     return "\n".join(lines)
 
 
