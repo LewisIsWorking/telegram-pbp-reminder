@@ -11,12 +11,12 @@
       "media_group_id": null
     },
     {
-      "message_id": 146606,
+      "message_id": 146617,
       "thread_id": 142887,
       "user_id": "8748487163",
       "user_name": "Cobalt",
-      "time": "2026-04-20T14:20:31+00:00",
-      "preview": "It was only one damage, I don\u2019t feel the need to spend one of my resolve points on that, even if the RP moment was nice!",
+      "time": "2026-04-20T15:05:51+00:00",
+      "preview": "I see, I see, then I suppose there's no reason not to",
       "media_group_id": null
     }
   ],
@@ -176,7 +176,9 @@
     "msg:146380",
     "2026-04-19 20:55:40",
     "msg:146603",
-    "2026-04-20 13:51:28"
+    "2026-04-20 13:51:28",
+    "msg:146606",
+    "2026-04-20 14:20:31"
   ],
   "reply_log": [
     {
@@ -920,6 +922,15 @@
       "player": "Link",
       "preview": "Let me have my RP moment!",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-20T15:04:39+00:00",
+      "pid": "107171",
+      "msg_id": "146606",
+      "thread_id": 142887,
+      "player": "Cobalt",
+      "preview": "It was only one damage, I don\u2019t feel the need to spend one of my resolve points ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -930,8 +941,8 @@
       "fingerprint": "2026-04-20 13:50:50"
     },
     "142887": {
-      "msg_id": 146612,
-      "fingerprint": "2026-04-20 14:20:31"
+      "msg_id": 146640,
+      "fingerprint": "2026-04-20 15:05:51"
     }
   }
 }
