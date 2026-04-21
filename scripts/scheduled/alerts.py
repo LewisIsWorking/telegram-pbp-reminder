@@ -152,9 +152,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
 
         # 4+ weeks: remove (ALWAYS fires, even when GM is bottleneck)
         # Permanent players are never removed — skip the removal block entirely
-        if player.get("permanent"):
-            continue  # permanent players never warned or removed
-        elif current_week >= helpers.PLAYER_REMOVE_WEEKS:
+        if not player.get("permanent") and current_week >= helpers.PLAYER_REMOVE_WEEKS:
             if last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
                     f"{mention} has not posted in {campaign} PBP for "
