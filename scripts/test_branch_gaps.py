@@ -1396,3 +1396,70 @@ def test_voter_mention_flags_missing_username_not_in_state():
     result = _voter_mention("UNKNOWN", "Ghost", _mention_config(), state)
     assert "⚠️" in result
     assert "username unknown" in result
+
+# ─── scheduled/roster_nudge.py ────────────────────────────────────────────────
+
+def test_roster_nudge_posts_when_below_target():
+    """Roster nudge posts when a campaign is below target and interval elapsed."""
+    from scheduled.roster_nudge import post_roster_nudge
+    from datetime import datetime, timezone, timedelta
+    now = datetime(2026, 4, 21, 12, 0, tzinfo=timezone.utc)
+    old = (now - timedelta(days=4)).isoformat()
+    config = {"group_id": -1, "bot_topic_id": 999, "topic_pairs": [
+        {"pbp_topic_ids": [100], "code": "C04", "name": "Magni Watch",
+         "roster_target": 6},
+    ]}
+    state = {
+        "last_roster_nudge": old,
+        "players": {
+            "100:U1": {"user_id": "U1", "first_name": "Alice",
+                       "pbp_topic_id": 100, "permanent": True,
+                       "last_post_time": now.isoformat()},
+        },
+    }
+    sent = []
+    with patch("scheduled.roster_nudge.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        post_roster_nudge(config, state, now=now)
+    assert sent, "Expected roster nudge to be posted"
+    assert state["last_roster_nudge"] == now.isoformat()
+
+
+def test_roster_nudge_skips_when_all_satisfied():
+    """Roster nudge skips when all campaigns are at or above target."""
+    from scheduled.roster_nudge import post_roster_nudge
+    from datetime import datetime, timezone, timedelta
+    now = datetime(2026, 4, 21, 12, 0, tzinfo=timezone.utc)
+    config = {"group_id": -1, "bot_topic_id": 999, "topic_pairs": [
+        {"pbp_topic_ids": [100], "code": "C04", "name": "Test", "roster_target": 1},
+    ]}
+    state = {
+        "players": {
+            f"100:U{i}": {"user_id": f"U{i}", "first_name": f"P{i}",
+                          "pbp_topic_id": 100, "permanent": True,
+                          "last_post_time": now.isoformat()}
+            for i in range(2)
+        },
+    }
+    sent = []
+    with patch("scheduled.roster_nudge.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        post_roster_nudge(config, state, now=now)
+    assert not sent
+
+
+def test_roster_nudge_skips_within_interval():
+    """Roster nudge skips if fewer than 3 days since last post."""
+    from scheduled.roster_nudge import post_roster_nudge
+    from datetime import datetime, timezone, timedelta
+    now = datetime(2026, 4, 21, 12, 0, tzinfo=timezone.utc)
+    recent = (now - timedelta(days=1)).isoformat()
+    config = {"group_id": -1, "bot_topic_id": 999, "topic_pairs": [
+        {"pbp_topic_ids": [100], "code": "C04", "name": "Test", "roster_target": 6},
+    ]}
+    state = {"last_roster_nudge": recent, "players": {}}
+    sent = []
+    with patch("scheduled.roster_nudge.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
+        post_roster_nudge(config, state, now=now)
+    assert not sent
