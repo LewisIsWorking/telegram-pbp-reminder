@@ -53,7 +53,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         if not helpers.feature_enabled(config, pid, "alerts"):
             continue
 
-        if pid in state.get("paused_campaigns", {}):
+        if pid in state.get("paused_campaigns", {}) or player.get("permanent"):
             continue
 
         if pid not in state.get("topics", {}):
