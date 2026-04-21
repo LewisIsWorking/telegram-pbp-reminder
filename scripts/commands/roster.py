@@ -17,6 +17,9 @@ def _active_players(pid: str, state: dict) -> list[dict]:
     for p in state.get("players", {}).values():
         if str(p.get("pbp_topic_id", "")) != pid:
             continue
+        if p.get("permanent"):
+            result.append(p)
+            continue
         try:
             last = datetime.fromisoformat(p["last_post_time"])
             if last.tzinfo is None:
