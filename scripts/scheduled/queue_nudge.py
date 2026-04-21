@@ -25,7 +25,7 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
 
 def check_queue_nudge(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Send a direct @mention when a queue entry crosses 48h."""
-    bot_topic = config.get("bot_topic_id")
+    bot_topic = config.get("gm_queue_topic_id") or config.get("bot_topic_id")
     if not bot_topic:
         return
     now = now or datetime.now(timezone.utc)
