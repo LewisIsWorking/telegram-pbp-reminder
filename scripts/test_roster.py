@@ -289,3 +289,40 @@ def test_roster_active_player_missing_last_post():
     }}
     result = build_roster_overview(config, state)
     assert "0/6" in result
+
+def test_roster_includes_permanent_players_regardless_of_activity():
+    """Permanent players always appear in roster even if inactive >30 days."""
+    from commands.roster import build_roster_overview
+    config = _config([("C01", "Doomsday Funtime")])
+    state = {"players": {
+        "100:U1": {"user_id": "U1", "first_name": "Anthony",
+                   "pbp_topic_id": 100, "permanent": True,
+                   "last_post_time": "2020-01-01T00:00:00+00:00"},
+    }}
+    result = build_roster_overview(config, state)
+    assert "1/6" in result  # permanent player counted despite ancient last post
+
+
+def test_alerts_skips_permanent_players():
+    """Auto-removal skips players with permanent=True."""
+    from scheduled.alerts import check_and_alert
+    from datetime import datetime, timezone, timedelta
+    now = datetime(2026, 4, 20, 12, 0, tzinfo=timezone.utc)
+    old_post = (now - timedelta(weeks=5)).isoformat()
+    state = {
+        "players": {"100:U1": {
+            "user_id": "U1", "first_name": "Anthony", "username": "MrNegetZ",
+            "pbp_topic_id": "100", "campaign_name": "DF",
+            "last_post_time": old_post, "last_warned_week": 0,
+            "permanent": True,
+        }},
+        "removed_players": {}, "topics": {"100": {"last_message_time": old_post}},
+        "paused_campaigns": {},
+    }
+    config = {"group_id": -1, "topic_pairs": [
+        {"pbp_topic_ids": ["100"], "name": "DF", "code": "C01",
+         "chat_topic_id": 999, "features": {}},
+    ]}
+    check_and_alert(config, state, now=now)
+    assert "100:U1" in state["players"]  # NOT removed
+    assert state["removed_players"] == {}
