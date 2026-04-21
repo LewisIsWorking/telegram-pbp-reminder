@@ -316,7 +316,8 @@ def test_alerts_skips_permanent_players():
             "last_post_time": old_post, "last_warned_week": 0,
             "permanent": True,
         }},
-        "removed_players": {}, "topics": {"100": {"last_message_time": old_post}},
+        "removed_players": {}, "last_alerts": {},
+        "topics": {"100": {"last_message_time": old_post}},
         "paused_campaigns": {},
     }
     config = {"group_id": -1, "topic_pairs": [
