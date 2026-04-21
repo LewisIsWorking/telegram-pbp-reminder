@@ -50,7 +50,7 @@ def build_roster_overview(config: dict, state: dict) -> str:
         count = len(_active_players(pid, state))
         target = pair.get("roster_target", _TARGET)
         rows.append((count, code, name, target))
-    rows.sort(key=lambda r: r[0])
+    rows.sort(key=lambda r: (r[3] <= r[0], r[0]))  # warnings first, both by count asc
     lines = [f"📋 Campaign Roster (target: {_TARGET}, active last {_ACTIVE_DAYS}d)\n"]
     for count, code, name, target in rows:
         icon = "✅" if count >= target else "⚠️"
