@@ -16,33 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 146672,
-      "thread_id": 137075,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-20T22:00:31+00:00",
-      "preview": "I can't figure out how to roll for sir squishy. He's using his basic attack. I also cannot move him close enough to attack",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146673,
-      "thread_id": 137075,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-20T22:02:29+00:00",
-      "preview": "I know. I said one hour and here I am 8hours later",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146674,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-20T22:04:28+00:00",
-      "preview": "To quote one of the greatest minds of my generation, \"Life, uh... finds a way\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -410,7 +383,13 @@
     "msg:145922",
     "2026-04-18 20:25:17",
     "msg:146556",
-    "2026-04-20 11:59:50"
+    "2026-04-20 11:59:50",
+    "msg:146672",
+    "2026-04-20 22:00:31",
+    "msg:146673",
+    "2026-04-20 22:02:29",
+    "msg:146674",
+    "2026-04-20 22:04:28"
   ],
   "reply_log": [
     {
@@ -2039,14 +2018,41 @@
       "player": "Awnii",
       "preview": "Will do my turn in approximately 1 hour",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-21T11:06:40+00:00",
+      "pid": "40585",
+      "msg_id": "146672",
+      "thread_id": 137075,
+      "player": "Awnii",
+      "preview": "I can't figure out how to roll for sir squishy. He's using his basic attack. I a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-21T11:06:42+00:00",
+      "pid": "40585",
+      "msg_id": "146673",
+      "thread_id": 137075,
+      "player": "Awnii",
+      "preview": "I know. I said one hour and here I am 8hours later",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-21T11:07:22+00:00",
+      "pid": "40585",
+      "msg_id": "146674",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "To quote one of the greatest minds of my generation, \"Life, uh... finds a way\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 146676,
-      "fingerprint": "2026-04-20 22:00:31|2026-04-20 22:02:29|2026-04-20 22:04:28"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": null,
