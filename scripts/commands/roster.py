@@ -48,13 +48,14 @@ def build_roster_overview(config: dict, state: dict) -> str:
         name = pair.get("name", "")
         pid = str(pair["pbp_topic_ids"][0])
         count = len(_active_players(pid, state))
-        rows.append((count, code, name))
+        target = pair.get("roster_target", _TARGET)
+        rows.append((count, code, name, target))
     rows.sort(key=lambda r: r[0])
     lines = [f"📋 Campaign Roster (target: {_TARGET}, active last {_ACTIVE_DAYS}d)\n"]
-    for count, code, name in rows:
-        icon = "✅" if count >= _TARGET else "⚠️"
+    for count, code, name, target in rows:
+        icon = "✅" if count >= target else "⚠️"
         label = f"{code}: {name}" if code else name
-        lines.append(f"{icon} {label} — {count}/{_TARGET}")
+        lines.append(f"{icon} {label} — {count}/{target}")
     return "\n".join(lines)
 
 
@@ -66,7 +67,8 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
 
     players = _active_players(pid, state)
     count = len(players)
-    icon = "✅" if count >= _TARGET else "⚠️"
+    target = pair.get("roster_target", _TARGET)
+    icon = "✅" if count >= target else "⚠️"
     names = "\n".join(
         f"  • {p.get('first_name', '?')}"
         + (f" (@{p['username']})" if p.get("username") else "")
@@ -87,7 +89,7 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
 
     return (
         f"📋 {label}\n"
-        f"{icon} {count} active player{'s' if count != 1 else ''} (last {_ACTIVE_DAYS}d)\n\n"
+        f"{icon} {count}/{target} active player{'s' if count != 1 else ''} (last {_ACTIVE_DAYS}d)\n\n"
         f"Current:\n{names}\n\n"
         f"History:\n{hist_text}"
     )
