@@ -1,6 +1,25 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 146984,
+      "thread_id": 144765,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-21T16:27:17+00:00",
+      "preview": "Pick up weapon -> Shift Weapon -> Parry\n\nAkuma turn over",
+      "media_group_id": null
+    },
+    {
+      "message_id": 146986,
+      "thread_id": 76799,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-21T16:30:57+00:00",
+      "preview": "Akuma kneels down and picks up his katana. While standing back up, the blade begins to melt and shift shape. It wraps itself around Akuma's fist, and then three long, sharp claws begin to protrude from the metal plate over his hand. He readies himself to try to knock aside other darts that may head his way.\n\n\"How long?\" He asks his fluttering friend.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -666,12 +685,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 146996,
+      "fingerprint": "2026-04-21 16:30:57"
     },
     "144765": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 146994,
+      "fingerprint": "2026-04-21 16:27:17"
     }
   }
 }
