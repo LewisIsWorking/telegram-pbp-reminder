@@ -20,16 +20,6 @@
       "last_post_time": "2026-04-14T19:56:22+00:00",
       "last_warned_week": 0
     },
-    "52083:5190471248": {
-      "user_id": "5190471248",
-      "first_name": "Dima",
-      "last_name": "",
-      "username": "Dmitrilak",
-      "campaign_name": "Hopeful End-Times",
-      "pbp_topic_id": "52083",
-      "last_post_time": "2026-03-24T12:56:50+00:00",
-      "last_warned_week": 3
-    },
     "52083:7863964681": {
       "user_id": "7863964681",
       "first_name": "Link",
@@ -47,9 +37,8 @@
       "username": "Nemesiux",
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
-      "last_post_time": "2026-03-16T18:02:46+00:00",
-      "last_warned_week": 3,
-      "permanent": true
+      "last_post_time": "2026-04-21T13:30:55+00:00",
+      "last_warned_week": 0
     },
     "66154:5443237599": {
       "user_id": "5443237599",
@@ -534,6 +523,12 @@
       "first_name": "Aiden101",
       "username": "Aiiden101",
       "campaign_name": "Metal City"
+    },
+    "52083:5190471248": {
+      "removed_at": "2026-04-21T13:41:24.060868+00:00",
+      "first_name": "Dima",
+      "username": "Dmitrilak",
+      "campaign_name": "Hopeful End-Times"
     }
   },
   "player_registry": {
@@ -836,7 +831,16 @@
       }
     }
   },
-  "player_history": [],
+  "player_history": [
+    {
+      "event": "leave",
+      "pid": "52083",
+      "user_id": "5190471248",
+      "name": "Dima",
+      "username": "Dmitrilak",
+      "at": "2026-04-21T13:41:24.722286+00:00"
+    }
+  ],
   "player_boons": {
     "107151": {
       "7863964681": [
@@ -972,7 +976,7 @@
     },
     "8353586922": {
       "name": "Chase Darkthorne",
-      "count": 59
+      "count": 60
     },
     "6717906753": {
       "name": "Bo (@bogonzomd)",
