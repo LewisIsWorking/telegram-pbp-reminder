@@ -48,6 +48,7 @@ from scheduled.week_welcome import post_week_welcome
 from scheduled.swimming_poll import post_swimming_poll, post_swimming_ping
 from scheduled.diagnostic import run_daily_diagnostic
 from boons.handler import expire_pending_boons
+from scheduled.roster_nudge import post_roster_nudge
 from transcript.finalize import update_transcript_index
 
 # --- Backward-compat aliases for test_checker.py ---
@@ -65,6 +66,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Roster summary", post_roster_summary),
         ("Player of the Week", player_of_the_week),
         ("Boon expiry", expire_pending_boons),
+        ("Roster nudge", post_roster_nudge),
         ("Pace report", post_pace_report),
         ("Streak milestones", check_streak_milestones),
         ("Anniversaries", check_anniversaries),
