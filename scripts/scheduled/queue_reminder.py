@@ -26,7 +26,7 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
     return ", ".join(names)
 
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
-    bot_topic = config.get("bot_topic_id")
+    bot_topic = config.get("gm_queue_topic_id") or config.get("bot_topic_id")
     if not bot_topic:
         return  # pragma: no cover
     now = now or datetime.now(timezone.utc)
