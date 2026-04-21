@@ -305,7 +305,7 @@ def test_roster_includes_permanent_players_regardless_of_activity():
 
 def test_alerts_skips_permanent_players():
     """Auto-removal skips players with permanent=True."""
-    from scheduled.alerts import check_and_alert
+    from scheduled.alerts import check_player_activity
     from datetime import datetime, timezone, timedelta
     now = datetime(2026, 4, 20, 12, 0, tzinfo=timezone.utc)
     old_post = (now - timedelta(weeks=5)).isoformat()
@@ -323,6 +323,6 @@ def test_alerts_skips_permanent_players():
         {"pbp_topic_ids": ["100"], "name": "DF", "code": "C01",
          "chat_topic_id": 999, "features": {}},
     ]}
-    check_and_alert(config, state, now=now)
+    check_player_activity(config, state, now=now)
     assert "100:U1" in state["players"]  # NOT removed
     assert state["removed_players"] == {}
