@@ -24,7 +24,7 @@ def post_roster_nudge(config: dict, state: dict, *,
         except (ValueError, TypeError):
             pass
 
-    from helpers_pkg.constants import _TARGET as DEFAULT_TARGET
+    from commands.roster import _TARGET as DEFAULT_TARGET
     pairs = config.get("topic_pairs", [])
     from commands.roster import _active_players
     needs_players = any(
