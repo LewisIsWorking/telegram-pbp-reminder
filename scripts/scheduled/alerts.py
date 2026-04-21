@@ -53,7 +53,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         if not helpers.feature_enabled(config, pid, "alerts"):
             continue
 
-        if pid in state.get("paused_campaigns", {}) or player.get("permanent"):
+        if pid in state.get("paused_campaigns", {}):
             continue
 
         if pid not in state.get("topics", {}):
@@ -153,7 +153,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         # 4+ weeks: remove (ALWAYS fires, even when GM is bottleneck)
         # Permanent players are never removed — skip the removal block entirely
         if player.get("permanent"):
-            pass  # fall through to warnings below (week 3 skipped separately)
+            continue  # permanent players never warned or removed
         elif current_week >= helpers.PLAYER_REMOVE_WEEKS:
             if last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
