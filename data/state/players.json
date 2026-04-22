@@ -50,16 +50,6 @@
       "last_post_time": "2026-04-19T19:01:48+00:00",
       "last_warned_week": 0
     },
-    "66154:6134825204": {
-      "user_id": "6134825204",
-      "first_name": "Aiden101",
-      "last_name": "",
-      "username": "Aiiden101",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-03-25T01:34:35+00:00",
-      "last_warned_week": 3
-    },
     "107171:7863964681": {
       "user_id": "7863964681",
       "first_name": "Link",
@@ -525,6 +515,12 @@
       "first_name": "Bruce",
       "username": "Ravnos1",
       "campaign_name": "Hopeful End-Times"
+    },
+    "66154:6134825204": {
+      "removed_at": "2026-04-22T01:43:04.111073+00:00",
+      "first_name": "Aiden101",
+      "username": "Aiiden101",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -843,6 +839,14 @@
       "name": "Bruce",
       "username": "Ravnos1",
       "at": "2026-04-21T15:37:21.007146+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "6134825204",
+      "name": "Aiden101",
+      "username": "Aiiden101",
+      "at": "2026-04-22T01:43:04.858428+00:00"
     }
   ],
   "player_boons": {
@@ -980,7 +984,7 @@
     },
     "8353586922": {
       "name": "Chase Darkthorne",
-      "count": 75
+      "count": 76
     },
     "6717906753": {
       "name": "Bo (@bogonzomd)",
