@@ -1,43 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 146294,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-19T19:01:48+00:00",
-      "preview": "yee",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146295,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-19T19:02:47+00:00",
-      "preview": "That's what I have been waiting for.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146392,
-      "thread_id": 66154,
-      "user_id": "7961602816",
-      "user_name": "Capricious",
-      "time": "2026-04-19T21:14:02+00:00",
-      "preview": "Sounds good",
-      "media_group_id": null
-    },
-    {
-      "message_id": 146906,
-      "thread_id": 66154,
-      "user_id": "6717906753",
-      "user_name": "Bo",
-      "time": "2026-04-21T14:49:59+00:00",
-      "preview": "Sounds good!",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -87,7 +50,15 @@
     "msg:141289",
     "2026-03-31 21:37:24",
     "msg:141433",
-    "2026-04-01 21:33:16"
+    "2026-04-01 21:33:16",
+    "msg:146294",
+    "2026-04-19 19:01:48",
+    "msg:146295",
+    "2026-04-19 19:02:47",
+    "msg:146392",
+    "2026-04-19 21:14:02",
+    "msg:146906",
+    "2026-04-21 14:49:59"
   ],
   "reply_log": [
     {
@@ -335,14 +306,50 @@
       "player": "Lunnes",
       "preview": "Gobu looks at the green flask, sundely he starts to hear voices of the spirits t",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-22T14:45:06+00:00",
+      "pid": "66154",
+      "msg_id": "146294",
+      "thread_id": 66154,
+      "player": "Kaer'maga when?",
+      "preview": "yee",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-22T14:45:12+00:00",
+      "pid": "66154",
+      "msg_id": "146295",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "That's what I have been waiting for.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-22T14:45:22+00:00",
+      "pid": "66154",
+      "msg_id": "146392",
+      "thread_id": 66154,
+      "player": "Capricious",
+      "preview": "Sounds good",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-22T14:45:34+00:00",
+      "pid": "66154",
+      "msg_id": "146906",
+      "thread_id": 66154,
+      "player": "Bo",
+      "preview": "Sounds good!",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "msg_id": 146923,
-      "fingerprint": "2026-04-19 19:01:48|2026-04-19 19:02:47|2026-04-19 21:14:02|2026-04-21 14:49:59"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
