@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 146602,
-      "thread_id": 107171,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-20T13:50:50+00:00",
-      "preview": "\"Upstairs next,\" Joo-Dee responds.",
-      "media_group_id": null
-    },
-    {
       "message_id": 146617,
       "thread_id": 142887,
       "user_id": "8748487163",
@@ -187,7 +178,9 @@
     "msg:146603",
     "2026-04-20 13:51:28",
     "msg:146606",
-    "2026-04-20 14:20:31"
+    "2026-04-20 14:20:31",
+    "msg:146602",
+    "2026-04-20 13:50:50"
   ],
   "reply_log": [
     {
@@ -940,14 +933,23 @@
       "player": "Cobalt",
       "preview": "It was only one damage, I don\u2019t feel the need to spend one of my resolve points ",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-23T14:10:40+00:00",
+      "pid": "107171",
+      "msg_id": "146602",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "\"Upstairs next,\" Joo-Dee responds.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": 147392,
-      "fingerprint": "2026-04-20 13:50:50|2026-04-23 01:55:30"
+      "msg_id": 147480,
+      "fingerprint": "2026-04-23 01:55:30"
     },
     "142887": {
       "msg_id": 146640,
