@@ -56,15 +56,6 @@
       "media_group_id": null
     },
     {
-      "message_id": 147598,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Christopher",
-      "time": "2026-04-24T02:16:45+00:00",
-      "preview": "Natalia and Cackle (he has Independent) both Stride into the room and take a look around to see what is going on. As there are no enemies present yet, but Akuma seems to be in an area of danger, she casts Rousing Splash onto him, followed by her asking: \"What is the situation?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 147601,
       "thread_id": 76799,
       "user_id": "7863964681",
@@ -212,7 +203,9 @@
     "msg:147063",
     "2026-04-21 19:19:53",
     "msg:147064",
-    "2026-04-21 19:19:58"
+    "2026-04-21 19:19:58",
+    "msg:147598",
+    "2026-04-24 02:16:45"
   ],
   "reply_log": [
     {
@@ -786,6 +779,15 @@
       "player": "Cannon",
       "preview": "now to get darted lol",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-24T12:14:33+00:00",
+      "pid": "76799",
+      "msg_id": "147598",
+      "thread_id": 144765,
+      "player": "Christopher",
+      "preview": "Natalia and Cackle (he has Independent) both Stride into the room and take a loo",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -796,8 +798,8 @@
       "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41"
     },
     "144765": {
-      "msg_id": 147612,
-      "fingerprint": "2026-04-24 02:12:04|2026-04-24 02:16:45"
+      "msg_id": 147880,
+      "fingerprint": "2026-04-24 02:12:04"
     }
   }
 }
