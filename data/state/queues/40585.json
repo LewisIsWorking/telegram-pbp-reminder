@@ -16,6 +16,69 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 148047,
+      "thread_id": 137075,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-24T16:25:11+00:00",
+      "preview": "Did you just turn it on? Or am I using the wrong button?",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148049,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-04-24T16:26:15+00:00",
+      "preview": "It should be the exploit vulnerability action",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148051,
+      "thread_id": 137075,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-24T16:26:32+00:00",
+      "preview": "I used that, and it just put it in the chat. I can try again.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148052,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-04-24T16:26:49+00:00",
+      "preview": "Let me check 2 secs",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148053,
+      "thread_id": 137075,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-24T16:27:07+00:00",
+      "preview": "OH! DAMNIT!",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148055,
+      "thread_id": 137075,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-24T16:27:24+00:00",
+      "preview": "I found it. There's a fucking button at the bottom of the essay.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148056,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-04-24T16:27:35+00:00",
+      "preview": "There should be a macro",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -403,7 +466,17 @@
     "msg:147891",
     "2026-04-24 13:54:43",
     "msg:147964",
-    "2026-04-24 15:28:44"
+    "2026-04-24 15:28:44",
+    "msg:147985",
+    "2026-04-24 15:44:42",
+    "msg:147990",
+    "2026-04-24 16:01:58",
+    "msg:147992",
+    "2026-04-24 16:02:08",
+    "msg:147993",
+    "2026-04-24 16:02:17",
+    "msg:147999",
+    "2026-04-24 16:03:54"
   ],
   "reply_log": [
     {
@@ -2131,14 +2204,77 @@
       "player": "Link",
       "preview": "In my square.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:01:30+00:00",
+      "pid": "40585",
+      "msg_id": "147985",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "@PathWars if you're able, can you check if my Esoteric Knowledge roll is a suces",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:02:00+00:00",
+      "pid": "40585",
+      "msg_id": "147985",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:02:28+00:00",
+      "pid": "40585",
+      "msg_id": "147990",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "If it's a success, please let me know of it's highest weakness as well.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:02:30+00:00",
+      "pid": "40585",
+      "msg_id": "147992",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "It's not.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:02:33+00:00",
+      "pid": "40585",
+      "msg_id": "147993",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "Maybe that module got disabled or something",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:19:10+00:00",
+      "pid": "40585",
+      "msg_id": "147999",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "I really liked that module.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T16:22:06+00:00",
+      "pid": "40585",
+      "msg_id": "147999",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 148062,
+      "fingerprint": "2026-04-24 16:25:11|2026-04-24 16:26:15|2026-04-24 16:26:32|2026-04-24 16:26:49|2026-04-24 16:27:07|2026-04-24 16:27:24|2026-04-24 16:27:35"
     },
     "40585": {
       "msg_id": null,

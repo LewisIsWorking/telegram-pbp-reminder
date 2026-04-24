@@ -388,7 +388,14 @@
       "2026-04-24T13:39:42.235140+00:00",
       "2026-04-24T13:39:42.237736+00:00",
       "2026-04-24T14:41:20.314217+00:00",
-      "2026-04-24T15:33:26.592650+00:00"
+      "2026-04-24T15:33:26.592650+00:00",
+      "2026-04-24T16:29:14.674724+00:00",
+      "2026-04-24T16:29:14.678375+00:00",
+      "2026-04-24T16:29:14.683654+00:00",
+      "2026-04-24T16:29:14.685594+00:00",
+      "2026-04-24T16:29:14.687594+00:00",
+      "2026-04-24T16:29:14.694298+00:00",
+      "2026-04-24T16:29:14.699448+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -787,48 +794,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.949537+00:00",
-      "player": "THE FUN",
-      "preview": "Who are you? Show yourself ghost."
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.954473+00:00",
-      "player": "Natasha",
-      "preview": "Feyre looks concerned"
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.955869+00:00",
-      "player": "Natasha",
-      "preview": "\"Mr serious, stop leaving a mess\""
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.956642+00:00",
-      "player": "Natasha",
-      "preview": "Feyre thinks to herself, it didn't look like that before"
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.957373+00:00",
-      "player": "Natasha",
-      "preview": "Feyre \"wtf\""
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.958341+00:00",
-      "player": "THE FUN",
-      "preview": "Ger \"great something else to kill\""
-    },
-    {
-      "pid": "1242",
-      "time": "2026-04-18T10:16:39.959067+00:00",
-      "player": "Jack",
-      "preview": "Mr serious sees the tits and is instantly horny again"
-    },
     {
       "pid": "1242",
       "time": "2026-04-18T10:16:39.961172+00:00",
@@ -1986,6 +1951,48 @@
       "time": "2026-04-24T15:33:26.592650+00:00",
       "player": "Link",
       "preview": "In my square."
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.674724+00:00",
+      "player": "Link",
+      "preview": "@PathWars if you're able, can you check if my Esoteric Knowl"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.678375+00:00",
+      "player": "",
+      "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.683654+00:00",
+      "player": "Link",
+      "preview": "If it's a success, please let me know of it's highest weakne"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.685594+00:00",
+      "player": "Link",
+      "preview": "It's not."
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.687594+00:00",
+      "player": "Link",
+      "preview": "Maybe that module got disabled or something"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.694298+00:00",
+      "player": "Link",
+      "preview": "I really liked that module."
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-24T16:29:14.699448+00:00",
+      "player": "",
+      "preview": ""
     }
   ],
   "pending_potw_boons": {
@@ -2044,6 +2051,19 @@
       "base_message": "Player of the Week for Magni Watch: Chase Darkthorne (@ChaseDarkthorne)!\n(2026-04-13 (W16) to 2026-04-20 (W17))\n\n5 posts this week with an average gap of 34.4h between posts. The most consistent driver of the story.",
       "posted_at": "2026-04-20T06:48:50.776299+00:00",
       "reminders_sent": 2
+    },
+    "40585": {
+      "message_id": 148060,
+      "winner_user_id": "7863964681",
+      "campaign_name": "Kibwe",
+      "boons": [
+        "The ship's navigator discovers a shorter route that avoids the storm.",
+        "The local currency uses a metal that reacts to magic. Your coins hum near enchantments.",
+        "A temple's donation box spills a few coins in your direction. The priest waves it off.",
+        "Your next Recall Knowledge check gains a +2 circumstance bonus."
+      ],
+      "base_message": "Player of the Week for Kibwe: Link (@Linksanelf2006)!\n(2026-04-17 (W16) to 2026-04-24 (W17))\n\n5 posts this week with an average gap of 0.6h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-04-24T16:29:15.968371+00:00"
     }
   }
 }
