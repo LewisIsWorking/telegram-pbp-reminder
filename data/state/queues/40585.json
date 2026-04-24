@@ -18,12 +18,21 @@
       "preview": "[media]"
     },
     {
-      "message_id": 147774,
+      "message_id": 147798,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-04-24T11:42:43+00:00",
+      "preview": "Can u roll for me pls ?",
+      "media_group_id": null
+    },
+    {
+      "message_id": 147830,
       "thread_id": 40585,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-04-24T11:30:05+00:00",
-      "preview": "@PathWars  use the highest stat on lorn for the save",
+      "time": "2026-04-24T12:04:17+00:00",
+      "preview": "Their wisdom must be high",
       "media_group_id": null
     }
   ],
@@ -400,7 +409,11 @@
     "msg:146674",
     "2026-04-20 22:04:28",
     "msg:144967",
-    "2026-04-14 15:37:17"
+    "2026-04-14 15:37:17",
+    "msg:147774",
+    "2026-04-24 11:30:05",
+    "msg:144965",
+    "2026-04-14 15:36:13"
   ],
   "reply_log": [
     {
@@ -2065,18 +2078,45 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-24T11:55:32+00:00",
+      "pid": "40585",
+      "msg_id": "147774",
+      "thread_id": 40585,
+      "player": "Kaer'maga when?",
+      "preview": "@PathWars  use the highest stat on lorn for the save",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T11:55:57+00:00",
+      "pid": "40585",
+      "msg_id": "147774",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T11:57:32+00:00",
+      "pid": "40585",
+      "msg_id": "144965",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 147865,
+      "fingerprint": "2026-04-24 11:42:43"
     },
     "40585": {
-      "msg_id": 147779,
-      "fingerprint": "2026-04-24 11:30:05"
+      "msg_id": 147867,
+      "fingerprint": "2026-04-24 12:04:17"
     }
   }
 }
