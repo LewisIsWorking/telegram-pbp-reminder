@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 148043,
-      "thread_id": 52083,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:22:38+00:00",
-      "preview": "Miyu looks around at the depressing place, his fur dulls to match the aesthetic. He notices the fellow Pahtra, but resists the urge to engage with him at the cost of ignoring this Joia person. \n\n\"Nikk-Nakk says you could use some help?\" His eyes are still scanning the room, but he meets hers at the last word.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -85,7 +75,9 @@
     "msg:144640",
     "2026-04-14 07:43:28",
     "msg:144858",
-    "2026-04-14 14:16:02"
+    "2026-04-14 14:16:02",
+    "msg:148043",
+    "2026-04-24 16:22:38"
   ],
   "reply_log": [
     {
@@ -416,14 +408,23 @@
       "player": "Link",
       "preview": "\"Don't know who this Nikk-Nakk fella is, but if you say we should talk to him, t",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-24T17:17:02+00:00",
+      "pid": "52083",
+      "msg_id": "148043",
+      "thread_id": 52083,
+      "player": "Link",
+      "preview": "Miyu looks around at the depressing place, his fur dulls to match the aesthetic.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "msg_id": 148064,
-      "fingerprint": "2026-04-24 16:22:38"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
