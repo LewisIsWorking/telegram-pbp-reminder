@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 147774,
+      "thread_id": 40585,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-04-24T11:30:05+00:00",
+      "preview": "@PathWars  use the highest stat on lorn for the save",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -389,7 +398,9 @@
     "msg:146673",
     "2026-04-20 22:02:29",
     "msg:146674",
-    "2026-04-20 22:04:28"
+    "2026-04-20 22:04:28",
+    "msg:144967",
+    "2026-04-14 15:37:17"
   ],
   "reply_log": [
     {
@@ -2045,6 +2056,15 @@
       "player": "Ryo",
       "preview": "To quote one of the greatest minds of my generation, \"Life, uh... finds a way\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-24T11:30:31+00:00",
+      "pid": "40585",
+      "msg_id": "144967",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2055,8 +2075,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 147779,
+      "fingerprint": "2026-04-24 11:30:05"
     }
   }
 }
