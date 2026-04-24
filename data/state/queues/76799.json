@@ -38,30 +38,39 @@
       "media_group_id": null
     },
     {
-      "message_id": 147063,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-21T19:19:53+00:00",
-      "preview": "alrighty, numbing tonic instead;",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147064,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-21T19:19:58+00:00",
-      "preview": "now to get darted lol",
-      "media_group_id": null
-    },
-    {
       "message_id": 147065,
       "thread_id": 76799,
       "user_id": "7863964681",
       "user_name": "Link",
       "time": "2026-04-21T19:26:25+00:00",
       "preview": "Akuma gulps down the slightly bitter fluid, and immediately his face and extremities start to feel tingly. The pain of the wounds he suffered moments ago fades to a dull ache.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 147596,
+      "thread_id": 144765,
+      "user_id": "8787586972",
+      "user_name": "Christopher",
+      "time": "2026-04-24T02:12:04+00:00",
+      "preview": "I guess I'll join in then",
+      "media_group_id": null
+    },
+    {
+      "message_id": 147598,
+      "thread_id": 144765,
+      "user_id": "8787586972",
+      "user_name": "Christopher",
+      "time": "2026-04-24T02:16:45+00:00",
+      "preview": "Natalia and Cackle (he has Independent) both Stride into the room and take a look around to see what is going on. As there are no enemies present yet, but Akuma seems to be in an area of danger, she casts Rousing Splash onto him, followed by her asking: \"What is the situation?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 147601,
+      "thread_id": 76799,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-24T02:35:24+00:00",
+      "preview": "Akuma, dripping with water looks over to this new arrival with what can only be described as confusion.\n\n\"What was that for?\" He asks, almost forgetting he is still in the middle of a trap.",
       "media_group_id": null
     }
   ],
@@ -190,7 +199,11 @@
     "msg:146984",
     "2026-04-21 16:27:17",
     "msg:147001",
-    "2026-04-21 16:33:02"
+    "2026-04-21 16:33:02",
+    "msg:147063",
+    "2026-04-21 19:19:53",
+    "msg:147064",
+    "2026-04-21 19:19:58"
   ],
   "reply_log": [
     {
@@ -746,18 +759,36 @@
       "player": "Link",
       "preview": "Nadya technically took her turn, but since both she and Kitt went to my aide, I ",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-24T01:58:47+00:00",
+      "pid": "76799",
+      "msg_id": "147063",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "alrighty, numbing tonic instead;",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T01:59:01+00:00",
+      "pid": "76799",
+      "msg_id": "147064",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "now to get darted lol",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 147076,
-      "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25"
+      "msg_id": 147610,
+      "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24"
     },
     "144765": {
-      "msg_id": 147078,
-      "fingerprint": "2026-04-21 19:19:53|2026-04-21 19:19:58"
+      "msg_id": 147612,
+      "fingerprint": "2026-04-24 02:12:04|2026-04-24 02:16:45"
     }
   }
 }
