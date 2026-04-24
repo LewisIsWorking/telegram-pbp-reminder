@@ -399,7 +399,9 @@
     "msg:147830",
     "2026-04-24 12:04:17",
     "msg:147798",
-    "2026-04-24 11:42:43"
+    "2026-04-24 11:42:43",
+    "msg:147891",
+    "2026-04-24 13:54:43"
   ],
   "reply_log": [
     {
@@ -2108,6 +2110,15 @@
       "thread_id": 137075,
       "player": "Caelum",
       "preview": "Can u roll for me pls ?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T14:09:05+00:00",
+      "pid": "40585",
+      "msg_id": "147891",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "Navigating is with me. I had no actions to Command him to go anywhere until now.",
       "via": "reply"
     }
   ],
