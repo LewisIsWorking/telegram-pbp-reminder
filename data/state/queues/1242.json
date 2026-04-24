@@ -247,7 +247,9 @@
     "msg:2234",
     "2026-04-18 18:38:24",
     "msg:2236",
-    "2026-04-18 19:11:11"
+    "2026-04-18 19:11:11",
+    "msg:2267",
+    "2026-04-19 16:04:28"
   ],
   "reply_log": [
     {
@@ -1502,6 +1504,15 @@
       "thread_id": 1242,
       "player": "NJ",
       "preview": "Quiz had taken her hostage and infected her with some sort of shadow magic, but ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-24T19:09:27+00:00",
+      "pid": "1242",
+      "msg_id": "2267",
+      "thread_id": "1242",
+      "player": "?",
+      "preview": "",
       "via": "reply"
     }
   ],
