@@ -27,7 +27,7 @@
       "username": "Linksanelf2006",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-04-24T16:22:38+00:00",
+      "last_post_time": "2026-04-24T17:33:25+00:00",
       "last_warned_week": 0
     },
     "25059:5443237599": {
@@ -349,7 +349,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-04-24T17:25:56+00:00",
+      "last_post_time": "2026-04-24T17:33:29+00:00",
       "last_warned_week": 0
     },
     "40585:6023408187": {
@@ -481,6 +481,16 @@
       "pbp_topic_id": "76799",
       "last_post_time": "2026-04-24T06:09:41+00:00",
       "last_warned_week": 0
+    },
+    "52083:7077683276": {
+      "user_id": "7077683276",
+      "first_name": "Bruce",
+      "last_name": "",
+      "username": "Ravnos1",
+      "campaign_name": "Hopeful End-Times",
+      "pbp_topic_id": "52083",
+      "last_post_time": "2026-04-24T17:28:50+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -518,12 +528,6 @@
       "removed_at": "2026-04-21T13:41:24.060868+00:00",
       "first_name": "Dima",
       "username": "Dmitrilak",
-      "campaign_name": "Hopeful End-Times"
-    },
-    "52083:7077683276": {
-      "removed_at": "2026-04-21T15:37:20.412924+00:00",
-      "first_name": "Bruce",
-      "username": "Ravnos1",
       "campaign_name": "Hopeful End-Times"
     },
     "66154:6134825204": {
@@ -862,6 +866,14 @@
       "name": "Aiden101",
       "username": "Aiiden101",
       "at": "2026-04-22T01:43:04.858428+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "52083",
+      "user_id": "7077683276",
+      "name": "Bruce",
+      "username": "Ravnos1",
+      "at": "2026-04-24T18:23:34.566332+00:00"
     }
   ],
   "player_boons": {

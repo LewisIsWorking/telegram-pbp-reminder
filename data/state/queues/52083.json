@@ -1,6 +1,25 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 148114,
+      "thread_id": 52083,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-04-24T17:28:50+00:00",
+      "preview": "Chua moves forward.  \"Help take on tasks that needs to be done that most people cannot do.  If you have something that you need taken care of that your normal clients and employees would not be up to, then we are the ones most likely to get ot done.   However, if you do not need specialized help we can do some odd jobs and medical care as needed.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 148116,
+      "thread_id": 52083,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-04-24T17:33:25+00:00",
+      "preview": "Miyu ponders the question. He's never farmed in life, his medical expertise sort of ends at band-aids, and he's never taught anyone anything, really. Yet, he does have a fair bit of knowledge, so maybe he can wing it during instruction.\n\n\"Can't say I can do any of those things, but depending on what needs to be taught, I can probably part with some information.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -423,8 +442,8 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 148148,
+      "fingerprint": "2026-04-24 17:28:50|2026-04-24 17:33:25"
     }
   }
 }
