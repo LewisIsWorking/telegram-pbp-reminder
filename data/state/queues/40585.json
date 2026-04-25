@@ -18,123 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 148047,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:25:11+00:00",
-      "preview": "Did you just turn it on? Or am I using the wrong button?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148049,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T16:26:15+00:00",
-      "preview": "It should be the exploit vulnerability action",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148051,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:26:32+00:00",
-      "preview": "I used that, and it just put it in the chat. I can try again.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148052,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T16:26:49+00:00",
-      "preview": "Let me check 2 secs",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148053,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:27:07+00:00",
-      "preview": "OH! DAMNIT!",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148055,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:27:24+00:00",
-      "preview": "I found it. There's a fucking button at the bottom of the essay.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148056,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T16:27:35+00:00",
-      "preview": "There should be a macro",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148072,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:33:16+00:00",
-      "preview": "Kieran's actions:\nLightning Swap into Sword and Shield\nExploit Vulnerability on Slime #8 34, Critical Success, Personal Antithesis chosen\nStrike on Slime #8: 33, Critical Hit, slime immune to crit damage, 17 damage.\n\nEnd Kieran's Turn",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148073,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:34:16+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148074,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:34:40+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148075,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:35:02+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148076,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T16:35:26+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148095,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T17:18:44+00:00",
-      "preview": "[media]",
-      "media_group_id": "14216408999401820"
-    },
-    {
       "message_id": 148099,
       "thread_id": 137075,
       "user_id": "6144366145",
@@ -611,7 +494,35 @@
     "msg:147993",
     "2026-04-24 16:02:17",
     "msg:147999",
-    "2026-04-24 16:03:54"
+    "2026-04-24 16:03:54",
+    "msg:148047",
+    "2026-04-24 16:25:11",
+    "msg:148049",
+    "2026-04-24 16:26:15",
+    "msg:148051",
+    "2026-04-24 16:26:32",
+    "msg:148052",
+    "2026-04-24 16:26:49",
+    "msg:148053",
+    "2026-04-24 16:27:07",
+    "msg:148055",
+    "2026-04-24 16:27:24",
+    "msg:148056",
+    "2026-04-24 16:27:35",
+    "msg:148072",
+    "2026-04-24 16:33:16",
+    "msg:148073",
+    "2026-04-24 16:34:16",
+    "msg:148074",
+    "2026-04-24 16:34:40",
+    "msg:148075",
+    "2026-04-24 16:35:02",
+    "msg:148076",
+    "2026-04-24 16:35:26",
+    "msg:148095",
+    "2026-04-24 17:18:44",
+    "msg:148096",
+    "2026-04-24 17:18:45"
   ],
   "reply_log": [
     {
@@ -2402,14 +2313,140 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:30:28+00:00",
+      "pid": "40585",
+      "msg_id": "148047",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "Did you just turn it on? Or am I using the wrong button?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:30:51+00:00",
+      "pid": "40585",
+      "msg_id": "148049",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "It should be the exploit vulnerability action",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:31:19+00:00",
+      "pid": "40585",
+      "msg_id": "148051",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "I used that, and it just put it in the chat. I can try again.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:31:24+00:00",
+      "pid": "40585",
+      "msg_id": "148052",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Let me check 2 secs",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:31:29+00:00",
+      "pid": "40585",
+      "msg_id": "148053",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "OH! DAMNIT!",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:31:34+00:00",
+      "pid": "40585",
+      "msg_id": "148055",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "I found it. There's a fucking button at the bottom of the essay.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:31:38+00:00",
+      "pid": "40585",
+      "msg_id": "148056",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "There should be a macro",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:32:34+00:00",
+      "pid": "40585",
+      "msg_id": "148072",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "Kieran's actions:\nLightning Swap into Sword and Shield\nExploit Vulnerability on ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:32:51+00:00",
+      "pid": "40585",
+      "msg_id": "148073",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:33:02+00:00",
+      "pid": "40585",
+      "msg_id": "148074",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:33:20+00:00",
+      "pid": "40585",
+      "msg_id": "148075",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:33:28+00:00",
+      "pid": "40585",
+      "msg_id": "148076",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:34:13+00:00",
+      "pid": "40585",
+      "msg_id": "148095",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:34:40+00:00",
+      "pid": "40585",
+      "msg_id": "148096",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 148240,
-      "fingerprint": "2026-04-24 16:25:11|2026-04-24 16:26:15|2026-04-24 16:26:32|2026-04-24 16:26:49|2026-04-24 16:27:07|2026-04-24 16:27:24|2026-04-24 16:27:35|2026-04-24 16:33:16|2026-04-24 16:34:16|2026-04-24 16:34:40|2026-04-24 16:35:02|2026-04-24 16:35:26|2026-04-24 17:18:44|2026-04-24 17:18:45|2026-04-24 17:18:45|2026-04-24 17:18:45|2026-04-24 17:21:12|2026-04-24 17:21:39|2026-04-24 17:24:58|2026-04-24 17:25:56|2026-04-24 17:32:47|2026-04-24 17:33:29|2026-04-24 22:12:14"
+      "msg_id": 148335,
+      "fingerprint": "2026-04-24 17:21:12|2026-04-24 17:21:39|2026-04-24 17:24:58|2026-04-24 17:25:56|2026-04-24 17:32:47|2026-04-24 17:33:29|2026-04-24 22:12:14"
     },
     "40585": {
       "msg_id": 148108,
