@@ -18,24 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 148099,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T17:21:12+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148100,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T17:21:39+00:00",
-      "preview": "3 NAT 20s possible???",
-      "media_group_id": null
-    },
-    {
       "message_id": 148101,
       "thread_id": 40585,
       "user_id": "7863964681",
@@ -51,51 +33,6 @@
       "user_name": "Link",
       "time": "2026-04-24T17:23:35+00:00",
       "preview": "It wasn't a strong blow, but it landed accurately.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148103,
-      "thread_id": 137075,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T17:24:58+00:00",
-      "preview": "Hax",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148104,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T17:25:56+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148115,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T17:32:47+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148117,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-24T17:33:29+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148237,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-04-24T22:12:14+00:00",
-      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -522,7 +459,43 @@
     "msg:148095",
     "2026-04-24 17:18:44",
     "msg:148096",
-    "2026-04-24 17:18:45"
+    "2026-04-24 17:18:45",
+    "msg:148099",
+    "2026-04-24 17:21:12",
+    "msg:148100",
+    "2026-04-24 17:21:39",
+    "msg:148103",
+    "2026-04-24 17:24:58",
+    "msg:148104",
+    "2026-04-24 17:25:56",
+    "msg:148115",
+    "2026-04-24 17:32:47",
+    "msg:148117",
+    "2026-04-24 17:33:29",
+    "msg:148237",
+    "2026-04-24 22:12:14",
+    "msg:148352",
+    "2026-04-25 13:50:03",
+    "msg:148353",
+    "2026-04-25 13:50:08",
+    "msg:148355",
+    "2026-04-25 13:50:22",
+    "msg:148357",
+    "2026-04-25 13:50:38",
+    "msg:148369",
+    "2026-04-25 13:54:23",
+    "msg:148374",
+    "2026-04-25 13:55:18",
+    "msg:148378",
+    "2026-04-25 13:55:48",
+    "msg:145906",
+    "2026-04-18 20:00:22",
+    "msg:148383",
+    "2026-04-25 13:57:03",
+    "msg:148384",
+    "2026-04-25 13:57:32",
+    "msg:148401",
+    "2026-04-25 14:14:09"
   ],
   "reply_log": [
     {
@@ -2439,14 +2412,194 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:35:15+00:00",
+      "pid": "40585",
+      "msg_id": "148099",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:35:23+00:00",
+      "pid": "40585",
+      "msg_id": "148100",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "3 NAT 20s possible???",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:45:58+00:00",
+      "pid": "40585",
+      "msg_id": "148103",
+      "thread_id": 137075,
+      "player": "Link",
+      "preview": "Hax",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:46:16+00:00",
+      "pid": "40585",
+      "msg_id": "148104",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:46:37+00:00",
+      "pid": "40585",
+      "msg_id": "148115",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:47:01+00:00",
+      "pid": "40585",
+      "msg_id": "148117",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:47:14+00:00",
+      "pid": "40585",
+      "msg_id": "148237",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:50:11+00:00",
+      "pid": "40585",
+      "msg_id": "148352",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:50:31+00:00",
+      "pid": "40585",
+      "msg_id": "148353",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "guess my turn",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:50:48+00:00",
+      "pid": "40585",
+      "msg_id": "148355",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "you have too many chats",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:50:59+00:00",
+      "pid": "40585",
+      "msg_id": "148357",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "yes sir",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:54:37+00:00",
+      "pid": "40585",
+      "msg_id": "148369",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "The one that doesn't split",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:55:03+00:00",
+      "pid": "40585",
+      "msg_id": "148369",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:55:22+00:00",
+      "pid": "40585",
+      "msg_id": "148374",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "Well shoot the lowest",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:55:23+00:00",
+      "pid": "40585",
+      "msg_id": "148374",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:56:53+00:00",
+      "pid": "40585",
+      "msg_id": "148378",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "If the bow ends up doing piercing switch to the composite bow next turn",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:57:38+00:00",
+      "pid": "40585",
+      "msg_id": "145906",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:57:43+00:00",
+      "pid": "40585",
+      "msg_id": "148383",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "Yeah",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T13:57:46+00:00",
+      "pid": "40585",
+      "msg_id": "148384",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": ".",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-25T14:22:57+00:00",
+      "pid": "40585",
+      "msg_id": "148401",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 148335,
-      "fingerprint": "2026-04-24 17:21:12|2026-04-24 17:21:39|2026-04-24 17:24:58|2026-04-24 17:25:56|2026-04-24 17:32:47|2026-04-24 17:33:29|2026-04-24 22:12:14"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": 148108,
