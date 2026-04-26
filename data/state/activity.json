@@ -1081,6 +1081,9 @@
         "2026-04-19T21:01:52+00:00",
         "2026-04-20T14:20:31+00:00",
         "2026-04-20T15:05:51+00:00"
+      ],
+      "8787586972": [
+        "2026-04-26T17:50:51+00:00"
       ]
     },
     "107151": {
@@ -1560,7 +1563,8 @@
       "7077683276": 17,
       "8117756377": 23,
       "8383886822": 17,
-      "8748487163": 13
+      "8748487163": 13,
+      "8787586972": 1
     },
     "40585": {
       "6144366145": 65,
@@ -2003,6 +2007,9 @@
         "21": 1,
         "14": 1,
         "15": 1
+      },
+      "8787586972": {
+        "17": 1
       }
     },
     "51357": {
@@ -2494,6 +2501,9 @@
         "2": 3,
         "0": 3,
         "6": 7
+      },
+      "8787586972": {
+        "6": 1
       }
     },
     "51357": {
@@ -2691,7 +2701,8 @@
       "6134825204": 198,
       "7863964681": 1053,
       "8383886822": 1604,
-      "8748487163": 860
+      "8748487163": 860,
+      "8787586972": 0
     },
     "51357": {
       "1698524397": 1083,
@@ -3114,6 +3125,25 @@
         "The DC of your next skill check is reduced by 1."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W17",
+      "year": 2026,
+      "date": "2026-04-26",
+      "campaign": "Metal City",
+      "campaign_pid": "107171",
+      "user_id": "8748487163",
+      "first_name": "Cobalt",
+      "username": "cobaltquail",
+      "post_count": 6,
+      "avg_gap_h": 3.9,
+      "boons_offered": [
+        "The next bridge you cross has guardrails. A small luxury you appreciate.",
+        "A halfling cook feeds your entire party and refuses payment. Hospitality of the road.",
+        "A gemstone in a shop window catches the light and reveals a flaw. The price drops.",
+        "Gain a +1 circumstance bonus to initiative in your next combat."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -3170,6 +3200,9 @@
     "1825": {
       "1698524397": 3
     },
-    "133428": {}
+    "133428": {},
+    "107171": {
+      "8787586972": 1
+    }
   }
 }
