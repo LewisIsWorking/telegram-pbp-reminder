@@ -507,7 +507,9 @@
     "msg:148101",
     "2026-04-24 17:22:58",
     "msg:148102",
-    "2026-04-24 17:23:35"
+    "2026-04-24 17:23:35",
+    "msg:148736",
+    "2026-04-27 13:42:37"
   ],
   "reply_log": [
     {
@@ -2756,6 +2758,15 @@
       "thread_id": 40585,
       "player": "Link",
       "preview": "It wasn't a strong blow, but it landed accurately.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-27T14:55:41+00:00",
+      "pid": "40585",
+      "msg_id": "148736",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
       "via": "reply"
     }
   ],
