@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2313,
-      "thread_id": 1242,
-      "user_id": "6464119705",
-      "user_name": "Luke",
-      "time": "2026-04-27T19:58:45+00:00",
-      "preview": "~",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -259,7 +249,9 @@
     "msg:2236",
     "2026-04-18 19:11:11",
     "msg:2267",
-    "2026-04-19 16:04:28"
+    "2026-04-19 16:04:28",
+    "msg:2313",
+    "2026-04-27 19:58:45"
   ],
   "reply_log": [
     {
@@ -1524,14 +1516,23 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-27T23:11:44+00:00",
+      "pid": "1242",
+      "msg_id": "2313",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "~",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 2314,
-      "fingerprint": "2026-04-27 19:58:45"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

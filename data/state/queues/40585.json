@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 148749,
-      "thread_id": 137075,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-27T16:09:26+00:00",
-      "preview": "And me",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -520,7 +511,9 @@
     "msg:148736",
     "2026-04-27 13:42:37",
     "msg:148750",
-    "2026-04-27 16:15:07"
+    "2026-04-27 16:15:07",
+    "msg:148749",
+    "2026-04-27 16:09:26"
   ],
   "reply_log": [
     {
@@ -2788,14 +2781,23 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-27T23:18:02+00:00",
+      "pid": "40585",
+      "msg_id": "148749",
+      "thread_id": 137075,
+      "player": "Awnii",
+      "preview": "And me",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 148790,
-      "fingerprint": "2026-04-27 16:09:26"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
       "msg_id": null,
