@@ -447,7 +447,8 @@
       "2026-04-27T13:42:25.935114+00:00",
       "2026-04-27T13:42:25.937112+00:00",
       "2026-04-27T13:42:25.938932+00:00",
-      "2026-04-27T15:42:14.329879+00:00"
+      "2026-04-27T15:42:14.329879+00:00",
+      "2026-04-27T16:41:02.162698+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -848,12 +849,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "1242",
-      "time": "2026-04-18T18:21:10.312013+00:00",
-      "player": "Jack",
-      "preview": "Mr serious twists his left nipple"
-    },
     {
       "pid": "1242",
       "time": "2026-04-18T18:21:10.313136+00:00",
@@ -2047,6 +2042,12 @@
       "time": "2026-04-27T15:42:14.329879+00:00",
       "player": "",
       "preview": ""
+    },
+    {
+      "pid": "40585",
+      "time": "2026-04-27T16:41:02.162698+00:00",
+      "player": "Ryo",
+      "preview": "[media]"
     }
   ],
   "pending_potw_boons": {
@@ -2103,7 +2104,7 @@
       ],
       "base_message": "Player of the Week for Kibwe: Link (@Linksanelf2006)!\n(2026-04-17 (W16) to 2026-04-24 (W17))\n\n5 posts this week with an average gap of 0.6h between posts. The most consistent driver of the story.",
       "posted_at": "2026-04-24T16:29:15.968371+00:00",
-      "reminders_sent": 1
+      "reminders_sent": 2
     }
   }
 }
