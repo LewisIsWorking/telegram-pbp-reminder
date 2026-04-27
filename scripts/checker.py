@@ -49,6 +49,7 @@ from scheduled.swimming_poll import post_swimming_poll, post_swimming_ping
 from scheduled.diagnostic import run_daily_diagnostic
 from boons.handler import expire_pending_boons
 from scheduled.roster_nudge import post_roster_nudge
+from scheduled.gm_escalation import check_gm_escalation
 from transcript.finalize import update_transcript_index
 
 # --- Backward-compat aliases for test_checker.py ---
@@ -67,6 +68,7 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Player of the Week", player_of_the_week),
         ("Boon expiry", expire_pending_boons),
         ("Roster nudge", post_roster_nudge),
+        ("GM escalation", check_gm_escalation),
         ("Pace report", post_pace_report),
         ("Streak milestones", check_streak_milestones),
         ("Anniversaries", check_anniversaries),
