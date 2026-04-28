@@ -2,30 +2,12 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 146617,
-      "thread_id": 142887,
-      "user_id": "8748487163",
-      "user_name": "Cobalt",
-      "time": "2026-04-20T15:05:51+00:00",
-      "preview": "I see, I see, then I suppose there's no reason not to",
-      "media_group_id": null
-    },
-    {
       "message_id": 147389,
       "thread_id": 107171,
       "user_id": "8383886822",
       "user_name": "CzarChasm23",
       "time": "2026-04-23T01:55:30+00:00",
       "preview": "Chik doesn't want to stop and think about the pirates he just helped - with insanely little effort - to kill. \"Yeah let's head upstairs, we've gotta secure the ship before anything else. And there's still another hostile ship out there to deal with. I'm ready when you are.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148621,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Christopher",
-      "time": "2026-04-26T17:50:51+00:00",
-      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -189,7 +171,13 @@
     "msg:146606",
     "2026-04-20 14:20:31",
     "msg:146602",
-    "2026-04-20 13:50:50"
+    "2026-04-20 13:50:50",
+    "msg:146617",
+    "2026-04-20 15:05:51",
+    "msg:148965",
+    "2026-04-27 23:59:58",
+    "msg:148621",
+    "2026-04-26 17:50:51"
   ],
   "reply_log": [
     {
@@ -951,18 +939,54 @@
       "player": "Link",
       "preview": "\"Upstairs next,\" Joo-Dee responds.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-27T23:51:54+00:00",
+      "pid": "107171",
+      "msg_id": "146617",
+      "thread_id": 142887,
+      "player": "Cobalt",
+      "preview": "I see, I see, then I suppose there's no reason not to",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T00:01:06+00:00",
+      "pid": "107171",
+      "msg_id": "148965",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "\"Might as well deal with the missile,\" Joo-Dee says hesitantly, \"any volunteers?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T00:08:29+00:00",
+      "pid": "107171",
+      "msg_id": "148621",
+      "thread_id": 107171,
+      "player": "Christopher",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T00:08:44+00:00",
+      "pid": "107171",
+      "msg_id": "148621",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": 148628,
-      "fingerprint": "2026-04-23 01:55:30|2026-04-26 17:50:51"
+      "msg_id": 148991,
+      "fingerprint": "2026-04-23 01:55:30"
     },
     "142887": {
-      "msg_id": 146640,
-      "fingerprint": "2026-04-20 15:05:51"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
