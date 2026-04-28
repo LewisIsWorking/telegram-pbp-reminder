@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 147389,
-      "thread_id": 107171,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-04-23T01:55:30+00:00",
-      "preview": "Chik doesn't want to stop and think about the pirates he just helped - with insanely little effort - to kill. \"Yeah let's head upstairs, we've gotta secure the ship before anything else. And there's still another hostile ship out there to deal with. I'm ready when you are.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -177,7 +167,11 @@
     "msg:148965",
     "2026-04-27 23:59:58",
     "msg:148621",
-    "2026-04-26 17:50:51"
+    "2026-04-26 17:50:51",
+    "msg:147389",
+    "2026-04-23 01:55:30",
+    "msg:149225",
+    "2026-04-28 02:58:42"
   ],
   "reply_log": [
     {
@@ -975,14 +969,41 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:59:39+00:00",
+      "pid": "107171",
+      "msg_id": "147389",
+      "thread_id": 107171,
+      "player": "CzarChasm23",
+      "preview": "Chik doesn't want to stop and think about the pirates he just helped - with insa",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:59:48+00:00",
+      "pid": "107171",
+      "msg_id": "149225",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos drifts up, \"I suppose I can take a look at the systems. Anyone care to be",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:00:01+00:00",
+      "pid": "107171",
+      "msg_id": "149225",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": 148991,
-      "fingerprint": "2026-04-23 01:55:30"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "142887": {
       "msg_id": null,

@@ -63,6 +63,15 @@
       "time": "2026-04-24T06:09:41+00:00",
       "preview": "Cackle, the gaunt fox next to Natalia lets out a laugh that sounds like something between a fox's laugh-like sound and a hag's cackle. \"What a greeting!\"\nNatalia throws her familiar a stern look before giving Akuma an apologetic smile. \"Sorry, but it will help you survive. What do I need to know?\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 149247,
+      "thread_id": 76799,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-04-28T03:06:20+00:00",
+      "preview": "B\u00e1yakan continues to work at the trap, managing to foul another tube. Halfway there.\n\n\"Not that I don't appreciate bigger folk taking the shots for me, but if anybody else has a tool kit, there are still two of these things shooting.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -208,7 +217,15 @@
     "msg:148463",
     "2026-04-25 23:18:58",
     "msg:149057",
-    "2026-04-28 02:28:41"
+    "2026-04-28 02:28:41",
+    "msg:149212",
+    "2026-04-28 02:57:13",
+    "msg:149213",
+    "2026-04-28 02:57:14",
+    "msg:149236",
+    "2026-04-28 03:00:32",
+    "msg:149239",
+    "2026-04-28 03:01:51"
   ],
   "reply_log": [
     {
@@ -845,14 +862,59 @@
       "player": "Cannon",
       "preview": "Dying 3.",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:58:24+00:00",
+      "pid": "76799",
+      "msg_id": "149212",
+      "thread_id": 144765,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:58:37+00:00",
+      "pid": "76799",
+      "msg_id": "149213",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:01:20+00:00",
+      "pid": "76799",
+      "msg_id": "149236",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:02:42+00:00",
+      "pid": "76799",
+      "msg_id": "149239",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "Guidance to Changer. I'd throw it to Kitt but have no line of sight.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:03:23+00:00",
+      "pid": "76799",
+      "msg_id": "147598",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 147693,
-      "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41"
+      "msg_id": 149397,
+      "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41|2026-04-28 03:06:20"
     },
     "144765": {
       "msg_id": null,
