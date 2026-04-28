@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 146888,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-21T14:04:50+00:00",
-      "preview": "I already did the checks for the planning phase and explained to the father what must be done. He needs to respond now",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147058,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-21T19:09:15+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -41,7 +22,11 @@
     "msg:137543",
     "2026-03-16 15:09:32",
     "msg:146864",
-    "2026-04-21 13:30:55"
+    "2026-04-21 13:30:55",
+    "msg:146888",
+    "2026-04-21 14:04:50",
+    "msg:147058",
+    "2026-04-21 19:09:15"
   ],
   "reply_log": [
     {
@@ -124,12 +109,39 @@
       "player": "Kaer'maga when?",
       "preview": "Describe the scene. Is it a new day after this activity or the same day?",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T01:42:56+00:00",
+      "pid": "25059",
+      "msg_id": "146888",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "I already did the checks for the planning phase and explained to the father what",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T01:43:25+00:00",
+      "pid": "25059",
+      "msg_id": "147058",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T01:43:48+00:00",
+      "pid": "25059",
+      "msg_id": "147058",
+      "thread_id": "25059",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "msg_id": 147074,
-      "fingerprint": "2026-04-21 14:04:50|2026-04-21 19:09:15"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

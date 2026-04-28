@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 148982,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-04-28T00:24:53+00:00",
-      "preview": "Leopard gasps and starts coughing hard, placing the hand that had been grasping his shield on his chest as he tries to stabilize as he catches his breath after being denied air for so long.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -528,7 +519,11 @@
     "msg:148978",
     "2026-04-28 00:16:47",
     "msg:148977",
-    "2026-04-28 00:14:19"
+    "2026-04-28 00:14:19",
+    "msg:148982",
+    "2026-04-28 00:24:53",
+    "msg:148997",
+    "2026-04-28 01:05:02"
   ],
   "reply_log": [
     {
@@ -2832,6 +2827,24 @@
       "player": "Awnii",
       "preview": "Seeing the other slimes fallen a realization sinks in as she remembers seeing ot",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T01:09:18+00:00",
+      "pid": "40585",
+      "msg_id": "148982",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "Leopard gasps and starts coughing hard, placing the hand that had been grasping ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:17:49+00:00",
+      "pid": "40585",
+      "msg_id": "148997",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "After confirming Theron's condition, Kieran rises and stares at the green orb ab",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2842,8 +2855,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": 148989,
-      "fingerprint": "2026-04-28 00:24:53"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

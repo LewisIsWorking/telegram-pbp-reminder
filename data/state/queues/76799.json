@@ -47,15 +47,6 @@
       "media_group_id": null
     },
     {
-      "message_id": 147596,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Christopher",
-      "time": "2026-04-24T02:12:04+00:00",
-      "preview": "I guess I'll join in then",
-      "media_group_id": null
-    },
-    {
       "message_id": 147601,
       "thread_id": 76799,
       "user_id": "7863964681",
@@ -71,15 +62,6 @@
       "user_name": "Christopher",
       "time": "2026-04-24T06:09:41+00:00",
       "preview": "Cackle, the gaunt fox next to Natalia lets out a laugh that sounds like something between a fox's laugh-like sound and a hag's cackle. \"What a greeting!\"\nNatalia throws her familiar a stern look before giving Akuma an apologetic smile. \"Sorry, but it will help you survive. What do I need to know?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148463,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-25T23:18:58+00:00",
-      "preview": "Nadya replies with an exhausted sigh.\n\n\"Unionizing kobolds have taken hostages and filled this place with traps.\"",
       "media_group_id": null
     }
   ],
@@ -220,7 +202,13 @@
     "msg:148882",
     "2026-04-27 23:12:51",
     "msg:148884",
-    "2026-04-27 23:13:09"
+    "2026-04-27 23:13:09",
+    "msg:147596",
+    "2026-04-24 02:12:04",
+    "msg:148463",
+    "2026-04-25 23:18:58",
+    "msg:149057",
+    "2026-04-28 02:28:41"
   ],
   "reply_log": [
     {
@@ -830,6 +818,33 @@
       "player": "Miwa",
       "preview": "I missed a lot",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:21:12+00:00",
+      "pid": "76799",
+      "msg_id": "147596",
+      "thread_id": 144765,
+      "player": "Christopher",
+      "preview": "I guess I'll join in then",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:21:26+00:00",
+      "pid": "76799",
+      "msg_id": "148463",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "Nadya replies with an exhausted sigh.\n\n\"Unionizing kobolds have taken hostages a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T02:29:35+00:00",
+      "pid": "76799",
+      "msg_id": "149057",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "Dying 3.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -840,8 +855,8 @@
       "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41"
     },
     "144765": {
-      "msg_id": 148465,
-      "fingerprint": "2026-04-24 02:12:04|2026-04-25 23:18:58"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

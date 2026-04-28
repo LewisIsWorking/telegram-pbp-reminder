@@ -78,7 +78,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-04-07T01:33:44+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "51357:138025700": {
       "user_id": "138025700",
@@ -138,7 +138,7 @@
       "username": "ArtyArtillery",
       "campaign_name": "Magni Watch",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-04-25T23:18:58+00:00",
+      "last_post_time": "2026-04-28T02:28:41+00:00",
       "last_warned_week": 0
     },
     "40585:7130942567": {
@@ -251,26 +251,6 @@
       "last_post_time": "2026-04-27T21:57:02+00:00",
       "last_warned_week": 0
     },
-    "51357:894369591": {
-      "user_id": "894369591",
-      "first_name": "Lavender",
-      "last_name": "Le'Feygh",
-      "username": "LavenderCatbat",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-03-31T01:13:11+00:00",
-      "last_warned_week": 3
-    },
-    "51357:8511309197": {
-      "user_id": "8511309197",
-      "first_name": "King",
-      "last_name": "",
-      "username": "Kingm108",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-03-31T01:39:58+00:00",
-      "last_warned_week": 3
-    },
     "51357:8117756377": {
       "user_id": "8117756377",
       "first_name": "Laetheron",
@@ -298,7 +278,7 @@
       "username": "Linksanelf2006",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-04-28T00:16:47+00:00",
+      "last_post_time": "2026-04-28T01:05:02+00:00",
       "last_warned_week": 0
     },
     "107151:8383886822": {
@@ -379,7 +359,7 @@
       "campaign_name": "Dark Pockets",
       "pbp_topic_id": "1242",
       "last_post_time": "2026-04-07T02:25:12+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "1242:8030796908": {
       "user_id": "8030796908",
@@ -554,6 +534,18 @@
       "first_name": "Aiden101",
       "username": "Aiiden101",
       "campaign_name": "Riddleport"
+    },
+    "51357:894369591": {
+      "removed_at": "2026-04-28T03:17:52.844317+00:00",
+      "first_name": "Lavender",
+      "username": "LavenderCatbat",
+      "campaign_name": "Grand Explorers"
+    },
+    "51357:8511309197": {
+      "removed_at": "2026-04-28T03:17:52.844317+00:00",
+      "first_name": "King",
+      "username": "Kingm108",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -676,7 +668,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-27T17:19:50.742659+00:00"
       }
     },
@@ -903,6 +895,22 @@
       "name": "Bruce",
       "username": "Ravnos1",
       "at": "2026-04-24T18:23:34.566332+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "894369591",
+      "name": "Lavender",
+      "username": "LavenderCatbat",
+      "at": "2026-04-28T03:17:55.408719+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "8511309197",
+      "name": "King",
+      "username": "Kingm108",
+      "at": "2026-04-28T03:17:56.050122+00:00"
     }
   ],
   "player_boons": {
