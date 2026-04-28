@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 148596,
-      "thread_id": 66154,
-      "user_id": "6717906753",
-      "user_name": "Bo",
-      "time": "2026-04-26T16:09:12+00:00",
-      "preview": "Valerie gives a smirking half-grin as she admires her own wanted poster on the wall. She's making the exact same face in the picture.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -68,7 +58,9 @@
     "msg:146392",
     "2026-04-19 21:14:02",
     "msg:146906",
-    "2026-04-21 14:49:59"
+    "2026-04-21 14:49:59",
+    "msg:148596",
+    "2026-04-26 16:09:12"
   ],
   "reply_log": [
     {
@@ -352,14 +344,23 @@
       "player": "Bo",
       "preview": "Sounds good!",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:35:11+00:00",
+      "pid": "66154",
+      "msg_id": "148596",
+      "thread_id": 66154,
+      "player": "Bo",
+      "preview": "Valerie gives a smirking half-grin as she admires her own wanted poster on the w",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "msg_id": 148599,
-      "fingerprint": "2026-04-26 16:09:12"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

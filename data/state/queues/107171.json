@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 149283,
+      "thread_id": 107171,
+      "user_id": "8383886822",
+      "user_name": "CzarChasm23",
+      "time": "2026-04-28T03:23:32+00:00",
+      "preview": "Chik puffs his chest out a little and looks over at Arktos, \"If ya don't mind, I'd like ta go out there. I'm handy and light on my feet and I also feel like crap for lettin' you take a charge from that reactor - I shoulda been in there, or at least helping. Unless you've got some fancy immunity to intense magnetic fields that I don't know about, then by all means go ahead and I'll assist.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1002,8 +1012,8 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 149435,
+      "fingerprint": "2026-04-28 03:23:32"
     },
     "142887": {
       "msg_id": null,

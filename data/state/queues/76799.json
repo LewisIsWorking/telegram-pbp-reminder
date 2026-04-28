@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 146986,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-21T16:30:57+00:00",
-      "preview": "Akuma kneels down and picks up his katana. While standing back up, the blade begins to melt and shift shape. It wraps itself around Akuma's fist, and then three long, sharp claws begin to protrude from the metal plate over his hand. He readies himself to try to knock aside other darts that may head his way.\n\n\"How long?\" He asks his fluttering friend.",
-      "media_group_id": null
-    },
-    {
       "message_id": 147002,
       "thread_id": 76799,
       "user_id": "8353586922",
@@ -71,6 +62,33 @@
       "user_name": "Chase",
       "time": "2026-04-28T03:06:20+00:00",
       "preview": "B\u00e1yakan continues to work at the trap, managing to foul another tube. Halfway there.\n\n\"Not that I don't appreciate bigger folk taking the shots for me, but if anybody else has a tool kit, there are still two of these things shooting.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 149248,
+      "thread_id": 144765,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-04-28T03:06:52+00:00",
+      "preview": "Natalia moved to adjacent to me iirc",
+      "media_group_id": null
+    },
+    {
+      "message_id": 149256,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-04-28T03:14:19+00:00",
+      "preview": "Nadya stumbles out of the room with wide eyes and a distinct lack of looking back.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 149286,
+      "thread_id": 144765,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-04-28T03:24:35+00:00",
+      "preview": "She's gonna stay in reach to throw healing at people but otherwise... she doesn't know y'all well enough to risk dying here lol",
       "media_group_id": null
     }
   ],
@@ -225,7 +243,13 @@
     "msg:149236",
     "2026-04-28 03:00:32",
     "msg:149239",
-    "2026-04-28 03:01:51"
+    "2026-04-28 03:01:51",
+    "msg:149249",
+    "2026-04-28 03:07:12",
+    "msg:146986",
+    "2026-04-21 16:30:57",
+    "msg:149255",
+    "2026-04-28 03:12:58"
   ],
   "reply_log": [
     {
@@ -907,18 +931,63 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:07:17+00:00",
+      "pid": "76799",
+      "msg_id": "147598",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:07:33+00:00",
+      "pid": "76799",
+      "msg_id": "149249",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "yeah",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:21:35+00:00",
+      "pid": "76799",
+      "msg_id": "146986",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Akuma kneels down and picks up his katana. While standing back up, the blade beg",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:23:29+00:00",
+      "pid": "76799",
+      "msg_id": "149255",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "nadya gets up and leaves to do some chemistry somewhere where the weather isn't ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-04-28T03:23:53+00:00",
+      "pid": "76799",
+      "msg_id": "149255",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 149397,
-      "fingerprint": "2026-04-21 16:30:57|2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41|2026-04-28 03:06:20"
+      "msg_id": 149429,
+      "fingerprint": "2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41|2026-04-28 03:06:20|2026-04-28 03:14:19"
     },
     "144765": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 149431,
+      "fingerprint": "2026-04-28 03:06:52|2026-04-28 03:24:35"
     }
   }
 }
