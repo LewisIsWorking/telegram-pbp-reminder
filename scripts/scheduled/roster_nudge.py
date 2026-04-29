@@ -6,6 +6,7 @@ import telegram as tg
 from commands.roster import build_roster_overview, _active_players, _TARGET
 
 _INTERVAL_DAYS = 3
+_MIN_INTERVAL_H = 6  # minimum gap between any two posts
 _NUDGE_KEY = "last_roster_nudge"
 _SNAP_KEY = "last_roster_snapshot"
 
@@ -45,10 +46,15 @@ def post_roster_nudge(config: dict, state: dict, *,
 
     last_str = state.get(_NUDGE_KEY)
     interval_elapsed = True
-    if last_str and not roster_changed:
+    if last_str:
         try:
             last = datetime.fromisoformat(last_str)
-            interval_elapsed = (now - last).total_seconds() >= _INTERVAL_DAYS * 86400
+            elapsed_h = (now - last).total_seconds() / 3600
+            # Always enforce minimum gap to prevent double-posts
+            if elapsed_h < _MIN_INTERVAL_H:
+                return
+            if not roster_changed:
+                interval_elapsed = elapsed_h >= _INTERVAL_DAYS * 24
         except (ValueError, TypeError):
             pass
 
