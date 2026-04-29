@@ -341,16 +341,6 @@
       "last_post_time": "2026-04-28T08:24:04+00:00",
       "last_warned_week": 0
     },
-    "66154:8203214315": {
-      "user_id": "8203214315",
-      "first_name": "Lunnes",
-      "last_name": "",
-      "username": "LuNneS_B",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-04-01T21:33:16+00:00",
-      "last_warned_week": 3
-    },
     "1242:503940482": {
       "user_id": "503940482",
       "first_name": "Craig",
@@ -560,6 +550,12 @@
       "first_name": "King",
       "username": "Kingm108",
       "campaign_name": "Grand Explorers"
+    },
+    "66154:8203214315": {
+      "removed_at": "2026-04-29T22:26:57.024621+00:00",
+      "first_name": "Lunnes",
+      "username": "LuNneS_B",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -943,6 +939,14 @@
       "name": "Anthony",
       "username": "MrNegetZ",
       "at": "2026-04-28T09:00:47.828913+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "8203214315",
+      "name": "Lunnes",
+      "username": "LuNneS_B",
+      "at": "2026-04-29T22:26:57.792161+00:00"
     }
   ],
   "player_boons": {
@@ -1088,7 +1092,7 @@
     },
     "8353586922": {
       "name": "Chase Darkthorne",
-      "count": 98
+      "count": 99
     },
     "6717906753": {
       "name": "Bo (@bogonzomd)",
