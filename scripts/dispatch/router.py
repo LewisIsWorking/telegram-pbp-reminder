@@ -33,7 +33,7 @@ _READ_CMDS = frozenset({
     "/help", "/pbphelp", "/status", "/overview", "/campaign",
     "/mystats", "/me", "/myhistory", "/whosturn", "/combatlog",
     "/catchup", "/party", "/notes", "/quests", "/pins", "/lootlist",
-    "/npcs", "/conditions", "/clocks", "/dc", "/showvote", "/showtimer",
+    "/npcs", "/conditions", "/clocks", "/showvote", "/showtimer",
     "/summary", "/activity", "/profile", "/recap", "/gm",
     "/boons", "/boonsall", "/search", "/queue", "/reactions", "/timeline",
     "/waiting", "/session", "/health", "/queuestats", "/registry", "/markdone", "/roster",
