@@ -150,9 +150,6 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_recap(pid, name, config, n))
         return True
 
-    if cmd == "/dc":
-        tg.send_message(gid, reply, helpers.dc_lookup(text[3:].strip()))
-        return True
 
     if text == "/boons":
         from boons.display import build_boons
