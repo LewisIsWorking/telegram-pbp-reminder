@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 149854,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-05-01T01:18:12+00:00",
-      "preview": "Cho stands around and looks over the remains of the ritual and watching the others he barely met speak with those that they were close to.  looking around he sheathes his gale blade and moves to look at the remains of the orb.  After a bit he says to no one in particular.  \"Now what is next? I seem to remember something about a temple.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -565,7 +556,9 @@
     "msg:149780",
     "2026-04-30 14:59:27",
     "msg:149859",
-    "2026-05-01 01:24:04"
+    "2026-05-01 01:24:04",
+    "msg:149854",
+    "2026-05-01 01:18:12"
   ],
   "reply_log": [
     {
@@ -3067,6 +3060,15 @@
       "player": "Buffet",
       "preview": "\"I'm in no hurry.\"\nTarsus will refocus as he waits for medical attention.",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:58:41+00:00",
+      "pid": "40585",
+      "msg_id": "149854",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "Cho stands around and looks over the remains of the ritual and watching the othe",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3077,8 +3079,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": 149913,
-      "fingerprint": "2026-05-01 01:18:12"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
