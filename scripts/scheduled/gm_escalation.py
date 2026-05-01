@@ -1,10 +1,7 @@
-"""GM escalation: nudge the GM when their queue goes unreplied for 12h+.
+"""GM escalation: nudge the GM when queues go unreplied for 12h+.
 
-Every 12h an unreplied entry sits in the queue, the bot escalates:
-  Level 1 (12h)  → bot topic only, gentle reminder
-  Level 2 (24h)  → bot topic + DM, more urgent
-  Level 3 (36h)  → bot topic + DM, very urgent
-  Level 4+ (48h+)→ bot topic + DM, maximum urgency
+Every 12h any unreplied entry sits in the queue, the bot escalates.
+All stale campaigns are batched into a single message per run.
 
 State tracked in state["gm_escalation"][pid] = {"level": N, "last_at": iso}
 """
@@ -17,11 +14,11 @@ from commands.queue_scan import scan_transcripts
 
 _INTERVAL_H = 12
 
-_MESSAGES = [
-    "📋 Hey — {label} has replies waiting for {hours}h. Don't let it slip! 🙂",
-    "⚠️ {label} queue is {hours}h old. Players are waiting on you, GM!",
-    "🔴 {label} queue is really stale now ({hours}h). Get on it! 🚨",
-    "🚨🚨 {label} — {hours}h and still unreplied. SORT IT OUT, GM! 🚨🚨",
+_HEADERS = [
+    "📋 Hey — some campaigns have replies waiting. Don't let them slip! 🙂",
+    "⚠️ GM queue alert — players are waiting on you!",
+    "🔴 These queues are getting really stale. Get on it! 🚨",
+    "🚨🚨 SORT IT OUT, GM! 🚨🚨",
 ]
 
 
@@ -41,7 +38,7 @@ def _oldest_hours(entries: list, now: datetime) -> float:
 
 def check_gm_escalation(config: dict, state: dict,
                          *, now: datetime | None = None, **_kw) -> None:
-    """Escalate GM nudges every 12h while queue has unreplied entries >12h old."""
+    """Batch all stale campaigns into a single escalation message per run."""
     now = now or datetime.now(timezone.utc)
     gm_uid = config.get("gm_user_id")
     bot_topic = config.get("gm_queue_topic_id") or config.get("bot_topic_id")
@@ -54,6 +51,7 @@ def check_gm_escalation(config: dict, state: dict,
         return
 
     esc = state.setdefault("gm_escalation", {})
+    due = []  # campaigns ready for a nudge this run
 
     for pid, data in scanned.items():
         if not data.get("entries"):
@@ -69,26 +67,35 @@ def check_gm_escalation(config: dict, state: dict,
         last_at_str = entry.get("last_at")
         level = entry.get("level", 0)
 
-        # Check if 12h have elapsed since last nudge
         if last_at_str:
             try:
-                last = datetime.fromisoformat(last_at_str)
-                elapsed_h = (now - last).total_seconds() / 3600
+                elapsed_h = (now - datetime.fromisoformat(last_at_str)).total_seconds() / 3600
                 if elapsed_h < _INTERVAL_H:
                     continue
             except (ValueError, TypeError):
                 pass
 
-        level = min(level + 1, len(_MESSAGES))
+        level = min(level + 1, len(_HEADERS))
         code = data.get("code", "")
         name = data["campaign"]
         label = f"{code}: {name}" if code else name
-        msg_tmpl = _MESSAGES[level - 1]
-        msg = msg_tmpl.format(label=label, hours=int(oldest_h))
+        due.append((pid, label, int(oldest_h), level))
 
-        tg.send_message(group_id, bot_topic, msg)
-        if level >= 2:
-            tg.send_message(gm_uid, None, msg)  # DM
+    if not due:
+        return
 
+    # Use the highest level among due campaigns for the header
+    max_level = max(d[3] for d in due)
+    header = _HEADERS[max_level - 1]
+    lines = [header, ""]
+    for _, label, hours, _ in sorted(due, key=lambda x: -x[2]):
+        lines.append(f"  {label} — {hours}h")
+    msg = "\n".join(lines)
+
+    tg.send_message(group_id, bot_topic, msg)
+    if max_level >= 2:
+        tg.send_message(gm_uid, None, msg)
+
+    for pid, _, _, level in due:
         esc[pid] = {"level": level, "last_at": now.isoformat()}
-        print(f"GM escalation L{level}: {label} ({int(oldest_h)}h)")
+        print(f"GM escalation L{level}: {pid}")
