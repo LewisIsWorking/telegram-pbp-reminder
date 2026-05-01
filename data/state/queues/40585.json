@@ -16,6 +16,42 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 149935,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-05-01T03:10:54+00:00",
+      "preview": "(was going to grab her, hitching a ride on sir squishy)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 149936,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-05-01T03:12:00+00:00",
+      "preview": "Can leave that to you though since I guess it would make more narrative sense",
+      "media_group_id": null
+    },
+    {
+      "message_id": 149937,
+      "thread_id": 40585,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-05-01T03:12:11+00:00",
+      "preview": "Seeing the woman filled",
+      "media_group_id": null
+    },
+    {
+      "message_id": 149938,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-05-01T03:12:47+00:00",
+      "preview": "(it's not a problem, Tarsus is pretty strong and not carrying much other than his armor. he would just rather not be inside a slime tower lol)",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -558,7 +594,11 @@
     "msg:149859",
     "2026-05-01 01:24:04",
     "msg:149854",
-    "2026-05-01 01:18:12"
+    "2026-05-01 01:18:12",
+    "msg:149928",
+    "2026-05-01 03:04:14",
+    "msg:149932",
+    "2026-05-01 03:09:12"
   ],
   "reply_log": [
     {
@@ -3069,6 +3109,33 @@
       "player": "Bruce",
       "preview": "Cho stands around and looks over the remains of the ritual and watching the othe",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-01T03:07:25+00:00",
+      "pid": "40585",
+      "msg_id": "149928",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus hauls himself to his feet and hurries out of the tower.\nOnce he makes it ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T03:10:09+00:00",
+      "pid": "40585",
+      "msg_id": "149932",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "I'm assuming the sudden growth of this magical tree is making the tower unstable",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T03:10:27+00:00",
+      "pid": "40585",
+      "msg_id": "149932",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3079,8 +3146,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 149940,
+      "fingerprint": "2026-05-01 03:10:54|2026-05-01 03:12:00|2026-05-01 03:12:11|2026-05-01 03:12:47"
     }
   }
 }
