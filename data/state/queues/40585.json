@@ -18,39 +18,21 @@
       "preview": "[media]"
     },
     {
-      "message_id": 149935,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-05-01T03:10:54+00:00",
-      "preview": "(was going to grab her, hitching a ride on sir squishy)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149936,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-05-01T03:12:00+00:00",
-      "preview": "Can leave that to you though since I guess it would make more narrative sense",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149937,
+      "message_id": 149957,
       "thread_id": 40585,
       "user_id": "7863964681",
       "user_name": "Link",
-      "time": "2026-05-01T03:12:11+00:00",
-      "preview": "Seeing the woman filled",
+      "time": "2026-05-01T03:29:30+00:00",
+      "preview": "Gently, as if this was the blossom of Tree from home, Kieran lifts the flower from the earth. If he gets the slightest hint that it is causing it harm, he quits. Though, he expects that it wants to be removed and brought... elsewhere.",
       "media_group_id": null
     },
     {
-      "message_id": 149938,
+      "message_id": 149958,
       "thread_id": 40585,
       "user_id": "7130942567",
       "user_name": "Buffet",
-      "time": "2026-05-01T03:12:47+00:00",
-      "preview": "(it's not a problem, Tarsus is pretty strong and not carrying much other than his armor. he would just rather not be inside a slime tower lol)",
+      "time": "2026-05-01T03:33:13+00:00",
+      "preview": "Tarsus sets Tal'lysae down, sitting her up against a wall, then sits down next to her.\n\"Tarsus. I think were successful with the ritual, but then someone touched the orb after everything calmed down and that tree-slime-thing sprouted. No clue what that's about.\"",
       "media_group_id": null
     }
   ],
@@ -598,7 +580,17 @@
     "msg:149928",
     "2026-05-01 03:04:14",
     "msg:149932",
-    "2026-05-01 03:09:12"
+    "2026-05-01 03:09:12",
+    "msg:149938",
+    "2026-05-01 03:12:47",
+    "msg:149935",
+    "2026-05-01 03:10:54",
+    "msg:149936",
+    "2026-05-01 03:12:00",
+    "msg:149937",
+    "2026-05-01 03:12:11",
+    "msg:149952",
+    "2026-05-01 03:21:33"
   ],
   "reply_log": [
     {
@@ -3136,6 +3128,60 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-01T03:18:01+00:00",
+      "pid": "40585",
+      "msg_id": "149938",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "(it's not a problem, Tarsus is pretty strong and not carrying much other than hi",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T05:24:44.324166+00:00",
+      "pid": "40585",
+      "msg_id": "149935",
+      "thread_id": "40585",
+      "player": "Awnii Vihn",
+      "preview": "(was going to grab her, hitching a ride on sir squishy)",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-01T05:24:44.971120+00:00",
+      "pid": "40585",
+      "msg_id": "149936",
+      "thread_id": "40585",
+      "player": "Awnii Vihn",
+      "preview": "Can leave that to you though since I guess it would make more narrative sense",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-01T05:24:45.525228+00:00",
+      "pid": "40585",
+      "msg_id": "149937",
+      "thread_id": "40585",
+      "player": "Link",
+      "preview": "Seeing the woman filled",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-01T03:19:23+00:00",
+      "pid": "40585",
+      "msg_id": "149938",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T03:25:06+00:00",
+      "pid": "40585",
+      "msg_id": "149952",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "Kieran stares at the flower with hesitation. He is unsure of what is happening. ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3146,8 +3192,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": 149940,
-      "fingerprint": "2026-05-01 03:10:54|2026-05-01 03:12:00|2026-05-01 03:12:11|2026-05-01 03:12:47"
+      "msg_id": 149965,
+      "fingerprint": "2026-05-01 03:29:30|2026-05-01 03:33:13"
     }
   }
 }
