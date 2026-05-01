@@ -18,57 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 149769,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-30T14:49:38+00:00",
-      "preview": "Lewis before we get down i gonna let my slime eat one of the slime and my familiar will absorb the big slime soul.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149777,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-30T14:51:56+00:00",
-      "preview": "[media]",
-      "media_group_id": "14220485728097809"
-    },
-    {
-      "message_id": 149780,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-04-30T14:59:27+00:00",
-      "preview": "https://en.wikipedia.org/wiki/Gu_(poison)\nThe daemon familiar are kinda similar to Gu.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149818,
+      "message_id": 149854,
       "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-30T21:11:31+00:00",
-      "preview": "seeing as there appears to be no direct hostility towards her, she approaches Tarsus clearly feeling the damage he took and she, not knowing how much of this battle was her fault feels obligated to try to help in some way.\n\nShe approaches slowly crouching further down the closer she gets to him.\n\n\"I... I don't know what just happened.... Are you hurt? ...Stupid question,(face palms) your obviously hurt.... Ummm.. I don't know anything about medicine.....um..... Maybe I could try? Mind if I take ",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149820,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-04-30T21:15:03+00:00",
-      "preview": "@buffetraider",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149822,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-04-30T21:22:09+00:00",
-      "preview": "Tarsus stays put on the ground, trying not to move and aggravate the broken bones.\n\"For as much as I know about bones, I'm not a medic. Arcane magic also doesn't really afford me any magical sources of healing either. If you can help, be my guest.\"",
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-05-01T01:18:12+00:00",
+      "preview": "Cho stands around and looks over the remains of the ritual and watching the others he barely met speak with those that they were close to.  looking around he sheathes his gale blade and moves to look at the remains of the orb.  After a bit he says to no one in particular.  \"Now what is next? I seem to remember something about a temple.\"",
       "media_group_id": null
     }
   ],
@@ -593,7 +548,24 @@
     "msg:149793",
     "2026-04-30 16:59:29",
     "msg:149842",
-    "2026-05-01 00:50:06"
+    "2026-05-01 00:50:06",
+    "msg:149818",
+    "2026-04-30 21:11:31",
+    "msg:149820",
+    "2026-04-30 21:15:03",
+    "msg:149822",
+    "2026-04-30 21:22:09",
+    "msg:149861",
+    "2026-05-01 01:37:26",
+    "msg:149769",
+    "2026-04-30 14:49:38",
+    "msg:149777",
+    "2026-04-30 14:51:56",
+    "msg:149778",
+    "msg:149780",
+    "2026-04-30 14:59:27",
+    "msg:149859",
+    "2026-05-01 01:24:04"
   ],
   "reply_log": [
     {
@@ -3005,18 +2977,108 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-01T01:20:59+00:00",
+      "pid": "40585",
+      "msg_id": "149818",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "seeing as there appears to be no direct hostility towards her, she approaches Ta",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T01:21:21+00:00",
+      "pid": "40585",
+      "msg_id": "149820",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "@buffetraider",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T01:22:25+00:00",
+      "pid": "40585",
+      "msg_id": "149822",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus stays put on the ground, trying not to move and aggravate the broken bone",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T01:30:52+00:00",
+      "pid": "40585",
+      "msg_id": "148997",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:04:15+00:00",
+      "pid": "40585",
+      "msg_id": "149861",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "Kieran's form will shudder in unison as he attempts to get a feel of it.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:45:39+00:00",
+      "pid": "40585",
+      "msg_id": "149769",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Lewis before we get down i gonna let my slime eat one of the slime and my famili",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:45:48+00:00",
+      "pid": "40585",
+      "msg_id": "149777",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:45:59+00:00",
+      "pid": "40585",
+      "msg_id": "149778",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:46:12+00:00",
+      "pid": "40585",
+      "msg_id": "149780",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "https://en.wikipedia.org/wiki/Gu_(poison)\nThe daemon familiar are kinda similar ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-01T02:46:42+00:00",
+      "pid": "40585",
+      "msg_id": "149859",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "\"I'm in no hurry.\"\nTarsus will refocus as he waits for medical attention.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": 149783,
-      "fingerprint": "2026-04-30 14:49:38|2026-04-30 14:51:56|2026-04-30 14:51:56|2026-04-30 14:59:27"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "40585": {
-      "msg_id": 149847,
-      "fingerprint": "2026-04-30 21:11:31|2026-04-30 21:15:03|2026-04-30 21:22:09"
+      "msg_id": 149913,
+      "fingerprint": "2026-05-01 01:18:12"
     }
   }
 }
