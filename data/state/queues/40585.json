@@ -52,6 +52,33 @@
       "time": "2026-05-01T14:15:56+00:00",
       "preview": "As Kieran begins to pull the flower.  \"Be gentle, sir.  There is a lot of otherworldly power within.  Since you seem to have a connection can you explain what this is supposed to accomplish?\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 150082,
+      "thread_id": 40585,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-05-01T16:51:54+00:00",
+      "preview": "Ji Yun bowed his head slightly, formed the Zi Wu hand seal, and then said, \"Forgive my late introduction. I am Ji Yun\u2014Ji as in discipline, Yun as in sunlight\u2014emissary of the Ji family from Tianjing. I came to request Kibwe's aid regarding an ancient seal, but seeing Kibwe's current state... allow me to offer my help instead.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150085,
+      "thread_id": 40585,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-05-01T16:55:44+00:00",
+      "preview": "Kieran will stand, flower in hand. A gentle smile on his face.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150086,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-05-01T16:57:18+00:00",
+      "preview": "All good tks.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -608,7 +635,9 @@
     "msg:149937",
     "2026-05-01 03:12:11",
     "msg:149952",
-    "2026-05-01 03:21:33"
+    "2026-05-01 03:21:33",
+    "msg:150083",
+    "2026-05-01 16:53:03"
   ],
   "reply_log": [
     {
@@ -3200,18 +3229,27 @@
       "player": "Link",
       "preview": "Kieran stares at the flower with hesitation. He is unsure of what is happening. ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-01T16:55:02+00:00",
+      "pid": "40585",
+      "msg_id": "150083",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "For some reason, Cho Kobo's words reach him. Maybe it's the proximity, maybe it ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "msg_id": 150094,
+      "fingerprint": "2026-05-01 16:57:18"
     },
     "40585": {
-      "msg_id": 150069,
-      "fingerprint": "2026-05-01 03:29:30|2026-05-01 03:33:13|2026-05-01 09:23:58|2026-05-01 14:15:56"
+      "msg_id": 150092,
+      "fingerprint": "2026-05-01 03:29:30|2026-05-01 03:33:13|2026-05-01 09:23:58|2026-05-01 14:15:56|2026-05-01 16:51:54|2026-05-01 16:55:44"
     }
   }
 }

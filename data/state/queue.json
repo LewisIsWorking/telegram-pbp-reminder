@@ -484,7 +484,8 @@
       "2026-05-01T03:17:57.304458+00:00",
       "2026-05-01T05:24:44.322263+00:00",
       "2026-05-01T05:24:46.123535+00:00",
-      "2026-05-01T05:24:46.130691+00:00"
+      "2026-05-01T05:24:46.130691+00:00",
+      "2026-05-01T17:28:25.143152+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -914,12 +915,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-04-19T16:12:33.494604+00:00",
-      "player": "Link",
-      "preview": "Seeing the drip, Joo-Dee leans over to Damon and whispers \"y"
-    },
     {
       "pid": "107171",
       "time": "2026-04-19T16:12:33.496098+00:00",
@@ -2113,6 +2108,12 @@
       "time": "2026-05-01T05:24:46.130691+00:00",
       "player": "Link",
       "preview": "Kieran stares at the flower with hesitation. He is unsure of"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-01T17:28:25.143152+00:00",
+      "player": "Link",
+      "preview": "For some reason, Cho Kobo's words reach him. Maybe it's the "
     }
   ],
   "pending_potw_boons": {
@@ -2159,18 +2160,17 @@
       "reminders_sent": 2
     },
     "40585": {
-      "message_id": 148060,
+      "message_id": 150087,
       "winner_user_id": "7863964681",
       "campaign_name": "Kibwe",
       "boons": [
-        "The ship's navigator discovers a shorter route that avoids the storm.",
-        "The local currency uses a metal that reacts to magic. Your coins hum near enchantments.",
-        "A temple's donation box spills a few coins in your direction. The priest waves it off.",
-        "Your next Recall Knowledge check gains a +2 circumstance bonus."
+        "Your cover identity has a paper trail you didn't create. Someone else used this alias.",
+        "A bridge over the canal has a maintenance hatch that leads somewhere unexpected.",
+        "An old well has handholds carved into the interior. Someone used this as an escape route.",
+        "+1 circumstance bonus on your next skill check."
       ],
-      "base_message": "Player of the Week for Kibwe: Link (@Linksanelf2006)!\n(2026-04-17 (W16) to 2026-04-24 (W17))\n\n5 posts this week with an average gap of 0.6h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-04-24T16:29:15.968371+00:00",
-      "reminders_sent": 3
+      "base_message": "Player of the Week for Kibwe: Link (@Linksanelf2006)!\n(2026-04-24 (W17) to 2026-05-01 (W18))\n\n7 posts this week with an average gap of 14.8h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-05-01T17:28:25.152344+00:00"
     },
     "76799": {
       "message_id": 149427,
