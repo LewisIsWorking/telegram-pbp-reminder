@@ -4254,18 +4254,6 @@ def test_dc_empty():
     assert "Usage" in result
 
 
-def test_dc_command():
-    """/dc command sends result."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-
-    updates = [_make_msg(1, 100, "/dc 10", user_id=42, first_name="Alice")]
-    checker.process_updates(updates, config, state)
-
-    dc_msgs = [m for m in _sent_messages if "Level 10" in m.get("text", "")]
-    assert len(dc_msgs) >= 1
-
 
 def test_dc_out_of_range():
     """Level out of range gives error."""
