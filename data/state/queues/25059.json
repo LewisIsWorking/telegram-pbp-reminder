@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 149387,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-28T05:48:43+00:00",
-      "preview": "(Selenor already explained the lore of the eye in the jar. He told him that they could use it to expose undead who pose as living beings.)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149388,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-04-28T06:03:55+00:00",
-      "preview": "Selenor stops before he leaves the room and the third eye stares at the priest and says \"we are dying..... high priest. \n\nInstead of spending my final years with my family or seeking a way to stop it, I honor the wish of a dead ally to protect his daughter and this town/village. \n\n I offer you and your goddess my aid even after all the abuse and attempts on my life caused by your church and indirectly by Pharasma.\"\n\nSelenor is then silent for a few seconds and then says one more thing before lea",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -45,7 +26,11 @@
     "msg:146888",
     "2026-04-21 14:04:50",
     "msg:147058",
-    "2026-04-21 19:09:15"
+    "2026-04-21 19:09:15",
+    "msg:149387",
+    "2026-04-28 05:48:43",
+    "msg:149388",
+    "2026-04-28 06:03:55"
   ],
   "reply_log": [
     {
@@ -155,12 +140,30 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-02T22:06:12+00:00",
+      "pid": "25059",
+      "msg_id": "149387",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "(Selenor already explained the lore of the eye in the jar. He told him that they",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-02T22:07:17+00:00",
+      "pid": "25059",
+      "msg_id": "149388",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor stops before he leaves the room and the third eye stares at the priest a",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "msg_id": 149447,
-      "fingerprint": "2026-04-28 05:48:43|2026-04-28 06:03:55"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
