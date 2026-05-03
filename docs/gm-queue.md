@@ -114,6 +114,8 @@ Every queue post header includes two clear counters:
   read from per-campaign `reply_log` files and filtered to
   `{reply, markdone, manual}` so migration markers are excluded.
 
+As of v4.46.0, both counters also include `/markdone` clears (not just Telegram-reply clears). Before this fix the today figure could lag the all-time figure when most clearing happened via the slash command.
+
 Both counters are deduplicated at write time. `queue_io.mark_replied`
 returns a bool and the audit-trail append is gated on that flag, so a
 Telegram update being replayed (offset retry, edit, etc.) does not

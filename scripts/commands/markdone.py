@@ -13,6 +13,7 @@ Each cleared entry is written to gm_reply_log for audit purposes.
 """
 
 from datetime import datetime, timezone
+from commands.markdone_audit import record_clear
 
 import telegram as tg
 from commands.queue_scan import scan_transcripts
@@ -139,15 +140,12 @@ def _clear_entries(entries: list[dict], pid: str,
             replied.append(ts)
 
         if is_new_clear:
-            cq.setdefault("reply_log", []).append({
-                "t":         now.isoformat(),
-                "pid":       pid,
-                "msg_id":    mid_str or "",
-                "thread_id": e.get("thread_id", pid),
-                "player":    e.get("name", "?"),
-                "preview":   e.get("preview", "")[:80],
-                "via":       "markdone",
-            })
+            record_clear(cq, pid, state,
+                         mid_str=mid_str or "",
+                         thread_id=e.get("thread_id", pid),
+                         player_name=e.get("name", "?"),
+                         preview=e.get("preview", ""),
+                         now=now)
 
         # Remove from unreplied — compare as strings to handle int/str mismatch
         cq["unreplied"] = [
@@ -183,15 +181,12 @@ def _clear_by_msg_id(msg_id: str, pid: str, state: dict, now: datetime) -> bool:
     if ts and ts not in replied:
         replied.append(ts)
     if is_new_clear:
-        cq.setdefault("reply_log", []).append({
-            "t":         now.isoformat(),
-            "pid":       pid,
-            "msg_id":    msg_id,
-            "thread_id": e.get("thread_id", pid),
-            "player":    e.get("user_name", "?"),
-            "preview":   e.get("preview", "")[:80],
-            "via":       "markdone",
-        })
+        record_clear(cq, pid, state,
+                     mid_str=msg_id,
+                     thread_id=e.get("thread_id", pid),
+                     player_name=e.get("user_name", "?"),
+                     preview=e.get("preview", ""),
+                     now=now)
     cq["unreplied"] = [q for q in cq.get("unreplied", [])
                        if str(q.get("message_id", "")) != msg_id]
     _save(pid, cq)

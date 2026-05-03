@@ -11,6 +11,38 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.46.0] - 2026-05-03
+
+### Fixed
+
+**`/markdone` clears now appear in the daily counter**
+(`commands/markdone_audit.py` [new], `commands/markdone.py`)
+
+The queue header counters previously disagreed on what counts as a
+clear: the all-time figure read `reply_log` (which includes both
+Telegram-reply and `/markdone` clears) but the today figure read
+`state.queue_history` (which only had Telegram-reply clears). A
+session where most clears happened via `/markdone` would show a
+small "today" against a much larger all-time, with no obvious
+explanation.
+
+`/markdone` now writes to both stores via the new `record_clear`
+helper in `commands/markdone_audit.py`. The two existing audit-trail
+write blocks in `markdone.py` (`_clear_entries` and `_clear_by_msg_id`)
+collapse to single calls into the helper, removing duplication and
+keeping `markdone.py` under the 200-line budget.
+
+### Tests
+
+`scripts/test_markdone_audit.py` (new): 5 tests covering reply_log
+shape, preview truncation, the mirroring call into
+`queue_stats.record_reply`, log preservation across clears, and the
+end-to-end queue_history write that closes the parity gap. Full
+suite: 1500 passing (was 1495), same 8 pre-existing
+Windows-codec failures.
+
+---
+
 ## [4.45.0] - 2026-05-03
 
 ### Fixed
