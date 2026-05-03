@@ -2,12 +2,57 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 150744,
+      "message_id": 150815,
+      "thread_id": 144765,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-05-03T14:49:15+00:00",
+      "preview": "Disable (14 to fail, hero pointed into a 14 to fail); Guidance to Miwa",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150817,
+      "thread_id": 144765,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-05-03T14:52:29+00:00",
+      "preview": "I can't get to foundry right now, but I will have Akuma spend his 3 actions to fight defensively.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150833,
+      "thread_id": 76799,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-05-03T15:07:48+00:00",
+      "preview": "Leaning against the machine, the diminutive detective turns to the newcomers. \"Phew. Fresh faces that aren't causing things to explode, or shoot at us. You'll have to forgive those of us that have been on scene longer, but we'll have to take a few and get our wind back.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150835,
       "thread_id": 76799,
       "user_id": "8787586972",
       "user_name": "Chris Warlock",
-      "time": "2026-05-03T14:03:01+00:00",
-      "preview": "Cackle, pressed against the dart trap tries his hardest to wiggle himself out of Natalia's grip but their difference in strength and size is too great so he is left to await his demise with growing dread. \"Curse you, you ungrateful brat!\" He shouts at Natalia who just eyes him with disdain. As the trap hits him, he explodes in a small spray of blood and flames accompanied by a dreadful death wail. \nWith her bloodied hands Natalia catches the flame that made up Cackle's core and tries to push it ",
+      "time": "2026-05-03T15:10:25+00:00",
+      "preview": "Natalia steps back into the room and nods with a smile. \"You deserve a break. Good work. I will be on the lookout for new threats while you recover.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150836,
+      "thread_id": 76799,
+      "user_id": "7863964681",
+      "user_name": "Link",
+      "time": "2026-05-03T15:10:56+00:00",
+      "preview": "Akuma's eyebrow raises at the pixie's words and the actions of their new party members. \"I'm pretty sure she,\" pointing at Natalia, \"just blew up a talking fox.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150843,
+      "thread_id": 76799,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-03T15:20:10+00:00",
+      "preview": "\"I am Natalia Ordranti, pleasure to meet you,\" she says while performing a curtsy. (To make things easy, those that are at least trained in Society would recognize her surname as being that of the royal family of Ustalav)\nShe looks over to Akuma and shrugs. \"I am, amongst many other and more important things, a witch. When I saw how deadly those traps were I decided that I'd rather sacrifice my immortal familiar that will come back healthy and hale tomorrow anyways than see one of my colleagues ",
       "media_group_id": null
     }
   ],
@@ -228,7 +273,11 @@
     "msg:150750",
     "2026-05-03 14:06:09",
     "msg:150751",
-    "2026-05-03 14:06:26"
+    "2026-05-03 14:06:26",
+    "msg:150744",
+    "2026-05-03 14:03:01",
+    "msg:150822",
+    "2026-05-03 14:55:10"
   ],
   "reply_log": [
     {
@@ -1252,18 +1301,40 @@
       "player": "Chris Warlock",
       "preview": "This",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T15:03:49+00:00",
+      "pid": "76799",
+      "msg_id": "150744",
+      "thread_id": 76799,
+      "player": "Chris Warlock",
+      "preview": "Cackle, pressed against the dart trap tries his hardest to wiggle himself out of",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T15:04:44+00:00",
+      "pid": "76799",
+      "msg_id": "150822",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "Suddenly surrounded by unexpected backup while he had been working at the dart l",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 150773,
-      "fingerprint": "2026-05-03 14:03:01"
+      "fingerprint": "2026-05-03 15:07:48|2026-05-03 15:10:25|2026-05-03 15:10:56|2026-05-03 15:20:10",
+      "msg_ids": [
+        150848
+      ]
     },
     "144765": {
-      "fingerprint": "",
-      "msg_ids": []
+      "fingerprint": "2026-05-03 14:49:15|2026-05-03 14:52:29",
+      "msg_ids": [
+        150846
+      ]
     }
   }
 }
