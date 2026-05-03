@@ -1,25 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 148209,
-      "thread_id": 52083,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-04-24T19:35:42+00:00",
-      "preview": "Lowda follows the group into the community centre, frowning slightly as he takes note of the disrepair. He then notices Miyu taking note of of something and follows their gaze to the pahtra sorting random objects and his mind immediately runs away with the task of figuring out what the objects' purpose might be.\n((I'd like to try a Recall Knowledge to start figuring it out - is he repairing, assembling, or creating something? Simply preparing to leave? If so, do the objects provide a clue as to ",
-      "media_group_id": null
-    },
-    {
-      "message_id": 148270,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-25T09:45:16+00:00",
-      "preview": "Pretty upset about getting called dangerous, Livy speaks up against this obvious  injustice:\n\"Hey that's twice now that you called us dangerous! I'm not dangerous! I'm the one and only \u2605SUPER IDOL LIVY\u2605.  And here i thought this would be a nice place to have a \u2605CONCERT\u2605. But i guess i'm too dangerous to be here, right Roneles? I guess i won't be able to use my \u2605SUPER IDOL GARDENING\u2605 and \u2605SUPER IDOL MEDICINE\u2605 here either since I'm too dangerous. Too bad Roneles it seems they don't need any help f",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -102,7 +83,11 @@
     "msg:148116",
     "2026-04-24 17:33:25",
     "msg:150608",
-    "2026-05-03 12:40:30"
+    "2026-05-03 12:40:30",
+    "msg:148209",
+    "2026-04-24 19:35:42",
+    "msg:148270",
+    "2026-04-25 09:45:16"
   ],
   "reply_log": [
     {
@@ -469,14 +454,50 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T12:45:07+00:00",
+      "pid": "52083",
+      "msg_id": "148209",
+      "thread_id": 52083,
+      "player": "CzarChasm23",
+      "preview": "Lowda follows the group into the community centre, frowning slightly as he takes",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T12:46:50+00:00",
+      "pid": "52083",
+      "msg_id": "148270",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Pretty upset about getting called dangerous, Livy speaks up against this obvious",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T13:23:54+00:00",
+      "pid": "52083",
+      "msg_id": "148209",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T13:24:00+00:00",
+      "pid": "52083",
+      "msg_id": "148270",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "msg_id": 150646,
-      "fingerprint": "2026-04-24 19:35:42|2026-04-25 09:45:16"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
