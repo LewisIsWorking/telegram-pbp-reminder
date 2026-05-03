@@ -18,30 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 150816,
+      "message_id": 150866,
       "thread_id": 40585,
       "user_id": "7842002561",
       "user_name": "Awnii",
-      "time": "2026-05-03T14:51:02+00:00",
-      "preview": "\"Are you Kieran?\"\nNot waiting\n\"Do you influence me and sir squishy? Are you ok? What's wrong with your hand? Can I help you?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150831,
-      "thread_id": 40585,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-05-03T15:05:06+00:00",
-      "preview": "Kieran nods to Tal'lysae, then looks at the newcomer, and resists laughing at her quick questioning and demeanor. He attempts to answer your questions in the order received. \n\"I am Kieran. I do not know if I can influence you or your pet, but I am also not interested in manipulating someone who seems like a good person. And I do not need any help at this time. Thank you.\" \n\nHe pats her gently on the head, the slime of his skin not mixing with the slime of hers. The way he looks at her isn't a lo",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150842,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-05-03T15:18:04+00:00",
-      "preview": "Once Kiernan decides to head out, Cho will follow him.  \"I sense you are somehow connected to the city somehow.  I willl continue to observe you to monitor as I can.  To make sure that this is not a new curse waiting to unfold.\"  He walks as quietly as all the trinkets on his robes jingle.",
+      "time": "2026-05-03T15:41:05+00:00",
+      "preview": "\"okay!\"\nHer response to his touch made her shudder, unsure if that was a good thing or bad thing but for now she brushes it off indifferent.\n\nFascinated by the petal rotating around her, she rotates in place watching it circle her without touching it.\n\nFinally he snaps out of it\n\"Ooohhh, pretty\"\nShe then proceeds to follow where er the majority of the group does.",
       "media_group_id": null
     }
   ],
@@ -653,7 +635,13 @@
     "msg:150685",
     "2026-05-03 13:44:12",
     "msg:150813",
-    "2026-05-03 14:48:25"
+    "2026-05-03 14:48:25",
+    "msg:150831",
+    "2026-05-03 15:05:06",
+    "msg:150842",
+    "2026-05-03 15:18:04",
+    "msg:150816",
+    "2026-05-03 14:51:02"
   ],
   "reply_log": [
     {
@@ -3587,6 +3575,33 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T15:28:18+00:00",
+      "pid": "40585",
+      "msg_id": "150831",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "Kieran nods to Tal'lysae, then looks at the newcomer, and resists laughing at he",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T15:28:47+00:00",
+      "pid": "40585",
+      "msg_id": "150842",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "Once Kiernan decides to head out, Cho will follow him.  \"I sense you are somehow",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T15:29:02+00:00",
+      "pid": "40585",
+      "msg_id": "150816",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "\"Are you Kieran?\"\nNot waiting\n\"Do you influence me and sir squishy? Are you ok? ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3597,9 +3612,9 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-03 14:51:02|2026-05-03 15:05:06|2026-05-03 15:18:04",
+      "fingerprint": "2026-05-03 15:41:05",
       "msg_ids": [
-        150850
+        150872
       ]
     }
   }
