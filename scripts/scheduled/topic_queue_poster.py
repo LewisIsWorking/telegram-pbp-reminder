@@ -9,8 +9,13 @@ Multi-topic campaigns (e.g. C06 Kibwe with PBP + COMBAT threads) each get
 their own pinned queue in the correct thread, not everything posted to the
 canonical pid thread.
 
+A single thread's queue may overflow Telegram's 4096-char limit and be
+sent as multiple messages. Every message ID is tracked so the entire
+previous batch can be deleted before the next one is posted — see
+``scheduled.topic_queue_state`` for the slot schema.
+
 State per canonical campaign pid in data/state/queues/{pid}.json:
-  topic_queues: {thread_id: {msg_id, fingerprint}}  — one slot per thread
+  topic_queues: {thread_id: {msg_ids: [int, ...], fingerprint}}
   topic_msg_id, topic_fingerprint — legacy fields, migrated on first run
 """
 
@@ -21,6 +26,9 @@ import telegram as tg
 from commands.queue_io import load as _load, save as _save, all_pids as _all_pids
 from commands.topic_queue_format import format_topic_queue, build_topic_fingerprint
 from helpers_pkg.campaigns import get_pair
+from scheduled.topic_queue_state import (
+    slot_msg_ids, set_slot_msg_ids, clear_slot, empty_slot,
+)
 
 
 def _group_id_for(config: dict, pid: str) -> int:
@@ -47,42 +55,47 @@ def _post_thread_queue(group_id: int, thread_id: str,
                        slot: dict, entries: list, now: datetime) -> None:
     """Post or refresh the pinned queue for one physical thread.
 
-    slot is a mutable dict: {msg_id, fingerprint} — updated in place.
+    slot is a mutable dict in either schema (legacy ``msg_id`` or
+    current ``msg_ids``). Updated in place to the current schema on
+    every successful write.
     """
     fingerprint = build_topic_fingerprint(entries)
-    if fingerprint == slot.get("fingerprint", "") and slot.get("msg_id"):
+    if fingerprint == slot.get("fingerprint", "") and slot_msg_ids(slot):
         return  # No change — skip
 
-    old_msg_id = slot.get("msg_id")
-    if old_msg_id:
+    for old_msg_id in slot_msg_ids(slot):
         tg.delete_message(group_id, old_msg_id)
 
     chunks = format_topic_queue(entries, now)
-    first_msg_id = None
+    sent_msg_ids: list[int] = []
+    first_msg_id: int | None = None
     for chunk in chunks:
         msg_id = tg.send_message_id(group_id, int(thread_id), chunk)
-        if msg_id and first_msg_id is None:
-            first_msg_id = msg_id
+        if msg_id:
+            sent_msg_ids.append(msg_id)
+            if first_msg_id is None:
+                first_msg_id = msg_id
     if first_msg_id:
         tg.pin_message(group_id, first_msg_id, disable_notification=False)
-        slot["msg_id"] = first_msg_id
-        slot["fingerprint"] = fingerprint
+        set_slot_msg_ids(slot, sent_msg_ids, fingerprint)
         print(f"Topic queue posted: thread={thread_id} entries={len(entries)} chunks={len(chunks)}")
 
 
 def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
-    """Send caught-up message and remove stale pin for one thread.
+    """Send caught-up message and remove every stale pinned message.
 
-    No-op if no pin exists. slot updated in place.
+    No-op if the slot has no tracked messages. Slot is reset to the
+    empty current-schema shape.
     """
-    old_msg_id = slot.get("msg_id")
-    if not old_msg_id:
+    msg_ids = slot_msg_ids(slot)
+    if not msg_ids:
         return  # pragma: no cover
     tg.send_message(group_id, int(thread_id), "━━━━━━━━━━━━━━━━\n✅ All caught up!")
-    tg.unpin_message(group_id, old_msg_id)
-    tg.delete_message(group_id, old_msg_id)
-    slot["msg_id"] = None
-    slot["fingerprint"] = ""
+    # Unpin only the first message (the pinned one); delete every tracked id.
+    tg.unpin_message(group_id, msg_ids[0])
+    for mid in msg_ids:
+        tg.delete_message(group_id, mid)
+    clear_slot(slot)
     print(f"Topic queue cleared: thread={thread_id}")
 
 
@@ -113,7 +126,7 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime) -> None:
         cq = _load(pid)
         _migrate_legacy(cq, group_id)
         queues = cq.setdefault("topic_queues", {})
-        slot = queues.setdefault(thread_id, {"msg_id": None, "fingerprint": ""})
+        slot = queues.setdefault(thread_id, empty_slot())
         _post_thread_queue(group_id, thread_id, slot, entries, now)
         _save(pid, cq)
         time.sleep(1)
@@ -126,7 +139,7 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime) -> None:
         queues = cq.get("topic_queues", {})
         changed = False
         for thread_id, slot in queues.items():
-            if thread_id not in active_threads and slot.get("msg_id"):
+            if thread_id not in active_threads and slot_msg_ids(slot):
                 _clear_thread_queue(group_id, thread_id, slot)
                 changed = True
                 time.sleep(1)

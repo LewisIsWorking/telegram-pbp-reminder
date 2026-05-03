@@ -11,6 +11,48 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.44.0] - 2026-05-03
+
+### Added
+
+**Rolling 3-batch retention in the GM Queue topic**
+(`scheduled/gm_queue_history.py`, `scheduled/queue_reminder.py`,
+`state.py`, `docs/gm-queue.md`)
+
+Only the last three queue post batches are kept in the GM Queue topic.
+When a fourth batch is posted, every Telegram message in the oldest
+batch is deleted so the topic stays scannable. A *batch* is the full
+set of messages produced by a single queue post — long queues that
+overflow Telegram's 4096-char limit count as one batch and evict
+together. State lives in `state["gm_queue_history"]` (live partition);
+`MAX_KEPT_BATCHES = 3`. The legacy `last_queue_pin_id` is kept and
+seeded into history on first run via an idempotent migration.
+
+### Fixed
+
+**Per-topic pinned queue: stale messages no longer orphaned on update**
+(`scheduled/topic_queue_poster.py`, `scheduled/topic_queue_state.py`)
+
+When a thread's pinned queue overflowed into multiple Telegram
+messages, only the *first* message ID was tracked in
+`topic_queues[thread_id]["msg_id"]`. On the next refresh the
+non-first messages of the previous post were left behind in the
+thread. The slot schema is now
+`{msg_ids: list[int], fingerprint: str}` and every tracked id is
+deleted before a new batch is posted. Legacy slots (`{msg_id: int}`)
+are read transparently and rewritten to the new shape on first
+update.
+
+### Refactored
+
+**Workflow** (`.github/workflows/pbp-reminder.yml`)
+
+Removed a temporary one-off purge step that had been blocking
+`checker.py` on every cron tick because the referenced script was
+not on the remote.
+
+---
+
 ## [4.43.0] - 2026-04-20
 
 ### Added

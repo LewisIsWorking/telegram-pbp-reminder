@@ -104,6 +104,28 @@ Every queue post includes this in the header:
 
 ---
 
+## Rolling retention in the GM Queue topic
+
+Only the **last 3 queue post batches** are kept in the GM Queue topic.
+When a fourth batch is posted, every message in the oldest batch is
+deleted from Telegram so the topic stays scannable.
+
+A *batch* is the full set of messages produced by a single queue post.
+A long queue (more than ~4000 chars) is sent as multiple Telegram
+messages but counts as one batch — all of its messages are evicted
+together when the batch falls off the end.
+
+The retention applies only to the bot's GM Queue topic. Per-topic
+pinned queues (in PBP campaign threads) are unaffected — they always
+keep exactly one current pin per thread, with the previous pin's
+messages deleted on each refresh.
+
+Retention state lives in `state["gm_queue_history"]`, capped at 3
+batches; the cap is defined as `MAX_KEPT_BATCHES` in
+`scheduled/gm_queue_history.py`.
+
+---
+
 ## How entries are cleared
 
 **A queue entry is cleared when the GM uses Telegram's reply-to feature

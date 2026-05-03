@@ -8,6 +8,7 @@ from commands.queue_scan import scan_transcripts
 from commands.queue_format import entry_age_icon, age_str, short_preview, format_queue_line
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import silent_campaigns
+from scheduled.gm_queue_history import post_and_persist
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -164,22 +165,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if current.strip():
             msgs.append(current.rstrip())
 
-    sent = False
-    first_msg_id = None
-    for i, msg in enumerate(msgs):
-        result = tg.send_message_id(group_id, bot_topic, msg)
-        if result:
-            sent = True
-            if i == 0:
-                first_msg_id = result
+    sent, _first_msg_id = post_and_persist(state, group_id, bot_topic, msgs)
     if sent:
-        # Pin the new message, unpin the previous one
-        if first_msg_id:
-            prev_pin = state.get("last_queue_pin_id")
-            if prev_pin:
-                tg.unpin_message(group_id, prev_pin)
-            tg.pin_message(group_id, first_msg_id)
-            state["last_queue_pin_id"] = first_msg_id
         state["last_queue_fingerprint"] = fingerprint
         state["queue_post_count"] = queue_num
         if is_daily:
