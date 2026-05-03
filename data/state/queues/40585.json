@@ -18,12 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 150663,
+      "message_id": 150685,
       "thread_id": 40585,
       "user_id": "7842002561",
       "user_name": "Awnii",
-      "time": "2026-05-03T13:30:30+00:00",
-      "preview": "\"What does kieren do? Is he still up there? Did he die? Or.... I'll stop now\"\n\nShe looks down at her boots as a drop of her own slime falls on the toe like translucent blue jelly. In response she sticker her finger down and reabsorbs it through her index finger",
+      "time": "2026-05-03T13:44:12+00:00",
+      "preview": "\"is anyone with him?\"",
       "media_group_id": null
     }
   ],
@@ -629,7 +629,9 @@
     "msg:150639",
     "2026-05-03 13:22:59",
     "msg:150645",
-    "2026-05-03 13:23:08"
+    "2026-05-03 13:23:08",
+    "msg:150663",
+    "2026-05-03 13:30:30"
   ],
   "reply_log": [
     {
@@ -3527,6 +3529,15 @@
       "player": "Buffet",
       "preview": "\"Unless the city is going to be destroyed in the next half hour or so, I would p",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T13:40:57+00:00",
+      "pid": "40585",
+      "msg_id": "150663",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "\"What does kieren do? Is he still up there? Did he die? Or.... I'll stop now\"\n\nS",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3537,8 +3548,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": 150667,
-      "fingerprint": "2026-05-03 13:30:30"
+      "msg_id": 150777,
+      "fingerprint": "2026-05-03 13:44:12"
     }
   }
 }
