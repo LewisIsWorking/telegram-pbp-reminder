@@ -11,6 +11,29 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.47.1] - 2026-05-03
+
+### Refactored
+
+**`scripts/test_core_coverage.py` split by subject-under-test**
+(`test_core_queue.py`, `test_core_markdone.py`,
+`test_core_state.py`, `test_core_scheduled.py` — all new)
+
+The single 514-line `test_core_coverage.py` violated the 200-line
+budget and grouped tests for six unrelated modules under one file.
+The author had already drawn topic boundaries with section-divider
+comments; the split honours those exact cut points:
+
+- `test_core_queue.py` (126 lines) — `commands/queue.py`
+- `test_core_markdone.py` (151 lines) — `commands/markdone.py`
+- `test_core_state.py` (51 lines) — `state.py` file-I/O paths
+- `test_core_scheduled.py` (194 lines) — `scheduled/{session_poll,queue_reminder,potw}.py` guard tests
+
+No test bodies changed. Each new file's docstring describes its
+scope. Full suite still 1509 passing; no behaviour change. Closes
+the last per-file budget violation introduced by today's work.
+
+---
 ## [4.47.0] - 2026-05-03
 
 ### Refactored
