@@ -93,9 +93,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         return (priority_map.get(pid, 2), oldest)
 
     sorted_pids = sorted(scanned.keys(), key=sort_key)
-    from commands.queue_stats import get_today_clears
+    from commands.queue_stats import get_today_clears, get_alltime_clears
     cleared_today = get_today_clears(state, now)
-    streak = f" | ✅ {cleared_today} cleared today" if cleared_today else ""
+    cleared_alltime = get_alltime_clears()
+    streak = f" | ✅ {cleared_today} today" if cleared_today else ""
+    streak += f" | 🏆 {cleared_alltime} all-time" if cleared_alltime else ""
     # Per-campaign summary line
     summary_parts = []
     for pid in sorted_pids:

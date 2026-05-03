@@ -129,20 +129,25 @@ def _clear_entries(entries: list[dict], pid: str,
         mid_key = f"msg:{mid_str}" if mid_str else None
 
         replied = cq.setdefault("replied", [])
-        if mid_key and mid_key not in replied:
+        # Idempotent: only append to reply_log if this is a new clear.
+        # (replied[] dedup-checked the same way, but we also gate the
+        # audit-trail write so re-runs don't produce duplicate entries.)
+        is_new_clear = bool(mid_key) and mid_key not in replied
+        if is_new_clear:
             replied.append(mid_key)
         if ts and ts not in replied:
             replied.append(ts)
 
-        cq.setdefault("reply_log", []).append({
-            "t":         now.isoformat(),
-            "pid":       pid,
-            "msg_id":    mid_str or "",
-            "thread_id": e.get("thread_id", pid),
-            "player":    e.get("name", "?"),
-            "preview":   e.get("preview", "")[:80],
-            "via":       "markdone",
-        })
+        if is_new_clear:
+            cq.setdefault("reply_log", []).append({
+                "t":         now.isoformat(),
+                "pid":       pid,
+                "msg_id":    mid_str or "",
+                "thread_id": e.get("thread_id", pid),
+                "player":    e.get("name", "?"),
+                "preview":   e.get("preview", "")[:80],
+                "via":       "markdone",
+            })
 
         # Remove from unreplied — compare as strings to handle int/str mismatch
         cq["unreplied"] = [
@@ -171,19 +176,22 @@ def _clear_by_msg_id(msg_id: str, pid: str, state: dict, now: datetime) -> bool:
     e = match[0]
     ts = e.get("time", "")[:19].replace("T", " ")
     replied = cq.setdefault("replied", [])
-    if mid_key not in replied:
+    # Idempotent guard: only append to reply_log if this clear is new.
+    is_new_clear = mid_key not in replied
+    if is_new_clear:
         replied.append(mid_key)
     if ts and ts not in replied:
         replied.append(ts)
-    cq.setdefault("reply_log", []).append({
-        "t":         now.isoformat(),
-        "pid":       pid,
-        "msg_id":    msg_id,
-        "thread_id": e.get("thread_id", pid),
-        "player":    e.get("user_name", "?"),
-        "preview":   e.get("preview", "")[:80],
-        "via":       "markdone",
-    })
+    if is_new_clear:
+        cq.setdefault("reply_log", []).append({
+            "t":         now.isoformat(),
+            "pid":       pid,
+            "msg_id":    msg_id,
+            "thread_id": e.get("thread_id", pid),
+            "player":    e.get("user_name", "?"),
+            "preview":   e.get("preview", "")[:80],
+            "via":       "markdone",
+        })
     cq["unreplied"] = [q for q in cq.get("unreplied", [])
                        if str(q.get("message_id", "")) != msg_id]
     _save(pid, cq)

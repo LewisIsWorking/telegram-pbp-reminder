@@ -11,6 +11,61 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.45.0] - 2026-05-03
+
+### Fixed
+
+**Reply tracking deduplication**
+(`commands/queue_io.py`, `commands/markdone.py`,
+`commands/queue_stats.py`, `dispatch/tracking.py`,
+`dispatch/gm_reply.py` [new])
+
+The bot was over-counting cleared queue entries when the same Telegram
+update arrived more than once (offset replays, retries, edits). The
+queue header showed "53 cleared today" against 29 actual unique
+clears. `mark_replied` deduplicated `replied[]` but unconditionally
+appended to `reply_log[]`, and `record_reply` had no dedup at all, so
+`state.queue_history` and `state.queue_archive` accumulated duplicate
+entries on every replayed update.
+
+`mark_replied` now returns a `bool` and gates the `reply_log` append
+on that flag. `record_reply` accepts an optional `msg_id` and is
+defensively idempotent against the most-recent archive entry for the
+same `(pid, msg_id)`. `markdone.py` applies the same gate to both of
+its `reply_log` write paths. The reply-recording flow itself was
+extracted to `dispatch/gm_reply.py` (`record_gm_reply`) so the side
+effects (per-campaign queue + global state) are co-located, single
+responsibility, and easy to test.
+
+### Added
+
+**All-time clears in the GM Queue header**
+(`commands/queue_stats.py`, `scheduled/queue_reminder.py`)
+
+The header now reads
+`GM Queue #N - Unreplied: X | Y today | Z all-time`. The all-time
+counter is sourced from per-campaign `reply_log` files (the uncapped
+audit trail) and filters to `{reply, markdone, manual}` so migration
+markers (`archive-pre-w11`, `dedup`) are excluded. New helper
+`get_alltime_clears(filter_via=None)` in `commands/queue_stats.py`.
+
+**Known limitation:** the "today" counter still reads
+`state.queue_history`, which only records Telegram-reply clears, not
+`/markdone` clears. The asymmetry pre-dates this release but is more
+visible now that the all-time figure includes both. Aligning them
+would need `markdone.py` to call `record_reply`; deferred for a
+follow-up so the dedup landing remains scoped.
+
+### Tests
+
+`scripts/test_queue_dedup.py` (new): 14 tests covering idempotent
+`mark_replied`, repeated `record_reply` no-op, both `markdone`
+paths, `get_alltime_clears` filter behaviour, and the
+`gm_reply.record_gm_reply` flow end-to-end. Full suite: 1495 passing
+(8 pre-existing Windows-codec test failures unchanged).
+
+---
+
 ## [4.44.0] - 2026-05-03
 
 ### Added

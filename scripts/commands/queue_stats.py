@@ -8,21 +8,39 @@ from datetime import datetime, timezone, timedelta
 import helpers
 
 def record_reply(pid: str, state: dict, entry_preview: str = "",
-                 player_name: str = "", now: datetime | None = None) -> None:
-    """Record a GM reply for streak/history/archive tracking."""
+                 player_name: str = "", now: datetime | None = None,
+                 msg_id: str = "") -> bool:
+    """Record a GM reply for streak/history/archive tracking.
+
+    Defensively idempotent: if ``msg_id`` is given and the most recent
+    queue_archive entry already records the same (pid, msg_id), this
+    call is a no-op. Callers (notably dispatch/gm_reply.py) already
+    gate on queue_io.mark_replied; this is a second line of defence
+    against double-recording when the same Telegram update is
+    processed more than once.
+
+    Returns ``True`` when a new entry was appended, ``False`` when the
+    call was deduplicated.
+    """
     now = now or datetime.now(timezone.utc)
+    archive = state.setdefault("queue_archive", [])
+    if msg_id and archive:
+        last = archive[-1]
+        if (last.get("pid") == pid
+                and str(last.get("msg_id", "")) == str(msg_id)):
+            return False
     history = state.setdefault("queue_history", {}).setdefault(pid, [])
     history.append(now.isoformat())
     if len(history) > 500:
         state["queue_history"][pid] = history[-500:]
-    # Archive: store what was cleared
-    archive = state.setdefault("queue_archive", [])
     archive.append({
         "pid": pid, "time": now.isoformat(),
         "player": player_name, "preview": entry_preview[:60],
+        "msg_id": msg_id,
     })
     if len(archive) > 200:
         state["queue_archive"] = archive[-200:]
+    return True
 
 def get_today_clears(state: dict, now: datetime | None = None) -> int:
     now = now or datetime.now(timezone.utc)
@@ -39,6 +57,30 @@ def get_week_clears(state: dict, now: datetime | None = None) -> int:
         1 for pid, h in state.get("queue_history", {}).items()
         for ts in h if ts >= cutoff
     )
+
+def get_alltime_clears(filter_via: set[str] | None = None) -> int:
+    """Return the total number of cleared queue entries across all time.
+
+    Reads every per-campaign ``reply_log`` (the uncapped audit trail)
+    and counts entries whose ``via`` is in ``filter_via``. The default
+    filter accepts genuine clears: GM reply (``reply``), manual mark
+    via /markdone (``markdone``), and pre-bot manual entries
+    (``manual``). Migration markers (``archive-pre-w11``, ``dedup``)
+    are excluded so the figure reflects real GM activity.
+
+    Cost: one disk read per active campaign queue file (typically
+    <15). Called once per queue post, well under the cron tick budget.
+    """
+    if filter_via is None:
+        filter_via = {"reply", "markdone", "manual"}
+    from commands import queue_io
+    total = 0
+    for pid in queue_io.all_pids():
+        cq = queue_io.load(pid)
+        for entry in cq.get("reply_log", []):
+            if entry.get("via", "") in filter_via:
+                total += 1
+    return total
 
 def _get_last_week_clears(state: dict, now: datetime) -> int:
     start = (now - timedelta(days=14)).isoformat()

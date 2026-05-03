@@ -62,20 +62,33 @@ def replied_set(pid: str) -> set[str]:
 
 
 def mark_replied(pid: str, mid_key: str, ts_key: str | None,
-                 log_entry: dict) -> None:
-    """Add reply keys and a log entry to a campaign's queue file."""
+                 log_entry: dict) -> bool:
+    """Add reply keys and a log entry to a campaign's queue file.
+
+    Idempotent: if mid_key is already in replied the reply has already
+    been recorded and reply_log is not appended again. Removes the
+    message from unreplied either way (cheap and self-healing if a
+    stale unreplied entry lingers).
+
+    Returns True when the reply was newly recorded, False when it was
+    already present. Callers (notably dispatch/tracking.py) use this
+    to gate downstream side-effects such as record_reply.
+    """
     cq = load(pid)
     replied = cq.setdefault("replied", [])
-    if mid_key and mid_key not in replied:
+    is_new = bool(mid_key) and mid_key not in replied
+    if is_new:
         replied.append(mid_key)
     if ts_key and ts_key not in replied:
         replied.append(ts_key)
-    # Remove from unreplied
+    # Remove from unreplied unconditionally (no-op if already removed).
     msg_id = log_entry.get("msg_id", "")
     cq["unreplied"] = [e for e in cq.get("unreplied", [])
                        if str(e.get("message_id", "")) != msg_id]
-    cq.setdefault("reply_log", []).append(log_entry)
+    if is_new:
+        cq.setdefault("reply_log", []).append(log_entry)
     save(pid, cq)
+    return is_new
 
 
 def migrate_from_state(state: dict) -> int:

@@ -81,43 +81,8 @@ def track_message(parsed: dict, state: dict, config: dict,
         if not text.startswith("/"):
             reply_to = parsed.get("reply_to_message_id")
             if reply_to:
-                cq = queue_io.load(pid)
-                replied = cq.get("replied", [])
-
-                mid_key = f"msg:{reply_to}"
-                ts_key = None
-
-                # Try to get timestamp from campaign queue
-                replied_entry = {}
-                unreplied = cq.get("unreplied", [])
-                for e in unreplied:
-                    if e["message_id"] == reply_to:
-                        replied_entry = e
-                        ts = e.get("time", "")[:19].replace("T", " ")
-                        ts_key = ts if ts else None
-                        break
-                else:
-                    reply_date = parsed.get("reply_to_date")  # pragma: no cover
-                    if reply_date:  # pragma: no cover
-                        ts_key = datetime.fromtimestamp(  # pragma: no cover
-                            reply_date, tz=timezone.utc
-                        ).strftime("%Y-%m-%d %H:%M:%S")
-
-                log_entry = {
-                    "t":         msg_time_iso,
-                    "pid":       pid,
-                    "msg_id":    str(reply_to),
-                    "thread_id": replied_entry.get("thread_id", pid),
-                    "player":    replied_entry.get("user_name", "?"),
-                    "preview":   replied_entry.get("preview", "")[:80],
-                    "via":       "reply",
-                }
-                queue_io.mark_replied(pid, mid_key, ts_key, log_entry)
-
-                from commands.queue_stats import record_reply
-                record_reply(pid, state,
-                             replied_entry.get("preview", ""),
-                             replied_entry.get("user_name", ""))
+                from dispatch.gm_reply import record_gm_reply
+                record_gm_reply(parsed, state, pid, reply_to)
 
     # Auto-identify previously unknown poll voters when they post
     unknown_polls = state.get("poll_unknown_voters", {})

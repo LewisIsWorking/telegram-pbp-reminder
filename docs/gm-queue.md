@@ -104,6 +104,21 @@ Every queue post includes this in the header:
 
 ---
 
+## Header counters
+
+Every queue post header includes two clear counters:
+
+- **today** -- count of GM-reply clears recorded since 00:00 UTC,
+  read from `state.queue_history`.
+- **all-time** -- count of every recorded clear across all campaigns,
+  read from per-campaign `reply_log` files and filtered to
+  `{reply, markdone, manual}` so migration markers are excluded.
+
+Both counters are deduplicated at write time. `queue_io.mark_replied`
+returns a bool and the audit-trail append is gated on that flag, so a
+Telegram update being replayed (offset retry, edit, etc.) does not
+inflate the figures.
+
 ## Rolling retention in the GM Queue topic
 
 Only the **last 3 queue post batches** are kept in the GM Queue topic.
