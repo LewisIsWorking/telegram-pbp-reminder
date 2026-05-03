@@ -16,51 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 149958,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-05-01T03:33:13+00:00",
-      "preview": "Tarsus sets Tal'lysae down, sitting her up against a wall, then sits down next to her.\n\"Tarsus. I think were successful with the ritual, but then someone touched the orb after everything calmed down and that tree-slime-thing sprouted. No clue what that's about.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149974,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-05-01T09:23:58+00:00",
-      "preview": "seeing what's going and everyone's urgency to get out of the tower, she follows injured one as he decends, holding the one who passed out seemingly.\n\nSir squishy following close behind waking on it own psudopods",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150063,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-05-01T14:15:56+00:00",
-      "preview": "As Kieran begins to pull the flower.  \"Be gentle, sir.  There is a lot of otherworldly power within.  Since you seem to have a connection can you explain what this is supposed to accomplish?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150082,
-      "thread_id": 40585,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-05-01T16:51:54+00:00",
-      "preview": "Ji Yun bowed his head slightly, formed the Zi Wu hand seal, and then said, \"Forgive my late introduction. I am Ji Yun\u2014Ji as in discipline, Yun as in sunlight\u2014emissary of the Ji family from Tianjing. I came to request Kibwe's aid regarding an ancient seal, but seeing Kibwe's current state... allow me to offer my help instead.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150085,
-      "thread_id": 40585,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-05-01T16:55:44+00:00",
-      "preview": "Kieran will stand, flower in hand. A gentle smile on his face.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -623,7 +578,21 @@
     "msg:150086",
     "2026-05-01 16:57:18",
     "msg:149957",
-    "2026-05-01 03:29:30"
+    "2026-05-01 03:29:30",
+    "msg:149958",
+    "2026-05-01 03:33:13",
+    "msg:149974",
+    "2026-05-01 09:23:58",
+    "msg:150063",
+    "2026-05-01 14:15:56",
+    "msg:150082",
+    "2026-05-01 16:51:54",
+    "msg:150085",
+    "2026-05-01 16:55:44",
+    "msg:150496",
+    "2026-05-03 11:33:33",
+    "msg:150527",
+    "2026-05-03 11:54:52"
   ],
   "reply_log": [
     {
@@ -3251,6 +3220,123 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:22:03+00:00",
+      "pid": "40585",
+      "msg_id": "149958",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus sets Tal'lysae down, sitting her up against a wall, then sits down next t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:23:04+00:00",
+      "pid": "40585",
+      "msg_id": "149958",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:35:44+00:00",
+      "pid": "40585",
+      "msg_id": "149958",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:37:13+00:00",
+      "pid": "40585",
+      "msg_id": "149974",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "seeing what's going and everyone's urgency to get out of the tower, she follows ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:39:25+00:00",
+      "pid": "40585",
+      "msg_id": "150063",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "As Kieran begins to pull the flower.  \"Be gentle, sir.  There is a lot of otherw",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:42:18+00:00",
+      "pid": "40585",
+      "msg_id": "150082",
+      "thread_id": 40585,
+      "player": "Caelum",
+      "preview": "Ji Yun bowed his head slightly, formed the Zi Wu hand seal, and then said, \"Forg",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:42:48+00:00",
+      "pid": "40585",
+      "msg_id": "150085",
+      "thread_id": 40585,
+      "player": "Link",
+      "preview": "Kieran will stand, flower in hand. A gentle smile on his face.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:43:02+00:00",
+      "pid": "40585",
+      "msg_id": "150496",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "Leopard having watched this all unfold can't help but wonder how the flame and t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:43:34+00:00",
+      "pid": "40585",
+      "msg_id": "150496",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:44:22+00:00",
+      "pid": "40585",
+      "msg_id": "150496",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:44:36+00:00",
+      "pid": "40585",
+      "msg_id": "150496",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:56:14+00:00",
+      "pid": "40585",
+      "msg_id": "150527",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "\"I am.. or was.... A halfling. My friend here pats the slime with her Is Sir Squ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:56:43+00:00",
+      "pid": "40585",
+      "msg_id": "150527",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3261,8 +3347,8 @@
       "fingerprint": ""
     },
     "40585": {
-      "msg_id": 150455,
-      "fingerprint": "2026-05-01 03:33:13|2026-05-01 09:23:58|2026-05-01 14:15:56|2026-05-01 16:51:54|2026-05-01 16:55:44"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }

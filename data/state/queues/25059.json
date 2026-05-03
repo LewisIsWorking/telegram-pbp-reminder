@@ -32,7 +32,11 @@
     "msg:149388",
     "2026-04-28 06:03:55",
     "msg:150431",
-    "2026-05-03 11:16:18"
+    "2026-05-03 11:16:18",
+    "msg:150495",
+    "2026-05-03 11:32:21",
+    "msg:150524",
+    "2026-05-03 11:52:20"
   ],
   "reply_log": [
     {
@@ -168,6 +172,24 @@
       "thread_id": 25059,
       "player": "Kaer'maga when?",
       "preview": "Selenor steps into the room and greets Anikia",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:33:52+00:00",
+      "pid": "25059",
+      "msg_id": "150495",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor bows and says \"It is a pleasure to meet you\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:53:53+00:00",
+      "pid": "25059",
+      "msg_id": "150524",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor sits down and asks \"We picked up your bounty regarding the kidnapping of",
       "via": "reply"
     }
   ],

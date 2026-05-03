@@ -2,84 +2,12 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 147002,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-21T16:33:08+00:00",
-      "preview": "\"Gotta foul each tube individually. I got one, but the remaining ones will probably get shots off while I'm working. Three more vollies of reducing intensity, assuming np screw ups on my end?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147005,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-21T16:34:23+00:00",
-      "preview": "\"Three volleys. Got it.\" Akuma responds, sure of his ally's capabilities.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147062,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-21T19:19:12+00:00",
-      "preview": "Nadya moves up to support, and shoves a vial up to Akuma's lips.\n\n\"Drink.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147065,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-21T19:26:25+00:00",
-      "preview": "Akuma gulps down the slightly bitter fluid, and immediately his face and extremities start to feel tingly. The pain of the wounds he suffered moments ago fades to a dull ache.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147601,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-24T02:35:24+00:00",
-      "preview": "Akuma, dripping with water looks over to this new arrival with what can only be described as confusion.\n\n\"What was that for?\" He asks, almost forgetting he is still in the middle of a trap.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 147641,
-      "thread_id": 76799,
-      "user_id": "8787586972",
-      "user_name": "Christopher",
-      "time": "2026-04-24T06:09:41+00:00",
-      "preview": "Cackle, the gaunt fox next to Natalia lets out a laugh that sounds like something between a fox's laugh-like sound and a hag's cackle. \"What a greeting!\"\nNatalia throws her familiar a stern look before giving Akuma an apologetic smile. \"Sorry, but it will help you survive. What do I need to know?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149247,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-04-28T03:06:20+00:00",
-      "preview": "B\u00e1yakan continues to work at the trap, managing to foul another tube. Halfway there.\n\n\"Not that I don't appreciate bigger folk taking the shots for me, but if anybody else has a tool kit, there are still two of these things shooting.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 149248,
       "thread_id": 144765,
       "user_id": "7454623139",
       "user_name": "Cannon",
       "time": "2026-04-28T03:06:52+00:00",
       "preview": "Natalia moved to adjacent to me iirc",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149256,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-04-28T03:14:19+00:00",
-      "preview": "Nadya stumbles out of the room with wide eyes and a distinct lack of looking back.",
       "media_group_id": null
     },
     {
@@ -116,15 +44,6 @@
       "user_name": "Christopher",
       "time": "2026-04-28T08:05:01+00:00",
       "preview": "She basically wants to sacrifice her familiar in order to prevent someone else from getting hit considering their lethality and the fact that he will come back the next day without any extra cost.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149548,
-      "thread_id": 76799,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-04-28T17:07:57+00:00",
-      "preview": "Akuma, tapping into his training, places himself in a defensive stance, prepared for the next round of darts.",
       "media_group_id": null
     }
   ],
@@ -287,7 +206,25 @@
     "msg:149255",
     "2026-04-28 03:12:58",
     "msg:149547",
-    "2026-04-28 17:06:41"
+    "2026-04-28 17:06:41",
+    "msg:147002",
+    "2026-04-21 16:33:08",
+    "msg:147005",
+    "2026-04-21 16:34:23",
+    "msg:147062",
+    "2026-04-21 19:19:12",
+    "msg:147065",
+    "2026-04-21 19:26:25",
+    "msg:147601",
+    "2026-04-24 02:35:24",
+    "msg:147641",
+    "2026-04-24 06:09:41",
+    "msg:149247",
+    "2026-04-28 03:06:20",
+    "msg:149256",
+    "2026-04-28 03:14:19",
+    "msg:149548",
+    "2026-04-28 17:07:57"
   ],
   "reply_log": [
     {
@@ -1023,14 +960,95 @@
       "player": "Link",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:46:50+00:00",
+      "pid": "76799",
+      "msg_id": "147002",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "\"Gotta foul each tube individually. I got one, but the remaining ones will proba",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:47:34+00:00",
+      "pid": "76799",
+      "msg_id": "147005",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "\"Three volleys. Got it.\" Akuma responds, sure of his ally's capabilities.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:48:16+00:00",
+      "pid": "76799",
+      "msg_id": "147062",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya moves up to support, and shoves a vial up to Akuma's lips.\n\n\"Drink.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:48:59+00:00",
+      "pid": "76799",
+      "msg_id": "147065",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Akuma gulps down the slightly bitter fluid, and immediately his face and extremi",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:49:33+00:00",
+      "pid": "76799",
+      "msg_id": "147601",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Akuma, dripping with water looks over to this new arrival with what can only be ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:50:17+00:00",
+      "pid": "76799",
+      "msg_id": "147641",
+      "thread_id": 76799,
+      "player": "Christopher",
+      "preview": "Cackle, the gaunt fox next to Natalia lets out a laugh that sounds like somethin",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:51:12+00:00",
+      "pid": "76799",
+      "msg_id": "149247",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "B\u00e1yakan continues to work at the trap, managing to foul another tube. Halfway th",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:51:51+00:00",
+      "pid": "76799",
+      "msg_id": "149256",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya stumbles out of the room with wide eyes and a distinct lack of looking bac",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:52:44+00:00",
+      "pid": "76799",
+      "msg_id": "149548",
+      "thread_id": 76799,
+      "player": "Link",
+      "preview": "Akuma, tapping into his training, places himself in a defensive stance, prepared",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "msg_id": 149561,
-      "fingerprint": "2026-04-21 16:33:08|2026-04-21 16:34:23|2026-04-21 19:19:12|2026-04-21 19:26:25|2026-04-24 02:35:24|2026-04-24 06:09:41|2026-04-28 03:06:20|2026-04-28 03:14:19|2026-04-28 17:07:57"
+      "msg_id": null,
+      "fingerprint": ""
     },
     "144765": {
       "msg_id": 149624,

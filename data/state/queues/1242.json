@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2347,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-05-03T11:13:18+00:00",
-      "preview": "I explain everything that we know about Quiz and the kidnapping. Hopefully Lucian is now satisfied and we can continue our quest",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -261,7 +251,9 @@
     "msg:2267",
     "2026-04-19 16:04:28",
     "msg:2313",
-    "2026-04-27 19:58:45"
+    "2026-04-27 19:58:45",
+    "msg:2347",
+    "2026-05-03 11:13:18"
   ],
   "reply_log": [
     {
@@ -1535,14 +1527,23 @@
       "player": "Luke",
       "preview": "~",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T11:28:57+00:00",
+      "pid": "1242",
+      "msg_id": "2347",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "I explain everything that we know about Quiz and the kidnapping. Hopefully Lucia",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "msg_id": 2348,
-      "fingerprint": "2026-05-03 11:13:18"
+      "msg_id": null,
+      "fingerprint": ""
     }
   }
 }
