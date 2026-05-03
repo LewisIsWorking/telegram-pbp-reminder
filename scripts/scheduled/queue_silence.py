@@ -45,7 +45,14 @@ def silent_campaigns(config: dict, state: dict,
         d_part, h_part = divmod(total_hours, 24)
         age_str = f"{d_part}d {h_part}h" if h_part else f"{d_part}d"
         icon = entry_age_icon(total_hours)
-        group_user = config.get("group_username", "")
-        link = f" 🔗 https://t.me/{group_user}/{pid}" if group_user else ""
+        pair_guser = pair.get("group_username") or config.get("group_username", "")
+        pair_gid = pair.get("group_id") or config.get("group_id")
+        if pair_guser:
+            link = f" 🔗 https://t.me/{pair_guser}/{pid}"
+        elif pair_gid:
+            digits = str(pair_gid).lstrip("-").lstrip("100").lstrip("0") or str(pair_gid)
+            link = f" 🔗 https://t.me/c/{digits}/{pid}"
+        else:
+            link = ""
         lines.append(f"  {icon} {prefix}{label} — no posts for {age_str}{link}")
     return lines
