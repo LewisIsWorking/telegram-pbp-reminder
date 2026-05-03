@@ -139,7 +139,7 @@ def test_public_load_uses_files_when_present(tmp_path):
     with patch("state._state_dir", return_value=tmp_path):
         state_store._save_to_files(original)
         state_store._loaded_ok = False
-        with patch("state._save_to_gist"):
+        with patch("state.gist_save"):
             result = state_store.load()
     assert result["offset"] == original["offset"]
     assert result["players"] == original["players"]
@@ -163,7 +163,7 @@ def test_public_load_fills_missing_defaults(tmp_path):
 def test_save_refused_when_not_loaded(tmp_path, capsys):
     state_store._loaded_ok = False
     with patch("state._state_dir", return_value=tmp_path), \
-         patch("state._save_to_gist"):
+         patch("state.gist_save"):
         state_store.save(_make_full_state())
     assert "REFUSING" in capsys.readouterr().out
     assert not any(tmp_path.iterdir())

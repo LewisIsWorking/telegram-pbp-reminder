@@ -289,87 +289,9 @@ import state as st
 def test_load_falls_back_to_defaults(tmp_path, monkeypatch):
     monkeypatch.setattr(st, "_loaded_ok", False)
     with patch.object(st, "_load_from_files", return_value=None):
-        with patch.object(st, "_load_from_gist", return_value=None):
+        with patch.object(st, "gist_load", return_value=None):
             result = st.load()
     assert "offset" in result
-
-
-def test_load_from_gist_no_token():
-    with patch.object(st, "_GIST_API", ""):
-        result = st._load_from_gist()
-    assert result is None
-
-
-def test_load_from_gist_success():
-    mock_resp = MagicMock()
-    mock_resp.status_code = 200
-    mock_resp.json.return_value = {"files": {st.STATE_FILENAME: {
-        "content": json.dumps({"offset": 42})
-    }}}
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.get", return_value=mock_resp):
-                result = st._load_from_gist()
-    assert result["offset"] == 42
-
-
-def test_load_from_gist_missing_file():
-    mock_resp = MagicMock()
-    mock_resp.status_code = 200
-    mock_resp.json.return_value = {"files": {}}
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.get", return_value=mock_resp):
-                result = st._load_from_gist()
-    assert result is None
-
-
-def test_load_from_gist_http_error():
-    mock_resp = MagicMock()
-    mock_resp.status_code = 500
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.get", return_value=mock_resp):
-                with pytest.raises(SystemExit):
-                    st._load_from_gist()
-
-
-def test_load_from_gist_network_error():
-    import requests as _req
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.get", side_effect=_req.RequestException("x")):
-                with pytest.raises(SystemExit):
-                    st._load_from_gist()
-
-
-def test_save_to_gist_no_token():
-    with patch.object(st, "_GIST_API", ""):
-        st._save_to_gist({})  # should return silently
-
-
-def test_save_to_gist_success():
-    mock_resp = MagicMock(); mock_resp.status_code = 200
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.patch", return_value=mock_resp):
-                st._save_to_gist({"offset": 1})
-
-
-def test_save_to_gist_http_failure():
-    mock_resp = MagicMock(); mock_resp.status_code = 500
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.patch", return_value=mock_resp):
-                st._save_to_gist({})  # should not raise
-
-
-def test_save_to_gist_network_error():
-    import requests as _req
-    with patch.object(st, "_GIST_API", "http://fake"):
-        with patch.object(st, "_GIST_TOKEN", "tok"):
-            with patch("state.requests.patch", side_effect=_req.RequestException("x")):
-                st._save_to_gist({})  # should not raise
 
 
 def test_save_refuses_if_not_loaded():
@@ -397,7 +319,7 @@ def test_load_from_files_json_error(tmp_path):
 
 def test_save_to_files(tmp_path):
     with patch.object(st, "_state_dir", return_value=tmp_path):
-        with patch.object(st, "_save_to_gist"):
+        with patch.object(st, "gist_save"):
             with patch.object(st, "_loaded_ok", True):
                 st.save({"offset": 99, "players": {}})
 

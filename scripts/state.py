@@ -8,7 +8,8 @@ Public API is unchanged: init(token, gist_id) / load() / save(state).
 """
 
 import json
-import requests
+
+from state_gist import gist_load, gist_save
 from pathlib import Path
 
 # ── Partition map ─────────────────────────────────────────────────────────────
@@ -93,7 +94,7 @@ def load() -> dict:
     state = _load_from_files()
     if state is None:
         print("State files absent — falling back to gist")
-        state = _load_from_gist()
+        state = gist_load(_GIST_API, _GIST_TOKEN, STATE_FILENAME)
     if state is None:
         print("Warning: could not load state from files or gist; using defaults")
         state = dict(DEFAULT_STATE)
@@ -109,7 +110,7 @@ def save(state: dict) -> None:
         print("REFUSING to save: state was not successfully loaded")
         return
     _save_to_files(state)
-    _save_to_gist(state)   # dual-write; gist becomes emergency read-only backup
+    gist_save(_GIST_API, _GIST_TOKEN, STATE_FILENAME, state)   # dual-write; gist becomes emergency read-only backup
 
 
 # ── File I/O ───────────────────────────────────────────────────────────────────
@@ -153,51 +154,3 @@ def _save_to_files(state: dict) -> None:
         path = d / f"{partition}.json"
         path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
     print("State saved to files")
-
-
-# ── Gist I/O ──────────────────────────────────────────────────────────────────
-
-def _gist_headers() -> dict:
-    return {
-        "Authorization": f"token {_GIST_TOKEN}",
-        "Accept": "application/vnd.github.v3+json",
-    }
-
-
-def _load_from_gist() -> dict | None:
-    """Load state blob from gist. Returns None on any failure."""
-    if not _GIST_API or not _GIST_TOKEN:
-        return None
-    try:
-        resp = requests.get(_GIST_API, headers=_gist_headers(), timeout=30)
-    except requests.RequestException as e:
-        print(f"FATAL: Could not connect to gist ({e}), aborting to protect state")
-        raise SystemExit(1)
-    if resp.status_code != 200:
-        print(f"FATAL: Gist returned HTTP {resp.status_code}, aborting")
-        raise SystemExit(1)
-    files = resp.json().get("files", {})
-    if STATE_FILENAME not in files:
-        return None
-    state = json.loads(files[STATE_FILENAME]["content"])
-    print(f"State loaded from gist (offset={state.get('offset', 0)})")
-    return state
-
-
-def _save_to_gist(state: dict) -> None:
-    """Write full state blob to gist as backup. Logs but never raises."""
-    if not _GIST_API or not _GIST_TOKEN:
-        return
-    try:
-        resp = requests.patch(
-            _GIST_API, headers=_gist_headers(), timeout=30,
-            json={"files": {STATE_FILENAME: {
-                "content": json.dumps(state, indent=2, default=str)
-            }}},
-        )
-        if resp.status_code == 200:
-            print("State backup saved to gist")
-        else:
-            print(f"Warning: gist backup failed (HTTP {resp.status_code})")
-    except requests.RequestException as e:
-        print(f"Warning: gist backup failed ({e})")

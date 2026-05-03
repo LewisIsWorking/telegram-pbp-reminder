@@ -11,6 +11,49 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.47.0] - 2026-05-03
+
+### Refactored
+
+**Gist I/O extracted from state.py**
+(`state_gist.py` [new], `state.py`)
+
+The gist load/save code was a ~50-line block at the bottom of
+`state.py` reading module-level `_GIST_API` and `_GIST_TOKEN`
+singletons. With per-module dependencies and a strong line-count
+budget, extracting it into `state_gist.py` was overdue.
+
+The new module exposes two pure functions:
+`gist_load(api, token, filename) -> dict | None` and
+`gist_save(api, token, filename, state) -> None`. Credentials are
+passed in rather than read from a singleton, so the module is
+import-time pure and trivial to unit-test without monkey-patching.
+`state.py` keeps the credential singletons and passes them through
+to each call site, preserving the existing `state.init()` API.
+
+`state.py` drops from 203 to 156 lines; `state_gist.py` is 68
+lines. `import requests` is no longer needed in `state.py`.
+
+### Tests
+
+`scripts/test_state_gist.py` (new): 11 tests covering both pure
+functions plus the internal `_headers` builder. Asserts:
+- empty api or token returns None / no-ops
+- successful load returns parsed state
+- HTTP error and network error abort with `SystemExit` (protects
+  against silently clobbering gist history with an empty save)
+- save HTTP failure and network exception are caught and logged
+- non-JSON-native types in state serialise via `default=str`
+
+The 9 previously-existing gist tests in `test_core_coverage.py`
+are removed (they tested module-private functions that no longer
+exist). Two patch sites in `test_core_coverage.py` and two in
+`test_state_io.py` updated to patch the new `gist_load`/`gist_save`
+names. Full suite: 1509 passing (was 1500); 1 pre-existing flaky
+failure unrelated to this change.
+
+---
+
 ## [4.46.0] - 2026-05-03
 
 ### Fixed
