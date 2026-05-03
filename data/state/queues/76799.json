@@ -9,24 +9,6 @@
       "time": "2026-05-03T14:03:01+00:00",
       "preview": "Cackle, pressed against the dart trap tries his hardest to wiggle himself out of Natalia's grip but their difference in strength and size is too great so he is left to await his demise with growing dread. \"Curse you, you ungrateful brat!\" He shouts at Natalia who just eyes him with disdain. As the trap hits him, he explodes in a small spray of blood and flames accompanied by a dreadful death wail. \nWith her bloodied hands Natalia catches the flame that made up Cackle's core and tries to push it ",
       "media_group_id": null
-    },
-    {
-      "message_id": 150750,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-03T14:06:09+00:00",
-      "preview": "Just did mine",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150751,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-03T14:06:26+00:00",
-      "preview": "This",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -242,7 +224,11 @@
     "msg:150731",
     "2026-05-03 13:57:51",
     "msg:150713",
-    "2026-05-03 13:55:35"
+    "2026-05-03 13:55:35",
+    "msg:150750",
+    "2026-05-03 14:06:09",
+    "msg:150751",
+    "2026-05-03 14:06:26"
   ],
   "reply_log": [
     {
@@ -1248,6 +1234,24 @@
       "player": "Miwa",
       "preview": "*Anko walks up to the figure hunched over the trap*\n\n\"What's taking so long, her",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T14:10:16+00:00",
+      "pid": "76799",
+      "msg_id": "150750",
+      "thread_id": 144765,
+      "player": "Chris Warlock",
+      "preview": "Just did mine",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T14:10:20+00:00",
+      "pid": "76799",
+      "msg_id": "150751",
+      "thread_id": 144765,
+      "player": "Chris Warlock",
+      "preview": "This",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1258,8 +1262,8 @@
       "fingerprint": "2026-05-03 14:03:01"
     },
     "144765": {
-      "msg_id": 150775,
-      "fingerprint": "2026-05-03 14:06:09|2026-05-03 14:06:26"
+      "fingerprint": "",
+      "msg_ids": []
     }
   }
 }

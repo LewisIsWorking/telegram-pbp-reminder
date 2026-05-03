@@ -2,12 +2,12 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 150615,
+      "message_id": 150785,
       "thread_id": 25059,
-      "user_id": "8241117341",
-      "user_name": "laughable",
-      "time": "2026-05-03T12:54:35+00:00",
-      "preview": "Landon: Landon would be walking in minutes after the 3rd humanoid walked in, with one hand already mid-gesture as if he\u2019d been in the middle of explaining something important  or at least pretending to. His goggles sat pushed up holding back his curls, and his clothes while not clean, far from it as the patch work was half assed. he lacked the telltale grime of grease and oil one would expect from a full day at the workshop. Instead, there was a faint, unmistakable scent of ale and roasted meat ",
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-03T14:27:57+00:00",
+      "preview": "Selenor looks at Anikia \"There is no need to be angry. We are not offended by his behaviour.\"",
       "media_group_id": null
     }
   ],
@@ -46,7 +46,9 @@
     "msg:150495",
     "2026-05-03 11:32:21",
     "msg:150524",
-    "2026-05-03 11:52:20"
+    "2026-05-03 11:52:20",
+    "msg:150615",
+    "2026-05-03 12:54:35"
   ],
   "reply_log": [
     {
@@ -201,12 +203,23 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor sits down and asks \"We picked up your bounty regarding the kidnapping of",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T14:08:23+00:00",
+      "pid": "25059",
+      "msg_id": "150615",
+      "thread_id": 25059,
+      "player": "laughable",
+      "preview": "Landon: Landon would be walking in minutes after the 3rd humanoid walked in, wit",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "msg_id": 150665,
-      "fingerprint": "2026-05-03 12:54:35"
+      "fingerprint": "2026-05-03 14:27:57",
+      "msg_ids": [
+        150801
+      ]
     }
   }
 }

@@ -2,33 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 149333,
-      "thread_id": 107171,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-04-28T03:41:29+00:00",
-      "preview": "Chik looks Arktos up and down for a second. \"On second thought, while I'm still perfectly willing to bravely take on this risk for ya, your, uh, floatiness might actually be a bigger advantage, but at least let me help you. I can set up some tethers and keep an eye as you head over to make sure nothing goes wrong, and, ideally, yoink ya outta any danger you might get into. I can also help slap together any makeshift tools you might need once you're over there. Just don't die on me so I don't go ",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149337,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-28T03:42:30+00:00",
-      "preview": "\"That sounds rather agreeable. Thank you for the assistance. I'll hopefully yet to perish by the end of this long day.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149351,
-      "thread_id": 107171,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-04-28T03:48:49+00:00",
-      "preview": "Chik turns his gaze to cleaning and reloading his rifle. \"I think before all this is over we're all gonna need some intensive Brethedan dream therapy. I've got...memories that don't fit and no idea how they got there, and whatever's about to happen with that ship of deadites is prolly not gonna to help things.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 149367,
       "thread_id": 107171,
       "user_id": "8117756377",
@@ -243,6 +216,24 @@
       "time": "2026-05-02T23:49:21+00:00",
       "preview": "\"Not much you could have done, it seems. We need to find whoever is wielding such a potent weapon and defeat them without giving them a chance to use it again.\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 150762,
+      "thread_id": 107171,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-03T14:12:37+00:00",
+      "preview": "Hinata steps forward. \"What needs to be done? I have no technical knowledge, but I have strength and I can manipulate light and gravity to a degree.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 150782,
+      "thread_id": 107171,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-03T14:26:11+00:00",
+      "preview": "\"Yes, but what would I need to achieve once I get there?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -417,7 +408,13 @@
     "msg:149225",
     "2026-04-28 02:58:42",
     "msg:149283",
-    "2026-04-28 03:23:32"
+    "2026-04-28 03:23:32",
+    "msg:149333",
+    "2026-04-28 03:41:29",
+    "msg:149337",
+    "2026-04-28 03:42:30",
+    "msg:149351",
+    "2026-04-28 03:48:49"
   ],
   "reply_log": [
     {
@@ -1251,14 +1248,44 @@
       "player": "CzarChasm23",
       "preview": "Chik puffs his chest out a little and looks over at Arktos, \"If ya don't mind, I",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-03T14:15:51+00:00",
+      "pid": "107171",
+      "msg_id": "149333",
+      "thread_id": 107171,
+      "player": "CzarChasm23",
+      "preview": "Chik looks Arktos up and down for a second. \"On second thought, while I'm still ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T14:16:49+00:00",
+      "pid": "107171",
+      "msg_id": "149337",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"That sounds rather agreeable. Thank you for the assistance. I'll hopefully yet ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-03T14:17:11+00:00",
+      "pid": "107171",
+      "msg_id": "149351",
+      "thread_id": 107171,
+      "player": "CzarChasm23",
+      "preview": "Chik turns his gaze to cleaning and reloading his rifle. \"I think before all thi",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "msg_id": 150669,
-      "fingerprint": "2026-04-28 03:41:29|2026-04-28 03:42:30|2026-04-28 03:48:49|2026-04-28 03:57:22|2026-04-28 04:00:40|2026-04-28 04:12:04|2026-04-28 04:57:44|2026-04-28 05:04:15|2026-04-28 08:22:45|2026-04-28 13:48:37|2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21"
+      "fingerprint": "2026-04-28 03:57:22|2026-04-28 04:00:40|2026-04-28 04:12:04|2026-04-28 04:57:44|2026-04-28 05:04:15|2026-04-28 08:22:45|2026-04-28 13:48:37|2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37|2026-05-03 14:26:11",
+      "msg_ids": [
+        150803,
+        150804
+      ]
     },
     "142887": {
       "msg_id": null,
