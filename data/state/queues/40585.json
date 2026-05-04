@@ -25,6 +25,15 @@
       "time": "2026-05-04T14:40:04+00:00",
       "preview": "Lorn says determined  \"Yes. Let's finish this\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 151028,
+      "thread_id": 40585,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-05-04T15:06:24+00:00",
+      "preview": "\"I am a bounty hunter by trade.  Curse hunting has been very profitable since this all began.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3623,9 +3632,9 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-04 14:40:04",
+      "fingerprint": "2026-05-04 14:40:04|2026-05-04 15:06:24",
       "msg_ids": [
-        151023
+        151032
       ]
     }
   }
