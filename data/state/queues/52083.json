@@ -9,6 +9,15 @@
       "time": "2026-05-06T02:16:26+00:00",
       "preview": "Livy signs up for \u2605ENTERTAINMENT\u2605!!!",
       "media_group_id": null
+    },
+    {
+      "message_id": 151380,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-06T15:08:08+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -506,9 +515,9 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-06 02:16:26",
+      "fingerprint": "2026-05-06 02:16:26|2026-05-06 15:08:08",
       "msg_ids": [
-        151308
+        151397
       ]
     }
   }
