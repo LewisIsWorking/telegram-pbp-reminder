@@ -25,7 +25,7 @@ the legacy key on first update.
 
 def empty_slot() -> dict:
     """Return a fresh empty slot in the current schema."""
-    return {"msg_ids": [], "fingerprint": ""}
+    return {"msg_ids": [], "fingerprint": "", "last_posted_at": None}
 
 
 def slot_msg_ids(slot: dict) -> list[int]:
@@ -51,10 +51,13 @@ def set_slot_msg_ids(slot: dict, msg_ids: list[int],
     slot["msg_ids"] = list(msg_ids)
     slot["fingerprint"] = fingerprint
     slot.pop("msg_id", None)
+    from datetime import datetime, timezone
+    slot["last_posted_at"] = datetime.now(timezone.utc).isoformat()
 
 
 def clear_slot(slot: dict) -> None:
     """Reset the slot — call after deleting all tracked messages."""
     slot["msg_ids"] = []
     slot["fingerprint"] = ""
+    slot["last_posted_at"] = None
     slot.pop("msg_id", None)
