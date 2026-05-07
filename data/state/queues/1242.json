@@ -1,6 +1,16 @@
 {
   "pid": "1242",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 2395,
+      "thread_id": 1242,
+      "user_id": "8030796908",
+      "user_name": "NJ",
+      "time": "2026-05-07T12:53:44+00:00",
+      "preview": "That sounds good to me",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -1575,8 +1585,10 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "",
-      "msg_ids": []
+      "fingerprint": "2026-05-07 12:53:44",
+      "msg_ids": [
+        2398
+      ]
     }
   }
 }
