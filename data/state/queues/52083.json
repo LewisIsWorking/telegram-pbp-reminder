@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 151301,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-06T02:16:26+00:00",
-      "preview": "Livy signs up for \u2605ENTERTAINMENT\u2605!!!",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -101,7 +91,17 @@
     "msg:151380",
     "2026-05-06 15:08:08",
     "msg:151492",
-    "2026-05-07 19:04:39"
+    "2026-05-07 19:04:39",
+    "msg:151301",
+    "2026-05-06 02:16:26",
+    "msg:151525",
+    "2026-05-07 20:42:37",
+    "msg:151529",
+    "2026-05-07 20:43:07",
+    "msg:151531",
+    "2026-05-07 20:43:37",
+    "msg:151535",
+    "2026-05-07 20:45:33"
   ],
   "reply_log": [
     {
@@ -522,17 +522,60 @@
       "player": "Anthony",
       "preview": "This",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:41:37+00:00",
+      "pid": "52083",
+      "msg_id": "151301",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy signs up for \u2605ENTERTAINMENT\u2605!!!",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:43:24+00:00",
+      "pid": "52083",
+      "msg_id": "151525",
+      "thread_id": 52083,
+      "player": "Bruce",
+      "preview": "(i posted in the other chat)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:43:49+00:00",
+      "pid": "52083",
+      "msg_id": "151529",
+      "thread_id": 52083,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:44:01+00:00",
+      "pid": "52083",
+      "msg_id": "151531",
+      "thread_id": 52083,
+      "player": "Bruce",
+      "preview": "(yeah it was where i was relegated to)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-07T21:10:27+00:00",
+      "pid": "52083",
+      "msg_id": "151535",
+      "thread_id": 52083,
+      "player": "Bruce",
+      "preview": "Chua knowing that this is a dog eat dog world will spend time showing the older ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-06 02:16:26",
-      "msg_ids": [
-        151515
-      ],
-      "last_posted_at": "2026-05-07T20:34:52.612580+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null
     }
   }
 }

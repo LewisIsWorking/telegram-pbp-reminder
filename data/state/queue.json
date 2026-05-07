@@ -529,7 +529,8 @@
       "2026-05-03T23:22:31.071733+00:00",
       "2026-05-07T20:34:44.787386+00:00",
       "2026-05-07T20:34:44.790646+00:00",
-      "2026-05-07T20:34:44.793763+00:00"
+      "2026-05-07T20:34:44.793763+00:00",
+      "2026-05-07T21:27:21.634059+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -870,7 +871,12 @@
       "2026-05-03T13:37:03.802979+00:00",
       "2026-05-03T13:37:03.803745+00:00",
       "2026-05-07T19:37:34.646252+00:00",
-      "2026-05-07T20:34:44.775972+00:00"
+      "2026-05-07T20:34:44.775972+00:00",
+      "2026-05-07T21:27:21.630324+00:00",
+      "2026-05-07T21:27:22.181307+00:00",
+      "2026-05-07T21:27:22.183221+00:00",
+      "2026-05-07T21:27:22.184144+00:00",
+      "2026-05-07T21:27:22.185874+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1016,52 +1022,11 @@
       "2026-05-03T13:23:04.616204+00:00",
       "2026-05-03T14:46:08.999137+00:00",
       "2026-05-03T15:21:43.463890+00:00",
-      "2026-05-07T20:34:44.783199+00:00"
+      "2026-05-07T20:34:44.783199+00:00",
+      "2026-05-07T21:27:21.629363+00:00"
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.471989+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "yes sir"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.476659+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "The one that doesn't split"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.478855+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.483042+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Well shoot the lowest"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.485256+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.489454+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "If the bow ends up doing piercing switch to the composite bo"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-25T14:23:01.495482+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "40585",
       "time": "2026-04-25T14:23:01.497685+00:00",
@@ -2228,6 +2193,55 @@
       "player": "Caelum",
       "preview": "\"Before we set foot upon the Sun Temple grounds, I ask for y",
       "msg_id": "151078"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-05-07T21:27:21.629363+00:00",
+      "player": "NJ",
+      "preview": "I close my eyes and start drifting into the realm of nightma",
+      "msg_id": "2419"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-07T21:27:21.630324+00:00",
+      "player": "Anthony",
+      "preview": "Livy signs up for \u2605ENTERTAINMENT\u2605!!!",
+      "msg_id": "151301"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-07T21:27:21.634059+00:00",
+      "player": "Awnii",
+      "preview": "\"Ok!\"\n\nShe and her pet(?) go around gathering the slimes, sh",
+      "msg_id": "151483"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-07T21:27:22.181307+00:00",
+      "player": "Bruce",
+      "preview": "(i posted in the other chat)",
+      "msg_id": "151525"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-07T21:27:22.183221+00:00",
+      "player": "Bruce",
+      "preview": "[media]",
+      "msg_id": "151529"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-07T21:27:22.184144+00:00",
+      "player": "Bruce",
+      "preview": "(yeah it was where i was relegated to)",
+      "msg_id": "151531"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-07T21:27:22.185874+00:00",
+      "player": "Bruce",
+      "preview": "Chua knowing that this is a dog eat dog world will spend tim",
+      "msg_id": "151535"
     }
   ],
   "pending_potw_boons": {
@@ -2272,6 +2286,19 @@
       "base_message": "Player of the Week for Magni Watch: Chase Darkthorne (@ChaseDarkthorne)!\n(2026-04-28 (W18) to 2026-05-05 (W19))\n\n5 posts this week with an average gap of 0.6h between posts. The most consistent driver of the story.",
       "posted_at": "2026-05-05T09:46:42.934910+00:00",
       "reminders_sent": 1
+    },
+    "1242": {
+      "message_id": 151540,
+      "winner_user_id": "8030796908",
+      "campaign_name": "Dark Pockets",
+      "boons": [
+        "A travelling merchant owes you a favor they can't quite remember why.",
+        "A dwarven merchant admires your gear and offers free maintenance.",
+        "Your next Deception check is assisted by a nearby commotion that distracts your target.",
+        "Recover 1d6 extra HP during your next rest."
+      ],
+      "base_message": "Player of the Week for Dark Pockets: NJ (@Sparkleslayer)!\n(2026-04-30 (W18) to 2026-05-07 (W19))\n\n5 posts this week with an average gap of 26.3h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-05-07T21:27:22.186040+00:00"
     }
   }
 }

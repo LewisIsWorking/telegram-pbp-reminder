@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 151483,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-05-07T18:39:12+00:00",
-      "preview": "\"Ok!\"\n\nShe and her pet(?) go around gathering the slimes, she picks them up and gives them to Sir Squishy. Where they seemingly vanish into his body as if some sort of cloud of whatever color the slime was\n\nThey return a few minutes later and sir squishy comically ejects each carcass as if printing them slowly one by one, being meticulous about the stacking of them.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -649,7 +640,9 @@
     "msg:151028",
     "2026-05-04 15:06:24",
     "msg:151078",
-    "2026-05-04 20:58:54"
+    "2026-05-04 20:58:54",
+    "msg:151483",
+    "2026-05-07 18:39:12"
   ],
   "reply_log": [
     {
@@ -3646,6 +3639,15 @@
       "player": "Caelum",
       "preview": "\"Before we set foot upon the Sun Temple grounds, I ask for your aid. Gather for ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:42:09+00:00",
+      "pid": "40585",
+      "msg_id": "151483",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "\"Ok!\"\n\nShe and her pet(?) go around gathering the slimes, she picks them up and ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3656,11 +3658,9 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-07 18:39:12",
-      "msg_ids": [
-        151513
-      ],
-      "last_posted_at": "2026-05-07T20:34:49.826519+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null
     }
   }
 }
