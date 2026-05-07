@@ -150,6 +150,13 @@ def unpin_message(chat_id: int, message_id: int) -> bool:
                      "message not found")) is not None
 
 
+def unpin_all_messages(chat_id: int, thread_id: int) -> bool:
+    """Unpin all messages in a topic thread (clears legacy pins)."""
+    return _post("unpinAllChatMessages",
+                 {"chat_id": chat_id, "message_thread_id": thread_id},
+                 "unpin_all") is not None
+
+
 def delete_message(chat_id: int, message_id: int) -> bool:
     """Delete a message. Returns True on success, False if not found or failed.
 
