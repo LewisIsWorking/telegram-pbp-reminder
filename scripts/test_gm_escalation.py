@@ -1,7 +1,6 @@
-"""Tests for scheduled/gm_escalation.py."""
+"""Tests for scheduled/gm_escalation.py — global timer, all stale in one message."""
 
 import sys, os
-import pytest
 from datetime import datetime, timezone, timedelta
 from unittest.mock import patch
 
@@ -26,10 +25,8 @@ def _entry(hours_old: float, now: datetime) -> dict:
 
 
 def _scanned(hours_old: float, now: datetime, pid="100") -> dict:
-    return {pid: {
-        "campaign": "Hopeful End-Times", "code": "C07",
-        "entries": [_entry(hours_old, now)],
-    }}
+    return {pid: {"campaign": "Hopeful End-Times", "code": "C07",
+                  "entries": [_entry(hours_old, now)]}}
 
 
 def test_no_escalation_before_12h():
@@ -45,7 +42,7 @@ def test_no_escalation_before_12h():
     assert not sent
 
 
-def test_level1_single_message_bot_topic_only():
+def test_level1_bot_topic_only():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     state = {"gm_escalation": {}}
@@ -55,83 +52,82 @@ def test_level1_single_message_bot_topic_only():
          patch("scheduled.gm_escalation.tg.send_message",
                side_effect=lambda g, t, m: sent.append((g, t, m))):
         check_gm_escalation(_config(), state, now=now)
-    assert len(sent) == 1  # single message, no DM
-    assert sent[0][1] == 888  # gm_queue topic
+    assert len(sent) == 1
+    assert sent[0][1] == 888
     assert "Hopeful End-Times" in sent[0][2]
-    assert "13h" in sent[0][2]
-    assert state["gm_escalation"]["100"]["level"] == 1
+    assert state["gm_escalation"]["level"] == 1
 
 
 def test_level2_sends_dm():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     last = (now - timedelta(hours=13)).isoformat()
-    state = {"gm_escalation": {"100": {"level": 1, "last_at": last}}}
+    state = {"gm_escalation": {"level": 1, "last_at": last}}
     sent = []
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value=_scanned(25, now)), \
          patch("scheduled.gm_escalation.tg.send_message",
                side_effect=lambda g, t, m: sent.append((g, t))):
         check_gm_escalation(_config(), state, now=now)
-    assert len(sent) == 2  # bot topic + DM
+    assert len(sent) == 2
     assert 1698524397 in {s[0] for s in sent}
-    assert state["gm_escalation"]["100"]["level"] == 2
+    assert state["gm_escalation"]["level"] == 2
 
 
-def test_multiple_campaigns_batched_into_one_message():
+def test_multiple_campaigns_in_one_message():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     config = dict(_config())
     config["topic_pairs"] = [
         {"pbp_topic_ids": ["100"], "code": "C07", "name": "Hopeful End-Times", "chat_topic_id": 500},
-        {"pbp_topic_ids": ["200"], "code": "C04", "name": "Magni Watch", "chat_topic_id": 501},
+        {"pbp_topic_ids": ["200"], "code": "C04", "name": "Magni Guard", "chat_topic_id": 501},
     ]
-    state = {"gm_escalation": {}}
     scanned = {
         "100": {"campaign": "Hopeful End-Times", "code": "C07",
                 "entries": [_entry(20, now)]},
-        "200": {"campaign": "Magni Watch", "code": "C04",
+        "200": {"campaign": "Magni Guard", "code": "C04",
                 "entries": [_entry(15, now)]},
     }
+    state = {"gm_escalation": {}}
     sent_msgs = []
     with patch("scheduled.gm_escalation.scan_transcripts", return_value=scanned), \
          patch("scheduled.gm_escalation.tg.send_message",
                side_effect=lambda g, t, m: sent_msgs.append(m)):
         check_gm_escalation(config, state, now=now)
-    assert len(sent_msgs) == 1  # ONE combined message
+    assert len(sent_msgs) == 1
     assert "Hopeful End-Times" in sent_msgs[0]
-    assert "Magni Watch" in sent_msgs[0]
+    assert "Magni Guard" in sent_msgs[0]
 
 
-def test_skips_within_12h_interval():
+def test_skips_within_global_12h_interval():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     last = (now - timedelta(hours=6)).isoformat()
-    state = {"gm_escalation": {"100": {"level": 1, "last_at": last}}}
+    state = {"gm_escalation": {"level": 1, "last_at": last}}
     sent = []
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value=_scanned(20, now)), \
          patch("scheduled.gm_escalation.tg.send_message",
-               side_effect=lambda g, t, m: sent.append((g, t))):
+               side_effect=lambda g, t, m: sent.append(m)):
         check_gm_escalation(_config(), state, now=now)
     assert not sent
 
 
-def test_clears_state_when_queue_empty():
+def test_resets_when_no_stale_campaigns():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
-    state = {"gm_escalation": {"100": {"level": 3, "last_at": now.isoformat()}}}
+    state = {"gm_escalation": {"level": 3, "last_at": now.isoformat()}}
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value={"100": {"campaign": "HET", "code": "C07", "entries": []}}):
         check_gm_escalation(_config(), state, now=now)
-    assert "100" not in state["gm_escalation"]
+    assert state["gm_escalation"]["level"] == 0
 
 
-def test_level_caps_at_max_message():
+def test_level_caps_at_max():
     from scheduled.gm_escalation import check_gm_escalation, _HEADERS
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     last = (now - timedelta(hours=13)).isoformat()
-    state = {"gm_escalation": {"100": {"level": len(_HEADERS), "last_at": last}}}
+    state = {"gm_escalation": {"level": len(_HEADERS), "last_at": last}}
     sent_msgs = []
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value=_scanned(100, now)), \
@@ -139,7 +135,7 @@ def test_level_caps_at_max_message():
                side_effect=lambda g, t, m: sent_msgs.append(m)):
         check_gm_escalation(_config(), state, now=now)
     assert sent_msgs
-    assert state["gm_escalation"]["100"]["level"] == len(_HEADERS)
+    assert state["gm_escalation"]["level"] == len(_HEADERS)
 
 
 def test_no_gm_user_id_skips():
