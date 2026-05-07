@@ -218,10 +218,13 @@ def test_bot_topic_roll_error():
 
 
 def test_bot_topic_dc():
-    with patch("dispatch.bot_topic.helpers.dc_lookup", return_value="DC 20"):
+    sent = []
+    with patch("dispatch.bot_topic.tg.send_message",
+               side_effect=lambda g, t, m: sent.append(m)):
         handle_bot_topic_cmd(_bt_msg("/dc 10"),
                              _bt_config(), {}, _maps(), -1001, 999,
                              frozenset(["/dc"]), [])
+    assert any("mystery" in m.lower() for m in sent)
 
 
 def test_bot_topic_global_cmd_no_campaigns():
