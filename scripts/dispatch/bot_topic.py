@@ -134,8 +134,9 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
                 tg.send_message(group_id, bot_topic,
                                 f"{header}\n  {r['detail']} = {r['total']}")
         else:
+            mention = f"@{user_name}" if user_name else user_name
             tg.send_message(group_id, bot_topic,
-                            helpers.dc_lookup(args))
+                            f"The DC is a mystery to be revealed later in the campaign! {mention}")
         return
 
     # /sessionplayed <code> <week> — GM marks a live session as happened, stops poll pings
