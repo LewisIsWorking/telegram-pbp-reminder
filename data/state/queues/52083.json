@@ -9,15 +9,6 @@
       "time": "2026-05-06T02:16:26+00:00",
       "preview": "Livy signs up for \u2605ENTERTAINMENT\u2605!!!",
       "media_group_id": null
-    },
-    {
-      "message_id": 151492,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-07T19:04:39+00:00",
-      "preview": "This",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -108,7 +99,9 @@
     "msg:148270",
     "2026-04-25 09:45:16",
     "msg:151380",
-    "2026-05-06 15:08:08"
+    "2026-05-06 15:08:08",
+    "msg:151492",
+    "2026-05-07 19:04:39"
   ],
   "reply_log": [
     {
@@ -520,17 +513,26 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:19:40+00:00",
+      "pid": "52083",
+      "msg_id": "151492",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "This",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-06 02:16:26|2026-05-07 19:04:39",
+      "fingerprint": "2026-05-06 02:16:26",
       "msg_ids": [
-        151497
+        151515
       ],
-      "last_posted_at": "2026-05-07T19:37:42.871439+00:00"
+      "last_posted_at": "2026-05-07T20:34:52.612580+00:00"
     }
   }
 }

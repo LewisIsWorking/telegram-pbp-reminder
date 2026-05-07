@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2395,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-05-07T12:53:44+00:00",
-      "preview": "That sounds good to me",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -269,7 +259,9 @@
     "msg:2356",
     "2026-05-03 14:18:46",
     "msg:2358",
-    "2026-05-03 14:45:31"
+    "2026-05-03 14:45:31",
+    "msg:2395",
+    "2026-05-07 12:53:44"
   ],
   "reply_log": [
     {
@@ -1579,16 +1571,24 @@
       "player": "NJ",
       "preview": "\"The Inn sounds good\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-07T20:23:50+00:00",
+      "pid": "1242",
+      "msg_id": "2395",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "That sounds good to me",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-05-07 12:53:44",
-      "msg_ids": [
-        2398
-      ]
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null
     }
   }
 }
