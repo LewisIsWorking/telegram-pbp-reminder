@@ -60,10 +60,26 @@ def _post_thread_queue(group_id: int, thread_id: str,
     every successful write.
     """
     fingerprint = build_topic_fingerprint(entries)
-    if fingerprint == slot.get("fingerprint", "") and slot_msg_ids(slot):
-        return  # No change — skip
+    existing_ids = slot_msg_ids(slot)
+    if fingerprint == slot.get("fingerprint", "") and existing_ids:
+        # Same content — skip unless it's been a while (double-post guard)
+        last_at = slot.get("last_posted_at")
+        if last_at:
+            try:
+                from datetime import datetime, timezone
+                elapsed = (datetime.now(timezone.utc)
+                           - datetime.fromisoformat(last_at)).total_seconds()
+                if elapsed < 600:  # 10 minute minimum re-post window
+                    return
+            except (ValueError, TypeError):
+                pass
+        else:
+            return
 
-    for old_msg_id in slot_msg_ids(slot):
+    # Clear legacy pins if slot has no tracked IDs (pre-tracking messages)
+    if not existing_ids:
+        tg.unpin_all_messages(group_id, int(thread_id))
+    for old_msg_id in existing_ids:
         tg.delete_message(group_id, old_msg_id)
 
     chunks = format_topic_queue(entries, now)
