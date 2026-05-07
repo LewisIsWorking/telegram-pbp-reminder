@@ -1,4 +1,4 @@
-"""Tests for scheduled/gm_escalation.py — global timer, all stale in one message."""
+"""Tests for scheduled/gm_escalation.py — global timer, level from hours."""
 
 import sys, os
 from datetime import datetime, timezone, timedelta
@@ -52,26 +52,25 @@ def test_level1_bot_topic_only():
          patch("scheduled.gm_escalation.tg.send_message",
                side_effect=lambda g, t, m: sent.append((g, t, m))):
         check_gm_escalation(_config(), state, now=now)
-    assert len(sent) == 1
+    assert len(sent) == 1  # bot topic only, no DM at level 1
     assert sent[0][1] == 888
     assert "Hopeful End-Times" in sent[0][2]
-    assert state["gm_escalation"]["level"] == 1
+    assert state["gm_escalation"]["last_at"] is not None
 
 
 def test_level2_sends_dm():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     last = (now - timedelta(hours=13)).isoformat()
-    state = {"gm_escalation": {"level": 1, "last_at": last}}
+    state = {"gm_escalation": {"last_at": last}}
     sent = []
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value=_scanned(25, now)), \
          patch("scheduled.gm_escalation.tg.send_message",
                side_effect=lambda g, t, m: sent.append((g, t))):
         check_gm_escalation(_config(), state, now=now)
-    assert len(sent) == 2
+    assert len(sent) == 2  # bot topic + DM
     assert 1698524397 in {s[0] for s in sent}
-    assert state["gm_escalation"]["level"] == 2
 
 
 def test_multiple_campaigns_in_one_message():
@@ -103,7 +102,7 @@ def test_skips_within_global_12h_interval():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
     last = (now - timedelta(hours=6)).isoformat()
-    state = {"gm_escalation": {"level": 1, "last_at": last}}
+    state = {"gm_escalation": {"last_at": last}}
     sent = []
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value=_scanned(20, now)), \
@@ -113,29 +112,37 @@ def test_skips_within_global_12h_interval():
     assert not sent
 
 
-def test_resets_when_no_stale_campaigns():
+def test_resets_last_at_when_no_stale_campaigns():
     from scheduled.gm_escalation import check_gm_escalation
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
-    state = {"gm_escalation": {"level": 3, "last_at": now.isoformat()}}
+    state = {"gm_escalation": {"last_at": now.isoformat()}}
     with patch("scheduled.gm_escalation.scan_transcripts",
                return_value={"100": {"campaign": "HET", "code": "C07", "entries": []}}):
         check_gm_escalation(_config(), state, now=now)
-    assert state["gm_escalation"]["level"] == 0
+    assert state["gm_escalation"]["last_at"] is None
 
 
-def test_level_caps_at_max():
+def test_level_derived_from_hours():
+    from scheduled.gm_escalation import _level_for_hours, _HEADERS
+    assert _level_for_hours(6) == 0    # not stale
+    assert _level_for_hours(13) == 1   # 12-24h
+    assert _level_for_hours(25) == 2   # 24-48h
+    assert _level_for_hours(50) == 3   # 48-72h
+    assert _level_for_hours(100) == 4  # 72h+
+    assert _level_for_hours(225) == len(_HEADERS)  # still max
+
+
+def test_max_urgency_for_very_old_queue():
     from scheduled.gm_escalation import check_gm_escalation, _HEADERS
     now = datetime(2026, 4, 27, 12, 0, tzinfo=timezone.utc)
-    last = (now - timedelta(hours=13)).isoformat()
-    state = {"gm_escalation": {"level": len(_HEADERS), "last_at": last}}
+    state = {"gm_escalation": {}}
     sent_msgs = []
     with patch("scheduled.gm_escalation.scan_transcripts",
-               return_value=_scanned(100, now)), \
+               return_value=_scanned(225, now)), \
          patch("scheduled.gm_escalation.tg.send_message",
                side_effect=lambda g, t, m: sent_msgs.append(m)):
         check_gm_escalation(_config(), state, now=now)
-    assert sent_msgs
-    assert state["gm_escalation"]["level"] == len(_HEADERS)
+    assert _HEADERS[-1] in sent_msgs[0]  # max urgency header
 
 
 def test_no_gm_user_id_skips():
