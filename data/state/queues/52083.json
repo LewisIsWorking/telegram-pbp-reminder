@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 151623,
+      "thread_id": 52083,
+      "user_id": "8383886822",
+      "user_name": "CzarChasm23",
+      "time": "2026-05-08T04:18:44+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -573,9 +583,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null
+      "fingerprint": "2026-05-08 04:18:44",
+      "msg_ids": [
+        151634
+      ],
+      "last_posted_at": "2026-05-08T07:33:08.329449+00:00"
     }
   }
 }
