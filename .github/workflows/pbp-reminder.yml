@@ -64,11 +64,6 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: cd scripts && python set_commands.py
 
-      - name: Purge orphaned GM queue messages (one-off)
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        run: cd scripts && python maintenance/purge_gm_queue_history.py
-
       - name: Run inactivity checker
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
