@@ -532,7 +532,8 @@
       "2026-05-07T20:34:44.793763+00:00",
       "2026-05-07T21:27:21.634059+00:00",
       "2026-05-08T15:23:53.974339+00:00",
-      "2026-05-08T15:23:53.977661+00:00"
+      "2026-05-08T15:23:53.977661+00:00",
+      "2026-05-08T16:40:00.419902+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1031,12 +1032,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-27T01:00:50.908900+00:00",
-      "player": "Caelum",
-      "preview": "Feng use Healing Motes with 30f emanation, Act together Eido"
-    },
     {
       "pid": "40585",
       "time": "2026-04-27T12:46:33.024681+00:00",
@@ -2250,6 +2245,13 @@
       "player": "Ryo",
       "preview": "\"Are the flames and the slimes related in some way? I ask be",
       "msg_id": "151612"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-08T16:40:00.419902+00:00",
+      "player": "Ryo",
+      "preview": "\"Does that connection have any impact on the curse we're cur",
+      "msg_id": "151694"
     }
   ],
   "pending_potw_boons": {

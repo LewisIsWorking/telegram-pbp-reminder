@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 151694,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-05-08T15:13:32+00:00",
-      "preview": "\"Does that connection have any impact on the curse we're currently dealing with? Aside from the unfortunate case of the dwarf from before?\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -655,7 +646,9 @@
     "msg:151578",
     "2026-05-07 23:56:44",
     "msg:151612",
-    "2026-05-08 01:49:58"
+    "2026-05-08 01:49:58",
+    "msg:151694",
+    "2026-05-08 15:13:32"
   ],
   "reply_log": [
     {
@@ -3679,6 +3672,15 @@
       "player": "Ryo",
       "preview": "\"Are the flames and the slimes related in some way? I ask because you are linked",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-08T16:03:18+00:00",
+      "pid": "40585",
+      "msg_id": "151694",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "\"Does that connection have any impact on the curse we're currently dealing with?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3689,11 +3691,9 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-08 15:13:32",
-      "msg_ids": [
-        151716
-      ],
-      "last_posted_at": "2026-05-08T15:24:21.611037+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null
     }
   }
 }
