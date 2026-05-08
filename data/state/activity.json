@@ -950,7 +950,6 @@
         "2026-05-05T22:26:37+00:00"
       ],
       "8353586922": [
-        "2026-04-23T17:28:39+00:00",
         "2026-04-24T16:20:53+00:00",
         "2026-04-25T21:44:57+00:00",
         "2026-04-25T23:23:41+00:00",
@@ -962,7 +961,6 @@
         "2026-05-01T13:35:02+00:00"
       ],
       "6482311444": [
-        "2026-04-23T17:01:30+00:00",
         "2026-04-24T16:09:26+00:00",
         "2026-04-24T16:22:01+00:00",
         "2026-04-25T11:02:30+00:00",
@@ -2420,7 +2418,7 @@
     "C01": {
       "wins": {
         "3": 9,
-        "2": 31
+        "2": 32
       }
     }
   },
@@ -2936,6 +2934,25 @@
         "Recover 1d6 extra HP during your next rest."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W19",
+      "year": 2026,
+      "date": "2026-05-08",
+      "campaign": "Kibwe",
+      "campaign_pid": "40585",
+      "user_id": "7842002561",
+      "first_name": "Awnii",
+      "username": "Awnii_Vihn",
+      "post_count": 10,
+      "avg_gap_h": 11.4,
+      "boons_offered": [
+        "A Vudrani monk pauses in meditation to tell you your stance is wrong. The correction helps.",
+        "A breeze blows a wanted poster into your hand. The face on it is useful information.",
+        "An automaton that should be hostile is stuck in a diagnostic loop instead.",
+        "+10 feet to your Speed for your first turn of your next combat."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -2964,8 +2981,7 @@
       "1698524397": 3
     },
     "40585": {
-      "1698524397": 2,
-      "138025700": 1
+      "1698524397": 3
     },
     "137075": {
       "1698524397": 1
@@ -2992,9 +3008,6 @@
     "1825": {
       "1698524397": 3
     },
-    "133428": {},
-    "40585": {
-      "1698524397": 3
-    }
+    "133428": {}
   }
 }
