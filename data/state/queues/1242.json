@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2447,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-05-07T22:51:07+00:00",
-      "preview": "I must have this dagger \ud83d\udde1",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -273,7 +263,9 @@
     "msg:2395",
     "2026-05-07 12:53:44",
     "msg:2419",
-    "2026-05-07 20:35:09"
+    "2026-05-07 20:35:09",
+    "msg:2447",
+    "2026-05-07 22:51:07"
   ],
   "reply_log": [
     {
@@ -1601,17 +1593,24 @@
       "player": "NJ",
       "preview": "I close my eyes and start drifting into the realm of nightmares \ud83d\ude34",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-07T23:42:56+00:00",
+      "pid": "1242",
+      "msg_id": "2447",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "I must have this dagger \ud83d\udde1",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-05-07 22:51:07",
-      "msg_ids": [
-        2448
-      ],
-      "last_posted_at": "2026-05-07T23:25:18.987036+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null
     }
   }
 }

@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 151578,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-05-07T23:56:44+00:00",
+      "preview": "Fierce Leopard cleared his throat and looked around at the people present.\n\n\"Before we move on I need to ask a couple of questions. Something that some of you are more informed than others. It relates to what I saw when dealing with that portal and the dwarf slime.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3658,9 +3667,11 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null
+      "fingerprint": "2026-05-07 23:56:44",
+      "msg_ids": [
+        151596
+      ],
+      "last_posted_at": "2026-05-08T01:10:13.601478+00:00"
     }
   }
 }
