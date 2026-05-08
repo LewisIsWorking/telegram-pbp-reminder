@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 class TestEmptySlot:
     def test_returns_current_schema(self):
         from scheduled.topic_queue_state import empty_slot
-        assert empty_slot() == {"msg_ids": [], "fingerprint": ""}
+        assert empty_slot() == {"msg_ids": [], "fingerprint": "", "last_posted_at": None}
 
     def test_returns_independent_instances(self):
         from scheduled.topic_queue_state import empty_slot
@@ -52,7 +52,9 @@ class TestSetSlotMsgIds:
         from scheduled.topic_queue_state import set_slot_msg_ids
         slot = {"msg_ids": [], "fingerprint": ""}
         set_slot_msg_ids(slot, [100, 101], "fp1")
-        assert slot == {"msg_ids": [100, 101], "fingerprint": "fp1"}
+        assert slot["msg_ids"] == [100, 101]
+        assert slot["fingerprint"] == "fp1"
+        assert "last_posted_at" in slot
 
     def test_drops_legacy_msg_id(self):
         from scheduled.topic_queue_state import set_slot_msg_ids
@@ -76,7 +78,9 @@ class TestClearSlot:
         from scheduled.topic_queue_state import clear_slot
         slot = {"msg_ids": [1, 2, 3], "fingerprint": "fp"}
         clear_slot(slot)
-        assert slot == {"msg_ids": [], "fingerprint": ""}
+        assert slot["msg_ids"] == []
+        assert slot["fingerprint"] == ""
+        assert slot.get("last_posted_at") is None
 
     def test_drops_legacy_key(self):
         from scheduled.topic_queue_state import clear_slot
