@@ -54,13 +54,29 @@ def append_and_evict(state: dict, group_id: int,
     Mutates ``state["gm_queue_history"]`` in place. After append, while
     history exceeds ``MAX_KEPT_BATCHES`` the oldest batch is popped and
     each ``msg_id`` inside it is passed to ``tg.delete_message``.
+
+    If any delete in a batch fails, that batch is retained in history
+    so it can be retried on the next run rather than orphaning the
+    message in Telegram with no path to recovery.
     """
     history = state.setdefault("gm_queue_history", [])
     history.append({"msg_ids": list(msg_ids), "pin_id": pin_id})
+    # Try to evict oldest batches; keep any whose deletes did not all succeed
+    retained: list[dict] = []
     while len(history) > MAX_KEPT_BATCHES:
-        evicted = history.pop(0)
-        for mid in evicted.get("msg_ids", []):
-            tg.delete_message(group_id, mid)
+        candidate = history.pop(0)
+        remaining: list[int] = []
+        for mid in candidate.get("msg_ids", []):
+            if not tg.delete_message(group_id, mid):
+                remaining.append(mid)
+        if remaining:
+            # Some deletes failed — keep this batch (with only failed IDs)
+            # so the next run retries them.
+            candidate["msg_ids"] = remaining
+            retained.append(candidate)
+    # Re-insert retained batches at the front in original order
+    for batch in reversed(retained):
+        history.insert(0, batch)
 
 
 def post_and_persist(state: dict, group_id: int, bot_topic: int,
