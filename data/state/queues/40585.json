@@ -18,21 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 151578,
+      "message_id": 151694,
       "thread_id": 40585,
       "user_id": "138025700",
       "user_name": "Ryo",
-      "time": "2026-05-07T23:56:44+00:00",
-      "preview": "Fierce Leopard cleared his throat and looked around at the people present.\n\n\"Before we move on I need to ask a couple of questions. Something that some of you are more informed than others. It relates to what I saw when dealing with that portal and the dwarf slime.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 151612,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-05-08T01:49:58+00:00",
-      "preview": "\"Are the flames and the slimes related in some way? I ask because you are linked in some fashion to a flame Tal'lysae and the dwarf that got turned into a slime appeared to me as a white flame slime on the other side of that portal.\"",
+      "time": "2026-05-08T15:13:32+00:00",
+      "preview": "\"Does that connection have any impact on the curse we're currently dealing with? Aside from the unfortunate case of the dwarf from before?\"",
       "media_group_id": null
     }
   ],
@@ -660,7 +651,11 @@
     "msg:151078",
     "2026-05-04 20:58:54",
     "msg:151483",
-    "2026-05-07 18:39:12"
+    "2026-05-07 18:39:12",
+    "msg:151578",
+    "2026-05-07 23:56:44",
+    "msg:151612",
+    "2026-05-08 01:49:58"
   ],
   "reply_log": [
     {
@@ -3666,6 +3661,24 @@
       "player": "Awnii",
       "preview": "\"Ok!\"\n\nShe and her pet(?) go around gathering the slimes, she picks them up and ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-08T14:41:21+00:00",
+      "pid": "40585",
+      "msg_id": "151578",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "Fierce Leopard cleared his throat and looked around at the people present.\n\n\"Bef",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-08T14:42:32+00:00",
+      "pid": "40585",
+      "msg_id": "151612",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "\"Are the flames and the slimes related in some way? I ask because you are linked",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3676,11 +3689,11 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-07 23:56:44|2026-05-08 01:49:58",
+      "fingerprint": "2026-05-08 15:13:32",
       "msg_ids": [
-        151679
+        151716
       ],
-      "last_posted_at": "2026-05-08T14:16:02.198974+00:00"
+      "last_posted_at": "2026-05-08T15:24:21.611037+00:00"
     }
   }
 }
