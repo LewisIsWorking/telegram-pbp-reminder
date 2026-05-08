@@ -110,18 +110,12 @@ def notify_vote(config: dict, state: dict, voter_name: str, voter_uid: str,
            f"🗳️ {mention} {action} in {voting_code}{link_line}\n\n"
            + "\n\n".join(tally_blocks))
 
-    for code in all_codes:
-        target_pid = pid_for_code(config, code)
-        if not target_pid:
-            continue
-        gid = group_id_for_campaign(config, target_pid)
-        chat_tid = None
-        for pair in config.get("topic_pairs", []):
-            if str(pair["pbp_topic_ids"][0]) == target_pid:
-                chat_tid = pair.get("chat_topic_id")
-                break
-        if chat_tid:
-            tg.send_message(gid, chat_tid, msg)
+    # Post once to the main group's bot topic (instead of per-campaign chat topics).
+    # The msg already contains tally blocks for every linked campaign.
+    group_id = config.get("group_id")
+    bot_topic = config.get("bot_topic_id")
+    if group_id and bot_topic:
+        tg.send_message(group_id, bot_topic, msg)
 
 
 def capture_unknown_voter(uid: str, code: str,
