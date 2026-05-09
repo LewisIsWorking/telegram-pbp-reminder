@@ -195,8 +195,9 @@ production module it covers.
 
 ### 9. State layer extraction (`StateStore`)
 
-**Status:** design doc written, awaiting answers to questions 1, 2,
-and 5 before slice 1 can start.
+**Status:** slice 1 landed. Slices 2-8 pending; questions 1, 2, and
+5 from the design doc are now answered (see slice 1 commit message)
+or deferred until they actually apply.
 
 Full design: **`docs/dev/statestore-design.md`**.
 
@@ -211,6 +212,18 @@ P1/5). Proposed: a single `StateStore` class owning every file in
 load/save, declarative migrations, single test-isolation point, and
 locking primitives ready for P3/10. Eight vertical slices, each
 independently shippable.
+
+**Slice progress:**
+* ✅ Slice 1 — `state_store/` package shell, aux file API
+  (`load_aux`/`save_aux`/`delete_aux`/`list_aux`), `bot_sent_ids`
+  migrated. 17 new tests; 1623 total passing.
+* ⏳ Slice 2 — refusal log migration. Same pattern as slice 1.
+* ⏳ Slice 3 — partitions read path (`load_partition`).
+* ⏳ Slice 4 — partitions write path with atomic writes.
+* ⏳ Slice 5 — queue partitions (`load_queue`/`save_queue`).
+* ⏳ Slice 6 — schema-completeness regression test.
+* ⏳ Slice 7 — migration registry.
+* ⏳ Slice 8 — locking primitives (P3/10 prerequisite).
 
 **Risk:** high — touches every state read/write in production. Slice
 plan keeps each slice small and independently testable.

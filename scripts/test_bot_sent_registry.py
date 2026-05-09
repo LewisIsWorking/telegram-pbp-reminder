@@ -19,17 +19,18 @@ import json
 import pytest
 
 from posting import bot_sent_registry as reg
+from state_store import StateStore
 
 
 @pytest.fixture(autouse=True)
 def isolated_registry(tmp_path, monkeypatch):
-    """Point the registry at tmp_path/bot_sent_ids.json for every test.
+    """Point the registry's StateStore at tmp_path/ for every test.
 
     Resets in-memory state before each test so previous tests can't
-    leak IDs into this one. monkeypatch undoes the path swap when the
-    test ends, so production paths are untouched.
+    leak IDs into this one. monkeypatch undoes the store swap when
+    the test ends, so production paths are untouched.
     """
-    monkeypatch.setattr(reg, "_STATE_PATH", tmp_path / "bot_sent_ids.json")
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=tmp_path))
     reg.reset_for_test()
     yield
     reg.reset_for_test()
@@ -74,7 +75,7 @@ def test_duplicate_records_are_set_safe():
 def test_persists_to_disk(tmp_path, monkeypatch):
     """After record_sent, the file on disk contains the ID."""
     reg.record_sent(7777)
-    state_path = reg._STATE_PATH
+    state_path = reg._store.aux_path("bot_sent_ids")
     assert state_path.exists()
     with open(state_path) as f:
         data = json.load(f)
@@ -90,9 +91,11 @@ def test_reload_picks_up_persisted_ids():
 
 def test_corrupt_state_file_starts_empty(tmp_path, monkeypatch, capsys):
     """A malformed bot_sent_ids.json should not crash; just empties."""
-    bad_path = tmp_path / "bot_sent_ids.json"
+    bad_dir = tmp_path / "bad"
+    bad_dir.mkdir()
+    bad_path = bad_dir / "bot_sent_ids.json"
     bad_path.write_text("{ this is : not json")
-    monkeypatch.setattr(reg, "_STATE_PATH", bad_path)
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=bad_dir))
     reg.reset_for_test()
 
     # is_bot_sent on any ID returns False because the registry is empty.
@@ -119,7 +122,7 @@ def test_backfill_from_live_state(tmp_path, monkeypatch):
             {"msg_ids": [300, 301, 302], "pin_id": 300},
         ],
     }))
-    monkeypatch.setattr(reg, "_STATE_PATH", state_dir / "bot_sent_ids.json")
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
     for mid in (100, 200, 201, 300, 301, 302):
@@ -140,7 +143,7 @@ def test_backfill_from_queue_state(tmp_path, monkeypatch):
                     "pin_id": 7000},
         },
     }))
-    monkeypatch.setattr(reg, "_STATE_PATH", state_dir / "bot_sent_ids.json")
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
     for mid in (5000, 5001, 5002, 6000, 7000, 7001):
@@ -156,7 +159,7 @@ def test_backfill_handles_corrupt_queue_file(tmp_path, monkeypatch):
         "topic_msg_id": 1000,
     }))
     (queues_dir / "200.json").write_text("{not json")  # corrupt
-    monkeypatch.setattr(reg, "_STATE_PATH", state_dir / "bot_sent_ids.json")
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
     assert reg.is_bot_sent(1000) is True
@@ -169,7 +172,7 @@ def test_backfill_idempotent(tmp_path, monkeypatch):
     (state_dir / "live.json").write_text(json.dumps({
         "last_queue_pin_id": 42,
     }))
-    monkeypatch.setattr(reg, "_STATE_PATH", state_dir / "bot_sent_ids.json")
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
     # First load triggers the backfill.

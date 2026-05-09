@@ -13,11 +13,12 @@ import pytest
 from posting import bot_sent_registry as reg
 from posting import refusal_log as rl
 from posting.safe_delete import perform_guarded_delete
+from state_store import StateStore
 
 
 @pytest.fixture(autouse=True)
 def isolated_registry(tmp_path, monkeypatch):
-    monkeypatch.setattr(reg, "_STATE_PATH", tmp_path / "bot_sent_ids.json")
+    monkeypatch.setattr(reg, "_store", StateStore(state_dir=tmp_path))
     monkeypatch.setattr(rl, "_LOG_PATH", tmp_path / "refusal_log.json")
     monkeypatch.setattr(rl, "_ALERTED_PATH",
                         tmp_path / "refusal_log_alerted.json")

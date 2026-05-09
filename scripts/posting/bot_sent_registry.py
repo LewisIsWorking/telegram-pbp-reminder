@@ -25,27 +25,27 @@ Telegram wrapper), so all callers — scheduled posters, maintenance
 scripts, future code — get the protection automatically.
 """
 
-import json
 import threading
-from pathlib import Path
 from typing import Iterable
 
 from posting.bot_sent_state_scan import (
     extract_ids_from_live as _extract_ids_from_live,
     extract_ids_from_queue as _extract_ids_from_queue,
 )
+from state_store import StateStore
 
 _LOCK = threading.Lock()
 _LOADED = False
 _IDS: set[int] = set()
 
-# Path resolution: registry sits next to live.json. Tests can override
-# by monkeypatching _STATE_PATH. The path is relative to this module so
-# it works regardless of cwd.
-_STATE_PATH = (
-    Path(__file__).resolve().parent.parent.parent
-    / "data" / "state" / "bot_sent_ids.json"
-)
+# Persistence routes through StateStore (slice 1 of P3/9). The aux
+# file is named ``bot_sent_ids`` and resolves to
+# ``<state_dir>/bot_sent_ids.json`` — default ``<repo>/data/state/``.
+# Tests monkeypatch ``_store`` to a tmp-rooted StateStore for isolation;
+# see ``_test_state_isolation.py`` and the per-test fixtures in
+# ``test_bot_sent_registry.py`` / ``test_safe_delete.py``.
+_AUX_NAME = "bot_sent_ids"
+_store = StateStore()
 
 
 def _load_locked() -> None:
@@ -58,27 +58,23 @@ def _load_locked() -> None:
     global _LOADED, _IDS
     if _LOADED:
         return
-    if _STATE_PATH.exists():
-        try:
-            with open(_STATE_PATH, encoding="utf-8") as f:
-                _IDS = set(int(x) for x in json.load(f))
-        except (json.JSONDecodeError, ValueError, OSError) as e:
-            print(f"[bot_sent_registry] Corrupt {_STATE_PATH} ({e}); "
-                  f"starting empty")
-            _IDS = set()
-    else:
+    raw = _store.load_aux(_AUX_NAME, default=[])
+    try:
+        _IDS = set(int(x) for x in raw)
+    except (TypeError, ValueError) as e:
+        print(f"[bot_sent_registry] Unparseable contents in "
+              f"{_store.aux_path(_AUX_NAME)} ({e}); starting empty")
         _IDS = set()
     _backfill_locked()
     _LOADED = True
 
 
 def _save_locked() -> None:
-    """Persist the registry. Caller must hold ``_LOCK``."""
-    _STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    tmp = _STATE_PATH.with_suffix(".json.tmp")
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(sorted(_IDS), f)
-    tmp.replace(_STATE_PATH)
+    """Persist the registry. Caller must hold ``_LOCK``.
+
+    Atomic write is delegated to StateStore.save_aux (tmp + rename).
+    """
+    _store.save_aux(_AUX_NAME, sorted(_IDS))
 
 
 def record_sent(message_id: int | None) -> None:
@@ -140,8 +136,13 @@ def _backfill_locked() -> int:
 
     Idempotent: only adds, never removes. Failed parses are ignored
     silently (a missing/corrupt state file should not crash the bot).
+
+    Note: this function still reads live.json and queues/*.json
+    directly with json.load. Slice 3 of P3/9 will replace these with
+    ``_store.load_partition`` / ``_store.load_queue``.
     """
-    state_dir = _STATE_PATH.parent
+    import json  # local import — see slice-3 note above
+    state_dir = _store.state_dir
     added = 0
     candidates: list = []
 

@@ -23,6 +23,12 @@ Why session-tmp rather than per-test:
   - Per-test fixtures that further monkeypatch these paths to their
     own ``tmp_path`` continue to work; pytest restores them to *this*
     session tmp dir at teardown, never to the production path.
+
+P3/9 slice 1 update: bot_sent_registry now persists through
+``StateStore``. The isolation hook for it is to install a tmp-rooted
+StateStore on the registry module rather than monkeypatching a
+``_STATE_PATH`` constant. ``refusal_log`` will move to the same
+pattern in slice 2.
 """
 
 import tempfile
@@ -30,10 +36,11 @@ from pathlib import Path
 
 from posting import bot_sent_registry as _bsr
 from posting import refusal_log as _rl
+from state_store import StateStore
 
 
 _TEST_STATE_DIR = Path(tempfile.mkdtemp(prefix="pbpbot_test_state_"))
 
-_bsr._STATE_PATH = _TEST_STATE_DIR / "bot_sent_ids.json"
+_bsr._store = StateStore(state_dir=_TEST_STATE_DIR)
 _rl._LOG_PATH = _TEST_STATE_DIR / "refusal_log.json"
 _rl._ALERTED_PATH = _TEST_STATE_DIR / "refusal_log_alerted.json"
