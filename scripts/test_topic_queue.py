@@ -136,57 +136,53 @@ class TestMigrateLegacy:
 
 
 class TestPostThreadQueue:
-    def test_new_post(self):
+    def test_new_post(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_ids": [], "fingerprint": ""}
-        with patch("scheduled.topic_queue_poster.tg") as mock_tg:
-            mock_tg.send_message_id.return_value = 9999
-            _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            assert mock_tg.send_message_id.call_count >= 1  # ≥1 chunks
-            mock_tg.pin_message.assert_called_once_with(-100, 9999, disable_notification=False)
-            assert slot["msg_ids"] == [9999]
+        tg_mock.send_message_id.return_value = 9999
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        assert tg_mock.send_message_id.call_count >= 1  # ≥1 chunks
+        tg_mock.pin_message.assert_called_once_with(-100, 9999, disable_notification=False)
+        assert slot["msg_ids"] == [9999]
 
-    def test_skip_when_unchanged(self):
+    def test_skip_when_unchanged(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_ids": [8888], "fingerprint": "2026-04-06 10:00:00"}
-        with patch("scheduled.topic_queue_poster.tg") as mock_tg:
-            _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            mock_tg.send_message_id.assert_not_called()
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.send_message_id.assert_not_called()
 
-    def test_skip_when_unchanged_legacy_slot(self):
+    def test_skip_when_unchanged_legacy_slot(self, tg_mock):
         """Legacy slot with singular msg_id still triggers the skip path."""
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_id": 8888, "fingerprint": "2026-04-06 10:00:00"}
-        with patch("scheduled.topic_queue_poster.tg") as mock_tg:
-            _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            mock_tg.send_message_id.assert_not_called()
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.send_message_id.assert_not_called()
 
-    def test_update_deletes_old(self):
+    def test_update_deletes_old(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_ids": [7777], "fingerprint": "stale"}
-        with patch("scheduled.topic_queue_poster.tg") as mock_tg:
-            mock_tg.send_message_id.return_value = 9999
-            _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            mock_tg.delete_message.assert_called_once_with(-100, 7777)
-            assert slot["msg_ids"] == [9999]
+        tg_mock.send_message_id.return_value = 9999
+        tg_mock.delete_message.return_value = True
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.delete_message.assert_called_once_with(-100, 7777)
+        assert slot["msg_ids"] == [9999]
 
-    def test_update_legacy_slot_migrates(self):
+    def test_update_legacy_slot_migrates(self, tg_mock):
         """Legacy slot with singular msg_id is rewritten as msg_ids on update."""
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_id": 7777, "fingerprint": "stale"}
-        with patch("scheduled.topic_queue_poster.tg") as mock_tg:
-            mock_tg.send_message_id.return_value = 9999
-            _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            mock_tg.delete_message.assert_called_once_with(-100, 7777)
-            assert slot["msg_ids"] == [9999]
-            assert "msg_id" not in slot
+        tg_mock.send_message_id.return_value = 9999
+        tg_mock.delete_message.return_value = True
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.delete_message.assert_called_once_with(-100, 7777)
+        assert slot["msg_ids"] == [9999]
+        assert "msg_id" not in slot
 
-    def test_no_state_update_when_send_fails(self):
+    def test_no_state_update_when_send_fails(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_ids": [], "fingerprint": ""}
-        with patch("scheduled.topic_queue_poster.tg") as mock_tg:
-            mock_tg.send_message_id.return_value = None
-            _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-            mock_tg.pin_message.assert_not_called()
-            assert slot["msg_ids"] == []
+        tg_mock.send_message_id.return_value = None
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.pin_message.assert_not_called()
+        assert slot["msg_ids"] == []
 

@@ -7,25 +7,33 @@ each post as a *batch* — the full list of message IDs that were
 returned by the send loop — and keeps only the most recent
 ``MAX_KEPT_BATCHES`` batches in the topic.
 
-State shape:
+State shape (unchanged for backwards compatibility)::
+
     state["gm_queue_history"] = [
         {"msg_ids": [int, ...], "pin_id": int},  # oldest kept batch
         ...,
         {"msg_ids": [int, ...], "pin_id": int},  # newest batch
     ]
 
+The actual batch and history primitives now live in ``posting``;
+this module is the GM-queue-specific orchestrator: legacy migration
+from ``last_queue_pin_id``, unpin-previous-then-pin-new ordering, and
+the public ``post_and_persist`` entry point.
+
 When a new batch is appended and the cap is exceeded, the oldest
-batches are popped and every message ID inside them is deleted from
-Telegram. ``tg.delete_message`` silently ignores already-deleted IDs,
-so the eviction is idempotent and safe to retry.
+batches are deleted from Telegram. Failed deletes keep the batch in
+history so the next run retries — see ``posting.queue_history``.
 """
 
 import telegram as tg
+from posting import QueueHistory, post_batch
 
 
 # Maximum number of GM queue post batches retained in the bot topic.
 # Older batches are deleted on every new post.
 MAX_KEPT_BATCHES = 3
+
+_history = QueueHistory(max_kept=MAX_KEPT_BATCHES)
 
 
 def migrate_legacy(state: dict) -> None:
@@ -51,32 +59,17 @@ def append_and_evict(state: dict, group_id: int,
                      msg_ids: list[int], pin_id: int) -> None:
     """Append a new batch and delete every message in any evicted batches.
 
-    Mutates ``state["gm_queue_history"]`` in place. After append, while
-    history exceeds ``MAX_KEPT_BATCHES`` the oldest batch is popped and
-    each ``msg_id`` inside it is passed to ``tg.delete_message``.
-
-    If any delete in a batch fails, that batch is retained in history
-    so it can be retried on the next run rather than orphaning the
-    message in Telegram with no path to recovery.
+    Mutates ``state["gm_queue_history"]`` in place. Delegates the
+    rolling-window logic (and retry-on-failure semantics) to
+    ``posting.QueueHistory``; this function only handles the dict-list
+    boundary and in-place mutation expected by the rest of the codebase.
     """
-    history = state.setdefault("gm_queue_history", [])
-    history.append({"msg_ids": list(msg_ids), "pin_id": pin_id})
-    # Try to evict oldest batches; keep any whose deletes did not all succeed
-    retained: list[dict] = []
-    while len(history) > MAX_KEPT_BATCHES:
-        candidate = history.pop(0)
-        remaining: list[int] = []
-        for mid in candidate.get("msg_ids", []):
-            if not tg.delete_message(group_id, mid):
-                remaining.append(mid)
-        if remaining:
-            # Some deletes failed — keep this batch (with only failed IDs)
-            # so the next run retries them.
-            candidate["msg_ids"] = remaining
-            retained.append(candidate)
-    # Re-insert retained batches at the front in original order
-    for batch in reversed(retained):
-        history.insert(0, batch)
+    raw = state.setdefault("gm_queue_history", [])
+    batches = QueueHistory.from_dicts(raw)
+    from posting import MessageBatch
+    new = MessageBatch(msg_ids=list(msg_ids), pin_id=pin_id)
+    updated = _history.append_with_retry(batches, new, group_id)
+    raw[:] = QueueHistory.to_dicts(updated)
 
 
 def post_and_persist(state: dict, group_id: int, bot_topic: int,
@@ -88,19 +81,16 @@ def post_and_persist(state: dict, group_id: int, bot_topic: int,
     previous pin (if any) is unpinned, the new first message is pinned,
     and ``state["last_queue_pin_id"]`` plus
     ``state["gm_queue_history"]`` are updated together.
+
+    Note: ``post_batch`` already pins the first chunk, so we don't
+    re-pin here. We do still unpin the previous pin (if any) so the
+    bot topic doesn't accumulate stale pin notifications.
     """
-    sent = False
-    first_msg_id: int | None = None
-    sent_msg_ids: list[int] = []
-    for i, msg in enumerate(msgs):
-        result = tg.send_message_id(group_id, bot_topic, msg)
-        if result:
-            sent = True
-            sent_msg_ids.append(result)
-            if i == 0:
-                first_msg_id = result
-    if not sent or first_msg_id is None:
-        return sent, first_msg_id
+    batch = post_batch(group_id, bot_topic, msgs,
+                       pin=True, disable_notification=False)
+    if batch is None:
+        return False, None
+
     # Migrate BEFORE updating last_queue_pin_id, so any pre-existing
     # legacy pin is preserved as a one-message batch in history rather
     # than being mis-detected as legacy on the next call.
@@ -108,7 +98,6 @@ def post_and_persist(state: dict, group_id: int, bot_topic: int,
     prev_pin = state.get("last_queue_pin_id")
     if prev_pin:
         tg.unpin_message(group_id, prev_pin)
-    tg.pin_message(group_id, first_msg_id)
-    state["last_queue_pin_id"] = first_msg_id
-    append_and_evict(state, group_id, sent_msg_ids, first_msg_id)
-    return sent, first_msg_id
+    state["last_queue_pin_id"] = batch.pin_id
+    append_and_evict(state, group_id, batch.msg_ids, batch.pin_id)
+    return True, batch.pin_id

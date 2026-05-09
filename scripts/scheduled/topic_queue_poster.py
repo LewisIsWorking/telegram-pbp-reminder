@@ -11,11 +11,12 @@ canonical pid thread.
 
 A single thread's queue may overflow Telegram's 4096-char limit and be
 sent as multiple messages. Every message ID is tracked so the entire
-previous batch can be deleted before the next one is posted — see
-``scheduled.topic_queue_state`` for the slot schema.
+previous batch can be deleted before the next one is posted — slot
+schema lives in ``posting.SinglePin``; sending/pinning lives in
+``posting.post_batch``.
 
 State per canonical campaign pid in data/state/queues/{pid}.json:
-  topic_queues: {thread_id: {msg_ids: [int, ...], fingerprint}}
+  topic_queues: {thread_id: {msg_ids: [int, ...], fingerprint, ...}}
   topic_msg_id, topic_fingerprint — legacy fields, migrated on first run
 """
 
@@ -26,9 +27,8 @@ import telegram as tg
 from commands.queue_io import load as _load, save as _save, all_pids as _all_pids
 from commands.topic_queue_format import format_topic_queue, build_topic_fingerprint
 from helpers_pkg.campaigns import get_pair
-from scheduled.topic_queue_state import (
-    slot_msg_ids, set_slot_msg_ids, clear_slot, empty_slot,
-)
+from posting import SinglePin, post_batch
+from scheduled.topic_queue_state import slot_msg_ids, empty_slot
 
 
 def _group_id_for(config: dict, pid: str) -> int:
@@ -57,11 +57,13 @@ def _post_thread_queue(group_id: int, thread_id: str,
 
     slot is a mutable dict in either schema (legacy ``msg_id`` or
     current ``msg_ids``). Updated in place to the current schema on
-    every successful write.
+    every successful write. Sending and pinning are delegated to
+    ``posting.post_batch``; the existing tracked batch (if any) is
+    deleted first via ``MessageBatch.delete_all``.
     """
     fingerprint = build_topic_fingerprint(entries)
-    existing_ids = slot_msg_ids(slot)
-    if fingerprint == slot.get("fingerprint", "") and existing_ids:
+    existing = SinglePin.read_batch(slot)
+    if fingerprint == slot.get("fingerprint", "") and not existing.is_empty:
         return  # No change — skip
 
     # If a "All caught up!" message lingers from a prior clear cycle, drop
@@ -72,38 +74,42 @@ def _post_thread_queue(group_id: int, thread_id: str,
         tg.delete_message(group_id, prev_caught_up)
         slot["caught_up_msg_id"] = None
 
-    # Clear legacy pins if slot has no tracked IDs (pre-tracking messages)
-    if not existing_ids:
+    # Clear legacy pins if slot has no tracked IDs (pre-tracking messages).
+    # Otherwise, delete the previous batch's tracked messages so the topic
+    # only ever shows the freshest queue. Per-thread slots are replace-only
+    # (no history), so failed deletes are not retried — they are surfaced
+    # in the print log below for diagnosis but do not block the new post.
+    if existing.is_empty:
         tg.unpin_all_messages(group_id, int(thread_id))
-    for old_msg_id in existing_ids:
-        tg.delete_message(group_id, old_msg_id)
+    else:
+        failed = existing.delete_all(group_id)
+        if failed:
+            print(f"Topic queue prev-delete failed: thread={thread_id} "
+                  f"undeleted={failed}")
 
     chunks = format_topic_queue(entries, now)
-    sent_msg_ids: list[int] = []
-    first_msg_id: int | None = None
-    for chunk in chunks:
-        msg_id = tg.send_message_id(group_id, int(thread_id), chunk)
-        if msg_id:
-            sent_msg_ids.append(msg_id)
-            if first_msg_id is None:
-                first_msg_id = msg_id
-    if first_msg_id:
-        tg.pin_message(group_id, first_msg_id, disable_notification=False)
-        set_slot_msg_ids(slot, sent_msg_ids, fingerprint)
-        print(f"Topic queue posted: thread={thread_id} entries={len(entries)} chunks={len(chunks)}")
+    new_batch = post_batch(group_id, int(thread_id), chunks,
+                           pin=True, disable_notification=False)
+    if new_batch is not None:
+        SinglePin.write_batch(slot, new_batch, fingerprint)
+        print(f"Topic queue posted: thread={thread_id} "
+              f"entries={len(entries)} chunks={len(chunks)}")
 
 
 def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
     """Send caught-up message and remove every stale pinned message.
 
     No-op if the slot has no tracked messages. Slot is reset to the
-    empty current-schema shape.
+    empty current-schema shape via ``SinglePin.clear`` — except for the
+    new caught-up message ID, which is stored on the slot so the *next*
+    cycle (whether another clear or a fresh queue post) can delete it.
+    Without this, every clear cycle would leave a permanent
+    "✅ All caught up!" message in the topic.
     """
-    msg_ids = slot_msg_ids(slot)
-    if not msg_ids:
+    existing = SinglePin.read_batch(slot)
+    if existing.is_empty:
         return  # pragma: no cover
-    # Delete any "All caught up!" message left from a previous clear cycle
-    # so we don't leave a trail of them in the topic over time.
+    # Delete the previous caught-up notice (if any) so we don't pile them up.
     prev_caught_up = slot.get("caught_up_msg_id")
     if prev_caught_up:
         tg.delete_message(group_id, prev_caught_up)
@@ -111,12 +117,12 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
         group_id, int(thread_id), "━━━━━━━━━━━━━━━━\n✅ All caught up!"
     )
     # Unpin only the first message (the pinned one); delete every tracked id.
-    tg.unpin_message(group_id, msg_ids[0])
-    for mid in msg_ids:
-        tg.delete_message(group_id, mid)
-    clear_slot(slot)
-    # Track the new caught-up message so the next cycle (whether another
-    # clear or a fresh queue post) can delete it.
+    if existing.pin_id is not None:
+        tg.unpin_message(group_id, existing.pin_id)
+    existing.delete_all(group_id)
+    SinglePin.clear(slot)
+    # Track the freshly-posted caught-up message so the next cycle
+    # (post or clear) knows to delete it before posting its own.
     slot["caught_up_msg_id"] = new_caught_up
     print(f"Topic queue cleared: thread={thread_id}")
 
