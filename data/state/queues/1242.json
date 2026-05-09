@@ -1,25 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2465,
-      "thread_id": 1242,
-      "user_id": "8030796908",
-      "user_name": "NJ",
-      "time": "2026-05-09T21:14:41+00:00",
-      "preview": "I apologise to the rest of the group for causing them all to have nightmares",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2466,
-      "thread_id": 1242,
-      "user_id": "503940482",
-      "user_name": "Craig",
-      "time": "2026-05-09T21:18:48+00:00",
-      "preview": "I tell her that if it happens again the leash is going back on",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -284,7 +265,11 @@
     "msg:2419",
     "2026-05-07 20:35:09",
     "msg:2447",
-    "2026-05-07 22:51:07"
+    "2026-05-07 22:51:07",
+    "msg:2465",
+    "2026-05-09 21:14:41",
+    "msg:2466",
+    "2026-05-09 21:18:48"
   ],
   "reply_log": [
     {
@@ -1621,17 +1606,34 @@
       "player": "NJ",
       "preview": "I must have this dagger \ud83d\udde1",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-09T21:20:39+00:00",
+      "pid": "1242",
+      "msg_id": "2465",
+      "thread_id": 1242,
+      "player": "NJ",
+      "preview": "I apologise to the rest of the group for causing them all to have nightmares",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T21:21:03+00:00",
+      "pid": "1242",
+      "msg_id": "2466",
+      "thread_id": 1242,
+      "player": "Craig",
+      "preview": "I tell her that if it happens again the leash is going back on",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-05-09 21:14:41|2026-05-09 21:18:48",
-      "msg_ids": [
-        2468
-      ],
-      "last_posted_at": "2026-05-09T21:19:14.904591+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 2474
     }
   }
 }
