@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_push.py — bin 1.
+"""Tests extracted from test_final_push.py — bin 1.
 
 Sections in this file:
   - commands/summary.py:113 — away count line
@@ -8,12 +8,17 @@ Sections in this file:
   - commands/status.py:162 — no last_message_time
   - commands/dashboard.py:74 / 80 — at-risk flag
 """
+"""
+Definitive final coverage push — verified to actually hit each line.
+Uses real function calls with minimal/no mocking where possible.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── commands/summary.py:113 — away count line ────────────────────────────────
@@ -147,5 +152,4 @@ def test_dashboard_at_risk_real():
         mh.days_since.return_value = 8.0   # ≥ 7 → at-risk
         result = build_gm_dashboard(config, state)
     assert "⚠️" in result
-
 

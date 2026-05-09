@@ -1,16 +1,68 @@
-"""Coverage tests extracted from test_zero_coverage.py — bin 2.
+"""Tests extracted from test_zero_coverage.py — bin 2.
 
 Sections in this file:
   - Entry with no time still produces output (uses epoch as fallback)
   - commands/queue_stats.py
 """
-import sys, os, json, pytest
+"""
+Coverage tests for previously-0% files:
+  commands/health.py
+  commands/waiting.py
+  commands/queue_analytics.py
+  commands/queue_stats.py
+  set_commands.py
+  scheduled/diagnostic_analysis.py
+"""
+import sys, os, pytest
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _now():
+    return datetime.now(timezone.utc)
+
+def _recent():
+    return (_now() - timedelta(hours=2)).isoformat()
+
+def _stale():
+    return (_now() - timedelta(days=8)).isoformat()
+
+def _days_ago(n):
+    return (_now() - timedelta(days=n, hours=1)).isoformat()
+
+def _h_config():
+    return {
+        "group_id": -1001, "gm_user_ids": [999], "bot_topic_id": 1,
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "Riddleport",
+             "gm_user_ids": [999]},
+            {"pbp_topic_ids": [101], "code": "C01", "name": "Dungeon",
+             "gm_user_ids": [999]},
+        ]
+    }
+
+def _h_state(last_100=None, last_101=None, ts=None):
+    return {
+        "topics": {
+            "100": {"last_message_time": last_100} if last_100 else {},
+            "101": {"last_message_time": last_101} if last_101 else {},
+        },
+        "post_timestamps": ts or {"100": {"1": [_recent()]*12}, "101": {}},
+        "players": {
+            "100:1": {"pbp_topic_id": "100", "user_id": "1"},
+        },
+        "session_counts": {},
+    }
+
+def _pm_config():
+    return {
+        "group_id": -1001, "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "R",
+             "gm_user_ids": [999]}
+        ]
+    }
 
 # ═══════════════════════════════════════════════════════════════════════════════
 

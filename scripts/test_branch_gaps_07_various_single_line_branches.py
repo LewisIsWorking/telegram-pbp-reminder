@@ -1,12 +1,11 @@
-"""Coverage tests extracted from test_branch_gaps.py — bin 6.
+"""Tests extracted from test_branch_gaps.py — bin 7.
 
 Sections in this file:
   - Various single-line branches (part a)
-
-Targeted tests for specific uncovered branches in the production
-modules listed above. Module imports are duplicated from the original
-``test_branch_gaps.py`` header; per-section helper functions are
-extracted alongside their sections.
+"""
+"""
+Targeted tests for every remaining coverage gap.
+Organised by file, hitting each uncovered branch.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -15,6 +14,58 @@ from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _gm_ctx(text, pid="100", uid="GM1"):
+    return {
+        "cmd_word": text.split()[0], "text": text,
+        "user_id": uid, "gm_ids": {"GM1"},
+        "pid": pid, "group_id": -1, "thread_id": 999,
+        "state": {}, "config": {},
+        "campaign_name": "Kibwe",
+        "now_iso": "2026-04-03T12:00:00+00:00",
+        "msg_time_iso": "2026-04-03T12:00:00+00:00",
+        "user_name": "Lewis",
+        "maps": MagicMock(), "parsed": {"raw_text": "/done 99", "text": "/done 99"},
+    }
+
+def _capture_config(placeholders=None):
+    return {"group_id": -1, "bot_topic_id": 999, "topic_pairs": [
+        {"code": "C01", "pbp_topic_ids": [100],
+         "poll_user_ids": placeholders or [111, 222],
+         "poll_user_names": {str(u): f"user{u}" for u in (placeholders or [111, 222])}}
+    ]}
+
+def _hp_config():
+    return {
+        "group_id": -1001, "bot_topic_id": 999,
+        "leaderboard_topic_id": 888,
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "name": "Magni Watch"},
+            {"pbp_topic_ids": [200], "name": "Kibwe"},
+        ],
+    }
+
+def _hp_state(uid="U1"):
+    return {
+        "players": {
+            f"100:{uid}": {"user_id": uid, "pbp_topic_id": 100, "first_name": "Chase"},
+            f"200:{uid}": {"user_id": uid, "pbp_topic_id": 200, "first_name": "Chase"},
+        }
+    }
+
+def _gm_config():
+    return {"topic_pairs": [
+        {"code": "C00", "name": "Riddleport",
+         "pbp_topic_ids": [66154, 133428],
+         "chat_topic_id": 91008},
+    ]}
+
+def _mention_config():
+    return {"topic_pairs": [
+        {"code": "C01", "pbp_topic_ids": [100],
+         "poll_user_names": {"8787": "Sestina_The_Banner_Witch"}},
+    ]}
+
+# ─── Various single-line branches ─────────────────────────────────────────────
 
 def test_dispatch_cmd_votes_timers_cancel_no_timer():
     from dispatch.cmd_votes_timers import handle as vt_handle
@@ -30,18 +81,15 @@ def test_dispatch_cmd_votes_timers_cancel_no_timer():
     result = vt_handle(ctx)
     assert result is True
 
-
 def test_combat_commands_enemies():
     from combat.commands import handle_enemies_command
     state = {"combat": {"100": {"active": True, "enemies": ["Goblin", "Orc"]}}}
     handle_enemies_command("", "100", "Kibwe", "2026-04-03T12:00:00", -1, 999, state)
 
-
 def test_combat_commands_no_enemies():
     from combat.commands import handle_enemies_command
     state = {"combat": {"100": {"active": True, "enemies": []}}}
     handle_enemies_command("", "100", "Kibwe", "2026-04-03T12:00:00", -1, 999, state)
-
 
 def test_boons_reminders_second_reminder():
     from boons.reminders import check_boon_reminders
@@ -67,7 +115,6 @@ def test_boons_reminders_second_reminder():
         mh.hours_since.return_value = 75.0
         check_boon_reminders(config, state, now=now)
 
-
 def test_cmd_trackers_quest_not_found():
     from dispatch.cmd_trackers import handle as trackers_handle
     ctx = {
@@ -82,7 +129,6 @@ def test_cmd_trackers_quest_not_found():
     result = trackers_handle(ctx)
     assert result is True
 
-
 def test_cmd_trackers_items_npc_not_found():
     from dispatch.cmd_trackers_items import handle as ti_handle
     ctx = {
@@ -96,7 +142,6 @@ def test_cmd_trackers_items_npc_not_found():
     }
     result = ti_handle(ctx)
     assert result is True
-
 
 def test_markdone_numeric_id_exact_match():
     from commands.markdone import handle_markdone
@@ -113,7 +158,6 @@ def test_markdone_numeric_id_exact_match():
         }
         result = handle_markdone(ctx)
     assert result is True
-
 
 def test_queue_scan_section_break(tmp_path):
     from commands.queue_scan import scan_transcripts
@@ -138,34 +182,3 @@ def test_queue_scan_section_break(tmp_path):
     # Section break stops content — entry still added but with limited preview
     if "100" in result:
         assert result["100"]["entries"][0]["name"] == "Alice"
-
-
-def test_dashboard_active_quests_flag():
-    from commands.dashboard import build_gm_dashboard
-    state = {
-        "quests": {"100": [{"text": "Quest 1", "done": False},
-                            {"text": "Quest 2", "done": False}]},
-        "conditions": {}, "timer": {}, "vote": {}, "current_scenes": {},
-        "hp_tracker": {}, "clocks": {}, "combat": {}, "paused_campaigns": {},
-        "topics": {"100": {"last_message_time": datetime.now(timezone.utc).isoformat()}},
-        "players": {}, "post_timestamps": {},
-    }
-    config = {"group_id": -1, "gm_user_ids": [], "topic_pairs": []}
-    state2 = {"quests": {}, "conditions": {}, "timer": {}, "vote": {},
-              "current_scenes": {}, "hp_tracker": {}, "clocks": {},
-              "combat": {}, "paused_campaigns": {}, "topics": {},
-              "players": {}, "post_timestamps": {}, "message_counts": {}}
-    with patch("commands.dashboard.helpers") as mh:
-        mh.iter_campaigns.return_value = []
-        result = build_gm_dashboard(config, state2)
-    assert isinstance(result, str)
-
-
-def test_transcript_formatting_media():
-    from transcript.formatting import format_log_entry
-    parsed = {"user_id": "U1", "first_name": "Alice", "username": "alice",
-              "user_name": "Alice", "last_name": "",
-              "text": "document:map.pdf", "timestamp": "2026-03-01 10:00:00",
-              "msg_time_iso": "2026-03-01T10:00:00", "is_gm": False, "msg_id": None}
-    result = format_log_entry(parsed, set(), char_name=None)
-    assert "map.pdf" in result or "document" in result.lower() or isinstance(result, str)

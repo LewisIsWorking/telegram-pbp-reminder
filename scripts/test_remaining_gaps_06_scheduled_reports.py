@@ -1,17 +1,32 @@
-"""Coverage tests extracted from test_remaining_gaps.py — bin 6.
+"""Tests extracted from test_remaining_gaps.py — bin 6.
 
 Sections in this file:
   - scheduled/reports.py:93-157 — post_pace_report
   - scheduled/milestones.py:134 — exactly 1 year message
   - misc one-liners
 """
+"""Final targeted tests for all remaining coverage gaps — 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _ctx(**kwargs):
+    base = {
+        "user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+        "pid": "100", "group_id": -1, "thread_id": 999,
+        "state": {}, "config": {},
+        "campaign_name": "Kibwe",
+        "now_iso": "2026-04-03T12:00:00+00:00",
+        "msg_time_iso": "2026-04-03T12:00:00+00:00",
+        "parsed": {"raw_text": "", "text": ""},
+        "maps": MagicMock(),
+    }
+    base.update(kwargs)
+    base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
+    return base
 
 # ─── scheduled/reports.py:93-157 — post_pace_report ─────────────────────────
 
@@ -89,4 +104,3 @@ def test_set_commands_no_token(monkeypatch):
         token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
         if not token:
             raise SystemExit(1)
-

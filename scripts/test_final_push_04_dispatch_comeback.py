@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_push.py — bin 4.
+"""Tests extracted from test_final_push.py — bin 4.
 
 Sections in this file:
   - dispatch/comeback.py:38 — no bot_topic
@@ -10,12 +10,17 @@ Sections in this file:
   - commands/mechanics.py:63
   - commands/waiting.py:83
 """
+"""
+Definitive final coverage push — verified to actually hit each line.
+Uses real function calls with minimal/no mocking where possible.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── dispatch/comeback.py:38 — no bot_topic ──────────────────────────────────
@@ -160,5 +165,4 @@ def test_waiting_no_firstname_real():
         result = build_waiting_all("U1", "Alice",
                                    {"topic_pairs": [{"pbp_topic_ids": [100]}]}, state)
     assert "all caught up" in result or isinstance(result, str)
-
 

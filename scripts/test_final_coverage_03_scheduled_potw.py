@@ -1,19 +1,68 @@
-"""Coverage tests extracted from test_final_coverage.py — bin 3.
+"""Tests extracted from test_final_coverage.py — bin 3.
 
 Sections in this file:
   - scheduled/potw.py — winner selection and announcement
   - boons/handler.py — choose_boon_by_text
   - boons/handler.py — choose_boon_by_text
-  - scheduled/leaderboard.py — post_campaign_leaderboard
-  - scheduled/leaderboard.py — post_campaign_leaderboard
 """
-import sys, os, json, pytest
+"""
+Tests targeting the remaining coverage gaps:
+  dispatch/cmd_search.py, dispatch/bot_topic.py, scheduled/reports.py,
+  scheduled/potw.py (winner section), boons/handler.py, scheduled/leaderboard.py,
+  transcript/finalize.py, commands/player.py, helpers_pkg/time_utils.py,
+  + many single-line gaps across dispatch/commands files.
+"""
+import sys, os, json, pytest, io, zipfile, tempfile
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _tg_mock():
+    m = MagicMock()
+    m.send_message.return_value = True
+    return m
+
+def _maps():
+    m = MagicMock()
+    m.name_to_pid = {"kibwe": "100", "riddleport": "200"}
+    m.to_name = {"100": "Kibwe", "200": "Riddleport"}
+    m.to_chat = {"100": 21514, "200": 21515}
+    return m
+
+def _bt_msg(text, uid="U1", is_bot=False):
+    return {"from": {"id": int(uid.lstrip("U") or 1),
+                     "first_name": "Alice", "is_bot": is_bot},
+            "text": text}
+
+def _bt_config():
+    return {
+        "group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
+             "gm_user_ids": [999], "chat_topic_id": 21514}
+        ]
+    }
+
+def _boons_state(pid="100", uid="U1"):
+    return {
+        "pending_potw_boons": {pid: {
+            "winner_user_id": uid,
+            "message_id": 42,
+            "campaign_name": "Kibwe",
+            "boons": ["Turtle", "Coin", "Map"],
+            "base_message": "You won!",
+        }},
+        "player_boons": {},
+        "players": {"100:U1": {"user_id": uid, "first_name": "Alice"}},
+    }
+
+def _lb_config():
+    return {"group_id": -1001, "leaderboard_topic_id": 555,
+            "gm_user_ids": [999], "bot_topic_id": 999,
+            "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
+                              "name": "Kibwe", "gm_user_ids": [999]}]}
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # scheduled/potw.py — winner selection and announcement
@@ -86,70 +135,3 @@ def test_potw_announces_winner(mock_helpers):
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # boons/handler.py — choose_boon_by_text
-
-# ═══════════════════════════════════════════════════════════════════════════════
-
-from boons.handler import choose_boon_by_text
-
-
-def _boons_state(pid="100", uid="U1"):
-    return {
-        "pending_potw_boons": {pid: {
-            "winner_user_id": uid,
-            "message_id": 42,
-            "campaign_name": "Kibwe",
-            "boons": ["Turtle", "Coin", "Map"],
-            "base_message": "You won!",
-        }},
-        "player_boons": {},
-        "players": {"100:U1": {"user_id": uid, "first_name": "Alice"}},
-    }
-
-
-def test_choose_boon_no_pending():
-    result = choose_boon_by_text("100", "U1", 1, {}, {})
-    assert "No pending" in result
-
-
-def test_choose_boon_wrong_user():
-    state = _boons_state()
-    result = choose_boon_by_text("100", "U2", 1, {}, state)
-    assert "Only the Player" in result
-
-
-def test_choose_boon_out_of_range():
-    state = _boons_state()
-    result = choose_boon_by_text("100", "U1", 99, {}, state)
-    assert "Pick a number" in result
-
-
-def test_choose_boon_success():
-    state = _boons_state()
-    config = {"group_id": -1001, "bot_topic_id": 999}
-    with patch("boons.handler._resolve_boon",
-               return_value=("You won Turtle!", None)):
-        result = choose_boon_by_text("100", "U1", 1, config, state)
-    assert "Turtle" in result or "✅" in result
-
-
-def test_choose_boon_fallback_by_winner_uid():
-    state = _boons_state(pid="200")  # wrong pid
-    config = {"group_id": -1001, "bot_topic_id": 999}
-    with patch("boons.handler._resolve_boon",
-               return_value=("You won Coin!", None)):
-        result = choose_boon_by_text("100", "U1", 2, config, state)
-    assert "Coin" in result or "✅" in result
-
-
-def test_choose_boon_no_bot_topic():
-    state = _boons_state()
-    config = {"group_id": -1001}  # no bot_topic_id
-    with patch("boons.handler._resolve_boon",
-               return_value=("You won Map!", None)):
-        result = choose_boon_by_text("100", "U1", 3, config, state)
-    assert "Map" in result or "✅" in result
-
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/leaderboard.py — post_campaign_leaderboard

@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_remaining_100.py — bin 4.
+"""Tests extracted from test_remaining_100.py — bin 4.
 
 Sections in this file:
   - helpers_pkg/dice.py:80 — non-kept die
@@ -15,12 +15,28 @@ Sections in this file:
   - transcript/finalize.py:51 — empty dir returns
   - transcript/logger.py:144 — silence in days
 """
+"""
+Definitive final coverage push — verified state for every remaining gap.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
+
+def _ctx(**kw):
+    base = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+            "pid": "100", "group_id": -1, "thread_id": 999,
+            "state": {}, "config": {}, "campaign_name": "Kibwe",
+            "now_iso": "2026-04-03T12:00:00+00:00",
+            "msg_time_iso": "2026-04-03T12:00:00+00:00",
+            "parsed": {"raw_text": "", "text": ""},
+            "maps": MagicMock(), "reply_topic": 999}
+    base.update(kw)
+    base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
+    return base
+
 
 
 # ── helpers_pkg/dice.py:80 — non-kept die ────────────────────────────────────
@@ -161,5 +177,4 @@ def test_logger_silence(tmp_path):
                 {"pbp_topic_ids": [100], "name": "Kibwe", "gm_user_ids": []}]})
         except Exception:
             pass
-
 

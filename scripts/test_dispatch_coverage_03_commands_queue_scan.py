@@ -1,7 +1,7 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 1.
+"""Tests extracted from test_dispatch_coverage.py — bin 3.
 
 Sections in this file:
-  - checker.py
+  - commands/queue_scan.py
 """
 """
 Coverage tests for:
@@ -94,4 +94,4 @@ _CHECKER_FUNCS = [
 ]
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# checker.py
+# commands/queue_scan.py

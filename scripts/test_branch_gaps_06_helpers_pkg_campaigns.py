@@ -1,19 +1,16 @@
-"""Coverage tests extracted from test_branch_gaps.py — bin 4.
+"""Tests extracted from test_branch_gaps.py — bin 6.
 
 Sections in this file:
-  - scheduled/queue_reminder.py: message chunking
-  - boons/handler.py: _resolve_boon returns None
-  - helpers_pkg/config.py: chat_topic collision
   - helpers_pkg/campaigns.py: get_campaign_pids
   - helpers_pkg/mechanics.py: hp_status_icon red
   - helpers_pkg/time_utils.py: past date advances year
   - scheduled/milestones.py: exactly 1 year
   - scheduled/digest.py: post_weekly_digest
-
-Targeted tests for specific uncovered branches in the production
-modules listed above. Module imports are duplicated from the original
-``test_branch_gaps.py`` header; per-section helper functions are
-extracted alongside their sections.
+  - scheduled/campaign_table.py: post_campaign_table
+"""
+"""
+Targeted tests for every remaining coverage gap.
+Organised by file, hitting each uncovered branch.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -22,68 +19,56 @@ from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-
-# ─── scheduled/queue_reminder.py: message chunking ───────────────────────────
-
-def test_queue_reminder_chunks_long_message():
-    from scheduled.queue_reminder import post_queue_reminder
-    now = datetime(2026, 4, 3, 10, 0, tzinfo=timezone.utc)
-    t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
-    # Create 100 entries to force a long message needing chunking
-    entries = [{"name": f"Player{i}", "time": t,
-                "preview": "x" * 50, "link": "", "message_id": str(i)}
-               for i in range(100)]
-    config = {"group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
-              "queue_daily_hours": [9, 21],
-              "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
-                               "name": "Kibwe", "gm_user_ids": [999]}]}
-    scanned = {"100": {"campaign": "Kibwe", "code": "C00", "entries": entries}}
-    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-             "last_queue_pin_id": None, "last_queue_daily_slots": []}
-    with patch("scheduled.queue_reminder.scan_transcripts", return_value=scanned), \
-         patch("scheduled.queue_reminder.post_topic_queues"):
-        post_queue_reminder(config, state, now=now)
-    assert state["queue_post_count"] == 1
-
-
-
-# ─── boons/handler.py: _resolve_boon returns None ────────────────────────────
-
-def test_choose_boon_resolve_fails():
-    from boons.handler import choose_boon_by_text
-    state = {
-        "pending_potw_boons": {"100": {
-            "winner_user_id": "U1", "message_id": 42,
-            "campaign_name": "Kibwe",
-            "boons": ["Turtle"],
-            "base_message": "Won!",
-        }},
-        "player_boons": {},
-        "players": {},
+def _gm_ctx(text, pid="100", uid="GM1"):
+    return {
+        "cmd_word": text.split()[0], "text": text,
+        "user_id": uid, "gm_ids": {"GM1"},
+        "pid": pid, "group_id": -1, "thread_id": 999,
+        "state": {}, "config": {},
+        "campaign_name": "Kibwe",
+        "now_iso": "2026-04-03T12:00:00+00:00",
+        "msg_time_iso": "2026-04-03T12:00:00+00:00",
+        "user_name": "Lewis",
+        "maps": MagicMock(), "parsed": {"raw_text": "/done 99", "text": "/done 99"},
     }
-    config = {"group_id": -1}
-    with patch("boons.handler._resolve_boon", return_value=(None, None)):
-        result = choose_boon_by_text("100", "U1", 1, config, state)
-    assert "wrong" in result.lower() or "went wrong" in result.lower()
 
+def _capture_config(placeholders=None):
+    return {"group_id": -1, "bot_topic_id": 999, "topic_pairs": [
+        {"code": "C01", "pbp_topic_ids": [100],
+         "poll_user_ids": placeholders or [111, 222],
+         "poll_user_names": {str(u): f"user{u}" for u in (placeholders or [111, 222])}}
+    ]}
 
-
-# ─── helpers_pkg/config.py: chat_topic collision ─────────────────────────────
-
-def test_config_chat_topic_collision():
-    from helpers_pkg.config import validate_config
-    config = {
-        "group_id": -1, "gm_user_ids": [],
+def _hp_config():
+    return {
+        "group_id": -1001, "bot_topic_id": 999,
+        "leaderboard_topic_id": 888,
         "topic_pairs": [
-            {"pbp_topic_ids": [100], "name": "A", "chat_topic_id": 500},
-            {"pbp_topic_ids": [200], "name": "B", "chat_topic_id": 500},  # collision
+            {"pbp_topic_ids": [100], "name": "Magni Watch"},
+            {"pbp_topic_ids": [200], "name": "Kibwe"},
         ],
     }
-    issues = validate_config(config)
-    assert any("collision" in i.lower() or "used by another" in i.lower()
-               for i in issues)
 
+def _hp_state(uid="U1"):
+    return {
+        "players": {
+            f"100:{uid}": {"user_id": uid, "pbp_topic_id": 100, "first_name": "Chase"},
+            f"200:{uid}": {"user_id": uid, "pbp_topic_id": 200, "first_name": "Chase"},
+        }
+    }
 
+def _gm_config():
+    return {"topic_pairs": [
+        {"code": "C00", "name": "Riddleport",
+         "pbp_topic_ids": [66154, 133428],
+         "chat_topic_id": 91008},
+    ]}
+
+def _mention_config():
+    return {"topic_pairs": [
+        {"code": "C01", "pbp_topic_ids": [100],
+         "poll_user_names": {"8787": "Sestina_The_Banner_Witch"}},
+    ]}
 
 # ─── helpers_pkg/campaigns.py: get_campaign_pids ─────────────────────────────
 
@@ -162,4 +147,30 @@ def test_digest_posts():
         post_weekly_digest(config, state)
         assert "last_weekly_digest" in state
 
+
+
+# ─── scheduled/campaign_table.py: post_campaign_table ────────────────────────
+
+def test_campaign_table_skips_no_bot_topic():
+    from scheduled.campaign_table import post_campaign_table
+    post_campaign_table({"group_id": -1}, {})
+
+
+def test_campaign_table_skips_interval():
+    from scheduled.campaign_table import post_campaign_table
+    config = {"group_id": -1, "bot_topic_id": 999}
+    with patch("scheduled.campaign_table.helpers") as mh:
+        mh.interval_elapsed.return_value = False
+        post_campaign_table(config, {"last_campaign_table": "recent"})
+
+
+def test_campaign_table_posts():
+    from scheduled.campaign_table import post_campaign_table
+    config = {"group_id": -1001, "bot_topic_id": 999}
+    with patch("scheduled.campaign_table.helpers") as mh, \
+         patch("scheduled.campaign_table.build_campaign_table", return_value="table"):
+        mh.interval_elapsed.return_value = True
+        state = {}
+        post_campaign_table(config, state)
+        assert "last_campaign_table" in state
 

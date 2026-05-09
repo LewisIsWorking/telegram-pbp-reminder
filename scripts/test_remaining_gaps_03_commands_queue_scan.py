@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_remaining_gaps.py — bin 3.
+"""Tests extracted from test_remaining_gaps.py — bin 3.
 
 Sections in this file:
   - commands/queue_scan.py:107 — silence break
@@ -9,13 +9,28 @@ Sections in this file:
   - commands/summary.py:138 — many conditions
   - commands/timeline.py:42-44 — removed players events
 """
+"""Final targeted tests for all remaining coverage gaps — 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _ctx(**kwargs):
+    base = {
+        "user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+        "pid": "100", "group_id": -1, "thread_id": 999,
+        "state": {}, "config": {},
+        "campaign_name": "Kibwe",
+        "now_iso": "2026-04-03T12:00:00+00:00",
+        "msg_time_iso": "2026-04-03T12:00:00+00:00",
+        "parsed": {"raw_text": "", "text": ""},
+        "maps": MagicMock(),
+    }
+    base.update(kwargs)
+    base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
+    return base
 
 # ─── commands/queue_scan.py:107 — silence break ──────────────────────────────
 
@@ -159,5 +174,4 @@ def test_timeline_removed_player_events():
                                 "name": "Kibwe", "chat_topic_id": 21514}]}
     result = build_timeline(config, state)
     assert "Alice" in result or isinstance(result, str)
-
 

@@ -1,66 +1,72 @@
-"""Coverage tests extracted from test_final_coverage.py — bin 4.
+"""Tests extracted from test_final_coverage.py — bin 5.
 
 Sections in this file:
   - transcript/finalize.py — update_transcript_index
-  - transcript/finalize.py — update_transcript_index
   - commands/player.py — build_mystats_all
   - commands/player.py — build_mystats_all
   - scheduled/reports.py — post_roster_summary with active player
   - scheduled/reports.py — post_roster_summary with active player
+  - helpers_pkg/time_utils.py — parse_away_date
+  - helpers_pkg/time_utils.py — parse_away_date
 """
-import sys, os, json, pytest
+"""
+Tests targeting the remaining coverage gaps:
+  dispatch/cmd_search.py, dispatch/bot_topic.py, scheduled/reports.py,
+  scheduled/potw.py (winner section), boons/handler.py, scheduled/leaderboard.py,
+  transcript/finalize.py, commands/player.py, helpers_pkg/time_utils.py,
+  + many single-line gaps across dispatch/commands files.
+"""
+import sys, os, json, pytest, io, zipfile, tempfile
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _tg_mock():
+    m = MagicMock()
+    m.send_message.return_value = True
+    return m
 
-# ═══════════════════════════════════════════════════════════════════════════════
+def _maps():
+    m = MagicMock()
+    m.name_to_pid = {"kibwe": "100", "riddleport": "200"}
+    m.to_name = {"100": "Kibwe", "200": "Riddleport"}
+    m.to_chat = {"100": 21514, "200": 21515}
+    return m
 
-from scheduled.leaderboard import post_campaign_leaderboard
+def _bt_msg(text, uid="U1", is_bot=False):
+    return {"from": {"id": int(uid.lstrip("U") or 1),
+                     "first_name": "Alice", "is_bot": is_bot},
+            "text": text}
 
+def _bt_config():
+    return {
+        "group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
+             "gm_user_ids": [999], "chat_topic_id": 21514}
+        ]
+    }
+
+def _boons_state(pid="100", uid="U1"):
+    return {
+        "pending_potw_boons": {pid: {
+            "winner_user_id": uid,
+            "message_id": 42,
+            "campaign_name": "Kibwe",
+            "boons": ["Turtle", "Coin", "Map"],
+            "base_message": "You won!",
+        }},
+        "player_boons": {},
+        "players": {"100:U1": {"user_id": uid, "first_name": "Alice"}},
+    }
 
 def _lb_config():
     return {"group_id": -1001, "leaderboard_topic_id": 555,
             "gm_user_ids": [999], "bot_topic_id": 999,
             "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
                               "name": "Kibwe", "gm_user_ids": [999]}]}
-
-
-@patch("scheduled.leaderboard.helpers")
-def test_leaderboard_skips_no_topic(mock_helpers):
-    config = {"group_id": -1, "gm_user_ids": []}
-    post_campaign_leaderboard(config, {})
-
-
-@patch("scheduled.leaderboard.helpers")
-def test_leaderboard_skips_interval(mock_helpers):
-    mock_helpers.interval_elapsed.return_value = False
-    post_campaign_leaderboard(_lb_config(), {"last_leaderboard": "2026-04-03"})
-
-
-@patch("scheduled.leaderboard.helpers")
-def test_leaderboard_skips_no_data(mock_helpers):
-    mock_helpers.interval_elapsed.return_value = True
-    with patch("scheduled.leaderboard._gather_leaderboard_stats",
-               return_value=({}, {}, {})):
-        post_campaign_leaderboard(_lb_config(), {})
-
-
-@patch("scheduled.leaderboard.helpers")
-def test_leaderboard_posts(mock_helpers):
-    mock_helpers.interval_elapsed.return_value = True
-    mock_helpers.player_mention.return_value = "@alice"
-    campaign_stats = {"Kibwe": {"players": [], "total": 10}}
-    global_posts = {"U1": {"count": 10, "full_name": "Alice", "username": "alice"}}
-    with patch("scheduled.leaderboard._gather_leaderboard_stats",
-               return_value=(campaign_stats, global_posts, {})), \
-         patch("scheduled.leaderboard._format_leaderboard",
-               return_value="🏆 MVP of the Week: Alice!"):
-        post_campaign_leaderboard(_lb_config(), {})
-
-
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # transcript/finalize.py — update_transcript_index
@@ -135,3 +141,41 @@ def test_mystats_all_with_posts(mock_helpers):
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # scheduled/reports.py — post_roster_summary with active player
+
+# ═══════════════════════════════════════════════════════════════════════════════
+
+from scheduled.reports import post_roster_summary
+
+
+@patch("scheduled.reports.helpers")
+def test_roster_posts_active_player(mock_helpers):
+    now = datetime(2026, 4, 3, 12, tzinfo=timezone.utc)
+    ts = [(now - timedelta(hours=h)).isoformat() for h in range(5)]
+    mock_helpers.build_topic_maps.return_value = MagicMock(
+        to_chat={"100": 21514}, to_name={"100": "Kibwe"}
+    )
+    mock_helpers.players_by_campaign.return_value = {"100": [
+        {"user_id": "U1", "first_name": "Alice", "username": "alice"}
+    ]}
+    mock_helpers.feature_enabled.return_value = True
+    mock_helpers.interval_elapsed.return_value = True
+    mock_helpers.gm_ids_for_campaign.return_value = {"999"}
+    mock_helpers.get_label.return_value = "C00: Kibwe"
+    mock_helpers.get_topic_timestamps.return_value = {"U1": ts}
+    mock_helpers.get_characters.return_value = {"U1": "Amara"}
+    mock_helpers.player_full_name.return_value = "Alice"
+    mock_helpers.REQUIRED_PLAYERS = 4
+    config = {"group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
+              "topic_pairs": [{"pbp_topic_ids": [100], "code": "C00",
+                               "name": "Kibwe", "gm_user_ids": [999],
+                               "chat_topic_id": 21514}]}
+    state = {"last_roster": {}, "message_counts": {"100": {"U1": 50}},
+             "player_registry": {}}
+    with patch("commands.campaign.roster_user_stats", return_value={}), \
+         patch("commands.campaign.roster_block", return_value="Alice block"):
+        post_roster_summary(config, state, now=now)
+
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# helpers_pkg/time_utils.py — parse_away_date

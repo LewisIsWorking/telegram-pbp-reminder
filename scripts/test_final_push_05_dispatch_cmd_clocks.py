@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_push.py — bin 5.
+"""Tests extracted from test_final_push.py — bin 5.
 
 Sections in this file:
   - dispatch/cmd_clocks.py:123
@@ -11,12 +11,17 @@ Sections in this file:
   - dispatch/bot_topic.py:104 — no pid for global cmd
   - scheduled/session_poll.py:136 — empty roster
 """
+"""
+Definitive final coverage push — verified to actually hit each line.
+Uses real function calls with minimal/no mocking where possible.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── dispatch/cmd_clocks.py:123 ───────────────────────────────────────────────
@@ -152,5 +157,4 @@ def test_session_poll_empty_roster_real():
         "voted_uids": [], "last_ping_day": -1, "votes": {},
     }}}
     post_session_poll(config, state, now=now)
-
 

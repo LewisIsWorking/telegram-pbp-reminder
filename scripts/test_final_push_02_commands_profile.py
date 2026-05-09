@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_push.py — bin 2.
+"""Tests extracted from test_final_push.py — bin 2.
 
 Sections in this file:
   - commands/profile.py:57-59 — days ago and unknown
@@ -10,12 +10,17 @@ Sections in this file:
   - helpers/time_utils.py:110 — until date parse
   - helpers/dice.py:80 — non-kept die stringified
 """
+"""
+Definitive final coverage push — verified to actually hit each line.
+Uses real function calls with minimal/no mocking where possible.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── commands/profile.py:57-59 — days ago and unknown ────────────────────────
@@ -159,5 +164,4 @@ def test_dice_real():
     from helpers_pkg.dice import roll_dice
     result = roll_dice("4d6kh3")
     assert result is not None and len(result["results"]) == 1
-
 

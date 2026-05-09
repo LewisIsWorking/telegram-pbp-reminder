@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_aaa_isolated.py — bin 5.
+"""Tests extracted from test_aaa_isolated.py — bin 5.
 
 Sections in this file:
   - commands/summary.py:49-52 — player activity strings
@@ -10,12 +10,19 @@ Sections in this file:
   - dispatch/cmd_clocks.py:91 — clock tick found but no change needed
   - dispatch/cmd_trackers.py:115 — quest not found
 """
-import sys, os, json, pytest
+"""
+MUST RUN FIRST (alphabetical ordering): these tests cover lines that
+only hit in isolation before other tests cache module paths.
+
+Naming: test_aaa_ ensures pytest runs this file before test_b*, test_c*, etc.
+"""
+import sys, os, json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── commands/summary.py:49-52 — player activity strings ──────────────────────
@@ -155,5 +162,4 @@ def test_cmd_trackers_quest_nf():
            "parsed": {"raw_text": "/done 9"}, "maps": MagicMock(),
            "cmd_word": "/done", "text": "/done 9"}
     assert handle(ctx) is True
-
 

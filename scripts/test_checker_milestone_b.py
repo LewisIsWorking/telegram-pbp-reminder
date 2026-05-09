@@ -83,7 +83,8 @@ def test_milestone_messages_multiple_files_merged():
     }
 
     def fake_open(path, **kw):
-        fname = path.split("/")[-1]
+        import os as _os
+        fname = _os.path.basename(path)
         return _io.StringIO(file_data[fname])
 
     with patch("os.path.isdir", return_value=True), \

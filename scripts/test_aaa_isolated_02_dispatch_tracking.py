@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_aaa_isolated.py — bin 2.
+"""Tests extracted from test_aaa_isolated.py — bin 2.
 
 Sections in this file:
   - dispatch/tracking.py:175-182 — warned player comeback
@@ -15,12 +15,19 @@ Sections in this file:
   - scheduled/smart_alerts.py:110 — feature disabled continue
   - scheduled/diagnostic_analysis.py:43 — no info match
 """
-import sys, os, json, pytest
+"""
+MUST RUN FIRST (alphabetical ordering): these tests cover lines that
+only hit in isolation before other tests cache module paths.
+
+Naming: test_aaa_ ensures pytest runs this file before test_b*, test_c*, etc.
+"""
+import sys, os, json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── dispatch/tracking.py:175-182 — warned player comeback ────────────────────
@@ -173,5 +180,4 @@ def test_diagnostic_no_info_match():
     from scheduled.diagnostic_analysis import _analyse_logs
     result = _analyse_logs(["just a regular log line"])
     assert result["events"] == []
-
 

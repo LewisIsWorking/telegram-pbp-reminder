@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_remaining_100.py — bin 1.
+"""Tests extracted from test_remaining_100.py — bin 1.
 
 Sections in this file:
   - commands/summary.py:80-82 — active combat
@@ -10,12 +10,28 @@ Sections in this file:
   - commands/waiting.py:83 — name not found continue
   - commands/catchup.py:161 — list acted → set
 """
+"""
+Definitive final coverage push — verified state for every remaining gap.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
+
+def _ctx(**kw):
+    base = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+            "pid": "100", "group_id": -1, "thread_id": 999,
+            "state": {}, "config": {}, "campaign_name": "Kibwe",
+            "now_iso": "2026-04-03T12:00:00+00:00",
+            "msg_time_iso": "2026-04-03T12:00:00+00:00",
+            "parsed": {"raw_text": "", "text": ""},
+            "maps": MagicMock(), "reply_topic": 999}
+    base.update(kw)
+    base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
+    return base
+
 
 
 # ── commands/summary.py:80-82 — active combat ────────────────────────────────
@@ -152,5 +168,4 @@ def test_catchup_list_acted():
         mh.get_player.return_value = {"first_name": "A", "username": "a"}
         mh.player_full_name.return_value = "A"
         build_catchup("U1", "Alice", "100", "Kibwe", {"group_id": -1}, state)
-
 

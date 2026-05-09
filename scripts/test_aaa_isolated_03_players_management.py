@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_aaa_isolated.py — bin 3.
+"""Tests extracted from test_aaa_isolated.py — bin 3.
 
 Sections in this file:
   - players/management.py:73 — no match continue
@@ -11,12 +11,19 @@ Sections in this file:
   - dispatch/cmd_clocks.py:98-103 — /untick with amount
   - helpers_pkg/dc_lookup.py:110-112 — adjustment key lookup
 """
-import sys, os, json, pytest
+"""
+MUST RUN FIRST (alphabetical ordering): these tests cover lines that
+only hit in isolation before other tests cache module paths.
+
+Naming: test_aaa_ ensures pytest runs this file before test_b*, test_c*, etc.
+"""
+import sys, os, json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── players/management.py:73 — no match continue ─────────────────────────────
@@ -162,5 +169,4 @@ def test_dc_adjustment_key():
     key = next(iter(_DC_ADJUSTMENTS))
     result = dc_lookup(key)
     assert "adjustment" in result.lower()
-
 

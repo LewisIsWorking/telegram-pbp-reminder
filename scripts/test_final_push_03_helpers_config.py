@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_push.py — bin 3.
+"""Tests extracted from test_final_push.py — bin 3.
 
 Sections in this file:
   - helpers/config.py:95-96 — empty pbp_topic_ids error
@@ -13,12 +13,17 @@ Sections in this file:
   - combat/tracker.py:115
   - combat/commands.py:98 — long log
 """
+"""
+Definitive final coverage push — verified to actually hit each line.
+Uses real function calls with minimal/no mocking where possible.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── helpers/config.py:95-96 — empty pbp_topic_ids error ────────────────────
@@ -164,5 +169,4 @@ def test_combat_long_log_real():
         "log": [f"e{i}" for i in range(10)],
     }}}
     handle_enemies_command("", "100", "Kibwe", "2026-04-03T12:00:00", -1, 999, state)
-
 

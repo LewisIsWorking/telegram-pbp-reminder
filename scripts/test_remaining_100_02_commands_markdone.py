@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_remaining_100.py — bin 2.
+"""Tests extracted from test_remaining_100.py — bin 2.
 
 Sections in this file:
   - commands/markdone.py:80-84 — by id
@@ -8,12 +8,28 @@ Sections in this file:
   - dispatch/cmd_gm.py:57 — /resume not paused
   - dispatch/comeback.py:38 — no bot_topic
 """
+"""
+Definitive final coverage push — verified state for every remaining gap.
+"""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
+
+def _ctx(**kw):
+    base = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
+            "pid": "100", "group_id": -1, "thread_id": 999,
+            "state": {}, "config": {}, "campaign_name": "Kibwe",
+            "now_iso": "2026-04-03T12:00:00+00:00",
+            "msg_time_iso": "2026-04-03T12:00:00+00:00",
+            "parsed": {"raw_text": "", "text": ""},
+            "maps": MagicMock(), "reply_topic": 999}
+    base.update(kw)
+    base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
+    return base
+
 
 
 # ── commands/markdone.py:80-84 — by id ───────────────────────────────────────
@@ -147,5 +163,4 @@ def test_comeback_no_bot_topic():
         mh.hours_since.return_value = 250.0
         mh.COMEBACK_THRESHOLD_HOURS = 168
         check_comeback(parsed, old, {}, {"group_id": -1, "gm_user_ids": []}, set())
-
 

@@ -1,16 +1,36 @@
-"""Coverage tests extracted from test_utility_coverage.py — bin 3.
+"""Tests extracted from test_utility_coverage.py — bin 3.
 
 Sections in this file:
   - Just call and verify it returns "unknown" on OSError
   - migrate_gist_to_files.py  — test helper functions in isolation
 """
-import sys, os, json, pytest
+"""
+Coverage tests for:
+  migrate_gist_to_files.py
+  promote_poll_voters.py
+  scheduled/session_poll_build.py
+  scheduled/state_backup.py
+  helpers_pkg/groups.py
+"""
+import sys, os, json, pytest, tempfile
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _g_config():
+    return {
+        "group_id": -1001,
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "R"},
+            {"pbp_topic_ids": [101], "code": "C01", "name": "D",
+             "group_id": -2002, "linked_polls": ["C11"]},
+        ]
+    }
+
+def _now():
+    return datetime(2026, 4, 3, 12, 0, tzinfo=timezone.utc)  # Friday
 
 # ═══════════════════════════════════════════════════════════════════════════════
 

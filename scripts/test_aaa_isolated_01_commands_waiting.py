@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_aaa_isolated.py — bin 1.
+"""Tests extracted from test_aaa_isolated.py — bin 1.
 
 Sections in this file:
   - commands/waiting.py:83 — continue when no name match
@@ -9,12 +9,19 @@ Sections in this file:
   - dispatch/comeback.py:38 — no bot_topic → return
   - dispatch/router.py:181-182 — exception in update processing
 """
-import sys, os, json, pytest
+"""
+MUST RUN FIRST (alphabetical ordering): these tests cover lines that
+only hit in isolation before other tests cache module paths.
+
+Naming: test_aaa_ ensures pytest runs this file before test_b*, test_c*, etc.
+"""
+import sys, os, json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── commands/waiting.py:83 — continue when no name match ─────────────────────
@@ -135,5 +142,4 @@ def test_router_update_exception():
          patch("dispatch.router.parse_message", side_effect=RuntimeError("!")):
         result = process_updates([{"update_id": 1}], config, state)
     assert result == 2
-
 

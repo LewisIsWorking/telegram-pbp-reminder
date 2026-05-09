@@ -1,15 +1,51 @@
-"""Coverage tests extracted from test_commands_coverage.py — bin 4.
+"""Tests extracted from test_commands_coverage.py — bin 4.
 
 Sections in this file:
   - Still "2026-04-03" — not run again
 """
-import sys, os, json, pytest
+"""
+Coverage tests for:
+  commands/queue_io.py
+  commands/player_registry.py
+  scheduled/poll_result.py
+  scheduled/diagnostic.py
+  scheduled/reports.py  (partial — tg-calling functions mocked)
+"""
+import sys, os, json, pytest, tempfile
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+@pytest.fixture
+def tmp_queues(tmp_path, monkeypatch):
+    """Redirect queue_io file operations to a temp directory."""
+    monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
+    return tmp_path
+
+def _pr_config():
+    return {
+        "group_id": -1001,
+        "topic_pairs": [{
+            "pbp_topic_ids": [100], "code": "C01",
+            "name": "DF", "hybrid_live": True,
+            "chat_topic_id": 21514,
+            "poll_options": ["Friday", "Saturday", "Either", "Both", "Can't make it"],
+            "allows_multiple_answers": False,
+        }]
+    }
+
+def _rpt_config():
+    return {
+        "group_id": -1001,
+        "bot_topic_id": 999,
+        "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "R",
+             "gm_user_ids": [999], "chat_topic_id": 21514}
+        ]
+    }
 
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -98,5 +134,4 @@ def test_fetch_run_log_error():
     with patch("scheduled.diagnostic.urllib.request.urlopen", side_effect=Exception("x")):
         result = _fetch_run_log(123)
     assert result == ""
-
 

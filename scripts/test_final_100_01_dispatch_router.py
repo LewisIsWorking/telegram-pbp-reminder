@@ -1,7 +1,12 @@
-"""Coverage tests extracted from test_final_100.py — bin 1.
+"""Tests extracted from test_final_100.py — bin 1.
 
 Sections in this file:
   - dispatch/router.py: _build_poll_id_map, _find_pair, _handle_poll_answer
+"""
+"""
+Final push: tests for the large remaining uncovered blocks.
+Focuses on router poll/callback/reaction handling, tracking GM-reply logging,
+cmd_player /available, summary content, and other high-impact gaps.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -10,6 +15,27 @@ from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _pc(**kw):
+    base = {"user_id": "U1", "user_name": "Alice", "gm_ids": set(),
+            "pid": "100", "group_id": -1, "thread_id": 999,
+            "state": {}, "config": {}, "campaign_name": "Kibwe",
+            "now_iso": "2026-04-03T12:00:00+00:00",
+            "msg_time_iso": "2026-04-03T12:00:00+00:00",
+            "parsed": {"raw_text": ""}, "maps": MagicMock(), "reply_topic": 999}
+    base.update(kw)
+    base["cmd_word"] = base["text"].split()[0]
+    return base
+
+def _info_ctx(cmd, state=None):
+    return {"cmd_word": cmd, "text": cmd,
+            "user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
+            "pid": "100", "group_id": -1, "thread_id": 999, "reply_topic": 999,
+            "state": state or {"vote": {}, "timer": {}, "clocks": {},
+                               "player_boons": {}},
+            "config": {"group_id": -1, "gm_user_ids": [], "topic_pairs": []},
+            "campaign_name": "Kibwe", "now_iso": "2026-04-03T12:00:00+00:00",
+            "msg_time_iso": "2026-04-03T12:00:00+00:00",
+            "parsed": {}, "maps": MagicMock()}
 
 # ─── dispatch/router.py: _build_poll_id_map, _find_pair, _handle_poll_answer ─
 
@@ -140,5 +166,4 @@ def test_process_updates_no_message():
     with patch("dispatch.router.build_topic_maps", return_value=maps):
         result = process_updates([{"update_id": 5}], config, state)
     assert result == 6
-
 

@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_aaa_isolated.py — bin 4.
+"""Tests extracted from test_aaa_isolated.py — bin 4.
 
 Sections in this file:
   - helpers_pkg/dice.py:80 — non-kept die stringified
@@ -13,12 +13,19 @@ Sections in this file:
   - dispatch/bot_topic.py:104 — no campaigns
   - commands/status.py:162 — no last_message_time dash
 """
-import sys, os, json, pytest
+"""
+MUST RUN FIRST (alphabetical ordering): these tests cover lines that
+only hit in isolation before other tests cache module paths.
+
+Naming: test_aaa_ ensures pytest runs this file before test_b*, test_c*, etc.
+"""
+import sys, os, json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 sys.path.insert(0, os.path.dirname(__file__))
+
 
 
 # ── helpers_pkg/dice.py:80 — non-kept die stringified ───────────────────────
@@ -159,5 +166,4 @@ def test_status_no_last_time():
         mh.posts_str.return_value = "0"
         result = build_status("100", "Kibwe", state, set(), {})
     assert "—" in result or "no posts" in result.lower()
-
 

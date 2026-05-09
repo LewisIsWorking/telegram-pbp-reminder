@@ -1,16 +1,36 @@
-"""Coverage tests extracted from test_scheduled_coverage.py — bin 2.
+"""Tests extracted from test_scheduled_coverage.py — bin 2.
 
 Sections in this file:
   - Count should not increase
   - scheduled/swimming_poll.py
 """
-import sys, os, json, pytest
+"""
+Coverage tests for:
+  boons/display.py
+  scheduled/week_welcome.py
+  scheduled/queue_nudge.py
+  scheduled/swimming_poll.py
+  post_changelog.py
+"""
+import sys, os, pytest, importlib.util
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 from unittest.mock import patch, MagicMock
+from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _ww_config():
+    return {"group_id": -1001, "bot_topic_id": 999, "poll_post_hour": 7}
+
+def _qn_config():
+    return {
+        "group_id": -1001, "bot_topic_id": 999,
+        "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
+             "gm_user_ids": [999]}
+        ]
+    }
 
 # ═══════════════════════════════════════════════════════════════════════════════
 

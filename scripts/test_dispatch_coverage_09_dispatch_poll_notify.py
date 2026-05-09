@@ -1,18 +1,54 @@
-"""Coverage tests extracted from test_dispatch_coverage.py — bin 5.
+"""Tests extracted from test_dispatch_coverage.py — bin 9.
 
 Sections in this file:
-  - dispatch/cmd_gm.py — /setpermanent and /unsetpermanent
   - dispatch/poll_notify.py — _poll_link_for and updated capture_unknown_voter
 """
-import sys, os, json, pytest
+"""
+Coverage tests for:
+  checker.py  (_run_checks, main)
+  commands/queue_scan.py  (scan_transcripts logic)
+  dispatch/cmd_info_ext.py  (handle)
+  dispatch/poll_notify.py
+  scheduled/reports.py  (post_roster_summary with active players)
+"""
+import sys, os, json, pytest, textwrap
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+def _patch_all_checks():
+    """Return a dict of {attr: MagicMock()} for use with patch.multiple."""
+    return {f: MagicMock() for f in _CHECKER_FUNCS}
 
-# ── dispatch/cmd_gm.py — /setpermanent and /unsetpermanent ──────────────────
+def _qs_config():
+    return {
+        "group_id": -1001, "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
+             "gm_user_ids": [999]}
+        ]
+    }
+
+def _ext_ctx(cmd):
+    return {
+        "cmd_word": cmd, "text": cmd, "group_id": -1, "reply_topic": 999,
+        "pid": "100", "campaign_name": "Kibwe", "user_id": "U1",
+        "user_name": "Alice", "state": {}, "config": {}, "gm_ids": set(),
+    }
+
+def _pn_config():
+    return {
+        "group_id": -1001,
+        "topic_pairs": [{
+            "pbp_topic_ids": [100], "code": "C01", "name": "DF",
+            "chat_topic_id": 21514, "hybrid_live": True,
+            "poll_options": ["Friday", "Saturday", "Both", "Can't make it"],
+            "poll_user_names": {"U1": "alice"},
+            "poll_user_ids": ["U1"],
+        }]
+    }
 
 def _gm_ctx(cmd: str, state: dict) -> dict:
     """Build a minimal GM ctx for cmd_gm tests."""
@@ -32,50 +68,30 @@ def _gm_ctx(cmd: str, state: dict) -> dict:
         "parsed": {"raw_text": cmd},
     }
 
+def _pn_config_with_poll():
+    return {
+        "group_id": -1001, "bot_topic_id": 999,
+        "group_username": "Path_Wars",
+        "topic_pairs": [{
+            "pbp_topic_ids": [100], "code": "C01", "name": "DF",
+            "chat_topic_id": 21514, "poll_user_ids": [111],
+            "poll_user_names": {"111": "Alice"},
+            "poll_options": ["Friday", "Saturday"],
+        }],
+    }
 
-def test_setpermanent_marks_player():
-    from dispatch.cmd_gm import handle
-    state = {"players": {"100:42": {
-        "user_id": "42", "first_name": "Bob", "username": "bobuser",
-        "pbp_topic_id": "100", "campaign_name": "TestCampaign",
-        "last_post_time": "2026-04-01T00:00:00+00:00", "last_warned_week": 0,
-    }}, "paused_campaigns": {}}
-    ctx = _gm_ctx("/setpermanent @bobuser", state)
-    result = handle(ctx)
-    assert result is True
-    assert state["players"]["100:42"].get("permanent") is True
-
-
-def test_unsetpermanent_removes_flag():
-    from dispatch.cmd_gm import handle
-    state = {"players": {"100:42": {
-        "user_id": "42", "first_name": "Bob", "username": "bobuser",
-        "pbp_topic_id": "100", "campaign_name": "TestCampaign",
-        "last_post_time": "2026-04-01T00:00:00+00:00", "last_warned_week": 0,
-        "permanent": True,
-    }}, "paused_campaigns": {}}
-    ctx = _gm_ctx("/unsetpermanent @bobuser", state)
-    result = handle(ctx)
-    assert result is True
-    assert "permanent" not in state["players"]["100:42"]
-
-
-def test_setpermanent_unknown_player():
-    from dispatch.cmd_gm import handle
-    state = {"players": {}, "paused_campaigns": {}}
-    ctx = _gm_ctx("/setpermanent @nobody", state)
-    result = handle(ctx)
-    assert result is True  # handled but not found — sends error msg
-
-
-def test_setpermanent_no_arg():
-    from dispatch.cmd_gm import handle
-    state = {"players": {}, "paused_campaigns": {}}
-    ctx = _gm_ctx("/setpermanent", state)
-    result = handle(ctx)
-    assert result is True  # handled — sends usage msg
-
-
+_CHECKER_FUNCS = [
+    "check_and_alert", "check_player_activity", "post_roster_summary",
+    "player_of_the_week", "expire_pending_boons", "post_pace_report",
+    "check_streak_milestones", "check_anniversaries", "check_message_milestones",
+    "check_combat_turns", "post_campaign_leaderboard", "post_weekly_digest",
+    "check_recruitment_needs", "archive_weekly_data", "check_pace_drop",
+    "check_conversation_dying", "check_expired_timers", "post_daily_tip",
+    "post_queue_reminder", "check_queue_nudge", "post_campaign_table",
+    "post_session_poll", "announce_poll_result", "post_week_welcome",
+    "post_swimming_poll", "post_swimming_ping", "run_daily_diagnostic",
+    "backup_state",
+]
 
 # ── dispatch/poll_notify.py — _poll_link_for and updated capture_unknown_voter ─
 
@@ -146,4 +162,3 @@ def test_capture_unknown_voter_no_duplicate():
     state = {"poll_unknown_voters": {"C01": ["999888"]}, "session_poll": {}}
     capture_unknown_voter("999888", "C01", config, state)
     assert state["poll_unknown_voters"]["C01"].count("999888") == 1
-
