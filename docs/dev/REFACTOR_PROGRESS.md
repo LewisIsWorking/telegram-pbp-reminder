@@ -340,3 +340,73 @@ prefix-based grouping.
 Worth checking other coverage-seed files (`test_close_gaps`,
 `test_final_*`, `test_remaining_*`, `test_zero_coverage`) for the
 same pattern before designing splitters for them.
+
+---
+
+# Phase 4 — three more coverage-seed files
+
+`test_final_push.py` (790), `test_remaining_gaps.py` (738), and
+`test_aaa_isolated.py` (679) all used the same `# ── module ──`
+section header pattern as `test_branch_gaps.py`. The phase 3 splitter
+applied directly with one tweak: the regex needed to be lenient about
+the number of dashes (`# [─━]+` instead of `# [─━]{3,}`) — those files
+use `# ── ` (two dashes) where `test_branch_gaps.py` used `# ─── `
+(three).
+
+  test_final_push:    790 -> 11 lines + 6 sub-files (57 tests)
+  test_remaining_gaps:738 -> 11 lines + 6 sub-files (50 tests)
+  test_aaa_isolated:  679 -> 11 lines + 6 sub-files (51 tests)
+
+158 tests preserved. Committed as `5342a1f1`.
+
+# Phase 5 — two more
+
+`test_remaining_100.py` (650) and `test_final_100.py` (538) — same
+splitter, same pattern.
+
+  test_remaining_100: 650 -> 11 lines + 5 sub-files (51 tests)
+  test_final_100:     538 -> 11 lines + 4 sub-files (40 tests)
+
+91 tests preserved. Committed as `3edf62c7`.
+
+# End-of-session totals
+
+Started this session at 22 files >200 lines.
+
+After phases 1-5:
+  - 5 production files in posting/ package (new abstraction)
+  - 35 sub-files of test_checker.py decomposition
+  - 13 sub-files of test_branch_gaps.py
+  - 6 + 6 + 6 sub-files of phase 4 files
+  - 5 + 4 sub-files of phase 5 files
+  - 11 stub files preserving original module names
+
+Files >200 lines remaining: 12 (down from 22).
+
+Of those 12 remaining violators:
+  - 5 are coverage-seed files without section headers (need an
+    AST-based splitter that groups by tested-module imports)
+  - 7 are regular test files for production behaviour (test_helpers,
+    test_roster, test_telegram, etc.) — could split by feature
+
+The non-section-header coverage files (test_final_coverage,
+test_close_gaps, test_zero_coverage, test_final_gaps,
+test_commands_coverage, test_scheduled_coverage,
+test_utility_coverage, test_dispatch_coverage, test_push_to_100)
+will need a different splitter that detects production-module imports
+and groups tests by which module they exercise. Quick sketch:
+  1. AST-walk every test function
+  2. For each test, find the FIRST production-package import (via
+     `import production.x` or `from production.x import y`)
+  3. Group tests by that import path; bin into ≤140-line chunks
+This pattern works because the coverage-seed convention is one test
+per branch, and each test's first import is the file whose branch it
+covers.
+
+# Cumulative learnings
+
+Across phases 1-5, the 200-line refactor produced 12 new principles
+worth keeping (L1-L12 in the sections above). The pattern that saved
+the most time was: detect existing structure (section comments, name
+prefixes, file imports) and let it drive the split, rather than
+imposing a new structure on top.
