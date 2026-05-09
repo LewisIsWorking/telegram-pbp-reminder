@@ -225,3 +225,66 @@ The original file ended with `if __name__ == "__main__": sys.exit(_run_all())`
 for standalone runs. AST splitting that only pulls function definitions
 silently drops this. Fine for our case (we use pytest), but worth
 checking if the tail block does anything load-bearing before discarding.
+
+### `<phase 2.3>` — parse / vote+pin / note / timer+loot / quest+clock / activity / chat / misc
+
+Final extraction phase. The remaining 99 tests in `test_checker.py`
+move to 10 themed sibling files. After this commit `test_checker.py`
+holds only the 13-line module-level header.
+
+New files (all <200 lines):
+  test_checker_parse.py        23 tests  parse, validate, sanitize, feature, cleanup
+  test_checker_vote_pin.py      9 tests  vote, endvote, showvote, pin, pins, delpin
+  test_checker_note.py          8 tests  note, notes, delnote
+  test_checker_timer_loot.py   11 tests  timer, expire, loot
+  test_checker_quest_clock.py  13 tests  quest, quests, clog, clock
+  test_checker_activity.py      7 tests  activity, streak
+  test_checker_chat_a.py       10 tests  conversation, post, gm
+  test_checker_chat_b.py        4 tests  write, word, append
+  test_checker_misc_a.py       12 tests  pace, handle, pick, calc, overview, summary, get
+  test_checker_misc_b.py        2 tests  next, character
+
+`test_checker.py`: 1,425 → 13 lines.
+
+## End state
+
+- 35 themed sibling files, all under the 200-line cap
+- `_test_checker_helpers.py` (114 lines) provides imports, helpers, and
+  the `_LOGS_DIR` redirection setup, imported by every sub-file
+- All **301 tests** preserved through every phase (verified by name diff
+  on each commit)
+- The 5,257-line monolith is fully decomposed into 35 files
+  averaging ~140 lines each — easier to find tests, faster pytest
+  collection, and 200-line-rule compliant for the first time
+
+## Learnings (phase 2 cumulative)
+
+### L10 — Greedy bin-packing with rebalance pass
+
+A naive "fill until target, then start new bin" pass leaves the last
+bin small (e.g. one test of 23 lines as a separate file). A second
+rebalance pass that merges any tail bin under 50 lines into the
+previous bin (when the merged result fits within `cap + small_margin`)
+eliminates the wastefully-tiny files without exceeding the line limit.
+Two passes, both O(n), good enough for this kind of split.
+
+### L11 — Module-level setup runs once even with N importers
+
+`_test_checker_helpers.py` does `checker._LOGS_DIR = Path(_test_log_dir)`
+at module top level. Python imports each module exactly once per
+process; pytest discovers many sub-files but each one's
+`from _test_checker_helpers import …` resolves to the same already-
+imported module. The tempdir is created once and every sub-file's
+tests share it. No fixture needed, no setup duplication, no test
+ordering risk. The shared module IS the fixture.
+
+## Next opportunities (out of scope for the test_checker.py split)
+
+- 14 other test files still violate the 200-line rule (`test_branch_gaps`,
+  `test_close_gaps`, `test_final_*`, `test_remaining_*`, `test_zero_coverage`,
+  etc.) — names suggest coverage-seeding rather than feature tests.
+  Worth a focused review pass to see how much can be deleted as
+  duplicate of the now-themed feature tests.
+- The state layer remains a candidate for extraction (live.json,
+  queue.json, queues/{pid}.json, partitions registered in state.py).
+  Higher leverage than test cleanup but more invasive.
