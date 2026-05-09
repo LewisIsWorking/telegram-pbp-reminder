@@ -258,3 +258,7 @@ as either one running alone.
   Audit found no production bypass; the test now locks that in.
 * P1/4 — `docs/dev/delete-safety.md` written; cross-linked from
   `docs/troubleshooting.md`.
+* P1/5 — Refusal logging (`posting/refusal_log.py`) + Telegram
+  alert (`refusal_alert.py`) + workflow step + 16 tests + global
+  test isolation (`_test_state_isolation.py`) plugging the
+  `data/state/bot_sent_ids.json` pollution leak (commit `76252c9`).
