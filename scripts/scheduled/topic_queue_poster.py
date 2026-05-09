@@ -64,6 +64,14 @@ def _post_thread_queue(group_id: int, thread_id: str,
     if fingerprint == slot.get("fingerprint", "") and existing_ids:
         return  # No change — skip
 
+    # If a "All caught up!" message lingers from a prior clear cycle, drop
+    # it before posting the new queue so the topic doesn't accumulate stale
+    # caught-up notices.
+    prev_caught_up = slot.get("caught_up_msg_id")
+    if prev_caught_up:
+        tg.delete_message(group_id, prev_caught_up)
+        slot["caught_up_msg_id"] = None
+
     # Clear legacy pins if slot has no tracked IDs (pre-tracking messages)
     if not existing_ids:
         tg.unpin_all_messages(group_id, int(thread_id))
@@ -94,12 +102,22 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
     msg_ids = slot_msg_ids(slot)
     if not msg_ids:
         return  # pragma: no cover
-    tg.send_message(group_id, int(thread_id), "━━━━━━━━━━━━━━━━\n✅ All caught up!")
+    # Delete any "All caught up!" message left from a previous clear cycle
+    # so we don't leave a trail of them in the topic over time.
+    prev_caught_up = slot.get("caught_up_msg_id")
+    if prev_caught_up:
+        tg.delete_message(group_id, prev_caught_up)
+    new_caught_up = tg.send_message_id(
+        group_id, int(thread_id), "━━━━━━━━━━━━━━━━\n✅ All caught up!"
+    )
     # Unpin only the first message (the pinned one); delete every tracked id.
     tg.unpin_message(group_id, msg_ids[0])
     for mid in msg_ids:
         tg.delete_message(group_id, mid)
     clear_slot(slot)
+    # Track the new caught-up message so the next cycle (whether another
+    # clear or a fresh queue post) can delete it.
+    slot["caught_up_msg_id"] = new_caught_up
     print(f"Topic queue cleared: thread={thread_id}")
 
 
