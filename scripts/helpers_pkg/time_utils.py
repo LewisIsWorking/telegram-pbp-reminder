@@ -110,14 +110,22 @@ def parse_away_duration(text: str, now: datetime) -> tuple[datetime | None, str]
             return dt, reason  # pragma: no cover
         except ValueError:
             pass
-        # Try "Month Day" or "Month Day YYYY"
-        for fmt in ("%B %d", "%B %d %Y", "%b %d", "%b %d %Y", "%d %B", "%d %b"):
+        # Year-having formats: try these first — no DeprecationWarning.
+        for fmt in ("%B %d %Y", "%b %d %Y"):
             try:
-                dt = datetime.strptime(date_str, fmt)
-                if dt.year == 1900:  # no year provided
-                    dt = dt.replace(year=now.year)
-                    if dt < now:
-                        dt = dt.replace(year=now.year + 1)
+                return datetime.strptime(date_str, fmt), reason
+            except ValueError:
+                continue
+        # Year-less formats: synthesize the current year before parsing
+        # to avoid the Python 3.15 DeprecationWarning about ambiguous
+        # day-of-month without year. If the parsed date is already in
+        # the past, bump to next year (so "until January 1" said in
+        # November means *next* January).
+        for fmt in ("%B %d", "%b %d", "%d %B", "%d %b"):
+            try:
+                dt = datetime.strptime(f"{date_str} {now.year}", f"{fmt} %Y")
+                if dt < now:
+                    dt = dt.replace(year=now.year + 1)
                 return dt, reason
             except ValueError:
                 continue

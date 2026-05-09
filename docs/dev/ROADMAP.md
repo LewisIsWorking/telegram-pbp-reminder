@@ -262,3 +262,8 @@ as either one running alone.
   alert (`refusal_alert.py`) + workflow step + 16 tests + global
   test isolation (`_test_state_isolation.py`) plugging the
   `data/state/bot_sent_ids.json` pollution leak (commit `76252c9`).
+* P2/7 — `datetime.strptime` deprecation fixed in
+  `helpers_pkg/time_utils.py` `parse_away_duration`. Year-less
+  formats now synthesize the current year before parsing,
+  eliminating the Python 3.15 DeprecationWarning. Full suite went
+  from 5 warnings to 0.
