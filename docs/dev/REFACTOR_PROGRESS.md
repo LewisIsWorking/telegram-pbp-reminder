@@ -414,7 +414,6 @@ imposing a new structure on top.
 ---
 
 # 🎉 COMPLETE — 200-line rule satisfied across the entire repo
-
 After phases 1-9 across two sessions:
 
 - **0 files >200 lines** (down from 22 at the start)
@@ -519,3 +518,30 @@ this effort but isn't yet done:
   simultaneous start could still race on git-state writes. Real fix:
   design idempotent posts or use Telegram pinned-message as source of
   truth.
+
+---
+
+# Post-incident addendum (2026-05-09)
+
+Two more commits landed after the original phase-1-9 sequence:
+
+* `9281af8` `fix: re-split phase 3-7 files preserving helpers, preambles, constants`
+  Re-ran the splitter on the 13 phase-3-7 originals after Lewis noticed
+  75 NameErrors locally. Three classes of bug were preserving:
+  module-level helpers, section preambles for AST-split sections, and
+  cross-section helpers/constants. `test_splitter.py` (now in
+  `tools/`) encodes all three fixes; see its docstring for the
+  defect log.
+
+* `9dc40a5` `feat(safety): bot refuses to delete messages it didn't send`
+  Triggered by the 2026-05-08 purge-script incident where 224 message
+  IDs were swept blindly, deleting ~200 player and GM messages along
+  with the intended bot pins. The safeguard adds a registry of every
+  ID the bot has sent (`posting/bot_sent_registry.py`) and a
+  guarded delete path (`posting/safe_delete.py`) that `telegram.
+  delete_message` now delegates to. No bypass, no force flag. See
+  `docs/dev/ROADMAP.md` P1/4 for the docs follow-up.
+
+The `tools/test_splitter.py` file is the canonical splitter for
+future test-file cleanup. Run from `tools/` after `git show
+<pre-split-sha>:scripts/<file>.py > _<file>_full.py`.
