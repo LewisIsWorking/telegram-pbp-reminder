@@ -59,25 +59,43 @@ def send_message(chat_id: int, thread_id: int | None, text: str,
 
 def send_message_id(chat_id: int, thread_id: int | None, text: str,
                     parse_mode: str | None = None) -> int | None:
-    """Send a text message and return the message_id, or None on failure."""
+    """Send a text message and return the message_id, or None on failure.
+
+    On success, the returned message_id is recorded in the bot-sent
+    registry so a later call to :func:`delete_message` will accept it.
+    """
     payload: dict = {"chat_id": chat_id, "text": text, "disable_notification": False}
     if thread_id is not None:
         payload["message_thread_id"] = thread_id
     if parse_mode:
         payload["parse_mode"] = parse_mode
     result = _post("sendMessage", payload, "send_message")
-    return result.get("message_id") if result else None
+    if not result:
+        return None
+    mid = result.get("message_id")
+    from posting.bot_sent_registry import record_sent
+    record_sent(mid)
+    return mid
 
 
 def send_message_with_buttons(
     chat_id: int, thread_id: int, text: str, buttons: list
 ) -> int | None:
-    """Send a message with inline keyboard buttons. Returns message_id or None."""
+    """Send a message with inline keyboard buttons. Returns message_id or None.
+
+    On success, the returned message_id is recorded in the bot-sent
+    registry so a later call to :func:`delete_message` will accept it.
+    """
     result = _post("sendMessage", {
         "chat_id": chat_id, "message_thread_id": thread_id, "text": text,
         "disable_notification": False, "reply_markup": {"inline_keyboard": [buttons]},
     }, "send_button_message")
-    return result["message_id"] if result else None
+    if not result:
+        return None
+    mid = result["message_id"]
+    from posting.bot_sent_registry import record_sent
+    record_sent(mid)
+    return mid
 
 
 def edit_message(chat_id: int, message_id: int, text: str,
@@ -123,9 +141,12 @@ def send_poll(chat_id: int, thread_id: int | None, question: str,
     if thread_id is not None:
         payload["message_thread_id"] = thread_id
     result = _post("sendPoll", payload, "send_poll")
-    if result:
-        return (result.get("message_id"), result.get("poll", {}).get("id", ""))
-    return None
+    if not result:
+        return None
+    mid = result.get("message_id")
+    from posting.bot_sent_registry import record_sent
+    record_sent(mid)
+    return (mid, result.get("poll", {}).get("id", ""))
 
 
 def pin_message(chat_id: int, message_id: int,
@@ -158,13 +179,11 @@ def unpin_all_messages(chat_id: int, thread_id: int) -> bool:
 
 
 def delete_message(chat_id: int, message_id: int) -> bool:
-    """Delete a message. Returns True on success, False if not found or failed.
+    """Delete a message that the bot itself sent.
 
-    Silently ignores "message not found" — the message may have been deleted
-    already (e.g. by Telegram when a poll expired).
+    Thin delegate to ``posting.safe_delete.perform_guarded_delete`` —
+    that module owns the bot-sent-registry safety check and the actual
+    Telegram API call. See its docstring for the full contract.
     """
-    return _post("deleteMessage", {  # pragma: no cover
-        "chat_id": chat_id, "message_id": message_id,
-    }, "delete_message",
-    suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
-                     "message not found", "message can't be deleted")) is not None
+    from posting.safe_delete import perform_guarded_delete
+    return perform_guarded_delete(chat_id, message_id, _post)

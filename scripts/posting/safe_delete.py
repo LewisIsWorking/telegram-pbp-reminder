@@ -1,0 +1,75 @@
+"""Safety-guarded message deletion that refuses non-bot messages.
+
+This module is the *enforcement point* for the bot-sent registry. It
+hosts the actual guard that wraps Telegram's ``deleteMessage`` call,
+checking the registry before letting the request through.
+
+The guard is intentionally placed on the path that ``telegram.py``
+delegates to, rather than living inline in ``telegram.delete_message``.
+That delegation keeps ``telegram.py`` under the 200-line cap while
+also colocating the safety logic with its supporting registry module
+(both live in ``posting/``).
+
+Why a registry guard at all
+---------------------------
+Telegram bots with admin+delete permissions in a group can delete
+*any* message in that group — including player messages, GM messages,
+or anything else. There is no Telegram-side flag that says "only
+delete my own messages". So the only safe rule is: track every ID the
+bot has sent, and refuse to call ``deleteMessage`` for anything else.
+
+The single guard here, combined with the recording calls inside
+``telegram.py`` after every successful send, gives that property to
+every caller in the codebase — scheduled posters, future maintenance
+scripts, and any new code — automatically and unconditionally.
+
+There is intentionally no ``force`` flag. The right way to "force" a
+delete of a known bot ID that wasn't recorded (e.g. seeded from old
+state) is to call ``posting.bot_sent_registry.record_sent`` explicitly
+to add the ID to the registry, and then call ``delete_message``. That
+keeps the guard's invariant — "every ID we delete is one we recorded
+sending or knowingly added" — intact.
+"""
+
+from posting.bot_sent_registry import is_bot_sent
+
+
+def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
+    """Delete a message after verifying the bot sent it.
+
+    Args:
+        chat_id: Telegram chat/group ID.
+        message_id: ID of the message to delete.
+        post_fn: The ``telegram._post`` function. Passed in rather
+            than imported so the production caller (``telegram.py``)
+            avoids a circular import — and so tests can substitute a
+            mock without monkeypatching ``telegram``.
+
+    Returns:
+        True if the message was successfully deleted on Telegram's
+        side. False if either:
+
+        * The message_id is not in the bot-sent registry — the call
+          is refused before any HTTP request is made. A diagnostic
+          line is printed identifying the offending caller and the
+          escape hatch (manual ``record_sent``) for the rare case
+          where a legitimate delete needs to proceed.
+        * The Telegram API call itself failed (network error, message
+          already deleted, permissions, etc).
+
+    The "message not found" / "MESSAGE_ID_INVALID" error families are
+    suppressed in the API call — those just mean Telegram already
+    cleaned up the message (e.g. expired poll) and the bot's view of
+    state is stale, not that anything went wrong.
+    """
+    if not is_bot_sent(message_id):
+        print(f"[delete_message] REFUSED chat={chat_id} mid={message_id}: "
+              f"not in bot_sent_ids registry. The bot only deletes messages "
+              f"it sent. To force-add a known bot-sent ID, call "
+              f"posting.bot_sent_registry.record_sent({message_id}).")
+        return False
+    return post_fn("deleteMessage", {
+        "chat_id": chat_id, "message_id": message_id,
+    }, "delete_message",
+    suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
+                     "message not found", "message can't be deleted")) is not None
