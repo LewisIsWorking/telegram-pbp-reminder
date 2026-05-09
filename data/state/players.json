@@ -348,7 +348,7 @@
       "username": "Sparkleslayer",
       "campaign_name": "Dark Pockets",
       "pbp_topic_id": "1242",
-      "last_post_time": "2026-05-07T22:51:07+00:00",
+      "last_post_time": "2026-05-09T21:14:41+00:00",
       "last_warned_week": 0
     },
     "1242:6452663252": {
@@ -500,6 +500,16 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-05-03T12:54:35+00:00",
       "last_warned_week": 0
+    },
+    "1242:503940482": {
+      "user_id": "503940482",
+      "first_name": "Craig",
+      "last_name": "",
+      "username": "cmavb",
+      "campaign_name": "Dark Pockets",
+      "pbp_topic_id": "1242",
+      "last_post_time": "2026-05-09T21:18:48+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -556,12 +566,6 @@
       "first_name": "Lunnes",
       "username": "LuNneS_B",
       "campaign_name": "Riddleport"
-    },
-    "1242:503940482": {
-      "removed_at": "2026-05-05T03:17:17.119907+00:00",
-      "first_name": "Craig",
-      "username": "cmavb",
-      "campaign_name": "Dark Pockets"
     }
   },
   "player_registry": {
@@ -859,7 +863,7 @@
     "1242": {
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-31T01:36:15.011175+00:00"
       },
       "503940482": {
@@ -966,6 +970,14 @@
       "name": "Craig",
       "username": "cmavb",
       "at": "2026-05-05T03:17:18.062253+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "1242",
+      "user_id": "503940482",
+      "name": "Craig",
+      "username": "cmavb",
+      "at": "2026-05-09T21:19:06.748696+00:00"
     }
   ],
   "player_boons": {
