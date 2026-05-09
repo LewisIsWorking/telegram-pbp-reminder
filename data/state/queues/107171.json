@@ -2,24 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 149367,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-28T03:57:22+00:00",
-      "preview": "\"Hmm, I haven't yet had the chance to try dream therapy, Should be a valuable experience for all of us considering.\" Arktos turns to the side towards their robotic assistant,  \"LUKA, remind me after this mess is over about this would you?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149371,
-      "thread_id": 107171,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-04-28T04:00:40+00:00",
-      "preview": "I would help Though I am not as skilled as some of you guys are.  So I'll stay back here for now.",
-      "media_group_id": null
-    },
-    {
       "message_id": 149378,
       "thread_id": 107171,
       "user_id": "8383886822",
@@ -414,7 +396,11 @@
     "msg:149337",
     "2026-04-28 03:42:30",
     "msg:149351",
-    "2026-04-28 03:48:49"
+    "2026-04-28 03:48:49",
+    "msg:149367",
+    "2026-04-28 03:57:22",
+    "msg:149371",
+    "2026-04-28 04:00:40"
   ],
   "reply_log": [
     {
@@ -1275,17 +1261,36 @@
       "player": "CzarChasm23",
       "preview": "Chik turns his gaze to cleaning and reloading his rifle. \"I think before all thi",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-09T23:22:42+00:00",
+      "pid": "107171",
+      "msg_id": "149367",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Hmm, I haven't yet had the chance to try dream therapy, Should be a valuable ex",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T23:23:05+00:00",
+      "pid": "107171",
+      "msg_id": "149371",
+      "thread_id": 107171,
+      "player": "Bruce",
+      "preview": "I would help Though I am not as skilled as some of you guys are.  So I'll stay b",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-04-28 03:57:22|2026-04-28 04:00:40|2026-04-28 04:12:04|2026-04-28 04:57:44|2026-04-28 05:04:15|2026-04-28 08:22:45|2026-04-28 13:48:37|2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37|2026-05-03 14:26:11",
+      "fingerprint": "2026-04-28 04:12:04|2026-04-28 04:57:44|2026-04-28 05:04:15|2026-04-28 08:22:45|2026-04-28 13:48:37|2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37|2026-05-03 14:26:11",
       "msg_ids": [
-        150803,
-        150804
-      ]
+        151994,
+        151995
+      ],
+      "last_posted_at": "2026-05-09T23:23:56.832621+00:00"
     },
     "142887": {
       "msg_id": null,

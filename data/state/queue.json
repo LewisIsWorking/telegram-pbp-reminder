@@ -628,7 +628,9 @@
       "2026-05-03T13:37:03.779504+00:00",
       "2026-05-03T14:46:08.684634+00:00",
       "2026-05-03T14:46:08.686081+00:00",
-      "2026-05-03T14:46:08.687673+00:00"
+      "2026-05-03T14:46:08.687673+00:00",
+      "2026-05-09T23:23:51.753851+00:00",
+      "2026-05-09T23:23:51.756889+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1038,18 +1040,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.923908+00:00",
-      "player": "Bruce",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.925818+00:00",
-      "player": "Bruce",
-      "preview": "and"
-    },
     {
       "pid": "40585",
       "time": "2026-04-27T13:42:25.927671+00:00",
@@ -2264,6 +2254,20 @@
       "player": "Link",
       "preview": "Axtrakeela will enter the room. \"Bolan?\" She asks, calmly.",
       "msg_id": "149536"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-09T23:23:51.753851+00:00",
+      "player": "Laetheron",
+      "preview": "\"Hmm, I haven't yet had the chance to try dream therapy, Sho",
+      "msg_id": "149367"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-09T23:23:51.756889+00:00",
+      "player": "Bruce",
+      "preview": "I would help Though I am not as skilled as some of you guys ",
+      "msg_id": "149371"
     }
   ],
   "pending_potw_boons": {
