@@ -155,3 +155,73 @@ minimise the blast radius of a hang.
 - The state layer is still a candidate for extraction (`live.json`,
   `queue.json`, `queues/{pid}.json`, partitions registered in `state.py`).
   Higher leverage but more invasive than this refactor.
+
+---
+
+# Phase 2 — `test_checker.py` split
+
+Started May 9, 2026. The previous phase left `test_checker.py` at
+**5,257 lines** as the largest 200-line-rule violator. This phase
+extracts it into themed sibling files using a programmatic AST-based
+split — no hand-edits per function, no risk of misplacing decorators.
+
+## Approach
+
+1. Parse `test_checker.py` with `ast.parse`.
+2. Group functions by their `test_<command>_…` prefix.
+3. Bundle related prefixes into themed buckets (combat = `test_combat_*`
+   plus `test_hp_*`, `test_dc_*`, `test_roll_*`, etc.).
+4. For each bucket bigger than ~160 body lines, split into `_a`/`_b`/...
+   sibling files.
+5. Move shared helpers (`_utc`, `_reset`, `_make_config`, `_make_state`,
+   `_make_msg`, `_run_all`) plus the module-level `_LOGS_DIR` redirection
+   setup into `_test_checker_helpers.py`. Each sub-file imports from it.
+   Python's import-once-per-process semantics guarantee the tempdir setup
+   runs exactly once regardless of which test file pytest collects first.
+
+## Progress
+
+### `475883c7` — Phase 2.1: format / milestone / check / process / build / transcript
+
+- `_test_checker_helpers.py` — 114 lines, the new shared setup module
+- 11 themed sub-files, all under 200 lines
+- `test_checker.py`: 5,257 → 3,304 lines (37% reduction)
+- All 301 tests preserved (verified by name diff)
+- CI green
+
+### `<this commit>` — Phase 2.2: combat / session / profile / roster
+
+- 14 themed sub-files, all under 200 lines
+- `test_checker.py`: 3,304 → ~1,425 lines (further 57% reduction)
+- All 225 remaining tests preserved
+- `test_checker.py` is still over the 200-line cap; the rest of its
+  tests (parse, vote/pin, note, timer/loot, quest/clock, plus a long
+  tail of one-test-per-prefix groups) will be extracted in phase 2.3.
+
+## Learnings (phase 2)
+
+### L7 — AST-based splits beat hand-editing for big files
+
+`test_checker.py` had 307 top-level definitions and was completely flat
+(no classes). Splitting it by hand would take hours and risk losing
+decorators or interleaving test fixtures wrong. Doing it via
+`ast.parse` + `node.lineno` + `node.end_lineno` is precise: each test
+function (and its decorators, via `node.decorator_list[0].lineno`) is
+extracted as a contiguous source range and pasted into a sub-file. The
+only manual judgment is the *grouping*; everything else is mechanical.
+
+### L8 — Two-pass split with line target works better than one-shot
+
+First attempt with `target=175` body lines produced two files at 210
+and 219 lines (just over the cap) because individual long tests pushed
+buckets just past the limit. Second attempt with `target=160` (leaves
+~40 lines of breathing room for the per-file header + decorators)
+produced all files ≤200 lines. The right answer is to pick a target
+that gives ~20% headroom over your real line cap.
+
+### L9 — `if __name__ == "__main__"` blocks need explicit handling
+
+The original file ended with `if __name__ == "__main__": sys.exit(_run_all())`
+for standalone runs. AST splitting that only pulls function definitions
+silently drops this. Fine for our case (we use pytest), but worth
+checking if the tail block does anything load-bearing before discarding.
