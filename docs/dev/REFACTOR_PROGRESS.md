@@ -288,3 +288,55 @@ ordering risk. The shared module IS the fixture.
 - The state layer remains a candidate for extraction (live.json,
   queue.json, queues/{pid}.json, partitions registered in state.py).
   Higher leverage than test cleanup but more invasive.
+
+---
+
+# Phase 3 — `test_branch_gaps.py` split
+
+`test_branch_gaps.py` was 1,477 lines — second-largest 200-line-rule
+violator after `test_checker.py`. Header read: *"Targeted tests for
+every remaining coverage gap. Organised by file, hitting each
+uncovered branch."* — explicitly a coverage-driven file rather than
+a behavioural one. The 100% coverage rule means we can't delete it,
+but the 200-line rule means it can't stay monolithic either.
+
+## Approach
+
+Same AST-based machinery as phase 2, with one twist: this file
+already has section comments (`# ─── module/file.py: branch ───`)
+that group tests by the production module they exercise. Those
+comments make ideal split boundaries, so the splitter walks
+`# ───`-prefixed lines and groups adjacent sections into bins of
+≤140 body lines.
+
+One section ("Various single-line branches") is 492 lines on its
+own — bigger than the cap. The splitter detects oversized sections
+and falls back to internal AST-based test-by-test packing for those.
+
+## Result
+
+- 13 numbered themed sub-files (`test_branch_gaps_01_dispatch_cmd_gm.py`
+  through `test_branch_gaps_13_dispatch_poll_notify.py`), all <200 lines
+- `test_branch_gaps.py` reduced from 1,477 to 11 lines (just a stub
+  preserving the module name in case any tooling references it)
+- All 107 tests preserved (verified by name diff)
+- The 31 section headers from the original file are quoted in each
+  sub-file's docstring as a manifest of which production branches
+  it covers
+
+## Learning (phase 3)
+
+### L12 — Existing comment structure is the cheapest split signal
+
+`test_checker.py` had no section comments — the splitter had to infer
+groups from `test_<command>_*` name prefixes. `test_branch_gaps.py`
+was easier because the developer had already written
+`# ─── module/file.py: branch ───` header lines. Treating those as
+authoritative bin boundaries (and only falling back to AST splitting
+when a single section overflows the cap) produces files whose
+contents map 1:1 to a production module — much easier to find than
+prefix-based grouping.
+
+Worth checking other coverage-seed files (`test_close_gaps`,
+`test_final_*`, `test_remaining_*`, `test_zero_coverage`) for the
+same pattern before designing splitters for them.
