@@ -250,3 +250,11 @@ as either one running alone.
 * Phase 3-7 re-split fix-up (helpers, preambles, constants)
 * Delete safeguard (`bot_sent_registry`, `safe_delete`,
   `tg.delete_message` guard)
+* P0/1 — Workspace cleanup: `tools/test_splitter.py` (commit
+  `967d4a5`)
+* P0/2 — Memory update (memory entries #11, #12, #13)
+* P1/3 — Bypass audit + regression test
+  `scripts/test_no_direct_delete_bypass.py` (commit `c5fd4b5`).
+  Audit found no production bypass; the test now locks that in.
+* P1/4 — `docs/dev/delete-safety.md` written; cross-linked from
+  `docs/troubleshooting.md`.

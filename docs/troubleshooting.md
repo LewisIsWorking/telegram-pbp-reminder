@@ -19,6 +19,21 @@ this bot uses roughly 30 minutes/month.
 Most features need accumulated data. Rosters need posts with timestamps,
 POTW needs a week of data, pace reports need two weeks. Give it time.
 
+**Bot refused to delete a message it sent:**
+The registry (`data/state/bot_sent_ids.json`) didn't know about the
+ID. Either the message predates the registry and wasn't seeded by
+backfill, or it was sent through a path that bypasses
+`record_sent`. See `docs/dev/delete-safety.md` for the escape
+hatch (`posting.bot_sent_registry.record_sent(mid)`).
+
+**Bot deleted a player message:**
+This should not be possible after the 2026-05-08 safeguard landed.
+If it did, it's a P0 bug — something bypassed
+`telegram.delete_message`. Check `scripts/test_no_direct_delete_bypass.py`
+is still in CI and that no maintenance script POSTs to
+`api.telegram.org/.../deleteMessage` directly. See
+`docs/dev/delete-safety.md` for the contract.
+
 ---
 
 ## Cost
