@@ -267,3 +267,15 @@ as either one running alone.
   formats now synthesize the current year before parsing,
   eliminating the Python 3.15 DeprecationWarning. Full suite went
   from 5 warnings to 0.
+* P2/8 — Sub-file naming cleanup. Seven test files with auto-
+  generated 60+ char names (slugified verbatim from section
+  comments) renamed to short production-module slugs:
+  `test_scheduled_coverage_04_boons_display.py`,
+  `test_dispatch_coverage_07_checker_voting.py`,
+  `test_utility_coverage_03_migrate_gist.py`,
+  `test_zero_coverage_05_commands_health.py`,
+  `test_zero_coverage_02_commands_queue_stats.py`,
+  `test_branch_gaps_12_queue_reminder_silent_a.py`,
+  `test_branch_gaps_13_queue_reminder_silent_b.py`. All renames
+  done via `git mv` so blame/log history follows. 1606 tests
+  still pass.
