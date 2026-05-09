@@ -71,6 +71,12 @@ jobs:
           GIST_ID: ${{ secrets.GIST_ID }}
         run: cd scripts && python checker.py
 
+      - name: Alert on delete refusals
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: cd scripts && python refusal_alert.py
+
       - name: Commit data (archive + transcripts + state)
         run: |
           git config user.name "github-actions[bot]"

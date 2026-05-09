@@ -11,15 +11,21 @@ from unittest.mock import MagicMock
 import pytest
 
 from posting import bot_sent_registry as reg
+from posting import refusal_log as rl
 from posting.safe_delete import perform_guarded_delete
 
 
 @pytest.fixture(autouse=True)
 def isolated_registry(tmp_path, monkeypatch):
     monkeypatch.setattr(reg, "_STATE_PATH", tmp_path / "bot_sent_ids.json")
+    monkeypatch.setattr(rl, "_LOG_PATH", tmp_path / "refusal_log.json")
+    monkeypatch.setattr(rl, "_ALERTED_PATH",
+                        tmp_path / "refusal_log_alerted.json")
     reg.reset_for_test()
+    rl.reset_for_test()
     yield
     reg.reset_for_test()
+    rl.reset_for_test()
 
 
 def test_refuses_unknown_id_no_api_call():

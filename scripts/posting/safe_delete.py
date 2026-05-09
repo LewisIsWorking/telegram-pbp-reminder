@@ -32,6 +32,7 @@ sending or knowingly added" — intact.
 """
 
 from posting.bot_sent_registry import is_bot_sent
+from posting.refusal_log import record_refusal
 
 
 def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
@@ -67,6 +68,7 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
               f"not in bot_sent_ids registry. The bot only deletes messages "
               f"it sent. To force-add a known bot-sent ID, call "
               f"posting.bot_sent_registry.record_sent({message_id}).")
+        record_refusal(chat_id, message_id)
         return False
     return post_fn("deleteMessage", {
         "chat_id": chat_id, "message_id": message_id,

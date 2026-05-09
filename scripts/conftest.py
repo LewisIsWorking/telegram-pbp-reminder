@@ -128,6 +128,12 @@ _mock_tg.delete_message = _mock_delete
 sys.modules["telegram"] = _mock_tg
 
 
+# Session-wide isolation of bot_sent_registry and refusal_log state paths.
+# Importing this module sets module-level path constants to a tmp dir;
+# see ``_test_state_isolation.py`` for the rationale.
+import _test_state_isolation  # noqa: F401, E402
+
+
 # ---------------------------------------------------------------------------
 # Shared fixture: patch ``tg`` in every module the queue-posting flow
 # touches, routing all calls through one MagicMock instance.
