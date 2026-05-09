@@ -27,8 +27,11 @@ Why session-tmp rather than per-test:
 P3/9 slice 1 update: bot_sent_registry now persists through
 ``StateStore``. The isolation hook for it is to install a tmp-rooted
 StateStore on the registry module rather than monkeypatching a
-``_STATE_PATH`` constant. ``refusal_log`` will move to the same
-pattern in slice 2.
+``_STATE_PATH`` constant.
+
+P3/9 slice 2 update: refusal_log now also persists through
+``StateStore``. Same pattern — install a tmp-rooted StateStore on
+the module rather than monkeypatching individual file paths.
 """
 
 import tempfile
@@ -40,7 +43,7 @@ from state_store import StateStore
 
 
 _TEST_STATE_DIR = Path(tempfile.mkdtemp(prefix="pbpbot_test_state_"))
+_TEST_STORE = StateStore(state_dir=_TEST_STATE_DIR)
 
-_bsr._store = StateStore(state_dir=_TEST_STATE_DIR)
-_rl._LOG_PATH = _TEST_STATE_DIR / "refusal_log.json"
-_rl._ALERTED_PATH = _TEST_STATE_DIR / "refusal_log_alerted.json"
+_bsr._store = _TEST_STORE
+_rl._store = _TEST_STORE

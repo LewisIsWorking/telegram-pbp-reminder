@@ -18,10 +18,9 @@ from state_store import StateStore
 
 @pytest.fixture(autouse=True)
 def isolated_registry(tmp_path, monkeypatch):
-    monkeypatch.setattr(reg, "_store", StateStore(state_dir=tmp_path))
-    monkeypatch.setattr(rl, "_LOG_PATH", tmp_path / "refusal_log.json")
-    monkeypatch.setattr(rl, "_ALERTED_PATH",
-                        tmp_path / "refusal_log_alerted.json")
+    test_store = StateStore(state_dir=tmp_path)
+    monkeypatch.setattr(reg, "_store", test_store)
+    monkeypatch.setattr(rl, "_store", test_store)
     reg.reset_for_test()
     rl.reset_for_test()
     yield

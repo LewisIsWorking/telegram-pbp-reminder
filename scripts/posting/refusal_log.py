@@ -22,59 +22,25 @@ mutation. Keeping them in a dedicated file means accidentally
 clobbering ``live.json`` doesn't lose the safety record.
 """
 
-import json
 import threading
 from datetime import datetime, timezone
-from pathlib import Path
+
+from state_store import StateStore
 
 _LOCK = threading.Lock()
 
-_LOG_PATH = (
-    Path(__file__).resolve().parent.parent.parent
-    / "data" / "state" / "refusal_log.json"
-)
-_ALERTED_PATH = (
-    Path(__file__).resolve().parent.parent.parent
-    / "data" / "state" / "refusal_log_alerted.json"
-)
+# Persistence routes through StateStore (slice 2 of P3/9). Two aux
+# files: ``refusal_log`` (the entry list) and ``refusal_log_alerted``
+# (the marker dict). Tests monkeypatch ``_store`` for isolation;
+# see ``_test_state_isolation.py`` and the per-test fixtures.
+_LOG_NAME = "refusal_log"
+_ALERTED_NAME = "refusal_log_alerted"
+_store = StateStore()
 
 
 def _now_iso() -> str:
     """Return the current UTC time as an ISO-8601 string."""
     return datetime.now(timezone.utc).isoformat()
-
-
-def _read_list(path: Path) -> list:
-    """Return the JSON list at ``path``, or [] if missing/corrupt."""
-    if not path.exists():
-        return []
-    try:
-        with open(path, encoding="utf-8") as f:
-            data = json.load(f)
-        return data if isinstance(data, list) else []
-    except (json.JSONDecodeError, OSError):
-        return []
-
-
-def _read_marker(path: Path) -> str:
-    """Return the alerted-marker timestamp, or '' if missing/corrupt."""
-    if not path.exists():
-        return ""
-    try:
-        with open(path, encoding="utf-8") as f:
-            data = json.load(f)
-        return data.get("alerted_through", "")
-    except (json.JSONDecodeError, OSError):
-        return ""
-
-
-def _atomic_write(path: Path, payload) -> None:
-    """Write JSON to ``path`` via tmp + rename for crash safety."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2)
-    tmp.replace(path)
 
 
 def record_refusal(chat_id: int, message_id: int,
@@ -90,9 +56,11 @@ def record_refusal(chat_id: int, message_id: int,
         "message_id": message_id,
     }
     with _LOCK:
-        existing = _read_list(_LOG_PATH)
+        existing = _store.load_aux(_LOG_NAME, default=[])
+        if not isinstance(existing, list):
+            existing = []
         existing.append(entry)
-        _atomic_write(_LOG_PATH, existing)
+        _store.save_aux(_LOG_NAME, existing)
 
 
 def get_unalerted_refusals() -> list:
@@ -103,8 +71,13 @@ def get_unalerted_refusals() -> list:
     alert was sent.
     """
     with _LOCK:
-        all_entries = _read_list(_LOG_PATH)
-        marker = _read_marker(_ALERTED_PATH)
+        all_entries = _store.load_aux(_LOG_NAME, default=[])
+        if not isinstance(all_entries, list):
+            all_entries = []
+        marker_data = _store.load_aux(_ALERTED_NAME, default={})
+        if not isinstance(marker_data, dict):
+            marker_data = {}
+        marker = marker_data.get("alerted_through", "")
     if not marker:
         return all_entries
     return [e for e in all_entries if e.get("timestamp", "") > marker]
@@ -119,17 +92,16 @@ def mark_alerted(through_timestamp: str | None = None) -> None:
     """
     ts = through_timestamp or _now_iso()
     with _LOCK:
-        _atomic_write(_ALERTED_PATH, {"alerted_through": ts})
+        _store.save_aux(_ALERTED_NAME, {"alerted_through": ts})
 
 
 def reset_for_test() -> None:
     """Test helper — wipe the on-disk log and marker.
 
-    Tests that exercise refusal logging should monkeypatch ``_LOG_PATH``
-    and ``_ALERTED_PATH`` to a tmp directory before calling this, so
-    production state is not touched.
+    Tests that exercise refusal logging should monkeypatch ``_store``
+    to a tmp-rooted StateStore before calling this, so production
+    state is not touched.
     """
     with _LOCK:
-        for p in (_LOG_PATH, _ALERTED_PATH):
-            if p.exists():
-                p.unlink()
+        _store.delete_aux(_LOG_NAME)
+        _store.delete_aux(_ALERTED_NAME)

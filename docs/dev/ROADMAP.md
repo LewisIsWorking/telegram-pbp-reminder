@@ -217,7 +217,11 @@ independently shippable.
 * ✅ Slice 1 — `state_store/` package shell, aux file API
   (`load_aux`/`save_aux`/`delete_aux`/`list_aux`), `bot_sent_ids`
   migrated. 17 new tests; 1623 total passing.
-* ⏳ Slice 2 — refusal log migration. Same pattern as slice 1.
+* ✅ Slice 2 — `refusal_log` migrated to use `StateStore`. Both
+  `refusal_log` (entries) and `refusal_log_alerted` (marker) now
+  flow through `_store.load_aux`/`save_aux`. Test isolation hook
+  in `_test_state_isolation.py` simplified to a single shared
+  `_TEST_STORE` for both modules.
 * ⏳ Slice 3 — partitions read path (`load_partition`).
 * ⏳ Slice 4 — partitions write path with atomic writes.
 * ⏳ Slice 5 — queue partitions (`load_queue`/`save_queue`).

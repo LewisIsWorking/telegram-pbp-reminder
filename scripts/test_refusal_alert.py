@@ -14,13 +14,12 @@ import pytest
 
 from posting import refusal_log as rl
 import refusal_alert
+from state_store import StateStore
 
 
 @pytest.fixture(autouse=True)
 def isolated_log(tmp_path, monkeypatch):
-    monkeypatch.setattr(rl, "_LOG_PATH", tmp_path / "refusal_log.json")
-    monkeypatch.setattr(rl, "_ALERTED_PATH",
-                        tmp_path / "refusal_log_alerted.json")
+    monkeypatch.setattr(rl, "_store", StateStore(state_dir=tmp_path))
     rl.reset_for_test()
     yield
     rl.reset_for_test()

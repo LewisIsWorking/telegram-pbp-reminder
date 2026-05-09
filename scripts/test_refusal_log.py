@@ -9,20 +9,18 @@ Covers:
 """
 
 import json
-from pathlib import Path
 
 import pytest
 
 from posting import refusal_log as rl
+from state_store import StateStore
 
 
 @pytest.fixture(autouse=True)
 def isolated_log(tmp_path, monkeypatch):
-    """Point both files at tmp_path so production state isn't touched."""
-    monkeypatch.setattr(rl, "_LOG_PATH",
-                        tmp_path / "refusal_log.json")
-    monkeypatch.setattr(rl, "_ALERTED_PATH",
-                        tmp_path / "refusal_log_alerted.json")
+    """Point the refusal_log's StateStore at tmp_path/ so production
+    state isn't touched."""
+    monkeypatch.setattr(rl, "_store", StateStore(state_dir=tmp_path))
     rl.reset_for_test()
     yield
     rl.reset_for_test()
@@ -30,7 +28,8 @@ def isolated_log(tmp_path, monkeypatch):
 
 def test_record_refusal_appends_to_disk():
     rl.record_refusal(-1001, 12345)
-    with open(rl._LOG_PATH, encoding="utf-8") as f:
+    log_path = rl._store.aux_path("refusal_log")
+    with open(log_path, encoding="utf-8") as f:
         entries = json.load(f)
     assert len(entries) == 1
     assert entries[0]["chat_id"] == -1001
@@ -40,7 +39,8 @@ def test_record_refusal_appends_to_disk():
 
 def test_record_refusal_with_explicit_timestamp():
     rl.record_refusal(-1001, 99, timestamp="2026-01-01T00:00:00+00:00")
-    with open(rl._LOG_PATH, encoding="utf-8") as f:
+    log_path = rl._store.aux_path("refusal_log")
+    with open(log_path, encoding="utf-8") as f:
         entries = json.load(f)
     assert entries[0]["timestamp"] == "2026-01-01T00:00:00+00:00"
 
@@ -49,7 +49,8 @@ def test_record_multiple_refusals_appends_in_order():
     rl.record_refusal(-1001, 1, timestamp="2026-01-01T00:00:00+00:00")
     rl.record_refusal(-1001, 2, timestamp="2026-01-02T00:00:00+00:00")
     rl.record_refusal(-1001, 3, timestamp="2026-01-03T00:00:00+00:00")
-    with open(rl._LOG_PATH, encoding="utf-8") as f:
+    log_path = rl._store.aux_path("refusal_log")
+    with open(log_path, encoding="utf-8") as f:
         entries = json.load(f)
     assert [e["message_id"] for e in entries] == [1, 2, 3]
 
@@ -84,8 +85,9 @@ def test_mark_alerted_default_is_now():
 
 
 def test_corrupt_log_file_returns_empty():
-    rl._LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    rl._LOG_PATH.write_text("{ corrupt", encoding="utf-8")
+    log_path = rl._store.aux_path("refusal_log")
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text("{ corrupt", encoding="utf-8")
     assert rl.get_unalerted_refusals() == []
 
 
@@ -95,7 +97,8 @@ def test_missing_log_file_returns_empty():
 
 
 def test_corrupt_marker_file_treated_as_no_marker():
-    rl._ALERTED_PATH.parent.mkdir(parents=True, exist_ok=True)
-    rl._ALERTED_PATH.write_text("{ corrupt", encoding="utf-8")
+    marker_path = rl._store.aux_path("refusal_log_alerted")
+    marker_path.parent.mkdir(parents=True, exist_ok=True)
+    marker_path.write_text("{ corrupt", encoding="utf-8")
     rl.record_refusal(-1001, 1, timestamp="2026-01-01T00:00:00+00:00")
     assert len(rl.get_unalerted_refusals()) == 1
