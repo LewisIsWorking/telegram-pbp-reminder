@@ -43,7 +43,10 @@
       "2026-04-20T12:11:40.282345+00:00",
       "2026-04-28T09:00:47.286871+00:00",
       "2026-04-28T09:00:47.287694+00:00",
-      "2026-04-28T09:00:48.802139+00:00"
+      "2026-04-28T09:00:48.802139+00:00",
+      "2026-05-09T21:30:23.636550+00:00",
+      "2026-05-09T21:30:23.639420+00:00",
+      "2026-05-09T21:30:23.640280+00:00"
     ],
     "40585": [
       "2026-03-21T20:06:05.077891+00:00",
@@ -1034,24 +1037,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.915721+00:00",
-      "player": "Bruce",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.917621+00:00",
-      "player": "Caelum",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.919492+00:00",
-      "player": "Caelum",
-      "preview": "Just drag the skill effects to everyone(ally only) in 30f"
-    },
     {
       "pid": "40585",
       "time": "2026-04-27T13:42:25.922076+00:00",
@@ -2256,6 +2241,27 @@
       "player": "Craig",
       "preview": "I tell her that if it happens again the leash is going back ",
       "msg_id": "2466"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-09T21:30:23.636550+00:00",
+      "player": "Anthony",
+      "preview": "I'll use Assurance then",
+      "msg_id": "149290"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-09T21:30:23.639420+00:00",
+      "player": "Anthony",
+      "preview": "And then i hide behind the frame and peel",
+      "msg_id": "149297"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-09T21:30:23.640280+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "149381"
     }
   ],
   "pending_potw_boons": {

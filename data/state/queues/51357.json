@@ -2,33 +2,6 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 149290,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-28T03:27:45+00:00",
-      "preview": "I'll use Assurance then",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149297,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-28T03:30:27+00:00",
-      "preview": "And then i hide behind the frame and peel",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149381,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-04-28T04:30:26+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 149536,
       "thread_id": 51357,
       "user_id": "7863964681",
@@ -126,7 +99,13 @@
     "msg:147105",
     "2026-04-21 20:33:41",
     "msg:149292",
-    "2026-04-28 03:28:49"
+    "2026-04-28 03:28:49",
+    "msg:149290",
+    "2026-04-28 03:27:45",
+    "msg:149297",
+    "2026-04-28 03:30:27",
+    "msg:149381",
+    "2026-04-28 04:30:26"
   ],
   "reply_log": [
     {
@@ -468,14 +447,44 @@
       "player": "Anthony",
       "preview": "No need to roll it's a 13 pretty sure",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-09T21:27:21+00:00",
+      "pid": "51357",
+      "msg_id": "149290",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "I'll use Assurance then",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T21:27:34+00:00",
+      "pid": "51357",
+      "msg_id": "149297",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "And then i hide behind the frame and peel",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T21:28:30+00:00",
+      "pid": "51357",
+      "msg_id": "149381",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "msg_id": 149565,
-      "fingerprint": "2026-04-28 03:27:45|2026-04-28 03:30:27|2026-04-28 04:30:26|2026-04-28 16:46:08"
+      "fingerprint": "2026-04-28 16:46:08",
+      "msg_ids": [
+        151968
+      ],
+      "last_posted_at": "2026-05-09T21:30:28.859777+00:00"
     }
   }
 }
