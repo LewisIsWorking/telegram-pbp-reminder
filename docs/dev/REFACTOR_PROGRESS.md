@@ -410,3 +410,112 @@ worth keeping (L1-L12 in the sections above). The pattern that saved
 the most time was: detect existing structure (section comments, name
 prefixes, file imports) and let it drive the split, rather than
 imposing a new structure on top.
+
+---
+
+# 🎉 COMPLETE — 200-line rule satisfied across the entire repo
+
+After phases 1-9 across two sessions:
+
+- **0 files >200 lines** (down from 22 at the start)
+- **310 Python files** (up from 165 — a +145 sub-files net new from splits)
+- **35,949 lines total** (was 33,245; +2,704 from new doc/header overhead
+  in sub-files, no test code lost)
+- All test counts preserved through every phase (verified by name diff
+  on every commit)
+
+# Phase 6-9 splits (this session)
+
+  test_final_coverage:    762 -> 7 sub-files (65 tests)
+  test_zero_coverage:     567 -> 5 sub-files (52 tests)
+  test_commands_coverage: 447 -> 5 sub-files (44 tests)
+  test_scheduled_coverage:443 -> 4 sub-files (45 tests)
+  test_utility_coverage:  431 -> 5 sub-files (46 tests)
+  test_dispatch_coverage: 628 -> 5 sub-files (49 tests)
+  test_push_to_100:       374 -> 4 sub-files (41 tests)
+  test_close_gaps:        512 -> 3 sub-files (44 tests)
+  test_final_gaps:        452 -> 3 sub-files (37 tests)
+  test_helpers:           385 -> 4 sub-files (37 tests)
+  test_import_history:    334 -> 3 sub-files (18 tests)
+  test_roster:            329 -> 5 sub-files (24 tests)
+  test_new_features:      274 -> 2 sub-files (16 tests)
+  test_telegram:          262 -> 2 sub-files (39 tests)
+  test_potw_streaks:      254 -> 3 sub-files (33 tests)
+
+# Splitter taxonomy — three patterns, one toolchain
+
+The full refactor used three distinct splitter strategies, all built on
+the same AST-walking + line-range extraction core:
+
+### Strategy A — Section-marker splitting (phases 3-7)
+For files with explicit `# ── module/file.py: branch ──` or `# ═══`
+section comments. Treat each marker line as a bin boundary; pack
+adjacent sections greedily until the bin hits the line target. For
+sections larger than the target, fall back to internal AST-test
+packing.
+
+Used for: `test_branch_gaps`, `test_final_push`, `test_remaining_gaps`,
+`test_aaa_isolated`, `test_remaining_100`, `test_final_100`,
+`test_final_coverage`, `test_zero_coverage`, `test_commands_coverage`,
+`test_scheduled_coverage`, `test_utility_coverage`,
+`test_dispatch_coverage`, `test_push_to_100`, `test_roster`,
+`test_potw_streaks`.
+
+### Strategy B — Import-based splitting (phase 8)
+For files with no section markers but where every test opens with
+`from <production.module> import <name>`. Walk each test's body, find
+the first import whose top-level package is a production package, and
+group tests by that module path.
+
+Used for: `test_close_gaps`, `test_final_gaps`, `test_helpers`,
+`test_import_history`, `test_new_features`, `test_telegram`.
+
+### Strategy C — Prefix-based splitting (phase 2)
+For files whose tests follow a `test_<command>_*` naming convention.
+Group by command prefix, then bundle related commands into themed
+buckets.
+
+Used for: `test_checker.py` (35 sub-files).
+
+A "multi-strategy" splitter (`_generic_splitter.py`) ships in this
+repo's staging area for any future test-file growth that re-violates
+the 200-line cap.
+
+# Cumulative learnings
+
+L1. Mock patches are coupled to implementation, not behaviour.
+L2. Dataclass + side-effecting method is fine for thin HTTP wrappers.
+L3. Backwards-compatible state migration belongs at the read boundary.
+L4. A shared mock fixture beats per-module patching across refactors.
+L5. Abstractions should not own fields they didn't create.
+L6. MCP-flake recovery: keep file content reproducible from chat.
+L7. AST-based splits beat hand-editing for big files.
+L8. Two-pass split with line target + rebalance pass beats one-shot.
+L9. `if __name__ == "__main__"` blocks need explicit handling.
+L10. Greedy bin-packing with rebalance pass for clean tail bins.
+L11. Module-level setup runs once even with N importers.
+L12. Existing comment structure is the cheapest split signal.
+L13. Section-marker style varies (`#─`, `#━`, `#═`) — pattern-match
+     all box-drawing characters, not just one.
+L14. When no section markers exist, the first production-module import
+     in each test body is reliable as a grouping key.
+
+# What's next (truly out of scope now)
+
+The 200-line refactor is complete. Future work that came up during
+this effort but isn't yet done:
+
+- **Test consolidation pass.** Many of the coverage-seed sub-files
+  test the same production paths as the proper feature tests. A
+  follow-up pass could review each `test_*_NN_<topic>.py` file
+  against its corresponding `test_<feature>.py` and delete
+  duplicates.
+- **State layer extraction.** `live.json`, `queue.json`,
+  `queues/{pid}.json`, `partitions` registered in `state.py` could be
+  encapsulated behind a `StateStore` abstraction. High leverage for
+  future schema changes; invasive.
+- **Race condition strategy.** The workflow concurrency `pbp-checker`
+  group + `cancel-in-progress: false` queues runs but a true
+  simultaneous start could still race on git-state writes. Real fix:
+  design idempotent posts or use Telegram pinned-message as source of
+  truth.
