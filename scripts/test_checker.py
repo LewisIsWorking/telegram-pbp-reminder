@@ -1,119 +1,17 @@
-"""Tests for checker.py logic.
+"""Tests for checker.py logic — root file after partial extraction.
 
-The telegram module is mocked globally by conftest.py before any test
-module is imported. This file references the shared _sent_messages list
-and _mock_tg from conftest so all modules bound to the same mock object.
+Imports and helper functions have moved to ``_test_checker_helpers``;
+many feature-area tests have moved to sibling ``test_checker_<group>``
+files. The remaining tests in this file are queued for further
+extraction in follow-up commits.
+
+Tracking the ongoing split in ``docs/dev/REFACTOR_PROGRESS.md``.
 """
-
-import sys
-from datetime import datetime, timezone, timedelta
-
-# _sent_messages and _mock_tg come from conftest.py (loaded before this module)
-import conftest as _conftest
-_sent_messages = _conftest._sent_messages
-_mock_tg = _conftest._mock_tg
-
-import checker
-import helpers
-
-
-def _utc(*args):
-    return datetime(*args, tzinfo=timezone.utc)
-
-
-def _reset():
-    _sent_messages.clear()
-
-
-# Redirect transcript logging to temp dir (so tests don't write to repo)
-import tempfile as _tempfile
-_test_log_dir = _tempfile.mkdtemp()
-checker._LOGS_DIR = __import__("pathlib").Path(_test_log_dir)
-
-# Also patch extracted modules that have their own _LOGS_DIR
-from commands import recap as _recap_mod, catchup as _catchup_mod
-from transcript import logger as _logger_mod, finalize as _finalize_mod
-_recap_mod._LOGS_DIR = checker._LOGS_DIR
-_catchup_mod._LOGS_DIR = checker._LOGS_DIR
-_logger_mod._LOGS_DIR = checker._LOGS_DIR
-_finalize_mod._LOGS_DIR = checker._LOGS_DIR
-
-# Redirect archive to temp file so tests don't write to repo
-helpers.ARCHIVE_PATH = __import__("pathlib").Path(_test_log_dir) / "weekly_archive.json"
-
-
-def _make_config(pairs=None, gm_ids=None):
-    return {
-        "group_id": -100,
-        "alert_after_hours": 4,
-        "gm_user_ids": gm_ids or [999],
-        "leaderboard_topic_id": None,
-        "bot_topic_id": 300,
-        "topic_pairs": pairs or [
-            {"name": "TestCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100]},
-        ],
-    }
-
-
-def _make_state():
-    return {
-        "offset": 0,
-        "topics": {},
-        "players": {},
-        "message_counts": {},
-        "post_timestamps": {},
-        "last_alerts": {},
-        "last_roster": {},
-        "last_potw": {},
-        "last_pace": {},
-        "last_leaderboard": None,
-        "last_recruitment_check": {},
-        "last_anniversary": {},
-        "combat": {},
-        "removed_players": {},
-        "pending_potw_boons": {},
-    }
-
-
-def _make_msg(update_id, topic_id, text, user_id=42, first_name="TestPlayer",
-              username="tp", last_name="", group_id=-100, date_ts=None):
-    """Convenience factory for a Telegram update dict."""
-    return {
-        "update_id": update_id,
-        "message": {
-            "chat": {"id": group_id},
-            "message_thread_id": topic_id,
-            "from": {
-                "id": user_id,
-                "first_name": first_name,
-                "last_name": last_name,
-                "username": username,
-            },
-            "date": date_ts or int(datetime.now(timezone.utc).timestamp()),
-            "text": text,
-        },
-    }
-
-
-# ------------------------------------------------------------------ #
-#  Pure function tests
-# ------------------------------------------------------------------ #
-def test_format_boon_result():
-    _reset()
-    boons = ["Boon A", "Boon B", "Boon C"]
-    result = checker._format_boon_result(boons, 1, "Winner!", "Chosen boon")
-    assert "✓" in result
-    assert "<s>" in result
-    assert "Boon B" in result.split("✓")[0]  # Chosen boon before checkmark
-    assert "Chosen boon:" in result
-
-
-def test_format_boon_result_html_escapes():
-    _reset()
-    boons = ["<script>", "Normal"]
-    result = checker._format_boon_result(boons, 0, "Test & Win", "Label")
-    assert "&lt;script&gt;" in result
-    assert "Test &amp; Win" in result
+from _test_checker_helpers import (
+    datetime, timezone, timedelta,
+    _sent_messages, _mock_tg, checker, helpers,
+    _utc, _reset, _make_config, _make_state, _make_msg, _run_all,
+)
 
 
 def test_roster_user_stats():
@@ -132,7 +30,6 @@ def test_roster_user_stats():
     assert "hours" in stats["avg_gap_str"] or "minutes" in stats["avg_gap_str"]
     assert "today" in stats["last_post_str"]
 
-
 def test_roster_block():
     stats = {
         "total": 15,
@@ -149,14 +46,12 @@ def test_roster_block():
     assert "3 posts in the last week" in block
     assert "24.0 hours" in block
 
-
 def test_roster_block_no_username():
     stats = {"total": 1, "sessions": 1, "week_count": 0, "avg_gap_str": "N/A", "last_post_str": "N/A"}
     block = checker._roster_block("Bob", "", stats)
     assert "Bob" in block
     assert "@" not in block
     assert "1 posting session." in block  # Singular
-
 
 def test_gather_potw_candidates():
     now = _utc(2026, 2, 20, 12, 0)
@@ -178,7 +73,6 @@ def test_gather_potw_candidates():
     assert candidates[0]["first_name"] == "Alice"
     assert candidates[0]["avg_gap_hours"] > 0
 
-
 def test_gather_potw_excludes_low_posts():
     now = _utc(2026, 2, 20, 12, 0)
     week_ago = now - timedelta(days=7)
@@ -194,7 +88,6 @@ def test_gather_potw_excludes_low_posts():
     }
     candidates = checker._gather_potw_candidates(timestamps, set(), week_ago, "100", state)
     assert len(candidates) == 0
-
 
 def test_cleanup_timestamps_prunes_old():
     now = datetime.now(timezone.utc)
@@ -214,360 +107,20 @@ def test_cleanup_timestamps_prunes_old():
     assert len(state["post_timestamps"]["100"]["user1"]) == 1
     assert "user2" not in state["post_timestamps"]["100"]
 
-
 def test_cleanup_timestamps_empty_state():
     state = _make_state()
     checker.cleanup_timestamps(state)  # Should not crash
 
-
-def test_format_leaderboard():
-    now = _utc(2026, 2, 20, 12, 0)
-    campaign_stats = [
-        {
-            "name": "Alpha",
-            "total_7d": 30,
-            "player_7d": 20,
-            "gm_7d": 10,
-            "trend_icon": "📈",
-            "avg_gap_str": "4.0h",
-            "player_avg_gap": 5.0,
-            "player_avg_gap_str": "5.0h",
-            "last_post_str": "today",
-            "days_since_last": 0.1,
-            "top_players": [{"full_name": "Alice B", "username": "alice", "count": 12}],
-        },
-        {
-            "name": "Bravo",
-            "total_7d": 0,
-            "player_7d": 0,
-            "gm_7d": 0,
-            "trend_icon": "💤",
-            "avg_gap_str": "N/A",
-            "player_avg_gap": None,
-            "player_avg_gap_str": "N/A",
-            "last_post_str": "5d ago",
-            "days_since_last": 5.0,
-            "top_players": [],
-        },
-    ]
-    global_players = {
-        "u1": {"full_name": "Alice B", "username": "alice", "count": 12, "campaigns": 1},
-    }
-    result = checker._format_leaderboard(campaign_stats, global_players, now)
-    assert "Weekly Campaign Leaderboard" in result
-    assert "Alpha" in result
-    assert "Dead campaigns" in result
-    assert "Bravo" in result
-    assert "Alice B" in result
-    assert "Fastest player response gaps" in result
-
-
-# ------------------------------------------------------------------ #
-#  Integration tests (mock telegram)
-# ------------------------------------------------------------------ #
-def test_process_updates_tracks_messages():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 1001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "TestPlayer", "last_name": "X", "username": "tp"},
-            "date": now_ts,
-            "text": "I attack the goblin",
-        },
-    }]
-
-    new_offset = checker.process_updates(updates, config, state)
-    assert new_offset == 1002
-    assert "100" in state["topics"]
-    assert state["topics"]["100"]["last_user"] == "TestPlayer"
-    assert "100:42" in state["players"]
-    assert state["players"]["100:42"]["first_name"] == "TestPlayer"
-    assert state["message_counts"]["100"]["42"] == 1
-    assert len(state["post_timestamps"]["100"]["42"]) == 1
-
-
-def test_process_updates_ignores_other_groups():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-
-    updates = [{
-        "update_id": 2001,
-        "message": {
-            "chat": {"id": -999},  # Wrong group
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "text": "hello",
-        },
-    }]
-
-    new_offset = checker.process_updates(updates, config, state)
-    assert new_offset == 2002
-    assert "100" not in state["topics"]
-
-
-def test_process_updates_skips_gm_player_tracking():
-    _reset()
-    config = _make_config(gm_ids=[42])
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 3001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "GM"},
-            "date": now_ts,
-            "text": "The goblin attacks!",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    assert "100:42" not in state["players"]  # GM not tracked as player
-    assert state["message_counts"]["100"]["42"] == 1  # But counts are tracked
-
-
-def test_process_updates_help_command():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 4001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/help",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    help_msgs = [m for m in _sent_messages if "PBP Reminder Bot" in m.get("text", "")]
-    assert len(help_msgs) == 1
-
-
-def test_check_and_alert_fires_after_threshold():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    five_hours_ago = (datetime.now(timezone.utc) - timedelta(hours=5)).isoformat()
-
-    state["topics"]["100"] = {
-        "last_message_time": five_hours_ago,
-        "last_user": "Alice",
-        "last_user_id": "42",
-        "campaign_name": "TestCampaign",
-    }
-
-    checker.check_and_alert(config, state)
-    assert len(_sent_messages) == 1
-    assert "No new posts" in _sent_messages[0]["text"]
-    assert "TestCampaign" in _sent_messages[0]["text"]
-
-
-def test_check_and_alert_skips_recent():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    one_hour_ago = (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat()
-
-    state["topics"]["100"] = {
-        "last_message_time": one_hour_ago,
-        "last_user": "Bob",
-        "last_user_id": "42",
-        "campaign_name": "TestCampaign",
-    }
-
-    checker.check_and_alert(config, state)
-    assert len(_sent_messages) == 0
-
-
-def test_check_and_alert_respects_feature_toggle():
-    _reset()
-    config = _make_config(pairs=[
-        {"name": "Quiet", "chat_topic_id": 200, "pbp_topic_ids": [100], "disabled_features": ["alerts"]},
-    ])
-    state = _make_state()
-    old = (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()
-
-    state["topics"]["100"] = {
-        "last_message_time": old,
-        "last_user": "Alice",
-        "last_user_id": "42",
-        "campaign_name": "Quiet",
-    }
-
-    checker.check_and_alert(config, state)
-    assert len(_sent_messages) == 0  # Feature disabled, no alert
-
-
-def test_build_status_basic():
-    _reset()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["topics"]["100"] = {
-        "last_message_time": (now - timedelta(hours=3)).isoformat(),
-        "last_user": "Alice",
-        "last_user_id": "42",
-        "campaign_name": "TestCampaign",
-    }
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(hours=3)).isoformat(),
-        "last_warned_week": 0,
-    }
-    state["post_timestamps"]["100"] = {
-        "42": [(now - timedelta(hours=h)).isoformat() for h in [3, 24, 48]],
-    }
-
-    result = checker._build_status("100", "TestCampaign", state, {"999"})
-    assert "Status for TestCampaign" in result
-    assert "1/6" in result  # 1 player
-    assert "3h ago" in result
-    assert "player" in result
-
-
-def test_build_status_at_risk():
-    _reset()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Bob", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=10)).isoformat(),
-        "last_warned_week": 0,
-    }
-
-    result = checker._build_status("100", "TestCampaign", state, {"999"})
-    assert "At risk" in result
-    assert "Bob" in result
-    assert "10d" in result
-
-
-def test_process_updates_status_command():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 5001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/status",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    status_msgs = [m for m in _sent_messages if "Status for" in m.get("text", "")]
-    assert len(status_msgs) == 1
-
-
-def test_build_campaign_report_basic():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config(pairs=[
-        {"name": "TestCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100], "created": "2025-01-15"},
-    ])
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "B",
-        "username": "alice", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(hours=5)).isoformat(),
-        "last_warned_week": 0,
-    }
-    state["message_counts"]["100"] = {"42": 20, "999": 30}
-    state["post_timestamps"]["100"] = {
-        "42": [(now - timedelta(hours=h)).isoformat() for h in [5, 24, 48, 72, 120]],
-        "999": [(now - timedelta(hours=h)).isoformat() for h in [1, 6, 12, 30, 60]],
-    }
-
-    result = checker._build_campaign_report("100", config, state, {"999"})
-    assert "TestCampaign" in result
-    assert "1/6" in result
-    assert "Roster" in result
-    assert "Alice B" in result
-    assert "@alice" in result
-    assert "GM" in result
-    assert "Running since" in result
-
-
-def test_build_campaign_report_at_risk():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Bob", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=12)).isoformat(),
-        "last_warned_week": 0,
-    }
-    state["message_counts"]["100"] = {"42": 5}
-    state["post_timestamps"]["100"] = {
-        "42": [(now - timedelta(days=d)).isoformat() for d in [12, 13, 14]],
-    }
-
-    result = checker._build_campaign_report("100", config, state, {"999"})
-    assert "At Risk" in result
-    assert "Bob" in result
-
-
-def test_process_updates_campaign_command():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 6001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/campaign",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    campaign_msgs = [m for m in _sent_messages if "TestCampaign" in m.get("text", "")]
-    assert len(campaign_msgs) >= 1
-
-
-# ------------------------------------------------------------------ #
-#  Config validation tests
-# ------------------------------------------------------------------ #
 def test_validate_config_valid():
     config = _make_config()
     issues = helpers.validate_config(config)
     assert not any(i.startswith("ERROR:") for i in issues)
-
 
 def test_validate_config_bad_group_id():
     config = _make_config()
     config["group_id"] = 12345
     issues = helpers.validate_config(config)
     assert any("group_id" in i for i in issues)
-
 
 def test_validate_config_duplicate_pbp_ids():
     config = _make_config(pairs=[
@@ -577,7 +130,6 @@ def test_validate_config_duplicate_pbp_ids():
     issues = helpers.validate_config(config)
     assert any("ERROR:" in i and "100" in i for i in issues)
 
-
 def test_validate_config_unknown_feature():
     config = _make_config(pairs=[
         {"name": "A", "chat_topic_id": 1, "pbp_topic_ids": [100], "disabled_features": ["bogus"]},
@@ -585,14 +137,12 @@ def test_validate_config_unknown_feature():
     issues = helpers.validate_config(config)
     assert any("bogus" in i for i in issues)
 
-
 def test_validate_config_bad_created_date():
     config = _make_config(pairs=[
         {"name": "A", "chat_topic_id": 1, "pbp_topic_ids": [100], "created": "15-01-2025"},
     ])
     issues = helpers.validate_config(config)
     assert any("YYYY-MM-DD" in i for i in issues)
-
 
 def test_feature_enabled():
     config = _make_config(pairs=[
@@ -602,10 +152,6 @@ def test_feature_enabled():
     assert helpers.feature_enabled(config, "100", "alerts") is True
     assert helpers.feature_enabled(config, "999", "roster") is True
 
-
-# ------------------------------------------------------------------ #
-#  _parse_message tests
-# ------------------------------------------------------------------ #
 def test_parse_message_valid():
     maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
@@ -624,14 +170,12 @@ def test_parse_message_valid():
     assert result["user_name"] == "Alice"
     assert result["text"] == "hello world"
 
-
 def test_parse_message_wrong_group():
     maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
     ]})
     msg = {"chat": {"id": -999}, "message_thread_id": 100, "from": {"id": 42}}
     assert checker._parse_message(msg, maps) is None
-
 
 def test_parse_message_unknown_topic():
     maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
@@ -640,7 +184,6 @@ def test_parse_message_unknown_topic():
     msg = {"chat": {"id": -100}, "message_thread_id": 999, "from": {"id": 42}}
     assert checker._parse_message(msg, maps) is None
 
-
 def test_parse_message_bot_skipped():
     maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
@@ -648,10 +191,6 @@ def test_parse_message_bot_skipped():
     msg = {"chat": {"id": -100}, "message_thread_id": 100, "from": {"id": 42, "is_bot": True}}
     assert checker._parse_message(msg, maps) is None
 
-
-# ------------------------------------------------------------------ #
-#  Combat tests
-# ------------------------------------------------------------------ #
 def test_handle_round_command():
     _reset()
     state = _make_state()
@@ -662,13 +201,11 @@ def test_handle_round_command():
     assert len(_sent_messages) == 1
     assert "Round 1" in _sent_messages[0]["text"]
 
-
 def test_handle_round_command_enemies():
     _reset()
     state = _make_state()
     checker._handle_round_command("/round 2 enemies", "100", "Test", "now", -100, 100, state)
     assert state["combat"]["100"]["current_phase"] == "enemies"
-
 
 def test_handle_round_command_resets_players_acted():
     _reset()
@@ -682,7 +219,6 @@ def test_handle_round_command_resets_players_acted():
     assert state["combat"]["100"]["players_acted"] == []
     assert state["combat"]["100"]["round"] == 2
 
-
 def test_handle_combat_message_tracks_player():
     _reset()
     state = _make_state()
@@ -693,7 +229,6 @@ def test_handle_combat_message_tracks_player():
     }
     checker._handle_combat_message("I attack!", "I attack!", "42", "Player", {"999"}, "100", "Test", "now", -100, 100, state)
     assert "42" in state["combat"]["100"]["players_acted"]
-
 
 def test_handle_combat_message_gm_not_tracked():
     _reset()
@@ -706,7 +241,6 @@ def test_handle_combat_message_gm_not_tracked():
     checker._handle_combat_message("narrative text", "narrative text", "999", "GM", {"999"}, "100", "Test", "now", -100, 100, state)
     assert "999" not in state["combat"]["100"]["players_acted"]
 
-
 def test_handle_combat_endcombat():
     _reset()
     state = _make_state()
@@ -717,52 +251,6 @@ def test_handle_combat_endcombat():
     }
     checker._handle_combat_message("/endcombat", "/endcombat", "999", "GM", {"999"}, "100", "Test", "now", -100, 100, state)
     assert "100" not in state["combat"]
-
-
-# ------------------------------------------------------------------ #
-#  Boon tests
-# ------------------------------------------------------------------ #
-def test_process_boon_callback_valid():
-    _reset()
-    state = _make_state()
-    state["pending_potw_boons"]["100"] = {
-        "message_id": 555,
-        "winner_user_id": "42",
-        "boons": ["Boon A", "Boon B", "Boon C"],
-        "base_message": "Winner!",
-        "posted_at": datetime.now(timezone.utc).isoformat(),
-    }
-    cb = {
-        "id": "cb1", "data": "boon:100:1",
-        "from": {"id": 42},
-        "message": {"chat": {"id": -100}, "message_id": 555},
-    }
-    checker.process_boon_callback(cb, _make_config(), state)
-    assert "100" not in state["pending_potw_boons"]  # Cleaned up
-    edit_msgs = [m for m in _sent_messages if "message_id" in m]
-    assert len(edit_msgs) == 1
-
-
-def test_process_boon_callback_wrong_user():
-    _reset()
-    state = _make_state()
-    state["pending_potw_boons"]["100"] = {
-        "message_id": 555,
-        "winner_user_id": "42",
-        "boons": ["Boon A"],
-        "base_message": "Winner!",
-        "posted_at": datetime.now(timezone.utc).isoformat(),
-    }
-    cb = {
-        "id": "cb1", "data": "boon:100:0",
-        "from": {"id": 99},  # Wrong user
-        "message": {"chat": {"id": -100}, "message_id": 555},
-    }
-    checker.process_boon_callback(cb, _make_config(), state)
-    assert "100" in state["pending_potw_boons"]  # Not cleaned up
-    # With hourly cron, wrong-user clicks are silently ignored
-    # (answer_callback always times out, so no rejection message is sent)
-
 
 def test_expire_pending_boons():
     _reset()
@@ -781,125 +269,6 @@ def test_expire_pending_boons():
     auto_msgs = [m for m in _sent_messages if "auto-selected" in m.get("text", "")]
     assert len(auto_msgs) >= 1
 
-
-# ------------------------------------------------------------------ #
-#  Player activity tests
-# ------------------------------------------------------------------ #
-def test_check_player_activity_warns_at_1_week():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "alice", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=8)).isoformat(),
-        "last_warned_week": 0,
-    }
-
-    checker.check_player_activity(config, state)
-    warn_msgs = [m for m in _sent_messages if "hasn't posted" in m.get("text", "")]
-    assert len(warn_msgs) == 1
-    assert state["players"]["100:42"]["last_warned_week"] == 1
-
-
-def test_check_player_activity_removes_at_4_weeks():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Bob", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=30)).isoformat(),
-        "last_warned_week": 3,
-    }
-
-    checker.check_player_activity(config, state)
-    assert "100:42" not in state["players"]
-    assert "100:42" in state["removed_players"]
-
-
-def test_check_player_activity_permanent_not_removed():
-    """Permanent players are never removed even at 4+ weeks."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Bob", "last_name": "",
-        "username": "bobuser", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=30)).isoformat(),
-        "last_warned_week": 3, "permanent": True,
-    }
-
-    checker.check_player_activity(config, state)
-    assert "100:42" in state["players"], "Permanent player must not be removed"
-    assert "100:42" not in state["removed_players"]
-
-
-def test_check_player_activity_permanent_skips_week3_warning():
-    """Permanent players skip the week-3 warning (mentions auto-removal)."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Bob", "last_name": "",
-        "username": "bobuser", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=22)).isoformat(),
-        "last_warned_week": 2, "permanent": True,
-    }
-
-    checker.check_player_activity(config, state)
-    # last_warned_week should still be 2 (week-3 skipped)
-    assert state["players"]["100:42"]["last_warned_week"] == 2
-
-
-def test_check_player_activity_permanent_gets_week1_warning():
-    """Permanent players still get week-1 inactivity pings."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Bob", "last_name": "",
-        "username": "bobuser", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=8)).isoformat(),
-        "last_warned_week": 0, "permanent": True,
-    }
-
-    checker.check_player_activity(config, state)
-    assert state["players"]["100:42"]["last_warned_week"] == 1
-
-
-def test_check_player_activity_respects_toggle():
-    _reset()
-    config = _make_config(pairs=[
-        {"name": "NoWarn", "chat_topic_id": 200, "pbp_topic_ids": [100], "disabled_features": ["warnings"]},
-    ])
-    state = _make_state()
-    now = datetime.now(timezone.utc)
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "", "campaign_name": "NoWarn",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(days=15)).isoformat(),
-        "last_warned_week": 0,
-    }
-
-    checker.check_player_activity(config, state)
-    assert len(_sent_messages) == 0  # No warning sent
-
-
-# ------------------------------------------------------------------ #
-#  _gather_leaderboard_stats tests
-# ------------------------------------------------------------------ #
 def test_gather_leaderboard_stats_basic():
     _reset()
     now = datetime.now(timezone.utc)
@@ -927,7 +296,6 @@ def test_gather_leaderboard_stats_basic():
     assert "42" in global_players
     assert global_players["42"]["full_name"] == "Alice B"
 
-
 def test_gather_leaderboard_stats_empty():
     _reset()
     now = datetime.now(timezone.utc)
@@ -940,264 +308,6 @@ def test_gather_leaderboard_stats_empty():
     assert len(global_players) == 0
     assert len(streaks) == 0
 
-
-# ------------------------------------------------------------------ #
-#  check_combat_turns tests
-# ------------------------------------------------------------------ #
-def test_check_combat_turns_pings_missing():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "alice", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-        "last_warned_week": 0,
-    }
-    state["combat"]["100"] = {
-        "active": True, "round": 1, "current_phase": "players",
-        "players_acted": [], "last_ping_at": None,
-        "campaign_name": "TestCampaign",
-        "phase_started_at": (now - timedelta(hours=5)).isoformat(),
-    }
-
-    checker.check_combat_turns(config, state, now=now)
-    ping_msgs = [m for m in _sent_messages if "waiting on" in m.get("text", "")]
-    assert len(ping_msgs) == 1
-    assert "alice" in ping_msgs[0]["text"].lower() or "Alice" in ping_msgs[0]["text"]
-
-
-def test_check_combat_turns_skips_enemies_phase():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    state["combat"]["100"] = {
-        "active": True, "round": 1, "current_phase": "enemies",
-        "players_acted": [], "last_ping_at": None,
-        "campaign_name": "TestCampaign",
-        "phase_started_at": (now - timedelta(hours=5)).isoformat(),
-    }
-
-    checker.check_combat_turns(config, state, now=now)
-    assert len(_sent_messages) == 0
-
-
-def test_check_combat_turns_no_reping_too_soon():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-        "last_warned_week": 0,
-    }
-    state["combat"]["100"] = {
-        "active": True, "round": 1, "current_phase": "players",
-        "players_acted": [], "campaign_name": "TestCampaign",
-        "phase_started_at": (now - timedelta(hours=5)).isoformat(),
-        "last_ping_at": (now - timedelta(hours=1)).isoformat(),
-    }
-
-    checker.check_combat_turns(config, state, now=now)
-    assert len(_sent_messages) == 0  # Too soon to reping
-
-
-# ------------------------------------------------------------------ #
-#  check_anniversaries tests
-# ------------------------------------------------------------------ #
-def test_check_anniversaries_fires_on_date():
-    _reset()
-    now = datetime.now(timezone.utc)
-    # Construct a "created" date exactly 2 years ago today
-    two_years_ago = now.replace(year=now.year - 2)
-    created_str = two_years_ago.strftime("%Y-%m-%d")
-
-    config = _make_config(pairs=[
-        {"name": "OldCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100], "created": created_str},
-    ])
-    state = _make_state()
-
-    checker.check_anniversaries(config, state, now=now)
-    anniv_msgs = [m for m in _sent_messages if "2 years" in m.get("text", "")]
-    assert len(anniv_msgs) == 1
-    assert "100:2" in state["last_anniversary"]
-
-
-def test_check_anniversaries_no_duplicate():
-    _reset()
-    now = datetime.now(timezone.utc)
-    two_years_ago = now.replace(year=now.year - 2)
-    created_str = two_years_ago.strftime("%Y-%m-%d")
-
-    config = _make_config(pairs=[
-        {"name": "OldCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100], "created": created_str},
-    ])
-    state = _make_state()
-    state["last_anniversary"]["100:2"] = now.isoformat()  # Already posted
-
-    checker.check_anniversaries(config, state, now=now)
-    assert len(_sent_messages) == 0
-
-
-def test_check_anniversaries_wrong_day():
-    _reset()
-    now = datetime.now(timezone.utc)
-    # Use a date that's NOT today — use day=1 to avoid month-length overflow
-    wrong_date = now.replace(year=now.year - 1, month=(now.month % 12) + 1, day=1)
-    created_str = wrong_date.strftime("%Y-%m-%d")
-
-    config = _make_config(pairs=[
-        {"name": "Campaign", "chat_topic_id": 200, "pbp_topic_ids": [100], "created": created_str},
-    ])
-    state = _make_state()
-
-    checker.check_anniversaries(config, state, now=now)
-    assert len(_sent_messages) == 0
-
-
-# ------------------------------------------------------------------ #
-#  check_recruitment_needs tests
-# ------------------------------------------------------------------ #
-def test_check_recruitment_fires_when_short():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    # Only 1 player, needs 6
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-        "last_warned_week": 0,
-    }
-
-    checker.check_recruitment_needs(config, state, now=now)
-    recruit_msgs = [m for m in _sent_messages if "needs" in m.get("text", "") and "more player" in m.get("text", "")]
-    assert len(recruit_msgs) == 1
-    assert "5 more players" in recruit_msgs[0]["text"]
-
-
-def test_check_recruitment_skips_full_roster():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    # Add 6 players (full roster)
-    for i in range(6):
-        state["players"][f"100:{i}"] = {
-            "user_id": str(i), "first_name": f"Player{i}", "last_name": "",
-            "username": "", "campaign_name": "TestCampaign",
-            "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-            "last_warned_week": 0,
-        }
-
-    checker.check_recruitment_needs(config, state, now=now)
-    recruit_msgs = [m for m in _sent_messages if "needs" in m.get("text", "") and "more player" in m.get("text", "")]
-    assert len(recruit_msgs) == 0
-
-
-# ------------------------------------------------------------------ #
-#  /mystats tests
-# ------------------------------------------------------------------ #
-def test_build_mystats_basic():
-    _reset()
-    now = datetime.now(timezone.utc)
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "B",
-        "username": "alice", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": (now - timedelta(hours=2)).isoformat(),
-        "last_warned_week": 0,
-    }
-    state["message_counts"]["100"] = {"42": 15}
-    state["post_timestamps"]["100"] = {
-        "42": [(now - timedelta(hours=h)).isoformat() for h in [2, 24, 48, 72, 96, 120]],
-    }
-
-    result = checker._build_mystats("100", "42", "TestCampaign", state, {"999"})
-    assert "TestCampaign" in result
-    assert "Player" in result
-    assert "15 posts" in result
-    assert "Avg gap" in result
-
-
-def test_build_mystats_gm():
-    _reset()
-    now = datetime.now(timezone.utc)
-    state = _make_state()
-    state["message_counts"]["100"] = {"999": 30}
-    state["post_timestamps"]["100"] = {
-        "999": [(now - timedelta(hours=h)).isoformat() for h in [1, 12, 24]],
-    }
-
-    result = checker._build_mystats("100", "999", "TestCampaign", state, {"999"})
-    assert "GM" in result
-
-
-def test_build_mystats_no_posts():
-    _reset()
-    state = _make_state()
-    result = checker._build_mystats("100", "42", "TestCampaign", state, {"999"})
-    assert "No posts tracked" in result
-
-
-def test_process_updates_mystats_command():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 7001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/mystats",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    stats_msgs = [m for m in _sent_messages if "No posts tracked" in m.get("text", "") or "TestCampaign" in m.get("text", "")]
-    assert len(stats_msgs) >= 1
-
-
-def test_process_updates_me_alias():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 7002,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/me",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    stats_msgs = [m for m in _sent_messages if "No posts tracked" in m.get("text", "") or "TestCampaign" in m.get("text", "")]
-    assert len(stats_msgs) >= 1
-
-
-# ------------------------------------------------------------------ #
-#  _calc_streak tests
-# ------------------------------------------------------------------ #
 def test_calc_streak_consecutive_days():
     now = datetime(2025, 3, 15, 14, 0, 0, tzinfo=timezone.utc)
     timestamps = [
@@ -1205,7 +315,6 @@ def test_calc_streak_consecutive_days():
         for d, h in [(0, 2), (1, 5), (2, 3), (3, 8)]  # 4 consecutive days
     ]
     assert checker._calc_streak(timestamps, now) == 4
-
 
 def test_calc_streak_gap_breaks():
     now = datetime(2025, 3, 15, 14, 0, 0, tzinfo=timezone.utc)
@@ -1217,14 +326,12 @@ def test_calc_streak_gap_breaks():
     ]
     assert checker._calc_streak(timestamps, now) == 2
 
-
 def test_calc_streak_no_recent_posts():
     now = datetime(2025, 3, 15, 14, 0, 0, tzinfo=timezone.utc)
     timestamps = [
         (now - timedelta(days=5)).isoformat(),  # Too old
     ]
     assert checker._calc_streak(timestamps, now) == 0
-
 
 def test_calc_streak_multiple_posts_same_day():
     now = datetime(2025, 3, 15, 14, 0, 0, tzinfo=timezone.utc)
@@ -1236,96 +343,10 @@ def test_calc_streak_multiple_posts_same_day():
     ]
     assert checker._calc_streak(timestamps, now) == 2
 
-
 def test_calc_streak_empty():
     now = datetime(2025, 3, 15, 14, 0, 0, tzinfo=timezone.utc)
     assert checker._calc_streak([], now) == 0
 
-
-# ------------------------------------------------------------------ #
-#  /whosturn tests
-# ------------------------------------------------------------------ #
-def test_build_whosturn_no_combat():
-    _reset()
-    state = _make_state()
-    result = checker._build_whosturn("100", "TestCampaign", state)
-    assert "No active combat" in result
-
-
-def test_build_whosturn_players_phase():
-    _reset()
-    now = datetime.now(timezone.utc)
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-        "last_warned_week": 0,
-    }
-    state["players"]["100:43"] = {
-        "user_id": "43", "first_name": "Bob", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-        "last_warned_week": 0,
-    }
-    state["combat"]["100"] = {
-        "active": True, "round": 2, "current_phase": "players",
-        "players_acted": ["42"], "last_ping_at": None,
-        "campaign_name": "TestCampaign",
-        "phase_started_at": (now - timedelta(hours=1)).isoformat(),
-    }
-
-    result = checker._build_whosturn("100", "TestCampaign", state)
-    assert "Round 2" in result
-    assert "Alice" in result
-    assert "Bob" in result
-    assert "Acted" in result
-    assert "Waiting" in result
-
-
-def test_build_whosturn_enemies_phase():
-    _reset()
-    now = datetime.now(timezone.utc)
-    state = _make_state()
-
-    state["combat"]["100"] = {
-        "active": True, "round": 1, "current_phase": "enemies",
-        "players_acted": [], "last_ping_at": None,
-        "campaign_name": "TestCampaign",
-        "phase_started_at": (now - timedelta(hours=1)).isoformat(),
-    }
-
-    result = checker._build_whosturn("100", "TestCampaign", state)
-    assert "Enemies" in result
-    assert "GM" in result
-
-
-def test_process_updates_whosturn_command():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 7003,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/whosturn",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    turn_msgs = [m for m in _sent_messages if "No active combat" in m.get("text", "") or "Round" in m.get("text", "")]
-    assert len(turn_msgs) >= 1
-
-
-# ------------------------------------------------------------------ #
-#  Daily tip tests
-# ------------------------------------------------------------------ #
 def test_post_daily_tip_sends():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1338,7 +359,6 @@ def test_post_daily_tip_sends():
     assert state.get("last_daily_tip") is not None
     assert len(state.get("used_tip_indices", [])) == 1
 
-
 def test_post_daily_tip_respects_cooldown():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1348,7 +368,6 @@ def test_post_daily_tip_respects_cooldown():
 
     checker.post_daily_tip(config, state, now=now)
     assert len(_sent_messages) == 0  # Too soon
-
 
 def test_post_daily_tip_rotates():
     _reset()
@@ -1365,7 +384,6 @@ def test_post_daily_tip_rotates():
     last_idx = state["used_tip_indices"][-1]
     assert last_idx == len(checker._TIPS) - 1
 
-
 def test_post_daily_tip_resets_cycle():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1380,10 +398,6 @@ def test_post_daily_tip_resets_cycle():
     # Cycle should have reset - used_tip_indices should have exactly 1 entry
     assert len(state["used_tip_indices"]) == 1
 
-
-# ------------------------------------------------------------------ #
-#  Streak milestone tests
-# ------------------------------------------------------------------ #
 def test_streak_milestone_fires_at_7():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1406,7 +420,6 @@ def test_streak_milestone_fires_at_7():
     assert len(streak_msgs) == 1
     assert state["celebrated_streaks"]["100:42"] == 7
 
-
 def test_streak_milestone_no_duplicate():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1426,7 +439,6 @@ def test_streak_milestone_no_duplicate():
 
     checker.check_streak_milestones(config, state, now=now)
     assert len(_sent_messages) == 0
-
 
 def test_streak_milestone_escalates():
     _reset()
@@ -1450,43 +462,6 @@ def test_streak_milestone_escalates():
     streak_msgs = [m for m in _sent_messages if "14-day" in m.get("text", "")]
     assert len(streak_msgs) == 1
     assert state["celebrated_streaks"]["100:42"] == 14
-
-
-# ------------------------------------------------------------------ #
-#  Weekly digest tests
-# ------------------------------------------------------------------ #
-def test_build_weekly_digest_basic():
-    _reset()
-    now = datetime.now(timezone.utc)
-    config = _make_config()
-    state = _make_state()
-
-    state["players"]["100:42"] = {
-        "user_id": "42", "first_name": "Alice", "last_name": "",
-        "username": "", "campaign_name": "TestCampaign",
-        "pbp_topic_id": "100", "last_post_time": now.isoformat(),
-        "last_warned_week": 0,
-    }
-    state["message_counts"]["100"] = {"42": 15, "999": 10}
-    state["post_timestamps"]["100"] = {
-        "42": [(now - timedelta(hours=h)).isoformat() for h in range(1, 16)],
-        "999": [(now - timedelta(hours=h)).isoformat() for h in range(1, 11)],
-    }
-
-    result = checker._build_weekly_digest(config, state, now)
-    assert "Weekly Digest" in result
-    assert "TestCampaign" in result
-    assert "MVP" in result
-    assert "Alice" in result
-
-
-def test_build_weekly_digest_health_icons():
-    assert checker._health_icon(25) == "🟢"
-    assert checker._health_icon(15) == "🟡"
-    assert checker._health_icon(7) == "🟠"
-    assert checker._health_icon(2) == "🔴"
-    assert checker._health_icon(0) == "🔴"
-
 
 def test_leaderboard_includes_streaks():
     _reset()
@@ -1515,7 +490,6 @@ def test_leaderboard_includes_streaks():
     result = checker._format_leaderboard(stats, global_players, now, streaks)
     assert "Longest Active Streaks" in result
     assert "Alice B" in result
-
 
 def test_leaderboard_week_number_and_totals_and_mvp():
     """Week number, totals line, and MVP prize appear in leaderboard."""
@@ -1560,7 +534,6 @@ def test_leaderboard_week_number_and_totals_and_mvp():
     assert "8-day streak" in result
     assert "🔥" in result
 
-
 def test_roster_block_hides_short_streak():
     stats = {
         "total": 20, "sessions": 15, "week_count": 5,
@@ -1569,80 +542,20 @@ def test_roster_block_hides_short_streak():
     result = checker._roster_block("Alice", "alice", stats)
     assert "streak" not in result
 
-
-# ------------------------------------------------------------------ #
-#  Sparkline and /myhistory tests
-# ------------------------------------------------------------------ #
 def test_sparkline_basic():
     result = checker._sparkline([0, 2, 4, 8, 4, 2, 0, 1])
     assert len(result) == 8
     assert result[3] == "█"  # Peak
     assert result[0] == " "  # Zero
 
-
 def test_sparkline_all_zeros():
     result = checker._sparkline([0, 0, 0])
     assert result == "▁▁▁"
-
 
 def test_sparkline_uniform():
     result = checker._sparkline([5, 5, 5])
     assert all(c == "█" for c in result)
 
-
-def test_build_myhistory_basic():
-    _reset()
-    now = datetime.now(timezone.utc)
-    state = _make_state()
-
-    state["message_counts"]["100"] = {"42": 30}
-    state["post_timestamps"]["100"] = {
-        "42": [
-            (now - timedelta(weeks=w, hours=h)).isoformat()
-            for w in range(4)
-            for h in [2, 24, 48]
-        ],
-    }
-
-    result = checker._build_myhistory("100", "42", "TestCampaign", state, {"999"})
-    assert "Posting history" in result
-    assert "Player" in result
-    assert "8 weeks" in result
-    assert "Peak week" in result
-
-
-def test_build_myhistory_no_posts():
-    _reset()
-    state = _make_state()
-    result = checker._build_myhistory("100", "42", "TestCampaign", state, {"999"})
-    assert "No posting history" in result
-
-
-def test_process_updates_myhistory_command():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-
-    updates = [{
-        "update_id": 8001,
-        "message": {
-            "chat": {"id": -100},
-            "message_thread_id": 100,
-            "from": {"id": 42, "first_name": "Test"},
-            "date": now_ts,
-            "text": "/myhistory",
-        },
-    }]
-
-    checker.process_updates(updates, config, state)
-    history_msgs = [m for m in _sent_messages if "No posting history" in m.get("text", "") or "Posting history" in m.get("text", "")]
-    assert len(history_msgs) >= 1
-
-
-# ------------------------------------------------------------------ #
-#  /pause and /resume tests
-# ------------------------------------------------------------------ #
 def test_pause_command():
     _reset()
     config = _make_config()
@@ -1666,7 +579,6 @@ def test_pause_command():
     pause_msgs = [m for m in _sent_messages if "paused" in m.get("text", "").lower()]
     assert len(pause_msgs) == 1
 
-
 def test_pause_non_gm_ignored():
     _reset()
     config = _make_config()
@@ -1686,7 +598,6 @@ def test_pause_non_gm_ignored():
 
     checker.process_updates(updates, config, state)
     assert "100" not in state.get("paused_campaigns", {})
-
 
 def test_resume_command():
     _reset()
@@ -1711,7 +622,6 @@ def test_resume_command():
     resume_msgs = [m for m in _sent_messages if "resumed" in m.get("text", "").lower()]
     assert len(resume_msgs) == 1
 
-
 def test_pause_stops_alerts():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1730,7 +640,6 @@ def test_pause_stops_alerts():
     alert_msgs = [m for m in _sent_messages if "No new posts" in m.get("text", "")]
     assert len(alert_msgs) == 0
 
-
 def test_pause_stops_player_warnings():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1748,7 +657,6 @@ def test_pause_stops_player_warnings():
     checker.check_player_activity(config, state, now=now)
     assert len(_sent_messages) == 0
 
-
 def test_pause_shows_in_status():
     _reset()
     now = datetime.now(timezone.utc)
@@ -1758,7 +666,6 @@ def test_pause_shows_in_status():
     result = checker._build_status("100", "TestCampaign", state, {"999"})
     assert "PAUSED" in result
     assert "Holiday" in result
-
 
 def test_pause_shows_in_campaign():
     _reset()
@@ -1771,59 +678,10 @@ def test_pause_shows_in_campaign():
     assert "PAUSED" in result
     assert "Between arcs" in result
 
-
-# ------------------------------------------------------------------ #
-#  Transcript logging tests
-# ------------------------------------------------------------------ #
 def test_sanitize_dirname():
     assert checker._sanitize_dirname("Doomsday Funtime") == "Doomsday_Funtime"
     assert checker._sanitize_dirname("Test/Bad:Name!") == "TestBadName"
     assert checker._sanitize_dirname("  Spaces  ") == "Spaces"
-
-
-def test_format_log_entry_text():
-    parsed = {
-        "user_name": "Alice", "user_last_name": "B", "user_id": "42",
-        "msg_time_iso": "2026-02-26T14:30:05+00:00",
-        "raw_text": "I attack the goblin!", "media_type": None, "caption": "",
-    }
-    result = checker._format_log_entry(parsed, {"999"})
-    assert "**Alice B**" in result
-    assert "I attack the goblin!" in result
-    assert "[GM]" not in result
-    assert "2026-02-26 14:30:05" in result
-
-
-def test_format_log_entry_gm():
-    parsed = {
-        "user_name": "Lewis", "user_last_name": "", "user_id": "999",
-        "msg_time_iso": "2026-02-26T14:30:05+00:00",
-        "raw_text": "The goblin snarls.", "media_type": None, "caption": "",
-    }
-    result = checker._format_log_entry(parsed, {"999"})
-    assert "[GM]" in result
-
-
-def test_format_log_entry_image():
-    parsed = {
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "msg_time_iso": "2026-02-26T14:30:05+00:00",
-        "raw_text": "", "media_type": "image", "caption": "battle map",
-    }
-    result = checker._format_log_entry(parsed, {"999"})
-    assert "[image]" in result
-    assert "battle map" in result
-
-
-def test_format_log_entry_sticker():
-    parsed = {
-        "user_name": "Bob", "user_last_name": "", "user_id": "42",
-        "msg_time_iso": "2026-02-26T14:30:05+00:00",
-        "raw_text": "", "media_type": "sticker:😂", "caption": "",
-    }
-    result = checker._format_log_entry(parsed, {"999"})
-    assert "[sticker 😂]" in result
-
 
 def test_append_to_transcript():
     import shutil
@@ -1857,242 +715,6 @@ def test_append_to_transcript():
 
     shutil.rmtree(test_dir)
 
-
-def test_transcript_week_headers():
-    """Transcript inserts week headers when ISO week changes."""
-    import shutil
-    test_dir = checker._LOGS_DIR / "week_test"
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-    base = {
-        "campaign_name": "week_test",
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "raw_text": "msg", "media_type": None, "caption": "",
-    }
-
-    # Week 9: Mon Feb 23 2026
-    parsed1 = {**base, "msg_time_iso": "2026-02-23T10:00:00+00:00", "raw_text": "week 9 msg"}
-    checker._append_to_transcript(parsed1, {"999"})
-
-    # Same week, no new header
-    parsed2 = {**base, "msg_time_iso": "2026-02-25T12:00:00+00:00", "raw_text": "still week 9"}
-    checker._append_to_transcript(parsed2, {"999"})
-
-    # Week 10: Mon Mar 2 2026
-    parsed3 = {**base, "msg_time_iso": "2026-03-02T08:00:00+00:00", "raw_text": "week 10 msg"}
-    checker._append_to_transcript(parsed3, {"999"})
-
-    # Check February file
-    feb_file = checker._LOGS_DIR / "week_test" / "2026-02.md"
-    feb_content = feb_file.read_text()
-    assert "## Week 9" in feb_content
-    assert feb_content.count("## Week 9") == 1  # Only one header for week 9
-    assert "week 9 msg" in feb_content
-    assert "still week 9" in feb_content
-
-    # Check March file
-    mar_file = checker._LOGS_DIR / "week_test" / "2026-03.md"
-    mar_content = mar_file.read_text()
-    assert "## Week 10" in mar_content
-    assert "week 10 msg" in mar_content
-
-    shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-
-def test_transcript_day_headers():
-    """Transcript inserts day separators when the date changes within a week."""
-    import shutil
-    test_dir = checker._LOGS_DIR / "day_test"
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-    base = {
-        "campaign_name": "day_test",
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "raw_text": "msg", "media_type": None, "caption": "",
-    }
-
-    # Monday Feb 23
-    p1 = {**base, "msg_time_iso": "2026-02-23T10:00:00+00:00", "raw_text": "monday msg"}
-    checker._append_to_transcript(p1, {"999"})
-
-    # Wednesday Feb 25 (same week, different day)
-    p2 = {**base, "msg_time_iso": "2026-02-25T14:00:00+00:00", "raw_text": "wednesday msg"}
-    checker._append_to_transcript(p2, {"999"})
-
-    # Still Wednesday (same day, no new header)
-    p3 = {**base, "msg_time_iso": "2026-02-25T16:00:00+00:00", "raw_text": "still wed"}
-    checker._append_to_transcript(p3, {"999"})
-
-    content = (checker._LOGS_DIR / "day_test" / "2026-02.md").read_text()
-
-    # Should have day headers for both Monday and Wednesday
-    assert "📅 Monday, Feb 23" in content
-    assert "📅 Wednesday, Feb 25" in content
-    # Wednesday header only once
-    assert content.count("📅 Wednesday") == 1
-    # Week header present
-    assert "## Week 9" in content
-
-    shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-
-def test_transcript_silence_gap():
-    """Transcript inserts silence markers for 12+ hour gaps."""
-    import shutil
-    test_dir = checker._LOGS_DIR / "silence_test"
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-    base = {
-        "campaign_name": "silence_test",
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "raw_text": "msg", "media_type": None, "caption": "",
-    }
-
-    # First message
-    p1 = {**base, "msg_time_iso": "2026-02-23T08:00:00+00:00", "raw_text": "morning"}
-    checker._append_to_transcript(p1, {"999"})
-
-    # 2 hours later — no silence marker
-    p2 = {**base, "msg_time_iso": "2026-02-23T10:00:00+00:00", "raw_text": "still here"}
-    checker._append_to_transcript(p2, {"999"})
-
-    # 18 hours later (same day-ish) — should get silence marker
-    p3 = {**base, "msg_time_iso": "2026-02-24T04:00:00+00:00", "raw_text": "back after silence"}
-    checker._append_to_transcript(p3, {"999"})
-
-    content = (checker._LOGS_DIR / "silence_test" / "2026-02.md").read_text()
-
-    # Should NOT have a silence marker for the 2h gap
-    assert "2h of silence" not in content
-
-    # Should have a day header for Feb 24 (which suppresses the silence marker since day changed)
-    # Actually: silence markers only show when NO day/week header is shown.
-    # The 18h gap crosses a day boundary, so the day header takes precedence.
-    # Let's test same-day silence instead.
-
-    shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-    # Test same-day 14h silence
-    p4 = {**base, "msg_time_iso": "2026-02-23T02:00:00+00:00", "raw_text": "late night"}
-    checker._append_to_transcript(p4, {"999"})
-    p5 = {**base, "msg_time_iso": "2026-02-23T16:00:00+00:00", "raw_text": "afternoon"}
-    checker._append_to_transcript(p5, {"999"})
-
-    content2 = (checker._LOGS_DIR / "silence_test" / "2026-02.md").read_text()
-    assert "14h of silence" in content2
-
-    shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-
-def test_transcript_multi_day_silence():
-    """Transcript shows silence in days for 48h+ gaps."""
-    import shutil
-    test_dir = checker._LOGS_DIR / "longsilence_test"
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-    base = {
-        "campaign_name": "longsilence_test",
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "raw_text": "msg", "media_type": None, "caption": "",
-    }
-
-    p1 = {**base, "msg_time_iso": "2026-02-23T10:00:00+00:00", "raw_text": "bye"}
-    checker._append_to_transcript(p1, {"999"})
-    # 3 days later, same week
-    p2 = {**base, "msg_time_iso": "2026-02-26T10:00:00+00:00", "raw_text": "hi again"}
-    checker._append_to_transcript(p2, {"999"})
-
-    content = (checker._LOGS_DIR / "longsilence_test" / "2026-02.md").read_text()
-    # Day header takes precedence over silence marker when day changes.
-    # But if both day changes AND silence is large — day header shown, silence suppressed.
-    assert "📅 Thursday, Feb 26" in content
-
-    shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-
-def test_transcript_quote_formatting():
-    """PBP > and >> - formatting converted to blockquotes."""
-    parsed = {
-        "user_name": "GM", "user_last_name": "", "user_id": "1",
-        "msg_time_iso": "2026-02-23T10:00:00+00:00",
-        "raw_text": "> COMBAT.\n>> - Round 1!\n>> - Fierce Leopard: Strike = Hit",
-        "media_type": None, "caption": "",
-    }
-    entry = checker._format_log_entry(parsed, {"1"})
-    assert "> COMBAT." in entry
-    assert ">> Round 1!" in entry
-    assert ">> Fierce Leopard: Strike = Hit" in entry
-
-
-def test_transcript_mechanical_styling():
-    """Mechanical content (DCs, rolls) gets italic styling."""
-    parsed = {
-        "user_name": "GM", "user_last_name": "", "user_id": "1",
-        "msg_time_iso": "2026-02-23T10:00:00+00:00",
-        "raw_text": "DC 25 Reflex save",
-        "media_type": None, "caption": "",
-    }
-    entry = checker._format_log_entry(parsed, {"1"})
-    assert "*DC 25 Reflex save*" in entry
-
-
-def test_transcript_monthly_stats_footer():
-    """Previous month gets a stats footer when a new month starts."""
-    import shutil
-    test_dir = checker._LOGS_DIR / "stats_test"
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-    # Create a fake February file with some entries
-    test_dir.mkdir(parents=True)
-    feb_content = (
-        "# stats_test — 2026-02\n\n"
-        "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
-        "**Alice** (2026-02-23 10:00:00):\nHello world\n\n"
-        "**Bob** [GM] (2026-02-23 11:00:00):\nWelcome\n\n"
-        "**Alice** (2026-02-24 14:00:00):\nAnother message here today\n\n"
-    )
-    (test_dir / "2026-02.md").write_text(feb_content)
-
-    # Now write a March message (triggers finalization of Feb)
-    base = {
-        "campaign_name": "stats_test",
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "raw_text": "march msg", "media_type": None, "caption": "",
-    }
-    p1 = {**base, "msg_time_iso": "2026-03-01T10:00:00+00:00"}
-    checker._append_to_transcript(p1, {"999"})
-
-    feb_final = (test_dir / "2026-02.md").read_text()
-    assert "📊 Month Summary" in feb_final
-    assert "Total messages" in feb_final
-    assert "3" in feb_final  # 3 messages
-    assert "Alice" in feb_final  # should be in most active
-
-    # Check it's idempotent (writing another March msg doesn't duplicate footer)
-    p2 = {**base, "msg_time_iso": "2026-03-02T10:00:00+00:00", "raw_text": "march2"}
-    # Need to force is_new check — march file already exists now, so won't re-finalize
-    feb_final2 = (test_dir / "2026-02.md").read_text()
-    assert feb_final2.count("📊 Month Summary") == 1
-
-    shutil.rmtree(test_dir)
-    checker._transcript_cache.clear()
-
-
 def test_parse_message_captures_media():
     maps = helpers.build_topic_maps({"group_id": -100, "topic_pairs": [
         {"name": "Test", "chat_topic_id": 200, "pbp_topic_ids": [100]},
@@ -2110,10 +732,6 @@ def test_parse_message_captures_media():
     assert result["caption"] == "battle map"
     assert result["text"] == "battle map"  # Falls back to caption
 
-
-# ------------------------------------------------------------------ #
-#  /kick and /addplayer tests
-# ------------------------------------------------------------------ #
 def test_kick_by_username():
     _reset()
     state = _make_state()
@@ -2129,7 +747,6 @@ def test_kick_by_username():
     assert state["removed_players"]["100:42"]["kicked"] is True
     assert any("removed" in m.get("text", "").lower() for m in _sent_messages)
 
-
 def test_kick_by_first_name():
     _reset()
     state = _make_state()
@@ -2141,7 +758,6 @@ def test_kick_by_first_name():
     }
     checker._handle_kick("100", "TestCampaign", "Alice Smith", state, -100, 200)
     assert "100:42" not in state["players"]
-
 
 def test_kick_no_match():
     _reset()
@@ -2156,7 +772,6 @@ def test_kick_no_match():
     assert "100:42" in state["players"]  # Not removed
     assert any("no player" in m.get("text", "").lower() for m in _sent_messages)
 
-
 def test_addplayer():
     _reset()
     state = _make_state()
@@ -2169,7 +784,6 @@ def test_addplayer():
     assert state["players"][key]["last_name"] == "Jones"
     assert state["players"][key]["username"] == "bob"
     assert any("added" in m.get("text", "").lower() for m in _sent_messages)
-
 
 def test_addplayer_duplicate():
     _reset()
@@ -2186,7 +800,6 @@ def test_addplayer_duplicate():
     assert "100:pending_bob" not in state["players"]  # Not added
     assert any("already tracked" in m.get("text", "").lower() for m in _sent_messages)
 
-
 def test_addplayer_clears_removed():
     _reset()
     state = _make_state()
@@ -2201,16 +814,11 @@ def test_addplayer_clears_removed():
     assert "100:42" not in state["removed_players"]
     assert "100:pending_bob" in state["players"]
 
-
-# ------------------------------------------------------------------ #
-#  /catchup tests
-# ------------------------------------------------------------------ #
 def test_catchup_no_history():
     _reset()
     state = _make_state()
     result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
     assert "no posting history" in result.lower()
-
 
 def test_catchup_caught_up():
     _reset()
@@ -2223,7 +831,6 @@ def test_catchup_caught_up():
     result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
     assert "caught up" in result.lower()
 
-
 def test_catchup_nobody_posted():
     _reset()
     now = datetime.now(timezone.utc)
@@ -2235,7 +842,6 @@ def test_catchup_nobody_posted():
     result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
     assert "nobody" in result.lower()
     assert "floor is yours" in result.lower()
-
 
 def test_catchup_with_messages():
     _reset()
@@ -2264,7 +870,6 @@ def test_catchup_with_messages():
     assert "Bob" in result
     assert "3 posts" in result  # 1 GM + 2 Bob
 
-
 def test_catchup_with_combat():
     _reset()
     now = datetime.now(timezone.utc)
@@ -2283,10 +888,6 @@ def test_catchup_with_combat():
     assert "Round 3" in result
     assert "haven't acted" in result
 
-
-# ------------------------------------------------------------------ #
-#  /overview tests
-# ------------------------------------------------------------------ #
 def test_overview_multi_campaign():
     _reset()
     now = datetime.now(timezone.utc)
@@ -2322,269 +923,6 @@ def test_overview_multi_campaign():
     assert "2 campaigns" in result
     assert "1 active players" in result
 
-
-# ------------------------------------------------------------------ #
-#  Message milestone tests (per-thread)
-# ------------------------------------------------------------------ #
-def test_milestone_thread_500():
-    """Thread hitting 500 posts fires milestone in thread and bot topic."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    state["thread_message_counts"] = {"100": {"42": 300, "50": 200}}
-    state["celebrated_milestones"] = {}
-
-    checker.check_message_milestones(config, state)
-    assert state["celebrated_milestones"].get("thread:100") == 500
-    assert any("500" in m.get("text", "") for m in _sent_messages)
-
-
-def test_milestone_thread_not_repeated():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    state["thread_message_counts"] = {"100": {"42": 300, "50": 200}}
-    state["celebrated_milestones"] = {"thread:100": 500}
-
-    checker.check_message_milestones(config, state)
-    milestone_msgs = [m for m in _sent_messages if "500" in m.get("text", "")]
-    assert len(milestone_msgs) == 0
-
-
-def test_milestone_thread_1000():
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    state["thread_message_counts"] = {"100": {"42": 600, "50": 400}}
-    state["celebrated_milestones"] = {"thread:100": 500}
-
-    checker.check_message_milestones(config, state)
-    assert state["celebrated_milestones"]["thread:100"] == 1000
-    assert any("1,000" in m.get("text", "") for m in _sent_messages)
-
-
-def test_milestone_thread_below_step():
-    """Threads under 500 messages don't fire."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    state["thread_message_counts"] = {"100": {"42": 100}}
-    state["celebrated_milestones"] = {}
-
-    checker.check_message_milestones(config, state)
-    assert "thread:100" not in state["celebrated_milestones"]
-
-
-def test_milestone_global():
-    _reset()
-    config = {
-        "group_id": -100,
-        "gm_user_ids": [999],
-        "leaderboard_topic_id": 9999,
-        "topic_pairs": [
-            {"name": "A", "chat_topic_id": 200, "pbp_topic_ids": [100]},
-            {"name": "B", "chat_topic_id": 400, "pbp_topic_ids": [300]},
-        ],
-    }
-    state = _make_state()
-    state["thread_message_counts"] = {
-        "100": {"42": 3000},
-        "300": {"50": 2000},
-    }
-    state["celebrated_milestones"] = {}
-
-    checker.check_message_milestones(config, state)
-    assert state["celebrated_milestones"].get("global") == 5000
-    assert any("5,000" in m.get("text", "") and "Path Wars" in m.get("text", "")
-               for m in _sent_messages)
-
-
-
-
-def test_milestone_thread_combat_label():
-    """Multi-topic campaign: combat thread fires with COMBAT label."""
-    _reset()
-    config = {
-        "group_id": -100, "bot_topic_id": 999, "gm_user_ids": [999],
-        "topic_pairs": [{
-            "pbp_topic_ids": [100, 200], "code": "C06", "name": "Kibwe",
-            "gm_user_ids": [999], "chat_topic_id": 21514,
-        }],
-    }
-    state = _make_state()
-    state["thread_message_counts"] = {"200": {"42": 500}}
-    state["celebrated_milestones"] = {}
-
-    checker.check_message_milestones(config, state)
-    assert state["celebrated_milestones"].get("thread:200") == 500
-    msg_text = next((m.get("text", "") for m in _sent_messages if "500" in m.get("text", "")), "")
-    assert "COMBAT" in msg_text
-
-
-def test_milestone_thread_unknown_thread_skips():
-    """Thread not found in any campaign config is skipped gracefully."""
-    _reset()
-    config = _make_config()
-    state = _make_state()
-    # Thread 999999 not in any pair
-    state["thread_message_counts"] = {"999999": {"42": 500}}
-    state["celebrated_milestones"] = {}
-
-    checker.check_message_milestones(config, state)
-    # Should not crash, and since group_and_chat returns defaults, it may or may not send
-    # The important thing: no unhandled exception
-
-
-
-# ------------------------------------------------------------------ #
-#  _MilestoneMessages — campaign-specific body lookup
-# ------------------------------------------------------------------ #
-
-def test_milestone_messages_specific_body_used():
-    """When thread_id + milestone are in JSON, specific body is sent."""
-    from scheduled.message_milestones import _MilestoneMessages, _build_msg
-    _MilestoneMessages.reset()
-    _MilestoneMessages._data = {"66154": {"500": "Bell tower. The beginning."}}
-    msg = _build_msg("66154", "Riddleport PBP", "🎯", 500)
-    assert "Bell tower. The beginning." in msg
-    assert "Riddleport PBP has hit 500 messages" in msg
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_generic_body_fallback():
-    """When thread_id not in JSON, generic body is used."""
-    from scheduled.message_milestones import _MilestoneMessages, _build_msg
-    _MilestoneMessages.reset()
-    _MilestoneMessages._data = {}
-    msg = _build_msg("99999", "Unknown", "🎯", 500)
-    assert "collaborative storytelling" in msg
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_milestone_missing_uses_generic():
-    """Thread is in JSON but milestone key missing — falls back to generic."""
-    from scheduled.message_milestones import _MilestoneMessages, _build_msg
-    _MilestoneMessages.reset()
-    _MilestoneMessages._data = {"66154": {"1000": "Different milestone."}}
-    msg = _build_msg("66154", "Riddleport PBP", "🎯", 500)
-    assert "collaborative storytelling" in msg
-    _MilestoneMessages.reset()
-
-
-
-
-
-
-
-
-def test_milestone_messages_dir_not_found():
-    """Missing data directory → falls back to empty dict gracefully."""
-    from unittest.mock import patch
-    from scheduled.message_milestones import _MilestoneMessages
-    _MilestoneMessages.reset()
-    with patch("os.path.isdir", return_value=False):
-        result = _MilestoneMessages.get("66154", 500)
-    assert result is None
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_json_decode_error():
-    """Corrupt JSON file in directory → skipped gracefully."""
-    from unittest.mock import patch, mock_open
-    from scheduled.message_milestones import _MilestoneMessages
-    _MilestoneMessages.reset()
-    with patch("os.path.isdir", return_value=True), \
-         patch("os.listdir", return_value=["bad.json"]), \
-         patch("builtins.open", mock_open(read_data="not-json")):
-        result = _MilestoneMessages.get("66154", 500)
-    assert result is None
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_file_not_found():
-    """FileNotFoundError for a file in directory → skipped gracefully."""
-    from unittest.mock import patch
-    from scheduled.message_milestones import _MilestoneMessages
-    _MilestoneMessages.reset()
-    with patch("os.path.isdir", return_value=True), \
-         patch("os.listdir", return_value=["c00.json"]), \
-         patch("builtins.open", side_effect=FileNotFoundError):
-        result = _MilestoneMessages.get("66154", 500)
-    assert result is None
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_non_json_file_skipped():
-    """Non-.json files in the directory are ignored."""
-    import json as _json
-    from unittest.mock import patch, mock_open
-    from scheduled.message_milestones import _MilestoneMessages
-    _MilestoneMessages.reset()
-    with patch("os.path.isdir", return_value=True), \
-         patch("os.listdir", return_value=["README.md", "c00.json"]), \
-         patch("builtins.open", mock_open(
-             read_data=_json.dumps({"66154": {"500": "found"}}))):
-        result = _MilestoneMessages.get("66154", 500)
-    assert result == "found"
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_multiple_files_merged():
-    """Multiple JSON files in directory are merged together."""
-    import json as _json
-    import io as _io
-    from unittest.mock import patch
-    from scheduled.message_milestones import _MilestoneMessages
-    _MilestoneMessages.reset()
-    file_data = {
-        "c00.json": _json.dumps({"66154": {"500": "riddleport"}}),
-        "c01.json": _json.dumps({"25059": {"500": "doomsday"}}),
-    }
-
-    def fake_open(path, **kw):
-        fname = path.split("/")[-1]
-        return _io.StringIO(file_data[fname])
-
-    with patch("os.path.isdir", return_value=True), \
-         patch("os.listdir", return_value=list(file_data.keys())), \
-         patch("builtins.open", side_effect=fake_open):
-        assert _MilestoneMessages.get("66154", 500) == "riddleport"
-        assert _MilestoneMessages.get("25059", 500) == "doomsday"
-    _MilestoneMessages.reset()
-
-
-def test_milestone_messages_cached_after_first_load():
-    """Second call to _load() returns cached data without re-reading files."""
-    from scheduled.message_milestones import _MilestoneMessages
-    _MilestoneMessages.reset()
-    # Inject data directly to simulate a loaded state
-    _MilestoneMessages._data = {"66154": {"500": "cached"}}
-    result = _MilestoneMessages.get("66154", 500)
-    assert result == "cached"
-    _MilestoneMessages.reset()
-
-
-def test_milestone_specific_body_appears_in_sent_message():
-    """End-to-end: specific body from patched JSON appears in Telegram send."""
-    from unittest.mock import patch
-    from scheduled.message_milestones import _MilestoneMessages
-    _reset()
-    _MilestoneMessages.reset()
-    _MilestoneMessages._data = {"100": {"500": "Custom Riddleport body."}}
-    config = _make_config()
-    state = _make_state()
-    state["thread_message_counts"] = {"100": {"42": 300, "50": 200}}
-    state["celebrated_milestones"] = {}
-
-    checker.check_message_milestones(config, state)
-
-    assert any("Custom Riddleport body." in m.get("text", "") for m in _sent_messages)
-    _MilestoneMessages.reset()
-
-
-# ------------------------------------------------------------------ #
-#  Character awareness and /party tests
-# ------------------------------------------------------------------ #
 def test_character_name_helper():
     config = {
         "topic_pairs": [
@@ -2597,7 +935,6 @@ def test_character_name_helper():
     assert helpers.character_name(config, "100", "999") is None
     assert helpers.character_name(config, "999", "42") is None
 
-
 def test_get_characters():
     config = {
         "topic_pairs": [
@@ -2608,7 +945,6 @@ def test_get_characters():
     chars = helpers.get_characters(config, "100")
     assert chars == {"42": "Cardigan"}
     assert helpers.get_characters(config, "999") == {}
-
 
 def test_party_with_characters():
     _reset()
@@ -2636,14 +972,12 @@ def test_party_with_characters():
     assert "1 active" in result
     assert "1 inactive" in result
 
-
 def test_party_no_characters():
     _reset()
     config = _make_config()
     state = _make_state()
     result = checker._build_party("100", "TestCampaign", config, state)
     assert "no characters" in result.lower()
-
 
 def test_mystats_with_character():
     _reset()
@@ -2664,7 +998,6 @@ def test_mystats_with_character():
 
     result = checker._build_mystats("100", "42", "Test", state, {"999"}, config)
     assert "Cardigan" in result
-
 
 def test_word_count_tracking():
     """Word counts are accumulated per-user per-campaign during message processing."""
@@ -2699,7 +1032,6 @@ def test_word_count_tracking():
     # 7 words + 3 words = 10
     assert state["word_counts"]["100"]["42"] == 10
 
-
 def test_mystats_shows_word_count():
     """The /mystats output includes word count when available."""
     _reset()
@@ -2714,7 +1046,6 @@ def test_mystats_shows_word_count():
     result = checker._build_mystats("100", "42", "Test", state, {"999"})
     assert "250" in result
     assert "50/post" in result
-
 
 def test_profile_shows_word_count():
     """The /profile output includes word count when available."""
@@ -2743,39 +1074,6 @@ def test_profile_shows_word_count():
     result = checker._build_profile("alice", config, state)
     assert "1,500 words" in result
 
-
-def test_transcript_with_character():
-    _reset()
-    import shutil
-    test_dir = checker._LOGS_DIR / "char_test"
-    if test_dir.exists():
-        shutil.rmtree(test_dir)
-
-    config = {
-        "topic_pairs": [
-            {"name": "char_test", "chat_topic_id": 10, "pbp_topic_ids": [100],
-             "characters": {"42": "Cardigan"}},
-        ],
-    }
-    parsed = {
-        "campaign_name": "char_test", "pid": "100",
-        "user_name": "Alice", "user_last_name": "", "user_id": "42",
-        "msg_time_iso": "2026-02-26T14:30:05+00:00",
-        "raw_text": "I rage!", "media_type": None, "caption": "",
-    }
-    checker._append_to_transcript(parsed, {"999"}, config)
-
-    log_file = checker._LOGS_DIR / "char_test" / "2026-02.md"
-    content = log_file.read_text()
-    assert "(Cardigan)" in content
-    assert "I rage!" in content
-
-    shutil.rmtree(test_dir)
-
-
-# ------------------------------------------------------------------ #
-#  Archive player_breakdown
-# ------------------------------------------------------------------ #
 def test_archive_includes_player_breakdown():
     _reset()
     config = _make_config()
@@ -2825,10 +1123,6 @@ def test_archive_includes_player_breakdown():
     assert alice_entries[0]["sessions"] >= 1
     assert alice_entries[0]["avg_gap_h"] is not None
 
-
-# ------------------------------------------------------------------ #
-#  Smart alerts: pace drop
-# ------------------------------------------------------------------ #
 def test_pace_drop_detected():
     _reset()
     config = _make_config()
@@ -2853,7 +1147,6 @@ def test_pace_drop_detected():
     assert any("Pace check" in m.get("text", "") or "📉" in m.get("text", "") for m in _sent_messages)
     assert "last_pace_drop_check" in state
 
-
 def test_pace_drop_skips_low_activity():
     _reset()
     config = _make_config()
@@ -2875,7 +1168,6 @@ def test_pace_drop_skips_low_activity():
     pace_msgs = [m for m in _sent_messages if "Pace check" in m.get("text", "") or "📉" in m.get("text", "")]
     assert len(pace_msgs) == 0
 
-
 def test_pace_drop_weekly_gating():
     _reset()
     config = _make_config()
@@ -2887,10 +1179,6 @@ def test_pace_drop_weekly_gating():
     checker.check_pace_drop(config, state, now=now)
     assert len(_sent_messages) == 0  # Should not run
 
-
-# ------------------------------------------------------------------ #
-#  Smart alerts: conversation dying
-# ------------------------------------------------------------------ #
 def test_conversation_dying_48h():
     _reset()
     config = _make_config()
@@ -2909,7 +1197,6 @@ def test_conversation_dying_48h():
     assert len(dying_msgs) == 1
     assert state.get("dying_alerts_sent", {}).get("100") == "active"
 
-
 def test_conversation_dying_not_repeated():
     _reset()
     config = _make_config()
@@ -2923,7 +1210,6 @@ def test_conversation_dying_not_repeated():
     checker.check_conversation_dying(config, state, now=now)
     # Should NOT send again — already flagged
     assert len(_sent_messages) == 0
-
 
 def test_conversation_dying_resets_on_activity():
     _reset()
@@ -2940,7 +1226,6 @@ def test_conversation_dying_resets_on_activity():
     assert "100" not in state.get("dying_alerts_sent", {})
     assert len(_sent_messages) == 0
 
-
 def test_conversation_dying_skips_paused():
     _reset()
     config = _make_config()
@@ -2954,10 +1239,6 @@ def test_conversation_dying_skips_paused():
     checker.check_conversation_dying(config, state, now=now)
     assert len(_sent_messages) == 0
 
-
-# ------------------------------------------------------------------ #
-#  v2.1.0: Scene markers & GM notes
-# ------------------------------------------------------------------ #
 def test_scene_command():
     """GM /scene sets current scene and writes to transcript."""
     _reset()
@@ -2980,7 +1261,6 @@ def test_scene_command():
     assert state.get("current_scenes", {}).get("100") == "The Docks at Midnight"
     scene_msgs = [m for m in _sent_messages if "Scene" in m.get("text", "")]
     assert len(scene_msgs) >= 1
-
 
 def test_scene_no_name():
     """GM /scene with no name shows usage."""
@@ -3005,7 +1285,6 @@ def test_scene_no_name():
     usage_msgs = [m for m in _sent_messages if "Usage" in m.get("text", "")]
     assert len(usage_msgs) >= 1
 
-
 def test_scene_non_gm_ignored():
     """Non-GM /scene is ignored."""
     _reset()
@@ -3027,7 +1306,6 @@ def test_scene_non_gm_ignored():
     checker.process_updates(updates, config, state)
     assert "100" not in state.get("current_scenes", {})
 
-
 def test_scene_shows_in_status():
     """Scene name appears in /status output."""
     _reset()
@@ -3036,7 +1314,6 @@ def test_scene_shows_in_status():
     state["current_scenes"] = {"100": "The Haunted Chapel"}
     result = checker._build_status("100", "TestCampaign", state, {999})
     assert "The Haunted Chapel" in result
-
 
 def test_note_command():
     """GM /note adds a persistent note."""
@@ -3063,7 +1340,6 @@ def test_note_command():
     saved_msgs = [m for m in _sent_messages if "saved" in m.get("text", "").lower()]
     assert len(saved_msgs) >= 1
 
-
 def test_note_no_text():
     """GM /note with no text shows usage."""
     _reset()
@@ -3084,7 +1360,6 @@ def test_note_no_text():
 
     checker.process_updates(updates, config, state)
     assert len(state.get("campaign_notes", {}).get("100", [])) == 0
-
 
 def test_note_max_limit():
     """Notes capped at 20 per campaign."""
@@ -3113,7 +1388,6 @@ def test_note_max_limit():
     max_msgs = [m for m in _sent_messages if "Maximum" in m.get("text", "")]
     assert len(max_msgs) >= 1
 
-
 def test_notes_command():
     """Anyone can view notes with /notes."""
     _reset()
@@ -3140,13 +1414,11 @@ def test_notes_command():
     notes_msgs = [m for m in _sent_messages if "First note" in m.get("text", "")]
     assert len(notes_msgs) >= 1
 
-
 def test_notes_empty():
     """/notes with no notes shows helpful message."""
     _reset()
     result = checker._build_notes("100", "TestCampaign", {})
     assert "No GM notes" in result
-
 
 def test_delnote_command():
     """GM /delnote removes a note by number."""
@@ -3177,7 +1449,6 @@ def test_delnote_command():
     del_msgs = [m for m in _sent_messages if "Deleted" in m.get("text", "")]
     assert len(del_msgs) >= 1
 
-
 def test_delnote_invalid_number():
     """GM /delnote with invalid number shows error."""
     _reset()
@@ -3204,7 +1475,6 @@ def test_delnote_invalid_number():
     err_msgs = [m for m in _sent_messages if "not found" in m.get("text", "")]
     assert len(err_msgs) >= 1
 
-
 def test_scene_shows_in_campaign():
     """Scene name appears in /campaign output."""
     _reset()
@@ -3213,7 +1483,6 @@ def test_scene_shows_in_campaign():
     state["current_scenes"] = {"100": "The Grand Library"}
     result = checker._build_campaign_report("100", config, state, {999})
     assert "The Grand Library" in result
-
 
 def test_notes_show_in_campaign():
     """Notes appear in /campaign output."""
@@ -3225,7 +1494,6 @@ def test_notes_show_in_campaign():
     ]}
     result = checker._build_campaign_report("100", config, state, {999})
     assert "Remember the artifact" in result
-
 
 def test_write_scene_marker():
     """Scene marker writes correct markdown to transcript."""
@@ -3247,10 +1515,6 @@ def test_write_scene_marker():
             _lmod._LOGS_DIR = original_dir
             checker._LOGS_DIR = original_dir
 
-
-# ------------------------------------------------------------------ #
-#  v2.2.0: Activity insights
-# ------------------------------------------------------------------ #
 def test_activity_tracking():
     """Messages record hour and day counters in state."""
     _reset()
@@ -3277,7 +1541,6 @@ def test_activity_tracking():
     assert hours.get("14", 0) == 1
     assert days.get("2", 0) == 1  # Wednesday = 2
 
-
 def test_activity_command():
     """/activity shows pattern report when data exists."""
     _reset()
@@ -3298,13 +1561,11 @@ def test_activity_command():
     assert "Busiest times" in result
     assert "Peak hour" in result
 
-
 def test_activity_empty():
     """/activity with no data shows helpful message."""
     _reset()
     result = checker._build_activity("100", "TestCampaign", {}, {999})
     assert "No activity data" in result
-
 
 def test_activity_command_via_message():
     """/activity sent as a message produces a response."""
@@ -3329,7 +1590,6 @@ def test_activity_command_via_message():
     checker.process_updates(updates, config, state)
     activity_msgs = [m for m in _sent_messages if "Activity" in m.get("text", "")]
     assert len(activity_msgs) >= 1
-
 
 def test_profile_command():
     """/profile shows cross-campaign stats for a player."""
@@ -3362,13 +1622,11 @@ def test_profile_command():
     profile_msgs = [m for m in _sent_messages if "Alice" in m.get("text", "")]
     assert len(profile_msgs) >= 1
 
-
 def test_profile_not_found():
     """/profile with unknown player shows error."""
     _reset()
     result = checker._build_profile("nonexistent", _make_config(), _make_state())
     assert "No player matching" in result
-
 
 def test_profile_no_target():
     """/profile with no name shows usage."""
@@ -3391,7 +1649,6 @@ def test_profile_no_target():
     checker.process_updates(updates, config, state)
     usage_msgs = [m for m in _sent_messages if "Usage" in m.get("text", "")]
     assert len(usage_msgs) >= 1
-
 
 def test_profile_cross_campaign():
     """/profile shows stats across multiple campaigns."""
@@ -3423,10 +1680,6 @@ def test_profile_cross_campaign():
     assert "Campaign B" in result
     assert "25 posts across 2 campaigns" in result
 
-
-# ------------------------------------------------------------------ #
-#  /away and /back command tests
-# ------------------------------------------------------------------ #
 def test_away_command():
     """/away marks player as away and skips warnings."""
     _reset()
@@ -3451,7 +1704,6 @@ def test_away_command():
     assert record["until"] is not None
     assert "✈️" in _sent_messages[-1]["text"]
 
-
 def test_away_indefinite():
     """/away without duration is indefinite."""
     _reset()
@@ -3471,7 +1723,6 @@ def test_away_indefinite():
     record = state["away"]["100:42"]
     assert record["until"] is None
     assert record["reason"] == "busy with work"
-
 
 def test_back_command():
     """/back clears away status."""
@@ -3495,7 +1746,6 @@ def test_back_command():
     assert "100:42" not in state.get("away", {}), "Away record should be cleared"
     assert "👋" in _sent_messages[-1]["text"]
 
-
 def test_away_auto_clear_on_post():
     """Posting a non-command message auto-clears away status."""
     _reset()
@@ -3516,7 +1766,6 @@ def test_away_auto_clear_on_post():
     checker.process_updates(updates, config, state)
 
     assert "100:42" not in state.get("away", {}), "Away should auto-clear on post"
-
 
 def test_away_skips_warnings():
     """Away players should be skipped in inactivity warnings."""
@@ -3542,7 +1791,6 @@ def test_away_skips_warnings():
     # Should NOT have sent any warning
     warning_msgs = [m for m in _sent_messages if "Alice" in m["text"] and "not posted" in m["text"]]
     assert len(warning_msgs) == 0, f"Away player should not get warned, got: {_sent_messages}"
-
 
 def test_away_skips_combat_ping():
     """Away players should be excluded from combat ping missing list."""
@@ -3575,7 +1823,6 @@ def test_away_skips_combat_ping():
     pings = [m for m in _sent_messages if "Alice" in m["text"]]
     assert len(pings) == 0, f"Away player should not be pinged, got: {_sent_messages}"
 
-
 def test_away_shows_in_status():
     """Away players should appear in /status output."""
     _reset()
@@ -3596,7 +1843,6 @@ def test_away_shows_in_status():
     assert "✈️ Away:" in result
     assert "Alice" in result
 
-
 def test_away_expiry():
     """Away records with passed 'until' date should auto-expire."""
     state = {"away": {
@@ -3609,7 +1855,6 @@ def test_away_expiry():
     result = helpers.is_away(state, "100", "42", datetime.now(timezone.utc))
     assert result is None, "Expired away should return None"
     assert "100:42" not in state["away"], "Expired record should be cleaned up"
-
 
 def test_away_shows_in_party():
     """Away players should be marked in /party output."""
@@ -3634,10 +1879,6 @@ def test_away_shows_in_party():
     assert "✈️ away" in result
     assert "vacation" in result
 
-
-# ------------------------------------------------------------------ #
-#  /recap command tests
-# ------------------------------------------------------------------ #
 def test_recap_basic():
     """_build_recap returns recent transcript entries."""
     import pathlib
@@ -3662,13 +1903,11 @@ def test_recap_basic():
     assert "Bob" in result
     assert "I search the room" in result
 
-
 def test_recap_no_transcript():
     """_build_recap handles missing transcripts gracefully."""
     config = _make_config()
     result = checker._build_recap("100", "NoCampaign", config, 10)
     assert "No transcript archive" in result
-
 
 def test_recap_command():
     """/recap command sends transcript entries."""
@@ -3692,7 +1931,6 @@ def test_recap_command():
     recap_msgs = [m for m in _sent_messages if "📜" in m["text"]]
     assert len(recap_msgs) >= 1, "Should send recap message"
 
-
 def test_recap_with_count():
     """/recap 5 limits to 5 entries."""
     import pathlib
@@ -3713,7 +1951,6 @@ def test_recap_with_count():
     # Should show exactly 5 entries
     assert "last 5" in result
 
-
 def test_recap_gm_tag():
     """Recap shows 🎲 for GM posts."""
     import pathlib
@@ -3731,9 +1968,6 @@ def test_recap_gm_tag():
     result = checker._build_recap("100", "TestCampaign", config, 10)
     assert "🎲 Lewis" in result
     assert "Cardigan" in result
-    # Alice's real name shouldn't show when char name exists
-    # (Cardigan should be the display name)
-
 
 def test_recap_scene_boundary():
     """Recap shows scene markers."""
@@ -3754,7 +1988,6 @@ def test_recap_scene_boundary():
     assert "The Dark Cave" in result
     assert "━━━" in result
 
-
 def test_recap_time_gap():
     """Recap shows time gaps between posts."""
     import pathlib
@@ -3771,7 +2004,6 @@ def test_recap_time_gap():
     config = _make_config()
     result = checker._build_recap("100", "TestCampaign", config, 10)
     assert "later" in result  # "12h later" gap indicator
-
 
 def test_catchup_shows_combat_acted():
     """Catchup tells player if they've already acted in combat."""
@@ -3790,10 +2022,6 @@ def test_catchup_shows_combat_acted():
     result = checker._build_catchup("100", "42", "TestCampaign", state, {"999"})
     assert "already acted" in result
 
-
-# ------------------------------------------------------------------ #
-#  helpers.parse_away_duration tests
-# ------------------------------------------------------------------ #
 def test_parse_away_duration_days():
     """Parse '3 days reason'."""
     now = datetime(2026, 2, 27, 12, 0, tzinfo=timezone.utc)
@@ -3801,7 +2029,6 @@ def test_parse_away_duration_days():
     assert until is not None
     assert (until - now).days == 3
     assert reason == "vacation"
-
 
 def test_parse_away_duration_weeks():
     """Parse '2 weeks'."""
@@ -3811,14 +2038,12 @@ def test_parse_away_duration_weeks():
     assert (until - now).days == 14
     assert reason == "Away"
 
-
 def test_parse_away_duration_indefinite():
     """Parse plain text as indefinite."""
     now = datetime(2026, 2, 27, 12, 0, tzinfo=timezone.utc)
     until, reason = helpers.parse_away_duration("busy with real life stuff", now)
     assert until is None
     assert reason == "busy with real life stuff"
-
 
 def test_parse_away_duration_empty():
     """Empty text gives indefinite with default reason."""
@@ -3827,10 +2052,6 @@ def test_parse_away_duration_empty():
     assert until is None
     assert reason == "No reason given"
 
-
-# ------------------------------------------------------------------ #
-#  Dice roller tests
-# ------------------------------------------------------------------ #
 def test_roll_basic():
     """Basic 1d20 roll."""
     result = helpers.roll_dice("1d20")
@@ -3840,7 +2061,6 @@ def test_roll_basic():
     assert 1 <= r["total"] <= 20
     assert len(r["rolls"]) == 1
 
-
 def test_roll_with_modifier():
     """1d20+5 adds modifier to total."""
     result = helpers.roll_dice("1d20+5")
@@ -3848,7 +2068,6 @@ def test_roll_with_modifier():
     r = result["results"][0]
     assert r["modifier"] == 5
     assert r["total"] == r["rolls"][0] + 5
-
 
 def test_roll_negative_modifier():
     """1d20-3 subtracts modifier."""
@@ -3858,7 +2077,6 @@ def test_roll_negative_modifier():
     assert r["modifier"] == -3
     assert r["total"] == r["rolls"][0] - 3
 
-
 def test_roll_multiple_dice():
     """2d6 rolls two dice."""
     result = helpers.roll_dice("2d6")
@@ -3867,7 +2085,6 @@ def test_roll_multiple_dice():
     assert len(r["rolls"]) == 2
     assert all(1 <= x <= 6 for x in r["rolls"])
     assert r["total"] == sum(r["rolls"])
-
 
 def test_roll_keep_highest():
     """4d6kh3 keeps highest 3."""
@@ -3880,7 +2097,6 @@ def test_roll_keep_highest():
     # Kept should be the 3 highest
     assert sorted(r["kept"], reverse=True) == r["kept"]
 
-
 def test_roll_keep_lowest():
     """2d20kl1 keeps lowest."""
     result = helpers.roll_dice("2d20kl1")
@@ -3890,7 +2106,6 @@ def test_roll_keep_lowest():
     assert len(r["kept"]) == 1
     assert r["total"] == min(r["rolls"])
 
-
 def test_roll_with_label():
     """1d20+12 Stealth extracts label."""
     result = helpers.roll_dice("1d20+12 Stealth")
@@ -3898,25 +2113,21 @@ def test_roll_with_label():
     assert result["label"] == "Stealth"
     assert len(result["results"]) == 1
 
-
 def test_roll_multiple_expressions():
     """1d20+5 2d6+3 rolls both."""
     result = helpers.roll_dice("1d20+5 2d6+3")
     assert result["error"] is None
     assert len(result["results"]) == 2
 
-
 def test_roll_no_dice():
     """Invalid expression returns error."""
     result = helpers.roll_dice("hello")
     assert result["error"] is not None
 
-
 def test_roll_empty():
     """Empty expression returns error."""
     result = helpers.roll_dice("")
     assert result["error"] is not None
-
 
 def test_roll_command():
     """/roll processes dice and sends result."""
@@ -3931,7 +2142,6 @@ def test_roll_command():
     assert len(roll_msgs) >= 1, f"Should send dice result, got: {_sent_messages}"
     assert "Stealth" in roll_msgs[0]["text"]
 
-
 def test_roll_command_no_args():
     """/roll with no args shows usage."""
     _reset()
@@ -3943,10 +2153,6 @@ def test_roll_command_no_args():
 
     assert any("Usage" in m.get("text", "") for m in _sent_messages)
 
-
-# ------------------------------------------------------------------ #
-#  Quest tracker tests
-# ------------------------------------------------------------------ #
 def test_quest_add():
     """/quest adds a quest to the campaign."""
     _reset()
@@ -3962,7 +2168,6 @@ def test_quest_add():
     assert quests[0]["status"] == "active"
     assert "📋" in _sent_messages[-1]["text"]
 
-
 def test_quest_non_gm():
     """/quest from non-GM should be ignored."""
     _reset()
@@ -3974,7 +2179,6 @@ def test_quest_non_gm():
 
     quests = state.get("quests", {}).get("100", [])
     assert len(quests) == 0
-
 
 def test_quests_list():
     """/quests shows active and completed quests."""
@@ -3995,7 +2199,6 @@ def test_quests_list():
     assert "1 active" in result
     assert "1 completed" in result
 
-
 def test_quest_done():
     """/done marks a quest as completed."""
     _reset()
@@ -4013,7 +2216,6 @@ def test_quest_done():
     assert state["quests"]["100"][0]["completed_at"] is not None
     assert "✅" in _sent_messages[-1]["text"]
 
-
 def test_quest_delete():
     """/delquest removes a quest entirely."""
     _reset()
@@ -4030,16 +2232,11 @@ def test_quest_delete():
     assert len(state["quests"]["100"]) == 0
     assert "🗑️" in _sent_messages[-1]["text"]
 
-
 def test_quests_empty():
     """/quests with no quests shows helpful message."""
     result = checker._build_quests("100", "TestCampaign", {"quests": {}})
     assert "No quests" in result
 
-
-# ------------------------------------------------------------------ #
-#  GM dashboard tests
-# ------------------------------------------------------------------ #
 def test_gm_dashboard():
     """/gm shows all campaigns with health info."""
     _reset()
@@ -4068,7 +2265,6 @@ def test_gm_dashboard():
     assert "Campaign A" in result
     assert "Campaign B" in result
 
-
 def test_gm_command_requires_gm():
     """/gm only works for GMs."""
     _reset()
@@ -4080,7 +2276,6 @@ def test_gm_command_requires_gm():
 
     gm_msgs = [m for m in _sent_messages if "GM Dashboard" in m.get("text", "")]
     assert len(gm_msgs) == 0, "Non-GM should not see dashboard"
-
 
 def test_gm_command_works_for_gm():
     """/gm works for GMs."""
@@ -4094,10 +2289,6 @@ def test_gm_command_works_for_gm():
     gm_msgs = [m for m in _sent_messages if "GM Dashboard" in m.get("text", "")]
     assert len(gm_msgs) >= 1
 
-
-# ------------------------------------------------------------------ #
-#  Pin tests
-# ------------------------------------------------------------------ #
 def test_pin_add():
     """/pin adds a bookmark."""
     _reset()
@@ -4113,7 +2304,6 @@ def test_pin_add():
     assert pins[0]["author"] == "GM"
     assert "📌" in _sent_messages[-1]["text"]
 
-
 def test_pin_non_gm():
     """/pin from non-GM is ignored."""
     _reset()
@@ -4126,7 +2316,6 @@ def test_pin_non_gm():
     pins = state.get("pins", {}).get("100", [])
     assert len(pins) == 0
 
-
 def test_pins_list():
     """/pins shows all bookmarks."""
     state = {"pins": {"100": [
@@ -4137,7 +2326,6 @@ def test_pins_list():
     assert "Found the key" in result
     assert "Met the dragon" in result
     assert "2/30 pins" in result
-
 
 def test_delpin():
     """/delpin removes a pin."""
@@ -4154,10 +2342,6 @@ def test_delpin():
     assert len(state["pins"]["100"]) == 0
     assert "🗑️" in _sent_messages[-1]["text"]
 
-
-# ------------------------------------------------------------------ #
-#  Loot tests
-# ------------------------------------------------------------------ #
 def test_loot_add():
     """/loot adds an item."""
     _reset()
@@ -4172,7 +2356,6 @@ def test_loot_add():
     assert loot[0]["text"] == "+1 striking longsword"
     assert "💰" in _sent_messages[-1]["text"]
 
-
 def test_loot_non_gm():
     """/loot from non-GM is ignored."""
     _reset()
@@ -4185,7 +2368,6 @@ def test_loot_non_gm():
     loot = state.get("loot", {}).get("100", [])
     assert len(loot) == 0
 
-
 def test_lootlist():
     """/lootlist shows all items."""
     state = {"loot": {"100": [
@@ -4196,7 +2378,6 @@ def test_lootlist():
     assert "+1 longsword" in result
     assert "500 gp" in result
     assert "2/50 items" in result
-
 
 def test_delloot():
     """/delloot removes an item."""
@@ -4213,57 +2394,42 @@ def test_delloot():
     assert len(state["loot"]["100"]) == 0
     assert "🗑️" in _sent_messages[-1]["text"]
 
-
-# ------------------------------------------------------------------ #
-#  DC lookup tests
-# ------------------------------------------------------------------ #
 def test_dc_level():
     """DC lookup for level 5."""
     result = helpers.dc_lookup("5")
     assert "Level 5" in result
     assert "DC 20" in result  # Standard DC for level 5
 
-
 def test_dc_level_hard():
     """DC lookup for level 5 hard."""
     result = helpers.dc_lookup("5 hard")
     assert "DC 22" in result  # 20 + 2
-
 
 def test_dc_proficiency():
     """Proficiency DC lookup."""
     result = helpers.dc_lookup("trained")
     assert "15" in result
 
-
 def test_dc_legendary():
     """Legendary proficiency DC."""
     result = helpers.dc_lookup("legendary")
     assert "40" in result
-
 
 def test_dc_alias():
     """Short alias works."""
     result = helpers.dc_lookup("vh")
     assert "Very Hard" in result
 
-
 def test_dc_empty():
     """Empty query shows help."""
     result = helpers.dc_lookup("")
     assert "Usage" in result
-
-
 
 def test_dc_out_of_range():
     """Level out of range gives error."""
     result = helpers.dc_lookup("25")
     assert "0–20" in result
 
-
-# ------------------------------------------------------------------ #
-#  NPC tracker tests
-# ------------------------------------------------------------------ #
 def test_npc_add():
     """/npc adds an NPC with name and description."""
     _reset()
@@ -4279,7 +2445,6 @@ def test_npc_add():
     assert npcs[0]["desc"] == "Dwarven blacksmith"
     assert "🎭" in _sent_messages[-1]["text"]
 
-
 def test_npc_name_only():
     """/npc with just a name (no description)."""
     _reset()
@@ -4294,7 +2459,6 @@ def test_npc_name_only():
     assert npcs[0]["name"] == "Mysterious Stranger"
     assert npcs[0]["desc"] == ""
 
-
 def test_npcs_list():
     """/npcs shows all NPCs."""
     state = {"npcs": {"100": [
@@ -4305,7 +2469,6 @@ def test_npcs_list():
     assert "Gorund" in result
     assert "Elara" in result
     assert "2/40 NPCs" in result
-
 
 def test_delnpc():
     """/delnpc removes an NPC."""
@@ -4321,7 +2484,6 @@ def test_delnpc():
 
     assert len(state["npcs"]["100"]) == 0
 
-
 def test_npc_non_gm():
     """/npc from non-GM is ignored."""
     _reset()
@@ -4333,10 +2495,6 @@ def test_npc_non_gm():
 
     assert len(state.get("npcs", {}).get("100", [])) == 0
 
-
-# ------------------------------------------------------------------ #
-#  Condition tracker tests
-# ------------------------------------------------------------------ #
 def test_condition_add():
     """/condition adds a condition with target and effect."""
     _reset()
@@ -4353,7 +2511,6 @@ def test_condition_add():
     assert conds[0]["duration"] == "end of next turn"
     assert "⚡" in _sent_messages[-1]["text"]
 
-
 def test_condition_no_duration():
     """/condition without duration."""
     _reset()
@@ -4366,7 +2523,6 @@ def test_condition_no_duration():
     conds = state.get("conditions", {}).get("100", [])
     assert len(conds) == 1
     assert conds[0]["duration"] == ""
-
 
 def test_conditions_list():
     """/conditions shows all active conditions."""
@@ -4382,7 +2538,6 @@ def test_conditions_list():
     assert "Rax" in result
     assert "2 active" in result
 
-
 def test_endcondition():
     """/endcondition removes a condition."""
     _reset()
@@ -4397,7 +2552,6 @@ def test_endcondition():
 
     assert len(state["conditions"]["100"]) == 0
     assert "✅ Ended" in _sent_messages[-1]["text"]
-
 
 def test_clearconditions():
     """/clearconditions removes all conditions."""
@@ -4415,7 +2569,6 @@ def test_clearconditions():
     assert len(state["conditions"]["100"]) == 0
     assert "Cleared 2" in _sent_messages[-1]["text"]
 
-
 def test_condition_non_gm():
     """/condition from non-GM is ignored."""
     _reset()
@@ -4427,10 +2580,6 @@ def test_condition_non_gm():
 
     assert len(state.get("conditions", {}).get("100", [])) == 0
 
-
-# ------------------------------------------------------------------ #
-#  Combat system v2 tests
-# ------------------------------------------------------------------ #
 def test_combat_start():
     """/combat starts combat with enemy roster."""
     _reset()
@@ -4449,7 +2598,6 @@ def test_combat_start():
     assert "⚔️" in _sent_messages[-1]["text"]
     assert "Ogre" in _sent_messages[-1]["text"]
 
-
 def test_combat_start_no_enemies():
     """/combat works without enemy list."""
     _reset()
@@ -4462,7 +2610,6 @@ def test_combat_start_no_enemies():
     combat = state["combat"].get("100")
     assert combat is not None
     assert combat["enemies"] == []
-
 
 def test_next_players_to_enemies():
     """/next advances from players to enemies phase."""
@@ -4483,7 +2630,6 @@ def test_next_players_to_enemies():
 
     assert state["combat"]["100"]["current_phase"] == "enemies"
     assert "Enemies" in _sent_messages[-1]["text"]
-
 
 def test_next_enemies_to_new_round():
     """/next advances from enemies to next round players."""
@@ -4506,7 +2652,6 @@ def test_next_enemies_to_new_round():
     assert state["combat"]["100"]["current_phase"] == "players"
     assert state["combat"]["100"]["players_acted"] == {}
     assert "Round 2" in _sent_messages[-1]["text"]
-
 
 def test_combat_auto_notify():
     """GM gets pinged when all players have acted."""
@@ -4545,7 +2690,6 @@ def test_combat_auto_notify():
     assert len(notify_msgs) >= 1
     assert state["combat"]["100"]["all_players_notified"] is True
 
-
 def test_clog():
     """/clog adds a combat log entry."""
     _reset()
@@ -4568,7 +2712,6 @@ def test_clog():
     assert log[0]["round"] == 2
     assert "ogre crits" in log[0]["text"]
 
-
 def test_combatlog_view():
     """/combatlog shows the log."""
     state = {"combat": {"100": {
@@ -4584,7 +2727,6 @@ def test_combatlog_view():
     assert "Ogre drops" in result
     assert "R1:" in result
     assert "R2:" in result
-
 
 def test_enemies_set():
     """/enemies sets enemy roster mid-combat."""
@@ -4604,7 +2746,6 @@ def test_enemies_set():
     checker.process_updates(updates, config, state)
 
     assert state["combat"]["100"]["enemies"] == ["Dragon", "3 Kobolds"]
-
 
 def test_endcombat_summary():
     """/endcombat shows combat log summary."""
@@ -4633,7 +2774,6 @@ def test_endcombat_summary():
     assert "Ogre falls!" in end_msgs[0]["text"]
     assert "100" not in state["combat"]
 
-
 def test_whosturn_with_enemies():
     """/whosturn shows enemy roster."""
     now = datetime.now(timezone.utc)
@@ -4650,17 +2790,6 @@ def test_whosturn_with_enemies():
     assert "Ogre" in result
     assert "2 Skeletons" in result
 
-
-def test_format_elapsed():
-    """_format_elapsed formats times correctly."""
-    assert "30m" in checker._format_elapsed(0.5)
-    assert "3h" in checker._format_elapsed(3.2)
-    assert "1d" in checker._format_elapsed(26.5)
-
-
-# ------------------------------------------------------------------ #
-#  HP Tracker tests
-# ------------------------------------------------------------------ #
 def test_hp_set():
     """/hp set creates an HP entry."""
     _reset()
@@ -4676,7 +2805,6 @@ def test_hp_set():
     assert hp["Ogre"]["max"] == 45
     assert "█" in _sent_messages[-1]["text"]
 
-
 def test_hp_damage():
     """/hp d deals damage."""
     _reset()
@@ -4689,7 +2817,6 @@ def test_hp_damage():
 
     assert state["hp_tracker"]["100"]["Ogre"]["current"] == 33
     assert "12 damage" in _sent_messages[-1]["text"]
-
 
 def test_hp_heal():
     """/hp h heals."""
@@ -4704,7 +2831,6 @@ def test_hp_heal():
     assert state["hp_tracker"]["100"]["Ogre"]["current"] == 30
     assert "healed" in _sent_messages[-1]["text"]
 
-
 def test_hp_kill():
     """/hp d that kills shows DOWN."""
     _reset()
@@ -4718,7 +2844,6 @@ def test_hp_kill():
     assert state["hp_tracker"]["100"]["Ogre"]["current"] == 0
     assert "DOWN" in _sent_messages[-1]["text"]
 
-
 def test_hp_remove():
     """/hp remove removes an entry."""
     _reset()
@@ -4730,7 +2855,6 @@ def test_hp_remove():
     checker.process_updates(updates, config, state)
 
     assert "Ogre" not in state["hp_tracker"]["100"]
-
 
 def test_hp_clear():
     """/hp clear removes all entries."""
@@ -4747,7 +2871,6 @@ def test_hp_clear():
 
     assert len(state["hp_tracker"]["100"]) == 0
 
-
 def test_hp_view():
     """/hp shows HP tracker."""
     state = {"hp_tracker": {"100": {
@@ -4759,7 +2882,6 @@ def test_hp_view():
     assert "Goblin" in result
     assert "█" in result
     assert "💀" in result  # Goblin at 0 HP
-
 
 def test_hp_non_gm_view():
     """/hp from non-GM shows tracker (read-only)."""
@@ -4774,7 +2896,6 @@ def test_hp_non_gm_view():
     hp_msgs = [m for m in _sent_messages if "Ogre" in m.get("text", "")]
     assert len(hp_msgs) >= 1
 
-
 def test_hp_no_heal_over_max():
     """/hp h doesn't overheal past max."""
     _reset()
@@ -4787,10 +2908,6 @@ def test_hp_no_heal_over_max():
 
     assert state["hp_tracker"]["100"]["Ogre"]["current"] == 45
 
-
-# ------------------------------------------------------------------ #
-#  Progress Clock tests
-# ------------------------------------------------------------------ #
 def test_clock_create():
     """/clock creates a progress clock."""
     _reset()
@@ -4806,7 +2923,6 @@ def test_clock_create():
     assert clocks["Investigation"]["filled"] == 0
     assert "○" in _sent_messages[-1]["text"]
 
-
 def test_tick():
     """/tick advances a clock."""
     _reset()
@@ -4819,7 +2935,6 @@ def test_tick():
 
     assert state["clocks"]["100"]["Investigation"]["filled"] == 3
 
-
 def test_tick_amount():
     """/tick with amount advances multiple segments."""
     _reset()
@@ -4831,7 +2946,6 @@ def test_tick_amount():
     checker.process_updates(updates, config, state)
 
     assert state["clocks"]["100"]["Investigation"]["filled"] == 4
-
 
 def test_tick_complete():
     """/tick that completes a clock shows COMPLETE."""
@@ -4846,7 +2960,6 @@ def test_tick_complete():
     assert state["clocks"]["100"]["Investigation"]["filled"] == 6
     assert "COMPLETE" in _sent_messages[-1]["text"]
 
-
 def test_untick():
     """/untick reverses a clock."""
     _reset()
@@ -4858,7 +2971,6 @@ def test_untick():
     checker.process_updates(updates, config, state)
 
     assert state["clocks"]["100"]["Investigation"]["filled"] == 2
-
 
 def test_delclock():
     """/delclock removes a clock."""
@@ -4872,7 +2984,6 @@ def test_delclock():
 
     assert "Investigation" not in state["clocks"]["100"]
 
-
 def test_clocks_list():
     """/clocks shows all clocks."""
     state = {"clocks": {"100": {
@@ -4885,7 +2996,6 @@ def test_clocks_list():
     assert "◉" in result
     assert "✅" in result  # Ritual is complete
 
-
 def test_clock_non_gm():
     """/clock from non-GM is ignored."""
     _reset()
@@ -4897,10 +3007,6 @@ def test_clock_non_gm():
 
     assert len(state.get("clocks", {}).get("100", {})) == 0
 
-
-# ------------------------------------------------------------------ #
-#  HP helper tests
-# ------------------------------------------------------------------ #
 def test_hp_bar():
     """HP bar renders correctly."""
     import helpers
@@ -4909,14 +3015,12 @@ def test_hp_bar():
     assert "█" in result
     assert "░" in result
 
-
 def test_hp_bar_full():
     """Full HP bar is all filled."""
     import helpers
     result = helpers.hp_bar(100, 100, 10)
     assert "100/100" in result
     assert "░" not in result
-
 
 def test_hp_bar_empty():
     """Empty HP bar is all empty."""
@@ -4925,14 +3029,12 @@ def test_hp_bar_empty():
     assert "0/100" in result
     assert "█" not in result
 
-
 def test_clock_display():
     """Clock display renders correctly."""
     import helpers
     result = helpers.clock_display(3, 6)
     assert "◉◉◉○○○" in result
     assert "3/6" in result
-
 
 def test_clock_display_full():
     """Full clock is all filled."""
@@ -4941,10 +3043,6 @@ def test_clock_display_full():
     assert "◉◉◉◉◉◉" in result
     assert "○" not in result
 
-
-# ------------------------------------------------------------------ #
-#  Vote tests
-# ------------------------------------------------------------------ #
 def test_vote_start():
     """/vote creates a vote with options."""
     _reset()
@@ -4961,7 +3059,6 @@ def test_vote_start():
     assert not vote["closed"]
     assert "🗳️" in _sent_messages[-1]["text"]
 
-
 def test_vote_too_few_options():
     """/vote with only 1 option rejected."""
     _reset()
@@ -4972,7 +3069,6 @@ def test_vote_too_few_options():
     checker.process_updates(updates, config, state)
 
     assert "100" not in state.get("votes", {})
-
 
 def test_pick_vote():
     """/pick casts a vote."""
@@ -4993,7 +3089,6 @@ def test_pick_vote():
     assert "Alice" in state["votes"]["100"]["results"]["2"]
     assert "✅" in _sent_messages[-1]["text"]
 
-
 def test_pick_changes_vote():
     """/pick changes previous vote."""
     _reset()
@@ -5012,7 +3107,6 @@ def test_pick_changes_vote():
 
     assert "Alice" not in state["votes"]["100"]["results"]["1"]
     assert "Alice" in state["votes"]["100"]["results"]["2"]
-
 
 def test_endvote():
     """/endvote closes and shows results."""
@@ -5035,7 +3129,6 @@ def test_endvote():
     assert "Winner" in last or "Tied" in last
     assert "A" in last
 
-
 def test_showvote():
     """/showvote displays current vote."""
     state = {"votes": {"100": {
@@ -5049,7 +3142,6 @@ def test_showvote():
     assert "Left" in result
     assert "Alice" in result
 
-
 def test_vote_non_gm():
     """/vote from non-GM is ignored."""
     _reset()
@@ -5061,10 +3153,6 @@ def test_vote_non_gm():
 
     assert "100" not in state.get("votes", {})
 
-
-# ------------------------------------------------------------------ #
-#  Timer tests
-# ------------------------------------------------------------------ #
 def test_timer_set():
     """/timer sets a deadline."""
     _reset()
@@ -5079,7 +3167,6 @@ def test_timer_set():
     assert timer["reason"] == "Post your actions"
     assert "⏳" in _sent_messages[-1]["text"]
 
-
 def test_timer_bad_duration():
     """/timer with bad duration gives error."""
     _reset()
@@ -5092,7 +3179,6 @@ def test_timer_bad_duration():
     assert "100" not in state.get("timers", {})
     assert "parse" in _sent_messages[-1]["text"].lower() or "Nh" in _sent_messages[-1]["text"]
 
-
 def test_showtimer():
     """/showtimer displays timer."""
     from datetime import timezone
@@ -5104,7 +3190,6 @@ def test_showtimer():
     result = checker._build_timer("100", "TestCampaign", state)
     assert "remaining" in result
     assert "Act now!" in result
-
 
 def test_canceltimer():
     """/canceltimer removes the timer."""
@@ -5121,7 +3206,6 @@ def test_canceltimer():
     checker.process_updates(updates, config, state)
 
     assert "100" not in state.get("timers", {})
-
 
 def test_timer_expiry_notification():
     """check_expired_timers posts notification."""
@@ -5140,7 +3224,6 @@ def test_timer_expiry_notification():
     assert len(expired_msgs) >= 1
     assert state["timers"]["100"].get("notified")
 
-
 def test_timer_non_gm():
     """/timer from non-GM is ignored."""
     _reset()
@@ -5152,10 +3235,6 @@ def test_timer_non_gm():
 
     assert "100" not in state.get("timers", {})
 
-
-# ------------------------------------------------------------------ #
-#  Summary tests
-# ------------------------------------------------------------------ #
 def test_summary_basic():
     """/summary shows campaign state."""
     state = {
@@ -5173,14 +3252,12 @@ def test_summary_basic():
     assert "1 pin" in result
     assert "Stunned" in result
 
-
 def test_summary_empty():
     """/summary with nothing tracked."""
     state = {}
     config = _make_config()
     result = checker._build_summary("100", "TestCampaign", state, config)
     assert "Nothing special" in result
-
 
 def test_summary_command():
     """/summary command sends result."""
@@ -5194,10 +3271,6 @@ def test_summary_command():
     summary_msgs = [m for m in _sent_messages if "Summary" in m.get("text", "")]
     assert len(summary_msgs) >= 1
 
-
-# ------------------------------------------------------------------ #
-#  Timer duration parsing tests
-# ------------------------------------------------------------------ #
 def test_parse_timer_hours():
     """Parse '24h' duration."""
     now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
@@ -5205,20 +3278,17 @@ def test_parse_timer_hours():
     assert deadline == datetime(2026, 3, 1, 12, 0, 0, tzinfo=timezone.utc)
     assert reason == ""
 
-
 def test_parse_timer_minutes():
     """Parse '30m' duration."""
     now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
     deadline, reason = helpers.parse_timer_duration("30m", now)
     assert deadline == datetime(2026, 2, 28, 12, 30, 0, tzinfo=timezone.utc)
 
-
 def test_parse_timer_days():
     """Parse '2d' duration."""
     now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
     deadline, reason = helpers.parse_timer_duration("2d", now)
     assert deadline == datetime(2026, 3, 2, 12, 0, 0, tzinfo=timezone.utc)
-
 
 def test_parse_timer_with_reason():
     """Parse '24h Post your actions'."""
@@ -5227,31 +3297,8 @@ def test_parse_timer_with_reason():
     assert deadline is not None
     assert reason == "Post your actions"
 
-
 def test_parse_timer_invalid():
     """Invalid duration returns None."""
     now = datetime(2026, 2, 28, 12, 0, 0, tzinfo=timezone.utc)
     deadline, reason = helpers.parse_timer_duration("blah", now)
     assert deadline is None
-
-
-# ------------------------------------------------------------------ #
-#  Runner
-# ------------------------------------------------------------------ #
-def _run_all():
-    tests = [(name, obj) for name, obj in globals().items()
-             if name.startswith("test_") and callable(obj)]
-    passed = failed = 0
-    for name, func in sorted(tests):
-        try:
-            func()
-            passed += 1
-        except Exception as e:
-            failed += 1
-            print(f"  FAIL: {name}: {e}")
-    print(f"\n{passed} passed, {failed} failed out of {passed + failed}")
-    return failed
-
-
-if __name__ == "__main__":
-    sys.exit(_run_all())
