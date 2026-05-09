@@ -134,28 +134,20 @@ Either way, the operator should know.
 
 ### 6. Test consolidation pass
 
-The 200-line refactor split many "coverage-seed" files (`test_branch_gaps`,
-`test_remaining_*`, `test_final_*`, etc.) into themed sub-files. Many
-of those tests duplicate behaviour-focused tests in proper feature
-files (e.g. `test_remaining_gaps_04_commands_trackers.py` likely
-overlaps with whatever test file owns `commands/cmd_trackers.py`).
+**Status:** plan written, awaiting decision on scope/threshold/order.
 
-**Plan:**
-1. Build a quick map: for each coverage-seed sub-file, which production
-   module(s) does it test? (Their docstrings already say this.)
-2. For each production module, list every test file that exercises it.
-3. Where two test files exercise the same module: review test names
-   for behavioural overlap.
-4. Where overlap is real: delete the coverage-seed test, keep the
-   feature test.
-5. Run pytest with `--cov` to confirm 100% coverage is preserved.
+Full plan: **`docs/dev/test-consolidation-plan.md`**.
 
-**Done when:** coverage is 100%, the suite passes, total test LoC has
-dropped meaningfully (target: -25% test code).
+Short version: ~89 coverage-seed sub-files (`test_branch_gaps_*`,
+`test_remaining_*`, `test_final_*`, etc.) likely duplicate behaviour-
+focused tests in feature files. Process module-by-module, in risk
+order (helpers first, `checker.py` last). Use **branch coverage** as
+the safety net, not line coverage. Target -25% test code while
+keeping coverage at baseline. ~25 hours, multi-session.
 
-**Risk:** medium — touching tests is touchy; a deleted "duplicate"
-might cover an edge case the feature test misses. Coverage report is
-the safety net.
+**Risk:** medium — deleting a test that *looks* like a duplicate but
+covers an edge case the feature test misses is silent. Branch
+coverage + per-module commits are the mitigation.
 
 ### 7. Fix datetime deprecation warning
 
@@ -203,44 +195,44 @@ production module it covers.
 
 ### 9. State layer extraction (`StateStore`)
 
-State is currently scattered: `data/state/live.json`,
-`data/state/queues/{pid}.json`, partition registrations in
-`scripts/state.py`, ad-hoc reads/writes in many command modules.
-Schema migrations are inline in callers (`_migrate_legacy` etc.).
+**Status:** design doc written, awaiting answers to questions 1, 2,
+and 5 before slice 1 can start.
 
-A `StateStore` abstraction would centralise:
-* Read/write contracts (atomic writes, lockfile per partition).
-* Migration registry (declarative, run at first read).
-* In-memory cache (avoid re-reading the same JSON twice per run).
-* A typed interface per partition (instead of nested-dict dancing).
+Full design: **`docs/dev/statestore-design.md`**.
 
-**Plan:** large enough to deserve its own design doc; not started
-here.
+Short version: state is fragmented across `state.py` (5 partitions in
+`live`/`players`/`queue`/`activity`/`trackers`), `queues/{pid}.json`
+(separate ad-hoc system), and three auxiliary files
+(`bot_sent_ids`, `refusal_log`, `refusal_log_alerted`). Each system
+has different write contracts, no schema enforcement test, and no
+atomic writes (except the registry, which got it for free during
+P1/5). Proposed: a single `StateStore` class owning every file in
+`data/state/`, with atomic writes, partition-aware
+load/save, declarative migrations, single test-isolation point, and
+locking primitives ready for P3/10. Eight vertical slices, each
+independently shippable.
 
-**Done when:** every `with open(state_path) as f: json.load(f)` in
-production code goes through `StateStore`, schemas are declared once,
-migrations are declarative.
-
-**Risk:** high — touches everything. Best done with the state-layer
-work split into vertical slices (one partition at a time).
+**Risk:** high — touches every state read/write in production. Slice
+plan keeps each slice small and independently testable.
 
 ### 10. Race condition strategy
 
-The workflow concurrency `pbp-checker` group + `cancel-in-progress:
-false` means simultaneous runs queue rather than overlap. But a manual
-trigger during an in-flight scheduled run still gives two processes
-writing to the same state file in sequence; the second can lose data
-if it read before the first finished writing.
+**Status:** strategy doc written; recommendation is Option A
+(lockfile per partition) implemented as part of P3/9 slice 8.
 
-**Plan:** also too big for inline. Options sketched:
-* Lockfile per partition with timeout fallback.
-* Git-as-source-of-truth with optimistic-concurrency rebases.
-* Telegram-pinned-message as canonical state for the queue.
+Full strategy: **`docs/dev/concurrency-strategy.md`**.
 
-**Done when:** two workflow runs racing produce the same final state
-as either one running alone.
+Short version: the workflow concurrency group queues runs serially,
+but the protection is at the CI level, not the code level. Three
+failure modes (different machines on shared FS / weak CI guarantee
+during the state-commit window / future in-process concurrency).
+Three options weighed: (A) lockfile per partition, (B) git-as-source-
+of-truth with optimistic concurrency, (C) Telegram pinned message as
+canonical state. Recommendation: ship Option A in P3/9 slice 8;
+treat F2 (CI window) as a known limitation; document; only escalate
+if F2 actually bites.
 
-**Risk:** high — distributed-systems territory.
+**Risk:** medium given the recommendation; high if we picked B or C.
 
 ---
 
