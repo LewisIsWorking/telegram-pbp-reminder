@@ -192,43 +192,29 @@ keeping coverage at baseline. ~25 hours, multi-session.
 covers an edge case the feature test misses is silent. Branch
 coverage + per-module commits are the mitigation.
 
-### 7. Fix datetime deprecation warning
+### 7. Fix datetime deprecation warning ✅
 
-Pytest currently shows:
+**Status:** done in commits `a0588c1` / `46f4c4f`. The fix lives at
+`helpers_pkg/time_utils.py:113-131`: year-having formats are
+tried first; year-less formats synthesise the current year via
+`f"{date_str} {now.year}"` BEFORE strptime, with a past-date check
+that bumps to next year (so "until January 1" said in November
+resolves to *next* January).
 
-> `DeprecationWarning: Parsing dates involving a day of month without
-> a year specified is ambiguous and fails to parse leap day. The
-> default behavior will change in Python 3.15`
-
-at `helpers_pkg/time_utils.py:116`.
-
-**Plan:**
-1. Look at `time_utils.py:116` — find the format string accepting
-   day/month without year.
-2. Decide the fix: explicit current year, fail-on-leap-day, or use
-   `dateutil.parser` (already a likely transitive dep).
-3. Update tests to cover the resolution behaviour at year boundaries.
-
-**Done when:** zero DeprecationWarnings in pytest output.
+**Verified 2026-05-10:** `pytest -W error::DeprecationWarning`
+passes cleanly across all 1664 tests. No production strptime
+calls anywhere else in the codebase use year-less formats.
 
 **Risk:** low — narrow, well-bounded.
 
-### 8. Test sub-file naming cleanup
+### 8. Test sub-file naming cleanup ✅
 
-A few regenerated sub-files have ugly auto-generated names from the
-splitter, e.g. `test_dispatch_coverage_07_voting_code_not_in_any_pair_s_code___no_posts_but_no_crash.py`.
-These came from section comments that the splitter slugified
-verbatim.
+**Status:** done in commit `a4ac15d`. Every test sub-file under
+`scripts/test_*.py` is now ≤60 chars and identifies the production
+module it covers.
 
-**Plan:**
-1. Walk each phase-3-7 sub-file; check the file name vs the actual
-   sections it contains.
-2. Rename to a shorter, production-module-based slug
-   (`test_dispatch_coverage_07_poll_notify.py`).
-3. Update any `git log --follow` references in `REFACTOR_PROGRESS.md`.
-
-**Done when:** every sub-file name is ≤60 chars and identifies the
-production module it covers.
+**Verified 2026-05-10:** scan of `scripts/test_*.py` finds zero
+files exceeding the 60-char limit.
 
 **Risk:** none — pure rename.
 
