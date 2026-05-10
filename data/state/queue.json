@@ -727,7 +727,9 @@
       "2026-05-10T00:45:45.827495+00:00",
       "2026-05-10T19:30:40.130858+00:00",
       "2026-05-10T19:30:40.132103+00:00",
-      "2026-05-10T19:30:40.134158+00:00"
+      "2026-05-10T19:30:40.134158+00:00",
+      "2026-05-10T19:57:20.313901+00:00",
+      "2026-05-10T19:57:20.314996+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1091,18 +1093,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-30T14:50:33.793556+00:00",
-      "player": "Caelum",
-      "preview": "Feng use Vital Touch. Kieran regain 48 hp."
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-30T14:50:33.796043+00:00",
-      "player": "Link",
-      "preview": "\"No need to worry. We're done with that.\" Kieran says, \"We w"
-    },
     {
       "pid": "40585",
       "time": "2026-05-01T01:07:57.660230+00:00",
@@ -2370,6 +2360,20 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor says then \"I see. but what exactly was magical about",
       "msg_id": "152283"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T19:57:20.313901+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor \"I assume someone would steal them to sell the tears",
+      "msg_id": "152287"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T19:57:20.314996+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor stares at Anikia eyes \"I never asked what you would ",
+      "msg_id": "152290"
     }
   ],
   "pending_potw_boons": {
