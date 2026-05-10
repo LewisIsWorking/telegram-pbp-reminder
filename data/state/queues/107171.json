@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 149499,
-      "thread_id": 107171,
-      "user_id": "8748487163",
-      "user_name": "Cobalt",
-      "time": "2026-04-28T15:34:50+00:00",
-      "preview": "The massive floating magenta barathu, several kind and calm librarian's cadences in their telepathy, sparks internally and replies: \"We are no pirates, of this we can assure you. A mix of academics, warriors, and people of noble intention off to see to a dear comrade's request! You, dear, seem similarly not of the cutthroat's nature, though we have been wrong before... We are soon to reclaim this ship from the bellicose forces that surround our circumstances should you find yourself wishing to j",
-      "media_group_id": null
-    },
-    {
       "message_id": 149501,
       "thread_id": 107171,
       "user_id": "8787586972",
@@ -360,7 +351,9 @@
     "msg:149482",
     "2026-04-28 13:48:37",
     "msg:152024",
-    "2026-05-10 00:40:59"
+    "2026-05-10 00:40:59",
+    "msg:149499",
+    "2026-04-28 15:34:50"
   ],
   "reply_log": [
     {
@@ -1302,17 +1295,26 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T00:49:31+00:00",
+      "pid": "107171",
+      "msg_id": "149499",
+      "thread_id": 107171,
+      "player": "Cobalt",
+      "preview": "The massive floating magenta barathu, several kind and calm librarian's cadences",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37",
+      "fingerprint": "2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37",
       "msg_ids": [
-        152026
+        152034
       ],
-      "last_posted_at": "2026-05-10T00:45:49.735127+00:00"
+      "last_posted_at": "2026-05-10T00:49:56.688248+00:00"
     },
     "142887": {
       "msg_id": null,
