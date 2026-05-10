@@ -40,6 +40,14 @@ ALLOWED_DELETEMESSAGE_FILES = {
     "scripts/test_safe_delete.py",
     # This file itself (must mention the term to test for it)
     "scripts/test_no_direct_delete_bypass.py",
+    # Documentation of _post's suppressed-error semantics. Mentions
+    # ``deleteMessage`` only in prose; no API call here.
+    "scripts/telegram_post_notes.py",
+    # White-box tests of telegram._post's suppressed-error handling.
+    # Calls _post directly with 'deleteMessage' as the method arg to
+    # verify both soft-success and hard-failure paths. Not a bypass
+    # of safe_delete — it's testing the layer below safe_delete.
+    "scripts/test_telegram_03_suppress.py",
 }
 
 
@@ -120,8 +128,20 @@ def test_only_safe_delete_calls_post_with_deletemessage():
 
     Catches the case where someone copy-pastes the call pattern into
     a new module and forgets to delegate.
+
+    Test files that exercise ``telegram._post`` directly (white-box
+    coverage of the suppressed-error path) are exempted: those are
+    not production code, and the registry safeguard sits *above*
+    ``_post`` regardless. Listed explicitly to keep the exemption
+    narrow.
     """
     pattern = re.compile(r"""\(\s*["']deleteMessage["']\s*,""")
+    test_post_callers_ok = {
+        # White-box tests of _post's deleteMessage path. Not a
+        # bypass — they pass through the same _post that
+        # safe_delete pass-through uses, but with mocked HTTP.
+        "scripts/test_telegram_03_suppress.py",
+    }
     offenders = []
     for fp, rel in _all_python_files():
         try:
@@ -129,8 +149,11 @@ def test_only_safe_delete_calls_post_with_deletemessage():
         except OSError:
             continue
         if pattern.search(content):
-            if rel != "scripts/posting/safe_delete.py":
-                offenders.append(rel)
+            if rel == "scripts/posting/safe_delete.py":
+                continue
+            if rel in test_post_callers_ok:
+                continue
+            offenders.append(rel)
 
     assert not offenders, (
         f"File(s) call something with 'deleteMessage' as first arg: "

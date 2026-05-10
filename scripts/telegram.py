@@ -17,8 +17,17 @@ def _post(method: str, payload: dict, label: str = "request",
           suppress_errors: tuple = ()) -> dict | None:
     """POST to Telegram API. Retries once on HTTP 429.
 
-    suppress_errors: tuple of substrings — if the 400 response body contains
-    any of them the failure is logged at DEBUG level only (not printed).
+    Returns the parsed ``result`` payload on 200+ok=true. Returns
+    ``True`` when a non-2xx response body matches a ``suppress_errors``
+    substring (soft success — the desired end state is already
+    achieved). Returns ``None`` for hard failures (network errors,
+    rate-limit-after-retry, unrecognised error bodies).
+
+    See ``scripts/telegram_post_notes.py`` for the full rationale,
+    the catalogue of recognised soft-success patterns, and the
+    safety argument (this is downstream of
+    ``posting.bot_sent_registry`` — it does NOT change *which* IDs
+    get attempted, only how the result is interpreted).
     """
     for attempt in range(2):
         try:
@@ -33,8 +42,9 @@ def _post(method: str, payload: dict, label: str = "request",
                 time.sleep(retry_after + 1)
                 continue
             _body = resp.text[:500]
-            if not any(s in _body for s in suppress_errors):
-                print(f"Telegram {label} failed: {_body}")
+            if any(s in _body for s in suppress_errors):
+                return True
+            print(f"Telegram {label} failed: {_body}")
         except requests.RequestException as e:
             print(f"Telegram {label} network error: {e}")
         break

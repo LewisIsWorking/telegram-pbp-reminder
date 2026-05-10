@@ -61,6 +61,49 @@ ends with the user reading the summary.
 
 ## P1 — Safety hardening
 
+### 0. `_post` soft-success semantics (2026-05-10)
+
+**Status:** ✅ done.
+
+Lewis reported on 2026-05-10 that old GM queue messages weren't being
+deleted (state had 6 batches retained against `MAX_KEPT_BATCHES = 3`)
+and topic queue prev-deletes were logging spurious failures even
+when the messages were actually gone. Investigation found:
+
+* All affected msg_ids were in `bot_sent_ids.json` — the safeguard
+  was NOT refusing.
+* `refusal_log.json` did not exist — confirms no safeguard
+  refusals.
+* CI logs showed `Topic queue prev-delete failed:
+  thread=107171 undeleted=[150803, 150804]` with no Telegram
+  error printed — indicating the response was suppressed.
+
+Root cause: `telegram._post` returned `None` for both real failures
+and suppressed-error responses (“message to delete not found”, etc.).
+Both callers (`posting.safe_delete.perform_guarded_delete` and
+`telegram.unpin_message`) checked `_post(...) is not None` and so
+treated “already gone” as failure, leaving evicted batches stuck
+in state.
+
+Fix landed: `_post` now returns `True` for suppressed-error
+responses, signalling soft success. Real failures still print and
+return `None`. The safety argument: this is downstream of
+`bot_sent_registry.is_bot_sent` — it does NOT change *which* IDs
+get attempted, only how the result is interpreted. Catalogue of
+recognised soft-success patterns is in
+`scripts/telegram_post_notes.py`. White-box tests in
+`scripts/test_telegram_03_suppress.py` lock the new behaviour and
+guard against regression. 1631 tests passing.
+
+Known remaining issue: an orphaned topic queue message from
+2026-05-03 in thread 107171 is still visible in chat. The bot
+lost track of its msg_id at some earlier point so neither the
+safeguard nor this fix can reach it. Resolution requires either
+manual deletion or Lewis supplying the msg_id so it can be added
+to the registry and a one-shot delete invoked. **Do NOT auto-
+discover candidate IDs** — that's exactly the path the 2026-05-08
+incident took.
+
 ### 3. Audit codebase for bypass paths
 
 The safeguard works because every delete in the codebase routes through
