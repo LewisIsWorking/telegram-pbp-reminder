@@ -108,3 +108,25 @@ def post_and_persist(state: dict, group_id: int, bot_topic: int,
     state["last_queue_pin_id"] = batch.pin_id
     append_and_evict(state, group_id, batch.msg_ids, batch.pin_id)
     return True, batch.pin_id
+
+
+# Slice 7 of P3/9: register this migration in the central registry
+# so it's discoverable from one place. Production call sites still
+# invoke ``migrate_legacy`` directly (see ``post_and_persist`` above);
+# the registration is for discovery and the slice-7 regression test.
+from state_store.migration_registry import Migration, register  # noqa: E402
+
+register(Migration(
+    target="live",
+    name="last_queue_pin_id_to_gm_queue_history",
+    fn=migrate_legacy,
+    description=(
+        "Pre-2026 the bot tracked a single pinned GM queue via the "
+        "top-level ``last_queue_pin_id`` field. The 2026-Q1 schema "
+        "bump introduced ``gm_queue_history`` (a list of message "
+        "batches) so the eviction window could span multiple posts. "
+        "This migration synthesises a single one-message batch from "
+        "the legacy pin, preserving it as the most recent batch so "
+        "normal eviction handles it on the next post."
+    ),
+))

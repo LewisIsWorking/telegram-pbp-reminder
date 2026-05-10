@@ -173,3 +173,28 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime) -> None:
                 time.sleep(1)
         if changed or cq.get("topic_msg_id") is not None:
             _save(pid, cq)
+
+
+# Slice 7 of P3/9: register this migration in the central registry
+# so every schema bump in the codebase is visible from one place.
+# Production call sites still invoke ``migrate_legacy`` directly
+# (twice in ``post_topic_queues`` above — once for active threads,
+# once when scanning inactive threads for stale pins). The
+# registration is for discovery and the slice-7 regression test.
+from state_store.migration_registry import Migration, register  # noqa: E402
+
+register(Migration(
+    target="queue",
+    name="topic_msg_id_to_topic_queues",
+    fn=_migrate_legacy,
+    description=(
+        "Pre-2025 each per-campaign queue file carried a single "
+        "``topic_msg_id`` plus ``topic_fingerprint`` field tracking "
+        "one pinned topic queue. The schema bump introduced "
+        "``topic_queues`` (a per-thread dict mapping thread_id to "
+        "slot data) so multi-topic campaigns like C06 Kibwe and "
+        "C09 Metal City could carry separate pins per thread. This "
+        "migration deletes the stale single-pin message from "
+        "Telegram (best-effort) and clears the legacy fields."
+    ),
+))

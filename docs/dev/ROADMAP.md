@@ -304,7 +304,20 @@ independently shippable.
   entries (e.g. `manifest.json` from the 2026-04 migration) have
   no dedicated loader, (e) queue files match the digits-only pid
   shape. 1648 total passing.
-* ⏳ Slice 7 — migration registry.
+* ✅ Slice 7 — migration registry. `state_store/migration_registry.py`
+  centralises every state migration in one discoverable place.
+  Production call sites still invoke each migration directly
+  (pure refactor, no behaviour change); the registry exists for
+  discovery and so the regression test can assert known
+  migrations remain wired up. Two production migrations now
+  registered: `live/last_queue_pin_id_to_gm_queue_history` and
+  `queue/topic_msg_id_to_topic_queues`. `test_migration_registry.py`
+  asserts (a) every known migration is registered, (b) no
+  unexpected migrations have appeared, (c) every registration has
+  callable fn + non-empty description, (d) registration is
+  idempotent on (target, name), (e) `for_target` filtering works,
+  (f) `all_migrations` returns an immutable tuple. 1654 total
+  passing.
 * ⏳ Slice 8 — locking primitives (P3/10 prerequisite).
 
 **Risk:** high — touches every state read/write in production. Slice
