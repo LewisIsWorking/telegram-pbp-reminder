@@ -71,10 +71,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     total = sum(len(d["entries"]) for d in scanned.values())
     if total == 0 and not silent_lines:
-        if state.get("last_queue_fingerprint", "empty") != "empty":  # pragma: no cover
-            tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")  # pragma: no cover
-        state["last_queue_fingerprint"] = fingerprint  # pragma: no cover
-        return  # pragma: no cover
+        if state.get("last_queue_fingerprint", "empty") != "empty":
+            tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")
+        state["last_queue_fingerprint"] = fingerprint
+        return
 
     # Build priority map from config — lower number = higher priority
     # queue_priority: True (legacy) → level 1; numeric value used directly

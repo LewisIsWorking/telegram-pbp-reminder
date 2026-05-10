@@ -1,0 +1,156 @@
+"""Tests for the 'All caught up!' branch in scheduled/queue_reminder.py.
+
+Covers the empty-queue branch at queue_reminder.py:73-77 — previously
+marked ``# pragma: no cover`` because no test exercised it. The
+branch fires when:
+
+  1. ``scanned`` has at least one campaign (so we got past the
+     'nothing scanned' early return), but
+  2. The total number of unreplied entries across all campaigns is 0,
+     and
+  3. There are no silent campaigns to display.
+
+Two sub-cases:
+
+  * ``last_queue_fingerprint != "empty"`` — bot posts "All caught up!"
+    once, then sets fingerprint to "empty" so subsequent runs don't
+    repeat it.
+  * ``last_queue_fingerprint == "empty"`` (already marked empty) —
+    bot stays silent. Reaching this case requires bypassing the
+    duplicate-fingerprint early return at line 65, which only
+    happens on a daily-hour run with the slot not yet posted.
+
+Slice 6 of the spam-prevention design (avoid posting the same
+'All caught up!' on every cron tick after the queue empties).
+"""
+
+import sys
+import os
+from datetime import datetime, timezone
+from unittest.mock import patch
+
+sys.path.insert(0, os.path.dirname(__file__))
+
+
+def _empty_scanned() -> dict:
+    """Scanner result for a campaign that has no unreplied entries.
+
+    The dict is non-empty (so we get past the
+    ``not scanned and not silent_lines`` early return at line 68),
+    but the ``entries`` list is empty (so ``total == 0`` at line 73).
+    """
+    return {"100": {"campaign": "Active", "code": "C01", "entries": []}}
+
+
+def test_caught_up_message_posted_when_queue_first_empties():
+    """When the queue empties (prior fingerprint was non-empty), the
+    bot posts a single 'All caught up!' notification and updates the
+    fingerprint to 'empty' so it doesn't repeat.
+
+    This is the visible-state-change case: GMs see one post telling
+    them they're caught up. Subsequent runs with the queue still
+    empty will hit the ``last_queue_fingerprint == 'empty'`` branch
+    and stay silent.
+    """
+    from scheduled.queue_reminder import post_queue_reminder
+    now = datetime(2026, 5, 10, 18, 0, tzinfo=timezone.utc)
+    config = {
+        "group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C01", "name": "Active"},
+        ],
+    }
+    state = {
+        "last_queue_fingerprint": "100:2026-05-09 12:00:00",  # prior content
+        "queue_post_count": 5,
+        "last_queue_pin_id": 12345,
+        "last_queue_daily_slots": [],
+    }
+
+    captured = []
+
+    def _capture(gid, tid, text):
+        captured.append((gid, tid, text))
+
+    with patch("scheduled.queue_reminder.scan_transcripts",
+               return_value=_empty_scanned()), \
+         patch("scheduled.queue_reminder.post_topic_queues"), \
+         patch("scheduled.queue_reminder.silent_campaigns",
+               return_value=[]), \
+         patch("scheduled.queue_reminder.tg.send_message",
+               side_effect=_capture), \
+         patch("scheduled.queue_reminder.tg.send_message_id",
+               return_value=42), \
+         patch("scheduled.queue_reminder.tg.pin_message"), \
+         patch("scheduled.queue_reminder.tg.unpin_message"):
+        post_queue_reminder(config, state, now=now)
+
+    # Exactly one 'All caught up!' message sent to the bot topic.
+    assert len(captured) == 1, (
+        f"Expected one 'All caught up!' send, got {len(captured)}: "
+        f"{captured}"
+    )
+    gid, tid, text = captured[0]
+    assert gid == -1001
+    assert tid == 999
+    assert "All caught up!" in text
+    assert "No unreplied messages" in text
+
+    # Fingerprint flipped to 'empty' so the next run won't re-post.
+    assert state["last_queue_fingerprint"] == "empty"
+
+
+def test_caught_up_silent_when_already_marked_empty():
+    """When the queue is empty AND the prior fingerprint was already
+    'empty', the bot stays silent. Prevents spamming the topic with
+    repeated 'All caught up!' messages on every cron tick.
+
+    Reaching this case requires ``is_daily=True`` to bypass the
+    line-65 duplicate-fingerprint early return (since the new
+    fingerprint is also 'empty', and a non-daily run with both equal
+    would have returned early before reaching the empty-queue branch).
+    """
+    from scheduled.queue_reminder import post_queue_reminder
+    now = datetime(2026, 5, 10, 18, 0, tzinfo=timezone.utc)
+    config = {
+        "group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
+        # queue_daily_hours includes now.hour AND the slot isn't in
+        # last_queue_daily_slots, so is_daily=True at line 59 →
+        # bypasses the line-65 fingerprint match.
+        "queue_daily_hours": [now.hour],
+        "topic_pairs": [
+            {"pbp_topic_ids": [100], "code": "C01", "name": "Active"},
+        ],
+    }
+    state = {
+        "last_queue_fingerprint": "empty",  # already marked empty
+        "queue_post_count": 5,
+        "last_queue_pin_id": None,
+        "last_queue_daily_slots": [],
+    }
+
+    captured = []
+
+    def _capture(gid, tid, text):
+        captured.append(text)
+
+    with patch("scheduled.queue_reminder.scan_transcripts",
+               return_value=_empty_scanned()), \
+         patch("scheduled.queue_reminder.post_topic_queues"), \
+         patch("scheduled.queue_reminder.silent_campaigns",
+               return_value=[]), \
+         patch("scheduled.queue_reminder.tg.send_message",
+               side_effect=_capture), \
+         patch("scheduled.queue_reminder.tg.send_message_id",
+               return_value=42), \
+         patch("scheduled.queue_reminder.tg.pin_message"), \
+         patch("scheduled.queue_reminder.tg.unpin_message"):
+        post_queue_reminder(config, state, now=now)
+
+    # No 'All caught up!' message — we already told them.
+    assert captured == [], (
+        f"Expected silent re-empty (no message), but got: {captured}"
+    )
+
+    # Fingerprint stays 'empty' (overwritten with itself).
+    assert state["last_queue_fingerprint"] == "empty"
