@@ -1,52 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 150217,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-02T15:30:14+00:00",
-      "preview": "\"I see. So how did they take the ship from you?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150331,
-      "thread_id": 107171,
-      "user_id": "7863964681",
-      "user_name": "Link",
-      "time": "2026-05-02T23:40:11+00:00",
-      "preview": "\"We got knocked out by a high frequency sound wave. Didn't originated from the pirates it seems.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150343,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-02T23:49:21+00:00",
-      "preview": "\"Not much you could have done, it seems. We need to find whoever is wielding such a potent weapon and defeat them without giving them a chance to use it again.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150762,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-03T14:12:37+00:00",
-      "preview": "Hinata steps forward. \"What needs to be done? I have no technical knowledge, but I have strength and I can manipulate light and gravity to a degree.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152050,
-      "thread_id": 107171,
-      "user_id": "8748487163",
-      "user_name": "Cobalt",
-      "time": "2026-05-10T01:00:08+00:00",
-      "preview": "Their telepathy comes in meandering overlapping speech, as if many scholars stumbling into one another\u2019s half-made points and suppositions. \u201cAcademics such as we, the Symposium, and our fellow of research, young Arktos, are noble in our pursuit of unraveling the galaxy\u2019s many secrets! We mean not to speak for other members, thusly those of noble intent were not the entirety of whom we mentioned among our number. Furthermore, in comparison to pirates, our acts of self-defense are noble in their w",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -273,7 +227,17 @@
     "msg:150205",
     "2026-05-02 13:53:57",
     "msg:152170",
-    "2026-05-10 14:41:38"
+    "2026-05-10 14:41:38",
+    "msg:150217",
+    "2026-05-02 15:30:14",
+    "msg:150331",
+    "2026-05-02 23:40:11",
+    "msg:150343",
+    "2026-05-02 23:49:21",
+    "msg:150762",
+    "2026-05-03 14:12:37",
+    "msg:152050",
+    "2026-05-10 01:00:08"
   ],
   "reply_log": [
     {
@@ -1350,17 +1314,61 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T16:10:56+00:00",
+      "pid": "107171",
+      "msg_id": "150217",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "\"I see. So how did they take the ship from you?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T16:11:56+00:00",
+      "pid": "107171",
+      "msg_id": "150331",
+      "thread_id": 107171,
+      "player": "Link",
+      "preview": "\"We got knocked out by a high frequency sound wave. Didn't originated from the p",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T16:12:47+00:00",
+      "pid": "107171",
+      "msg_id": "150343",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "\"Not much you could have done, it seems. We need to find whoever is wielding suc",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T16:13:22+00:00",
+      "pid": "107171",
+      "msg_id": "150762",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "Hinata steps forward. \"What needs to be done? I have no technical knowledge, but",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T16:14:24+00:00",
+      "pid": "107171",
+      "msg_id": "152050",
+      "thread_id": 107171,
+      "player": "Cobalt",
+      "preview": "Their telepathy comes in meandering overlapping speech, as if many scholars stum",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37|2026-05-10 01:00:08",
-      "msg_ids": [
-        152173
-      ],
-      "last_posted_at": "2026-05-10T15:00:04.094206+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152189
     },
     "142887": {
       "msg_id": null,

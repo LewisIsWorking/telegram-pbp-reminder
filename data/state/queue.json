@@ -652,7 +652,12 @@
       "2026-05-10T15:00:00.929150+00:00",
       "2026-05-10T15:00:01.609321+00:00",
       "2026-05-10T15:00:01.612353+00:00",
-      "2026-05-10T15:00:01.613963+00:00"
+      "2026-05-10T15:00:01.613963+00:00",
+      "2026-05-10T16:25:58.446971+00:00",
+      "2026-05-10T16:25:58.450096+00:00",
+      "2026-05-10T16:25:58.451787+00:00",
+      "2026-05-10T16:25:58.453448+00:00",
+      "2026-05-10T16:25:58.455162+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -837,7 +842,8 @@
       "2026-05-03T15:21:44.085848+00:00",
       "2026-05-03T15:21:44.087613+00:00",
       "2026-05-07T20:34:44.779767+00:00",
-      "2026-05-07T20:34:44.781476+00:00"
+      "2026-05-07T20:34:44.781476+00:00",
+      "2026-05-10T16:25:58.457462+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1065,42 +1071,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-28T03:17:52.839325+00:00",
-      "player": "Link",
-      "preview": "After confirming Theron's condition, Kieran rises and stares"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-28T03:17:52.840335+00:00",
-      "player": "Christopher",
-      "preview": "I guess I'll join in then"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-28T03:17:52.841379+00:00",
-      "player": "Cannon",
-      "preview": "Nadya replies with an exhausted sigh.\n\n\"Unionizing kobolds h"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-28T03:17:52.844179+00:00",
-      "player": "Cannon",
-      "preview": "Dying 3."
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-28T07:07:55.686844+00:00",
-      "player": "Ryo",
-      "preview": "[media]"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-28T07:07:55.688014+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "107171",
       "time": "2026-04-28T07:07:56.172108+00:00",
@@ -2318,6 +2288,48 @@
       "player": "",
       "preview": "",
       "msg_id": "152170"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T16:25:58.446971+00:00",
+      "player": "Chris Warlock",
+      "preview": "\"I see. So how did they take the ship from you?\"",
+      "msg_id": "150217"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T16:25:58.450096+00:00",
+      "player": "Link",
+      "preview": "\"We got knocked out by a high frequency sound wave. Didn't o",
+      "msg_id": "150331"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T16:25:58.451787+00:00",
+      "player": "Chris Warlock",
+      "preview": "\"Not much you could have done, it seems. We need to find who",
+      "msg_id": "150343"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T16:25:58.453448+00:00",
+      "player": "Chris Warlock",
+      "preview": "Hinata steps forward. \"What needs to be done? I have no tech",
+      "msg_id": "150762"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T16:25:58.455162+00:00",
+      "player": "Cobalt",
+      "preview": "Their telepathy comes in meandering overlapping speech, as i",
+      "msg_id": "152050"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-05-10T16:25:58.457462+00:00",
+      "player": "Chase",
+      "preview": "Leaning against the machine, the diminutive detective turns ",
+      "msg_id": "150833"
     }
   ],
   "pending_potw_boons": {

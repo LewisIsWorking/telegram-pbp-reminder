@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 150833,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-05-03T15:07:48+00:00",
-      "preview": "Leaning against the machine, the diminutive detective turns to the newcomers. \"Phew. Fresh faces that aren't causing things to explode, or shoot at us. You'll have to forgive those of us that have been on scene longer, but we'll have to take a few and get our wind back.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 150835,
       "thread_id": 76799,
       "user_id": "8787586972",
@@ -362,7 +353,9 @@
     "msg:150815",
     "2026-05-03 14:49:15",
     "msg:150817",
-    "2026-05-03 14:52:29"
+    "2026-05-03 14:52:29",
+    "msg:150833",
+    "2026-05-03 15:07:48"
   ],
   "reply_log": [
     {
@@ -1422,17 +1415,26 @@
       "player": "Link",
       "preview": "I can't get to foundry right now, but I will have Akuma spend his 3 actions to f",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T16:21:48+00:00",
+      "pid": "76799",
+      "msg_id": "150833",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "Leaning against the machine, the diminutive detective turns to the newcomers. \"P",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-05-03 15:07:48|2026-05-03 15:10:25|2026-05-03 15:10:56|2026-05-03 15:20:10|2026-05-03 15:28:56|2026-05-03 15:48:42|2026-05-03 16:33:03|2026-05-03 17:13:45|2026-05-03 17:18:31|2026-05-03 17:20:50|2026-05-04 14:17:58|2026-05-06 06:22:07|2026-05-06 15:42:58|2026-05-08 05:33:07|2026-05-08 05:35:17",
+      "fingerprint": "2026-05-03 15:10:25|2026-05-03 15:10:56|2026-05-03 15:20:10|2026-05-03 15:28:56|2026-05-03 15:48:42|2026-05-03 16:33:03|2026-05-03 17:13:45|2026-05-03 17:18:31|2026-05-03 17:20:50|2026-05-04 14:17:58|2026-05-06 06:22:07|2026-05-06 15:42:58|2026-05-08 05:33:07|2026-05-08 05:35:17",
       "msg_ids": [
-        151677
+        152187
       ],
-      "last_posted_at": "2026-05-08T14:15:58.589271+00:00"
+      "last_posted_at": "2026-05-10T16:26:00.461687+00:00"
     },
     "144765": {
       "fingerprint": "",
