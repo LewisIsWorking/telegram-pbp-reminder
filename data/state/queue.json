@@ -736,7 +736,12 @@
       "2026-05-10T21:23:31.064605+00:00",
       "2026-05-10T21:23:31.069595+00:00",
       "2026-05-10T21:23:31.071832+00:00",
-      "2026-05-10T21:23:31.073465+00:00"
+      "2026-05-10T21:23:31.073465+00:00",
+      "2026-05-10T22:22:41.256083+00:00",
+      "2026-05-10T22:22:41.259500+00:00",
+      "2026-05-10T22:22:41.260325+00:00",
+      "2026-05-10T22:22:41.263231+00:00",
+      "2026-05-10T22:22:41.264941+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1100,36 +1105,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.799118+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.803701+00:00",
-      "player": "Link",
-      "preview": "Kieran's form will shudder in unison as he attempts to get a"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.808895+00:00",
-      "player": "Caelum",
-      "preview": "Lewis before we get down i gonna let my slime eat one of the"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.811224+00:00",
-      "player": "Caelum",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.813605+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "40585",
       "time": "2026-05-01T02:56:05.815914+00:00",
@@ -2388,6 +2363,41 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor looks curious \"I am listening\nWho briefed you about ",
       "msg_id": "152346"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T22:22:41.256083+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor continues to listen",
+      "msg_id": "152355"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T22:22:41.259500+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks relaxed \"Ahh my son's wife\"",
+      "msg_id": "152357"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T22:22:41.260325+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor \" I expect a grandson from them for all the trouble ",
+      "msg_id": "152358"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T22:22:41.263231+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks disappointed \"I know by mortal standards as a ",
+      "msg_id": "152365"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T22:22:41.264941+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks serious \"I am listening\"",
+      "msg_id": "152366"
     }
   ],
   "pending_potw_boons": {
@@ -2431,7 +2441,7 @@
       ],
       "base_message": "Player of the Week for Dark Pockets: NJ (@Sparkleslayer)!\n(2026-04-30 (W18) to 2026-05-07 (W19))\n\n5 posts this week with an average gap of 26.3h between posts. The most consistent driver of the story.",
       "posted_at": "2026-05-07T21:27:22.186040+00:00",
-      "reminders_sent": 1
+      "reminders_sent": 2
     },
     "25059": {
       "message_id": 152312,

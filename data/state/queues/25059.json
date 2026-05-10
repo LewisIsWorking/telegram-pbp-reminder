@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 152371,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-10T21:55:46+00:00",
+      "preview": "Selenor says \"Right.... why are you working with terrorists if you are an abbadarian. wouldn't that go againt your god?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -66,7 +76,17 @@
     "msg:152338",
     "2026-05-10 20:52:25",
     "msg:152346",
-    "2026-05-10 21:10:41"
+    "2026-05-10 21:10:41",
+    "msg:152355",
+    "2026-05-10 21:36:56",
+    "msg:152357",
+    "2026-05-10 21:38:43",
+    "msg:152358",
+    "2026-05-10 21:39:17",
+    "msg:152365",
+    "2026-05-10 21:49:10",
+    "msg:152366",
+    "2026-05-10 21:50:29"
   ],
   "reply_log": [
     {
@@ -356,14 +376,61 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor looks curious \"I am listening\nWho briefed you about us?\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:37:45+00:00",
+      "pid": "25059",
+      "msg_id": "152355",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor continues to listen",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:44:54+00:00",
+      "pid": "25059",
+      "msg_id": "152357",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks relaxed \"Ahh my son's wife\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:45:03+00:00",
+      "pid": "25059",
+      "msg_id": "152358",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor \" I expect a grandson from them for all the trouble they cause me\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:51:13+00:00",
+      "pid": "25059",
+      "msg_id": "152365",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks disappointed \"I know by mortal standards as a oracle my behavior m",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:51:48+00:00",
+      "pid": "25059",
+      "msg_id": "152366",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks serious \"I am listening\"",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152350
+      "fingerprint": "2026-05-10 21:55:46",
+      "msg_ids": [
+        152374
+      ],
+      "last_posted_at": "2026-05-10T22:22:44.711110+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
