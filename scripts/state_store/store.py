@@ -31,14 +31,24 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .queue_api import QueueAPI
 
-class StateStore:
+
+class StateStore(QueueAPI):
     """Owns load/save of every file in ``data/state/``.
 
-    The constructor takes an optional ``state_dir`` override; tests
-    pass a ``tmp_path`` here so production state files are never
-    touched. Production callers use the default, which resolves to
-    ``<repo_root>/data/state``.
+    Constructor takes an optional ``state_dir`` override; tests pass
+    ``tmp_path`` so production state files are never touched.
+    Production callers use the default ``<repo_root>/data/state``.
+
+    Method groups (see ``state_store/queue_api.py`` for queue
+    methods, inherited via the ``QueueAPI`` mixin):
+      * Aux files: ``load_aux`` / ``save_aux`` / ``delete_aux`` /
+        ``list_aux``.
+      * Partitions: ``partition_exists`` / ``load_partition`` /
+        ``save_partition``.
+      * Queues: ``queue_path`` / ``queue_exists`` / ``load_queue``
+        / ``save_queue`` / ``list_queues``.
     """
 
     DEFAULT_STATE_DIR = (

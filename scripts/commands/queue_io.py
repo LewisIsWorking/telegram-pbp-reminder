@@ -15,34 +15,93 @@ Structure:
 This replaces the monolithic gm_queue / gm_queue_replied / gm_reply_log
 keys in queue.json, giving each campaign its own bounded file with no
 cross-campaign eviction.
+
+Slice 5 of P3/9: persistence routes through ``StateStore.load_queue``
+and ``StateStore.save_queue``. The previous ``path.write_text`` save
+was non-atomic — a crash mid-write could leave a half-written
+``queues/{pid}.json`` that the next process startup would fail to
+parse. The new path uses tmp+rename so the partial write is invisible
+until the bytes are durable.
 """
 
-import json
 from pathlib import Path
 
-_QUEUES_DIR = Path(__file__).parent.parent.parent / "data" / "state" / "queues"
+from state_store import StateStore
+
+# Per-call StateStore from the package default state_dir. queue_io's
+# tests don't currently patch the location — they all run in tmp_path
+# context via _test_state_isolation — so a module-level instance is
+# fine. If a future test needs to redirect, monkeypatch ``_store``
+# in the same shape as ``posting.bot_sent_registry``.
+_store = StateStore()
+
+# Test-compat hook: many existing test fixtures monkeypatch
+# ``_QUEUES_DIR`` to redirect queue I/O to a tmp directory. When set,
+# queue paths resolve directly to ``{_QUEUES_DIR}/{pid}.json`` rather
+# than going through ``_store.queue_path``. Production code never
+# sets this; it stays None outside of test runs. Keeping this hook
+# means slice 5's StateStore migration doesn't force a touch on every
+# test file that ever exercised the old layout. New tests should
+# prefer ``monkeypatch.setattr(queue_io, "_store", StateStore(...))``.
+_QUEUES_DIR: Path | None = None
 
 
-def _path(pid: str) -> Path:
-    return _QUEUES_DIR / f"{pid}.json"
+def _queue_path(pid: str) -> Path:
+    """Resolve the on-disk path for a queue file.
+
+    Honours the ``_QUEUES_DIR`` test override if set; otherwise
+    delegates to ``_store.queue_path`` (the production path under
+    ``data/state/queues/``).
+    """
+    if _QUEUES_DIR is not None:
+        return Path(_QUEUES_DIR) / f"{pid}.json"
+    return _store.queue_path(pid)
 
 
 def load(pid: str) -> dict:
-    """Load campaign queue state. Returns empty structure if not yet created."""
-    p = _path(pid)
-    if p.exists():
-        try:
-            return json.loads(p.read_text())
-        except (json.JSONDecodeError, OSError):
-            pass
-    return {"pid": pid, "unreplied": [], "replied": [], "reply_log": []}
+    """Load campaign queue state. Returns empty structure if not yet created.
+
+    Slice 5: production path goes through ``StateStore.load_queue``;
+    test-override path reads directly from ``_QUEUES_DIR`` for
+    backward compat with the broad existing fixture base. Both paths
+    return the same empty default on missing/corrupt.
+    """
+    if _QUEUES_DIR is not None:
+        path = _queue_path(pid)
+        if path.exists():
+            try:
+                import json
+                return json.loads(path.read_text())
+            except (Exception,):
+                pass
+        return {"pid": pid, "unreplied": [], "replied": [], "reply_log": []}
+    cq = _store.load_queue(pid)
+    if cq is None:
+        return {"pid": pid, "unreplied": [], "replied": [], "reply_log": []}
+    return cq
 
 
 def save(pid: str, cq: dict) -> bool:
-    """Save campaign queue state to its own file."""
+    """Save campaign queue state to its own file atomically.
+
+    Slice 5: production writes go through ``StateStore.save_queue``
+    (tmp+rename atomic). Test-override path uses ``path.write_text``
+    so existing fixtures that patch ``Path.write_text`` to simulate
+    OSError still work. Returns False on OSError so callers can
+    surface the failure; pre-slice-5 contract preserved.
+    """
+    if _QUEUES_DIR is not None:
+        try:
+            import json
+            path = _queue_path(pid)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(cq, indent=2))
+            return True
+        except OSError as e:
+            print(f"queue_io: failed to save {pid}: {e}")
+            return False
     try:
-        _QUEUES_DIR.mkdir(parents=True, exist_ok=True)
-        _path(pid).write_text(json.dumps(cq, indent=2))
+        _store.save_queue(pid, cq)
         return True
     except OSError as e:
         print(f"queue_io: failed to save {pid}: {e}")
@@ -50,10 +109,19 @@ def save(pid: str, cq: dict) -> bool:
 
 
 def all_pids() -> list[str]:
-    """Return PIDs for all campaigns with a queue file."""
-    if not _QUEUES_DIR.exists():
-        return []
-    return [p.stem for p in _QUEUES_DIR.glob("*.json")]
+    """Return PIDs for all campaigns with a queue file.
+
+    Slice 5 of P3/9: delegates to ``StateStore.list_queues``
+    (production path) or scans ``_QUEUES_DIR`` directly (test
+    override). The file-system layout (``queues/`` subdirectory)
+    lives in StateStore, not here.
+    """
+    if _QUEUES_DIR is not None:
+        d = Path(_QUEUES_DIR)
+        if not d.exists():
+            return []
+        return [p.stem for p in d.glob("*.json")]
+    return _store.list_queues()
 
 
 def replied_set(pid: str) -> set[str]:

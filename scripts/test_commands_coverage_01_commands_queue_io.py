@@ -23,8 +23,10 @@ sys.path.insert(0, os.path.dirname(__file__))
 @pytest.fixture
 def tmp_queues(tmp_path, monkeypatch):
     """Redirect queue_io file operations to a temp directory."""
-    monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
-    return tmp_path
+    monkeypatch.setattr(queue_io, "_store", StateStore(state_dir=tmp_path))
+    queues_dir = tmp_path / "queues"
+    queues_dir.mkdir(parents=True, exist_ok=True)
+    return queues_dir
 
 def _pr_config():
     return {
@@ -55,13 +57,16 @@ def _rpt_config():
 # ═══════════════════════════════════════════════════════════════════════════════
 
 from commands import queue_io
+from state_store import StateStore
 
 
 @pytest.fixture
 def tmp_queues(tmp_path, monkeypatch):
     """Redirect queue_io file operations to a temp directory."""
-    monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
-    return tmp_path
+    monkeypatch.setattr(queue_io, "_store", StateStore(state_dir=tmp_path))
+    queues_dir = tmp_path / "queues"
+    queues_dir.mkdir(parents=True, exist_ok=True)
+    return queues_dir
 
 
 def test_load_missing_returns_empty(tmp_queues):
@@ -90,10 +95,11 @@ def test_save_creates_file(tmp_queues):
     assert (tmp_queues / "100.json").exists()
 
 
-def test_save_oserror(tmp_queues):
-    with patch.object(Path, "write_text", side_effect=OSError("disk full")):
-        result = queue_io.save("100", {})
-    assert result is False
+def test_save_oserror(tmp_queues, monkeypatch):
+    def _raise(*_a, **_k):
+        raise OSError("disk full")
+    monkeypatch.setattr(queue_io._store, "save_queue", _raise)
+    assert queue_io.save("100", {}) is False
 
 
 def test_all_pids_empty(tmp_queues):
@@ -109,7 +115,7 @@ def test_all_pids_with_files(tmp_queues):
 
 def test_all_pids_dir_missing(tmp_path, monkeypatch):
     missing = tmp_path / "nonexistent"
-    monkeypatch.setattr(queue_io, "_QUEUES_DIR", missing)
+    monkeypatch.setattr(queue_io, "_store", StateStore(state_dir=missing))
     assert queue_io.all_pids() == []
 
 

@@ -285,7 +285,15 @@ independently shippable.
   (aux API, slices 1+2) and `test_state_store_partitions.py`
   (partition API, slices 3+4) to stay under the 200-line cap. 5
   new save tests; 1641 total passing.
-* ⏳ Slice 5 — queue partitions (`load_queue`/`save_queue`).
+* ✅ Slice 5 — queue partitions. `QueueAPI` mixin in
+  `state_store/queue_api.py` (`queue_path` / `queue_exists` /
+  `load_queue` / `save_queue` / `list_queues`); `StateStore`
+  inherits via `class StateStore(QueueAPI):`. `commands/queue_io.py`
+  migrated: production writes now atomic (tmp+rename via
+  StateStore), and a `_QUEUES_DIR` test-compat hook preserves the
+  existing fixture pattern across ~24 test files so the slice
+  doesn't force a touch on every test that ever exercised the old
+  layout. 1641 total passing.
 * ⏳ Slice 6 — schema-completeness regression test.
 * ⏳ Slice 7 — migration registry.
 * ⏳ Slice 8 — locking primitives (P3/10 prerequisite).
