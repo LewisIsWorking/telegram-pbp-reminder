@@ -318,7 +318,29 @@ independently shippable.
   idempotent on (target, name), (e) `for_target` filtering works,
   (f) `all_migrations` returns an immutable tuple. 1654 total
   passing.
-* ⏳ Slice 8 — locking primitives (P3/10 prerequisite).
+* ✅ Slice 8 — locking primitives (P3/10 prerequisite).
+  `state_store/locks.py` provides `LockRegistry`, a thread-safe
+  registry of named `threading.Lock` objects with lazy creation.
+  Every `save_*` method now acquires a per-resource lock for the
+  duration of its tmp+rename write: `aux:{name}` for save_aux,
+  `partition:{name}` for save_partition, `queue:{pid}` for
+  save_queue. Concurrent saves to the same resource serialise;
+  saves to different resources run in parallel. Lock registry is
+  instance-scoped (per StateStore), so test isolation isn't
+  broken. Partition methods extracted to a new
+  `state_store/partition_api.py` mixin (mirroring the slice-5
+  QueueAPI pattern) to keep store.py under the 200-line cap; the
+  partition save no longer delegates through save_aux, removing
+  the dual-lock acquisition that delegation would have caused.
+  10 new tests across `test_state_store_locks_01_registry.py`
+  (LockRegistry mechanics) and `test_state_store_locks_02_savelock.py`
+  (end-to-end save locking, concurrent serialisation). 1664 total
+  passing.
+
+  What this slice does NOT yet provide: read-modify-write
+  atomicity. A reader holding stale data can still overwrite a
+  concurrent writer's update — last-write-wins. P3/10 will add
+  the read-modify-write API on top of these primitives.
 
 **Risk:** high — touches every state read/write in production. Slice
 plan keeps each slice small and independently testable.

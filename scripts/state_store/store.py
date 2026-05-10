@@ -1,20 +1,20 @@
-"""StateStore class \u2014 slice 1: aux-file load/save with atomic writes.
+"""StateStore class — slice 1: aux-file load/save with atomic writes.
 
 The class lives here; the package ``__init__.py`` re-exports it.
 
 Slice 1 scope (delivered):
   * Atomic writes (tmp + rename) on every ``save_aux``.
   * Single configurable root (default: ``<repo_root>/data/state``).
-  * Test isolation via constructor parameter \u2014 no module-level
+  * Test isolation via constructor parameter — no module-level
     monkeypatch dance.
   * Graceful handling of missing/corrupt aux files (returns the
     caller-supplied default rather than raising).
 
 Slice 1 NON-scope (planned for later slices):
-  * ``load_partition`` / ``save_partition`` \u2014 slice 3-4.
-  * ``load_queue`` / ``save_queue`` \u2014 slice 5.
-  * Migration registry \u2014 slice 7.
-  * Per-partition locks for concurrency \u2014 slice 8 (P3/10).
+  * ``load_partition`` / ``save_partition`` — slice 3-4.
+  * ``load_queue`` / ``save_queue`` — slice 5.
+  * Migration registry — slice 7.
+  * Per-partition locks for concurrency — slice 8 (P3/10).
 
 Usage::
 
@@ -31,24 +31,32 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .locks import LockRegistry
+from .partition_api import PartitionAPI
 from .queue_api import QueueAPI
 
 
-class StateStore(QueueAPI):
+class StateStore(QueueAPI, PartitionAPI):
     """Owns load/save of every file in ``data/state/``.
 
     Constructor takes an optional ``state_dir`` override; tests pass
     ``tmp_path`` so production state files are never touched.
     Production callers use the default ``<repo_root>/data/state``.
 
-    Method groups (see ``state_store/queue_api.py`` for queue
-    methods, inherited via the ``QueueAPI`` mixin):
-      * Aux files: ``load_aux`` / ``save_aux`` / ``delete_aux`` /
-        ``list_aux``.
-      * Partitions: ``partition_exists`` / ``load_partition`` /
-        ``save_partition``.
-      * Queues: ``queue_path`` / ``queue_exists`` / ``load_queue``
-        / ``save_queue`` / ``list_queues``.
+    Method groups (each group lives in a sibling mixin file):
+      * Aux files (this file): ``load_aux`` / ``save_aux`` /
+        ``delete_aux`` / ``list_aux``.
+      * Partitions (see ``partition_api.py``): ``partition_exists``
+        / ``load_partition`` / ``save_partition``.
+      * Queues (see ``queue_api.py``): ``queue_path`` /
+        ``queue_exists`` / ``load_queue`` / ``save_queue`` /
+        ``list_queues``.
+
+    Slice 8 of P3/9: every save_* method acquires a per-resource
+    lock from ``self._locks`` for the duration of its tmp+rename
+    write. Two concurrent saves to the same resource serialise;
+    saves to different resources proceed in parallel. The lock
+    registry is instance-scoped so test isolation isn't broken.
     """
 
     DEFAULT_STATE_DIR = (
@@ -61,6 +69,11 @@ class StateStore(QueueAPI):
             Path(state_dir) if state_dir is not None
             else self.DEFAULT_STATE_DIR
         )
+        # Slice 8 of P3/9: per-resource locks acquired during save_*.
+        # Lock keys are namespaced (``aux:{name}`` / ``partition:{name}``
+        # / ``queue:{pid}``) so an aux file and a partition with the
+        # same bare name don't share a lock.
+        self._locks = LockRegistry()
 
     @property
     def state_dir(self) -> Path:
@@ -89,7 +102,7 @@ class StateStore(QueueAPI):
 
         Returns the parsed JSON, or ``default`` if the file is
         missing or unparseable. A corrupt file produces a stderr
-        message but does not raise \u2014 callers always get a usable
+        message but does not raise — callers always get a usable
         value. This matches the contract that ``bot_sent_registry``
         and ``refusal_log`` already had with their direct-file I/O,
         so the migration is behaviour-preserving.
@@ -111,14 +124,18 @@ class StateStore(QueueAPI):
         Uses tmp + rename so a crash mid-write cannot leave a
         partially-written file. Creates the state directory if
         missing. Indents output for human-readability of state
-        files committed to git.
+        files committed to git. Slice 8 of P3/9 added the
+        ``aux:{name}`` lock so concurrent saves to the same aux
+        file serialise; concurrent saves to different aux files
+        proceed in parallel.
         """
         path = self.aux_path(name)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(path.suffix + ".tmp")
-        with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, default=str)
-        tmp.replace(path)
+        with self._locks.held(f"aux:{name}"):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = path.with_suffix(path.suffix + ".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, default=str)
+            tmp.replace(path)
 
     def delete_aux(self, name: str) -> bool:
         """Delete an auxiliary JSON file.
@@ -145,56 +162,3 @@ class StateStore(QueueAPI):
         if not self._state_dir.exists():
             return []
         return sorted(p.stem for p in self._state_dir.glob("*.json"))
-
-    # ------------------------------------------------------------------
-    # Partition API (slice 3-4 of P3/9).
-    #
-    # Partition files are the five JSON files written by ``state.py``:
-    # ``live`` / ``players`` / ``queue`` / ``activity`` / ``trackers``.
-    # On disk they have the same shape as aux files — just bigger,
-    # with multi-key dicts. Slice 3 adds the read side; slice 4 will
-    # add ``save_partition`` with atomic-write semantics matching
-    # ``save_aux`` so all partition writes become crash-safe.
-    #
-    # Why a separate API rather than re-using ``load_aux``: the two
-    # have the same implementation today, but later slices add
-    # partition-only concerns (migration registry in slice 7, schema
-    # validation in slice 6+) that aux files don't need.
-    # ------------------------------------------------------------------
-
-    def partition_exists(self, name: str) -> bool:
-        """Return True iff the partition file is present on disk."""
-        return self.aux_path(name).exists()
-
-    def load_partition(self, name: str) -> dict | None:
-        """Load a partition file by name.
-
-        Returns the parsed dict on success, or None if the file is
-        missing or unparseable. Callers (e.g. ``state.py``) get to
-        decide whether "missing" means "defaults" or "fall back to
-        gist". Corrupt files are logged via the same path as
-        ``load_aux`` (stderr message, no raise).
-        """
-        if not self.partition_exists(name):
-            return None
-        return self.load_aux(name, default=None)
-
-    def save_partition(self, name: str, data: dict) -> None:
-        """Save a partition file atomically.
-
-        Slice 4 of P3/9: same atomic write semantics as ``save_aux``
-        (tmp + rename), now applied to the five main partition files
-        (``live`` / ``players`` / ``queue`` / ``activity`` /
-        ``trackers``). Pre-slice-4 ``state.py:_save_to_files`` did
-        ``path.write_text(json.dumps(...))`` per partition, so a
-        crash between the open-write and the os flush could leave a
-        half-written ``live.json`` that the next process startup
-        couldn't parse. Routing through ``save_aux`` fixes this:
-        the partial write happens to a ``.tmp`` sibling and the
-        rename only goes through once the bytes are durable.
-
-        Currently delegates to ``save_aux`` since they share the
-        on-disk shape and write semantics. Slice 7 will add a
-        migration-registry hook here that doesn't apply to aux files.
-        """
-        self.save_aux(name, data)

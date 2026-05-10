@@ -58,7 +58,7 @@ def test_load_partition_corrupt_returns_none(tmp_path, capsys):
     bad.write_text("{ corrupt", encoding="utf-8")
     assert store.load_partition("live") is None
     captured = capsys.readouterr()
-    assert "Corrupt aux file" in captured.out
+    assert "Corrupt partition file" in captured.out
 
 
 # --- partition API write path (slice 4) ----------------------------

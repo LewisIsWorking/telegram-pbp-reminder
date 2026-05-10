@@ -1,4 +1,4 @@
-"""Queue partition API \u2014 per-campaign queue files.
+"""Queue partition API — per-campaign queue files.
 
 Mixin extracted from ``state_store/store.py`` to keep that file under
 the 200-line cap while still grouping all queue-related methods in
@@ -6,11 +6,11 @@ one place. ``StateStore`` inherits from this class so callers can
 treat the queue API as just another method group.
 
 Slice 5 of P3/9. Adds:
-  * ``queue_path(pid)`` \u2014 the on-disk path for ``queues/{pid}.json``
-  * ``queue_exists(pid)`` \u2014 True iff that file is present
-  * ``load_queue(pid)`` \u2014 parsed dict or None on missing/corrupt
-  * ``save_queue(pid, data)`` \u2014 atomic write via tmp+rename
-  * ``list_queues()`` \u2014 PIDs for every queue file under ``queues/``
+  * ``queue_path(pid)`` — the on-disk path for ``queues/{pid}.json``
+  * ``queue_exists(pid)`` — True iff that file is present
+  * ``load_queue(pid)`` — parsed dict or None on missing/corrupt
+  * ``save_queue(pid, data)`` — atomic write via tmp+rename
+  * ``list_queues()`` — PIDs for every queue file under ``queues/``
 
 Why a separate API rather than re-using ``load_aux``/``save_aux``:
 the on-disk layout is different (subdirectory ``queues/`` rather
@@ -30,7 +30,7 @@ class QueueAPI:
     Expects ``self._state_dir`` to be set by the host class
     (``StateStore``). Tests can construct a ``StateStore`` with a
     ``state_dir`` override and exercise the queue methods on the
-    same instance \u2014 isolation flows through naturally.
+    same instance — isolation flows through naturally.
     """
 
     _state_dir: Path  # provided by StateStore.__init__
@@ -77,16 +77,21 @@ class QueueAPI:
         written ``queues/{pid}.json`` that the next process startup
         would mis-parse. Creates the ``queues/`` subdirectory if
         missing. Same semantics as ``save_aux`` and
-        ``save_partition`` \u2014 indented JSON for human-readable git
+        ``save_partition`` — indented JSON for human-readable git
         diffs, ``default=str`` so callers don't have to convert
         datetime values manually.
+
+        Slice 8 of P3/9: acquires the ``queue:{pid}`` lock for the
+        duration of the write. Two concurrent calls for the same
+        pid serialise; calls for different pids proceed in parallel.
         """
         path = self.queue_path(pid)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_suffix(path.suffix + ".tmp")
-        with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=2, default=str)
-        tmp.replace(path)
+        with self._locks.held(f"queue:{pid}"):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = path.with_suffix(path.suffix + ".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, default=str)
+            tmp.replace(path)
 
     def list_queues(self) -> list[str]:
         """Return PIDs (bare stems) for every queue file under
