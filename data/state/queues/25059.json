@@ -42,7 +42,13 @@
     "msg:150785",
     "2026-05-03 14:27:57",
     "msg:152010",
-    "2026-05-10 00:27:04"
+    "2026-05-10 00:27:04",
+    "msg:152268",
+    "2026-05-10 19:06:56",
+    "msg:152276",
+    "2026-05-10 19:15:51",
+    "msg:152283",
+    "2026-05-10 19:20:13"
   ],
   "reply_log": [
     {
@@ -223,6 +229,33 @@
       "thread_id": 25059,
       "player": "Chris Warlock",
       "preview": "Going to bed now, since I have an early start tomorrow",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T19:14:51+00:00",
+      "pid": "25059",
+      "msg_id": "152268",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor asks \"Why do you think someone would want the mummy?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T19:16:16+00:00",
+      "pid": "25059",
+      "msg_id": "152276",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "\"What was magical about it?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T19:28:12+00:00",
+      "pid": "25059",
+      "msg_id": "152283",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says then \"I see. but what exactly was magical about it? Did it have hea",
       "via": "reply"
     }
   ],

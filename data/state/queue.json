@@ -724,7 +724,10 @@
       "2026-05-03T12:28:54.355039+00:00",
       "2026-05-03T14:46:08.674333+00:00",
       "2026-05-03T15:21:43.420518+00:00",
-      "2026-05-10T00:45:45.827495+00:00"
+      "2026-05-10T00:45:45.827495+00:00",
+      "2026-05-10T19:30:40.130858+00:00",
+      "2026-05-10T19:30:40.132103+00:00",
+      "2026-05-10T19:30:40.134158+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -885,7 +888,9 @@
       "2026-04-22T15:35:29.025775+00:00",
       "2026-04-28T09:00:48.803595+00:00",
       "2026-05-10T01:09:01.797096+00:00",
-      "2026-05-10T01:09:01.801645+00:00"
+      "2026-05-10T01:09:01.801645+00:00",
+      "2026-05-10T19:30:39.407879+00:00",
+      "2026-05-10T19:30:39.410903+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1086,36 +1091,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-04-29T11:37:17.007426+00:00",
-      "player": "Link",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-30T13:41:55.582452+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Lorn says \" I have to check if Ademe is alright I will be ba"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-30T14:50:33.785942+00:00",
-      "player": "Ryo",
-      "preview": "Leopard points up at the green slime orb, still a bit labore"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-30T14:50:33.788528+00:00",
-      "player": "Buffet",
-      "preview": "Seeing that the ritual has ended and there are no more hosti"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-30T14:50:33.791031+00:00",
-      "player": "Caelum",
-      "preview": "The monstrosity named Feng slowly walked toward Kieran. Kier"
-    },
     {
       "pid": "40585",
       "time": "2026-04-30T14:50:33.793556+00:00",
@@ -2360,6 +2335,41 @@
       "player": "Kaer'maga when?",
       "preview": "Sure",
       "msg_id": "152235"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-10T19:30:39.407879+00:00",
+      "player": "Bo",
+      "preview": "Valerie hangs back, waiting to see if any of these others ha",
+      "msg_id": "152249"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-10T19:30:39.410903+00:00",
+      "player": "Bo",
+      "preview": "\"Me? Nope. I'm not a planner, boss, you know that. I've just",
+      "msg_id": "152262"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T19:30:40.130858+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor asks \"Why do you think someone would want the mummy?",
+      "msg_id": "152268"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T19:30:40.132103+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "\"What was magical about it?\"",
+      "msg_id": "152276"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T19:30:40.134158+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says then \"I see. but what exactly was magical about",
+      "msg_id": "152283"
     }
   ],
   "pending_potw_boons": {
