@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 152308,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-10T20:19:28+00:00",
+      "preview": "The party follows",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -52,7 +62,13 @@
     "msg:152287",
     "2026-05-10 19:30:40",
     "msg:152290",
-    "2026-05-10 19:51:50"
+    "2026-05-10 19:51:50",
+    "msg:152293",
+    "2026-05-10 19:59:48",
+    "msg:152299",
+    "2026-05-10 20:06:50",
+    "msg:152303",
+    "2026-05-10 20:07:47"
   ],
   "reply_log": [
     {
@@ -279,14 +295,43 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor stares at Anikia eyes \"I never asked what you would do with the mummy\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T20:02:57+00:00",
+      "pid": "25059",
+      "msg_id": "152293",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"True crime would be an anathema to your god/ From what I understoo",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T20:07:18+00:00",
+      "pid": "25059",
+      "msg_id": "152299",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says calmly \"You have nothing to fear. I am an oracle. An ally of your g",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T20:08:06+00:00",
+      "pid": "25059",
+      "msg_id": "152303",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152028
+      "fingerprint": "2026-05-10 20:19:28",
+      "msg_ids": [
+        152315
+      ],
+      "last_posted_at": "2026-05-10T20:22:42.279936+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
