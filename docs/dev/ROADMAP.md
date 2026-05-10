@@ -294,7 +294,16 @@ independently shippable.
   existing fixture pattern across ~24 test files so the slice
   doesn't force a touch on every test that ever exercised the old
   layout. 1641 total passing.
-* ⏳ Slice 6 — schema-completeness regression test.
+* ✅ Slice 6 — schema-completeness regression test.
+  `state_store/schema.py` declares the canonical inventory of
+  expected state files (5 PARTITIONS, 3 AUX_FILES, 1 WRITE_ONCE).
+  `test_state_schema.py` asserts: (a) every file under
+  `data/state/` matches a schema entry, (b) schema PARTITIONS
+  mirrors `state.PARTITIONS` keys, (c) every PARTITIONS/AUX_FILES
+  entry has the corresponding StateStore method, (d) WRITE_ONCE
+  entries (e.g. `manifest.json` from the 2026-04 migration) have
+  no dedicated loader, (e) queue files match the digits-only pid
+  shape. 1648 total passing.
 * ⏳ Slice 7 — migration registry.
 * ⏳ Slice 8 — locking primitives (P3/10 prerequisite).
 
