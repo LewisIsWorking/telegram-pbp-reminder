@@ -2,33 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 149378,
-      "thread_id": 107171,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-04-28T04:12:04+00:00",
-      "preview": "Chik eyes the robotic companion. \"LUKA, huh? So uh what sorta puppy is this? Are you sentient? Do you like treats? If so, what format? I might have an empty datachip to spare...\"\nChik holsters his rifle a moment and pats his backpack pouches, passively looking for the datachip while giving time for a response.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149384,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-04-28T04:57:44+00:00",
-      "preview": "\"Regrettably, LUKA is not sentient as of yet, though it does retain some surface level communication modules. Feel free to pet LUKA; I've been told sentients rather enjoy such things. As for the data chip, no auto-integration function has been installed. Now that you bring it to attention, however, it would be a rather interesting prospect.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 149385,
-      "thread_id": 107171,
-      "user_id": "8383886822",
-      "user_name": "CzarChasm23",
-      "time": "2026-04-28T05:04:15+00:00",
-      "preview": "Chik looks slightly disappointed, then brightens and looks back at LUKA. \"Ah well, who knows. Maybe whatever's causing all...this will also help LUKA show some emergent behavior.\" Chik straightens up.\n\"Well anyway, I suppose we'd better get to the missile. I think if I attach this cable to your pack...\"\nChik continues with the details of assisting Arktos with the missile repair and prepares for the task at hand.",
-      "media_group_id": null
-    },
-    {
       "message_id": 149408,
       "thread_id": 107171,
       "user_id": "8787586972",
@@ -206,15 +179,6 @@
       "user_name": "Chris Warlock",
       "time": "2026-05-03T14:12:37+00:00",
       "preview": "Hinata steps forward. \"What needs to be done? I have no technical knowledge, but I have strength and I can manipulate light and gravity to a degree.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 150782,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-03T14:26:11+00:00",
-      "preview": "\"Yes, but what would I need to achieve once I get there?\"",
       "media_group_id": null
     }
   ],
@@ -400,7 +364,15 @@
     "msg:149367",
     "2026-04-28 03:57:22",
     "msg:149371",
-    "2026-04-28 04:00:40"
+    "2026-04-28 04:00:40",
+    "msg:149378",
+    "2026-04-28 04:12:04",
+    "msg:149384",
+    "2026-04-28 04:57:44",
+    "msg:149385",
+    "2026-04-28 05:04:15",
+    "msg:150782",
+    "2026-05-03 14:26:11"
   ],
   "reply_log": [
     {
@@ -1279,18 +1251,53 @@
       "player": "Bruce",
       "preview": "I would help Though I am not as skilled as some of you guys are.  So I'll stay b",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-09T23:24:09+00:00",
+      "pid": "107171",
+      "msg_id": "149378",
+      "thread_id": 107171,
+      "player": "CzarChasm23",
+      "preview": "Chik eyes the robotic companion. \"LUKA, huh? So uh what sorta puppy is this? Are",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T23:24:52+00:00",
+      "pid": "107171",
+      "msg_id": "149384",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Regrettably, LUKA is not sentient as of yet, though it does retain some surface",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T23:25:15+00:00",
+      "pid": "107171",
+      "msg_id": "149385",
+      "thread_id": 107171,
+      "player": "CzarChasm23",
+      "preview": "Chik looks slightly disappointed, then brightens and looks back at LUKA. \"Ah wel",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-09T23:29:11+00:00",
+      "pid": "107171",
+      "msg_id": "150782",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "\"Yes, but what would I need to achieve once I get there?\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-04-28 04:12:04|2026-04-28 04:57:44|2026-04-28 05:04:15|2026-04-28 08:22:45|2026-04-28 13:48:37|2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37|2026-05-03 14:26:11",
+      "fingerprint": "2026-04-28 08:22:45|2026-04-28 13:48:37|2026-04-28 15:34:50|2026-04-28 15:47:37|2026-04-28 15:58:29|2026-04-28 16:01:42|2026-04-28 16:13:17|2026-04-28 16:20:05|2026-04-28 16:33:29|2026-04-28 16:36:24|2026-04-28 16:40:47|2026-04-28 16:42:35|2026-04-28 16:46:18|2026-04-28 19:28:28|2026-05-02 08:18:23|2026-05-02 13:53:57|2026-05-02 15:30:14|2026-05-02 23:40:11|2026-05-02 23:49:21|2026-05-03 14:12:37",
       "msg_ids": [
-        151994,
-        151995
+        152017
       ],
-      "last_posted_at": "2026-05-09T23:23:56.832621+00:00"
+      "last_posted_at": "2026-05-10T00:28:50.437594+00:00"
     },
     "142887": {
       "msg_id": null,

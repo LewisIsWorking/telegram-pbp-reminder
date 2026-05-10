@@ -630,7 +630,11 @@
       "2026-05-03T14:46:08.686081+00:00",
       "2026-05-03T14:46:08.687673+00:00",
       "2026-05-09T23:23:51.753851+00:00",
-      "2026-05-09T23:23:51.756889+00:00"
+      "2026-05-09T23:23:51.756889+00:00",
+      "2026-05-10T00:28:42.283947+00:00",
+      "2026-05-10T00:28:42.287926+00:00",
+      "2026-05-10T00:28:42.289421+00:00",
+      "2026-05-10T00:28:42.290911+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1040,30 +1044,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.927671+00:00",
-      "player": "Bruce",
-      "preview": "[media]"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.929527+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.931397+00:00",
-      "player": "Bruce",
-      "preview": "(hero point reroll)"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T13:42:25.933240+00:00",
-      "player": "Buffet",
-      "preview": "[media]"
-    },
     {
       "pid": "40585",
       "time": "2026-04-27T13:42:25.935114+00:00",
@@ -2268,6 +2248,34 @@
       "player": "Bruce",
       "preview": "I would help Though I am not as skilled as some of you guys ",
       "msg_id": "149371"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T00:28:42.283947+00:00",
+      "player": "CzarChasm23",
+      "preview": "Chik eyes the robotic companion. \"LUKA, huh? So uh what sort",
+      "msg_id": "149378"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T00:28:42.287926+00:00",
+      "player": "Laetheron",
+      "preview": "\"Regrettably, LUKA is not sentient as of yet, though it does",
+      "msg_id": "149384"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T00:28:42.289421+00:00",
+      "player": "CzarChasm23",
+      "preview": "Chik looks slightly disappointed, then brightens and looks b",
+      "msg_id": "149385"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T00:28:42.290911+00:00",
+      "player": "Chris Warlock",
+      "preview": "\"Yes, but what would I need to achieve once I get there?\"",
+      "msg_id": "150782"
     }
   ],
   "pending_potw_boons": {
