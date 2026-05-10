@@ -538,7 +538,8 @@
       "2026-05-08T15:23:53.974339+00:00",
       "2026-05-08T15:23:53.977661+00:00",
       "2026-05-08T16:40:00.419902+00:00",
-      "2026-05-10T18:16:12.411480+00:00"
+      "2026-05-10T18:16:12.411480+00:00",
+      "2026-05-10T23:24:31.625425+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1105,12 +1106,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.815914+00:00",
-      "player": "Caelum",
-      "preview": "https://en.wikipedia.org/wiki/Gu_(poison)\nThe daemon familia"
-    },
     {
       "pid": "40585",
       "time": "2026-05-01T02:56:05.818237+00:00",
@@ -2398,6 +2393,13 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor looks serious \"I am listening\"",
       "msg_id": "152366"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-10T23:24:31.625425+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Lorn looks at Tal lysae \"Who are the guards?|",
+      "msg_id": "152379"
     }
   ],
   "pending_potw_boons": {

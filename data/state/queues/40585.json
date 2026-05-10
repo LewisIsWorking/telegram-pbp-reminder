@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 152382,
+      "thread_id": 40585,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-10T23:24:17+00:00",
+      "preview": "Lorn says \"If you hired them can't you just tell them to leave?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -650,7 +659,9 @@
     "msg:151694",
     "2026-05-08 15:13:32",
     "msg:152235",
-    "2026-05-10 17:48:45"
+    "2026-05-10 17:48:45",
+    "msg:152379",
+    "2026-05-10 23:03:05"
   ],
   "reply_log": [
     {
@@ -3692,6 +3703,15 @@
       "player": "Kaer'maga when?",
       "preview": "Sure",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T23:20:56+00:00",
+      "pid": "40585",
+      "msg_id": "152379",
+      "thread_id": 40585,
+      "player": "Kaer'maga when?",
+      "preview": "Lorn looks at Tal lysae \"Who are the guards?|",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3702,10 +3722,12 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152246
+      "fingerprint": "2026-05-10 23:24:17",
+      "msg_ids": [
+        152387
+      ],
+      "last_posted_at": "2026-05-10T23:24:36.431810+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
