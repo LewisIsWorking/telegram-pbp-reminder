@@ -638,7 +638,16 @@
       "2026-05-10T00:45:45.830067+00:00",
       "2026-05-10T00:45:45.831297+00:00",
       "2026-05-10T00:45:45.832432+00:00",
-      "2026-05-10T00:49:52.758476+00:00"
+      "2026-05-10T00:49:52.758476+00:00",
+      "2026-05-10T13:37:02.042201+00:00",
+      "2026-05-10T13:37:02.044120+00:00",
+      "2026-05-10T13:37:02.045893+00:00",
+      "2026-05-10T13:37:02.047679+00:00",
+      "2026-05-10T13:37:02.049427+00:00",
+      "2026-05-10T13:37:02.051162+00:00",
+      "2026-05-10T13:37:02.052917+00:00",
+      "2026-05-10T13:37:02.054698+00:00",
+      "2026-05-10T13:37:02.056421+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1051,60 +1060,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-04-27T23:25:00.067199+00:00",
-      "player": "Link",
-      "preview": "Hola"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-27T23:25:00.068221+00:00",
-      "player": "Miwa",
-      "preview": "I missed a lot"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-27T23:25:00.071001+00:00",
-      "player": "Awnii",
-      "preview": "And me"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-28T01:02:25.648697+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "107171",
-      "time": "2026-04-28T01:02:25.650519+00:00",
-      "player": "Cobalt",
-      "preview": "I see, I see, then I suppose there's no reason not to"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-04-28T01:02:26.307401+00:00",
-      "player": "Link",
-      "preview": "\"Might as well deal with the missile,\" Joo-Dee says hesitant"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-04-28T01:02:26.309035+00:00",
-      "player": "Christopher",
-      "preview": "[media]"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-04-28T01:02:26.310182+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-04-28T01:02:26.317095+00:00",
-      "player": "Link",
-      "preview": "Kieran simply looks at the blue slime person and the slime s"
-    },
     {
       "pid": "40585",
       "time": "2026-04-28T01:02:26.319660+00:00",
@@ -2290,6 +2245,69 @@
       "player": "Anthony",
       "preview": "Filiaur checks if any \"reward\" is noted on the wanted poster",
       "msg_id": "149517"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.042201+00:00",
+      "player": "Cobalt",
+      "preview": "Kae-Vo floats up a bit and excitedly waves their tendrils. \u201c",
+      "msg_id": "149511"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.044120+00:00",
+      "player": "Cobalt",
+      "preview": "\u201cAh, wait. This could be metaphor, based on your keen percep",
+      "msg_id": "149512"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.045893+00:00",
+      "player": "Christopher",
+      "preview": "Hinata looks around in a manner that looks odd, as she seems",
+      "msg_id": "149513"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.047679+00:00",
+      "player": "Link",
+      "preview": "\"Yeah,\" Joo-Dee interjects, \"we need to get this missile thi",
+      "msg_id": "149519"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.049427+00:00",
+      "player": "Christopher",
+      "preview": "\"Nice to meet you as well. What can I do to help? My experti",
+      "msg_id": "149521"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.051162+00:00",
+      "player": "Cobalt",
+      "preview": "\u201cIn our defense.\u201d The telepathy is even softer than normal, ",
+      "msg_id": "149523"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.052917+00:00",
+      "player": "Link",
+      "preview": "\"You comfortable with disarming missiles?\" Joo-Dee jests as ",
+      "msg_id": "149524"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.054698+00:00",
+      "player": "Christopher",
+      "preview": "She shakes her head. \"I am afraid that technical matters bey",
+      "msg_id": "149537"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T13:37:02.056421+00:00",
+      "player": "Laetheron",
+      "preview": "Arktos takes a brief moment to set their pack aside, entrust",
+      "msg_id": "149577"
     }
   ],
   "pending_potw_boons": {
