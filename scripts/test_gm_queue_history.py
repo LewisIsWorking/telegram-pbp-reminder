@@ -47,69 +47,69 @@ class TestAppendAndEvict:
                 {"msg_ids": [1001], "pin_id": 1001},
             ]
 
-    def test_keeps_three_no_eviction(self):
+    def test_keeps_one_no_eviction(self):
+        """First append doesn't trigger eviction (single batch fits cap)."""
         from scheduled.gm_queue_history import append_and_evict
         state = {"gm_queue_history": []}
         with patch("posting.message_batch.tg") as mock_tg:
             append_and_evict(state, -100, [1], 1)
-            append_and_evict(state, -100, [2], 2)
-            append_and_evict(state, -100, [3], 3)
             mock_tg.delete_message.assert_not_called()
-            assert len(state["gm_queue_history"]) == 3
+            assert len(state["gm_queue_history"]) == 1
 
-    def test_fourth_append_evicts_oldest(self):
+    def test_second_append_evicts_first(self):
+        """With MAX_KEPT_BATCHES=1, every new append evicts the previous."""
         from scheduled.gm_queue_history import append_and_evict
         state = {"gm_queue_history": []}
         with patch("posting.message_batch.tg") as mock_tg:
             mock_tg.delete_message.return_value = True
-            for i in (1, 2, 3, 4):
-                append_and_evict(state, -100, [i * 10], i * 10)
-            # Oldest batch (msg_ids=[10]) should be evicted and deleted.
+            append_and_evict(state, -100, [10], 10)
+            append_and_evict(state, -100, [20], 20)
+            # Previous batch (msg_ids=[10]) evicted and deleted on second append.
             mock_tg.delete_message.assert_called_once_with(-100, 10)
-            assert len(state["gm_queue_history"]) == 3
-            assert [b["pin_id"] for b in state["gm_queue_history"]] == [20, 30, 40]
+            assert len(state["gm_queue_history"]) == 1
+            assert state["gm_queue_history"][0]["pin_id"] == 20
 
     def test_eviction_deletes_every_id_in_evicted_batch(self):
         """Multi-message evicted batches must delete every message, not just the pin."""
         from scheduled.gm_queue_history import append_and_evict
         state = {"gm_queue_history": [
             {"msg_ids": [100, 101, 102], "pin_id": 100},
-            {"msg_ids": [200], "pin_id": 200},
-            {"msg_ids": [300], "pin_id": 300},
         ]}
         with patch("posting.message_batch.tg") as mock_tg:
             mock_tg.delete_message.return_value = True
             append_and_evict(state, -100, [400, 401], 400)
-            # Every id in the evicted [100,101,102] batch must be deleted.
+            # Every id in the evicted batch must be deleted.
             assert mock_tg.delete_message.call_count == 3
             deleted = [c[0][1] for c in mock_tg.delete_message.call_args_list]
             assert deleted == [100, 101, 102]
-            assert len(state["gm_queue_history"]) == 3
+            # New batch is the only one retained.
+            assert len(state["gm_queue_history"]) == 1
+            assert state["gm_queue_history"][0]["pin_id"] == 400
 
     def test_failed_delete_keeps_batch_for_retry(self):
         """When a delete fails, the batch is retained with the failed IDs."""
         from scheduled.gm_queue_history import append_and_evict
         state = {"gm_queue_history": [
             {"msg_ids": [100, 101], "pin_id": 100},
-            {"msg_ids": [200], "pin_id": 200},
-            {"msg_ids": [300], "pin_id": 300},
         ]}
         with patch("posting.message_batch.tg") as mock_tg:
             # 100 fails, 101 succeeds → batch retained with [100] only
             mock_tg.delete_message.side_effect = lambda gid, mid: mid != 100
             append_and_evict(state, -100, [400], 400)
-            # Eviction was attempted on the oldest batch
+            # Both ids attempted on the evicted batch.
             assert mock_tg.delete_message.call_count == 2
-            # The retained batch sits at the front with only the failed ID
+            # The retained batch sits at the front with only the failed ID;
+            # new batch sits behind it. Working list ends at length 2 since
+            # the retained-failed batch can't be evicted again this turn.
             assert state["gm_queue_history"][0]["msg_ids"] == [100]
-            # And the rest are intact
-            assert [b["pin_id"] for b in state["gm_queue_history"]] == [
-                100, 200, 300, 400,
-            ]
+            assert state["gm_queue_history"][-1]["pin_id"] == 400
 
-    def test_max_kept_constant_is_three(self):
+    def test_max_kept_constant_is_one(self):
+        """GM queue keeps the newest queue only (Lewis UX preference,
+        2026-05-10). Matches the per-topic queue UX where each thread
+        has a single pinned queue message."""
         from scheduled.gm_queue_history import MAX_KEPT_BATCHES
-        assert MAX_KEPT_BATCHES == 3
+        assert MAX_KEPT_BATCHES == 1
 
 
 class TestPostAndPersist:

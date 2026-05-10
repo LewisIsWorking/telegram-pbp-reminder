@@ -31,7 +31,14 @@ from posting import QueueHistory, post_batch
 
 # Maximum number of GM queue post batches retained in the bot topic.
 # Older batches are deleted on every new post.
-MAX_KEPT_BATCHES = 3
+#
+# Set to 1 (2026-05-10): Lewis wants only the newest GM queue visible
+# at any time, matching the per-topic queue UX (single pinned message
+# per thread). Multi-chunk queues (msg_ids = [a, b, c]) are still
+# evicted as atomic units — ``MessageBatch.delete_all`` iterates every
+# chunk in the batch — so a 3-chunk queue evicting another 3-chunk
+# queue produces 3 delete_message calls, all of them safeguard-gated.
+MAX_KEPT_BATCHES = 1
 
 _history = QueueHistory(max_kept=MAX_KEPT_BATCHES)
 
