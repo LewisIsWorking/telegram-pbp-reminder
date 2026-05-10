@@ -347,10 +347,16 @@ plan keeps each slice small and independently testable.
 
 ### 10. Race condition strategy
 
-**Status:** strategy doc written; recommendation is Option A
-(lockfile per partition) implemented as part of P3/9 slice 8.
+**Status:** strategy doc written; slice 8 of P3/9 shipped
+in-process `threading.Lock` (not `filelock`). The pragmatic
+position: F1 (different machines, shared FS) doesn't apply to this
+deployment, so the simpler primitive is sufficient for actual risk
+reduction today. F3 (in-process concurrency) is covered fully.
 
-Full strategy: **`docs/dev/concurrency-strategy.md`**.
+Full strategy: **`docs/dev/concurrency-strategy.md`** — see the
+"What slice 8 actually landed" section for what's in production
+and the "Path forward if F1 ever applies" section for the file-
+lock upgrade path (~45-60 min effort, deferred).
 
 Short version: the workflow concurrency group queues runs serially,
 but the protection is at the CI level, not the code level. Three

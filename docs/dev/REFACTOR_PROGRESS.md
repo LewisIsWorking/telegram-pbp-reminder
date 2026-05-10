@@ -545,3 +545,139 @@ Two more commits landed after the original phase-1-9 sequence:
 The `tools/test_splitter.py` file is the canonical splitter for
 future test-file cleanup. Run from `tools/` after `git show
 <pre-split-sha>:scripts/<file>.py > _<file>_full.py`.
+
+---
+
+## P3/9 StateStore migration ‒ complete (2026-05-10)
+
+8-slice refactor consolidating every data/state/ file under one
+class with atomic writes, schema-completeness checking, central
+migration registry, and per-resource locking. Single session.
+
+### Slices delivered
+
+| Slice | Description | Commit | Key file |
+|-------|-------------|--------|----------|
+| 1 | StateStore shell + bot_sent_ids migration | (earlier) | scripts/state_store/store.py |
+| 2 | refusal_log migration | (earlier) | scripts/posting/refusal_log.py |
+| 3 | Partition reads (load_partition) | (earlier) | scripts/state_store/store.py |
+| 4 | Partition writes atomic (save_partition tmp+rename) | `95692a2` | scripts/state_store/store.py |
+| 5 | Queue partitions (per-campaign queues/{pid}.json) | `d7d3bde` | scripts/state_store/queue_api.py |
+| 6 | Schema-completeness regression test | `0deb102` | scripts/state_store/schema.py + test_state_schema.py |
+| 7 | Migration registry | `20f6a17` | scripts/state_store/migration_registry.py |
+| 8 | Per-resource locking primitives | `3bd1ca8` | scripts/state_store/locks.py + partition_api.py |
+
+### Adjacent fixes shipped same session
+
+- `89bfbb5`/`2807893` — `_post` soft-success semantics. Telegram returning "message to delete not found" / "MESSAGE_ID_INVALID" / similar was being treated as a real failure by `safe_delete.perform_guarded_delete` and `unpin_message`, blocking eviction state from advancing. Fix routed those responses to `return True` while real failures still `return None`. Verified working in production: queue #343 deleted when #344 posted (Lewis's 14:41 confirmation).
+- `5f9e70e` — `MAX_KEPT_BATCHES = 1` in `scripts/scheduled/gm_queue_history.py` (was 3). UX preference; matches per-topic queue UX (single pinned message per thread). Verified live in chat.
+- `83a321a` — `config.json` C04 campaign display name typo: "Magni Watch" → "Magni Guard".
+
+### Tests
+
+1664 passing (was 1641 pre-session — net +23). 0 warnings. Every
+file under the 200-line cap.
+
+### Learnings (P3/9)
+
+#### L13 — Soft-success ≠ safety relaxation
+
+The `_post` fix changed how Telegram's "already deleted" responses
+are interpreted, but it sits **downstream** of
+`posting.bot_sent_registry.is_bot_sent`. The registry remains the
+gatekeeper for which message IDs are even attempted. The fix changes
+how the *result* is interpreted, not which IDs are touched. The
+2026-05-08 incident's "don't delete non-bot messages" invariant is
+fully preserved.
+
+Documented in `docs/dev/delete-safety.md` so future maintainers
+don't read the soft-success change as a softening of the safeguard.
+
+#### L14 — Cap-1 is multi-message-queue safe
+
+When a queue overflows Telegram's 4096-char limit it sends as
+multiple chunks; `MessageBatch.msg_ids` is the list of every chunk.
+Eviction routes through `MessageBatch.delete_all` which iterates
+the list. So cap=1 evicting a 3-chunk batch produces 3
+`delete_message` calls, all safeguard-gated. The cap is in batches,
+not individual messages.
+
+#### L15 — Strategy doc drift documented, not retro-fixed
+
+`concurrency-strategy.md` originally specified Option A as
+`filelock`-based. Slice 8 shipped `threading.Lock`. The
+deviation was made visible in the strategy doc (\"What slice 8
+actually landed\" section) rather than retroactively implementing
+`filelock` for failure modes that don't apply to this deployment
+(F1 = different machines, shared FS — irrelevant on isolated CI VMs).
+
+Rule: when implementation diverges from a design doc, update the
+design doc to reflect reality + rationale. Don't bend code to match
+a doc whose assumptions no longer hold.
+
+#### L16 — Schema-completeness needs a registry, not a directory walk
+
+Slice 6's first instinct was \"walk `data/state/` and assert every
+file has a known reader by inspection.\" That couples the test to
+production state and is flaky (CI commits change the dir contents).
+Better shape: a declarative registry (`state_store/schema.py`)
+that documents every expected file, then the test asserts the
+on-disk dir is a subset of the registry. The registry becomes the
+single source of truth; the test enforces agreement.
+
+Side benefit: `manifest.json` from the 2026-04 migration is now
+explicitly documented as `WRITE_ONCE` rather than a confusing
+orphan with no reader.
+
+#### L17 — Mixin extraction is the right reflex when a class hits the line cap
+
+`store.py` hit 200 lines exactly during slice 7. Slice 8 needed
++12 lines (lock init + save_partition lock wrap). Two extraction
+patterns considered:
+1. Move partition methods to a sibling file as a mixin (chose this).
+2. Compress the existing class docstring (rejected — lossy).
+
+The mixin pattern (already used for QueueAPI in slice 5) keeps the
+class diagram clean: `StateStore(QueueAPI, PartitionAPI)` makes
+the method-group composition self-documenting. Each mixin sits in
+its own file with its own scope-specific docstring. The 200-line
+rule isn't a code-smell signal here; it's a forcing function for
+better module decomposition.
+
+#### L18 — PowerShell text manipulation has gotchas, prefer Python on Windows
+
+During slice 6/7 file fixups, `[System.IO.File]::ReadAllText` on
+several paths returned 0-byte content while `Get-Content -Raw` on
+the same path read fine. The discrepancy wasted ~10 min of debug
+time. Workaround: write a small Python script and invoke via
+`python -X utf8 -c '...'` for any non-trivial string surgery on
+Windows files. Python's `Path.read_text(encoding=\"utf-8\")`
+behaves identically to `Get-Content -Raw` and avoids the .NET
+quirk.
+
+(Possibly relates to file locking by the IDE; not investigated
+further. The Python escape hatch is reliable enough that it's not
+worth deeper diagnosis.)
+
+#### L19 — `read_only` lock test patterns
+
+The slice-8 concurrent-save test uses a counter-based critical-
+section check rather than wall-clock timing:
+
+`python
+in_critical = [0]
+max_seen = [0]
+
+def saver():
+    for _ in range(20):
+        with store._locks.held("aux:counter"):
+            in_critical[0] += 1
+            max_seen[0] = max(max_seen[0], in_critical[0])
+            time.sleep(0.001)  # widen race window
+            in_critical[0] -= 1
+`
+
+If serialisation works, `max_seen` is always 1 (only one thread
+in the critical section at a time). If the lock is broken,
+`max_seen` will be 2. Deterministic, no timing flakiness, no
+`threading.Event` choreography needed.

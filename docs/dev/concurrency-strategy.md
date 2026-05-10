@@ -170,8 +170,14 @@ Files in `data/state/` become a local cache.
 
 ### Recommendation
 
-**Option A for the immediate fix; Option B as a follow-up if F2
-actually bites.**
+**[STATUS — 2026-05-10]** Slice 8 of P3/9 shipped with `threading.
+Lock` rather than `filelock`. The recommendation below is what was
+originally proposed; the section that follows it ("What slice 8
+actually landed") is what's actually in production. Both are kept
+so the deviation is visible to future maintainers.
+
+Original recommendation: **Option A for the immediate fix; Option B
+as a follow-up if F2 actually bites.**
 
 The reasoning:
 
@@ -198,22 +204,64 @@ problem that genuinely needs it.
 
 ---
 
-### What "Option A landed" looks like
+### What slice 8 actually landed (2026-05-10)
 
-* `StateStore.save_partition(name, data)` acquires
-  `data/state/{name}.json.lock` via `filelock` package.
-* Lock held from start of `tmp.write` through `rename`.
-* Lock released even on exception (context manager).
-* `data/state/*.lock` files added to `.gitignore`.
-* New test `test_concurrent_writes.py` spawns two processes
-  (`subprocess.Popen`) both calling `save_partition` and asserts
-  the final state is one of the two inputs (not a corrupt mix).
-* Documentation update: `docs/dev/delete-safety.md` already exists;
-  add `docs/dev/state-safety.md` with the same shape — what
-  invariants are enforced, how to extend safely.
+**TL;DR:** in-process `threading.Lock` per resource, NOT filesystem
+`filelock`. Covers F3 fully; does not cover F1. The pragmatic
+position: F1 doesn't apply to this deployment (single CI runner,
+no shared FS), so the simpler primitive is sufficient for actual
+risk reduction today.
 
-The `concurrency: pbp-checker` workflow setting stays. The lock is
-defence in depth, not a replacement.
+**What's in production:**
+
+* `state_store/locks.py` provides `LockRegistry`, an instance-
+  scoped registry of `threading.Lock` objects with lazy creation
+  and a `held()` context manager.
+* Every `save_*` method on `StateStore` acquires its keyed lock
+  (`aux:{name}` / `partition:{name}` / `queue:{pid}`) for the
+  duration of its tmp+rename write. Disjoint resources don't
+  serialise on each other.
+* Per-instance registry means tests using `StateStore(state_dir=
+  tmp_path)` don't cross-serialise.
+* 10 tests in `test_state_store_locks_01_registry.py` and
+  `test_state_store_locks_02_savelock.py` cover registry mechanics
+  + end-to-end save serialisation (verified with threading +
+  counter-based critical-section check).
+
+**What it covers:**
+
+* F3 (in-process concurrency) — fully. If/when threading or async
+  arrives, the serialisation primitive is in place.
+* Foundation for slice 10 (read-modify-write API) — the locks are
+  the right shape for a future RMW context manager.
+
+**What it does NOT cover:**
+
+* F1 (different machines, shared FS) — in-process locks are
+  invisible across processes. Would need `filelock` or `fcntl.flock`
+  to address. Deferred because F1 doesn't apply to this deployment
+  (GitHub Actions VMs are isolated, no shared FS scenario).
+* F2 (CI commit-window race) — neither in-process nor file locks
+  help. Option B (`pull --rebase` before push) would; still treated
+  as a known limitation per the original recommendation.
+* Read-modify-write atomicity — a reader holding stale data can
+  still overwrite a concurrent writer's update. Deferred to slice
+  10 (P3/10).
+
+**Path forward if F1 ever applies:**
+
+1. Add `filelock` package to `requirements.txt` (~30 sec install,
+   pure Python, no native deps).
+2. Wrap each `with self._locks.held(...)` in a parallel `with
+   FileLock(path.with_suffix('.json.lock'))`. Defence in depth —
+   the existing in-process lock stays for F3 protection in the
+   same process, the file lock adds cross-process protection.
+3. Add `*.lock` to `.gitignore`.
+4. Add `test_concurrent_writes.py` that spawns two subprocesses
+   both calling `save_partition` and asserts the final state is
+   one of the two inputs (not a corrupt mix).
+
+Effort estimate: ~45-60 min if needed.
 
 ---
 
