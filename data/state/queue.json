@@ -648,7 +648,11 @@
       "2026-05-10T13:37:02.052917+00:00",
       "2026-05-10T13:37:02.054698+00:00",
       "2026-05-10T13:37:02.056421+00:00",
-      "2026-05-10T14:31:51.358631+00:00"
+      "2026-05-10T14:31:51.358631+00:00",
+      "2026-05-10T15:00:00.929150+00:00",
+      "2026-05-10T15:00:01.609321+00:00",
+      "2026-05-10T15:00:01.612353+00:00",
+      "2026-05-10T15:00:01.613963+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1061,30 +1065,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-04-28T03:17:52.835473+00:00",
-      "player": "Ryo",
-      "preview": "Leopard gasps and starts coughing hard, placing the hand tha"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-04-28T03:17:52.836034+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "I already did the checks for the planning phase and explaine"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-04-28T03:17:52.836479+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "[media]"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-04-28T03:17:52.836849+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "40585",
       "time": "2026-04-28T03:17:52.839325+00:00",
@@ -2310,6 +2290,34 @@
       "player": "Christopher",
       "preview": "Her stance relaxes slightly, though there is no change in he",
       "msg_id": "149501"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T15:00:00.929150+00:00",
+      "player": "Link",
+      "preview": "Joo-Dee, although entertained by the overall conversation, m",
+      "msg_id": "149514"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T15:00:01.609321+00:00",
+      "player": "Christopher",
+      "preview": "Hinata looks between Joo-Dee and Kae-Vo. \"Since we will be f",
+      "msg_id": "150136"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T15:00:01.612353+00:00",
+      "player": "Link",
+      "preview": "Joo-dee almost bursts into laughter as she recalls her recen",
+      "msg_id": "150205"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-10T15:00:01.613963+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "152170"
     }
   ],
   "pending_potw_boons": {
