@@ -848,7 +848,9 @@
       "2026-04-22T15:35:29.024422+00:00",
       "2026-04-22T15:35:29.025121+00:00",
       "2026-04-22T15:35:29.025775+00:00",
-      "2026-04-28T09:00:48.803595+00:00"
+      "2026-04-28T09:00:48.803595+00:00",
+      "2026-05-10T01:09:01.797096+00:00",
+      "2026-05-10T01:09:01.801645+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1049,18 +1051,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "1242",
-      "time": "2026-04-27T23:25:00.061891+00:00",
-      "player": "Luke",
-      "preview": "~"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-04-27T23:25:00.066142+00:00",
-      "player": "Miwa",
-      "preview": "Hey"
-    },
     {
       "pid": "76799",
       "time": "2026-04-27T23:25:00.067199+00:00",
@@ -2286,6 +2276,20 @@
       "player": "Cobalt",
       "preview": "The massive floating magenta barathu, several kind and calm ",
       "msg_id": "149499"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-10T01:09:01.797096+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Necrila says \" I wish to know what fate awaits the crime lor",
+      "msg_id": "149390"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-10T01:09:01.801645+00:00",
+      "player": "Anthony",
+      "preview": "Filiaur checks if any \"reward\" is noted on the wanted poster",
+      "msg_id": "149517"
     }
   ],
   "pending_potw_boons": {
