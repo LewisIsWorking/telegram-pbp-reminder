@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 152235,
-      "thread_id": 40585,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-10T17:48:45+00:00",
-      "preview": "Sure",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -657,7 +648,9 @@
     "msg:151612",
     "2026-05-08 01:49:58",
     "msg:151694",
-    "2026-05-08 15:13:32"
+    "2026-05-08 15:13:32",
+    "msg:152235",
+    "2026-05-10 17:48:45"
   ],
   "reply_log": [
     {
@@ -3690,6 +3683,15 @@
       "player": "Ryo",
       "preview": "\"Does that connection have any impact on the curse we're currently dealing with?",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T18:11:28+00:00",
+      "pid": "40585",
+      "msg_id": "152235",
+      "thread_id": 40585,
+      "player": "Kaer'maga when?",
+      "preview": "Sure",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3700,11 +3702,10 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-10 17:48:45",
-      "msg_ids": [
-        152237
-      ],
-      "last_posted_at": "2026-05-10T17:57:15.768311+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152246
     }
   }
 }
