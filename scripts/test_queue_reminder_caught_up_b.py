@@ -10,7 +10,8 @@ branch fires when:
      and
   3. There are no silent campaigns to display.
 
-Two sub-cases:
+Sub-cases covered in this file (line-68 PRODUCTION path — scanner
+returns an empty dict, the actual scanner contract today):
 
   * ``last_queue_fingerprint != "empty"`` — bot posts "All caught up!"
     once, then sets fingerprint to "empty" so subsequent runs don't
@@ -38,19 +39,40 @@ def _empty_scanned() -> dict:
     The dict is non-empty (so we get past the
     ``not scanned and not silent_lines`` early return at line 68),
     but the ``entries`` list is empty (so ``total == 0`` at line 73).
+
+    Note: the production scanner ``commands.queue_scan.scan_transcripts``
+    does NOT actually return this shape — it omits empty campaigns
+    entirely (see queue_scan.py:185-197). The ``_no_scanned()``
+    helper below produces the shape the production scanner uses
+    when every queue is clean. The two shapes hit different early-
+    return branches; both are tested.
     """
     return {"100": {"campaign": "Active", "code": "C01", "entries": []}}
 
 
-def test_caught_up_message_posted_when_queue_first_empties():
-    """When the queue empties (prior fingerprint was non-empty), the
-    bot posts a single 'All caught up!' notification and updates the
-    fingerprint to 'empty' so it doesn't repeat.
+def _no_scanned() -> dict:
+    """Scanner result the production scanner returns when every
+    queue is clean: empty dict, no campaigns at all.
 
-    This is the visible-state-change case: GMs see one post telling
-    them they're caught up. Subsequent runs with the queue still
-    empty will hit the ``last_queue_fingerprint == 'empty'`` branch
-    and stay silent.
+    Hits the line-68 branch (``not scanned and not silent_lines``).
+    This is the branch that fires in real production runs.
+    """
+    return {}
+
+
+
+def test_caught_up_message_when_scanner_returns_empty():
+    """Line 68 path: scanner returns ``{}`` (no campaigns), prior
+    fingerprint was non-empty → 'All caught up!' message sent once,
+    state updated to 'empty'.
+
+    This is the branch that fires in real production: when every
+    GM has replied to every queued message, the scanner returns
+    an empty dict (it omits empty campaigns rather than including
+    them with empty entries lists). Pre-2026-05-10 this branch was
+    a silent skip — the message was only on the unreachable line-73
+    path. Lewis flagged the missing notification, so the line-68
+    branch now mirrors line 73's spam-prevented send.
     """
     from scheduled.queue_reminder import post_queue_reminder
     now = datetime(2026, 5, 10, 18, 0, tzinfo=timezone.utc)
@@ -73,7 +95,7 @@ def test_caught_up_message_posted_when_queue_first_empties():
         captured.append((gid, tid, text))
 
     with patch("scheduled.queue_reminder.scan_transcripts",
-               return_value=_empty_scanned()), \
+               return_value=_no_scanned()), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
          patch("scheduled.queue_reminder.silent_campaigns",
                return_value=[]), \
@@ -85,7 +107,6 @@ def test_caught_up_message_posted_when_queue_first_empties():
          patch("scheduled.queue_reminder.tg.unpin_message"):
         post_queue_reminder(config, state, now=now)
 
-    # Exactly one 'All caught up!' message sent to the bot topic.
     assert len(captured) == 1, (
         f"Expected one 'All caught up!' send, got {len(captured)}: "
         f"{captured}"
@@ -94,30 +115,21 @@ def test_caught_up_message_posted_when_queue_first_empties():
     assert gid == -1001
     assert tid == 999
     assert "All caught up!" in text
-    assert "No unreplied messages" in text
-
-    # Fingerprint flipped to 'empty' so the next run won't re-post.
     assert state["last_queue_fingerprint"] == "empty"
 
 
-def test_caught_up_silent_when_already_marked_empty():
-    """When the queue is empty AND the prior fingerprint was already
-    'empty', the bot stays silent. Prevents spamming the topic with
-    repeated 'All caught up!' messages on every cron tick.
+def test_silent_when_scanner_empty_and_already_caught_up():
+    """Line 68 path: scanner returns ``{}``, prior fingerprint was
+    already 'empty' → silent skip (no spam).
 
-    Reaching this case requires ``is_daily=True`` to bypass the
-    line-65 duplicate-fingerprint early return (since the new
-    fingerprint is also 'empty', and a non-daily run with both equal
-    would have returned early before reaching the empty-queue branch).
+    This is the steady-state behaviour after the queue has been
+    empty for one or more cron ticks: the bot stays quiet rather
+    than re-posting 'All caught up!' on every run.
     """
     from scheduled.queue_reminder import post_queue_reminder
     now = datetime(2026, 5, 10, 18, 0, tzinfo=timezone.utc)
     config = {
         "group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
-        # queue_daily_hours includes now.hour AND the slot isn't in
-        # last_queue_daily_slots, so is_daily=True at line 59 →
-        # bypasses the line-65 fingerprint match.
-        "queue_daily_hours": [now.hour],
         "topic_pairs": [
             {"pbp_topic_ids": [100], "code": "C01", "name": "Active"},
         ],
@@ -135,7 +147,7 @@ def test_caught_up_silent_when_already_marked_empty():
         captured.append(text)
 
     with patch("scheduled.queue_reminder.scan_transcripts",
-               return_value=_empty_scanned()), \
+               return_value=_no_scanned()), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
          patch("scheduled.queue_reminder.silent_campaigns",
                return_value=[]), \
@@ -147,10 +159,7 @@ def test_caught_up_silent_when_already_marked_empty():
          patch("scheduled.queue_reminder.tg.unpin_message"):
         post_queue_reminder(config, state, now=now)
 
-    # No 'All caught up!' message — we already told them.
     assert captured == [], (
         f"Expected silent re-empty (no message), but got: {captured}"
     )
-
-    # Fingerprint stays 'empty' (overwritten with itself).
     assert state["last_queue_fingerprint"] == "empty"

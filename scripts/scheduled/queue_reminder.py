@@ -66,6 +66,18 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         return
 
     if not scanned and not silent_lines:
+        # Queue is empty AND no silent campaigns to display. If we're
+        # transitioning from a non-empty fingerprint, post a one-time
+        # "All caught up!" notification so GMs see the state change;
+        # otherwise stay silent so we don't spam the topic with the
+        # same message every cron tick.
+        #
+        # Note: the scanner (queue_scan.py:185-197) omits campaigns
+        # with zero entries, so this branch — not the total==0 branch
+        # below — is the one that actually fires when every queue is
+        # clean.
+        if state.get("last_queue_fingerprint", "empty") != "empty":
+            tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")
         state["last_queue_fingerprint"] = "empty"
         return
 
