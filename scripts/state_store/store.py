@@ -168,3 +168,23 @@ class StateStore:
         if not self.partition_exists(name):
             return None
         return self.load_aux(name, default=None)
+
+    def save_partition(self, name: str, data: dict) -> None:
+        """Save a partition file atomically.
+
+        Slice 4 of P3/9: same atomic write semantics as ``save_aux``
+        (tmp + rename), now applied to the five main partition files
+        (``live`` / ``players`` / ``queue`` / ``activity`` /
+        ``trackers``). Pre-slice-4 ``state.py:_save_to_files`` did
+        ``path.write_text(json.dumps(...))`` per partition, so a
+        crash between the open-write and the os flush could leave a
+        half-written ``live.json`` that the next process startup
+        couldn't parse. Routing through ``save_aux`` fixes this:
+        the partial write happens to a ``.tmp`` sibling and the
+        rename only goes through once the bytes are durable.
+
+        Currently delegates to ``save_aux`` since they share the
+        on-disk shape and write semantics. Slice 7 will add a
+        migration-registry hook here that doesn't apply to aux files.
+        """
+        self.save_aux(name, data)

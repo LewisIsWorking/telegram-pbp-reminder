@@ -7,8 +7,6 @@ Fallback: GitHub Gist (read if files absent; always written for safety)
 Public API is unchanged: init(token, gist_id) / load() / save(state).
 """
 
-import json
-
 from state_gist import gist_load, gist_save
 from pathlib import Path
 from state_store import StateStore
@@ -174,11 +172,21 @@ def _load_from_files() -> dict | None:
 
 
 def _save_to_files(state: dict) -> None:
-    """Write each partition file atomically."""
-    d = _state_dir()
-    d.mkdir(parents=True, exist_ok=True)
+    """Write each partition file atomically.
+
+    Slice 4 of P3/9: per-partition writes now go through
+    ``StateStore.save_partition``, which uses tmp+rename so a crash
+    mid-write cannot leave a half-written file. Pre-slice-4 this
+    function did ``path.write_text(json.dumps(...))`` per partition,
+    which the docstring claimed was atomic but actually wasn't —
+    Python's ``write_text`` opens the target file directly. With the
+    new path, ``StateStore.save_aux`` writes to ``{name}.json.tmp``
+    first and only ``os.replace``s onto ``{name}.json`` once the
+    full content is on disk. The replace is atomic on POSIX and on
+    Windows (NTFS).
+    """
+    store = StateStore(state_dir=_state_dir())
     for partition, keys in PARTITIONS.items():
         data = {k: state[k] for k in keys if k in state}
-        path = d / f"{partition}.json"
-        path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+        store.save_partition(partition, data)
     print("State saved to files")

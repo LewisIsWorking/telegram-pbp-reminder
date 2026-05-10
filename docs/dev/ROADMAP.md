@@ -274,7 +274,17 @@ independently shippable.
   "file missing" (continue, e.g. trackers.json on fresh checkout)
   from "file exists but parse failed" (return None, don't merge
   half-loaded state). 5 new partition tests; 1636 total passing.
-* ⏳ Slice 4 — partitions write path with atomic writes.
+* ✅ Slice 4 — partitions write path. `StateStore.save_partition`
+  added (delegates to `save_aux` for tmp+rename atomic write).
+  `state.py:_save_to_files` migrated. The previous implementation
+  did `path.write_text(json.dumps(...))` per partition with a
+  docstring claiming atomicity — it wasn't. Now every partition
+  write goes through tmp+rename so a crash mid-write cannot leave
+  a half-written `live.json`. `import json` dropped from `state.py`
+  (no longer used). Test file split into `test_state_store.py`
+  (aux API, slices 1+2) and `test_state_store_partitions.py`
+  (partition API, slices 3+4) to stay under the 200-line cap. 5
+  new save tests; 1641 total passing.
 * ⏳ Slice 5 — queue partitions (`load_queue`/`save_queue`).
 * ⏳ Slice 6 — schema-completeness regression test.
 * ⏳ Slice 7 — migration registry.
