@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 152010,
-      "thread_id": 25059,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-10T00:27:04+00:00",
-      "preview": "Going to bed now, since I have an early start tomorrow",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -50,7 +40,9 @@
     "msg:150615",
     "2026-05-03 12:54:35",
     "msg:150785",
-    "2026-05-03 14:27:57"
+    "2026-05-03 14:27:57",
+    "msg:152010",
+    "2026-05-10 00:27:04"
   ],
   "reply_log": [
     {
@@ -223,15 +215,23 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor looks at Anikia \"There is no need to be angry. We are not offended by hi",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T00:39:08+00:00",
+      "pid": "25059",
+      "msg_id": "152010",
+      "thread_id": 25059,
+      "player": "Chris Warlock",
+      "preview": "Going to bed now, since I have an early start tomorrow",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-10 00:27:04",
-      "msg_ids": [
-        152015
-      ],
-      "last_posted_at": "2026-05-10T00:28:45.620039+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152028
     }
   }
 }
