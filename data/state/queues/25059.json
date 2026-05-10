@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 152308,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-10T20:19:28+00:00",
-      "preview": "The party follows",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -68,7 +58,15 @@
     "msg:152299",
     "2026-05-10 20:06:50",
     "msg:152303",
-    "2026-05-10 20:07:47"
+    "2026-05-10 20:07:47",
+    "msg:152308",
+    "2026-05-10 20:19:28",
+    "msg:152333",
+    "2026-05-10 20:47:51",
+    "msg:152338",
+    "2026-05-10 20:52:25",
+    "msg:152346",
+    "2026-05-10 21:10:41"
   ],
   "reply_log": [
     {
@@ -322,16 +320,50 @@
       "player": "Kaer'maga when?",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-10T20:33:56+00:00",
+      "pid": "25059",
+      "msg_id": "152308",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "The party follows",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T20:48:18+00:00",
+      "pid": "25059",
+      "msg_id": "152333",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"there is no need to be afraid\nI am not here to cause trouble.\nI am",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:00:31+00:00",
+      "pid": "25059",
+      "msg_id": "152338",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Miss Anikia, tell me how I can make the worries go away then.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-10T21:13:15+00:00",
+      "pid": "25059",
+      "msg_id": "152346",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks curious \"I am listening\nWho briefed you about us?\"",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-10 20:19:28",
-      "msg_ids": [
-        152315
-      ],
-      "last_posted_at": "2026-05-10T20:22:42.279936+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152350
     }
   }
 }

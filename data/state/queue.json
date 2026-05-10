@@ -732,7 +732,11 @@
       "2026-05-10T19:57:20.314996+00:00",
       "2026-05-10T20:22:39.303107+00:00",
       "2026-05-10T20:22:39.305729+00:00",
-      "2026-05-10T20:22:39.307163+00:00"
+      "2026-05-10T20:22:39.307163+00:00",
+      "2026-05-10T21:23:31.064605+00:00",
+      "2026-05-10T21:23:31.069595+00:00",
+      "2026-05-10T21:23:31.071832+00:00",
+      "2026-05-10T21:23:31.073465+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1096,30 +1100,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-01T01:07:57.676504+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:04.549893+00:00",
-      "player": "Awnii",
-      "preview": "seeing as there appears to be no direct hostility towards he"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:04.552403+00:00",
-      "player": "Awnii",
-      "preview": "@buffetraider"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:04.554811+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus stays put on the ground, trying not to move and aggra"
-    },
     {
       "pid": "40585",
       "time": "2026-05-01T02:56:05.799118+00:00",
@@ -2380,6 +2360,34 @@
       "player": "Kaer'maga when?",
       "preview": "[media]",
       "msg_id": "152303"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T21:23:31.064605+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "The party follows",
+      "msg_id": "152308"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T21:23:31.069595+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"there is no need to be afraid\nI am not here to",
+      "msg_id": "152333"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T21:23:31.071832+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Miss Anikia, tell me how I can make the worrie",
+      "msg_id": "152338"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-10T21:23:31.073465+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks curious \"I am listening\nWho briefed you about ",
+      "msg_id": "152346"
     }
   ],
   "pending_potw_boons": {
