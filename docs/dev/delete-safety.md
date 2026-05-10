@@ -217,6 +217,41 @@ missing/corrupt state files.
 
 ---
 
+## Soft-success semantics in `_post` (added 2026-05-10)
+
+The layer below `safe_delete` — `telegram._post` — distinguishes
+*hard failures* (network errors, rate-limit-after-retry,
+unrecognised error bodies; returns `None`) from *soft successes*
+(Telegram says the desired end state is already achieved, e.g.
+"message to delete not found"; returns `True`). Both
+`safe_delete.perform_guarded_delete` and `telegram.unpin_message`
+use `_post(...) is not None`, so they read soft success the same
+as real success.
+
+**This is correctness, not a safety relaxation.** The change lives
+*downstream* of the registry check. The registry is still the
+gatekeeper: any message ID not in `bot_sent_ids.json` is refused
+at the `safe_delete` layer before any HTTP call is made. The
+soft-success path only changes how the *result* is interpreted
+for IDs the registry has already approved. If the `is_bot_sent`
+guard refuses, `_post` is never reached.
+
+The catalogue of recognised soft-success error bodies and the
+full rationale lives in `scripts/telegram_post_notes.py`. White-
+box tests in `scripts/test_telegram_03_suppress.py` lock the
+behaviour and guard against regression.
+
+Why this matters for the incident: the original purge script
+wouldn't have benefited from soft-success semantics — it bypassed
+`safe_delete` entirely by POSTing to the API directly. The
+safeguard's first principle ("the registry gates every delete")
+is what prevents a recurrence; the soft-success refinement is a
+separate quality-of-life fix for evictions that previously got
+stuck because Telegram's "already gone" response was being read
+as "delete failed."
+
+---
+
 ## Related
 
 * `scripts/posting/bot_sent_registry.py` — the registry module
