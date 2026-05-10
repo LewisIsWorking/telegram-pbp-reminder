@@ -11,6 +11,7 @@ import json
 
 from state_gist import gist_load, gist_save
 from pathlib import Path
+from state_store import StateStore
 
 # ── Partition map ─────────────────────────────────────────────────────────────
 # Keys not listed here (e.g. _config_cache) are transient and not persisted.
@@ -72,6 +73,16 @@ DEFAULT_STATE: dict = {
 
 STATE_FILENAME = "pbp_state.json"  # kept for gist compatibility
 
+# ── State persistence ─────────────────────────────────────────────────────────
+#
+# Slice 3 of P3/9 introduces StateStore for the read path. Per-call
+# instantiation rather than a module-level singleton: this preserves
+# the existing test contract where ``test_state_io.py`` patches
+# ``state._state_dir`` to redirect file I/O to a tmp directory. The
+# StateStore picks up that override on each call. Slice 4 will add
+# the write path; slice 8 will add the locking primitives needed by
+# P3/10.
+
 # ── Module-level credentials ───────────────────────────────────────────────────
 
 _GIST_TOKEN = ""
@@ -124,24 +135,41 @@ def _load_from_files() -> dict | None:
 
     The 'trackers' partition is optional — if absent (e.g. fresh checkout or
     pre-v4.18 install) the bot will still load and write the file on next save.
+
+    Slice 3 of P3/9: per-partition reads now go through
+    ``StateStore.load_partition``. The StateStore is constructed per
+    call from ``_state_dir()`` so test patches of that helper redirect
+    file I/O to a tmp dir as before. The corruption-handling stays
+    here at the call-site (returning None to trigger gist fallback)
+    since that's a state.py policy choice, not a StateStore concern:
+    a corrupt partition file means we cannot trust the on-disk state
+    and should reload from gist rather than silently skipping the
+    bad partition (which would merge a half-loaded state with stale
+    other partitions).
     """
-    d = _state_dir()
+    store = StateStore(state_dir=_state_dir())
     core = [p for p in PARTITIONS if p != "trackers"]
-    if not all((d / f"{p}.json").exists() for p in core):
+    if not all(store.partition_exists(p) for p in core):
         return None
     merged: dict = {}
     try:
         for partition in PARTITIONS:
-            path = d / f"{partition}.json"
-            if not path.exists():
-                continue   # trackers.json may not exist yet
-            raw = json.loads(path.read_text(encoding="utf-8"))
+            if not store.partition_exists(partition):
+                continue   # trackers.json may not exist yet (fresh checkout)
+            raw = store.load_partition(partition)
+            if raw is None:
+                # File exists but parse failed (StateStore already
+                # printed a diagnostic) — treat as corruption and
+                # fall back to gist for a known-good snapshot.
+                print(f"Warning: corrupt {partition}.json, "
+                      f"falling back to gist")
+                return None
             keys = PARTITIONS[partition]
             merged.update({k: raw[k] for k in keys if k in raw})
         print(f"State loaded from files (offset={merged.get('offset', 0)})")
         return merged
-    except (OSError, json.JSONDecodeError, KeyError) as e:
-        print(f"Warning: failed reading state files ({e}), falling back to gist")
+    except KeyError as e:
+        print(f"Warning: missing key in state files ({e}), falling back to gist")
         return None
 
 

@@ -135,3 +135,36 @@ class StateStore:
         if not self._state_dir.exists():
             return []
         return sorted(p.stem for p in self._state_dir.glob("*.json"))
+
+    # ------------------------------------------------------------------
+    # Partition API (slice 3-4 of P3/9).
+    #
+    # Partition files are the five JSON files written by ``state.py``:
+    # ``live`` / ``players`` / ``queue`` / ``activity`` / ``trackers``.
+    # On disk they have the same shape as aux files — just bigger,
+    # with multi-key dicts. Slice 3 adds the read side; slice 4 will
+    # add ``save_partition`` with atomic-write semantics matching
+    # ``save_aux`` so all partition writes become crash-safe.
+    #
+    # Why a separate API rather than re-using ``load_aux``: the two
+    # have the same implementation today, but later slices add
+    # partition-only concerns (migration registry in slice 7, schema
+    # validation in slice 6+) that aux files don't need.
+    # ------------------------------------------------------------------
+
+    def partition_exists(self, name: str) -> bool:
+        """Return True iff the partition file is present on disk."""
+        return self.aux_path(name).exists()
+
+    def load_partition(self, name: str) -> dict | None:
+        """Load a partition file by name.
+
+        Returns the parsed dict on success, or None if the file is
+        missing or unparseable. Callers (e.g. ``state.py``) get to
+        decide whether "missing" means "defaults" or "fall back to
+        gist". Corrupt files are logged via the same path as
+        ``load_aux`` (stderr message, no raise).
+        """
+        if not self.partition_exists(name):
+            return None
+        return self.load_aux(name, default=None)

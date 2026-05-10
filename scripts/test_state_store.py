@@ -150,3 +150,44 @@ def test_save_aux_uses_default_str_for_unserialisable(tmp_path):
     store.save_aux("event", payload)
     raw = json.loads((tmp_path / "event.json").read_text(encoding="utf-8"))
     assert "2026-05-09" in raw["when"]
+
+
+
+# --- partition API (slice 3) ----------------------------------------
+
+def test_partition_exists_missing(tmp_path):
+    store = StateStore(state_dir=tmp_path)
+    assert store.partition_exists("live") is False
+
+
+def test_partition_exists_after_save(tmp_path):
+    store = StateStore(state_dir=tmp_path)
+    store.save_aux("live", {"offset": 0})
+    assert store.partition_exists("live") is True
+
+
+def test_load_partition_missing_returns_none(tmp_path):
+    store = StateStore(state_dir=tmp_path)
+    assert store.load_partition("never_existed") is None
+
+
+def test_load_partition_round_trip(tmp_path):
+    store = StateStore(state_dir=tmp_path)
+    payload = {
+        "offset": 42,
+        "topics": {"100": {"last_message_time": "2026-05-09T10:00:00"}},
+        "gm_queue_history": [],
+    }
+    store.save_aux("live", payload)
+    assert store.load_partition("live") == payload
+
+
+def test_load_partition_corrupt_returns_none(tmp_path, capsys):
+    """Corrupt partition file returns None - callers (state.py) decide
+    whether to fall back to gist or use defaults."""
+    store = StateStore(state_dir=tmp_path)
+    bad = tmp_path / "live.json"
+    bad.write_text("{ corrupt", encoding="utf-8")
+    assert store.load_partition("live") is None
+    captured = capsys.readouterr()
+    assert "Corrupt aux file" in captured.out

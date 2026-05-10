@@ -265,7 +265,15 @@ independently shippable.
   flow through `_store.load_aux`/`save_aux`. Test isolation hook
   in `_test_state_isolation.py` simplified to a single shared
   `_TEST_STORE` for both modules.
-* ⏳ Slice 3 — partitions read path (`load_partition`).
+* ✅ Slice 3 — partitions read path. `StateStore.partition_exists` /
+  `load_partition` added. `state.py:_load_from_files` now
+  delegates per-partition reads to StateStore. Corrupt-file policy
+  preserved (returns None → gist fallback) but tightened: previously
+  a corrupt partition file was wrapped in a try/except that returned
+  None, now it's an explicit per-partition check that distinguishes
+  "file missing" (continue, e.g. trackers.json on fresh checkout)
+  from "file exists but parse failed" (return None, don't merge
+  half-loaded state). 5 new partition tests; 1636 total passing.
 * ⏳ Slice 4 — partitions write path with atomic writes.
 * ⏳ Slice 5 — queue partitions (`load_queue`/`save_queue`).
 * ⏳ Slice 6 — schema-completeness regression test.
