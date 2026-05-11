@@ -762,7 +762,11 @@
       "2026-05-11T19:38:57.495243+00:00",
       "2026-05-11T19:38:57.497106+00:00",
       "2026-05-11T19:38:57.502838+00:00",
-      "2026-05-11T19:38:57.505523+00:00"
+      "2026-05-11T19:38:57.505523+00:00",
+      "2026-05-11T19:57:53.867458+00:00",
+      "2026-05-11T19:57:53.871489+00:00",
+      "2026-05-11T19:57:53.875241+00:00",
+      "2026-05-11T19:57:53.876390+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -928,7 +932,9 @@
       "2026-05-10T01:09:01.801645+00:00",
       "2026-05-10T19:30:39.407879+00:00",
       "2026-05-10T19:30:39.410903+00:00",
-      "2026-05-11T19:38:57.501827+00:00"
+      "2026-05-11T19:38:57.501827+00:00",
+      "2026-05-11T19:57:53.865155+00:00",
+      "2026-05-11T19:57:53.877262+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1131,42 +1137,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-03T12:28:54.336060+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-03T12:28:54.338778+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-03T12:28:54.341508+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.343105+00:00",
-      "player": "Chase",
-      "preview": "\"Gotta foul each tube individually. I got one, but the remai"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.345740+00:00",
-      "player": "Link",
-      "preview": "\"Three volleys. Got it.\" Akuma responds, sure of his ally's "
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.346965+00:00",
-      "player": "Cannon",
-      "preview": "Nadya moves up to support, and shoves a vial up to Akuma's l"
-    },
     {
       "pid": "76799",
       "time": "2026-05-03T12:28:54.348152+00:00",
@@ -2450,6 +2420,48 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor listens \" What about your husband?\n\nI did say that I",
       "msg_id": "152607"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-11T19:57:53.865155+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Necrila like a robot replies \"My father was tasked by an all",
+      "msg_id": "152610"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T19:57:53.867458+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor then says \"I am sorry if I offended you then. If you",
+      "msg_id": "152617"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T19:57:53.871489+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Then we have a deal Anikia. The only thing you",
+      "msg_id": "152621"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T19:57:53.875241+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor stands up \"As you say Anikia. Now that we have concl",
+      "msg_id": "152625"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T19:57:53.876390+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor listens and then says \"I see. So gods my choose prie",
+      "msg_id": "152626"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-11T19:57:53.877262+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Necrila says \"Very well. Crimelord Marlo of Riddleport. We h",
+      "msg_id": "152627"
     }
   ],
   "pending_potw_boons": {

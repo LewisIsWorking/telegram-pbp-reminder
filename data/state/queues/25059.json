@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 152623,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-11T19:43:43+00:00",
+      "preview": "Selenor asks like a scientist. \"Wouldn't it be unlawful to work with a daemon cult? Wouldn't;t it be unlawful to curse a city against their will into slimes that would then kill people?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -102,7 +112,15 @@
     "msg:152606",
     "2026-05-11 19:34:34",
     "msg:152607",
-    "2026-05-11 19:35:49"
+    "2026-05-11 19:35:49",
+    "msg:152617",
+    "2026-05-11 19:39:33",
+    "msg:152621",
+    "2026-05-11 19:42:17",
+    "msg:152625",
+    "2026-05-11 19:45:26",
+    "msg:152626",
+    "2026-05-11 19:47:58"
   ],
   "reply_log": [
     {
@@ -554,14 +572,52 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor listens \" What about your husband?\n\nI did say that I am willing to aid y",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T19:40:54+00:00",
+      "pid": "25059",
+      "msg_id": "152617",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor then says \"I am sorry if I offended you then. If you wish you can tell m",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T19:43:52+00:00",
+      "pid": "25059",
+      "msg_id": "152621",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Then we have a deal Anikia. The only thing you need to do for me i",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T19:51:31+00:00",
+      "pid": "25059",
+      "msg_id": "152625",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor stands up \"As you say Anikia. Now that we have concluded our deal. What ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T19:52:43+00:00",
+      "pid": "25059",
+      "msg_id": "152626",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor listens and then says \"I see. So gods my choose priests outside of their",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152556
+      "fingerprint": "2026-05-11 19:43:43",
+      "msg_ids": [
+        152640
+      ],
+      "last_posted_at": "2026-05-11T19:57:56.370255+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
