@@ -1,5 +1,5 @@
 {
-  "offset": 619335017,
+  "offset": 619335024,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-11T03:22:37+00:00",
@@ -38,9 +38,9 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-05-11T05:45:50+00:00",
-      "last_user": "Chase",
-      "last_user_id": "8353586922",
+      "last_message_time": "2026-05-11T10:23:39+00:00",
+      "last_user": "Chris Warlock",
+      "last_user_id": "8787586972",
       "campaign_name": "Magni Guard"
     },
     "107151": {
@@ -138,7 +138,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-05-08T16:40:00.422056+00:00",
-  "last_daily_tip": "2026-05-10T12:30:34.524217+00:00",
+  "last_daily_tip": "2026-05-11T11:13:00.271760+00:00",
   "used_tip_indices": [
     28,
     16,
@@ -176,7 +176,8 @@
     39,
     12,
     34,
-    1
+    1,
+    4
   ],
   "last_pace_drop_check": "2026-05-08T16:40:00.422056+00:00",
   "dying_alerts_sent": {
@@ -243,7 +244,7 @@
   },
   "last_state_backup": "2026-05-11T09:23:29.056945+00:00",
   "last_queue_daily": "2026-05-11",
-  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|76799:2026-05-11 05:45:50|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 10h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|76799:2026-05-11 05:45:50|76799:2026-05-11 10:23:39|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 12h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -325,14 +326,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-10",
-  "last_queue_pin_id": 152463,
-  "queue_post_count": 355,
+  "last_queue_pin_id": 152474,
+  "queue_post_count": 356,
   "gm_queue_history": [
     {
       "msg_ids": [
-        152463
+        152474
       ],
-      "pin_id": 152463
+      "pin_id": 152474
     }
   ]
 }
