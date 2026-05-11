@@ -1,5 +1,5 @@
 {
-  "offset": 619335024,
+  "offset": 619335041,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-11T03:22:37+00:00",
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-05-10T16:14:50+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-05-11T11:55:04+00:00",
+      "last_user": "Chris Warlock",
+      "last_user_id": "8787586972",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -109,7 +109,7 @@
   "last_roster_snapshot": "C01:5/6|C00:5/6|C04:6/6|C05:5/6|C06:8/6|C07:5/6|C09:6/6|C08:4/4|C11:6/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": null
+    "last_at": "2026-05-11T13:15:14.877991+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-04-30T12:45:50.588304+00:00",
@@ -244,7 +244,7 @@
   },
   "last_state_backup": "2026-05-11T09:23:29.056945+00:00",
   "last_queue_daily": "2026-05-11",
-  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|76799:2026-05-11 05:45:50|76799:2026-05-11 10:23:39|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 12h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "107171:2026-05-11 11:55:04|25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|76799:2026-05-11 05:45:50|76799:2026-05-11 10:23:39|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 14h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -326,14 +326,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-10",
-  "last_queue_pin_id": 152474,
-  "queue_post_count": 356,
+  "last_queue_pin_id": 152481,
+  "queue_post_count": 357,
   "gm_queue_history": [
     {
       "msg_ids": [
-        152474
+        152481
       ],
-      "pin_id": 152474
+      "pin_id": 152481
     }
   ]
 }
