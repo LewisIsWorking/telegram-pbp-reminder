@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 152426,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-05-11T01:04:08+00:00",
-      "preview": "Leopard frowns but doesn't say anything else, just trying to process yet more enigmatic bullshit.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -671,7 +662,9 @@
     "msg:152415",
     "2026-05-11 00:40:01",
     "msg:152417",
-    "2026-05-11 00:46:23"
+    "2026-05-11 00:46:23",
+    "msg:152426",
+    "2026-05-11 01:04:08"
   ],
   "reply_log": [
     {
@@ -3767,6 +3760,15 @@
       "player": "Ryo",
       "preview": "\"i... see. I guess for now we can gloss over them and if anyone has something mo",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T01:42:01+00:00",
+      "pid": "40585",
+      "msg_id": "152426",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "Leopard frowns but doesn't say anything else, just trying to process yet more en",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3777,12 +3779,10 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-11 01:04:08",
-      "msg_ids": [
-        152430
-      ],
-      "last_posted_at": "2026-05-11T01:08:32.360521+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152439
     }
   }
 }
