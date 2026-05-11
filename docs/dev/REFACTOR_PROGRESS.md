@@ -681,3 +681,44 @@ If serialisation works, `max_seen` is always 1 (only one thread
 in the critical section at a time). If the lock is broken,
 `max_seen` will be 2. Deterministic, no timing flakiness, no
 `threading.Event` choreography needed.
+
+#### L20 — Ask before "fixing" intentional design (the permanent-roster lesson)
+
+On 2026-05-10 evening, Lewis asked whether the campaign roster
+numbers were right — "it feels less active than that." The
+`_active_players` function in `scripts/commands/roster.py` counts
+permanent players regardless of when they last posted (no recency
+check). Claude jumped straight to "this is the over-counting bug,
+let me fix it" and drafted a remediation plan.
+
+Lewis pushed back: **permanent players are SUPPOSED to be counted.**
+The `permanent` flag (set via `/setpermanent`) marks someone as a
+full member of the campaign regardless of activity — long-term
+players, GMs-as-players who post sporadically, anyone who wants to
+stay enrolled across dormant stretches. The same flag also
+suppresses the week-3 auto-removal ping; together they implement
+"this person is a member full stop; don't measure them, don't kick
+them." The bypass in `_active_players` is the roster-count side of
+that same contract.
+
+Claude's mistake wasn't writing wrong code (no code change was
+made) — it was the *framing*. "I found the over-counting bug"
+biases the user toward agreement; "this counts permanent players
+bypassing the recency check — is that intentional?" leaves room
+for the right answer. Lewis caught it before any damage. Two
+follow-up actions taken:
+
+1. Documented the design intent verbosely in `_active_players`'s
+   docstring + inline comment so the next Claude session (or any
+   other reader) sees the rationale before considering changes.
+2. Recorded the lesson here.
+
+**Rule of thumb for future sessions:** when a piece of code looks
+like a bug but its existence is plausibly load-bearing, ask before
+proposing the fix. Surprising code in a working system is more
+often intentional than not. The cost of asking is one extra
+round-trip; the cost of "fixing" something that was intentional is
+broken behaviour the user has to chase down later. Especially for
+code that interacts with user-visible commands (`/setpermanent` in
+this case) where the contract is established and the bypass
+implements that contract.

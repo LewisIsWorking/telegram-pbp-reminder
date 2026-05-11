@@ -12,12 +12,40 @@ _ACTIVE_DAYS = 30
 
 
 def _active_players(pid: str, state: dict) -> list[dict]:
+    """Return players considered part of the campaign's active roster.
+
+    Inclusion rules (in priority order):
+
+    1. **Permanent players are always counted** — regardless of when
+       they last posted. This is INTENTIONAL, not a bug. The
+       ``permanent`` flag (set via ``/setpermanent``) marks players
+       who are members of the campaign even during dormant stretches:
+       trusted long-term players, GMs-as-players who post sporadically,
+       and people who explicitly want to stay enrolled across quiet
+       weeks. The same flag suppresses the week-3 auto-removal ping
+       in the inactivity reminder — the two behaviours together
+       implement the contract "this person is a member full stop;
+       don't measure them, don't kick them." Do NOT add a recency
+       check here — it would silently demote permanent players from
+       the roster count and break the user-facing meaning of
+       ``/setpermanent``.
+
+    2. **Non-permanent players** must have posted within the last
+       ``_ACTIVE_DAYS`` days to count.
+
+    Lewis explicitly flagged this design on 2026-05-10 after a
+    session where Claude (incorrectly) treated the permanent
+    bypass as an over-counting bug. Recorded in REFACTOR_PROGRESS.md
+    as L20 to prevent a repeat.
+    """
     cutoff = datetime.now(timezone.utc) - timedelta(days=_ACTIVE_DAYS)
     result = []
     for p in state.get("players", {}).values():
         if str(p.get("pbp_topic_id", "")) != pid:
             continue
         if p.get("permanent"):
+            # Intentional: permanent flag = roster member, full stop.
+            # See docstring above. Do not add a recency check here.
             result.append(p)
             continue
         try:
