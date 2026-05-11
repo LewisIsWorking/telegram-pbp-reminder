@@ -539,7 +539,12 @@
       "2026-05-08T15:23:53.977661+00:00",
       "2026-05-08T16:40:00.419902+00:00",
       "2026-05-10T18:16:12.411480+00:00",
-      "2026-05-10T23:24:31.625425+00:00"
+      "2026-05-10T23:24:31.625425+00:00",
+      "2026-05-11T01:08:27.636113+00:00",
+      "2026-05-11T01:08:27.648949+00:00",
+      "2026-05-11T01:08:27.656815+00:00",
+      "2026-05-11T01:08:27.666229+00:00",
+      "2026-05-11T01:08:27.673303+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -742,7 +747,9 @@
       "2026-05-10T22:22:41.259500+00:00",
       "2026-05-10T22:22:41.260325+00:00",
       "2026-05-10T22:22:41.263231+00:00",
-      "2026-05-10T22:22:41.264941+00:00"
+      "2026-05-10T22:22:41.264941+00:00",
+      "2026-05-11T01:08:27.639009+00:00",
+      "2026-05-11T01:08:27.657706+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1106,48 +1113,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-01T02:56:05.818237+00:00",
-      "player": "Buffet",
-      "preview": "\"I'm in no hurry.\"\nTarsus will refocus as he waits for medic"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T03:00:01.611111+00:00",
-      "player": "Bruce",
-      "preview": "Cho stands around and looks over the remains of the ritual a"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T03:17:57.296896+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus hauls himself to his feet and hurries out of the towe"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T03:17:57.301845+00:00",
-      "player": "Buffet",
-      "preview": "I'm assuming the sudden growth of this magical tree is makin"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T03:17:57.304458+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T05:24:44.322263+00:00",
-      "player": "Buffet",
-      "preview": "(it's not a problem, Tarsus is pretty strong and not carryin"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-01T05:24:46.123535+00:00",
-      "player": "",
-      "preview": ""
-    },
     {
       "pid": "40585",
       "time": "2026-05-01T05:24:46.130691+00:00",
@@ -2400,6 +2365,55 @@
       "player": "Kaer'maga when?",
       "preview": "Lorn looks at Tal lysae \"Who are the guards?|",
       "msg_id": "152379"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-11T01:08:27.636113+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Lorn says \"If you hired them can't you just tell them to lea",
+      "msg_id": "152382"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T01:08:27.639009+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Right.... why are you working with terrorists ",
+      "msg_id": "152371"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-11T01:08:27.648949+00:00",
+      "player": "Ryo",
+      "preview": "\"They also made mention of another flame. The dwarf I mean. ",
+      "msg_id": "152399"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-11T01:08:27.656815+00:00",
+      "player": "Ryo",
+      "preview": "\"Who or what is this grey flame?\"",
+      "msg_id": "152403"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T01:08:27.657706+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor then says \"Right, then where does your visions and t",
+      "msg_id": "152400"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-11T01:08:27.666229+00:00",
+      "player": "Ryo",
+      "preview": "\"And who is that? I don't know if it has came up before and ",
+      "msg_id": "152415"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-11T01:08:27.673303+00:00",
+      "player": "Ryo",
+      "preview": "\"i... see. I guess for now we can gloss over them and if any",
+      "msg_id": "152417"
     }
   ],
   "pending_potw_boons": {
