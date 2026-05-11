@@ -666,7 +666,8 @@
       "2026-05-10T16:25:58.451787+00:00",
       "2026-05-10T16:25:58.453448+00:00",
       "2026-05-10T16:25:58.455162+00:00",
-      "2026-05-11T17:03:21.255116+00:00"
+      "2026-05-11T17:03:21.255116+00:00",
+      "2026-05-11T20:42:40.984951+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -766,7 +767,8 @@
       "2026-05-11T19:57:53.867458+00:00",
       "2026-05-11T19:57:53.871489+00:00",
       "2026-05-11T19:57:53.875241+00:00",
-      "2026-05-11T19:57:53.876390+00:00"
+      "2026-05-11T19:57:53.876390+00:00",
+      "2026-05-11T20:42:40.987689+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -902,7 +904,8 @@
       "2026-05-10T17:25:47.194172+00:00",
       "2026-05-10T17:25:47.675233+00:00",
       "2026-05-11T15:11:44.781924+00:00",
-      "2026-05-11T15:11:44.783849+00:00"
+      "2026-05-11T15:11:44.783849+00:00",
+      "2026-05-11T20:42:40.983061+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1137,24 +1140,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.348152+00:00",
-      "player": "Link",
-      "preview": "Akuma gulps down the slightly bitter fluid, and immediately "
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.349334+00:00",
-      "player": "Link",
-      "preview": "Akuma, dripping with water looks over to this new arrival wi"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.350500+00:00",
-      "player": "Christopher",
-      "preview": "Cackle, the gaunt fox next to Natalia lets out a laugh that "
-    },
     {
       "pid": "76799",
       "time": "2026-05-03T12:28:54.351669+00:00",
@@ -2462,6 +2447,27 @@
       "player": "Kaer'maga when?",
       "preview": "Necrila says \"Very well. Crimelord Marlo of Riddleport. We h",
       "msg_id": "152627"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-05-11T20:42:40.983061+00:00",
+      "player": "Chris Warlock",
+      "preview": "(can we only hear the Kobold or see it as well?)",
+      "msg_id": "152648"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-11T20:42:40.984951+00:00",
+      "player": "Chris Warlock",
+      "preview": "Hinata looks between Oofy and Polly, with Oofy in particular",
+      "msg_id": "152647"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T20:42:40.987689+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor asks like a scientist. \"Wouldn't it be unlawful to w",
+      "msg_id": "152623"
     }
   ],
   "pending_potw_boons": {
@@ -2518,7 +2524,8 @@
         "Your next critical failure on a skill check is a regular failure instead."
       ],
       "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-03 (W18) to 2026-05-10 (W19))\n\n6 posts this week with an average gap of 0.2h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-05-10T20:22:39.308187+00:00"
+      "posted_at": "2026-05-10T20:22:39.308187+00:00",
+      "reminders_sent": 1
     }
   }
 }

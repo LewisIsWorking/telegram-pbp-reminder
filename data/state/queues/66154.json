@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 152645,
+      "thread_id": 66154,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-11T19:58:53+00:00",
+      "preview": "Necrila says \"Ok. What is this crest for?  Again I have no clue what a pirate is. All I know is that some of my siblings are pirates. They sail on a ghost ship.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -436,10 +446,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152642
+      "fingerprint": "2026-05-11 19:58:53",
+      "msg_ids": [
+        152668
+      ],
+      "last_posted_at": "2026-05-11T20:42:46.123622+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
