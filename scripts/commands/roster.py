@@ -59,6 +59,24 @@ def _active_players(pid: str, state: dict) -> list[dict]:
     return result
 
 
+def _split_active(players: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Partition an _active_players result into (non_permanent, permanent).
+
+    Used by the overview and per-campaign builders to display permanent
+    players separately. The ``X/Y +Z perm`` format that surfaces this
+    distinction (e.g. ``4/6 +1 perm``) lets the GM see at a glance how
+    much of a campaign's roster is held by perm slots vs by players
+    actually posting within the recency window. Lewis requested this
+    on 2026-05-11 after spotting the gap between /roster (counts perms)
+    and /overview (does not). The icon (✅/⚠️) still gates on the
+    combined count so the set of warned campaigns stays the same —
+    only the display becomes more informative.
+    """
+    non_perm = [p for p in players if not p.get("permanent")]
+    perm = [p for p in players if p.get("permanent")]
+    return non_perm, perm
+
+
 def _find_pair(arg: str, config: dict) -> dict | None:
     """Find campaign pair by code (e.g. 'C04', '04', '4')."""
     norm = arg.upper().lstrip("C").lstrip("0") or "0"
@@ -75,15 +93,21 @@ def build_roster_overview(config: dict, state: dict) -> str:
         code = pair.get("code", "")
         name = pair.get("name", "")
         pid = str(pair["pbp_topic_ids"][0])
-        count = len(_active_players(pid, state))
+        non_perm, perm = _split_active(_active_players(pid, state))
         target = pair.get("roster_target", _TARGET)
-        rows.append((count, code, name, target))
-    rows.sort(key=lambda r: (r[3] <= r[0], r[0]))  # warnings first, both by count asc
+        rows.append((len(non_perm), len(perm), code, name, target))
+    # Warnings first (combined count vs target), both groups by combined asc.
+    rows.sort(key=lambda r: (r[4] <= r[0] + r[1], r[0] + r[1]))
     lines = [f"📋 Campaign Roster (target: {_TARGET}, active last {_ACTIVE_DAYS}d)\n"]
-    for count, code, name, target in rows:
-        icon = "✅" if count >= target else "⚠️"
+    for non_perm_n, perm_n, code, name, target in rows:
+        combined = non_perm_n + perm_n
+        icon = "✅" if combined >= target else "⚠️"
         label = f"{code}: {name}" if code else name
-        lines.append(f"{icon} {label} — {count}/{target}")
+        # Format: "4/6 +2 perm" — X non-perm, Y target, Z perm padding.
+        # The "+Z perm" suffix is omitted when there are no perm players
+        # so campaigns without a perm slot read cleanly as "X/Y".
+        perm_suffix = f" +{perm_n} perm" if perm_n else ""
+        lines.append(f"{icon} {label} — {non_perm_n}/{target}{perm_suffix}")
     return "\n".join(lines)
 
 
@@ -94,12 +118,15 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
     label = f"{code}: {name}" if code else name
 
     players = _active_players(pid, state)
-    count = len(players)
+    non_perm, perm = _split_active(players)
     target = pair.get("roster_target", _TARGET)
-    icon = "✅" if count >= target else "⚠️"
+    combined = len(non_perm) + len(perm)
+    icon = "✅" if combined >= target else "⚠️"
+    perm_suffix = f" +{len(perm)} perm" if perm else ""
     names = "\n".join(
         f"  • {p.get('first_name', '?')}"
         + (f" (@{p['username']})" if p.get("username") else "")
+        + (" [perm]" if p.get("permanent") else "")
         for p in sorted(players, key=lambda p: p.get("first_name", ""))
     ) or "  (none)"
 
@@ -117,7 +144,8 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
 
     return (
         f"📋 {label}\n"
-        f"{icon} {count}/{target} active player{'s' if count != 1 else ''} (last {_ACTIVE_DAYS}d)\n\n"
+        f"{icon} {len(non_perm)}/{target}{perm_suffix} active player"
+        f"{'s' if combined != 1 else ''} (last {_ACTIVE_DAYS}d)\n\n"
         f"Current:\n{names}\n\n"
         f"History:\n{hist_text}"
     )

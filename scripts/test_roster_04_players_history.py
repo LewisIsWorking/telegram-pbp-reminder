@@ -158,4 +158,8 @@ def test_roster_includes_permanent_players_regardless_of_activity():
                    "last_post_time": "2020-01-01T00:00:00+00:00"},
     }}
     result = build_roster_overview(config, state)
-    assert "1/6" in result  # permanent player counted despite ancient last post
+    # 2026-05-11: format changed from "1/6" (combined) to "0/6 +1 perm"
+    # so the permanent slot is visible separately from the non-perm count.
+    # Permanent player still counted; display shape just reflects them
+    # in the +N perm suffix rather than rolling them into the X numerator.
+    assert "0/6 +1 perm" in result
