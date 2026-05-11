@@ -50,7 +50,16 @@ jobs:
     permissions:
       contents: write
     steps:
+      # `ref: main` instead of the default (which checks out GITHUB_SHA,
+      # the SHA that triggered the workflow). When the concurrency group
+      # `pbp-checker` serialises runs, Run B (queued behind Run A) MUST
+      # check out main HEAD so it picks up Run A's state push. The default
+      # pins to the trigger SHA which was set BEFORE Run A finished —
+      # that stale checkout is what caused the 2026-05-11 duplicate-post-
+      # of-#360 incident. See L21 in docs/dev/REFACTOR_PROGRESS.md.
       - uses: actions/checkout@v6
+        with:
+          ref: main
 
       - uses: actions/setup-python@v6
         with:
@@ -85,5 +94,31 @@ jobs:
           cp -f data/weekly_archive.json docs/data/weekly_archive.json 2>/dev/null || true
           python scripts/promote_poll_voters.py --commit 2>/dev/null || true
           git add data/ docs/data/ config.json
-          git diff --cached --quiet || git commit -m "Update archive, transcripts and state [skip ci]"
-          git push || echo "Nothing to push"
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "Update archive, transcripts and state [skip ci]"
+          # Retry-with-rebase on non-fast-forward. Pre-2026-05-11 this
+          # was `git push || echo "Nothing to push"` which silently
+          # swallowed non-fast-forward errors, losing state updates
+          # whenever runs raced (e.g. two pushes ~30s apart triggering
+          # back-to-back runs). The duplicate post that Lewis flagged
+          # was the visible half; the silent state loss was the worse
+          # half. Now we fail loudly if 5 rebase+push attempts can't
+          # land the state. See L21 in docs/dev/REFACTOR_PROGRESS.md.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "State push succeeded on attempt $i"
+              exit 0
+            fi
+            if [ $i -eq 5 ]; then
+              echo "ERROR: state push failed after 5 attempts" >&2
+              exit 1
+            fi
+            echo "Push attempt $i failed; rebasing onto origin/main and retrying..."
+            if ! git pull --rebase origin main; then
+              echo "ERROR: rebase failed — likely merge conflict in state files" >&2
+              exit 1
+            fi
+          done

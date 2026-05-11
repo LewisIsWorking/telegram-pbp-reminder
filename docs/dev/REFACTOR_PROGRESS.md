@@ -722,3 +722,96 @@ broken behaviour the user has to chase down later. Especially for
 code that interacts with user-visible commands (`/setpermanent` in
 this case) where the contract is established and the bypass
 implements that contract.
+
+#### L21 — Concurrency groups don't help if checkout pins to GITHUB_SHA
+
+On 2026-05-11 evening Lewis spotted the GM queue posting #360 twice
+at 19:57 UTC, and shortly after that the per-topic queue doing the
+same thing. The diagnosis took a couple of false starts before the
+actual root cause emerged from the parent chain of state commits.
+
+The workflow has a `concurrency: pbp-checker, cancel-in-progress:
+false` clause, which correctly serialises workflow runs in this
+group. That's not the problem. The problem is the checkout step:
+
+```yaml
+- uses: actions/checkout@v6
+```
+
+With no `ref:` specified, `actions/checkout@v6` defaults to the
+**triggering SHA** (`GITHUB_SHA`), NOT main HEAD. So even though
+Run B was queued behind Run A and waited for Run A to finish,
+when Run B finally started it checked out the SHA that triggered
+it — a SHA that predates Run A's state push.
+
+The sequence:
+
+1. Lewis pushed two commits 32s apart at 19:56:47 and 19:57:25.
+2. Run A (triggered by the first push) ran, posted #360 with
+   msg_id X, updated state to count=360 + pin=X, committed,
+   tried to push.
+3. **Run A's push failed non-fast-forward** because origin/main
+   had already moved to Lewis's second push (19:57:25). The
+   workflow's `git push || echo "Nothing to push"` swallowed the
+   error silently. Run A's state update + bot_sent_registry entry
+   for msg X were both lost.
+4. Run B (queued behind Run A by the concurrency group) started
+   after Run A finished. Checkout pinned to Run B's trigger SHA,
+   which doesn't include any state commits. Run B read the same
+   stale state Run A had read (count=359, pin=152615).
+5. Run B posted #360 again with msg_id 152643, evicted the long-
+   gone 152615 (soft-success thanks to the recent `_post` change),
+   committed, pushed — succeeded this time because no other run
+   was racing.
+
+Result: two `#360` messages visible in Telegram; one orphaned
+(msg X) with no entry in `gm_queue_history` and no entry in
+`bot_sent_registry` — it can never be auto-evicted, can't even be
+deleted via `tg.delete_message` because the registry safeguard
+would refuse it. The per-topic queue had the same shape of bug
+for the same reason; both code paths use the same
+read-state → side-effect → write-state → push pattern, both were
+broken by the same root cause.
+
+**The fix (applied in this commit) has two parts, both in the
+workflow:**
+
+1. **`ref: main`** on the run-job's `actions/checkout`. After the
+   concurrency-group wait, this picks up whatever's at main HEAD
+   (including any state push from the previous run in the group),
+   not the pinned trigger SHA. Run B's fingerprint check then
+   trips and Run B skips the duplicate post.
+2. **Retry-with-rebase on `git push`.** Replaced
+   `git push || echo "Nothing to push"` with a 5-attempt loop
+   that does `git pull --rebase origin main` between failures.
+   If all 5 attempts fail the job fails loudly instead of
+   silently losing state.
+
+**Why this matters beyond the GM queue:** Lewis correctly flagged
+that this isn't a GM-queue-specific issue. Every code path that
+follows the "read state → do something with side effects → write
+state → push" pattern was vulnerable to the same race. The fix
+is at the workflow layer because the root cause is at the workflow
+layer; fixing it once covers per-topic queues, recruitment alerts,
+weekly campaign tables, anything else that mutates state and has
+an external side effect.
+
+**What didn't work in the diagnosis:** initial hypothesis was
+"two runs ran in parallel" — disproved by the workflow's
+concurrency clause. Second hypothesis was "the bot's `[skip ci]`
+commit messages somehow re-triggered" — disproved by checking
+`paths-ignore`. Third (correct) was found by reading the parent
+chain of state commits: `git log --format='%h %p %ad %s'` between
+the relevant SHAs showed only ONE state commit between the two
+pushes, proving Run A's state push was lost. The lesson here is
+that **the git history is the source of truth for what actually
+happened** when reasoning about CI races — not run-log output,
+not the bot's print statements.
+
+The orphan from this incident (msg X in the bot topic, between
+msg_ids 152615 and 152643, posted by PathWarsNudge but not in
+any batch and not in bot_sent_registry) is Lewis's to clean up
+manually. Anthropic-side rule: Claude must never delete orphans
+or perform any chat-cleanup action on Lewis's behalf. The bot's
+safeguards exist precisely to prevent automated cleanup that
+bypasses tracked state; respecting them is the whole point.

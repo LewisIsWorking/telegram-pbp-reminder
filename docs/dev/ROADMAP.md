@@ -104,6 +104,17 @@ to the registry and a one-shot delete invoked. **Do NOT auto-
 discover candidate IDs** — that's exactly the path the 2026-05-08
 incident took.
 
+**2026-05-11 update:** the same class of bug bit again, producing
+duplicate GM queue #360 and a duplicate per-topic-queue post. Root
+cause was the workflow's checkout pinning to GITHUB_SHA, defeating
+the concurrency group's serialisation guarantee — documented in
+L21 and mitigated by the same-day workflow fix. The 2026-05-03
+orphan was almost certainly produced by this same mechanism. The
+fix prevents future occurrences; previously-orphaned messages
+(2026-05-03 and 2026-05-11) remain Lewis's manual cleanup task.
+**Claude must never perform orphan cleanup** — hard rule, recorded
+in Claude's persistent memory.
+
 ### 3. Audit codebase for bypass paths
 
 The safeguard works because every delete in the codebase routes through
@@ -355,6 +366,27 @@ treat F2 (CI window) as a known limitation; document; only escalate
 if F2 actually bites.
 
 **Risk:** medium given the recommendation; high if we picked B or C.
+
+**2026-05-11 update — F2 bit.** The duplicate-#360 incident was a
+textbook F2 manifestation: two pushes 32s apart triggered back-to-
+back runs, the second checked out its trigger SHA (which predated
+the first run's state commit), read stale state, and posted the
+same queue a second time. The earlier orphan in thread 107171
+from 2026-05-03 was almost certainly the same root cause. Both are
+documented in L21.
+
+Mitigation shipped (also 2026-05-11): two-line workflow fix
+— `ref: main` on the run-job's checkout, plus retry-with-rebase
+on the state push. After concurrency-group serialisation, Run B
+now checks out main HEAD (including any state commits from Run A)
+rather than the stale trigger SHA. The fingerprint check then
+trips and Run B skips the duplicate. State pushes that race no
+longer silently drop — the loop retries with `git pull --rebase`
+or fails the job loudly. F2 is **no longer a known-tolerable
+limitation**; it's a fixed bug.
+
+The broader read-modify-write story (P3/10) is still future work
+on its own merits, but F2 specifically is closed.
 
 ---
 
