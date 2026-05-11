@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 152413,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-11T00:32:33+00:00",
-      "preview": "Selenor then says \"I assume you helped them get it then? May I know why they are using it and if I can retrieve it. It would at least be fair for them to pay for the mummy\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -90,7 +80,11 @@
     "msg:152371",
     "2026-05-10 21:55:46",
     "msg:152400",
-    "2026-05-11 00:03:30"
+    "2026-05-11 00:03:30",
+    "msg:152413",
+    "2026-05-11 00:32:33",
+    "msg:152529",
+    "2026-05-11 15:53:39"
   ],
   "reply_log": [
     {
@@ -443,16 +437,32 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor then says \"Right, then where does your visions and the mummy fit in all ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T15:31:59+00:00",
+      "pid": "25059",
+      "msg_id": "152413",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor then says \"I assume you helped them get it then? May I know why they are",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T15:54:12+00:00",
+      "pid": "25059",
+      "msg_id": "152529",
+      "thread_id": "25059",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-11 00:32:33",
-      "msg_ids": [
-        152428
-      ],
-      "last_posted_at": "2026-05-11T01:08:29.798192+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152556
     }
   }
 }
