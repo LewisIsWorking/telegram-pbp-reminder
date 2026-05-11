@@ -1,5 +1,5 @@
 {
-  "offset": 619335041,
+  "offset": 619335066,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-11T03:22:37+00:00",
@@ -32,15 +32,15 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-11T01:42:01+00:00",
+      "last_message_time": "2026-05-11T14:27:13+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-05-11T10:23:39+00:00",
-      "last_user": "Chris Warlock",
-      "last_user_id": "8787586972",
+      "last_message_time": "2026-05-11T15:05:42+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Magni Guard"
     },
     "107151": {
@@ -244,7 +244,7 @@
   },
   "last_state_backup": "2026-05-11T09:23:29.056945+00:00",
   "last_queue_daily": "2026-05-11",
-  "last_queue_fingerprint": "107171:2026-05-11 11:55:04|25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|76799:2026-05-11 05:45:50|76799:2026-05-11 10:23:39|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 14h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "107171:2026-05-11 11:55:04|25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 16h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -326,14 +326,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-10",
-  "last_queue_pin_id": 152481,
-  "queue_post_count": 357,
+  "last_queue_pin_id": 152504,
+  "queue_post_count": 358,
   "gm_queue_history": [
     {
       "msg_ids": [
-        152481
+        152504
       ],
-      "pin_id": 152481
+      "pin_id": 152504
     }
   ]
 }

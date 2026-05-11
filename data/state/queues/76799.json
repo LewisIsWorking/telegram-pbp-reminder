@@ -1,25 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 152451,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-05-11T05:45:50+00:00",
-      "preview": "After everyone has had time to get their wind and patch their wounds, B\u00e1yakan takes the time to listen at the next door. Either with quite a bit of effort, or a hand from someone taller, he opens it. Lingering in the doorway, the sprite scans the next room for danger.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152468,
-      "thread_id": 76799,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-11T10:23:39+00:00",
-      "preview": "Natalia opens the door for B\u00e1yakan.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -275,7 +256,11 @@
     "msg:151624",
     "2026-05-08 05:33:07",
     "msg:151625",
-    "2026-05-08 05:35:17"
+    "2026-05-08 05:35:17",
+    "msg:152451",
+    "2026-05-11 05:45:50",
+    "msg:152468",
+    "2026-05-11 10:23:39"
   ],
   "reply_log": [
     {
@@ -1470,18 +1455,34 @@
       "player": "Chase Darkthorne",
       "preview": "*[image]* Once the door is open he looks about to see what danger may lurk beyon",
       "via": "markdone"
+    },
+    {
+      "t": "2026-05-11T15:01:49+00:00",
+      "pid": "76799",
+      "msg_id": "152451",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "After everyone has had time to get their wind and patch their wounds, B\u00e1yakan ta",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T15:05:42+00:00",
+      "pid": "76799",
+      "msg_id": "152468",
+      "thread_id": 76799,
+      "player": "Chris Warlock",
+      "preview": "Natalia opens the door for B\u00e1yakan.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-05-11 05:45:50|2026-05-11 10:23:39",
-      "msg_ids": [
-        152472
-      ],
-      "last_posted_at": "2026-05-11T11:13:04.601415+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152503
     },
     "144765": {
       "fingerprint": "",
