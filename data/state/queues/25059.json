@@ -2,21 +2,21 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 152662,
+      "message_id": 152685,
       "thread_id": 25059,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-05-11T20:34:06+00:00",
-      "preview": "Selenor stares at Anikia \"Do you not have a meeting point? What about their tracks that you covered? We could use to as a way to get to them.\"",
+      "time": "2026-05-11T21:27:17+00:00",
+      "preview": "Selenor looks at Alissee \"Well miss detective what now. I have no clue what else to do now.\"",
       "media_group_id": null
     },
     {
-      "message_id": 152663,
+      "message_id": 152686,
       "thread_id": 25059,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-05-11T20:36:50+00:00",
-      "preview": "Selenor says \"Regardless of alignment. Working with demons will always be a CE action. If they enslaved them in a LN or LE manner would have been a different story. I might also add their slime plague almost destroyed the civilization known as Kibwe. Regardless the fact that Ademe later helped the heroes undue the chaos caused by her research was a lawful action.\"",
+      "time": "2026-05-11T21:28:58+00:00",
+      "preview": "Selenor then asks \"I have a crystal ball in my possesion. What if we were to use scrying on your husband or the mummy?\"",
       "media_group_id": null
     }
   ],
@@ -131,7 +131,11 @@
     "msg:152626",
     "2026-05-11 19:47:58",
     "msg:152623",
-    "2026-05-11 19:43:43"
+    "2026-05-11 19:43:43",
+    "msg:152662",
+    "2026-05-11 20:34:06",
+    "msg:152663",
+    "2026-05-11 20:36:50"
   ],
   "reply_log": [
     {
@@ -628,15 +632,33 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor asks like a scientist. \"Wouldn't it be unlawful to work with a daemon cu",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T21:11:30+00:00",
+      "pid": "25059",
+      "msg_id": "152662",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor stares at Anikia \"Do you not have a meeting point? What about their trac",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T21:12:22+00:00",
+      "pid": "25059",
+      "msg_id": "152663",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Regardless of alignment. Working with demons will always be a CE a",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-11 20:34:06|2026-05-11 20:36:50",
+      "fingerprint": "2026-05-11 21:27:17|2026-05-11 21:28:58",
       "msg_ids": [
-        152666
+        152687
       ],
-      "last_posted_at": "2026-05-11T20:42:43.481651+00:00",
+      "last_posted_at": "2026-05-11T21:36:09.347401+00:00",
       "caught_up_msg_id": null
     }
   }

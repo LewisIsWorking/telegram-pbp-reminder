@@ -768,7 +768,9 @@
       "2026-05-11T19:57:53.871489+00:00",
       "2026-05-11T19:57:53.875241+00:00",
       "2026-05-11T19:57:53.876390+00:00",
-      "2026-05-11T20:42:40.987689+00:00"
+      "2026-05-11T20:42:40.987689+00:00",
+      "2026-05-11T21:36:06.667232+00:00",
+      "2026-05-11T21:36:06.670062+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -937,7 +939,8 @@
       "2026-05-10T19:30:39.410903+00:00",
       "2026-05-11T19:38:57.501827+00:00",
       "2026-05-11T19:57:53.865155+00:00",
-      "2026-05-11T19:57:53.877262+00:00"
+      "2026-05-11T19:57:53.877262+00:00",
+      "2026-05-11T21:36:06.671030+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1140,24 +1143,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.351669+00:00",
-      "player": "Chase",
-      "preview": "B\u00e1yakan continues to work at the trap, managing to foul anot"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.352840+00:00",
-      "player": "Cannon",
-      "preview": "Nadya stumbles out of the room with wide eyes and a distinct"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T12:28:54.354473+00:00",
-      "player": "Link",
-      "preview": "Akuma, tapping into his training, places himself in a defens"
-    },
     {
       "pid": "25059",
       "time": "2026-05-03T12:28:54.355039+00:00",
@@ -2468,6 +2453,27 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor asks like a scientist. \"Wouldn't it be unlawful to w",
       "msg_id": "152623"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T21:36:06.667232+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor stares at Anikia \"Do you not have a meeting point? W",
+      "msg_id": "152662"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-11T21:36:06.670062+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Regardless of alignment. Working with demons w",
+      "msg_id": "152663"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-11T21:36:06.671030+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Necrila says \"Ok. What is this crest for?  Again I have no c",
+      "msg_id": "152645"
     }
   ],
   "pending_potw_boons": {
