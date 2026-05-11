@@ -62,6 +62,9 @@ EVERYONE_COMMANDS = [
 
 GM_COMMANDS = [
     ("gm", "GM dashboard overview"),
+    ("rostercampaigns", "Per-campaign full breakdown for every campaign"),
+    ("rosterplayers", "Cross-campaign player table with at-risk markers"),
+    ("rosterall", "Full roster + at-risk + recent joiners/leavers"),
     ("queue", "Unreplied player messages"),
     ("pause", "Pause inactivity tracking"),
     ("resume", "Resume inactivity tracking"),
