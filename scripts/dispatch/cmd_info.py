@@ -167,4 +167,29 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_roster(arg, config, state))
         return True
 
+    if cmd == "/rostercampaigns":
+        # Shape 1: per-campaign full breakdown for every campaign.
+        # Same shape as /roster <code> repeated for each campaign,
+        # emitted as one combined message.
+        from commands.roster_views import build_roster_campaigns
+        tg.send_message(gid, reply, build_roster_campaigns(config, state))
+        return True
+
+    if cmd == "/rosterplayers":
+        # Shape 2: cross-campaign player table grouped by user_id,
+        # with at-risk markers (→ last_warned_week 2 or 3) and a
+        # recent join/leave footer from state['player_history'].
+        from commands.roster_players import build_roster_players
+        tg.send_message(gid, reply, build_roster_players(config, state))
+        return True
+
+    if cmd == "/rosterall":
+        # Shape 3: per-campaign blocks (from Shape 1) plus the
+        # at-risk / recent-joiners footer (subset of Shape 2).
+        # Most comprehensive output; may approach Telegram's 4096
+        # char limit on busy weeks.
+        from commands.roster_views import build_roster_all
+        tg.send_message(gid, reply, build_roster_all(config, state))
+        return True
+
     return False
