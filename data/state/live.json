@@ -1,5 +1,5 @@
 {
-  "offset": 619334996,
+  "offset": 619335002,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-11T03:22:37+00:00",
@@ -38,10 +38,10 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-05-10T17:16:40+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
-      "campaign_name": "Magni Watch"
+      "last_message_time": "2026-05-11T05:45:50+00:00",
+      "last_user": "Chase",
+      "last_user_id": "8353586922",
+      "campaign_name": "Magni Guard"
     },
     "107151": {
       "last_message_time": "2026-05-05T22:26:37+00:00",
@@ -243,7 +243,7 @@
   },
   "last_state_backup": "2026-05-10T08:45:24.567761+00:00",
   "last_queue_daily": "2026-05-10",
-  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 7h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|76799:2026-05-11 05:45:50|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 9h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -325,14 +325,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-10",
-  "last_queue_pin_id": 152448,
-  "queue_post_count": 353,
+  "last_queue_pin_id": 152455,
+  "queue_post_count": 354,
   "gm_queue_history": [
     {
       "msg_ids": [
-        152448
+        152455
       ],
-      "pin_id": 152448
+      "pin_id": 152455
     }
   ]
 }
