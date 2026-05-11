@@ -1,10 +1,10 @@
 {
-  "offset": 619334991,
+  "offset": 619334996,
   "topics": {
     "52083": {
-      "last_message_time": "2026-05-08T14:24:44+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-05-11T03:22:37+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -180,8 +180,7 @@
   ],
   "last_pace_drop_check": "2026-05-08T16:40:00.422056+00:00",
   "dying_alerts_sent": {
-    "107151": "active",
-    "52083": "active"
+    "107151": "active"
   },
   "last_campaign_table": "2026-05-05T05:11:55.253181+00:00",
   "session_poll": {
@@ -244,7 +243,7 @@
   },
   "last_state_backup": "2026-05-10T08:45:24.567761+00:00",
   "last_queue_daily": "2026-05-10",
-  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 4h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-11 00:32:33|52083:2026-05-11 03:22:37|52083:2026-05-11 03:22:37|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 7h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -326,14 +325,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-10",
-  "last_queue_pin_id": 152440,
-  "queue_post_count": 352,
+  "last_queue_pin_id": 152448,
+  "queue_post_count": 353,
   "gm_queue_history": [
     {
       "msg_ids": [
-        152440
+        152448
       ],
-      "pin_id": 152440
+      "pin_id": 152448
     }
   ]
 }
