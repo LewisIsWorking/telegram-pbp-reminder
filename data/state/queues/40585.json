@@ -16,6 +16,33 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 153030,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-05-12T03:12:08+00:00",
+      "preview": "I need to finish my respeccing fast then....",
+      "media_group_id": null
+    },
+    {
+      "message_id": 153031,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-05-12T03:16:54+00:00",
+      "preview": "This is RP chat, please use the actual chat for this stuff.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 153032,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-05-12T03:17:19+00:00",
+      "preview": "https://t.me/Path_Wars/21528",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3779,10 +3806,12 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152439
+      "fingerprint": "2026-05-12 03:12:08|2026-05-12 03:16:54|2026-05-12 03:17:19",
+      "msg_ids": [
+        153061
+      ],
+      "last_posted_at": "2026-05-12T07:13:18.470215+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

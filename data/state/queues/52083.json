@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 153019,
-      "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-05-12T01:45:14+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -126,7 +116,9 @@
     "msg:152772",
     "2026-05-12 00:07:02",
     "msg:152893",
-    "2026-05-12 00:49:52"
+    "2026-05-12 00:49:52",
+    "msg:153019",
+    "2026-05-12 01:45:14"
   ],
   "reply_log": [
     {
@@ -664,18 +656,25 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-12T01:53:02+00:00",
+      "pid": "52083",
+      "msg_id": "153019",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-12 01:45:14",
-      "msg_ids": [
-        153050
-      ],
-      "last_posted_at": "2026-05-12T05:22:30.767698+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153063
     }
   }
 }
