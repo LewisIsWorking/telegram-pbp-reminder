@@ -27,6 +27,33 @@
       "time": "2026-05-12T01:02:39+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 152943,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-12T01:02:49+00:00",
+      "preview": "I know i picked 1 before..",
+      "media_group_id": null
+    },
+    {
+      "message_id": 152944,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-12T01:02:58+00:00",
+      "preview": "But 3 is pretty nice too...",
+      "media_group_id": null
+    },
+    {
+      "message_id": 152945,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-12T01:03:19+00:00",
+      "preview": "Since i probably won't fail performance checks...",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -685,11 +712,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-12 01:02:14|2026-05-12 01:02:31|2026-05-12 01:02:39",
+      "fingerprint": "2026-05-12 01:02:14|2026-05-12 01:02:31|2026-05-12 01:02:39|2026-05-12 01:02:49|2026-05-12 01:02:58|2026-05-12 01:03:19",
       "msg_ids": [
-        153038
+        153048
       ],
-      "last_posted_at": "2026-05-12T03:19:03.445346+00:00",
+      "last_posted_at": "2026-05-12T05:22:28.000190+00:00",
       "caught_up_msg_id": null
     }
   }
