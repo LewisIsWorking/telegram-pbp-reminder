@@ -2,12 +2,12 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 152692,
+      "message_id": 152772,
       "thread_id": 52083,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-05-11T21:48:14+00:00",
-      "preview": "This would mean we get a day's rest.",
+      "time": "2026-05-12T00:07:02+00:00",
+      "preview": "Login?",
       "media_group_id": null
     }
   ],
@@ -116,7 +116,13 @@
     "2026-05-08 04:18:44",
     "msg:152442",
     "2026-05-11 03:22:37",
-    "msg:152443"
+    "msg:152443",
+    "msg:152692",
+    "2026-05-11 21:48:14",
+    "msg:152721",
+    "2026-05-11 23:54:41",
+    "msg:152769",
+    "2026-05-12 00:06:34"
   ],
   "reply_log": [
     {
@@ -609,17 +615,44 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T23:41:17+00:00",
+      "pid": "52083",
+      "msg_id": "152692",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "This would mean we get a day's rest.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T23:59:26+00:00",
+      "pid": "52083",
+      "msg_id": "152721",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-12T00:06:51+00:00",
+      "pid": "52083",
+      "msg_id": "152769",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "I did too",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-11 21:48:14",
+      "fingerprint": "2026-05-12 00:07:02",
       "msg_ids": [
-        152694
+        152822
       ],
-      "last_posted_at": "2026-05-11T22:29:53.677031+00:00",
+      "last_posted_at": "2026-05-12T00:22:51.460861+00:00",
       "caught_up_msg_id": null
     }
   }

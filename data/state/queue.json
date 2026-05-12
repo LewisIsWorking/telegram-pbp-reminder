@@ -770,7 +770,9 @@
       "2026-05-11T19:57:53.876390+00:00",
       "2026-05-11T20:42:40.987689+00:00",
       "2026-05-11T21:36:06.667232+00:00",
-      "2026-05-11T21:36:06.670062+00:00"
+      "2026-05-11T21:36:06.670062+00:00",
+      "2026-05-12T00:22:49.554891+00:00",
+      "2026-05-12T00:22:49.556186+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -989,7 +991,10 @@
       "2026-05-07T21:27:22.185874+00:00",
       "2026-05-08T15:23:53.967268+00:00",
       "2026-05-11T17:03:20.797878+00:00",
-      "2026-05-11T17:03:20.800549+00:00"
+      "2026-05-11T17:03:20.800549+00:00",
+      "2026-05-12T00:22:49.548868+00:00",
+      "2026-05-12T00:22:49.557414+00:00",
+      "2026-05-12T00:22:49.560432+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1139,46 +1144,11 @@
       "2026-05-07T21:27:21.629363+00:00",
       "2026-05-08T01:10:08.564286+00:00",
       "2026-05-09T21:21:56.631038+00:00",
-      "2026-05-09T21:21:56.635972+00:00"
+      "2026-05-09T21:21:56.635972+00:00",
+      "2026-05-12T00:22:49.553517+00:00"
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-03T12:28:54.355039+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor sits down and asks \"We picked up your bounty regardi"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-03T12:28:54.360204+00:00",
-      "player": "Awnii",
-      "preview": "\"I am.. or was.... A halfling. My friend here pats the slime"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-03T12:28:54.362979+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-03T13:23:04.587494+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T13:23:04.588762+00:00",
-      "player": "Cannon",
-      "preview": "Natalia moved to adjacent to me iirc"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T13:23:04.590056+00:00",
-      "player": "Cannon",
-      "preview": "She's gonna stay in reach to throw healing at people but oth"
-    },
     {
       "pid": "76799",
       "time": "2026-05-03T13:23:04.592253+00:00",
@@ -2474,6 +2444,48 @@
       "player": "Kaer'maga when?",
       "preview": "Necrila says \"Ok. What is this crest for?  Again I have no c",
       "msg_id": "152645"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-12T00:22:49.548868+00:00",
+      "player": "Anthony",
+      "preview": "This would mean we get a day's rest.",
+      "msg_id": "152692"
+    },
+    {
+      "pid": "1242",
+      "time": "2026-05-12T00:22:49.553517+00:00",
+      "player": "Luke",
+      "preview": "Rino looks confused. He \u201cscratches his horn \u201d",
+      "msg_id": "2492"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-12T00:22:49.554891+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks at Alissee \"Well miss detective what now. I ha",
+      "msg_id": "152685"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-12T00:22:49.556186+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor then asks \"I have a crystal ball in my possesion. Wh",
+      "msg_id": "152686"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-12T00:22:49.557414+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "152721"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-05-12T00:22:49.560432+00:00",
+      "player": "Anthony",
+      "preview": "I did too",
+      "msg_id": "152769"
     }
   ],
   "pending_potw_boons": {

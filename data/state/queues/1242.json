@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2492,
-      "thread_id": 1242,
-      "user_id": "6464119705",
-      "user_name": "Luke",
-      "time": "2026-05-11T21:17:08+00:00",
-      "preview": "Rino looks confused. He \u201cscratches his horn \u201d",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -279,7 +269,9 @@
     "msg:2465",
     "2026-05-09 21:14:41",
     "msg:2466",
-    "2026-05-09 21:18:48"
+    "2026-05-09 21:18:48",
+    "msg:2492",
+    "2026-05-11 21:17:08"
   ],
   "reply_log": [
     {
@@ -1634,18 +1626,25 @@
       "player": "Craig",
       "preview": "I tell her that if it happens again the leash is going back on",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T23:47:08+00:00",
+      "pid": "1242",
+      "msg_id": "2492",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "Rino looks confused. He \u201cscratches his horn \u201d",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-05-11 21:17:08",
-      "msg_ids": [
-        2493
-      ],
-      "last_posted_at": "2026-05-11T21:36:12.802814+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 2501
     }
   }
 }

@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 152685,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-11T21:27:17+00:00",
-      "preview": "Selenor looks at Alissee \"Well miss detective what now. I have no clue what else to do now.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152686,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-11T21:28:58+00:00",
-      "preview": "Selenor then asks \"I have a crystal ball in my possesion. What if we were to use scrying on your husband or the mummy?\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -135,7 +116,11 @@
     "msg:152662",
     "2026-05-11 20:34:06",
     "msg:152663",
-    "2026-05-11 20:36:50"
+    "2026-05-11 20:36:50",
+    "msg:152685",
+    "2026-05-11 21:27:17",
+    "msg:152686",
+    "2026-05-11 21:28:58"
   ],
   "reply_log": [
     {
@@ -650,16 +635,32 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"Regardless of alignment. Working with demons will always be a CE a",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-11T23:56:21+00:00",
+      "pid": "25059",
+      "msg_id": "152685",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks at Alissee \"Well miss detective what now. I have no clue what else",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-11T23:57:44+00:00",
+      "pid": "25059",
+      "msg_id": "152686",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor then asks \"I have a crystal ball in my possesion. What if we were to use",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-11 21:27:17|2026-05-11 21:28:58",
-      "msg_ids": [
-        152687
-      ],
-      "last_posted_at": "2026-05-11T21:36:09.347401+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 152824
     }
   }
 }
