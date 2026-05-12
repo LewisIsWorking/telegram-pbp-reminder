@@ -2,12 +2,12 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 153142,
+      "message_id": 153219,
       "thread_id": 107171,
       "user_id": "8787586972",
       "user_name": "Chris Warlock",
-      "time": "2026-05-12T13:37:59+00:00",
-      "preview": "Unless anyone else wants to intercede with some sort of attempt at diplomacy, Hinata would initiate combat with the words: \"I guess my question answered itself. I hope that you will have my back.\"",
+      "time": "2026-05-12T17:42:21+00:00",
+      "preview": "Her gun was raised since this point, when she started pointing it directly at Polly.",
       "media_group_id": null
     }
   ],
@@ -253,7 +253,9 @@
     "msg:152647",
     "2026-05-11 20:08:18",
     "msg:153067",
-    "2026-05-12 07:58:01"
+    "2026-05-12 07:58:01",
+    "msg:153142",
+    "2026-05-12 13:37:59"
   ],
   "reply_log": [
     {
@@ -1402,17 +1404,26 @@
       "player": "Chris Warlock",
       "preview": "While still pointing her plasma cannon on Polly, Hinata looks through the eyes i",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-12T17:15:30+00:00",
+      "pid": "107171",
+      "msg_id": "153142",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "Unless anyone else wants to intercede with some sort of attempt at diplomacy, Hi",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-05-12 13:37:59",
+      "fingerprint": "2026-05-12 17:42:21",
       "msg_ids": [
-        153148
+        153222
       ],
-      "last_posted_at": "2026-05-12T13:45:06.151836+00:00",
+      "last_posted_at": "2026-05-12T17:47:23.172383+00:00",
       "caught_up_msg_id": null
     },
     "142887": {

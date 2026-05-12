@@ -673,7 +673,8 @@
       "2026-05-10T16:25:58.455162+00:00",
       "2026-05-11T17:03:21.255116+00:00",
       "2026-05-11T20:42:40.984951+00:00",
-      "2026-05-12T12:55:05.139071+00:00"
+      "2026-05-12T12:55:05.139071+00:00",
+      "2026-05-12T17:47:20.745110+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1166,12 +1167,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-05-03T13:23:04.655530+00:00",
-      "player": "Bruce",
-      "preview": "Chua moves forward.  \"Help take on tasks that needs to be do"
-    },
     {
       "pid": "52083",
       "time": "2026-05-03T13:23:04.657095+00:00",
@@ -2520,6 +2515,13 @@
       "player": "Laetheron",
       "preview": "Twilight leans over gesturing with a wooden paw and asks a s",
       "msg_id": "153057"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-12T17:47:20.745110+00:00",
+      "player": "Chris Warlock",
+      "preview": "Unless anyone else wants to intercede with some sort of atte",
+      "msg_id": "153142"
     }
   ],
   "pending_potw_boons": {
@@ -2564,6 +2566,19 @@
       "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-03 (W18) to 2026-05-10 (W19))\n\n6 posts this week with an average gap of 0.2h between posts. The most consistent driver of the story.",
       "posted_at": "2026-05-10T20:22:39.308187+00:00",
       "reminders_sent": 1
+    },
+    "107171": {
+      "message_id": 153221,
+      "winner_user_id": "8787586972",
+      "campaign_name": "Metal City",
+      "boons": [
+        "The index of an ancient library includes a reference you've never seen catalogued.",
+        "A street name translates to something that hints at what's hidden beneath it.",
+        "The binding of a book conceals a thin blade. Useful in an emergency.",
+        "Gain 1 temporary HP at the start of your next combat."
+      ],
+      "base_message": "Player of the Week for Metal City: Chris Warlock (@Sestina_The_Banner_Witch)!\n(2026-05-05 (W19) to 2026-05-12 (W20))\n\n5 posts this week with an average gap of 7.4h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-05-12T17:47:20.749085+00:00"
     }
   }
 }
