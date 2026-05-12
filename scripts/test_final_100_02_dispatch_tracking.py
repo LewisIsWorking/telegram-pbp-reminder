@@ -157,20 +157,8 @@ def test_back_already_back():
     assert handle(ctx) is True
 
 
-def test_chooseboon_executes():
-    # /chooseboon with valid int: covers lines 118-119
-    # choose_boon_by_text is imported lazily inside handle() from boons.handler
-    import boons.handler as bh
-    from dispatch.cmd_player import handle
-    ctx = _pc(text="/chooseboon 1", parsed={"raw_text": "/chooseboon 1"},
-              state={"pending_potw_boons": {"100": {
-                  "winner_user_id": "U1", "message_id": 42,
-                  "campaign_name": "Kibwe", "boons": ["Turtle", "Coin", "Map"],
-                  "base_message": "Won!",
-              }}, "player_boons": {}, "players": {}})
-    # chooseboon imports choose_boon_by_text from boons.handler at runtime
-    # Patching the function it calls (_resolve_boon) makes the whole path work
-    with patch("dispatch.cmd_player.choose_boon_by_text", return_value="✅ Turtle"):
-        result = handle(ctx)
-    assert result is True
+# test_chooseboon_executes REMOVED 2026-05-11. The /chooseboon
+# command handler in dispatch/cmd_player.py was removed when
+# user-facing boon selection moved to the website. See L22 in
+# REFACTOR_PROGRESS.md.
 

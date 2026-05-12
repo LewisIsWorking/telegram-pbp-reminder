@@ -35,29 +35,21 @@ def parse_message(msg: dict, maps) -> dict | None:
     chat_id = msg.get("chat", {}).get("id")
     thread_id = msg.get("message_thread_id")
 
-    # Allow /chooseboon from the main group chat (no thread_id)
-    # by using a sentinel pid — boon handler finds the right campaign by user_id
-    raw_text = msg.get("text", "") or msg.get("caption", "")
-    _cmd = raw_text.lower().strip().split()[0] if raw_text.strip() else ""
-    _cmd = re.sub(r"@\S+", "", _cmd)  # strip @botname
+    # The /chooseboon special-case that allowed a sentinel pid for
+    # main-chat command use was removed 2026-05-11 when boon selection
+    # moved to the website. Messages from the main chat with no
+    # thread_id are now rejected uniformly.
     if thread_id is None:
-        if _cmd == "/chooseboon":  # pragma: no cover
-            thread_id = 0  # sentinel — no real topic, boon handler resolves by uid  # pragma: no cover
-        else:  # pragma: no cover
-            return None  # pragma: no cover
+        return None
 
     thread_id_str = str(thread_id)
-    if thread_id_str not in maps.all_pbp_ids and thread_id != 0:
+    if thread_id_str not in maps.all_pbp_ids:
         return None
 
     # Verify the message came from the correct group for this topic
-    if thread_id == 0:
-        # /chooseboon from main chat — use sentinel pid, skip group check
-        pid = "__main__"  # pragma: no cover
-    else:
-        pid = maps.to_canonical[thread_id_str]
-        if chat_id != maps.to_group.get(pid):
-            return None
+    pid = maps.to_canonical[thread_id_str]
+    if chat_id != maps.to_group.get(pid):
+        return None
 
     from_user = msg.get("from", {})
     if from_user.get("is_bot", False):

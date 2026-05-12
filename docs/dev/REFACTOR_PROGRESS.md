@@ -815,3 +815,73 @@ manually. Anthropic-side rule: Claude must never delete orphans
 or perform any chat-cleanup action on Lewis's behalf. The bot's
 safeguards exist precisely to prevent automated cleanup that
 bypasses tracked state; respecting them is the whole point.
+
+#### L22 — Removing a user-facing command is wider than the handler
+
+On 2026-05-11 Lewis asked to retire the `/chooseboon` command and
+the inline buttons on the POTW announcement, moving boon selection
+entirely to the website. The naive scope of that work is "delete
+the handler"; the actual scope was nine production files and two
+test files, because `/chooseboon` had grown tendrils into every
+layer of the dispatch and parsing pipeline. Cataloguing them was
+the most important step of the change:
+
+1. **Generation** — `scripts/scheduled/potw.py` constructed the
+   POTW message with both inline buttons and a `/chooseboon` text
+   reference. Both had to go from the message body and the
+   button-construction array had to be removed. The send call
+   changed from `send_message_with_buttons` to `send_message_id`.
+2. **Three text-command handlers** — `dispatch/cmd_player.py`,
+   `dispatch/bot_topic.py`, and `dispatch/router.py` each had
+   their own `/chooseboon` branch (one per dispatch context).
+   Forgetting any one would leave a stealth code path that still
+   processed the command.
+3. **Callback handler** — `dispatch/router.py`'s callback_query
+   block dispatched `boon:` callbacks to `process_boon_callback`.
+   Removing only the text-command branch would leave the inline
+   buttons working from chat history.
+4. **Reminder messages** — `boons/reminders.py` had three
+   escalating reminder messages (24h / 3d / 6d) that all told
+   players to use `/chooseboon`. Updating only the POTW message
+   would have left the reminders contradicting the new flow.
+5. **Help text** — `dispatch/help_text.py` listed `/chooseboon`
+   in the help blob shown by `/help` and `/commands`.
+6. **Command registration** — `set_commands.py` registered
+   `/chooseboon` with Telegram so it appeared in the bot's
+   slash-command suggestion list.
+7. **Parser special-case** — `parsing/message.py` had a
+   `/chooseboon`-specific bypass that allowed the command from
+   the main group chat (no thread_id) by setting a sentinel pid.
+   The sentinel logic propagated through later checks.
+8. **Imports** — `dispatch/cmd_player.py` and `dispatch/router.py`
+   each imported the now-unused helper (`choose_boon_by_text` and
+   `process_boon_callback` respectively). Leaving the imports in
+   place wouldn't break anything but would make the eventual
+   cleanup harder.
+9. **Tests** — two tests (`test_chooseboon_executes` and
+   `test_process_updates_boon_callback`) failed loudly once the
+   handlers were gone, which actually served as a checksum: the
+   test names confirmed I'd reached the right code paths.
+
+What NOT to do (deliberately left in place): the internal helper
+functions `choose_boon_by_text` and `process_boon_callback` in
+`boons/handler.py` remain, along with their exports from
+`boons/__init__.py` and tests in several `test_*.py` files. They
+are now dead code in production but their tests continue to pass.
+Removing them would balloon scope into a multi-file test cleanup
+for functions that may be reintroduced later (e.g. if the website
+has downtime and a chat-side fallback becomes useful). Future
+work can excise the dead branches once the website flow has
+proven stable for a few weeks.
+
+**The lesson:** when removing a user-facing command, search for
+every touch point before opening the editor. The handler is
+rarely the whole story — commands tend to accumulate help-text
+lines, registration entries, reminder mentions, parser special-
+cases, and multi-dispatch branches. A focused early
+`grep -rn '/command'` across `scripts/` plus a second pass on
+`grep -rn 'helper_func'` for the underlying implementation
+identifies the full surface before any code change. Skipping
+that catalogue produces ghost code paths that still kick in
+for users who hit them, which is the worst kind of deprecation
+bug — silent retention of behaviour the changelog claims is gone.

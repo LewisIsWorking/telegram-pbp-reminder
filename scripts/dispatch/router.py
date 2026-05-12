@@ -9,7 +9,8 @@ import helpers
 from helpers import build_topic_maps
 from parsing.message import parse_message
 from combat.tracker import handle_combat_message
-from boons.handler import process_boon_callback
+# process_boon_callback removed 2026-05-11 — boon selection moved to the
+# website. Inline buttons on old POTW messages now go unhandled.
 from dispatch import cmd_info, cmd_info_ext, cmd_gm, cmd_trackers, cmd_trackers_items
 from commands.markdone import handle_markdone as _handle_markdone
 from dispatch import cmd_conditions_hp, cmd_clocks, cmd_votes_timers
@@ -66,8 +67,12 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
             if cb:
                 from boons.hero_point import process_hero_campaign_callback
-                if not process_hero_campaign_callback(cb, config, state):
-                    process_boon_callback(cb, config, state)
+                # Boon-selection callbacks were removed 2026-05-11; selection
+                # moved to the website (see scripts/scheduled/potw.py). Old
+                # POTW messages still in chat history have inline buttons
+                # that, when tapped, produce callbacks the bot now ignores
+                # silently. Hero-point callbacks are still handled.
+                process_hero_campaign_callback(cb, config, state)
                 continue
 
             if update.get("message_reaction"):
@@ -114,27 +119,12 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
             }
 
             if cmd_word == "/chooseboon":
-                from boons.handler import choose_boon_by_text  # pragma: no cover
-                bot_topic = config.get("bot_topic_id")  # pragma: no cover
-                try:  # pragma: no cover
-                    choice = int(text[len("/chooseboon"):].strip())  # pragma: no cover
-                except ValueError:  # pragma: no cover
-                    tg.send_message(msg_gid, parsed["thread_id"],  # pragma: no cover
-                                    "Usage: /chooseboon <number>")  # pragma: no cover
-                else:  # pragma: no cover
-                    pending = state.get("pending_potw_boons", {})  # pragma: no cover
-                    target_pid = next(  # pragma: no cover
-                        (p for p, b in pending.items()  # pragma: no cover
-                         if b.get("winner_user_id") == user_id), None)  # pragma: no cover
-                    if target_pid:  # pragma: no cover
-                        result = choose_boon_by_text(  # pragma: no cover
-                            target_pid, user_id, choice, config, state)  # pragma: no cover
-                        reply_tid = bot_topic or parsed["thread_id"]  # pragma: no cover
-                        tg.send_message(msg_gid, reply_tid, result)  # pragma: no cover
-                    else:  # pragma: no cover
-                        tg.send_message(msg_gid, parsed["thread_id"],  # pragma: no cover
-                                        "No pending boon choice for you.")  # pragma: no cover
-                continue  # pragma: no cover
+                # /chooseboon REMOVED 2026-05-11. Boon selection moved to
+                # the website. See scripts/scheduled/potw.py for the new
+                # flow. The branch is kept as a continue-no-op so the
+                # router doesn't fall through to command dispatch for a
+                # command we explicitly no longer support.
+                continue
 
             if cmd_word:
                 for handler in _HANDLERS:

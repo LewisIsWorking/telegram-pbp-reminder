@@ -140,16 +140,20 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         boon_text = "\n\nChoose your boon:\n"
         for i, b in enumerate(chosen_boons):
             boon_text += f"\n{i + 1}. {b}\n"
-        boon_text += ("\nTap a button below, or use /chooseboon N in the " + name + " RP topic."
-                    "\n\n🔗 https://comeonover.netlify.app/PathWars")
-
-        buttons = [
-            {"text": f"Boon #{i + 1}", "callback_data": f"boon:{pid}:{i}"}
-            for i in range(len(chosen_boons))
-        ]
+        # User-facing boon selection moved entirely to the website on
+        # 2026-05-11. Players log in at the URL below to claim. The
+        # bot no longer accepts /chooseboon or inline-button taps —
+        # see commands/help_text.py removal and dispatch/* handler
+        # removals in the same commit.
+        boon_text += ("\nLog in to claim your boon: "
+                      "\n🔗 https://comeonover.netlify.app/PathWars")
 
         print(f"POTW for {name}: {winner['first_name']} (avg gap {avg_gap_str})")
-        msg_id = tg.send_message_with_buttons(group_id, bot_topic or chat_topic_id, base_message + boon_text, buttons)
+        # send_message_id (not send_message_with_buttons) since there
+        # are no inline buttons anymore. Returns the message id for
+        # tracking the pending POTW entry in state, same as before.
+        msg_id = tg.send_message_id(group_id, bot_topic or chat_topic_id,
+                                    base_message + boon_text)
         if msg_id:
             state["last_potw"][pid] = now.isoformat()
             _, week_num, _ = now.isocalendar()

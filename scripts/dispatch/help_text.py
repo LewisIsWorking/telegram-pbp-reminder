@@ -90,7 +90,6 @@ _HELP_TEXT = (
     "/back - Return from absence\n"
     "/recap [N] - Show last N transcript entries (default 10)\n"
     "/roll <dice> [label] - Roll dice (e.g. 1d20+5 Stealth)\n"
-    "/chooseboon <N> - Pick your POTW boon (if buttons don't work)\n"
     "/boons - View your held boons in this campaign\n"
     "/boonsall - View all your boons across all campaigns"
 )

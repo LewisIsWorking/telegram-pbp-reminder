@@ -11,6 +11,81 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.48.0] - 2026-05-11
+
+### Changed
+
+**POTW boon selection moved to the website; `/chooseboon` removed.**
+
+The Player-of-the-Week announcement no longer offers inline
+buttons or a `/chooseboon N` text command for picking a boon.
+Players now log in at
+`https://comeonover.netlify.app/PathWars` to claim their boon.
+
+User-facing changes:
+
+- New POTW messages drop the `Tap a button below, or use
+  /chooseboon N in the ... RP topic.` line and instead end with
+  `Log in to claim your boon: 🔗 https://comeonover.netlify.app/PathWars`.
+- The four `Boon #1` / `Boon #2` / ... inline buttons no longer
+  appear on new POTW messages.
+- The three escalating 24h / 3-day / 6-day boon reminders now
+  point to the website rather than telling players to use
+  `/chooseboon` in the PBP topic.
+- The `/chooseboon` command is no longer registered with
+  Telegram and is no longer listed in the in-chat help text.
+- The `/help` / `/commands` reference text drops the
+  `/chooseboon <N>` line.
+
+Code changes:
+
+- `scripts/scheduled/potw.py` — boon_text rewritten; inline
+  buttons construction removed; send_message_with_buttons →
+  send_message_id.
+- `scripts/boons/reminders.py` — three reminder texts updated.
+- `scripts/dispatch/cmd_player.py` — `/chooseboon` handler removed;
+  module docstring updated; unused `choose_boon_by_text` import
+  removed.
+- `scripts/dispatch/bot_topic.py` — `/chooseboon` handler removed.
+- `scripts/dispatch/router.py` — `/chooseboon` text-command branch
+  removed; `process_boon_callback` dispatch in the callback_query
+  handler removed (hero-point callbacks still handled); unused
+  `process_boon_callback` import removed.
+- `scripts/dispatch/help_text.py` — `/chooseboon <N>` line dropped.
+- `scripts/parsing/message.py` — the `/chooseboon`-specific
+  sentinel-pid special-case removed; main-chat messages with no
+  thread_id now rejected uniformly.
+- `scripts/set_commands.py` — `("chooseboon", "...")` entry removed.
+
+Not touched: the `choose_boon_by_text` and `process_boon_callback`
+functions in `scripts/boons/handler.py` remain in place and are
+still exported from `boons/__init__.py`. They have no production
+callers after this commit but their tests continue to pass, which
+is why they stay — removing them would balloon the scope of this
+change into a multi-file test cleanup. Future work can excise the
+dead functions if desired.
+
+Known UX gap (one-time, deliberate): players who tap one of the
+inline buttons on a POTW message posted before this commit will
+see no response — the bot now silently ignores `boon:` callbacks.
+Old POTW messages will become inert relics in chat history. This
+is acceptable because (a) future POTW messages don't have buttons,
+(b) the website is the documented path going forward, and (c)
+adding a "that command moved — use the website" reply would mean
+keeping the entire callback-dispatch path alive just for the
+degraded case.
+
+Version: MINOR bump because user-visible behaviour changed (the
+shape of the POTW announcement and the loss of `/chooseboon`).
+No state-schema changes; no migrations needed.
+
+Tests: 1696 passing (was 1698; two obsolete tests deleted with
+explanatory comments — `test_process_updates_boon_callback` and
+`test_chooseboon_executes`). Every file remains under the 200-line
+cap. See L22 in `docs/dev/REFACTOR_PROGRESS.md` for the learning.
+
+---
+
 ## [4.47.1] - 2026-05-03
 
 ### Refactored

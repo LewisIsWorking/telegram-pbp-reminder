@@ -1,12 +1,17 @@
 """
-Player commands: away, back, chooseboon, roll.
+Player commands: away, back, roll.
+
+User-facing boon selection moved to the website on 2026-05-11;
+the /chooseboon command handler was removed from this dispatcher.
+Players now claim boons via login at the URL announced in
+scheduled/potw.py. The internal choose_boon_by_text function in
+boons/handler.py remains exported but has no production callers.
 """
 
 from datetime import datetime, timedelta, timezone
 
 import helpers
 import telegram as tg
-from boons.handler import choose_boon_by_text
 
 
 def handle(ctx: dict) -> bool:
@@ -106,19 +111,11 @@ def handle(ctx: dict) -> bool:
                                 f"📅 {user_name} available: {day_str}")
         return True
 
-    # ---- /chooseboon command (POTW winner fallback for broken buttons) ----
-    if text.startswith("/chooseboon"):
-        import re as _re
-        cleaned = _re.sub(r"^(/\w+)@\S+", r"\1", parsed["raw_text"])
-        num_str = cleaned[11:].strip()
-        try:
-            choice = int(num_str)
-        except ValueError:  # pragma: no cover
-            tg.send_message(group_id, thread_id, "Usage: /chooseboon <number>")  # pragma: no cover
-        else:
-            result = choose_boon_by_text(pid, user_id, choice, config, state)
-            tg.send_message(group_id, thread_id, result)
-        return True
+    # ---- /chooseboon REMOVED 2026-05-11. Boon selection lives on the
+    # ---- website. See scripts/scheduled/potw.py for the new flow.
+    # ---- Players who type /chooseboon now get no response from this
+    # ---- dispatcher — the command falls through to the router which
+    # ---- also no longer handles it.
 
     # ---- /roll command (everyone) ----
     if text.startswith("/roll"):

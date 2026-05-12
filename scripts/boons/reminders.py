@@ -55,7 +55,7 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
         if elapsed >= 144 and reminders_sent < 3:
             tg.send_message(group_id, reply_to,
                             f"⏳ {winner_mention} — last chance to pick your boon for {campaign}!\n"
-                            f"Use /chooseboon [number] in the {campaign} PBP topic.")
+                            f"Log in to claim: https://comeonover.netlify.app/PathWars")
             entry["reminders_sent"] = 3
             print(f"Boon reminder #3 (6d) for topic {topic_id}")
             continue
@@ -64,7 +64,7 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
         if elapsed >= 72 and reminders_sent < 2:
             tg.send_message(group_id, reply_to,
                             f"⚠️ {winner_mention} — pick your boon for {campaign}!\n"
-                            f"Use /chooseboon [number] in the {campaign} PBP topic.")
+                            f"Log in to claim: https://comeonover.netlify.app/PathWars")
             entry["reminders_sent"] = 2
             print(f"Boon reminder #2 (3d) for topic {topic_id}")
             continue
@@ -73,6 +73,6 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
         if elapsed >= 24 and reminders_sent < 1:
             tg.send_message(group_id, reply_to,
                             f"🎁 {winner_mention} — you have an unclaimed boon for {campaign}!\n"
-                            f"Scroll up to pick one, or use /chooseboon [number] in the PBP topic.")
+                            f"Log in to claim: https://comeonover.netlify.app/PathWars")
             entry["reminders_sent"] = 1
             print(f"Boon reminder #1 (24h) for topic {topic_id}")

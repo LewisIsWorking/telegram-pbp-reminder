@@ -103,22 +103,10 @@ def test_process_updates_poll_answer():
     assert result == 2
 
 
-def test_process_updates_boon_callback():
-    from dispatch.router import process_updates
-    maps = MagicMock()
-    maps.all_pids.return_value = []
-    maps.to_name = {}
-    config = {"group_id": -1001, "gm_user_ids": [], "topic_pairs": [], "bot_topic_id": None}
-    state = {"offset": 0, "players": {}, "topics": {}}
-    with patch("dispatch.router.build_topic_maps", return_value=maps), \
-         patch("dispatch.router.process_boon_callback"):
-        result = process_updates(
-            [{"update_id": 2, "callback_query": {
-                "id": "cb1", "data": "boon:100:0",
-                "from": {"id": 1, "first_name": "Alice"},
-                "message": {"message_id": 42, "chat": {"id": -1001}}}}],
-            config, state)
-    assert result == 3
+# test_process_updates_boon_callback REMOVED 2026-05-11. The
+# dispatch path it covered (router → process_boon_callback for
+# 'boon:' inline-button taps) was removed when user-facing boon
+# selection moved to the website. See L22 in REFACTOR_PROGRESS.md.
 
 
 def test_process_updates_reaction():

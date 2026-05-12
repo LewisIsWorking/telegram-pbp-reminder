@@ -47,7 +47,7 @@ EVERYONE_COMMANDS = [
     ("back", "Clear your away status"),
     ("boons", "View your POTW boons"),
     ("boonsall", "View all your boons"),
-    ("chooseboon", "Choose POTW boon by number"),
+    # "chooseboon" entry removed 2026-05-11 — boon selection moved to the website.
     ("pick", "Vote in an active poll"),
     ("search", "Search Archives of Nethys"),
     ("reactions", "Reaction stats for a campaign"),

@@ -63,30 +63,8 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         handle_search(args, group_id, bot_topic, tg)
         return
 
-    # /chooseboon: resolves campaign by winner_user_id, works anywhere
-    if cmd_word == "/chooseboon":
-        import re as _re
-        from boons.handler import choose_boon_by_text
-        num_str = _re.sub(r"^(/\w+)@\S+", r"\1", raw_text)[len("/chooseboon"):].strip()
-        try:
-            choice = int(num_str)
-        except ValueError:
-            tg.send_message(group_id, bot_topic, "Usage: /chooseboon <number>")
-            return
-        # Find the campaign where this user is the winner
-        pending = state.get("pending_potw_boons", {})
-        target_pid = next(
-            (pid for pid, b in pending.items()
-             if b.get("winner_user_id") == user_id),
-            None
-        )
-        if not target_pid:
-            tg.send_message(group_id, bot_topic, "No pending boon choice for you.")
-            return
-        result = choose_boon_by_text(target_pid, user_id, choice, config, state)  # pragma: no cover
-        tg.send_message(group_id, bot_topic, result)  # pragma: no cover
-        print(f"Bot topic: /chooseboon {choice} from {user_name} → {target_pid}")  # pragma: no cover
-        return  # pragma: no cover
+    # /chooseboon REMOVED 2026-05-11. Boon selection moved to
+    # the website. See scripts/scheduled/potw.py for the new flow.
 
     # /mystats and /me: cross-campaign when no arg, per-campaign with arg
     if cmd_word in ("/mystats", "/me"):
