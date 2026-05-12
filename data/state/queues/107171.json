@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 153142,
+      "thread_id": 107171,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-12T13:37:59+00:00",
+      "preview": "Unless anyone else wants to intercede with some sort of attempt at diplomacy, Hinata would initiate combat with the words: \"I guess my question answered itself. I hope that you will have my back.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1398,10 +1408,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 153123
+      "fingerprint": "2026-05-12 13:37:59",
+      "msg_ids": [
+        153148
+      ],
+      "last_posted_at": "2026-05-12T13:45:06.151836+00:00",
+      "caught_up_msg_id": null
     },
     "142887": {
       "msg_id": null,
