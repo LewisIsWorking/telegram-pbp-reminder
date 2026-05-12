@@ -1,79 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 152937,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-12T01:02:14+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152938,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-12T01:02:31+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152942,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-12T01:02:39+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152943,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-12T01:02:49+00:00",
-      "preview": "I know i picked 1 before..",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152944,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-12T01:02:58+00:00",
-      "preview": "But 3 is pretty nice too...",
-      "media_group_id": null
-    },
-    {
-      "message_id": 152945,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-12T01:03:19+00:00",
-      "preview": "Since i probably won't fail performance checks...",
-      "media_group_id": null
-    },
-    {
-      "message_id": 153083,
-      "thread_id": 25059,
-      "user_id": "8241117341",
-      "user_name": "Loaf",
-      "time": "2026-05-12T11:11:48+00:00",
-      "preview": "Landon: landons contruct would poke landon , using one of many  plant like tendrils  it had trying to grab landons attention or perhaps was telling him something., landon would wake up  with his  goggles over his eyes the blue tint covering anyone from actually seeing his eyes. landon would pet his contruct as he shrugged giving a cheeky smile. \n\n\"someones  gotta keep you guys from getting swamped\" \n\nLandon  would chuckle to himself lightly, as vera ( landons contruct)  super charger would begin",
-      "media_group_id": null
-    },
-    {
-      "message_id": 153085,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-12T11:35:59+00:00",
-      "preview": "Selenor simply blinks slowly at both Lando and Anikiaand then says \"Oke show us the way Landon. If we are lucky we may might the husband too.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -193,7 +120,23 @@
     "msg:152685",
     "2026-05-11 21:27:17",
     "msg:152686",
-    "2026-05-11 21:28:58"
+    "2026-05-11 21:28:58",
+    "msg:152937",
+    "2026-05-12 01:02:14",
+    "msg:152938",
+    "2026-05-12 01:02:31",
+    "msg:152942",
+    "2026-05-12 01:02:39",
+    "msg:152943",
+    "2026-05-12 01:02:49",
+    "msg:152944",
+    "2026-05-12 01:02:58",
+    "msg:152945",
+    "2026-05-12 01:03:19",
+    "msg:153083",
+    "2026-05-12 11:11:48",
+    "msg:153085",
+    "2026-05-12 11:35:59"
   ],
   "reply_log": [
     {
@@ -726,16 +669,86 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor then asks \"I have a crystal ball in my possesion. What if we were to use",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-12T12:54:58.367361+00:00",
+      "pid": "25059",
+      "msg_id": "152937",
+      "thread_id": "25059",
+      "player": "Anthony NegetZ",
+      "preview": "*[image]* AHA",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-12T12:54:58.984144+00:00",
+      "pid": "25059",
+      "msg_id": "152938",
+      "thread_id": "25059",
+      "player": "Anthony NegetZ",
+      "preview": "*[image]* AHA",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-12T12:54:59.655345+00:00",
+      "pid": "25059",
+      "msg_id": "152942",
+      "thread_id": "25059",
+      "player": "Anthony NegetZ",
+      "preview": "*[image]* HMM",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-12T12:55:00.335696+00:00",
+      "pid": "25059",
+      "msg_id": "152943",
+      "thread_id": "25059",
+      "player": "Anthony NegetZ",
+      "preview": "I know i picked 1 before..",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-12T12:55:00.916036+00:00",
+      "pid": "25059",
+      "msg_id": "152944",
+      "thread_id": "25059",
+      "player": "Anthony NegetZ",
+      "preview": "But 3 is pretty nice too...",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-12T12:55:01.502525+00:00",
+      "pid": "25059",
+      "msg_id": "152945",
+      "thread_id": "25059",
+      "player": "Anthony NegetZ",
+      "preview": "Since i probably won't fail performance checks...",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-12T12:00:54+00:00",
+      "pid": "25059",
+      "msg_id": "153083",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "Landon: landons contruct would poke landon , using one of many  plant like tendr",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-12T12:01:28+00:00",
+      "pid": "25059",
+      "msg_id": "153085",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor simply blinks slowly at both Lando and Anikiaand then says \"Oke show us ",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-12 01:02:14|2026-05-12 01:02:31|2026-05-12 01:02:39|2026-05-12 01:02:49|2026-05-12 01:02:58|2026-05-12 01:03:19|2026-05-12 11:11:48|2026-05-12 11:35:59",
-      "msg_ids": [
-        153087
-      ],
-      "last_posted_at": "2026-05-12T11:43:26.424695+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153124
     }
   }
 }

@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 153067,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-12T07:58:01+00:00",
-      "preview": "While still pointing her plasma cannon on Polly, Hinata looks through the eyes in the back of her head at her new companions. \"What do you want to do, my new companions?\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -251,7 +241,9 @@
     "msg:152476",
     "2026-05-11 11:55:04",
     "msg:152647",
-    "2026-05-11 20:08:18"
+    "2026-05-11 20:08:18",
+    "msg:153067",
+    "2026-05-12 07:58:01"
   ],
   "reply_log": [
     {
@@ -1391,18 +1383,25 @@
       "player": "Chris Warlock",
       "preview": "Hinata looks between Oofy and Polly, with Oofy in particular earning a suspiciou",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-12T12:10:47+00:00",
+      "pid": "107171",
+      "msg_id": "153067",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "While still pointing her plasma cannon on Polly, Hinata looks through the eyes i",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-05-12 07:58:01",
-      "msg_ids": [
-        153076
-      ],
-      "last_posted_at": "2026-05-12T09:09:28.657690+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153123
     },
     "142887": {
       "msg_id": null,
