@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2519,
-      "thread_id": 1825,
-      "user_id": "6464119705",
-      "user_name": "Luke",
-      "time": "2026-05-12T21:54:37+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -281,7 +271,9 @@
     "msg:2466",
     "2026-05-09 21:18:48",
     "msg:2492",
-    "2026-05-11 21:17:08"
+    "2026-05-11 21:17:08",
+    "msg:2519",
+    "2026-05-12 21:54:37"
   ],
   "reply_log": [
     {
@@ -1645,6 +1637,15 @@
       "player": "Luke",
       "preview": "Rino looks confused. He \u201cscratches his horn \u201d",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-12T22:49:42+00:00",
+      "pid": "1242",
+      "msg_id": "2519",
+      "thread_id": 1825,
+      "player": "Luke",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1657,11 +1658,10 @@
       "caught_up_msg_id": 2501
     },
     "1825": {
-      "msg_ids": [
-        2520
-      ],
-      "fingerprint": "2026-05-12 21:54:37",
-      "last_posted_at": "2026-05-12T22:33:43.543140+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 2523
     }
   }
 }
