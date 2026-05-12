@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 153219,
-      "thread_id": 107171,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-12T17:42:21+00:00",
-      "preview": "Her gun was raised since this point, when she started pointing it directly at Polly.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -255,7 +245,9 @@
     "msg:153067",
     "2026-05-12 07:58:01",
     "msg:153142",
-    "2026-05-12 13:37:59"
+    "2026-05-12 13:37:59",
+    "msg:153219",
+    "2026-05-12 17:42:21"
   ],
   "reply_log": [
     {
@@ -1413,18 +1405,25 @@
       "player": "Chris Warlock",
       "preview": "Unless anyone else wants to intercede with some sort of attempt at diplomacy, Hi",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-12T18:42:49+00:00",
+      "pid": "107171",
+      "msg_id": "153219",
+      "thread_id": 107171,
+      "player": "Chris Warlock",
+      "preview": "Her gun was raised since this point, when she started pointing it directly at Po",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-05-12 17:42:21",
-      "msg_ids": [
-        153222
-      ],
-      "last_posted_at": "2026-05-12T17:47:23.172383+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153234
     },
     "142887": {
       "msg_id": null,
