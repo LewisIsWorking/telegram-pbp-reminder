@@ -126,10 +126,10 @@
       "first_name": "Cannon",
       "last_name": "McMahon",
       "username": "ArtyArtillery",
-      "campaign_name": "Magni Watch",
+      "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-04-28T03:24:35+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-05-13T22:13:16+00:00",
+      "last_warned_week": 0
     },
     "40585:7130942567": {
       "user_id": "7130942567",
@@ -510,6 +510,16 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-05-10T00:27:04+00:00",
       "last_warned_week": 0
+    },
+    "51357:7454623139": {
+      "user_id": "7454623139",
+      "first_name": "Cannon",
+      "last_name": "McMahon",
+      "username": "ArtyArtillery",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-05-13T22:10:39+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -566,12 +576,6 @@
       "first_name": "Lunnes",
       "username": "LuNneS_B",
       "campaign_name": "Riddleport"
-    },
-    "51357:7454623139": {
-      "removed_at": "2026-05-12T20:40:39.193133+00:00",
-      "first_name": "Cannon",
-      "username": "ArtyArtillery",
-      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -758,7 +762,7 @@
     "76799": {
       "7454623139": {
         "id": 1,
-        "name": "Cannon McMahon",
+        "name": "Cannon",
         "joined": "2026-03-29T00:31:35.507850+00:00"
       },
       "8353586922": {
@@ -773,7 +777,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T00:31:35.507986+00:00"
       },
       "138025700": {
@@ -800,7 +804,7 @@
       },
       "7454623139": {
         "id": 2,
-        "name": "Cannon McMahon",
+        "name": "Cannon",
         "joined": "2026-03-29T16:09:28.392079+00:00"
       },
       "894369591": {
@@ -1002,6 +1006,14 @@
       "name": "Cannon",
       "username": "ArtyArtillery",
       "at": "2026-05-12T20:40:40.625319+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "7454623139",
+      "name": "Cannon",
+      "username": "ArtyArtillery",
+      "at": "2026-05-13T22:33:58.756614+00:00"
     }
   ],
   "player_boons": {
