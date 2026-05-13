@@ -62,26 +62,42 @@ def test_overview_omits_perm_suffix_when_zero_perm():
     assert "+0 perm" not in out
 
 
-def test_overview_icon_uses_combined_count():
-    """\u2705 vs \u26a0\ufe0f gates on combined count (non-perm + perm), so the
-    same campaigns warn as before. Lewis's display change must not
-    change warning semantics."""
+def test_overview_icon_gates_on_non_perm_count():
+    """\u2705 vs \u26a0\ufe0f gates on NON-PERM count only. Permanent
+    players are full members (always counted in the active list, shown
+    with [perm] tags, never auto-kicked) but they don't fill the
+    \"out of 6\" target slots. A campaign at \"4/6 +2 perm\" is still
+    under-staffed because it needs 6 non-perm active players, not 6
+    total. Lewis clarified this on 2026-05-12; see L23 in
+    REFACTOR_PROGRESS.md."""
     from commands.roster import build_roster_overview
-    # 4 non-perm + 2 perm = 6 combined, hits target \u2192 \u2705
+    # 4 non-perm + 2 perm = 6 combined, but non-perm 4 < target 6
+    # \u2192 \u26a0\ufe0f (this is the case where the new logic
+    # differs from the old combined-count logic).
     state = _state(non_perm_recent=4, perm=2, pid="100")
     out = build_roster_overview(_config(), state)
     riddleport_line = next(line for line in out.splitlines()
                            if "Riddleport" in line)
-    assert riddleport_line.startswith("\u2705"), (
-        f"Expected \u2705 for combined 6/6, got: {riddleport_line!r}"
+    assert riddleport_line.startswith("\u26a0"), (
+        f"Expected \u26a0\ufe0f for 4/6 +2 perm (non-perm under target), "
+        f"got: {riddleport_line!r}"
     )
-    # 3 non-perm + 2 perm = 5 combined, under target \u2192 \u26a0\ufe0f
-    state = _state(non_perm_recent=3, perm=2, pid="100")
+    # 6 non-perm + 0 perm \u2192 \u2705 (clean target hit)
+    state = _state(non_perm_recent=6, perm=0, pid="100")
     out = build_roster_overview(_config(), state)
     riddleport_line = next(line for line in out.splitlines()
                            if "Riddleport" in line)
-    assert riddleport_line.startswith("\u26a0"), (
-        f"Expected \u26a0\ufe0f for combined 5/6, got: {riddleport_line!r}"
+    assert riddleport_line.startswith("\u2705"), (
+        f"Expected \u2705 for 6/6 (non-perm at target), got: {riddleport_line!r}"
+    )
+    # 7 non-perm + 1 perm \u2192 \u2705 (non-perm above target, perm extra)
+    state = _state(non_perm_recent=7, perm=1, pid="100")
+    out = build_roster_overview(_config(), state)
+    riddleport_line = next(line for line in out.splitlines()
+                           if "Riddleport" in line)
+    assert riddleport_line.startswith("\u2705"), (
+        f"Expected \u2705 for 7/6 +1 perm (non-perm above target), "
+        f"got: {riddleport_line!r}"
     )
 
 

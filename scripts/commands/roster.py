@@ -96,12 +96,20 @@ def build_roster_overview(config: dict, state: dict) -> str:
         non_perm, perm = _split_active(_active_players(pid, state))
         target = pair.get("roster_target", _TARGET)
         rows.append((len(non_perm), len(perm), code, name, target))
-    # Warnings first (combined count vs target), both groups by combined asc.
-    rows.sort(key=lambda r: (r[4] <= r[0] + r[1], r[0] + r[1]))
+    # Warnings first (non-perm vs target — perm players don't count
+    # toward the target per Lewis's 2026-05-12 clarification), then by
+    # non-perm count ascending so the most under-staffed campaigns
+    # appear first within the warning group.
+    rows.sort(key=lambda r: (r[4] <= r[0], r[0]))
     lines = [f"📋 Campaign Roster (target: {_TARGET}, active last {_ACTIVE_DAYS}d)\n"]
     for non_perm_n, perm_n, code, name, target in rows:
-        combined = non_perm_n + perm_n
-        icon = "✅" if combined >= target else "⚠️"
+        # Icon gates on NON-PERM count only. Permanent players are full
+        # members (counted in the roster, never auto-kicked, shown with
+        # [perm] tags) but they don't fill "out of 6" slots — the X/Y
+        # target measures non-perm activity. A campaign at "4/6 +2 perm"
+        # is still under-staffed: it needs 6 non-perm active players,
+        # not 6 total. See L20 + L23 in REFACTOR_PROGRESS.md.
+        icon = "✅" if non_perm_n >= target else "⚠️"
         label = f"{code}: {name}" if code else name
         # Format: "4/6 +2 perm" — X non-perm, Y target, Z perm padding.
         # The "+Z perm" suffix is omitted when there are no perm players
@@ -121,7 +129,10 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
     non_perm, perm = _split_active(players)
     target = pair.get("roster_target", _TARGET)
     combined = len(non_perm) + len(perm)
-    icon = "✅" if combined >= target else "⚠️"
+    # Icon gates on NON-PERM count only (perm players don't count toward
+    # the target). Same rationale as build_roster_overview — see comment
+    # there and L23 in REFACTOR_PROGRESS.md.
+    icon = "✅" if len(non_perm) >= target else "⚠️"
     perm_suffix = f" +{len(perm)} perm" if perm else ""
     names = "\n".join(
         f"  • {p.get('first_name', '?')}"

@@ -11,6 +11,68 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.48.1] - 2026-05-12
+
+### Fixed
+
+**Roster warning icon now gates on non-perm count, not combined.**
+
+Lewis flagged on 2026-05-12 that the `✅`/`⚠️` icon in
+`/roster` should consider only non-permanent players against the
+target, since permanent players don't fill the "out of 6" slots
+the target is measuring. Pre-fix, the icon gated on
+`(non_perm + perm) >= target`, which would show "5/6 +1 perm"
+as ✅ even though the campaign has only 5 non-perm active.
+Post-fix, the same case correctly shows ⚠️ because non-perm 5 < 6.
+
+With today's data no displayed icons actually flip (no campaign
+is currently in the "padded by perms to hit target" state), so
+the immediate visible output is unchanged. The semantic is now
+correct for any future case where a campaign IS padded by perms.
+
+Code changes:
+
+- `scripts/commands/roster.py`:
+  - `build_roster_overview`: icon gate changed from
+    `combined >= target` to `non_perm_n >= target`; sort key
+    updated to use non-perm count for warning ordering and
+    within-group ordering.
+  - `build_roster_campaign`: same icon change applied to the
+    per-campaign drill-down header.
+  - Comments added explaining the three-role model for the
+    permanent flag (membership / auto-removal-suppression /
+    target-slots) and pointing at L23 in REFACTOR_PROGRESS.md.
+
+Tests:
+
+- `scripts/test_roster_perm_display.py`:
+  `test_overview_icon_uses_combined_count` (which had asserted
+  the old combined-count behaviour) replaced with
+  `test_overview_icon_gates_on_non_perm_count` covering three
+  cases: 4/6 +2 perm → ⚠️, 6/6 → ✅, 7/6 +1 perm → ✅.
+  1696 passed.
+
+Not a code issue but discovered during the same investigation:
+Lewis's mental model of which players are perm-flagged didn't
+fully match the actual state. State as of 2026-05-12 has Ryo
+flagged perm in C05 only (Lewis: "in every campaign Ryo's in");
+Moss flagged perm in C01 (Lewis didn't mention); Anthony and
+Horia not flagged perm anywhere (Lewis: "perm in C01 only").
+The `permanent` flag is per `{pid}:{user_id}` record, not
+global. Fixing the data is on Lewis's plate and outside this
+commit's scope.
+
+Version: PATCH bump because the displayed icon for current data
+doesn't change — the fix is semantic correctness for future
+state. No state-schema changes, no migrations.
+
+See L23 in `docs/dev/REFACTOR_PROGRESS.md` for the three-role
+breakdown of the permanent flag and the process lesson about
+verifying against actual state data before acting on numeric
+discrepancies in UI counts.
+
+---
+
 ## [4.48.0] - 2026-05-11
 
 ### Changed

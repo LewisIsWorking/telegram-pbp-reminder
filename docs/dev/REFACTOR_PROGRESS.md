@@ -885,3 +885,60 @@ identifies the full surface before any code change. Skipping
 that catalogue produces ghost code paths that still kick in
 for users who hit them, which is the worst kind of deprecation
 bug — silent retention of behaviour the changelog claims is gone.
+
+#### L23 — Permanent players are members, not target-slot fillers
+
+On 2026-05-12 Lewis clarified the semantics around the permanent
+flag in a way that refines L20 rather than overturning it. The
+bypass in `_active_players` is still intentional (perm players are
+full roster members regardless of recency), but the warning-icon
+threshold in `build_roster_overview` and `build_roster_campaign`
+was wrong: it gated on the combined count (non-perm + perm),
+which made a campaign at "4/6 +2 perm" show as ✅ even though it
+only has 4 non-perm active players.
+
+The corrected model has three roles for permanent players, all
+distinct:
+
+1. **Membership** — permanent players ARE members of the campaign,
+   counted in the roster, shown with `[perm]` tags in the name
+   list, and visible in the `+Z perm` suffix on the overview line.
+   This is L20.
+2. **Auto-removal suppression** — the week-3 inactivity warning
+   and 4-week removal in `scheduled/alerts.py:check_player_activity`
+   both skip permanent players. They never get kicked. This is
+   the other half of L20.
+3. **Target slots** — the "X/Y" in the overview measures non-perm
+   activity only. Permanent players don't fill the "out of 6"
+   slots that the target is asking for. A campaign with 4 non-perm
+   and 2 perm is still under-staffed: it needs 6 NON-PERM active
+   players to be healthy. This is the new clarification.
+
+The display format "X/Y +Z perm" already separates the numerator
+from the perm count visually — only the icon threshold needed
+changing. With today's data no displayed icons actually flip
+(no campaign is currently in the "padded by perms to hit target"
+state), but a future campaign with `5 non-perm + 1 perm` would
+now correctly show as ⚠️.
+
+**Tangentially discovered during the same session:** Lewis's
+mental model of which players are permanent didn't quite match the
+actual state data. State as of 2026-05-12 had Ryo flagged perm in
+C05 only (Lewis: "in every campaign Ryo's in"); Moss flagged perm
+in C01 (Lewis didn't mention Moss); Anthony and Horia not flagged
+perm anywhere (Lewis: "perm in C01 only"). The `permanent` flag
+is stored per `{pid}:{user_id}` player record, NOT globally per
+user, so each enrolment can be perm or not independently. Fixing
+the data is a separate action item Lewis is driving manually; the
+code change in this commit stands regardless.
+
+**Process lesson:** when a user reports a numeric discrepancy
+in a UI count, verifying against the actual underlying data
+before acting is cheap and catches the "my mental model vs
+actual state" mismatch that's invisible otherwise. The first
+question to Lewis here was "is the +1 perm Ryo?" — the answer
+should have been deducible from state, and it was, and it
+revealed three independent mismatches (Ryo missing perm flags,
+Anthony/Horia missing perm flags, Moss flagged perm) that would
+have been invisible without the data check. Always look at the
+data when the numbers feel off.
