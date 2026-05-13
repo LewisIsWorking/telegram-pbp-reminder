@@ -1,5 +1,5 @@
 {
-  "offset": 619336085,
+  "offset": 619336111,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-13T02:58:31+00:00",
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-13T02:58:19+00:00",
+      "last_message_time": "2026-05-13T16:22:35+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -182,7 +182,9 @@
     24
   ],
   "last_pace_drop_check": "2026-05-08T16:40:00.422056+00:00",
-  "dying_alerts_sent": {},
+  "dying_alerts_sent": {
+    "107151": "active"
+  },
   "last_campaign_table": "2026-05-11T18:48:01.870926+00:00",
   "session_poll": {
     "C01": {
