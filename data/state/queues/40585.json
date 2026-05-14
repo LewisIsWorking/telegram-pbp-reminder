@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 153475,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-05-14T02:57:24+00:00",
+      "preview": "im trying to update my character sheet.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 153476,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-05-14T02:57:46+00:00",
+      "preview": "there is NEVER ENOUGH TIME",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3823,10 +3841,12 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 153125
+      "fingerprint": "2026-05-14 02:57:24|2026-05-14 02:57:46",
+      "msg_ids": [
+        153480
+      ],
+      "last_posted_at": "2026-05-14T03:18:00.702360+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
