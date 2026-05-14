@@ -89,32 +89,23 @@ def test_caught_up_message_when_scanner_returns_empty():
         "last_queue_daily_slots": [],
     }
 
-    captured = []
-
-    def _capture(gid, tid, text):
-        captured.append((gid, tid, text))
-
+    # 2026-05-12 update: caught-up path now routes through
+    # _post_caught_up helper. See sibling _a.py test for rationale.
     with patch("scheduled.queue_reminder.scan_transcripts",
                return_value=_no_scanned()), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
          patch("scheduled.queue_reminder.silent_campaigns",
                return_value=[]), \
-         patch("scheduled.queue_reminder.tg.send_message",
-               side_effect=_capture), \
-         patch("scheduled.queue_reminder.tg.send_message_id",
-               return_value=42), \
-         patch("scheduled.queue_reminder.tg.pin_message"), \
-         patch("scheduled.queue_reminder.tg.unpin_message"):
+         patch("scheduled.queue_reminder._post_caught_up") as mock_caught:
         post_queue_reminder(config, state, now=now)
 
-    assert len(captured) == 1, (
-        f"Expected one 'All caught up!' send, got {len(captured)}: "
-        f"{captured}"
+    assert mock_caught.call_count == 1, (
+        f"Expected one _post_caught_up call, got {mock_caught.call_count}"
     )
-    gid, tid, text = captured[0]
-    assert gid == -1001
-    assert tid == 999
-    assert "All caught up!" in text
+    args = mock_caught.call_args[0]
+    assert args[0] is state
+    assert args[1] == -1001
+    assert args[2] == 999
     assert state["last_queue_fingerprint"] == "empty"
 
 

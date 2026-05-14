@@ -86,34 +86,28 @@ def test_caught_up_message_posted_when_queue_first_empties():
         "last_queue_daily_slots": [],
     }
 
-    captured = []
-
-    def _capture(gid, tid, text):
-        captured.append((gid, tid, text))
-
+    # 2026-05-12 update: the caught-up path now routes through
+    # the _post_caught_up helper (which goes through
+    # gm_queue_history.post_and_persist) so the previous GM queue
+    # batch gets evicted. Mock the helper directly to verify it's
+    # called — testing the deeper post_and_persist chain would
+    # duplicate the gm_queue_history tests' coverage.
     with patch("scheduled.queue_reminder.scan_transcripts",
                return_value=_empty_scanned()), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
          patch("scheduled.queue_reminder.silent_campaigns",
                return_value=[]), \
-         patch("scheduled.queue_reminder.tg.send_message",
-               side_effect=_capture), \
-         patch("scheduled.queue_reminder.tg.send_message_id",
-               return_value=42), \
-         patch("scheduled.queue_reminder.tg.pin_message"), \
-         patch("scheduled.queue_reminder.tg.unpin_message"):
+         patch("scheduled.queue_reminder._post_caught_up") as mock_caught:
         post_queue_reminder(config, state, now=now)
 
-    # Exactly one 'All caught up!' message sent to the bot topic.
-    assert len(captured) == 1, (
-        f"Expected one 'All caught up!' send, got {len(captured)}: "
-        f"{captured}"
+    # _post_caught_up called exactly once with the right state/group/topic.
+    assert mock_caught.call_count == 1, (
+        f"Expected one _post_caught_up call, got {mock_caught.call_count}"
     )
-    gid, tid, text = captured[0]
-    assert gid == -1001
-    assert tid == 999
-    assert "All caught up!" in text
-    assert "No unreplied messages" in text
+    args = mock_caught.call_args[0]
+    assert args[0] is state
+    assert args[1] == -1001
+    assert args[2] == 999
 
     # Fingerprint flipped to 'empty' so the next run won't re-post.
     assert state["last_queue_fingerprint"] == "empty"

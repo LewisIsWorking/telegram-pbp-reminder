@@ -1007,3 +1007,71 @@ again. Cost trades flip if a fourth site emerges or if the rule
 gets more complex (e.g. per-pid override flags, group-level
 perm overrides). Until then, keep it inline and document the
 three sites here.
+
+
+#### L25 — If a bot-topic message should auto-evict, use the batch machinery
+
+On 2026-05-12 evening Lewis flagged that the "All caught up!"
+notification was leaving the previous GM Queue visible in chat.
+Root cause was an architectural shortcut in `queue_reminder.py`:
+the caught-up message went out via plain `tg.send_message`, while
+the real GM Queue posts went through `gm_queue_history.post_and_persist`
+which handles the rolling-history eviction. The two paths landed in
+the same Telegram topic but only one of them updated the eviction
+ledger — so the previous batch had no trigger to evict, and the
+caught-up message wasn't tracked for eviction by the next post.
+
+The fix was small (~30 lines): add a `pin: bool = True` parameter
+to `post_and_persist`, route the caught-up branches through it,
+and the rolling-window logic does the rest. The CONCEPTUAL fix
+was bigger: any message the bot posts to the GM topic that should
+eventually be evicted automatically (when superseded by the next
+post) needs to go through the batch machinery. Plain
+`tg.send_message` is for messages that should persist indefinitely
+or be cleaned up manually — NOT for the implicit-history pattern.
+
+The list of "implicit-history" messages in this bot's lifetime
+currently has two entries (real GM Queue posts; the "All caught
+up!" notification). The architectural rule is: if a new entry
+joins that list later (e.g. a "queue paused" announcement, a
+weekly digest, a deferral reminder), it goes through
+`post_and_persist`. Plain `tg.send_message` is fine for one-off
+acknowledgements, ad-hoc replies, error messages, and anything
+else that doesn't displace prior state.
+
+The asymmetry that LET this bug exist was the implicit one in
+`post_and_persist`'s pre-2026-05-12 signature: it always pinned.
+Callers who didn't want pinning (the caught-up case) reached for
+`tg.send_message` instead, which silently meant "skip the history
+tracking too." Making pinning OPTIONAL via the `pin` parameter
+both fixes this caller and removes the asymmetry that nudged
+future callers toward the wrong path. Future "implicit-history"
+features can pass `pin=False` without abandoning the rolling
+ledger.
+
+**The lesson:** when adding a new message type that joins an
+existing message-lifecycle pattern (queue posts, polls, pinned
+announcements, recurring summaries), audit whether the existing
+machinery's signature accommodates the new message's pinning,
+timing, or styling needs. If not, EXTEND the machinery with a
+parameter rather than going around it. Going around makes the
+new caller technically work but leaves out the orchestration
+that the existing callers rely on — here, the rolling-history
+eviction. The user (Lewis) won't see the asymmetry until the
+side-effects diverge in production, by which time the orphan
+is already in chat history.
+
+Concrete artefact pattern from this fix:
+
+* `post_and_persist(state, gid, topic, msgs, *, pin=True)`
+* Plain `tg.send_message(gid, topic, text)` for true one-offs
+
+Calling `post_and_persist` with `pin=False` is the right
+shape whenever the message should:
+  - go to the GM topic, AND
+  - be tracked for eviction by the next message in this lifecycle, AND
+  - NOT remain pinned itself
+
+The caught-up notification ticks all three. Same shape would
+apply to a hypothetical "queue paused" or "session reminder"
+message later.

@@ -9,6 +9,7 @@ from commands.queue_format import entry_age_icon, age_str, short_preview, format
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import silent_campaigns
 from scheduled.gm_queue_history import post_and_persist
+from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -77,14 +78,18 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         # below — is the one that actually fires when every queue is
         # clean.
         if state.get("last_queue_fingerprint", "empty") != "empty":
-            tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")
+            # See _post_caught_up docstring — routes via batch
+            # machinery so the previous GM queue gets evicted.
+            _post_caught_up(state, group_id, bot_topic)
         state["last_queue_fingerprint"] = "empty"
         return
 
     total = sum(len(d["entries"]) for d in scanned.values())
     if total == 0 and not silent_lines:
         if state.get("last_queue_fingerprint", "empty") != "empty":
-            tg.send_message(group_id, bot_topic, "━━━━━━━━━━━━━━━━\n📋 All caught up! No unreplied messages.")
+            # Defensive path (current scanner doesn't produce this
+            # shape but might in the future). Same fix as line-68.
+            _post_caught_up(state, group_id, bot_topic)
         state["last_queue_fingerprint"] = fingerprint
         return
 

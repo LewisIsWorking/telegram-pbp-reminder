@@ -80,21 +80,34 @@ def append_and_evict(state: dict, group_id: int,
 
 
 def post_and_persist(state: dict, group_id: int, bot_topic: int,
-                     msgs: list[str]) -> tuple[bool, int | None]:
-    """Send every chunk, pin the first, and roll the history.
+                     msgs: list[str], *,
+                     pin: bool = True) -> tuple[bool, int | None]:
+    """Send every chunk, optionally pin the first, and roll the history.
 
     Returns ``(sent, first_msg_id)``. A ``True`` ``sent`` flag means at
     least one chunk was delivered successfully; in that case the
-    previous pin (if any) is unpinned, the new first message is pinned,
-    and ``state["last_queue_pin_id"]`` plus
+    previous pin (if any) is unpinned, the new first message is pinned
+    (when ``pin`` is True), and ``state["last_queue_pin_id"]`` plus
     ``state["gm_queue_history"]`` are updated together.
 
-    Note: ``post_batch`` already pins the first chunk, so we don't
-    re-pin here. We do still unpin the previous pin (if any) so the
-    bot topic doesn't accumulate stale pin notifications.
+    The ``pin`` parameter (added 2026-05-12) is False for the
+    "All caught up!" notification posted by ``queue_reminder.py``.
+    That message gets tracked in ``gm_queue_history`` like any GM
+    queue batch — so the previous batch is evicted (its chat
+    messages deleted) when the "All caught up!" lands, and the
+    "All caught up!" message itself is then evicted by the next
+    real GM queue post. Without that history tracking the previous
+    GM queue would orphan in chat, which is the bug Lewis flagged
+    after queue #382 stayed visible alongside the caught-up
+    message.
+
+    Note: ``post_batch`` already pins the first chunk when ``pin``
+    is True, so we don't re-pin here. We still unpin the previous
+    pin (if any) so the bot topic doesn't accumulate stale pin
+    notifications, even when this call itself isn't pinning.
     """
     batch = post_batch(group_id, bot_topic, msgs,
-                       pin=True, disable_notification=False)
+                       pin=pin, disable_notification=False)
     if batch is None:
         return False, None
 
@@ -105,6 +118,9 @@ def post_and_persist(state: dict, group_id: int, bot_topic: int,
     prev_pin = state.get("last_queue_pin_id")
     if prev_pin:
         tg.unpin_message(group_id, prev_pin)
+    # When pin=False, batch.pin_id is None — so last_queue_pin_id
+    # clears, the next call sees no prior pin to unpin, and the
+    # "All caught up!" message has no pin notification.
     state["last_queue_pin_id"] = batch.pin_id
     append_and_evict(state, group_id, batch.msg_ids, batch.pin_id)
     return True, batch.pin_id

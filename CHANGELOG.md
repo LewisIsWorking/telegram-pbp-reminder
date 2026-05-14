@@ -11,6 +11,89 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.49.1] - 2026-05-12
+
+### Fixed
+
+**"All caught up!" now evicts the previous GM Queue.**
+
+Lewis reported on 2026-05-12 that the bot topic had two messages
+visible after queue #382's content was replied to:
+
+  1. The GM Queue #382 message (3 unreplied, the old state)
+  2. The "All caught up!" notification (no unreplied, the new state)
+
+The first should have been deleted when the second went out, but
+it wasn't. Root cause: pre-fix, the caught-up branches in
+`scheduled/queue_reminder.py` sent the message via plain
+`tg.send_message`, bypassing the rolling-history machinery in
+`gm_queue_history.post_and_persist`. The previous GM Queue batch
+stayed in `state["gm_queue_history"]` with no trigger to evict it
+until a NEW real queue post arrived — and even then, only the
+queue batch would be evicted, leaving the now-stale "All caught
+up!" message orphaned in chat alongside the new queue.
+
+The fix routes the caught-up case through the same batch
+machinery, with a new `pin: bool = True` parameter on
+`post_and_persist` so the caught-up message itself isn't pinned
+(it's informational, not a sticky reference like the queue):
+
+Code changes:
+
+* `scripts/scheduled/gm_queue_history.py:post_and_persist` — new
+  `pin: bool = True` keyword parameter forwarded to `post_batch`.
+  When False, the returned batch has `pin_id=None`, and
+  `state["last_queue_pin_id"]` is set to None accordingly. Previous
+  pin (if any) is still unpinned so the bot topic doesn't
+  accumulate stale notifications.
+* `scripts/scheduled/queue_caught_up.py` (new, 37 lines) — sibling
+  helper module exposing `post_caught_up(state, group_id, bot_topic)`
+  and the `CAUGHT_UP_TEXT` constant. The helper exists only to dedupe
+  the call from both empty-queue branches in `queue_reminder.py`,
+  but lives in its own file so `queue_reminder.py` stays under the
+  200-line cap.
+* `scripts/scheduled/queue_reminder.py` — both "All caught up!"
+  branches (line-68 production path and line-73 defensive path)
+  now call `_post_caught_up(state, group_id, bot_topic)` (aliased
+  from `queue_caught_up.post_caught_up`) instead of
+  `tg.send_message`. Resulting flow: caught-up message goes out,
+  previous batch evicts (its chat messages get deleted),
+  caught-up message is registered in `gm_queue_history` so the
+  NEXT real queue post evicts it in turn.
+
+Tests:
+
+* `scripts/test_queue_caught_up_helper.py` (new, 104 lines, 4 tests):
+  - `post_caught_up` routes through `post_and_persist` with `pin=False`
+    and the right text constant
+  - `pin=False` makes `post_batch` skip pinning and clears
+    `last_queue_pin_id`
+  - `pin=False` still unpins the PREVIOUS pin so old pin notifications
+    don't accumulate
+  - `pin=True` (default) preserves pre-fix behaviour exactly
+* `scripts/test_queue_reminder_caught_up_a.py` and `_b.py` — the two
+  failing "message sent" tests updated to patch `_post_caught_up`
+  directly (the deeper `post_and_persist` chain is covered by the
+  helper module's tests, so duplicating that mock here would just
+  add noise). 1704 passing (was 1700; +4 new helper tests, two
+  existing tests updated to match the new mock target).
+
+Per `tg.send_message_id` semantics, the new caught-up message
+also gets registered in `bot_sent_registry` (because it goes
+through `post_batch` → `tg.send_message_id`). That means future
+eviction attempts on the caught-up message will pass the registry
+safeguard, which is correct: the message is bot-sent and trackable.
+
+Version: PATCH because the visible message text is unchanged and
+the only behaviour change is "the previous queue actually
+disappears now" — a bug fix, not a new feature.
+
+See L25 in `docs/dev/REFACTOR_PROGRESS.md` for the lesson about
+batch-machinery being the right abstraction for ANY bot-topic
+message that should later be auto-evicted, not just queue posts.
+
+---
+
 ## [4.49.0] - 2026-05-12
 
 ### Changed
