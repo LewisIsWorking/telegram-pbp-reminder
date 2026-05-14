@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 153432,
-      "thread_id": 142887,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-05-14T00:00:42+00:00",
-      "preview": "[media]",
-      "media_group_id": "14229734739500201"
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -263,7 +253,15 @@
     "msg:153264",
     "2026-05-12 23:40:41",
     "msg:153294",
-    "2026-05-13 05:46:26"
+    "2026-05-13 05:46:26",
+    "msg:153432",
+    "2026-05-14 00:00:42",
+    "msg:153593",
+    "2026-05-14 13:59:15",
+    "msg:153433",
+    "2026-05-14 00:00:43",
+    "msg:153248",
+    "2026-05-12 18:53:31"
   ],
   "reply_log": [
     {
@@ -1457,6 +1455,42 @@
       "player": "Chris Warlock",
       "preview": "Hinata sheathes her Plasma Cannon, Steps next to the eldritch creature in our mi",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-14T14:59:33.164966+00:00",
+      "pid": "107171",
+      "msg_id": "153432",
+      "thread_id": "142887",
+      "player": "Bruce",
+      "preview": "*[image]* Holis will respond, \"I can definitely help with the attacking and hurt",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-14T13:59:26+00:00",
+      "pid": "107171",
+      "msg_id": "153593",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-14T14:59:33.615052+00:00",
+      "pid": "107171",
+      "msg_id": "153433",
+      "thread_id": "142887",
+      "player": "Bruce",
+      "preview": "*[image]*",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-14T13:59:51+00:00",
+      "pid": "107171",
+      "msg_id": "153248",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1469,12 +1503,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-05-14 00:00:42|2026-05-14 00:00:43",
-      "msg_ids": [
-        153465
-      ],
-      "last_posted_at": "2026-05-14T01:08:16.970860+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153608
     }
   }
 }
