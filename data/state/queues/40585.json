@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 153491,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-14T08:58:14+00:00",
-      "preview": "First the group checks to see if everyone is refocussed and healed up.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -687,7 +678,11 @@
     "msg:153476",
     "2026-05-14 02:57:46",
     "msg:153515",
-    "2026-05-14 09:33:58"
+    "2026-05-14 09:33:58",
+    "msg:153491",
+    "2026-05-14 08:58:14",
+    "msg:153553",
+    "2026-05-14 13:44:34"
   ],
   "reply_log": [
     {
@@ -3855,6 +3850,24 @@
       "player": "Anthony",
       "preview": "World 2 is on rn already.",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-14T13:44:34+00:00",
+      "pid": "40585",
+      "msg_id": "153491",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "First the group checks to see if everyone is refocussed and healed up.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-14T13:44:40+00:00",
+      "pid": "40585",
+      "msg_id": "153553",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3865,12 +3878,10 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-14 08:58:14",
-      "msg_ids": [
-        153545
-      ],
-      "last_posted_at": "2026-05-14T13:43:29.127137+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153577
     }
   }
 }

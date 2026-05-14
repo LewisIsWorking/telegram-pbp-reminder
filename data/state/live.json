@@ -1,5 +1,5 @@
 {
-  "offset": 619336292,
+  "offset": 619336325,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-13T02:58:31+00:00",
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-14T13:37:29+00:00",
+      "last_message_time": "2026-05-14T13:44:40+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -251,7 +251,7 @@
   },
   "last_state_backup": "2026-05-14T11:40:32.168276+00:00",
   "last_queue_daily": "2026-05-14",
-  "last_queue_fingerprint": "107171:2026-05-14 00:00:42|107171:2026-05-14 00:00:43|40585:2026-05-14 08:58:14|51357:2026-05-13 23:14:59",
+  "last_queue_fingerprint": "107171:2026-05-14 00:00:42|107171:2026-05-14 00:00:43|51357:2026-05-13 23:14:59",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -333,14 +333,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-10",
-  "last_queue_pin_id": 153548,
-  "queue_post_count": 381,
+  "last_queue_pin_id": 153578,
+  "queue_post_count": 382,
   "gm_queue_history": [
     {
       "msg_ids": [
-        153548
+        153578
       ],
-      "pin_id": 153548
+      "pin_id": 153578
     }
   ]
 }
