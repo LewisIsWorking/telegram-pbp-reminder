@@ -25,15 +25,6 @@
       "time": "2026-05-14T08:58:14+00:00",
       "preview": "First the group checks to see if everyone is refocussed and healed up.",
       "media_group_id": null
-    },
-    {
-      "message_id": 153515,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-14T09:33:58+00:00",
-      "preview": "World 2 is on rn already.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -694,7 +685,9 @@
     "msg:153475",
     "2026-05-14 02:57:24",
     "msg:153476",
-    "2026-05-14 02:57:46"
+    "2026-05-14 02:57:46",
+    "msg:153515",
+    "2026-05-14 09:33:58"
   ],
   "reply_log": [
     {
@@ -3853,6 +3846,15 @@
       "player": "Awnii",
       "preview": "there is NEVER ENOUGH TIME",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-14T13:37:29+00:00",
+      "pid": "40585",
+      "msg_id": "153515",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "World 2 is on rn already.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3863,11 +3865,11 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-14 08:58:14|2026-05-14 09:33:58",
+      "fingerprint": "2026-05-14 08:58:14",
       "msg_ids": [
-        153530
+        153545
       ],
-      "last_posted_at": "2026-05-14T10:55:12.587193+00:00",
+      "last_posted_at": "2026-05-14T13:43:29.127137+00:00",
       "caught_up_msg_id": null
     }
   }
