@@ -11,6 +11,84 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.49.0] - 2026-05-12
+
+### Changed
+
+**Recruitment alert respects the permanent flag.**
+
+Lewis flagged on 2026-05-12 that the recruitment alert
+(`📢 X needs N more players!` posted by
+`scheduled/maintenance.py:check_recruitment_needs`) was lumping
+permanent players in with non-perm when computing roster fullness.
+A campaign at `5/6 +1 perm` was reading as `5/6` and asking for 1
+more player; a campaign at `4/6 +2 perm` (perms padding to combined
+6) was being skipped entirely as "full roster". Both were wrong:
+perm players don't fill the X/Y target slots, so the alert should
+fire whenever non-perm count is short of target.
+
+Post-fix, the alert message reads like the roster overview from
+4.48.1 onwards:
+
+```
+📢 Grand Explorers needs 2 more players!
+
+Current roster (4/6 +1 perm):
+- Link (@Linksanelf2006)
+- Ryo Yamakawa (@RyoYamakawa) [perm]
+- Laetheron (@StorybookRhizome)
+- Anthony NegetZ (@MrNegetZ)
+- Cannon McMahon (@ArtyArtillery)
+
+Know anyone who'd like to join? Send them to the recruitment topic!
+```
+
+The `[perm]` tag appears inline next to each permanent player's
+mention, the header uses the `X/Y +Z perm` format from `/roster`,
+and the `needs N more` calculation gates on non-perm count vs
+target (so a campaign with 5 non-perm + 1 perm now correctly asks
+for 1 more non-perm; a campaign with 6 non-perm + 1 perm no longer
+fires the alert).
+
+Code changes:
+
+- `scripts/scheduled/maintenance.py:check_recruitment_needs`
+  - Split `non_gm` players into `non_perm_players` and
+    `perm_players` via the `permanent` flag (same shape as
+    `commands/roster.py:_split_active`).
+  - `needed = target - non_perm_count` (was `target - player_count`
+    where player_count included perms).
+  - Roster section header rewritten to `Current roster (X/Y +Z perm):`
+    with the `+Z perm` suffix omitted when there are no perms (clean
+    "X/Y" reads for campaigns without permanent players).
+  - Each listed player gets a `[perm]` tag inline when `permanent=True`.
+  - Print log line updated to include the perm suffix.
+
+Tests:
+
+- `scripts/test_recruitment_perm_display.py` (new, 104 lines, 4 tests):
+  - 5 non-perm + 1 perm → `5/6 +1 perm` header, asks for 1 more, perm
+    tag inline
+  - 4 non-perm + 0 perm → clean `4/6` header, no `+0 perm` clutter
+  - 6 non-perm + 1 perm → no alert (non-perm at target)
+  - 3 non-perm + 3 perm → fires alert with `3/6 +3 perm` and asks
+    for 3 more (the case where the old combined-count logic would
+    have skipped the alert entirely because 3+3=6)
+
+1700 passing (was 1696; +4 new). Every changed file under the
+200-line cap.
+
+Version: MINOR bump because user-visible behaviour changed (the
+shape of the recruitment alert and the conditions under which it
+fires). No state-schema changes; no migrations.
+
+See L24 in `docs/dev/REFACTOR_PROGRESS.md` for the three-spot
+sweep needed when the perm-split rule changes (overview, per-
+campaign drill-down, recruitment alert — all read the same flag,
+all need the same shape).
+
+---
+
 ## [4.48.1] - 2026-05-12
 
 ### Fixed

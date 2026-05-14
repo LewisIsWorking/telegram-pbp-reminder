@@ -146,29 +146,47 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
         if not helpers.interval_elapsed(state["last_recruitment_check"].get(pid), helpers.RECRUITMENT_INTERVAL_DAYS, now):
             continue  # pragma: no cover
 
-        # Count active players (excluding GM)
+        # Count active players (excluding GM), split by permanent flag.
+        # Permanent players are full members but don't fill "out of N"
+        # target slots — see L23 in REFACTOR_PROGRESS.md for the three-
+        # role model. Recruitment is gated on non-perm count vs target,
+        # so a campaign at "5/6 +1 perm" still needs 1 non-perm recruit;
+        # a campaign at "6/6 +2 perm" needs zero.
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
         campaign_players = all_campaigns.get(pid, [])
-        active = [
-            helpers.player_mention(p)
-            for p in campaign_players
-            if p.get("user_id", "") not in gm_ids
-        ]
+        non_gm = [p for p in campaign_players
+                  if p.get("user_id", "") not in gm_ids]
+        non_perm_players = [p for p in non_gm if not p.get("permanent")]
+        perm_players = [p for p in non_gm if p.get("permanent")]
 
-        player_count = len(active)
-        needed = helpers.REQUIRED_PLAYERS - player_count
+        non_perm_count = len(non_perm_players)
+        perm_count = len(perm_players)
+        target = helpers.REQUIRED_PLAYERS
+        needed = target - non_perm_count
 
         if needed <= 0:
-            # Full roster, reset timer
+            # Non-perm target met, reset timer. Perm padding doesn't
+            # contribute here — only non-perm activity gates the alert.
             state["last_recruitment_check"][pid] = now.isoformat()
             continue
 
-        # Build roster display
-        if active:
-            roster_lines = "\n".join(f"- {p}" for p in active)
-            roster_section = f"Current roster ({player_count}/{helpers.REQUIRED_PLAYERS}):\n{roster_lines}"
+        # Build roster display. Format: "Current roster (X/Y +Z perm):"
+        # with non-perm count vs target, perm count as informational
+        # suffix. Each listed player gets a "[perm]" tag if applicable
+        # so the GM can see at a glance which slots are perm.
+        if non_gm:
+            roster_lines = "\n".join(
+                f"- {helpers.player_mention(p)}"
+                + (" [perm]" if p.get("permanent") else "")
+                for p in non_gm
+            )
+            perm_suffix = f" +{perm_count} perm" if perm_count else ""
+            roster_section = (
+                f"Current roster ({non_perm_count}/{target}{perm_suffix}):"
+                f"\n{roster_lines}"
+            )
         else:
-            roster_section = f"Current roster: 0/{helpers.REQUIRED_PLAYERS} (no active players)"
+            roster_section = f"Current roster: 0/{target} (no active players)"
 
         message = (
             f"📢 {name} needs {needed} more player{'s' if needed != 1 else ''}!\n\n"
@@ -176,6 +194,6 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
             f"Know anyone who'd like to join? Send them to the recruitment topic!"
         )
 
-        print(f"Recruitment notice for {name}: {player_count}/{helpers.REQUIRED_PLAYERS}")
+        print(f"Recruitment notice for {name}: {non_perm_count}/{target}" + (f" +{perm_count} perm" if perm_count else ""))
         if tg.send_message(group_id, bot_topic or chat_topic_id, message):
             state["last_recruitment_check"][pid] = now.isoformat()

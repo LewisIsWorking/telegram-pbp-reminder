@@ -942,3 +942,68 @@ revealed three independent mismatches (Ryo missing perm flags,
 Anthony/Horia missing perm flags, Moss flagged perm) that would
 have been invisible without the data check. Always look at the
 data when the numbers feel off.
+
+#### L24 — Perm-split logic needs a three-spot sweep, not just one
+
+On 2026-05-12 Lewis flagged that the recruitment alert
+(`scheduled/maintenance.py:check_recruitment_needs`) was still
+treating perm players as if they filled target slots, even though
+L23 had been applied to `commands/roster.py` for the `/roster`
+overview and per-campaign drill-down a few hours earlier. The
+fix was structurally identical — split active players by the
+`permanent` flag, gate display + alert threshold on non-perm
+count — but it had to be applied in a third place that wasn't
+on the original radar.
+
+The three places that need to stay in sync:
+
+1. **`commands/roster.py:build_roster_overview`** — overview line
+   format `⚠️ C00: Riddleport — 3/6 +2 perm`. Icon gates on
+   non-perm vs target.
+2. **`commands/roster.py:build_roster_campaign`** — per-campaign
+   drill-down (`/roster C00`) header `📋 C00: Riddleport / ⚠️
+   3/6 +2 perm active players (last 30d)`. Same icon rule. Each
+   player in the names list gets `[perm]` if applicable.
+3. **`scheduled/maintenance.py:check_recruitment_needs`** —
+   recruitment alert `📢 C00 needs 3 more players!` followed by
+   `Current roster (3/6 +2 perm):` and the player list with
+   inline `[perm]` tags. Alert fires when non-perm < target;
+   timer resets when non-perm >= target.
+
+All three are reading the same per-record `permanent` flag from
+`state["players"][f"{pid}:{user_id}"]`. They differ only in
+output shape and side-effect (display-only vs sending a message
+and resetting a timer). When the perm-handling contract changes,
+all three need to change together.
+
+**The lesson:** when a rule about a state attribute changes
+display/threshold semantics, grep across the codebase for all
+consumers of that attribute before declaring the work complete.
+For the `permanent` flag specifically, a useful search pattern is
+`grep -rn 'p\.get."permanent"' scripts/` plus `grep -rn 'permanent.*True' scripts/`.
+For other flags, adapt accordingly. The cost of missing a consumer
+is a partial rollout — visible numbers in one place, stale numbers
+in another, and a user (Lewis) noticing the discrepancy hours
+later.
+
+Mechanically the fix in maintenance.py is the same code shape as
+`_split_active` in roster.py:
+
+```python
+non_perm = [p for p in non_gm if not p.get("permanent")]
+perm     = [p for p in non_gm if p.get("permanent")]
+needed   = target - len(non_perm)
+```
+
+If a fourth display surface emerges later (e.g. a player-facing
+status panel, a weekly digest, a markdown export), the same shape
+applies and the L24 sweep needs updating to point at four
+locations instead of three. There's a latent refactor to extract
+the shared splitter helper into `players/perm_split.py` and have
+all three (or four) callers import from there — but the current
+duplication is only 3 lines per site, so the cost of an extraction
+exceeds the cost of remembering to grep when the rule changes
+again. Cost trades flip if a fourth site emerges or if the rule
+gets more complex (e.g. per-pid override flags, group-level
+perm overrides). Until then, keep it inline and document the
+three sites here.
