@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 153727,
-      "thread_id": 142887,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-14T19:29:23+00:00",
-      "preview": "Hinata changes Grip on her Plasma Cannon to one-handed as a Free Action, leaving open her right hand.\n\nHinata then does a 2-Action Stellar Rush (2 Strides with a +10-foot circumstance bonus to Speed) next to the Spiritual Sinkwell. As she is attuned to Graviton, enemies within 15 ft. of her must attempt a DC 17 Fortitude Save as she finishes her Strides. On a failure, they're pulled directly toward her, ending in an adjacent square if possible. As she is already next to the Spiritual Sinkwell, t",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -271,7 +261,11 @@
     "msg:153433",
     "2026-05-14 00:00:43",
     "msg:153248",
-    "2026-05-12 18:53:31"
+    "2026-05-12 18:53:31",
+    "msg:153727",
+    "2026-05-14 19:29:23",
+    "msg:153775",
+    "2026-05-15 00:41:48"
   ],
   "reply_log": [
     {
@@ -1501,6 +1495,24 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-15T00:53:21+00:00",
+      "pid": "107171",
+      "msg_id": "153727",
+      "thread_id": 142887,
+      "player": "Chris Warlock",
+      "preview": "Hinata changes Grip on her Plasma Cannon to one-handed as a Free Action, leaving",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-15T00:53:26+00:00",
+      "pid": "107171",
+      "msg_id": "153775",
+      "thread_id": 142887,
+      "player": "Bruce",
+      "preview": "Holis will act together with his eidolon, Taking 1 action for himself to do Get'",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1513,12 +1525,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-05-14 19:29:23",
-      "msg_ids": [
-        153731
-      ],
-      "last_posted_at": "2026-05-14T19:38:08.672570+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 153790
     }
   }
 }
