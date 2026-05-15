@@ -2491,7 +2491,7 @@
     "C01": {
       "wins": {
         "3": 9,
-        "2": 44
+        "2": 45
       }
     }
   },
@@ -3083,6 +3083,25 @@
         "Gain 1 temporary HP at the start of your next combat."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W20",
+      "year": 2026,
+      "date": "2026-05-15",
+      "campaign": "Kibwe",
+      "campaign_pid": "40585",
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "username": "RyoYamakawa",
+      "post_count": 5,
+      "avg_gap_h": 6.8,
+      "boons_offered": [
+        "The inn's special today is exactly what you've been craving.",
+        "A fall into water hurts less than hitting the ground would have.",
+        "A discarded gear fits perfectly into a mechanism you've been puzzling over.",
+        "Gain 1 temporary HP at the start of your next combat."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -3096,7 +3115,7 @@
       "_seed": 292
     },
     "76799": {
-      "1698524397": 1
+      "8353586922": 1
     },
     "144765": {
       "1698524397": 2
@@ -3139,9 +3158,6 @@
     "1825": {
       "1698524397": 1
     },
-    "133428": {},
-    "76799": {
-      "8353586922": 1
-    }
+    "133428": {}
   }
 }
