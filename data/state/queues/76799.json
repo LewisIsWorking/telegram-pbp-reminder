@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 153873,
+      "thread_id": 76799,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-05-15T17:12:33+00:00",
+      "preview": "\"Maze? Looks a bit like there's only one way to go unless we want to risk some fast movement in the downward direction...\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -1501,10 +1511,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 152503
+      "fingerprint": "2026-05-15 17:12:33",
+      "msg_ids": [
+        153875
+      ],
+      "last_posted_at": "2026-05-15T17:37:24.730357+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
