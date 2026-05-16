@@ -340,16 +340,6 @@
       "last_post_time": "2026-05-09T21:14:41+00:00",
       "last_warned_week": 0
     },
-    "1242:6452663252": {
-      "user_id": "6452663252",
-      "first_name": "Jack",
-      "last_name": "Graham",
-      "username": "JackGrah",
-      "campaign_name": "Dark Pockets",
-      "pbp_topic_id": "1242",
-      "last_post_time": "2026-04-18T11:27:37+00:00",
-      "last_warned_week": 3
-    },
     "1242:8018921976": {
       "user_id": "8018921976",
       "first_name": "Natasha",
@@ -359,16 +349,6 @@
       "pbp_topic_id": "1242",
       "last_post_time": "2026-05-03T14:18:46+00:00",
       "last_warned_week": 1
-    },
-    "1242:6234551152": {
-      "user_id": "6234551152",
-      "first_name": "THE FUN",
-      "last_name": "UNCLE",
-      "username": "Thefununlce",
-      "campaign_name": "Dark Pockets",
-      "pbp_topic_id": "1242",
-      "last_post_time": "2026-04-18T11:02:03+00:00",
-      "last_warned_week": 3
     },
     "1242:6464119705": {
       "user_id": "6464119705",
@@ -575,6 +555,18 @@
       "first_name": "Lunnes",
       "username": "LuNneS_B",
       "campaign_name": "Riddleport"
+    },
+    "1242:6452663252": {
+      "removed_at": "2026-05-16T11:27:55.716942+00:00",
+      "first_name": "Jack",
+      "username": "JackGrah",
+      "campaign_name": "Dark Pockets"
+    },
+    "1242:6234551152": {
+      "removed_at": "2026-05-16T11:27:55.716942+00:00",
+      "first_name": "THE FUN",
+      "username": "Thefununlce",
+      "campaign_name": "Dark Pockets"
     }
   },
   "player_registry": {
@@ -1013,6 +1005,22 @@
       "name": "Cannon",
       "username": "ArtyArtillery",
       "at": "2026-05-13T22:33:58.756614+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "1242",
+      "user_id": "6452663252",
+      "name": "Jack",
+      "username": "JackGrah",
+      "at": "2026-05-16T11:27:56.507259+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "1242",
+      "user_id": "6234551152",
+      "name": "THE FUN",
+      "username": "Thefununlce",
+      "at": "2026-05-16T11:27:56.916001+00:00"
     }
   ],
   "player_boons": {
