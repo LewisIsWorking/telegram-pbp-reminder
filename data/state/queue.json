@@ -690,7 +690,9 @@
       "2026-05-16T17:26:50.819505+00:00",
       "2026-05-16T17:26:50.823161+00:00",
       "2026-05-16T17:26:50.825109+00:00",
-      "2026-05-16T17:26:50.827041+00:00"
+      "2026-05-16T17:26:50.827041+00:00",
+      "2026-05-16T19:30:33.552657+00:00",
+      "2026-05-16T19:30:33.556569+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1193,18 +1195,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-05-03T14:46:08.687673+00:00",
-      "player": "CzarChasm23",
-      "preview": "Chik turns his gaze to cleaning and reloading his rifle. \"I "
-    },
-    {
-      "pid": "1242",
-      "time": "2026-05-03T14:46:08.999137+00:00",
-      "player": "Natasha",
-      "preview": "I look to the group, we could stay in the inn"
-    },
     {
       "pid": "25059",
       "time": "2026-05-03T15:21:43.420518+00:00",
@@ -2580,6 +2570,20 @@
       "player": "Laetheron",
       "preview": "A brief outline of a scan fills the area from top to bottom,",
       "msg_id": "153932"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-16T19:30:33.552657+00:00",
+      "player": "Laetheron",
+      "preview": "Uh, I kinda left it vague for later cause I wasn't too sure ",
+      "msg_id": "153953"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-05-16T19:30:33.556569+00:00",
+      "player": "Laetheron",
+      "preview": "I'd aid Chik probably, since our characters've worked togeth",
+      "msg_id": "153954"
     }
   ],
   "pending_potw_boons": {
@@ -2594,7 +2598,8 @@
         "Gain 1 temporary HP at the start of your next combat."
       ],
       "base_message": "Player of the Week for Kibwe: Ryo Yamakawa (@RyoYamakawa)!\n(2026-05-08 (W19) to 2026-05-15 (W20))\n\n5 posts this week with an average gap of 6.8h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-05-15T18:43:21.112654+00:00"
+      "posted_at": "2026-05-15T18:43:21.112654+00:00",
+      "reminders_sent": 1
     },
     "25059": {
       "message_id": 152312,
