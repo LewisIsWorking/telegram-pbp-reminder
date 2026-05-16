@@ -1,5 +1,5 @@
 {
-  "offset": 619336706,
+  "offset": 619336710,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-15T14:10:47+00:00",
@@ -14,9 +14,9 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-05-15T00:07:35+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-05-16T14:37:20+00:00",
+      "last_user": "Laetheron",
+      "last_user_id": "8117756377",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-05-15T19:31:00+00:00",
-      "last_user": "Cobalt",
-      "last_user_id": "8748487163",
+      "last_message_time": "2026-05-16T15:08:29+00:00",
+      "last_user": "Laetheron",
+      "last_user_id": "8117756377",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -109,7 +109,7 @@
   "last_roster_snapshot": "C01:5/6|C00:5/6|C04:6/6|C05:5/6|C06:8/6|C07:5/6|C09:6/6|C08:4/4|C11:4/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-05-16T03:17:13.263247+00:00"
+    "last_at": "2026-05-16T15:28:33.052916+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-05-14T12:50:18.926192+00:00",
@@ -212,7 +212,7 @@
   },
   "last_state_backup": "2026-05-16T12:33:09.792758+00:00",
   "last_queue_daily": "2026-05-16",
-  "last_queue_fingerprint": "107171:2026-05-15 19:29:46|107171:2026-05-15 19:31:00|25059:2026-05-15 01:50:35|66154:2026-05-15 01:45:36|76799:2026-05-15 17:12:33",
+  "last_queue_fingerprint": "107171:2026-05-15 19:29:46|107171:2026-05-15 19:31:00|107171:2026-05-16 15:01:16|107171:2026-05-16 15:08:29|25059:2026-05-15 01:50:35|51357:2026-05-16 14:37:20|66154:2026-05-15 01:45:36|76799:2026-05-15 17:12:33",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -294,14 +294,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-16",
-  "last_queue_pin_id": 153914,
-  "queue_post_count": 391,
+  "last_queue_pin_id": 153940,
+  "queue_post_count": 392,
   "gm_queue_history": [
     {
       "msg_ids": [
-        153914
+        153940
       ],
-      "pin_id": 153914
+      "pin_id": 153940
     }
   ]
 }
