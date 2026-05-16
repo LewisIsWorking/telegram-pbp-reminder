@@ -1,6 +1,25 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 153953,
+      "thread_id": 142887,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-05-16T17:37:46+00:00",
+      "preview": "Uh, I kinda left it vague for later cause I wasn't too sure which knowledge check to make",
+      "media_group_id": null
+    },
+    {
+      "message_id": 153954,
+      "thread_id": 142887,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-05-16T17:40:02+00:00",
+      "preview": "I'd aid Chik probably, since our characters've worked together before and he hasn't acted yet",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1569,10 +1588,12 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 153949
+      "fingerprint": "2026-05-16 17:37:46|2026-05-16 17:40:02",
+      "msg_ids": [
+        153956
+      ],
+      "last_posted_at": "2026-05-16T18:28:53.177418+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
