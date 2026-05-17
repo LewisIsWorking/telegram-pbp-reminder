@@ -1,5 +1,5 @@
 {
-  "offset": 619336842,
+  "offset": 619336876,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-17T17:51:45+00:00",
@@ -32,9 +32,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-17T17:47:49+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-05-17T21:37:38+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -213,7 +213,7 @@
   },
   "last_state_backup": "2026-05-17T13:36:54.938851+00:00",
   "last_queue_daily": "2026-05-17",
-  "last_queue_fingerprint": "25059:2026-05-15 01:50:35|40585:2026-05-17 17:47:49|51357:2026-05-16 14:37:20|51357:2026-05-17 18:45:54|52083:2026-05-17 17:51:45|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|76799:2026-05-15 17:12:33|silent:  \ud83d\udfe7 \ud83e\udd84 C08: Theria \u2014 no posts for 6d 4h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-15 01:50:35|51357:2026-05-16 14:37:20|51357:2026-05-17 18:45:54|52083:2026-05-17 17:51:45|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|76799:2026-05-15 17:12:33|silent:  \ud83d\udfe7 \ud83e\udd84 C08: Theria \u2014 no posts for 6d 5h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -296,14 +296,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-17",
-  "last_queue_pin_id": 154116,
-  "queue_post_count": 417,
+  "last_queue_pin_id": 154144,
+  "queue_post_count": 418,
   "gm_queue_history": [
     {
       "msg_ids": [
-        154116
+        154144
       ],
-      "pin_id": 154116
+      "pin_id": 154144
     }
   ]
 }
