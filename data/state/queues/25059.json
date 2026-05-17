@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 153797,
-      "thread_id": 25059,
-      "user_id": "8241117341",
-      "user_name": "Loaf",
-      "time": "2026-05-15T01:50:35+00:00",
-      "preview": "Landon: before landon touchs the bogs wet floor,  he hops ontop of  veras large head, vera lowering her large frame to assist her creator ontop. laying on his stomach hed crawl over to the edge of veras head, once again hed dig  through veras mouth like it was a chest. \n\n\"lets see what we can do\"\n\n  hed take out what seemed like junk as they traveled. A cracked monocle lens.  a broken compass. A bent bit of copper piping/ copper wires. Something that might\u2019ve once been a music box spring. And a ",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -156,7 +146,11 @@
     "msg:153756",
     "2026-05-15 00:15:13",
     "msg:153765",
-    "2026-05-15 00:16:34"
+    "2026-05-15 00:16:34",
+    "msg:154197",
+    "2026-05-17 23:09:59",
+    "msg:153797",
+    "2026-05-15 01:50:35"
   ],
   "reply_log": [
     {
@@ -806,16 +800,32 @@
       "player": "Loaf",
       "preview": "correct",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-17T23:10:45+00:00",
+      "pid": "25059",
+      "msg_id": "154197",
+      "thread_id": "25059",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-17T23:11:30+00:00",
+      "pid": "25059",
+      "msg_id": "153797",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "Landon: before landon touchs the bogs wet floor,  he hops ontop of  veras large ",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-15 01:50:35",
-      "msg_ids": [
-        153803
-      ],
-      "last_posted_at": "2026-05-15T03:20:23.486455+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154202
     }
   }
 }
