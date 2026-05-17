@@ -1,5 +1,5 @@
 {
-  "offset": 619336781,
+  "offset": 619336783,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-15T14:10:47+00:00",
@@ -154,69 +154,41 @@
   "last_campaign_table": "2026-05-11T18:48:01.870926+00:00",
   "session_poll": {
     "C01": {
-      "week_iso": "sun2026-05-10",
-      "poll_id": "5765153125614748678",
-      "poll_message_id": 152077,
+      "week_iso": "sun2026-05-17",
+      "poll_id": "5784988616027541977",
+      "poll_message_id": 154031,
       "options": [
-        "2026-05-15 Friday",
-        "2026-05-16 Saturday",
+        "2026-05-22 Friday",
+        "2026-05-23 Saturday",
         "Both/Either",
         "Can't make it this week"
       ],
-      "voted_uids": [
-        "8740050892",
-        "8787586972",
-        "1698524397",
-        "5443237599",
-        "6144366145"
-      ],
-      "last_ping_day": 739752,
-      "votes": {
-        "1": [
-          "8740050892"
-        ],
-        "2": [
-          "8787586972",
-          "1698524397",
-          "5443237599",
-          "6144366145"
-        ]
-      }
+      "voted_uids": [],
+      "last_ping_day": 739753,
+      "votes": {}
     },
     "C11": {
-      "week_iso": "sun2026-05-10",
-      "poll_id": "5765073389546898741",
-      "poll_message_id": 2475,
+      "week_iso": "sun2026-05-17",
+      "poll_id": "5785116575988188028",
+      "poll_message_id": 2569,
       "options": [
-        "2026-05-11 Monday",
-        "2026-05-12 Tuesday",
-        "2026-05-13 Wednesday",
-        "2026-05-14 Thursday",
-        "2026-05-15 Friday",
-        "2026-05-16 Saturday",
-        "2026-05-10 Sunday",
+        "2026-05-18 Monday",
+        "2026-05-19 Tuesday",
+        "2026-05-20 Wednesday",
+        "2026-05-21 Thursday",
+        "2026-05-22 Friday",
+        "2026-05-23 Saturday",
+        "2026-05-17 Sunday",
         "Can't make it"
       ],
-      "voted_uids": [
-        "1698524397"
-      ],
-      "last_ping_day": 739752,
-      "votes": {
-        "1": [
-          "1698524397"
-        ],
-        "2": [
-          "1698524397"
-        ],
-        "3": [
-          "1698524397"
-        ]
-      }
+      "voted_uids": [],
+      "last_ping_day": 739753,
+      "votes": {}
     }
   },
   "last_state_backup": "2026-05-16T12:33:09.792758+00:00",
   "last_queue_daily": "2026-05-16",
-  "last_queue_fingerprint": "25059:2026-05-15 01:50:35|51357:2026-05-16 14:37:20|66154:2026-05-15 01:45:36|76799:2026-05-15 17:12:33|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 12h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-15 01:50:35|51357:2026-05-16 14:37:20|66154:2026-05-15 01:45:36|76799:2026-05-15 17:12:33|silent:  \ud83d\udfe0 \ud83e\udd84 C08: Theria \u2014 no posts for 5d 14h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -272,7 +244,7 @@
   "paused_campaigns": {},
   "current_scenes": {},
   "poll_unknown_voters": {},
-  "last_week_welcome": "sun2026-05-10",
+  "last_week_welcome": "sun2026-05-17",
   "last_queue_daily_slots": [
     "2026-05-08:21",
     "2026-05-09:09",
@@ -290,23 +262,23 @@
     "2026-05-16:21"
   ],
   "swimming_poll": {
-    "week_iso": "sun2026-05-10",
-    "poll_id": "5765073389546898742",
-    "poll_message_id": 2478,
+    "week_iso": "sun2026-05-17",
+    "poll_id": "5785116575988188029",
+    "poll_message_id": 2572,
     "voted_uids": [],
     "last_ping_day": -1,
     "session_happened": true
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-16",
-  "last_queue_pin_id": 154027,
-  "queue_post_count": 402,
+  "last_queue_pin_id": 154029,
+  "queue_post_count": 403,
   "gm_queue_history": [
     {
       "msg_ids": [
-        154027
+        154029
       ],
-      "pin_id": 154027
+      "pin_id": 154029
     }
   ]
 }
