@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 154085,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-17T17:47:49+00:00",
+      "preview": "Ok we'll scout out a vantage point for Lorn to snipe them less than about 200ft away and then well position ourselves around 60 ft closer to them ready to ambush if they get closer.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3889,10 +3898,12 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 153577
+      "fingerprint": "2026-05-17 17:47:49",
+      "msg_ids": [
+        154092
+      ],
+      "last_posted_at": "2026-05-17T18:31:31.640400+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
