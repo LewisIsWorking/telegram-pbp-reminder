@@ -370,16 +370,6 @@
       "last_post_time": "2026-05-15T19:31:00+00:00",
       "last_warned_week": 0
     },
-    "66154:7961602816": {
-      "user_id": "7961602816",
-      "first_name": "Capricious",
-      "last_name": "",
-      "username": "CapriciousC",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-04-19T21:14:02+00:00",
-      "last_warned_week": 3
-    },
     "25059:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -567,6 +557,12 @@
       "first_name": "THE FUN",
       "username": "Thefununlce",
       "campaign_name": "Dark Pockets"
+    },
+    "66154:7961602816": {
+      "removed_at": "2026-05-17T21:24:50.853521+00:00",
+      "first_name": "Capricious",
+      "username": "CapriciousC",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -1021,6 +1017,14 @@
       "name": "THE FUN",
       "username": "Thefununlce",
       "at": "2026-05-16T11:27:56.916001+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "7961602816",
+      "name": "Capricious",
+      "username": "CapriciousC",
+      "at": "2026-05-17T21:24:51.477059+00:00"
     }
   ],
   "player_boons": {
