@@ -1,25 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 154362,
-      "thread_id": 142887,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T01:28:58+00:00",
-      "preview": "I also have Paranormal Lore if that would do something here",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154363,
-      "thread_id": 142887,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T01:28:59+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -296,7 +277,11 @@
     "msg:153953",
     "2026-05-16 17:37:46",
     "msg:153954",
-    "2026-05-16 17:40:02"
+    "2026-05-16 17:40:02",
+    "msg:154362",
+    "2026-05-18 01:28:58",
+    "msg:154363",
+    "2026-05-18 01:28:59"
   ],
   "reply_log": [
     {
@@ -1598,6 +1583,24 @@
       "player": "Laetheron",
       "preview": "I'd aid Chik probably, since our characters've worked together before and he has",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-18T04:57:13+00:00",
+      "pid": "107171",
+      "msg_id": "154362",
+      "thread_id": 142887,
+      "player": "Laetheron",
+      "preview": "I also have Paranormal Lore if that would do something here",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T04:57:44+00:00",
+      "pid": "107171",
+      "msg_id": "154363",
+      "thread_id": 142887,
+      "player": "Laetheron",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1610,12 +1613,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-05-18 01:28:58|2026-05-18 01:28:59",
-      "msg_ids": [
-        154412
-      ],
-      "last_posted_at": "2026-05-18T02:50:41.986533+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154488
     }
   }
 }
