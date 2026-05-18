@@ -1,6 +1,25 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 154536,
+      "thread_id": 51357,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-05-18T18:52:01+00:00",
+      "preview": "\"He was violent, and fanatic. We didn't learn very much Doctor, I'm sorry.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 154537,
+      "thread_id": 51357,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-05-18T18:58:42+00:00",
+      "preview": "Cyrus approaches holding out the diary.\n\n\"I did find his diary which detailed his plans. It was good that he was stopped when he was or things could have been a lot worse for everyone.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -732,10 +751,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 154435
+      "fingerprint": "2026-05-18 18:52:01|2026-05-18 18:58:42",
+      "msg_ids": [
+        154538
+      ],
+      "last_posted_at": "2026-05-18T19:38:23.562515+00:00",
+      "caught_up_msg_id": null
     },
     "145040": {
       "msg_ids": [],
