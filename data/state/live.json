@@ -1,10 +1,10 @@
 {
-  "offset": 619337266,
+  "offset": 619337276,
   "topics": {
     "52083": {
-      "last_message_time": "2026-05-17T17:51:45+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-05-18T06:50:18+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-05-18T05:04:07+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-05-18T06:31:45+00:00",
+      "last_user": "Laetheron",
+      "last_user_id": "8117756377",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -149,7 +149,7 @@
   "dying_alerts_sent": {
     "107151": "active"
   },
-  "last_campaign_table": "2026-05-11T18:48:01.870926+00:00",
+  "last_campaign_table": "2026-05-18T07:41:24.511834+00:00",
   "session_poll": {
     "C01": {
       "week_iso": "sun2026-05-17",
@@ -216,7 +216,7 @@
   },
   "last_state_backup": "2026-05-17T13:36:54.938851+00:00",
   "last_queue_daily": "2026-05-17",
-  "last_queue_fingerprint": "52083:2026-05-17 17:51:45|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udfe7 \ud83e\udd84 C08: Theria \u2014 no posts for 6d 12h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "107171:2026-05-18 06:31:45|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udfe7 \ud83e\udd84 C08: Theria \u2014 no posts for 6d 14h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -299,15 +299,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-17",
-  "last_queue_pin_id": 154489,
-  "queue_post_count": 423,
+  "last_queue_pin_id": 154502,
+  "queue_post_count": 424,
   "gm_queue_history": [
     {
       "msg_ids": [
-        154489
+        154502
       ],
-      "pin_id": 154489
+      "pin_id": 154502
     }
-  ],
-  "poll_identified_voters": {}
+  ]
 }

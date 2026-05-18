@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 154086,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-17T17:51:45+00:00",
-      "preview": "We can move on. \nThe party came together to help all the boomers in the end even though the one and only \u2605SUPER IDOL LIVY\u2605 didn't care about them much (boomers don't know about idols , if only they were \u2605SUPERFANS\u2605) and Roneles gave one of them a bit of heart pain. Rune seems to have helped them a bit more and Lowda too.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -134,7 +124,11 @@
     "msg:153777",
     "2026-05-15 00:46:58",
     "msg:153818",
-    "2026-05-15 13:52:30"
+    "2026-05-15 13:52:30",
+    "msg:154086",
+    "2026-05-17 17:51:45",
+    "msg:154493",
+    "2026-05-18 06:39:35"
   ],
   "reply_log": [
     {
@@ -708,18 +702,34 @@
       "player": "Anthony",
       "preview": "what happens next? :)",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-18T06:39:35+00:00",
+      "pid": "52083",
+      "msg_id": "154086",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "We can move on. \nThe party came together to help all the boomers in the end even",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T06:40:02+00:00",
+      "pid": "52083",
+      "msg_id": "154493",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-17 17:51:45",
-      "msg_ids": [
-        154094
-      ],
-      "last_posted_at": "2026-05-17T18:31:34.285246+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154501
     }
   }
 }
