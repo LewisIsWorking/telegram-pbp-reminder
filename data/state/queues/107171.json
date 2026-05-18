@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 154492,
-      "thread_id": 142887,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T06:31:45+00:00",
-      "preview": "A telepathic message from Arktos relays the capabilities of the sinkhole to the rest of the party.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -293,7 +283,9 @@
     "msg:154363",
     "2026-05-18 01:28:59",
     "msg:154475",
-    "2026-05-18 05:04:07"
+    "2026-05-18 05:04:07",
+    "msg:154492",
+    "2026-05-18 06:31:45"
   ],
   "reply_log": [
     {
@@ -1622,6 +1614,15 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-18T10:35:09+00:00",
+      "pid": "107171",
+      "msg_id": "154492",
+      "thread_id": 142887,
+      "player": "Laetheron",
+      "preview": "A telepathic message from Arktos relays the capabilities of the sinkhole to the ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1634,12 +1635,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-05-18 06:31:45",
-      "msg_ids": [
-        154499
-      ],
-      "last_posted_at": "2026-05-18T07:41:27.295723+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154515
     }
   }
 }
