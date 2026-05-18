@@ -50,7 +50,9 @@
       "2026-05-09T21:40:52.426802+00:00",
       "2026-05-12T12:55:05.140397+00:00",
       "2026-05-13T22:34:00.706705+00:00",
-      "2026-05-14T14:59:33.162990+00:00"
+      "2026-05-14T14:59:33.162990+00:00",
+      "2026-05-18T01:11:17.513255+00:00",
+      "2026-05-18T01:11:17.514460+00:00"
     ],
     "40585": [
       "2026-03-22T15:07:45.208541+00:00",
@@ -950,7 +952,8 @@
       "2026-05-11T15:11:44.781924+00:00",
       "2026-05-11T15:11:44.783849+00:00",
       "2026-05-11T20:42:40.983061+00:00",
-      "2026-05-13T22:34:00.705739+00:00"
+      "2026-05-13T22:34:00.705739+00:00",
+      "2026-05-18T01:11:17.510531+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1197,24 +1200,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-03T15:21:44.080711+00:00",
-      "player": "Link",
-      "preview": "Kieran will calmly make his way out of the tower as the grou"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-03T15:21:44.083814+00:00",
-      "player": "",
-      "preview": ""
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-03T15:21:44.085848+00:00",
-      "player": "Chris Warlock",
-      "preview": "Cackle, pressed against the dart trap tries his hardest to w"
-    },
     {
       "pid": "76799",
       "time": "2026-05-03T15:21:44.087613+00:00",
@@ -2589,6 +2574,27 @@
       "player": "Loaf",
       "preview": "Landon: before landon touchs the bogs wet floor,  he hops on",
       "msg_id": "153797"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-05-18T01:11:17.510531+00:00",
+      "player": "Chase",
+      "preview": "\"Maze? Looks a bit like there's only one way to go unless we",
+      "msg_id": "153873"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-18T01:11:17.513255+00:00",
+      "player": "Laetheron",
+      "preview": "Twilight gives a small, solemn smile and steps up and says, ",
+      "msg_id": "153930"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-18T01:11:17.514460+00:00",
+      "player": "Anthony",
+      "preview": "Rubel steps out of hiding after hearing this crazy dude, see",
+      "msg_id": "154098"
     }
   ],
   "pending_potw_boons": {

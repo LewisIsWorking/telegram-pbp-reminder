@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 153873,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-05-15T17:12:33+00:00",
-      "preview": "\"Maze? Looks a bit like there's only one way to go unless we want to risk some fast movement in the downward direction...\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -274,7 +264,9 @@
     "msg:152648",
     "2026-05-11 20:10:18",
     "msg:153414",
-    "2026-05-13 22:13:16"
+    "2026-05-13 22:13:16",
+    "msg:153873",
+    "2026-05-15 17:12:33"
   ],
   "reply_log": [
     {
@@ -1505,18 +1497,25 @@
       "player": "Cannon",
       "preview": "Nadya gazes at the acrobatic maze with a mixture of disgust and confusion.\n\n\"Doo",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-17T23:27:17+00:00",
+      "pid": "76799",
+      "msg_id": "153873",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "\"Maze? Looks a bit like there's only one way to go unless we want to risk some f",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-05-15 17:12:33",
-      "msg_ids": [
-        153875
-      ],
-      "last_posted_at": "2026-05-15T17:37:24.730357+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154307
     },
     "144765": {
       "fingerprint": "",
