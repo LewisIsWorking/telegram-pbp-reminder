@@ -1,61 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 154330,
-      "thread_id": 145040,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T01:19:08+00:00",
-      "preview": "sure?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154333,
-      "thread_id": 145040,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T01:19:40+00:00",
-      "preview": "eh, still missed",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154334,
-      "thread_id": 145040,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T01:19:47+00:00",
-      "preview": "all good",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154337,
-      "thread_id": 145040,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-18T01:21:07+00:00",
-      "preview": "[media]",
-      "media_group_id": "14232538142446156"
-    },
-    {
-      "message_id": 154373,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-18T01:32:04+00:00",
-      "preview": "rip nat 1",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154377,
-      "thread_id": 51357,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-05-18T01:34:03+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -181,7 +126,22 @@
     "msg:154375",
     "2026-05-18 01:33:05",
     "msg:154374",
-    "2026-05-18 01:32:58"
+    "2026-05-18 01:32:58",
+    "msg:154377",
+    "2026-05-18 01:34:03",
+    "msg:154385",
+    "2026-05-18 02:26:04",
+    "msg:154373",
+    "2026-05-18 01:32:04",
+    "msg:154330",
+    "2026-05-18 01:19:08",
+    "msg:154333",
+    "2026-05-18 01:19:40",
+    "msg:154334",
+    "2026-05-18 01:19:47",
+    "msg:154337",
+    "2026-05-18 01:21:07",
+    "msg:154338"
   ],
   "reply_log": [
     {
@@ -694,25 +654,94 @@
       "player": "Laetheron",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-18T01:34:24+00:00",
+      "pid": "51357",
+      "msg_id": "154377",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:28:48+00:00",
+      "pid": "51357",
+      "msg_id": "154385",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "As the poison mist falls on Rubel, he quickly covers his face and rushes forward",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:51:16+00:00",
+      "pid": "51357",
+      "msg_id": "154373",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "rip nat 1",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:55:01+00:00",
+      "pid": "51357",
+      "msg_id": "154330",
+      "thread_id": 145040,
+      "player": "Laetheron",
+      "preview": "sure?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:55:06+00:00",
+      "pid": "51357",
+      "msg_id": "154333",
+      "thread_id": 145040,
+      "player": "Laetheron",
+      "preview": "eh, still missed",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:55:12+00:00",
+      "pid": "51357",
+      "msg_id": "154334",
+      "thread_id": 145040,
+      "player": "Laetheron",
+      "preview": "all good",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:55:26+00:00",
+      "pid": "51357",
+      "msg_id": "154337",
+      "thread_id": 145040,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-18T02:55:34+00:00",
+      "pid": "51357",
+      "msg_id": "154338",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-05-18 01:32:04|2026-05-18 01:34:03",
-      "msg_ids": [
-        154410
-      ],
-      "last_posted_at": "2026-05-18T02:50:37.713589+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154435
     },
     "145040": {
-      "msg_ids": [
-        154408
-      ],
-      "fingerprint": "2026-05-18 01:19:08|2026-05-18 01:19:40|2026-05-18 01:19:47|2026-05-18 01:21:07|2026-05-18 01:21:07",
-      "last_posted_at": "2026-05-18T02:50:34.530822+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 154436
     }
   }
 }
