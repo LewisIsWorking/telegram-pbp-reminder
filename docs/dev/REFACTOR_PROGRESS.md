@@ -1075,3 +1075,78 @@ shape whenever the message should:
 The caught-up notification ticks all three. Same shape would
 apply to a hypothetical "queue paused" or "session reminder"
 message later.
+
+
+#### L26 — When intent doesn't match state, encode it as config not as state
+
+On 2026-05-17 Lewis flagged twice that the roster output wasn't
+accounting for Anthony, Horia, and Ryo as permanent players,
+despite memory entry #17 (from 2026-05-12) capturing the rule
+"A/H/R are always perm in every campaign they're in." The
+existing fix path was to run `/setpermanent` in each PBP topic
+for each user — high-friction, easy to drift on new enrolments,
+and the source of the recurring "the state is wrong" reports.
+
+The two L26 lessons:
+
+**1. When a state-attribute check propagates across many call
+sites, encapsulate the rule behind a single helper rather than
+duplicating the same dict lookup.** Before this fix, `p.get(
+"permanent")` appeared verbatim in nine places across five
+modules (overview, drill-down, cross-campaign view, recruitment
+alert, auto-removal block, week-3 warning suppression, the at-
+risk status helper, two roster_nudge callers). Any change to the
+perm semantics meant touching all nine — L24 specifically
+documented this as a three-spot sweep but the alerts.py and
+roster_players.py consumers were missed at the time. Replacing
+the raw `p.get("permanent")` calls with
+`is_permanent(p, config)` collapses the rule into a single
+function in `scripts/players/permanence.py`. Next time the
+perm definition changes (e.g. adding a per-campaign override
+list), one file edits, not nine.
+
+**2. When a user's intent doesn't match state and they have an
+existing manual fix-up command, evaluate whether the intent is
+better encoded as config than persistently re-applied to state.**
+The pre-2026-05-17 mechanism for marking a user as permanent was
+`/setpermanent` in a PBP topic — a per-record state mutation.
+That mechanism is correct for per-campaign overrides ("Bob is
+perm in C04 only") but wrong for the actual rule Lewis was
+trying to express ("A/H/R are perm in every campaign they're in,
+forever"). The former is data; the latter is policy. Encoding
+policy as state means every new enrolment is a chance for the
+policy to be silently violated. Encoding it as config
+(`permanent_user_ids: [A, H, R]`) means the policy applies
+automatically with no GM action required.
+
+The recognition pattern: when a user reports the same kind of
+data-correctness issue more than once, look for the underlying
+rule. If there's a rule and the rule is stable, encode the rule.
+Don't ask the user to keep re-stating it through whatever ad-hoc
+state-mutation command was the original fix.
+
+The config-vs-state distinction also clarifies what
+`/setpermanent` is FOR going forward: per-campaign exceptions
+to the rule. If A/H/R is ever NOT meant to be perm in some
+specific campaign, the right answer would be to add a separate
+`permanent_user_ids_exceptions` config key (or similar)
+rather than overloading the per-record flag's meaning. For now
+no such exception exists.
+
+**Mechanically the fix:** introduce `is_permanent(player, config)`,
+replace nine call sites, thread `config` through any function
+that previously only had `player`. The plumbing added one
+extra parameter to `_at_risk_status`, `_aggregate_by_user`,
+`build_footer`, `_active_players`, and `_split_active` —
+small surface area, all internal to the roster/alerts modules,
+so call sites updated cleanly.
+
+The display change shipped in the same commit (Current/Perm as
+two sections instead of inline [perm] tag) is a separate
+concern but rides in the same release because it's the same
+context (Lewis spotted both in the same drill-down output).
+The L26 lesson is about the perm-detection rule; the section
+split is just a UX polish that L25's "implicit-history pattern"
+spirit applies to in a small way: the display format should
+make the perm/non-perm distinction unambiguous without relying
+on a scannable inline tag.

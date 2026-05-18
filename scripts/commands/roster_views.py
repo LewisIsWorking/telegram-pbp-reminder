@@ -68,8 +68,8 @@ def build_roster_all(config: dict, state: dict) -> str:
     # returns (by_user, at_risk); we only need at_risk for the footer.
     now = datetime.now(timezone.utc)
     pid_to_code = _pid_to_code(config)
-    _by_user, at_risk = _aggregate_by_user(state, pid_to_code, now)
-    footer_lines = build_footer(state, pid_to_code, now, at_risk)
+    _by_user, at_risk = _aggregate_by_user(state, pid_to_code, now, config)
+    footer_lines = build_footer(state, pid_to_code, now, at_risk, config)
 
     if not footer_lines:
         return campaigns_block

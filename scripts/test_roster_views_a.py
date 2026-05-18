@@ -56,17 +56,23 @@ def test_campaigns_view_uses_xyz_perm_format():
     assert "1/6 active player" in out
 
 
-def test_campaigns_view_tags_perm_players_inline():
-    """Permanent players get the [perm] tag in each block's name list."""
+def test_campaigns_view_splits_current_and_perm_sections():
+    """Each campaign block in /rostercampaigns gets the same Current/
+    Perm split as a standalone drill-down. Inline [perm] tag is gone
+    as of 2026-05-17 (L26)."""
     from commands.roster_views import build_roster_campaigns
     out = build_roster_campaigns(_two_campaign_config(),
                                  _state_with_players_in_each())
-    assert "\u2022 Bob [perm]" in out
-    # Alice is non-perm so no tag
-    alice_lines = [line for line in out.splitlines()
-                   if line.startswith("  \u2022 Alice")]
-    assert alice_lines, "Alice should appear in the names list"
-    assert all("[perm]" not in line for line in alice_lines)
+    # Bob is the perm player — should appear under a Perm: section.
+    assert "Perm:\n  \u2022 Bob" in out, (
+        f"Expected Bob under a Perm: section; got:\n{out}"
+    )
+    # Alice (non-perm) should appear under a Current: section.
+    alice_under_current = [line for line in out.splitlines()
+                           if line.startswith("  \u2022 Alice")]
+    assert alice_under_current, "Alice should appear in a names list"
+    # Inline [perm] tag is GONE.
+    assert "[perm]" not in out
 
 
 def test_campaigns_view_block_order_matches_config():

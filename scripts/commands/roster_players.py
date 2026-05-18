@@ -19,13 +19,14 @@ empty in production state.
 """
 
 from datetime import datetime, timezone, timedelta
+from players.permanence import is_permanent
 
 from commands.roster import _ACTIVE_DAYS
 
 _HISTORY_DAYS = 30  # window for the 'recently joined / left' sections
 
 
-def _at_risk_status(player: dict) -> str | None:
+def _at_risk_status(player: dict, config: dict) -> str | None:
     """Return an at-risk marker string for a player, or None.
 
     Uses last_warned_week (set by scheduled.alerts.check_player_activity):
@@ -37,7 +38,7 @@ def _at_risk_status(player: dict) -> str | None:
     Permanent players are never warned for removal (the alerts logic
     skips removal for them), so they never qualify as at-risk here.
     """
-    if player.get("permanent"):
+    if is_permanent(player, config):
         return None
     warned = player.get("last_warned_week", 0)
     if warned >= 3:
@@ -88,7 +89,7 @@ def _recent_history(state: dict, now: datetime,
 
 
 def _aggregate_by_user(state: dict, pid_to_code: dict[str, str],
-                      now: datetime) -> tuple[dict, list]:
+                      now: datetime, config: dict) -> tuple[dict, list]:
     """Group player records by user_id across campaigns; also collect
     at-risk records keyed by campaign for the footer section."""
     by_user: dict[str, dict] = {}
@@ -103,7 +104,7 @@ def _aggregate_by_user(state: dict, pid_to_code: dict[str, str],
         slot = by_user.setdefault(uid, {
             "name": player.get("first_name")
                     or player.get("username") or "?",
-            "permanent": bool(player.get("permanent")),
+            "permanent": is_permanent(player, config),
             "campaigns": [],
             "most_recent_days": days,
         })
@@ -112,14 +113,15 @@ def _aggregate_by_user(state: dict, pid_to_code: dict[str, str],
                 slot["most_recent_days"] is None
                 or days < slot["most_recent_days"]):
             slot["most_recent_days"] = days
-        if _at_risk_status(player) is not None:
+        if _at_risk_status(player, config) is not None:
             at_risk.append((code, player, days))
     return by_user, at_risk
 
 
 def build_footer(state: dict, pid_to_code: dict[str, str],
                  now: datetime,
-                 at_risk: list[tuple[str, dict, int | None]]
+                 at_risk: list[tuple[str, dict, int | None]],
+                 config: dict,
                  ) -> list[str]:
     """Build the at-risk / recently-joined / recently-left lines.
 
@@ -135,7 +137,7 @@ def build_footer(state: dict, pid_to_code: dict[str, str],
                      reverse=True)
         for code, player, days in at_risk:
             name = player.get("first_name") or "?"
-            risk = _at_risk_status(player) or ""
+            risk = _at_risk_status(player, config) or ""
             age = f"{days}d ago" if days is not None else "?"
             warned = player.get("last_warned_week", 0)
             lines.append(f"  {risk} {code} {name} \u2014 last post {age} "
@@ -161,7 +163,7 @@ def build_roster_players(config: dict, state: dict) -> str:
     """Cross-campaign player table + at-risk + history footer."""
     now = datetime.now(timezone.utc)
     pid_to_code = _pid_to_code(config)
-    by_user, at_risk = _aggregate_by_user(state, pid_to_code, now)
+    by_user, at_risk = _aggregate_by_user(state, pid_to_code, now, config)
 
     rows = sorted(by_user.values(),
                   key=lambda r: (r["most_recent_days"]
@@ -179,5 +181,5 @@ def build_roster_players(config: dict, state: dict) -> str:
         lines.append(f"  \u2022 {r['name']:18s}{tag:7s}  "
                      f"{camps:18s}  last: {age}")
 
-    lines.extend(build_footer(state, pid_to_code, now, at_risk))
+    lines.extend(build_footer(state, pid_to_code, now, at_risk, config))
     return "\n".join(lines)

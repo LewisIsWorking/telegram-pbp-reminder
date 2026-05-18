@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import helpers
 from helpers import build_topic_maps, fmt_date
 import telegram as tg
+from players.permanence import is_permanent
 
 
 def _gm_last_post(config: dict, state: dict, pid: str) -> datetime | None:
@@ -152,7 +153,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
 
         # 4+ weeks: remove (ALWAYS fires, even when GM is bottleneck)
         # Permanent players are never removed — skip the removal block entirely
-        if not player.get("permanent") and current_week >= helpers.PLAYER_REMOVE_WEEKS:
+        if not is_permanent(player, config) and current_week >= helpers.PLAYER_REMOVE_WEEKS:
             if last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
                     f"{mention} has not posted in {campaign} PBP for "
@@ -170,7 +171,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
             continue  # pragma: no cover
         for week_mark in helpers.PLAYER_WARN_WEEKS:
             # Skip week-3 warning for permanent players (it mentions auto-removal)
-            if week_mark == 3 and player.get("permanent"):
+            if week_mark == 3 and is_permanent(player, config):
                 continue
             if current_week >= week_mark and last_warned < week_mark:
                 template = _INACTIVITY_TEMPLATES.get(week_mark, _INACTIVITY_TEMPLATES[3])

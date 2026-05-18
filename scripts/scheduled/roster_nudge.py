@@ -15,7 +15,7 @@ def _roster_snapshot(config: dict, state: dict) -> str:
     parts = []
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
-        count = len(_active_players(pid, state))
+        count = len(_active_players(pid, state, config))
         target = pair.get("roster_target", _TARGET)
         parts.append(f"{pair.get('code',pid)}:{count}/{target}")
     return "|".join(parts)
@@ -26,7 +26,7 @@ def _needs_nudge(config: dict, state: dict) -> bool:
     for pair in config.get("topic_pairs", []):
         pid = str(pair["pbp_topic_ids"][0])
         target = pair.get("roster_target", _TARGET)
-        if len(_active_players(pid, state)) < target:
+        if len(_active_players(pid, state, config)) < target:
             return True
     return False
 

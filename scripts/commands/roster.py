@@ -6,12 +6,13 @@
 """
 
 from datetime import datetime, timezone, timedelta
+from players.permanence import is_permanent
 
 _TARGET = 6
 _ACTIVE_DAYS = 30
 
 
-def _active_players(pid: str, state: dict) -> list[dict]:
+def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
     """Return players considered part of the campaign's active roster.
 
     Inclusion rules (in priority order):
@@ -43,9 +44,10 @@ def _active_players(pid: str, state: dict) -> list[dict]:
     for p in state.get("players", {}).values():
         if str(p.get("pbp_topic_id", "")) != pid:
             continue
-        if p.get("permanent"):
-            # Intentional: permanent flag = roster member, full stop.
-            # See docstring above. Do not add a recency check here.
+        if is_permanent(p, config):
+            # Intentional: permanent (per-record OR config-listed) =
+            # roster member, full stop. See docstring above. Do not
+            # add a recency check here — perm = always counted.
             result.append(p)
             continue
         try:
@@ -59,7 +61,7 @@ def _active_players(pid: str, state: dict) -> list[dict]:
     return result
 
 
-def _split_active(players: list[dict]) -> tuple[list[dict], list[dict]]:
+def _split_active(players: list[dict], config: dict) -> tuple[list[dict], list[dict]]:
     """Partition an _active_players result into (non_permanent, permanent).
 
     Used by the overview and per-campaign builders to display permanent
@@ -71,9 +73,15 @@ def _split_active(players: list[dict]) -> tuple[list[dict], list[dict]]:
     and /overview (does not). The icon (✅/⚠️) still gates on the
     combined count so the set of warned campaigns stays the same —
     only the display becomes more informative.
+
+    As of 2026-05-17 (L26), "permanent" is decided by
+    ``players.permanence.is_permanent(p, config)`` rather than just
+    ``p.get("permanent")``, so users listed in
+    ``config["permanent_user_ids"]`` partition into the perm bucket
+    even when their per-record flag isn't set.
     """
-    non_perm = [p for p in players if not p.get("permanent")]
-    perm = [p for p in players if p.get("permanent")]
+    non_perm = [p for p in players if not is_permanent(p, config)]
+    perm = [p for p in players if is_permanent(p, config)]
     return non_perm, perm
 
 
@@ -93,7 +101,7 @@ def build_roster_overview(config: dict, state: dict) -> str:
         code = pair.get("code", "")
         name = pair.get("name", "")
         pid = str(pair["pbp_topic_ids"][0])
-        non_perm, perm = _split_active(_active_players(pid, state))
+        non_perm, perm = _split_active(_active_players(pid, state, config), config)
         target = pair.get("roster_target", _TARGET)
         rows.append((len(non_perm), len(perm), code, name, target))
     # Warnings first (non-perm vs target — perm players don't count
@@ -125,8 +133,8 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
     pid = str(pair["pbp_topic_ids"][0])
     label = f"{code}: {name}" if code else name
 
-    players = _active_players(pid, state)
-    non_perm, perm = _split_active(players)
+    players = _active_players(pid, state, config)
+    non_perm, perm = _split_active(players, config)
     target = pair.get("roster_target", _TARGET)
     combined = len(non_perm) + len(perm)
     # Icon gates on NON-PERM count only (perm players don't count toward
@@ -134,12 +142,25 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
     # there and L23 in REFACTOR_PROGRESS.md.
     icon = "✅" if len(non_perm) >= target else "⚠️"
     perm_suffix = f" +{len(perm)} perm" if perm else ""
-    names = "\n".join(
-        f"  • {p.get('first_name', '?')}"
-        + (f" (@{p['username']})" if p.get("username") else "")
-        + (" [perm]" if p.get("permanent") else "")
-        for p in sorted(players, key=lambda p: p.get("first_name", ""))
-    ) or "  (none)"
+    # Split the names list into Current (non-perm) and Perm sections.
+    # Lewis requested this on 2026-05-17 after spotting the C00 drill-
+    # down listing 4 players as "Current:" when 3 were perm — the [perm]
+    # inline tag was easy to miss when scanning. Two sections (omitted
+    # when empty) make the split visually unambiguous. See L26.
+    def _name_line(p: dict) -> str:
+        return (f"  • {p.get('first_name', '?')}"
+                + (f" (@{p['username']})" if p.get("username") else ""))
+
+    def _section(label: str, group: list[dict]) -> str:
+        if not group:
+            return ""
+        body = "\n".join(_name_line(p) for p in
+                         sorted(group, key=lambda p: p.get("first_name", "")))
+        return f"{label}:\n{body}"
+
+    roster_blocks = [s for s in (_section("Current", non_perm),
+                                 _section("Perm", perm)) if s]
+    roster_text = "\n".join(roster_blocks) or "Current:\n  (none)"
 
     history = [e for e in state.get("player_history", []) if e.get("pid") == pid]
     if history:
@@ -157,7 +178,7 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
         f"📋 {label}\n"
         f"{icon} {len(non_perm)}/{target}{perm_suffix} active player"
         f"{'s' if combined != 1 else ''} (last {_ACTIVE_DAYS}d)\n\n"
-        f"Current:\n{names}\n\n"
+        f"{roster_text}\n\n"
         f"History:\n{hist_text}"
     )
 

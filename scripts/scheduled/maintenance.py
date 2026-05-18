@@ -8,6 +8,7 @@ from helpers import (
     build_topic_maps, deduplicate_posts, timestamps_in_window,
 )
 import telegram as tg
+from players.permanence import is_permanent
 
 
 def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -156,8 +157,8 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
         campaign_players = all_campaigns.get(pid, [])
         non_gm = [p for p in campaign_players
                   if p.get("user_id", "") not in gm_ids]
-        non_perm_players = [p for p in non_gm if not p.get("permanent")]
-        perm_players = [p for p in non_gm if p.get("permanent")]
+        non_perm_players = [p for p in non_gm if not is_permanent(p, config)]
+        perm_players = [p for p in non_gm if is_permanent(p, config)]
 
         non_perm_count = len(non_perm_players)
         perm_count = len(perm_players)
@@ -177,7 +178,7 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
         if non_gm:
             roster_lines = "\n".join(
                 f"- {helpers.player_mention(p)}"
-                + (" [perm]" if p.get("permanent") else "")
+                + (" [perm]" if is_permanent(p, config) else "")
                 for p in non_gm
             )
             perm_suffix = f" +{perm_count} perm" if perm_count else ""

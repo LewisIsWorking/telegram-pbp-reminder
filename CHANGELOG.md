@@ -11,6 +11,128 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.50.0] - 2026-05-17
+
+### Added
+
+**Config-driven `permanent_user_ids` rule + Current/Perm section split.**
+
+Lewis reported on 2026-05-17 (twice in close succession) that the
+roster output wasn't accounting for Anthony, Horia, and Ryo as
+permanent players, even though memory entry #17 captured the rule
+"A/H/R are always perm in every campaign they're in." The previous
+fix path — use `/setpermanent` in each PBP topic to flip the
+per-record flag — was high-friction (one command per
+user-per-campaign) and prone to drift when new enrolments arrived
+with the default `permanent=False`.
+
+This release encodes the rule directly as config:
+
+```json
+"permanent_user_ids": [6144366145, 5443237599, 138025700]
+```
+
+(Anthony @MrNegetZ, Horia @Nemesiux, Ryo @RyoYamakawa.) Any player
+whose `user_id` matches an entry in this list is treated as
+permanent in every campaign they're enrolled in, regardless of the
+per-record flag. The per-record flag still works for per-campaign
+exceptions; the new config list works alongside it as a logical OR.
+
+The drill-down view (`/roster C00`) also gets a visual upgrade:
+players are split into separate `Current:` and `Perm:` sections
+instead of carrying an inline `[perm]` tag. Lewis spotted that 3
+of 4 players in C00 were perm and the inline tag was easy to miss
+when scanning. Two labelled sections make the split unambiguous.
+
+### Code changes
+
+* **New** `scripts/players/permanence.py` (53 lines) — single source
+  of truth for `is_permanent(player, config)`. Returns True when
+  EITHER `player["permanent"]` is True OR `player["user_id"]` is in
+  `config["permanent_user_ids"]`. Tolerates int/str user_id
+  mismatches, missing config keys, missing user_id fields.
+* `scripts/commands/roster.py` — `_active_players` and
+  `_split_active` now take a `config` parameter and delegate to
+  `is_permanent`. `build_roster_campaign` renders Current/Perm as
+  two separate sections, omitting either when empty. Inline
+  `[perm]` tag removed.
+* `scripts/commands/roster_players.py` — `_at_risk_status`,
+  `_aggregate_by_user`, and `build_footer` all thread `config`
+  through. The cross-campaign player table's `permanent: bool`
+  flag now reads from `is_permanent` rather than the raw per-record
+  field.
+* `scripts/commands/roster_views.py` — the `/rosterall` aggregator
+  passes `config` to `_aggregate_by_user` and `build_footer`.
+* `scripts/scheduled/maintenance.py:check_recruitment_needs` —
+  recruitment alert's perm-split now uses `is_permanent(p, config)`
+  for both the count partition AND the inline `[perm]` tag in the
+  roster listing.
+* `scripts/scheduled/alerts.py:check_player_activity` — the
+  auto-removal block (`if not player.get("permanent")...`) and the
+  week-3 warning suppression both delegate to `is_permanent`. This
+  means A/H/R are now never auto-removed and never receive the
+  week-3 warning, even when their per-record flag is unset.
+* `scripts/scheduled/roster_nudge.py` — both `_active_players`
+  callers pass `config`.
+* `config.json` — new `permanent_user_ids` key with three IDs.
+
+### Tests
+
+* **New** `scripts/test_permanence.py` (79 lines, 7 tests) covering:
+  per-record flag True/False, user_id in config list, int vs str
+  user_id matching, empty/missing user_id, missing config key,
+  precedence semantics (logical OR).
+* `scripts/test_roster_perm_display.py`:
+  - `test_campaign_view_tags_perm_players_in_name_list` replaced
+    with `test_campaign_view_splits_current_and_perm_sections`.
+  - `test_split_active_partitions_correctly` updated for the new
+    config-aware signature.
+  - **New** `test_split_active_honours_config_perm_user_ids` covers
+    the config-list partitioning path.
+* `scripts/test_roster_views_a.py`:
+  - `test_campaigns_view_tags_perm_players_inline` replaced with
+    `test_campaigns_view_splits_current_and_perm_sections`.
+
+1712 passing (was 1704). Every changed file under the 200-line
+cap; `scheduled/maintenance.py` at exactly 200,
+`scheduled/alerts.py` at 199.
+
+### Behaviour deltas
+
+* `/roster` overview — same X/Y +Z perm format; Z now includes A/H/R
+  automatically. C00 (which currently shows 4/6 with no perm)
+  will show 3/6 +1 perm or similar depending on which of A/H/R are
+  enrolled.
+* `/roster C00` drill-down — Current and Perm now appear as two
+  separate labelled sections. Inline `[perm]` tag is gone.
+* `/rostercampaigns`, `/rosterall` — same section split applies to
+  every block.
+* `/rosterplayers` — the `[perm]` tag in the cross-campaign player
+  table still appears for visual consistency; the underlying perm
+  classification now uses `is_permanent`.
+* Recruitment alert (`📢 ... needs N more players!`) — same
+  `Current roster (X/Y +Z perm):` format; perm count now folds in
+  A/H/R automatically.
+* Inactivity alerts (`scheduled/alerts.py`) — A/H/R now skip both
+  the week-3 warning and the 4-week auto-removal, matching the
+  rule from memory #17. Other (per-record-flagged) perm players
+  unchanged.
+
+Not affected: state-schema, hourly cron cadence, message lifecycle,
+posting machinery. No migration; the new config key defaults to an
+empty list if missing.
+
+Version: MINOR bump because behaviour changes are user-visible (the
+drill-down format) AND a new feature (`permanent_user_ids`) is
+shipped. The change is additive and backward-compatible.
+
+See L26 in `docs/dev/REFACTOR_PROGRESS.md` for the two lessons:
+encapsulating a recurring dict-lookup behind a helper, and
+recognising when an intent is better encoded as config than
+repeatedly applied to state.
+
+---
+
 ## [4.49.1] - 2026-05-12
 
 ### Fixed

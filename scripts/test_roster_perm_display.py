@@ -101,16 +101,26 @@ def test_overview_icon_gates_on_non_perm_count():
     )
 
 
-def test_campaign_view_tags_perm_players_in_name_list():
-    """Per-campaign drill-down marks ``[perm]`` next to each permanent
-    player's name so the GM can identify which slots are perm at a glance."""
+def test_campaign_view_splits_current_and_perm_sections():
+    """Per-campaign drill-down renders two separate sections (Current
+    for non-perm, Perm for perm) rather than tagging perm players
+    inline in a single list. Lewis flagged on 2026-05-17 that the
+    inline [perm] tag was easy to miss when 3 of 4 listed names were
+    perm. Two sections (omitted when empty) make the split visually
+    unambiguous. See L26 in REFACTOR_PROGRESS.md."""
     from commands.roster import build_roster_campaign
     pair = {"code": "C00", "name": "Riddleport", "pbp_topic_ids": [100]}
     state = _state(non_perm_recent=2, perm=1, pid="100")
     out = build_roster_campaign(pair, _config(), state)
-    # Active0 is non-perm, Perm0 is perm
-    assert "\u2022 Active0\n" in out + "\n"  # no [perm] tag on non-perm
-    assert "\u2022 Perm0 [perm]" in out
+    # Two distinct labelled sections; Active0 under Current, Perm0 under Perm.
+    assert "Current:\n  \u2022 Active0\n  \u2022 Active1" in out, (
+        f"Expected Current section to list Active0 and Active1; got:\n{out}"
+    )
+    assert "Perm:\n  \u2022 Perm0" in out, (
+        f"Expected Perm section to list Perm0; got:\n{out}"
+    )
+    # Inline [perm] tag is GONE — the section header carries the meaning.
+    assert "[perm]" not in out
 
 
 def test_campaign_view_header_shows_perm_suffix():
@@ -124,14 +134,32 @@ def test_campaign_view_header_shows_perm_suffix():
 
 def test_split_active_partitions_correctly():
     """``_split_active`` returns (non_permanent, permanent) lists,
-    preserving input order within each partition."""
+    preserving input order within each partition. As of 2026-05-17
+    (L26) the partition is by ``is_permanent(p, config)``, which
+    folds in the ``permanent_user_ids`` config list."""
     from commands.roster import _split_active
     players = [
-        {"first_name": "Alice"},
-        {"first_name": "Bob", "permanent": True},
-        {"first_name": "Carol"},
-        {"first_name": "Dave", "permanent": True},
+        {"first_name": "Alice", "user_id": "a"},
+        {"first_name": "Bob", "user_id": "b", "permanent": True},
+        {"first_name": "Carol", "user_id": "c"},
+        {"first_name": "Dave", "user_id": "d", "permanent": True},
     ]
-    non_perm, perm = _split_active(players)
+    # Empty config → only the per-record flag determines perm.
+    non_perm, perm = _split_active(players, {})
     assert [p["first_name"] for p in non_perm] == ["Alice", "Carol"]
     assert [p["first_name"] for p in perm] == ["Bob", "Dave"]
+
+
+def test_split_active_honours_config_perm_user_ids():
+    """A player whose user_id is in ``config['permanent_user_ids']``
+    partitions into perm even when their per-record flag is unset."""
+    from commands.roster import _split_active
+    players = [
+        {"first_name": "Alice", "user_id": "a"},
+        {"first_name": "Carol", "user_id": "c"},
+    ]
+    # Carol listed as a global perm via config → partitions into perm.
+    config = {"permanent_user_ids": ["c"]}
+    non_perm, perm = _split_active(players, config)
+    assert [p["first_name"] for p in non_perm] == ["Alice"]
+    assert [p["first_name"] for p in perm] == ["Carol"]
