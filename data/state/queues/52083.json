@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 154518,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-18T12:57:57+00:00",
+      "preview": "\"Hear that Roneless. I guess we did a \u2605GOOD\u2605 job for being such \u2605DANGEROUS\u2605 people! \"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -726,10 +736,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 154501
+      "fingerprint": "2026-05-18 12:57:57",
+      "msg_ids": [
+        154519
+      ],
+      "last_posted_at": "2026-05-18T13:30:39.226344+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
