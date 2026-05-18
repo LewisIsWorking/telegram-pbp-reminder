@@ -1,5 +1,5 @@
 {
-  "offset": 619337307,
+  "offset": 619337310,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-18T12:57:57+00:00",
@@ -218,7 +218,7 @@
   },
   "last_state_backup": "2026-05-18T15:14:23.761430+00:00",
   "last_queue_daily": "2026-05-18",
-  "last_queue_fingerprint": "51357:2026-05-18 18:52:01|51357:2026-05-18 18:58:42|52083:2026-05-18 12:57:57|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 3h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "51357:2026-05-18 18:52:01|51357:2026-05-18 18:58:42|52083:2026-05-18 12:57:57|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 4h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -276,7 +276,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-05-17",
   "last_queue_daily_slots": [
-    "2026-05-10:09",
     "2026-05-11:09",
     "2026-05-11:21",
     "2026-05-12:09",
@@ -289,7 +288,8 @@
     "2026-05-16:21",
     "2026-05-17:09",
     "2026-05-17:21",
-    "2026-05-18:09"
+    "2026-05-18:09",
+    "2026-05-18:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-05-17",
@@ -301,14 +301,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-17",
-  "last_queue_pin_id": 154545,
-  "queue_post_count": 432,
+  "last_queue_pin_id": 154550,
+  "queue_post_count": 433,
   "gm_queue_history": [
     {
       "msg_ids": [
-        154545
+        154550
       ],
-      "pin_id": 154545
+      "pin_id": 154550
     }
   ]
 }
