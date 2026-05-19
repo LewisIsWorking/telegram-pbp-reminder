@@ -70,7 +70,9 @@
       "2026-05-18T03:21:36.296113+00:00",
       "2026-05-18T03:21:36.297331+00:00",
       "2026-05-18T03:21:36.298496+00:00",
-      "2026-05-18T03:21:36.299697+00:00"
+      "2026-05-18T03:21:36.299697+00:00",
+      "2026-05-19T03:19:45.822800+00:00",
+      "2026-05-19T03:19:45.825772+00:00"
     ],
     "40585": [
       "2026-03-22T15:07:45.208541+00:00",
@@ -1225,20 +1227,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "1242",
-      "time": "2026-05-09T21:21:56.631038+00:00",
-      "player": "NJ",
-      "preview": "I apologise to the rest of the group for causing them all to",
-      "msg_id": "2465"
-    },
-    {
-      "pid": "1242",
-      "time": "2026-05-09T21:21:56.635972+00:00",
-      "player": "Craig",
-      "preview": "I tell her that if it happens again the leash is going back ",
-      "msg_id": "2466"
-    },
     {
       "pid": "51357",
       "time": "2026-05-09T21:30:23.636550+00:00",
@@ -2624,6 +2612,20 @@
       "player": "Laetheron",
       "preview": "A telepathic message from Arktos relays the capabilities of ",
       "msg_id": "154492"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-19T03:19:45.822800+00:00",
+      "player": "Cannon",
+      "preview": "\"He was violent, and fanatic. We didn't learn very much Doct",
+      "msg_id": "154536"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-19T03:19:45.825772+00:00",
+      "player": "Ryo",
+      "preview": "Cyrus approaches holding out the diary.\n\n\"I did find his dia",
+      "msg_id": "154537"
     }
   ],
   "pending_potw_boons": {
@@ -2681,6 +2683,19 @@
       ],
       "base_message": "Player of the Week for Hopeful End-Times: Anthony NegetZ (@MrNegetZ)!\n(2026-05-11 (W20) to 2026-05-18 (W21))\n\n6 posts this week with an average gap of 31.4h between posts. The most consistent driver of the story.",
       "posted_at": "2026-05-18T23:30:14.639141+00:00"
+    },
+    "51357": {
+      "message_id": 154576,
+      "winner_user_id": "138025700",
+      "campaign_name": "Grand Explorers",
+      "boons": [
+        "A fall that should have broken something only leaves a bruise.",
+        "The ledger has an entry crossed out. The original is still legible underneath.",
+        "The ventilation shaft is wider than the blueprints suggested.",
+        "Your next successful Strike deals 1 extra damage."
+      ],
+      "base_message": "Player of the Week for Grand Explorers: Ryo Yamakawa (@RyoYamakawa)!\n(2026-05-12 (W20) to 2026-05-19 (W21))\n\n5 posts this week with an average gap of 30.6h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-05-19T03:19:45.827858+00:00"
     }
   }
 }

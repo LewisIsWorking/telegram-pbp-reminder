@@ -2,21 +2,12 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 154536,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-05-18T18:52:01+00:00",
-      "preview": "\"He was violent, and fanatic. We didn't learn very much Doctor, I'm sorry.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154537,
+      "message_id": 154572,
       "thread_id": 51357,
       "user_id": "138025700",
       "user_name": "Ryo",
-      "time": "2026-05-18T18:58:42+00:00",
-      "preview": "Cyrus approaches holding out the diary.\n\n\"I did find his diary which detailed his plans. It was good that he was stopped when he was or things could have been a lot worse for everyone.\"",
+      "time": "2026-05-19T01:33:08+00:00",
+      "preview": "\"I might need to load up on some cold iron scraps in that case.\"",
       "media_group_id": null
     }
   ],
@@ -160,7 +151,11 @@
     "2026-05-18 01:19:47",
     "msg:154337",
     "2026-05-18 01:21:07",
-    "msg:154338"
+    "msg:154338",
+    "msg:154536",
+    "2026-05-18 18:52:01",
+    "msg:154537",
+    "2026-05-18 18:58:42"
   ],
   "reply_log": [
     {
@@ -745,17 +740,35 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-19T01:25:42+00:00",
+      "pid": "51357",
+      "msg_id": "154536",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "\"He was violent, and fanatic. We didn't learn very much Doctor, I'm sorry.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-19T01:27:05+00:00",
+      "pid": "51357",
+      "msg_id": "154537",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "Cyrus approaches holding out the diary.\n\n\"I did find his diary which detailed hi",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-05-18 18:52:01|2026-05-18 18:58:42",
+      "fingerprint": "2026-05-19 01:33:08",
       "msg_ids": [
-        154538
+        154578
       ],
-      "last_posted_at": "2026-05-18T19:38:23.562515+00:00",
+      "last_posted_at": "2026-05-19T03:19:53.805282+00:00",
       "caught_up_msg_id": null
     },
     "145040": {
