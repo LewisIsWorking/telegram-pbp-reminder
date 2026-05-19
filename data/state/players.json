@@ -18,7 +18,7 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-04-28T16:46:08+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "52083:7863964681": {
       "user_id": "7863964681",
@@ -489,6 +489,16 @@
       "pbp_topic_id": "51357",
       "last_post_time": "2026-05-18T18:52:01+00:00",
       "last_warned_week": 0
+    },
+    "52083:5443237599": {
+      "user_id": "5443237599",
+      "first_name": "Kaer'maga when?",
+      "last_name": "",
+      "username": "Nemesiux",
+      "campaign_name": "Hopeful End-Times",
+      "pbp_topic_id": "52083",
+      "last_post_time": "2026-05-19T15:18:28+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -497,12 +507,6 @@
       "first_name": "Lhiet",
       "username": "Llhiet",
       "campaign_name": "Doomsday Funtime"
-    },
-    "52083:5443237599": {
-      "removed_at": "2026-03-24T14:29:07.074928+00:00",
-      "first_name": "Kaer'maga when?",
-      "username": "Nemesiux",
-      "campaign_name": "Hopeful End-Times"
     },
     "25059:7916471490": {
       "removed_at": "2026-03-31T13:34:20.547806+00:00",
@@ -675,6 +679,11 @@
         "id": 0,
         "name": "Path",
         "joined": "2026-03-29T16:09:32.414530+00:00"
+      },
+      "5443237599": {
+        "id": 7,
+        "name": "Kaer'maga when?",
+        "joined": "2026-05-19T17:08:33.680183+00:00"
       }
     },
     "25059": {
@@ -1025,6 +1034,14 @@
       "name": "Capricious",
       "username": "CapriciousC",
       "at": "2026-05-17T21:24:51.477059+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "52083",
+      "user_id": "5443237599",
+      "name": "Kaer'maga when?",
+      "username": "Nemesiux",
+      "at": "2026-05-19T17:08:32.180242+00:00"
     }
   ],
   "player_boons": {
