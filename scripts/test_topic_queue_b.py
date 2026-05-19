@@ -83,7 +83,8 @@ class TestClearThreadQueue:
         from scheduled.topic_queue_poster import _clear_thread_queue
         slot = {"msg_ids": [7777], "fingerprint": "fp"}
         tg_mock.send_message_id.return_value = 8888
-        _clear_thread_queue(-100, "40585", slot)
+        _clear_thread_queue(-100, "40585", slot,
+                            pid="40585", state=None, config={})
         # Caught-up notice is sent via send_message_id so we can capture
         # its id for deletion on the next cycle.
         tg_mock.send_message_id.assert_called_once()
@@ -100,7 +101,8 @@ class TestClearThreadQueue:
         from scheduled.topic_queue_poster import _clear_thread_queue
         slot = {"msg_ids": [7777, 7778, 7779], "fingerprint": "fp"}
         tg_mock.send_message_id.return_value = 8888
-        _clear_thread_queue(-100, "40585", slot)
+        _clear_thread_queue(-100, "40585", slot,
+                            pid="40585", state=None, config={})
         tg_mock.unpin_message.assert_called_once_with(-100, 7777)
         assert tg_mock.delete_message.call_count == 3
         deleted = [c[0][1] for c in tg_mock.delete_message.call_args_list]
@@ -112,7 +114,8 @@ class TestClearThreadQueue:
         from scheduled.topic_queue_poster import _clear_thread_queue
         slot = {"msg_id": 7777, "fingerprint": "fp"}
         tg_mock.send_message_id.return_value = 8888
-        _clear_thread_queue(-100, "40585", slot)
+        _clear_thread_queue(-100, "40585", slot,
+                            pid="40585", state=None, config={})
         tg_mock.delete_message.assert_called_once_with(-100, 7777)
         assert slot["msg_ids"] == []
         assert "msg_id" not in slot
@@ -126,7 +129,8 @@ class TestClearThreadQueue:
         slot = {"msg_ids": [7777], "fingerprint": "fp",
                 "caught_up_msg_id": 5555}
         tg_mock.send_message_id.return_value = 8888
-        _clear_thread_queue(-100, "40585", slot)
+        _clear_thread_queue(-100, "40585", slot,
+                            pid="40585", state=None, config={})
         # Both the queue message and the prior caught-up notice are deleted.
         deleted = [c[0][1] for c in tg_mock.delete_message.call_args_list]
         assert 5555 in deleted

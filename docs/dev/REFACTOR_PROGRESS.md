@@ -1150,3 +1150,83 @@ split is just a UX polish that L25's "implicit-history pattern"
 spirit applies to in a small way: the display format should
 make the perm/non-perm distinction unambiguous without relying
 on a scannable inline tag.
+
+
+#### L27 — Feedback-driven UX trim: same data, two tiers
+
+On 2026-05-19 Cannon (a player in C05/MW) gave Lewis direct
+feedback about the pinned per-topic queue messages: "a brick of
+meta information that's omnipresent in the rp channels." The
+two pieces he named were the age legend
+(`Age: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d …`) and the post quotation
+(`Ryo Yamakawa: "And who is this master?…"`).
+
+Lewis's first instinct, correctly, was to defend the QUOTE: it's
+how he knows he's replying to the right message when triaging
+from the bot topic. The trap would have been concluding that
+either (a) Cannon is wrong and Lewis needs the quote, OR (b) the
+quote has to go because a player complained. Both reads collapse
+two different audiences into one decision.
+
+The resolving observation: the GM Queue in the bot topic and the
+pinned queue in each PBP channel are computed from the same scan
+data but serve different people in different contexts.
+
+| | Bot topic | PBP channel |
+|---|---|---|
+| Audience | GM (Lewis), triaging across all campaigns | Players + GM, in-channel |
+| Context | Switched out of any RP | Reading the RP itself |
+| Quote use | Disambiguate which msg to reply to | Already visible by scrolling |
+| Legend use | Reference for the icons | Visual clutter |
+| Numbered prefix | Lewis tracks "I'll do #3 next" | Players don't act on it |
+| Brick cost | Acceptable — it's his workspace | Immersion-breaking — it's their RP |
+
+Conclusion: the verbose format earns its place in the GM
+workspace; the same shape doesn't earn it in the RP channel. The
+fix was to keep both formats, computed from the same scan data,
+diverging at the formatter layer.
+
+**The lesson:** when feedback names a specific piece of output as
+problematic, locate the audience for that piece before deciding
+whether to remove it. The same data presented to different
+audiences in different contexts can justify different shapes.
+Format-divergence at the rendering layer is cheap; data-
+divergence at the source isn't.
+
+**Sub-lesson on the L24 sweep pattern revisited:** the per-topic
+format lives in `commands/topic_queue_format.py` and the bot-
+topic format lives in `scheduled/queue_reminder.py` (with the
+shared per-line builder `format_queue_line` in
+`commands/queue_format.py`). They were already separate; the
+trim only needed touching the per-topic file. L24 said the perm-
+flag rule needed a three-spot sweep because the same dict lookup
+appeared in three places; here the OPPOSITE held — separate
+formatters already existed because the displays were always going
+to diverge eventually, even if pre-2026-05-19 they happened to be
+similar. When a renderer is shared across contexts, splitting it
+is the right reflex when one context's needs diverge.
+
+**On the notification trade-off (Option A vs B):** Lewis chose
+full @-mentions for the caught-up roster nudge despite the
+notification-noise risk. The reasoning: the bot's purpose is
+GM accountability AND nudging players to post. A muted nudge
+(non-notifying mention) is less than half the value. The cost
+is that a fast back-and-forth campaign can hit the caught-up
+transition multiple times in a session, pinging the same players
+each time. If a future Cannon-equivalent reports that as a new
+issue, Option B (non-notifying mentions, display only) is
+already on file and can be enabled with a small tweak to
+`per_topic_caught_up.build_caught_up_text`.
+
+**Sibling-module extraction pattern continues to pay off.** The
+caught-up builder lives in `scheduled/per_topic_caught_up.py`
+rather than inline in `topic_queue_poster.py`. This:
+
+1. Keeps the poster at exactly 200 lines (the cap).
+2. Makes the caught-up logic independently testable.
+3. Lets future variants (Option B mode, per-campaign-message
+   overrides, etc.) land in one file without touching the poster.
+
+Same pattern as `queue_caught_up.py` from L25 (the bot-topic
+variant) — they're sibling files because they serve sibling
+audiences with sibling formats from the same lifecycle.

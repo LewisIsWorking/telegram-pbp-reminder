@@ -56,23 +56,32 @@ class TestFormatTopicQueue:
 
     def test_entry_with_link(self):
         e = self._e(link="https://t.me/Path_Wars/100/42")
-        assert "🔗 https://t.me/Path_Wars/100/42" in self._full([e])
+        out = self._full([e])
+        assert "https://t.me/Path_Wars/100/42" in out
+        assert "🔗" not in out  # slim format dropped the prefix
 
     def test_entry_without_link(self):
-        assert "🔗" not in self._full([self._e()])
+        # Slim format never had 🔗; check that link section is omitted entirely.
+        out = self._full([self._e()])
+        assert "t.me/" not in out
 
-    def test_multiple_entries_numbered(self):
+    def test_multiple_entries_no_numbered_prefix(self):
+        # Slim format drops 01/02 numbering — ↗ prefix is the cue.
         entries = [self._e("Alice"), self._e("Bob", "2026-04-05 09:00:00")]
         result = self._full(entries)
-        assert "📋 Unreplied: 2" in result and "01" in result and "02" in result
+        assert "📋 Unreplied: 2" in result
+        assert "↗ Alice" in result and "↗ Bob" in result
+        assert "01" not in result and "02" not in result
 
     def test_missing_time_falls_back_to_new_icon(self):
         result = self._full([{"name": "C", "preview": "x", "link": ""}])
         assert "C" in result and "🆕" in result
 
-    def test_age_legend_present(self):
+    def test_age_legend_removed(self):
+        # Lewis 2026-05-19: legend was the main meta-brick (L27).
         result = self._full([self._e()])
-        assert "Age:" in result and "🆕<1h" in result
+        assert "Age:" not in result
+        assert "🆕<1h" not in result
 
     def test_returns_list(self):
         from commands.topic_queue_format import format_topic_queue
@@ -81,9 +90,11 @@ class TestFormatTopicQueue:
 
     def test_splits_long_message(self):
         from commands.topic_queue_format import format_topic_queue
-        # 60 entries with long previews should produce multiple chunks
-        long_entry = self._e(preview="word " * 80)
-        result = format_topic_queue([long_entry] * 60, self._NOW)
+        # Slim per-line is ~50 chars; need many entries to overflow
+        # _MAX_MSG (3900). 500 is comfortable headroom.
+        entry = self._e(link="https://t.me/Path_Wars/100/42",
+                        name="Reasonably_Long_Player_Name")
+        result = format_topic_queue([entry] * 500, self._NOW)
         assert len(result) > 1
         assert all(len(chunk) <= 4096 for chunk in result)
 

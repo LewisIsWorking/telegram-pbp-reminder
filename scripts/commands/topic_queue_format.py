@@ -1,9 +1,23 @@
 """
 Per-topic pinned queue message formatter.
 
-Formats a compact queue message for posting directly in a PBP topic
-thread. No campaign header is included — the reader is already in
-context. Re-uses the age-icon scale from commands/queue_format.py.
+Formats a slim queue message for posting directly in a PBP topic
+thread. No campaign header, no age legend, no quote/preview text —
+the reader is already in context and can scroll to see the
+cited message. The bot-topic GM Queue (scheduled/queue_reminder.py)
+remains verbose by design; this per-topic format is the slim sibling.
+
+Format (per Lewis 2026-05-19, after player feedback from Cannon
+about the meta brick in RP channels):
+
+    📋 Unreplied: 2
+    ↗ Ryo · 🌳 14h · t.me/Path_Wars/51357/153422
+    ↗ Bruce · 🌳 13h · t.me/Path_Wars/142887/153432
+
+The link is preserved (Lewis hard requirement — every entry needs
+its own jumpable link), the age icon is preserved (urgency hint),
+and everything else is stripped. See L27 in REFACTOR_PROGRESS.md
+for the two-tier rationale.
 
 Used by scheduled/topic_queue_poster.py.
 """
@@ -11,14 +25,7 @@ Used by scheduled/topic_queue_poster.py.
 from datetime import datetime, timezone
 
 import helpers
-from commands.queue_format import entry_age_icon, age_str, short_preview, format_queue_line
-
-_SEPARATOR = "━━━━━━━━━━━━━━━━"
-_AGE_LEGEND = (
-    "Age: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d "
-    "🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d 🟤14d 🟫15d ⚫16d ⬛17d 💀21d ☠️25d"
-)
-
+from commands.queue_format import entry_age_icon, age_str
 
 _MAX_MSG = 3900  # Telegram limit is 4096; leave headroom
 
@@ -32,15 +39,32 @@ def format_topic_queue(entries: list, now: datetime) -> list[str]:
 
     Returns:
         List of message strings, each within Telegram's character limit.
-        The header (separator + count + legend) appears only in the first chunk.
+        The header (“📋 Unreplied: N”) appears only in the first chunk.
     """
-    header = f"{_SEPARATOR}\n📋 Unreplied: {len(entries)}\n{_AGE_LEGEND}"
+    header = f"📋 Unreplied: {len(entries)}"
     entry_lines = []
-    for i, entry in enumerate(entries, 1):
+    for entry in entries:
         hours = _entry_hours(entry, now)
-        line = format_queue_line(i, entry, hours)
-        entry_lines.append(line)
+        entry_lines.append(_format_topic_line(entry, hours))
     return _chunk_lines(header, entry_lines)
+
+
+def _format_topic_line(entry: dict, hours: float) -> str:
+    """Slim per-entry line: ↗ Firstname · {icon} {age} · {link}.
+
+    Drops the numbered prefix, message-id brackets, and quote/preview
+    text used by the bot-topic format. Players see only what's needed
+    to identify the unreplied message and jump to it. If the entry has
+    no link, the line is just "↗ Firstname · {icon} {age}" — no
+    trailing separator dangling.
+    """
+    icon = entry_age_icon(hours)
+    age = age_str(hours)
+    name = (entry.get("name", "?").split() or ["?"])[0]  # first name only
+    link = entry.get("link", "")
+    if link:
+        return f"↗ {name} · {icon} {age} · {link}"
+    return f"↗ {name} · {icon} {age}"
 
 
 def _chunk_lines(header: str, entry_lines: list[str]) -> list[str]:

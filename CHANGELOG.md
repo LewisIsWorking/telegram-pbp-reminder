@@ -11,6 +11,146 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.0] - 2026-05-19
+
+### Changed
+
+**Per-topic pinned queue: slim format + roster nudge on caught-up.**
+
+Cannon (player in C05/MW) flagged on 2026-05-19 that the pinned
+per-topic queue messages in the RP channels were a "brick of meta
+information" — immersion-breaking, dominated by the age-icon
+legend and the quote/preview snippets. The visible body of every
+pinned queue was:
+
+```
+━━━━━━━━━━━━━━━━
+📋 Unreplied: 2
+Age: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d ... ☀24d
+01 [153422] 🌳 14h. Ryo Yamakawa: "And who is this master?
+   The one who stole us from wherever we were? Away...
+   🔗 https://t.me/Path_Wars/51357/153422
+```
+
+Lewis's defence of the QUOTE ("so I know I'm replying to the
+correct message") was specifically about the bot-topic GM Queue
+where he triages across many campaigns. In the per-topic case the
+GM is already in that conversation; the quote is redundant.
+
+The fix ships a two-tier display:
+
+* **Bot-topic GM Queue** (Lewis's workspace) — unchanged. Verbose
+  by design; the quote, the legend, the all-time counter all stay.
+* **Per-topic pinned queue** (each PBP channel) — slimmed hard:
+
+```
+📋 Unreplied: 2
+↗ Ryo · 🌳 14h · t.me/Path_Wars/51357/153422
+↗ Bruce · 🌳 13h · t.me/Path_Wars/142887/153432
+```
+
+Dropped from the per-topic format: the separator line, the age
+legend, the numbered prefix, the message-id brackets, the
+quote/preview text, the 🔗 link emoji. Kept: count header, link
+(Lewis hard requirement — every entry has its own jumpable link),
+age icon (urgency hint at a glance), first name (channel context
+means full names aren't needed).
+
+**Caught-up message** also gains a roster-tagging behaviour
+(Lewis's choice, Option A from the design discussion). When the
+per-topic queue transitions from non-empty to empty:
+
+```
+📋 All caught up. Time for players to post!
+@alice @bob @charlie @dave @ryo @anthony
+```
+
+All active-roster players (non-perm-recent + perm — the same set
+``commands.roster._active_players`` returns) get an @-mention. This
+fires Telegram notifications on every transition, which is
+intentional: the bot's purpose is GM accountability AND nudging
+players when the queue clears. Edge case (0 active players,
+including ``state=None`` from tests): falls back to a bare
+``📋 All caught up here.`` (no tag line, nobody to nudge).
+
+### Code changes
+
+* `scripts/commands/topic_queue_format.py` — rewrote
+  ``format_topic_queue`` for the slim shape. New helper
+  ``_format_topic_line`` builds the per-entry line. Dropped imports
+  of ``format_queue_line`` and ``short_preview`` from
+  ``queue_format`` (no longer needed). Dropped ``_AGE_LEGEND`` and
+  ``_SEPARATOR`` constants.
+* `scripts/scheduled/per_topic_caught_up.py` (new, 68 lines) —
+  single source of truth for the caught-up message text. Exposes
+  ``build_caught_up_text(pid, state, config)`` which handles both
+  the bare and the tagged forms. Lazy-imports ``_active_players``
+  from ``commands.roster`` to avoid circular import at module load.
+* `scripts/scheduled/topic_queue_poster.py` — threaded ``state``
+  through ``post_topic_queues`` (keyword-only, optional) and
+  ``_clear_thread_queue`` (with ``pid`` and ``config`` siblings).
+  Replaced the hardcoded ``"━━━\n✅ All caught up!"`` with a call
+  to ``build_caught_up_text``. File stays at the 200-line cap by
+  trimming previously-verbose docstrings.
+* `scripts/scheduled/queue_reminder.py` — passes ``state=state``
+  through to ``post_topic_queues``. Single-line touch.
+
+### Tests
+
+* `scripts/test_per_topic_slim_format.py` (new, 193 lines, 14 tests)
+  covering the slim format (first-name only, age icon kept, bare
+  link without 🔗, no quote, no numbered prefix, no legend, no
+  separator, link-omission edge case) and the caught-up builder
+  (state=None fallback, 0-active fallback, with-roster nudge,
+  per-record perm flag inclusion, config-list perm inclusion,
+  cross-campaign isolation).
+* `scripts/test_topic_queue.py` — four assertions updated for the
+  new format: ``test_entry_with_link`` (no 🔗), the renamed
+  ``test_multiple_entries_no_numbered_prefix`` (no 01/02), the
+  renamed ``test_age_legend_removed`` (legend absent), and
+  ``test_splits_long_message`` (500 entries to overflow instead of
+  60-with-quotes since per-line size dropped).
+* `scripts/test_topic_queue_b.py` — four ``_clear_thread_queue``
+  call sites updated to pass the new ``pid=, state=None, config={}``
+  keyword arguments. The existing assertions (caught-up sent,
+  prior caught-up deleted, slot cleared, msg_ids removed) still
+  hold with the new builder since they assert presence of
+  "caught up" substring rather than exact text.
+
+1726 passing (was 1712; +14 new). Every changed file under the
+200-line cap.
+
+### Behaviour deltas
+
+* In each PBP channel, the pinned queue message body is now ~3
+  short lines plus the count header instead of ~25 lines of
+  legend + quoted previews.
+* When a per-topic queue clears (the transition that fires the
+  caught-up message), the active roster gets @-mentioned. For
+  campaigns with 4–6 active players this fires that many
+  notifications per transition. Bots that respect mute settings
+  will respect them here too — Telegram's normal mention rules
+  apply, and players who don't want pings can mute the topic.
+* Bot-topic GM Queue (``scheduled/queue_reminder.py``) and its
+  caught-up notification (``scheduled/queue_caught_up.py``) are
+  unchanged.
+
+Not affected: state-schema, cron cadence, eviction lifecycle, the
+rolling-history machinery from 4.49.1.
+
+Version: MINOR bump because behaviour is user-visible (the shape
+of the per-topic post and a new tagging side-effect on caught-up).
+Backward-compatible: ``state=None`` in ``post_topic_queues``
+falls back to the bare caught-up form so callers that haven't
+updated keep working.
+
+See L27 in `docs/dev/REFACTOR_PROGRESS.md` for the two-tier
+display rationale (same data, different audience, different
+shape) and the design trade-off on full-pings vs notification
+noise.
+
+---
+
 ## [4.50.0] - 2026-05-17
 
 ### Added

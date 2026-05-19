@@ -28,6 +28,7 @@ from commands.queue_io import load as _load, save as _save, all_pids as _all_pid
 from commands.topic_queue_format import format_topic_queue, build_topic_fingerprint
 from helpers_pkg.campaigns import get_pair
 from posting import SinglePin, post_batch
+from scheduled.per_topic_caught_up import build_caught_up_text
 from scheduled.topic_queue_state import slot_msg_ids, empty_slot
 
 
@@ -96,15 +97,15 @@ def _post_thread_queue(group_id: int, thread_id: str,
               f"entries={len(entries)} chunks={len(chunks)}")
 
 
-def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
+def _clear_thread_queue(group_id: int, thread_id: str, slot: dict,
+                        *, pid: str, state: dict | None,
+                        config: dict) -> None:
     """Send caught-up message and remove every stale pinned message.
 
-    No-op if the slot has no tracked messages. Slot is reset to the
-    empty current-schema shape via ``SinglePin.clear`` — except for the
-    new caught-up message ID, which is stored on the slot so the *next*
-    cycle (whether another clear or a fresh queue post) can delete it.
-    Without this, every clear cycle would leave a permanent
-    "✅ All caught up!" message in the topic.
+    Slot is reset via ``SinglePin.clear``; the new caught-up message
+    ID is stored on the slot so the *next* cycle can delete it.
+    Caught-up message body comes from
+    ``scheduled.per_topic_caught_up.build_caught_up_text``.
     """
     existing = SinglePin.read_batch(slot)
     if existing.is_empty:
@@ -114,15 +115,12 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict) -> None:
     if prev_caught_up:
         tg.delete_message(group_id, prev_caught_up)
     new_caught_up = tg.send_message_id(
-        group_id, int(thread_id), "━━━━━━━━━━━━━━━━\n✅ All caught up!"
-    )
+        group_id, int(thread_id), build_caught_up_text(pid, state, config))
     # Unpin only the first message (the pinned one); delete every tracked id.
     if existing.pin_id is not None:
         tg.unpin_message(group_id, existing.pin_id)
     existing.delete_all(group_id)
     SinglePin.clear(slot)
-    # Track the freshly-posted caught-up message so the next cycle
-    # (post or clear) knows to delete it before posting its own.
     slot["caught_up_msg_id"] = new_caught_up
     print(f"Topic queue cleared: thread={thread_id}")
 
@@ -144,8 +142,9 @@ def _threads_from_scanned(scanned: dict) -> dict[str, tuple[str, list]]:
     return result
 
 
-def post_topic_queues(config: dict, scanned: dict, now: datetime) -> None:
-    """Post, update, or clear per-thread pinned queues for all campaigns."""
+def post_topic_queues(config: dict, scanned: dict, now: datetime,
+                      *, state: dict | None = None) -> None:
+    """Post/update/clear per-thread pinned queues. ``state`` enables caught-up roster tagging via per_topic_caught_up."""
     active_threads = _threads_from_scanned(scanned)
 
     # Active threads — post or refresh
@@ -168,7 +167,8 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime) -> None:
         changed = False
         for thread_id, slot in queues.items():
             if thread_id not in active_threads and slot_msg_ids(slot):
-                _clear_thread_queue(group_id, thread_id, slot)
+                _clear_thread_queue(group_id, thread_id, slot,
+                                    pid=pid, state=state, config=config)
                 changed = True
                 time.sleep(1)
         if changed or cq.get("topic_msg_id") is not None:

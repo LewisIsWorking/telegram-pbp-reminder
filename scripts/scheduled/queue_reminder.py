@@ -35,7 +35,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     scanned = scan_transcripts(config, state)
 
     # Maintain per-topic pinned queues — always runs, independent of bot-topic posting
-    post_topic_queues(config, scanned, now)
+    post_topic_queues(config, scanned, now, state=state)
 
     # Build a fingerprint of the current queue state
     fingerprint_parts = []
