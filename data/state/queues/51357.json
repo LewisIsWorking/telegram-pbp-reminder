@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 154880,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-20T17:57:54+00:00",
-      "preview": "(The Wraith?)",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -159,7 +149,9 @@
     "msg:154572",
     "2026-05-19 01:33:08",
     "msg:154866",
-    "2026-05-20 16:47:42"
+    "2026-05-20 16:47:42",
+    "msg:154880",
+    "2026-05-20 17:57:54"
   ],
   "reply_log": [
     {
@@ -780,18 +772,25 @@
       "player": "Laetheron",
       "preview": "Twilight walks over to the Doctor? after performing the last rites. They cock th",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-20T19:05:13+00:00",
+      "pid": "51357",
+      "msg_id": "154880",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "(The Wraith?)",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-05-20 17:57:54",
-      "msg_ids": [
-        154882
-      ],
-      "last_posted_at": "2026-05-20T18:58:59.660163+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154890
     },
     "145040": {
       "msg_ids": [],
