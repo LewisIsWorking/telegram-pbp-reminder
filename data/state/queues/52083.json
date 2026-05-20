@@ -2,21 +2,30 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 154518,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-18T12:57:57+00:00",
-      "preview": "\"Hear that Roneless. I guess we did a \u2605GOOD\u2605 job for being such \u2605DANGEROUS\u2605 people! \"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154627,
+      "message_id": 154811,
       "thread_id": 52083,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-05-19T15:18:28+00:00",
-      "preview": "Roneles says \"Yes\"",
+      "time": "2026-05-20T12:22:10+00:00",
+      "preview": "Roneless looks confused \"What is wrong with that restaurant?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 154835,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-20T12:56:45+00:00",
+      "preview": "Livy puts on a smug attitude\n\"\u2605Hun Hun Hun\u2605. You should already know what's wrong with the restaurant Roneless.\nWhat's wrong is that they haven't been introduced to the \u2605GREATNESS\u2605 of the one and only \u2605SUPER IDOL LIVY\u2605!\nLet's head there \u2605RIGHT NOW\u2605 and put on a \u2605SHOW\u2605!\"\nWhile she talks Livy starts up Absalom maps on her comm unit and starts heading out while dragging Roneless.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 154836,
+      "thread_id": 52083,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-20T12:57:52+00:00",
+      "preview": "Roneless murmurs \"what have I done wrong to the gods\"",
       "media_group_id": null
     }
   ],
@@ -147,7 +156,11 @@
     "msg:154086",
     "2026-05-17 17:51:45",
     "msg:154493",
-    "2026-05-18 06:39:35"
+    "2026-05-18 06:39:35",
+    "msg:154518",
+    "2026-05-18 12:57:57",
+    "msg:154627",
+    "2026-05-19 15:18:28"
   ],
   "reply_log": [
     {
@@ -739,17 +752,35 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-20T11:13:30+00:00",
+      "pid": "52083",
+      "msg_id": "154518",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"Hear that Roneless. I guess we did a \u2605GOOD\u2605 job for being such \u2605DANGEROUS\u2605 peop",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-20T11:33:22+00:00",
+      "pid": "52083",
+      "msg_id": "154627",
+      "thread_id": 52083,
+      "player": "Kaer'maga when?",
+      "preview": "Roneles says \"Yes\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-18 12:57:57|2026-05-19 15:18:28",
+      "fingerprint": "2026-05-20 12:22:10|2026-05-20 12:56:45|2026-05-20 12:57:52",
       "msg_ids": [
-        154632
+        154842
       ],
-      "last_posted_at": "2026-05-19T17:08:39.108893+00:00",
+      "last_posted_at": "2026-05-20T13:09:32.521980+00:00",
       "caught_up_msg_id": null
     }
   }

@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 154786,
-      "thread_id": 25059,
-      "user_id": "8241117341",
-      "user_name": "Loaf",
-      "time": "2026-05-20T10:32:08+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -160,7 +150,13 @@
     "msg:154197",
     "2026-05-17 23:09:59",
     "msg:153797",
-    "2026-05-15 01:50:35"
+    "2026-05-15 01:50:35",
+    "msg:154786",
+    "2026-05-20 10:32:08",
+    "msg:154813",
+    "2026-05-20 12:23:19",
+    "msg:154815",
+    "2026-05-20 12:29:34"
   ],
   "reply_log": [
     {
@@ -828,16 +824,41 @@
       "player": "Loaf",
       "preview": "Landon: before landon touchs the bogs wet floor,  he hops ontop of  veras large ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-20T11:58:17+00:00",
+      "pid": "25059",
+      "msg_id": "154786",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-20T12:29:38+00:00",
+      "pid": "25059",
+      "msg_id": "154813",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "I guess he wants to drown in the bog",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-20T12:29:42+00:00",
+      "pid": "25059",
+      "msg_id": "154815",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "(Whoops sorry i thought it was the ooc chat)",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-20 10:32:08",
-      "msg_ids": [
-        154790
-      ],
-      "last_posted_at": "2026-05-20T11:10:38.068565+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154844
     }
   }
 }
