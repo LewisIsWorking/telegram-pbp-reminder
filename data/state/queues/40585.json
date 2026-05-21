@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 154966,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-05-21T10:06:39+00:00",
-      "preview": "It looks like the map we are on is dark fey Gaurd parade. Is this correct?",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -695,7 +686,9 @@
     "msg:153554",
     "2026-05-14 13:44:40",
     "msg:154085",
-    "2026-05-17 17:47:49"
+    "2026-05-17 17:47:49",
+    "msg:154966",
+    "2026-05-21 10:06:39"
   ],
   "reply_log": [
     {
@@ -3899,6 +3892,15 @@
       "player": "Anthony",
       "preview": "Ok we'll scout out a vantage point for Lorn to snipe them less than about 200ft ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-21T12:33:34+00:00",
+      "pid": "40585",
+      "msg_id": "154966",
+      "thread_id": 40585,
+      "player": "Awnii",
+      "preview": "It looks like the map we are on is dark fey Gaurd parade. Is this correct?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -3909,12 +3911,10 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "2026-05-21 10:06:39",
-      "msg_ids": [
-        154969
-      ],
-      "last_posted_at": "2026-05-21T11:13:43.227832+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155002
     }
   }
 }
