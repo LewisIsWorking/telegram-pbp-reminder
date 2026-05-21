@@ -61,7 +61,7 @@ def test_boons_handler_resolve_none():
         "winner_user_id": "U1",
     }}, "player_boons": {}, "potw_history": []}
     # Empty boons list → choice_idx out of range
-    result = _resolve_boon(state, "100", 0, "Chosen")
+    result = _resolve_boon(state, "100", 0, "Chosen", {})
     assert result == (None, None)
 
 

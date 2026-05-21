@@ -9,6 +9,7 @@ from helpers import (
     build_topic_maps, deduplicate_posts,
     fmt_date, posts_str, timestamps_in_window,
 )
+from helpers_pkg import campaigns
 import telegram as tg
 
 
@@ -104,7 +105,18 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         if not helpers.interval_elapsed(state["last_potw"].get(pid), helpers.POTW_INTERVAL_DAYS, now):
             continue
 
-        name = maps.to_name.get(pid, "Unknown")
+        name = maps.to_name.get(pid)
+        # 🛡️ Refuse to POTW a campaign we can't name. The old fallback was
+        # `name = maps.to_name.get(pid, "Unknown")` which would post "Player of
+        # the Week for Unknown" AND, worse, persist "campaign": "Unknown" into
+        # players.json forever via the pending_potw_boons → handler flow. If
+        # `maps` is somehow out of sync with the live config, try resolving
+        # from config directly before giving up.
+        if not name:
+            name = campaigns.try_get_name(config, pid)
+        if not name:
+            print(f"[potw] Skipping unmapped topic {pid} (not in campaigns config)")
+            continue
         topic_timestamps = helpers.get_topic_timestamps(state, pid)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 

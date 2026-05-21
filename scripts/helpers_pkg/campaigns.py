@@ -26,6 +26,21 @@ def get_name(config: dict, pid: str) -> str:
     return pair.get("name", "Unknown") if pair else "Unknown"
 
 
+def try_get_name(config: dict, pid: str) -> str | None:
+    """Get campaign name for a PID, or None if it can't be resolved.
+
+    Use this at any state-write boundary where persisting the literal
+    string "Unknown" would poison data — callers should treat None as
+    "skip the write" or fall back to a diagnosable sentinel (e.g. the
+    topic_id) rather than baking "Unknown" into players.json.
+    See potw.py:_potw_run and boons/handler.py:_resolve_campaign_name."""
+    pair = get_pair(config, pid)
+    if not pair:
+        return None
+    name = pair.get("name")
+    return name if name else None
+
+
 def get_label(config: dict, pid: str) -> str:
     """Get formatted label (e.g. 'C06: Kibwe') for a PID."""
     code = get_code(config, pid)
