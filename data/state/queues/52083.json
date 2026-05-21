@@ -1,34 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 154811,
-      "thread_id": 52083,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-20T12:22:10+00:00",
-      "preview": "Roneless looks confused \"What is wrong with that restaurant?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154835,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-20T12:56:45+00:00",
-      "preview": "Livy puts on a smug attitude\n\"\u2605Hun Hun Hun\u2605. You should already know what's wrong with the restaurant Roneless.\nWhat's wrong is that they haven't been introduced to the \u2605GREATNESS\u2605 of the one and only \u2605SUPER IDOL LIVY\u2605!\nLet's head there \u2605RIGHT NOW\u2605 and put on a \u2605SHOW\u2605!\"\nWhile she talks Livy starts up Absalom maps on her comm unit and starts heading out while dragging Roneless.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154836,
-      "thread_id": 52083,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-20T12:57:52+00:00",
-      "preview": "Roneless murmurs \"what have I done wrong to the gods\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -160,7 +132,13 @@
     "msg:154518",
     "2026-05-18 12:57:57",
     "msg:154627",
-    "2026-05-19 15:18:28"
+    "2026-05-19 15:18:28",
+    "msg:154811",
+    "2026-05-20 12:22:10",
+    "msg:154835",
+    "2026-05-20 12:56:45",
+    "msg:154836",
+    "2026-05-20 12:57:52"
   ],
   "reply_log": [
     {
@@ -770,18 +748,43 @@
       "player": "Kaer'maga when?",
       "preview": "Roneles says \"Yes\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-21T14:03:56+00:00",
+      "pid": "52083",
+      "msg_id": "154811",
+      "thread_id": 52083,
+      "player": "Kaer'maga when?",
+      "preview": "Roneless looks confused \"What is wrong with that restaurant?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-21T14:04:08+00:00",
+      "pid": "52083",
+      "msg_id": "154835",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy puts on a smug attitude\n\"\u2605Hun Hun Hun\u2605. You should already know what's wron",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-21T14:04:27+00:00",
+      "pid": "52083",
+      "msg_id": "154836",
+      "thread_id": 52083,
+      "player": "Kaer'maga when?",
+      "preview": "Roneless murmurs \"what have I done wrong to the gods\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-05-20 12:22:10|2026-05-20 12:56:45|2026-05-20 12:57:52",
-      "msg_ids": [
-        154842
-      ],
-      "last_posted_at": "2026-05-20T13:09:32.521980+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155014
     }
   }
 }
