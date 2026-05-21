@@ -1,25 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 154893,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-20T20:40:52+00:00",
-      "preview": "\"I'm Twilight Garden. Nice to meet you!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154894,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-05-20T20:41:33+00:00",
-      "preview": "\"Do you have a better idea of what's going on with the tattoo stuff? You seem to know lots.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -170,7 +151,11 @@
     "msg:154866",
     "2026-05-20 16:47:42",
     "msg:154880",
-    "2026-05-20 17:57:54"
+    "2026-05-20 17:57:54",
+    "msg:154893",
+    "2026-05-20 20:40:52",
+    "msg:154894",
+    "2026-05-20 20:41:33"
   ],
   "reply_log": [
     {
@@ -800,18 +785,34 @@
       "player": "Laetheron",
       "preview": "(The Wraith?)",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-21T01:17:00+00:00",
+      "pid": "51357",
+      "msg_id": "154893",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "\"I'm Twilight Garden. Nice to meet you!\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-21T01:17:47+00:00",
+      "pid": "51357",
+      "msg_id": "154894",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "\"Do you have a better idea of what's going on with the tattoo stuff? You seem to",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-05-20 20:40:52|2026-05-20 20:41:33",
-      "msg_ids": [
-        154897
-      ],
-      "last_posted_at": "2026-05-20T20:51:31.278960+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 154944
     },
     "145040": {
       "msg_ids": [],
