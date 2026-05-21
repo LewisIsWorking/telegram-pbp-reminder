@@ -14,7 +14,7 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
       3d   — second reminder
       7d   — auto-pick boon #1, notify winner
     """
-    from boons.handler import _resolve_boon
+    from boons.handler import _resolve_boon, _resolve_campaign_name
 
     now = now or datetime.now(timezone.utc)
     group_id = config["group_id"]
@@ -25,7 +25,10 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
         entry = pending[topic_id]
         posted_at = datetime.fromisoformat(entry["posted_at"])
         elapsed = helpers.hours_since(now, posted_at)
-        campaign = entry.get("campaign_name", "Unknown")
+        # 🛡️ Resolve campaign name via the central helper so reminder text and
+        # the persisted-on-auto-expire boon both get the right label — never
+        # the literal string "Unknown" baked into older pending entries.
+        campaign = _resolve_campaign_name(entry, config, topic_id)
         winner_uid = entry["winner_user_id"]
 
         # Find winner's mention
@@ -40,7 +43,7 @@ def check_boon_reminders(config: dict, state: dict, *, now: datetime | None = No
 
         # 7 days — auto-pick
         if elapsed >= 168:
-            new_text, _ = _resolve_boon(state, topic_id, 0, "Boon (auto-selected)", now)
+            new_text, _ = _resolve_boon(state, topic_id, 0, "Boon (auto-selected)", config, now)
             if new_text:
                 tg.edit_message(group_id, entry["message_id"], new_text,
                                 parse_mode="HTML", remove_keyboard=True)

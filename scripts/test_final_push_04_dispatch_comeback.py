@@ -46,7 +46,7 @@ def test_boons_resolve_none_real():
         "boons": [], "message_id": 42, "base_message": "x",
         "winner_user_id": "U1",
     }}, "player_boons": {}, "potw_history": []}
-    assert _resolve_boon(state, "100", 0, "x") == (None, None)
+    assert _resolve_boon(state, "100", 0, "x", {}) == (None, None)
 
 
 

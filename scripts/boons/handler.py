@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from helpers import html_escape
+from helpers_pkg import campaigns
 
 
 def _format_boon_result(boons: list[str], chosen_idx: int, base_message: str, label: str) -> str:
@@ -44,8 +45,36 @@ def _store_boon(state: dict, pid: str, user_id: str, boon_text: str,
     print(f"Stored boon for user {user_id} in {campaign_name}: {boon_text[:50]}")
 
 
+def _resolve_campaign_name(pending: dict, config: dict, topic_id: str) -> str:
+    """Resolve the campaign display name for a boon write or confirmation.
+
+    Preference order:
+      1. pending["campaign_name"] if set and not the legacy "Unknown" sentinel
+      2. Live campaigns config (handles maps/config staleness during cron)
+      3. topic_id itself — diagnosable in players.json, never the string "Unknown"
+
+    Why this exists: older bot versions (pre-2026-05-21) had
+    `name = maps.to_name.get(pid, "Unknown")` in potw.py and matching
+    `pending.get("campaign_name", "Unknown")` reads here, which combined to
+    persist the literal string "Unknown" as the boon's `campaign` field in
+    players.json forever. The downstream COO PathWars UI then displays such
+    boons as "some game" with no recoverable label. This helper guarantees
+    "Unknown" never reaches state on the write path.
+    """
+    name = pending.get("campaign_name")
+    if name and name != "Unknown":
+        return name
+    resolved = campaigns.try_get_name(config, topic_id)
+    if resolved:
+        return resolved
+    # 🪪 Last resort — topic_id is at least diagnosable later, unlike "Unknown".
+    print(f"[boons] WARNING: campaign for topic {topic_id} could not be resolved; "
+          f"persisting topic_id as campaign label")
+    return topic_id
+
+
 def _resolve_boon(state: dict, topic_id: str, choice_idx: int, label: str,
-                  now: datetime | None = None) -> tuple[str | None, dict | None]:
+                  config: dict, now: datetime | None = None) -> tuple[str | None, dict | None]:
     """Resolve a boon choice. Returns (new_text, pending_entry) or (None, None)."""
     now = now or datetime.now(timezone.utc)
     pending = state.get("pending_potw_boons", {}).get(topic_id)
@@ -57,8 +86,9 @@ def _resolve_boon(state: dict, topic_id: str, choice_idx: int, label: str,
 
     new_text = _format_boon_result(pending["boons"], choice_idx, pending["base_message"], label)
 
-    # Store the chosen boon
-    campaign_name = pending.get("campaign_name", "Unknown")
+    # 🛡️ Resolve campaign name from config rather than passing through whatever
+    # the pending entry happens to hold — see _resolve_campaign_name docstring.
+    campaign_name = _resolve_campaign_name(pending, config, topic_id)
     _store_boon(state, topic_id, pending["winner_user_id"],
                 pending["boons"][choice_idx], campaign_name, now)
 
@@ -100,7 +130,7 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
     if user_id != pending["winner_user_id"]:
         return
 
-    new_text, _ = _resolve_boon(state, topic_id, choice_idx, "Chosen boon")
+    new_text, _ = _resolve_boon(state, topic_id, choice_idx, "Chosen boon", config)
     if not new_text:
         return  # pragma: no cover
 
@@ -111,7 +141,7 @@ def process_boon_callback(cb: dict, config: dict, state: dict) -> None:
     # Send confirmation to bot topic
     chosen = pending["boons"][choice_idx]
     user_name = from_user.get("first_name", "Winner")
-    campaign = pending.get("campaign_name", "Unknown")
+    campaign = _resolve_campaign_name(pending, config, topic_id)
     bot_topic = config.get("bot_topic_id")
     confirm_tid = bot_topic or thread_id or int(topic_id)
     tg.send_message(config["group_id"], confirm_tid,
@@ -150,7 +180,7 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
         return f"Pick a number between 1 and {len(pending['boons'])}."
 
     group_id = config["group_id"]
-    new_text, _ = _resolve_boon(state, actual_pid, choice_idx, "Chosen boon")
+    new_text, _ = _resolve_boon(state, actual_pid, choice_idx, "Chosen boon", config)
     if not new_text:
         return "Something went wrong."
 
@@ -159,7 +189,7 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
                     parse_mode="HTML", remove_keyboard=True)
 
     chosen = pending["boons"][choice_idx]
-    campaign = pending.get("campaign_name", "Unknown")
+    campaign = _resolve_campaign_name(pending, config, actual_pid)
     del state["pending_potw_boons"][actual_pid]
 
     # Notify bot topic
