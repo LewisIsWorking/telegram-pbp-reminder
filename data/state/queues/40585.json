@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 154966,
+      "thread_id": 40585,
+      "user_id": "7842002561",
+      "user_name": "Awnii",
+      "time": "2026-05-21T10:06:39+00:00",
+      "preview": "It looks like the map we are on is dark fey Gaurd parade. Is this correct?",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3900,10 +3909,12 @@
       "fingerprint": ""
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 154143
+      "fingerprint": "2026-05-21 10:06:39",
+      "msg_ids": [
+        154969
+      ],
+      "last_posted_at": "2026-05-21T11:13:43.227832+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
