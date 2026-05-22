@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 155074,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-05-22T05:28:28+00:00",
+      "preview": "Summon eidolon. That my 3 action \ud83e\udd72",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3918,8 +3927,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "msg_id": null,
-      "fingerprint": ""
+      "fingerprint": "2026-05-22 05:28:28",
+      "msg_ids": [
+        155078
+      ],
+      "last_posted_at": "2026-05-22T05:31:13.872074+00:00"
     },
     "40585": {
       "fingerprint": "",
