@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 155074,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-05-22T05:28:28+00:00",
-      "preview": "Summon eidolon. That my 3 action \ud83e\udd72",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -699,7 +690,9 @@
     "msg:154966",
     "2026-05-21 10:06:39",
     "msg:155009",
-    "2026-05-21 14:03:00"
+    "2026-05-21 14:03:00",
+    "msg:155074",
+    "2026-05-22 05:28:28"
   ],
   "reply_log": [
     {
@@ -3921,17 +3914,25 @@
       "player": "Awnii",
       "preview": "Indeed. The rp channel has been difficult to follow with all the spam but I did ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-22T06:14:28+00:00",
+      "pid": "40585",
+      "msg_id": "155074",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Summon eidolon. That my 3 action \ud83e\udd72",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-05-22 05:28:28",
-      "msg_ids": [
-        155078
-      ],
-      "last_posted_at": "2026-05-22T05:31:13.872074+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155084
     },
     "40585": {
       "fingerprint": "",
