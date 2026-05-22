@@ -1,5 +1,5 @@
 {
-  "offset": 619337808,
+  "offset": 619337834,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-21T14:04:27+00:00",
@@ -139,7 +139,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-05-22T16:53:46.107450+00:00",
-  "last_daily_tip": "2026-05-21T20:43:34.100893+00:00",
+  "last_daily_tip": "2026-05-22T18:46:44.809811+00:00",
   "used_tip_indices": [
     9,
     31,
@@ -148,7 +148,8 @@
     23,
     5,
     14,
-    33
+    33,
+    35
   ],
   "last_pace_drop_check": "2026-05-22T16:53:46.107450+00:00",
   "dying_alerts_sent": {
@@ -229,9 +230,9 @@
       }
     }
   },
-  "last_state_backup": "2026-05-21T18:09:22.216949+00:00",
+  "last_state_backup": "2026-05-22T18:46:44.809811+00:00",
   "last_queue_daily": "2026-05-22",
-  "last_queue_fingerprint": "40585:2026-05-22 12:54:53|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udd35 \ud83e\udd84 C08: Theria \u2014 no posts for 11d \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "40585:2026-05-22 12:54:53|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udd35 \ud83e\udd84 C08: Theria \u2014 no posts for 11d 1h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -314,14 +315,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-17",
-  "last_queue_pin_id": 155134,
-  "queue_post_count": 490,
+  "last_queue_pin_id": 155152,
+  "queue_post_count": 491,
   "gm_queue_history": [
     {
       "msg_ids": [
-        155134
+        155152
       ],
-      "pin_id": 155134
+      "pin_id": 155152
     }
   ]
 }

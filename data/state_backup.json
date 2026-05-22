@@ -31,9 +31,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-21T14:04:53+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-05-22T12:54:53+00:00",
+      "last_user": "Bruce",
+      "last_user_id": "7077683276",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -56,15 +56,15 @@
     }
   },
   "last_alerts": {
-    "52083": "2026-05-21T13:22:57.893503+00:00",
-    "66154": "2026-05-20T18:58:56.468131+00:00",
-    "51357": "2026-05-20T03:19:52.063942+00:00",
-    "25059": "2026-05-21T13:22:57.893503+00:00",
-    "107171": "2026-05-19T11:12:53.993125+00:00",
+    "52083": "2026-05-22T15:11:43.386470+00:00",
+    "66154": "2026-05-21T19:38:54.550341+00:00",
+    "51357": "2026-05-22T03:20:22.611805+00:00",
+    "25059": "2026-05-22T15:11:43.386470+00:00",
+    "107171": "2026-05-22T03:20:22.611805+00:00",
     "40585": "2026-05-20T05:31:30.832009+00:00",
-    "76799": "2026-05-20T23:34:43.565271+00:00",
-    "107151": "2026-05-20T20:51:26.307962+00:00",
-    "1242": "2026-05-21T03:20:39.721367+00:00"
+    "76799": "2026-05-22T01:11:15.263758+00:00",
+    "107151": "2026-05-21T21:37:44.586462+00:00",
+    "1242": "2026-05-22T05:31:10.599941+00:00"
   },
   "last_roster": {
     "25059": "2026-05-21T05:34:51.284785+00:00",
@@ -73,7 +73,7 @@
     "52083": "2026-05-20T01:12:19.495648+00:00",
     "107171": "2026-05-20T01:12:19.495648+00:00",
     "40585": "2026-05-20T01:12:19.495648+00:00",
-    "76799": "2026-05-19T15:15:56.148643+00:00",
+    "76799": "2026-05-22T16:53:46.107450+00:00",
     "107151": "2026-05-20T13:09:27.280235+00:00",
     "1242": "2026-05-21T13:22:57.893503+00:00"
   },
@@ -90,13 +90,13 @@
   },
   "last_pace": {
     "76799": "2026-05-16T19:30:33.556739+00:00",
-    "40585": "2026-05-15T15:49:58.846313+00:00",
-    "51357": "2026-05-15T15:49:58.846313+00:00",
+    "40585": "2026-05-22T16:53:46.107450+00:00",
+    "51357": "2026-05-22T16:53:46.107450+00:00",
     "25059": "2026-05-16T20:22:10.571364+00:00",
     "66154": "2026-05-16T20:22:10.571364+00:00",
-    "52083": "2026-05-15T15:49:58.846313+00:00",
-    "107171": "2026-05-15T15:49:58.846313+00:00",
-    "107151": "2026-05-15T15:49:58.846313+00:00",
+    "52083": "2026-05-22T16:53:46.107450+00:00",
+    "107171": "2026-05-22T16:53:46.107450+00:00",
+    "107151": "2026-05-22T16:53:46.107450+00:00",
     "1242": "2026-05-19T05:31:09.616851+00:00"
   },
   "last_anniversary": {
@@ -105,11 +105,11 @@
   },
   "combat": {},
   "last_leaderboard": "2026-05-20T13:09:27.280235+00:00",
-  "last_roster_nudge": "2026-05-19T17:08:33.680208+00:00",
-  "last_roster_snapshot": "C01:5/6|C00:4/6|C04:6/6|C05:5/6|C06:8/6|C07:6/6|C09:6/6|C08:4/4|C11:4/6",
+  "last_roster_nudge": "2026-05-22T17:41:01.401509+00:00",
+  "last_roster_snapshot": "C01:5/6|C00:4/6|C04:6/6|C05:5/6|C06:8/6|C07:5/6|C09:6/6|C08:4/4|C11:4/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-05-21T11:13:39.544959+00:00"
+    "last_at": "2026-05-22T13:04:41.812734+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-05-14T12:50:18.926192+00:00",
@@ -137,8 +137,8 @@
     "thread:107151": 500,
     "global": 15000
   },
-  "last_weekly_digest": "2026-05-15T16:44:07.110349+00:00",
-  "last_daily_tip": "2026-05-20T21:40:33.006036+00:00",
+  "last_weekly_digest": "2026-05-22T16:53:46.107450+00:00",
+  "last_daily_tip": "2026-05-22T18:46:44.809811+00:00",
   "used_tip_indices": [
     9,
     31,
@@ -146,14 +146,17 @@
     13,
     23,
     5,
-    14
+    14,
+    33,
+    35
   ],
-  "last_pace_drop_check": "2026-05-15T16:44:07.110349+00:00",
+  "last_pace_drop_check": "2026-05-22T16:53:46.107450+00:00",
   "dying_alerts_sent": {
     "107151": "active",
     "66154": "active",
     "76799": "active",
-    "1242": "active"
+    "1242": "active",
+    "25059": "active"
   },
   "last_campaign_table": "2026-05-18T07:41:24.511834+00:00",
   "session_poll": {
@@ -176,7 +179,7 @@
         "6144366145",
         "8740050892"
       ],
-      "last_ping_day": 739757,
+      "last_ping_day": 739758,
       "votes": {
         "1": [
           "8787586972"
@@ -212,7 +215,7 @@
       "voted_uids": [
         "1698524397"
       ],
-      "last_ping_day": 739757,
+      "last_ping_day": 739758,
       "votes": {
         "2": [
           "1698524397"
@@ -226,9 +229,9 @@
       }
     }
   },
-  "last_state_backup": "2026-05-20T17:14:41.631883+00:00",
-  "last_queue_daily": "2026-05-21",
-  "last_queue_fingerprint": "66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udfea \ud83e\udd84 C08: Theria \u2014 no posts for 10d 1h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_state_backup": "2026-05-21T18:09:22.216949+00:00",
+  "last_queue_daily": "2026-05-22",
+  "last_queue_fingerprint": "40585:2026-05-22 12:54:53|66154:2026-05-15 01:45:36|66154:2026-05-17 18:21:59|silent:  \ud83d\udd35 \ud83e\udd84 C08: Theria \u2014 no posts for 11d 1h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -286,8 +289,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-05-17",
   "last_queue_daily_slots": [
-    "2026-05-14:21",
-    "2026-05-15:09",
     "2026-05-15:21",
     "2026-05-16:09",
     "2026-05-16:21",
@@ -299,7 +300,9 @@
     "2026-05-19:21",
     "2026-05-20:09",
     "2026-05-20:21",
-    "2026-05-21:09"
+    "2026-05-21:09",
+    "2026-05-21:21",
+    "2026-05-22:09"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-05-17",
@@ -311,14 +314,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-17",
-  "last_queue_pin_id": 155019,
-  "queue_post_count": 475,
+  "last_queue_pin_id": 155152,
+  "queue_post_count": 491,
   "gm_queue_history": [
     {
       "msg_ids": [
-        155019
+        155152
       ],
-      "pin_id": 155019
+      "pin_id": 155152
     }
   ],
   "players": {
@@ -340,16 +343,6 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-04-28T16:46:08+00:00",
-      "last_warned_week": 3
-    },
-    "52083:7863964681": {
-      "user_id": "7863964681",
-      "first_name": "Link",
-      "last_name": "",
-      "username": "Linksanelf2006",
-      "campaign_name": "Hopeful End-Times",
-      "pbp_topic_id": "52083",
-      "last_post_time": "2026-04-24T17:33:25+00:00",
       "last_warned_week": 3
     },
     "25059:5443237599": {
@@ -390,7 +383,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-05-15T00:41:48+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "51357:138025700": {
       "user_id": "138025700",
@@ -490,7 +483,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-05-08T04:18:44+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "40585:7842002561": {
       "user_id": "7842002561",
@@ -579,8 +572,8 @@
       "username": "Ravnos1",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-05-04T15:06:24+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-05-22T12:54:53+00:00",
+      "last_warned_week": 0
     },
     "40585:7863964681": {
       "user_id": "7863964681",
@@ -649,8 +642,8 @@
       "username": "Thien_Ming",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-05-04T20:58:54+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-05-22T05:28:28+00:00",
+      "last_warned_week": 0
     },
     "1242:8030796908": {
       "user_id": "8030796908",
@@ -730,7 +723,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-05-07T20:45:33+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "107171:8787586972": {
       "user_id": "8787586972",
@@ -740,7 +733,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-05-14T19:29:23+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "76799:8729190676": {
       "user_id": "8729190676",
@@ -889,6 +882,12 @@
       "first_name": "Capricious",
       "username": "CapriciousC",
       "campaign_name": "Riddleport"
+    },
+    "52083:7863964681": {
+      "removed_at": "2026-05-22T17:41:01.401509+00:00",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "campaign_name": "Hopeful End-Times"
     }
   },
   "player_registry": {
@@ -962,7 +961,7 @@
       },
       "6023408187": {
         "id": 8,
-        "name": "Caelum (Thi\u00ean)",
+        "name": "Caelum",
         "joined": "2026-03-31T02:09:59.549850+00:00"
       }
     },
@@ -1364,6 +1363,14 @@
       "name": "Kaer'maga when?",
       "username": "Nemesiux",
       "at": "2026-05-19T17:08:32.180242+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "52083",
+      "user_id": "7863964681",
+      "name": "Link",
+      "username": "Linksanelf2006",
+      "at": "2026-05-22T17:41:02.259064+00:00"
     }
   ],
   "player_boons": {
@@ -1372,7 +1379,7 @@
         {
           "text": "Pick marks on the wall suggest someone found something here and stopped digging.",
           "date": "2026-03-04",
-          "campaign": "Unknown",
+          "campaign": "Theria",
           "week": "W10"
         }
       ],
@@ -1398,8 +1405,14 @@
         {
           "text": "A street merchant inexplicably gives you a small discount on your next purchase.",
           "date": "2026-03-04",
-          "campaign": "Unknown",
+          "campaign": "Kibwe",
           "week": "W10"
+        },
+        {
+          "text": "Gain 1 temporary HP at the start of your next combat.",
+          "date": "2026-05-21",
+          "campaign": "Kibwe",
+          "week": "W21"
         }
       ],
       "7863964681": [
@@ -1440,7 +1453,7 @@
         {
           "text": "The local currency uses a metal that reacts to magic. Your coins hum near enchantments.",
           "date": "2026-03-06",
-          "campaign": "Unknown",
+          "campaign": "Magni Guard",
           "week": "W10"
         },
         {
@@ -1550,6 +1563,16 @@
           "date": "2026-05-05",
           "campaign": "Doomsday Funtime",
           "week": "W19"
+        }
+      ]
+    },
+    "51357": {
+      "138025700": [
+        {
+          "text": "The ledger has an entry crossed out. The original is still legible underneath.",
+          "date": "2026-05-21",
+          "campaign": "Grand Explorers",
+          "week": "W21"
         }
       ]
     }
@@ -1707,7 +1730,6 @@
       "2026-05-21T03:20:39.721227+00:00"
     ],
     "40585": [
-      "2026-03-22T16:07:31.367255+00:00",
       "2026-03-22T16:07:31.367417+00:00",
       "2026-03-22T16:07:31.367553+00:00",
       "2026-03-22T16:07:31.367680+00:00",
@@ -2206,7 +2228,8 @@
       "2026-05-14T18:47:04.083256+00:00",
       "2026-05-17T22:24:09.473992+00:00",
       "2026-05-21T13:22:57.891589+00:00",
-      "2026-05-21T15:15:59.345456+00:00"
+      "2026-05-21T15:15:59.345456+00:00",
+      "2026-05-22T07:29:02.074723+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -2868,13 +2891,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "66154",
-      "time": "2026-05-10T01:09:01.801645+00:00",
-      "player": "Anthony",
-      "preview": "Filiaur checks if any \"reward\" is noted on the wanted poster",
-      "msg_id": "149517"
-    },
     {
       "pid": "107171",
       "time": "2026-05-10T13:37:02.042201+00:00",
@@ -4267,23 +4283,16 @@
       "player": "Awnii",
       "preview": "Indeed. The rp channel has been difficult to follow with all",
       "msg_id": "155009"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-22T07:29:02.074723+00:00",
+      "player": "Caelum",
+      "preview": "Summon eidolon. That my 3 action \ud83e\udd72",
+      "msg_id": "155074"
     }
   ],
   "pending_potw_boons": {
-    "40585": {
-      "message_id": 153887,
-      "winner_user_id": "138025700",
-      "campaign_name": "Kibwe",
-      "boons": [
-        "The inn's special today is exactly what you've been craving.",
-        "A fall into water hurts less than hitting the ground would have.",
-        "A discarded gear fits perfectly into a mechanism you've been puzzling over.",
-        "Gain 1 temporary HP at the start of your next combat."
-      ],
-      "base_message": "Player of the Week for Kibwe: Ryo Yamakawa (@RyoYamakawa)!\n(2026-05-08 (W19) to 2026-05-15 (W20))\n\n5 posts this week with an average gap of 6.8h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-05-15T18:43:21.112654+00:00",
-      "reminders_sent": 2
-    },
     "25059": {
       "message_id": 154107,
       "winner_user_id": "5443237599",
@@ -4297,20 +4306,6 @@
       "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-10 (W19) to 2026-05-17 (W20))\n\n13 posts this week with an average gap of 7.7h between posts. The most consistent driver of the story.",
       "posted_at": "2026-05-17T20:24:04.287032+00:00",
       "reminders_sent": 2
-    },
-    "51357": {
-      "message_id": 154576,
-      "winner_user_id": "138025700",
-      "campaign_name": "Grand Explorers",
-      "boons": [
-        "A fall that should have broken something only leaves a bruise.",
-        "The ledger has an entry crossed out. The original is still legible underneath.",
-        "The ventilation shaft is wider than the blueprints suggested.",
-        "Your next successful Strike deals 1 extra damage."
-      ],
-      "base_message": "Player of the Week for Grand Explorers: Ryo Yamakawa (@RyoYamakawa)!\n(2026-05-12 (W20) to 2026-05-19 (W21))\n\n5 posts this week with an average gap of 30.6h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-05-19T03:19:45.827858+00:00",
-      "reminders_sent": 1
     }
   },
   "post_timestamps": {
@@ -4454,7 +4449,8 @@
         "2026-05-20T17:47:23+00:00",
         "2026-05-21T12:33:34+00:00",
         "2026-05-21T14:02:11+00:00",
-        "2026-05-21T14:04:53+00:00"
+        "2026-05-21T14:04:53+00:00",
+        "2026-05-22T06:14:28+00:00"
       ],
       "138025700": [
         "2026-05-07T23:56:44+00:00",
@@ -4486,6 +4482,12 @@
         "2026-05-14T08:58:14+00:00",
         "2026-05-14T09:33:58+00:00",
         "2026-05-17T17:47:49+00:00"
+      ],
+      "6023408187": [
+        "2026-05-22T05:28:28+00:00"
+      ],
+      "7077683276": [
+        "2026-05-22T12:54:53+00:00"
       ]
     },
     "51357": {
@@ -5172,7 +5174,6 @@
     },
     "1242": {
       "1698524397": [
-        "2026-05-07T12:47:41+00:00",
         "2026-05-07T20:23:50+00:00",
         "2026-05-07T20:24:01+00:00",
         "2026-05-07T20:24:11+00:00",
@@ -5227,7 +5228,6 @@
         "2026-05-18T03:00:33+00:00"
       ],
       "8030796908": [
-        "2026-05-07T12:53:44+00:00",
         "2026-05-07T20:35:09+00:00",
         "2026-05-07T22:51:07+00:00",
         "2026-05-09T21:14:41+00:00",
@@ -5295,14 +5295,14 @@
     },
     "40585": {
       "6144366145": 68,
-      "1698524397": 1435,
+      "1698524397": 1436,
       "7130942567": 34,
       "138025700": 56,
       "5443237599": 36,
       "7842002561": 40,
-      "7077683276": 29,
+      "7077683276": 30,
       "7863964681": 60,
-      "6023408187": 44
+      "6023408187": 45
     },
     "76799": {
       "1698524397": 419,
@@ -5946,7 +5946,7 @@
         "17": 45,
         "5": 5,
         "16": 22,
-        "6": 26,
+        "6": 27,
         "18": 91,
         "4": 29
       },
@@ -5970,7 +5970,7 @@
       },
       "7077683276": {
         "5": 2,
-        "12": 1,
+        "12": 2,
         "17": 1,
         "14": 12,
         "4": 4,
@@ -6073,7 +6073,8 @@
         "11": 1,
         "14": 7,
         "8": 2,
-        "16": 2
+        "16": 2,
+        "5": 1
       }
     },
     "1242": {
@@ -6503,7 +6504,7 @@
         "1": 306,
         "2": 81,
         "3": 66,
-        "4": 304
+        "4": 305
       },
       "138025700": {
         "6": 12,
@@ -6518,7 +6519,7 @@
         "0": 8,
         "2": 1,
         "1": 7,
-        "4": 3,
+        "4": 4,
         "5": 9,
         "6": 1
       },
@@ -6567,7 +6568,7 @@
       "6023408187": {
         "1": 15,
         "0": 10,
-        "4": 12,
+        "4": 13,
         "5": 3,
         "3": 4
       }
@@ -6680,15 +6681,15 @@
       "7863964681": 665
     },
     "40585": {
-      "1698524397": 18445,
+      "1698524397": 18451,
       "138025700": 996,
-      "7077683276": 500,
+      "7077683276": 538,
       "7863964681": 2003,
       "7130942567": 687,
       "5443237599": 572,
       "7842002561": 1237,
       "6144366145": 249,
-      "6023408187": 449
+      "6023408187": 456
     },
     "1242": {
       "1698524397": 3057,
@@ -6702,7 +6703,7 @@
   },
   "session_counts": {
     "51357": 20,
-    "40585": 48,
+    "40585": 49,
     "107171": 24,
     "107151": 30,
     "25059": 21,
@@ -6713,7 +6714,7 @@
   },
   "session_last_day": {
     "51357": "2026-05-21",
-    "40585": "2026-05-21",
+    "40585": "2026-05-22",
     "107171": "2026-05-21",
     "107151": "2026-05-05",
     "25059": "2026-05-20",
@@ -6726,7 +6727,7 @@
     "C01": {
       "wins": {
         "3": 9,
-        "2": 50
+        "2": 54
       }
     }
   },
@@ -7428,7 +7429,7 @@
       "7842002561": 1
     },
     "137075": {
-      "1698524397": 1
+      "7077683276": 1
     },
     "52083": {
       "1698524397": 3
@@ -7465,6 +7466,6 @@
   "timers": {},
   "votes": {},
   "campaign_notes": {},
-  "_backup_timestamp": "2026-05-21T18:09:22.216949+00:00",
+  "_backup_timestamp": "2026-05-22T18:46:44.809811+00:00",
   "_backup_version": "4.51.0"
 }
