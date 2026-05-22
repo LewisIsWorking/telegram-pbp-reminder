@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 155094,
+      "thread_id": 137075,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-05-22T12:54:53+00:00",
+      "preview": "Will attempt to exploit vulnerability (the macro still does not work for me) (probably get a failure which is personal antithesis weakness to me of 5) Then sheathe his gale blade and draw his Gakugang bow action done",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3929,10 +3938,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 155084
+      "fingerprint": "2026-05-22 12:54:53",
+      "msg_ids": [
+        155098
+      ],
+      "last_posted_at": "2026-05-22T13:04:45.694301+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
