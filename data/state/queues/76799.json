@@ -1,6 +1,61 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 155223,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-05-22T20:58:34+00:00",
+      "preview": "Nadya stares at Changer for a while.\n\n\"Changer, can you... drink things? How alive are you?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 155224,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-05-22T20:59:55+00:00",
+      "preview": "\"As the assigned chirurgeon I need to know, because you confuse the hells out of me.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 155225,
+      "thread_id": 76799,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-22T21:08:29+00:00",
+      "preview": "\"I will be right behind you Changer,\" says Natalia. \"I can cast a Heal if necessary. Would you be fine with getting wet in return for some increased durability? I have a nice spell for that purpose that does so however by splashing water onto someone's head. As Akuma has already experienced.\" She throws Akuma an apologetic look.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 155226,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-05-22T21:09:26+00:00",
+      "preview": "\"Better wet than dead. Barely.\" Nadya comments dryly.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 155227,
+      "thread_id": 76799,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-22T21:10:43+00:00",
+      "preview": "\"Since it is a Cantrip I could bestow its benefits to all of us before we head inside.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 155228,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-05-22T21:12:40+00:00",
+      "preview": "Nadya backs away \"Not me, thanks, I've got my own methods. Maybe if I get lit on fire or something, but not just to walk into a room.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -1512,10 +1567,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 154307
+      "fingerprint": "2026-05-22 20:58:34|2026-05-22 20:59:55|2026-05-22 21:08:29|2026-05-22 21:09:26|2026-05-22 21:10:43|2026-05-22 21:12:40",
+      "msg_ids": [
+        155231
+      ],
+      "last_posted_at": "2026-05-22T21:32:09.461537+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
