@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 155364,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-23T17:54:19+00:00",
+      "preview": "Lorn's turn:\nLorn activated gravity weapon\nLorn used Hunted shot on the dark fey he was hunting 2 hits.\nLorn entered point blank stance just in case.\n\nDaichi's turn:\nDaichi activated shield.\nDaichi entered arcane cascade stance\nDaichi strides forwards\n\nTal'Lysae's turn\nShe uses Disarming shot on the dark fey guard. (critical hit)\nThe dark fey guard seems to be dead. He is also affected by the dissarm normal hit.\nTal'Lysae reloaded.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3940,10 +3949,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 155330
+      "fingerprint": "2026-05-23 17:54:19",
+      "msg_ids": [
+        155366
+      ],
+      "last_posted_at": "2026-05-23T18:30:18.268241+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
