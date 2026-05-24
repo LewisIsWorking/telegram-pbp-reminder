@@ -1,61 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 155223,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-05-22T20:58:34+00:00",
-      "preview": "Nadya stares at Changer for a while.\n\n\"Changer, can you... drink things? How alive are you?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 155224,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-05-22T20:59:55+00:00",
-      "preview": "\"As the assigned chirurgeon I need to know, because you confuse the hells out of me.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 155225,
-      "thread_id": 76799,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-22T21:08:29+00:00",
-      "preview": "\"I will be right behind you Changer,\" says Natalia. \"I can cast a Heal if necessary. Would you be fine with getting wet in return for some increased durability? I have a nice spell for that purpose that does so however by splashing water onto someone's head. As Akuma has already experienced.\" She throws Akuma an apologetic look.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 155226,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-05-22T21:09:26+00:00",
-      "preview": "\"Better wet than dead. Barely.\" Nadya comments dryly.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 155227,
-      "thread_id": 76799,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-05-22T21:10:43+00:00",
-      "preview": "\"Since it is a Cantrip I could bestow its benefits to all of us before we head inside.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 155228,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-05-22T21:12:40+00:00",
-      "preview": "Nadya backs away \"Not me, thanks, I've got my own methods. Maybe if I get lit on fire or something, but not just to walk into a room.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -321,7 +266,19 @@
     "msg:153414",
     "2026-05-13 22:13:16",
     "msg:153873",
-    "2026-05-15 17:12:33"
+    "2026-05-15 17:12:33",
+    "msg:155223",
+    "2026-05-22 20:58:34",
+    "msg:155224",
+    "2026-05-22 20:59:55",
+    "msg:155225",
+    "2026-05-22 21:08:29",
+    "msg:155226",
+    "2026-05-22 21:09:26",
+    "msg:155227",
+    "2026-05-22 21:10:43",
+    "msg:155228",
+    "2026-05-22 21:12:40"
   ],
   "reply_log": [
     {
@@ -1561,18 +1518,70 @@
       "player": "Chase",
       "preview": "\"Maze? Looks a bit like there's only one way to go unless we want to risk some f",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-24T16:58:33+00:00",
+      "pid": "76799",
+      "msg_id": "155223",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya stares at Changer for a while.\n\n\"Changer, can you... drink things? How ali",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T16:58:51+00:00",
+      "pid": "76799",
+      "msg_id": "155224",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"As the assigned chirurgeon I need to know, because you confuse the hells out of",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T17:00:07+00:00",
+      "pid": "76799",
+      "msg_id": "155225",
+      "thread_id": 76799,
+      "player": "Chris Warlock",
+      "preview": "\"I will be right behind you Changer,\" says Natalia. \"I can cast a Heal if necess",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T17:00:36+00:00",
+      "pid": "76799",
+      "msg_id": "155226",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"Better wet than dead. Barely.\" Nadya comments dryly.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T17:01:00+00:00",
+      "pid": "76799",
+      "msg_id": "155227",
+      "thread_id": 76799,
+      "player": "Chris Warlock",
+      "preview": "\"Since it is a Cantrip I could bestow its benefits to all of us before we head i",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T17:02:33+00:00",
+      "pid": "76799",
+      "msg_id": "155228",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya backs away \"Not me, thanks, I've got my own methods. Maybe if I get lit on",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-05-22 20:58:34|2026-05-22 20:59:55|2026-05-22 21:08:29|2026-05-22 21:09:26|2026-05-22 21:10:43|2026-05-22 21:12:40",
-      "msg_ids": [
-        155231
-      ],
-      "last_posted_at": "2026-05-22T21:32:09.461537+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155518
     },
     "144765": {
       "fingerprint": "",

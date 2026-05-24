@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 155273,
-      "thread_id": 25059,
-      "user_id": "8241117341",
-      "user_name": "Loaf",
-      "time": "2026-05-23T07:10:12+00:00",
-      "preview": "Landon: Landon cleared his throat and dug through his pockets, producing a small tin of mints like it was a lifeline.\n\u201cAlright\u2026 good news, you can still keep your lunch down. Bad news? This place reeks of bad  magic. whatever is in here...its bad\"\n\nHe tossed a mint into his mouth,having it sit on his tongue.\nHe tapped the side of Vera\u2019s frame lightly, more for his own comfort than hers.\n\n\u201cAlright, you\u2019re up first. If something jumps out, you get to be the heroic distraction.\u201d",
-      "media_group_id": null
-    },
-    {
-      "message_id": 155281,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-23T09:43:18+00:00",
-      "preview": "Selenor says \"Alright, I am going in\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -175,7 +156,11 @@
     "msg:154813",
     "2026-05-20 12:23:19",
     "msg:154815",
-    "2026-05-20 12:29:34"
+    "2026-05-20 12:29:34",
+    "msg:155273",
+    "2026-05-23 07:10:12",
+    "msg:155281",
+    "2026-05-23 09:43:18"
   ],
   "reply_log": [
     {
@@ -870,16 +855,32 @@
       "player": "Loaf",
       "preview": "(Whoops sorry i thought it was the ooc chat)",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-24T16:32:36+00:00",
+      "pid": "25059",
+      "msg_id": "155273",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "Landon: Landon cleared his throat and dug through his pockets, producing a small",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T16:32:50+00:00",
+      "pid": "25059",
+      "msg_id": "155281",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Alright, I am going in\"",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-23 07:10:12|2026-05-23 09:43:18",
-      "msg_ids": [
-        155283
-      ],
-      "last_posted_at": "2026-05-23T10:36:54.963662+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155515
     }
   }
 }

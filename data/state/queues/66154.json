@@ -1,25 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 153796,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-05-15T01:45:36+00:00",
-      "preview": "Rax stood there quietly, listening to everything Marlo and his new 'allies' said and processing it before speaking up.\n\n\"So, I can't speak for my new 'companions' here but I might be interested in such work though I have some misgivings. I did just get out so going back in, even at a much higher level than what I was doing before, isn't an easy sell. I'm sure you understand that though.\"\n\nHe pauses for a moment to allow for that to be understood before continuing.\n\n\"That said I would like to kno",
-      "media_group_id": null
-    },
-    {
-      "message_id": 154087,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-17T18:21:59+00:00",
-      "preview": "Seeing no one else ready to represent the others, Filiaur closes the book she had been reading, takes off her glasses and steps forward.\n\n\"\nHe might not be able to speak for us, but i can.\nSo, from what i understand, you want to \"clean\" the city.  Well, i think most people here would agree. \n\nPersonally, I'm more of a researcher, and the current environment is bad for my research. Having a different goon knock at your door each day to demand \"tributes\". \nHaving your favorite store you go to for ",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -95,7 +76,11 @@
     "msg:152627",
     "2026-05-11 19:49:52",
     "msg:152645",
-    "2026-05-11 19:58:53"
+    "2026-05-11 19:58:53",
+    "msg:153796",
+    "2026-05-15 01:45:36",
+    "msg:154087",
+    "2026-05-17 18:21:59"
   ],
   "reply_log": [
     {
@@ -460,18 +445,34 @@
       "player": "Kaer'maga when?",
       "preview": "Necrila says \"Ok. What is this crest for?  Again I have no clue what a pirate is",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-24T16:44:11+00:00",
+      "pid": "66154",
+      "msg_id": "153796",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "Rax stood there quietly, listening to everything Marlo and his new 'allies' said",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T16:49:10+00:00",
+      "pid": "66154",
+      "msg_id": "154087",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Seeing no one else ready to represent the others, Filiaur closes the book she ha",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-05-15 01:45:36|2026-05-17 18:21:59",
-      "msg_ids": [
-        154090
-      ],
-      "last_posted_at": "2026-05-17T18:31:26.952273+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155517
     }
   }
 }
