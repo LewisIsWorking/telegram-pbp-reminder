@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 155522,
+      "thread_id": 76799,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-05-24T18:09:33+00:00",
+      "preview": "Natalia nods and then proceeds to cast Rousing Splash on anyone that doesn't say they don't want it. (Please drag the Spell Effect onto you, which will cause the Temp. HP to be rolled for you.)",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -1578,10 +1588,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 155518
+      "fingerprint": "2026-05-24 18:09:33",
+      "msg_ids": [
+        155534
+      ],
+      "last_posted_at": "2026-05-24T18:31:59.672652+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
