@@ -282,7 +282,11 @@
     "msg:155522",
     "2026-05-24 18:09:33",
     "msg:155542",
-    "2026-05-24 18:59:31"
+    "2026-05-24 18:59:31",
+    "msg:155721",
+    "2026-05-24 20:22:21",
+    "msg:155724",
+    "2026-05-24 20:24:31"
   ],
   "reply_log": [
     {
@@ -1593,6 +1597,24 @@
       "thread_id": 76799,
       "player": "Cannon",
       "preview": "\"Yeah, bud. Take a test step out onto the walkway and let's just see if you turn",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:24:12+00:00",
+      "pid": "76799",
+      "msg_id": "155721",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya carefully follows Changer and directs his movements as she analyzes the co",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:31:07+00:00",
+      "pid": "76799",
+      "msg_id": "155724",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"Try to see if it's rigged somehow first, please.\"",
       "via": "reply"
     }
   ],

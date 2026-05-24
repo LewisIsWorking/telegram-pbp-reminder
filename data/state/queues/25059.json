@@ -160,7 +160,17 @@
     "msg:155273",
     "2026-05-23 07:10:12",
     "msg:155281",
-    "2026-05-23 09:43:18"
+    "2026-05-23 09:43:18",
+    "msg:155736",
+    "2026-05-24 20:34:37",
+    "msg:155748",
+    "2026-05-24 20:38:45",
+    "msg:155761",
+    "2026-05-24 20:40:22",
+    "msg:155769",
+    "2026-05-24 20:42:54",
+    "msg:155788",
+    "2026-05-24 20:48:58"
   ],
   "reply_log": [
     {
@@ -872,6 +882,51 @@
       "thread_id": 25059,
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"Alright, I am going in\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:37:28+00:00",
+      "pid": "25059",
+      "msg_id": "155736",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks confused \"Do you have to go to the bathroom?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:39:47+00:00",
+      "pid": "25059",
+      "msg_id": "155748",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor looks confused \"You or me? I don't remember meeting them.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:41:46+00:00",
+      "pid": "25059",
+      "msg_id": "155761",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor blinks \"Oh\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:47:44+00:00",
+      "pid": "25059",
+      "msg_id": "155769",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor sighs \"I guess next time we see Tomahawk, I will ask her for guidance. N",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:49:27+00:00",
+      "pid": "25059",
+      "msg_id": "155788",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"Yes\"",
       "via": "reply"
     }
   ],
