@@ -78,10 +78,11 @@
       "2026-05-20T19:51:43.545357+00:00",
       "2026-05-21T03:20:39.720122+00:00",
       "2026-05-21T03:20:39.721227+00:00",
-      "2026-05-24T17:27:08.262413+00:00"
+      "2026-05-24T17:27:08.262413+00:00",
+      "2026-05-24T20:27:50.277118+00:00",
+      "2026-05-24T20:27:50.844281+00:00"
     ],
     "40585": [
-      "2026-03-22T16:07:31.367680+00:00",
       "2026-03-22T16:07:31.367803+00:00",
       "2026-03-22T16:07:31.367973+00:00",
       "2026-03-22T16:07:31.368121+00:00",
@@ -580,7 +581,8 @@
       "2026-05-21T15:15:59.345456+00:00",
       "2026-05-22T07:29:02.074723+00:00",
       "2026-05-23T13:37:18.287298+00:00",
-      "2026-05-23T20:23:47.548499+00:00"
+      "2026-05-23T20:23:47.548499+00:00",
+      "2026-05-24T20:27:50.851870+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -996,7 +998,8 @@
       "2026-05-24T17:27:07.017550+00:00",
       "2026-05-24T17:27:07.019395+00:00",
       "2026-05-24T17:27:07.021215+00:00",
-      "2026-05-24T19:35:00.561222+00:00"
+      "2026-05-24T19:35:00.561222+00:00",
+      "2026-05-24T20:27:50.847188+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1032,7 +1035,8 @@
       "2026-05-11T21:36:06.671030+00:00",
       "2026-05-24T17:27:06.508026+00:00",
       "2026-05-24T17:27:07.009571+00:00",
-      "2026-05-24T19:35:00.562299+00:00"
+      "2026-05-24T19:35:00.562299+00:00",
+      "2026-05-24T20:27:50.842924+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1254,41 +1258,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-05-10T16:25:58.450096+00:00",
-      "player": "Link",
-      "preview": "\"We got knocked out by a high frequency sound wave. Didn't o",
-      "msg_id": "150331"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-10T16:25:58.451787+00:00",
-      "player": "Chris Warlock",
-      "preview": "\"Not much you could have done, it seems. We need to find who",
-      "msg_id": "150343"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-10T16:25:58.453448+00:00",
-      "player": "Chris Warlock",
-      "preview": "Hinata steps forward. \"What needs to be done? I have no tech",
-      "msg_id": "150762"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-10T16:25:58.455162+00:00",
-      "player": "Cobalt",
-      "preview": "Their telepathy comes in meandering overlapping speech, as i",
-      "msg_id": "152050"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-10T16:25:58.457462+00:00",
-      "player": "Chase",
-      "preview": "Leaning against the machine, the diminutive detective turns ",
-      "msg_id": "150833"
-    },
     {
       "pid": "76799",
       "time": "2026-05-10T17:25:46.112310+00:00",
@@ -2653,22 +2622,42 @@
       "player": "Kaer'maga when?",
       "preview": "After Marlo says that, he can see how Necrila posture seems ",
       "msg_id": "155539"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-24T20:27:50.277118+00:00",
+      "player": "Cannon",
+      "preview": "Illiani stumbles over the doctor's words for a moment.\n\n\"H -",
+      "msg_id": "155541"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-05-24T20:27:50.842924+00:00",
+      "player": "Anthony",
+      "preview": "After some heavy thinking, Filiaur responds.\n\n\"It's... accep",
+      "msg_id": "155680"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-24T20:27:50.844281+00:00",
+      "player": "Cannon",
+      "preview": "\"I think so, we should head back down soon to make sure thin",
+      "msg_id": "155673"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-05-24T20:27:50.847188+00:00",
+      "player": "Cannon",
+      "preview": "\"Yeah, bud. Take a test step out onto the walkway and let's ",
+      "msg_id": "155542"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-05-24T20:27:50.851870+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "155695"
     }
   ],
-  "pending_potw_boons": {
-    "25059": {
-      "message_id": 154107,
-      "winner_user_id": "5443237599",
-      "campaign_name": "Doomsday Funtime",
-      "boons": [
-        "The cipher key is printed on the back of a playing card in the deck on the table.",
-        "A mirror positioned at an angle reveals the dart holes in the corridor.",
-        "The apartment above the shop you're visiting has a fire escape leading to the next street.",
-        "Your next successful Strike deals 1 extra damage."
-      ],
-      "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-10 (W19) to 2026-05-17 (W20))\n\n13 posts this week with an average gap of 7.7h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-05-17T20:24:04.287032+00:00",
-      "reminders_sent": 3
-    }
-  }
+  "pending_potw_boons": {}
 }

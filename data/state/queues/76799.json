@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 155542,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-05-24T18:59:31+00:00",
-      "preview": "\"Yeah, bud. Take a test step out onto the walkway and let's just see if you turn into a porcupine from darts first.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -290,7 +280,9 @@
     "msg:155228",
     "2026-05-22 21:12:40",
     "msg:155522",
-    "2026-05-24 18:09:33"
+    "2026-05-24 18:09:33",
+    "msg:155542",
+    "2026-05-24 18:59:31"
   ],
   "reply_log": [
     {
@@ -1593,18 +1585,25 @@
       "player": "Chris Warlock",
       "preview": "Natalia nods and then proceeds to cast Rousing Splash on anyone that doesn't say",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:05:05+00:00",
+      "pid": "76799",
+      "msg_id": "155542",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"Yeah, bud. Take a test step out onto the walkway and let's just see if you turn",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-05-24 18:59:31",
-      "msg_ids": [
-        155667
-      ],
-      "last_posted_at": "2026-05-24T19:35:02.838069+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 155728
     },
     "144765": {
       "fingerprint": "",

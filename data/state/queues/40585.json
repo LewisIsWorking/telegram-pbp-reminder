@@ -696,7 +696,9 @@
     "msg:155094",
     "2026-05-22 12:54:53",
     "msg:155364",
-    "2026-05-23 17:54:19"
+    "2026-05-23 17:54:19",
+    "msg:155695",
+    "2026-05-24 20:06:37"
   ],
   "reply_log": [
     {
@@ -3944,6 +3946,15 @@
       "thread_id": 137075,
       "player": "Anthony",
       "preview": "Lorn's turn:\nLorn activated gravity weapon\nLorn used Hunted shot on the dark fey",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T20:06:57+00:00",
+      "pid": "40585",
+      "msg_id": "155695",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
       "via": "reply"
     }
   ],
