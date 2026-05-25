@@ -163,7 +163,13 @@
     "msg:155673",
     "2026-05-24 19:35:55",
     "msg:155760",
-    "2026-05-24 20:40:01"
+    "2026-05-24 20:40:01",
+    "msg:155958",
+    "2026-05-24 23:39:11",
+    "msg:155994",
+    "2026-05-24 23:53:39",
+    "msg:156005",
+    "2026-05-25 00:14:28"
   ],
   "reply_log": [
     {
@@ -846,6 +852,33 @@
       "thread_id": 51357,
       "player": "Cannon",
       "preview": "\"Yes, we should do so quickly. Those captives might need urgent medical attentio",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-24T23:41:12+00:00",
+      "pid": "51357",
+      "msg_id": "155958",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "\"That was really kind of you, Doctor.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-25T00:00:47+00:00",
+      "pid": "51357",
+      "msg_id": "155994",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illiani addresses the captured Korimona.\n\n\"Korimona... I'm sorry. We tried to ta",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-25T00:22:48+00:00",
+      "pid": "51357",
+      "msg_id": "156005",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illi bites her lip, worry written evidently on her visage. She looks up at the p",
       "via": "reply"
     }
   ],

@@ -81,7 +81,10 @@
       "2026-05-24T17:27:08.262413+00:00",
       "2026-05-24T20:27:50.277118+00:00",
       "2026-05-24T20:27:50.844281+00:00",
-      "2026-05-24T21:25:07.467073+00:00"
+      "2026-05-24T21:25:07.467073+00:00",
+      "2026-05-25T01:14:17.685310+00:00",
+      "2026-05-25T01:14:17.689063+00:00",
+      "2026-05-25T01:14:17.691890+00:00"
     ],
     "40585": [
       "2026-03-22T16:07:31.367803+00:00",
@@ -1266,27 +1269,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-05-10T17:25:46.128688+00:00",
-      "player": "Chris Warlock",
-      "preview": "\"I have been trying to tame him, but thus far my attempts ha",
-      "msg_id": "150880"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-10T17:25:46.130463+00:00",
-      "player": "Miwa",
-      "preview": "\"same\" Anko replied rather succinctly \n\n\"I need something to",
-      "msg_id": "151015"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-10T17:25:46.131214+00:00",
-      "player": "Ryo Yamakawa",
-      "preview": "Kitt approaches Akuma once the coast is clear with their hea",
-      "msg_id": "151329"
-    },
     {
       "pid": "76799",
       "time": "2026-05-10T17:25:46.701672+00:00",
@@ -2665,6 +2647,27 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"Yes\"",
       "msg_id": "155788"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-25T01:14:17.685310+00:00",
+      "player": "Laetheron",
+      "preview": "\"That was really kind of you, Doctor.\"",
+      "msg_id": "155958"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-25T01:14:17.689063+00:00",
+      "player": "Cannon",
+      "preview": "Illiani addresses the captured Korimona.\n\n\"Korimona... I'm s",
+      "msg_id": "155994"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-25T01:14:17.691890+00:00",
+      "player": "Cannon",
+      "preview": "Illi bites her lip, worry written evidently on her visage. S",
+      "msg_id": "156005"
     }
   ],
   "pending_potw_boons": {}
