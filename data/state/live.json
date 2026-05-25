@@ -1,5 +1,5 @@
 {
-  "offset": 619338951,
+  "offset": 619339051,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-21T14:04:27+00:00",
@@ -20,7 +20,7 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-05-25T02:11:15+00:00",
+      "last_message_time": "2026-05-25T02:51:56+00:00",
       "last_user": "Kaer'maga when?",
       "last_user_id": "5443237599",
       "campaign_name": "Doomsday Funtime"
@@ -217,7 +217,7 @@
   },
   "last_state_backup": "2026-05-24T19:35:00.563433+00:00",
   "last_queue_daily": "2026-05-24",
-  "last_queue_fingerprint": "25059:2026-05-25 02:11:15",
+  "last_queue_fingerprint": "25059:2026-05-25 02:22:50|25059:2026-05-25 02:51:56",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -300,14 +300,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-23",
-  "last_queue_pin_id": 156404,
-  "queue_post_count": 534,
+  "last_queue_pin_id": 156453,
+  "queue_post_count": 535,
   "gm_queue_history": [
     {
       "msg_ids": [
-        156404
+        156453
       ],
-      "pin_id": 156404
+      "pin_id": 156453
     }
   ]
 }
