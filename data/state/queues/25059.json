@@ -1,6 +1,52 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 156506,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-25T15:12:43+00:00",
+      "preview": "We grab Otto and Evan and take them back to the Sherrif",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156507,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-25T15:13:44+00:00",
+      "preview": "\"Well Selenor, now that our mummy is not a mummy anymore how do you plan on explaining that to the family huh?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156508,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-25T15:14:31+00:00",
+      "preview": "Selenor scratches his head \"Well. That will be an issue for Otto to explain not me\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156509,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-25T15:16:55+00:00",
+      "preview": "Alisee is speechless at this level of stupidity and irresponsibility and just sighs...",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156510,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-25T15:17:46+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -1515,10 +1561,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 156504
+      "fingerprint": "2026-05-25 15:12:43|2026-05-25 15:13:44|2026-05-25 15:14:31|2026-05-25 15:16:55|2026-05-25 15:17:46",
+      "msg_ids": [
+        156513
+      ],
+      "last_posted_at": "2026-05-25T16:51:01.844532+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
