@@ -2,12 +2,12 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 155954,
+      "message_id": 156132,
       "thread_id": 25059,
       "user_id": "8241117341",
       "user_name": "Loaf",
-      "time": "2026-05-24T23:32:36+00:00",
-      "preview": "landon sends vera to go through the door first",
+      "time": "2026-05-25T01:21:27+00:00",
+      "preview": "( can i roll to see how many differnt footsteps)",
       "media_group_id": null
     }
   ],
@@ -180,7 +180,13 @@
     "msg:155769",
     "2026-05-24 20:42:54",
     "msg:155788",
-    "2026-05-24 20:48:58"
+    "2026-05-24 20:48:58",
+    "msg:155954",
+    "2026-05-24 23:32:36",
+    "msg:156122",
+    "2026-05-25 01:16:52",
+    "msg:156125",
+    "2026-05-25 01:17:09"
   ],
   "reply_log": [
     {
@@ -938,15 +944,42 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"Yes\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-25T01:14:36+00:00",
+      "pid": "25059",
+      "msg_id": "155954",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "landon sends vera to go through the door first",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-25T01:17:23+00:00",
+      "pid": "25059",
+      "msg_id": "156122",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor has dark vision",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-25T01:17:49+00:00",
+      "pid": "25059",
+      "msg_id": "156125",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "also roll with advantage his perception to detect illlusions",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-24 23:32:36",
+      "fingerprint": "2026-05-25 01:21:27",
       "msg_ids": [
-        156104
+        156325
       ],
-      "last_posted_at": "2026-05-25T01:14:19.327968+00:00",
+      "last_posted_at": "2026-05-25T03:22:20.849117+00:00",
       "caught_up_msg_id": null
     }
   }

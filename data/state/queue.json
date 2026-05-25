@@ -84,7 +84,8 @@
       "2026-05-24T21:25:07.467073+00:00",
       "2026-05-25T01:14:17.685310+00:00",
       "2026-05-25T01:14:17.689063+00:00",
-      "2026-05-25T01:14:17.691890+00:00"
+      "2026-05-25T01:14:17.691890+00:00",
+      "2026-05-25T03:22:18.138251+00:00"
     ],
     "40585": [
       "2026-03-22T16:07:31.367803+00:00",
@@ -861,7 +862,10 @@
       "2026-05-24T21:25:07.458051+00:00",
       "2026-05-24T21:25:07.463275+00:00",
       "2026-05-24T21:25:07.465764+00:00",
-      "2026-05-24T21:25:07.469623+00:00"
+      "2026-05-24T21:25:07.469623+00:00",
+      "2026-05-25T03:22:18.139611+00:00",
+      "2026-05-25T03:22:18.144645+00:00",
+      "2026-05-25T03:22:18.145874+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1269,34 +1273,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-05-10T17:25:46.701672+00:00",
-      "player": "Link",
-      "preview": "Akuma listens to the conversation intently but does not know",
-      "msg_id": "151383"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-10T17:25:47.194172+00:00",
-      "player": "Chase Darkthorne",
-      "preview": "*[image]* B\u00e1yakan listens at the door. After listening to de",
-      "msg_id": "151624"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-10T17:25:47.675233+00:00",
-      "player": "Chase Darkthorne",
-      "preview": "*[image]* Once the door is open he looks about to see what d",
-      "msg_id": "151625"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-10T18:16:12.411480+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Sure",
-      "msg_id": "152235"
-    },
     {
       "pid": "66154",
       "time": "2026-05-10T19:30:39.407879+00:00",
@@ -2668,7 +2644,49 @@
       "player": "Cannon",
       "preview": "Illi bites her lip, worry written evidently on her visage. S",
       "msg_id": "156005"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-05-25T03:22:18.138251+00:00",
+      "player": "Cannon",
+      "preview": "\"Oh! Yeah absolutely.\"\n\nIlliani covers her mouth after her t",
+      "msg_id": "156084"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-25T03:22:18.139611+00:00",
+      "player": "Loaf",
+      "preview": "landon sends vera to go through the door first",
+      "msg_id": "155954"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-25T03:22:18.144645+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "Selenor has dark vision",
+      "msg_id": "156122"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-25T03:22:18.145874+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "also roll with advantage his perception to detect illlusions",
+      "msg_id": "156125"
     }
   ],
-  "pending_potw_boons": {}
+  "pending_potw_boons": {
+    "25059": {
+      "message_id": 156324,
+      "winner_user_id": "5443237599",
+      "campaign_name": "Doomsday Funtime",
+      "boons": [
+        "A Qadiran perfumer gives you a sample. It masks your scent from predators.",
+        "An elven archer watches you from a treeline and raises a hand in greeting. Then vanishes.",
+        "Clouds form a pattern that reminds you of a map you saw recently.",
+        "Gain a +1 circumstance bonus to initiative in your next combat."
+      ],
+      "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-18 (W21) to 2026-05-25 (W22))\n\n5 posts this week with an average gap of 27.2h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-05-25T03:22:18.147230+00:00"
+    }
+  }
 }

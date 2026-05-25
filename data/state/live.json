@@ -1,5 +1,5 @@
 {
-  "offset": 619338751,
+  "offset": 619338851,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-21T14:04:27+00:00",
@@ -14,13 +14,13 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-05-25T00:37:30+00:00",
+      "last_message_time": "2026-05-25T01:07:46+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-05-24T23:32:36+00:00",
+      "last_message_time": "2026-05-25T01:21:27+00:00",
       "last_user": "Loaf",
       "last_user_id": "8241117341",
       "campaign_name": "Doomsday Funtime"
@@ -50,7 +50,7 @@
       "campaign_name": "Theria"
     },
     "1242": {
-      "last_message_time": "2026-05-23T12:30:23+00:00",
+      "last_message_time": "2026-05-25T01:15:28+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Dark Pockets"
@@ -82,7 +82,7 @@
     "66154": "2026-03-31T22:12:03.300138+00:00",
     "52083": "2026-05-18T23:30:14.639141+00:00",
     "40585": "2026-05-15T18:43:21.112654+00:00",
-    "25059": "2026-05-17T20:24:04.287032+00:00",
+    "25059": "2026-05-25T03:22:18.147230+00:00",
     "107171": "2026-05-12T17:47:20.749085+00:00",
     "107151": "2026-04-29T22:26:57.024621+00:00",
     "76799": "2026-05-05T09:46:42.934910+00:00",
@@ -218,7 +218,7 @@
   },
   "last_state_backup": "2026-05-24T19:35:00.563433+00:00",
   "last_queue_daily": "2026-05-24",
-  "last_queue_fingerprint": "25059:2026-05-24 23:32:36",
+  "last_queue_fingerprint": "25059:2026-05-25 01:21:27",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -301,14 +301,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-23",
-  "last_queue_pin_id": 156106,
-  "queue_post_count": 532,
+  "last_queue_pin_id": 156327,
+  "queue_post_count": 533,
   "gm_queue_history": [
     {
       "msg_ids": [
-        156106
+        156327
       ],
-      "pin_id": 156106
+      "pin_id": 156327
     }
   ]
 }
