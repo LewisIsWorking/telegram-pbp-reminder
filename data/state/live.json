@@ -1,5 +1,5 @@
 {
-  "offset": 619339051,
+  "offset": 619339151,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-21T14:04:27+00:00",
@@ -20,9 +20,9 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-05-25T02:51:56+00:00",
-      "last_user": "Kaer'maga when?",
-      "last_user_id": "5443237599",
+      "last_message_time": "2026-05-25T04:46:55+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
@@ -216,8 +216,8 @@
     }
   },
   "last_state_backup": "2026-05-24T19:35:00.563433+00:00",
-  "last_queue_daily": "2026-05-24",
-  "last_queue_fingerprint": "25059:2026-05-25 02:22:50|25059:2026-05-25 02:51:56",
+  "last_queue_daily": "2026-05-25",
+  "last_queue_fingerprint": "25059:2026-05-25 02:22:50",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -275,7 +275,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-05-24",
   "last_queue_daily_slots": [
-    "2026-05-17:21",
     "2026-05-18:09",
     "2026-05-18:21",
     "2026-05-19:09",
@@ -288,7 +287,8 @@
     "2026-05-22:21",
     "2026-05-23:09",
     "2026-05-23:21",
-    "2026-05-24:09"
+    "2026-05-24:09",
+    "2026-05-25:09"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-05-24",
@@ -300,14 +300,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-23",
-  "last_queue_pin_id": 156453,
-  "queue_post_count": 535,
+  "last_queue_pin_id": 156461,
+  "queue_post_count": 536,
   "gm_queue_history": [
     {
       "msg_ids": [
-        156453
+        156461
       ],
-      "pin_id": 156453
+      "pin_id": 156461
     }
   ]
 }
