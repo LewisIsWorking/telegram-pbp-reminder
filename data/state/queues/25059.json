@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 156233,
-      "thread_id": 25059,
-      "user_id": "8241117341",
-      "user_name": "Loaf",
-      "time": "2026-05-25T02:22:50+00:00",
-      "preview": "landon will be listening in , making sure if he can sense any lies*",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -284,7 +274,9 @@
     "msg:156387",
     "2026-05-25 04:56:21",
     "msg:156401",
-    "2026-05-25 05:09:10"
+    "2026-05-25 05:09:10",
+    "msg:156233",
+    "2026-05-25 02:22:50"
   ],
   "reply_log": [
     {
@@ -1510,16 +1502,23 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor still looks midly irritated at the word lord \"You say that I am lord of ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-25T15:00:26+00:00",
+      "pid": "25059",
+      "msg_id": "156233",
+      "thread_id": 25059,
+      "player": "Loaf",
+      "preview": "landon will be listening in , making sure if he can sense any lies*",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-25 02:22:50",
-      "msg_ids": [
-        156459
-      ],
-      "last_posted_at": "2026-05-25T09:33:27.994210+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 156504
     }
   }
 }
