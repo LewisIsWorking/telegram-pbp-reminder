@@ -1,5 +1,5 @@
 {
-  "offset": 619339346,
+  "offset": 619339352,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-21T14:04:27+00:00",
@@ -222,9 +222,9 @@
       }
     }
   },
-  "last_state_backup": "2026-05-25T19:37:03.831661+00:00",
+  "last_state_backup": "2026-05-26T19:46:21.013705+00:00",
   "last_queue_daily": "2026-05-26",
-  "last_queue_fingerprint": "25059:2026-05-25 15:12:43|25059:2026-05-25 15:13:44|25059:2026-05-25 15:14:31|25059:2026-05-25 15:16:55|25059:2026-05-25 15:17:46|76799:2026-05-26 03:28:41|76799:2026-05-26 08:23:25|silent:  \ud83d\udfe0 \u2b50\ufe0f C07: Hopeful End-Times \u2014 no posts for 5d 4h \ud83d\udd17 https://t.me/Path_Wars/52083",
+  "last_queue_fingerprint": "25059:2026-05-25 15:12:43|25059:2026-05-25 15:13:44|25059:2026-05-25 15:14:31|25059:2026-05-25 15:16:55|25059:2026-05-25 15:17:46|76799:2026-05-26 03:28:41|76799:2026-05-26 08:23:25|silent:  \ud83d\udfe0 \u2b50\ufe0f C07: Hopeful End-Times \u2014 no posts for 5d 5h \ud83d\udd17 https://t.me/Path_Wars/52083",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -307,14 +307,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-23",
-  "last_queue_pin_id": 156612,
-  "queue_post_count": 543,
+  "last_queue_pin_id": 156619,
+  "queue_post_count": 544,
   "gm_queue_history": [
     {
       "msg_ids": [
-        156612
+        156619
       ],
-      "pin_id": 156612
+      "pin_id": 156619
     }
   ]
 }
