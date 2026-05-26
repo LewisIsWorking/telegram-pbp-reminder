@@ -10,16 +10,6 @@
       "last_post_time": "2026-05-15T01:45:36+00:00",
       "last_warned_week": 1
     },
-    "51357:7863964681": {
-      "user_id": "7863964681",
-      "first_name": "Link",
-      "last_name": "",
-      "username": "Linksanelf2006",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-04-28T16:46:08+00:00",
-      "last_warned_week": 3
-    },
     "25059:5443237599": {
       "user_id": "5443237599",
       "first_name": "Kaer'maga when?",
@@ -573,6 +563,12 @@
       "first_name": "Link",
       "username": "Linksanelf2006",
       "campaign_name": "Hopeful End-Times"
+    },
+    "51357:7863964681": {
+      "removed_at": "2026-05-26T17:14:59.300517+00:00",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -1061,6 +1057,14 @@
       "name": "Link",
       "username": "Linksanelf2006",
       "at": "2026-05-22T17:41:02.259064+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "7863964681",
+      "name": "Link",
+      "username": "Linksanelf2006",
+      "at": "2026-05-26T17:15:01.426617+00:00"
     }
   ],
   "player_boons": {
