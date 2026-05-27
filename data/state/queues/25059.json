@@ -45,6 +45,33 @@
       "time": "2026-05-25T15:17:46+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 156765,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-27T17:28:32+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156773,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-27T17:44:02+00:00",
+      "preview": "the toad has no concept of being a toad",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156774,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-27T17:44:59+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -324,7 +351,11 @@
     "msg:156233",
     "2026-05-25 02:22:50",
     "msg:156669",
-    "2026-05-27 00:11:22"
+    "2026-05-27 00:11:22",
+    "msg:156766",
+    "2026-05-27 17:28:39",
+    "msg:156771",
+    "2026-05-27 17:32:08"
   ],
   "reply_log": [
     {
@@ -1568,15 +1599,33 @@
       "player": "Loaf",
       "preview": "Vera eats said toad*",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-27T17:30:36+00:00",
+      "pid": "25059",
+      "msg_id": "156766",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-27T17:42:18+00:00",
+      "pid": "25059",
+      "msg_id": "156771",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor considers to cast the reverse curse of a hag spell that turns frogs into",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-25 15:12:43|2026-05-25 15:13:44|2026-05-25 15:14:31|2026-05-25 15:16:55|2026-05-25 15:17:46",
+      "fingerprint": "2026-05-25 15:12:43|2026-05-25 15:13:44|2026-05-25 15:14:31|2026-05-25 15:16:55|2026-05-25 15:17:46|2026-05-27 17:28:32|2026-05-27 17:44:02|2026-05-27 17:44:59",
       "msg_ids": [
-        156513
+        156780
       ],
-      "last_posted_at": "2026-05-25T16:51:01.844532+00:00",
+      "last_posted_at": "2026-05-27T18:58:53.673273+00:00",
       "caught_up_msg_id": null
     }
   }
