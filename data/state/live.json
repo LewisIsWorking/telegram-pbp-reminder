@@ -288,7 +288,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-05-24",
   "last_queue_daily_slots": [
-    "2026-05-21:09",
     "2026-05-21:21",
     "2026-05-22:09",
     "2026-05-22:21",
@@ -301,7 +300,8 @@
     "2026-05-26:21",
     "2026-05-27:09",
     "2026-05-27:21",
-    "2026-05-28:09"
+    "2026-05-28:09",
+    "2026-05-28:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-05-24",
@@ -313,14 +313,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-23",
-  "last_queue_pin_id": 156926,
-  "queue_post_count": 556,
+  "last_queue_pin_id": 156932,
+  "queue_post_count": 557,
   "gm_queue_history": [
     {
       "msg_ids": [
-        156926
+        156932
       ],
-      "pin_id": 156926
+      "pin_id": 156932
     }
   ]
 }
