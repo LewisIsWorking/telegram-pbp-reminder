@@ -2,33 +2,6 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 156508,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-25T15:14:31+00:00",
-      "preview": "Selenor scratches his head \"Well. That will be an issue for Otto to explain not me\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 156509,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-05-25T15:16:55+00:00",
-      "preview": "Alisee is speechless at this level of stupidity and irresponsibility and just sighs...",
-      "media_group_id": null
-    },
-    {
-      "message_id": 156510,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-05-25T15:17:46+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 156765,
       "thread_id": 25059,
       "user_id": "5443237599",
@@ -65,12 +38,30 @@
       "media_group_id": null
     },
     {
-      "message_id": 156836,
+      "message_id": 156907,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-05-28T17:42:08+00:00",
+      "preview": "\"You know i don't think we're very good at this Cardigan... Maybe we should let some other people handle it...\nPeople that won't you know : \n-unseal ancient seals meant to keep any evil shit in it sealed, \n-wake up mummies just because they felt like it, \n-Reanimate dead daemons\n-Genocide a village\n-Accept to keep a cursed book\n-Make deals with hags\netc... etc...\n\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156908,
       "thread_id": 25059,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-05-28T09:50:25+00:00",
-      "preview": "Selenor \"I am sorry Cardigan I promise the next date will be more deadly. At least we can end it with an ice cream\"",
+      "time": "2026-05-28T17:43:22+00:00",
+      "preview": "Selenor nods \"At least this time you mentioned yourself.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 156909,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-05-28T17:46:05+00:00",
+      "preview": "Selenor looks at Otto with  a mix of pity and disappointment\" Your lust for knowledge and power angered your great grandma. I managed to diplomatically remind her that even tho you have caused so much trouble turning you into a charmed slave is a sin against her bloodline.\n\nYou and your friend Evan are coming with us and together with the pharasmian we shall discuss your punishment.\"",
       "media_group_id": null
     }
   ],
@@ -359,7 +350,17 @@
     "msg:156506",
     "2026-05-25 15:12:43",
     "msg:156507",
-    "2026-05-25 15:13:44"
+    "2026-05-25 15:13:44",
+    "msg:156836",
+    "2026-05-28 09:50:25",
+    "msg:156508",
+    "2026-05-25 15:14:31",
+    "msg:156509",
+    "2026-05-25 15:16:55",
+    "msg:156510",
+    "2026-05-25 15:17:46",
+    "msg:156899",
+    "2026-05-28 17:35:33"
   ],
   "reply_log": [
     {
@@ -1639,15 +1640,60 @@
       "player": "Anthony",
       "preview": "\"Well Selenor, now that our mummy is not a mummy anymore how do you plan on expl",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-28T17:25:38+00:00",
+      "pid": "25059",
+      "msg_id": "156836",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor \"I am sorry Cardigan I promise the next date will be more deadly. At lea",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-28T17:33:33+00:00",
+      "pid": "25059",
+      "msg_id": "156508",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor scratches his head \"Well. That will be an issue for Otto to explain not ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-28T17:33:42+00:00",
+      "pid": "25059",
+      "msg_id": "156509",
+      "thread_id": 25059,
+      "player": "Anthony",
+      "preview": "Alisee is speechless at this level of stupidity and irresponsibility and just si",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-28T17:33:58+00:00",
+      "pid": "25059",
+      "msg_id": "156510",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-28T17:36:28+00:00",
+      "pid": "25059",
+      "msg_id": "156899",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "I know but this the type of expression Selenor would have for that response",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-05-25 15:14:31|2026-05-25 15:16:55|2026-05-25 15:17:46|2026-05-27 17:28:32|2026-05-27 17:44:02|2026-05-27 17:44:59|2026-05-27 23:55:54|2026-05-28 09:50:25",
+      "fingerprint": "2026-05-27 17:28:32|2026-05-27 17:44:02|2026-05-27 17:44:59|2026-05-27 23:55:54|2026-05-28 17:42:08|2026-05-28 17:43:22|2026-05-28 17:46:05",
       "msg_ids": [
-        156840
+        156912
       ],
-      "last_posted_at": "2026-05-28T11:22:20.135456+00:00",
+      "last_posted_at": "2026-05-28T17:46:29.859106+00:00",
       "caught_up_msg_id": null
     }
   }
