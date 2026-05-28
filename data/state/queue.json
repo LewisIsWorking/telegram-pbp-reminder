@@ -918,7 +918,9 @@
       "2026-05-25T15:11:53.127450+00:00",
       "2026-05-27T01:12:46.295413+00:00",
       "2026-05-27T18:58:49.807189+00:00",
-      "2026-05-27T18:58:49.810610+00:00"
+      "2026-05-27T18:58:49.810610+00:00",
+      "2026-05-28T11:22:18.525607+00:00",
+      "2026-05-28T11:22:18.530774+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1326,20 +1328,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-11T21:36:06.667232+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor stares at Anikia \"Do you not have a meeting point? W",
-      "msg_id": "152662"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-11T21:36:06.670062+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor says \"Regardless of alignment. Working with demons w",
-      "msg_id": "152663"
-    },
     {
       "pid": "66154",
       "time": "2026-05-11T21:36:06.671030+00:00",
@@ -2725,6 +2713,20 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor considers to cast the reverse curse of a hag spell t",
       "msg_id": "156771"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-28T11:22:18.525607+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "We grab Otto and Evan and take them back to the Sherrif",
+      "msg_id": "156506"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-05-28T11:22:18.530774+00:00",
+      "player": "Anthony",
+      "preview": "\"Well Selenor, now that our mummy is not a mummy anymore how",
+      "msg_id": "156507"
     }
   ],
   "pending_potw_boons": {
