@@ -1230,3 +1230,65 @@ rather than inline in `topic_queue_poster.py`. This:
 Same pattern as `queue_caught_up.py` from L25 (the bot-topic
 variant) — they're sibling files because they serve sibling
 audiences with sibling formats from the same lifecycle.
+
+
+#### L28 — Telegram's 48h delete window means any replace-on-change pinned message needs a forced-refresh cadence
+
+On 2026-05-28 Lewis reported a per-topic queue orphan: `Unreplied: 5`
+stayed visible after `Unreplied: 8` replaced it. The investigation
+ruled out the obvious suspect (the bot_sent_registry guard from
+L25 — the message *was* registered) and landed on a Telegram
+platform limit: **a bot cannot delete a message older than 48
+hours.** The `delete_all` docstring even named it; it just hadn't
+been connected to a failure mode.
+
+The mechanism, fully:
+
+1. The per-topic queue replaces its pinned message by
+   delete-then-repost whenever the content fingerprint changes.
+2. When the fingerprint is unchanged, the poster skips — correct
+   for avoiding spam, but it means an unchanged queue's tracked
+   message just ages in place.
+3. A queue with no new posts and no GM replies keeps the same
+   fingerprint indefinitely. After 48h the tracked message is
+   undeletable.
+4. The next real change triggers a re-post, which tries to delete
+   the now-stale message, Telegram refuses, and the old message
+   orphans.
+
+**Why the bot-topic GM Queue never hit this:** it force-reposts on
+`queue_daily_hours` (every 12h in production). Its tracked message
+is therefore never older than ~12h when replaced — always inside
+the 48h window. The per-topic queue had no equivalent cadence; it
+was purely change-driven.
+
+**The lesson:** any "replace-on-change" message that the bot
+deletes-and-reposts needs a maximum-age cap shorter than 48h, OR
+it must switch from delete+repost to edit-in-place (which has no
+time limit). Change-driven replacement *alone* is unsafe for
+long-lived pinned messages, because "no change" can outlast the
+deletion window. The cap is the cheaper fix; edit-in-place is the
+more robust one but a larger refactor (chunk-count changes
+complicate in-place editing).
+
+The fix chose the cap: `can_skip_repost` refuses to skip once the
+tracked message crosses 36h, forcing a content-identical re-post
+that resets the age clock. 36h leaves comfortable margin for
+GitHub Actions cron jitter (missed/delayed runs) under the 48h
+ceiling.
+
+**Generalising for future pinned-message features:** when adding
+any new bot-managed pinned/replace-on-change message, ask "what
+keeps this younger than 48h?" If the answer is "only content
+changes," it has this latent bug. Either give it a forced-refresh
+cadence (like this fix and the bot-topic `queue_daily_hours`) or
+make it edit-in-place. Catalogue of replace-on-change pinned
+messages as of 2026-05-28: bot-topic GM Queue (safe via daily
+cadence), per-topic pinned queue (now safe via 36h cap). Any
+third joins this list and needs the same question asked.
+
+**On the unavoidable one-time orphan:** a message *already* past
+48h at deploy time (or a legacy slot whose message is already too
+old) cannot be deleted by any code change — it's Lewis's manual
+cleanup per the orphan hard-rule. The fix prevents *new* orphans;
+it can't retroactively delete ones that already crossed the line.

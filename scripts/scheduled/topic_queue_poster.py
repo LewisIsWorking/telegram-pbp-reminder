@@ -29,7 +29,7 @@ from commands.topic_queue_format import format_topic_queue, build_topic_fingerpr
 from helpers_pkg.campaigns import get_pair
 from posting import SinglePin, post_batch
 from scheduled.per_topic_caught_up import build_caught_up_text
-from scheduled.topic_queue_state import slot_msg_ids, empty_slot
+from scheduled.topic_queue_state import slot_msg_ids, empty_slot, can_skip_repost
 
 
 def _group_id_for(config: dict, pid: str) -> int:
@@ -64,8 +64,8 @@ def _post_thread_queue(group_id: int, thread_id: str,
     """
     fingerprint = build_topic_fingerprint(entries)
     existing = SinglePin.read_batch(slot)
-    if fingerprint == slot.get("fingerprint", "") and not existing.is_empty:
-        return  # No change — skip
+    if can_skip_repost(slot, fingerprint, existing, now):
+        return  # Unchanged + tracked message still deletable (<48h)
 
     # If a "All caught up!" message lingers from a prior clear cycle, drop
     # it before posting the new queue so the topic doesn't accumulate stale

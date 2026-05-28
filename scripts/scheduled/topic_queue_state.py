@@ -24,12 +24,72 @@ only so that existing imports (``from scheduled.topic_queue_state
 import …``) keep resolving without churn.
 """
 
+from datetime import datetime, timezone
+
 from posting import MessageBatch, SinglePin
+
+# Telegram refuses to let a bot delete a message older than 48h. The
+# per-topic queue replaces its pinned message by delete-then-repost, so
+# a tracked message must never be allowed to age past that window or the
+# next replacement orphans it. We force a refresh well before 48h.
+_REFRESH_AFTER_HOURS = 36
 
 
 def empty_slot() -> dict:
     """Return a fresh empty slot in the current schema."""
     return SinglePin.empty_slot()
+
+
+def _msg_age_hours(slot: dict, now: datetime) -> float | None:
+    """Hours since the slot's tracked message was last (re)posted.
+
+    Returns None when the slot has no recorded post time (legacy slot
+    or first post) or the stored timestamp can't be parsed — callers
+    treat None as "age unknown, assume stale" and force a refresh.
+    """
+    stamp = slot.get("last_posted_at")
+    if not stamp:
+        return None
+    try:
+        posted = datetime.fromisoformat(stamp)
+    except (ValueError, TypeError):
+        return None
+    if posted.tzinfo is None:
+        posted = posted.replace(tzinfo=timezone.utc)
+    return (now - posted).total_seconds() / 3600.0
+
+
+def can_skip_repost(slot: dict, fingerprint: str, existing: MessageBatch,
+                    now: datetime,
+                    max_age_hours: float = _REFRESH_AFTER_HOURS) -> bool:
+    """Decide whether a per-topic queue re-post can be safely skipped.
+
+    The poster normally skips when the queue content is unchanged (same
+    fingerprint). But Telegram refuses to delete a message older than
+    48h, so a queue that sits unchanged past that window becomes
+    undeletable — and the NEXT real change orphans it (the bot can't
+    remove the stale pinned message). This was the C01 orphan Lewis
+    reported 2026-05-28: "Unreplied: 5" sat ~2d20h unchanged, then
+    "Unreplied: 8" couldn't delete it. See L28.
+
+    To prevent that we refuse to skip once the tracked message crosses
+    ``max_age_hours`` (default 36h, comfortably under 48h): the poster
+    then re-posts the same content, deleting the still-young old message
+    and resetting the age clock.
+
+    Returns True (safe to skip) only when ALL hold:
+      * a message is currently tracked (non-empty batch), AND
+      * the fingerprint is unchanged, AND
+      * the tracked message is younger than ``max_age_hours``.
+    """
+    if existing.is_empty:
+        return False
+    if fingerprint != slot.get("fingerprint", ""):
+        return False
+    age = _msg_age_hours(slot, now)
+    if age is None:
+        return False  # unknown age → don't skip, force a refresh
+    return age < max_age_hours
 
 
 def slot_msg_ids(slot: dict) -> list[int]:

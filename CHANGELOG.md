@@ -11,6 +11,78 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.1] - 2026-05-28
+
+### Fixed
+
+**Per-topic queue orphaned when it sat unchanged past 48h.**
+
+Lewis reported a `📋 Unreplied: 5` message in C01 that never got
+deleted when `📋 Unreplied: 8` replaced it. Root cause: Telegram
+refuses to let a bot delete a message older than 48 hours, and the
+per-topic pinned queue only re-posts when its content changes. A
+queue that sat unchanged for ~2d20h (no new posts, no replies →
+identical fingerprint → the poster's "no change, skip" branch
+fired every cron tick) aged its tracked message past the 48h
+window. When activity finally resumed and the queue re-posted,
+the delete of the now-too-old message was refused by Telegram, so
+the old message orphaned in the channel.
+
+The bot-topic GM Queue never hit this because it force-reposts on
+its `queue_daily_hours` schedule (every 12h here), keeping its
+tracked message comfortably under 48h. The per-topic queue had no
+equivalent forced-refresh cadence.
+
+The fix adds a staleness gate: the per-topic poster now re-posts an
+*unchanged* queue once its tracked message crosses 36h old (well
+under 48h), deleting the still-young old message and resetting the
+age clock. The tracked message can therefore never reach 48h, so
+deletes always succeed and the orphan window is closed.
+
+Code changes:
+
+* `scripts/scheduled/topic_queue_state.py` — new
+  `can_skip_repost(slot, fingerprint, existing, now)` helper and a
+  private `_msg_age_hours`. Skip is allowed only when the queue is
+  unchanged AND the tracked message is younger than
+  `_REFRESH_AFTER_HOURS` (36). Unknown age (legacy slot, missing or
+  unparseable `last_posted_at`) → never skip, force a refresh.
+* `scripts/scheduled/topic_queue_poster.py` — `_post_thread_queue`
+  swaps its inline `fingerprint == … and not is_empty` skip check
+  for `can_skip_repost(...)`. File stays at the 200-line cap (the
+  import extends an existing line; the condition is a 1-for-1 swap).
+
+Behaviour deltas:
+
+* A genuinely stuck per-topic queue (GM hasn't replied, players
+  haven't posted) now re-posts its pinned message roughly once a
+  day instead of sitting silently. This is mild extra noise but
+  only happens for stale queues — exactly when surfacing the
+  pending state is useful — and it's the mechanism that keeps the
+  message deletable.
+* Legacy slots (pre-`last_posted_at` schema) re-post once on first
+  encounter to acquire a timestamp, then age-check normally.
+
+Tests: 1734 passing (was 1726; +8 new in `test_topic_queue_state.py`
+covering the staleness gate — unchanged+fresh skips, fingerprint
+change forces repost, empty batch, stale-past-threshold, just-under
+threshold, missing/unparseable/naive timestamps). Two existing
+`TestPostThreadQueue` skip tests updated: one gains a fresh
+`last_posted_at`; the legacy-slot one now asserts the
+migrating-repost behaviour.
+
+The pre-existing orphaned message in C01 (156513) is Lewis's manual
+cleanup — the bot does not auto-delete orphans (hard rule). This
+fix stops new ones from forming.
+
+Version: PATCH — a bug fix. The periodic re-post of stuck queues is
+a side effect of the correctness fix, not a new feature.
+
+See L28 in `docs/dev/REFACTOR_PROGRESS.md` for the 48h-window
+analysis and why a forced-refresh cadence is the right shape.
+
+---
+
 ## [4.51.0] - 2026-05-19
 
 ### Changed
