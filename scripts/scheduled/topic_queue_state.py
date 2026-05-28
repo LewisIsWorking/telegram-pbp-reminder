@@ -24,15 +24,7 @@ only so that existing imports (``from scheduled.topic_queue_state
 import …``) keep resolving without churn.
 """
 
-from datetime import datetime, timezone
-
 from posting import MessageBatch, SinglePin
-
-# Telegram refuses to let a bot delete a message older than 48h. The
-# per-topic queue replaces its pinned message by delete-then-repost, so
-# a tracked message must never be allowed to age past that window or the
-# next replacement orphans it. We force a refresh well before 48h.
-_REFRESH_AFTER_HOURS = 36
 
 
 def empty_slot() -> dict:
@@ -40,56 +32,43 @@ def empty_slot() -> dict:
     return SinglePin.empty_slot()
 
 
-def _msg_age_hours(slot: dict, now: datetime) -> float | None:
-    """Hours since the slot's tracked message was last (re)posted.
+def queue_pending_deletes(slot: dict, ids) -> None:
+    """Remember message IDs whose delete failed, for retry next run.
 
-    Returns None when the slot has no recorded post time (legacy slot
-    or first post) or the stored timestamp can't be parsed — callers
-    treat None as "age unknown, assume stale" and force a refresh.
+    The per-topic queue replaces its pinned message by delete-then-
+    repost. If a delete fails (transient Telegram error, an ID not yet
+    in the bot-sent registry, etc.) the old message would orphan: the
+    poster overwrites the slot with the freshly-posted message and the
+    failed ID is forgotten, so nothing ever tries to delete it again.
+
+    To stop that, every failed delete is parked in ``pending_delete``
+    on the slot. ``retry_pending_deletes`` re-attempts them on every
+    subsequent run until they succeed (the bot is a group admin, so its
+    own messages have no 48h delete limit — a retry always eventually
+    wins). This is the fix for the 2026-05-28 C01 orphan: ``Unreplied:
+    5`` survived because its delete was abandoned, not retried. See L28.
+
+    Deduplicates so the list can't grow without bound on repeated runs.
     """
-    stamp = slot.get("last_posted_at")
-    if not stamp:
-        return None
-    try:
-        posted = datetime.fromisoformat(stamp)
-    except (ValueError, TypeError):
-        return None
-    if posted.tzinfo is None:
-        posted = posted.replace(tzinfo=timezone.utc)
-    return (now - posted).total_seconds() / 3600.0
+    pending = slot.setdefault("pending_delete", [])
+    for mid in ids:
+        if mid not in pending:
+            pending.append(mid)
 
 
-def can_skip_repost(slot: dict, fingerprint: str, existing: MessageBatch,
-                    now: datetime,
-                    max_age_hours: float = _REFRESH_AFTER_HOURS) -> bool:
-    """Decide whether a per-topic queue re-post can be safely skipped.
+def retry_pending_deletes(slot: dict, group_id: int) -> None:
+    """Re-attempt every parked failed-delete; keep only those still failing.
 
-    The poster normally skips when the queue content is unchanged (same
-    fingerprint). But Telegram refuses to delete a message older than
-    48h, so a queue that sits unchanged past that window becomes
-    undeletable — and the NEXT real change orphans it (the bot can't
-    remove the stale pinned message). This was the C01 orphan Lewis
-    reported 2026-05-28: "Unreplied: 5" sat ~2d20h unchanged, then
-    "Unreplied: 8" couldn't delete it. See L28.
-
-    To prevent that we refuse to skip once the tracked message crosses
-    ``max_age_hours`` (default 36h, comfortably under 48h): the poster
-    then re-posts the same content, deleting the still-young old message
-    and resetting the age clock.
-
-    Returns True (safe to skip) only when ALL hold:
-      * a message is currently tracked (non-empty batch), AND
-      * the fingerprint is unchanged, AND
-      * the tracked message is younger than ``max_age_hours``.
+    Called at the top of both the post and clear paths so lingering
+    orphans get swept on every run regardless of whether the queue
+    content changed. Updates ``slot['pending_delete']`` in place.
     """
-    if existing.is_empty:
-        return False
-    if fingerprint != slot.get("fingerprint", ""):
-        return False
-    age = _msg_age_hours(slot, now)
-    if age is None:
-        return False  # unknown age → don't skip, force a refresh
-    return age < max_age_hours
+    pending = slot.get("pending_delete") or []
+    if not pending:
+        return
+    still_failed = MessageBatch(msg_ids=list(pending),
+                                pin_id=None).delete_all(group_id)
+    slot["pending_delete"] = still_failed
 
 
 def slot_msg_ids(slot: dict) -> list[int]:

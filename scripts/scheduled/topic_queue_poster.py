@@ -29,7 +29,9 @@ from commands.topic_queue_format import format_topic_queue, build_topic_fingerpr
 from helpers_pkg.campaigns import get_pair
 from posting import SinglePin, post_batch
 from scheduled.per_topic_caught_up import build_caught_up_text
-from scheduled.topic_queue_state import slot_msg_ids, empty_slot, can_skip_repost
+from scheduled.topic_queue_state import (slot_msg_ids, empty_slot,
+                                         queue_pending_deletes,
+                                         retry_pending_deletes)
 
 
 def _group_id_for(config: dict, pid: str) -> int:
@@ -63,30 +65,38 @@ def _post_thread_queue(group_id: int, thread_id: str,
     deleted first via ``MessageBatch.delete_all``.
     """
     fingerprint = build_topic_fingerprint(entries)
+    # Retry deleting anything a previous run failed to remove, every run,
+    # before deciding whether to skip — so lingering orphans get swept
+    # even when the queue content hasn't changed. See L28.
+    retry_pending_deletes(slot, group_id)
     existing = SinglePin.read_batch(slot)
-    if can_skip_repost(slot, fingerprint, existing, now):
-        return  # Unchanged + tracked message still deletable (<48h)
+    if fingerprint == slot.get("fingerprint", "") and not existing.is_empty:
+        return  # No change — skip
 
     # If a "All caught up!" message lingers from a prior clear cycle, drop
     # it before posting the new queue so the topic doesn't accumulate stale
     # caught-up notices.
     prev_caught_up = slot.get("caught_up_msg_id")
     if prev_caught_up:
-        tg.delete_message(group_id, prev_caught_up)
+        if not tg.delete_message(group_id, prev_caught_up):
+            queue_pending_deletes(slot, [prev_caught_up])
         slot["caught_up_msg_id"] = None
 
     # Clear legacy pins if slot has no tracked IDs (pre-tracking messages).
-    # Otherwise, delete the previous batch's tracked messages so the topic
-    # only ever shows the freshest queue. Per-thread slots are replace-only
-    # (no history), so failed deletes are not retried — they are surfaced
-    # in the print log below for diagnosis but do not block the new post.
+    # Otherwise delete the previous batch so the topic only ever shows the
+    # freshest queue. A failed delete is parked in pending_delete and
+    # retried on the next run rather than being abandoned — that
+    # abandonment was the 2026-05-28 C01 orphan (see L28).
     if existing.is_empty:
         tg.unpin_all_messages(group_id, int(thread_id))
     else:
+        if existing.pin_id is not None:
+            tg.unpin_message(group_id, existing.pin_id)
         failed = existing.delete_all(group_id)
         if failed:
-            print(f"Topic queue prev-delete failed: thread={thread_id} "
-                  f"undeleted={failed}")
+            queue_pending_deletes(slot, failed)
+            print(f"Topic queue prev-delete queued for retry: "
+                  f"thread={thread_id} undeleted={failed}")
 
     chunks = format_topic_queue(entries, now)
     new_batch = post_batch(group_id, int(thread_id), chunks,
@@ -107,19 +117,22 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict,
     Caught-up message body comes from
     ``scheduled.per_topic_caught_up.build_caught_up_text``.
     """
+    retry_pending_deletes(slot, group_id)
     existing = SinglePin.read_batch(slot)
     if existing.is_empty:
-        return  # pragma: no cover
+        return  # nothing tracked; any pending zombies were retried above
     # Delete the previous caught-up notice (if any) so we don't pile them up.
     prev_caught_up = slot.get("caught_up_msg_id")
-    if prev_caught_up:
-        tg.delete_message(group_id, prev_caught_up)
+    if prev_caught_up and not tg.delete_message(group_id, prev_caught_up):
+        queue_pending_deletes(slot, [prev_caught_up])
     new_caught_up = tg.send_message_id(
         group_id, int(thread_id), build_caught_up_text(pid, state, config))
     # Unpin only the first message (the pinned one); delete every tracked id.
     if existing.pin_id is not None:
         tg.unpin_message(group_id, existing.pin_id)
-    existing.delete_all(group_id)
+    failed = existing.delete_all(group_id)
+    if failed:
+        queue_pending_deletes(slot, failed)
     SinglePin.clear(slot)
     slot["caught_up_msg_id"] = new_caught_up
     print(f"Topic queue cleared: thread={thread_id}")
@@ -166,7 +179,8 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
         queues = cq.get("topic_queues", {})
         changed = False
         for thread_id, slot in queues.items():
-            if thread_id not in active_threads and slot_msg_ids(slot):
+            if thread_id not in active_threads and (
+                    slot_msg_ids(slot) or slot.get("pending_delete")):
                 _clear_thread_queue(group_id, thread_id, slot,
                                     pid=pid, state=state, config=config)
                 changed = True
@@ -175,26 +189,8 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
             _save(pid, cq)
 
 
-# Slice 7 of P3/9: register this migration in the central registry
-# so every schema bump in the codebase is visible from one place.
-# Production call sites still invoke ``migrate_legacy`` directly
-# (twice in ``post_topic_queues`` above — once for active threads,
-# once when scanning inactive threads for stale pins). The
-# registration is for discovery and the slice-7 regression test.
-from state_store.migration_registry import Migration, register  # noqa: E402
-
-register(Migration(
-    target="queue",
-    name="topic_msg_id_to_topic_queues",
-    fn=_migrate_legacy,
-    description=(
-        "Pre-2025 each per-campaign queue file carried a single "
-        "``topic_msg_id`` plus ``topic_fingerprint`` field tracking "
-        "one pinned topic queue. The schema bump introduced "
-        "``topic_queues`` (a per-thread dict mapping thread_id to "
-        "slot data) so multi-topic campaigns like C06 Kibwe and "
-        "C09 Metal City could carry separate pins per thread. This "
-        "migration deletes the stale single-pin message from "
-        "Telegram (best-effort) and clears the legacy fields."
-    ),
-))
+# The per-topic-queue schema migration (``_migrate_legacy`` above) is
+# registered in the central migration registry from a sibling module,
+# imported here so registration runs whenever this poster is imported
+# (the migration-registry test triggers it by importing this module).
+from scheduled import topic_queue_migration  # noqa: F401, E402

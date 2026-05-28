@@ -158,28 +158,16 @@ class TestPostThreadQueue:
 
     def test_skip_when_unchanged(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
-        # Fresh last_posted_at (1h before _NOW) → unchanged AND within
-        # the 48h delete window, so the re-post is safely skipped.
-        slot = {"msg_ids": [8888], "fingerprint": "2026-04-06 10:00:00",
-                "last_posted_at": "2026-04-06T12:00:00+00:00"}
+        slot = {"msg_ids": [8888], "fingerprint": "2026-04-06 10:00:00"}
         _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
         tg_mock.send_message_id.assert_not_called()
 
-    def test_legacy_slot_reposts_to_acquire_timestamp(self, tg_mock):
-        """A legacy slot (singular msg_id, no last_posted_at) has unknown
-        age. Since we can't confirm the tracked message is still within
-        Telegram's 48h delete window, we refuse to skip and re-post once
-        — which migrates the slot to the current schema and stamps a
-        last_posted_at so future cycles can age-check it. See L28."""
+    def test_skip_when_unchanged_legacy_slot(self, tg_mock):
+        """Legacy slot with singular msg_id still triggers the skip path."""
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_id": 8888, "fingerprint": "2026-04-06 10:00:00"}
-        tg_mock.send_message_id.return_value = 9999
-        tg_mock.delete_message.return_value = True
         _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
-        tg_mock.send_message_id.assert_called()
-        assert slot["msg_ids"] == [9999]
-        assert "msg_id" not in slot  # migrated to current schema
-        assert slot.get("last_posted_at")  # now age-checkable
+        tg_mock.send_message_id.assert_not_called()
 
     def test_update_deletes_old(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue

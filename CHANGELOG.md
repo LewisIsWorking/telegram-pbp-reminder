@@ -11,6 +11,84 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.2] - 2026-05-28
+
+### Fixed
+
+**Per-topic queue orphan: failed deletes are now retried, not abandoned.**
+**(Supersedes 4.51.1, whose diagnosis was wrong.)**
+
+Lewis reported that a `📋 Unreplied: 5` message in C01 stayed visible
+after `📋 Unreplied: 8` replaced it — the old queue wasn't deleted even
+though new messages had arrived and a new queue had posted.
+
+4.51.1 misdiagnosed this as Telegram's 48h delete window (the message
+"aging out" after sitting unchanged) and added a 36h forced-refresh.
+That was wrong: the queue *was* actively reposting, so it wasn't
+sitting static — the delete itself was failing and being abandoned.
+
+Real cause: `_post_thread_queue` called `existing.delete_all()`, and
+on any failure it logged the failed ID and then overwrote the slot
+with only the freshly-posted message. The failed ID was dropped, so
+no later run ever retried it — one failed delete became a permanent
+orphan, with new queues stacking on top. `_clear_thread_queue` had
+the same flaw. `MessageBatch.delete_all` was explicitly designed to
+return failed IDs *for retry*, but the callers never honoured it.
+
+The fix parks failed-delete IDs in a new slot field `pending_delete`
+and re-attempts them at the top of every post/clear run until they
+succeed. The bot is a group admin, so its own messages have no 48h
+delete limit — a retry always eventually wins. A failure that was a
+bot-sent-registry refusal also self-heals: the registry backfill now
+reads `pending_delete`, so the ID is registered and the next retry
+passes the guard.
+
+### Reverted from 4.51.1
+
+* The 36h staleness gate (`can_skip_repost`, `_msg_age_hours`,
+  `_REFRESH_AFTER_HOURS`) is removed. It solved a problem that wasn't
+  occurring and added a daily re-post of stuck queues.
+
+### Code changes
+
+* `scripts/scheduled/topic_queue_state.py` — replaced the staleness
+  helpers with `queue_pending_deletes(slot, ids)` (dedup-append failed
+  IDs) and `retry_pending_deletes(slot, group_id)` (re-attempt parked
+  IDs, keep only those still failing).
+* `scripts/scheduled/topic_queue_poster.py` — `_post_thread_queue` and
+  `_clear_thread_queue` now call `retry_pending_deletes` first (sweeps
+  orphans every run, even when content is unchanged) and carry any
+  failed delete forward via `queue_pending_deletes` instead of
+  abandoning it. The update path also unpins the old pinned message
+  before deleting, so a failed delete can't leave two pinned messages.
+  The inactive-thread loop now also processes threads that have only
+  parked orphans (no current batch). The central-registry migration
+  registration was extracted to `topic_queue_migration.py` to keep the
+  poster under the 200-line cap.
+* `scripts/posting/bot_sent_state_scan.py` — registry backfill now
+  reads `pending_delete` so a registry-refused delete can recover.
+* `scripts/scheduled/topic_queue_migration.py` (new) — holds the
+  migration registration extracted from the poster.
+
+### Tests
+
+1740 passing (was 1726). New: `test_topic_queue_retry.py` (7 tests —
+failed delete parked not abandoned, success leaves no pending, pending
+retried on the unchanged/skip path, orphan clears on a later run,
+clear-path carry-forward, clear preserves existing pending, inactive
+thread with only orphans gets swept); pending-delete helper tests in
+`test_topic_queue_state.py`; a backfill test in `test_bot_sent_registry.py`.
+The 4.51.1 staleness tests were removed.
+
+The existing C01 orphan (156513) is Lewis's manual cleanup — the bot
+never auto-deletes orphans. This stops new ones and lets already-
+tracked failures self-clear.
+
+Version: PATCH. See L28 in `docs/dev/REFACTOR_PROGRESS.md` for the
+full post-mortem, including why the first (48h) diagnosis was wrong.
+
+---
+
 ## [4.51.1] - 2026-05-28
 
 ### Fixed

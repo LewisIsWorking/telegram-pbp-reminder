@@ -41,6 +41,7 @@ def extract_ids_from_queue(cq: dict) -> list:
         topic_queues[tid].msg_id              legacy per-thread single pin
         topic_queues[tid].caught_up_msg_id    "All caught up!" message
         topic_queues[tid].pin_id              pinned-chunk ID
+        topic_queues[tid].pending_delete      failed-delete IDs awaiting retry
     """
     ids: list = []
     if cq.get("topic_msg_id"):
@@ -56,4 +57,6 @@ def extract_ids_from_queue(cq: dict) -> list:
             ids.append(slot["caught_up_msg_id"])
         if slot.get("pin_id"):
             ids.append(slot["pin_id"])
+        for mid in slot.get("pending_delete") or []:
+            ids.append(mid)
     return ids

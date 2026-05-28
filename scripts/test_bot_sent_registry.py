@@ -180,3 +180,14 @@ def test_backfill_idempotent(tmp_path, monkeypatch):
     # Force another reload — backfill runs again, no error, still True.
     reg.reset_for_test()
     assert reg.is_bot_sent(42) is True
+
+
+def test_extract_ids_includes_pending_delete():
+    """Failed-delete IDs parked in a slot's pending_delete must be
+    backfilled into the registry so the retry passes the bot-sent guard
+    (L28). Without this, a registry-refused delete could never recover."""
+    from posting.bot_sent_state_scan import extract_ids_from_queue
+    cq = {"topic_queues": {"40585": {
+        "msg_ids": [156550], "pending_delete": [156513, 156514]}}}
+    ids = extract_ids_from_queue(cq)
+    assert 156513 in ids and 156514 in ids and 156550 in ids

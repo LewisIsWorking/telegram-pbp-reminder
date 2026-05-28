@@ -3,12 +3,7 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 
-from datetime import datetime, timezone
-
-
-def _dt(*args):
-    """Build a UTC datetime from positional args (y, m, d, h, m, s)."""
-    return datetime(*args, tzinfo=timezone.utc)
+from unittest.mock import patch
 
 
 class TestEmptySlot:
@@ -98,80 +93,52 @@ class TestClearSlot:
         assert slot["fingerprint"] == ""
 
 
-# ── can_skip_repost / staleness gate (L28, 2026-05-28) ──────────────────────
 
-class TestCanSkipRepost:
-    """The 48h-delete-window guard: an unchanged queue must re-post
-    before its tracked message ages past Telegram's 48h delete limit,
-    or the next change orphans it."""
+# ── pending-delete retry (L28, 2026-05-28 C01 orphan fix) ───────────────────
 
-    _NOW = _dt(2026, 5, 28, 12, 0, 0)
+class TestQueuePendingDeletes:
+    def test_adds_failed_ids(self):
+        from scheduled.topic_queue_state import queue_pending_deletes
+        slot = {"msg_ids": [1], "fingerprint": "f"}
+        queue_pending_deletes(slot, [7777, 7778])
+        assert slot["pending_delete"] == [7777, 7778]
 
-    def _slot(self, msg_ids=(8888,), fingerprint="fp",
-              posted="2026-05-28T11:00:00+00:00"):
-        s = {"msg_ids": list(msg_ids), "fingerprint": fingerprint}
-        if posted is not None:
-            s["last_posted_at"] = posted
-        return s
+    def test_dedupes_across_calls(self):
+        from scheduled.topic_queue_state import queue_pending_deletes
+        slot = {}
+        queue_pending_deletes(slot, [7777])
+        queue_pending_deletes(slot, [7777, 7778])
+        assert slot["pending_delete"] == [7777, 7778]
 
-    def test_skip_when_unchanged_and_fresh(self):
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot()
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is True
+    def test_empty_ids_noop(self):
+        from scheduled.topic_queue_state import queue_pending_deletes
+        slot = {}
+        queue_pending_deletes(slot, [])
+        assert slot["pending_delete"] == []
 
-    def test_no_skip_when_fingerprint_changed(self):
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot()
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "different", existing, self._NOW) is False
 
-    def test_no_skip_when_empty_batch(self):
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot(msg_ids=())
-        existing = MessageBatch(msg_ids=[], pin_id=None)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is False
+class TestRetryPendingDeletes:
+    def test_noop_when_no_pending(self):
+        from scheduled.topic_queue_state import retry_pending_deletes
+        slot = {"msg_ids": [1]}
+        with patch("posting.message_batch.tg") as mtg:
+            retry_pending_deletes(slot, -100)
+            mtg.delete_message.assert_not_called()
 
-    def test_no_skip_when_stale_past_threshold(self):
-        """Posted 40h ago (> 36h threshold) → must re-post to stay
-        within the 48h delete window."""
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot(posted="2026-05-26T20:00:00+00:00")  # 40h before _NOW
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is False
+    def test_clears_pending_on_success(self):
+        from scheduled.topic_queue_state import retry_pending_deletes
+        slot = {"pending_delete": [7777, 7778]}
+        with patch("posting.message_batch.tg") as mtg:
+            mtg.delete_message.return_value = True
+            retry_pending_deletes(slot, -100)
+            assert slot["pending_delete"] == []
+            assert mtg.delete_message.call_count == 2
 
-    def test_skip_at_exactly_under_threshold(self):
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        # 35h before _NOW (just under 36h) → still skippable.
-        slot = self._slot(posted="2026-05-27T01:00:00+00:00")
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is True
-
-    def test_no_skip_when_no_timestamp(self):
-        """Legacy slot / unknown age → force a refresh (can't confirm
-        the message is still deletable)."""
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot(posted=None)
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is False
-
-    def test_no_skip_when_timestamp_unparseable(self):
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot(posted="not-a-timestamp")
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is False
-
-    def test_naive_timestamp_treated_as_utc(self):
-        """A stored timestamp without tzinfo is assumed UTC, not crashed on."""
-        from scheduled.topic_queue_state import can_skip_repost
-        from posting import MessageBatch
-        slot = self._slot(posted="2026-05-28 11:00:00")  # naive, 1h ago
-        existing = MessageBatch(msg_ids=[8888], pin_id=8888)
-        assert can_skip_repost(slot, "fp", existing, self._NOW) is True
+    def test_keeps_still_failing(self):
+        from scheduled.topic_queue_state import retry_pending_deletes
+        slot = {"pending_delete": [7777, 7778]}
+        with patch("posting.message_batch.tg") as mtg:
+            # 7777 deletes, 7778 still fails this run → stays pending.
+            mtg.delete_message.side_effect = lambda gid, mid: mid == 7777
+            retry_pending_deletes(slot, -100)
+            assert slot["pending_delete"] == [7778]

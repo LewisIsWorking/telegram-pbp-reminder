@@ -1231,64 +1231,79 @@ Same pattern as `queue_caught_up.py` from L25 (the bot-topic
 variant) — they're sibling files because they serve sibling
 audiences with sibling formats from the same lifecycle.
 
+#### L28 — A failed delete must be retried, not abandoned (the C01 orphan)
 
-#### L28 — Telegram's 48h delete window means any replace-on-change pinned message needs a forced-refresh cadence
+On 2026-05-28 Lewis reported a per-topic queue orphan: `📋 Unreplied: 5`
+in C01 stayed visible after `📋 Unreplied: 8` replaced it.
 
-On 2026-05-28 Lewis reported a per-topic queue orphan: `Unreplied: 5`
-stayed visible after `Unreplied: 8` replaced it. The investigation
-ruled out the obvious suspect (the bot_sent_registry guard from
-L25 — the message *was* registered) and landed on a Telegram
-platform limit: **a bot cannot delete a message older than 48
-hours.** The `delete_all` docstring even named it; it just hadn't
-been connected to a failure mode.
+**First diagnosis was wrong, and the wrongness is the lesson.** I
+anchored on Telegram's 48h delete limit and theorised the queue had
+"sat unchanged past 48h and aged out of the delete window," then
+shipped a 36h forced-refresh (4.51.1) to keep the message young
+enough to delete. Lewis corrected me: the queue *was* updating —
+new messages arrived and a new queue posted — and the old one
+*still* didn't delete. That observation kills the staleness theory
+outright: if the queue was reposting, it wasn't sitting static.
 
-The mechanism, fully:
+**The actual bug** was in `_post_thread_queue`:
 
-1. The per-topic queue replaces its pinned message by
-   delete-then-repost whenever the content fingerprint changes.
-2. When the fingerprint is unchanged, the poster skips — correct
-   for avoiding spam, but it means an unchanged queue's tracked
-   message just ages in place.
-3. A queue with no new posts and no GM replies keeps the same
-   fingerprint indefinitely. After 48h the tracked message is
-   undeletable.
-4. The next real change triggers a re-post, which tries to delete
-   the now-stale message, Telegram refuses, and the old message
-   orphans.
+```python
+failed = existing.delete_all(group_id)   # delete the old queue message
+if failed:
+    print(...)                           # log and move on
+new_batch = post_batch(...)              # post the new queue
+SinglePin.write_batch(slot, new_batch, fingerprint)  # slot now tracks ONLY the new msg
+```
 
-**Why the bot-topic GM Queue never hit this:** it force-reposts on
-`queue_daily_hours` (every 12h in production). Its tracked message
-is therefore never older than ~12h when replaced — always inside
-the 48h window. The per-topic queue had no equivalent cadence; it
-was purely change-driven.
+When a delete failed for *any* reason, the code logged it and then
+overwrote the slot with only the new message. The failed ID was
+dropped, so the next repost had no idea it existed and never tried
+again. One failed delete = permanent orphan, with fresh queues
+stacking on top of it. `_clear_thread_queue` had the same flaw
+(`clear()` regardless of delete success).
 
-**The lesson:** any "replace-on-change" message that the bot
-deletes-and-reposts needs a maximum-age cap shorter than 48h, OR
-it must switch from delete+repost to edit-in-place (which has no
-time limit). Change-driven replacement *alone* is unsafe for
-long-lived pinned messages, because "no change" can outlast the
-deletion window. The cap is the cheaper fix; edit-in-place is the
-more robust one but a larger refactor (chunk-count changes
-complicate in-place editing).
+The infuriating part: `MessageBatch.delete_all` was *built* for
+retry. Its docstring: it returns the failed IDs "so the caller can
+keep this batch alive and retry on the next run rather than silently
+orphaning the Telegram message." The retry contract existed; the
+caller just never honoured it.
 
-The fix chose the cap: `can_skip_repost` refuses to skip once the
-tracked message crosses 36h, forcing a content-identical re-post
-that resets the age clock. 36h leaves comfortable margin for
-GitHub Actions cron jitter (missed/delayed runs) under the 48h
-ceiling.
+**The fix** parks failed-delete IDs in a slot field `pending_delete`
+and re-attempts them at the top of every post/clear run until they
+clear. Because the bot is a group admin, its own messages have no
+48h delete limit, so a retry *always* eventually wins — transient
+Telegram errors resolve next run, and an ID that was refused by the
+bot-sent registry guard gets backfilled (the registry scan now reads
+`pending_delete`) and then deletes. Self-healing, no manual step.
 
-**Generalising for future pinned-message features:** when adding
-any new bot-managed pinned/replace-on-change message, ask "what
-keeps this younger than 48h?" If the answer is "only content
-changes," it has this latent bug. Either give it a forced-refresh
-cadence (like this fix and the bot-topic `queue_daily_hours`) or
-make it edit-in-place. Catalogue of replace-on-change pinned
-messages as of 2026-05-28: bot-topic GM Queue (safe via daily
-cadence), per-topic pinned queue (now safe via 36h cap). Any
-third joins this list and needs the same question asked.
+**Lessons:**
 
-**On the unavoidable one-time orphan:** a message *already* past
-48h at deploy time (or a legacy slot whose message is already too
-old) cannot be deleted by any code change — it's Lewis's manual
-cleanup per the orphan hard-rule. The fix prevents *new* orphans;
-it can't retroactively delete ones that already crossed the line.
+1. **When you have a symptom and a plausible platform limit, verify
+   the symptom matches the limit's preconditions before "fixing" it.**
+   The 48h theory required the message to be static for 48h; the
+   actual evidence (queue actively reposting) contradicted that. I
+   reached for the tidy platform-limit story and built a workaround
+   for a problem that wasn't happening. Lewis's one-sentence
+   correction reframed everything.
+
+2. **If a helper returns a failure signal, the caller must act on it.**
+   `delete_all` returning failed IDs is an explicit contract: keep
+   them alive and retry. Logging-and-discarding silently breaks that
+   contract and converts every transient failure into a permanent
+   orphan. Any "delete then overwrite the record" sequence should
+   carry forward whatever didn't delete.
+
+3. **Self-healing beats prevention when the operation can fail
+   transiently.** Rather than trying to guarantee deletes never fail
+   (the 36h-refresh approach — and it still wouldn't have helped a
+   transient failure), make failures recoverable: park them, retry
+   them. The registry-backfill tie-in means even a guard refusal
+   recovers on its own.
+
+The pre-existing C01 orphan (156513) remains Lewis's manual cleanup
+per the orphan hard-rule — the bot never auto-deletes orphans it
+can't prove it sent. This fix stops new ones forming and lets
+already-tracked failures self-clear.
+
+(4.51.1's 36h forced-refresh was reverted in 4.51.2 — it solved a
+problem that wasn't occurring and added daily re-post noise.)
