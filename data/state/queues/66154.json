@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 157306,
+      "thread_id": 66154,
+      "user_id": "8770290576",
+      "user_name": "Bre",
+      "time": "2026-05-31T08:10:57+00:00",
+      "preview": "I take out one of my daggers and twirl it in my right hand. Ridge my lovely puma lays at my feet\n\n\" So what business you all got here anyways?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -84,7 +94,17 @@
     "msg:155539",
     "2026-05-24 18:35:52",
     "msg:155680",
-    "2026-05-24 19:59:21"
+    "2026-05-24 19:59:21",
+    "msg:157303",
+    "2026-05-31 08:04:42",
+    "msg:157305",
+    "2026-05-31 08:06:02",
+    "msg:157310",
+    "2026-05-31 08:21:11",
+    "msg:157311",
+    "2026-05-31 08:21:42",
+    "msg:157317",
+    "2026-05-31 08:25:35"
   ],
   "reply_log": [
     {
@@ -485,16 +505,63 @@
       "player": "Anthony",
       "preview": "After some heavy thinking, Filiaur responds.\n\n\"It's... acceptable, IF we get a w",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-31T08:05:26+00:00",
+      "pid": "66154",
+      "msg_id": "157303",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "Sorry love, just had an errand to run",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T08:18:58+00:00",
+      "pid": "66154",
+      "msg_id": "157305",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "What I miss? Who's the newbies?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T08:21:45+00:00",
+      "pid": "66154",
+      "msg_id": "157310",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "Wait! You got to be kidding me. Why would I be joining them?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T08:22:03+00:00",
+      "pid": "66154",
+      "msg_id": "157311",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "I don't even know who the people are?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T08:27:14+00:00",
+      "pid": "66154",
+      "msg_id": "157317",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"All right fine fine. Have it your way. Bye about get some extra loot for this. ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 155517
+      "fingerprint": "2026-05-31 08:10:57",
+      "msg_ids": [
+        157359
+      ],
+      "last_posted_at": "2026-05-31T09:12:46.005087+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

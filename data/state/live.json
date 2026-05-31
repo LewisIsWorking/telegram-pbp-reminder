@@ -1,5 +1,5 @@
 {
-  "offset": 619339965,
+  "offset": 619340065,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-26T23:28:25+00:00",
@@ -8,7 +8,7 @@
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-05-31T06:10:24+00:00",
+      "last_message_time": "2026-05-31T08:27:14+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Riddleport"
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-31T06:22:43+00:00",
+      "last_message_time": "2026-05-31T08:37:26+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -106,8 +106,8 @@
   },
   "combat": {},
   "last_leaderboard": "2026-05-29T15:17:57.401456+00:00",
-  "last_roster_nudge": "2026-05-31T01:17:36.147041+00:00",
-  "last_roster_snapshot": "C01:5/6|C00:4/6|C04:6/6|C05:4/6|C06:8/6|C07:5/6|C09:5/6|C08:2/4|C11:4/6",
+  "last_roster_nudge": "2026-05-31T09:12:39.150503+00:00",
+  "last_roster_snapshot": "C01:5/6|C00:5/6|C04:6/6|C05:4/6|C06:8/6|C07:5/6|C09:5/6|C08:2/4|C11:4/6",
   "gm_escalation": {
     "level": 1,
     "last_at": "2026-05-30T22:27:45.023412+00:00"
@@ -167,7 +167,7 @@
     "52083": "active",
     "25059": "active"
   },
-  "last_campaign_table": "2026-05-24T20:27:50.852534+00:00",
+  "last_campaign_table": "2026-05-31T09:12:39.150503+00:00",
   "session_poll": {
     "C01": {
       "week_iso": "sun2026-05-31",
@@ -179,9 +179,15 @@
         "Both/Either",
         "Can't make it this week"
       ],
-      "voted_uids": [],
+      "voted_uids": [
+        "1698524397"
+      ],
       "last_ping_day": 739767,
-      "votes": {}
+      "votes": {
+        "2": [
+          "1698524397"
+        ]
+      }
     },
     "C11": {
       "week_iso": "sun2026-05-31",
@@ -197,14 +203,26 @@
         "2026-05-31 Sunday",
         "Can't make it"
       ],
-      "voted_uids": [],
+      "voted_uids": [
+        "1698524397"
+      ],
       "last_ping_day": 739767,
-      "votes": {}
+      "votes": {
+        "0": [
+          "1698524397"
+        ],
+        "1": [
+          "1698524397"
+        ],
+        "2": [
+          "1698524397"
+        ]
+      }
     }
   },
   "last_state_backup": "2026-05-30T21:27:30.783358+00:00",
-  "last_queue_daily": "2026-05-30",
-  "last_queue_fingerprint": "25059:2026-05-27 17:28:32|25059:2026-05-27 17:44:02|25059:2026-05-27 17:44:59|25059:2026-05-27 23:55:54|25059:2026-05-28 17:42:08|25059:2026-05-28 17:43:22|25059:2026-05-28 17:46:05|25059:2026-05-28 17:49:53|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 5h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udfe7 \ud83e\udd84 C08: Theria \u2014 no posts for 6d 13h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_daily": "2026-05-31",
+  "last_queue_fingerprint": "25059:2026-05-27 17:28:32|25059:2026-05-27 17:44:02|25059:2026-05-27 17:44:59|25059:2026-05-27 23:55:54|25059:2026-05-28 17:42:08|25059:2026-05-28 17:43:22|25059:2026-05-28 17:46:05|25059:2026-05-28 17:49:53|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|66154:2026-05-31 08:10:57|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 7h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udfe7 \ud83e\udd84 C08: Theria \u2014 no posts for 6d 15h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -263,7 +281,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-05-31",
   "last_queue_daily_slots": [
-    "2026-05-23:21",
     "2026-05-24:09",
     "2026-05-25:09",
     "2026-05-25:21",
@@ -276,7 +293,8 @@
     "2026-05-29:09",
     "2026-05-29:21",
     "2026-05-30:09",
-    "2026-05-30:21"
+    "2026-05-30:21",
+    "2026-05-31:09"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-05-31",
@@ -288,14 +306,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-30",
-  "last_queue_pin_id": 157264,
-  "queue_post_count": 588,
+  "last_queue_pin_id": 157361,
+  "queue_post_count": 589,
   "gm_queue_history": [
     {
       "msg_ids": [
-        157264
+        157361
       ],
-      "pin_id": 157264
+      "pin_id": 157361
     }
-  ]
+  ],
+  "poll_identified_voters": {}
 }
