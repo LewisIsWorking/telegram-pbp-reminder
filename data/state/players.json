@@ -300,16 +300,6 @@
       "last_post_time": "2026-05-18T02:32:25+00:00",
       "last_warned_week": 1
     },
-    "1242:8018921976": {
-      "user_id": "8018921976",
-      "first_name": "Natasha",
-      "last_name": "",
-      "username": "NitNatty",
-      "campaign_name": "Dark Pockets",
-      "pbp_topic_id": "1242",
-      "last_post_time": "2026-05-03T14:18:46+00:00",
-      "last_warned_week": 3
-    },
     "1242:6464119705": {
       "user_id": "6464119705",
       "first_name": "Luke",
@@ -571,6 +561,12 @@
       "first_name": "Buffet",
       "username": "buffetraider",
       "campaign_name": "Kibwe"
+    },
+    "1242:8018921976": {
+      "removed_at": "2026-05-31T14:39:55.513006+00:00",
+      "first_name": "Natasha",
+      "username": "NitNatty",
+      "campaign_name": "Dark Pockets"
     }
   },
   "player_registry": {
@@ -1088,6 +1084,14 @@
       "name": "Buffet",
       "username": "buffetraider",
       "at": "2026-05-31T13:38:24.070773+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "1242",
+      "user_id": "8018921976",
+      "name": "Natasha",
+      "username": "NitNatty",
+      "at": "2026-05-31T14:39:56.070668+00:00"
     }
   ],
   "player_boons": {
