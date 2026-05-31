@@ -220,16 +220,6 @@
       "last_post_time": "2026-05-22T12:54:53+00:00",
       "last_warned_week": 1
     },
-    "40585:7863964681": {
-      "user_id": "7863964681",
-      "first_name": "Link",
-      "last_name": "",
-      "username": "Linksanelf2006",
-      "campaign_name": "Kibwe",
-      "pbp_topic_id": "40585",
-      "last_post_time": "2026-05-03T15:05:06+00:00",
-      "last_warned_week": 3
-    },
     "107151:8383886822": {
       "user_id": "8383886822",
       "first_name": "CzarChasm23",
@@ -567,6 +557,12 @@
       "first_name": "Natasha",
       "username": "NitNatty",
       "campaign_name": "Dark Pockets"
+    },
+    "40585:7863964681": {
+      "removed_at": "2026-05-31T15:34:57.610512+00:00",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "campaign_name": "Kibwe"
     }
   },
   "player_registry": {
@@ -1092,6 +1088,14 @@
       "name": "Natasha",
       "username": "NitNatty",
       "at": "2026-05-31T14:39:56.070668+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "40585",
+      "user_id": "7863964681",
+      "name": "Link",
+      "username": "Linksanelf2006",
+      "at": "2026-05-31T15:34:58.254627+00:00"
     }
   ],
   "player_boons": {
