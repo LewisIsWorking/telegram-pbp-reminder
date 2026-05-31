@@ -1,25 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 156545,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-05-26T03:28:41+00:00",
-      "preview": "B\u00e1yakan takes up a position near the door. He continues observing the area for interesting tidbits, but the prospect of facing \"the enemy\" quiets his normally chatty mouth. Drawing his whip, he nods to Changer. The fey gives no indication of needing a performance enhancer, but there is a subtle hum as he prepares his voice.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 156557,
-      "thread_id": 76799,
-      "user_id": "8729190676",
-      "user_name": "Miwa",
-      "time": "2026-05-26T08:23:25+00:00",
-      "preview": "O",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -305,7 +286,11 @@
     "msg:155721",
     "2026-05-24 20:22:21",
     "msg:155724",
-    "2026-05-24 20:24:31"
+    "2026-05-24 20:24:31",
+    "msg:156545",
+    "2026-05-26 03:28:41",
+    "msg:156557",
+    "2026-05-26 08:23:25"
   ],
   "reply_log": [
     {
@@ -1635,18 +1620,34 @@
       "player": "Cannon",
       "preview": "\"Try to see if it's rigged somehow first, please.\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-31T06:10:54+00:00",
+      "pid": "76799",
+      "msg_id": "156545",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "B\u00e1yakan takes up a position near the door. He continues observing the area for i",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T07:31:30.199007+00:00",
+      "pid": "76799",
+      "msg_id": "156557",
+      "thread_id": "76799",
+      "player": "Miwa Saeko",
+      "preview": "O",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-05-26 03:28:41|2026-05-26 08:23:25",
-      "msg_ids": [
-        156914
-      ],
-      "last_posted_at": "2026-05-28T17:46:32.483269+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 157263
     },
     "144765": {
       "fingerprint": "",
