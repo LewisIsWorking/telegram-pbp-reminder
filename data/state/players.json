@@ -30,16 +30,6 @@
       "last_post_time": "2026-05-24T18:35:52+00:00",
       "last_warned_week": 0
     },
-    "107171:7863964681": {
-      "user_id": "7863964681",
-      "first_name": "Link",
-      "last_name": "",
-      "username": "Linksanelf2006",
-      "campaign_name": "Metal City",
-      "pbp_topic_id": "107171",
-      "last_post_time": "2026-05-02T23:40:11+00:00",
-      "last_warned_week": 3
-    },
     "107171:7077683276": {
       "user_id": "7077683276",
       "first_name": "Bruce",
@@ -458,7 +448,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-05-10T00:27:04+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "51357:7454623139": {
       "user_id": "7454623139",
@@ -569,6 +559,12 @@
       "first_name": "Link",
       "username": "Linksanelf2006",
       "campaign_name": "Grand Explorers"
+    },
+    "107171:7863964681": {
+      "removed_at": "2026-05-31T01:17:36.147041+00:00",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "campaign_name": "Metal City"
     }
   },
   "player_registry": {
@@ -1065,6 +1061,14 @@
       "name": "Link",
       "username": "Linksanelf2006",
       "at": "2026-05-26T17:15:01.426617+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107171",
+      "user_id": "7863964681",
+      "name": "Link",
+      "username": "Linksanelf2006",
+      "at": "2026-05-31T01:17:37.431184+00:00"
     }
   ],
   "player_boons": {
