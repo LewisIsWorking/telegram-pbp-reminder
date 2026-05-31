@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 157491,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-05-31T17:10:08+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -704,7 +713,9 @@
     "msg:155698",
     "2026-05-24 20:07:06",
     "msg:157272",
-    "2026-05-31 07:35:17"
+    "2026-05-31 07:35:17",
+    "msg:157485",
+    "2026-05-31 16:56:12"
   ],
   "reply_log": [
     {
@@ -3989,16 +4000,27 @@
       "player": "Caelum",
       "preview": "Act together: Ji Yun cast haste on himself, eidolon stride; Cast lifelink surge.",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-31T17:09:23+00:00",
+      "pid": "40585",
+      "msg_id": "157485",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus attempts to recall knowledge about the guards.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 155385
+      "fingerprint": "2026-05-31 17:10:08",
+      "msg_ids": [
+        157543
+      ],
+      "last_posted_at": "2026-05-31T17:29:54.623021+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",

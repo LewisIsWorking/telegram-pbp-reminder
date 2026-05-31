@@ -459,6 +459,16 @@
       "pbp_topic_id": "66154",
       "last_post_time": "2026-05-31T08:25:35+00:00",
       "last_warned_week": 0
+    },
+    "40585:7130942567": {
+      "user_id": "7130942567",
+      "first_name": "Buffet",
+      "last_name": "Raider",
+      "username": "buffetraider",
+      "campaign_name": "Kibwe",
+      "pbp_topic_id": "40585",
+      "last_post_time": "2026-05-31T17:10:08+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -546,12 +556,6 @@
       "username": "Linksanelf2006",
       "campaign_name": "Metal City"
     },
-    "40585:7130942567": {
-      "removed_at": "2026-05-31T13:38:23.496172+00:00",
-      "first_name": "Buffet",
-      "username": "buffetraider",
-      "campaign_name": "Kibwe"
-    },
     "1242:8018921976": {
       "removed_at": "2026-05-31T14:39:55.513006+00:00",
       "first_name": "Natasha",
@@ -626,7 +630,7 @@
       },
       "7130942567": {
         "id": 5,
-        "name": "Buffet Raider",
+        "name": "Buffet",
         "joined": "2026-03-27T16:19:57.449069+00:00"
       },
       "5443237599": {
@@ -1096,6 +1100,14 @@
       "name": "Link",
       "username": "Linksanelf2006",
       "at": "2026-05-31T15:34:58.254627+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "40585",
+      "user_id": "7130942567",
+      "name": "Buffet",
+      "username": "buffetraider",
+      "at": "2026-05-31T17:29:48.632542+00:00"
     }
   ],
   "player_boons": {
