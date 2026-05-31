@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 157306,
-      "thread_id": 66154,
-      "user_id": "8770290576",
-      "user_name": "Bre",
-      "time": "2026-05-31T08:10:57+00:00",
-      "preview": "I take out one of my daggers and twirl it in my right hand. Ridge my lovely puma lays at my feet\n\n\" So what business you all got here anyways?\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -104,7 +94,13 @@
     "msg:157311",
     "2026-05-31 08:21:42",
     "msg:157317",
-    "2026-05-31 08:25:35"
+    "2026-05-31 08:25:35",
+    "msg:157306",
+    "2026-05-31 08:10:57",
+    "msg:157588",
+    "2026-05-31 19:05:53",
+    "msg:157595",
+    "2026-05-31 19:26:14"
   ],
   "reply_log": [
     {
@@ -550,18 +546,43 @@
       "player": "Bre",
       "preview": "\"All right fine fine. Have it your way. Bye about get some extra loot for this. ",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-31T18:51:05+00:00",
+      "pid": "66154",
+      "msg_id": "157306",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "I take out one of my daggers and twirl it in my right hand. Ridge my lovely puma",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T19:10:18+00:00",
+      "pid": "66154",
+      "msg_id": "157588",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"Wait what contract? This contract isn't for me right Capt?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-05-31T19:31:11+00:00",
+      "pid": "66154",
+      "msg_id": "157595",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "I chuckled to myself, and roll my eyes \"I knew that.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-05-31 08:10:57",
-      "msg_ids": [
-        157359
-      ],
-      "last_posted_at": "2026-05-31T09:12:46.005087+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 157610
     }
   }
 }

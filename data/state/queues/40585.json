@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 157491,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-05-31T17:10:08+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 157522,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-05-31T17:23:45+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -732,7 +714,11 @@
     "msg:157539",
     "2026-05-31 17:29:38",
     "msg:157550",
-    "2026-05-31 17:34:47"
+    "2026-05-31 17:34:47",
+    "msg:157491",
+    "2026-05-31 17:10:08",
+    "msg:157522",
+    "2026-05-31 17:23:45"
   ],
   "reply_log": [
     {
@@ -4062,18 +4048,34 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-05-31T19:35:09.893214+00:00",
+      "pid": "40585",
+      "msg_id": "157491",
+      "thread_id": "137075",
+      "player": "Buffet Raider",
+      "preview": "*[image]*",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-05-31T19:35:10.472269+00:00",
+      "pid": "40585",
+      "msg_id": "157522",
+      "thread_id": "137075",
+      "player": "Buffet Raider",
+      "preview": "*[image]*",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-05-31 17:10:08|2026-05-31 17:23:45",
-      "msg_ids": [
-        157560
-      ],
-      "last_posted_at": "2026-05-31T18:34:35.937532+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 157609
     },
     "40585": {
       "fingerprint": "",
