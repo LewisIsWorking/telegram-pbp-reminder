@@ -1,5 +1,5 @@
 {
-  "offset": 619340372,
+  "offset": 619340407,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-26T23:28:25+00:00",
@@ -20,7 +20,7 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-05-28T17:49:53+00:00",
+      "last_message_time": "2026-05-31T20:18:18+00:00",
       "last_user": "Kaer'maga when?",
       "last_user_id": "5443237599",
       "campaign_name": "Doomsday Funtime"
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-31T18:48:56+00:00",
+      "last_message_time": "2026-05-31T19:41:15+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -65,7 +65,7 @@
     "40585": "2026-05-29T23:35:46.238885+00:00",
     "76799": "2026-05-30T11:35:36.646487+00:00",
     "107151": "2026-05-30T21:27:30.783358+00:00",
-    "1242": "2026-05-29T23:35:46.238885+00:00"
+    "1242": "2026-05-31T20:32:09.077854+00:00"
   },
   "last_roster": {
     "25059": "2026-05-30T08:57:25.349069+00:00",
@@ -164,8 +164,7 @@
   "dying_alerts_sent": {
     "107151": "active",
     "107171": "active",
-    "52083": "active",
-    "25059": "active"
+    "52083": "active"
   },
   "last_campaign_table": "2026-05-31T09:12:39.150503+00:00",
   "session_poll": {
@@ -226,7 +225,7 @@
   },
   "last_state_backup": "2026-05-30T21:27:30.783358+00:00",
   "last_queue_daily": "2026-05-31",
-  "last_queue_fingerprint": "25059:2026-05-27 17:28:32|25059:2026-05-27 17:44:02|25059:2026-05-27 17:44:59|25059:2026-05-27 23:55:54|25059:2026-05-28 17:42:08|25059:2026-05-28 17:43:22|25059:2026-05-28 17:46:05|25059:2026-05-28 17:49:53|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 17h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 1h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-31 20:18:18|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 18h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 2h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -310,14 +309,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-30",
-  "last_queue_pin_id": 157611,
-  "queue_post_count": 599,
+  "last_queue_pin_id": 157642,
+  "queue_post_count": 600,
   "gm_queue_history": [
     {
       "msg_ids": [
-        157611
+        157642
       ],
-      "pin_id": 157611
+      "pin_id": 157642
     }
   ]
 }
