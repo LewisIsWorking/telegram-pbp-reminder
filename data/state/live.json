@@ -1,5 +1,5 @@
 {
-  "offset": 619340407,
+  "offset": 619340438,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-26T23:28:25+00:00",
@@ -20,7 +20,7 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-05-31T20:18:18+00:00",
+      "last_message_time": "2026-05-31T20:34:44+00:00",
       "last_user": "Kaer'maga when?",
       "last_user_id": "5443237599",
       "campaign_name": "Doomsday Funtime"
@@ -164,7 +164,8 @@
   "dying_alerts_sent": {
     "107151": "active",
     "107171": "active",
-    "52083": "active"
+    "52083": "active",
+    "51357": "active"
   },
   "last_campaign_table": "2026-05-31T09:12:39.150503+00:00",
   "session_poll": {
@@ -225,7 +226,7 @@
   },
   "last_state_backup": "2026-05-30T21:27:30.783358+00:00",
   "last_queue_daily": "2026-05-31",
-  "last_queue_fingerprint": "25059:2026-05-31 20:18:18|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 18h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 2h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "25059:2026-05-31 20:18:18|25059:2026-05-31 20:34:44|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 19h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 3h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -284,7 +285,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-05-31",
   "last_queue_daily_slots": [
-    "2026-05-24:09",
     "2026-05-25:09",
     "2026-05-25:21",
     "2026-05-26:09",
@@ -297,7 +297,8 @@
     "2026-05-29:21",
     "2026-05-30:09",
     "2026-05-30:21",
-    "2026-05-31:09"
+    "2026-05-31:09",
+    "2026-05-31:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-05-31",
@@ -309,14 +310,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-30",
-  "last_queue_pin_id": 157642,
-  "queue_post_count": 600,
+  "last_queue_pin_id": 157674,
+  "queue_post_count": 601,
   "gm_queue_history": [
     {
       "msg_ids": [
-        157642
+        157674
       ],
-      "pin_id": 157642
+      "pin_id": 157674
     }
   ]
 }
