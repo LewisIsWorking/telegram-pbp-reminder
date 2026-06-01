@@ -88,11 +88,11 @@
       "2026-05-25T03:22:18.138251+00:00",
       "2026-06-01T08:07:21.767521+00:00",
       "2026-06-01T08:07:21.770676+00:00",
-      "2026-06-01T08:07:21.772097+00:00"
+      "2026-06-01T08:07:21.772097+00:00",
+      "2026-06-01T10:54:23.552489+00:00",
+      "2026-06-01T10:54:23.567366+00:00"
     ],
     "40585": [
-      "2026-03-23T11:18:51.029141+00:00",
-      "2026-03-24T10:19:47.992215+00:00",
       "2026-03-24T10:19:47.992600+00:00",
       "2026-03-24T11:19:06.209584+00:00",
       "2026-03-24T11:19:06.210384+00:00",
@@ -590,7 +590,9 @@
       "2026-06-01T05:48:29.849195+00:00",
       "2026-06-01T08:07:21.777600+00:00",
       "2026-06-01T08:07:21.781881+00:00",
-      "2026-06-01T08:07:22.280344+00:00"
+      "2026-06-01T08:07:22.280344+00:00",
+      "2026-06-01T10:54:23.544699+00:00",
+      "2026-06-01T10:54:23.550049+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1142,7 +1144,20 @@
       "2026-06-01T05:48:30.647616+00:00",
       "2026-06-01T05:48:30.648659+00:00",
       "2026-06-01T05:48:30.649687+00:00",
-      "2026-06-01T05:48:30.650740+00:00"
+      "2026-06-01T05:48:30.650740+00:00",
+      "2026-06-01T10:54:23.553560+00:00",
+      "2026-06-01T10:54:23.555685+00:00",
+      "2026-06-01T10:54:23.557850+00:00",
+      "2026-06-01T10:54:23.559917+00:00",
+      "2026-06-01T10:54:23.561916+00:00",
+      "2026-06-01T10:54:23.563905+00:00",
+      "2026-06-01T10:54:23.568582+00:00",
+      "2026-06-01T10:54:23.570862+00:00",
+      "2026-06-01T10:54:23.572991+00:00",
+      "2026-06-01T10:54:23.574214+00:00",
+      "2026-06-01T10:54:23.579591+00:00",
+      "2026-06-01T10:54:23.580718+00:00",
+      "2026-06-01T10:54:23.581844+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1364,125 +1379,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-05-15T01:05:42.909546+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "153777"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-15T01:05:42.912248+00:00",
-      "player": "Chris Warlock",
-      "preview": "Hinata changes Grip on her Plasma Cannon to one-handed as a ",
-      "msg_id": "153727"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-15T01:05:42.913932+00:00",
-      "player": "Bruce",
-      "preview": "Holis will act together with his eidolon, Taking 1 action fo",
-      "msg_id": "153775"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-05-15T14:56:46.503671+00:00",
-      "player": "Anthony",
-      "preview": "what happens next? :)",
-      "msg_id": "153818"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-16T17:26:50.819505+00:00",
-      "player": "Cobalt",
-      "preview": "[media]",
-      "msg_id": "153892"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-16T17:26:50.823161+00:00",
-      "player": "Cobalt",
-      "preview": "The Symposium begins to flash internally with sparks of many",
-      "msg_id": "153891"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-16T17:26:50.825109+00:00",
-      "player": "Laetheron",
-      "preview": "Arktos gestures with a tendril as a field? emerges with a fl",
-      "msg_id": "153931"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-16T17:26:50.827041+00:00",
-      "player": "Laetheron",
-      "preview": "A brief outline of a scan fills the area from top to bottom,",
-      "msg_id": "153932"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-16T19:30:33.552657+00:00",
-      "player": "Laetheron",
-      "preview": "Uh, I kinda left it vague for later cause I wasn't too sure ",
-      "msg_id": "153953"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-16T19:30:33.556569+00:00",
-      "player": "Laetheron",
-      "preview": "I'd aid Chik probably, since our characters've worked togeth",
-      "msg_id": "153954"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-05-17T22:24:09.473992+00:00",
-      "player": "Anthony",
-      "preview": "Ok we'll scout out a vantage point for Lorn to snipe them le",
-      "msg_id": "154085"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-17T23:25:29.874633+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "154197"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-17T23:25:29.875857+00:00",
-      "player": "Loaf",
-      "preview": "Landon: before landon touchs the bogs wet floor,  he hops on",
-      "msg_id": "153797"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-18T01:11:17.510531+00:00",
-      "player": "Chase",
-      "preview": "\"Maze? Looks a bit like there's only one way to go unless we",
-      "msg_id": "153873"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T01:11:17.513255+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight gives a small, solemn smile and steps up and says, ",
-      "msg_id": "153930"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T01:11:17.514460+00:00",
-      "player": "Anthony",
-      "preview": "Rubel steps out of hiding after hearing this crazy dude, see",
-      "msg_id": "154098"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.210515+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "154306"
-    },
     {
       "pid": "51357",
       "time": "2026-05-18T02:50:31.213055+00:00",
@@ -2763,6 +2659,125 @@
       "player": "Ryo",
       "preview": "\"I don't know about you but making a rough guess of how far ",
       "msg_id": "157991"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-01T10:54:23.544699+00:00",
+      "player": "Ryo",
+      "preview": "Leopard watches as Daichi advances beyond the rest of them a",
+      "msg_id": "158012"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-01T10:54:23.550049+00:00",
+      "player": "Ryo",
+      "preview": "Leopard - A1: Rage A2: Stride A3: Shield",
+      "msg_id": "158013"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-06-01T10:54:23.552489+00:00",
+      "player": "Cannon",
+      "preview": "Illi frowns and glances at Rubel and the rest of the party.\n",
+      "msg_id": "158019"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.553560+00:00",
+      "player": "Bre",
+      "preview": "With my hood up, I stay back,, leaning against one of the ca",
+      "msg_id": "158022"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.555685+00:00",
+      "player": "Bre",
+      "preview": "\"what do you mean what's my story? What's your story?\"",
+      "msg_id": "158032"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.557850+00:00",
+      "player": "Bre",
+      "preview": "\"Yeah? Well whatever it is charity interesting. I haven't he",
+      "msg_id": "158037"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.559917+00:00",
+      "player": "Bre",
+      "preview": "Ridge sits next to Kyomi starring down Cardigan. I blow smok",
+      "msg_id": "158040"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.561916+00:00",
+      "player": "Bre",
+      "preview": "Well ain't that something. My story is fuckin crazy long to ",
+      "msg_id": "158042"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.563905+00:00",
+      "player": "Bre",
+      "preview": "\"where do I start? I guess I could start in the beginning. Y",
+      "msg_id": "158045"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-06-01T10:54:23.567366+00:00",
+      "player": "Cannon",
+      "preview": "Illiani raises and eyebrow at Ritalson but quietly tries her",
+      "msg_id": "158047"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.568582+00:00",
+      "player": "Bre",
+      "preview": "\"well in order to become part of the organization I need to ",
+      "msg_id": "158048"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.570862+00:00",
+      "player": "Bre",
+      "preview": "\"I want to go so far as calling me up pirate, but if you wan",
+      "msg_id": "158053"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.572991+00:00",
+      "player": "Bre",
+      "preview": "\"Strange folk aren't you?\" I smirk at Cardigan. \n\nRidge eyes",
+      "msg_id": "158056"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.574214+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "158058"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.579591+00:00",
+      "player": "Bre",
+      "preview": "\"and so what brings you here?\" Kyomi asks as she looks stran",
+      "msg_id": "158061"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.580718+00:00",
+      "player": "Bre",
+      "preview": "Ridge growls at the bug.",
+      "msg_id": "158063"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T10:54:23.581844+00:00",
+      "player": "Bre",
+      "preview": "\"So like this is saying a lot knowing people I've been hangi",
+      "msg_id": "158064"
     }
   ],
   "pending_potw_boons": {

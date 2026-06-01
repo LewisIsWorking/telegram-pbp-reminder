@@ -1,6 +1,16 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 158065,
+      "thread_id": 51357,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-06-01T06:48:19+00:00",
+      "preview": "\"Such magic is despicable. None of us are superior to any other, or more worthy of devotion or service. If that magic is its purpose, this mark is an insult against everything I've ever been taught, against the history of my people and the world itself. We must never use it, even if we get more opportunities.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -177,7 +187,11 @@
     "msg:157016",
     "2026-05-29 19:40:18",
     "msg:157023",
-    "2026-05-29 21:08:06"
+    "2026-05-29 21:08:06",
+    "msg:158019",
+    "2026-06-01 06:07:53",
+    "msg:158047",
+    "2026-06-01 06:27:13"
   ],
   "reply_log": [
     {
@@ -924,16 +938,36 @@
       "player": "Laetheron",
       "preview": "\"That sounds right.\"\n\nTwilight tilts their head, \"Though, people willing to sacr",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-01T06:08:53+00:00",
+      "pid": "51357",
+      "msg_id": "158019",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illi frowns and glances at Rubel and the rest of the party.\n\n\"Its something we n",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-01T06:32:18+00:00",
+      "pid": "51357",
+      "msg_id": "158047",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illiani raises and eyebrow at Ritalson but quietly tries her best to reassure Ko",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 158116
+      "fingerprint": "2026-06-01 06:48:19",
+      "msg_ids": [
+        158122
+      ],
+      "last_posted_at": "2026-06-01T10:54:26.220446+00:00",
+      "caught_up_msg_id": null
     },
     "145040": {
       "msg_ids": [],
