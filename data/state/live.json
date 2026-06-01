@@ -1,5 +1,5 @@
 {
-  "offset": 619340511,
+  "offset": 619340581,
   "topics": {
     "52083": {
       "last_message_time": "2026-05-26T23:28:25+00:00",
@@ -20,19 +20,19 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-05-31T21:30:50+00:00",
+      "last_message_time": "2026-06-01T02:26:07+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-05-25T02:00:33+00:00",
+      "last_message_time": "2026-06-01T01:34:30+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-05-31T19:41:15+00:00",
+      "last_message_time": "2026-06-01T03:21:55+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -50,7 +50,7 @@
       "campaign_name": "Theria"
     },
     "1242": {
-      "last_message_time": "2026-05-30T19:35:46+00:00",
+      "last_message_time": "2026-06-01T02:30:52+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Dark Pockets"
@@ -70,10 +70,10 @@
   "last_roster": {
     "25059": "2026-05-30T08:57:25.349069+00:00",
     "66154": "2026-05-30T08:57:25.349069+00:00",
-    "51357": "2026-05-29T03:21:15.727821+00:00",
-    "52083": "2026-05-29T03:21:15.727821+00:00",
-    "107171": "2026-05-29T03:21:15.727821+00:00",
-    "40585": "2026-05-29T03:21:15.727821+00:00",
+    "51357": "2026-06-01T03:23:14.345032+00:00",
+    "52083": "2026-06-01T03:23:14.345032+00:00",
+    "107171": "2026-06-01T03:23:14.345032+00:00",
+    "40585": "2026-06-01T03:23:14.345032+00:00",
     "76799": "2026-05-31T18:34:29.318690+00:00",
     "107151": "2026-05-29T15:17:57.401456+00:00",
     "1242": "2026-05-30T15:33:32.641772+00:00"
@@ -82,7 +82,7 @@
     "66154": "2026-03-31T22:12:03.300138+00:00",
     "52083": "2026-05-18T23:30:14.639141+00:00",
     "40585": "2026-05-15T18:43:21.112654+00:00",
-    "25059": "2026-05-25T03:22:18.147230+00:00",
+    "25059": "2026-06-01T03:23:14.345032+00:00",
     "107171": "2026-05-12T17:47:20.749085+00:00",
     "107151": "2026-04-29T22:26:57.024621+00:00",
     "76799": "2026-05-05T09:46:42.934910+00:00",
@@ -163,7 +163,6 @@
   "last_pace_drop_check": "2026-05-29T17:19:56.727532+00:00",
   "dying_alerts_sent": {
     "107151": "active",
-    "107171": "active",
     "52083": "active",
     "51357": "active"
   },
@@ -226,7 +225,7 @@
   },
   "last_state_backup": "2026-05-31T22:28:09.311335+00:00",
   "last_queue_daily": "2026-05-31",
-  "last_queue_fingerprint": "51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe0 \u2b50\ufe0f C07: Hopeful End-Times \u2014 no posts for 5d 1h \ud83d\udd17 https://t.me/Path_Wars/52083|  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 23h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 7h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe0 \u2b50\ufe0f C07: Hopeful End-Times \u2014 no posts for 5d 3h \ud83d\udd17 https://t.me/Path_Wars/52083|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 9h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -310,14 +309,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-30",
-  "last_queue_pin_id": 157744,
-  "queue_post_count": 604,
+  "last_queue_pin_id": 157810,
+  "queue_post_count": 605,
   "gm_queue_history": [
     {
       "msg_ids": [
-        157744
+        157810
       ],
-      "pin_id": 157744
+      "pin_id": 157810
     }
   ]
 }
