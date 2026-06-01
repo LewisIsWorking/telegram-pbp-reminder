@@ -1,14 +1,14 @@
 {
-  "offset": 619340581,
+  "offset": 619340681,
   "topics": {
     "52083": {
-      "last_message_time": "2026-05-26T23:28:25+00:00",
+      "last_message_time": "2026-06-01T04:14:27+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-05-31T19:31:11+00:00",
+      "last_message_time": "2026-06-01T04:34:33+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Riddleport"
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-06-01T03:21:55+00:00",
+      "last_message_time": "2026-06-01T03:52:43+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -79,7 +79,7 @@
     "1242": "2026-05-30T15:33:32.641772+00:00"
   },
   "last_potw": {
-    "66154": "2026-03-31T22:12:03.300138+00:00",
+    "66154": "2026-06-01T05:48:30.651000+00:00",
     "52083": "2026-05-18T23:30:14.639141+00:00",
     "40585": "2026-05-15T18:43:21.112654+00:00",
     "25059": "2026-06-01T03:23:14.345032+00:00",
@@ -139,7 +139,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-05-29T17:19:56.727532+00:00",
-  "last_daily_tip": "2026-05-31T05:40:15.405711+00:00",
+  "last_daily_tip": "2026-06-01T05:48:30.651000+00:00",
   "used_tip_indices": [
     9,
     31,
@@ -158,12 +158,12 @@
     37,
     40,
     15,
-    39
+    39,
+    16
   ],
   "last_pace_drop_check": "2026-05-29T17:19:56.727532+00:00",
   "dying_alerts_sent": {
     "107151": "active",
-    "52083": "active",
     "51357": "active"
   },
   "last_campaign_table": "2026-05-31T09:12:39.150503+00:00",
@@ -225,7 +225,7 @@
   },
   "last_state_backup": "2026-05-31T22:28:09.311335+00:00",
   "last_queue_daily": "2026-05-31",
-  "last_queue_fingerprint": "51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udfe0 \u2b50\ufe0f C07: Hopeful End-Times \u2014 no posts for 5d 3h \ud83d\udd17 https://t.me/Path_Wars/52083|  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 9h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "40585:2026-06-01 03:50:06|40585:2026-06-01 03:51:07|51357:2026-05-29 16:28:28|51357:2026-05-29 19:40:18|51357:2026-05-29 21:08:06|silent:  \ud83d\udd34 \ud83e\udd84 C08: Theria \u2014 no posts for 7d 12h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -309,14 +309,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-05-30",
-  "last_queue_pin_id": 157810,
-  "queue_post_count": 605,
+  "last_queue_pin_id": 157953,
+  "queue_post_count": 606,
   "gm_queue_history": [
     {
       "msg_ids": [
-        157810
+        157953
       ],
-      "pin_id": 157810
+      "pin_id": 157953
     }
   ]
 }

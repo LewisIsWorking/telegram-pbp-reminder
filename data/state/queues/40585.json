@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 157832,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-01T03:50:06+00:00",
+      "preview": "Daichi : \nStride\nShield\nParry",
+      "media_group_id": null
+    },
+    {
+      "message_id": 157833,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-01T03:51:07+00:00",
+      "preview": "\"Let them get back up and come a little closer.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -718,7 +736,9 @@
     "msg:157491",
     "2026-05-31 17:10:08",
     "msg:157522",
-    "2026-05-31 17:23:45"
+    "2026-05-31 17:23:45",
+    "msg:157829",
+    "2026-06-01 03:49:04"
   ],
   "reply_log": [
     {
@@ -4066,16 +4086,27 @@
       "player": "Buffet Raider",
       "preview": "*[image]*",
       "via": "markdone"
+    },
+    {
+      "t": "2026-06-01T03:49:11+00:00",
+      "pid": "40585",
+      "msg_id": "157829",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 157609
+      "fingerprint": "2026-06-01 03:50:06|2026-06-01 03:51:07",
+      "msg_ids": [
+        157951
+      ],
+      "last_posted_at": "2026-06-01T05:48:34.080606+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",

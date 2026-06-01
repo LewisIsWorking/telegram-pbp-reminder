@@ -88,7 +88,6 @@
       "2026-05-25T03:22:18.138251+00:00"
     ],
     "40585": [
-      "2026-03-22T22:06:27.743719+00:00",
       "2026-03-22T22:06:27.743865+00:00",
       "2026-03-22T22:06:27.744001+00:00",
       "2026-03-22T22:06:27.744120+00:00",
@@ -587,7 +586,8 @@
       "2026-05-31T18:34:29.314364+00:00",
       "2026-05-31T18:34:29.318216+00:00",
       "2026-05-31T19:35:09.893214+00:00",
-      "2026-05-31T19:35:10.472269+00:00"
+      "2026-05-31T19:35:10.472269+00:00",
+      "2026-06-01T05:48:29.849195+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1135,7 +1135,11 @@
       "2026-05-31T09:12:39.150131+00:00",
       "2026-05-31T19:35:10.969599+00:00",
       "2026-05-31T19:35:10.974051+00:00",
-      "2026-05-31T19:35:10.975948+00:00"
+      "2026-05-31T19:35:10.975948+00:00",
+      "2026-06-01T05:48:30.647616+00:00",
+      "2026-06-01T05:48:30.648659+00:00",
+      "2026-06-01T05:48:30.649687+00:00",
+      "2026-06-01T05:48:30.650740+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1357,41 +1361,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-05-14T14:59:33.164966+00:00",
-      "player": "Bruce",
-      "preview": "*[image]* Holis will respond, \"I can definitely help with th",
-      "msg_id": "153432"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-14T14:59:33.614719+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "153593"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-14T14:59:33.615052+00:00",
-      "player": "Bruce",
-      "preview": "*[image]*",
-      "msg_id": "153433"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-05-14T14:59:34.008229+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "153248"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-14T18:47:04.075549+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor looks at Cardigan \"I am starting to share your opini",
-      "msg_id": "153683"
-    },
     {
       "pid": "25059",
       "time": "2026-05-14T18:47:04.078948+00:00",
@@ -2756,6 +2725,41 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"The reason I wanted to ask you on a date is be",
       "msg_id": "157644"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-01T05:48:29.849195+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "157829"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T05:48:30.647616+00:00",
+      "player": "Anthony",
+      "preview": "Filiaur puts her glasses back on and starts signing the cont",
+      "msg_id": "157846"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T05:48:30.648659+00:00",
+      "player": "Bre",
+      "preview": "\"And we have one that signed their life away.\" I giggle with",
+      "msg_id": "157875"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T05:48:30.649687+00:00",
+      "player": "Anthony",
+      "preview": "Filiaur reajusts her glasses and retorts\n\"Maybe so, but I'd ",
+      "msg_id": "157876"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T05:48:30.650740+00:00",
+      "player": "Bre",
+      "preview": "\"who are you say that my dear? You have no clue what my deal",
+      "msg_id": "157877"
     }
   ],
   "pending_potw_boons": {
@@ -2785,6 +2789,19 @@
       "base_message": "Player of the Week for Grand Explorers: Cannon McMahon (@ArtyArtillery)!\n(2026-05-19 (W21) to 2026-05-26 (W22))\n\n7 posts this week with an average gap of 8.6h between posts. The most consistent driver of the story.",
       "posted_at": "2026-05-26T03:20:26.198932+00:00",
       "reminders_sent": 3
+    },
+    "66154": {
+      "message_id": 157949,
+      "winner_user_id": "8770290576",
+      "campaign_name": "Riddleport",
+      "boons": [
+        "The ship's navigator discovers a shorter route that avoids the storm.",
+        "The next challenge you face has been faced by someone who left detailed notes.",
+        "An ally's missed attack distracts the enemy enough for your hit to land.",
+        "+1 circumstance bonus on your next skill check."
+      ],
+      "base_message": "Player of the Week for Riddleport: Bre Irish (@BreIrish)!\n(2026-05-25 (W22) to 2026-06-01 (W23))\n\n5 posts this week with an average gap of 5.1h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-06-01T05:48:30.651000+00:00"
     }
   }
 }
