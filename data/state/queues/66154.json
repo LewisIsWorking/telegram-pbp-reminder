@@ -1,6 +1,25 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 158096,
+      "thread_id": 66154,
+      "user_id": "8770290576",
+      "user_name": "Bre",
+      "time": "2026-06-01T07:06:44+00:00",
+      "preview": "\"All I no is that Marlo told me to keep an eye on him. I'll help him of course, but the boss is going to have to pay me pretty big. I ain't no babysitter.\" Kyomi continue to pop on your cigarette until the cigarette was so small she couldn't talk anymore out. She tosses it on the ground and steps on it playing out the rest of the cigarette.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 158097,
+      "thread_id": 66154,
+      "user_id": "8770290576",
+      "user_name": "Bre",
+      "time": "2026-06-01T07:07:17+00:00",
+      "preview": "\"why does it always have",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -134,7 +153,19 @@
     "msg:158063",
     "2026-06-01 06:43:42",
     "msg:158064",
-    "2026-06-01 06:47:59"
+    "2026-06-01 06:47:59",
+    "msg:158070",
+    "2026-06-01 06:51:35",
+    "msg:158072",
+    "2026-06-01 06:53:11",
+    "msg:158076",
+    "2026-06-01 06:55:04",
+    "msg:158079",
+    "2026-06-01 06:57:20",
+    "msg:158088",
+    "2026-06-01 07:01:18",
+    "msg:158090",
+    "2026-06-01 07:02:47"
   ],
   "reply_log": [
     {
@@ -760,16 +791,72 @@
       "player": "Bre",
       "preview": "\"So like this is saying a lot knowing people I've been hanging around with, but ",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-01T06:54:13+00:00",
+      "pid": "66154",
+      "msg_id": "158070",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"Sounds a little mental to me.\" Kyomi giggles",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-01T06:54:20+00:00",
+      "pid": "66154",
+      "msg_id": "158072",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "Yummy shakes her head over and over and over again, \"this one is crazy.\" He whis",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-01T06:55:35+00:00",
+      "pid": "66154",
+      "msg_id": "158076",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"Are you all right? Are you on something? No regular cigarette that's for sure.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-01T06:58:41+00:00",
+      "pid": "66154",
+      "msg_id": "158079",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "Kyomi rolls her eyes, \"great another one in the Looney bin. Really got to keep a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-01T07:03:25+00:00",
+      "pid": "66154",
+      "msg_id": "158088",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"Oh my buddy Ratagen, I wasn't talking about you. I like your hair. It's very, u",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-01T07:03:55+00:00",
+      "pid": "66154",
+      "msg_id": "158090",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"you got to keep watching these guys as well? Lord Marlo told me to work with th",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 157610
+      "fingerprint": "2026-06-01 07:06:44|2026-06-01 07:07:17",
+      "msg_ids": [
+        158130
+      ],
+      "last_posted_at": "2026-06-01T12:58:40.396909+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

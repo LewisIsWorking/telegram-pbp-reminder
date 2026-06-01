@@ -90,7 +90,9 @@
       "2026-06-01T08:07:21.770676+00:00",
       "2026-06-01T08:07:21.772097+00:00",
       "2026-06-01T10:54:23.552489+00:00",
-      "2026-06-01T10:54:23.567366+00:00"
+      "2026-06-01T10:54:23.567366+00:00",
+      "2026-06-01T12:58:37.559329+00:00",
+      "2026-06-01T12:58:37.571204+00:00"
     ],
     "40585": [
       "2026-03-24T10:19:47.992600+00:00",
@@ -1157,7 +1159,13 @@
       "2026-06-01T10:54:23.574214+00:00",
       "2026-06-01T10:54:23.579591+00:00",
       "2026-06-01T10:54:23.580718+00:00",
-      "2026-06-01T10:54:23.581844+00:00"
+      "2026-06-01T10:54:23.581844+00:00",
+      "2026-06-01T12:58:37.561844+00:00",
+      "2026-06-01T12:58:37.563041+00:00",
+      "2026-06-01T12:58:37.565284+00:00",
+      "2026-06-01T12:58:37.567615+00:00",
+      "2026-06-01T12:58:37.573508+00:00",
+      "2026-06-01T12:58:37.574744+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1379,62 +1387,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.213055+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "154308"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.215574+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "154309"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.217386+00:00",
-      "player": "Anthony",
-      "preview": "[media]",
-      "msg_id": "154315"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.219240+00:00",
-      "player": "Laetheron",
-      "preview": "holy shit",
-      "msg_id": "154325"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.224697+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight steps forward magic in hand, flinging a series of h",
-      "msg_id": "154340"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.225821+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "154357"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.230956+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight will walk over to Bolan, a little saddened by his r",
-      "msg_id": "154370"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-18T02:50:31.234252+00:00",
-      "player": "Ryo",
-      "preview": "Cyrus will slowly walk into the room where Bolan was felled,",
-      "msg_id": "154375"
-    },
     {
       "pid": "51357",
       "time": "2026-05-18T02:50:31.235956+00:00",
@@ -2778,6 +2730,62 @@
       "player": "Bre",
       "preview": "\"So like this is saying a lot knowing people I've been hangi",
       "msg_id": "158064"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-06-01T12:58:37.559329+00:00",
+      "player": "Cannon",
+      "preview": "\"Such magic is despicable. None of us are superior to any ot",
+      "msg_id": "158065"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T12:58:37.561844+00:00",
+      "player": "Bre",
+      "preview": "\"Sounds a little mental to me.\" Kyomi giggles",
+      "msg_id": "158070"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T12:58:37.563041+00:00",
+      "player": "Bre",
+      "preview": "Yummy shakes her head over and over and over again, \"this on",
+      "msg_id": "158072"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T12:58:37.565284+00:00",
+      "player": "Bre",
+      "preview": "\"Are you all right? Are you on something? No regular cigaret",
+      "msg_id": "158076"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T12:58:37.567615+00:00",
+      "player": "Bre",
+      "preview": "Kyomi rolls her eyes, \"great another one in the Looney bin. ",
+      "msg_id": "158079"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-06-01T12:58:37.571204+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "63183"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T12:58:37.573508+00:00",
+      "player": "Bre",
+      "preview": "\"Oh my buddy Ratagen, I wasn't talking about you. I like you",
+      "msg_id": "158088"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-01T12:58:37.574744+00:00",
+      "player": "Bre",
+      "preview": "\"you got to keep watching these guys as well? Lord Marlo tol",
+      "msg_id": "158090"
     }
   ],
   "pending_potw_boons": {

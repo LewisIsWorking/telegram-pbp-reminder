@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 158127,
+      "thread_id": 137075,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-06-01T12:44:42+00:00",
+      "preview": "Master Cho, will move around sir squishy to get closer to dark Fay 3 and shoot at the fey twice.  The first arrow is a critical hit for 37 points + 5 from personal antithesis  (I do not know how to activate the critical hit deck)  The second arrow is a miss.  (end of turn)",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4138,10 +4147,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 158115
+      "fingerprint": "2026-06-01 12:44:42",
+      "msg_ids": [
+        158132
+      ],
+      "last_posted_at": "2026-06-01T12:58:46.282363+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
