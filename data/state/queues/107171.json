@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 158126,
-      "thread_id": 142887,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-06-01T11:09:03+00:00",
-      "preview": "I can try to help but I don't know what they can do",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -297,7 +287,9 @@
     "msg:154492",
     "2026-05-18 06:31:45",
     "msg:154907",
-    "2026-05-20 21:59:20"
+    "2026-05-20 21:59:20",
+    "msg:158126",
+    "2026-06-01 11:09:03"
   ],
   "reply_log": [
     {
@@ -1644,6 +1636,15 @@
       "player": "CzarChasm23",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-01T22:32:50+00:00",
+      "pid": "107171",
+      "msg_id": "158126",
+      "thread_id": 142887,
+      "player": "Chris Warlock",
+      "preview": "I can try to help but I don't know what they can do",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1656,12 +1657,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-06-01 11:09:03",
-      "msg_ids": [
-        158134
-      ],
-      "last_posted_at": "2026-06-01T12:58:48.933968+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 158212
     }
   }
 }
