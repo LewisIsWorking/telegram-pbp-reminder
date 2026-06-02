@@ -1,43 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 158218,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-02T00:39:21+00:00",
-      "preview": "Nadya dazes the thing and steps behind cover",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158228,
-      "thread_id": 144765,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-02T02:56:59+00:00",
-      "preview": "Complex turn that will require some gm interaction. Gonna Devise a Stratgem to toss an Ultrasonic Pulse at the nearest one. As a free action I'll Recall Knowledge at what is this? If the 12 fails, I can spend a Focus Point to turn that into a Success",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158232,
-      "thread_id": 144765,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-02T03:05:02+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158252,
-      "thread_id": 144765,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-02T06:40:37+00:00",
-      "preview": "Reaction to Focus Point a Guidance onto that to make it 13.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -329,7 +292,19 @@
     "msg:156557",
     "2026-05-26 08:23:25",
     "msg:158229",
-    "2026-06-02 02:57:58"
+    "2026-06-02 02:57:58",
+    "msg:158228",
+    "2026-06-02 02:56:59",
+    "msg:158218",
+    "2026-06-02 00:39:21",
+    "msg:158232",
+    "2026-06-02 03:05:02",
+    "msg:158252",
+    "2026-06-02 06:40:37",
+    "msg:158278",
+    "2026-06-02 08:41:13",
+    "msg:158280",
+    "2026-06-02 08:48:22"
   ],
   "reply_log": [
     {
@@ -1686,6 +1661,60 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-02T08:10:42+00:00",
+      "pid": "76799",
+      "msg_id": "158228",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "Complex turn that will require some gm interaction. Gonna Devise a Stratgem to t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-02T08:10:55+00:00",
+      "pid": "76799",
+      "msg_id": "158218",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "Nadya dazes the thing and steps behind cover",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-02T08:11:12+00:00",
+      "pid": "76799",
+      "msg_id": "158232",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-02T08:32:05+00:00",
+      "pid": "76799",
+      "msg_id": "158252",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "Reaction to Focus Point a Guidance onto that to make it 13.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-02T08:42:51+00:00",
+      "pid": "76799",
+      "msg_id": "158278",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "Focus point was to get the Recall Knowledge",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-02T08:49:14+00:00",
+      "pid": "76799",
+      "msg_id": "158280",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "That was just a basic \"What is this?\" Which is nameplate and basic description.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1698,11 +1727,10 @@
       "caught_up_msg_id": 157263
     },
     "144765": {
-      "fingerprint": "2026-06-02 00:39:21|2026-06-02 02:56:59|2026-06-02 03:05:02|2026-06-02 06:40:37",
-      "msg_ids": [
-        158262
-      ],
-      "last_posted_at": "2026-06-02T07:54:41.784943+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 158288
     }
   }
 }
