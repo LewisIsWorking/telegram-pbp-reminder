@@ -1,6 +1,34 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 158362,
+      "thread_id": 142887,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-06-02T19:23:47+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 158364,
+      "thread_id": 142887,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-06-02T19:26:19+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 158365,
+      "thread_id": 142887,
+      "user_id": "8787586972",
+      "user_name": "Chris Warlock",
+      "time": "2026-06-02T19:26:23+00:00",
+      "preview": "@PathWars",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1657,10 +1685,12 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 158212
+      "fingerprint": "2026-06-02 19:23:47|2026-06-02 19:26:19|2026-06-02 19:26:23",
+      "msg_ids": [
+        158369
+      ],
+      "last_posted_at": "2026-06-02T19:27:19.382157+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
