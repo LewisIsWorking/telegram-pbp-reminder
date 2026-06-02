@@ -1098,7 +1098,8 @@
       "2026-05-24T21:25:07.446508+00:00",
       "2026-05-24T21:25:07.451405+00:00",
       "2026-05-31T07:31:30.198567+00:00",
-      "2026-05-31T07:31:30.199007+00:00"
+      "2026-05-31T07:31:30.199007+00:00",
+      "2026-06-02T07:54:34.775282+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1388,13 +1389,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-05-18T03:21:35.888002+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "154377"
-    },
     {
       "pid": "51357",
       "time": "2026-05-18T03:21:35.893961+00:00",
@@ -2787,6 +2781,13 @@
       "player": "Chris Warlock",
       "preview": "I can try to help but I don't know what they can do",
       "msg_id": "158126"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-06-02T07:54:34.775282+00:00",
+      "player": "Chase",
+      "preview": "[media]",
+      "msg_id": "158229"
     }
   ],
   "pending_potw_boons": {
@@ -2815,7 +2816,8 @@
         "+1 circumstance bonus on your next skill check."
       ],
       "base_message": "Player of the Week for Riddleport: Bre Irish (@BreIrish)!\n(2026-05-25 (W22) to 2026-06-01 (W23))\n\n5 posts this week with an average gap of 5.1h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-06-01T05:48:30.651000+00:00"
+      "posted_at": "2026-06-01T05:48:30.651000+00:00",
+      "reminders_sent": 1
     }
   }
 }
