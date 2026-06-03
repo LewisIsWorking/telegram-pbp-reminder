@@ -140,16 +140,6 @@
       "last_post_time": "2026-05-21T14:03:00+00:00",
       "last_warned_week": 1
     },
-    "76799:7863964681": {
-      "user_id": "7863964681",
-      "first_name": "Link",
-      "last_name": "",
-      "username": "Linksanelf2006",
-      "campaign_name": "Magni Watch",
-      "pbp_topic_id": "76799",
-      "last_post_time": "2026-05-06T15:42:58+00:00",
-      "last_warned_week": 3
-    },
     "52083:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -567,6 +557,12 @@
       "first_name": "Link",
       "username": "Linksanelf2006",
       "campaign_name": "Kibwe"
+    },
+    "76799:7863964681": {
+      "removed_at": "2026-06-03T15:45:25.430127+00:00",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "campaign_name": "Magni Watch"
     }
   },
   "player_registry": {
@@ -1108,6 +1104,14 @@
       "name": "Buffet",
       "username": "buffetraider",
       "at": "2026-05-31T17:29:48.632542+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "76799",
+      "user_id": "7863964681",
+      "name": "Link",
+      "username": "Linksanelf2006",
+      "at": "2026-06-03T15:45:26.268779+00:00"
     }
   ],
   "player_boons": {
