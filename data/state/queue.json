@@ -95,9 +95,6 @@
       "2026-06-01T12:58:37.571204+00:00"
     ],
     "40585": [
-      "2026-03-24T11:19:06.209584+00:00",
-      "2026-03-24T11:19:06.210384+00:00",
-      "2026-03-24T11:19:06.210545+00:00",
       "2026-03-24T11:19:06.210752+00:00",
       "2026-03-24T11:19:06.210929+00:00",
       "2026-03-24T11:19:06.211089+00:00",
@@ -594,7 +591,10 @@
       "2026-06-01T08:07:22.280344+00:00",
       "2026-06-01T10:54:23.544699+00:00",
       "2026-06-01T10:54:23.550049+00:00",
-      "2026-06-05T09:21:18.131336+00:00"
+      "2026-06-05T09:21:18.131336+00:00",
+      "2026-06-05T18:49:20.829850+00:00",
+      "2026-06-05T18:49:20.843870+00:00",
+      "2026-06-05T18:49:20.848029+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1398,27 +1398,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-05-18T07:41:24.504590+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "154475"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-05-18T07:41:24.509996+00:00",
-      "player": "Anthony",
-      "preview": "We can move on. \nThe party came together to help all the boo",
-      "msg_id": "154086"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-05-18T07:41:24.511252+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "154493"
-    },
     {
       "pid": "107171",
       "time": "2026-05-18T11:29:10.438397+00:00",
@@ -2797,6 +2776,27 @@
       "player": "Bruce",
       "preview": "Master Cho, will move around sir squishy to get closer to da",
       "msg_id": "158127"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-05T18:49:20.829850+00:00",
+      "player": "Buffet",
+      "preview": "Tarsus holds his staff in front of him with both hands, then",
+      "msg_id": "158875"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-05T18:49:20.843870+00:00",
+      "player": "Buffet",
+      "preview": "Didn't know that was a thing.",
+      "msg_id": "158930"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-05T18:49:20.848029+00:00",
+      "player": "Buffet",
+      "preview": "Thought that was a GM only function lol",
+      "msg_id": "158931"
     }
   ],
   "pending_potw_boons": {
@@ -2827,6 +2827,19 @@
       "base_message": "Player of the Week for Riddleport: Bre Irish (@BreIrish)!\n(2026-05-25 (W22) to 2026-06-01 (W23))\n\n5 posts this week with an average gap of 5.1h between posts. The most consistent driver of the story.",
       "posted_at": "2026-06-01T05:48:30.651000+00:00",
       "reminders_sent": 2
+    },
+    "40585": {
+      "message_id": 158984,
+      "winner_user_id": "7130942567",
+      "campaign_name": "Kibwe",
+      "boons": [
+        "Clouds form a pattern that reminds you of a map you saw recently.",
+        "Your backup torch was stored better than you thought. Lights immediately.",
+        "Your bowstring holds despite looking frayed. One more shot.",
+        "Your next successful Strike deals 1 extra damage."
+      ],
+      "base_message": "Player of the Week for Kibwe: Buffet Raider (@buffetraider)!\n(2026-05-29 (W22) to 2026-06-05 (W23))\n\n5 posts this week with an average gap of 30.2h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-06-05T18:49:20.848296+00:00"
     }
   }
 }

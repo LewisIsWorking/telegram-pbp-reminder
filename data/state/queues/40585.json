@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 158875,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-06-05T14:55:15+00:00",
-      "preview": "Tarsus holds his staff in front of him with both hands, then pulls one back as if drawing a bow. A thread of energy forms in place of a bowstring and he releases it, sending a pulse of magical energy into his allies, quickening their pace. He then moves forward and says \"Get in close while they're down, try to get the hats away from them.\"\n\n2a Loose Time's Arrow (quickened stride/step next round for Daichi, Kieran, Cho, Awnii, Tarsus, and Fierce Leopard)\n1a move 30ft closer (game is paused)",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -741,7 +732,13 @@
     "msg:158013",
     "2026-06-01 06:04:57",
     "msg:158127",
-    "2026-06-01 12:44:42"
+    "2026-06-01 12:44:42",
+    "msg:158875",
+    "2026-06-05 14:55:15",
+    "msg:158930",
+    "2026-06-05 17:50:07",
+    "msg:158931",
+    "2026-06-05 17:50:19"
   ],
   "reply_log": [
     {
@@ -4152,18 +4149,43 @@
       "player": "Bruce",
       "preview": "Master Cho, will move around sir squishy to get closer to dark Fay 3 and shoot a",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-05T17:47:31+00:00",
+      "pid": "40585",
+      "msg_id": "158875",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus holds his staff in front of him with both hands, then pulls one back as i",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-05T18:06:57+00:00",
+      "pid": "40585",
+      "msg_id": "158930",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Didn't know that was a thing.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-05T18:07:19+00:00",
+      "pid": "40585",
+      "msg_id": "158931",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Thought that was a GM only function lol",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-05 14:55:15",
-      "msg_ids": [
-        158876
-      ],
-      "last_posted_at": "2026-06-05T15:10:36.097080+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 158985
     },
     "40585": {
       "fingerprint": "",
