@@ -120,16 +120,6 @@
       "last_post_time": "2026-05-12T11:34:21+00:00",
       "last_warned_week": 2
     },
-    "52083:8383886822": {
-      "user_id": "8383886822",
-      "first_name": "CzarChasm23",
-      "last_name": "\"Lowda Medina, Chik Spallchewer\"",
-      "username": "czarchasm23",
-      "campaign_name": "Hopeful End-Times",
-      "pbp_topic_id": "52083",
-      "last_post_time": "2026-05-08T04:18:44+00:00",
-      "last_warned_week": 3
-    },
     "40585:7842002561": {
       "user_id": "7842002561",
       "first_name": "Awnii",
@@ -558,6 +548,12 @@
       "removed_at": "2026-06-04T20:50:32.424286+00:00",
       "first_name": "Bruce",
       "username": "Ravnos1",
+      "campaign_name": "Hopeful End-Times"
+    },
+    "52083:8383886822": {
+      "removed_at": "2026-06-05T05:42:18.575707+00:00",
+      "first_name": "CzarChasm23",
+      "username": "czarchasm23",
       "campaign_name": "Hopeful End-Times"
     }
   },
@@ -1116,6 +1112,14 @@
       "name": "Bruce",
       "username": "Ravnos1",
       "at": "2026-06-04T20:50:33.284951+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "52083",
+      "user_id": "8383886822",
+      "name": "CzarChasm23",
+      "username": "czarchasm23",
+      "at": "2026-06-05T05:42:19.593348+00:00"
     }
   ],
   "player_boons": {
