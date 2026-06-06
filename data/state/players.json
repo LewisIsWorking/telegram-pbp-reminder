@@ -370,16 +370,6 @@
       "last_post_time": "2026-05-27T23:55:54+00:00",
       "last_warned_week": 1
     },
-    "1242:503940482": {
-      "user_id": "503940482",
-      "first_name": "Craig",
-      "last_name": "",
-      "username": "cmavb",
-      "campaign_name": "Dark Pockets",
-      "pbp_topic_id": "1242",
-      "last_post_time": "2026-05-09T21:18:48+00:00",
-      "last_warned_week": 3
-    },
     "25059:8787586972": {
       "user_id": "8787586972",
       "first_name": "Chris Warlock",
@@ -555,6 +545,12 @@
       "first_name": "CzarChasm23",
       "username": "czarchasm23",
       "campaign_name": "Hopeful End-Times"
+    },
+    "1242:503940482": {
+      "removed_at": "2026-06-06T21:29:20.302584+00:00",
+      "first_name": "Craig",
+      "username": "cmavb",
+      "campaign_name": "Dark Pockets"
     }
   },
   "player_registry": {
@@ -1120,6 +1116,14 @@
       "name": "CzarChasm23",
       "username": "czarchasm23",
       "at": "2026-06-05T05:42:19.593348+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "1242",
+      "user_id": "503940482",
+      "name": "Craig",
+      "username": "cmavb",
+      "at": "2026-06-06T21:29:21.155431+00:00"
     }
   ],
   "player_boons": {
