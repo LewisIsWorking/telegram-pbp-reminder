@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 159559,
+      "thread_id": 76799,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-06-07T15:25:04+00:00",
+      "preview": "Kitt walks over to the two bodies of the two workers who were attacked by the blood seekers, straightening their clothing and folded the brooch in the hands of the worker who had it on them. \n\n\"I do not know the deity you devote yourself to, but I beseech Lalaci to take you into his care, granting you rest and respite after a life of toil til you can be returned to your home and the lands you may find your true final rest.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -1864,10 +1874,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 159522
+      "fingerprint": "2026-06-07 15:25:04",
+      "msg_ids": [
+        159568
+      ],
+      "last_posted_at": "2026-06-07T15:36:36.945361+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
