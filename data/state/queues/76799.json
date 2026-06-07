@@ -2,78 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 158353,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-06-02T19:17:53+00:00",
-      "preview": "@PathWars",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158354,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-06-02T19:18:49+00:00",
-      "preview": "She then Strides next to it and attacks with her Eldritch Nails. (or at least I would if the game wasn't paused)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158355,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-02T19:19:00+00:00",
-      "preview": "mm",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158356,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-06-02T19:19:04+00:00",
-      "preview": "But she misses",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158357,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-02T19:19:06+00:00",
-      "preview": "you can unpause",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158358,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-02T19:19:23+00:00",
-      "preview": "it's a macro anyone can run",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158359,
-      "thread_id": 144765,
-      "user_id": "8787586972",
-      "user_name": "Chris Warlock",
-      "time": "2026-06-02T19:19:49+00:00",
-      "preview": "I see, didn't know that.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158360,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-02T19:19:50+00:00",
-      "preview": "the unpause thing threw me off for a while too lol",
-      "media_group_id": null
-    },
-    {
       "message_id": 158625,
       "thread_id": 76799,
       "user_id": "7454623139",
@@ -401,7 +329,23 @@
     "msg:158291",
     "2026-06-02 09:54:28",
     "msg:158352",
-    "2026-06-02 19:17:47"
+    "2026-06-02 19:17:47",
+    "msg:158353",
+    "2026-06-02 19:17:53",
+    "msg:158354",
+    "2026-06-02 19:18:49",
+    "msg:158355",
+    "2026-06-02 19:19:00",
+    "msg:158356",
+    "2026-06-02 19:19:04",
+    "msg:158357",
+    "2026-06-02 19:19:06",
+    "msg:158358",
+    "2026-06-02 19:19:23",
+    "msg:158359",
+    "2026-06-02 19:19:49",
+    "msg:158360",
+    "2026-06-02 19:19:50"
   ],
   "reply_log": [
     {
@@ -1839,6 +1783,78 @@
       "player": "Chris Warlock",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:27:33+00:00",
+      "pid": "76799",
+      "msg_id": "158353",
+      "thread_id": 144765,
+      "player": "Chris Warlock",
+      "preview": "@PathWars",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:27:52+00:00",
+      "pid": "76799",
+      "msg_id": "158354",
+      "thread_id": 144765,
+      "player": "Chris Warlock",
+      "preview": "She then Strides next to it and attacks with her Eldritch Nails. (or at least I ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:28:16+00:00",
+      "pid": "76799",
+      "msg_id": "158355",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "mm",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:28:28+00:00",
+      "pid": "76799",
+      "msg_id": "158356",
+      "thread_id": 144765,
+      "player": "Chris Warlock",
+      "preview": "But she misses",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:28:51+00:00",
+      "pid": "76799",
+      "msg_id": "158357",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "you can unpause",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:29:07+00:00",
+      "pid": "76799",
+      "msg_id": "158358",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "it's a macro anyone can run",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:29:25+00:00",
+      "pid": "76799",
+      "msg_id": "158359",
+      "thread_id": 144765,
+      "player": "Chris Warlock",
+      "preview": "I see, didn't know that.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T10:29:42+00:00",
+      "pid": "76799",
+      "msg_id": "158360",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "the unpause thing threw me off for a while too lol",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1853,12 +1869,10 @@
       "caught_up_msg_id": null
     },
     "144765": {
-      "fingerprint": "2026-06-02 19:17:53|2026-06-02 19:18:49|2026-06-02 19:19:00|2026-06-02 19:19:04|2026-06-02 19:19:06|2026-06-02 19:19:23|2026-06-02 19:19:49|2026-06-02 19:19:50",
-      "msg_ids": [
-        158616
-      ],
-      "last_posted_at": "2026-06-03T19:32:21.733998+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159485
     }
   }
 }
