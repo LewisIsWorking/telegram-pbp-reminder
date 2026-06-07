@@ -370,16 +370,6 @@
       "last_post_time": "2026-05-27T23:55:54+00:00",
       "last_warned_week": 1
     },
-    "25059:8787586972": {
-      "user_id": "8787586972",
-      "first_name": "Chris Warlock",
-      "last_name": "",
-      "username": "Sestina_The_Banner_Witch",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-05-10T00:27:04+00:00",
-      "last_warned_week": 3
-    },
     "51357:7454623139": {
       "user_id": "7454623139",
       "first_name": "Cannon",
@@ -551,6 +541,12 @@
       "first_name": "Craig",
       "username": "cmavb",
       "campaign_name": "Dark Pockets"
+    },
+    "25059:8787586972": {
+      "removed_at": "2026-06-07T01:18:53.483206+00:00",
+      "first_name": "Chris Warlock",
+      "username": "Sestina_The_Banner_Witch",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -1124,6 +1120,14 @@
       "name": "Craig",
       "username": "cmavb",
       "at": "2026-06-06T21:29:21.155431+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "8787586972",
+      "name": "Chris Warlock",
+      "username": "Sestina_The_Banner_Witch",
+      "at": "2026-06-07T01:18:53.895605+00:00"
     }
   ],
   "player_boons": {
