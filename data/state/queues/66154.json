@@ -1,43 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 158096,
-      "thread_id": 66154,
-      "user_id": "8770290576",
-      "user_name": "Bre",
-      "time": "2026-06-01T07:06:44+00:00",
-      "preview": "\"All I no is that Marlo told me to keep an eye on him. I'll help him of course, but the boss is going to have to pay me pretty big. I ain't no babysitter.\" Kyomi continue to pop on your cigarette until the cigarette was so small she couldn't talk anymore out. She tosses it on the ground and steps on it playing out the rest of the cigarette.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158097,
-      "thread_id": 66154,
-      "user_id": "8770290576",
-      "user_name": "Bre",
-      "time": "2026-06-01T07:07:17+00:00",
-      "preview": "\"why does it always have",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158182,
-      "thread_id": 66154,
-      "user_id": "6717906753",
-      "user_name": "Bo",
-      "time": "2026-06-01T22:00:16+00:00",
-      "preview": "\"Agreed. A sharp wit'll serve you better than a sharper blade. Still, I find it's best to be proficient with  both.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 158207,
-      "thread_id": 66154,
-      "user_id": "8770290576",
-      "user_name": "Bre",
-      "time": "2026-06-01T23:10:08+00:00",
-      "preview": "\"Yes I agree full hearty.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -183,7 +146,15 @@
     "msg:158088",
     "2026-06-01 07:01:18",
     "msg:158090",
-    "2026-06-01 07:02:47"
+    "2026-06-01 07:02:47",
+    "msg:158096",
+    "2026-06-01 07:06:44",
+    "msg:158097",
+    "2026-06-01 07:07:17",
+    "msg:158182",
+    "2026-06-01 22:00:16",
+    "msg:158207",
+    "2026-06-01 23:10:08"
   ],
   "reply_log": [
     {
@@ -863,18 +834,52 @@
       "player": "Bre",
       "preview": "\"you got to keep watching these guys as well? Lord Marlo told me to work with th",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-07T04:55:39+00:00",
+      "pid": "66154",
+      "msg_id": "158096",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"All I no is that Marlo told me to keep an eye on him. I'll help him of course, ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T04:56:32+00:00",
+      "pid": "66154",
+      "msg_id": "158097",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"why does it always have",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T04:56:47+00:00",
+      "pid": "66154",
+      "msg_id": "158182",
+      "thread_id": 66154,
+      "player": "Bo",
+      "preview": "\"Agreed. A sharp wit'll serve you better than a sharper blade. Still, I find it'",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T04:57:22+00:00",
+      "pid": "66154",
+      "msg_id": "158207",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"Yes I agree full hearty.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-06-01 07:06:44|2026-06-01 07:07:17|2026-06-01 22:00:16|2026-06-01 23:10:08",
-      "msg_ids": [
-        158210
-      ],
-      "last_posted_at": "2026-06-01T23:36:43.427021+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159259
     }
   }
 }

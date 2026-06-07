@@ -2,13 +2,13 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 158343,
+      "message_id": 159251,
       "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-02T17:11:09+00:00",
-      "preview": "[media]",
-      "media_group_id": "14243362152183836"
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-06-07T05:36:59+00:00",
+      "preview": "Rune shakes his head at the poor state Livy left that poor carrot before walking over and holding out his hand for the knife. Using his Telepathy Node he speaks to the idol in her mind. \"I'll handle the knife work, don't want an idol who is missing a finger.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -148,7 +148,12 @@
     "msg:154835",
     "2026-05-20 12:56:45",
     "msg:154836",
-    "2026-05-20 12:57:52"
+    "2026-05-20 12:57:52",
+    "msg:158343",
+    "2026-06-02 17:11:09",
+    "msg:158347",
+    "2026-06-02 17:42:38",
+    "msg:158344"
   ],
   "reply_log": [
     {
@@ -785,17 +790,44 @@
       "player": "Kaer'maga when?",
       "preview": "Roneless murmurs \"what have I done wrong to the gods\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-07T05:02:43+00:00",
+      "pid": "52083",
+      "msg_id": "158343",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T05:02:48+00:00",
+      "pid": "52083",
+      "msg_id": "158347",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-07T05:03:17+00:00",
+      "pid": "52083",
+      "msg_id": "158344",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-06-02 17:11:09|2026-06-02 17:11:09",
+      "fingerprint": "2026-06-07 05:36:59",
       "msg_ids": [
-        158347
+        159257
       ],
-      "last_posted_at": "2026-06-02T17:42:39.410108+00:00",
+      "last_posted_at": "2026-06-07T05:41:31.711337+00:00",
       "caught_up_msg_id": null
     }
   }

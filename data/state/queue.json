@@ -1176,7 +1176,11 @@
       "2026-06-01T12:58:37.565284+00:00",
       "2026-06-01T12:58:37.567615+00:00",
       "2026-06-01T12:58:37.573508+00:00",
-      "2026-06-01T12:58:37.574744+00:00"
+      "2026-06-01T12:58:37.574744+00:00",
+      "2026-06-07T05:41:24.608493+00:00",
+      "2026-06-07T05:41:24.611609+00:00",
+      "2026-06-07T05:41:24.612903+00:00",
+      "2026-06-07T05:41:24.614174+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1241,7 +1245,10 @@
       "2026-05-20T13:09:26.521655+00:00",
       "2026-05-21T15:15:59.337558+00:00",
       "2026-05-21T15:15:59.339117+00:00",
-      "2026-05-21T15:15:59.340383+00:00"
+      "2026-05-21T15:15:59.340383+00:00",
+      "2026-06-07T05:41:24.615513+00:00",
+      "2026-06-07T05:41:24.616775+00:00",
+      "2026-06-07T05:41:24.617966+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1398,55 +1405,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-05-18T11:29:10.438397+00:00",
-      "player": "Laetheron",
-      "preview": "A telepathic message from Arktos relays the capabilities of ",
-      "msg_id": "154492"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-19T03:19:45.822800+00:00",
-      "player": "Cannon",
-      "preview": "\"He was violent, and fanatic. We didn't learn very much Doct",
-      "msg_id": "154536"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-19T03:19:45.825772+00:00",
-      "player": "Ryo",
-      "preview": "Cyrus approaches holding out the diary.\n\n\"I did find his dia",
-      "msg_id": "154537"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-05-20T13:09:26.519072+00:00",
-      "player": "Anthony",
-      "preview": "\"Hear that Roneless. I guess we did a \u2605GOOD\u2605 job for being s",
-      "msg_id": "154518"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-05-20T13:09:26.521655+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Roneles says \"Yes\"",
-      "msg_id": "154627"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-20T13:09:26.524303+00:00",
-      "player": "Loaf",
-      "preview": "[media]",
-      "msg_id": "154786"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-20T13:09:26.525966+00:00",
-      "player": "Ryo",
-      "preview": "\"I might need to load up on some cold iron scraps in that ca",
-      "msg_id": "154572"
-    },
     {
       "pid": "25059",
       "time": "2026-05-20T13:09:27.277076+00:00",
@@ -2797,6 +2755,55 @@
       "player": "Buffet",
       "preview": "Thought that was a GM only function lol",
       "msg_id": "158931"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-07T05:41:24.608493+00:00",
+      "player": "Bre",
+      "preview": "\"All I no is that Marlo told me to keep an eye on him. I'll ",
+      "msg_id": "158096"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-07T05:41:24.611609+00:00",
+      "player": "Bre",
+      "preview": "\"why does it always have",
+      "msg_id": "158097"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-07T05:41:24.612903+00:00",
+      "player": "Bo",
+      "preview": "\"Agreed. A sharp wit'll serve you better than a sharper blad",
+      "msg_id": "158182"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-07T05:41:24.614174+00:00",
+      "player": "Bre",
+      "preview": "\"Yes I agree full hearty.\"",
+      "msg_id": "158207"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-06-07T05:41:24.615513+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "158343"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-06-07T05:41:24.616775+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "158347"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-06-07T05:41:24.617966+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "158344"
     }
   ],
   "pending_potw_boons": {
@@ -2812,7 +2819,7 @@
       ],
       "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-25 (W22) to 2026-06-01 (W23))\n\n17 posts this week with an average gap of 10.1h between posts. The most consistent driver of the story.",
       "posted_at": "2026-06-01T03:23:14.345032+00:00",
-      "reminders_sent": 2
+      "reminders_sent": 3
     },
     "66154": {
       "message_id": 157949,
