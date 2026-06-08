@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 159800,
+      "thread_id": 142887,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-06-08T17:00:11+00:00",
+      "preview": "I will decline hp reroll.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1712,10 +1722,12 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 159797
+      "fingerprint": "2026-06-08 17:00:11",
+      "msg_ids": [
+        159802
+      ],
+      "last_posted_at": "2026-06-08T18:04:19.623491+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
