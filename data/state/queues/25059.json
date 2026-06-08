@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 159607,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-06-07T19:01:35+00:00",
-      "preview": "Selenor says \"I have yet to meet a sane mortal who can use the Nothing's powers. We shall see if he is friend or foe. I must say tho. I hate that everyone just decided this month to seek me out. It feels like they are planning something and I hate it.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -334,7 +324,9 @@
     "msg:157633",
     "2026-05-31 20:18:18",
     "msg:157644",
-    "2026-05-31 20:34:44"
+    "2026-05-31 20:34:44",
+    "msg:159607",
+    "2026-06-07 19:01:35"
   ],
   "reply_log": [
     {
@@ -1785,16 +1777,23 @@
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"The reason I wanted to ask you on a date is because I have noticed",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T02:35:45+00:00",
+      "pid": "25059",
+      "msg_id": "159607",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "Selenor says \"I have yet to meet a sane mortal who can use the Nothing's powers.",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-06-07 19:01:35",
-      "msg_ids": [
-        159617
-      ],
-      "last_posted_at": "2026-06-07T19:38:02.822593+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159704
     }
   }
 }

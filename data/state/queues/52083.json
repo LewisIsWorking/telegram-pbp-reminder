@@ -18,15 +18,6 @@
       "time": "2026-06-07T15:12:28+00:00",
       "preview": "[media]",
       "media_group_id": null
-    },
-    {
-      "message_id": 159561,
-      "thread_id": 52083,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-07T15:33:13+00:00",
-      "preview": "question for this now do we still need to do all the rolls, now that i have access to my character again?>",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -177,7 +168,9 @@
     "msg:159263",
     "2026-06-07 05:47:06",
     "msg:159269",
-    "2026-06-07 05:50:49"
+    "2026-06-07 05:50:49",
+    "msg:159561",
+    "2026-06-07 15:33:13"
   ],
   "reply_log": [
     {
@@ -868,17 +861,26 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T02:37:05+00:00",
+      "pid": "52083",
+      "msg_id": "159561",
+      "thread_id": 52083,
+      "player": "Bruce",
+      "preview": "question for this now do we still need to do all the rolls, now that i have acce",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-06-07 14:28:32|2026-06-07 15:12:28|2026-06-07 15:33:13",
+      "fingerprint": "2026-06-07 14:28:32|2026-06-07 15:12:28",
       "msg_ids": [
-        159570
+        159701
       ],
-      "last_posted_at": "2026-06-07T15:36:41.608836+00:00",
+      "last_posted_at": "2026-06-08T03:23:08.149797+00:00",
       "caught_up_msg_id": null
     }
   }

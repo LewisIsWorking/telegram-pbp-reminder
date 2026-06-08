@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 159637,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-07T21:48:37+00:00",
-      "preview": "Illiani happily engages with the task of researching just about anything, and is naturally drawn to occult texts during the course of her time.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -197,7 +187,9 @@
     "msg:63183",
     "2024-12-02 15:16:43",
     "msg:65364",
-    "2024-12-19 14:43:21"
+    "2024-12-19 14:43:21",
+    "msg:159637",
+    "2026-06-07 21:48:37"
   ],
   "reply_log": [
     {
@@ -989,18 +981,25 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T02:08:07+00:00",
+      "pid": "51357",
+      "msg_id": "159637",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illiani happily engages with the task of researching just about anything, and is",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-06-07 21:48:37",
-      "msg_ids": [
-        159641
-      ],
-      "last_posted_at": "2026-06-07T22:30:20.712284+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159706
     },
     "145040": {
       "msg_ids": [],

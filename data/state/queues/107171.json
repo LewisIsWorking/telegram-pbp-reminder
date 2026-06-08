@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 159560,
-      "thread_id": 142887,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-07T15:31:30+00:00",
-      "preview": "Holis will act together with his holofighter taking 1 action for himself and 3 for his eidolon.  Holis will remain hidden behind the wall and The eidolon will attempt to disable the rift using its arcana and then fall back 25 feet.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -305,7 +295,9 @@
     "msg:158364",
     "2026-06-02 19:26:19",
     "msg:158365",
-    "2026-06-02 19:26:23"
+    "2026-06-02 19:26:23",
+    "msg:159560",
+    "2026-06-07 15:31:30"
   ],
   "reply_log": [
     {
@@ -1688,6 +1680,15 @@
       "player": "Chris Warlock",
       "preview": "@PathWars",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T02:36:36+00:00",
+      "pid": "107171",
+      "msg_id": "159560",
+      "thread_id": 142887,
+      "player": "Bruce",
+      "preview": "Holis will act together with his holofighter taking 1 action for himself and 3 f",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1700,12 +1701,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-06-07 15:31:30",
-      "msg_ids": [
-        159572
-      ],
-      "last_posted_at": "2026-06-07T15:36:45.342134+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159703
     }
   }
 }

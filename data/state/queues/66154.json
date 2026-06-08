@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 159626,
-      "thread_id": 66154,
-      "user_id": "5029858993",
-      "user_name": "Sasuken09",
-      "time": "2026-06-07T20:33:43+00:00",
-      "preview": "Xharyies had already talked to Marlo, and he'd given him permission to go with the group he'd just hired, since he'd voiced interest in it, which he thought it was weird... Well, all the better for Xharyies.\n\nUnfortunately, with this being one of his first experiences, he was unsure of how to proceed. \nHe approached the table the group was at and waved. \n\n\"Uuh... Hi! Hello! I happened to hear what you guys have been tasked with by Marlo and... I've talked to him and he said that if you wanted me",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -166,7 +156,9 @@
     "msg:158207",
     "2026-06-01 23:10:08",
     "msg:159273",
-    "2026-06-07 05:55:27"
+    "2026-06-07 05:55:27",
+    "msg:159626",
+    "2026-06-07 20:33:43"
   ],
   "reply_log": [
     {
@@ -891,18 +883,25 @@
       "player": "Bre",
       "preview": "\"It seems that way. At least they do. I'm pretty much a chaperone. Keeping an ey",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T02:34:19+00:00",
+      "pid": "66154",
+      "msg_id": "159626",
+      "thread_id": 66154,
+      "player": "Sasuken09",
+      "preview": "Xharyies had already talked to Marlo, and he'd given him permission to go with t",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-06-07 20:33:43",
-      "msg_ids": [
-        159628
-      ],
-      "last_posted_at": "2026-06-07T20:34:58.416250+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159707
     }
   }
 }

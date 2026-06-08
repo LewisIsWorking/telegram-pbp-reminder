@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 159547,
-      "thread_id": 40585,
-      "user_id": "7842002561",
-      "user_name": "Awnii",
-      "time": "2026-06-07T14:26:18+00:00",
-      "preview": "I want to join but my sheets not ready yet. And this appears to be progressing too rapidly for me to fix it.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -749,7 +740,9 @@
     "msg:158931",
     "2026-06-05 17:50:19",
     "msg:159445",
-    "2026-06-07 08:26:45"
+    "2026-06-07 08:26:45",
+    "msg:159547",
+    "2026-06-07 14:26:18"
   ],
   "reply_log": [
     {
@@ -4196,6 +4189,15 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T03:23:00.301178+00:00",
+      "pid": "40585",
+      "msg_id": "159547",
+      "thread_id": "40585",
+      "player": "Awnii Vihn",
+      "preview": "I want to join but my sheets not ready yet. And this appears to be progressing t",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
@@ -4208,12 +4210,10 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-07 14:26:18",
-      "msg_ids": [
-        159552
-      ],
-      "last_posted_at": "2026-06-07T14:42:20.973199+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159705
     }
   }
 }
