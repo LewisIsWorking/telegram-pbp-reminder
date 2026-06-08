@@ -1,25 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 159550,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-07T14:28:32+00:00",
-      "preview": "\"Naturally as i am the one and only \u2605SUPER DJ IDOL LIVY\u2605!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 159558,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-07T15:12:28+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -170,7 +151,11 @@
     "msg:159269",
     "2026-06-07 05:50:49",
     "msg:159561",
-    "2026-06-07 15:33:13"
+    "2026-06-07 15:33:13",
+    "msg:159550",
+    "2026-06-07 14:28:32",
+    "msg:159558",
+    "2026-06-07 15:12:28"
   ],
   "reply_log": [
     {
@@ -870,18 +855,34 @@
       "player": "Bruce",
       "preview": "question for this now do we still need to do all the rolls, now that i have acce",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T04:37:50+00:00",
+      "pid": "52083",
+      "msg_id": "159550",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"Naturally as i am the one and only \u2605SUPER DJ IDOL LIVY\u2605!\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-08T04:37:58+00:00",
+      "pid": "52083",
+      "msg_id": "159558",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-06-07 14:28:32|2026-06-07 15:12:28",
-      "msg_ids": [
-        159701
-      ],
-      "last_posted_at": "2026-06-08T03:23:08.149797+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159734
     }
   }
 }

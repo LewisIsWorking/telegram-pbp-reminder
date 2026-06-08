@@ -1271,7 +1271,9 @@
       "2026-06-07T07:37:03.197846+00:00",
       "2026-06-07T07:37:03.203115+00:00",
       "2026-06-07T07:37:03.206994+00:00",
-      "2026-06-08T03:23:00.936733+00:00"
+      "2026-06-08T03:23:00.936733+00:00",
+      "2026-06-08T05:45:53.612645+00:00",
+      "2026-06-08T05:45:53.614133+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1428,20 +1430,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-05-24T17:27:08.262413+00:00",
-      "player": "Cannon",
-      "preview": "Consciously shaking herself out of a despondent sadness brou",
-      "msg_id": "155235"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-24T19:35:00.561222+00:00",
-      "player": "Chris Warlock",
-      "preview": "Natalia nods and then proceeds to cast Rousing Splash on any",
-      "msg_id": "155522"
-    },
     {
       "pid": "66154",
       "time": "2026-05-24T19:35:00.562299+00:00",
@@ -2827,23 +2815,23 @@
       "player": "Bruce",
       "preview": "question for this now do we still need to do all the rolls, ",
       "msg_id": "159561"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-06-08T05:45:53.612645+00:00",
+      "player": "Anthony",
+      "preview": "\"Naturally as i am the one and only \u2605SUPER DJ IDOL LIVY\u2605!\"",
+      "msg_id": "159550"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-06-08T05:45:53.614133+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "159558"
     }
   ],
   "pending_potw_boons": {
-    "25059": {
-      "message_id": 157806,
-      "winner_user_id": "5443237599",
-      "campaign_name": "Doomsday Funtime",
-      "boons": [
-        "A water barrel in the courtyard provides both cover and a source of drinking water.",
-        "A ley line pulses beneath your feet. Your next spell feels effortless.",
-        "Your scout returns with intel that changes the entire tactical picture.",
-        "+1 circumstance bonus on your next skill check."
-      ],
-      "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-05-25 (W22) to 2026-06-01 (W23))\n\n17 posts this week with an average gap of 10.1h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-06-01T03:23:14.345032+00:00",
-      "reminders_sent": 3
-    },
     "66154": {
       "message_id": 157949,
       "winner_user_id": "8770290576",

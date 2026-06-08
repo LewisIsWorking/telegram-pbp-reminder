@@ -1,8 +1,8 @@
 {
-  "offset": 619342549,
+  "offset": 619342578,
   "topics": {
     "52083": {
-      "last_message_time": "2026-06-08T02:37:05+00:00",
+      "last_message_time": "2026-06-08T04:37:58+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
@@ -14,9 +14,9 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-06-08T02:08:21+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-06-08T05:03:43+00:00",
+      "last_user": "Laetheron",
+      "last_user_id": "8117756377",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -50,7 +50,7 @@
       "campaign_name": "Theria"
     },
     "1242": {
-      "last_message_time": "2026-06-07T10:31:33+00:00",
+      "last_message_time": "2026-06-08T04:30:15+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Dark Pockets"
@@ -64,7 +64,7 @@
     "107171": "2026-06-06T21:29:20.302584+00:00",
     "40585": "2026-06-06T18:36:50.023629+00:00",
     "76799": "2026-06-07T07:37:03.828693+00:00",
-    "107151": "2026-06-07T05:41:25.215222+00:00",
+    "107151": "2026-06-08T05:45:54.206191+00:00",
     "1242": "2026-06-06T10:44:26.488927+00:00"
   },
   "last_roster": {
@@ -139,7 +139,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-06-05T17:42:17.209712+00:00",
-  "last_daily_tip": "2026-06-07T05:41:25.215222+00:00",
+  "last_daily_tip": "2026-06-08T05:45:54.206191+00:00",
   "used_tip_indices": [
     9,
     31,
@@ -165,7 +165,8 @@
     29,
     21,
     32,
-    8
+    8,
+    24
   ],
   "last_pace_drop_check": "2026-06-05T17:42:17.209712+00:00",
   "dying_alerts_sent": {
@@ -231,9 +232,9 @@
       }
     }
   },
-  "last_state_backup": "2026-06-07T05:41:25.215222+00:00",
+  "last_state_backup": "2026-06-08T05:45:54.206191+00:00",
   "last_queue_daily": "2026-06-07",
-  "last_queue_fingerprint": "52083:2026-06-07 14:28:32|52083:2026-06-07 15:12:28|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|silent:  \ud83d\udfeb \ud83e\udd84 C08: Theria \u2014 no posts for 14d 9h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "51357:2026-06-08 05:03:43|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|silent:  \ud83d\udfeb \ud83e\udd84 C08: Theria \u2014 no posts for 14d 11h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -318,14 +319,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-01",
-  "last_queue_pin_id": 159708,
-  "queue_post_count": 707,
+  "last_queue_pin_id": 159735,
+  "queue_post_count": 708,
   "gm_queue_history": [
     {
       "msg_ids": [
-        159708
+        159735
       ],
-      "pin_id": 159708
+      "pin_id": 159735
     }
   ]
 }
