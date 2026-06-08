@@ -94,7 +94,9 @@
       "2026-06-01T12:58:37.559329+00:00",
       "2026-06-01T12:58:37.571204+00:00",
       "2026-06-07T11:39:19.762314+00:00",
-      "2026-06-08T03:23:00.929524+00:00"
+      "2026-06-08T03:23:00.929524+00:00",
+      "2026-06-08T08:01:55.243484+00:00",
+      "2026-06-08T08:01:55.245284+00:00"
     ],
     "40585": [
       "2026-03-24T11:19:06.211089+00:00",
@@ -1430,20 +1432,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "66154",
-      "time": "2026-05-24T19:35:00.562299+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "After Marlo says that, he can see how Necrila posture seems ",
-      "msg_id": "155539"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-05-24T20:27:50.277118+00:00",
-      "player": "Cannon",
-      "preview": "Illiani stumbles over the doctor's words for a moment.\n\n\"H -",
-      "msg_id": "155541"
-    },
     {
       "pid": "66154",
       "time": "2026-05-24T20:27:50.842924+00:00",
@@ -2829,23 +2817,23 @@
       "player": "Anthony",
       "preview": "[media]",
       "msg_id": "159558"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-06-08T08:01:55.243484+00:00",
+      "player": "Laetheron",
+      "preview": "Twilight tries to help with the research, lending their long",
+      "msg_id": "159723"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-06-08T08:01:55.245284+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "159738"
     }
   ],
   "pending_potw_boons": {
-    "66154": {
-      "message_id": 157949,
-      "winner_user_id": "8770290576",
-      "campaign_name": "Riddleport",
-      "boons": [
-        "The ship's navigator discovers a shorter route that avoids the storm.",
-        "The next challenge you face has been faced by someone who left detailed notes.",
-        "An ally's missed attack distracts the enemy enough for your hit to land.",
-        "+1 circumstance bonus on your next skill check."
-      ],
-      "base_message": "Player of the Week for Riddleport: Bre Irish (@BreIrish)!\n(2026-05-25 (W22) to 2026-06-01 (W23))\n\n5 posts this week with an average gap of 5.1h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-06-01T05:48:30.651000+00:00",
-      "reminders_sent": 3
-    },
     "40585": {
       "message_id": 158984,
       "winner_user_id": "7130942567",

@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 159723,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-06-08T05:03:43+00:00",
-      "preview": "Twilight tries to help with the research, lending their long planty-expertise to the cause.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -199,7 +189,11 @@
     "msg:65364",
     "2024-12-19 14:43:21",
     "msg:159637",
-    "2026-06-07 21:48:37"
+    "2026-06-07 21:48:37",
+    "msg:159723",
+    "2026-06-08 05:03:43",
+    "msg:159738",
+    "2026-06-08 06:17:41"
   ],
   "reply_log": [
     {
@@ -1000,18 +994,34 @@
       "player": "Cannon",
       "preview": "Illiani happily engages with the task of researching just about anything, and is",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-08T06:18:00+00:00",
+      "pid": "51357",
+      "msg_id": "159723",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight tries to help with the research, lending their long planty-expertise to",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-08T06:18:07+00:00",
+      "pid": "51357",
+      "msg_id": "159738",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-06-08 05:03:43",
-      "msg_ids": [
-        159732
-      ],
-      "last_posted_at": "2026-06-08T05:46:02.340046+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159747
     },
     "145040": {
       "msg_ids": [],
