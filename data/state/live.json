@@ -1,5 +1,5 @@
 {
-  "offset": 619342642,
+  "offset": 619342646,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-08T04:37:58+00:00",
@@ -8,9 +8,9 @@
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-06-08T02:34:19+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-06-08T21:14:30+00:00",
+      "last_user": "Sasuken09",
+      "last_user_id": "5029858993",
       "campaign_name": "Riddleport"
     },
     "51357": {
@@ -38,9 +38,9 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-06-07T18:55:37+00:00",
-      "last_user": "Cannon",
-      "last_user_id": "7454623139",
+      "last_message_time": "2026-06-08T21:06:45+00:00",
+      "last_user": "Chase",
+      "last_user_id": "8353586922",
       "campaign_name": "Magni Guard"
     },
     "107151": {
@@ -233,8 +233,8 @@
     }
   },
   "last_state_backup": "2026-06-08T05:45:54.206191+00:00",
-  "last_queue_daily": "2026-06-07",
-  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|silent:  \u26ab \ud83e\udd84 C08: Theria \u2014 no posts for 15d 3h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_daily": "2026-06-08",
+  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|66154:2026-06-08 21:14:30|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|76799:2026-06-08 21:06:45|silent:  \u26ab \ud83e\udd84 C08: Theria \u2014 no posts for 15d 3h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -294,7 +294,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-06-07",
   "last_queue_daily_slots": [
-    "2026-05-31:09",
     "2026-05-31:21",
     "2026-06-02:09",
     "2026-06-02:21",
@@ -307,7 +306,8 @@
     "2026-06-06:09",
     "2026-06-06:21",
     "2026-06-07:09",
-    "2026-06-07:21"
+    "2026-06-07:21",
+    "2026-06-08:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-07",
@@ -319,14 +319,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-08",
-  "last_queue_pin_id": 159813,
-  "queue_post_count": 716,
+  "last_queue_pin_id": 159822,
+  "queue_post_count": 717,
   "gm_queue_history": [
     {
       "msg_ids": [
-        159813
+        159822
       ],
-      "pin_id": 159813
+      "pin_id": 159822
     }
   ]
 }
