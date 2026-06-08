@@ -1,5 +1,5 @@
 {
-  "offset": 619342613,
+  "offset": 619342635,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-08T04:37:58+00:00",
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-06-08T12:31:50+00:00",
-      "last_user": "Bruce",
-      "last_user_id": "7077683276",
+      "last_message_time": "2026-06-08T15:58:10+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -110,7 +110,7 @@
   "last_roster_snapshot": "C01:4/6|C00:6/6|C04:5/6|C05:4/6|C06:7/6|C07:4/6|C09:5/6|C08:2/4|C11:2/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-06-08T03:23:00.936980+00:00"
+    "last_at": "2026-06-08T16:28:08.059643+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-05-28T13:31:19.783139+00:00",
@@ -234,7 +234,7 @@
   },
   "last_state_backup": "2026-06-08T05:45:54.206191+00:00",
   "last_queue_daily": "2026-06-07",
-  "last_queue_fingerprint": "107171:2026-06-08 12:31:50|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|silent:  \ud83d\udfeb \ud83e\udd84 C08: Theria \u2014 no posts for 14d 20h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|silent:  \ud83d\udfeb \ud83e\udd84 C08: Theria \u2014 no posts for 14d 22h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -319,14 +319,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-08",
-  "last_queue_pin_id": 159776,
-  "queue_post_count": 712,
+  "last_queue_pin_id": 159798,
+  "queue_post_count": 713,
   "gm_queue_history": [
     {
       "msg_ids": [
-        159776
+        159798
       ],
-      "pin_id": 159776
+      "pin_id": 159798
     }
   ]
 }
