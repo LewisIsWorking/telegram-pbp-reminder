@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 159840,
-      "thread_id": 66154,
-      "user_id": "8770290576",
-      "user_name": "Bre",
-      "time": "2026-06-09T01:40:34+00:00",
-      "preview": "\"So what's your name again?\" Kyomi smirks. Cardigan is just joking around with you. Bad sense of humor you know.\" Kyomi lights another cigarette. \"I'm Kyomi Li Sung an original member of Marlo's crew.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -170,7 +160,13 @@
     "msg:159626",
     "2026-06-07 20:33:43",
     "msg:159817",
-    "2026-06-08 21:14:30"
+    "2026-06-08 21:14:30",
+    "msg:159840",
+    "2026-06-09 01:40:34",
+    "msg:159861",
+    "2026-06-09 06:14:56",
+    "msg:159868",
+    "2026-06-09 07:20:26"
   ],
   "reply_log": [
     {
@@ -913,18 +909,43 @@
       "player": "Sasuken09",
       "preview": "\"Hi!\"\nHe tilts his head slightly and looks at Cardigan.\n\"So... Uh... Is that exc",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-09T06:10:05+00:00",
+      "pid": "66154",
+      "msg_id": "159840",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"So what's your name again?\" Kyomi smirks. Cardigan is just joking around with y",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-09T07:02:50+00:00",
+      "pid": "66154",
+      "msg_id": "159861",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"A wizard? Who is this wizard?\" Kyomi asks as her ears perk up. \"What has this w",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-09T07:23:10+00:00",
+      "pid": "66154",
+      "msg_id": "159868",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "\"Oh. Well that's a real problem I guess.\" Kyomi looks at Cardigan, then sighs. \"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-06-09 01:40:34",
-      "msg_ids": [
-        159854
-      ],
-      "last_posted_at": "2026-06-09T05:32:47.286743+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 159872
     }
   }
 }

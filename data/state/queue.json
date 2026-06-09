@@ -1204,7 +1204,10 @@
       "2026-06-07T05:41:24.614174+00:00",
       "2026-06-07T12:44:24.990597+00:00",
       "2026-06-08T03:23:00.931082+00:00",
-      "2026-06-09T05:32:38.911899+00:00"
+      "2026-06-09T05:32:38.911899+00:00",
+      "2026-06-09T07:29:13.304415+00:00",
+      "2026-06-09T07:29:13.309701+00:00",
+      "2026-06-09T07:29:13.312389+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1435,27 +1438,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-05-24T20:27:50.851870+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "155695"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-24T21:25:07.446508+00:00",
-      "player": "Cannon",
-      "preview": "Nadya carefully follows Changer and directs his movements as",
-      "msg_id": "155721"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-05-24T21:25:07.451405+00:00",
-      "player": "Cannon",
-      "preview": "\"Try to see if it's rigged somehow first, please.\"",
-      "msg_id": "155724"
-    },
     {
       "pid": "25059",
       "time": "2026-05-24T21:25:07.454264+00:00",
@@ -2834,6 +2816,27 @@
       "player": "Sasuken09",
       "preview": "\"Hi!\"\nHe tilts his head slightly and looks at Cardigan.\n\"So.",
       "msg_id": "159817"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-09T07:29:13.304415+00:00",
+      "player": "Bre",
+      "preview": "\"So what's your name again?\" Kyomi smirks. Cardigan is just ",
+      "msg_id": "159840"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-09T07:29:13.309701+00:00",
+      "player": "Bre",
+      "preview": "\"A wizard? Who is this wizard?\" Kyomi asks as her ears perk ",
+      "msg_id": "159861"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-06-09T07:29:13.312389+00:00",
+      "player": "Bre",
+      "preview": "\"Oh. Well that's a real problem I guess.\" Kyomi looks at Car",
+      "msg_id": "159868"
     }
   ],
   "pending_potw_boons": {}
