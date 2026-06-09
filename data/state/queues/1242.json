@@ -18,6 +18,15 @@
       "time": "2026-06-09T19:43:46+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 2683,
+      "thread_id": 1242,
+      "user_id": "6464119705",
+      "user_name": "Luke",
+      "time": "2026-06-09T20:52:07+00:00",
+      "preview": "Unreplied 1???",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1682,11 +1691,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-06-09 19:39:50",
+      "fingerprint": "2026-06-09 19:39:50|2026-06-09 20:52:07",
       "msg_ids": [
-        2679
+        2684
       ],
-      "last_posted_at": "2026-06-09T20:48:48.087205+00:00",
+      "last_posted_at": "2026-06-09T21:40:18.018418+00:00",
       "caught_up_msg_id": null
     },
     "1825": {
