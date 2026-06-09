@@ -1,6 +1,25 @@
 {
   "pid": "1242",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 2671,
+      "thread_id": 1242,
+      "user_id": "6464119705",
+      "user_name": "Luke",
+      "time": "2026-06-09T19:39:50+00:00",
+      "preview": "What\u2019s next? X 6",
+      "media_group_id": null
+    },
+    {
+      "message_id": 2673,
+      "thread_id": 1825,
+      "user_id": "6464119705",
+      "user_name": "Luke",
+      "time": "2026-06-09T19:43:46+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -1663,16 +1682,20 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 2501
+      "fingerprint": "2026-06-09 19:39:50",
+      "msg_ids": [
+        2679
+      ],
+      "last_posted_at": "2026-06-09T20:48:48.087205+00:00",
+      "caught_up_msg_id": null
     },
     "1825": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 2523
+      "msg_ids": [
+        2681
+      ],
+      "fingerprint": "2026-06-09 19:43:46",
+      "last_posted_at": "2026-06-09T20:48:51.625491+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
