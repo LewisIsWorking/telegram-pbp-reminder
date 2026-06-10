@@ -1,34 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2671,
-      "thread_id": 1242,
-      "user_id": "6464119705",
-      "user_name": "Luke",
-      "time": "2026-06-09T19:39:50+00:00",
-      "preview": "What\u2019s next? X 6",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2673,
-      "thread_id": 1825,
-      "user_id": "6464119705",
-      "user_name": "Luke",
-      "time": "2026-06-09T19:43:46+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 2683,
-      "thread_id": 1242,
-      "user_id": "6464119705",
-      "user_name": "Luke",
-      "time": "2026-06-09T20:52:07+00:00",
-      "preview": "Unreplied 1???",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -303,7 +275,13 @@
     "msg:2519",
     "2026-05-12 21:54:37",
     "msg:2580",
-    "2026-05-18 02:32:25"
+    "2026-05-18 02:32:25",
+    "msg:2673",
+    "2026-06-09 19:43:46",
+    "msg:2671",
+    "2026-06-09 19:39:50",
+    "msg:2683",
+    "2026-06-09 20:52:07"
   ],
   "reply_log": [
     {
@@ -1685,26 +1663,49 @@
       "player": "NJ",
       "preview": "Nariya eats some tapestry in the monastery and chokes and dies \ud83d\udc80 \u2620\ufe0f",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-10T05:56:07+00:00",
+      "pid": "1242",
+      "msg_id": "2673",
+      "thread_id": 1825,
+      "player": "Luke",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-10T05:56:21+00:00",
+      "pid": "1242",
+      "msg_id": "2671",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "What\u2019s next? X 6",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-10T05:56:24+00:00",
+      "pid": "1242",
+      "msg_id": "2683",
+      "thread_id": 1242,
+      "player": "Luke",
+      "preview": "Unreplied 1???",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-06-09 19:39:50|2026-06-09 20:52:07",
-      "msg_ids": [
-        2684
-      ],
-      "last_posted_at": "2026-06-09T21:40:18.018418+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 2691
     },
     "1825": {
-      "msg_ids": [
-        2681
-      ],
-      "fingerprint": "2026-06-09 19:43:46",
-      "last_posted_at": "2026-06-09T20:48:51.625491+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 2692
     }
   }
 }
