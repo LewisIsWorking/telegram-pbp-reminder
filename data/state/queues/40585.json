@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 160179,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-06-10T01:03:41+00:00",
+      "preview": "Fierce Leopard steps forward after they find the stone doors to the temple jammed, putting his shield and flail down. Reaching into his backpack he pulls out a crowbar.\n\n\"I've got this, just be ready in case someone is on the other side of this door.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4210,10 +4219,12 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 159705
+      "fingerprint": "2026-06-10 01:03:41",
+      "msg_ids": [
+        160193
+      ],
+      "last_posted_at": "2026-06-10T01:16:12.024525+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
