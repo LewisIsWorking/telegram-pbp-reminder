@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 160747,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-12T15:52:25+00:00",
+      "preview": "\"Aww I get it. You want some womanly help \ud83d\ude09 . Don't worry, I , the one and only \u2605SUPER IDOL LIVY\u2605 will lend you my aid.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -879,10 +889,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 159734
+      "fingerprint": "2026-06-12 15:52:25",
+      "msg_ids": [
+        160785
+      ],
+      "last_posted_at": "2026-06-12T17:09:24.398364+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
