@@ -35,6 +35,7 @@ PARTITIONS: dict[str, list[str]] = {
     ],
     "queue": [
         "queue_history", "queue_archive", "pending_potw_boons",
+        "pending_hero_points",
     ],
     "activity": [
         "post_timestamps", "message_counts", "activity_hours",
@@ -54,6 +55,7 @@ DEFAULT_STATE: dict = {
     "removed_players": {}, "player_history": [], "message_counts": {}, "last_roster": {},
     "post_timestamps": {}, "last_potw": {}, "last_pace": {},
     "last_anniversary": {}, "combat": {}, "pending_potw_boons": {},
+    "pending_hero_points": {},
     "last_leaderboard": None, "last_recruitment_check": {}, "last_roster_nudge": None, "last_roster_snapshot": None, "gm_escalation": {},
     # Trackers (written by in-game commands)
     "characters": {}, "away": {}, "paused_campaigns": {},

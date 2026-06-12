@@ -153,3 +153,38 @@ def test_process_hero_campaign_callback_no_pending():
     from boons.hero_point import process_hero_campaign_callback
     cb = {"data": "herocampaign:U1:100", "from": {"id": "U1"}, "message": {}}
     assert process_hero_campaign_callback(cb, _hp_config(), {}) is False
+
+
+def test_pending_hero_points_survives_state_round_trip(tmp_path):
+    """Regression: the picker writes pending_hero_points; it MUST persist.
+
+    The bot runs on an hourly cron — the button is created on one run and
+    tapped (handled) on a later run, so the pending entry has to survive a
+    save/load cycle. Before pending_hero_points was added to the queue
+    partition, save() silently dropped it and every Hero Point button was
+    a no-op on the next run. See state.py PARTITIONS.
+    """
+    import state as state_mod
+    from boons.hero_point import (post_hero_point_picker,
+                                  process_hero_campaign_callback)
+
+    state = _hp_state()
+    with patch("boons.hero_point.tg.send_message_with_buttons"):
+        post_hero_point_picker("U1", "Chase", _hp_config(), state)
+    assert "U1" in state["pending_hero_points"]
+
+    # Persist and reload exactly as the cron does between runs.
+    with patch("state._state_dir", return_value=tmp_path):
+        state_mod._loaded_ok = True
+        state_mod._save_to_files(state)
+        reloaded = state_mod._load_from_files()
+
+    assert reloaded.get("pending_hero_points", {}).get("U1"), \
+        "pending_hero_points was dropped on save — button would be a no-op"
+
+    # And the reloaded pending entry actually lets the callback fire.
+    cb = {"data": "herocampaign:U1:100", "from": {"id": "U1"},
+          "message": {"chat": {"id": -1001}, "message_id": 42}}
+    with patch("boons.hero_point.tg.edit_message"), \
+         patch("boons.hero_point.tg.send_message"):
+        assert process_hero_campaign_callback(cb, _hp_config(), reloaded) is True

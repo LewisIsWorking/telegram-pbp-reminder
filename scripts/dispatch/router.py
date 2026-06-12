@@ -15,6 +15,7 @@ from dispatch import cmd_info, cmd_info_ext, cmd_gm, cmd_trackers, cmd_trackers_
 from commands.markdone import handle_markdone as _handle_markdone
 from dispatch import cmd_conditions_hp, cmd_clocks, cmd_votes_timers
 from dispatch import cmd_player
+from dispatch import cmd_heropoint
 from dispatch.tracking import track_message
 from dispatch.bot_topic import handle_bot_topic_cmd
 from dispatch.help_text import _HELP_TEXT
@@ -27,6 +28,7 @@ _HANDLERS = [
     cmd_trackers.handle, cmd_trackers_items.handle,
     cmd_conditions_hp.handle, cmd_clocks.handle,
     cmd_votes_timers.handle, cmd_player.handle,
+    cmd_heropoint.handle,
     _handle_markdone,
 ]
 

@@ -63,6 +63,15 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         handle_search(args, group_id, bot_topic, tg)
         return
 
+    # /heropoint — MVP claims their Hero Point by campaign name/code. Not a
+    # read command (it mutates pending_hero_points), so it gets its own branch
+    # here rather than falling through to the read-only dispatch below.
+    if cmd_word == "/heropoint":
+        from dispatch.cmd_heropoint import handle_bot_topic as _hp_bot
+        print(f"Bot topic: /heropoint from {user_name}: {args}")
+        _hp_bot(args, user_id, user_name, config, state, group_id, bot_topic)
+        return
+
     # /chooseboon REMOVED 2026-05-11. Boon selection moved to
     # the website. See scripts/scheduled/potw.py for the new flow.
 
