@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 160993,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-13T11:55:38+00:00",
-      "preview": "Anna's eyes narrow a bit, but she doesn't change her posture, for now anyway.\n\n\"I'm Anna Fiala. Been around here for some weeks... and just when I was trying to get in library, everything goes up in flames! I saved a couple of people on the way, but the fires seem to be quite strong here. Maybe the source is around somewhere?\" She places one hand on a hip during it and puts the spear over her shoulders. \"You folk seem to be ready for some fight too!\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -759,7 +750,9 @@
     "msg:160968",
     "2026-06-13 10:37:38",
     "msg:160983",
-    "2026-06-13 11:17:40"
+    "2026-06-13 11:17:40",
+    "msg:160993",
+    "2026-06-13 11:55:38"
   ],
   "reply_log": [
     {
@@ -4251,6 +4244,15 @@
       "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "preview": "The landing goes as smoothly as expected. White-haired woman slides down the spe",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-13T13:10:47+00:00",
+      "pid": "40585",
+      "msg_id": "160993",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "Anna's eyes narrow a bit, but she doesn't change her posture, for now anyway.\n\n\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4263,12 +4265,10 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-13 11:55:38",
-      "msg_ids": [
-        160995
-      ],
-      "last_posted_at": "2026-06-13T12:49:11.181573+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161008
     }
   }
 }
