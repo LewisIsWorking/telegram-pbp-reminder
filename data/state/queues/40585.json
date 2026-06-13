@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 160968,
+      "thread_id": 40585,
+      "user_id": "1395063293",
+      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "time": "2026-06-13T10:37:38+00:00",
+      "preview": "Anna was definitely NOT having a greatest of days. First, she woke up with a little hangover from the wine she endulged in yesterday. Second, the bed had no one but her in it, even if she remembered making out with someone yesterday... yeah, too many drinks if her memories were so hazy...\n\nThen, the library she was trying to get in turned out to be locked - even if she made quite an advance before to get in. Seems like the curse of this city, whatever it was, kept scaring the people more and mor",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4232,10 +4241,12 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 160248
+      "fingerprint": "2026-06-13 10:37:38",
+      "msg_ids": [
+        160976
+      ],
+      "last_posted_at": "2026-06-13T10:54:55.590749+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
