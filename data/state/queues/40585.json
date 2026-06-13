@@ -18,21 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 160968,
+      "message_id": 160993,
       "thread_id": 40585,
       "user_id": "1395063293",
       "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-13T10:37:38+00:00",
-      "preview": "Anna was definitely NOT having a greatest of days. First, she woke up with a little hangover from the wine she endulged in yesterday. Second, the bed had no one but her in it, even if she remembered making out with someone yesterday... yeah, too many drinks if her memories were so hazy...\n\nThen, the library she was trying to get in turned out to be locked - even if she made quite an advance before to get in. Seems like the curse of this city, whatever it was, kept scaring the people more and mor",
-      "media_group_id": null
-    },
-    {
-      "message_id": 160983,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-13T11:17:40+00:00",
-      "preview": "The landing goes as smoothly as expected. White-haired woman slides down the spear like a nice pole, and looks at guards and other people, twirling the spear into non-threatening display. Now, when she's on the ground, you can spot several colourful feathers sticking (or growing?) out of her hairs, as well as long scaly tail with bright multicoloured fur on top of it.\n\n\"Do you know what's going on here?\"",
+      "time": "2026-06-13T11:55:38+00:00",
+      "preview": "Anna's eyes narrow a bit, but she doesn't change her posture, for now anyway.\n\n\"I'm Anna Fiala. Been around here for some weeks... and just when I was trying to get in library, everything goes up in flames! I saved a couple of people on the way, but the fires seem to be quite strong here. Maybe the source is around somewhere?\" She places one hand on a hip during it and puts the spear over her shoulders. \"You folk seem to be ready for some fight too!\"",
       "media_group_id": null
     }
   ],
@@ -764,7 +755,11 @@
     "msg:160179",
     "2026-06-10 01:03:41",
     "msg:160216",
-    "2026-06-10 03:52:28"
+    "2026-06-10 03:52:28",
+    "msg:160968",
+    "2026-06-13 10:37:38",
+    "msg:160983",
+    "2026-06-13 11:17:40"
   ],
   "reply_log": [
     {
@@ -4238,6 +4233,24 @@
       "player": "Bruce",
       "preview": "Master Cho will step back with a nod of his head holding his Gale Blade at the r",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-13T11:42:28+00:00",
+      "pid": "40585",
+      "msg_id": "160968",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "Anna was definitely NOT having a greatest of days. First, she woke up with a lit",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-13T11:42:44+00:00",
+      "pid": "40585",
+      "msg_id": "160983",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "The landing goes as smoothly as expected. White-haired woman slides down the spe",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4250,11 +4263,11 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-13 10:37:38|2026-06-13 11:17:40",
+      "fingerprint": "2026-06-13 11:55:38",
       "msg_ids": [
-        160987
+        160995
       ],
-      "last_posted_at": "2026-06-13T11:42:14.430284+00:00",
+      "last_posted_at": "2026-06-13T12:49:11.181573+00:00",
       "caught_up_msg_id": null
     }
   }
