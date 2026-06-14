@@ -18,12 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 161013,
+      "message_id": 161248,
       "thread_id": 40585,
       "user_id": "1395063293",
       "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-13T14:28:32+00:00",
-      "preview": "\"Than it's of a great luck that I managed to find you!\" Anna's eye light up. \"I hope all of you would allow me to tag along to put down the evil spreading its reach here?\"",
+      "time": "2026-06-14T18:37:42+00:00",
+      "preview": "It takes a couple of moments for the smile to be replaced by a slightly worried look, although she doesn't ask why they made those faces.",
       "media_group_id": null
     }
   ],
@@ -763,7 +763,13 @@
     "msg:160993",
     "2026-06-13 11:55:38",
     "msg:161011",
-    "2026-06-13 13:53:58"
+    "2026-06-13 13:53:58",
+    "msg:161013",
+    "2026-06-13 14:28:32",
+    "msg:161231",
+    "2026-06-14 17:48:30",
+    "msg:161246",
+    "2026-06-14 18:00:57"
   ],
   "reply_log": [
     {
@@ -4273,6 +4279,33 @@
       "player": "Bruce",
       "preview": "Master Cho's hand immediately reached to his gales bade when he heard the shout ",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-14T17:36:32+00:00",
+      "pid": "40585",
+      "msg_id": "161013",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Than it's of a great luck that I managed to find you!\" Anna's eye light up. \"I ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-14T17:51:37+00:00",
+      "pid": "40585",
+      "msg_id": "161231",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "Anna tilts her head, looking at other people. Now, when things went just a littl",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-14T18:01:53+00:00",
+      "pid": "40585",
+      "msg_id": "161246",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"I see! Do you, but stroke of luck, know where Eda is? She was quite helpful whe",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4285,11 +4318,11 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-13 14:28:32",
+      "fingerprint": "2026-06-14 18:37:42",
       "msg_ids": [
-        161206
+        161252
       ],
-      "last_posted_at": "2026-06-14T17:35:43.839697+00:00",
+      "last_posted_at": "2026-06-14T18:40:27.508923+00:00",
       "caught_up_msg_id": null
     }
   }

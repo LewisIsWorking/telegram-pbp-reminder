@@ -100,9 +100,6 @@
       "2026-06-08T10:44:16.220522+00:00"
     ],
     "40585": [
-      "2026-03-24T11:19:06.211860+00:00",
-      "2026-03-24T11:19:06.212003+00:00",
-      "2026-03-24T11:19:06.212130+00:00",
       "2026-03-24T14:29:06.317906+00:00",
       "2026-03-24T14:29:06.318304+00:00",
       "2026-03-24T14:29:06.318480+00:00",
@@ -599,7 +596,10 @@
       "2026-06-13T12:49:06.442329+00:00",
       "2026-06-13T12:49:06.448867+00:00",
       "2026-06-13T13:40:35.772464+00:00",
-      "2026-06-14T17:35:39.065576+00:00"
+      "2026-06-14T17:35:39.065576+00:00",
+      "2026-06-14T18:40:20.401666+00:00",
+      "2026-06-14T18:40:20.413128+00:00",
+      "2026-06-14T18:40:20.421102+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1441,27 +1441,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-05-25T03:22:18.138251+00:00",
-      "player": "Cannon",
-      "preview": "\"Oh! Yeah absolutely.\"\n\nIlliani covers her mouth after her t",
-      "msg_id": "156084"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T03:22:18.139611+00:00",
-      "player": "Loaf",
-      "preview": "landon sends vera to go through the door first",
-      "msg_id": "155954"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T03:22:18.144645+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor has dark vision",
-      "msg_id": "156122"
-    },
     {
       "pid": "25059",
       "time": "2026-05-25T03:22:18.145874+00:00",
@@ -2840,9 +2819,44 @@
       "player": "Bruce",
       "preview": "Master Cho's hand immediately reached to his gales bade when",
       "msg_id": "161011"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-14T18:40:20.401666+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Than it's of a great luck that I managed to find you!\" Anna",
+      "msg_id": "161013"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-14T18:40:20.413128+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "Anna tilts her head, looking at other people. Now, when thin",
+      "msg_id": "161231"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-14T18:40:20.421102+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"I see! Do you, but stroke of luck, know where Eda is? She w",
+      "msg_id": "161246"
     }
   ],
-  "pending_potw_boons": {},
+  "pending_potw_boons": {
+    "40585": {
+      "message_id": 161251,
+      "winner_user_id": "1395063293",
+      "campaign_name": "Kibwe",
+      "boons": [
+        "You recall a mentor's words at exactly the moment they apply.",
+        "The ceiling has decorative molding thick enough to support your weight.",
+        "The alley you duck into connects to the street you needed. Shortcut discovered.",
+        "Your next critical failure on a skill check is a regular failure instead."
+      ],
+      "base_message": "Player of the Week for Kibwe: \u0415\u0432\u0433\u0435\u043d\u0438\u0439 \u0415\u0444\u0438\u043c\u043e\u0432 (@EfimABC)!\n(2026-06-07 (W23) to 2026-06-14 (W24))\n\n7 posts this week with an average gap of 5.3h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-06-14T18:40:20.424986+00:00"
+    }
+  },
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"
