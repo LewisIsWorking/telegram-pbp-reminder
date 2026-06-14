@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 161011,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-13T13:53:58+00:00",
-      "preview": "Master Cho's hand immediately reached to his gales bade when he heard the shout from above. As the individual landed and started to ask their questions; he shifted to pull his feather fan instead. Making it appear as if this was his original intent.  With a flourish of the fan, \"I would say.\" he then snaps it close and points his fan back towards the bodies of the red caps.  \"We been fighting already, In fact we have not stopped fighting.\"  He then points the fan back to the temple.  \"There is m",
-      "media_group_id": null
-    },
-    {
       "message_id": 161013,
       "thread_id": 40585,
       "user_id": "1395063293",
@@ -770,7 +761,9 @@
     "msg:160983",
     "2026-06-13 11:17:40",
     "msg:160993",
-    "2026-06-13 11:55:38"
+    "2026-06-13 11:55:38",
+    "msg:161011",
+    "2026-06-13 13:53:58"
   ],
   "reply_log": [
     {
@@ -4271,6 +4264,15 @@
       "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "preview": "Anna's eyes narrow a bit, but she doesn't change her posture, for now anyway.\n\n\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-14T17:34:07+00:00",
+      "pid": "40585",
+      "msg_id": "161011",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "Master Cho's hand immediately reached to his gales bade when he heard the shout ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4283,11 +4285,11 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-13 13:53:58|2026-06-13 14:28:32",
+      "fingerprint": "2026-06-13 14:28:32",
       "msg_ids": [
-        161015
+        161206
       ],
-      "last_posted_at": "2026-06-13T14:50:42.946298+00:00",
+      "last_posted_at": "2026-06-14T17:35:43.839697+00:00",
       "caught_up_msg_id": null
     }
   }
