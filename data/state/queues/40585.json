@@ -769,7 +769,9 @@
     "msg:161231",
     "2026-06-14 17:48:30",
     "msg:161246",
-    "2026-06-14 18:00:57"
+    "2026-06-14 18:00:57",
+    "msg:161252",
+    "2026-06-14 18:40:26"
   ],
   "reply_log": [
     {
@@ -4305,6 +4307,15 @@
       "thread_id": 40585,
       "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "preview": "\"I see! Do you, but stroke of luck, know where Eda is? She was quite helpful whe",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-14T19:43:32+00:00",
+      "pid": "40585",
+      "msg_id": "161252",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
       "via": "reply"
     }
   ],
