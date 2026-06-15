@@ -1,5 +1,5 @@
 {
-  "offset": 619344294,
+  "offset": 619344315,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-12T15:52:25+00:00",
@@ -106,11 +106,11 @@
   },
   "combat": {},
   "last_leaderboard": "2026-06-13T21:34:29.728611+00:00",
-  "last_roster_nudge": "2026-06-13T10:54:50.419401+00:00",
-  "last_roster_snapshot": "C01:4/6|C00:6/6|C04:5/6|C05:4/6|C06:8/6|C07:4/6|C09:4/6|C08:1/4|C11:2/6",
+  "last_roster_nudge": "2026-06-15T03:23:52.459118+00:00",
+  "last_roster_snapshot": "C01:4/6|C00:6/6|C04:5/6|C05:4/6|C06:8/6|C07:4/6|C09:4/6|C08:1/4|C11:1/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-06-14T13:39:43.244673+00:00"
+    "last_at": "2026-06-15T03:23:52.459118+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-06-11T13:36:21.584548+00:00",
@@ -232,7 +232,7 @@
   },
   "last_state_backup": "2026-06-14T11:05:08.364629+00:00",
   "last_queue_daily": "2026-06-14",
-  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|40585:2026-06-14 18:37:42|52083:2026-06-12 15:52:25|66154:2026-06-11 17:00:26|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|76799:2026-06-08 21:06:45|silent:  \ud83d\udfe7 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 6d 22h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe7 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 6d 16h \ud83d\udd17 https://t.me/Path_Wars/51357|  \ud83d\udc80 \ud83e\udd84 C08: Theria \u2014 no posts for 21d 7h \ud83d\udd17 https://t.me/Path_Wars/107151",
+  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|40585:2026-06-14 18:37:42|52083:2026-06-12 15:52:25|66154:2026-06-11 17:00:26|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|76799:2026-06-08 21:06:45|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe7 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 6d 18h \ud83d\udd17 https://t.me/Path_Wars/51357|  \ud83d\udc80 \ud83e\udd84 C08: Theria \u2014 no posts for 21d 9h \ud83d\udd17 https://t.me/Path_Wars/107151",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -317,14 +317,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-08",
-  "last_queue_pin_id": 161329,
-  "queue_post_count": 813,
+  "last_queue_pin_id": 161355,
+  "queue_post_count": 814,
   "gm_queue_history": [
     {
       "msg_ids": [
-        161329
+        161355
       ],
-      "pin_id": 161329
+      "pin_id": 161355
     }
   ]
 }

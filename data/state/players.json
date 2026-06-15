@@ -260,16 +260,6 @@
       "last_post_time": "2026-05-31T07:35:17+00:00",
       "last_warned_week": 2
     },
-    "1242:8030796908": {
-      "user_id": "8030796908",
-      "first_name": "NJ",
-      "last_name": "",
-      "username": "Sparkleslayer",
-      "campaign_name": "Dark Pockets",
-      "pbp_topic_id": "1242",
-      "last_post_time": "2026-05-18T02:32:25+00:00",
-      "last_warned_week": 3
-    },
     "1242:6464119705": {
       "user_id": "6464119705",
       "first_name": "Luke",
@@ -567,6 +557,12 @@
       "first_name": "Cobalt",
       "username": "cobaltquail",
       "campaign_name": "Metal City"
+    },
+    "1242:8030796908": {
+      "removed_at": "2026-06-15T03:23:52.459118+00:00",
+      "first_name": "NJ",
+      "username": "Sparkleslayer",
+      "campaign_name": "Dark Pockets"
     }
   },
   "player_registry": {
@@ -1174,6 +1170,14 @@
       "name": "Cobalt",
       "username": "cobaltquail",
       "at": "2026-06-12T19:45:02.476594+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "1242",
+      "user_id": "8030796908",
+      "name": "NJ",
+      "username": "Sparkleslayer",
+      "at": "2026-06-15T03:23:53.063657+00:00"
     }
   ],
   "player_boons": {
