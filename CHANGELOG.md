@@ -11,6 +11,22 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.4] - 2026-06-15
+
+### Removed
+
+**Deleted the `telegram.unpin_all_messages` footgun.**
+
+Follow-up hardening to 4.51.3. The helper wrapped Telegram's group-wide
+`unpinAllChatMessages` behind a thread-scoped-looking signature, which
+is what caused the GM-pin wipe. Now that no production code calls it,
+the function (and its `conftest.py` mock) are removed so it can't be
+reintroduced by accident. A comment in `telegram.py` records why, and
+points future callers at `unpin_message` (specific id) or, if a real
+per-topic clear is ever needed, `unpinAllForumTopicMessages`.
+
+---
+
 ## [4.51.3] - 2026-06-15
 
 ### Fixed

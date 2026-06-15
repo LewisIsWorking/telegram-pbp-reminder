@@ -95,13 +95,6 @@ def _mock_unpin(chat_id, message_id) -> bool:
     return True
 
 
-def _mock_unpin_all(chat_id, thread_id) -> bool:
-    _sent_messages.append({
-        "type": "unpin_all", "chat_id": chat_id, "thread_id": thread_id,
-    })
-    return True
-
-
 # Install all functions
 _mock_tg.init = _mock_init
 _mock_tg.send_message = _mock_send
@@ -113,7 +106,6 @@ _mock_tg.get_updates = _mock_get_updates
 _mock_tg.send_poll = _mock_send_poll
 _mock_tg.pin_message = _mock_pin_message
 _mock_tg.unpin_message = _mock_unpin
-_mock_tg.unpin_all_messages = _mock_unpin_all
 _mock_tg.message_link = _mock_message_link
 
 
