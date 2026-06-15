@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 161488,
+      "thread_id": 40585,
+      "user_id": "1395063293",
+      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "time": "2026-06-15T19:07:20+00:00",
+      "preview": "\"Oh... I take it, they can't be pulled apart now?\" She sighs a little bit. \"Sad if that's true, but alas. We shall stride forward to take down the evil so her act isn't for naught! Let's not waste more time, and go in then!\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4342,10 +4351,12 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 161458
+      "fingerprint": "2026-06-15 19:07:20",
+      "msg_ids": [
+        161536
+      ],
+      "last_posted_at": "2026-06-15T20:00:09.873030+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 159815,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-08T21:06:45+00:00",
-      "preview": "While the others seem concerned about the gods of the dead , B\u00e1yakan seems to have taken an interest in the charred body. Examining this one more thoroughly, he has a think the state of the body and what might have brought it to that point. Obviously, not bloodsucking vermin.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -346,7 +336,13 @@
     "msg:159587",
     "2026-06-07 18:03:07",
     "msg:159605",
-    "2026-06-07 18:55:37"
+    "2026-06-07 18:55:37",
+    "msg:159815",
+    "2026-06-08 21:06:45",
+    "msg:161505",
+    "2026-06-15 19:19:14",
+    "msg:161529",
+    "2026-06-15 19:52:56"
   ],
   "reply_log": [
     {
@@ -1901,18 +1897,43 @@
       "player": "Cannon",
       "preview": "\"Who am I to judge, I suppose.\"\n\nShe gestures to her lower back and lack of a ta",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-15T18:44:37+00:00",
+      "pid": "76799",
+      "msg_id": "159815",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "While the others seem concerned about the gods of the dead , B\u00e1yakan seems to ha",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-15T19:30:28+00:00",
+      "pid": "76799",
+      "msg_id": "161505",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-15T19:55:04+00:00",
+      "pid": "76799",
+      "msg_id": "161529",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-06-08 21:06:45",
-      "msg_ids": [
-        161477
-      ],
-      "last_posted_at": "2026-06-15T18:41:46.525105+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161538
     },
     "144765": {
       "fingerprint": "",
