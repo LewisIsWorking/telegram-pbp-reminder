@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 161541,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-15T20:01:40+00:00",
-      "preview": "The statue gets a point out as dangerous, but potentially useful (could we get some kinda marker on the map about that?).",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -352,7 +342,9 @@
     "msg:161505",
     "2026-06-15 19:19:14",
     "msg:161529",
-    "2026-06-15 19:52:56"
+    "2026-06-15 19:52:56",
+    "msg:161541",
+    "2026-06-15 20:01:40"
   ],
   "reply_log": [
     {
@@ -1934,18 +1926,25 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-15T20:43:41+00:00",
+      "pid": "76799",
+      "msg_id": "161541",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "The statue gets a point out as dangerous, but potentially useful (could we get s",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-06-15 20:01:40",
-      "msg_ids": [
-        161543
-      ],
-      "last_posted_at": "2026-06-15T20:15:08.543698+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161559
     },
     "144765": {
       "fingerprint": "",
