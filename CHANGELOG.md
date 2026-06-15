@@ -11,6 +11,39 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.3] - 2026-06-15
+
+### Fixed
+
+**Bot unpinned posts it didn't own.**
+
+Lewis reported the nudge bot was unpinning messages that weren't its
+own — GM-pinned posts disappeared from PBP topics.
+
+Root cause: `_post_thread_queue` (in `scheduled/topic_queue_poster.py`)
+took an empty-slot branch — hit the *first* time a thread's queue is
+posted, or any run after a clear reset the slot — that called
+`tg.unpin_all_messages(group_id, thread_id)`. That helper invokes
+Telegram's `unpinAllChatMessages`, which **unpins every pinned message
+in the entire group** and silently ignores the `message_thread_id`
+argument (thread scoping belongs to a *different* method,
+`unpinAllForumTopicMessages`). So on every fresh thread the bot wiped
+the GMs' own pins along with any stale bot pin.
+
+The fix removes that call entirely. The bot now only ever unpins a
+specific message id it pinned itself (the `unpin_message` path used
+when refreshing a tracked queue). When a slot has no tracked ids there
+is nothing of the bot's own to unpin, so it skips straight to posting.
+
+`telegram.unpin_all_messages` is left in place but is now unused by
+production code; it should not be called per-thread (it is group-wide).
+
+Regression tests added in `test_topic_queue.py`:
+`test_empty_slot_never_unpins_others_pins` and
+`test_update_unpins_only_own_pin`.
+
+---
+
 ## [4.51.2] - 2026-05-28
 
 ### Fixed

@@ -156,6 +156,32 @@ class TestPostThreadQueue:
         tg_mock.pin_message.assert_called_once_with(-100, 9999, disable_notification=False)
         assert slot["msg_ids"] == [9999]
 
+    def test_empty_slot_never_unpins_others_pins(self, tg_mock):
+        """First post (no tracked IDs) must NOT clear pins it doesn't own.
+
+        Regression: the old empty-slot branch called
+        ``unpinAllChatMessages``, which unpins *every* pin in the whole
+        group — wiping GM pins the bot never created. With nothing of our
+        own tracked, the post path must touch no unpin endpoint at all.
+        """
+        from scheduled.topic_queue_poster import _post_thread_queue
+        slot = {"msg_ids": [], "fingerprint": ""}
+        tg_mock.send_message_id.return_value = 9999
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.unpin_all_messages.assert_not_called()
+        tg_mock.unpin_message.assert_not_called()
+
+    def test_update_unpins_only_own_pin(self, tg_mock):
+        """Refreshing a tracked queue unpins exactly the bot's own pin id,
+        via the targeted unpinChatMessage endpoint — never unpin-all."""
+        from scheduled.topic_queue_poster import _post_thread_queue
+        slot = {"msg_ids": [7777], "fingerprint": "stale"}
+        tg_mock.send_message_id.return_value = 9999
+        tg_mock.delete_message.return_value = True
+        _post_thread_queue(-100, "40585", slot, _ENTRIES, _NOW)
+        tg_mock.unpin_message.assert_called_once_with(-100, 7777)
+        tg_mock.unpin_all_messages.assert_not_called()
+
     def test_skip_when_unchanged(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_ids": [8888], "fingerprint": "2026-04-06 10:00:00"}
