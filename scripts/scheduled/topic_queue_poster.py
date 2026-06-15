@@ -82,14 +82,17 @@ def _post_thread_queue(group_id: int, thread_id: str,
             queue_pending_deletes(slot, [prev_caught_up])
         slot["caught_up_msg_id"] = None
 
-    # Clear legacy pins if slot has no tracked IDs (pre-tracking messages).
-    # Otherwise delete the previous batch so the topic only ever shows the
-    # freshest queue. A failed delete is parked in pending_delete and
-    # retried on the next run rather than being abandoned — that
-    # abandonment was the 2026-05-28 C01 orphan (see L28).
-    if existing.is_empty:
-        tg.unpin_all_messages(group_id, int(thread_id))
-    else:
+    # Delete the previous batch so the topic only ever shows the freshest
+    # queue, unpinning the bot's own pin first. A failed delete is parked in
+    # pending_delete and retried on the next run rather than being abandoned —
+    # that abandonment was the 2026-05-28 C01 orphan (see L28).
+    #
+    # When the slot has no tracked IDs there is nothing of *ours* to unpin, so
+    # we skip straight to posting. We deliberately do NOT call
+    # unpinAllChatMessages here: that endpoint clears pins across the *entire
+    # group* (it ignores the message_thread_id arg), wiping GM pins the bot
+    # never created. Only ever unpin a specific ID the bot itself pinned.
+    if not existing.is_empty:
         if existing.pin_id is not None:
             tg.unpin_message(group_id, existing.pin_id)
         failed = existing.delete_all(group_id)
