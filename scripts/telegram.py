@@ -181,11 +181,12 @@ def unpin_message(chat_id: int, message_id: int) -> bool:
                      "message not found")) is not None
 
 
-def unpin_all_messages(chat_id: int, thread_id: int) -> bool:
-    """Unpin all messages in a topic thread (clears legacy pins)."""
-    return _post("unpinAllChatMessages",
-                 {"chat_id": chat_id, "message_thread_id": thread_id},
-                 "unpin_all") is not None
+# NOTE: there is deliberately no `unpin_all_messages` helper. Telegram's
+# `unpinAllChatMessages` is group-wide (it ignores `message_thread_id`),
+# so calling it per-thread wiped GM pins the bot never created (4.51.3).
+# Always unpin a specific id with `unpin_message` instead. If a genuine
+# per-topic clear is ever needed, use `unpinAllForumTopicMessages` — but
+# note even that removes GM pins within the topic.
 
 
 def delete_message(chat_id: int, message_id: int) -> bool:
