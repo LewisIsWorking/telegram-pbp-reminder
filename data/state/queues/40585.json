@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 161248,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-14T18:37:42+00:00",
-      "preview": "It takes a couple of moments for the smile to be replaced by a slightly worried look, although she doesn't ask why they made those faces.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -771,7 +762,9 @@
     "msg:161246",
     "2026-06-14 18:00:57",
     "msg:161252",
-    "2026-06-14 18:40:26"
+    "2026-06-14 18:40:26",
+    "msg:161248",
+    "2026-06-14 18:37:42"
   ],
   "reply_log": [
     {
@@ -4317,6 +4310,15 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-15T10:23:47+00:00",
+      "pid": "40585",
+      "msg_id": "161248",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "It takes a couple of moments for the smile to be replaced by a slightly worried ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4329,12 +4331,10 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-14 18:37:42",
-      "msg_ids": [
-        161252
-      ],
-      "last_posted_at": "2026-06-14T18:40:27.508923+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161406
     }
   }
 }
