@@ -1129,7 +1129,10 @@
       "2026-06-07T10:52:30.684798+00:00",
       "2026-06-07T10:52:30.686920+00:00",
       "2026-06-07T11:39:19.755868+00:00",
-      "2026-06-07T11:39:19.759696+00:00"
+      "2026-06-07T11:39:19.759696+00:00",
+      "2026-06-15T18:41:35.741108+00:00",
+      "2026-06-15T18:41:35.747255+00:00",
+      "2026-06-15T18:41:35.749458+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1441,27 +1444,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-25T05:42:32.055107+00:00",
-      "player": "Loaf",
-      "preview": "( landon has trackers goggles on)",
-      "msg_id": "156135"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T05:42:32.056556+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "The group goes towards the light",
-      "msg_id": "156141"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T05:42:32.060929+00:00",
-      "player": "Loaf",
-      "preview": "( would i have any idea what professsion these guys have by ",
-      "msg_id": "156181"
-    },
     {
       "pid": "25059",
       "time": "2026-05-25T05:42:32.064959+00:00",
@@ -2840,6 +2822,27 @@
       "player": "Kaer'maga when?",
       "preview": "Lorn puts his hand on her shoulder and says \"Relax my dear I",
       "msg_id": "161410"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-06-15T18:41:35.741108+00:00",
+      "player": "Ryo",
+      "preview": "Kitt walks over to the two bodies of the two workers who wer",
+      "msg_id": "159559"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-06-15T18:41:35.747255+00:00",
+      "player": "Cannon",
+      "preview": "Nadya starts collecting the valuables, ending with trying th",
+      "msg_id": "159587"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-06-15T18:41:35.749458+00:00",
+      "player": "Cannon",
+      "preview": "\"Who am I to judge, I suppose.\"\n\nShe gestures to her lower b",
+      "msg_id": "159605"
     }
   ],
   "pending_potw_boons": {
@@ -2854,7 +2857,8 @@
         "Your next critical failure on a skill check is a regular failure instead."
       ],
       "base_message": "Player of the Week for Kibwe: \u0415\u0432\u0433\u0435\u043d\u0438\u0439 \u0415\u0444\u0438\u043c\u043e\u0432 (@EfimABC)!\n(2026-06-07 (W23) to 2026-06-14 (W24))\n\n7 posts this week with an average gap of 5.3h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-06-14T18:40:20.424986+00:00"
+      "posted_at": "2026-06-14T18:40:20.424986+00:00",
+      "reminders_sent": 1
     }
   },
   "pending_hero_points": {

@@ -1,5 +1,5 @@
 {
-  "offset": 619344434,
+  "offset": 619344452,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-12T15:52:25+00:00",
@@ -38,9 +38,9 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-06-08T21:06:45+00:00",
-      "last_user": "Chase",
-      "last_user_id": "8353586922",
+      "last_message_time": "2026-06-15T18:35:14+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Magni Guard"
     },
     "107151": {
@@ -58,10 +58,10 @@
   },
   "last_alerts": {
     "52083": "2026-06-15T16:44:25.834097+00:00",
-    "66154": "2026-06-14T18:40:20.424986+00:00",
+    "66154": "2026-06-15T18:41:35.749610+00:00",
     "51357": "2026-06-15T16:44:25.834097+00:00",
     "25059": "2026-06-15T11:16:05.890170+00:00",
-    "107171": "2026-06-14T18:40:20.424986+00:00",
+    "107171": "2026-06-15T18:41:35.749610+00:00",
     "40585": "2026-06-14T14:53:02.181625+00:00",
     "76799": "2026-06-15T01:23:48.065964+00:00",
     "107151": "2026-06-15T11:16:05.890170+00:00",
@@ -181,7 +181,6 @@
     "25059": "active",
     "51357": "active",
     "107171": "active",
-    "76799": "active",
     "1242": "active",
     "66154": "active",
     "52083": "active"
@@ -233,7 +232,7 @@
   },
   "last_state_backup": "2026-06-15T11:16:05.890170+00:00",
   "last_queue_daily": "2026-06-14",
-  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|52083:2026-06-12 15:52:25|66154:2026-06-11 17:00:26|76799:2026-06-07 15:25:04|76799:2026-06-07 18:03:07|76799:2026-06-07 18:55:37|76799:2026-06-08 21:06:45|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 14h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udd34 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 7d 7h \ud83d\udd17 https://t.me/Path_Wars/51357|  \ud83d\udc80 \ud83e\udd84 C08: Theria \u2014 no posts for 21d 22h \ud83d\udd17 https://t.me/Path_Wars/107151|  \ud83d\udfe0 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 5d 10h \ud83d\udd17 https://t.me/Path_Wars/1242",
+  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|52083:2026-06-12 15:52:25|66154:2026-06-11 17:00:26|76799:2026-06-08 21:06:45|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 16h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udd34 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 7d 9h \ud83d\udd17 https://t.me/Path_Wars/51357|  \ud83d\udc80 \ud83e\udd84 C08: Theria \u2014 no posts for 22d \ud83d\udd17 https://t.me/Path_Wars/107151|  \ud83d\udfe0 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 5d 12h \ud83d\udd17 https://t.me/Path_Wars/1242",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -318,14 +317,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-15",
-  "last_queue_pin_id": 161459,
-  "queue_post_count": 819,
+  "last_queue_pin_id": 161479,
+  "queue_post_count": 820,
   "gm_queue_history": [
     {
       "msg_ids": [
-        161459
+        161479
       ],
-      "pin_id": 161459
+      "pin_id": 161479
     }
   ]
 }
