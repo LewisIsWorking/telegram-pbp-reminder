@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 161410,
-      "thread_id": 40585,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-06-15T11:46:38+00:00",
-      "preview": "Lorn puts his hand on her shoulder and says \"Relax my dear I think she could aid us\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -773,7 +764,9 @@
     "msg:161252",
     "2026-06-14 18:40:26",
     "msg:161248",
-    "2026-06-14 18:37:42"
+    "2026-06-14 18:37:42",
+    "msg:161410",
+    "2026-06-15 11:46:38"
   ],
   "reply_log": [
     {
@@ -4328,6 +4321,15 @@
       "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "preview": "It takes a couple of moments for the smile to be replaced by a slightly worried ",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-15T15:47:49+00:00",
+      "pid": "40585",
+      "msg_id": "161410",
+      "thread_id": 40585,
+      "player": "Kaer'maga when?",
+      "preview": "Lorn puts his hand on her shoulder and says \"Relax my dear I think she could aid",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4340,12 +4342,10 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-15 11:46:38",
-      "msg_ids": [
-        161445
-      ],
-      "last_posted_at": "2026-06-15T14:21:41.093789+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161458
     }
   }
 }
