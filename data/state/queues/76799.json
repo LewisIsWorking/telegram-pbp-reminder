@@ -2,21 +2,12 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 161720,
+      "message_id": 161765,
       "thread_id": 76799,
       "user_id": "7454623139",
       "user_name": "Cannon",
-      "time": "2026-06-16T18:26:50+00:00",
-      "preview": "Nadya seems a little baffled.\n\n\"Illogical? What, do you want this place to be haunted in addition to trapped?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161737,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-16T20:07:43+00:00",
-      "preview": "\"So long as the haunts don't start haunting until after we've settled this workers dispute, that seems likely to be an exorcists problem.\"\n\nThe tiny fellow checks the door Changer seems to be near to see if it's unlocked while he's idle.",
+      "time": "2026-06-16T22:32:48+00:00",
+      "preview": "Shrug\n\n\"I suppose so. We've fought off undead before, I figured preventing 'em was similar enough.\"\n\nShe grabs the coins in the safe and tucks them away, then stands ready nearby the door for when B\u00e1yakan is done checking it out.",
       "media_group_id": null
     }
   ],
@@ -367,7 +358,11 @@
     "msg:161563",
     "2026-06-15 21:39:42",
     "msg:161564",
-    "2026-06-15 21:41:08"
+    "2026-06-15 21:41:08",
+    "msg:161720",
+    "2026-06-16 18:26:50",
+    "msg:161737",
+    "2026-06-16 20:07:43"
   ],
   "reply_log": [
     {
@@ -1976,17 +1971,35 @@
       "player": "Ryo",
       "preview": "\"What happened with the one who is burnt up? I'd like to give them their last ri",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-16T22:12:32+00:00",
+      "pid": "76799",
+      "msg_id": "161720",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya seems a little baffled.\n\n\"Illogical? What, do you want this place to be ha",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-16T22:12:48+00:00",
+      "pid": "76799",
+      "msg_id": "161737",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "\"So long as the haunts don't start haunting until after we've settled this worke",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-06-16 18:26:50|2026-06-16 20:07:43",
+      "fingerprint": "2026-06-16 22:32:48",
       "msg_ids": [
-        161740
+        161766
       ],
-      "last_posted_at": "2026-06-16T20:08:23.562169+00:00",
+      "last_posted_at": "2026-06-16T22:43:56.058411+00:00",
       "caught_up_msg_id": null
     },
     "144765": {

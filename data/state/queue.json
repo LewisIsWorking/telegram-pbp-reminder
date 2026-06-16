@@ -100,7 +100,6 @@
       "2026-06-08T10:44:16.220522+00:00"
     ],
     "40585": [
-      "2026-03-24T15:27:10.875093+00:00",
       "2026-03-24T15:27:10.875387+00:00",
       "2026-03-24T15:27:10.875488+00:00",
       "2026-03-24T15:27:10.875581+00:00",
@@ -599,7 +598,8 @@
       "2026-06-16T11:52:29.621018+00:00",
       "2026-06-16T11:52:29.627322+00:00",
       "2026-06-16T11:52:29.631661+00:00",
-      "2026-06-16T11:52:29.635957+00:00"
+      "2026-06-16T11:52:29.635957+00:00",
+      "2026-06-16T22:43:53.583246+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1139,7 +1139,9 @@
       "2026-06-15T20:00:06.662624+00:00",
       "2026-06-15T21:20:29.048445+00:00",
       "2026-06-16T14:02:31.541915+00:00",
-      "2026-06-16T14:02:31.544237+00:00"
+      "2026-06-16T14:02:31.544237+00:00",
+      "2026-06-16T22:43:53.587312+00:00",
+      "2026-06-16T22:43:53.589654+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1452,27 +1454,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.591622+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor casts sending to Ademe \"Greetings once again Ademe m",
-      "msg_id": "156240"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.594677+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor rolls his eyes \"Yeah connection to dumb people maybe",
-      "msg_id": "156242"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.596207+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor places the mummy back on the table and does a necrom",
-      "msg_id": "156243"
-    },
     {
       "pid": "25059",
       "time": "2026-05-25T07:51:32.600560+00:00",
@@ -2851,6 +2832,27 @@
       "player": "Anthony",
       "preview": "Filiaur appears behind cardigan\n\"Speaking of monney, i think",
       "msg_id": "160564"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-16T22:43:53.583246+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "Anna closes her eyes for a moment, concentrating to cast a s",
+      "msg_id": "161734"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-06-16T22:43:53.587312+00:00",
+      "player": "Cannon",
+      "preview": "Nadya seems a little baffled.\n\n\"Illogical? What, do you want",
+      "msg_id": "161720"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-06-16T22:43:53.589654+00:00",
+      "player": "Chase",
+      "preview": "\"So long as the haunts don't start haunting until after we'v",
+      "msg_id": "161737"
     }
   ],
   "pending_potw_boons": {
