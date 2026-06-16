@@ -100,7 +100,9 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
                 f"🏆 MVP of the Week: {winner_name}!\n"
                 f"- {posts_str(winner_data['count'])} across "
                 f"{winner_data['campaigns']} {campaign_word}.\n"
-                f"- Prize: 1 Hero Point in a campaign of your choice! 🎲"
+                f"- Prize: 1 Hero Point in a campaign of your choice! 🎲\n"
+                f"- Claim it with the buttons below — or type "
+                f"/heropoint <campaign> if they don't respond."
             )
 
     # Streak leaderboard

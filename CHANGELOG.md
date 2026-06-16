@@ -11,7 +11,18 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.51.5] - 2026-06-16
+## [4.51.6] - 2026-06-16
+
+### Changed
+
+**MVP prize message now advertises the `/heropoint` typed fallback.**
+
+The weekly MVP announcement is followed by a Hero Point picker with
+inline buttons, but those buttons depend on a callback that can lag
+behind the hourly cron. The prize line now reads "Claim it with the
+buttons below — or type `/heropoint <campaign>` if they don't respond,"
+making the already-shipped typed command (4.51.x) discoverable at the
+moment the user needs it. Covered by `test_checker_roster_b.py`.
 
 ### Fixed
 
