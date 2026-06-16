@@ -137,7 +137,7 @@ def test_clear_by_msg_id_found(tmp_path, monkeypatch):
     cq = {"unreplied": [{"message_id": 42, "time": "2026-03-01 10:00:00",
                           "user_name": "Alice", "preview": "hi"}],
           "replied": [], "reply_log": []}
-    (tmp_path / "100.json").write_text(json.dumps(cq))
+    (tmp_path / "100.json").write_text(json.dumps(cq), encoding="utf-8")
     now = datetime(2026, 3, 27, tzinfo=timezone.utc)
     result = _clear_by_msg_id("42", "100", {}, now)
     assert result is True

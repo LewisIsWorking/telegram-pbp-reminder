@@ -47,7 +47,7 @@ def test_tracking_gm_reply_logs(tmp_path, monkeypatch):
     cq = {"unreplied": [{"message_id": 42, "time": "2026-03-01 10:00:00",
                           "user_name": "Alice", "preview": "hi"}],
           "replied": [], "reply_log": []}
-    (tmp_path / "100.json").write_text(json.dumps(cq))
+    (tmp_path / "100.json").write_text(json.dumps(cq), encoding="utf-8")
     now = datetime.now(timezone.utc)
     maps = MagicMock()
     maps.to_chat = {"100": 21514}

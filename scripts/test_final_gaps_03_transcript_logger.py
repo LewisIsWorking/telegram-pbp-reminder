@@ -35,7 +35,7 @@ def test_logger_long_gap(tmp_path):
     (tmp_path / "Kibwe").mkdir()
     prev_ts = (now - timedelta(days=3)).strftime("%Y-%m-%d %H:%M:%S")
     (tmp_path / "Kibwe" / f"{now.strftime('%Y-%m')}.md").write_text(
-        f"**Alice** ({prev_ts}) msg#1:\nOld.\n")
+        f"**Alice** ({prev_ts}) msg#1:\nOld.\n", encoding="utf-8")
     with patch("transcript.logger._LOGS_DIR", tmp_path):
         try:
             append_to_transcript(parsed, set(), {"topic_pairs": [
@@ -48,7 +48,7 @@ def test_potw_links(tmp_path):
     week_ago = datetime(2026, 3, 27, tzinfo=timezone.utc)
     (tmp_path / "Kibwe").mkdir()
     (tmp_path / "Kibwe" / "2026-04.md").write_text(
-        "**Alice** (2026-04-01 10:00:00) msg#1:\nHi!\n")
+        "**Alice** (2026-04-01 10:00:00) msg#1:\nHi!\n", encoding="utf-8")
     with patch("scheduled.potw._LOGS_DIR", tmp_path):
         assert isinstance(_find_player_post_links("Kibwe", "Alice", "100", week_ago), list)
 

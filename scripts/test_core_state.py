@@ -37,8 +37,8 @@ def test_load_from_files_missing_core(tmp_path):
 def test_load_from_files_json_error(tmp_path):
     # Create all core partition files but one is corrupt
     for p in ["live", "players", "queue", "activity"]:
-        (tmp_path / f"{p}.json").write_text("{}")
-    (tmp_path / "live.json").write_text("not json")
+        (tmp_path / f"{p}.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "live.json").write_text("not json", encoding="utf-8")
     with patch.object(st, "_state_dir", return_value=tmp_path):
         result = st._load_from_files()
     assert result is None

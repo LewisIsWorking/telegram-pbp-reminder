@@ -25,7 +25,7 @@ def test_write_scene_marker():
             assert campaign_dir.exists()
             md_files = list(campaign_dir.glob("*.md"))
             assert len(md_files) == 1
-            content = md_files[0].read_text()
+            content = md_files[0].read_text(encoding="utf-8")
             assert "### 🎭 Scene: The Final Battle" in content
         finally:
             _lmod._LOGS_DIR = original_dir

@@ -68,7 +68,7 @@ def test_backup_state_writes(tmp_path):
             mh.interval_elapsed.return_value = True
             backup_state({}, state, now=now)
             assert backup_file.exists()
-            data = json.loads(backup_file.read_text())
+            data = json.loads(backup_file.read_text(encoding="utf-8"))
             assert "foo" in data
             assert "offset" not in data  # excluded
             assert "_backup_timestamp" in data
@@ -82,7 +82,7 @@ def test_backup_state_excludes_private_keys(tmp_path):
         with patch("scheduled.state_backup.helpers") as mh:
             mh.interval_elapsed.return_value = True
             backup_state({}, state, now=now)
-            data = json.loads(backup_file.read_text())
+            data = json.loads(backup_file.read_text(encoding="utf-8"))
             assert "_config_cache" not in data
             assert "normal" in data
 

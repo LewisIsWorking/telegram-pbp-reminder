@@ -80,7 +80,7 @@ def test_append_to_transcript():
     assert log_dir.exists()
     log_file = log_dir / "2026-02.md"
     assert log_file.exists()
-    content = log_file.read_text()
+    content = log_file.read_text(encoding="utf-8")
     assert "transcript_test — 2026-02" in content
     assert "**Alice**" in content
     assert "Hello world!" in content
@@ -88,7 +88,7 @@ def test_append_to_transcript():
     # Second write appends
     parsed["raw_text"] = "Second message"
     checker._append_to_transcript(parsed, {"999"})
-    content = log_file.read_text()
+    content = log_file.read_text(encoding="utf-8")
     assert "Second message" in content
     assert content.count("transcript_test — 2026-02") == 1  # Header only once
 

@@ -44,7 +44,7 @@ def test_queue_scan_silence_break(tmp_path, monkeypatch):
     month = now.strftime("%Y-%m")
     (log_dir / f"{month}.md").write_text(
         "**Alice** (2026-03-01 10:00:00):\nHello\n*— [silence] —*\nMore stuff\n"
-    )
+    , encoding="utf-8")
     with patch("commands.queue_scan.helpers") as mh, \
          patch("commands.queue_scan._LOGS_DIR", tmp_path), \
          patch("commands.queue_scan._IDS_FILE", tmp_path / "ids.json"), \

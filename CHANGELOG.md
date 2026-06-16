@@ -11,6 +11,36 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.5] - 2026-06-16
+
+### Fixed
+
+**Text file I/O now always uses `encoding="utf-8"`.**
+
+`open()`, `Path.read_text()` and `Path.write_text()` without an
+explicit `encoding=` use the *platform default* — utf-8 on the Linux
+CI runner, but cp1252 on a Windows dev box. The bot writes UTF-8
+transcripts (em-dashes, accented player names, emoji), so on Windows
+the round-trip mangled those characters: ~7 tests failed locally
+(`UnicodeDecodeError` / em-dash mismatch) while passing on CI, and any
+non-utf-8 host running the bot would have corrupted real transcript
+and state files.
+
+Added an explicit `encoding="utf-8"` to all 98 text-mode file
+operations across production and tests (binary `"rb"`/`"wb"` opens are
+correctly left untouched). The full suite now passes on Windows, not
+just Linux.
+
+### Added
+
+**`test_encoding_hygiene.py` — regression guard.**
+
+An AST-based test that walks the source tree and fails if any
+text-mode `open`/`read_text`/`write_text` omits `encoding=`. Prevents
+the platform-default-encoding bug class from creeping back in.
+
+---
+
 ## [4.51.4] - 2026-06-15
 
 ### Removed

@@ -168,7 +168,7 @@ def test_queue_scan_section_break(tmp_path):
     # Section header should stop content collection
     (log_dir / f"{month}.md").write_text(
         "**Alice** (2026-03-01 10:00:00):\n## New Scene\nMore content\n"
-    )
+    , encoding="utf-8")
     with patch("commands.queue_scan.helpers") as mh, \
          patch("commands.queue_scan._LOGS_DIR", tmp_path), \
          patch("commands.queue_scan._IDS_FILE", tmp_path / "ids.json"), \

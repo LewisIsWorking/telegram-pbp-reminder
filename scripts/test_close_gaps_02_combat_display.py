@@ -175,7 +175,7 @@ def test_import_history_continue(tmp_path):
     from import_history import import_messages
     export = tmp_path / "result.json"
     export.write_text(json.dumps({"messages": [{"type": "message", "text": "",
-                                                "from_id": "user123"}]}))
+                                                "from_id": "user123"}]}), encoding="utf-8")
     assert isinstance(import_messages(str(export), dry_run=True), dict)
 
 def test_changelog_chunk_split():

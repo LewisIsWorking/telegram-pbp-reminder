@@ -94,7 +94,7 @@ def test_potw_winner_with_links(tmp_path):
     log_dir.mkdir()
     (log_dir / "2026-03.md").write_text(
         "**Alice** (2026-03-30 10:00:00) msg#123:\nHi there\n"
-    )
+    , encoding="utf-8")
     with patch("scheduled.potw._LOGS_DIR", tmp_path):
         links = _find_player_post_links("Kibwe", "Alice", "100", week_ago)
     assert len(links) >= 0  # may or may not match depending on regex

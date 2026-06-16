@@ -71,7 +71,7 @@ def load(pid: str) -> dict:
         if path.exists():
             try:
                 import json
-                return json.loads(path.read_text())
+                return json.loads(path.read_text(encoding="utf-8"))
             except (Exception,):
                 pass
         return {"pid": pid, "unreplied": [], "replied": [], "reply_log": []}
@@ -95,7 +95,7 @@ def save(pid: str, cq: dict) -> bool:
             import json
             path = _queue_path(pid)
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(json.dumps(cq, indent=2))
+            path.write_text(json.dumps(cq, indent=2), encoding="utf-8")
             return True
         except OSError as e:
             print(f"queue_io: failed to save {pid}: {e}")

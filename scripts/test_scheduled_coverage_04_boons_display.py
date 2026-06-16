@@ -43,13 +43,13 @@ _pc_spec.loader.exec_module(_pc)
 
 def test_read_latest_entry_empty(tmp_path):
     f = tmp_path / "CHANGELOG.md"
-    f.write_text("No version headers here")
+    f.write_text("No version headers here", encoding="utf-8")
     assert _pc.read_latest_entry(f) == ("", "")
 
 
 def test_read_latest_entry_parses(tmp_path):
     f = tmp_path / "CHANGELOG.md"
-    f.write_text("## [1.2.3] - 2026-03-01\n\nSome changes here\n\n## [1.2.2]\nOld")
+    f.write_text("## [1.2.3] - 2026-03-01\n\nSome changes here\n\n## [1.2.2]\nOld", encoding="utf-8")
     header, body = _pc.read_latest_entry(f)
     assert "1.2.3" in header
     assert "Some changes" in body

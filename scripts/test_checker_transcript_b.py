@@ -33,7 +33,7 @@ def test_transcript_multi_day_silence():
     p2 = {**base, "msg_time_iso": "2026-02-26T10:00:00+00:00", "raw_text": "hi again"}
     checker._append_to_transcript(p2, {"999"})
 
-    content = (checker._LOGS_DIR / "longsilence_test" / "2026-02.md").read_text()
+    content = (checker._LOGS_DIR / "longsilence_test" / "2026-02.md").read_text(encoding="utf-8")
     # Day header takes precedence over silence marker when day changes.
     # But if both day changes AND silence is large — day header shown, silence suppressed.
     assert "📅 Thursday, Feb 26" in content
@@ -82,7 +82,7 @@ def test_transcript_monthly_stats_footer():
         "**Bob** [GM] (2026-02-23 11:00:00):\nWelcome\n\n"
         "**Alice** (2026-02-24 14:00:00):\nAnother message here today\n\n"
     )
-    (test_dir / "2026-02.md").write_text(feb_content)
+    (test_dir / "2026-02.md").write_text(feb_content, encoding="utf-8")
 
     # Now write a March message (triggers finalization of Feb)
     base = {
@@ -93,7 +93,7 @@ def test_transcript_monthly_stats_footer():
     p1 = {**base, "msg_time_iso": "2026-03-01T10:00:00+00:00"}
     checker._append_to_transcript(p1, {"999"})
 
-    feb_final = (test_dir / "2026-02.md").read_text()
+    feb_final = (test_dir / "2026-02.md").read_text(encoding="utf-8")
     assert "📊 Month Summary" in feb_final
     assert "Total messages" in feb_final
     assert "3" in feb_final  # 3 messages
@@ -102,7 +102,7 @@ def test_transcript_monthly_stats_footer():
     # Check it's idempotent (writing another March msg doesn't duplicate footer)
     p2 = {**base, "msg_time_iso": "2026-03-02T10:00:00+00:00", "raw_text": "march2"}
     # Need to force is_new check — march file already exists now, so won't re-finalize
-    feb_final2 = (test_dir / "2026-02.md").read_text()
+    feb_final2 = (test_dir / "2026-02.md").read_text(encoding="utf-8")
     assert feb_final2.count("📊 Month Summary") == 1
 
     shutil.rmtree(test_dir)
@@ -130,7 +130,7 @@ def test_transcript_with_character():
     checker._append_to_transcript(parsed, {"999"}, config)
 
     log_file = checker._LOGS_DIR / "char_test" / "2026-02.md"
-    content = log_file.read_text()
+    content = log_file.read_text(encoding="utf-8")
     assert "(Cardigan)" in content
     assert "I rage!" in content
 

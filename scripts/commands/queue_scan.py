@@ -99,7 +99,7 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     id_lookup = {}
     if _IDS_FILE.exists():
         try:
-            id_lookup = json.loads(_IDS_FILE.read_text())
+            id_lookup = json.loads(_IDS_FILE.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):  # pragma: no cover
             pass  # pragma: no cover
 

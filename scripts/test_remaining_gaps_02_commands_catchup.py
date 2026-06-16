@@ -91,7 +91,7 @@ def test_markdone_clear_by_id_found(tmp_path, monkeypatch):
     cq = {"unreplied": [{"message_id": 999, "time": "2026-03-01 10:00:00",
                           "user_name": "Alice", "preview": "hi"}],
           "replied": [], "reply_log": []}
-    (tmp_path / "100.json").write_text(json.dumps(cq))
+    (tmp_path / "100.json").write_text(json.dumps(cq), encoding="utf-8")
     with patch("commands.markdone.scan_transcripts",
                return_value={"100": {"entries": []}}):
         ctx = _ctx(cmd_word="/markdone", text="/markdone 999")

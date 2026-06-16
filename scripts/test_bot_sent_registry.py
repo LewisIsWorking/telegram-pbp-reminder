@@ -77,7 +77,7 @@ def test_persists_to_disk(tmp_path, monkeypatch):
     reg.record_sent(7777)
     state_path = reg._store.aux_path("bot_sent_ids")
     assert state_path.exists()
-    with open(state_path) as f:
+    with open(state_path, encoding="utf-8") as f:
         data = json.load(f)
     assert 7777 in data
 
@@ -94,7 +94,7 @@ def test_corrupt_state_file_starts_empty(tmp_path, monkeypatch, capsys):
     bad_dir = tmp_path / "bad"
     bad_dir.mkdir()
     bad_path = bad_dir / "bot_sent_ids.json"
-    bad_path.write_text("{ this is : not json")
+    bad_path.write_text("{ this is : not json", encoding="utf-8")
     monkeypatch.setattr(reg, "_store", StateStore(state_dir=bad_dir))
     reg.reset_for_test()
 
@@ -121,7 +121,7 @@ def test_backfill_from_live_state(tmp_path, monkeypatch):
             {"msg_ids": [200, 201], "pin_id": 200},
             {"msg_ids": [300, 301, 302], "pin_id": 300},
         ],
-    }))
+    }), encoding="utf-8")
     monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
@@ -142,7 +142,7 @@ def test_backfill_from_queue_state(tmp_path, monkeypatch):
             "300": {"msg_ids": [7000], "caught_up_msg_id": 7001,
                     "pin_id": 7000},
         },
-    }))
+    }), encoding="utf-8")
     monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
@@ -157,8 +157,8 @@ def test_backfill_handles_corrupt_queue_file(tmp_path, monkeypatch):
     queues_dir.mkdir(parents=True)
     (queues_dir / "100.json").write_text(json.dumps({
         "topic_msg_id": 1000,
-    }))
-    (queues_dir / "200.json").write_text("{not json")  # corrupt
+    }), encoding="utf-8")
+    (queues_dir / "200.json").write_text("{not json", encoding="utf-8")  # corrupt
     monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 
@@ -171,7 +171,7 @@ def test_backfill_idempotent(tmp_path, monkeypatch):
     state_dir.mkdir()
     (state_dir / "live.json").write_text(json.dumps({
         "last_queue_pin_id": 42,
-    }))
+    }), encoding="utf-8")
     monkeypatch.setattr(reg, "_store", StateStore(state_dir=state_dir))
     reg.reset_for_test()
 

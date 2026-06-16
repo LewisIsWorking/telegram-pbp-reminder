@@ -62,7 +62,7 @@ def test_import_desktop_export_format():
             ],
         }
         config_path = Path(tmp) / "config.json"
-        config_path.write_text(json.dumps(config))
+        config_path.write_text(json.dumps(config), encoding="utf-8")
         import_history.CONFIG_PATH = config_path
         import_history.LOGS_DIR = Path(tmp) / "logs"
 
@@ -79,13 +79,13 @@ def test_import_desktop_export_format():
                 date="2025-06-15T10:10:00"),
         ])
         export_path = Path(tmp) / "export.json"
-        export_path.write_text(json.dumps(export))
+        export_path.write_text(json.dumps(export), encoding="utf-8")
 
         results = import_history.import_messages(str(export_path))
         assert results["TestCampaign"] == 2
 
         campaign_dir = Path(tmp) / "logs" / "TestCampaign"
-        content = (campaign_dir / "2025-06.md").read_text()
+        content = (campaign_dir / "2025-06.md").read_text(encoding="utf-8")
         assert "Amar attacks!" in content
         assert "[GM]" in content
         assert "@player The goblin snarls." in content
