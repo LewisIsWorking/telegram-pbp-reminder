@@ -128,7 +128,7 @@ def test_scan_replied_filtered(mock_helpers, tmp_path, monkeypatch):
     (tmp_path / "queues").mkdir()
     (tmp_path / "queues" / "100.json").write_text(
         json.dumps({"replied": ["msg:42"], "unreplied": [], "reply_log": []})
-    )
+    , encoding="utf-8")
     with patch("commands.queue_scan._LOGS_DIR", tmp_path), \
          patch("commands.queue_scan._IDS_FILE", tmp_path / "ids.json"):
         result = scan_transcripts(_qs_config(), {})
@@ -150,7 +150,7 @@ def test_scan_id_lookup_file(mock_helpers, tmp_path):
         encoding="utf-8"
     )
     ids_file = tmp_path / "ids.json"
-    ids_file.write_text(json.dumps({"100:2026-03-01 10:00:00": 99999}))
+    ids_file.write_text(json.dumps({"100:2026-03-01 10:00:00": 99999}), encoding="utf-8")
     with patch("commands.queue_scan._LOGS_DIR", tmp_path), \
          patch("commands.queue_scan._IDS_FILE", ids_file), \
          patch("commands.queue_io.all_pids", return_value=[]):

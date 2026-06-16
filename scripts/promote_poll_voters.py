@@ -31,8 +31,8 @@ def _is_placeholder(uid: int) -> bool:
 
 def main() -> None:  # pragma: no cover
     commit = "--commit" in sys.argv
-    config = json.loads(CONFIG.read_text())
-    state  = json.loads(STATE.read_text())
+    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    state  = json.loads(STATE.read_text(encoding="utf-8"))
 
     unknown_by_code = state.get("poll_unknown_voters", {})
     if not unknown_by_code:
@@ -94,10 +94,10 @@ def main() -> None:  # pragma: no cover
             print("\nNo automatic matches — manual edit of config.json required.")
 
     if commit:
-        CONFIG.write_text(json.dumps(config, indent=2))
+        CONFIG.write_text(json.dumps(config, indent=2), encoding="utf-8")
         state["poll_unknown_voters"] = {}
         state["poll_identified_voters"] = {}
-        STATE.write_text(json.dumps(state, indent=2))
+        STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
         print("\nconfig.json and live.json updated.")
     else:
         print("\nDry run — pass --commit to apply changes.")

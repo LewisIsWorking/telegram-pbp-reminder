@@ -32,7 +32,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
     # Load existing archive from repo file
     helpers.ARCHIVE_PATH.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with open(helpers.ARCHIVE_PATH) as f:
+        with open(helpers.ARCHIVE_PATH, encoding="utf-8") as f:
             archive = json.load(f)  # pragma: no cover
     except (FileNotFoundError, json.JSONDecodeError):
         archive = {}
@@ -103,7 +103,7 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
         }
 
     # Write archive to repo file
-    with open(helpers.ARCHIVE_PATH, "w") as f:
+    with open(helpers.ARCHIVE_PATH, "w", encoding="utf-8") as f:
         json.dump(archive, f, indent=2)
 
     state["last_archived_week"] = week_key

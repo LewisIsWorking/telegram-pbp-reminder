@@ -139,7 +139,7 @@ def test_import_messages_dry_run():
             ],
         }
         config_path = Path(tmp) / "config.json"
-        config_path.write_text(json.dumps(config))
+        config_path.write_text(json.dumps(config), encoding="utf-8")
         import_history.CONFIG_PATH = config_path
         import_history.LOGS_DIR = Path(tmp) / "logs"
 
@@ -148,7 +148,7 @@ def test_import_messages_dry_run():
             _make_msg(2, 100, "Second post"),
             _make_msg(3, 999, "Wrong topic"),  # Not a PBP topic
         ])
-        export_path.write_text(json.dumps(export))
+        export_path.write_text(json.dumps(export), encoding="utf-8")
 
         results = import_history.import_messages(str(export_path), dry_run=True)
         assert results.get("TestCampaign") == 2

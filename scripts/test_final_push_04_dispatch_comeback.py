@@ -113,7 +113,7 @@ def test_markdone_found_real(tmp_path, monkeypatch):
     cq = {"unreplied": [{"message_id": 99, "time": "2026-03-01 10:00:00",
                           "user_name": "A", "preview": "x"}],
           "replied": [], "reply_log": []}
-    (tmp_path / "100.json").write_text(json.dumps(cq))
+    (tmp_path / "100.json").write_text(json.dumps(cq), encoding="utf-8")
     with patch("commands.markdone.scan_transcripts",
                return_value={"100": {"entries": []}}):
         ctx = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},

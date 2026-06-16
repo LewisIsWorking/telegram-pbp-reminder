@@ -76,7 +76,7 @@ def test_save_file_is_valid_json(tmp_path):
         state_store._loaded_ok = True
         state_store._save_to_files(_make_full_state())
     for f in tmp_path.glob("*.json"):
-        assert isinstance(json.loads(f.read_text()), dict)
+        assert isinstance(json.loads(f.read_text(encoding="utf-8")), dict)
 
 
 def test_each_partition_file_contains_correct_keys(tmp_path):
@@ -85,7 +85,7 @@ def test_each_partition_file_contains_correct_keys(tmp_path):
         state_store._loaded_ok = True
         state_store._save_to_files(state)
     for partition, keys in PARTITIONS.items():
-        data = json.loads((tmp_path / f"{partition}.json").read_text())
+        data = json.loads((tmp_path / f"{partition}.json").read_text(encoding="utf-8"))
         for k in keys:
             if k in state:
                 assert k in data, f"Key '{k}' missing from {partition}.json"
@@ -111,7 +111,7 @@ def test_load_returns_none_when_files_missing(tmp_path):
 
 def test_load_returns_none_when_partial_files(tmp_path):
     data = {k: {} for k in PARTITIONS["live"]}
-    (tmp_path / "live.json").write_text(json.dumps(data))
+    (tmp_path / "live.json").write_text(json.dumps(data), encoding="utf-8")
     with patch("state._state_dir", return_value=tmp_path):
         assert state_store._load_from_files() is None
 

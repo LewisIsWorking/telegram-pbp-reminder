@@ -22,7 +22,7 @@ LOGS_DIR = ROOT_DIR / "data" / "pbp_logs"
 CONFIG_PATH = ROOT_DIR / "config.json"
 
 def load_config() -> dict:
-    with open(CONFIG_PATH) as f:
+    with open(CONFIG_PATH, encoding="utf-8") as f:
         return json.load(f)
 
 def build_thread_map(config: dict) -> dict:
@@ -53,7 +53,7 @@ def get_imported_ids(campaign_dir: Path) -> set:
     """Read the tracking file of already-imported message IDs."""
     tracker = campaign_dir / ".imported_ids"
     if tracker.exists():
-        return set(tracker.read_text().strip().split("\n"))
+        return set(tracker.read_text(encoding="utf-8").strip().split("\n"))
     return set()
 
 def save_imported_ids(campaign_dir: Path, ids: set) -> None:

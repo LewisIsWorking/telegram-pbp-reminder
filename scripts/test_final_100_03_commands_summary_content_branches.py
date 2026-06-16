@@ -145,7 +145,7 @@ def test_recap_with_log(tmp_path):
         "## Scene 1\n\n"
         "**Alice** (2026-04-01 10:00:00) msg#1:\nHello world!\n\n"
         "**Bob** (2026-04-01 10:05:00) msg#2:\n" + "word " * 50 + "\n\n"
-    )
+    , encoding="utf-8")
     with patch("commands.recap._LOGS_DIR", tmp_path), \
          patch("commands.recap.helpers") as mh:
         mh.campaign_dir_name.return_value = "Kibwe"

@@ -82,7 +82,7 @@ def test_write_manifest(tmp_path):
     state = {"offset": 0, "foo": "bar"}
     with patch.object(_mg, "STATE_DIR", tmp_path):
         _mg._write_manifest(state)
-    manifest = json.loads((tmp_path / "manifest.json").read_text())
+    manifest = json.loads((tmp_path / "manifest.json").read_text(encoding="utf-8"))
     assert "migrated_at" in manifest
 
 

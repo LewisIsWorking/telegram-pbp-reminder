@@ -90,7 +90,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
     now = now or datetime.now(timezone.utc)
 
     try:
-        with open(helpers.BOONS_PATH) as f:
+        with open(helpers.BOONS_PATH, encoding="utf-8") as f:
             boons = json.load(f)  # pragma: no cover
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Warning: Could not load boons: {e}")

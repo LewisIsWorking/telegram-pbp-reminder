@@ -105,7 +105,7 @@ def test_recap_word_truncation(tmp_path):
     long = "hello " * 40  # 240 chars
     (tmp_path / "Kibwe" / "2026-04.md").write_text(
         f"**Alice** (2026-04-01 10:00:00) msg#1:\n{long}\n"
-    )
+    , encoding="utf-8")
     with patch("commands.recap._LOGS_DIR", tmp_path), \
          patch("commands.recap.helpers") as mh:
         mh.campaign_dir_name.return_value = "Kibwe"

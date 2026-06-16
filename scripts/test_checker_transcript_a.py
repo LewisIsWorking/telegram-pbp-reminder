@@ -41,7 +41,7 @@ def test_transcript_week_headers():
 
     # Check February file
     feb_file = checker._LOGS_DIR / "week_test" / "2026-02.md"
-    feb_content = feb_file.read_text()
+    feb_content = feb_file.read_text(encoding="utf-8")
     assert "## Week 9" in feb_content
     assert feb_content.count("## Week 9") == 1  # Only one header for week 9
     assert "week 9 msg" in feb_content
@@ -49,7 +49,7 @@ def test_transcript_week_headers():
 
     # Check March file
     mar_file = checker._LOGS_DIR / "week_test" / "2026-03.md"
-    mar_content = mar_file.read_text()
+    mar_content = mar_file.read_text(encoding="utf-8")
     assert "## Week 10" in mar_content
     assert "week 10 msg" in mar_content
 
@@ -82,7 +82,7 @@ def test_transcript_day_headers():
     p3 = {**base, "msg_time_iso": "2026-02-25T16:00:00+00:00", "raw_text": "still wed"}
     checker._append_to_transcript(p3, {"999"})
 
-    content = (checker._LOGS_DIR / "day_test" / "2026-02.md").read_text()
+    content = (checker._LOGS_DIR / "day_test" / "2026-02.md").read_text(encoding="utf-8")
 
     # Should have day headers for both Monday and Wednesday
     assert "📅 Monday, Feb 23" in content
@@ -121,7 +121,7 @@ def test_transcript_silence_gap():
     p3 = {**base, "msg_time_iso": "2026-02-24T04:00:00+00:00", "raw_text": "back after silence"}
     checker._append_to_transcript(p3, {"999"})
 
-    content = (checker._LOGS_DIR / "silence_test" / "2026-02.md").read_text()
+    content = (checker._LOGS_DIR / "silence_test" / "2026-02.md").read_text(encoding="utf-8")
 
     # Should NOT have a silence marker for the 2h gap
     assert "2h of silence" not in content
@@ -140,7 +140,7 @@ def test_transcript_silence_gap():
     p5 = {**base, "msg_time_iso": "2026-02-23T16:00:00+00:00", "raw_text": "afternoon"}
     checker._append_to_transcript(p5, {"999"})
 
-    content2 = (checker._LOGS_DIR / "silence_test" / "2026-02.md").read_text()
+    content2 = (checker._LOGS_DIR / "silence_test" / "2026-02.md").read_text(encoding="utf-8")
     assert "14h of silence" in content2
 
     shutil.rmtree(test_dir)

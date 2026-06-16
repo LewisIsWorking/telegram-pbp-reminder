@@ -87,7 +87,7 @@ def test_recap_truncation_real(tmp_path):
     month = "2026-04"
     (campaign_dir / f"{month}.md").write_text(
         f"**Alice** (2026-04-01 10:00:00) msg#1:\n{long_text}\n"
-    )
+    , encoding="utf-8")
     with patch("commands.recap._LOGS_DIR", tmp_path), \
          patch("commands.recap.helpers") as mh:
         mh.campaign_dir_name.return_value = "Kibwe"

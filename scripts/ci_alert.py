@@ -15,7 +15,7 @@ token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 sha = os.environ.get("GITHUB_SHA", "?")[:8]
 
 try:
-    raw = open("/tmp/pytest_output.txt").read()
+    raw = open("/tmp/pytest_output.txt", encoding="utf-8").read()
     lines = raw.splitlines()
     failed = [l for l in lines if l.startswith("FAILED ")]
     missing = [l for l in lines if "MISSING" in l or ("Miss" in l and "%" in l)]

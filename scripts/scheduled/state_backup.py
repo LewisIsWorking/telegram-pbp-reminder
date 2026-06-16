@@ -47,6 +47,6 @@ def _read_version() -> str:
     """Read the current bot version."""
     version_path = Path(__file__).parent.parent.parent / "VERSION"
     try:
-        return version_path.read_text().strip()
+        return version_path.read_text(encoding="utf-8").strip()
     except OSError:  # pragma: no cover
         return "unknown"  # pragma: no cover

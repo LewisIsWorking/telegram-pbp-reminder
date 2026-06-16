@@ -162,7 +162,7 @@ def update_transcript_index(config: dict) -> None:
 
         total_entries = 0
         for lf in log_files:
-            total_entries += sum(1 for line in open(lf) if line.startswith("**"))
+            total_entries += sum(1 for line in open(lf, encoding="utf-8") if line.startswith("**"))
 
         lines.append(f"## {display_name}")
         lines.append(f"")
@@ -170,7 +170,7 @@ def update_transcript_index(config: dict) -> None:
         lines.append(f"")
 
         for lf in log_files:
-            entries = sum(1 for line in open(lf) if line.startswith("**"))
+            entries = sum(1 for line in open(lf, encoding="utf-8") if line.startswith("**"))
             lines.append(f"- [{lf.stem}]({campaign_dir.name}/{lf.name}) ({entries} messages)")
 
         lines.append("")

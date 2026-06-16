@@ -88,7 +88,7 @@ def test_archive_includes_player_breakdown():
 
     # Read the archive
     import json
-    with open(archive_path) as f:
+    with open(archive_path, encoding="utf-8") as f:
         archive = json.load(f)
 
     # Find our entry

@@ -43,7 +43,7 @@ def test_changelog_read_latest_entry():
         "### Added\n- New feature\n\n"
         "## [1.0.0] - 2026-02-26\n\n"
         "### Added\n- Old feature\n"
-    )
+    , encoding="utf-8")
     header, body = read_latest_entry(test_path)
     assert "2.0.0" in header
     assert "New feature" in body

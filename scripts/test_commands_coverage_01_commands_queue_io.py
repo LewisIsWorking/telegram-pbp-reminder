@@ -78,13 +78,13 @@ def test_load_missing_returns_empty(tmp_queues):
 
 def test_load_existing(tmp_queues):
     data = {"pid": "100", "unreplied": [{"message_id": 1}], "replied": [], "reply_log": []}
-    (tmp_queues / "100.json").write_text(json.dumps(data))
+    (tmp_queues / "100.json").write_text(json.dumps(data), encoding="utf-8")
     result = queue_io.load("100")
     assert result["unreplied"][0]["message_id"] == 1
 
 
 def test_load_corrupt_returns_empty(tmp_queues):
-    (tmp_queues / "100.json").write_text("not json{{}")
+    (tmp_queues / "100.json").write_text("not json{{}", encoding="utf-8")
     result = queue_io.load("100")
     assert result["unreplied"] == []
 
@@ -107,8 +107,8 @@ def test_all_pids_empty(tmp_queues):
 
 
 def test_all_pids_with_files(tmp_queues):
-    (tmp_queues / "100.json").write_text("{}")
-    (tmp_queues / "200.json").write_text("{}")
+    (tmp_queues / "100.json").write_text("{}", encoding="utf-8")
+    (tmp_queues / "200.json").write_text("{}", encoding="utf-8")
     pids = queue_io.all_pids()
     assert set(pids) == {"100", "200"}
 
@@ -121,7 +121,7 @@ def test_all_pids_dir_missing(tmp_path, monkeypatch):
 
 def test_replied_set(tmp_queues):
     data = {"replied": ["msg:123", "2026-03-01 10:00:00"]}
-    (tmp_queues / "100.json").write_text(json.dumps(data))
+    (tmp_queues / "100.json").write_text(json.dumps(data), encoding="utf-8")
     rs = queue_io.replied_set("100")
     assert "msg:123" in rs
 
@@ -130,7 +130,7 @@ def test_mark_replied_adds_entries(tmp_queues):
     cq = {"pid": "100", "unreplied": [
         {"message_id": 42, "time": "2026-03-01 10:00:00"}
     ], "replied": [], "reply_log": []}
-    (tmp_queues / "100.json").write_text(json.dumps(cq))
+    (tmp_queues / "100.json").write_text(json.dumps(cq), encoding="utf-8")
     queue_io.mark_replied("100", "msg:42", "2026-03-01 10:00:00",
                            {"msg_id": "42", "player": "Alice"})
     result = queue_io.load("100")
@@ -141,7 +141,7 @@ def test_mark_replied_adds_entries(tmp_queues):
 
 def test_mark_replied_no_duplicate_keys(tmp_queues):
     cq = {"replied": ["msg:42"], "unreplied": [], "reply_log": []}
-    (tmp_queues / "100.json").write_text(json.dumps(cq))
+    (tmp_queues / "100.json").write_text(json.dumps(cq), encoding="utf-8")
     queue_io.mark_replied("100", "msg:42", None, {"msg_id": "42"})
     result = queue_io.load("100")
     assert result["replied"].count("msg:42") == 1

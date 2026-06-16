@@ -99,7 +99,7 @@ def test_transcript_formatting_media():
 def test_transcript_finalize_missing_pair_dir(tmp_path):
     from transcript.finalize import update_transcript_index
     config = {"topic_pairs": [{"name": "Missing Campaign"}]}
-    (tmp_path / "README.md").write_text("existing")
+    (tmp_path / "README.md").write_text("existing", encoding="utf-8")
     with patch("transcript.finalize._LOGS_DIR", tmp_path):
         update_transcript_index(config)  # dir doesn't exist, skips gracefully
 

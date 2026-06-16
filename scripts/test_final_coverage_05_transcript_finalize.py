@@ -86,12 +86,12 @@ def test_update_transcript_index_with_logs(tmp_path):
     config = {"topic_pairs": [{"name": "Kibwe"}]}
     logs = tmp_path / "Kibwe"
     logs.mkdir()
-    (logs / "2026-03.md").write_text("**Alice** (2026-03-01):\nHi\n")
-    (logs / "2026-04.md").write_text("**Bob** (2026-04-01):\nHey\n")
+    (logs / "2026-03.md").write_text("**Alice** (2026-03-01):\nHi\n", encoding="utf-8")
+    (logs / "2026-04.md").write_text("**Bob** (2026-04-01):\nHey\n", encoding="utf-8")
     with patch("transcript.finalize._LOGS_DIR", tmp_path):
         update_transcript_index(config)
     assert (tmp_path / "README.md").exists()
-    content = (tmp_path / "README.md").read_text()
+    content = (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "Kibwe" in content
 
 

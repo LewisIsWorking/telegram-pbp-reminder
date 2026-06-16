@@ -62,7 +62,7 @@ def test_import_messages_writes_files():
             ],
         }
         config_path = Path(tmp) / "config.json"
-        config_path.write_text(json.dumps(config))
+        config_path.write_text(json.dumps(config), encoding="utf-8")
         import_history.CONFIG_PATH = config_path
         import_history.LOGS_DIR = Path(tmp) / "logs"
 
@@ -73,7 +73,7 @@ def test_import_messages_writes_files():
             _make_msg(3, 100, "July post", date="2025-07-01T12:00:00"),
         ])
         export_path = Path(tmp) / "export.json"
-        export_path.write_text(json.dumps(export))
+        export_path.write_text(json.dumps(export), encoding="utf-8")
 
         results = import_history.import_messages(str(export_path))
         assert results["TestCampaign"] == 3
@@ -83,12 +83,12 @@ def test_import_messages_writes_files():
         assert (campaign_dir / "2025-06.md").exists()
         assert (campaign_dir / "2025-07.md").exists()
 
-        june = (campaign_dir / "2025-06.md").read_text()
+        june = (campaign_dir / "2025-06.md").read_text(encoding="utf-8")
         assert "First post" in june
         assert "[GM]" in june  # GM tagged
         assert "TestCampaign — 2025-06" in june
 
-        july = (campaign_dir / "2025-07.md").read_text()
+        july = (campaign_dir / "2025-07.md").read_text(encoding="utf-8")
         assert "July post" in july
 
         # Verify idempotency — second run imports nothing
@@ -114,7 +114,7 @@ def test_import_skips_service_messages():
             ],
         }
         config_path = Path(tmp) / "config.json"
-        config_path.write_text(json.dumps(config))
+        config_path.write_text(json.dumps(config), encoding="utf-8")
         import_history.CONFIG_PATH = config_path
         import_history.LOGS_DIR = Path(tmp) / "logs"
 
@@ -123,7 +123,7 @@ def test_import_skips_service_messages():
             {**_make_msg(2, 100, ""), "action": "pin_message", "type": "message"},
         ])
         export_path = Path(tmp) / "export.json"
-        export_path.write_text(json.dumps(export))
+        export_path.write_text(json.dumps(export), encoding="utf-8")
 
         results = import_history.import_messages(str(export_path))
         assert results["TestCampaign"] == 1

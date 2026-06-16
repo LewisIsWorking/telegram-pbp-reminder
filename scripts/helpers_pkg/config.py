@@ -13,7 +13,7 @@ from helpers_pkg.time_utils import timestamps_in_window
 
 def load_config() -> dict:
     """Load and return the config.json file."""
-    with open(CONFIG_PATH) as f:  # pragma: no cover
+    with open(CONFIG_PATH, encoding="utf-8") as f:  # pragma: no cover
         return json.load(f)  # pragma: no cover
 
 

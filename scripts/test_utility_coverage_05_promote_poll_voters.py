@@ -73,8 +73,8 @@ def test_main_no_unknown_voters(tmp_path, capsys):
     state = {"poll_unknown_voters": {}}
     cfg_file = tmp_path / "config.json"
     st_file = tmp_path / "live.json"
-    cfg_file.write_text(json.dumps(config))
-    st_file.write_text(json.dumps(state))
+    cfg_file.write_text(json.dumps(config), encoding="utf-8")
+    st_file.write_text(json.dumps(state), encoding="utf-8")
     with patch.object(_ppv, "CONFIG", cfg_file):
         with patch.object(_ppv, "STATE", st_file):
             with patch("sys.argv", ["promote_poll_voters.py"]):
@@ -95,8 +95,8 @@ def test_main_dry_run(tmp_path, capsys):
     }
     cfg_file = tmp_path / "config.json"
     st_file = tmp_path / "live.json"
-    cfg_file.write_text(json.dumps(config))
-    st_file.write_text(json.dumps(state))
+    cfg_file.write_text(json.dumps(config), encoding="utf-8")
+    st_file.write_text(json.dumps(state), encoding="utf-8")
     with patch.object(_ppv, "CONFIG", cfg_file):
         with patch.object(_ppv, "STATE", st_file):
             with patch("sys.argv", ["promote_poll_voters.py"]):
