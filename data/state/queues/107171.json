@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 159800,
-      "thread_id": 142887,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-08T17:00:11+00:00",
-      "preview": "I will decline hp reroll.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -309,7 +299,9 @@
     "msg:159560",
     "2026-06-07 15:31:30",
     "msg:159766",
-    "2026-06-08 12:31:50"
+    "2026-06-08 12:31:50",
+    "msg:159800",
+    "2026-06-08 17:00:11"
   ],
   "reply_log": [
     {
@@ -1710,6 +1702,15 @@
       "player": "Bruce",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-16T14:50:11+00:00",
+      "pid": "107171",
+      "msg_id": "159800",
+      "thread_id": 142887,
+      "player": "Bruce",
+      "preview": "I will decline hp reroll.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1722,12 +1723,10 @@
       "caught_up_msg_id": 153234
     },
     "142887": {
-      "fingerprint": "2026-06-08 17:00:11",
-      "msg_ids": [
-        159802
-      ],
-      "last_posted_at": "2026-06-08T18:04:19.623491+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161715
     }
   }
 }
