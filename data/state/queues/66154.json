@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 160564,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-11T17:00:26+00:00",
-      "preview": "Filiaur appears behind cardigan\n\"Speaking of monney, i think we're sitting on quite a pile of it from our cleaning of the church, we should probably go get everything appraised and sold and upgrade our gear before taking on Anger.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -176,7 +166,9 @@
     "msg:159861",
     "2026-06-09 06:14:56",
     "msg:159868",
-    "2026-06-09 07:20:26"
+    "2026-06-09 07:20:26",
+    "msg:160564",
+    "2026-06-11 17:00:26"
   ],
   "reply_log": [
     {
@@ -946,18 +938,25 @@
       "player": "Bre",
       "preview": "\"Oh. Well that's a real problem I guess.\" Kyomi looks at Cardigan, then sighs. \"",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-16T17:23:34+00:00",
+      "pid": "66154",
+      "msg_id": "160564",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Filiaur appears behind cardigan\n\"Speaking of monney, i think we're sitting on qu",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-06-11 17:00:26",
-      "msg_ids": [
-        160575
-      ],
-      "last_posted_at": "2026-06-11T17:24:34.540993+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161730
     }
   }
 }
