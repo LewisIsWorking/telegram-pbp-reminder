@@ -1,5 +1,5 @@
 {
-  "offset": 619344583,
+  "offset": 619344591,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-12T15:52:25+00:00",
@@ -231,8 +231,8 @@
     }
   },
   "last_state_backup": "2026-06-15T11:16:05.890170+00:00",
-  "last_queue_daily": "2026-06-15",
-  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|40585:2026-06-15 19:07:20|40585:2026-06-15 22:24:03|40585:2026-06-16 04:02:54|40585:2026-06-16 05:21:06|52083:2026-06-12 15:52:25|66154:2026-06-11 17:00:26|76799:2026-06-15 21:39:42|76799:2026-06-15 21:41:08|silent:  \ud83d\udfe5 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 8d 3h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udd34 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 7d 20h \ud83d\udd17 https://t.me/Path_Wars/51357|  \ud83d\udc80 \ud83e\udd84 C08: Theria \u2014 no posts for 22d 12h \ud83d\udd17 https://t.me/Path_Wars/107151|  \ud83d\udfe7 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 6d \ud83d\udd17 https://t.me/Path_Wars/1242",
+  "last_queue_daily": "2026-06-16",
+  "last_queue_fingerprint": "107171:2026-06-08 17:00:11|40585:2026-06-15 19:07:20|40585:2026-06-15 22:24:03|40585:2026-06-16 04:02:54|40585:2026-06-16 05:21:06|52083:2026-06-12 15:52:25|66154:2026-06-11 17:00:26|76799:2026-06-15 21:39:42|76799:2026-06-15 21:41:08|silent:  \ud83d\udfe5 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 8d 6h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udd34 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 7d 23h \ud83d\udd17 https://t.me/Path_Wars/51357|  \ud83d\udc80 \ud83e\udd84 C08: Theria \u2014 no posts for 22d 15h \ud83d\udd17 https://t.me/Path_Wars/107151|  \ud83d\udfe7 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 6d 3h \ud83d\udd17 https://t.me/Path_Wars/1242",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -292,7 +292,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-06-14",
   "last_queue_daily_slots": [
-    "2026-06-08:21",
     "2026-06-09:09",
     "2026-06-09:21",
     "2026-06-10:09",
@@ -305,7 +304,8 @@
     "2026-06-13:21",
     "2026-06-14:09",
     "2026-06-14:21",
-    "2026-06-15:21"
+    "2026-06-15:21",
+    "2026-06-16:09"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-14",
@@ -317,14 +317,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-15",
-  "last_queue_pin_id": 161626,
-  "queue_post_count": 831,
+  "last_queue_pin_id": 161635,
+  "queue_post_count": 832,
   "gm_queue_history": [
     {
       "msg_ids": [
-        161626
+        161635
       ],
-      "pin_id": 161626
+      "pin_id": 161635
     }
   ]
 }
