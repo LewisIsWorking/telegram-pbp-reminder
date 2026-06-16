@@ -32,7 +32,7 @@ def test_potw_links_real(tmp_path):
     (log_dir / "2026-04.md").write_text(
         "**Alice** (2026-04-01 10:00:00) msg#1:\nHi!\n"
     , encoding="utf-8")
-    with patch("scheduled.potw._LOGS_DIR", tmp_path):
+    with patch("scheduled.potw_links._LOGS_DIR", tmp_path):
         links = _find_player_post_links("Kibwe", "Alice", "100", week_ago)
     assert isinstance(links, list)
 
