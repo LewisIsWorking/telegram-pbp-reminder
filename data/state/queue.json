@@ -100,10 +100,6 @@
       "2026-06-08T10:44:16.220522+00:00"
     ],
     "40585": [
-      "2026-03-24T14:29:06.318676+00:00",
-      "2026-03-24T14:29:07.074203+00:00",
-      "2026-03-24T14:29:07.074460+00:00",
-      "2026-03-24T14:29:07.074690+00:00",
       "2026-03-24T15:27:10.875093+00:00",
       "2026-03-24T15:27:10.875387+00:00",
       "2026-03-24T15:27:10.875488+00:00",
@@ -599,7 +595,11 @@
       "2026-06-14T18:40:20.421102+00:00",
       "2026-06-14T20:36:39.090628+00:00",
       "2026-06-15T11:16:05.888251+00:00",
-      "2026-06-15T16:44:25.832166+00:00"
+      "2026-06-15T16:44:25.832166+00:00",
+      "2026-06-16T11:52:29.621018+00:00",
+      "2026-06-16T11:52:29.627322+00:00",
+      "2026-06-16T11:52:29.631661+00:00",
+      "2026-06-16T11:52:29.635957+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1448,34 +1448,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-25T05:42:32.079523+00:00",
-      "player": "Loaf",
-      "preview": "landon would walk with vera into the opening leaning against",
-      "msg_id": "156205"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.559691+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor simply blinks \"It is very rude to scream at a person",
-      "msg_id": "156211"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.566820+00:00",
-      "player": "Loaf",
-      "preview": "\"ey, im not fat im just packing extra rations.\"\n\nlandon woul",
-      "msg_id": "156217"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.570996+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor gives Evan a death stare. \"You leave that door and y",
-      "msg_id": "156227"
-    },
     {
       "pid": "25059",
       "time": "2026-05-25T07:51:32.573513+00:00",
@@ -2847,6 +2819,34 @@
       "player": "Chase",
       "preview": "The statue gets a point out as dangerous, but potentially us",
       "msg_id": "161541"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-16T11:52:29.621018+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Oh... I take it, they can't be pulled apart now?\" She sighs",
+      "msg_id": "161488"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-16T11:52:29.627322+00:00",
+      "player": "Ryo",
+      "preview": "Leopard who had remained silent during the sudden entrance o",
+      "msg_id": "161570"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-16T11:52:29.631661+00:00",
+      "player": "Buffet",
+      "preview": "Tarsus adjusts his backpack and grips his staff with both ha",
+      "msg_id": "161597"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-16T11:52:29.635957+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Don't worry! I possess the knowledge to detect the foes wit",
+      "msg_id": "161619"
     }
   ],
   "pending_potw_boons": {

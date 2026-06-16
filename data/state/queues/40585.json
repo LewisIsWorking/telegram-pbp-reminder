@@ -16,42 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 161488,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-15T19:07:20+00:00",
-      "preview": "\"Oh... I take it, they can't be pulled apart now?\" She sighs a little bit. \"Sad if that's true, but alas. We shall stride forward to take down the evil so her act isn't for naught! Let's not waste more time, and go in then!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161570,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-06-15T22:24:03+00:00",
-      "preview": "Leopard who had remained silent during the sudden entrance of the seeming revolving door of new allies finally grunts and looks between everyone.\n\n\"Well, now that we seem to be on the same page it's time to get inside. Be ready, there may be an ambush on the other side of this door. I know that's what I would do after securing a door like they did.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161597,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-06-16T04:02:54+00:00",
-      "preview": "Tarsus adjusts his backpack and grips his staff with both hands, causing it to swell with magic to roughly the size of a lance. \n\"Safe to assume there's a welcome party waiting for us. Either way, we go in guns blazing at this point.\" \nHe takes his stance and waits for the door to open.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161619,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-16T05:21:06+00:00",
-      "preview": "\"Don't worry! I possess the knowledge to detect the foes with any weapons made of metal! Unless those are some flesh abominations, they won't have a chance at the ambush!\"\n\n*On top of that, her hand moves in the poach at the bottom of her back and pulls out a pair of oversized goggles with a leather strip to hold it in place. For a moment, she places the spear on the shoulder to get the hair out of the way, and puts the device on.\n\n\"It'll be easy for me to notice their motions too, if my preciou",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -802,7 +766,15 @@
     "msg:161248",
     "2026-06-14 18:37:42",
     "msg:161410",
-    "2026-06-15 11:46:38"
+    "2026-06-15 11:46:38",
+    "msg:161488",
+    "2026-06-15 19:07:20",
+    "msg:161570",
+    "2026-06-15 22:24:03",
+    "msg:161597",
+    "2026-06-16 04:02:54",
+    "msg:161619",
+    "2026-06-16 05:21:06"
   ],
   "reply_log": [
     {
@@ -4366,6 +4338,42 @@
       "player": "Kaer'maga when?",
       "preview": "Lorn puts his hand on her shoulder and says \"Relax my dear I think she could aid",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-16T10:25:54+00:00",
+      "pid": "40585",
+      "msg_id": "161488",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Oh... I take it, they can't be pulled apart now?\" She sighs a little bit. \"Sad ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-16T10:33:06+00:00",
+      "pid": "40585",
+      "msg_id": "161570",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "Leopard who had remained silent during the sudden entrance of the seeming revolv",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-16T10:33:39+00:00",
+      "pid": "40585",
+      "msg_id": "161597",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus adjusts his backpack and grips his staff with both hands, causing it to s",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-16T10:33:49+00:00",
+      "pid": "40585",
+      "msg_id": "161619",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Don't worry! I possess the knowledge to detect the foes with any weapons made o",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4378,12 +4386,10 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-15 19:07:20|2026-06-15 22:24:03|2026-06-16 04:02:54|2026-06-16 05:21:06",
-      "msg_ids": [
-        161624
-      ],
-      "last_posted_at": "2026-06-16T06:01:28.878450+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161682
     }
   }
 }
