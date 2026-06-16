@@ -44,6 +44,9 @@ def test_leaderboard_week_number_and_totals_and_mvp():
     # MVP prize
     assert "MVP of the Week" in result
     assert "Hero Point" in result
+    # /heropoint fallback is advertised so the typed claim is discoverable
+    # when the button callback lags behind the hourly cron.
+    assert "/heropoint" in result
     assert "Alice B" in result
     now = datetime.now(timezone.utc)
     stats = {
