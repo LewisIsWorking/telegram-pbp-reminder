@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 161772,
+      "thread_id": 40585,
+      "user_id": "1395063293",
+      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "time": "2026-06-16T22:58:13+00:00",
+      "preview": "\"Then, I shall be the one to open them! I will sense the metal of their weapons and armours if they're not too far away from the doors! I'll need but a moment near them before we can move forth!\" Once again, she looked like there were starts on her face glistening from under the goggles.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4397,10 +4406,12 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 161768
+      "fingerprint": "2026-06-16 22:58:13",
+      "msg_ids": [
+        161776
+      ],
+      "last_posted_at": "2026-06-16T23:37:41.087531+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
