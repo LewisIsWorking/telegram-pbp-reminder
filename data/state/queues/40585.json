@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 161734,
+      "thread_id": 40585,
+      "user_id": "1395063293",
+      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "time": "2026-06-16T19:36:56+00:00",
+      "preview": "Anna closes her eyes for a moment, concentrating to cast a spell, and nods to herself, familiar feeling of the metal all around her comes back to her senses.\n\n\"I'm ready! Although, the distance is far from stellar! Can you tell me if monsters that infest the temple use metal weapons or armor?\" She asks, looking at the people with a question in eyes.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4386,10 +4395,12 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 161682
+      "fingerprint": "2026-06-16 19:36:56",
+      "msg_ids": [
+        161742
+      ],
+      "last_posted_at": "2026-06-16T20:08:29.135161+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
