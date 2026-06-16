@@ -11,7 +11,28 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.51.6] - 2026-06-16
+## [4.51.7] - 2026-06-16
+
+### Changed
+
+**Completed the v4.0.0 modularization: every production module is now ≤200 lines.**
+
+The last two files over the project's 200-line limit were split by pure
+extraction (no behaviour change):
+
+- `boons/handler.py` (214 → 138) — boon-resolution logic (result
+  formatting, campaign-name resolution, storage, `_resolve_boon`) moved
+  to new `boons/resolution.py` (101).
+- `scheduled/potw.py` (205 → 169) — transcript post-link lookup
+  (`_find_player_post_links`, `_ENTRY_RE`, `_LOGS_DIR`) moved to new
+  `scheduled/potw_links.py` (57).
+
+Both originals re-export the moved names, so `boons.handler.*` /
+`scheduled.potw.*` imports, `compat` aliases, and test patch targets
+keep resolving unchanged. The three tests that redirect the transcript
+root were repointed from `scheduled.potw._LOGS_DIR` to
+`scheduled.potw_links._LOGS_DIR` (the module where the moved function
+reads it). Full suite green (1753 passed).
 
 ### Changed
 

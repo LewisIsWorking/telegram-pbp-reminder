@@ -13,46 +13,10 @@ from helpers_pkg import campaigns
 import telegram as tg
 
 
-import re
-from pathlib import Path
-from transcript.logger import sanitize_dirname
-
-_LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
-_ENTRY_RE = re.compile(
-    r'\*\*(.+?)\*\*(?:\s*\([^)]*\))?'
-    r'(?:\s*\[GM\])?\s*\((\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2})\)'
-    r'(?:\s*msg#(\d+))?:\s*$'
-)
-
-
-def _find_player_post_links(campaign_name: str, player_first_name: str,
-                            pid: str, since: datetime) -> list[str]:
-    """Find a player's recent posts with links from transcript."""
-    dirname = sanitize_dirname(campaign_name)
-    month = since.strftime("%Y-%m")
-    path = _LOGS_DIR / dirname / f"{month}.md"
-    if not path.exists():
-        return []
-    links = []
-    for line in path.read_text(encoding="utf-8").split("\n"):
-        m = _ENTRY_RE.match(line)
-        if not m:
-            continue
-        author, date_str, time_str, msg_id = m.groups()
-        if not author.startswith(player_first_name):
-            continue  # pragma: no cover
-        try:
-            ts = datetime.strptime(f"{date_str} {time_str}", "%Y-%m-%d %H:%M:%S")
-            ts = ts.replace(tzinfo=timezone.utc)
-            if ts < since:
-                continue  # pragma: no cover
-        except ValueError:  # pragma: no cover
-            continue  # pragma: no cover
-        if msg_id:
-            links.append(f"🔗 https://t.me/Path_Wars/{pid}/{msg_id}")
-        else:
-            links.append(f"📝 {date_str} {time_str}")  # pragma: no cover
-    return links
+# Transcript post-link lookup lives in scheduled.potw_links; re-exported
+# here so player_of_the_week and test patch targets keep resolving. Tests
+# that redirect the transcript root patch scheduled.potw_links._LOGS_DIR.
+from scheduled.potw_links import _find_player_post_links  # noqa: F401
 
 
 def _gather_potw_candidates(

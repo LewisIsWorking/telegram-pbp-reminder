@@ -260,7 +260,7 @@ advance phases, auto-notify GM when all players have acted, combat log with
 
 ---
 
-## v4.0.0 — Codebase Modularization (In Progress)
+## v4.0.0 — Codebase Modularization (✅ Complete)
 
 Refactor all Python files to a **200-line hard maximum**. No code removal,
 no compression, no comment removal. Pure extraction, OOP, and SOLID
@@ -353,6 +353,16 @@ principles. Incremental commits, each chunk tested and deployed.
 - Rewrote checker.py as clean orchestrator (201 lines: orchestration + backward-compat test aliases)
 - Verified all production files ≤200 lines (43 modules)
 - Remaining minor overages: post_changelog.py (207), import_history.py (312) — standalone utilities, not core bot
+
+### ✅ Chunk 11 — Last two overages (v4.51.7)
+- Extracted `boons/resolution.py` (101 lines) from `boons/handler.py` (214 → 138):
+  boon result formatting, campaign-name resolution, storage, `_resolve_boon`.
+- Extracted `scheduled/potw_links.py` (57 lines) from `scheduled/potw.py` (205 → 169):
+  transcript post-link lookup (`_find_player_post_links`, `_ENTRY_RE`, `_LOGS_DIR`).
+- Both originals re-export the moved names, so `boons.handler.*` / `scheduled.potw.*`
+  imports, `compat` aliases, and test patch targets resolve unchanged. The three
+  `_LOGS_DIR`-redirect test patches were repointed to `scheduled.potw_links`.
+- **✅ v4.0.0 modularization complete: every production module is ≤200 lines.**
 
 
 ---

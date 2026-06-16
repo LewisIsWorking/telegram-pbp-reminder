@@ -94,7 +94,7 @@ def test_gather_potw_candidates_with_posts():
 
 
 def test_find_player_post_links_no_dir(tmp_path):
-    with patch("scheduled.potw._LOGS_DIR", tmp_path / "missing"):
+    with patch("scheduled.potw_links._LOGS_DIR", tmp_path / "missing"):
         result = _find_player_post_links("Kibwe", "Alice", "100",
                                          datetime(2026, 3, 27, tzinfo=timezone.utc))
     assert result == []
