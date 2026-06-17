@@ -18,57 +18,30 @@
       "preview": "[media]"
     },
     {
-      "message_id": 161943,
+      "message_id": 162071,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-06-17T21:16:25+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 162078,
       "thread_id": 40585,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-06-17T19:31:33+00:00",
-      "preview": "(Probably)",
+      "time": "2026-06-17T21:28:38+00:00",
+      "preview": "\"\nThanks.\nNote to self: Let Fierce Open the doors next time...\"",
       "media_group_id": null
     },
     {
-      "message_id": 161952,
-      "thread_id": 137075,
+      "message_id": 162080,
+      "thread_id": 40585,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-06-17T19:37:02+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161962,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-06-17T19:57:48+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161973,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-17T20:20:01+00:00",
-      "preview": "Daichi pushes off the Narcoleptic cat and stands up using Kip up (Free action)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161979,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-06-17T20:32:16+00:00",
-      "preview": "Tarsus charges his staff with weakening magic and strikes the creature, then enters an arcane cascade.\n2a Spellstrike with Enfeeble\n1a arcane cascade.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161980,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-06-17T20:32:52+00:00",
-      "preview": "[media]",
+      "time": "2026-06-17T21:30:12+00:00",
+      "preview": "(If the rest of the group is OK we'll take a 10min rest so that daichi can get treat wounds for someone while he takes a breather and Lorn can refocus)",
       "media_group_id": null
     }
   ],
@@ -850,7 +823,23 @@
     "msg:161941",
     "2026-06-17 19:30:51",
     "msg:161988",
-    "2026-06-17 20:43:38"
+    "2026-06-17 20:43:38",
+    "msg:161952",
+    "2026-06-17 19:37:02",
+    "msg:161962",
+    "2026-06-17 19:57:48",
+    "msg:161973",
+    "2026-06-17 20:20:01",
+    "msg:161979",
+    "2026-06-17 20:32:16",
+    "msg:161980",
+    "2026-06-17 20:32:52",
+    "msg:161989",
+    "2026-06-17 20:43:39",
+    "msg:161943",
+    "2026-06-17 19:31:33",
+    "msg:162015",
+    "2026-06-17 20:57:44"
   ],
   "reply_log": [
     {
@@ -4549,25 +4538,95 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:52:21+00:00",
+      "pid": "40585",
+      "msg_id": "161952",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:52:35+00:00",
+      "pid": "40585",
+      "msg_id": "161962",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:52:53+00:00",
+      "pid": "40585",
+      "msg_id": "161973",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Daichi pushes off the Narcoleptic cat and stands up using Kip up (Free action)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:53:06+00:00",
+      "pid": "40585",
+      "msg_id": "161979",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus charges his staff with weakening magic and strikes the creature, then ent",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:53:19+00:00",
+      "pid": "40585",
+      "msg_id": "161980",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:53:30+00:00",
+      "pid": "40585",
+      "msg_id": "161989",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:56:33+00:00",
+      "pid": "40585",
+      "msg_id": "161943",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "(Probably)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:58:57+00:00",
+      "pid": "40585",
+      "msg_id": "162015",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi stares at the hole in his breastplate with blood pouring out of it.\n\"Ugh,",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-17 19:37:02|2026-06-17 19:57:48|2026-06-17 20:20:01|2026-06-17 20:32:16|2026-06-17 20:32:52|2026-06-17 20:43:39",
-      "msg_ids": [
-        161997
-      ],
-      "last_posted_at": "2026-06-17T20:51:48.831467+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 162086
     },
     "40585": {
-      "fingerprint": "2026-06-17 19:31:33",
+      "fingerprint": "2026-06-17 21:16:25|2026-06-17 21:28:38|2026-06-17 21:30:12",
       "msg_ids": [
-        161995
+        162084
       ],
-      "last_posted_at": "2026-06-17T20:51:46.140669+00:00",
+      "last_posted_at": "2026-06-17T21:44:43.261744+00:00",
       "caught_up_msg_id": null
     }
   }
