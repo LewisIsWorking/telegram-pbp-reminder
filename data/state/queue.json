@@ -100,12 +100,6 @@
       "2026-06-08T10:44:16.220522+00:00"
     ],
     "40585": [
-      "2026-03-24T15:27:10.875778+00:00",
-      "2026-03-24T15:27:10.875878+00:00",
-      "2026-03-24T15:27:10.875963+00:00",
-      "2026-03-24T15:27:10.876043+00:00",
-      "2026-03-24T16:25:25.198304+00:00",
-      "2026-03-24T17:22:40.979932+00:00",
       "2026-03-24T17:22:40.980647+00:00",
       "2026-03-25T01:36:08.114112+00:00",
       "2026-03-25T01:36:08.115205+00:00",
@@ -599,7 +593,13 @@
       "2026-06-17T12:29:12.381665+00:00",
       "2026-06-17T12:29:12.388689+00:00",
       "2026-06-17T19:03:29.030041+00:00",
-      "2026-06-17T19:03:29.037231+00:00"
+      "2026-06-17T19:03:29.037231+00:00",
+      "2026-06-17T20:51:41.763793+00:00",
+      "2026-06-17T20:51:41.774625+00:00",
+      "2026-06-17T20:51:41.783941+00:00",
+      "2026-06-17T20:51:41.792221+00:00",
+      "2026-06-17T20:51:41.805199+00:00",
+      "2026-06-17T20:51:41.840026+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1454,48 +1454,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.609501+00:00",
-      "player": "Loaf",
-      "preview": "\"pretty sure thats what people call sins \"\n\nlandon lays his ",
-      "msg_id": "156278"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T09:33:26.557789+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "The ghoul eye stares at the two mortals in front of him  and",
-      "msg_id": "156294"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T09:33:26.559460+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "The ghoul eye then looks at Cardigan \" I don't know my kindr",
-      "msg_id": "156296"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T09:33:26.565148+00:00",
-      "player": "Loaf",
-      "preview": "\" what in sam hell are you thinking. \" landon gets off the w",
-      "msg_id": "156315"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T09:33:26.568185+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor looks at Cardigan \" My answer to that question will ",
-      "msg_id": "156318"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T09:33:26.571224+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor then says \"Arise. Who are you?\"",
-      "msg_id": "156320"
-    },
     {
       "pid": "25059",
       "time": "2026-05-25T09:33:26.574365+00:00",
@@ -2853,6 +2811,48 @@
       "player": "Bruce",
       "preview": "\"If I were an enemy waiting I would conceal myself.  So your",
       "msg_id": "161884"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T20:51:41.763793+00:00",
+      "player": "Anthony",
+      "preview": "Daichi readies his staff and says quietly to the party.\n\"Let",
+      "msg_id": "161915"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T20:51:41.774625+00:00",
+      "player": "Anthony",
+      "preview": "Thank you my subconscious but i knew that.",
+      "msg_id": "161931"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T20:51:41.783941+00:00",
+      "player": "Anthony",
+      "preview": "Daichi tries to peek through the door using any available op",
+      "msg_id": "161933"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T20:51:41.792221+00:00",
+      "player": "Anthony",
+      "preview": "Daichi tries to open the door very slightly.",
+      "msg_id": "161935"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T20:51:41.805199+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "161941"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T20:51:41.840026+00:00",
+      "player": "Ryo",
+      "preview": "[media]",
+      "msg_id": "161988"
     }
   ],
   "pending_potw_boons": {

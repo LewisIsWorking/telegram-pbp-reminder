@@ -18,12 +18,57 @@
       "preview": "[media]"
     },
     {
-      "message_id": 161915,
+      "message_id": 161943,
       "thread_id": 40585,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-06-17T18:41:35+00:00",
-      "preview": "Daichi readies his staff and says quietly to the party.\n\"Let's checkout quietly what's making that noise in the chamber of sleeping.\"\nHe starts sneaking up to the left door while staying warry of possible traps placed as deffences (Trap Finder).",
+      "time": "2026-06-17T19:31:33+00:00",
+      "preview": "(Probably)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 161952,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-17T19:37:02+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 161962,
+      "thread_id": 137075,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-06-17T19:57:48+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 161973,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-17T20:20:01+00:00",
+      "preview": "Daichi pushes off the Narcoleptic cat and stands up using Kip up (Free action)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 161979,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-06-17T20:32:16+00:00",
+      "preview": "Tarsus charges his staff with weakening magic and strikes the creature, then enters an arcane cascade.\n2a Spellstrike with Enfeeble\n1a arcane cascade.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 161980,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-06-17T20:32:52+00:00",
+      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -793,7 +838,19 @@
     "msg:161849",
     "2026-06-17 14:11:34",
     "msg:161884",
-    "2026-06-17 15:42:35"
+    "2026-06-17 15:42:35",
+    "msg:161915",
+    "2026-06-17 18:41:35",
+    "msg:161931",
+    "2026-06-17 19:12:58",
+    "msg:161933",
+    "2026-06-17 19:18:19",
+    "msg:161935",
+    "2026-06-17 19:21:01",
+    "msg:161941",
+    "2026-06-17 19:30:51",
+    "msg:161988",
+    "2026-06-17 20:43:38"
   ],
   "reply_log": [
     {
@@ -4438,23 +4495,79 @@
       "player": "Bruce",
       "preview": "\"If I were an enemy waiting I would conceal myself.  So your metal sensing will ",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-17T19:12:32+00:00",
+      "pid": "40585",
+      "msg_id": "161915",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi readies his staff and says quietly to the party.\n\"Let's checkout quietly ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T19:17:40+00:00",
+      "pid": "40585",
+      "msg_id": "161931",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Thank you my subconscious but i knew that.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T19:19:36+00:00",
+      "pid": "40585",
+      "msg_id": "161933",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi tries to peek through the door using any available openings.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T19:23:06+00:00",
+      "pid": "40585",
+      "msg_id": "161935",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi tries to open the door very slightly.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T19:31:03+00:00",
+      "pid": "40585",
+      "msg_id": "161941",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T20:44:03+00:00",
+      "pid": "40585",
+      "msg_id": "161988",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 158985
+      "fingerprint": "2026-06-17 19:37:02|2026-06-17 19:57:48|2026-06-17 20:20:01|2026-06-17 20:32:16|2026-06-17 20:32:52|2026-06-17 20:43:39",
+      "msg_ids": [
+        161997
+      ],
+      "last_posted_at": "2026-06-17T20:51:48.831467+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
-      "fingerprint": "2026-06-17 18:41:35",
+      "fingerprint": "2026-06-17 19:31:33",
       "msg_ids": [
-        161924
+        161995
       ],
-      "last_posted_at": "2026-06-17T19:03:37.296704+00:00",
+      "last_posted_at": "2026-06-17T20:51:46.140669+00:00",
       "caught_up_msg_id": null
     }
   }
