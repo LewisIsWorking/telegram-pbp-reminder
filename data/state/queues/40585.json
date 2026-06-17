@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 161772,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-16T22:58:13+00:00",
-      "preview": "\"Then, I shall be the one to open them! I will sense the metal of their weapons and armours if they're not too far away from the doors! I'll need but a moment near them before we can move forth!\" Once again, she looked like there were starts on her face glistening from under the goggles.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161799,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-06-17T04:41:00+00:00",
-      "preview": "Tarsus shrugs.\n\"Suit yourself, at this point I think we can safely assume anything in here that's not a member of our group is trying to kill us. Or the people of Kibwe. Probably both.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -794,7 +776,11 @@
     "msg:161619",
     "2026-06-16 05:21:06",
     "msg:161734",
-    "2026-06-16 19:36:56"
+    "2026-06-16 19:36:56",
+    "msg:161772",
+    "2026-06-16 22:58:13",
+    "msg:161799",
+    "2026-06-17 04:41:00"
   ],
   "reply_log": [
     {
@@ -4403,6 +4389,24 @@
       "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "preview": "Anna closes her eyes for a moment, concentrating to cast a spell, and nods to he",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-17T12:18:36+00:00",
+      "pid": "40585",
+      "msg_id": "161772",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Then, I shall be the one to open them! I will sense the metal of their weapons ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-17T12:18:54+00:00",
+      "pid": "40585",
+      "msg_id": "161799",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus shrugs.\n\"Suit yourself, at this point I think we can safely assume anythi",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4415,12 +4419,10 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "2026-06-16 22:58:13|2026-06-17 04:41:00",
-      "msg_ids": [
-        161801
-      ],
-      "last_posted_at": "2026-06-17T05:50:31.815092+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 161822
     }
   }
 }

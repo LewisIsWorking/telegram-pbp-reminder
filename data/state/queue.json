@@ -100,8 +100,6 @@
       "2026-06-08T10:44:16.220522+00:00"
     ],
     "40585": [
-      "2026-03-24T15:27:10.875387+00:00",
-      "2026-03-24T15:27:10.875488+00:00",
       "2026-03-24T15:27:10.875581+00:00",
       "2026-03-24T15:27:10.875685+00:00",
       "2026-03-24T15:27:10.875778+00:00",
@@ -599,7 +597,9 @@
       "2026-06-16T11:52:29.627322+00:00",
       "2026-06-16T11:52:29.631661+00:00",
       "2026-06-16T11:52:29.635957+00:00",
-      "2026-06-16T22:43:53.583246+00:00"
+      "2026-06-16T22:43:53.583246+00:00",
+      "2026-06-17T12:29:12.381665+00:00",
+      "2026-06-17T12:29:12.388689+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1454,20 +1454,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.600560+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor other normal twitches from seeing how careless Otto ",
-      "msg_id": "156257"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-05-25T07:51:32.604827+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor shakes his head and responds in necril \"Who are you?",
-      "msg_id": "156272"
-    },
     {
       "pid": "25059",
       "time": "2026-05-25T07:51:32.606395+00:00",
@@ -2853,6 +2839,20 @@
       "player": "Chase",
       "preview": "\"So long as the haunts don't start haunting until after we'v",
       "msg_id": "161737"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T12:29:12.381665+00:00",
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Then, I shall be the one to open them! I will sense the met",
+      "msg_id": "161772"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-06-17T12:29:12.388689+00:00",
+      "player": "Buffet",
+      "preview": "Tarsus shrugs.\n\"Suit yourself, at this point I think we can ",
+      "msg_id": "161799"
     }
   ],
   "pending_potw_boons": {
