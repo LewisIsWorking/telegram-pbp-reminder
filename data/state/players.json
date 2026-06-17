@@ -200,16 +200,6 @@
       "last_post_time": "2026-03-07T02:21:59+00:00",
       "last_warned_week": 0
     },
-    "107171:8383886822": {
-      "user_id": "8383886822",
-      "first_name": "CzarChasm23",
-      "last_name": "\"Lowda Medina, Chik Spallchewer\"",
-      "username": "czarchasm23",
-      "campaign_name": "Metal City",
-      "pbp_topic_id": "107171",
-      "last_post_time": "2026-05-20T21:59:20+00:00",
-      "last_warned_week": 3
-    },
     "66154:6717906753": {
       "user_id": "6717906753",
       "first_name": "Bo",
@@ -558,6 +548,12 @@
       "removed_at": "2026-06-15T08:24:48.438531+00:00",
       "first_name": "Laetheron",
       "username": "StorybookRhizome",
+      "campaign_name": "Metal City"
+    },
+    "107171:8383886822": {
+      "removed_at": "2026-06-17T22:39:44.861028+00:00",
+      "first_name": "CzarChasm23",
+      "username": "czarchasm23",
       "campaign_name": "Metal City"
     }
   },
@@ -1182,6 +1178,14 @@
       "name": "Laetheron",
       "username": "StorybookRhizome",
       "at": "2026-06-15T08:24:49.021534+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107171",
+      "user_id": "8383886822",
+      "name": "CzarChasm23",
+      "username": "czarchasm23",
+      "at": "2026-06-17T22:39:45.493278+00:00"
     }
   ],
   "player_boons": {
