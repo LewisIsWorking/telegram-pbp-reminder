@@ -56,5 +56,5 @@ from helpers_pkg.mechanics import (
 
 from helpers_pkg.groups import (
     group_id_for_campaign, linked_poll_codes,
-    all_group_ids, pid_for_code,
+    all_group_ids, pid_for_code, campaign_link_target,
 )

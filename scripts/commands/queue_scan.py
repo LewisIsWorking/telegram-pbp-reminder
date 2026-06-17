@@ -11,6 +11,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import helpers
+from helpers_pkg.groups import campaign_link_target
 
 _LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
 _IDS_FILE = Path(__file__).parent.parent.parent / "data" / "message_ids.json"
@@ -56,8 +57,6 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     prev_month_dt = (now.replace(day=1) - timedelta(days=1))
     prev_month = prev_month_dt.strftime("%Y-%m")
     months_to_scan = [prev_month, month] if prev_month != month else [month]
-    global_group_id = config.get("group_id", 0)
-    global_group_user = config.get("group_username", "Path_Wars")
     result = {}
 
     # Floor timestamp — ignore entries older than this (ISO date string YYYY-MM-DD)
@@ -107,9 +106,10 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
         if helpers.is_excluded(config, pid):
             continue
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
-        # Per-campaign group — C11 and future cross-group campaigns differ
-        camp_group_id = pair.get("group_id", global_group_id)
-        camp_group_user = pair.get("group_username", global_group_user)
+        # Per-campaign group — C11 and future cross-group campaigns differ.
+        # campaign_link_target ensures a cross-group campaign does NOT inherit
+        # the global group_username (which would point links at the wrong group).
+        camp_group_id, camp_group_user = campaign_link_target(config, pair)
 
         dirname = name.replace(" ", "_").replace("'", "")
         pending = []

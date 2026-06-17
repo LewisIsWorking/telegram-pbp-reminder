@@ -140,3 +140,117 @@ def test_silent_campaigns_mixed_active_and_silent():
     assert "C08: Silent" in lines[0]
     assert "no posts for 20d" in lines[0]
 
+
+def _cross_group_config():
+    """Global Path_Wars group + C11 Dark Pockets in a separate group.
+
+    Mirrors the real config: C11 carries a ``group_id`` override and an
+    explicit ``group_username: null``.
+    """
+    return {
+        "group_id": -1001661053273, "group_username": "Path_Wars",
+        "topic_pairs": [{
+            "pbp_topic_ids": [1242, 1825], "code": "C11", "name": "Dark Pockets",
+            "group_id": -1003496373617, "group_username": None,
+        }],
+    }
+
+
+def test_silent_campaigns_cross_group_link_not_path_wars():
+    """Regression: a silent cross-group campaign (C11) must NOT inherit the
+    global Path_Wars username — its link points at its own private group."""
+    from scheduled.queue_silence import silent_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    last = (now - timedelta(days=9, hours=20)).isoformat()
+    state = {"topics": {"1242": {"last_message_time": last}}}
+    lines = silent_campaigns(_cross_group_config(), state, {}, now)
+    assert len(lines) == 1
+    assert "https://t.me/c/3496373617/1242" in lines[0]
+    assert "t.me/Path_Wars" not in lines[0]
+    assert "no posts for 9d 20h" in lines[0]
+
+
+# ─── caught-up section ────────────────────────────────────────────────────────
+
+def test_caught_up_campaigns_lists_recent():
+    """Campaign with no unreplied entries that posted recently is caught up."""
+    from scheduled.queue_silence import caught_up_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    last = (now - timedelta(hours=5)).isoformat()
+    config = {"topic_pairs": [
+        {"pbp_topic_ids": [100], "code": "C00", "name": "Riddleport", "emoji": "🎲"}
+    ]}
+    state = {"topics": {"100": {"last_message_time": last}}}
+    lines = caught_up_campaigns(config, state, {}, now)
+    assert len(lines) == 1
+    assert "C00: Riddleport" in lines[0]
+    assert "last post 5h ago" in lines[0]
+    assert "🎲" in lines[0]
+
+
+def test_caught_up_campaigns_excludes_silent():
+    """A campaign past the silence threshold is NOT in the caught-up section."""
+    from scheduled.queue_silence import caught_up_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    last = (now - timedelta(days=9)).isoformat()
+    config = {"topic_pairs": [{"pbp_topic_ids": [100], "code": "C08", "name": "Theria"}]}
+    state = {"topics": {"100": {"last_message_time": last}}}
+    assert caught_up_campaigns(config, state, {}, now) == []
+
+
+def test_caught_up_campaigns_excludes_unreplied():
+    """A campaign with unreplied entries is in the body, not caught-up."""
+    from scheduled.queue_silence import caught_up_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    last = (now - timedelta(hours=2)).isoformat()
+    config = {"topic_pairs": [{"pbp_topic_ids": [100], "code": "C06", "name": "Kibwe"}]}
+    state = {"topics": {"100": {"last_message_time": last}}}
+    scanned = {"100": {"entries": [{"name": "P"}]}}
+    assert caught_up_campaigns(config, state, scanned, now) == []
+
+
+def test_caught_up_campaigns_uses_latest_topic():
+    """Multi-topic campaign: caught-up uses the most recent topic, not pid[0].
+
+    Riddleport's canonical topic may be quiet while a secondary topic is active;
+    the campaign should still count as recently caught up.
+    """
+    from scheduled.queue_silence import caught_up_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    stale = (now - timedelta(days=9)).isoformat()
+    fresh = (now - timedelta(hours=3)).isoformat()
+    config = {"topic_pairs": [
+        {"pbp_topic_ids": [66154, 133428], "code": "C00", "name": "Riddleport"}
+    ]}
+    state = {"topics": {
+        "66154": {"last_message_time": stale},
+        "133428": {"last_message_time": fresh},
+    }}
+    lines = caught_up_campaigns(config, state, {}, now)
+    assert len(lines) == 1
+    assert "last post 3h ago" in lines[0]
+
+
+def test_caught_up_campaigns_cross_group_link():
+    """A caught-up cross-group campaign (C11) links to its own group."""
+    from scheduled.queue_silence import caught_up_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    last = (now - timedelta(hours=5)).isoformat()
+    state = {"topics": {"1242": {"last_message_time": last}}}
+    lines = caught_up_campaigns(_cross_group_config(), state, {}, now)
+    assert len(lines) == 1
+    assert "https://t.me/c/3496373617/1242" in lines[0]
+    assert "t.me/Path_Wars" not in lines[0]
+
+
+def test_caught_up_campaigns_skips_excluded():
+    """Queue-excluded campaigns are not advertised as caught up."""
+    from scheduled.queue_silence import caught_up_campaigns
+    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
+    last = (now - timedelta(hours=5)).isoformat()
+    config = {"topic_pairs": [
+        {"pbp_topic_ids": [100], "code": "C00", "name": "X", "queue_exclude": True}
+    ]}
+    state = {"topics": {"100": {"last_message_time": last}}}
+    assert caught_up_campaigns(config, state, {}, now) == []
+

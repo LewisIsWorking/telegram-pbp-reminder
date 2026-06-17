@@ -7,7 +7,7 @@ import telegram as tg
 from commands.queue_scan import scan_transcripts
 from commands.queue_format import entry_age_icon, age_str, short_preview, format_queue_line
 from scheduled.topic_queue_poster import post_topic_queues
-from scheduled.queue_silence import silent_campaigns
+from scheduled.queue_silence import silent_campaigns, caught_up_campaigns
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 
@@ -167,6 +167,16 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     if silent_lines:
         lines.append("━━ 💤 Silent campaigns ━━")
         lines.extend(silent_lines)
+
+    # Caught-up campaigns (no unreplied entries, posted recently). Computed at
+    # render time and deliberately kept OUT of the fingerprint: their ages tick
+    # every hour, so including them would re-post the queue continuously. A
+    # campaign moving in/out of caught-up always coincides with an unreplied or
+    # silent change, which already drives the re-post.
+    caught_up_lines = caught_up_campaigns(config, state, scanned, now)
+    if caught_up_lines:
+        lines.append("━━ ✅ Caught up ━━")
+        lines.extend(caught_up_lines)
 
     message = "\n".join(lines)
 
