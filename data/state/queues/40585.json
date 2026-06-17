@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 161849,
+      "thread_id": 40585,
+      "user_id": "1395063293",
+      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "time": "2026-06-17T14:11:34+00:00",
+      "preview": "\"I'm not, so we shan't lose our vigilance! Besides, are walls infused as well? And how strong the magic is? Perhaps, my magic will be able to penetrate those stones to aid us!\" Anna answers cheerly, holding spear in both hands, ready to burst into the action at any moment.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4419,10 +4428,12 @@
       "caught_up_msg_id": 158985
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 161822
+      "fingerprint": "2026-06-17 14:11:34",
+      "msg_ids": [
+        161854
+      ],
+      "last_posted_at": "2026-06-17T14:17:18.258473+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
