@@ -1,5 +1,5 @@
 {
-  "offset": 619345165,
+  "offset": 619345166,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-12T15:52:25+00:00",
@@ -57,9 +57,9 @@
     }
   },
   "last_alerts": {
-    "52083": "2026-06-17T19:03:29.555866+00:00",
+    "52083": "2026-06-18T19:51:12.052114+00:00",
     "66154": "2026-06-18T18:58:48.114028+00:00",
-    "51357": "2026-06-17T19:03:29.555866+00:00",
+    "51357": "2026-06-18T19:51:12.052114+00:00",
     "25059": "2026-06-18T13:25:13.080977+00:00",
     "107171": "2026-06-18T17:12:52.509696+00:00",
     "40585": "2026-06-14T14:53:02.181625+00:00",
@@ -234,7 +234,7 @@
   },
   "last_state_backup": "2026-06-18T13:25:13.080977+00:00",
   "last_queue_daily": "2026-06-18",
-  "last_queue_fingerprint": "40585:2026-06-17 21:30:12|40585:2026-06-17 23:22:34|52083:2026-06-12 15:52:25|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfea \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 10d 16h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfea \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 10d 9h \ud83d\udd17 https://t.me/Path_Wars/51357",
+  "last_queue_fingerprint": "40585:2026-06-17 21:30:12|40585:2026-06-17 23:22:34|52083:2026-06-12 15:52:25|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfea \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 10d 17h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfea \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 10d 10h \ud83d\udd17 https://t.me/Path_Wars/51357",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -319,14 +319,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-17",
-  "last_queue_pin_id": 162181,
-  "queue_post_count": 866,
+  "last_queue_pin_id": 162185,
+  "queue_post_count": 867,
   "gm_queue_history": [
     {
       "msg_ids": [
-        162181
+        162185
       ],
-      "pin_id": 162181
+      "pin_id": 162185
     }
   ]
 }
