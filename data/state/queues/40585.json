@@ -18,30 +18,21 @@
       "preview": "[media]"
     },
     {
-      "message_id": 162080,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-17T21:30:12+00:00",
-      "preview": "(If the rest of the group is OK we'll take a 10min rest so that daichi can get treat wounds for someone while he takes a breather and Lorn can refocus)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 162114,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-17T23:22:34+00:00",
-      "preview": "Master Cho will stay on watch in case the sudden noise and abrupt end will summon more threats while the others tend ro repairs and healing.   \"Good job friends.  Take what time you need.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 162239,
+      "message_id": 162304,
       "thread_id": 40585,
       "user_id": "1395063293",
       "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-19T10:39:34+00:00",
-      "preview": "Anna wasn't the first one to react at the animal, but she raises a hand in the glove up at the question.\n\n\"I can help-\" She blinks, seeing rapid repair. \"Amazing! You're a master repairman, aren't you?\" She knew her way around toolkits - and mostly, clockwork machines - but showmanship of skill was incredible.",
+      "time": "2026-06-19T16:48:19+00:00",
+      "preview": "\"Perhaps! I have a spare decade or so before I should move on!\" Anna nods in agreement. \"Although, I'm afraid, I can't spare more time than that!\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 162306,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-19T17:12:51+00:00",
+      "preview": "Daichi , already sitting down in the doorway to take a breather responds\n\"I don't really care who does it.. I guess you would probably be the best here though\"",
       "media_group_id": null
     }
   ],
@@ -843,7 +834,15 @@
     "msg:162071",
     "2026-06-17 21:16:25",
     "msg:162078",
-    "2026-06-17 21:28:38"
+    "2026-06-17 21:28:38",
+    "msg:162080",
+    "2026-06-17 21:30:12",
+    "msg:162114",
+    "2026-06-17 23:22:34",
+    "msg:162292",
+    "2026-06-19 16:14:27",
+    "msg:162239",
+    "2026-06-19 10:39:34"
   ],
   "reply_log": [
     {
@@ -4632,6 +4631,42 @@
       "player": "Anthony",
       "preview": "\"\nThanks.\nNote to self: Let Fierce Open the doors next time...\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-19T16:14:00+00:00",
+      "pid": "40585",
+      "msg_id": "162080",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "(If the rest of the group is OK we'll take a 10min rest so that daichi can get t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-19T16:14:27+00:00",
+      "pid": "40585",
+      "msg_id": "162114",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "Master Cho will stay on watch in case the sudden noise and abrupt end will summo",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-19T16:14:52+00:00",
+      "pid": "40585",
+      "msg_id": "162292",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-19T16:16:00+00:00",
+      "pid": "40585",
+      "msg_id": "162239",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "Anna wasn't the first one to react at the animal, but she raises a hand in the g",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4644,11 +4679,11 @@
       "caught_up_msg_id": 162086
     },
     "40585": {
-      "fingerprint": "2026-06-17 21:30:12|2026-06-17 23:22:34|2026-06-19 10:39:34",
+      "fingerprint": "2026-06-19 16:48:19|2026-06-19 17:12:51",
       "msg_ids": [
-        162245
+        162314
       ],
-      "last_posted_at": "2026-06-19T12:25:25.354582+00:00",
+      "last_posted_at": "2026-06-19T17:43:11.486694+00:00",
       "caught_up_msg_id": null
     }
   }
