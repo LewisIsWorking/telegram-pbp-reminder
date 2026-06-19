@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 162304,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-19T16:48:19+00:00",
-      "preview": "\"Perhaps! I have a spare decade or so before I should move on!\" Anna nods in agreement. \"Although, I'm afraid, I can't spare more time than that!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 162306,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-19T17:12:51+00:00",
-      "preview": "Daichi , already sitting down in the doorway to take a breather responds\n\"I don't really care who does it.. I guess you would probably be the best here though\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -842,7 +824,11 @@
     "msg:162292",
     "2026-06-19 16:14:27",
     "msg:162239",
-    "2026-06-19 10:39:34"
+    "2026-06-19 10:39:34",
+    "msg:162304",
+    "2026-06-19 16:48:19",
+    "msg:162306",
+    "2026-06-19 17:12:51"
   ],
   "reply_log": [
     {
@@ -4667,6 +4653,24 @@
       "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "preview": "Anna wasn't the first one to react at the animal, but she raises a hand in the g",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-19T21:46:53+00:00",
+      "pid": "40585",
+      "msg_id": "162304",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"Perhaps! I have a spare decade or so before I should move on!\" Anna nods in agr",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-19T21:47:31+00:00",
+      "pid": "40585",
+      "msg_id": "162306",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi , already sitting down in the doorway to take a breather responds\n\"I don'",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4679,12 +4683,10 @@
       "caught_up_msg_id": 162086
     },
     "40585": {
-      "fingerprint": "2026-06-19 16:48:19|2026-06-19 17:12:51",
-      "msg_ids": [
-        162314
-      ],
-      "last_posted_at": "2026-06-19T17:43:11.486694+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 162356
     }
   }
 }
