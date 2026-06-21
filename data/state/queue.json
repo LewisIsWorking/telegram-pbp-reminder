@@ -2857,7 +2857,21 @@
       "msg_id": "162528"
     }
   ],
-  "pending_potw_boons": {},
+  "pending_potw_boons": {
+    "40585": {
+      "message_id": 162558,
+      "winner_user_id": "6144366145",
+      "campaign_name": "Kibwe",
+      "boons": [
+        "Your next Acrobatics check is boosted by surfaces that are less slippery than they look.",
+        "Drumming from a distant camp gives you a count of how many people are there.",
+        "A lizard basks on a warm rock and scurries away in the exact direction you should go.",
+        "Your next Recall Knowledge check gains a +2 circumstance bonus."
+      ],
+      "base_message": "Player of the Week for Kibwe: Anthony NegetZ (@MrNegetZ)!\n(2026-06-14 (W24) to 2026-06-21 (W25))\n\n7 posts this week with an average gap of 7.8h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-06-21T18:42:10.983009+00:00"
+    }
+  },
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"
