@@ -326,7 +326,9 @@
     "msg:157644",
     "2026-05-31 20:34:44",
     "msg:159607",
-    "2026-06-07 19:01:35"
+    "2026-06-07 19:01:35",
+    "msg:162523",
+    "2026-06-21 13:31:25"
   ],
   "reply_log": [
     {
@@ -1785,6 +1787,15 @@
       "thread_id": 25059,
       "player": "Kaer'maga when?",
       "preview": "Selenor says \"I have yet to meet a sane mortal who can use the Nothing's powers.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-21T13:31:36+00:00",
+      "pid": "25059",
+      "msg_id": "162523",
+      "thread_id": "25059",
+      "player": "?",
+      "preview": "",
       "via": "reply"
     }
   ],
