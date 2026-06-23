@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 162648,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-22T21:16:00+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 162649,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-22T21:16:16+00:00",
-      "preview": "He will be watching towards deeper into the templs",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -848,7 +830,11 @@
     "msg:162306",
     "2026-06-19 17:12:51",
     "msg:162353",
-    "2026-06-19 21:47:31"
+    "2026-06-19 21:47:31",
+    "msg:162648",
+    "2026-06-22 21:16:00",
+    "msg:162649",
+    "2026-06-22 21:16:16"
   ],
   "reply_log": [
     {
@@ -4700,18 +4686,34 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-23T10:35:35+00:00",
+      "pid": "40585",
+      "msg_id": "162648",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-23T10:36:33+00:00",
+      "pid": "40585",
+      "msg_id": "162649",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "He will be watching towards deeper into the templs",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-22 21:16:00|2026-06-22 21:16:16",
-      "msg_ids": [
-        162659
-      ],
-      "last_posted_at": "2026-06-22T21:46:18.320950+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 162718
     },
     "40585": {
       "fingerprint": "",

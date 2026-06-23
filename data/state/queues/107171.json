@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 162652,
-      "thread_id": 107171,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-22T21:20:53+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -311,7 +301,9 @@
     "msg:159766",
     "2026-06-08 12:31:50",
     "msg:159800",
-    "2026-06-08 17:00:11"
+    "2026-06-08 17:00:11",
+    "msg:162652",
+    "2026-06-22 21:20:53"
   ],
   "reply_log": [
     {
@@ -1721,18 +1713,25 @@
       "player": "Bruce",
       "preview": "I will decline hp reroll.",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-23T11:05:33+00:00",
+      "pid": "107171",
+      "msg_id": "162652",
+      "thread_id": 107171,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-06-22 21:20:53",
-      "msg_ids": [
-        162661
-      ],
-      "last_posted_at": "2026-06-22T21:46:21.546472+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 162717
     },
     "142887": {
       "fingerprint": "",
