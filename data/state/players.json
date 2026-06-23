@@ -58,7 +58,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-06-07T05:50:49+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "76799:138025700": {
       "user_id": "138025700",
@@ -290,16 +290,6 @@
       "last_post_time": "2026-06-02T19:26:23+00:00",
       "last_warned_week": 2
     },
-    "76799:8729190676": {
-      "user_id": "8729190676",
-      "first_name": "Miwa",
-      "last_name": "Saeko",
-      "username": "MiwaSaeko",
-      "campaign_name": "Magni Guard",
-      "pbp_topic_id": "76799",
-      "last_post_time": "2026-05-26T08:23:25+00:00",
-      "last_warned_week": 3
-    },
     "51357:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -388,7 +378,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-06-07T15:33:13+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "66154:5029858993": {
       "user_id": "5029858993",
@@ -565,6 +555,12 @@
       "first_name": "CzarChasm23",
       "username": "czarchasm23",
       "campaign_name": "Metal City"
+    },
+    "76799:8729190676": {
+      "removed_at": "2026-06-23T09:20:34.071306+00:00",
+      "first_name": "Miwa",
+      "username": "MiwaSaeko",
+      "campaign_name": "Magni Guard"
     }
   },
   "player_registry": {
@@ -1201,6 +1197,14 @@
       "name": "CzarChasm23",
       "username": "czarchasm23",
       "at": "2026-06-17T22:39:45.493278+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "76799",
+      "user_id": "8729190676",
+      "name": "Miwa",
+      "username": "MiwaSaeko",
+      "at": "2026-06-23T09:20:35.745701+00:00"
     }
   ],
   "player_boons": {
