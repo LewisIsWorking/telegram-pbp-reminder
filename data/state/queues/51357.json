@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 162561,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-21T19:04:52+00:00",
-      "preview": "Illiiani would try speaking into his mind directly, utilizing her training as a psychic specialized in mentalism. She's familiar with the kinds of mental scarring this merchant seems to be suffering from, even if the source of the issues are not the same as what she's used to. It can take a long time to get any sort of response, so she tries to be patient with her efforts.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -207,7 +197,9 @@
     "msg:159752",
     "2026-06-08 09:11:02",
     "msg:162528",
-    "2026-06-21 13:40:18"
+    "2026-06-21 13:40:18",
+    "msg:162561",
+    "2026-06-21 19:04:52"
   ],
   "reply_log": [
     {
@@ -1044,18 +1036,25 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-23T11:17:48+00:00",
+      "pid": "51357",
+      "msg_id": "162561",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illiiani would try speaking into his mind directly, utilizing her training as a ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-06-21 19:04:52",
-      "msg_ids": [
-        162565
-      ],
-      "last_posted_at": "2026-06-21T19:37:46.380890+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 162727
     },
     "145040": {
       "msg_ids": [],
