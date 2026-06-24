@@ -1,10 +1,10 @@
 {
-  "offset": 619345696,
+  "offset": 619345752,
   "topics": {
     "52083": {
-      "last_message_time": "2026-06-12T15:52:25+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-06-24T23:12:08+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -32,9 +32,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-06-24T19:56:48+00:00",
-      "last_user": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "last_user_id": "1395063293",
+      "last_message_time": "2026-06-24T23:21:16+00:00",
+      "last_user": "Ryo",
+      "last_user_id": "138025700",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -58,7 +58,7 @@
   },
   "last_alerts": {
     "52083": "2026-06-23T22:34:37.527672+00:00",
-    "66154": "2026-06-23T22:34:37.527672+00:00",
+    "66154": "2026-06-24T23:32:33.990639+00:00",
     "51357": "2026-06-24T12:58:37.352644+00:00",
     "25059": "2026-06-24T16:52:32.058309+00:00",
     "107171": "2026-06-24T16:52:32.058309+00:00",
@@ -146,7 +146,6 @@
   "last_pace_drop_check": "2026-06-19T18:47:27.789337+00:00",
   "dying_alerts_sent": {
     "107151": "active",
-    "52083": "active",
     "66154": "active",
     "76799": "active",
     "25059": "active",
@@ -199,7 +198,7 @@
   },
   "last_state_backup": "2026-06-24T16:52:32.058309+00:00",
   "last_queue_daily": "2026-06-24",
-  "last_queue_fingerprint": "40585:2026-06-24 19:56:48|52083:2026-06-12 15:52:25|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfe5 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 8d 5h \ud83d\udd17 https://t.me/Path_Wars/66154",
+  "last_queue_fingerprint": "40585:2026-06-24 19:56:48|40585:2026-06-24 23:21:16|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfe5 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 8d 6h \ud83d\udd17 https://t.me/Path_Wars/66154",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -284,14 +283,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-19",
-  "last_queue_pin_id": 162878,
-  "queue_post_count": 966,
+  "last_queue_pin_id": 162919,
+  "queue_post_count": 967,
   "gm_queue_history": [
     {
       "msg_ids": [
-        162878
+        162919
       ],
-      "pin_id": 162878
+      "pin_id": 162919
     }
   ]
 }
