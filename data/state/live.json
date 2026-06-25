@@ -1,5 +1,5 @@
 {
-  "offset": 619345826,
+  "offset": 619345827,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-25T00:34:29+00:00",
@@ -200,7 +200,7 @@
   },
   "last_state_backup": "2026-06-25T16:54:45.068591+00:00",
   "last_queue_daily": "2026-06-25",
-  "last_queue_fingerprint": "40585:2026-06-25 01:11:50|silent:  \ud83d\udfe3 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 9d 1h \ud83d\udd17 https://t.me/Path_Wars/66154",
+  "last_queue_fingerprint": "40585:2026-06-25 01:11:50|silent:  \ud83d\udfe3 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 9d 2h \ud83d\udd17 https://t.me/Path_Wars/66154",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -285,14 +285,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-19",
-  "last_queue_pin_id": 163026,
-  "queue_post_count": 979,
+  "last_queue_pin_id": 163028,
+  "queue_post_count": 980,
   "gm_queue_history": [
     {
       "msg_ids": [
-        163026
+        163028
       ],
-      "pin_id": 163026
+      "pin_id": 163028
     }
   ]
 }
