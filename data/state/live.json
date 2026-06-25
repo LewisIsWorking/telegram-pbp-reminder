@@ -1,8 +1,8 @@
 {
-  "offset": 619345752,
+  "offset": 619345767,
   "topics": {
     "52083": {
-      "last_message_time": "2026-06-24T23:12:08+00:00",
+      "last_message_time": "2026-06-25T00:34:29+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
@@ -32,9 +32,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-06-24T23:21:16+00:00",
-      "last_user": "Ryo",
-      "last_user_id": "138025700",
+      "last_message_time": "2026-06-25T00:30:01+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -106,8 +106,8 @@
   },
   "combat": {},
   "last_leaderboard": "2026-06-22T22:39:57.727004+00:00",
-  "last_roster_nudge": "2026-06-23T18:53:07.222484+00:00",
-  "last_roster_snapshot": "C01:4/6|C00:6/6|C04:4/6|C05:4/6|C06:8/6|C07:4/6|C09:2/6|C08:0/4|C11:2/6",
+  "last_roster_nudge": "2026-06-25T01:11:09.326734+00:00",
+  "last_roster_snapshot": "C01:3/6|C00:6/6|C04:4/6|C05:4/6|C06:8/6|C07:4/6|C09:2/6|C08:0/4|C11:2/6",
   "gm_escalation": {
     "level": 1,
     "last_at": "2026-06-24T19:37:12.948562+00:00"
@@ -167,7 +167,7 @@
         "1698524397",
         "8241117341"
       ],
-      "last_ping_day": 739791,
+      "last_ping_day": 739792,
       "votes": {
         "2": [
           "1698524397"
@@ -192,13 +192,13 @@
         "Can't make it"
       ],
       "voted_uids": [],
-      "last_ping_day": 739791,
+      "last_ping_day": 739792,
       "votes": {}
     }
   },
   "last_state_backup": "2026-06-24T16:52:32.058309+00:00",
   "last_queue_daily": "2026-06-24",
-  "last_queue_fingerprint": "40585:2026-06-24 19:56:48|40585:2026-06-24 23:21:16|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfe5 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 8d 6h \ud83d\udd17 https://t.me/Path_Wars/66154",
+  "last_queue_fingerprint": "76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfe5 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 8d 7h \ud83d\udd17 https://t.me/Path_Wars/66154",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -283,14 +283,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-19",
-  "last_queue_pin_id": 162919,
-  "queue_post_count": 967,
+  "last_queue_pin_id": 162934,
+  "queue_post_count": 968,
   "gm_queue_history": [
     {
       "msg_ids": [
-        162919
+        162934
       ],
-      "pin_id": 162919
+      "pin_id": 162934
     }
   ]
 }

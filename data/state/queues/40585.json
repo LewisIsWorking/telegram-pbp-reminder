@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 162856,
-      "thread_id": 40585,
-      "user_id": "1395063293",
-      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "time": "2026-06-24T19:56:48+00:00",
-      "preview": "\"I'd liked to help, but medicine is outside my knowledge! Apologies!\" Anna gives a quick half-bow.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 162913,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-06-24T23:21:16+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -852,7 +834,11 @@
     "msg:162648",
     "2026-06-22 21:16:00",
     "msg:162649",
-    "2026-06-22 21:16:16"
+    "2026-06-22 21:16:16",
+    "msg:162856",
+    "2026-06-24 19:56:48",
+    "msg:162913",
+    "2026-06-24 23:21:16"
   ],
   "reply_log": [
     {
@@ -4722,6 +4708,24 @@
       "player": "Bruce",
       "preview": "He will be watching towards deeper into the templs",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-25T00:29:49+00:00",
+      "pid": "40585",
+      "msg_id": "162856",
+      "thread_id": 40585,
+      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "preview": "\"I'd liked to help, but medicine is outside my knowledge! Apologies!\" Anna gives",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-25T00:30:01+00:00",
+      "pid": "40585",
+      "msg_id": "162913",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4734,12 +4738,10 @@
       "caught_up_msg_id": 162718
     },
     "40585": {
-      "fingerprint": "2026-06-24 19:56:48|2026-06-24 23:21:16",
-      "msg_ids": [
-        162916
-      ],
-      "last_posted_at": "2026-06-24T23:32:37.059966+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 162933
     }
   }
 }

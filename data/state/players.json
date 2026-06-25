@@ -310,16 +310,6 @@
       "last_post_time": "2026-06-11T17:00:26+00:00",
       "last_warned_week": 1
     },
-    "25059:8241117341": {
-      "user_id": "8241117341",
-      "first_name": "Loaf",
-      "last_name": "BREAD",
-      "username": "LoafableLoaf",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-05-27T23:55:54+00:00",
-      "last_warned_week": 3
-    },
     "51357:7454623139": {
       "user_id": "7454623139",
       "first_name": "Cannon",
@@ -561,6 +551,12 @@
       "first_name": "Miwa",
       "username": "MiwaSaeko",
       "campaign_name": "Magni Guard"
+    },
+    "25059:8241117341": {
+      "removed_at": "2026-06-25T01:11:09.326734+00:00",
+      "first_name": "Loaf",
+      "username": "LoafableLoaf",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -1205,6 +1201,14 @@
       "name": "Miwa",
       "username": "MiwaSaeko",
       "at": "2026-06-23T09:20:35.745701+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "8241117341",
+      "name": "Loaf",
+      "username": "LoafableLoaf",
+      "at": "2026-06-25T01:11:09.950432+00:00"
     }
   ],
   "player_boons": {
