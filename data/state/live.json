@@ -1,5 +1,5 @@
 {
-  "offset": 619345779,
+  "offset": 619345782,
   "topics": {
     "52083": {
       "last_message_time": "2026-06-25T00:34:29+00:00",
@@ -139,9 +139,10 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-06-19T18:47:27.789337+00:00",
-  "last_daily_tip": "2026-06-24T05:29:09.883752+00:00",
+  "last_daily_tip": "2026-06-25T05:30:53.680779+00:00",
   "used_tip_indices": [
-    28
+    28,
+    2
   ],
   "last_pace_drop_check": "2026-06-19T18:47:27.789337+00:00",
   "dying_alerts_sent": {
@@ -198,7 +199,7 @@
   },
   "last_state_backup": "2026-06-24T16:52:32.058309+00:00",
   "last_queue_daily": "2026-06-24",
-  "last_queue_fingerprint": "40585:2026-06-25 01:11:50|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfe5 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 8d 9h \ud83d\udd17 https://t.me/Path_Wars/66154",
+  "last_queue_fingerprint": "40585:2026-06-25 01:11:50|76799:2026-06-16 22:32:48|76799:2026-06-16 23:44:54|silent:  \ud83d\udfe5 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 8d 12h \ud83d\udd17 https://t.me/Path_Wars/66154",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -283,14 +284,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-06-19",
-  "last_queue_pin_id": 162949,
-  "queue_post_count": 969,
+  "last_queue_pin_id": 162953,
+  "queue_post_count": 970,
   "gm_queue_history": [
     {
       "msg_ids": [
-        162949
+        162953
       ],
-      "pin_id": 162949
+      "pin_id": 162953
     }
   ]
 }
