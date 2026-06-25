@@ -1,25 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 161765,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-16T22:32:48+00:00",
-      "preview": "Shrug\n\n\"I suppose so. We've fought off undead before, I figured preventing 'em was similar enough.\"\n\nShe grabs the coins in the safe and tucks them away, then stands ready nearby the door for when B\u00e1yakan is done checking it out.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 161781,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-06-16T23:44:54+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -371,7 +352,13 @@
     "msg:161720",
     "2026-06-16 18:26:50",
     "msg:161737",
-    "2026-06-16 20:07:43"
+    "2026-06-16 20:07:43",
+    "msg:161765",
+    "2026-06-16 22:32:48",
+    "msg:152495",
+    "2026-05-11 14:58:32",
+    "msg:161781",
+    "2026-06-16 23:44:54"
   ],
   "reply_log": [
     {
@@ -1998,18 +1985,43 @@
       "player": "Chase",
       "preview": "\"So long as the haunts don't start haunting until after we've settled this worke",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-25T14:58:01+00:00",
+      "pid": "76799",
+      "msg_id": "161765",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Shrug\n\n\"I suppose so. We've fought off undead before, I figured preventing 'em w",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-25T14:58:54+00:00",
+      "pid": "76799",
+      "msg_id": "152495",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-25T15:01:48+00:00",
+      "pid": "76799",
+      "msg_id": "161781",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-06-16 22:32:48|2026-06-16 23:44:54",
-      "msg_ids": [
-        161791
-      ],
-      "last_posted_at": "2026-06-17T01:21:07.812662+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 163002
     },
     "144765": {
       "fingerprint": "",
