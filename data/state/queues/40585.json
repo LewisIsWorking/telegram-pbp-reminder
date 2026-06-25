@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 162937,
+      "thread_id": 40585,
+      "user_id": "1395063293",
+      "user_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
+      "time": "2026-06-25T01:11:50+00:00",
+      "preview": "Anna steps closer, holding the spear on a ready, and casts a quick spell to feel the metal inside.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -4738,10 +4747,12 @@
       "caught_up_msg_id": 162718
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 162933
+      "fingerprint": "2026-06-25 01:11:50",
+      "msg_ids": [
+        162947
+      ],
+      "last_posted_at": "2026-06-25T03:19:04.004626+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
