@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 163064,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-26T06:42:11+00:00",
+      "preview": "If he doesn't need any more help then we can return to Nik-Nak with good news.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -890,10 +900,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 162918
+      "fingerprint": "2026-06-26 06:42:11",
+      "msg_ids": [
+        163069
+      ],
+      "last_posted_at": "2026-06-26T07:32:25.336659+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
