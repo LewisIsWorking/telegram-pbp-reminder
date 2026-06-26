@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 163141,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-06-26T17:20:33+00:00",
-      "preview": "Nadya takes a cursory look at the bodies, more to make sure they're fully dead than to determine what exactly happened.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -368,7 +358,9 @@
     "msg:152495",
     "2026-05-11 14:58:32",
     "msg:161781",
-    "2026-06-16 23:44:54"
+    "2026-06-16 23:44:54",
+    "msg:163141",
+    "2026-06-26 17:20:33"
   ],
   "reply_log": [
     {
@@ -2022,18 +2014,25 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-26T21:22:48+00:00",
+      "pid": "76799",
+      "msg_id": "163141",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya takes a cursory look at the bodies, more to make sure they're fully dead t",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-06-26 17:20:33",
-      "msg_ids": [
-        163150
-      ],
-      "last_posted_at": "2026-06-26T17:39:56.918043+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 163195
     },
     "144765": {
       "fingerprint": "",
