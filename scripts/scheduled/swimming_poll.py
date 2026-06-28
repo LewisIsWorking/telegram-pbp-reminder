@@ -35,6 +35,8 @@ _OPTIONS = [
 def post_swimming_poll(config: dict, state: dict, *,
                        now: datetime | None = None, **_kw) -> None:
     """Post weekly swimming poll on Sunday at poll_post_hour UTC."""
+    if not config.get("swimming_poll_enabled", True):
+        return
     now = now or datetime.now(timezone.utc)
 
     if now.weekday() != 6:
@@ -81,6 +83,8 @@ def post_swimming_poll(config: dict, state: dict, *,
 def post_swimming_ping(config: dict, state: dict, *,
                        now: datetime | None = None, **_kw) -> None:
     """Ping unvoted swimmers daily (Mon–Sat after Sunday poll)."""
+    if not config.get("swimming_poll_enabled", True):
+        return
     now = now or datetime.now(timezone.utc)
 
     swim_state = state.get("swimming_poll", {})

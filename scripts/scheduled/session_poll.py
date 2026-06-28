@@ -195,7 +195,10 @@ def post_session_poll(config: dict, state: dict, *,
     """Post or update session polls for all hybrid campaigns."""
     now = now or datetime.now(timezone.utc)
     for pair in config.get("topic_pairs", []):
-        if pair.get("hybrid_live"):
+        # session_poll_disabled lets a hybrid campaign opt out of the weekly
+        # poll + daily nudges without flipping hybrid_live (which also drives
+        # campaign-table labelling and under-staffed warnings).
+        if pair.get("hybrid_live") and not pair.get("session_poll_disabled"):
             try:
                 _post_one(config, state, pair, now)
             except Exception as e:
