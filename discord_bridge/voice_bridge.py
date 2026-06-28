@@ -104,6 +104,17 @@ def main() -> None:  # pragma: no cover - requires live Discord gateway
     async def on_ready():
         print(f"Voice bridge online as {client.user} -> "
               f"Telegram chat {chat_id}, topic {topic_id}", flush=True)
+        # List every server the bot is in, so you can copy the right id into
+        # DISCORD_GUILD_ID. (TheGrandExplorers is in 2 servers — only one
+        # should be bridged.)
+        for g in client.guilds:
+            bridged = (not guild_filter) or str(g.id) == guild_filter
+            print(f"  guild: {g.name!r} id={g.id} "
+                  f"-> {'BRIDGING' if bridged else 'ignored'}", flush=True)
+        if len(client.guilds) > 1 and not guild_filter:
+            print("  WARNING: bot is in multiple servers and DISCORD_GUILD_ID "
+                  "is unset — voice events from ALL of them will be bridged. "
+                  "Set DISCORD_GUILD_ID to restrict to one.", flush=True)
 
     @client.event
     async def on_voice_state_update(member, before, after):
