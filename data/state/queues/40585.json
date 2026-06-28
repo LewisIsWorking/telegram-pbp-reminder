@@ -18,57 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 163606,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-06-28T21:29:28+00:00",
-      "preview": "yep",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163628,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-28T22:04:39+00:00",
-      "preview": "Master Cho's Actions are (due to having bow active) A1-Sheathe Bow, A2-Draw Sword A3- exploit vulnerability. I also have sympathetic vuneralbility so the mortal weakness should apply to all troops.",
-      "media_group_id": null
-    },
-    {
       "message_id": 163629,
       "thread_id": 40585,
       "user_id": "7077683276",
       "user_name": "Bruce",
       "time": "2026-06-28T22:05:57+00:00",
       "preview": "Master Cho shouts,\"If you have grenades of other splash weapons use it against them,  As they move in formation they cannot dodge as easily.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163630,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-28T22:16:10+00:00",
-      "preview": "[media]",
-      "media_group_id": "14261479760428724"
-    },
-    {
-      "message_id": 163632,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-28T22:17:23+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163634,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-28T22:19:47+00:00",
-      "preview": "As one group falls Daichi will turn to the one on top and proclaim them next in line(using the \"you're next\" reaction)",
       "media_group_id": null
     }
   ],
@@ -907,7 +862,19 @@
     "2026-06-28 20:12:55",
     "msg:163618",
     "2026-06-28 21:42:25",
-    "msg:163619"
+    "msg:163619",
+    "msg:163647",
+    "2026-06-28 22:45:33",
+    "msg:163606",
+    "2026-06-28 21:29:28",
+    "msg:163628",
+    "2026-06-28 22:04:39",
+    "msg:163630",
+    "2026-06-28 22:16:10",
+    "msg:163632",
+    "2026-06-28 22:17:23",
+    "msg:163634",
+    "2026-06-28 22:19:47"
   ],
   "reply_log": [
     {
@@ -4867,18 +4834,70 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-28T22:55:34+00:00",
+      "pid": "40585",
+      "msg_id": "163647",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "A1 - Interact (Draw Flail)\nA2 - Interact (Grab Shield)\nA3 - Raise Shield",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T23:21:41+00:00",
+      "pid": "40585",
+      "msg_id": "163606",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "yep",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T23:23:56+00:00",
+      "pid": "40585",
+      "msg_id": "163628",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "Master Cho's Actions are (due to having bow active) A1-Sheathe Bow, A2-Draw Swor",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T23:24:11+00:00",
+      "pid": "40585",
+      "msg_id": "163630",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T23:24:22+00:00",
+      "pid": "40585",
+      "msg_id": "163632",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T23:24:34+00:00",
+      "pid": "40585",
+      "msg_id": "163634",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "As one group falls Daichi will turn to the one on top and proclaim them next in ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-28 21:29:28|2026-06-28 22:04:39|2026-06-28 22:16:10|2026-06-28 22:16:10|2026-06-28 22:17:23|2026-06-28 22:19:47",
-      "msg_ids": [
-        163637
-      ],
-      "last_posted_at": "2026-06-28T22:28:58.922914+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 163684
     },
     "40585": {
       "fingerprint": "2026-06-28 22:05:57",
