@@ -18,21 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 163554,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-06-28T19:28:30+00:00",
-      "preview": "[media]",
-      "media_group_id": "14261399286966721"
-    },
-    {
-      "message_id": 163585,
+      "message_id": 163606,
       "thread_id": 137075,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-06-28T20:12:55+00:00",
-      "preview": "I activate my stance and use the longbow on them",
+      "time": "2026-06-28T21:29:28+00:00",
+      "preview": "yep",
       "media_group_id": null
     }
   ],
@@ -862,7 +853,13 @@
     "msg:163559",
     "2026-06-28 19:29:58",
     "msg:163566",
-    "2026-06-28 19:32:50"
+    "2026-06-28 19:32:50",
+    "msg:163554",
+    "2026-06-28 19:28:30",
+    "msg:163555",
+    "2026-06-28 19:28:31",
+    "msg:163585",
+    "2026-06-28 20:12:55"
   ],
   "reply_log": [
     {
@@ -4777,17 +4774,44 @@
       "player": "Buffet",
       "preview": "o.o",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-28T20:50:54+00:00",
+      "pid": "40585",
+      "msg_id": "163554",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T20:50:58+00:00",
+      "pid": "40585",
+      "msg_id": "163555",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T20:51:27+00:00",
+      "pid": "40585",
+      "msg_id": "163585",
+      "thread_id": 137075,
+      "player": "Kaer'maga when?",
+      "preview": "I activate my stance and use the longbow on them",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-28 19:28:30|2026-06-28 19:28:31|2026-06-28 20:12:55",
+      "fingerprint": "2026-06-28 21:29:28",
       "msg_ids": [
-        163590
+        163608
       ],
-      "last_posted_at": "2026-06-28T20:34:11.652909+00:00",
+      "last_posted_at": "2026-06-28T21:29:45.655171+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
