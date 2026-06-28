@@ -25,6 +25,51 @@
       "time": "2026-06-28T21:29:28+00:00",
       "preview": "yep",
       "media_group_id": null
+    },
+    {
+      "message_id": 163628,
+      "thread_id": 137075,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-06-28T22:04:39+00:00",
+      "preview": "Master Cho's Actions are (due to having bow active) A1-Sheathe Bow, A2-Draw Sword A3- exploit vulnerability. I also have sympathetic vuneralbility so the mortal weakness should apply to all troops.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 163629,
+      "thread_id": 40585,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-06-28T22:05:57+00:00",
+      "preview": "Master Cho shouts,\"If you have grenades of other splash weapons use it against them,  As they move in formation they cannot dodge as easily.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 163630,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-28T22:16:10+00:00",
+      "preview": "[media]",
+      "media_group_id": "14261479760428724"
+    },
+    {
+      "message_id": 163632,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-28T22:17:23+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 163634,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-06-28T22:19:47+00:00",
+      "preview": "As one group falls Daichi will turn to the one on top and proclaim them next in line(using the \"you're next\" reaction)",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -859,7 +904,10 @@
     "msg:163555",
     "2026-06-28 19:28:31",
     "msg:163585",
-    "2026-06-28 20:12:55"
+    "2026-06-28 20:12:55",
+    "msg:163618",
+    "2026-06-28 21:42:25",
+    "msg:163619"
   ],
   "reply_log": [
     {
@@ -4801,24 +4849,44 @@
       "player": "Kaer'maga when?",
       "preview": "I activate my stance and use the longbow on them",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-28T21:45:14+00:00",
+      "pid": "40585",
+      "msg_id": "163618",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-06-28T21:45:18+00:00",
+      "pid": "40585",
+      "msg_id": "163619",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-28 21:29:28",
+      "fingerprint": "2026-06-28 21:29:28|2026-06-28 22:04:39|2026-06-28 22:16:10|2026-06-28 22:16:10|2026-06-28 22:17:23|2026-06-28 22:19:47",
       "msg_ids": [
-        163608
+        163637
       ],
-      "last_posted_at": "2026-06-28T21:29:45.655171+00:00",
+      "last_posted_at": "2026-06-28T22:28:58.922914+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 163041
+      "fingerprint": "2026-06-28 22:05:57",
+      "msg_ids": [
+        163639
+      ],
+      "last_posted_at": "2026-06-28T22:29:04.377584+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
