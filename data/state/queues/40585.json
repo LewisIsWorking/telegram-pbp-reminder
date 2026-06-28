@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 163554,
+      "thread_id": 137075,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-06-28T19:28:30+00:00",
+      "preview": "[media]",
+      "media_group_id": "14261399286966721"
     }
   ],
   "replied": [
@@ -4743,10 +4752,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 162718
+      "fingerprint": "2026-06-28 19:28:30|2026-06-28 19:28:31",
+      "msg_ids": [
+        163559
+      ],
+      "last_posted_at": "2026-06-28T19:29:59.629480+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
