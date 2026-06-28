@@ -1,0 +1,22 @@
+# systemd unit for the Discord voice bridge (Raspberry Pi / Linux VM).
+# 1. Edit the paths + User below to match your machine.
+# 2. Put your tokens in discord_bridge/.env (next to voice_bridge.py).
+# 3. sudo cp voice-bridge.service /etc/systemd/system/
+#    sudo systemctl daemon-reload
+#    sudo systemctl enable --now voice-bridge
+#    journalctl -u voice-bridge -f      # watch logs
+[Unit]
+Description=Discord -> Telegram voice-channel bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/telegram-pbp-reminder/discord_bridge
+ExecStart=/usr/bin/python3 /home/pi/telegram-pbp-reminder/discord_bridge/voice_bridge.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

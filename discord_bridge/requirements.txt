@@ -1,0 +1,3 @@
+# Discord voice bridge — standalone, NOT used by the hourly cron bot.
+discord.py>=2.3,<3
+requests>=2.28
