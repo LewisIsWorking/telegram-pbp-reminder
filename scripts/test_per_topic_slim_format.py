@@ -9,7 +9,7 @@ L27 in REFACTOR_PROGRESS.md.
 
 import sys
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -103,13 +103,20 @@ class TestSlimLineFormat:
 # ── build_caught_up_text: roster tagging + edge cases ───────────────────────
 
 def _player(uid, username, permanent=False, last_post=None):
+    # Default to a recent post relative to *now* — _active_players counts
+    # non-permanent players only if they posted within the last 30 days
+    # (checked against datetime.now()). A hardcoded absolute date would
+    # rot out of that window as real time passes and silently drop these
+    # players from the active roster.
+    recent = (datetime.now(timezone.utc) - timedelta(days=1)
+              ).strftime("%Y-%m-%d %H:%M:%S")
     return {
         "user_id": str(uid),
         "first_name": username.capitalize(),
         "username": username,
         "pbp_topic_id": "100",
         "permanent": permanent,
-        "last_post_time": last_post or "2026-05-19 12:00:00",
+        "last_post_time": last_post or recent,
     }
 
 
