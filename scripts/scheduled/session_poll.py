@@ -123,7 +123,10 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
             tg.pin_message(gid, msg_id)
 
         if hist_str:
-            tg.send_message(gid, poll_tid,  # pragma: no cover
+            # History recap is a reminder-style post, not the poll itself —
+            # route it to the nudge topic alongside the daily ping. The poll
+            # widget already carries the same history in its explanation popup.
+            tg.send_message(gid, nudge_tid,
                             f"━━━━━━━━━━━━━━━━{hist_str}")
 
         if msg_id:
