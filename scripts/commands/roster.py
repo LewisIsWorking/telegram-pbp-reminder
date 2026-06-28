@@ -61,6 +61,30 @@ def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
     return result
 
 
+def active_poll_uids(pair: dict, config: dict, state: dict) -> list[str]:
+    """Return a campaign's poll_user_ids, optionally filtered to the active roster.
+
+    Opt-in per campaign via ``pair['poll_roster_filter']``:
+
+    * **Unset (default)** — the full ``poll_user_ids`` list is returned
+      unchanged. This is required for campaigns whose players are not tracked
+      in the shared registry (e.g. C11 runs in a *separate* Telegram group),
+      where an active-roster intersection would wrongly empty the list.
+    * **Set** — only poll users who are on the campaign's active roster
+      (``_active_players`` for the campaign's first pbp topic) are returned,
+      so players who have left or gone inactive stop being pinged and stop
+      counting toward the vote total.
+
+    Returns user ids as strings to match the rest of the poll code.
+    """
+    uids = [str(u) for u in pair.get("poll_user_ids", [])]
+    if not pair.get("poll_roster_filter"):
+        return uids
+    pid = str(pair["pbp_topic_ids"][0])
+    active = {str(p.get("user_id")) for p in _active_players(pid, state, config)}
+    return [u for u in uids if u in active]
+
+
 def _split_active(players: list[dict], config: dict) -> tuple[list[dict], list[dict]]:
     """Partition an _active_players result into (non_permanent, permanent).
 

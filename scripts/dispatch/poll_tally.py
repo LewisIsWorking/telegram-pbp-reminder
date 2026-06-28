@@ -42,6 +42,7 @@ def _lead_summary(votes: dict, options: list[str]) -> str:
 
 def _waiting_for_code(code: str, config: dict, state: dict) -> list[str]:
     """Return @mention list of roster members who haven't voted yet."""
+    from commands.roster import active_poll_uids
     pair = next((p for p in config.get("topic_pairs", [])
                  if p.get("code") == code), None)
     if not pair:
@@ -49,7 +50,7 @@ def _waiting_for_code(code: str, config: dict, state: dict) -> list[str]:
     voted = {str(u) for u in
              state.get("session_poll", {}).get(code, {}).get("voted_uids", [])}
     return [_uid_mention(str(u), config, state)
-            for u in pair.get("poll_user_ids", [])
+            for u in active_poll_uids(pair, config, state)
             if str(u) not in voted]
 
 
@@ -66,9 +67,11 @@ def build_tally_block(code: str, slot: dict, options: list[str],
     votes = slot.get("votes", {})
     voted_uids = slot.get("voted_uids", [])
 
+    from commands.roster import active_poll_uids
     pair = next((p for p in config.get("topic_pairs", [])
                  if p.get("code") == code), None)
-    roster_uids = {str(u) for u in (pair.get("poll_user_ids", []) if pair else [])}
+    roster_uids = {str(u) for u in
+                   (active_poll_uids(pair, config, state) if pair else [])}
     roster_size = len(roster_uids) if roster_uids else "?"
     roster_voted = sum(1 for u in voted_uids if str(u) in roster_uids)
 
