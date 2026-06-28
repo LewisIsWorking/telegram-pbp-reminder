@@ -18,7 +18,7 @@ def announce_poll_result(config: dict, state: dict, *,
     week_num = now.isocalendar()[1]
 
     for pair in config.get("topic_pairs", []):
-        if not pair.get("hybrid_live"):
+        if not pair.get("hybrid_live") or pair.get("session_poll_disabled"):
             continue
         code = pair.get("code", "")
         poll = polls.get(code, {})

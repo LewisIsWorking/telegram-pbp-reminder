@@ -139,6 +139,7 @@
         1825
       ],
       "hybrid_live": true,
+      "session_poll_disabled": true,
       "linked_polls": [
         "C01"
       ],
@@ -203,6 +204,7 @@
   "queue_daily_hour": 9,
   "group_username": "Path_Wars",
   "poll_post_hour": 7,
+  "swimming_poll_enabled": false,
   "queue_daily_hours": [
     9,
     21
