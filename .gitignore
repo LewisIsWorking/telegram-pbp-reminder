@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# Secrets — never commit. Bridge tokens live in discord_bridge/.env locally.
+.env
+*.env
