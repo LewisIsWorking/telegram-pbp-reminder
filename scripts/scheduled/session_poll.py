@@ -26,12 +26,18 @@ def _migrate_flat_poll(state: dict) -> None:
 
 def _poll_roster(config: dict, state: dict, pid: str, pair: dict) -> dict:
     """Return {uid: {name, username}} for all players to be polled."""
+    from commands.roster import active_poll_uids
     roster = {}
-    poll_uids = pair.get("poll_user_ids")
     # Optional {uid_str: username} map for players not in PBP registry
     name_map = {str(k): v for k, v in (pair.get("poll_user_names") or {}).items()}
-    if poll_uids:
-        for uid in poll_uids:
+    # Gate on whether poll_user_ids is *configured*; iterate the filtered set.
+    # active_poll_uids honours the optional per-campaign poll_roster_filter:
+    # when set, the list is trimmed to the campaign's active roster so players
+    # who have left/gone inactive are no longer polled or pinged. (A filtered
+    # result of [] yields an empty roster — it must NOT fall through to the
+    # pbp-topic player scan, which would re-add the dropped players.)
+    if pair.get("poll_user_ids"):
+        for uid in active_poll_uids(pair, config, state):
             uid_str = str(uid)
             p = next((p for p in state.get("players", {}).values()
                       if p.get("user_id") == uid_str), None)
