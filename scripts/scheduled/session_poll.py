@@ -80,6 +80,9 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     code = pair.get("code", pid)
     gid = group_id_for_campaign(config, pid)
     poll_tid = pair.get("chat_topic_id")
+    # Reminder/ping messages can be routed to a separate topic (e.g. a dedicated
+    # "Nudge Bot" topic) while the poll widget + pin stay in the campaign topic.
+    nudge_tid = pair.get("nudge_topic_id") or poll_tid
     post_hour = config.get("poll_post_hour", 7)
     weekday = now.weekday()  # 6 = Sunday
 
@@ -163,7 +166,7 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
 
     if not unvoted:
         if not poll.get("all_voted_posted"):
-            tg.send_message(gid, poll_tid,
+            tg.send_message(gid, nudge_tid,
                             build_all_voted_message(code, len(roster), week_num))
             poll["all_voted_posted"] = True
         return
@@ -173,7 +176,7 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     link = _poll_link(config, pair, poll_msg_id)
     msg = build_ping_message(pair, unvoted, roster_voted,
                              len(roster), week_num, link)
-    if tg.send_message(gid, poll_tid, msg):
+    if tg.send_message(gid, nudge_tid, msg):
         poll["last_ping_day"] = today_ord
         print(f"Session poll ping: {code} day {weekday}")
 

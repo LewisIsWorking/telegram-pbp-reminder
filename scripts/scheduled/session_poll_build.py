@@ -72,7 +72,7 @@ def build_ping_message(pair: dict, unvoted: list[str],
                        week_num: int, poll_link: str) -> str:
     """Build the daily ping message for unvoted players."""
     code = pair.get("code", "")
-    header = f"🗳️ {code} Week {week_num}/52 — Vote in the poll above!"
+    header = f"🗳️ {code} Week {week_num}/52 — Vote in the poll!"
     unvoted_list = "\n".join(unvoted)
     link_line = f"\n🔗 {poll_link}" if poll_link else ""
     return (f"━━━━━━━━━━━━━━━━\n{header}\n"
