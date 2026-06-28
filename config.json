@@ -34,19 +34,13 @@
       ],
       "allows_multiple_answers": false,
       "poll_any_day": false,
+      "poll_roster_filter": true,
       "poll_user_ids": [
         5443237599,
-        6144366145,
-        7916471490,
-        8740050892,
-        8787586972
+        6144366145
       ],
       "emoji": "\ud83d\udcc6",
-      "poll_user_names": {
-        "7916471490": "DragonFox2000",
-        "8740050892": "ElinoaWigglero",
-        "8787586972": "Sestina_The_Banner_Witch"
-      }
+      "poll_user_names": {}
     },
     {
       "name": "Riddleport",
