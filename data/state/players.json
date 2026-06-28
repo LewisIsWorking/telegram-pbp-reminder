@@ -230,16 +230,6 @@
       "last_post_time": "2026-06-19T17:12:51+00:00",
       "last_warned_week": 1
     },
-    "40585:6023408187": {
-      "user_id": "6023408187",
-      "first_name": "Caelum",
-      "last_name": "(Thi\u00ean)",
-      "username": "Thien_Ming",
-      "campaign_name": "Kibwe",
-      "pbp_topic_id": "40585",
-      "last_post_time": "2026-05-31T07:35:17+00:00",
-      "last_warned_week": 3
-    },
     "1242:6464119705": {
       "user_id": "6464119705",
       "first_name": "Luke",
@@ -557,6 +547,12 @@
       "first_name": "Loaf",
       "username": "LoafableLoaf",
       "campaign_name": "Doomsday Funtime"
+    },
+    "40585:6023408187": {
+      "removed_at": "2026-06-28T09:12:39.842605+00:00",
+      "first_name": "Caelum",
+      "username": "Thien_Ming",
+      "campaign_name": "Kibwe"
     }
   },
   "player_registry": {
@@ -1209,6 +1205,14 @@
       "name": "Loaf",
       "username": "LoafableLoaf",
       "at": "2026-06-25T01:11:09.950432+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "40585",
+      "user_id": "6023408187",
+      "name": "Caelum",
+      "username": "Thien_Ming",
+      "at": "2026-06-28T09:12:40.728226+00:00"
     }
   ],
   "player_boons": {
