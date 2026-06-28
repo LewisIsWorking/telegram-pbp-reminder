@@ -102,7 +102,8 @@ def test_session_poll_nudge_topic_routing():
                                "chat_topic_id": 21514,
                                "nudge_topic_id": 137393}]}
     now = datetime(2026, 3, 29, 8, tzinfo=timezone.utc)  # Sunday >= poll_post_hour
-    state = {}
+    # Seed prior-week history so the recap block fires on poll drop.
+    state = {"poll_history": {"C01": {"wins": {"0": 3, "1": 2}}}}
     with patch("scheduled.session_poll.tg.send_poll",
                return_value=(123, "pollid")) as m_poll, \
          patch("scheduled.session_poll.tg.send_message",
@@ -118,6 +119,9 @@ def test_session_poll_nudge_topic_routing():
     assert ping.args[1] == 137393
     assert "Vote in the poll!" in ping.args[2]
     assert "above" not in ping.args[2]
+    # The history recap also went to the nudge topic (not the campaign topic).
+    recap = next(c for c in m_send.call_args_list if "History" in c.args[2])
+    assert recap.args[1] == 137393
 
 
 # ─── commands/queue_stats.py: avg reply per campaign ─────────────────────────
