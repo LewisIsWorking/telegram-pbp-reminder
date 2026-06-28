@@ -84,6 +84,41 @@ def test_session_poll_exception_isolated():
         post_session_poll(config, state, now=now)  # should not raise
 
 
+def test_session_poll_nudge_topic_routing():
+    """nudge_topic_id routes reminder pings away from the poll's own topic.
+
+    The poll widget posts to chat_topic_id (21514); the daily ping reminder
+    posts to nudge_topic_id (137393) instead. Posting + first ping both happen
+    in a single Sunday run.
+    """
+    from scheduled.session_poll import post_session_poll
+    config = {"group_id": -1001, "gm_user_ids": [], "bot_topic_id": 137393,
+              "poll_post_hour": 7,
+              "topic_pairs": [{"pbp_topic_ids": [100], "code": "C01",
+                               "hybrid_live": True,
+                               "poll_options": ["Friday", "Saturday"],
+                               "poll_user_ids": [111, 222],
+                               "poll_user_names": {"111": "alice", "222": "bob"},
+                               "chat_topic_id": 21514,
+                               "nudge_topic_id": 137393}]}
+    now = datetime(2026, 3, 29, 8, tzinfo=timezone.utc)  # Sunday >= poll_post_hour
+    state = {}
+    with patch("scheduled.session_poll.tg.send_poll",
+               return_value=(123, "pollid")) as m_poll, \
+         patch("scheduled.session_poll.tg.send_message",
+               return_value=True) as m_send, \
+         patch("scheduled.session_poll.tg.pin_message"), \
+         patch("scheduled.session_poll.tg.unpin_message"):
+        post_session_poll(config, state, now=now)
+
+    # Poll widget went to the campaign topic.
+    assert m_poll.call_args.args[1] == 21514
+    # The ping reminder went to the nudge topic, not the campaign topic.
+    ping = next(c for c in m_send.call_args_list if "Waiting on" in c.args[2])
+    assert ping.args[1] == 137393
+    assert "Vote in the poll!" in ping.args[2]
+    assert "above" not in ping.args[2]
+
 
 # ─── commands/queue_stats.py: avg reply per campaign ─────────────────────────
 
