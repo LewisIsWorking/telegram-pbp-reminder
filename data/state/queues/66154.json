@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 163696,
+      "thread_id": 66154,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-06-29T00:35:06+00:00",
+      "preview": "Rax scoots out of his seat after thinking on things for a while.\n\n\"I'm going to head home real quick. Gotta restock my supplies and check in. Discuss what is going on so my family knows what is happening.\"\n\nGrabbing his mask he starts to put it back on. He showed his face for Marlo because that's respectful for someone who has the kind of power they do, but he doesn't want to walk around town with it off.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -953,10 +963,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 161730
+      "fingerprint": "2026-06-29 00:35:06",
+      "msg_ids": [
+        163703
+      ],
+      "last_posted_at": "2026-06-29T01:16:12.478827+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
