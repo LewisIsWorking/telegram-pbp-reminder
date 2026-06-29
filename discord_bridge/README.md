@@ -59,6 +59,13 @@ Remove it with `discord_bridge\uninstall_task.ps1`. Check status:
 ```
 Get-ScheduledTask PathWarsVoiceBridge | Get-ScheduledTaskInfo
 ```
+> Registering a Scheduled Task needs an **elevated** PowerShell. If you can't
+> elevate, use the no-admin Startup-folder option instead (drops a hidden
+> launcher that runs at every logon, and starts the bridge now):
+> ```
+> powershell -ExecutionPolicy Bypass -File discord_bridge\install_startup.ps1
+> ```
+> Remove with `uninstall_startup.ps1`.
 - **Manual run instead:** double-click `run.bat`.
 - Caveat: events are missed while the PC is asleep/off (Discord gives a fresh
   snapshot on reconnect but no backfill).
