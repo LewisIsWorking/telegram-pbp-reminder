@@ -49,11 +49,17 @@ On connect it prints `Voice bridge online as <bot> -> Telegram chat <id>, topic
 
 The bot is only live while its process is. Pick a host:
 
-### Windows (your PC)
-- **Quick:** double-click `run.bat`.
-- **Survives reboots:** Task Scheduler → Create Task → Trigger *At log on* →
-  Action *Start a program* → `run.bat`. Or wrap it as a true service with
-  [NSSM](https://nssm.cc/): `nssm install VoiceBridge python <path>\voice_bridge.py`.
+### Windows (your PC) — recommended: one-line auto-start
+Registers a Scheduled Task that starts the bridge at logon, restarts it on
+failure, runs hidden, and logs to `bridge.log`:
+```
+powershell -ExecutionPolicy Bypass -File discord_bridge\install_task.ps1
+```
+Remove it with `discord_bridge\uninstall_task.ps1`. Check status:
+```
+Get-ScheduledTask PathWarsVoiceBridge | Get-ScheduledTaskInfo
+```
+- **Manual run instead:** double-click `run.bat`.
 - Caveat: events are missed while the PC is asleep/off (Discord gives a fresh
   snapshot on reconnect but no backfill).
 
