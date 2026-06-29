@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 163629,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-28T22:05:57+00:00",
-      "preview": "Master Cho shouts,\"If you have grenades of other splash weapons use it against them,  As they move in formation they cannot dodge as easily.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -876,7 +867,9 @@
     "msg:163634",
     "2026-06-28 22:19:47",
     "msg:163728",
-    "2026-06-29 03:24:27"
+    "2026-06-29 03:24:27",
+    "msg:163629",
+    "2026-06-28 22:05:57"
   ],
   "reply_log": [
     {
@@ -4899,6 +4892,15 @@
       "player": "Bruce",
       "preview": "I wont know until I attack a simalr swarm of troops.",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-29T18:09:59+00:00",
+      "pid": "40585",
+      "msg_id": "163629",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "Master Cho shouts,\"If you have grenades of other splash weapons use it against t",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -4911,12 +4913,10 @@
       "caught_up_msg_id": 163767
     },
     "40585": {
-      "fingerprint": "2026-06-28 22:05:57",
-      "msg_ids": [
-        163639
-      ],
-      "last_posted_at": "2026-06-28T22:29:04.377584+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 163792
     }
   }
 }
