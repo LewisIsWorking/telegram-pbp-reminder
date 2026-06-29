@@ -25,15 +25,6 @@
       "time": "2026-06-28T22:05:57+00:00",
       "preview": "Master Cho shouts,\"If you have grenades of other splash weapons use it against them,  As they move in formation they cannot dodge as easily.\"",
       "media_group_id": null
-    },
-    {
-      "message_id": 163728,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-06-29T03:24:27+00:00",
-      "preview": "I wont know until I attack a simalr swarm of troops.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -883,7 +874,9 @@
     "msg:163632",
     "2026-06-28 22:17:23",
     "msg:163634",
-    "2026-06-28 22:19:47"
+    "2026-06-28 22:19:47",
+    "msg:163728",
+    "2026-06-29 03:24:27"
   ],
   "reply_log": [
     {
@@ -4897,18 +4890,25 @@
       "player": "Anthony",
       "preview": "As one group falls Daichi will turn to the one on top and proclaim them next in ",
       "via": "reply"
+    },
+    {
+      "t": "2026-06-29T14:07:10+00:00",
+      "pid": "40585",
+      "msg_id": "163728",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "I wont know until I attack a simalr swarm of troops.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-06-29 03:24:27",
-      "msg_ids": [
-        163731
-      ],
-      "last_posted_at": "2026-06-29T05:45:58.118856+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 163767
     },
     "40585": {
       "fingerprint": "2026-06-28 22:05:57",
