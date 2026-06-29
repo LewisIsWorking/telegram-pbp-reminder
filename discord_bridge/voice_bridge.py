@@ -80,6 +80,16 @@ def format_event(name: str, before_channel, after_channel) -> str | None:
 def main() -> None:  # pragma: no cover - requires live Discord gateway
     import discord  # lazy: keeps the module importable without the dep
 
+    # Windows consoles default to cp1252, which can't encode the emoji/Unicode
+    # in event lines (and Discord names) — printing one would raise
+    # UnicodeEncodeError on every event. Force UTF-8 so logging never crashes
+    # the handler. (The Telegram send is unaffected; it's a separate path.)
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):  # already wrapped / not a TextIO
+            pass
+
     _load_dotenv(Path(__file__).resolve().parent / ".env")
     discord_token = os.environ.get("DISCORD_BOT_TOKEN", "")
     telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
