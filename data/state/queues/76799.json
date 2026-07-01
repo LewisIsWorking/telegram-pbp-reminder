@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 164303,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-07-01T19:45:01+00:00",
+      "preview": "Nadya briefly tosses the bodies just in case, but stands ready to move on.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2073,10 +2083,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 164253
+      "fingerprint": "2026-07-01 19:45:01",
+      "msg_ids": [
+        164370
+      ],
+      "last_posted_at": "2026-07-01T20:41:28.971433+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
