@@ -869,7 +869,11 @@
     "msg:163728",
     "2026-06-29 03:24:27",
     "msg:163629",
-    "2026-06-28 22:05:57"
+    "2026-06-28 22:05:57",
+    "msg:164053",
+    "2026-07-01 01:20:30",
+    "msg:164054",
+    "2026-07-01 01:20:32"
   ],
   "reply_log": [
     {
@@ -4900,6 +4904,24 @@
       "thread_id": 40585,
       "player": "Bruce",
       "preview": "Master Cho shouts,\"If you have grenades of other splash weapons use it against t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-01T01:37:03+00:00",
+      "pid": "40585",
+      "msg_id": "164053",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "will do it tonight",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-01T01:37:06+00:00",
+      "pid": "40585",
+      "msg_id": "164054",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "sorry",
       "via": "reply"
     }
   ],

@@ -1,52 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 163204,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-06-26T22:15:28+00:00",
-      "preview": "Although not a doctor, Rubel tries different methods that he learned performing first aid to unconscious people to assess the cognition and understanding of the man and see what could be causing his condition.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163219,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-06-27T01:45:23+00:00",
-      "preview": "Twilight gives the man a curious once-over, trying to find anything that they can use to help. \n\nAfter a few seconds, they turn around and say, \"Anyone know what's wrong with this guy?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163220,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-06-27T01:45:27+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163693,
-      "thread_id": 51357,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-06-29T00:25:42+00:00",
-      "preview": "Cyrus enters the room after the others have given the man a look over and tried to help snap him back to reality. He seems to be doing a little better but maybe it's time for a harsher tone. Loudly clearing his throat he gets up close to the man, leaning down over the bed to get right in his face.\n\n\"Get your ass out of this damn bed and speak up! Or do I have to show you what happens to people who don't talk!\"\n\nCyrus roars out as he does his best drill instructor impression.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 163694,
-      "thread_id": 51357,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-06-29T00:26:10+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -245,7 +199,17 @@
     "msg:162528",
     "2026-06-21 13:40:18",
     "msg:162561",
-    "2026-06-21 19:04:52"
+    "2026-06-21 19:04:52",
+    "msg:163204",
+    "2026-06-26 22:15:28",
+    "msg:163219",
+    "2026-06-27 01:45:23",
+    "msg:163220",
+    "2026-06-27 01:45:27",
+    "msg:163693",
+    "2026-06-29 00:25:42",
+    "msg:163694",
+    "2026-06-29 00:26:10"
   ],
   "reply_log": [
     {
@@ -1091,18 +1055,61 @@
       "player": "Cannon",
       "preview": "Illiiani would try speaking into his mind directly, utilizing her training as a ",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-01T02:25:13+00:00",
+      "pid": "51357",
+      "msg_id": "163204",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "Although not a doctor, Rubel tries different methods that he learned performing ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-01T02:26:14+00:00",
+      "pid": "51357",
+      "msg_id": "163219",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight gives the man a curious once-over, trying to find anything that they ca",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-01T02:28:52+00:00",
+      "pid": "51357",
+      "msg_id": "163220",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-01T02:29:33+00:00",
+      "pid": "51357",
+      "msg_id": "163693",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "Cyrus enters the room after the others have given the man a look over and tried ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-01T02:32:14+00:00",
+      "pid": "51357",
+      "msg_id": "163694",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-06-26 22:15:28|2026-06-27 01:45:23|2026-06-27 01:45:27|2026-06-29 00:25:42|2026-06-29 00:26:10",
-      "msg_ids": [
-        163707
-      ],
-      "last_posted_at": "2026-06-29T01:16:20.288640+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 164083
     },
     "145040": {
       "msg_ids": [],

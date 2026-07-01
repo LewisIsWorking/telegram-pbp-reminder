@@ -278,7 +278,7 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-06-21T19:04:52+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "52083:5443237599": {
       "user_id": "5443237599",
@@ -359,6 +359,16 @@
       "pbp_topic_id": "1242",
       "last_post_time": "2026-06-22T12:13:14+00:00",
       "last_warned_week": 1
+    },
+    "40585:6023408187": {
+      "user_id": "6023408187",
+      "first_name": "Caelum",
+      "last_name": "(Thi\u00ean)",
+      "username": "Thien_Ming",
+      "campaign_name": "Kibwe",
+      "pbp_topic_id": "40585",
+      "last_post_time": "2026-07-01T01:20:32+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -518,12 +528,6 @@
       "username": "LoafableLoaf",
       "campaign_name": "Doomsday Funtime"
     },
-    "40585:6023408187": {
-      "removed_at": "2026-06-28T09:12:39.842605+00:00",
-      "first_name": "Caelum",
-      "username": "Thien_Ming",
-      "campaign_name": "Kibwe"
-    },
     "66154:6717906753": {
       "removed_at": "2026-06-29T22:29:53.318570+00:00",
       "first_name": "Bo",
@@ -619,7 +623,7 @@
       },
       "6023408187": {
         "id": 8,
-        "name": "Caelum (Thi\u00ean)",
+        "name": "Caelum",
         "joined": "2026-03-31T02:09:59.549850+00:00"
       },
       "1395063293": {
@@ -661,7 +665,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.414530+00:00"
       },
       "5443237599": {
@@ -814,7 +818,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:28.392197+00:00"
       },
       "8511309197": {
@@ -1225,6 +1229,14 @@
       "name": "Chris Warlock",
       "username": "Sestina_The_Banner_Witch",
       "at": "2026-06-30T19:40:32.309870+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "40585",
+      "user_id": "6023408187",
+      "name": "Caelum",
+      "username": "Thien_Ming",
+      "at": "2026-07-01T03:20:31.125744+00:00"
     }
   ],
   "player_boons": {
