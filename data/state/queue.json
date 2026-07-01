@@ -104,7 +104,8 @@
       "2026-07-01T03:20:32.327656+00:00",
       "2026-07-01T03:20:32.329121+00:00",
       "2026-07-01T03:20:32.330627+00:00",
-      "2026-07-01T03:20:32.332101+00:00"
+      "2026-07-01T03:20:32.332101+00:00",
+      "2026-07-01T19:37:50.438542+00:00"
     ],
     "40585": [
       "2026-03-27T16:19:56.987903+00:00",
@@ -1477,13 +1478,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-05-31T22:28:09.311089+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Selenor says \"The reason I wanted to ask you on a date is be",
-      "msg_id": "157644"
-    },
     {
       "pid": "40585",
       "time": "2026-06-01T05:48:29.849195+00:00",
@@ -2876,6 +2870,13 @@
       "player": "Ryo",
       "preview": "Rax scoots out of his seat after thinking on things for a wh",
       "msg_id": "163696"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-01T19:37:50.438542+00:00",
+      "player": "Laetheron",
+      "preview": "oh wait, my first perception check should have been a Surviv",
+      "msg_id": "164133"
     }
   ],
   "pending_potw_boons": {},

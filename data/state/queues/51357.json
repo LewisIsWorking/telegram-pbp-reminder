@@ -2,15 +2,6 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 164133,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-07-01T07:22:34+00:00",
-      "preview": "oh wait, my first perception check should have been a Survival check. They have the same modifier so ig it's fine?",
-      "media_group_id": null
-    },
-    {
       "message_id": 164147,
       "thread_id": 51357,
       "user_id": "8117756377",
@@ -228,7 +219,9 @@
     "msg:163693",
     "2026-06-29 00:25:42",
     "msg:163694",
-    "2026-06-29 00:26:10"
+    "2026-06-29 00:26:10",
+    "msg:164133",
+    "2026-07-01 07:22:34"
   ],
   "reply_log": [
     {
@@ -1119,17 +1112,26 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-01T19:12:31+00:00",
+      "pid": "51357",
+      "msg_id": "164133",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "oh wait, my first perception check should have been a Survival check. They have ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-07-01 07:22:34|2026-07-01 07:42:33",
+      "fingerprint": "2026-07-01 07:42:33",
       "msg_ids": [
-        164148
+        164291
       ],
-      "last_posted_at": "2026-07-01T07:45:32.775239+00:00",
+      "last_posted_at": "2026-07-01T19:37:52.318028+00:00",
       "caught_up_msg_id": null
     },
     "145040": {
