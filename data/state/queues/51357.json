@@ -1,6 +1,25 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 164133,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-07-01T07:22:34+00:00",
+      "preview": "oh wait, my first perception check should have been a Survival check. They have the same modifier so ig it's fine?",
+      "media_group_id": null
+    },
+    {
+      "message_id": 164147,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-07-01T07:42:33+00:00",
+      "preview": "Twilight scrabbles to get a good look at the body, fighting against their short stature. With a glance, they draw on their druidic mentor's teachings and their experiences traversing the wilds, trying to figure out what could have caused it. Amid healthy speculation from the party and lost in thought, Twilight draws inward, missing some clues here and there. But after thinking about it, they seem to land on a guess after listening to Rubel's helpful commentary.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -1106,10 +1125,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 164083
+      "fingerprint": "2026-07-01 07:22:34|2026-07-01 07:42:33",
+      "msg_ids": [
+        164148
+      ],
+      "last_posted_at": "2026-07-01T07:45:32.775239+00:00",
+      "caught_up_msg_id": null
     },
     "145040": {
       "msg_ids": [],
