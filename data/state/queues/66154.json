@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 163696,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-06-29T00:35:06+00:00",
-      "preview": "Rax scoots out of his seat after thinking on things for a while.\n\n\"I'm going to head home real quick. Gotta restock my supplies and check in. Discuss what is going on so my family knows what is happening.\"\n\nGrabbing his mask he starts to put it back on. He showed his face for Marlo because that's respectful for someone who has the kind of power they do, but he doesn't want to walk around town with it off.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -178,7 +168,9 @@
     "msg:159868",
     "2026-06-09 07:20:26",
     "msg:160564",
-    "2026-06-11 17:00:26"
+    "2026-06-11 17:00:26",
+    "msg:163696",
+    "2026-06-29 00:35:06"
   ],
   "reply_log": [
     {
@@ -957,18 +949,25 @@
       "player": "Anthony",
       "preview": "Filiaur appears behind cardigan\n\"Speaking of monney, i think we're sitting on qu",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-01T17:09:11+00:00",
+      "pid": "66154",
+      "msg_id": "163696",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "Rax scoots out of his seat after thinking on things for a while.\n\n\"I'm going to ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-06-29 00:35:06",
-      "msg_ids": [
-        163703
-      ],
-      "last_posted_at": "2026-06-29T01:16:12.478827+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 164252
     }
   }
 }
