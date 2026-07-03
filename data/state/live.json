@@ -1,5 +1,5 @@
 {
-  "offset": 619347901,
+  "offset": 619347908,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-01T02:06:18+00:00",
@@ -110,7 +110,7 @@
   "last_roster_snapshot": "C01:3/6|C00:5/6|C04:3/6|C05:4/6|C06:8/6|C07:4/6|C09:1/6|C08:0/4|C11:2/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-07-03T00:13:41.678919+00:00"
+    "last_at": "2026-07-03T14:25:26.775347+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-06-25T13:49:33.967278+00:00",
@@ -157,7 +157,8 @@
     "107151": "active",
     "25059": "active",
     "1242": "active",
-    "52083": "active"
+    "52083": "active",
+    "40585": "active"
   },
   "last_campaign_table": "2026-07-03T04:49:15.742200+00:00",
   "session_poll": {
@@ -202,7 +203,7 @@
   },
   "last_state_backup": "2026-07-02T22:13:40.769534+00:00",
   "last_queue_daily": "2026-07-01",
-  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 10h \ud83d\udd17 https://t.me/Path_Wars/25059",
+  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 13h \ud83d\udd17 https://t.me/Path_Wars/25059",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -287,14 +288,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-03",
-  "last_queue_pin_id": 165077,
-  "queue_post_count": 1092,
+  "last_queue_pin_id": 165088,
+  "queue_post_count": 1093,
   "gm_queue_history": [
     {
       "msg_ids": [
-        165077
+        165088
       ],
-      "pin_id": 165077
+      "pin_id": 165088
     }
   ]
 }
