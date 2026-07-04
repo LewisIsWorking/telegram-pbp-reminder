@@ -1,5 +1,5 @@
 {
-  "offset": 619347982,
+  "offset": 619347990,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-01T02:06:18+00:00",
@@ -207,7 +207,7 @@
   },
   "last_state_backup": "2026-07-04T00:12:27.820396+00:00",
   "last_queue_daily": "2026-07-01",
-  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe7 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 6d 8h \ud83d\udd17 https://t.me/Path_Wars/25059",
+  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe7 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 6d 10h \ud83d\udd17 https://t.me/Path_Wars/25059",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -292,14 +292,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-03",
-  "last_queue_pin_id": 165179,
-  "queue_post_count": 1101,
+  "last_queue_pin_id": 165187,
+  "queue_post_count": 1102,
   "gm_queue_history": [
     {
       "msg_ids": [
-        165179
+        165187
       ],
-      "pin_id": 165179
+      "pin_id": 165187
     }
   ]
 }
