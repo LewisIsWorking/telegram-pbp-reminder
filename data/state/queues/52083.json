@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 165284,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-05T11:21:35+00:00",
+      "preview": "And..?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -161,7 +171,9 @@
     "msg:163064",
     "2026-06-26 06:42:11",
     "msg:163092",
-    "2026-06-26 12:36:11"
+    "2026-06-26 12:36:11",
+    "msg:165274",
+    "2026-07-05 09:33:32"
   ],
   "reply_log": [
     {
@@ -906,16 +918,27 @@
       "player": "Bruce",
       "preview": "Chua, is okay with returning to Nik Nakk for now as well.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-05T10:21:01+00:00",
+      "pid": "52083",
+      "msg_id": "165274",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "The party will open the fence and head towards where the music is blasting.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 164084
+      "fingerprint": "2026-07-05 11:21:35",
+      "msg_ids": [
+        165289
+      ],
+      "last_posted_at": "2026-07-05T11:40:23.665670+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
