@@ -110,16 +110,6 @@
       "last_post_time": "2026-06-28T21:29:28+00:00",
       "last_warned_week": 0
     },
-    "40585:7842002561": {
-      "user_id": "7842002561",
-      "first_name": "Awnii",
-      "last_name": "Vihn",
-      "username": "Awnii_Vihn",
-      "campaign_name": "Kibwe",
-      "pbp_topic_id": "40585",
-      "last_post_time": "2026-06-07T14:26:18+00:00",
-      "last_warned_week": 3
-    },
     "52083:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -127,7 +117,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-07-05T11:21:35+00:00",
+      "last_post_time": "2026-07-05T15:07:52+00:00",
       "last_warned_week": 0
     },
     "107151:7863964681": {
@@ -545,6 +535,12 @@
       "first_name": "Chris Warlock",
       "username": "Sestina_The_Banner_Witch",
       "campaign_name": "Metal City"
+    },
+    "40585:7842002561": {
+      "removed_at": "2026-07-05T15:20:10.155294+00:00",
+      "first_name": "Awnii",
+      "username": "Awnii_Vihn",
+      "campaign_name": "Kibwe"
     }
   },
   "player_registry": {
@@ -1237,6 +1233,14 @@
       "name": "Caelum",
       "username": "Thien_Ming",
       "at": "2026-07-01T03:20:31.125744+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "40585",
+      "user_id": "7842002561",
+      "name": "Awnii",
+      "username": "Awnii_Vihn",
+      "at": "2026-07-05T15:20:10.834707+00:00"
     }
   ],
   "player_boons": {
