@@ -1,5 +1,5 @@
 {
-  "offset": 619348185,
+  "offset": 619348186,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-05T15:07:52+00:00",
@@ -110,7 +110,7 @@
   "last_roster_snapshot": "C01:3/6|C00:5/6|C04:3/6|C05:4/6|C06:7/6|C07:4/6|C09:1/6|C08:0/4|C11:2/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-07-05T09:16:51.564118+00:00"
+    "last_at": "2026-07-05T23:08:44.920838+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-06-25T13:49:33.967278+00:00",
@@ -210,7 +210,7 @@
   },
   "last_state_backup": "2026-07-05T05:02:18.911368+00:00",
   "last_queue_daily": "2026-07-05",
-  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|52083:2026-07-05 15:07:52|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|66154:2026-07-05 13:27:37|76799:2026-07-01 19:45:01|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 19h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe7 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 6d 6h \ud83d\udd17 https://t.me/c/3496373617/1242",
+  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|52083:2026-07-05 15:07:52|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|66154:2026-07-05 13:27:37|76799:2026-07-01 19:45:01|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 21h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe7 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 6d 8h \ud83d\udd17 https://t.me/c/3496373617/1242",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -295,14 +295,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-03",
-  "last_queue_pin_id": 165402,
-  "queue_post_count": 1116,
+  "last_queue_pin_id": 165405,
+  "queue_post_count": 1117,
   "gm_queue_history": [
     {
       "msg_ids": [
-        165402
+        165405
       ],
-      "pin_id": 165402
+      "pin_id": 165405
     }
   ]
 }
