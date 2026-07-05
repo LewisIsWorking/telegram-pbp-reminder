@@ -1,6 +1,43 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 165294,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-05T13:19:20+00:00",
+      "preview": "Filiaur stays in between the 2 counters and says.\n\"Well, for starters, since we picked up some trinkets from our unfortunate friend's former base we have a few trinkets we're here to part with. \"\nFilliaur's gonna pull out the treasures first:\n-Shortsword with quartz\n-Silver Anklet chain\n-Ornate brass candelbara\n-folding marlin spike\n-Bronze knocker in the shape of a dolphin\nShe's gonna look at the signet ring and decide it might be wiser to keep it, you never know...",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165295,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-05T13:23:55+00:00",
+      "preview": "After that she's gonna pull out the 250gp sailing charts and check if they are useful in any way or they can just be sold.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165296,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-05T13:24:28+00:00",
+      "preview": "Then she's gonna pull out the set of sliver cutlery, inspect them closely before seeing what the vendors can give for them.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165297,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-05T13:27:37+00:00",
+      "preview": "After that she's also gonna pull out the casino chips and ask:\n\"These from here? Can i cash them out or would you prefer we play some games with them. Are we even allowed to play in the casino now that we work here?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -964,10 +1001,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 164252
+      "fingerprint": "2026-07-05 13:19:20|2026-07-05 13:23:55|2026-07-05 13:24:28|2026-07-05 13:27:37",
+      "msg_ids": [
+        165342
+      ],
+      "last_posted_at": "2026-07-05T13:56:56.061309+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

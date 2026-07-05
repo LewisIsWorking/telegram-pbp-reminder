@@ -1,16 +1,16 @@
 {
-  "offset": 619348082,
+  "offset": 619348135,
   "topics": {
     "52083": {
-      "last_message_time": "2026-07-05T11:21:35+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-07-05T13:43:53+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-07-01T19:40:03+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-07-05T13:27:37+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Riddleport"
     },
     "51357": {
@@ -160,7 +160,6 @@
     "25059": "active",
     "1242": "active",
     "40585": "active",
-    "66154": "active",
     "76799": "active",
     "107171": "active"
   },
@@ -176,9 +175,19 @@
         "Both/Either",
         "Can't make it this week"
       ],
-      "voted_uids": [],
+      "voted_uids": [
+        "6144366145",
+        "1698524397",
+        "5443237599"
+      ],
       "last_ping_day": 739802,
-      "votes": {}
+      "votes": {
+        "2": [
+          "6144366145",
+          "1698524397",
+          "5443237599"
+        ]
+      }
     },
     "C11": {
       "week_iso": "sun2026-06-28",
@@ -201,7 +210,7 @@
   },
   "last_state_backup": "2026-07-05T05:02:18.911368+00:00",
   "last_queue_daily": "2026-07-05",
-  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|52083:2026-07-05 11:21:35|76799:2026-07-01 19:45:01|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 10h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 5d 20h \ud83d\udd17 https://t.me/c/3496373617/1242",
+  "last_queue_fingerprint": "51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|66154:2026-07-05 13:27:37|76799:2026-07-01 19:45:01|silent:  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 12h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 5d 23h \ud83d\udd17 https://t.me/c/3496373617/1242",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -286,14 +295,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-03",
-  "last_queue_pin_id": 165291,
-  "queue_post_count": 1111,
+  "last_queue_pin_id": 165346,
+  "queue_post_count": 1112,
   "gm_queue_history": [
     {
       "msg_ids": [
-        165291
+        165346
       ],
-      "pin_id": 165291
+      "pin_id": 165346
     }
-  ]
+  ],
+  "poll_identified_voters": {}
 }

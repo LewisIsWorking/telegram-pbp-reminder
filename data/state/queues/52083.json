@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 165284,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-05T11:21:35+00:00",
-      "preview": "And..?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -173,7 +163,9 @@
     "msg:163092",
     "2026-06-26 12:36:11",
     "msg:165274",
-    "2026-07-05 09:33:32"
+    "2026-07-05 09:33:32",
+    "msg:165284",
+    "2026-07-05 11:21:35"
   ],
   "reply_log": [
     {
@@ -927,18 +919,25 @@
       "player": "Anthony",
       "preview": "The party will open the fence and head towards where the music is blasting.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-05T13:43:53+00:00",
+      "pid": "52083",
+      "msg_id": "165284",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "And..?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-07-05 11:21:35",
-      "msg_ids": [
-        165289
-      ],
-      "last_posted_at": "2026-07-05T11:40:23.665670+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 165344
     }
   }
 }
