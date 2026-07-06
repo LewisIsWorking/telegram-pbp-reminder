@@ -1,10 +1,10 @@
 {
-  "offset": 619348243,
+  "offset": 619348258,
   "topics": {
     "52083": {
-      "last_message_time": "2026-07-06T13:49:52+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-07-06T15:19:36+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -212,7 +212,7 @@
   },
   "last_state_backup": "2026-07-06T09:05:34.722243+00:00",
   "last_queue_daily": "2026-07-06",
-  "last_queue_fingerprint": "40585:2026-07-06 12:39:03|40585:2026-07-06 12:39:06|40585:2026-07-06 12:39:37|40585:2026-07-06 12:41:30|51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe5 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 8d 12h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe7 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 6d 22h \ud83d\udd17 https://t.me/c/3496373617/1242",
+  "last_queue_fingerprint": "40585:2026-07-06 12:39:03|40585:2026-07-06 12:39:06|40585:2026-07-06 12:39:37|40585:2026-07-06 12:41:30|51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|52083:2026-07-06 15:19:36|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe5 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 8d 15h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udd34 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 7d 2h \ud83d\udd17 https://t.me/c/3496373617/1242",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -297,14 +297,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-03",
-  "last_queue_pin_id": 165464,
-  "queue_post_count": 1120,
+  "last_queue_pin_id": 165478,
+  "queue_post_count": 1121,
   "gm_queue_history": [
     {
       "msg_ids": [
-        165464
+        165478
       ],
-      "pin_id": 165464
+      "pin_id": 165478
     }
   ]
 }
