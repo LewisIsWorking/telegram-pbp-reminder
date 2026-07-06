@@ -320,16 +320,6 @@
       "last_post_time": "2026-06-26T12:36:11+00:00",
       "last_warned_week": 1
     },
-    "66154:5029858993": {
-      "user_id": "5029858993",
-      "first_name": "Sasuken09",
-      "last_name": "",
-      "username": "Sasuken09",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-06-08T21:14:30+00:00",
-      "last_warned_week": 3
-    },
     "40585:1395063293": {
       "user_id": "1395063293",
       "first_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
@@ -541,6 +531,12 @@
       "first_name": "Awnii",
       "username": "Awnii_Vihn",
       "campaign_name": "Kibwe"
+    },
+    "66154:5029858993": {
+      "removed_at": "2026-07-06T21:42:01.884061+00:00",
+      "first_name": "Sasuken09",
+      "username": "Sasuken09",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -1241,6 +1237,14 @@
       "name": "Awnii",
       "username": "Awnii_Vihn",
       "at": "2026-07-05T15:20:10.834707+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "5029858993",
+      "name": "Sasuken09",
+      "username": "Sasuken09",
+      "at": "2026-07-06T21:42:02.789958+00:00"
     }
   ],
   "player_boons": {
