@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 165365,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-05T15:07:52+00:00",
-      "preview": "And what's in the garage?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -175,7 +165,9 @@
     "msg:165274",
     "2026-07-05 09:33:32",
     "msg:165284",
-    "2026-07-05 11:21:35"
+    "2026-07-05 11:21:35",
+    "msg:165365",
+    "2026-07-05 15:07:52"
   ],
   "reply_log": [
     {
@@ -938,18 +930,25 @@
       "player": "Anthony",
       "preview": "And..?",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-06T13:49:52+00:00",
+      "pid": "52083",
+      "msg_id": "165365",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "And what's in the garage?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-07-05 15:07:52",
-      "msg_ids": [
-        165370
-      ],
-      "last_posted_at": "2026-07-05T15:20:17.415198+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 165463
     }
   }
 }
