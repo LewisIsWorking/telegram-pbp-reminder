@@ -2,30 +2,57 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 164147,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-07-01T07:42:33+00:00",
-      "preview": "Twilight scrabbles to get a good look at the body, fighting against their short stature. With a glance, they draw on their druidic mentor's teachings and their experiences traversing the wilds, trying to figure out what could have caused it. Amid healthy speculation from the party and lost in thought, Twilight draws inward, missing some clues here and there. But after thinking about it, they seem to land on a guess after listening to Rubel's helpful commentary.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 164317,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-07-01T19:57:28+00:00",
-      "preview": "Illiani settles down nearby and begins to recite mantras in azlanti, attempting to attune to the psychic impressions left by the violence to gain insights.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165174,
+      "message_id": 165741,
       "thread_id": 51357,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-07-04T08:06:12+00:00",
-      "preview": "Rubel provides helpful commentary to twilight while also making his own keen observations.",
+      "time": "2026-07-07T06:43:21+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165742,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-07T06:43:45+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165743,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-07T06:44:03+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165744,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-07T06:44:18+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165745,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-07T06:44:43+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165746,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-07T06:45:15+00:00",
+      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -239,7 +266,17 @@
     "msg:163694",
     "2026-06-29 00:26:10",
     "msg:164133",
-    "2026-07-01 07:22:34"
+    "2026-07-01 07:22:34",
+    "msg:164147",
+    "2026-07-01 07:42:33",
+    "msg:164317",
+    "2026-07-01 19:57:28",
+    "msg:165174",
+    "2026-07-04 08:06:12",
+    "msg:165717",
+    "2026-07-07 06:12:30",
+    "msg:164077",
+    "2026-07-01 02:36:31"
   ],
   "reply_log": [
     {
@@ -1139,17 +1176,62 @@
       "player": "Laetheron",
       "preview": "oh wait, my first perception check should have been a Survival check. They have ",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-07T06:07:43+00:00",
+      "pid": "51357",
+      "msg_id": "164147",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight scrabbles to get a good look at the body, fighting against their short ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T06:07:46+00:00",
+      "pid": "51357",
+      "msg_id": "164317",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illiani settles down nearby and begins to recite mantras in azlanti, attempting ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T06:07:49+00:00",
+      "pid": "51357",
+      "msg_id": "165174",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "Rubel provides helpful commentary to twilight while also making his own keen obs",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T06:14:17+00:00",
+      "pid": "51357",
+      "msg_id": "165717",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T06:15:15+00:00",
+      "pid": "51357",
+      "msg_id": "164077",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-07-01 07:42:33|2026-07-01 19:57:28|2026-07-04 08:06:12",
+      "fingerprint": "2026-07-07 06:43:21|2026-07-07 06:43:45|2026-07-07 06:44:03|2026-07-07 06:44:18|2026-07-07 06:44:43|2026-07-07 06:45:15",
       "msg_ids": [
-        165177
+        165776
       ],
-      "last_posted_at": "2026-07-04T10:19:21.359227+00:00",
+      "last_posted_at": "2026-07-07T08:29:24.829254+00:00",
       "caught_up_msg_id": null
     },
     "145040": {

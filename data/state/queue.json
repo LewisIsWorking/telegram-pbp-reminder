@@ -105,7 +105,12 @@
       "2026-07-01T03:20:32.329121+00:00",
       "2026-07-01T03:20:32.330627+00:00",
       "2026-07-01T03:20:32.332101+00:00",
-      "2026-07-01T19:37:50.438542+00:00"
+      "2026-07-01T19:37:50.438542+00:00",
+      "2026-07-07T08:29:08.482065+00:00",
+      "2026-07-07T08:29:08.483549+00:00",
+      "2026-07-07T08:29:08.484923+00:00",
+      "2026-07-07T08:29:08.487580+00:00",
+      "2026-07-07T08:29:08.488877+00:00"
     ],
     "40585": [
       "2026-03-29T16:09:27.958229+00:00",
@@ -1484,41 +1489,6 @@
   },
   "queue_archive": [
     {
-      "pid": "40585",
-      "time": "2026-06-01T10:54:23.544699+00:00",
-      "player": "Ryo",
-      "preview": "Leopard watches as Daichi advances beyond the rest of them a",
-      "msg_id": "158012"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-01T10:54:23.550049+00:00",
-      "player": "Ryo",
-      "preview": "Leopard - A1: Rage A2: Stride A3: Shield",
-      "msg_id": "158013"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-06-01T10:54:23.552489+00:00",
-      "player": "Cannon",
-      "preview": "Illi frowns and glances at Rubel and the rest of the party.\n",
-      "msg_id": "158019"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-06-01T10:54:23.553560+00:00",
-      "player": "Bre",
-      "preview": "With my hood up, I stay back,, leaning against one of the ca",
-      "msg_id": "158022"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-06-01T10:54:23.555685+00:00",
-      "player": "Bre",
-      "preview": "\"what do you mean what's my story? What's your story?\"",
-      "msg_id": "158032"
-    },
-    {
       "pid": "66154",
       "time": "2026-06-01T10:54:23.557850+00:00",
       "player": "Bre",
@@ -2882,9 +2852,58 @@
       "player": "Buffet",
       "preview": "Tarsus focuses for a moment, then channels some water magic ",
       "msg_id": "165629"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-07T08:29:08.482065+00:00",
+      "player": "Laetheron",
+      "preview": "Twilight scrabbles to get a good look at the body, fighting ",
+      "msg_id": "164147"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-07T08:29:08.483549+00:00",
+      "player": "Cannon",
+      "preview": "Illiani settles down nearby and begins to recite mantras in ",
+      "msg_id": "164317"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-07T08:29:08.484923+00:00",
+      "player": "Anthony",
+      "preview": "Rubel provides helpful commentary to twilight while also mak",
+      "msg_id": "165174"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-07T08:29:08.487580+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "165717"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-07T08:29:08.488877+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "164077"
     }
   ],
-  "pending_potw_boons": {},
+  "pending_potw_boons": {
+    "52083": {
+      "message_id": 165771,
+      "winner_user_id": "6144366145",
+      "campaign_name": "Hopeful End-Times",
+      "boons": [
+        "The clockwork lock on this door is slightly misaligned. Easier to pick.",
+        "A translator in the market recognizes the language on the artifact.",
+        "Your humming attracts a small animal that's carrying something useful in its mouth.",
+        "The DC of your next skill check is reduced by 1."
+      ],
+      "base_message": "Player of the Week for Hopeful End-Times: Anthony NegetZ (@MrNegetZ)!\n(2026-06-30 (W27) to 2026-07-07 (W28))\n\n5 posts this week with an average gap of 11.3h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-07-07T08:29:09.198004+00:00"
+    }
+  },
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"

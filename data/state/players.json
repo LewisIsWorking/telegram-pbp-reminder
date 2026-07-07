@@ -17,8 +17,8 @@
       "username": "Nemesiux",
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
-      "last_post_time": "2026-06-07T19:01:35+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-07-07T06:38:43+00:00",
+      "last_warned_week": 0
     },
     "66154:5443237599": {
       "user_id": "5443237599",
@@ -48,7 +48,7 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-06-29T00:26:10+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "52083:138025700": {
       "user_id": "138025700",
@@ -117,7 +117,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-07-06T15:19:36+00:00",
+      "last_post_time": "2026-07-07T06:46:29+00:00",
       "last_warned_week": 0
     },
     "107151:7863964681": {
@@ -247,7 +247,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
-      "last_post_time": "2026-07-04T08:06:12+00:00",
+      "last_post_time": "2026-07-07T06:45:15+00:00",
       "last_warned_week": 0
     },
     "66154:6144366145": {
@@ -289,16 +289,6 @@
       "pbp_topic_id": "107151",
       "last_post_time": "2026-05-24T17:46:25+00:00",
       "last_warned_week": 0
-    },
-    "66154:8770290576": {
-      "user_id": "8770290576",
-      "first_name": "Bre",
-      "last_name": "Irish",
-      "username": "BreIrish",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-06-09T07:20:26+00:00",
-      "last_warned_week": 3
     },
     "40585:7130942567": {
       "user_id": "7130942567",
@@ -348,6 +338,16 @@
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
       "last_post_time": "2026-07-01T09:13:55+00:00",
+      "last_warned_week": 0
+    },
+    "25059:7554681456": {
+      "user_id": "7554681456",
+      "first_name": "Jay",
+      "last_name": "",
+      "username": "",
+      "campaign_name": "Doomsday Funtime",
+      "pbp_topic_id": "25059",
+      "last_post_time": "2026-07-07T06:42:02+00:00",
       "last_warned_week": 0
     }
   },
@@ -537,6 +537,12 @@
       "first_name": "Sasuken09",
       "username": "Sasuken09",
       "campaign_name": "Riddleport"
+    },
+    "66154:8770290576": {
+      "removed_at": "2026-07-07T08:29:09.198004+00:00",
+      "first_name": "Bre",
+      "username": "BreIrish",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -691,6 +697,11 @@
         "id": 4,
         "name": "Anthony NegetZ",
         "joined": "2026-05-12T03:18:59.789942+00:00"
+      },
+      "7554681456": {
+        "id": 5,
+        "name": "Jay",
+        "joined": "2026-07-07T08:29:09.189308+00:00"
       }
     },
     "66154": {
@@ -810,7 +821,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:28.392197+00:00"
       },
       "8511309197": {
@@ -820,7 +831,7 @@
       },
       "6144366145": {
         "id": 7,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-04-28T09:00:48.800641+00:00"
       }
     },
@@ -1245,6 +1256,14 @@
       "name": "Sasuken09",
       "username": "Sasuken09",
       "at": "2026-07-06T21:42:02.789958+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "8770290576",
+      "name": "Bre",
+      "username": "BreIrish",
+      "at": "2026-07-07T08:29:10.596830+00:00"
     }
   ],
   "player_boons": {
@@ -1574,7 +1593,7 @@
     },
     "6144366145": {
       "name": "Anthony NegetZ",
-      "count": 5
+      "count": 6
     },
     "8770290576": {
       "name": "Bre Irish",

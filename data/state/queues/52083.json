@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 165747,
+      "thread_id": 145045,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-07T06:46:29+00:00",
+      "preview": "As initiative starts Livy can set the first spotlight as a free action.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -960,6 +970,13 @@
       "msg_ids": [],
       "last_posted_at": null,
       "caught_up_msg_id": 165736
+    },
+    "145045": {
+      "msg_ids": [
+        165778
+      ],
+      "fingerprint": "2026-07-07 06:46:29",
+      "last_posted_at": "2026-07-07T08:29:27.293534+00:00"
     }
   }
 }
