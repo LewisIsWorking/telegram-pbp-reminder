@@ -11,6 +11,33 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.8] - 2026-07-07
+
+### Fixed
+
+**The bot no longer unpins messages it didn't send.**
+
+`unpin_message` used to POST `unpinChatMessage` for whatever message ID
+a caller handed it. Because a bot with admin rights can unpin **any**
+message in a group (Telegram has no "only my own messages" restriction —
+the same reality behind the 2026-05-08 delete incident), a stale or
+crossed ID silently cleared a GM's or player's *manual* pin.
+
+`unpin_message` now delegates to `posting.safe_delete.perform_guarded_unpin`,
+which applies the same bot-sent-registry check that already guards
+deletion: an ID the bot never recorded sending is refused before any
+HTTP request, with a diagnostic line and a refusal-log entry. Legitimate
+unpins are unaffected — the callers only pass IDs the bot pinned itself
+(`poll_message_id`, `last_queue_pin_id`, batch/slot `pin_id`), all of
+which are recorded at send time.
+
+Adds the `perform_guarded_unpin` guard, a regression test that a non-bot
+ID is refused with no API call, a parallel guard test suite, and a
+`docs/dev/delete-safety.md` section documenting that unpin shares the
+guard. PATCH bump (4.51.8).
+
+---
+
 ## [4.51.7] - 2026-06-16
 
 ### Changed

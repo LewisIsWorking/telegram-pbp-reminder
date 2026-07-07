@@ -90,16 +90,38 @@ Three production files compose the safeguard, all in
   out of the various state-file shapes (`gm_queue_history`,
   `topic_queues[*].msg_ids`, `caught_up_msg_id`, etc.). New state
   fields that store bot-sent IDs need to be picked up here.
-* **`safe_delete.py`** — the guard. `perform_guarded_delete(chat_id,
+* **`safe_delete.py`** — the guards. `perform_guarded_delete(chat_id,
   message_id, post_fn)` is the one place in the codebase that may
-  pass `"deleteMessage"` as a method name. It checks the registry,
-  prints a diagnostic on refusal, and otherwise calls the post
-  function.
+  pass `"deleteMessage"` as a method name, and `perform_guarded_unpin`
+  is the one place that may pass `"unpinChatMessage"`. Each checks the
+  registry, prints a diagnostic on refusal, and otherwise calls the
+  post function.
 
-`telegram.py` connects them: `delete_message` is a 3-line delegate
-to `safe_delete.perform_guarded_delete`. The send functions
+`telegram.py` connects them: `delete_message` and `unpin_message` are
+each a short delegate to the matching guard. The send functions
 (`send_message_id`, `send_message_with_buttons`, `send_poll`) call
-`record_sent` after every successful send so future deletes work.
+`record_sent` after every successful send so future deletes and unpins
+work.
+
+---
+
+## Unpinning shares the same guard
+
+The rule "the bot may only act on messages it sent" is not delete-only.
+A bot with admin rights can **unpin any message in the group**, not just
+its own — Telegram has no "own-messages-only" flag for `unpinChatMessage`
+any more than it does for `deleteMessage`. A stale or crossed
+`message_id` reaching the unpin call silently clears a GM's or player's
+*manual* pin.
+
+So `unpin_message` routes through `perform_guarded_unpin`, which applies
+the identical `is_bot_sent` check before calling `unpinChatMessage`. The
+callers only ever pass IDs the bot pinned itself (`poll_message_id`,
+`last_queue_pin_id`, a batch/slot `pin_id`), and those IDs are recorded
+at send time — so legitimate unpins pass, and only a non-bot ID is
+refused. If you add a new place that unpins, do **not** reach for
+`unpinAllChatMessages`/`unpinAllForumTopicMessages` (they clear pins the
+bot never created); unpin a specific bot-sent ID through `unpin_message`.
 
 ---
 
