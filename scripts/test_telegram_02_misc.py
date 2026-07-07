@@ -97,13 +97,29 @@ def test_pin_fail():
 
 def test_unpin_success():
     _tg.init("t")
+    # unpin is registry-guarded (bot only unpins its own pins), so the ID
+    # must be recorded as bot-sent before the HTTP path is reached.
+    from posting import bot_sent_registry as reg
+    reg.record_sent(55)
     with patch.object(_tg.requests, "post", return_value=_ok(True)):
         assert _tg.unpin_message(-1, 55) is True
 
 def test_unpin_fail():
     _tg.init("t")
+    from posting import bot_sent_registry as reg
+    reg.record_sent(55)
     with patch.object(_tg.requests, "post", return_value=_fail()):
         assert _tg.unpin_message(-1, 55) is False
+
+def test_unpin_refuses_non_bot_message():
+    """A message ID the bot never sent is not unpinned — no HTTP call made.
+
+    Regression for the bot clearing GMs' / players' manual pins.
+    """
+    _tg.init("t")
+    with patch.object(_tg.requests, "post", return_value=_ok(True)) as m_post:
+        assert _tg.unpin_message(-1, 987654321) is False
+        m_post.assert_not_called()
 
 def test_message_link_public():
     assert _tg.message_link(-1001661053273, 40585, 12345, group_username="Path_Wars") == \

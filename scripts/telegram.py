@@ -169,16 +169,16 @@ def pin_message(chat_id: int, message_id: int,
 
 
 def unpin_message(chat_id: int, message_id: int) -> bool:
-    """Unpin a specific message in a chat. Returns True on success.
+    """Unpin a specific message the bot itself pinned. True on success.
 
-    Silently ignores 400 "message not found" errors — Telegram auto-unpins
-    expired polls, so the message may already be gone by the time we try.
+    Thin delegate to ``posting.safe_delete.perform_guarded_unpin`` —
+    that module owns the bot-sent-registry safety check (the bot only
+    unpins IDs it sent, so a stale/crossed ID can never clear a GM's or
+    player's manual pin) and the actual Telegram API call. See its
+    docstring for the full contract.
     """
-    return _post("unpinChatMessage", {
-        "chat_id": chat_id, "message_id": message_id,
-    }, "unpin_message",
-    suppress_errors=("message to unpin not found", "MESSAGE_ID_INVALID",
-                     "message not found")) is not None
+    from posting.safe_delete import perform_guarded_unpin
+    return perform_guarded_unpin(chat_id, message_id, _post)
 
 
 # NOTE: there is deliberately no `unpin_all_messages` helper. Telegram's
