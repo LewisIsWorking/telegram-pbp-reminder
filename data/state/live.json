@@ -1,5 +1,5 @@
 {
-  "offset": 619348317,
+  "offset": 619348330,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-06T15:19:36+00:00",
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-07-07T02:27:37+00:00",
+      "last_message_time": "2026-07-07T03:33:38+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -212,7 +212,7 @@
   },
   "last_state_backup": "2026-07-06T09:05:34.722243+00:00",
   "last_queue_daily": "2026-07-06",
-  "last_queue_fingerprint": "40585:2026-07-06 12:39:37|40585:2026-07-06 12:41:30|40585:2026-07-06 19:00:42|51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|52083:2026-07-06 15:19:36|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe3 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 9d 1h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83e\udd16 C09: Metal City \u2014 no posts for 5d 6h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 7d 11h \ud83d\udd17 https://t.me/c/3496373617/1242",
+  "last_queue_fingerprint": "40585:2026-07-06 12:39:37|40585:2026-07-06 12:41:30|40585:2026-07-06 19:00:42|51357:2026-07-01 07:42:33|51357:2026-07-01 19:57:28|51357:2026-07-04 08:06:12|52083:2026-07-06 15:19:36|66154:2026-07-05 13:19:20|66154:2026-07-05 13:23:55|66154:2026-07-05 13:24:28|76799:2026-07-01 19:45:01|silent:  \ud83d\udfe3 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 9d 2h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83e\udd16 C09: Metal City \u2014 no posts for 5d 7h \ud83d\udd17 https://t.me/Path_Wars/107171|  \ud83d\udd34 \ud83c\udf11 C11: Dark Pockets \u2014 no posts for 7d 13h \ud83d\udd17 https://t.me/c/3496373617/1242",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -297,14 +297,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-03",
-  "last_queue_pin_id": 165541,
-  "queue_post_count": 1126,
+  "last_queue_pin_id": 165553,
+  "queue_post_count": 1127,
   "gm_queue_history": [
     {
       "msg_ids": [
-        165541
+        165553
       ],
-      "pin_id": 165541
+      "pin_id": 165553
     }
   ]
 }
