@@ -11,6 +11,26 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.9] - 2026-07-07
+
+### Removed
+
+**Retired the C11 "Dark Pockets" campaign from tracking.**
+
+The bot was removed from the Dark Pockets Telegram group, so it can no
+longer see posts there (its last ingested message was 2026-06-29). C11
+was the only campaign running in a separate group (`group_id`
+`-1003496373617`); its `topic_pair` has been deleted from `config.json`
+and the `C01 ↔ C11` `linked_polls` link severed so C01's vote
+notifications no longer render a stale C11 tally block. No code change
+was needed — the ingestion/queue/poll logic is all config-driven, so
+dropping the pair fully untracks the campaign (no more queue entries,
+polls, roster, warnings, or recruitment attempts against an
+unreachable group). Orphaned C11 state under `data/state` is inert once
+the pair is gone and is left untouched.
+
+---
+
 ## [4.51.8] - 2026-07-07
 
 ### Fixed
