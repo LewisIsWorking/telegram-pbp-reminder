@@ -23,9 +23,7 @@
       ],
       "code": "C01",
       "hybrid_live": true,
-      "linked_polls": [
-        "C11"
-      ],
+      "linked_polls": [],
       "poll_options": [
         "Friday",
         "Saturday",
@@ -128,60 +126,6 @@
       "queue_exclude": true,
       "emoji": "\ud83e\udd84",
       "roster_target": 4
-    },
-    {
-      "name": "Dark Pockets",
-      "code": "C11",
-      "group_id": -1003496373617,
-      "chat_topic_id": 2321,
-      "pbp_topic_ids": [
-        1242,
-        1825
-      ],
-      "hybrid_live": true,
-      "session_poll_disabled": true,
-      "linked_polls": [
-        "C01"
-      ],
-      "created": "2026-03-29",
-      "poll_any_day": true,
-      "allows_multiple_answers": true,
-      "poll_options": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-        "Can't make it"
-      ],
-      "group_username": null,
-      "poll_user_ids": [
-        503940482,
-        6452663252,
-        9000000003,
-        9000000004,
-        8018921976,
-        8030796908,
-        9000000007,
-        9000000008,
-        6234551152
-      ],
-      "poll_user_names": {
-        "9000000003": "molluggg",
-        "9000000004": "Brookm126",
-        "8030796908": "Sparkleslayer",
-        "9000000007": "Luke_Skillen",
-        "9000000008": "EliciaRoseT",
-        "6452663252": "JackGrah",
-        "8018921976": "NitNatty",
-        "503940482": "cmavb",
-        "1698524397": "PathWars",
-        "6234551152": "Thefununlce"
-      },
-      "emoji": "\ud83c\udf11",
-      "queue_priority": 0
     }
   ],
   "settings": {
