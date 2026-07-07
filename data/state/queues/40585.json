@@ -16,33 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 165424,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-06T12:39:37+00:00",
-      "preview": "Total base is 38 with needing to add weakness in as well as fort save versus stunning if it applies.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165425,
-      "thread_id": 40585,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-06T12:41:30+00:00",
-      "preview": "Master Cho squawks in pain as the many arrows strike him.  Not losing his focus he dashes forward and swings his gale blade in a flurry of strokes against the squad of soldiers and as he dances his gale of death he steals his resolve to ignore some of the damage he took. (spent stamina point)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165481,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-06T19:00:42+00:00",
-      "preview": "This said it was.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -906,7 +879,15 @@
     "msg:165422",
     "2026-07-06 12:39:03",
     "msg:165423",
-    "2026-07-06 12:39:06"
+    "2026-07-06 12:39:06",
+    "msg:165481",
+    "2026-07-06 19:00:42",
+    "msg:165424",
+    "2026-07-06 12:39:37",
+    "msg:165425",
+    "2026-07-06 12:41:30",
+    "msg:165629",
+    "2026-07-07 05:02:46"
   ],
   "reply_log": [
     {
@@ -4983,26 +4964,58 @@
       "player": "Bruce",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-07T04:37:47+00:00",
+      "pid": "40585",
+      "msg_id": "165481",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "This said it was.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T04:42:37+00:00",
+      "pid": "40585",
+      "msg_id": "165424",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "Total base is 38 with needing to add weakness in as well as fort save versus stu",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T04:50:08+00:00",
+      "pid": "40585",
+      "msg_id": "165425",
+      "thread_id": 40585,
+      "player": "Bruce",
+      "preview": "Master Cho squawks in pain as the many arrows strike him.  Not losing his focus ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T05:04:50+00:00",
+      "pid": "40585",
+      "msg_id": "165629",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus focuses for a moment, then channels some water magic from his staff into ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-06 12:39:37|2026-07-06 19:00:42",
-      "msg_ids": [
-        165537
-      ],
-      "last_posted_at": "2026-07-07T02:27:52.719738+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 165734
     },
     "40585": {
-      "fingerprint": "2026-07-06 12:41:30",
-      "msg_ids": [
-        165461
-      ],
-      "last_posted_at": "2026-07-06T13:53:59.499704+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 165735
     }
   }
 }
