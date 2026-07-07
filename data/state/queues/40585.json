@@ -18,24 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 165422,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-06T12:39:03+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165423,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-06T12:39:06+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 165424,
       "thread_id": 137075,
       "user_id": "7077683276",
@@ -920,7 +902,11 @@
     "msg:164054",
     "2026-07-01 01:20:32",
     "msg:164154",
-    "2026-07-01 09:13:55"
+    "2026-07-01 09:13:55",
+    "msg:165422",
+    "2026-07-06 12:39:03",
+    "msg:165423",
+    "2026-07-06 12:39:06"
   ],
   "reply_log": [
     {
@@ -4979,17 +4965,35 @@
       "player": "Caelum",
       "preview": "Act together: eidolon stride Ji Yun cast Haste, cast lifelink surge.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-07T01:35:22+00:00",
+      "pid": "40585",
+      "msg_id": "165422",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T01:35:40+00:00",
+      "pid": "40585",
+      "msg_id": "165423",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-06 12:39:03|2026-07-06 12:39:06|2026-07-06 12:39:37|2026-07-06 19:00:42",
+      "fingerprint": "2026-07-06 12:39:37|2026-07-06 19:00:42",
       "msg_ids": [
-        165482
+        165537
       ],
-      "last_posted_at": "2026-07-06T19:01:44.399691+00:00",
+      "last_posted_at": "2026-07-07T02:27:52.719738+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
