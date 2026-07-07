@@ -2,30 +2,12 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 165729,
+      "message_id": 165889,
       "thread_id": 25059,
       "user_id": "5443237599",
       "user_name": "Kaer'maga when?",
-      "time": "2026-07-07T06:38:43+00:00",
-      "preview": "We wait for a irl session to happen",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165740,
-      "thread_id": 25059,
-      "user_id": "7554681456",
-      "user_name": "Jay",
-      "time": "2026-07-07T06:42:02+00:00",
-      "preview": "Why am I here",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165784,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-07-07T08:30:27+00:00",
-      "preview": "To suffer",
+      "time": "2026-07-07T22:00:41+00:00",
+      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -356,7 +338,13 @@
     "msg:159607",
     "2026-06-07 19:01:35",
     "msg:162523",
-    "2026-06-21 13:31:25"
+    "2026-06-21 13:31:25",
+    "msg:165729",
+    "2026-07-07 06:38:43",
+    "msg:165740",
+    "2026-07-07 06:42:02",
+    "msg:165784",
+    "2026-07-07 08:30:27"
   ],
   "reply_log": [
     {
@@ -1825,15 +1813,42 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-07T21:43:45+00:00",
+      "pid": "25059",
+      "msg_id": "165729",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "We wait for a irl session to happen",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T21:43:52+00:00",
+      "pid": "25059",
+      "msg_id": "165740",
+      "thread_id": 25059,
+      "player": "Jay",
+      "preview": "Why am I here",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-07T21:44:00+00:00",
+      "pid": "25059",
+      "msg_id": "165784",
+      "thread_id": 25059,
+      "player": "Kaer'maga when?",
+      "preview": "To suffer",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-07 06:38:43|2026-07-07 06:42:02|2026-07-07 08:30:27",
+      "fingerprint": "2026-07-07 22:00:41",
       "msg_ids": [
-        165802
+        165893
       ],
-      "last_posted_at": "2026-07-07T12:00:37.593732+00:00",
+      "last_posted_at": "2026-07-07T22:17:01.445650+00:00",
       "caught_up_msg_id": null
     }
   }

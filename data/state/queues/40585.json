@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 165826,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-07T15:02:09+00:00",
-      "preview": "Well since the macro did not add that benefit automatically you need to add damage as if i hit it with its weakness.  So no minus for being a non spash weapon. And. Add damage for hitting it based on weakness.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -898,7 +889,9 @@
     "msg:165629",
     "2026-07-07 05:02:46",
     "msg:165809",
-    "2026-07-07 12:47:22"
+    "2026-07-07 12:47:22",
+    "msg:165826",
+    "2026-07-07 15:02:09"
   ],
   "reply_log": [
     {
@@ -5020,18 +5013,25 @@
       "player": "Bruce",
       "preview": "@Pathwars -  do to Master Cho's Sympathetic Vulnerabilities all the troops in th",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-07T21:41:31+00:00",
+      "pid": "40585",
+      "msg_id": "165826",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "Well since the macro did not add that benefit automatically you need to add dama",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-07 15:02:09",
-      "msg_ids": [
-        165839
-      ],
-      "last_posted_at": "2026-07-07T15:45:40.832056+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 165899
     },
     "40585": {
       "fingerprint": "",

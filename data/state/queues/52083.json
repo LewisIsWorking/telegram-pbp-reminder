@@ -18,6 +18,15 @@
       "time": "2026-07-07T10:03:03+00:00",
       "preview": "Livy starts off by casting Anthem.\nThen she casts electric arc targeting both the ooze and the Rubish swarm (in the hopes it may destabilize the magnetic field)",
       "media_group_id": null
+    },
+    {
+      "message_id": 165888,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-07-07T21:53:11+00:00",
+      "preview": "Lai walks follows the group from behind the group, he's been following them since he heard the ruckus, curious as to why they haven't noticed him and how they look, ever since he left his land everything has been chaotic",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -975,10 +984,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 165736
+      "fingerprint": "2026-07-07 21:53:11",
+      "msg_ids": [
+        165897
+      ],
+      "last_posted_at": "2026-07-07T22:17:09.682628+00:00",
+      "caught_up_msg_id": null
     },
     "145045": {
       "msg_ids": [
