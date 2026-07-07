@@ -18,6 +18,15 @@
       "time": "2026-07-07T06:42:02+00:00",
       "preview": "Why am I here",
       "media_group_id": null
+    },
+    {
+      "message_id": 165784,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-07-07T08:30:27+00:00",
+      "preview": "To suffer",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1820,11 +1829,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-07 06:38:43|2026-07-07 06:42:02",
+      "fingerprint": "2026-07-07 06:38:43|2026-07-07 06:42:02|2026-07-07 08:30:27",
       "msg_ids": [
-        165774
+        165802
       ],
-      "last_posted_at": "2026-07-07T08:29:19.142344+00:00",
+      "last_posted_at": "2026-07-07T12:00:37.593732+00:00",
       "caught_up_msg_id": null
     }
   }
