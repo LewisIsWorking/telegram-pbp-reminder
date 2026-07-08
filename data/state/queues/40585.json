@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 165986,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-07-08T09:58:36+00:00",
-      "preview": "[media]",
-      "media_group_id": "14268037729809201"
     }
   ],
   "replied": [
@@ -900,7 +891,34 @@
     "msg:165809",
     "2026-07-07 12:47:22",
     "msg:165826",
-    "2026-07-07 15:02:09"
+    "2026-07-07 15:02:09",
+    "msg:165986",
+    "2026-07-08 09:58:36",
+    "msg:165987",
+    "2026-07-08 09:58:37",
+    "msg:165988",
+    "2026-07-08 09:58:38",
+    "msg:166091",
+    "2026-07-08 20:18:25",
+    "msg:166096",
+    "2026-07-08 20:23:40",
+    "msg:166097",
+    "msg:166104",
+    "2026-07-08 20:26:43",
+    "msg:166098",
+    "msg:166108",
+    "2026-07-08 20:28:07",
+    "msg:166112",
+    "2026-07-08 20:32:16",
+    "msg:166113",
+    "2026-07-08 20:32:39",
+    "msg:166127",
+    "2026-07-08 20:39:23",
+    "msg:166128",
+    "2026-07-08 20:39:24",
+    "msg:166130",
+    "msg:166140",
+    "2026-07-08 20:44:19"
   ],
   "reply_log": [
     {
@@ -5031,18 +5049,151 @@
       "player": "Bruce",
       "preview": "Well since the macro did not add that benefit automatically you need to add dama",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-08T19:58:01+00:00",
+      "pid": "40585",
+      "msg_id": "165986",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T19:58:19+00:00",
+      "pid": "40585",
+      "msg_id": "165987",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T19:58:32+00:00",
+      "pid": "40585",
+      "msg_id": "165988",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:20:07+00:00",
+      "pid": "40585",
+      "msg_id": "166091",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Daichi's turn:\n1st action shield\n2nd action arcane cascade\n3rd action stride",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:25:10+00:00",
+      "pid": "40585",
+      "msg_id": "166096",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:26:49+00:00",
+      "pid": "40585",
+      "msg_id": "166097",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:27:01+00:00",
+      "pid": "40585",
+      "msg_id": "166104",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "I rolled everything. If they have a reaction to avoid any attack or critical hit",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:27:13+00:00",
+      "pid": "40585",
+      "msg_id": "166098",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:29:01+00:00",
+      "pid": "40585",
+      "msg_id": "166108",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Didn't add it to all the tokens bro",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:33:04+00:00",
+      "pid": "40585",
+      "msg_id": "166112",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Anyways that means i probably need to reroll my crit dmg as normal damage?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:33:14+00:00",
+      "pid": "40585",
+      "msg_id": "166113",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "The rest of the attacks should hit except if they somehow have fortress shields",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:42:53+00:00",
+      "pid": "40585",
+      "msg_id": "166127",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:43:15+00:00",
+      "pid": "40585",
+      "msg_id": "166128",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:43:46+00:00",
+      "pid": "40585",
+      "msg_id": "166130",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T20:44:31+00:00",
+      "pid": "40585",
+      "msg_id": "166140",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-08 09:58:36|2026-07-08 09:58:37|2026-07-08 09:58:38",
-      "msg_ids": [
-        165993
-      ],
-      "last_posted_at": "2026-07-08T10:26:46.309007+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 166143
     },
     "40585": {
       "fingerprint": "",
