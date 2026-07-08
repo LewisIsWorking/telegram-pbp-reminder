@@ -2,12 +2,12 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 165296,
+      "message_id": 165977,
       "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-05T13:24:28+00:00",
-      "preview": "Then she's gonna pull out the set of sliver cutlery, inspect them closely before seeing what the vendors can give for them.",
+      "user_id": "5443237599",
+      "user_name": "Kaer'maga when?",
+      "time": "2026-07-08T06:46:09+00:00",
+      "preview": "Necrila simply says \"I am hungry. Your last name is Crab-Basket. How many crabs can I have for this coin. (She shows him a gold coin.) \" then she turns to Mira surprised \"Miss Mira what are you doing here?! Are you also what they call a PiRaTE? I thought that you were part of the wizard gang\"",
       "media_group_id": null
     }
   ],
@@ -186,7 +186,9 @@
     "msg:165294",
     "2026-07-05 13:19:20",
     "msg:165295",
-    "2026-07-05 13:23:55"
+    "2026-07-05 13:23:55",
+    "msg:165296",
+    "2026-07-05 13:24:28"
   ],
   "reply_log": [
     {
@@ -1001,17 +1003,26 @@
       "player": "Anthony",
       "preview": "After that she's gonna pull out the 250gp sailing charts and check if they are u",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-08T05:16:23+00:00",
+      "pid": "66154",
+      "msg_id": "165296",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Then she's gonna pull out the set of sliver cutlery, inspect them closely before",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-07-05 13:24:28",
+      "fingerprint": "2026-07-08 06:46:09",
       "msg_ids": [
-        165964
+        165982
       ],
-      "last_posted_at": "2026-07-08T04:20:29.406019+00:00",
+      "last_posted_at": "2026-07-08T07:35:00.168378+00:00",
       "caught_up_msg_id": null
     }
   }
