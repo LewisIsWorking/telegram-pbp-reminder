@@ -17,7 +17,7 @@
       "username": "Nemesiux",
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
-      "last_post_time": "2026-07-07T22:00:41+00:00",
+      "last_post_time": "2026-07-08T02:00:26+00:00",
       "last_warned_week": 0
     },
     "66154:5443237599": {
@@ -68,7 +68,7 @@
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
       "last_post_time": "2026-06-29T00:18:09+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "76799:8353586922": {
       "user_id": "8353586922",
@@ -78,7 +78,7 @@
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
       "last_post_time": "2026-06-29T22:02:54+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "76799:7454623139": {
       "user_id": "7454623139",
@@ -357,7 +357,17 @@
       "username": "Saiminaminah",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-07-07T21:53:11+00:00",
+      "last_post_time": "2026-07-08T01:49:52+00:00",
+      "last_warned_week": 0
+    },
+    "107171:8117756377": {
+      "user_id": "8117756377",
+      "first_name": "Laetheron",
+      "last_name": "",
+      "username": "StorybookRhizome",
+      "campaign_name": "Metal City",
+      "pbp_topic_id": "107171",
+      "last_post_time": "2026-07-08T01:44:41+00:00",
       "last_warned_week": 0
     }
   },
@@ -493,12 +503,6 @@
       "first_name": "NJ",
       "username": "Sparkleslayer",
       "campaign_name": "Dark Pockets"
-    },
-    "107171:8117756377": {
-      "removed_at": "2026-06-15T08:24:48.438531+00:00",
-      "first_name": "Laetheron",
-      "username": "StorybookRhizome",
-      "campaign_name": "Metal City"
     },
     "107171:8383886822": {
       "removed_at": "2026-06-17T22:39:44.861028+00:00",
@@ -673,7 +677,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.414530+00:00"
       },
       "5443237599": {
@@ -789,7 +793,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T00:31:35.507986+00:00"
       },
       "138025700": {
@@ -1279,6 +1283,14 @@
       "name": "Bre",
       "username": "BreIrish",
       "at": "2026-07-07T08:29:10.596830+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "107171",
+      "user_id": "8117756377",
+      "name": "Laetheron",
+      "username": "StorybookRhizome",
+      "at": "2026-07-08T04:20:20.335655+00:00"
     }
   ],
   "player_boons": {

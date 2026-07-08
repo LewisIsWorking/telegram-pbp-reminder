@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 164303,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-07-01T19:45:01+00:00",
-      "preview": "Nadya briefly tosses the bodies just in case, but stands ready to move on.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -378,7 +368,9 @@
     "msg:163817",
     "2026-06-29 20:24:55",
     "msg:163838",
-    "2026-06-29 22:02:54"
+    "2026-06-29 22:02:54",
+    "msg:164303",
+    "2026-07-01 19:45:01"
   ],
   "reply_log": [
     {
@@ -2077,18 +2069,25 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-08T03:10:32+00:00",
+      "pid": "76799",
+      "msg_id": "164303",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya briefly tosses the bodies just in case, but stands ready to move on.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-07-01 19:45:01",
-      "msg_ids": [
-        164370
-      ],
-      "last_posted_at": "2026-07-01T20:41:28.971433+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 165971
     },
     "144765": {
       "fingerprint": "",

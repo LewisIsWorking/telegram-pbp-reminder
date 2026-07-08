@@ -20,21 +20,21 @@
       "media_group_id": null
     },
     {
-      "message_id": 165888,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-07-07T21:53:11+00:00",
-      "preview": "Lai walks follows the group from behind the group, he's been following them since he heard the ruckus, curious as to why they haven't noticed him and how they look, ever since he left his land everything has been chaotic",
-      "media_group_id": null
-    },
-    {
       "message_id": 165906,
       "thread_id": 145045,
       "user_id": "7077683276",
       "user_name": "Bruce",
       "time": "2026-07-07T23:52:38+00:00",
       "preview": "Chua will then take a quick action to hurl a sawblade shaped by his magic at both the swarm and the fera ooze. A1-2 Cast Ricochet.  Then 1a sustain aura field to attempt to recall knowledge on the creatures (both if they are similar types).",
+      "media_group_id": null
+    },
+    {
+      "message_id": 165926,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-07-08T01:49:52+00:00",
+      "preview": "Lai stops beside Rune(?) \n\"What did you wake up?\"",
       "media_group_id": null
     }
   ],
@@ -206,7 +206,9 @@
     "msg:165365",
     "2026-07-05 15:07:52",
     "msg:165468",
-    "2026-07-06 15:19:36"
+    "2026-07-06 15:19:36",
+    "msg:165888",
+    "2026-07-07 21:53:11"
   ],
   "reply_log": [
     {
@@ -987,17 +989,26 @@
       "player": "Anthony",
       "preview": "Livy either bangs on the garage door 3 times or presses any type of doorbell but",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-08T01:45:41+00:00",
+      "pid": "52083",
+      "msg_id": "165888",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai walks follows the group from behind the group, he's been following them sinc",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-07-07 21:53:11",
+      "fingerprint": "2026-07-08 01:49:52",
       "msg_ids": [
-        165897
+        165966
       ],
-      "last_posted_at": "2026-07-07T22:17:09.682628+00:00",
+      "last_posted_at": "2026-07-08T04:20:34.437719+00:00",
       "caught_up_msg_id": null
     },
     "145045": {

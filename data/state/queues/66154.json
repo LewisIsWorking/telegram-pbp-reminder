@@ -2,24 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 165294,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-05T13:19:20+00:00",
-      "preview": "Filiaur stays in between the 2 counters and says.\n\"Well, for starters, since we picked up some trinkets from our unfortunate friend's former base we have a few trinkets we're here to part with. \"\nFilliaur's gonna pull out the treasures first:\n-Shortsword with quartz\n-Silver Anklet chain\n-Ornate brass candelbara\n-folding marlin spike\n-Bronze knocker in the shape of a dolphin\nShe's gonna look at the signet ring and decide it might be wiser to keep it, you never know...",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165295,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-05T13:23:55+00:00",
-      "preview": "After that she's gonna pull out the 250gp sailing charts and check if they are useful in any way or they can just be sold.",
-      "media_group_id": null
-    },
-    {
       "message_id": 165296,
       "thread_id": 66154,
       "user_id": "6144366145",
@@ -200,7 +182,11 @@
     "msg:163696",
     "2026-06-29 00:35:06",
     "msg:165297",
-    "2026-07-05 13:27:37"
+    "2026-07-05 13:27:37",
+    "msg:165294",
+    "2026-07-05 13:19:20",
+    "msg:165295",
+    "2026-07-05 13:23:55"
   ],
   "reply_log": [
     {
@@ -997,17 +983,35 @@
       "player": "Anthony",
       "preview": "After that she's also gonna pull out the casino chips and ask:\n\"These from here?",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-08T03:41:20+00:00",
+      "pid": "66154",
+      "msg_id": "165294",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Filiaur stays in between the 2 counters and says.\n\"Well, for starters, since we ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-08T03:42:01+00:00",
+      "pid": "66154",
+      "msg_id": "165295",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "After that she's gonna pull out the 250gp sailing charts and check if they are u",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-07-05 13:19:20|2026-07-05 13:23:55|2026-07-05 13:24:28",
+      "fingerprint": "2026-07-05 13:24:28",
       "msg_ids": [
-        165457
+        165964
       ],
-      "last_posted_at": "2026-07-06T13:53:51.384175+00:00",
+      "last_posted_at": "2026-07-08T04:20:29.406019+00:00",
       "caught_up_msg_id": null
     }
   }
