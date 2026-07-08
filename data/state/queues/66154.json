@@ -18,15 +18,6 @@
       "time": "2026-07-08T16:05:19+00:00",
       "preview": "Kyomi yawns out of boredom, \"I thought we were supposed to be going on some sort of mission? I'm tired of just standing around as a overly qualified babysitter.\"",
       "media_group_id": null
-    },
-    {
-      "message_id": 166006,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-08T17:36:01+00:00",
-      "preview": "Continuing her shopping Filliaur snaps back.\n\"As far as i know, i'm the only one doing the baby sitting here since I'm the only one actually concerned about the survival of this band.\"\n\nThen Filiaur asks Davy\n\"Got any runed up stuff, I'll need one of the same type of weapon as the crazy over there *she points at Necrilla @Nemesiux *. And i'll probably also need a shield augmentation that's runed up \"\n\n(Want to buy:\n- Same weapon as Necrilla's main hand but +1\n- +1 shield augmentation )\n\nShe goes",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -206,7 +197,9 @@
     "msg:165295",
     "2026-07-05 13:23:55",
     "msg:165296",
-    "2026-07-05 13:24:28"
+    "2026-07-05 13:24:28",
+    "msg:166006",
+    "2026-07-08 17:36:01"
   ],
   "reply_log": [
     {
@@ -1030,17 +1023,26 @@
       "player": "Anthony",
       "preview": "Then she's gonna pull out the set of sliver cutlery, inspect them closely before",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-08T18:47:51+00:00",
+      "pid": "66154",
+      "msg_id": "166006",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Continuing her shopping Filliaur snaps back.\n\"As far as i know, i'm the only one",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-07-08 06:46:09|2026-07-08 16:05:19|2026-07-08 17:36:01",
+      "fingerprint": "2026-07-08 06:46:09|2026-07-08 16:05:19",
       "msg_ids": [
-        166011
+        166048
       ],
-      "last_posted_at": "2026-07-08T17:45:50.093678+00:00",
+      "last_posted_at": "2026-07-08T19:45:24.693801+00:00",
       "caught_up_msg_id": null
     }
   }
