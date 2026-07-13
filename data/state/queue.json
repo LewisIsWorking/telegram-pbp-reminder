@@ -981,7 +981,12 @@
       "2026-07-07T22:16:59.096807+00:00",
       "2026-07-07T22:16:59.098915+00:00",
       "2026-07-08T04:20:21.599205+00:00",
-      "2026-07-08T04:20:21.605357+00:00"
+      "2026-07-08T04:20:21.605357+00:00",
+      "2026-07-13T22:01:42.342238+00:00",
+      "2026-07-13T22:01:42.345533+00:00",
+      "2026-07-13T22:01:42.347298+00:00",
+      "2026-07-13T22:01:42.351883+00:00",
+      "2026-07-13T22:01:42.353521+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1500,41 +1505,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-06-03T19:32:17.197256+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "158291"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-03T19:32:17.199267+00:00",
-      "player": "Chris Warlock",
-      "preview": "[media]",
-      "msg_id": "158352"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-05T09:21:18.131336+00:00",
-      "player": "Bruce",
-      "preview": "Master Cho, will move around sir squishy to get closer to da",
-      "msg_id": "158127"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-05T18:49:20.829850+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus holds his staff in front of him with both hands, then",
-      "msg_id": "158875"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-05T18:49:20.843870+00:00",
-      "player": "Buffet",
-      "preview": "Didn't know that was a thing.",
-      "msg_id": "158930"
-    },
     {
       "pid": "40585",
       "time": "2026-06-05T18:49:20.848029+00:00",
@@ -2899,9 +2869,58 @@
       "player": "",
       "preview": "",
       "msg_id": "166140"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-13T22:01:42.342238+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "I would prefer a irl session for it",
+      "msg_id": "166547"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-13T22:01:42.345533+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "since it has a lot of mechanics to keep track of",
+      "msg_id": "166548"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-13T22:01:42.347298+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "take your time to mourn we can play when you feel better",
+      "msg_id": "166550"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-13T22:01:42.351883+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "sure only if you are good",
+      "msg_id": "166553"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-13T22:01:42.353521+00:00",
+      "player": "Kaer'maga when?",
+      "preview": "I should be free this week",
+      "msg_id": "166554"
     }
   ],
-  "pending_potw_boons": {},
+  "pending_potw_boons": {
+    "25059": {
+      "message_id": 166559,
+      "winner_user_id": "5443237599",
+      "campaign_name": "Doomsday Funtime",
+      "boons": [
+        "A drinking game reveals that your opponent can't hold their liquor or their secrets.",
+        "The inn's beds are far more comfortable than the price suggested.",
+        "Dust you kicked up reveals an invisible tripwire.",
+        "The DC of your next skill check is reduced by 1."
+      ],
+      "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-07-06 (W28) to 2026-07-13 (W29))\n\n5 posts this week with an average gap of 39.5h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-07-13T22:01:42.353634+00:00"
+    }
+  },
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"
