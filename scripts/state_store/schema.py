@@ -60,6 +60,12 @@ AUX_FILES = (
     ("refusal_log_alerted", "Marker for the last alerted refusal so the "
                             "alert script doesn't re-send. Owner: "
                             "posting.refusal_log. Optional."),
+    ("pin_audit_log", "Bounded forensic trail of every pin/unpin/delete "
+                      "the bot performs (id, chat, ok, refused, call "
+                      "site). Owner: posting.pin_audit. Written by "
+                      "safe_delete's guarded paths; read by humans "
+                      "diagnosing a vanished pin. Optional — absent "
+                      "until the first pin/unpin/delete."),
 )
 
 # Files written once during a one-shot migration or by an external
