@@ -63,6 +63,15 @@
       "time": "2026-07-07T21:33:06+00:00",
       "preview": "https://t.me/Path_Wars/47889/164311",
       "media_group_id": null
+    },
+    {
+      "message_id": 167049,
+      "thread_id": 56842,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-07-14T19:19:27+00:00",
+      "preview": "Alitheia relaxes slightly, taking stock of her equipment. All seems to be there. She tries to walk forward since there doesn't seem to be anything around.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -285,7 +294,11 @@
     "msg:165717",
     "2026-07-07 06:12:30",
     "msg:164077",
-    "2026-07-01 02:36:31"
+    "2026-07-01 02:36:31",
+    "msg:166999",
+    "2026-07-14 18:27:36",
+    "msg:167047",
+    "2026-07-14 19:15:07"
   ],
   "reply_log": [
     {
@@ -1230,6 +1243,24 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-14T19:12:13+00:00",
+      "pid": "51357",
+      "msg_id": "166999",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "Alitheia instinctively raises her shield and reaches for the hilt of her scimita",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T19:15:55+00:00",
+      "pid": "51357",
+      "msg_id": "167047",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "(is she still wearing any of the equipment she thought she had with her?)",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1248,6 +1279,13 @@
       "fingerprint": "",
       "last_posted_at": null,
       "caught_up_msg_id": 154436
+    },
+    "56842": {
+      "msg_ids": [
+        167091
+      ],
+      "fingerprint": "2026-07-14 19:19:27",
+      "last_posted_at": "2026-07-14T21:00:18.430690+00:00"
     }
   }
 }

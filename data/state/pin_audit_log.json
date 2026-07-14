@@ -1,0 +1,56 @@
+[
+  {
+    "timestamp": "2026-07-14T21:00:18.429585+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167091,
+    "ok": true,
+    "refused": false,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-14T21:00:21.036538+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 166439,
+    "ok": true,
+    "refused": false,
+    "site": "topic_queue_poster.py:97"
+  },
+  {
+    "timestamp": "2026-07-14T21:00:23.709477+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167093,
+    "ok": true,
+    "refused": false,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-14T21:00:29.760939+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 166168,
+    "ok": true,
+    "refused": false,
+    "site": "topic_queue_poster.py:135"
+  },
+  {
+    "timestamp": "2026-07-14T21:00:35.560454+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167096,
+    "ok": true,
+    "refused": false,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-14T21:00:36.566400+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 166687,
+    "ok": true,
+    "refused": false,
+    "site": "gm_queue_history.py:120"
+  }
+]

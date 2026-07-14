@@ -25,24 +25,6 @@
       "time": "2026-07-08T21:17:33+00:00",
       "preview": "Lorn roars like as a gnoll \"You all shall pay with your blood and lives for the people you have killed. You shall not see tomorrow!\"",
       "media_group_id": null
-    },
-    {
-      "message_id": 166147,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-07-08T21:22:54+00:00",
-      "preview": "Summon Jiufeng fire eldamon, use flamethrower target guards 4. Eidolon stride stride.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 166148,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-07-08T21:30:45+00:00",
-      "preview": "[media]",
-      "media_group_id": "14268369962902769"
     }
   ],
   "replied": [
@@ -945,7 +927,19 @@
     "2026-07-08 20:39:24",
     "msg:166130",
     "msg:166140",
-    "2026-07-08 20:44:19"
+    "2026-07-08 20:44:19",
+    "msg:166147",
+    "2026-07-08 21:22:54",
+    "msg:166148",
+    "2026-07-08 21:30:45",
+    "msg:166149",
+    "2026-07-08 21:30:46",
+    "msg:167027",
+    "2026-07-14 18:56:33",
+    "msg:167030",
+    "2026-07-14 19:06:16",
+    "msg:167032",
+    "2026-07-14 19:06:53"
   ],
   "reply_log": [
     {
@@ -5211,18 +5205,70 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-14T18:23:09+00:00",
+      "pid": "40585",
+      "msg_id": "166147",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Summon Jiufeng fire eldamon, use flamethrower target guards 4. Eidolon stride st",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T18:24:13+00:00",
+      "pid": "40585",
+      "msg_id": "166148",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T18:26:09+00:00",
+      "pid": "40585",
+      "msg_id": "166149",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T19:05:56+00:00",
+      "pid": "40585",
+      "msg_id": "167027",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Daichi shield blocks the splash damage.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T19:10:16+00:00",
+      "pid": "40585",
+      "msg_id": "167030",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Like 5.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T19:10:38+00:00",
+      "pid": "40585",
+      "msg_id": "167032",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Nvm we lvl 7 so i can block at least 10",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-08 21:22:54|2026-07-08 21:30:45|2026-07-08 21:30:46",
-      "msg_ids": [
-        166168
-      ],
-      "last_posted_at": "2026-07-08T23:16:08.808791+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 167095
     },
     "40585": {
       "fingerprint": "2026-07-08 21:17:33",
