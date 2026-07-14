@@ -2,30 +2,12 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 165747,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-07T06:46:29+00:00",
-      "preview": "As initiative starts Livy can set the first spotlight as a free action.",
-      "media_group_id": null
-    },
-    {
       "message_id": 165788,
       "thread_id": 145045,
       "user_id": "6144366145",
       "user_name": "Anthony",
       "time": "2026-07-07T10:03:03+00:00",
       "preview": "Livy starts off by casting Anthem.\nThen she casts electric arc targeting both the ooze and the Rubish swarm (in the hopes it may destabilize the magnetic field)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 165906,
-      "thread_id": 145045,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-07T23:52:38+00:00",
-      "preview": "Chua will then take a quick action to hurl a sawblade shaped by his magic at both the swarm and the fera ooze. A1-2 Cast Ricochet.  Then 1a sustain aura field to attempt to recall knowledge on the creatures (both if they are similar types).",
       "media_group_id": null
     },
     {
@@ -38,13 +20,13 @@
       "media_group_id": null
     },
     {
-      "message_id": 166409,
+      "message_id": 167121,
       "thread_id": 145045,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-07-11T08:04:27+00:00",
+      "time": "2026-07-14T21:20:44+00:00",
       "preview": "[media]",
-      "media_group_id": "14270056538436964"
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -221,7 +203,19 @@
     "msg:166430",
     "2026-07-11 18:53:56",
     "msg:166436",
-    "2026-07-11 19:12:19"
+    "2026-07-11 19:12:19",
+    "msg:165747",
+    "2026-07-07 06:46:29",
+    "msg:166409",
+    "2026-07-11 08:04:27",
+    "msg:167104",
+    "2026-07-14 21:16:32",
+    "msg:167115",
+    "2026-07-14 21:18:26",
+    "msg:165906",
+    "2026-07-07 23:52:38",
+    "msg:167117",
+    "2026-07-14 21:18:41"
   ],
   "reply_log": [
     {
@@ -1029,6 +1023,60 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:16:15+00:00",
+      "pid": "52083",
+      "msg_id": "165747",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "As initiative starts Livy can set the first spotlight as a free action.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:17:23+00:00",
+      "pid": "52083",
+      "msg_id": "166409",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:18:06+00:00",
+      "pid": "52083",
+      "msg_id": "167104",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Ooze turns into a fail like i said.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:18:31+00:00",
+      "pid": "52083",
+      "msg_id": "167115",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Yes since it got hit by primary target",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:19:48+00:00",
+      "pid": "52083",
+      "msg_id": "165906",
+      "thread_id": 145045,
+      "player": "Bruce",
+      "preview": "Chua will then take a quick action to hurl a sawblade shaped by his magic at bot",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:19:55+00:00",
+      "pid": "52083",
+      "msg_id": "167117",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Ooze is supressed.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1044,10 +1092,10 @@
     },
     "145045": {
       "msg_ids": [
-        167093
+        167128
       ],
-      "fingerprint": "2026-07-07 06:46:29|2026-07-07 10:03:03|2026-07-07 23:52:38|2026-07-11 08:04:27|2026-07-11 08:04:27",
-      "last_posted_at": "2026-07-14T21:00:23.710515+00:00"
+      "fingerprint": "2026-07-07 10:03:03|2026-07-14 21:20:44",
+      "last_posted_at": "2026-07-14T21:22:27.536769+00:00"
     }
   }
 }
