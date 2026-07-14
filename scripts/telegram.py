@@ -161,11 +161,10 @@ def send_poll(chat_id: int, thread_id: int | None, question: str,
 
 def pin_message(chat_id: int, message_id: int,
                 disable_notification: bool = True) -> bool:
-    """Pin a message in a chat. Returns True on success."""
-    return _post("pinChatMessage", {
-        "chat_id": chat_id, "message_id": message_id,
-        "disable_notification": disable_notification,
-    }, "pin_message") is not None
+    """Pin a message. Delegates to safe_delete.perform_pin (audited)."""
+    from posting.safe_delete import perform_pin
+    return perform_pin(chat_id, message_id, _post,
+                       disable_notification=disable_notification)
 
 
 def unpin_message(chat_id: int, message_id: int) -> bool:

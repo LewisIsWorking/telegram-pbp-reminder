@@ -39,6 +39,7 @@ from pathlib import Path
 
 from posting import bot_sent_registry as _bsr
 from posting import refusal_log as _rl
+from posting import pin_audit as _pa
 from state_store import StateStore
 
 
@@ -47,3 +48,6 @@ _TEST_STORE = StateStore(state_dir=_TEST_STATE_DIR)
 
 _bsr._store = _TEST_STORE
 _rl._store = _TEST_STORE
+# pin_audit records every pin/unpin the bot performs; isolate it too so
+# the suite never writes to the real data/state/pin_audit_log.json.
+_pa._store = _TEST_STORE
