@@ -277,8 +277,12 @@ as "delete failed."
 ## Related
 
 * `scripts/posting/bot_sent_registry.py` — the registry module
-* `scripts/posting/safe_delete.py` — the guard module
+* `scripts/posting/safe_delete.py` — the guard module (also hosts
+  `perform_pin`, the audited pin path)
 * `scripts/posting/bot_sent_state_scan.py` — backfill helpers
+* `scripts/posting/pin_audit.py` — forensic trail of every pin/unpin
+  the bot performs (`data/state/pin_audit_log.json`); complements the
+  refusal log by also recording *successful* actions and their call site
 * `scripts/maintenance/purge_gm_queue_history.py` — reference
   template for safe maintenance scripts that delete
 * `docs/dev/ROADMAP.md` — entries P1/3, P1/4, P1/5 track the

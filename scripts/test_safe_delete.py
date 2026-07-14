@@ -12,6 +12,7 @@ import pytest
 
 from posting import bot_sent_registry as reg
 from posting import refusal_log as rl
+from posting import pin_audit as pa
 from posting.safe_delete import perform_guarded_delete, perform_guarded_unpin
 from state_store import StateStore
 
@@ -21,11 +22,14 @@ def isolated_registry(tmp_path, monkeypatch):
     test_store = StateStore(state_dir=tmp_path)
     monkeypatch.setattr(reg, "_store", test_store)
     monkeypatch.setattr(rl, "_store", test_store)
+    monkeypatch.setattr(pa, "_store", test_store)
     reg.reset_for_test()
     rl.reset_for_test()
+    pa.reset_for_test()
     yield
     reg.reset_for_test()
     rl.reset_for_test()
+    pa.reset_for_test()
 
 
 def test_refuses_unknown_id_no_api_call():

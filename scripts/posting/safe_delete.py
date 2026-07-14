@@ -6,6 +6,11 @@ hosts the guards that wrap Telegram's ``deleteMessage`` and
 request through. Both operations can affect any message in a group
 when the bot is admin, so both are gated the same way.
 
+It also hosts ``perform_pin`` — pinning needs no guard (it removes no
+one's content) but every pin/unpin the bot performs is recorded to
+``posting.pin_audit`` so a vanished pin can be traced to (or cleared
+of) a specific bot action and call site.
+
 The guards are intentionally placed on the path that ``telegram.py``
 delegates to, rather than living inline in ``telegram.delete_message`` /
 ``telegram.unpin_message``. That delegation keeps ``telegram.py`` under
@@ -35,6 +40,7 @@ sending or knowingly added" — intact.
 
 from posting.bot_sent_registry import is_bot_sent
 from posting.refusal_log import record_refusal
+from posting.pin_audit import record_action
 
 
 def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
@@ -107,9 +113,32 @@ def perform_guarded_unpin(chat_id: int, message_id: int, post_fn) -> bool:
               f"it sent. To force-add a known bot-sent ID, call "
               f"posting.bot_sent_registry.record_sent({message_id}).")
         record_refusal(chat_id, message_id)
+        record_action("unpin", chat_id, message_id, ok=False, refused=True)
         return False
-    return post_fn("unpinChatMessage", {
+    ok = post_fn("unpinChatMessage", {
         "chat_id": chat_id, "message_id": message_id,
     }, "unpin_message",
     suppress_errors=("message to unpin not found", "MESSAGE_ID_INVALID",
                      "message not found")) is not None
+    record_action("unpin", chat_id, message_id, ok=ok)
+    return ok
+
+
+def perform_pin(chat_id: int, message_id: int, post_fn,
+                *, disable_notification: bool = True) -> bool:
+    """Pin a message and record the action in the pin-audit trail.
+
+    Pinning needs no registry guard — pinning a message the bot didn't
+    send is harmless (it doesn't remove anyone's content). But we still
+    log *what* the bot pins, because a pin recorded here that later
+    turns out to be a human's message is the smoking gun for how a
+    non-bot ID could ever enter a ``pin_id`` state field (and thus the
+    registry via backfill). ``post_fn`` is ``telegram._post``, passed in
+    to avoid a circular import. Returns True on Telegram acceptance.
+    """
+    ok = post_fn("pinChatMessage", {
+        "chat_id": chat_id, "message_id": message_id,
+        "disable_notification": disable_notification,
+    }, "pin_message") is not None
+    record_action("pin", chat_id, message_id, ok=ok)
+    return ok

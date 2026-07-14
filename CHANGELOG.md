@@ -11,6 +11,32 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.10] - 2026-07-07
+
+### Added
+
+**Forensic pin/unpin audit trail (`data/state/pin_audit_log.json`).**
+
+A GM/player manual pin was reported as still disappearing despite the
+registry unpin guard, and only the bot has pin rights in that group.
+An exhaustive trace of every pin/unpin path found they all operate on
+bot-owned ids and the guard has never once fired (no `refusal_log.json`
+ever created) — so the code, as written, cannot unpin a non-bot
+message. To get ground truth instead of another speculative fix, the
+bot now records **every** pin and unpin it performs — success, failure,
+or guard-refusal — with the resolved originating call site
+(`file:line`), to a bounded, committed `pin_audit_log.json`. Previously
+only *refused* unpins were logged; successful ones left no trace, which
+was exactly the blind spot. Next time a pin vanishes we can check the
+log and say definitively whether the bot touched that id and from
+where. `telegram.pin_message` now delegates to
+`posting.safe_delete.perform_pin` (keeping `telegram.py` under the
+200-line cap); pinning itself stays unguarded (it removes no content)
+but is logged so a pinned-then-vanished non-bot id is traceable to its
+source.
+
+---
+
 ## [4.51.9] - 2026-07-07
 
 ### Removed
