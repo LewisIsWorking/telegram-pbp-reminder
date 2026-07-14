@@ -11,6 +11,34 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.11] - 2026-07-14
+
+### Added
+
+**Pin-audit trail now also logs deletes, closing the auto-unpin blind spot.**
+
+The forensic `pin_audit_log.json` (added in 4.51.10) logged pins and
+unpins, and its first live run confirmed the bot only ever unpins its
+own prior pins. But a pin can vanish a second way the log couldn't see:
+Telegram **auto-unpins a message when it's deleted**, so if a GM/player
+manually pinned a message the *bot* had sent, the bot deleting that
+message during queue eviction removes the pin with no unpin call at all.
+`perform_guarded_delete` now records every delete (success, failure, or
+guard-refusal) to the same audit, so a vanished pin's id will always
+show up — as an `unpin` or a `delete`. The cap rose 800 → 3000 rows
+(deletes are higher-volume) to retain ~two weeks of activity, and
+`record_action` is now best-effort (swallows its own exceptions) so a
+logging failure can never break an actual pin/unpin/delete.
+
+### Fixed
+
+**Registered `pin_audit_log` in the state schema.** 4.51.10 shipped the
+audit writer but omitted the `state_store/schema.py` entry; once the bot
+created the file on disk, `test_state_schema` (which asserts every state
+file is documented) began failing. Added the `AUX_FILES` entry.
+
+---
+
 ## [4.51.10] - 2026-07-07
 
 ### Added

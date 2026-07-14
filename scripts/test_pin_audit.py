@@ -12,7 +12,8 @@ import pytest
 from posting import bot_sent_registry as reg
 from posting import refusal_log as rl
 from posting import pin_audit as pa
-from posting.safe_delete import perform_guarded_unpin, perform_pin
+from posting.safe_delete import (perform_guarded_unpin, perform_pin,
+                                 perform_guarded_delete)
 from state_store import StateStore
 
 
@@ -109,3 +110,34 @@ def test_unpin_performed_records_audit_entry():
     assert e["message_id"] == 7777
     assert e["refused"] is False
     assert e["ok"] is True
+
+
+def test_delete_refused_records_refused_audit_entry():
+    post_fn = MagicMock()
+    assert perform_guarded_delete(555, 313131, post_fn) is False
+    post_fn.assert_not_called()
+    e = pa.recent()[-1]
+    assert e["action"] == "delete"
+    assert e["message_id"] == 313131
+    assert e["refused"] is True
+    assert e["ok"] is False
+
+
+def test_delete_performed_records_audit_entry():
+    reg.record_sent(8888)
+    post_fn = MagicMock(return_value={})
+    assert perform_guarded_delete(555, 8888, post_fn) is True
+    e = pa.recent()[-1]
+    assert e["action"] == "delete"
+    assert e["message_id"] == 8888
+    assert e["refused"] is False
+    assert e["ok"] is True
+
+
+def test_record_action_swallows_store_errors(monkeypatch):
+    # A logging failure must never propagate to the caller.
+    def boom(*a, **k):
+        raise OSError("disk full")
+    monkeypatch.setattr(pa._store, "save_aux", boom)
+    # Should not raise despite the store blowing up.
+    pa.record_action("delete", 1, 2, ok=True, site="x")

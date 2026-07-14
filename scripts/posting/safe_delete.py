@@ -7,9 +7,11 @@ request through. Both operations can affect any message in a group
 when the bot is admin, so both are gated the same way.
 
 It also hosts ``perform_pin`` — pinning needs no guard (it removes no
-one's content) but every pin/unpin the bot performs is recorded to
-``posting.pin_audit`` so a vanished pin can be traced to (or cleared
-of) a specific bot action and call site.
+one's content). Every pin, unpin, AND delete the bot performs is
+recorded to ``posting.pin_audit`` so a vanished pin can be traced to
+(or cleared of) a specific bot action and call site. Deletes are
+included because Telegram auto-unpins a deleted message — a pin can
+disappear via a delete with no unpin call at all.
 
 The guards are intentionally placed on the path that ``telegram.py``
 delegates to, rather than living inline in ``telegram.delete_message`` /
@@ -77,12 +79,18 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
               f"it sent. To force-add a known bot-sent ID, call "
               f"posting.bot_sent_registry.record_sent({message_id}).")
         record_refusal(chat_id, message_id)
+        record_action("delete", chat_id, message_id, ok=False, refused=True)
         return False
-    return post_fn("deleteMessage", {
+    ok = post_fn("deleteMessage", {
         "chat_id": chat_id, "message_id": message_id,
     }, "delete_message",
     suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
                      "message not found", "message can't be deleted")) is not None
+    # Deletes are logged because Telegram auto-unpins a deleted message:
+    # if a human had pinned this (bot-sent) message, the pin vanishes here
+    # with no unpin call. See posting.pin_audit for the full rationale.
+    record_action("delete", chat_id, message_id, ok=ok)
+    return ok
 
 
 def perform_guarded_unpin(chat_id: int, message_id: int, post_fn) -> bool:
