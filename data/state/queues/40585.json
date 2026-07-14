@@ -25,6 +25,33 @@
       "time": "2026-07-08T21:17:33+00:00",
       "preview": "Lorn roars like as a gnoll \"You all shall pay with your blood and lives for the people you have killed. You shall not see tomorrow!\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 167178,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-07-14T21:40:24+00:00",
+      "preview": "\"Alright, well I'm going for it. Get over there when you can.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167190,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-07-14T21:49:06+00:00",
+      "preview": "\"I'd rather not give them time to regroup. Are we chasing or taking our time?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167191,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-14T21:50:00+00:00",
+      "preview": "\"Yeah well personally i would rather we go slow and meticulous instead of getting baited in a room full of them unprepared...\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5282,11 +5309,11 @@
       "caught_up_msg_id": 167095
     },
     "40585": {
-      "fingerprint": "2026-07-08 21:17:33",
+      "fingerprint": "2026-07-08 21:17:33|2026-07-14 21:40:24|2026-07-14 21:49:06|2026-07-14 21:50:00",
       "msg_ids": [
-        166166
+        167203
       ],
-      "last_posted_at": "2026-07-08T23:16:06.220143+00:00",
+      "last_posted_at": "2026-07-14T22:04:51.137682+00:00",
       "caught_up_msg_id": null
     }
   }

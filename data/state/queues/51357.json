@@ -65,12 +65,12 @@
       "media_group_id": null
     },
     {
-      "message_id": 167049,
+      "message_id": 167189,
       "thread_id": 56842,
       "user_id": "7130942567",
       "user_name": "Buffet",
-      "time": "2026-07-14T19:19:27+00:00",
-      "preview": "Alitheia relaxes slightly, taking stock of her equipment. All seems to be there. She tries to walk forward since there doesn't seem to be anything around.",
+      "time": "2026-07-14T21:45:02+00:00",
+      "preview": "Alitheia winces as the shrieking sound rings in her ears. She raises her shield again, searching for the source of the voice.",
       "media_group_id": null
     }
   ],
@@ -298,7 +298,9 @@
     "msg:166999",
     "2026-07-14 18:27:36",
     "msg:167047",
-    "2026-07-14 19:15:07"
+    "2026-07-14 19:15:07",
+    "msg:167049",
+    "2026-07-14 19:19:27"
   ],
   "reply_log": [
     {
@@ -1261,6 +1263,15 @@
       "player": "Buffet",
       "preview": "(is she still wearing any of the equipment she thought she had with her?)",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:43:23+00:00",
+      "pid": "51357",
+      "msg_id": "167049",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "Alitheia relaxes slightly, taking stock of her equipment. All seems to be there.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1282,10 +1293,10 @@
     },
     "56842": {
       "msg_ids": [
-        167091
+        167201
       ],
-      "fingerprint": "2026-07-14 19:19:27",
-      "last_posted_at": "2026-07-14T21:00:18.430690+00:00"
+      "fingerprint": "2026-07-14 21:45:02",
+      "last_posted_at": "2026-07-14T22:04:48.226201+00:00"
     }
   }
 }

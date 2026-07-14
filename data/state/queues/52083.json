@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 165788,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-07T10:03:03+00:00",
-      "preview": "Livy starts off by casting Anthem.\nThen she casts electric arc targeting both the ooze and the Rubish swarm (in the hopes it may destabilize the magnetic field)",
-      "media_group_id": null
-    },
-    {
       "message_id": 165926,
       "thread_id": 52083,
       "user_id": "8097377199",
@@ -20,11 +11,47 @@
       "media_group_id": null
     },
     {
-      "message_id": 167121,
+      "message_id": 167127,
       "thread_id": 145045,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-07-14T21:20:44+00:00",
+      "time": "2026-07-14T21:22:25+00:00",
+      "preview": "(it didn't i put it)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167133,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-14T21:24:51+00:00",
+      "preview": "The electronic music song blasting out from Livy might've drowned the sound of your question on top of the sound of battle.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167192,
+      "thread_id": 145045,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-14T21:57:40+00:00",
+      "preview": "Also @Ravnos1's recall knowledge",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167193,
+      "thread_id": 145045,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-14T21:57:50+00:00",
+      "preview": "Almost forgot about that",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167195,
+      "thread_id": 145045,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-14T21:59:03+00:00",
       "preview": "[media]",
       "media_group_id": null
     }
@@ -215,7 +242,13 @@
     "msg:165906",
     "2026-07-07 23:52:38",
     "msg:167117",
-    "2026-07-14 21:18:41"
+    "2026-07-14 21:18:41",
+    "msg:167121",
+    "2026-07-14 21:20:44",
+    "msg:165788",
+    "2026-07-07 10:03:03",
+    "msg:167138",
+    "2026-07-14 21:27:23"
   ],
   "reply_log": [
     {
@@ -1077,25 +1110,52 @@
       "player": "Anthony",
       "preview": "Ooze is supressed.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:24:58+00:00",
+      "pid": "52083",
+      "msg_id": "167121",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:28:50+00:00",
+      "pid": "52083",
+      "msg_id": "165788",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Livy starts off by casting Anthem.\nThen she casts electric arc targeting both th",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-14T21:30:39+00:00",
+      "pid": "52083",
+      "msg_id": "167138",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": ".",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-07-08 01:49:52",
+      "fingerprint": "2026-07-08 01:49:52|2026-07-14 21:24:51",
       "msg_ids": [
-        165966
+        167205
       ],
-      "last_posted_at": "2026-07-08T04:20:34.437719+00:00",
+      "last_posted_at": "2026-07-14T22:04:53.998877+00:00",
       "caught_up_msg_id": null
     },
     "145045": {
       "msg_ids": [
-        167128
+        167207
       ],
-      "fingerprint": "2026-07-07 10:03:03|2026-07-14 21:20:44",
-      "last_posted_at": "2026-07-14T21:22:27.536769+00:00"
+      "fingerprint": "2026-07-14 21:22:25|2026-07-14 21:57:40|2026-07-14 21:57:50|2026-07-14 21:59:03",
+      "last_posted_at": "2026-07-14T22:04:59.945984+00:00"
     }
   }
 }

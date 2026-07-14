@@ -112,7 +112,8 @@
       "2026-07-07T08:29:08.487580+00:00",
       "2026-07-07T08:29:08.488877+00:00",
       "2026-07-14T21:00:06.664828+00:00",
-      "2026-07-14T21:00:06.667967+00:00"
+      "2026-07-14T21:00:06.667967+00:00",
+      "2026-07-14T22:04:41.182672+00:00"
     ],
     "40585": [
       "2026-03-29T17:58:34.391383+00:00",
@@ -1354,7 +1355,10 @@
       "2026-07-14T21:22:20.578713+00:00",
       "2026-07-14T21:22:20.581638+00:00",
       "2026-07-14T21:22:20.585806+00:00",
-      "2026-07-14T21:22:20.587253+00:00"
+      "2026-07-14T21:22:20.587253+00:00",
+      "2026-07-14T22:04:41.168966+00:00",
+      "2026-07-14T22:04:41.174398+00:00",
+      "2026-07-14T22:04:41.175878+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1515,34 +1519,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-06-07T10:52:30.682702+00:00",
-      "player": "Cannon",
-      "preview": "it's a macro anyone can run",
-      "msg_id": "158358"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-07T10:52:30.684798+00:00",
-      "player": "Chris Warlock",
-      "preview": "I see, didn't know that.",
-      "msg_id": "158359"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-07T10:52:30.686920+00:00",
-      "player": "Cannon",
-      "preview": "the unpause thing threw me off for a while too lol",
-      "msg_id": "158360"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-06-07T10:52:30.688873+00:00",
-      "player": "Chris Warlock",
-      "preview": "[media]",
-      "msg_id": "158362"
-    },
     {
       "pid": "107171",
       "time": "2026-06-07T10:52:30.692898+00:00",
@@ -2914,6 +2890,34 @@
       "player": "Anthony",
       "preview": "Ooze is supressed.",
       "msg_id": "167117"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-14T22:04:41.168966+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167121"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-14T22:04:41.174398+00:00",
+      "player": "Anthony",
+      "preview": "Livy starts off by casting Anthem.\nThen she casts electric a",
+      "msg_id": "165788"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-14T22:04:41.175878+00:00",
+      "player": "Anthony",
+      "preview": ".",
+      "msg_id": "167138"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-14T22:04:41.182672+00:00",
+      "player": "Buffet",
+      "preview": "Alitheia relaxes slightly, taking stock of her equipment. Al",
+      "msg_id": "167049"
     }
   ],
   "pending_potw_boons": {
@@ -2928,7 +2932,21 @@
         "The DC of your next skill check is reduced by 1."
       ],
       "base_message": "Player of the Week for Doomsday Funtime: Kaer'maga when? (@Nemesiux)!\n(2026-07-06 (W28) to 2026-07-13 (W29))\n\n5 posts this week with an average gap of 39.5h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-07-13T22:01:42.353634+00:00"
+      "posted_at": "2026-07-13T22:01:42.353634+00:00",
+      "reminders_sent": 1
+    },
+    "40585": {
+      "message_id": 167198,
+      "winner_user_id": "6144366145",
+      "campaign_name": "Kibwe",
+      "boons": [
+        "A bard's lute has a loose string that vibrates near hidden enchantments.",
+        "The speaking tube in the old building still connects two distant rooms.",
+        "A traveling circus performer shows you a trick. It's actually applicable to lockpicking.",
+        "Your next successful Strike deals 1 extra damage."
+      ],
+      "base_message": "Player of the Week for Kibwe: Anthony NegetZ (@MrNegetZ)!\n(2026-07-07 (W28) to 2026-07-14 (W29))\n\n5 posts this week with an average gap of 36.4h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-07-14T22:04:41.197227+00:00"
     }
   },
   "pending_hero_points": {
