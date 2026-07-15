@@ -250,5 +250,77 @@
     "ok": true,
     "refused": false,
     "site": "session_poll.py:174"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:14.946156+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 167203,
+    "ok": true,
+    "refused": false,
+    "site": "topic_queue_poster.py:97"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:15.402064+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 167203,
+    "ok": true,
+    "refused": false,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:16.654001+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167324,
+    "ok": true,
+    "refused": false,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:18.152218+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 167095,
+    "ok": true,
+    "refused": false,
+    "site": "topic_queue_poster.py:81"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:19.409206+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167326,
+    "ok": true,
+    "refused": false,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:24.843674+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167328,
+    "ok": true,
+    "refused": false,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:25.336121+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 167209,
+    "ok": true,
+    "refused": false,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-07-15T06:22:25.808142+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 167209,
+    "ok": true,
+    "refused": false,
+    "site": "message_batch.py:60"
   }
 ]

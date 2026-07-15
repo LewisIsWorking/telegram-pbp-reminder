@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 166146,
-      "thread_id": 40585,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-07-08T21:17:33+00:00",
-      "preview": "Lorn roars like as a gnoll \"You all shall pay with your blood and lives for the people you have killed. You shall not see tomorrow!\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 167178,
       "thread_id": 40585,
       "user_id": "7130942567",
@@ -51,6 +42,15 @@
       "user_name": "Anthony",
       "time": "2026-07-14T21:50:00+00:00",
       "preview": "\"Yeah well personally i would rather we go slow and meticulous instead of getting baited in a room full of them unprepared...\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167229,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-07-15T03:45:57+00:00",
+      "preview": "Eidolon stride, stride, eidolon\u2019s wrath",
       "media_group_id": null
     }
   ],
@@ -968,7 +968,21 @@
     "msg:167032",
     "2026-07-14 19:06:53",
     "msg:167073",
-    "2026-07-14 20:56:14"
+    "2026-07-14 20:56:14",
+    "msg:167228",
+    "2026-07-15 03:32:15",
+    "msg:167239",
+    "2026-07-15 04:22:29",
+    "msg:167241",
+    "2026-07-15 04:26:09",
+    "msg:166146",
+    "2026-07-08 21:17:33",
+    "msg:167232",
+    "2026-07-15 03:52:27",
+    "msg:167233",
+    "2026-07-15 03:52:28",
+    "msg:167254",
+    "2026-07-15 05:41:40"
   ],
   "reply_log": [
     {
@@ -5297,23 +5311,88 @@
       "player": "Buffet",
       "preview": "Tarsus calls out to the rest of the team.\n\"I can catch up to the fat one if you ",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-15T04:03:12+00:00",
+      "pid": "40585",
+      "msg_id": "167228",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Wait is that hit me or the eidolon?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T04:53:19+00:00",
+      "pid": "40585",
+      "msg_id": "167239",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "I currently phase out right now or eldamon mode so.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T04:53:30+00:00",
+      "pid": "40585",
+      "msg_id": "167241",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T05:03:50+00:00",
+      "pid": "40585",
+      "msg_id": "166146",
+      "thread_id": 40585,
+      "player": "Kaer'maga when?",
+      "preview": "Lorn roars like as a gnoll \"You all shall pay with your blood and lives for the ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T05:38:18+00:00",
+      "pid": "40585",
+      "msg_id": "167232",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T05:38:28+00:00",
+      "pid": "40585",
+      "msg_id": "167233",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T05:44:29+00:00",
+      "pid": "40585",
+      "msg_id": "167254",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Got it. Sorry",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 167095
+      "fingerprint": "2026-07-15 03:45:57",
+      "msg_ids": [
+        167326
+      ],
+      "last_posted_at": "2026-07-15T06:22:19.453180+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
-      "fingerprint": "2026-07-08 21:17:33|2026-07-14 21:40:24|2026-07-14 21:49:06|2026-07-14 21:50:00",
+      "fingerprint": "2026-07-14 21:40:24|2026-07-14 21:49:06|2026-07-14 21:50:00",
       "msg_ids": [
-        167203
+        167324
       ],
-      "last_posted_at": "2026-07-14T22:04:51.137682+00:00",
+      "last_posted_at": "2026-07-15T06:22:16.654764+00:00",
       "caught_up_msg_id": null
     }
   }
