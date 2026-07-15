@@ -9,6 +9,33 @@
       "time": "2026-07-14T21:45:02+00:00",
       "preview": "Alitheia winces as the shrieking sound rings in her ears. She raises her shield again, searching for the source of the voice.",
       "media_group_id": null
+    },
+    {
+      "message_id": 167346,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-15T09:23:30+00:00",
+      "preview": "BRO did not read it's for the DC 16 survival check",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167347,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-15T09:24:40+00:00",
+      "preview": "Actually nvm this one is useless since I passed the perception check",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167348,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-15T09:26:17+00:00",
+      "preview": "Anyways every roll was passed",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1292,10 +1319,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 167331
+      "fingerprint": "2026-07-15 09:23:30|2026-07-15 09:24:40|2026-07-15 09:26:17",
+      "msg_ids": [
+        167350
+      ],
+      "last_posted_at": "2026-07-15T11:40:45.676156+00:00",
+      "caught_up_msg_id": null
     },
     "145040": {
       "msg_ids": [],
