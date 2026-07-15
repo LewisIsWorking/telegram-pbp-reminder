@@ -79,7 +79,8 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
               f"it sent. To force-add a known bot-sent ID, call "
               f"posting.bot_sent_registry.record_sent({message_id}).")
         record_refusal(chat_id, message_id)
-        record_action("delete", chat_id, message_id, ok=False, refused=True)
+        record_action("delete", chat_id, message_id, ok=False,
+                      refused=True, bot_owned=False)
         return False
     ok = post_fn("deleteMessage", {
         "chat_id": chat_id, "message_id": message_id,
@@ -89,7 +90,7 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
     # Deletes are logged because Telegram auto-unpins a deleted message:
     # if a human had pinned this (bot-sent) message, the pin vanishes here
     # with no unpin call. See posting.pin_audit for the full rationale.
-    record_action("delete", chat_id, message_id, ok=ok)
+    record_action("delete", chat_id, message_id, ok=ok, bot_owned=True)
     return ok
 
 
@@ -121,14 +122,15 @@ def perform_guarded_unpin(chat_id: int, message_id: int, post_fn) -> bool:
               f"it sent. To force-add a known bot-sent ID, call "
               f"posting.bot_sent_registry.record_sent({message_id}).")
         record_refusal(chat_id, message_id)
-        record_action("unpin", chat_id, message_id, ok=False, refused=True)
+        record_action("unpin", chat_id, message_id, ok=False,
+                      refused=True, bot_owned=False)
         return False
     ok = post_fn("unpinChatMessage", {
         "chat_id": chat_id, "message_id": message_id,
     }, "unpin_message",
     suppress_errors=("message to unpin not found", "MESSAGE_ID_INVALID",
                      "message not found")) is not None
-    record_action("unpin", chat_id, message_id, ok=ok)
+    record_action("unpin", chat_id, message_id, ok=ok, bot_owned=True)
     return ok
 
 
@@ -148,5 +150,9 @@ def perform_pin(chat_id: int, message_id: int, post_fn,
         "chat_id": chat_id, "message_id": message_id,
         "disable_notification": disable_notification,
     }, "pin_message") is not None
-    record_action("pin", chat_id, message_id, ok=ok)
+    # Pin is unguarded, so record whether the pinned id is the bot's own.
+    # bot_owned=False here would mean the bot pinned a message it never
+    # sent — the exact anomaly the non-bot alert exists to catch.
+    record_action("pin", chat_id, message_id, ok=ok,
+                  bot_owned=is_bot_sent(message_id))
     return ok

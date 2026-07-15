@@ -21,6 +21,9 @@ Entries append to ``data/state/pin_audit_log.json``. Each is a dict:
     message_id  the message pinned/unpinned/deleted
     ok          bool — did Telegram accept the call?
     refused     bool — True for a mutation the registry guard blocked
+    bot_owned   bool|None — was the target in the bot-sent registry?
+                False = the bot touched a message it did NOT make (the
+                non-bot alert's trigger); None on older/uncertain entries
     site        "file:line" of the originating caller (wrapper frames
                 in telegram.py / safe_delete.py / this file are skipped)
 
@@ -74,9 +77,15 @@ def _caller_site() -> str:
 
 
 def record_action(action: str, chat_id: int, message_id: int, ok: bool,
-                  *, refused: bool = False, timestamp: str | None = None,
-                  site: str | None = None) -> None:
+                  *, refused: bool = False, bot_owned: bool | None = None,
+                  timestamp: str | None = None, site: str | None = None) -> None:
     """Append a pin/unpin/delete audit entry (bounded to the most recent rows).
+
+    ``bot_owned`` records whether the target message was in the bot-sent
+    registry at action time — False marks the bot touching a message it
+    did NOT make, which is the red-flag the non-bot alert watches for.
+    Callers pass it explicitly (unpin/delete know it from the guard; pin
+    is unguarded so it checks). Left ``None`` when a caller can't say.
 
     Best-effort: this is a diagnostic trail, so a failure to log (disk
     error, unwritable state dir, etc.) must never propagate and break
@@ -91,6 +100,7 @@ def record_action(action: str, chat_id: int, message_id: int, ok: bool,
             "message_id": message_id,
             "ok": bool(ok),
             "refused": bool(refused),
+            "bot_owned": bot_owned,
             "site": site or _caller_site(),
         }
         with _LOCK:
@@ -113,6 +123,32 @@ def recent(limit: int = 50) -> list:
     if not isinstance(entries, list):
         return []  # pragma: no cover
     return entries[-limit:]
+
+
+def entries_since(iso_ts: str) -> list:
+    """Return audit entries strictly newer than ``iso_ts`` (oldest first).
+
+    An empty ``iso_ts`` returns every retained entry. Used by the daily
+    digest (24h window) and the non-bot alert (since its last marker).
+    """
+    with _LOCK:
+        entries = _store.load_aux(_LOG_NAME, default=[])
+    if not isinstance(entries, list):
+        return []  # pragma: no cover
+    return [e for e in entries if str(e.get("timestamp", "")) > iso_ts]
+
+
+def is_non_bot(entry: dict) -> bool:
+    """True if this entry records the bot acting on a message it didn't make.
+
+    Prefers the explicit ``bot_owned`` flag; falls back to ``refused``
+    for older entries written before that flag existed (a refused
+    unpin/delete was, by definition, a non-bot message).
+    """
+    owned = entry.get("bot_owned")
+    if owned is None:
+        return bool(entry.get("refused", False))
+    return not owned
 
 
 def reset_for_test() -> None:
