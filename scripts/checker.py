@@ -47,6 +47,7 @@ from scheduled.state_backup import backup_state
 from scheduled.week_welcome import post_week_welcome
 from scheduled.swimming_poll import post_swimming_poll, post_swimming_ping
 from scheduled.diagnostic import run_daily_diagnostic
+from scheduled.pin_report import run_daily_pin_digest, alert_non_bot_pin_actions
 from boons.handler import expire_pending_boons
 from scheduled.roster_nudge import post_roster_nudge
 from scheduled.gm_escalation import check_gm_escalation
@@ -91,6 +92,8 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("Swimming poll", post_swimming_poll),
         ("Swimming ping", post_swimming_ping),
         ("Daily diagnostic", run_daily_diagnostic),
+        ("Pin digest", run_daily_pin_digest),
+        ("Non-bot pin alert", alert_non_bot_pin_actions),
         ("State backup", backup_state),
     ]
     for label, func in checks:

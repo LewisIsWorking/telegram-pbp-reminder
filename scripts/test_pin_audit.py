@@ -134,6 +134,35 @@ def test_delete_performed_records_audit_entry():
     assert e["ok"] is True
 
 
+def test_entries_since_filters_by_timestamp():
+    pa.record_action("pin", 1, 1, ok=True, timestamp="2026-07-15T01:00:00", site="x")
+    pa.record_action("pin", 1, 2, ok=True, timestamp="2026-07-15T03:00:00", site="x")
+    got = pa.entries_since("2026-07-15T02:00:00")
+    assert [e["message_id"] for e in got] == [2]
+    assert len(pa.entries_since("")) == 2  # empty marker → all
+
+
+def test_is_non_bot_prefers_flag_then_refused():
+    assert pa.is_non_bot({"bot_owned": False}) is True
+    assert pa.is_non_bot({"bot_owned": True}) is False
+    # older entry without the flag falls back to refused
+    assert pa.is_non_bot({"refused": True}) is True
+    assert pa.is_non_bot({"refused": False}) is False
+
+
+def test_perform_pin_records_bot_owned_true_for_registered_id():
+    reg.record_sent(4242)
+    post_fn = MagicMock(return_value={"message_id": 4242})
+    perform_pin(1, 4242, post_fn)
+    assert pa.recent()[-1]["bot_owned"] is True
+
+
+def test_perform_pin_records_bot_owned_false_for_unknown_id():
+    post_fn = MagicMock(return_value={"message_id": 5151})
+    perform_pin(1, 5151, post_fn)  # never recorded as sent
+    assert pa.recent()[-1]["bot_owned"] is False
+
+
 def test_record_action_swallows_store_errors(monkeypatch):
     # A logging failure must never propagate to the caller.
     def boom(*a, **k):

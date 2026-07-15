@@ -11,6 +11,35 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.51.12] - 2026-07-15
+
+### Added
+
+**Pin activity is now visible: a daily digest + a real-time non-bot alert.**
+
+Telegram shows nothing in the chat when a message is unpinned, so the
+bot's pin activity was invisible unless you read the `pin_audit_log.json`
+file directly. Two new scheduled tasks (in `scheduled/pin_report.py`,
+dispatched from `checker.py`) surface it in your bot topic:
+
+- **Daily digest** — once a day (at `pin_digest_hour`, default
+  `diagnostic_hour` = 8), a standalone "📌 Pin activity — last 24h"
+  message: how many messages the bot pinned, unpinned, and deleted, and
+  whether any touched a message the bot didn't make.
+- **Real-time non-bot alert** — every run, if the bot pinned/unpinned/
+  deleted a message it did **not** send, it immediately posts a "🚨 PIN
+  GUARD ALERT" naming the message id, action, and call site. In normal
+  operation the bot only ever touches its own pins, so this should never
+  fire — if it does, it's the vanishing-pin bug caught in the act.
+
+To power the alert, audit entries now carry a `bot_owned` flag
+(`is_bot_sent` at action time; unpins/deletes already knew it from the
+guard, and the unguarded pin path now checks explicitly — so a bot
+pinning a message it never sent is caught). New state keys:
+`last_pin_digest`, `last_pin_alert_ts`.
+
+---
+
 ## [4.51.11] - 2026-07-14
 
 ### Added
