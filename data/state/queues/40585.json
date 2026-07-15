@@ -43,15 +43,6 @@
       "time": "2026-07-14T21:50:00+00:00",
       "preview": "\"Yeah well personally i would rather we go slow and meticulous instead of getting baited in a room full of them unprepared...\"",
       "media_group_id": null
-    },
-    {
-      "message_id": 167229,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-07-15T03:45:57+00:00",
-      "preview": "Eidolon stride, stride, eidolon\u2019s wrath",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -982,7 +973,11 @@
     "msg:167233",
     "2026-07-15 03:52:28",
     "msg:167254",
-    "2026-07-15 05:41:40"
+    "2026-07-15 05:41:40",
+    "msg:167334",
+    "2026-07-15 08:39:30",
+    "msg:167229",
+    "2026-07-15 03:45:57"
   ],
   "reply_log": [
     {
@@ -5374,18 +5369,34 @@
       "player": "Caelum",
       "preview": "Got it. Sorry",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-15T08:54:27+00:00",
+      "pid": "40585",
+      "msg_id": "167334",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "1-3 A: Stride 35 feet for a total of 105 ft",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-15T08:56:01+00:00",
+      "pid": "40585",
+      "msg_id": "167229",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Eidolon stride, stride, eidolon\u2019s wrath",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-15 03:45:57",
-      "msg_ids": [
-        167326
-      ],
-      "last_posted_at": "2026-07-15T06:22:19.453180+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 167343
     },
     "40585": {
       "fingerprint": "2026-07-14 21:40:24|2026-07-14 21:49:06|2026-07-14 21:50:00",
