@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 167590,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T17:15:08+00:00",
+      "preview": "Can someone contextualize the environment we're in?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -1988,10 +1998,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 167470
+      "fingerprint": "2026-07-16 17:15:08",
+      "msg_ids": [
+        167601
+      ],
+      "last_posted_at": "2026-07-16T18:11:55.662597+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
