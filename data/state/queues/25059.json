@@ -1,70 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 167418,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:26:26+00:00",
-      "preview": "I did some edits to my character",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167419,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:27:25+00:00",
-      "preview": "Namely, I got rid of the commander dedication, and instead got the wrestler and acrobat dedication alongside a few related feats",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167421,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:56:32+00:00",
-      "preview": "initially wanted to dual wield dagger pistols, but... Not 'nuff gold",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167422,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:57:47+00:00",
-      "preview": "Like, I could've gotten the gun equivalent to doubling rings, but it would've also been very expensive",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167423,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:58:58+00:00",
-      "preview": "I guess I could've gone without armor runes, and tried to scrounge every red cent, but...",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167424,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:59:24+00:00",
-      "preview": "I was already making my build bloated with bombs and such",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167425,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T00:59:48+00:00",
-      "preview": "There are only so many actions I can take with my character",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -412,7 +348,21 @@
     "msg:166553",
     "2026-07-13 20:43:58",
     "msg:166554",
-    "2026-07-13 20:44:08"
+    "2026-07-13 20:44:08",
+    "msg:167418",
+    "2026-07-16 00:26:26",
+    "msg:167419",
+    "2026-07-16 00:27:25",
+    "msg:167421",
+    "2026-07-16 00:56:32",
+    "msg:167422",
+    "2026-07-16 00:57:47",
+    "msg:167423",
+    "2026-07-16 00:58:58",
+    "msg:167424",
+    "2026-07-16 00:59:24",
+    "msg:167425",
+    "2026-07-16 00:59:48"
   ],
   "reply_log": [
     {
@@ -1971,16 +1921,77 @@
       "player": "Kaer'maga when?",
       "preview": "I should be free this week",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:28:33+00:00",
+      "pid": "25059",
+      "msg_id": "167418",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I did some edits to my character",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:28:38+00:00",
+      "pid": "25059",
+      "msg_id": "167419",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Namely, I got rid of the commander dedication, and instead got the wrestler and ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:28:44+00:00",
+      "pid": "25059",
+      "msg_id": "167421",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "initially wanted to dual wield dagger pistols, but... Not 'nuff gold",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:28:51+00:00",
+      "pid": "25059",
+      "msg_id": "167422",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Like, I could've gotten the gun equivalent to doubling rings, but it would've al",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:28:56+00:00",
+      "pid": "25059",
+      "msg_id": "167423",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I guess I could've gone without armor runes, and tried to scrounge every red cen",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:29:01+00:00",
+      "pid": "25059",
+      "msg_id": "167424",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I was already making my build bloated with bombs and such",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-16T03:29:06+00:00",
+      "pid": "25059",
+      "msg_id": "167425",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "There are only so many actions I can take with my character",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-16 00:26:26|2026-07-16 00:27:25|2026-07-16 00:56:32|2026-07-16 00:57:47|2026-07-16 00:58:58|2026-07-16 00:59:24|2026-07-16 00:59:48",
-      "msg_ids": [
-        167440
-      ],
-      "last_posted_at": "2026-07-16T03:22:10.898500+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 167470
     }
   }
 }
