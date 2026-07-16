@@ -1,6 +1,70 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 167418,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:26:26+00:00",
+      "preview": "I did some edits to my character",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167419,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:27:25+00:00",
+      "preview": "Namely, I got rid of the commander dedication, and instead got the wrestler and acrobat dedication alongside a few related feats",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167421,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:56:32+00:00",
+      "preview": "initially wanted to dual wield dagger pistols, but... Not 'nuff gold",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167422,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:57:47+00:00",
+      "preview": "Like, I could've gotten the gun equivalent to doubling rings, but it would've also been very expensive",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167423,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:58:58+00:00",
+      "preview": "I guess I could've gone without armor runes, and tried to scrounge every red cent, but...",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167424,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:59:24+00:00",
+      "preview": "I was already making my build bloated with bombs and such",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167425,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-16T00:59:48+00:00",
+      "preview": "There are only so many actions I can take with my character",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -1911,10 +1975,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 165970
+      "fingerprint": "2026-07-16 00:26:26|2026-07-16 00:27:25|2026-07-16 00:56:32|2026-07-16 00:57:47|2026-07-16 00:58:58|2026-07-16 00:59:24|2026-07-16 00:59:48",
+      "msg_ids": [
+        167440
+      ],
+      "last_posted_at": "2026-07-16T03:22:10.898500+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
