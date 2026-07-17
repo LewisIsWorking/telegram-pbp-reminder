@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 167590,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-16T17:15:08+00:00",
-      "preview": "Can someone contextualize the environment we're in?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -372,7 +362,9 @@
     "msg:167424",
     "2026-07-16 00:59:24",
     "msg:167425",
-    "2026-07-16 00:59:48"
+    "2026-07-16 00:59:48",
+    "msg:167590",
+    "2026-07-16 17:15:08"
   ],
   "reply_log": [
     {
@@ -1994,16 +1986,23 @@
       "player": "Fuzzy",
       "preview": "There are only so many actions I can take with my character",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-17T04:14:29+00:00",
+      "pid": "25059",
+      "msg_id": "167590",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Can someone contextualize the environment we're in?",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-16 17:15:08",
-      "msg_ids": [
-        167601
-      ],
-      "last_posted_at": "2026-07-16T18:11:55.662597+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 167688
     }
   }
 }

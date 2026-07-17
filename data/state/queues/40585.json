@@ -18,30 +18,21 @@
       "preview": "[media]"
     },
     {
-      "message_id": 167178,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-14T21:40:24+00:00",
-      "preview": "\"Alright, well I'm going for it. Get over there when you can.\"",
+      "message_id": 167661,
+      "thread_id": 137075,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-07-17T05:30:31+00:00",
+      "preview": "The Lorn will move where he has 69% view of them",
       "media_group_id": null
     },
     {
-      "message_id": 167190,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-14T21:49:06+00:00",
-      "preview": "\"I'd rather not give them time to regroup. Are we chasing or taking our time?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167191,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-14T21:50:00+00:00",
-      "preview": "\"Yeah well personally i would rather we go slow and meticulous instead of getting baited in a room full of them unprepared...\"",
+      "message_id": 167662,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-07-17T05:39:10+00:00",
+      "preview": "U get about 67% at most",
       "media_group_id": null
     }
   ],
@@ -977,7 +968,15 @@
     "msg:167334",
     "2026-07-15 08:39:30",
     "msg:167229",
-    "2026-07-15 03:45:57"
+    "2026-07-15 03:45:57",
+    "msg:167655",
+    "2026-07-17 04:27:10",
+    "msg:167190",
+    "2026-07-14 21:49:06",
+    "msg:167191",
+    "2026-07-14 21:50:00",
+    "msg:167178",
+    "2026-07-14 21:40:24"
   ],
   "reply_log": [
     {
@@ -5387,24 +5386,60 @@
       "player": "Caelum",
       "preview": "Eidolon stride, stride, eidolon\u2019s wrath",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-17T04:30:05+00:00",
+      "pid": "40585",
+      "msg_id": "167655",
+      "thread_id": 137075,
+      "player": "Horia",
+      "preview": "Same actions",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-17T06:09:25+00:00",
+      "pid": "40585",
+      "msg_id": "167190",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "\"I'd rather not give them time to regroup. Are we chasing or taking our time?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-17T06:09:40+00:00",
+      "pid": "40585",
+      "msg_id": "167191",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "\"Yeah well personally i would rather we go slow and meticulous instead of gettin",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-17T07:23:05.176090+00:00",
+      "pid": "40585",
+      "msg_id": "167178",
+      "thread_id": "40585",
+      "player": "Buffet Raider",
+      "preview": "\"Alright, well I'm going for it. Get over there when you can.\"",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
+      "fingerprint": "2026-07-17 05:30:31|2026-07-17 05:39:10",
+      "msg_ids": [
+        167686
+      ],
+      "last_posted_at": "2026-07-17T07:23:11.788657+00:00",
+      "caught_up_msg_id": null
+    },
+    "40585": {
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 167343
-    },
-    "40585": {
-      "fingerprint": "2026-07-14 21:40:24|2026-07-14 21:49:06|2026-07-14 21:50:00",
-      "msg_ids": [
-        167324
-      ],
-      "last_posted_at": "2026-07-15T06:22:16.654764+00:00",
-      "caught_up_msg_id": null
+      "caught_up_msg_id": 167689
     }
   }
 }
