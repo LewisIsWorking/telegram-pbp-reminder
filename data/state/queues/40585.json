@@ -34,15 +34,6 @@
       "time": "2026-07-17T05:39:10+00:00",
       "preview": "U get about 67% at most",
       "media_group_id": null
-    },
-    {
-      "message_id": 167700,
-      "thread_id": 137075,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-17T12:29:40+00:00",
-      "preview": "Master Cho will sheathe sword, draw bow and stride 40 feet.  (no other actions)",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -985,7 +976,9 @@
     "msg:167191",
     "2026-07-14 21:50:00",
     "msg:167178",
-    "2026-07-14 21:40:24"
+    "2026-07-14 21:40:24",
+    "msg:167700",
+    "2026-07-17 12:29:40"
   ],
   "reply_log": [
     {
@@ -5431,17 +5424,26 @@
       "player": "Buffet Raider",
       "preview": "\"Alright, well I'm going for it. Get over there when you can.\"",
       "via": "markdone"
+    },
+    {
+      "t": "2026-07-18T00:27:48+00:00",
+      "pid": "40585",
+      "msg_id": "167700",
+      "thread_id": 137075,
+      "player": "Bruce",
+      "preview": "Master Cho will sheathe sword, draw bow and stride 40 feet.  (no other actions)",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-17 05:30:31|2026-07-17 05:39:10|2026-07-17 12:29:40",
+      "fingerprint": "2026-07-17 05:30:31|2026-07-17 05:39:10",
       "msg_ids": [
-        167703
+        167758
       ],
-      "last_posted_at": "2026-07-17T14:48:51.138288+00:00",
+      "last_posted_at": "2026-07-18T03:14:42.378839+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
