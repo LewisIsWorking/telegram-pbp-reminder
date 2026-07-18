@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 167661,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-07-17T05:30:31+00:00",
-      "preview": "The Lorn will move where he has 69% view of them",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167662,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-07-17T05:39:10+00:00",
-      "preview": "U get about 67% at most",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -978,7 +960,11 @@
     "msg:167178",
     "2026-07-14 21:40:24",
     "msg:167700",
-    "2026-07-17 12:29:40"
+    "2026-07-17 12:29:40",
+    "msg:167661",
+    "2026-07-17 05:30:31",
+    "msg:167662",
+    "2026-07-17 05:39:10"
   ],
   "reply_log": [
     {
@@ -5433,18 +5419,34 @@
       "player": "Bruce",
       "preview": "Master Cho will sheathe sword, draw bow and stride 40 feet.  (no other actions)",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-18T18:04:26+00:00",
+      "pid": "40585",
+      "msg_id": "167661",
+      "thread_id": 137075,
+      "player": "Horia",
+      "preview": "The Lorn will move where he has 69% view of them",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T18:04:35+00:00",
+      "pid": "40585",
+      "msg_id": "167662",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "U get about 67% at most",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-17 05:30:31|2026-07-17 05:39:10",
-      "msg_ids": [
-        167758
-      ],
-      "last_posted_at": "2026-07-18T03:14:42.378839+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 167819
     },
     "40585": {
       "fingerprint": "",
