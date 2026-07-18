@@ -123,7 +123,6 @@
       "2026-07-15T06:24:21.918417+00:00"
     ],
     "40585": [
-      "2026-03-30T12:22:01.114197+00:00",
       "2026-03-30T12:22:01.114345+00:00",
       "2026-03-30T12:22:01.114473+00:00",
       "2026-03-30T12:22:01.114598+00:00",
@@ -622,7 +621,8 @@
       "2026-07-17T07:23:05.176090+00:00",
       "2026-07-18T03:14:35.396101+00:00",
       "2026-07-18T19:14:11.395246+00:00",
-      "2026-07-18T19:14:11.400533+00:00"
+      "2026-07-18T19:14:11.400533+00:00",
+      "2026-07-18T20:59:17.012309+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1373,7 +1373,17 @@
       "2026-07-14T21:22:20.587253+00:00",
       "2026-07-14T22:04:41.168966+00:00",
       "2026-07-14T22:04:41.174398+00:00",
-      "2026-07-14T22:04:41.175878+00:00"
+      "2026-07-14T22:04:41.175878+00:00",
+      "2026-07-18T20:59:16.996485+00:00",
+      "2026-07-18T20:59:17.005268+00:00",
+      "2026-07-18T20:59:17.006782+00:00",
+      "2026-07-18T20:59:17.015801+00:00",
+      "2026-07-18T20:59:17.018658+00:00",
+      "2026-07-18T20:59:17.021553+00:00",
+      "2026-07-18T20:59:17.024464+00:00",
+      "2026-07-18T20:59:17.027488+00:00",
+      "2026-07-18T20:59:17.031811+00:00",
+      "2026-07-18T20:59:17.037949+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1534,83 +1544,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-06-14T18:40:20.401666+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "\"Than it's of a great luck that I managed to find you!\" Anna",
-      "msg_id": "161013"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-14T18:40:20.413128+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "Anna tilts her head, looking at other people. Now, when thin",
-      "msg_id": "161231"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-14T18:40:20.421102+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "\"I see! Do you, but stroke of luck, know where Eda is? She w",
-      "msg_id": "161246"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-14T20:36:39.090628+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "161252"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-15T11:16:05.888251+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "It takes a couple of moments for the smile to be replaced by",
-      "msg_id": "161248"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-15T16:44:25.832166+00:00",
-      "player": "Kaer'maga when?",
-      "preview": "Lorn puts his hand on her shoulder and says \"Relax my dear I",
-      "msg_id": "161410"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-15T18:41:35.741108+00:00",
-      "player": "Ryo",
-      "preview": "Kitt walks over to the two bodies of the two workers who wer",
-      "msg_id": "159559"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-15T18:41:35.747255+00:00",
-      "player": "Cannon",
-      "preview": "Nadya starts collecting the valuables, ending with trying th",
-      "msg_id": "159587"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-15T18:41:35.749458+00:00",
-      "player": "Cannon",
-      "preview": "\"Who am I to judge, I suppose.\"\n\nShe gestures to her lower b",
-      "msg_id": "159605"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-15T20:00:05.986291+00:00",
-      "player": "Chase",
-      "preview": "While the others seem concerned about the gods of the dead ,",
-      "msg_id": "159815"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-15T20:00:06.657107+00:00",
-      "player": "Chase",
-      "preview": "[media]",
-      "msg_id": "161505"
-    },
     {
       "pid": "76799",
       "time": "2026-06-15T20:00:06.662624+00:00",
@@ -2933,6 +2866,83 @@
       "player": "Caelum",
       "preview": "U get about 67% at most",
       "msg_id": "167662"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:16.996485+00:00",
+      "player": "Anthony",
+      "preview": "Also @Ravnos1's recall knowledge",
+      "msg_id": "167192"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.005268+00:00",
+      "player": "Anthony",
+      "preview": "Almost forgot about that",
+      "msg_id": "167193"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.006782+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167195"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-18T20:59:17.012309+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167825"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.015801+00:00",
+      "player": "Anthony",
+      "preview": "Is that a ranged strike?",
+      "msg_id": "167835"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.018658+00:00",
+      "player": "Anthony",
+      "preview": "Roneless uses his reaction",
+      "msg_id": "167837"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.021553+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167839"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.024464+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167841"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.027488+00:00",
+      "player": "Anthony",
+      "preview": "Umm the DC is 18 not 0",
+      "msg_id": "167844"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.031811+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167848"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-07-18T20:59:17.037949+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "167855"
     }
   ],
   "pending_potw_boons": {
@@ -2963,6 +2973,19 @@
       "base_message": "Player of the Week for Kibwe: Anthony NegetZ (@MrNegetZ)!\n(2026-07-07 (W28) to 2026-07-14 (W29))\n\n5 posts this week with an average gap of 36.4h between posts. The most consistent driver of the story.",
       "posted_at": "2026-07-14T22:04:41.197227+00:00",
       "reminders_sent": 2
+    },
+    "52083": {
+      "message_id": 167861,
+      "winner_user_id": "6144366145",
+      "campaign_name": "Hopeful End-Times",
+      "boons": [
+        "The vault's combination is the date carved above the entrance. Nobody thought to check.",
+        "Your next Stealth check is assisted by the sound of a thunderclap overhead.",
+        "You recall a mentor's words at exactly the moment they apply.",
+        "Gain 1 temporary HP at the start of your next combat."
+      ],
+      "base_message": "Player of the Week for Hopeful End-Times: Anthony NegetZ (@MrNegetZ)!\n(2026-07-11 (W28) to 2026-07-18 (W29))\n\n5 posts this week with an average gap of 23.9h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-07-18T20:59:17.039734+00:00"
     }
   },
   "pending_hero_points": {

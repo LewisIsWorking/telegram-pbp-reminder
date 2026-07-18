@@ -29,30 +29,21 @@
       "media_group_id": null
     },
     {
-      "message_id": 167192,
+      "message_id": 167847,
       "thread_id": 145045,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-07-14T21:57:40+00:00",
-      "preview": "Also @Ravnos1's recall knowledge",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167193,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-14T21:57:50+00:00",
-      "preview": "Almost forgot about that",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167195,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-14T21:59:03+00:00",
+      "time": "2026-07-18T20:48:23+00:00",
       "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 167852,
+      "thread_id": 145045,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-18T20:53:23+00:00",
+      "preview": "Is the magnetic field still here?",
       "media_group_id": null
     }
   ],
@@ -248,7 +239,27 @@
     "msg:165788",
     "2026-07-07 10:03:03",
     "msg:167138",
-    "2026-07-14 21:27:23"
+    "2026-07-14 21:27:23",
+    "msg:167192",
+    "2026-07-14 21:57:40",
+    "msg:167193",
+    "2026-07-14 21:57:50",
+    "msg:167195",
+    "2026-07-14 21:59:03",
+    "msg:167835",
+    "2026-07-18 20:43:11",
+    "msg:167837",
+    "2026-07-18 20:43:37",
+    "msg:167839",
+    "2026-07-18 20:44:26",
+    "msg:167841",
+    "2026-07-18 20:44:46",
+    "msg:167844",
+    "2026-07-18 20:45:27",
+    "msg:167848",
+    "2026-07-18 20:50:00",
+    "msg:167855",
+    "2026-07-18 20:57:28"
   ],
   "reply_log": [
     {
@@ -1137,6 +1148,96 @@
       "player": "Anthony",
       "preview": ".",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:33:14+00:00",
+      "pid": "52083",
+      "msg_id": "167192",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Also @Ravnos1's recall knowledge",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:35:35+00:00",
+      "pid": "52083",
+      "msg_id": "167193",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Almost forgot about that",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:35:45+00:00",
+      "pid": "52083",
+      "msg_id": "167195",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:43:24+00:00",
+      "pid": "52083",
+      "msg_id": "167835",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Is that a ranged strike?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:44:22+00:00",
+      "pid": "52083",
+      "msg_id": "167837",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Roneless uses his reaction",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:44:30+00:00",
+      "pid": "52083",
+      "msg_id": "167839",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:45:05+00:00",
+      "pid": "52083",
+      "msg_id": "167841",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:48:07+00:00",
+      "pid": "52083",
+      "msg_id": "167844",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Umm the DC is 18 not 0",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:53:00+00:00",
+      "pid": "52083",
+      "msg_id": "167848",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T20:57:43+00:00",
+      "pid": "52083",
+      "msg_id": "167855",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1152,10 +1253,10 @@
     },
     "145045": {
       "msg_ids": [
-        167207
+        167864
       ],
-      "fingerprint": "2026-07-14 21:22:25|2026-07-14 21:57:40|2026-07-14 21:57:50|2026-07-14 21:59:03",
-      "last_posted_at": "2026-07-14T22:04:59.945984+00:00"
+      "fingerprint": "2026-07-14 21:22:25|2026-07-18 20:48:23|2026-07-18 20:53:23",
+      "last_posted_at": "2026-07-18T20:59:28.321254+00:00"
     }
   }
 }
