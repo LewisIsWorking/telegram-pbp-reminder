@@ -11,39 +11,12 @@
       "media_group_id": null
     },
     {
-      "message_id": 167127,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-14T21:22:25+00:00",
-      "preview": "(it didn't i put it)",
-      "media_group_id": null
-    },
-    {
       "message_id": 167133,
       "thread_id": 52083,
       "user_id": "6144366145",
       "user_name": "Anthony",
       "time": "2026-07-14T21:24:51+00:00",
       "preview": "The electronic music song blasting out from Livy might've drowned the sound of your question on top of the sound of battle.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167847,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-18T20:48:23+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167852,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-18T20:53:23+00:00",
-      "preview": "Is the magnetic field still here?",
       "media_group_id": null
     }
   ],
@@ -259,7 +232,13 @@
     "msg:167848",
     "2026-07-18 20:50:00",
     "msg:167855",
-    "2026-07-18 20:57:28"
+    "2026-07-18 20:57:28",
+    "msg:167127",
+    "2026-07-14 21:22:25",
+    "msg:167847",
+    "2026-07-18 20:48:23",
+    "msg:167852",
+    "2026-07-18 20:53:23"
   ],
   "reply_log": [
     {
@@ -1238,6 +1217,33 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-18T21:00:39+00:00",
+      "pid": "52083",
+      "msg_id": "167127",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "(it didn't i put it)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T21:00:51+00:00",
+      "pid": "52083",
+      "msg_id": "167847",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-18T21:01:01+00:00",
+      "pid": "52083",
+      "msg_id": "167852",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "Is the magnetic field still here?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1252,11 +1258,10 @@
       "caught_up_msg_id": null
     },
     "145045": {
-      "msg_ids": [
-        167864
-      ],
-      "fingerprint": "2026-07-14 21:22:25|2026-07-18 20:48:23|2026-07-18 20:53:23",
-      "last_posted_at": "2026-07-18T20:59:28.321254+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 167877
     }
   }
 }
