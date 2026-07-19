@@ -18,6 +18,15 @@
       "time": "2026-07-14T21:24:51+00:00",
       "preview": "The electronic music song blasting out from Livy might've drowned the sound of your question on top of the sound of battle.",
       "media_group_id": null
+    },
+    {
+      "message_id": 167949,
+      "thread_id": 145045,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-07-19T08:17:17+00:00",
+      "preview": "[media]",
+      "media_group_id": "14275592300632625"
     }
   ],
   "replied": [
@@ -1258,10 +1267,12 @@
       "caught_up_msg_id": null
     },
     "145045": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 167877
+      "msg_ids": [
+        167959
+      ],
+      "fingerprint": "2026-07-19 08:17:17|2026-07-19 08:17:18|2026-07-19 08:17:19|2026-07-19 08:17:20|2026-07-19 08:17:21",
+      "last_posted_at": "2026-07-19T09:09:04.037034+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
