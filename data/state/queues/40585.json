@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 167954,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-07-19T08:24:35+00:00",
-      "preview": "A1-3: Stride x 3 ending my move next to Wide.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -977,7 +968,9 @@
     "msg:167825",
     "2026-07-18 20:34:31",
     "msg:167918",
-    "2026-07-19 05:14:46"
+    "2026-07-19 05:14:46",
+    "msg:167954",
+    "2026-07-19 08:24:35"
   ],
   "reply_log": [
     {
@@ -5468,18 +5461,25 @@
       "player": "Buffet",
       "preview": "Tarsus moves forward with Lorn, and once in range he calls down a Thunderstrike ",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-19T12:10:05+00:00",
+      "pid": "40585",
+      "msg_id": "167954",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "A1-3: Stride x 3 ending my move next to Wide.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-19 08:24:35",
-      "msg_ids": [
-        167957
-      ],
-      "last_posted_at": "2026-07-19T09:09:00.643229+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 168072
     },
     "40585": {
       "fingerprint": "",
