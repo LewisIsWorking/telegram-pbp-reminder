@@ -1,6 +1,25 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 168196,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-07-20T19:37:10+00:00",
+      "preview": "\"Yes I am grateful for their aid.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 168197,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-07-20T19:47:36+00:00",
+      "preview": "As Cardigan approaches the helmet, the light coming from under it glows more intensely, and it starts shaking slightly.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2010,10 +2029,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 168191
+      "fingerprint": "2026-07-20 19:37:10|2026-07-20 19:47:36",
+      "msg_ids": [
+        168201
+      ],
+      "last_posted_at": "2026-07-20T20:36:36.532690+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
