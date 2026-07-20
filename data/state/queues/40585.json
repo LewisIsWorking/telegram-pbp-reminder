@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 168097,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-07-19T23:18:23+00:00",
+      "preview": "U should target the eidolon not me. It like 3 ac different plus resistance.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5476,10 +5485,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 168072
+      "fingerprint": "2026-07-19 23:18:23",
+      "msg_ids": [
+        168110
+      ],
+      "last_posted_at": "2026-07-20T00:03:30.917729+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
