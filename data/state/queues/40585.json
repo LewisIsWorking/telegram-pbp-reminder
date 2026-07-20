@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 168097,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-07-19T23:18:23+00:00",
-      "preview": "U should target the eidolon not me. It like 3 ac different plus resistance.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -979,7 +970,9 @@
     "msg:167918",
     "2026-07-19 05:14:46",
     "msg:167954",
-    "2026-07-19 08:24:35"
+    "2026-07-19 08:24:35",
+    "msg:168097",
+    "2026-07-19 23:18:23"
   ],
   "reply_log": [
     {
@@ -5479,18 +5472,25 @@
       "player": "Ryo",
       "preview": "A1-3: Stride x 3 ending my move next to Wide.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-20T04:21:32+00:00",
+      "pid": "40585",
+      "msg_id": "168097",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "U should target the eidolon not me. It like 3 ac different plus resistance.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-19 23:18:23",
-      "msg_ids": [
-        168110
-      ],
-      "last_posted_at": "2026-07-20T00:03:30.917729+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 168132
     },
     "40585": {
       "fingerprint": "",
