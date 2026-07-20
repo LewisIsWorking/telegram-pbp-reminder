@@ -3127,6 +3127,25 @@
         "Gain 1 temporary HP at the start of your next combat."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W30",
+      "year": 2026,
+      "date": "2026-07-20",
+      "campaign": "Doomsday Funtime",
+      "campaign_pid": "25059",
+      "user_id": "8525518483",
+      "first_name": "Fuzzy",
+      "username": "",
+      "post_count": 5,
+      "avg_gap_h": 28.8,
+      "boons_offered": [
+        "A priest offers a blessing without being asked. It feels different from the usual ones.",
+        "A skeleton in the corner clutches a note with partially legible warnings.",
+        "Your spell component pouch seems slightly heavier today. Something extra is in there.",
+        "Your next Recall Knowledge check gains a +2 circumstance bonus."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -3134,7 +3153,9 @@
       "1698524397": 1
     },
     "25059": {
-      "1698524397": 4
+      "1698524397": 1,
+      "5443237599": 1,
+      "8525518483": 1
     },
     "22566": {
       "1698524397": 1
@@ -3181,11 +3202,6 @@
     "1825": {
       "1698524397": 1
     },
-    "133428": {},
-    "25059": {
-      "1698524397": 1,
-      "5443237599": 1,
-      "8525518483": 1
-    }
+    "133428": {}
   }
 }
