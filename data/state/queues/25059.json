@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 168148,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-20T11:49:40+00:00",
-      "preview": "In the outskirts of ravenGrow, right next to a large tree, there's what looks like a helmet covering a bright lamp.\n\nIt's incredibly hard to miss.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -374,7 +364,9 @@
     "msg:167425",
     "2026-07-16 00:59:48",
     "msg:167590",
-    "2026-07-16 17:15:08"
+    "2026-07-16 17:15:08",
+    "msg:168148",
+    "2026-07-20 11:49:40"
   ],
   "reply_log": [
     {
@@ -2005,16 +1997,23 @@
       "player": "Fuzzy",
       "preview": "Can someone contextualize the environment we're in?",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-20T18:16:13+00:00",
+      "pid": "25059",
+      "msg_id": "168148",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "In the outskirts of ravenGrow, right next to a large tree, there's what looks li",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-20 11:49:40",
-      "msg_ids": [
-        168154
-      ],
-      "last_posted_at": "2026-07-20T11:52:10.939082+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 168191
     }
   }
 }
