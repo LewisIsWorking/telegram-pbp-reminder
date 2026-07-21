@@ -56,14 +56,14 @@
     }
   },
   "last_alerts": {
-    "52083": "2026-07-20T11:52:03.663358+00:00",
-    "66154": "2026-07-20T11:52:03.663358+00:00",
-    "51357": "2026-07-20T04:41:03.356572+00:00",
-    "25059": "2026-07-20T04:41:03.356572+00:00",
-    "107171": "2026-07-20T11:52:03.663358+00:00",
-    "40585": "2026-07-16T09:20:12.222934+00:00",
-    "76799": "2026-07-20T00:03:21.448546+00:00",
-    "107151": "2026-07-20T22:06:38.148645+00:00",
+    "52083": "2026-07-21T12:27:00.578085+00:00",
+    "66154": "2026-07-21T12:27:00.578085+00:00",
+    "51357": "2026-07-21T07:37:10.819401+00:00",
+    "25059": "2026-07-21T21:18:38.045713+00:00",
+    "107171": "2026-07-21T12:27:00.578085+00:00",
+    "40585": "2026-07-21T07:37:10.819401+00:00",
+    "76799": "2026-07-21T04:20:08.485477+00:00",
+    "107151": "2026-07-21T23:03:31.339365+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00"
   },
   "last_roster": {
@@ -80,7 +80,7 @@
   "last_potw": {
     "66154": "2026-06-01T05:48:30.651000+00:00",
     "52083": "2026-07-18T20:59:17.039734+00:00",
-    "40585": "2026-07-14T22:04:41.197227+00:00",
+    "40585": "2026-07-21T23:03:31.339365+00:00",
     "25059": "2026-07-20T22:06:38.148645+00:00",
     "107171": "2026-05-12T17:47:20.749085+00:00",
     "107151": "2026-04-29T22:26:57.024621+00:00",
@@ -106,11 +106,11 @@
   },
   "combat": {},
   "last_leaderboard": "2026-07-20T11:52:03.663358+00:00",
-  "last_roster_nudge": "2026-07-19T03:43:26.151531+00:00",
-  "last_roster_snapshot": "C01:5/6|C00:4/6|C04:3/6|C05:5/6|C06:7/6|C07:5/6|C09:2/6|C08:0/4",
+  "last_roster_nudge": "2026-07-21T17:36:40.030174+00:00",
+  "last_roster_snapshot": "C01:5/6|C00:4/6|C04:3/6|C05:5/6|C06:7/6|C07:5/6|C09:1/6|C08:0/4",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-07-20T18:58:23.236739+00:00"
+    "last_at": "2026-07-21T19:42:11.606517+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-07-09T15:26:57.920712+00:00",
@@ -139,7 +139,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-07-17T21:59:37.990527+00:00",
-  "last_daily_tip": "2026-07-20T04:41:03.356572+00:00",
+  "last_daily_tip": "2026-07-21T04:20:08.485477+00:00",
   "used_tip_indices": [
     28,
     2,
@@ -167,7 +167,8 @@
     29,
     33,
     37,
-    34
+    34,
+    20
   ],
   "last_pace_drop_check": "2026-07-17T21:59:37.990527+00:00",
   "dying_alerts_sent": {
@@ -176,7 +177,8 @@
     "107171": "active",
     "66154": "active",
     "76799": "active",
-    "51357": "active"
+    "51357": "active",
+    "52083": "active"
   },
   "last_campaign_table": "2026-07-16T06:25:41.012194+00:00",
   "session_poll": {
@@ -196,7 +198,7 @@
         "5443237599",
         "8880317264"
       ],
-      "last_ping_day": 739817,
+      "last_ping_day": 739818,
       "votes": {
         "2": [
           "1698524397",
@@ -227,8 +229,8 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-07-19T20:59:51.827321+00:00",
-  "last_queue_daily": "2026-07-19",
+  "last_state_backup": "2026-07-20T22:06:38.148645+00:00",
+  "last_queue_daily": "2026-07-21",
   "last_queue_fingerprint": "107171:2026-07-08 01:44:41|25059:2026-07-20 19:37:10|25059:2026-07-20 19:47:36|51357:2026-07-14 21:45:02|51357:2026-07-15 09:23:30|51357:2026-07-15 09:24:40|51357:2026-07-15 09:26:17|51357:2026-07-15 15:21:18|51357:2026-07-15 23:49:17|52083:2026-07-08 01:49:52|52083:2026-07-14 21:24:51|52083:2026-07-19 08:17:17|52083:2026-07-19 08:17:18|52083:2026-07-19 08:17:19|52083:2026-07-19 08:17:20|52083:2026-07-19 08:17:21|52083:2026-07-19 11:25:05|52083:2026-07-19 11:25:05|66154:2026-07-08 06:46:09|66154:2026-07-08 16:05:19|76799:2026-07-10 15:55:12|76799:2026-07-13 18:31:47",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
@@ -291,7 +293,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-07-19",
   "last_queue_daily_slots": [
-    "2026-07-05:09",
     "2026-07-05:21",
     "2026-07-06:09",
     "2026-07-06:21",
@@ -304,7 +305,8 @@
     "2026-07-15:21",
     "2026-07-16:09",
     "2026-07-17:21",
-    "2026-07-19:09"
+    "2026-07-19:09",
+    "2026-07-21:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -316,14 +318,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-20",
-  "last_queue_pin_id": 168203,
-  "queue_post_count": 1174,
+  "last_queue_pin_id": 168258,
+  "queue_post_count": 1175,
   "gm_queue_history": [
     {
       "msg_ids": [
-        168203
+        168258
       ],
-      "pin_id": 168203
+      "pin_id": 168258
     }
   ],
   "players": {
@@ -356,16 +358,6 @@
       "pbp_topic_id": "66154",
       "last_post_time": "2026-07-08T06:46:09+00:00",
       "last_warned_week": 0
-    },
-    "107171:7077683276": {
-      "user_id": "7077683276",
-      "first_name": "Bruce",
-      "last_name": "",
-      "username": "Ravnos1",
-      "campaign_name": "Metal City",
-      "pbp_topic_id": "107171",
-      "last_post_time": "2026-06-23T15:26:50+00:00",
-      "last_warned_week": 2
     },
     "51357:138025700": {
       "user_id": "138025700",
@@ -675,7 +667,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-07-07T06:42:02+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "52083:8097377199": {
       "user_id": "8097377199",
@@ -908,6 +900,12 @@
       "first_name": "Sasuken09",
       "username": "Sasuken09",
       "campaign_name": "Riddleport"
+    },
+    "107171:7077683276": {
+      "removed_at": "2026-07-21T17:36:40.030174+00:00",
+      "first_name": "Bruce",
+      "username": "Ravnos1",
+      "campaign_name": "Metal City"
     }
   },
   "player_registry": {
@@ -1660,6 +1658,14 @@
       "name": "Bre",
       "username": "BreIrish",
       "at": "2026-07-08T17:45:43.200543+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107171",
+      "user_id": "7077683276",
+      "name": "Bruce",
+      "username": "Ravnos1",
+      "at": "2026-07-21T17:36:40.636152+00:00"
     }
   ],
   "player_boons": {
@@ -2007,6 +2013,10 @@
     },
     "8525518483": {
       "name": "Fuzzy",
+      "count": 1
+    },
+    "6023408187": {
+      "name": "Caelum (Thi\u00ean) (@Thien_Ming)",
       "count": 1
     }
   },
@@ -4974,21 +4984,21 @@
         "Your next Recall Knowledge check gains a +2 circumstance bonus."
       ],
       "base_message": "Player of the Week for Doomsday Funtime: Fuzzy!\n(2026-07-13 (W29) to 2026-07-20 (W30))\n\n5 posts this week with an average gap of 28.8h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-07-20T22:06:38.148645+00:00"
+      "posted_at": "2026-07-20T22:06:38.148645+00:00",
+      "reminders_sent": 1
     },
     "40585": {
-      "message_id": 167198,
-      "winner_user_id": "6144366145",
+      "message_id": 168261,
+      "winner_user_id": "6023408187",
       "campaign_name": "Kibwe",
       "boons": [
-        "A bard's lute has a loose string that vibrates near hidden enchantments.",
-        "The speaking tube in the old building still connects two distant rooms.",
-        "A traveling circus performer shows you a trick. It's actually applicable to lockpicking.",
+        "An Andoren eagle screams overhead. Your resolve hardens.",
+        "Your ally's distraction works better than planned.",
+        "The next time you take cover, the cover is slightly more substantial than it looked.",
         "Your next successful Strike deals 1 extra damage."
       ],
-      "base_message": "Player of the Week for Kibwe: Anthony NegetZ (@MrNegetZ)!\n(2026-07-07 (W28) to 2026-07-14 (W29))\n\n5 posts this week with an average gap of 36.4h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-07-14T22:04:41.197227+00:00",
-      "reminders_sent": 3
+      "base_message": "Player of the Week for Kibwe: Caelum (Thi\u00ean) (@Thien_Ming)!\n(2026-07-14 (W29) to 2026-07-21 (W30))\n\n6 posts this week with an average gap of 23.2h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-07-21T23:03:31.339365+00:00"
     },
     "52083": {
       "message_id": 167861,
@@ -5002,7 +5012,7 @@
       ],
       "base_message": "Player of the Week for Hopeful End-Times: Anthony NegetZ (@MrNegetZ)!\n(2026-07-11 (W28) to 2026-07-18 (W29))\n\n5 posts this week with an average gap of 23.9h between posts. The most consistent driver of the story.",
       "posted_at": "2026-07-18T20:59:17.039734+00:00",
-      "reminders_sent": 1
+      "reminders_sent": 2
     }
   },
   "pending_hero_points": {
@@ -5056,7 +5066,6 @@
     },
     "40585": {
       "1698524397": [
-        "2026-07-06T13:23:05+00:00",
         "2026-07-07T01:35:22+00:00",
         "2026-07-07T01:35:40+00:00",
         "2026-07-07T02:27:37+00:00",
@@ -5251,11 +5260,6 @@
         "2026-07-19T08:24:35+00:00"
       ],
       "7077683276": [
-        "2026-07-06T12:39:03+00:00",
-        "2026-07-06T12:39:06+00:00",
-        "2026-07-06T12:39:37+00:00",
-        "2026-07-06T12:41:30+00:00",
-        "2026-07-06T19:00:42+00:00",
         "2026-07-07T12:47:22+00:00",
         "2026-07-07T15:02:09+00:00",
         "2026-07-17T12:29:40+00:00"
@@ -5358,7 +5362,6 @@
     },
     "52083": {
       "6144366145": [
-        "2026-07-06T15:19:36+00:00",
         "2026-07-07T06:46:29+00:00",
         "2026-07-07T10:03:03+00:00",
         "2026-07-11T08:04:27+00:00",
@@ -5386,7 +5389,6 @@
         "2026-07-19T11:25:05+00:00"
       ],
       "1698524397": [
-        "2026-07-06T13:49:52+00:00",
         "2026-07-07T04:56:12+00:00",
         "2026-07-07T05:39:15+00:00",
         "2026-07-07T05:40:58+00:00",
@@ -5524,7 +5526,6 @@
     },
     "66154": {
       "1698524397": [
-        "2026-07-06T13:51:40+00:00",
         "2026-07-08T03:41:20+00:00",
         "2026-07-08T03:42:01+00:00",
         "2026-07-08T03:43:51+00:00",
@@ -8172,6 +8173,25 @@
         "Your next Recall Knowledge check gains a +2 circumstance bonus."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W30",
+      "year": 2026,
+      "date": "2026-07-21",
+      "campaign": "Kibwe",
+      "campaign_pid": "40585",
+      "user_id": "6023408187",
+      "first_name": "Caelum",
+      "username": "Thien_Ming",
+      "post_count": 6,
+      "avg_gap_h": 23.2,
+      "boons_offered": [
+        "An Andoren eagle screams overhead. Your resolve hardens.",
+        "Your ally's distraction works better than planned.",
+        "The next time you take cover, the cover is slightly more substantial than it looked.",
+        "Your next successful Strike deals 1 extra damage."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -8241,7 +8261,7 @@
   "timers": {},
   "votes": {},
   "campaign_notes": {},
-  "last_pin_alert_ts": "2026-07-20T20:36:47.307161+00:00",
-  "_backup_timestamp": "2026-07-20T22:06:38.148645+00:00",
+  "last_pin_alert_ts": "2026-07-21T21:18:50.286395+00:00",
+  "_backup_timestamp": "2026-07-21T23:03:31.339365+00:00",
   "_backup_version": "4.51.12"
 }
