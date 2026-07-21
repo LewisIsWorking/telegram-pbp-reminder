@@ -30,16 +30,6 @@
       "last_post_time": "2026-07-08T06:46:09+00:00",
       "last_warned_week": 0
     },
-    "107171:7077683276": {
-      "user_id": "7077683276",
-      "first_name": "Bruce",
-      "last_name": "",
-      "username": "Ravnos1",
-      "campaign_name": "Metal City",
-      "pbp_topic_id": "107171",
-      "last_post_time": "2026-06-23T15:26:50+00:00",
-      "last_warned_week": 2
-    },
     "51357:138025700": {
       "user_id": "138025700",
       "first_name": "Ryo",
@@ -581,6 +571,12 @@
       "first_name": "Sasuken09",
       "username": "Sasuken09",
       "campaign_name": "Riddleport"
+    },
+    "107171:7077683276": {
+      "removed_at": "2026-07-21T17:36:40.030174+00:00",
+      "first_name": "Bruce",
+      "username": "Ravnos1",
+      "campaign_name": "Metal City"
     }
   },
   "player_registry": {
@@ -1333,6 +1329,14 @@
       "name": "Bre",
       "username": "BreIrish",
       "at": "2026-07-08T17:45:43.200543+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107171",
+      "user_id": "7077683276",
+      "name": "Bruce",
+      "username": "Ravnos1",
+      "at": "2026-07-21T17:36:40.636152+00:00"
     }
   ],
   "player_boons": {
