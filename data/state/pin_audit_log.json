@@ -1882,5 +1882,45 @@
     "refused": false,
     "bot_owned": true,
     "site": "session_poll.py:174"
+  },
+  {
+    "timestamp": "2026-07-24T09:26:36.012586+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 168367,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-24T09:26:36.464405+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 168349,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-07-24T09:26:36.847457+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 168349,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-07-24T09:26:37.286877+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 168350,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
   }
 ]
