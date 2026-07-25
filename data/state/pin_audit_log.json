@@ -1922,5 +1922,15 @@
     "refused": false,
     "bot_owned": true,
     "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-07-25T00:10:27.487548+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 167963,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:174"
   }
 ]
