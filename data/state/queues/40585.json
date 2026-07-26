@@ -18,12 +18,48 @@
       "preview": "[media]"
     },
     {
-      "message_id": 168555,
+      "message_id": 168580,
       "thread_id": 137075,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-07-26T19:51:47+00:00",
-      "preview": "[media]",
+      "time": "2026-07-26T21:27:34+00:00",
+      "preview": "Snipe",
+      "media_group_id": null
+    },
+    {
+      "message_id": 168595,
+      "thread_id": 137075,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-07-26T21:36:44+00:00",
+      "preview": "hunter's aim then shoot",
+      "media_group_id": null
+    },
+    {
+      "message_id": 168596,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-26T21:37:19+00:00",
+      "preview": "Shoo what you can't even see them.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 168597,
+      "thread_id": 137075,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-07-26T21:37:38+00:00",
+      "preview": "then Lorn moves until he sees them and then shoots",
+      "media_group_id": null
+    },
+    {
+      "message_id": 168598,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-07-26T21:37:54+00:00",
+      "preview": "Also it's hunt prey.",
       "media_group_id": null
     }
   ],
@@ -981,7 +1017,11 @@
     "msg:167954",
     "2026-07-19 08:24:35",
     "msg:168097",
-    "2026-07-19 23:18:23"
+    "2026-07-19 23:18:23",
+    "msg:168555",
+    "2026-07-26 19:51:47",
+    "msg:168576",
+    "2026-07-26 21:25:49"
   ],
   "reply_log": [
     {
@@ -5490,17 +5530,35 @@
       "player": "Caelum",
       "preview": "U should target the eidolon not me. It like 3 ac different plus resistance.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-26T21:25:37+00:00",
+      "pid": "40585",
+      "msg_id": "168555",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-26T21:26:44+00:00",
+      "pid": "40585",
+      "msg_id": "168576",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Nah just my reaction",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-26 19:51:47",
+      "fingerprint": "2026-07-26 21:27:34|2026-07-26 21:36:44|2026-07-26 21:37:19|2026-07-26 21:37:38|2026-07-26 21:37:54",
       "msg_ids": [
-        168565
+        168605
       ],
-      "last_posted_at": "2026-07-26T20:15:12.220651+00:00",
+      "last_posted_at": "2026-07-26T22:05:34.163650+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
