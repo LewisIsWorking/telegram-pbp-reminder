@@ -18,12 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 168669,
+      "message_id": 168689,
       "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-27T04:39:19+00:00",
-      "preview": "Tarsus runs after the trifling gnomes.",
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-07-27T05:39:18+00:00",
+      "preview": "Cancle eldamon then stride",
       "media_group_id": null
     }
   ],
@@ -999,7 +999,9 @@
     "msg:168641",
     "2026-07-27 00:33:57",
     "msg:168643",
-    "2026-07-27 00:34:17"
+    "2026-07-27 00:34:17",
+    "msg:168669",
+    "2026-07-27 04:39:19"
   ],
   "reply_log": [
     {
@@ -5589,17 +5591,26 @@
       "player": "Anthony",
       "preview": "Should be 240ft to be optimal",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-27T04:48:42+00:00",
+      "pid": "40585",
+      "msg_id": "168669",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus runs after the trifling gnomes.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-27 04:39:19",
+      "fingerprint": "2026-07-27 05:39:18",
       "msg_ids": [
-        168675
+        168700
       ],
-      "last_posted_at": "2026-07-27T04:43:09.219901+00:00",
+      "last_posted_at": "2026-07-27T08:38:14.466409+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
