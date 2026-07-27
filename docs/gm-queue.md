@@ -158,6 +158,24 @@ marks that entry as replied.
 This is intentional — the queue represents messages that genuinely need
 a GM response, not just topics where the GM has been recently active.
 
+### When a clear becomes visible
+
+Clearing is not instant. An entry disappears only after the next workflow run
+processes the Telegram update containing your reply, so a queue post can show
+entries you have already replied to.
+
+The workflow declares `cron: '0 * * * *'` and `cron: '30 * * * *'`, but GitHub
+gives **no timing guarantee** for scheduled runs and drops them under load —
+observed gaps on this repo have run to 2–4.5 hours even with the hourly cron.
+The `:30` queue-only pass exists to give a second chance each hour; it is not a
+promise of 30-minute cadence.
+
+**Before concluding a reply was lost, check the timestamps.** Compare the run
+time (`gh run list --workflow "PBP Inactivity Reminder"`) against when you
+replied — the committed state in `data/state/queues/*.json` is only as fresh as
+the last run that pushed it. `reply_log` in that file records every reply the
+bot *has* accepted, so a recent entry there proves the mechanism is working.
+
 ---
 
 ## Scheduled reminders
@@ -180,8 +198,14 @@ with a personalised message and reply link.
 
 ## Campaign exclusions
 
-Set `queue_exclude: true` in a campaign's topic_pair to skip it entirely
-(e.g. C08 Theria, which has a different GM).
+Set `queue_exclude: true` in a campaign's topic_pair to skip it entirely.
+
+**C08 Theria (pid `107151`) is excluded because Tyler Link runs it, not the
+global GM.** Its topic_pair sets `gm_user_ids: [7863964681]`, which *replaces*
+the global GM list for that campaign — see
+[Per-campaign GMs](configuration.md#per-campaign-gms). Its queue file still
+contains ~180 historical `unreplied` entries from before it was excluded; they
+are inert and nothing reports them, so that number is not a backlog.
 
 Set `queue_priority: true` to always pin a campaign to the top of the
 queue list (e.g. C06 Kibwe).

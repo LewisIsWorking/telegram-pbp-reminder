@@ -45,6 +45,34 @@ Fields set inside each entry in `topic_pairs`:
 | `emoji`                  | Campaign emoji shown in queue section headers (e.g. `🦠`) |
 | `queue_priority`         | `true` — campaign always sorts first in the GM reply queue |
 | `queue_exclude`          | `true` — campaign is excluded from the GM reply queue entirely |
+| `gm_user_ids`            | **Replaces** the global GM list for this campaign only — see [Per-campaign GMs](#per-campaign-gms) |
+| `disabled_features`      | Feature names switched off for this campaign (e.g. `["warnings", "recruitment"]`) |
+| `roster_target`          | Target player count; overrides the default used by `/roster` and the roster nudge |
+| `nudge_topic_id`         | Topic to send session-poll nudges to (defaults to the poll topic) |
+| `poll_roster_filter`     | `true` — opt in to poll-roster filtering (see `commands/roster.py`) |
+| `created`                | Campaign start date `YYYY-MM-DD`, used by `/campaign` and the timeline |
+
+### Per-campaign GMs
+
+Most campaigns are run by the GM in the **global** `gm_user_ids`. A campaign run
+by somebody else sets its own `gm_user_ids` inside its `topic_pair`.
+
+> ⚠️ **The per-campaign list REPLACES the global one, it does not merge.**
+> `helpers_pkg/config.py::gm_ids_for_campaign` returns the pair's list as-is
+> whenever the key is present. Anyone not named in it — *including the global
+> GM* — counts as a **player** in that campaign: their posts get queued as
+> needing a reply, and their reply-tos do not clear entries.
+
+Campaigns with a non-default GM:
+
+| Campaign | GM | Notes |
+|----------|----|-------|
+| C08 Theria (pid `107151`) | **Tyler Link** (`7863964681`) | Not run by the global GM. Also sets `queue_exclude: true`, so C08 never appears in the GM reply queue, and disables `warnings` + `recruitment`. |
+
+C08's queue file (`data/state/queues/107151.json`) still holds ~180 historical
+`unreplied` entries dated 2026-03-24 to 2026-05-24, from before these settings
+were added. They are **inert** — `queue_exclude` means nothing reads or reports
+them. Do not mistake that count for a live backlog.
 
 ### Example: C11 Dark Pockets (separate group, linked poll)
 
