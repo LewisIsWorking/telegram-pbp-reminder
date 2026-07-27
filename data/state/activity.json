@@ -3070,6 +3070,25 @@
         "Your next successful Strike deals 1 extra damage."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W31",
+      "year": 2026,
+      "date": "2026-07-27",
+      "campaign": "Doomsday Funtime",
+      "campaign_pid": "25059",
+      "user_id": "8525518483",
+      "first_name": "Fuzzy",
+      "username": "fuzzystudios",
+      "post_count": 5,
+      "avg_gap_h": 26.8,
+      "boons_offered": [
+        "A local dialect word you overhear turns out to be the password you needed.",
+        "Your next Will save is bolstered by a memory of someone who believed in you.",
+        "Fireflies spell out a word in the darkness. You catch only half of it, but it's enough.",
+        "The DC of your next skill check is reduced by 1."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -3077,7 +3096,7 @@
       "1698524397": 1
     },
     "25059": {
-      "1698524397": 1
+      "8525518483": 1
     },
     "22566": {
       "1698524397": 1
@@ -3124,9 +3143,6 @@
     "1825": {
       "1698524397": 1
     },
-    "133428": {},
-    "25059": {
-      "8525518483": 1
-    }
+    "133428": {}
   }
 }
