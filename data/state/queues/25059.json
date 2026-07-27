@@ -2,24 +2,6 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 168732,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-07-27T10:28:22+00:00",
-      "preview": "my brother in Christ I am digging dirt",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168733,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-07-27T10:28:29+00:00",
-      "preview": "why would I need a check?",
-      "media_group_id": null
-    },
-    {
       "message_id": 168734,
       "thread_id": 25059,
       "user_id": "138025700",
@@ -412,7 +394,11 @@
     "msg:168315",
     "2026-07-23 10:26:57",
     "msg:168443",
-    "2026-07-25 04:26:34"
+    "2026-07-25 04:26:34",
+    "msg:168732",
+    "2026-07-27 10:28:22",
+    "msg:168733",
+    "2026-07-27 10:28:29"
   ],
   "reply_log": [
     {
@@ -2133,15 +2119,33 @@
       "player": "Horia",
       "preview": "Selenor digs more?",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-27T11:11:58+00:00",
+      "pid": "25059",
+      "msg_id": "168732",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "my brother in Christ I am digging dirt",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T11:12:19+00:00",
+      "pid": "25059",
+      "msg_id": "168733",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "why would I need a check?",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-27 10:28:22|2026-07-27 10:28:29|2026-07-27 10:29:38",
+      "fingerprint": "2026-07-27 10:29:38",
       "msg_ids": [
-        168751
+        168760
       ],
-      "last_posted_at": "2026-07-27T11:06:01.238686+00:00",
+      "last_posted_at": "2026-07-27T11:25:53.412487+00:00",
       "caught_up_msg_id": null
     }
   }
