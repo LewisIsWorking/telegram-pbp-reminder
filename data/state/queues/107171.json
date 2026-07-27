@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 165921,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-07-08T01:44:41+00:00",
-      "preview": "(I'd like to but tbh, idk how many people are even still here)",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -317,7 +307,9 @@
     "msg:162739",
     "2026-06-23 15:26:50",
     "msg:165619",
-    "2026-07-07 04:55:28"
+    "2026-07-07 04:55:28",
+    "msg:165921",
+    "2026-07-08 01:44:41"
   ],
   "reply_log": [
     {
@@ -1754,18 +1746,25 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-27T09:01:22+00:00",
+      "pid": "107171",
+      "msg_id": "165921",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "(I'd like to but tbh, idk how many people are even still here)",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-07-08 01:44:41",
-      "msg_ids": [
-        165968
-      ],
-      "last_posted_at": "2026-07-08T04:20:37.022714+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 168753
     },
     "142887": {
       "fingerprint": "",

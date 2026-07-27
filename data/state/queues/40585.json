@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 168689,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-07-27T05:39:18+00:00",
-      "preview": "Cancle eldamon then stride",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1001,7 +992,9 @@
     "msg:168643",
     "2026-07-27 00:34:17",
     "msg:168669",
-    "2026-07-27 04:39:19"
+    "2026-07-27 04:39:19",
+    "msg:168689",
+    "2026-07-27 05:39:18"
   ],
   "reply_log": [
     {
@@ -5600,18 +5593,25 @@
       "player": "Buffet",
       "preview": "Tarsus runs after the trifling gnomes.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-27T08:54:18+00:00",
+      "pid": "40585",
+      "msg_id": "168689",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Cancle eldamon then stride",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-27 05:39:18",
-      "msg_ids": [
-        168700
-      ],
-      "last_posted_at": "2026-07-27T08:38:14.466409+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 168754
     },
     "40585": {
       "fingerprint": "",

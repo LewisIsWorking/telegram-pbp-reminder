@@ -123,7 +123,6 @@
       "2026-07-15T06:24:21.918417+00:00"
     ],
     "40585": [
-      "2026-03-30T14:34:30.526614+00:00",
       "2026-03-30T14:34:30.526778+00:00",
       "2026-03-30T14:34:30.526924+00:00",
       "2026-03-30T14:34:30.527075+00:00",
@@ -622,7 +621,8 @@
       "2026-07-27T04:42:58.541920+00:00",
       "2026-07-27T04:42:58.552500+00:00",
       "2026-07-27T04:42:58.562616+00:00",
-      "2026-07-27T08:38:04.336139+00:00"
+      "2026-07-27T08:38:04.336139+00:00",
+      "2026-07-27T11:05:54.039824+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -777,7 +777,8 @@
       "2026-06-16T16:38:15.650766+00:00",
       "2026-06-23T11:10:52.942448+00:00",
       "2026-06-23T16:57:12.649384+00:00",
-      "2026-07-07T22:16:59.086455+00:00"
+      "2026-07-07T22:16:59.086455+00:00",
+      "2026-07-27T11:05:54.043819+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1005,7 +1006,16 @@
       "2026-07-16T06:25:41.009781+00:00",
       "2026-07-16T06:25:41.011986+00:00",
       "2026-07-17T07:23:04.704073+00:00",
-      "2026-07-20T18:58:23.234414+00:00"
+      "2026-07-20T18:58:23.234414+00:00",
+      "2026-07-27T11:05:54.048515+00:00",
+      "2026-07-27T11:05:54.050995+00:00",
+      "2026-07-27T11:05:54.053313+00:00",
+      "2026-07-27T11:05:54.055645+00:00",
+      "2026-07-27T11:05:54.057974+00:00",
+      "2026-07-27T11:05:54.060278+00:00",
+      "2026-07-27T11:05:54.062613+00:00",
+      "2026-07-27T11:05:54.064903+00:00",
+      "2026-07-27T11:05:54.067278+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1548,83 +1558,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-06-17T20:51:41.763793+00:00",
-      "player": "Anthony",
-      "preview": "Daichi readies his staff and says quietly to the party.\n\"Let",
-      "msg_id": "161915"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T20:51:41.774625+00:00",
-      "player": "Anthony",
-      "preview": "Thank you my subconscious but i knew that.",
-      "msg_id": "161931"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T20:51:41.783941+00:00",
-      "player": "Anthony",
-      "preview": "Daichi tries to peek through the door using any available op",
-      "msg_id": "161933"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T20:51:41.792221+00:00",
-      "player": "Anthony",
-      "preview": "Daichi tries to open the door very slightly.",
-      "msg_id": "161935"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T20:51:41.805199+00:00",
-      "player": "Anthony",
-      "preview": "[media]",
-      "msg_id": "161941"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T20:51:41.840026+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "161988"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T21:44:39.838657+00:00",
-      "player": "Anthony",
-      "preview": "[media]",
-      "msg_id": "161952"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T21:44:39.845642+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "161962"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T21:44:39.850148+00:00",
-      "player": "Anthony",
-      "preview": "Daichi pushes off the Narcoleptic cat and stands up using Ki",
-      "msg_id": "161973"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T21:44:39.854685+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus charges his staff with weakening magic and strikes th",
-      "msg_id": "161979"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T21:44:39.859152+00:00",
-      "player": "Buffet",
-      "preview": "[media]",
-      "msg_id": "161980"
-    },
     {
       "pid": "40585",
       "time": "2026-06-17T21:44:39.863628+00:00",
@@ -2947,6 +2880,83 @@
       "player": "Buffet",
       "preview": "Tarsus runs after the trifling gnomes.",
       "msg_id": "168669"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T11:05:54.039824+00:00",
+      "player": "Caelum",
+      "preview": "Cancle eldamon then stride",
+      "msg_id": "168689"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-07-27T11:05:54.043819+00:00",
+      "player": "Laetheron",
+      "preview": "(I'd like to but tbh, idk how many people are even still her",
+      "msg_id": "165921"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.048515+00:00",
+      "player": "Horia",
+      "preview": "\"Yes I am grateful for their aid.\"",
+      "msg_id": "168196"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.050995+00:00",
+      "player": "Fuzzy",
+      "preview": "As Cardigan approaches the helmet, the light coming from und",
+      "msg_id": "168197"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.053313+00:00",
+      "player": "Horia",
+      "preview": "Selenor jumps in front of Cardigan readying his shield",
+      "msg_id": "168272"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.055645+00:00",
+      "player": "Dalaxiss",
+      "preview": "Katmidlar stays few steps back, in one hand holding his axe,",
+      "msg_id": "168311"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.057974+00:00",
+      "player": "Fuzzy",
+      "preview": "Very faintly, as selenor approaches with their shield, a voi",
+      "msg_id": "168312"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.060278+00:00",
+      "player": "Fuzzy",
+      "preview": "The dirt-muffled voice sounds calm, but stern and formal.",
+      "msg_id": "168313"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.062613+00:00",
+      "player": "Horia",
+      "preview": "Selenor raises an eyebrow then proceeds to  turn truthteller",
+      "msg_id": "168314"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.064903+00:00",
+      "player": "Fuzzy",
+      "preview": "As you start digging, you realize that the helmet calling fo",
+      "msg_id": "168315"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-07-27T11:05:54.067278+00:00",
+      "player": "Horia",
+      "preview": "Selenor digs more?",
+      "msg_id": "168443"
     }
   ],
   "pending_potw_boons": {
