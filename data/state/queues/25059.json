@@ -2,57 +2,12 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 168734,
+      "message_id": 168822,
       "thread_id": 25059,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-07-27T10:29:38+00:00",
-      "preview": "Just in case you jam the shovel into a rock and while trying to pull it free you lose your grip and impale yourself through the wood shaft.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168769,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-27T11:48:30+00:00",
-      "preview": "Can I attempt to aid using my athletics? (Master+assurance)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168770,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-07-27T11:50:58+00:00",
-      "preview": "so is fighting world ending monsters",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168772,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-27T12:02:23+00:00",
-      "preview": "Well, by the time that the dirt is at my waist instead of my neck, I climb out of the pit.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168773,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-27T12:03:52+00:00",
-      "preview": "This reveals my oxidized bronze body for everyone to see.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168774,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-27T12:06:45+00:00",
-      "preview": "My right arm is bulky and oversized, while my left is quite skinny. At my center, there's a bulb glowing a faint light similar to that on my face.\n\nAnd overall, I'm built like a dwarf, if only somewhat scaled up.",
+      "user_id": "8902183011",
+      "user_name": "Dalaxiss",
+      "time": "2026-07-27T14:51:26+00:00",
+      "preview": "Listening to this conversation, Katmidlar offers the construct one of his versatile vials.\n\"Here, it is acidic. If you want to clean off the oxidization and plants and whatnot.\"",
       "media_group_id": null
     }
   ],
@@ -443,7 +398,29 @@
     "msg:168732",
     "2026-07-27 10:28:22",
     "msg:168733",
-    "2026-07-27 10:28:29"
+    "2026-07-27 10:28:29",
+    "msg:168734",
+    "2026-07-27 10:29:38",
+    "msg:168769",
+    "2026-07-27 11:48:30",
+    "msg:168770",
+    "2026-07-27 11:50:58",
+    "msg:168772",
+    "2026-07-27 12:02:23",
+    "msg:168773",
+    "2026-07-27 12:03:52",
+    "msg:168774",
+    "2026-07-27 12:06:45",
+    "msg:168795",
+    "2026-07-27 14:27:03",
+    "msg:168799",
+    "2026-07-27 14:28:04",
+    "msg:168805",
+    "2026-07-27 14:28:32",
+    "msg:168809",
+    "2026-07-27 14:29:07",
+    "msg:168814",
+    "2026-07-27 14:32:02"
   ],
   "reply_log": [
     {
@@ -2182,15 +2159,114 @@
       "player": "Horia",
       "preview": "why would I need a check?",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-27T15:47:59.062791+00:00",
+      "pid": "25059",
+      "msg_id": "168734",
+      "thread_id": "25059",
+      "player": "Ryo Yamakawa",
+      "preview": "Just in case you jam the shovel into a rock and while trying to pull it free you",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-07-27T14:18:26+00:00",
+      "pid": "25059",
+      "msg_id": "168769",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Can I attempt to aid using my athletics? (Master+assurance)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:18:50+00:00",
+      "pid": "25059",
+      "msg_id": "168770",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "so is fighting world ending monsters",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:19:39+00:00",
+      "pid": "25059",
+      "msg_id": "168772",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Well, by the time that the dirt is at my waist instead of my neck, I climb out o",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:20:11+00:00",
+      "pid": "25059",
+      "msg_id": "168773",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "This reveals my oxidized bronze body for everyone to see.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:20:56+00:00",
+      "pid": "25059",
+      "msg_id": "168774",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "My right arm is bulky and oversized, while my left is quite skinny. At my center",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:38:33+00:00",
+      "pid": "25059",
+      "msg_id": "168795",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I am a human-forged emissary of the city of Axis, and of the plane of Order as a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:42:53+00:00",
+      "pid": "25059",
+      "msg_id": "168799",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Whenever I sense excess in chaos, I become active. Once the chaos is addressed, ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:44:12+00:00",
+      "pid": "25059",
+      "msg_id": "168805",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "However, this is the first time that nature overtook my body this thoroughly.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:44:55+00:00",
+      "pid": "25059",
+      "msg_id": "168809",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "It must have been a very long stretch of time since I was last needed.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T14:45:15+00:00",
+      "pid": "25059",
+      "msg_id": "168814",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Even during a 100 year slumber, I usually am covered by light roots and foliage,",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-27 10:29:38|2026-07-27 11:48:30|2026-07-27 11:50:58|2026-07-27 12:02:23|2026-07-27 12:03:52|2026-07-27 12:06:45",
+      "fingerprint": "2026-07-27 14:51:26",
       "msg_ids": [
-        168775
+        168826
       ],
-      "last_posted_at": "2026-07-27T12:32:12.399530+00:00",
+      "last_posted_at": "2026-07-27T15:48:03.264834+00:00",
       "caught_up_msg_id": null
     }
   }
