@@ -123,13 +123,6 @@
       "2026-07-15T06:24:21.918417+00:00"
     ],
     "40585": [
-      "2026-03-30T12:22:01.115174+00:00",
-      "2026-03-30T12:22:01.115292+00:00",
-      "2026-03-30T12:22:01.115406+00:00",
-      "2026-03-30T12:22:01.115522+00:00",
-      "2026-03-30T14:34:30.524928+00:00",
-      "2026-03-30T14:34:30.526021+00:00",
-      "2026-03-30T14:34:30.526171+00:00",
       "2026-03-30T14:34:30.526310+00:00",
       "2026-03-30T14:34:30.526614+00:00",
       "2026-03-30T14:34:30.526778+00:00",
@@ -622,7 +615,14 @@
       "2026-07-19T13:40:09.794415+00:00",
       "2026-07-20T04:41:03.354418+00:00",
       "2026-07-26T22:05:24.444577+00:00",
-      "2026-07-26T22:05:24.457064+00:00"
+      "2026-07-26T22:05:24.457064+00:00",
+      "2026-07-27T04:42:58.518746+00:00",
+      "2026-07-27T04:42:58.525969+00:00",
+      "2026-07-27T04:42:58.531298+00:00",
+      "2026-07-27T04:42:58.536698+00:00",
+      "2026-07-27T04:42:58.541920+00:00",
+      "2026-07-27T04:42:58.552500+00:00",
+      "2026-07-27T04:42:58.562616+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1548,55 +1548,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "66154",
-      "time": "2026-06-16T18:36:03.832114+00:00",
-      "player": "Anthony",
-      "preview": "Filiaur appears behind cardigan\n\"Speaking of monney, i think",
-      "msg_id": "160564"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-16T22:43:53.583246+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "Anna closes her eyes for a moment, concentrating to cast a s",
-      "msg_id": "161734"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-16T22:43:53.587312+00:00",
-      "player": "Cannon",
-      "preview": "Nadya seems a little baffled.\n\n\"Illogical? What, do you want",
-      "msg_id": "161720"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-06-16T22:43:53.589654+00:00",
-      "player": "Chase",
-      "preview": "\"So long as the haunts don't start haunting until after we'v",
-      "msg_id": "161737"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T12:29:12.381665+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "\"Then, I shall be the one to open them! I will sense the met",
-      "msg_id": "161772"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T12:29:12.388689+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus shrugs.\n\"Suit yourself, at this point I think we can ",
-      "msg_id": "161799"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-17T19:03:29.030041+00:00",
-      "player": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
-      "preview": "\"I'm not, so we shan't lose our vigilance! Besides, are wall",
-      "msg_id": "161849"
-    },
     {
       "pid": "40585",
       "time": "2026-06-17T19:03:29.037231+00:00",
@@ -2947,6 +2898,55 @@
       "player": "Anthony",
       "preview": "Nah just my reaction",
       "msg_id": "168576"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.518746+00:00",
+      "player": "Anthony",
+      "preview": "Snipe",
+      "msg_id": "168580"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.525969+00:00",
+      "player": "Horia",
+      "preview": "hunter's aim then shoot",
+      "msg_id": "168595"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.531298+00:00",
+      "player": "Anthony",
+      "preview": "Shoo what you can't even see them.",
+      "msg_id": "168596"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.536698+00:00",
+      "player": "Horia",
+      "preview": "then Lorn moves until he sees them and then shoots",
+      "msg_id": "168597"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.541920+00:00",
+      "player": "Anthony",
+      "preview": "Also it's hunt prey.",
+      "msg_id": "168598"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.552500+00:00",
+      "player": "Anthony",
+      "preview": "Stride until less than 360 ft away",
+      "msg_id": "168641"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-07-27T04:42:58.562616+00:00",
+      "player": "Anthony",
+      "preview": "Should be 240ft to be optimal",
+      "msg_id": "168643"
     }
   ],
   "pending_potw_boons": {

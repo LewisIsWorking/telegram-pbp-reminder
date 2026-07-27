@@ -18,48 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 168580,
+      "message_id": 168669,
       "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-26T21:27:34+00:00",
-      "preview": "Snipe",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168595,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-07-26T21:36:44+00:00",
-      "preview": "hunter's aim then shoot",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168596,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-26T21:37:19+00:00",
-      "preview": "Shoo what you can't even see them.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168597,
-      "thread_id": 137075,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-07-26T21:37:38+00:00",
-      "preview": "then Lorn moves until he sees them and then shoots",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168598,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-26T21:37:54+00:00",
-      "preview": "Also it's hunt prey.",
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-07-27T04:39:19+00:00",
+      "preview": "Tarsus runs after the trifling gnomes.",
       "media_group_id": null
     }
   ],
@@ -1021,7 +985,21 @@
     "msg:168555",
     "2026-07-26 19:51:47",
     "msg:168576",
-    "2026-07-26 21:25:49"
+    "2026-07-26 21:25:49",
+    "msg:168580",
+    "2026-07-26 21:27:34",
+    "msg:168595",
+    "2026-07-26 21:36:44",
+    "msg:168596",
+    "2026-07-26 21:37:19",
+    "msg:168597",
+    "2026-07-26 21:37:38",
+    "msg:168598",
+    "2026-07-26 21:37:54",
+    "msg:168641",
+    "2026-07-27 00:33:57",
+    "msg:168643",
+    "2026-07-27 00:34:17"
   ],
   "reply_log": [
     {
@@ -5548,17 +5526,80 @@
       "player": "Anthony",
       "preview": "Nah just my reaction",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:33:06+00:00",
+      "pid": "40585",
+      "msg_id": "168580",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Snipe",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:33:18+00:00",
+      "pid": "40585",
+      "msg_id": "168595",
+      "thread_id": 137075,
+      "player": "Horia",
+      "preview": "hunter's aim then shoot",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:33:25+00:00",
+      "pid": "40585",
+      "msg_id": "168596",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Shoo what you can't even see them.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:33:31+00:00",
+      "pid": "40585",
+      "msg_id": "168597",
+      "thread_id": 137075,
+      "player": "Horia",
+      "preview": "then Lorn moves until he sees them and then shoots",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:33:42+00:00",
+      "pid": "40585",
+      "msg_id": "168598",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Also it's hunt prey.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:34:15+00:00",
+      "pid": "40585",
+      "msg_id": "168641",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Stride until less than 360 ft away",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-27T00:34:21+00:00",
+      "pid": "40585",
+      "msg_id": "168643",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Should be 240ft to be optimal",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-07-26 21:27:34|2026-07-26 21:36:44|2026-07-26 21:37:19|2026-07-26 21:37:38|2026-07-26 21:37:54",
+      "fingerprint": "2026-07-27 04:39:19",
       "msg_ids": [
-        168605
+        168675
       ],
-      "last_posted_at": "2026-07-26T22:05:34.163650+00:00",
+      "last_posted_at": "2026-07-27T04:43:09.219901+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
