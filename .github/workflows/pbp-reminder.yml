@@ -4,6 +4,10 @@ on:
   schedule:
     # Run every hour to process messages and check for inactivity
     - cron: '0 * * * *'
+    # Half-past the hour: lightweight queue-only pass. Ingests updates so
+    # GM reply-to clears show up within ~30 min instead of ~60, without
+    # firing the other ~28 scheduled features. See the run-queue job.
+    - cron: '30 * * * *'
   push:
     branches: [main]
     paths-ignore:
@@ -49,6 +53,10 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: write
+    # Both crons trigger this workflow, so the full pass must exclude the
+    # :30 queue-only schedule. Non-schedule events (push, workflow_dispatch)
+    # still run the full pass exactly as before.
+    if: github.event_name != 'schedule' || github.event.schedule == '0 * * * *'
     steps:
       # `ref: main` instead of the default (which checks out GITHUB_SHA,
       # the SHA that triggered the workflow). When the concurrency group
@@ -107,6 +115,68 @@ jobs:
           # was the visible half; the silent state loss was the worse
           # half. Now we fail loudly if 5 rebase+push attempts can't
           # land the state. See L21 in docs/dev/REFACTOR_PROGRESS.md.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "State push succeeded on attempt $i"
+              exit 0
+            fi
+            if [ $i -eq 5 ]; then
+              echo "ERROR: state push failed after 5 attempts" >&2
+              exit 1
+            fi
+            echo "Push attempt $i failed; rebasing onto origin/main and retrying..."
+            if ! git pull --rebase origin main; then
+              echo "ERROR: rebase failed — likely merge conflict in state files" >&2
+              exit 1
+            fi
+          done
+
+  # Lightweight half-hourly pass: process Telegram updates (so GM reply-to
+  # clears register within ~30 min) and refresh the queue only. Deliberately
+  # skips set_commands, refusal_alert and the other ~28 scheduled features so
+  # the extra cadence costs one short run rather than a second full pass.
+  run-queue:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: write
+    if: github.event_name == 'schedule' && github.event.schedule == '30 * * * *'
+    steps:
+      # Same `ref: main` rule as the full run: the pbp-checker concurrency
+      # group serialises runs, so this must check out main HEAD to pick up
+      # the previous run's state push rather than the stale trigger SHA.
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run queue-only checker
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID }}
+        run: cd scripts && python checker.py --queue-only
+
+      - name: Commit data (archive + transcripts + state)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ config.json
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "Update queue state [skip ci]"
+          # Same retry-with-rebase contract as the full run. The offset was
+          # advanced by get_updates, so failing to land this push would
+          # silently lose the updates this run consumed.
           for i in 1 2 3 4 5; do
             if git push; then
               echo "State push succeeded on attempt $i"

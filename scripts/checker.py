@@ -57,8 +57,18 @@ from transcript.finalize import update_transcript_index
 from compat import *  # noqa: F401,F403
 
 # --- Orchestrator ---
-def _run_checks(config: dict, bot_state: dict) -> None:
-    """Run all scheduled checks, isolating failures."""
+# Queue-only subset. The half-hourly `--queue-only` run ingests Telegram
+# updates (so GM reply-to clears register promptly) and refreshes the GM
+# queue, without firing the other ~28 scheduled features every 30 minutes.
+QUEUE_CHECKS = ("Queue reminder", "Queue nudge")
+
+
+def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:
+    """Run all scheduled checks, isolating failures.
+
+    ``only`` restricts execution to the named checks (see QUEUE_CHECKS).
+    An empty tuple, the default, runs every check as before.
+    """
     now = datetime.now(timezone.utc)
     maps = build_topic_maps(config)
 
@@ -97,13 +107,20 @@ def _run_checks(config: dict, bot_state: dict) -> None:
         ("State backup", backup_state),
     ]
     for label, func in checks:
+        if only and label not in only:
+            continue
         try:
             func(config, bot_state, now=now, maps=maps)
         except Exception as e:
             print(f"Error in {label}: {e}")
 
-def main() -> None:
-    """Entry point: load config/state, process updates, run checks, save."""
+def main(queue_only: bool = False) -> None:
+    """Entry point: load config/state, process updates, run checks, save.
+
+    ``queue_only`` runs the half-hourly lightweight pass: updates are still
+    fetched and processed (this is what clears GM reply-to entries, so it
+    cannot be skipped) and state is still saved, but only QUEUE_CHECKS run.
+    """
     telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     gist_token = os.environ.get("GIST_TOKEN", "")
     gist_id = os.environ.get("GIST_ID", "")
@@ -138,7 +155,7 @@ def main() -> None:
     if updates:
         bot_state["offset"] = process_updates(updates, config, bot_state)  # pragma: no cover
 
-    _run_checks(config, bot_state)
+    _run_checks(config, bot_state, only=QUEUE_CHECKS if queue_only else ())
     cleanup_timestamps(bot_state)
 
     try:
@@ -149,4 +166,4 @@ def main() -> None:
     state_store.save(bot_state)
     print("Done")
 if __name__ == "__main__":  # pragma: no cover
-    main()
+    main(queue_only="--queue-only" in sys.argv)
