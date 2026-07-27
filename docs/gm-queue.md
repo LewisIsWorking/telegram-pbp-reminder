@@ -208,7 +208,39 @@ contains ~180 historical `unreplied` entries from before it was excluded; they
 are inert and nothing reports them, so that number is not a backlog.
 
 Set `queue_priority: true` to always pin a campaign to the top of the
-queue list (e.g. C06 Kibwe).
+queue list. Currently **C06 Kibwe** and **C01 Doomsday Funtime**, both at
+rank `1`. Equal ranks are broken by age, so neither automatically outranks
+the other.
+
+---
+
+## "Reply to this next" follow-up
+
+After the queue itself, the bot posts a short follow-up naming the single
+campaign most in need of a reply:
+
+```
+━━━━━━━━━━━━━━━━
+🎯 Reply to this next: 📆 C01: Doomsday Funtime
+📌 Prioritised campaign, so it jumps the age queue.
+⏳ Oldest message waiting 6d 16h (9 unreplied in this campaign).
+↗ Horia Constantinescu: "Yes I am grateful for their aid."
+🔗 https://t.me/Path_Wars/25059/168196
+```
+
+Selection rule (`scheduled/queue_focus.py`):
+
+1. Normally the winner is the campaign whose **oldest** unreplied message has
+   been waiting longest.
+2. If **any** campaign flagged `queue_priority` has unreplied entries, the
+   choice is made among those only. A prioritised campaign is never passed
+   over because another campaign has an older message — C01 with a 2-hour-old
+   message beats C07 with a 19-day-old one.
+3. Between prioritised campaigns, lower rank number wins first, then age.
+
+The follow-up is appended to the queue's own message batch, so it is deleted
+together with that queue on the next post. That is deliberate: a focus message
+outliving its queue would keep pointing at a message already answered.
 
 ---
 

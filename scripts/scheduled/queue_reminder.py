@@ -10,6 +10,7 @@ from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import silent_campaigns, caught_up_campaigns
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
+from scheduled.queue_focus import build_focus_message
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -193,6 +194,12 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             current += line + "\n"
         if current.strip():
             msgs.append(current.rstrip())
+
+    # "Reply to this next" follow-up. Appended to the same batch so it is
+    # evicted with the queue it describes rather than lingering once answered.
+    focus = build_focus_message(config, scanned, priority_map, now)
+    if focus:
+        msgs.append(focus)
 
     sent, _first_msg_id = post_and_persist(state, group_id, bot_topic, msgs)
     if sent:
