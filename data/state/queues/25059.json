@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 168863,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-27T21:37:35+00:00",
-      "preview": "Thank you, but I have my personal mix.\n\nAlthough I'd appreciate if you could assist me after I'm done cleaning my exoskeleton. I need someone to apply flames onto my back to blacken my finish once more.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -422,7 +412,9 @@
     "msg:168814",
     "2026-07-27 14:32:02",
     "msg:168822",
-    "2026-07-27 14:51:26"
+    "2026-07-27 14:51:26",
+    "msg:168863",
+    "2026-07-27 21:37:35"
   ],
   "reply_log": [
     {
@@ -2269,16 +2261,23 @@
       "player": "Dalaxiss",
       "preview": "Listening to this conversation, Katmidlar offers the construct one of his versat",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-28T02:27:18+00:00",
+      "pid": "25059",
+      "msg_id": "168863",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Thank you, but I have my personal mix.\n\nAlthough I'd appreciate if you could ass",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-27 21:37:35",
-      "msg_ids": [
-        168866
-      ],
-      "last_posted_at": "2026-07-27T22:33:58.226935+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 168886
     }
   }
 }
