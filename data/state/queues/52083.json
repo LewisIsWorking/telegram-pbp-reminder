@@ -18,24 +18,6 @@
       "time": "2026-07-14T21:24:51+00:00",
       "preview": "The electronic music song blasting out from Livy might've drowned the sound of your question on top of the sound of battle.",
       "media_group_id": null
-    },
-    {
-      "message_id": 167949,
-      "thread_id": 145045,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-07-19T08:17:17+00:00",
-      "preview": "[media]",
-      "media_group_id": "14275592300632625"
-    },
-    {
-      "message_id": 167984,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-19T11:25:05+00:00",
-      "preview": "[media]",
-      "media_group_id": "14275682444610420"
     }
   ],
   "replied": [
@@ -256,7 +238,20 @@
     "msg:167847",
     "2026-07-18 20:48:23",
     "msg:167852",
-    "2026-07-18 20:53:23"
+    "2026-07-18 20:53:23",
+    "msg:167949",
+    "2026-07-19 08:17:17",
+    "msg:167950",
+    "2026-07-19 08:17:18",
+    "msg:167951",
+    "2026-07-19 08:17:19",
+    "msg:167952",
+    "2026-07-19 08:17:20",
+    "msg:167953",
+    "2026-07-19 08:17:21",
+    "msg:167984",
+    "2026-07-19 11:25:05",
+    "msg:167985"
   ],
   "reply_log": [
     {
@@ -1262,6 +1257,69 @@
       "player": "Anthony",
       "preview": "Is the magnetic field still here?",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:32:18+00:00",
+      "pid": "52083",
+      "msg_id": "167949",
+      "thread_id": 145045,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:32:24+00:00",
+      "pid": "52083",
+      "msg_id": "167950",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:32:30+00:00",
+      "pid": "52083",
+      "msg_id": "167951",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:32:35+00:00",
+      "pid": "52083",
+      "msg_id": "167952",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:32:39+00:00",
+      "pid": "52083",
+      "msg_id": "167953",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:33:58+00:00",
+      "pid": "52083",
+      "msg_id": "167984",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-28T03:34:34+00:00",
+      "pid": "52083",
+      "msg_id": "167985",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1276,12 +1334,10 @@
       "caught_up_msg_id": null
     },
     "145045": {
-      "msg_ids": [
-        168070
-      ],
-      "fingerprint": "2026-07-19 08:17:17|2026-07-19 08:17:18|2026-07-19 08:17:19|2026-07-19 08:17:20|2026-07-19 08:17:21|2026-07-19 11:25:05|2026-07-19 11:25:05",
-      "last_posted_at": "2026-07-19T13:40:18.871107+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 168917
     }
   }
 }
