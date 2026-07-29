@@ -107,8 +107,8 @@
   },
   "combat": {},
   "last_leaderboard": "2026-07-29T15:12:11.102958+00:00",
-  "last_roster_nudge": "2026-07-29T09:43:20.973001+00:00",
-  "last_roster_snapshot": "C01:7/6|C00:4/6|C04:3/6|C05:4/6|C06:6/6|C07:5/6|C09:1/6|C08:0/4",
+  "last_roster_nudge": "2026-07-29T21:03:55.235329+00:00",
+  "last_roster_snapshot": "C01:7/6|C00:4/6|C04:2/6|C05:4/6|C06:6/6|C07:5/6|C09:1/6|C08:0/4",
   "gm_escalation": {
     "level": 1,
     "last_at": "2026-07-29T12:07:07.171150+00:00"
@@ -306,7 +306,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-07-26",
   "last_queue_daily_slots": [
-    "2026-07-15:21",
     "2026-07-16:09",
     "2026-07-17:21",
     "2026-07-19:09",
@@ -319,7 +318,8 @@
     "2026-07-27:21",
     "2026-07-28:09",
     "2026-07-28:21",
-    "2026-07-29:09"
+    "2026-07-29:09",
+    "2026-07-29:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -331,15 +331,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-27",
-  "last_queue_pin_id": 168990,
-  "queue_post_count": 1199,
+  "last_queue_pin_id": 169019,
+  "queue_post_count": 1200,
   "gm_queue_history": [
     {
       "msg_ids": [
-        168990,
-        168991
+        169019,
+        169020
       ],
-      "pin_id": 168990
+      "pin_id": 169019
     }
   ]
 }
