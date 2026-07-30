@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 169289,
+      "thread_id": 107171,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-07-30T22:56:07+00:00",
+      "preview": "Been busy with work and vacation. And laptop died. So still a week out.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1772,10 +1782,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 168753
+      "fingerprint": "2026-07-30 22:56:07",
+      "msg_ids": [
+        169297
+      ],
+      "last_posted_at": "2026-07-30T23:33:16.107766+00:00",
+      "caught_up_msg_id": null
     },
     "142887": {
       "fingerprint": "",

@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 169287,
+      "thread_id": 137075,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-07-30T22:53:24+00:00",
+      "preview": "Master cho will move 120 feet closer/follow the party .  (Cannot unpause on tablet or phone so if someone could move me.)",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5608,10 +5617,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 168754
+      "fingerprint": "2026-07-30 22:53:24",
+      "msg_ids": [
+        169295
+      ],
+      "last_posted_at": "2026-07-30T23:33:13.709612+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
