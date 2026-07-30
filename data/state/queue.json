@@ -120,7 +120,9 @@
       "2026-07-15T06:24:21.913375+00:00",
       "2026-07-15T06:24:21.915049+00:00",
       "2026-07-15T06:24:21.916700+00:00",
-      "2026-07-15T06:24:21.918417+00:00"
+      "2026-07-15T06:24:21.918417+00:00",
+      "2026-07-30T05:49:35.143863+00:00",
+      "2026-07-30T05:49:35.147375+00:00"
     ],
     "40585": [
       "2026-03-30T14:34:30.526778+00:00",
@@ -1591,20 +1593,6 @@
   "queue_archive": [
     {
       "pid": "40585",
-      "time": "2026-06-28T21:29:41.910406+00:00",
-      "player": "Buffet",
-      "preview": "[media]",
-      "msg_id": "163554"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-06-28T21:29:41.917417+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "163555"
-    },
-    {
-      "pid": "40585",
       "time": "2026-06-28T21:29:41.921768+00:00",
       "player": "Kaer'maga when?",
       "preview": "I activate my stance and use the longbow on them",
@@ -2988,6 +2976,20 @@
       "player": "Chase",
       "preview": "[media]",
       "msg_id": "166525"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-30T05:49:35.143863+00:00",
+      "player": "Buffet",
+      "preview": "Alitheia winces as the shrieking sound rings in her ears. Sh",
+      "msg_id": "167189"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-07-30T05:49:35.147375+00:00",
+      "player": "Buffet",
+      "preview": "As nothing has yet to materialize in this featureless void, ",
+      "msg_id": "167413"
     }
   ],
   "pending_potw_boons": {

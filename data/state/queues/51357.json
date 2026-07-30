@@ -2,15 +2,6 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 167189,
-      "thread_id": 56842,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-14T21:45:02+00:00",
-      "preview": "Alitheia winces as the shrieking sound rings in her ears. She raises her shield again, searching for the source of the voice.",
-      "media_group_id": null
-    },
-    {
       "message_id": 167346,
       "thread_id": 51357,
       "user_id": "6144366145",
@@ -44,15 +35,6 @@
       "user_name": "Cannon",
       "time": "2026-07-15T15:21:18+00:00",
       "preview": "I passed that arcana check a full ass entire week before Anna",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167413,
-      "thread_id": 56842,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-15T23:49:17+00:00",
-      "preview": "As nothing has yet to materialize in this featureless void, she calls out \"Could you stop talking about me like I'm not in the room? It's a bit rude. It would be great if I could see who I'm talking with, as well.\"",
       "media_group_id": null
     }
   ],
@@ -296,7 +278,11 @@
     "msg:165746",
     "2026-07-07 06:45:15",
     "msg:165858",
-    "2026-07-07 21:33:06"
+    "2026-07-07 21:33:06",
+    "msg:167189",
+    "2026-07-14 21:45:02",
+    "msg:167413",
+    "2026-07-15 23:49:17"
   ],
   "reply_log": [
     {
@@ -1331,6 +1317,24 @@
       "player": "Cannon",
       "preview": "https://t.me/Path_Wars/47889/164311",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T05:34:09+00:00",
+      "pid": "51357",
+      "msg_id": "167189",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "Alitheia winces as the shrieking sound rings in her ears. She raises her shield ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T05:34:32+00:00",
+      "pid": "51357",
+      "msg_id": "167413",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "As nothing has yet to materialize in this featureless void, she calls out \"Could",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1351,11 +1355,10 @@
       "caught_up_msg_id": 154436
     },
     "56842": {
-      "msg_ids": [
-        167442
-      ],
-      "fingerprint": "2026-07-14 21:45:02|2026-07-15 23:49:17",
-      "last_posted_at": "2026-07-16T03:22:15.791444+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 169088
     }
   }
 }
