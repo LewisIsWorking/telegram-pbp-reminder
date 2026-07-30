@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import helpers
 from commands.queue_scan import scan_transcripts
 from commands.queue_format import (
-    entry_age_icon, age_str, short_preview, NO_PRIORITY,
+    entry_age_icon, age_str, short_preview, NO_PRIORITY, build_priority_map,
 )
 
 
@@ -20,12 +20,7 @@ def build_queue(config: dict, state: dict) -> str:
 
     # Build numeric priority map — lower = higher position in queue
     # queue_priority: True (legacy bool) → level 1; int used directly
-    priority_map: dict[str, int] = {}
-    for pair in config.get("topic_pairs", []):
-        qp = pair.get("queue_priority")
-        if qp is not None and qp is not False:
-            pid_str = str(pair["pbp_topic_ids"][0])
-            priority_map[pid_str] = int(qp) if isinstance(qp, int) else 1
+    priority_map = build_priority_map(config)
     priority_pids = set(priority_map.keys())  # kept for pin-icon display
 
     def sort_key(pid):

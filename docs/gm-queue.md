@@ -196,6 +196,32 @@ with a personalised message and reply link.
 
 ---
 
+## "All caught up!" notification
+
+When the queue clears, the bot replaces it with a caught-up message that also
+reports how long each campaign has been quiet, **longest idle first**:
+
+```
+━━━━━━━━━━━━━━━━
+📋 All caught up! No unreplied messages.
+
+━━ 🕒 Time since last post ━━
+  💀 🤖 C09: Metal City — no posts for 22d 11h 🔗 ...
+  🟡 🦠 C06: Kibwe — last post 3d 7h ago 🔗 ...
+```
+
+Notes:
+- Campaigns past the silence threshold read "no posts for X"; the rest read
+  "last post X ago", matching the wording used inside the queue itself.
+- A campaign with unreplied entries never appears here, since it is already
+  listed in the queue body.
+- A campaign the bot has never seen a post in is skipped entirely, because it
+  has no last-post time to report.
+- Built by `queue_silence.campaign_age_lines`, rendered by
+  `queue_caught_up.post_caught_up`.
+
+---
+
 ## Campaign exclusions
 
 Set `queue_exclude: true` in a campaign's topic_pair to skip it entirely.

@@ -6,13 +6,20 @@ import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
 from commands.queue_format import (
-    entry_age_icon, age_str, short_preview, format_queue_line, NO_PRIORITY,
+    entry_age_icon, age_str, short_preview, format_queue_line,
+    NO_PRIORITY, build_priority_map,
 )
 from scheduled.topic_queue_poster import post_topic_queues
-from scheduled.queue_silence import silent_campaigns, caught_up_campaigns
+from scheduled.queue_silence import (
+    silent_campaigns, caught_up_campaigns, campaign_age_lines,
+)
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_focus import build_focus_message
+from scheduled.queue_render import (
+    build_streak, build_summary, build_momentum_map, build_header,
+    chunk_messages,
+)
 
 
 def _gm_mentions(config: dict, state: dict, pid: str) -> str:
@@ -83,7 +90,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if state.get("last_queue_fingerprint", "empty") != "empty":
             # See _post_caught_up docstring — routes via batch
             # machinery so the previous GM queue gets evicted.
-            _post_caught_up(state, group_id, bot_topic)
+            _post_caught_up(state, group_id, bot_topic,
+                             campaign_age_lines(config, state, scanned, now))
         state["last_queue_fingerprint"] = "empty"
         return
 
@@ -92,19 +100,15 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         if state.get("last_queue_fingerprint", "empty") != "empty":
             # Defensive path (current scanner doesn't produce this
             # shape but might in the future). Same fix as line-68.
-            _post_caught_up(state, group_id, bot_topic)
+            _post_caught_up(state, group_id, bot_topic,
+                             campaign_age_lines(config, state, scanned, now))
         state["last_queue_fingerprint"] = fingerprint
         return
 
     # Build priority map from config — lower number = higher priority
     # queue_priority: True (legacy) → level 1; numeric value used directly
     # C11 uses level 0 (highest), C06 uses level 1, rest use level 2
-    priority_map: dict[str, int] = {}
-    for pair in config.get("topic_pairs", []):
-        qp = pair.get("queue_priority")
-        if qp is not None and qp is not False:
-            pid_str = str(pair["pbp_topic_ids"][0])
-            priority_map[pid_str] = int(qp) if isinstance(qp, int) else 1
+    priority_map = build_priority_map(config)
     priority_pids = set(priority_map.keys())  # kept for pin-icon display
 
     def sort_key(pid):
@@ -115,29 +119,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         return (priority_map.get(pid, NO_PRIORITY), oldest)
 
     sorted_pids = sorted(scanned.keys(), key=sort_key)
-    from commands.queue_stats import get_today_clears, get_alltime_clears
-    cleared_today = get_today_clears(state, now)
-    cleared_alltime = get_alltime_clears()
-    streak = f" | ✅ {cleared_today} today" if cleared_today else ""
-    streak += f" | 🏆 {cleared_alltime} all-time" if cleared_alltime else ""
-    # Per-campaign summary line
-    summary_parts = []
-    for pid in sorted_pids:
-        d = scanned[pid]
-        c = d.get("code", "")
-        summary_parts.append(f"{c}:{len(d['entries'])}" if c else f"{d['campaign']}:{len(d['entries'])}")
-    summary = " ".join(summary_parts)
-    # Precompute fastest responders per campaign
-    from commands.queue_analytics import player_momentum
-    state.setdefault("_config_cache", config)
-    momentum_lines = player_momentum(state, config)
-    momentum_map = {}
-    for m in momentum_lines:
-        if ": " in m:
-            k, v = m.split(": ", 1)
-            momentum_map[k] = v
+    streak = build_streak(state, now)
+    summary = build_summary(scanned, sorted_pids)
+    momentum_map = build_momentum_map(state, config)
     queue_num = state.get("queue_post_count", 0) + 1
-    lines = [f"━━━━━━━━━━━━━━━━\n📋 GM Queue #{queue_num} — Unreplied: {total}{streak}\n{summary}\nAge: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d 🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d 🟤14d 🟫15d ⚫16d ⬛17d 💀21d ☠️25d"]
+    lines = [build_header(queue_num, total, streak, summary)]
 
     entry_num = 1
     for pid in sorted_pids:
@@ -185,19 +171,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     message = "\n".join(lines)
 
-    # Split if needed
-    if len(message) <= 4000:
-        msgs = [message]
-    else:
-        msgs = []
-        current = ""
-        for line in lines:
-            if len(current) + len(line) + 1 > 3900:
-                msgs.append(current)
-                current = ""
-            current += line + "\n"
-        if current.strip():
-            msgs.append(current.rstrip())
+    msgs = chunk_messages(lines, message)
 
     # "Reply to this next" follow-up. Appended to the same batch so it is
     # evicted with the queue it describes rather than lingering once answered.

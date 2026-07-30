@@ -31,7 +31,17 @@ CAUGHT_UP_TEXT = (
 )
 
 
-def post_caught_up(state: dict, group_id: int, bot_topic: int) -> None:
-    """Post the caught-up notification via the batch machinery."""
-    post_and_persist(state, group_id, bot_topic,
-                     [CAUGHT_UP_TEXT], pin=False)
+def post_caught_up(state: dict, group_id: int, bot_topic: int,
+                   age_lines: list[str] | None = None) -> None:
+    """Post the caught-up notification via the batch machinery.
+
+    ``age_lines`` (from ``queue_silence.campaign_age_lines``) is appended so a
+    cleared queue still reports how long each campaign has been quiet. Without
+    it the message says only that there is nothing to reply to, which tells the
+    GM nothing about which game has gone stale.
+    """
+    text = CAUGHT_UP_TEXT
+    if age_lines:
+        text += "\n\n━━ 🕒 Time since last post ━━\n"
+        text += "\n".join(age_lines)
+    post_and_persist(state, group_id, bot_topic, [text], pin=False)

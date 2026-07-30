@@ -14,6 +14,24 @@ Used by commands/queue.py and scheduled/queue_reminder.py.
 NO_PRIORITY = 99
 
 
+def build_priority_map(config: dict) -> dict[str, int]:
+    """Map pid -> numeric queue rank. Lower rank sorts higher in the queue.
+
+    ``queue_priority: true`` is a legacy alias for rank 1; an integer is used
+    directly. Campaigns absent from the map sort at NO_PRIORITY.
+
+    Shared by commands/queue.py and scheduled/queue_reminder.py, which built
+    this identically before 2026-07-30.
+    """
+    priority_map: dict[str, int] = {}
+    for pair in config.get("topic_pairs", []):
+        qp = pair.get("queue_priority")
+        if qp is not None and qp is not False:
+            pid_str = str(pair["pbp_topic_ids"][0])
+            priority_map[pid_str] = int(qp) if isinstance(qp, int) else 1
+    return priority_map
+
+
 def entry_age_icon(hours: float) -> str:
     """Return an icon showing how long a message has been unreplied.
 

@@ -127,3 +127,23 @@ def caught_up_campaigns(config: dict, state: dict,
             continue
         lines.append(f"  {icon} {prefix}{label} — last post {age} ago{link}")
     return lines
+
+
+def campaign_age_lines(config: dict, state: dict,
+                       scanned: dict, now: datetime) -> list[str]:
+    """Return one line per campaign with no unreplied entries, longest idle first.
+
+    Used by the "All caught up!" notification so a cleared queue still shows
+    how long each campaign has been quiet. Wording matches the in-queue
+    sections: campaigns past the silence threshold read "no posts for X",
+    the rest read "last post X ago".
+    """
+    rows = []
+    for _pair, _pid, days, icon, prefix, label, age, link in             _idle_campaigns(config, state, scanned, now):
+        if days >= _SILENCE_THRESHOLD_DAYS:
+            text = f"  {icon} {prefix}{label} — no posts for {age}{link}"
+        else:
+            text = f"  {icon} {prefix}{label} — last post {age} ago{link}"
+        rows.append((days, text))
+    rows.sort(key=lambda r: r[0], reverse=True)
+    return [text for _days, text in rows]
