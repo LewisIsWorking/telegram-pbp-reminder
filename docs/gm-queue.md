@@ -207,10 +207,23 @@ the global GM list for that campaign — see
 contains ~180 historical `unreplied` entries from before it was excluded; they
 are inert and nothing reports them, so that number is not a backlog.
 
-Set `queue_priority: true` to always pin a campaign to the top of the
-queue list. Currently **C06 Kibwe** and **C01 Doomsday Funtime**, both at
-rank `1`. Equal ranks are broken by age, so neither automatically outranks
-the other.
+Set `queue_priority` to pin a campaign above the rest of the queue list.
+The value is a **rank, lower wins**. `true` is accepted as a legacy alias
+for rank 1.
+
+| Rank | Campaigns |
+|------|-----------|
+| `1`  | C10 The Junction |
+| `2`  | C06 Kibwe, C01 Doomsday Funtime |
+| `99` | everything else (`NO_PRIORITY`, implicit) |
+
+Equal ranks are broken by age, so C06 and C01 do not outrank each other.
+
+> ⚠️ **Do not assign a rank of `99` or higher.** `NO_PRIORITY` in
+> `commands/queue_format.py` is the implicit rank for unprioritised campaigns;
+> a campaign at or above it would sort level with, or below, campaigns having
+> no priority at all. This sentinel was `2` until 2026-07-30, which is why only
+> one priority level was usable before then.
 
 ---
 
@@ -237,6 +250,8 @@ Selection rule (`scheduled/queue_focus.py`):
    over because another campaign has an older message — C01 with a 2-hour-old
    message beats C07 with a 19-day-old one.
 3. Between prioritised campaigns, lower rank number wins first, then age.
+   So C10 (rank 1) beats C01/C06 (rank 2) whenever C10 is waiting, and when
+   C10 is caught up the rank-2 pair take over.
 
 The follow-up is appended to the queue's own message batch, so it is deleted
 together with that queue on the next post. That is deliberate: a focus message
