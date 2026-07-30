@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 169132,
-      "thread_id": 56842,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-30T08:24:22+00:00",
-      "preview": "Yes",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -271,7 +261,9 @@
     "msg:169099",
     "2026-07-30 06:36:49",
     "msg:169117",
-    "2026-07-30 07:42:52"
+    "2026-07-30 07:42:52",
+    "msg:169132",
+    "2026-07-30 08:24:22"
   ],
   "reply_log": [
     {
@@ -1396,6 +1388,15 @@
       "player": "Buffet",
       "preview": "The lack of communication is wearing her patience thin. \n\"I guess the rat has to",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T09:40:16+00:00",
+      "pid": "51357",
+      "msg_id": "169132",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "Yes",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1414,12 +1415,10 @@
       "caught_up_msg_id": 154436
     },
     "56842": {
-      "msg_ids": [
-        169136
-      ],
-      "fingerprint": "2026-07-30 08:24:22",
-      "last_posted_at": "2026-07-30T08:40:38.547584+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 169159
     }
   }
 }
