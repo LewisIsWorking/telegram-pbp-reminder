@@ -1,43 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 167346,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-15T09:23:30+00:00",
-      "preview": "BRO did not read it's for the DC 16 survival check",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167347,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-15T09:24:40+00:00",
-      "preview": "Actually nvm this one is useless since I passed the perception check",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167348,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-15T09:26:17+00:00",
-      "preview": "Anyways every roll was passed",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167359,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-07-15T15:21:18+00:00",
-      "preview": "I passed that arcana check a full ass entire week before Anna",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -282,7 +245,23 @@
     "msg:167189",
     "2026-07-14 21:45:02",
     "msg:167413",
-    "2026-07-15 23:49:17"
+    "2026-07-15 23:49:17",
+    "msg:167346",
+    "2026-07-15 09:23:30",
+    "msg:169096",
+    "2026-07-30 06:22:49",
+    "msg:169097",
+    "2026-07-30 06:25:16",
+    "msg:167347",
+    "2026-07-15 09:24:40",
+    "msg:167348",
+    "2026-07-15 09:26:17",
+    "msg:167359",
+    "2026-07-15 15:21:18",
+    "msg:169099",
+    "2026-07-30 06:36:49",
+    "msg:169117",
+    "2026-07-30 07:42:52"
   ],
   "reply_log": [
     {
@@ -1335,18 +1314,88 @@
       "player": "Buffet",
       "preview": "As nothing has yet to materialize in this featureless void, she calls out \"Could",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T07:54:40.422016+00:00",
+      "pid": "51357",
+      "msg_id": "167346",
+      "thread_id": "51357",
+      "player": "Anthony NegetZ",
+      "preview": "BRO did not read it's for the DC 16 survival check",
+      "via": "markdone"
+    },
+    {
+      "t": "2026-07-30T06:25:16+00:00",
+      "pid": "51357",
+      "msg_id": "169096",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "Alitheia lowers her shield.\n\"What is this, some kind of prison? Why are these be",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T06:25:45+00:00",
+      "pid": "51357",
+      "msg_id": "169097",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T06:38:15+00:00",
+      "pid": "51357",
+      "msg_id": "167347",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "Actually nvm this one is useless since I passed the perception check",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T06:38:21+00:00",
+      "pid": "51357",
+      "msg_id": "167348",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "Anyways every roll was passed",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T06:38:30+00:00",
+      "pid": "51357",
+      "msg_id": "167359",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "I passed that arcana check a full ass entire week before Anna",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T07:11:05+00:00",
+      "pid": "51357",
+      "msg_id": "169099",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "Alitheia walks down the row, but steers clear of the undead in spite of the rest",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T07:47:34+00:00",
+      "pid": "51357",
+      "msg_id": "169117",
+      "thread_id": 56842,
+      "player": "Buffet",
+      "preview": "The lack of communication is wearing her patience thin. \n\"I guess the rat has to",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-07-15 09:23:30|2026-07-15 09:24:40|2026-07-15 09:26:17|2026-07-15 15:21:18",
-      "msg_ids": [
-        167366
-      ],
-      "last_posted_at": "2026-07-15T15:42:08.094788+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169128
     },
     "145040": {
       "msg_ids": [],
