@@ -1,25 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 165977,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Kaer'maga when?",
-      "time": "2026-07-08T06:46:09+00:00",
-      "preview": "Necrila simply says \"I am hungry. Your last name is Crab-Basket. How many crabs can I have for this coin. (She shows him a gold coin.) \" then she turns to Mira surprised \"Miss Mira what are you doing here?! Are you also what they call a PiRaTE? I thought that you were part of the wizard gang\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 166004,
-      "thread_id": 66154,
-      "user_id": "8770290576",
-      "user_name": "Bre",
-      "time": "2026-07-08T16:05:19+00:00",
-      "preview": "Kyomi yawns out of boredom, \"I thought we were supposed to be going on some sort of mission? I'm tired of just standing around as a overly qualified babysitter.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -199,7 +180,11 @@
     "msg:165296",
     "2026-07-05 13:24:28",
     "msg:166006",
-    "2026-07-08 17:36:01"
+    "2026-07-08 17:36:01",
+    "msg:165977",
+    "2026-07-08 06:46:09",
+    "msg:166004",
+    "2026-07-08 16:05:19"
   ],
   "reply_log": [
     {
@@ -1032,18 +1017,34 @@
       "player": "Anthony",
       "preview": "Continuing her shopping Filliaur snaps back.\n\"As far as i know, i'm the only one",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T02:19:28+00:00",
+      "pid": "66154",
+      "msg_id": "165977",
+      "thread_id": 66154,
+      "player": "Kaer'maga when?",
+      "preview": "Necrila simply says \"I am hungry. Your last name is Crab-Basket. How many crabs ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T02:20:19+00:00",
+      "pid": "66154",
+      "msg_id": "166004",
+      "thread_id": 66154,
+      "player": "Bre",
+      "preview": "Kyomi yawns out of boredom, \"I thought we were supposed to be going on some sort",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-07-08 06:46:09|2026-07-08 16:05:19",
-      "msg_ids": [
-        166048
-      ],
-      "last_posted_at": "2026-07-08T19:45:24.693801+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169064
     }
   }
 }

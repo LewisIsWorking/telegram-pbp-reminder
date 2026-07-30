@@ -1,25 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 165926,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-07-08T01:49:52+00:00",
-      "preview": "Lai stops beside Rune(?) \n\"What did you wake up?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 167133,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-07-14T21:24:51+00:00",
-      "preview": "The electronic music song blasting out from Livy might've drowned the sound of your question on top of the sound of battle.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -251,7 +232,11 @@
     "2026-07-19 08:17:21",
     "msg:167984",
     "2026-07-19 11:25:05",
-    "msg:167985"
+    "msg:167985",
+    "msg:165926",
+    "2026-07-08 01:49:52",
+    "msg:167133",
+    "2026-07-14 21:24:51"
   ],
   "reply_log": [
     {
@@ -1320,18 +1305,34 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T02:18:27+00:00",
+      "pid": "52083",
+      "msg_id": "165926",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai stops beside Rune(?) \n\"What did you wake up?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T02:18:47+00:00",
+      "pid": "52083",
+      "msg_id": "167133",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "The electronic music song blasting out from Livy might've drowned the sound of y",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-07-08 01:49:52|2026-07-14 21:24:51",
-      "msg_ids": [
-        167205
-      ],
-      "last_posted_at": "2026-07-14T22:04:53.998877+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169063
     },
     "145045": {
       "msg_ids": [],

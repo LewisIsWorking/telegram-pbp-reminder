@@ -1,25 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 166238,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-07-10T15:55:12+00:00",
-      "preview": "Pointing out the snare, the detective sends an ultra sonic pulse into the webbed area, looking for anything that might be hiding from sight.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 166525,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-07-13T18:31:47+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -389,7 +370,11 @@
     "msg:163838",
     "2026-06-29 22:02:54",
     "msg:164303",
-    "2026-07-01 19:45:01"
+    "2026-07-01 19:45:01",
+    "msg:166238",
+    "2026-07-10 15:55:12",
+    "msg:166525",
+    "2026-07-13 18:31:47"
   ],
   "reply_log": [
     {
@@ -2097,18 +2082,34 @@
       "player": "Cannon",
       "preview": "Nadya briefly tosses the bodies just in case, but stands ready to move on.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T02:21:18+00:00",
+      "pid": "76799",
+      "msg_id": "166238",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "Pointing out the snare, the detective sends an ultra sonic pulse into the webbed",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T02:28:54+00:00",
+      "pid": "76799",
+      "msg_id": "166525",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-07-10 15:55:12|2026-07-13 18:31:47",
-      "msg_ids": [
-        166541
-      ],
-      "last_posted_at": "2026-07-13T20:19:31.685516+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169065
     },
     "144765": {
       "fingerprint": "",

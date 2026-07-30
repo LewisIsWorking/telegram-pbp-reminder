@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 168947,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-28T16:22:29+00:00",
-      "preview": "I fight excessive outbreaks of chaos, the ones that can cause harm to the balance. Otherwise, I have permission to act at my own discretion and to pursue my own goals.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 168948,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-28T16:23:50+00:00",
-      "preview": "Well... As long as I don't make the chaos worse.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -433,7 +414,11 @@
     "msg:168822",
     "2026-07-27 14:51:26",
     "msg:168863",
-    "2026-07-27 21:37:35"
+    "2026-07-27 21:37:35",
+    "msg:168947",
+    "2026-07-28 16:22:29",
+    "msg:168948",
+    "2026-07-28 16:23:50"
   ],
   "reply_log": [
     {
@@ -2289,16 +2274,32 @@
       "player": "Fuzzy",
       "preview": "Thank you, but I have my personal mix.\n\nAlthough I'd appreciate if you could ass",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-30T01:28:48+00:00",
+      "pid": "25059",
+      "msg_id": "168947",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I fight excessive outbreaks of chaos, the ones that can cause harm to the balanc",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-30T01:29:38+00:00",
+      "pid": "25059",
+      "msg_id": "168948",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Well... As long as I don't make the chaos worse.",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-28 16:22:29|2026-07-28 16:23:50",
-      "msg_ids": [
-        168950
-      ],
-      "last_posted_at": "2026-07-28T17:41:19.012271+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169062
     }
   }
 }
