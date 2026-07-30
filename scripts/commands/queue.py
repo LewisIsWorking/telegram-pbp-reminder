@@ -4,7 +4,9 @@ from datetime import datetime, timezone
 
 import helpers
 from commands.queue_scan import scan_transcripts
-from commands.queue_format import entry_age_icon, age_str, short_preview
+from commands.queue_format import (
+    entry_age_icon, age_str, short_preview, NO_PRIORITY,
+)
 
 
 def build_queue(config: dict, state: dict) -> str:
@@ -29,7 +31,10 @@ def build_queue(config: dict, state: dict) -> str:
     def sort_key(pid):
         entries = scanned[pid]["entries"]
         oldest = min(e.get("time", "9999") for e in entries)
-        return (priority_map.get(pid, 2), oldest)
+        # NO_PRIORITY sorts after every explicit rank. It was 2 until
+        # 2026-07-30, which collided with real rank 2 and made a rank-2
+        # campaign sort level with unprioritised ones.
+        return (priority_map.get(pid, NO_PRIORITY), oldest)
 
     sorted_pids = sorted(scanned.keys(), key=sort_key)
     lines = [f"📋 GM Reply Queue: {total} unreplied"]

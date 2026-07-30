@@ -4,6 +4,15 @@ Shared formatting helpers for GM reply queue display.
 Used by commands/queue.py and scheduled/queue_reminder.py.
 """
 
+# Sort rank given to campaigns with no ``queue_priority``. Must stay above
+# every rank anyone would plausibly assign, so unprioritised campaigns always
+# sort last.
+#
+# Hardcoded as 2 until 2026-07-30, which silently capped the usable range at a
+# single level: assigning a real rank of 2 put that campaign level with the
+# unprioritised ones rather than above them. Ranks 1..98 are now free.
+NO_PRIORITY = 99
+
 
 def entry_age_icon(hours: float) -> str:
     """Return an icon showing how long a message has been unreplied.
