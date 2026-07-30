@@ -3462,5 +3462,45 @@
     "refused": false,
     "bot_owned": true,
     "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-07-30T08:40:36.950431+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 169088,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_poster.py:81"
+  },
+  {
+    "timestamp": "2026-07-30T08:40:38.544037+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 169136,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-30T08:40:41.698281+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 169138,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-07-30T08:40:42.106599+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 169129,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
   }
 ]
