@@ -1,25 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 169307,
-      "thread_id": 145045,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-31T02:40:37+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 169308,
-      "thread_id": 145045,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-31T02:41:11+00:00",
-      "preview": "Chua will sustain his warp field and cast richochet at the ooze.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -255,7 +236,11 @@
     "msg:165926",
     "2026-07-08 01:49:52",
     "msg:167133",
-    "2026-07-14 21:24:51"
+    "2026-07-14 21:24:51",
+    "msg:169307",
+    "2026-07-31 02:40:37",
+    "msg:169308",
+    "2026-07-31 02:41:11"
   ],
   "reply_log": [
     {
@@ -1342,6 +1327,24 @@
       "player": "Anthony",
       "preview": "The electronic music song blasting out from Livy might've drowned the sound of y",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T08:01:38+00:00",
+      "pid": "52083",
+      "msg_id": "169307",
+      "thread_id": 145045,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T08:02:00+00:00",
+      "pid": "52083",
+      "msg_id": "169308",
+      "thread_id": 145045,
+      "player": "Bruce",
+      "preview": "Chua will sustain his warp field and cast richochet at the ooze.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1354,12 +1357,10 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [
-        169325
-      ],
-      "fingerprint": "2026-07-31 02:40:37|2026-07-31 02:41:11",
-      "last_posted_at": "2026-07-31T04:00:05.098007+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 169383
     }
   }
 }
