@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 169333,
+      "thread_id": 76799,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-07-31T05:20:14+00:00",
+      "preview": "Nodding a little, B\u00e1yakan walks almost up to the doorway. Calling for a huddle a few feet back from it, he quietly suggests to the others, \"We will want someone physically tough going through first. Spider mounted kobold above. Web snare below.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2106,10 +2116,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169065
+      "fingerprint": "2026-07-31 05:20:14",
+      "msg_ids": [
+        169338
+      ],
+      "last_posted_at": "2026-07-31T07:21:46.948695+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
