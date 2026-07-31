@@ -347,7 +347,7 @@
       "username": "buffetraider",
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
-      "last_post_time": "2026-07-30T20:23:19+00:00",
+      "last_post_time": "2026-07-31T21:24:38+00:00",
       "last_warned_week": 0
     },
     "25059:8525518483": {
@@ -388,6 +388,16 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-07-30T22:56:07+00:00",
+      "last_warned_week": 0
+    },
+    "51357:8117756377": {
+      "user_id": "8117756377",
+      "first_name": "Laetheron",
+      "last_name": "",
+      "username": "StorybookRhizome",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-07-31T21:10:42+00:00",
       "last_warned_week": 0
     }
   },
@@ -578,12 +588,6 @@
       "username": "EfimABC",
       "campaign_name": "Kibwe"
     },
-    "51357:8117756377": {
-      "removed_at": "2026-07-29T09:43:20.973001+00:00",
-      "first_name": "Laetheron",
-      "username": "StorybookRhizome",
-      "campaign_name": "Grand Explorers"
-    },
     "76799:7454623139": {
       "removed_at": "2026-07-29T21:03:55.235329+00:00",
       "first_name": "Cannon",
@@ -731,7 +735,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-27T17:19:50.742659+00:00"
       },
       "8241117341": {
@@ -1391,6 +1395,14 @@
       "name": "Bruce",
       "username": "Ravnos1",
       "at": "2026-07-30T23:33:10.121182+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "8117756377",
+      "name": "Laetheron",
+      "username": "StorybookRhizome",
+      "at": "2026-07-31T22:10:56.829458+00:00"
     }
   ],
   "player_boons": {

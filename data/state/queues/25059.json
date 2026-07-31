@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 169314,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-07-31T03:24:31+00:00",
-      "preview": "If necessary.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -428,7 +418,9 @@
     "msg:168947",
     "2026-07-28 16:22:29",
     "msg:168948",
-    "2026-07-28 16:23:50"
+    "2026-07-28 16:23:50",
+    "msg:169314",
+    "2026-07-31 03:24:31"
   ],
   "reply_log": [
     {
@@ -2302,16 +2294,23 @@
       "player": "Fuzzy",
       "preview": "Well... As long as I don't make the chaos worse.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T21:54:03+00:00",
+      "pid": "25059",
+      "msg_id": "169314",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "If necessary.",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-07-31 03:24:31",
-      "msg_ids": [
-        169323
-      ],
-      "last_posted_at": "2026-07-31T04:00:00.943389+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169443
     }
   }
 }
