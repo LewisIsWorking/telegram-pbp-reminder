@@ -1,6 +1,25 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 169307,
+      "thread_id": 145045,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-07-31T02:40:37+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 169308,
+      "thread_id": 145045,
+      "user_id": "7077683276",
+      "user_name": "Bruce",
+      "time": "2026-07-31T02:41:11+00:00",
+      "preview": "Chua will sustain his warp field and cast richochet at the ooze.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1335,10 +1354,12 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 168917
+      "msg_ids": [
+        169325
+      ],
+      "fingerprint": "2026-07-31 02:40:37|2026-07-31 02:41:11",
+      "last_posted_at": "2026-07-31T04:00:05.098007+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
