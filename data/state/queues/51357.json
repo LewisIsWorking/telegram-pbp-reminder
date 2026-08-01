@@ -1,6 +1,25 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 169544,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-08-01T02:58:59+00:00",
+      "preview": "With a tilted head and a gesture to their own whale tattoo, Twilight asks, \"Did you have a Dream?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 169545,
+      "thread_id": 51357,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-08-01T03:06:44+00:00",
+      "preview": "\"I...yes. The one with all those random creatures chained up for seemingly no reason? And a handful of very unhelpful disembodied voices?\nShe notices your tattoo and unbuckles her left shoulder guard. Alitheia's tattoo is inlaid with a phoenix.\n\"I got one of those too. Did this come from the dream?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -1447,10 +1466,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169480
+      "fingerprint": "2026-08-01 02:58:59|2026-08-01 03:06:44",
+      "msg_ids": [
+        169556
+      ],
+      "last_posted_at": "2026-08-01T04:25:27.700537+00:00",
+      "caught_up_msg_id": null
     },
     "145040": {
       "msg_ids": [],
