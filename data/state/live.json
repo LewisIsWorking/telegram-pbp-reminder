@@ -1,5 +1,5 @@
 {
-  "offset": 619352238,
+  "offset": 619352333,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-31T08:02:22+00:00",
@@ -8,9 +8,9 @@
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-08-01T00:15:16+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-08-01T07:34:56+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Riddleport"
     },
     "51357": {
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-01T07:01:28+00:00",
+      "last_message_time": "2026-08-01T07:35:20+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -247,7 +247,7 @@
   },
   "last_state_backup": "2026-07-31T10:47:36.876784+00:00",
   "last_queue_daily": "2026-07-30",
-  "last_queue_fingerprint": "51357:2026-08-01 02:58:59|51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47|66154:2026-08-01 00:15:16",
+  "last_queue_fingerprint": "51357:2026-08-01 02:58:59|51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -337,15 +337,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-30",
-  "last_queue_pin_id": 169732,
-  "queue_post_count": 1213,
+  "last_queue_pin_id": 169748,
+  "queue_post_count": 1214,
   "gm_queue_history": [
     {
       "msg_ids": [
-        169732,
-        169733
+        169748,
+        169749
       ],
-      "pin_id": 169732
+      "pin_id": 169748
     }
   ]
 }

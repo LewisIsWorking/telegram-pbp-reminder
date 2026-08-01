@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 169486,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-01T00:15:16+00:00",
-      "preview": "Change to a +1 switchsythe.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -194,7 +184,9 @@
     "msg:165977",
     "2026-07-08 06:46:09",
     "msg:166004",
-    "2026-07-08 16:05:19"
+    "2026-07-08 16:05:19",
+    "msg:169486",
+    "2026-08-01 00:15:16"
   ],
   "reply_log": [
     {
@@ -1045,18 +1037,25 @@
       "player": "Bre",
       "preview": "Kyomi yawns out of boredom, \"I thought we were supposed to be going on some sort",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-01T07:34:56+00:00",
+      "pid": "66154",
+      "msg_id": "169486",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Change to a +1 switchsythe.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-08-01 00:15:16",
-      "msg_ids": [
-        169521
-      ],
-      "last_posted_at": "2026-08-01T01:02:27.691202+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169747
     }
   }
 }
