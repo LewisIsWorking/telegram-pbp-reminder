@@ -131,7 +131,11 @@
       "2026-07-30T07:54:42.397485+00:00",
       "2026-07-30T07:54:42.406198+00:00",
       "2026-07-30T07:54:42.409475+00:00",
-      "2026-07-30T10:38:00.440759+00:00"
+      "2026-07-30T10:38:00.440759+00:00",
+      "2026-08-01T00:06:09.310097+00:00",
+      "2026-08-01T00:06:09.313633+00:00",
+      "2026-08-01T00:06:09.315451+00:00",
+      "2026-08-01T00:06:09.317227+00:00"
     ],
     "40585": [
       "2026-03-30T14:34:30.526778+00:00",
@@ -790,7 +794,8 @@
       "2026-06-23T16:57:12.649384+00:00",
       "2026-07-07T22:16:59.086455+00:00",
       "2026-07-27T11:05:54.043819+00:00",
-      "2026-07-28T03:19:58.095748+00:00"
+      "2026-07-28T03:19:58.095748+00:00",
+      "2026-08-01T00:06:09.321805+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1238,7 +1243,8 @@
       "2026-07-01T17:41:41.447852+00:00",
       "2026-07-08T04:20:21.608060+00:00",
       "2026-07-30T02:54:50.200354+00:00",
-      "2026-07-30T02:54:50.202836+00:00"
+      "2026-07-30T02:54:50.202836+00:00",
+      "2026-08-01T00:06:09.319626+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1603,48 +1609,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-07-01T03:20:32.320689+00:00",
-      "player": "Caelum",
-      "preview": "sorry",
-      "msg_id": "164054"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-01T03:20:32.322045+00:00",
-      "player": "Anthony",
-      "preview": "If he doesn't need any more help then we can return to Nik-N",
-      "msg_id": "163064"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-01T03:20:32.323813+00:00",
-      "player": "Bruce",
-      "preview": "Chua, is okay with returning to Nik Nakk for now as well.",
-      "msg_id": "163092"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-07-01T03:20:32.325671+00:00",
-      "player": "Anthony",
-      "preview": "Although not a doctor, Rubel tries different methods that he",
-      "msg_id": "163204"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-07-01T03:20:32.327656+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight gives the man a curious once-over, trying to find a",
-      "msg_id": "163219"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-07-01T03:20:32.329121+00:00",
-      "player": "Laetheron",
-      "preview": "[media]",
-      "msg_id": "163220"
-    },
     {
       "pid": "51357",
       "time": "2026-07-01T03:20:32.330627+00:00",
@@ -3002,6 +2966,48 @@
       "player": "Fuzzy",
       "preview": "If necessary.",
       "msg_id": "169314"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-01T00:06:09.310097+00:00",
+      "player": "Buffet",
+      "preview": "\"Shadow...thing? I mean, I'll never turn down a chance to pu",
+      "msg_id": "169434"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-01T00:06:09.313633+00:00",
+      "player": "Buffet",
+      "preview": "Alitheia sits up in an unfamiliar room and looks around. Her",
+      "msg_id": "169244"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-01T00:06:09.315451+00:00",
+      "player": "Buffet",
+      "preview": "A blue-scaled lizard folk woman stands in the doorway, clad ",
+      "msg_id": "169245"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-01T00:06:09.317227+00:00",
+      "player": "Laetheron",
+      "preview": "Twilight glances up and waves cheerily, \"Heya, we're headed ",
+      "msg_id": "169430"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-08-01T00:06:09.319626+00:00",
+      "player": "Chase",
+      "preview": "Nodding a little, B\u00e1yakan walks almost up to the doorway. Ca",
+      "msg_id": "169333"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-01T00:06:09.321805+00:00",
+      "player": "Bruce",
+      "preview": "Been busy with work and vacation. And laptop died. So still ",
+      "msg_id": "169289"
     }
   ],
   "pending_potw_boons": {
@@ -3030,7 +3036,8 @@
         "+1 circumstance bonus to your next saving throw."
       ],
       "base_message": "Player of the Week for Grand Explorers: Buffet Raider (@buffetraider)!\n(2026-07-23 (W30) to 2026-07-30 (W31))\n\n5 posts this week with an average gap of 3.5h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-07-30T22:13:33.190034+00:00"
+      "posted_at": "2026-07-30T22:13:33.190034+00:00",
+      "reminders_sent": 1
     }
   },
   "pending_hero_points": {

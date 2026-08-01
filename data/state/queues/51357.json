@@ -1,43 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 169244,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-30T20:20:13+00:00",
-      "preview": "Alitheia sits up in an unfamiliar room and looks around. Her ears are still ringing from that one entity's screeching. The warm sensation from the dream is still there, and she finds the tattoo on her shoulder as she examines herself. She finds her armor and belongings in the footlocker and suits up. \n\nLeaving the room, Alitheia has no clue where to go, but the warm sensation seems to tug lightly to the left. She follows it and finds a room full of people she's never met but that sensation is pu",
-      "media_group_id": null
-    },
-    {
-      "message_id": 169245,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-30T20:23:19+00:00",
-      "preview": "A blue-scaled lizard folk woman stands in the doorway, clad in armor bearing the symbol of Sarenrae.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 169430,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-07-31T21:10:42+00:00",
-      "preview": "Twilight glances up and waves cheerily, \"Heya, we're headed to the Thin Lands right now. This poor lady was murdered by a weird shadow thing and we're solving the mystery.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 169434,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-07-31T21:24:38+00:00",
-      "preview": "\"Shadow...thing? I mean, I'll never turn down a chance to purge an evil creature like that. Could use a little more context as to why I'm here though, I don't remember how I got to this city. Oh, I'm Alitheia by the way. Acolyte of Sarenrae.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -300,7 +263,15 @@
     "msg:169117",
     "2026-07-30 07:42:52",
     "msg:169132",
-    "2026-07-30 08:24:22"
+    "2026-07-30 08:24:22",
+    "msg:169434",
+    "2026-07-31 21:24:38",
+    "msg:169244",
+    "2026-07-30 20:20:13",
+    "msg:169245",
+    "2026-07-30 20:23:19",
+    "msg:169430",
+    "2026-07-31 21:10:42"
   ],
   "reply_log": [
     {
@@ -1434,18 +1405,52 @@
       "player": "Buffet",
       "preview": "Yes",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:38:19+00:00",
+      "pid": "51357",
+      "msg_id": "169434",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"Shadow...thing? I mean, I'll never turn down a chance to purge an evil creature",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:38:35+00:00",
+      "pid": "51357",
+      "msg_id": "169244",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "Alitheia sits up in an unfamiliar room and looks around. Her ears are still ring",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:38:47+00:00",
+      "pid": "51357",
+      "msg_id": "169245",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "A blue-scaled lizard folk woman stands in the doorway, clad in armor bearing the",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:39:19+00:00",
+      "pid": "51357",
+      "msg_id": "169430",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight glances up and waves cheerily, \"Heya, we're headed to the Thin Lands ri",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-07-30 20:20:13|2026-07-30 20:23:19|2026-07-31 21:10:42|2026-07-31 21:24:38",
-      "msg_ids": [
-        169441
-      ],
-      "last_posted_at": "2026-07-31T22:11:01.701879+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169480
     },
     "145040": {
       "msg_ids": [],

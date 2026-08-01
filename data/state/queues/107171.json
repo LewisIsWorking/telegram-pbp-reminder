@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 169289,
-      "thread_id": 107171,
-      "user_id": "7077683276",
-      "user_name": "Bruce",
-      "time": "2026-07-30T22:56:07+00:00",
-      "preview": "Been busy with work and vacation. And laptop died. So still a week out.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -321,7 +311,9 @@
     "msg:165921",
     "2026-07-08 01:44:41",
     "msg:168880",
-    "2026-07-28 03:01:53"
+    "2026-07-28 03:01:53",
+    "msg:169289",
+    "2026-07-30 22:56:07"
   ],
   "reply_log": [
     {
@@ -1776,18 +1768,25 @@
       "player": "Laetheron",
       "preview": "Sounds like a plan",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:42:13+00:00",
+      "pid": "107171",
+      "msg_id": "169289",
+      "thread_id": 107171,
+      "player": "Bruce",
+      "preview": "Been busy with work and vacation. And laptop died. So still a week out.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-07-30 22:56:07",
-      "msg_ids": [
-        169297
-      ],
-      "last_posted_at": "2026-07-30T23:33:16.107766+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 169479
     },
     "142887": {
       "fingerprint": "",
