@@ -1,5 +1,5 @@
 {
-  "offset": 619352396,
+  "offset": 619352429,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-31T08:02:22+00:00",
@@ -32,9 +32,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-01T16:56:54+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-08-01T17:44:45+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -247,7 +247,7 @@
   },
   "last_state_backup": "2026-08-01T12:05:41.742088+00:00",
   "last_queue_daily": "2026-07-30",
-  "last_queue_fingerprint": "40585:2026-08-01 16:56:54|40585:2026-08-01 16:56:54|51357:2026-08-01 02:58:59|51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47",
+  "last_queue_fingerprint": "51357:2026-08-01 02:58:59|51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -337,15 +337,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-30",
-  "last_queue_pin_id": 169814,
-  "queue_post_count": 1216,
+  "last_queue_pin_id": 169843,
+  "queue_post_count": 1217,
   "gm_queue_history": [
     {
       "msg_ids": [
-        169814,
-        169815
+        169843,
+        169844
       ],
-      "pin_id": 169814
+      "pin_id": 169843
     }
   ]
 }
