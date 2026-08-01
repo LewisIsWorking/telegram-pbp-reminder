@@ -1,6 +1,25 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 169846,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-08-01T18:36:36+00:00",
+      "preview": "I'm sitting on the floor, meditating.\n\nI feel the awkward tension surrounding everyone.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 169847,
+      "thread_id": 25059,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-08-01T18:38:49+00:00",
+      "preview": "\"So... What brings you here?\", I ask to Zokar and the child. I look at them, more curious than anything, but also still somewhat worried about the child that almost drowned due to the evil spirits that attacked her through Umi.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2307,10 +2326,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169443
+      "fingerprint": "2026-08-01 18:36:36|2026-08-01 18:38:49",
+      "msg_ids": [
+        169859
+      ],
+      "last_posted_at": "2026-08-01T19:43:01.297652+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
