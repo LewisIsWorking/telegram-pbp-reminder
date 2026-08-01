@@ -18,13 +18,13 @@
       "preview": "[media]"
     },
     {
-      "message_id": 169760,
+      "message_id": 169803,
       "thread_id": 137075,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-08-01T07:51:39+00:00",
-      "preview": "After Daichi trips Narrow, he points his staff and says:\n\"If you don't want Wide to die you're better off surrendering now.\"",
-      "media_group_id": null
+      "time": "2026-08-01T16:56:54+00:00",
+      "preview": "[media]",
+      "media_group_id": "14284827315942852"
     }
   ],
   "replied": [
@@ -1027,7 +1027,9 @@
     "msg:169719",
     "msg:169720",
     "msg:169735",
-    "2026-08-01 07:32:56"
+    "2026-08-01 07:32:56",
+    "msg:169760",
+    "2026-08-01 07:51:39"
   ],
   "reply_log": [
     {
@@ -5752,17 +5754,26 @@
       "player": "Buffet",
       "preview": "\"Fast little fuckers.\"\nTarsus runs.",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-01T16:52:06+00:00",
+      "pid": "40585",
+      "msg_id": "169760",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "After Daichi trips Narrow, he points his staff and says:\n\"If you don't want Wide",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-08-01 07:51:39",
+      "fingerprint": "2026-08-01 16:56:54|2026-08-01 16:56:54",
       "msg_ids": [
-        169768
+        169812
       ],
-      "last_posted_at": "2026-08-01T10:05:32.244485+00:00",
+      "last_posted_at": "2026-08-01T17:32:23.047751+00:00",
       "caught_up_msg_id": null
     },
     "40585": {
