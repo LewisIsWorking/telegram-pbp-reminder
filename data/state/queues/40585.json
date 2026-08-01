@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 169760,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-01T07:51:39+00:00",
+      "preview": "After Daichi trips Narrow, he points his staff and says:\n\"If you don't want Wide to die you're better off surrendering now.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5749,10 +5758,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169731
+      "fingerprint": "2026-08-01 07:51:39",
+      "msg_ids": [
+        169768
+      ],
+      "last_posted_at": "2026-08-01T10:05:32.244485+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "",
