@@ -1,5 +1,5 @@
 {
-  "offset": 619352472,
+  "offset": 619352474,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-31T08:02:22+00:00",
@@ -203,12 +203,16 @@
         "Can't make it this week"
       ],
       "voted_uids": [
-        "8902183011"
+        "8902183011",
+        "8525518483"
       ],
       "last_ping_day": 739830,
       "votes": {
         "2": [
           "8902183011"
+        ],
+        "0": [
+          "8525518483"
         ]
       }
     },
@@ -295,7 +299,11 @@
   },
   "paused_campaigns": {},
   "current_scenes": {},
-  "poll_unknown_voters": {},
+  "poll_unknown_voters": {
+    "C01": [
+      "8525518483"
+    ]
+  },
   "last_week_welcome": "sun2026-08-02",
   "last_queue_daily_slots": [
     "2026-07-19:09",
