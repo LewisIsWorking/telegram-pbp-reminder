@@ -1,5 +1,5 @@
 {
-  "offset": 619352523,
+  "offset": 619352524,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-31T08:02:22+00:00",
@@ -303,11 +303,7 @@
   },
   "paused_campaigns": {},
   "current_scenes": {},
-  "poll_unknown_voters": {
-    "C01": [
-      "1698524397"
-    ]
-  },
+  "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-08-02",
   "last_queue_daily_slots": [
     "2026-07-21:21",
@@ -345,5 +341,6 @@
       ],
       "pin_id": 169942
     }
-  ]
+  ],
+  "poll_identified_voters": {}
 }
