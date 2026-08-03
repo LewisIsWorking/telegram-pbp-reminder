@@ -1050,7 +1050,9 @@
       "2026-07-28T03:19:57.351945+00:00",
       "2026-07-30T02:54:50.180375+00:00",
       "2026-07-30T02:54:50.187503+00:00",
-      "2026-07-31T22:10:58.094337+00:00"
+      "2026-07-31T22:10:58.094337+00:00",
+      "2026-08-03T22:33:24.411884+00:00",
+      "2026-08-03T22:33:24.413631+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1610,20 +1612,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-07-07T06:40:10.733671+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus focuses for a moment, then channels some water magic ",
-      "msg_id": "165629"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-07-07T08:29:08.482065+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight scrabbles to get a good look at the body, fighting ",
-      "msg_id": "164147"
-    },
     {
       "pid": "51357",
       "time": "2026-07-07T08:29:08.483549+00:00",
@@ -3009,6 +2997,20 @@
       "player": "Anthony",
       "preview": "Well Wide is barelly standing and Narrow is prone and droppe",
       "msg_id": "170034"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-08-03T22:33:24.411884+00:00",
+      "player": "Fuzzy",
+      "preview": "I'm sitting on the floor, meditating.\n\nI feel the awkward te",
+      "msg_id": "169846"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-08-03T22:33:24.413631+00:00",
+      "player": "Fuzzy",
+      "preview": "\"So... What brings you here?\", I ask to Zokar and the child.",
+      "msg_id": "169847"
     }
   ],
   "pending_potw_boons": {

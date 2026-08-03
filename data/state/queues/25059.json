@@ -2,24 +2,6 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 169846,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-08-01T18:36:36+00:00",
-      "preview": "I'm sitting on the floor, meditating.\n\nI feel the awkward tension surrounding everyone.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 169847,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-08-01T18:38:49+00:00",
-      "preview": "\"So... What brings you here?\", I ask to Zokar and the child. I look at them, more curious than anything, but also still somewhat worried about the child that almost drowned due to the evil spirits that attacked her through Umi.",
-      "media_group_id": null
-    },
-    {
       "message_id": 169946,
       "thread_id": 25059,
       "user_id": "8902183011",
@@ -457,7 +439,11 @@
     "msg:168948",
     "2026-07-28 16:23:50",
     "msg:169314",
-    "2026-07-31 03:24:31"
+    "2026-07-31 03:24:31",
+    "msg:169846",
+    "2026-08-01 18:36:36",
+    "msg:169847",
+    "2026-08-01 18:38:49"
   ],
   "reply_log": [
     {
@@ -2340,15 +2326,33 @@
       "player": "Fuzzy",
       "preview": "If necessary.",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-03T21:42:43+00:00",
+      "pid": "25059",
+      "msg_id": "169846",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I'm sitting on the floor, meditating.\n\nI feel the awkward tension surrounding ev",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-03T21:44:03+00:00",
+      "pid": "25059",
+      "msg_id": "169847",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "\"So... What brings you here?\", I ask to Zokar and the child. I look at them, mor",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-01 18:36:36|2026-08-01 18:38:49|2026-08-02 23:28:29|2026-08-03 07:50:22",
+      "fingerprint": "2026-08-02 23:28:29|2026-08-03 07:50:22",
       "msg_ids": [
-        169979
+        170087
       ],
-      "last_posted_at": "2026-08-03T07:56:47.333554+00:00",
+      "last_posted_at": "2026-08-03T22:33:26.403183+00:00",
       "caught_up_msg_id": null
     }
   }
