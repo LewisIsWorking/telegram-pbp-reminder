@@ -1,5 +1,5 @@
 {
-  "offset": 619352539,
+  "offset": 619352550,
   "topics": {
     "52083": {
       "last_message_time": "2026-07-31T08:02:22+00:00",
@@ -20,9 +20,9 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-08-02T23:28:29+00:00",
-      "last_user": "Dalaxiss",
-      "last_user_id": "8902183011",
+      "last_message_time": "2026-08-03T07:50:22+00:00",
+      "last_user": "PJ",
+      "last_user_id": "8880317264",
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
@@ -32,9 +32,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-01T17:44:45+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-03T07:27:56+00:00",
+      "last_user": "Buffet",
+      "last_user_id": "7130942567",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -209,7 +209,8 @@
         "8902183011",
         "8525518483",
         "5443237599",
-        "1698524397"
+        "1698524397",
+        "8880317264"
       ],
       "last_ping_day": 739831,
       "votes": {
@@ -219,7 +220,8 @@
           "1698524397"
         ],
         "0": [
-          "8525518483"
+          "8525518483",
+          "8880317264"
         ]
       }
     },
@@ -244,7 +246,7 @@
   },
   "last_state_backup": "2026-08-02T12:09:03.516994+00:00",
   "last_queue_daily": "2026-08-02",
-  "last_queue_fingerprint": "25059:2026-08-01 18:36:36|25059:2026-08-01 18:38:49|25059:2026-08-02 23:28:29|51357:2026-08-01 02:58:59|51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47",
+  "last_queue_fingerprint": "25059:2026-08-01 18:36:36|25059:2026-08-01 18:38:49|25059:2026-08-02 23:28:29|25059:2026-08-03 07:50:22|40585:2026-08-03 07:27:56|51357:2026-08-01 02:58:59|51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -306,7 +308,9 @@
   },
   "paused_campaigns": {},
   "current_scenes": {},
-  "poll_unknown_voters": {},
+  "poll_unknown_voters": {
+    "C01": []
+  },
   "last_week_welcome": "sun2026-08-02",
   "last_queue_daily_slots": [
     "2026-07-21:21",
@@ -334,15 +338,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-07-30",
-  "last_queue_pin_id": 169950,
-  "queue_post_count": 1221,
+  "last_queue_pin_id": 169983,
+  "queue_post_count": 1222,
   "gm_queue_history": [
     {
       "msg_ids": [
-        169950,
-        169951
+        169983,
+        169984
       ],
-      "pin_id": 169950
+      "pin_id": 169983
     }
   ]
 }

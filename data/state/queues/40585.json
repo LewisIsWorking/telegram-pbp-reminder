@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 169974,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-08-03T07:27:56+00:00",
+      "preview": "Tarsus squints at the skinny gnome.\n\"What do you think, guys? Don't think I've ever seen one of these cultists act normal before. Think he's up to something?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1022,7 +1031,9 @@
     "msg:169760",
     "2026-08-01 07:51:39",
     "msg:169803",
-    "2026-08-01 16:56:54"
+    "2026-08-01 16:56:54",
+    "msg:169971",
+    "2026-08-03 06:25:28"
   ],
   "reply_log": [
     {
@@ -5765,6 +5776,15 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-03T06:28:57+00:00",
+      "pid": "40585",
+      "msg_id": "169971",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Does this look like genuine concern or is he trying to distract us? Not used to ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5777,10 +5797,12 @@
       "caught_up_msg_id": 169842
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 167689
+      "fingerprint": "2026-08-03 07:27:56",
+      "msg_ids": [
+        169981
+      ],
+      "last_posted_at": "2026-08-03T07:56:50.620596+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
