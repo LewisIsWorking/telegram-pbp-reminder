@@ -34,6 +34,15 @@
       "time": "2026-08-03T14:39:16+00:00",
       "preview": "Lorn points his bow at the gnome dying friend and says \"Drop your weapon and tell us how to stop this ritual of yours. Many of the mortals in this region have lost their loved ones. How many more must die for you to understand that this is madness?\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 170034,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-03T15:53:18+00:00",
+      "preview": "Well Wide is barelly standing and Narrow is prone and dropped his weapons so it's fine by me.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5800,10 +5809,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169842
+      "fingerprint": "2026-08-03 15:53:18",
+      "msg_ids": [
+        170035
+      ],
+      "last_posted_at": "2026-08-03T17:26:35.804999+00:00",
+      "caught_up_msg_id": null
     },
     "40585": {
       "fingerprint": "2026-08-03 07:27:56|2026-08-03 14:39:16",
