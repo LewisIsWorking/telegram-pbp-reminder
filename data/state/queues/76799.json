@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 170099,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-08-03T23:01:42+00:00",
+      "preview": "Nadya frowns.\n\n\"Spider mounted? Egh. Better you first than me.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2117,10 +2127,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169481
+      "fingerprint": "2026-08-03 23:01:42",
+      "msg_ids": [
+        170104
+      ],
+      "last_posted_at": "2026-08-03T23:10:50.284115+00:00",
+      "caught_up_msg_id": null
     },
     "144765": {
       "fingerprint": "",
