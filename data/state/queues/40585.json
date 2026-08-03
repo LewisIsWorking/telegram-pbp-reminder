@@ -34,15 +34,6 @@
       "time": "2026-08-03T14:39:16+00:00",
       "preview": "Lorn points his bow at the gnome dying friend and says \"Drop your weapon and tell us how to stop this ritual of yours. Many of the mortals in this region have lost their loved ones. How many more must die for you to understand that this is madness?\"",
       "media_group_id": null
-    },
-    {
-      "message_id": 170034,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-03T15:53:18+00:00",
-      "preview": "Well Wide is barelly standing and Narrow is prone and dropped his weapons so it's fine by me.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1051,7 +1042,9 @@
     "msg:169803",
     "2026-08-01 16:56:54",
     "msg:169971",
-    "2026-08-03 06:25:28"
+    "2026-08-03 06:25:28",
+    "msg:170034",
+    "2026-08-03 15:53:18"
   ],
   "reply_log": [
     {
@@ -5803,18 +5796,25 @@
       "player": "Buffet",
       "preview": "Does this look like genuine concern or is he trying to distract us? Not used to ",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-03T19:25:24+00:00",
+      "pid": "40585",
+      "msg_id": "170034",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Well Wide is barelly standing and Narrow is prone and dropped his weapons so it'",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-08-03 15:53:18",
-      "msg_ids": [
-        170035
-      ],
-      "last_posted_at": "2026-08-03T17:26:35.804999+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 170060
     },
     "40585": {
       "fingerprint": "2026-08-03 07:27:56|2026-08-03 14:39:16",
