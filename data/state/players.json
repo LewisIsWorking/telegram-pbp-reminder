@@ -300,16 +300,6 @@
       "last_post_time": "2026-07-27T05:39:18+00:00",
       "last_warned_week": 1
     },
-    "25059:7554681456": {
-      "user_id": "7554681456",
-      "first_name": "Jay",
-      "last_name": "",
-      "username": "",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-07-07T06:42:02+00:00",
-      "last_warned_week": 3
-    },
     "52083:8097377199": {
       "user_id": "8097377199",
       "first_name": "Terra",
@@ -607,6 +597,12 @@
       "first_name": "\u0415\u0432\u0433\u0435\u043d\u0438\u0439",
       "username": "EfimABC",
       "campaign_name": "Kibwe"
+    },
+    "25059:7554681456": {
+      "removed_at": "2026-08-04T09:42:41.069244+00:00",
+      "first_name": "Jay",
+      "username": "",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -1430,6 +1426,14 @@
       "name": "Cannon",
       "username": "ArtyArtillery",
       "at": "2026-08-03T23:10:42.377937+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "7554681456",
+      "name": "Jay",
+      "username": "",
+      "at": "2026-08-04T09:42:41.968871+00:00"
     }
   ],
   "player_boons": {
