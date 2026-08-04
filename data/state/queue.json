@@ -1246,7 +1246,8 @@
       "2026-07-08T04:20:21.608060+00:00",
       "2026-07-30T02:54:50.200354+00:00",
       "2026-07-30T02:54:50.202836+00:00",
-      "2026-08-01T00:06:09.319626+00:00"
+      "2026-08-01T00:06:09.319626+00:00",
+      "2026-08-04T00:58:22.535180+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1612,13 +1613,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-07-07T08:29:08.483549+00:00",
-      "player": "Cannon",
-      "preview": "Illiani settles down nearby and begins to recite mantras in ",
-      "msg_id": "164317"
-    },
     {
       "pid": "51357",
       "time": "2026-07-07T08:29:08.484923+00:00",
@@ -3011,6 +3005,13 @@
       "player": "Fuzzy",
       "preview": "\"So... What brings you here?\", I ask to Zokar and the child.",
       "msg_id": "169847"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-08-04T00:58:22.535180+00:00",
+      "player": "Cannon",
+      "preview": "Nadya frowns.\n\n\"Spider mounted? Egh. Better you first than m",
+      "msg_id": "170099"
     }
   ],
   "pending_potw_boons": {

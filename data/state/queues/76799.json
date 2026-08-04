@@ -2,12 +2,12 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 170099,
+      "message_id": 170114,
       "thread_id": 76799,
       "user_id": "7454623139",
       "user_name": "Cannon",
-      "time": "2026-08-03T23:01:42+00:00",
-      "preview": "Nadya frowns.\n\n\"Spider mounted? Egh. Better you first than me.\"",
+      "time": "2026-08-03T23:49:20+00:00",
+      "preview": "\"Hey, neither was mine. But you have a shield.\"",
       "media_group_id": null
     }
   ],
@@ -386,7 +386,9 @@
     "msg:166525",
     "2026-07-13 18:31:47",
     "msg:169333",
-    "2026-07-31 05:20:14"
+    "2026-07-31 05:20:14",
+    "msg:170099",
+    "2026-08-03 23:01:42"
   ],
   "reply_log": [
     {
@@ -2121,17 +2123,26 @@
       "player": "Chase",
       "preview": "Nodding a little, B\u00e1yakan walks almost up to the doorway. Calling for a huddle a",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-03T23:44:25+00:00",
+      "pid": "76799",
+      "msg_id": "170099",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya frowns.\n\n\"Spider mounted? Egh. Better you first than me.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-08-03 23:01:42",
+      "fingerprint": "2026-08-03 23:49:20",
       "msg_ids": [
-        170104
+        170125
       ],
-      "last_posted_at": "2026-08-03T23:10:50.284115+00:00",
+      "last_posted_at": "2026-08-04T00:58:25.177568+00:00",
       "caught_up_msg_id": null
     },
     "144765": {
