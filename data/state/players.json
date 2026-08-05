@@ -310,16 +310,6 @@
       "last_post_time": "2026-07-28T03:01:53+00:00",
       "last_warned_week": 0
     },
-    "66154:8770290576": {
-      "user_id": "8770290576",
-      "first_name": "Bre",
-      "last_name": "Irish",
-      "username": "BreIrish",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-07-08T16:05:19+00:00",
-      "last_warned_week": 3
-    },
     "51357:7130942567": {
       "user_id": "7130942567",
       "first_name": "Buffet",
@@ -599,6 +589,12 @@
       "first_name": "Terra",
       "username": "Saiminaminah",
       "campaign_name": "Hopeful End-Times"
+    },
+    "66154:8770290576": {
+      "removed_at": "2026-08-05T17:47:58.130043+00:00",
+      "first_name": "Bre",
+      "username": "BreIrish",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -1438,6 +1434,14 @@
       "name": "Terra",
       "username": "Saiminaminah",
       "at": "2026-08-05T03:18:51.982535+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "8770290576",
+      "name": "Bre",
+      "username": "BreIrish",
+      "at": "2026-08-05T17:47:58.983754+00:00"
     }
   ],
   "player_boons": {
