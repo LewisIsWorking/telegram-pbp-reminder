@@ -300,16 +300,6 @@
       "last_post_time": "2026-07-27T05:39:18+00:00",
       "last_warned_week": 1
     },
-    "52083:8097377199": {
-      "user_id": "8097377199",
-      "first_name": "Terra",
-      "last_name": "",
-      "username": "Saiminaminah",
-      "campaign_name": "Hopeful End-Times",
-      "pbp_topic_id": "52083",
-      "last_post_time": "2026-07-08T01:49:52+00:00",
-      "last_warned_week": 3
-    },
     "107171:8117756377": {
       "user_id": "8117756377",
       "first_name": "Laetheron",
@@ -603,6 +593,12 @@
       "first_name": "Jay",
       "username": "",
       "campaign_name": "Doomsday Funtime"
+    },
+    "52083:8097377199": {
+      "removed_at": "2026-08-05T03:18:51.079381+00:00",
+      "first_name": "Terra",
+      "username": "Saiminaminah",
+      "campaign_name": "Hopeful End-Times"
     }
   },
   "player_registry": {
@@ -1434,6 +1430,14 @@
       "name": "Jay",
       "username": "",
       "at": "2026-08-04T09:42:41.968871+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "52083",
+      "user_id": "8097377199",
+      "name": "Terra",
+      "username": "Saiminaminah",
+      "at": "2026-08-05T03:18:51.982535+00:00"
     }
   ],
   "player_boons": {
