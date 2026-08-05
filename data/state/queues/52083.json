@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 170251,
+      "thread_id": 145045,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-05T13:16:35+00:00",
+      "preview": "@Saiminaminah or oozes turn",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1357,10 +1367,12 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 169383
+      "msg_ids": [
+        170258
+      ],
+      "fingerprint": "2026-08-05 13:16:35",
+      "last_posted_at": "2026-08-05T14:54:43.066328+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
