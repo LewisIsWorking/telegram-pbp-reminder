@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 169974,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-08-03T07:27:56+00:00",
-      "preview": "Tarsus squints at the skinny gnome.\n\"What do you think, guys? Don't think I've ever seen one of these cultists act normal before. Think he's up to something?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 170027,
-      "thread_id": 40585,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-03T14:39:16+00:00",
-      "preview": "Lorn points his bow at the gnome dying friend and says \"Drop your weapon and tell us how to stop this ritual of yours. Many of the mortals in this region have lost their loved ones. How many more must die for you to understand that this is madness?\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1044,7 +1026,15 @@
     "msg:169971",
     "2026-08-03 06:25:28",
     "msg:170034",
-    "2026-08-03 15:53:18"
+    "2026-08-03 15:53:18",
+    "msg:169974",
+    "2026-08-03 07:27:56",
+    "msg:170027",
+    "2026-08-03 14:39:16",
+    "msg:170330",
+    "2026-08-06 01:36:28",
+    "msg:170334",
+    "2026-08-06 01:40:14"
   ],
   "reply_log": [
     {
@@ -5805,6 +5795,42 @@
       "player": "Anthony",
       "preview": "Well Wide is barelly standing and Narrow is prone and dropped his weapons so it'",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:26:57+00:00",
+      "pid": "40585",
+      "msg_id": "169974",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus squints at the skinny gnome.\n\"What do you think, guys? Don't think I've e",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:27:33+00:00",
+      "pid": "40585",
+      "msg_id": "170027",
+      "thread_id": 40585,
+      "player": "Horia",
+      "preview": "Lorn points his bow at the gnome dying friend and says \"Drop your weapon and tel",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:38:06+00:00",
+      "pid": "40585",
+      "msg_id": "170330",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "While he's being a good boy Daichi pins him and starts to sausage tie him with r",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:44:07+00:00",
+      "pid": "40585",
+      "msg_id": "170334",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi tightens the rope and says:\n\"Yeah? Well you better stay still if you don'",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5817,12 +5843,10 @@
       "caught_up_msg_id": 170060
     },
     "40585": {
-      "fingerprint": "2026-08-03 07:27:56|2026-08-03 14:39:16",
-      "msg_ids": [
-        170029
-      ],
-      "last_posted_at": "2026-08-03T15:27:14.850956+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 170384
     }
   }
 }
