@@ -9,6 +9,15 @@
       "time": "2026-08-07T07:37:07+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 170655,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-08-07T20:33:15+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2416,11 +2425,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-07 07:37:07",
+      "fingerprint": "2026-08-07 07:37:07|2026-08-07 20:33:15",
       "msg_ids": [
-        170579
+        170656
       ],
-      "last_posted_at": "2026-08-07T15:25:29.809276+00:00",
+      "last_posted_at": "2026-08-07T20:49:47.203078+00:00",
       "caught_up_msg_id": null
     }
   }
