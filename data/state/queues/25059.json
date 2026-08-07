@@ -9,6 +9,15 @@
       "time": "2026-08-07T07:37:07+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 170510,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-08-07T08:38:38+00:00",
+      "preview": "Selenor will roll that too",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2405,11 +2414,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-07 07:37:07",
+      "fingerprint": "2026-08-07 07:37:07|2026-08-07 08:38:38",
       "msg_ids": [
-        170505
+        170512
       ],
-      "last_posted_at": "2026-08-07T08:34:21.517972+00:00",
+      "last_posted_at": "2026-08-07T09:07:44.210203+00:00",
       "caught_up_msg_id": null
     }
   }
