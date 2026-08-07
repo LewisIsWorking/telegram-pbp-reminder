@@ -1,5 +1,5 @@
 {
-  "offset": 619353024,
+  "offset": 619353025,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-05T13:16:35+00:00",
@@ -209,7 +209,7 @@
   },
   "last_state_backup": "2026-08-07T00:09:00.705248+00:00",
   "last_queue_daily": "2026-08-06",
-  "last_queue_fingerprint": "51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47|51357:2026-08-03 21:25:18|51357:2026-08-03 23:00:22|52083:2026-08-05 13:16:35|66154:2026-08-05 22:06:33|76799:2026-08-03 23:49:20|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 1h \ud83d\udd17 https://t.me/Path_Wars/107171",
+  "last_queue_fingerprint": "51357:2026-08-01 03:06:44|51357:2026-08-01 05:39:47|51357:2026-08-03 21:25:18|51357:2026-08-03 23:00:22|52083:2026-08-05 13:16:35|66154:2026-08-05 22:06:33|76799:2026-08-03 23:49:20|silent:  \ud83d\udfe7 \ud83e\udd16 C09: Metal City \u2014 no posts for 6d 4h \ud83d\udd17 https://t.me/Path_Wars/107171",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -301,15 +301,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-03",
-  "last_queue_pin_id": 170474,
-  "queue_post_count": 1250,
+  "last_queue_pin_id": 170479,
+  "queue_post_count": 1251,
   "gm_queue_history": [
     {
       "msg_ids": [
-        170474,
-        170475
+        170479,
+        170480
       ],
-      "pin_id": 170474
+      "pin_id": 170479
     }
   ]
 }
