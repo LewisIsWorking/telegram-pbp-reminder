@@ -9,15 +9,6 @@
       "time": "2026-08-07T07:37:07+00:00",
       "preview": "[media]",
       "media_group_id": null
-    },
-    {
-      "message_id": 170510,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-07T08:38:38+00:00",
-      "preview": "Selenor will roll that too",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -455,7 +446,9 @@
     "msg:170136",
     "2026-08-04 05:05:26",
     "msg:170350",
-    "2026-08-06 02:11:33"
+    "2026-08-06 02:11:33",
+    "msg:170510",
+    "2026-08-07 08:38:38"
   ],
   "reply_log": [
     {
@@ -2410,15 +2403,24 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-07T15:24:24+00:00",
+      "pid": "25059",
+      "msg_id": "170510",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "Selenor will roll that too",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-07 07:37:07|2026-08-07 08:38:38",
+      "fingerprint": "2026-08-07 07:37:07",
       "msg_ids": [
-        170512
+        170579
       ],
-      "last_posted_at": "2026-08-07T09:07:44.210203+00:00",
+      "last_posted_at": "2026-08-07T15:25:29.809276+00:00",
       "caught_up_msg_id": null
     }
   }
