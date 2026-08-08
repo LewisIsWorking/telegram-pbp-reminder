@@ -1,5 +1,5 @@
 {
-  "offset": 619353465,
+  "offset": 619353467,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-08T12:59:56+00:00",
@@ -284,7 +284,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-08-02",
   "last_queue_daily_slots": [
-    "2026-07-29:09",
     "2026-07-29:21",
     "2026-07-30:21",
     "2026-08-01:21",
@@ -297,7 +296,8 @@
     "2026-08-06:09",
     "2026-08-07:09",
     "2026-08-07:21",
-    "2026-08-08:09"
+    "2026-08-08:09",
+    "2026-08-08:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -309,15 +309,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-08",
-  "last_queue_pin_id": 170996,
-  "queue_post_count": 1294,
+  "last_queue_pin_id": 171000,
+  "queue_post_count": 1295,
   "gm_queue_history": [
     {
       "msg_ids": [
-        170996,
-        170997
+        171000,
+        171001
       ],
-      "pin_id": 170996
+      "pin_id": 171000
     }
   ]
 }
