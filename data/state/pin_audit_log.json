@@ -8102,5 +8102,15 @@
     "refused": false,
     "bot_owned": true,
     "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-08T14:38:25.139539+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 169882,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:174"
   }
 ]
