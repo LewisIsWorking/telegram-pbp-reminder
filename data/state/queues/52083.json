@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 170251,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-05T13:16:35+00:00",
-      "preview": "@Saiminaminah or oozes turn",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -260,7 +250,9 @@
     "msg:170752",
     "2026-08-08 12:57:26",
     "msg:170753",
-    "2026-08-08 12:59:56"
+    "2026-08-08 12:59:56",
+    "msg:170251",
+    "2026-08-05 13:16:35"
   ],
   "reply_log": [
     {
@@ -1410,6 +1402,15 @@
       "player": "Terra",
       "preview": "This one I don't know",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-09T07:14:28+00:00",
+      "pid": "52083",
+      "msg_id": "170251",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "@Saiminaminah or oozes turn",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1422,12 +1423,10 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [
-        171047
-      ],
-      "fingerprint": "2026-08-05 13:16:35",
-      "last_posted_at": "2026-08-09T02:15:58.619721+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 171101
     }
   }
 }

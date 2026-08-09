@@ -8982,5 +8982,85 @@
     "refused": false,
     "bot_owned": true,
     "site": "session_poll.py:174"
+  },
+  {
+    "timestamp": "2026-08-09T07:31:55.735570+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 171071,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_poster.py:135"
+  },
+  {
+    "timestamp": "2026-08-09T07:31:56.035339+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171071,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-09T07:31:58.092569+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 171047,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_poster.py:135"
+  },
+  {
+    "timestamp": "2026-08-09T07:31:58.412269+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171047,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-09T07:32:03.780186+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 171102,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-09T07:32:04.146456+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 171084,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-08-09T07:32:04.477595+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171084,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-09T07:32:04.837302+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171085,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
   }
 ]

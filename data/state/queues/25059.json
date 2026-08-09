@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 171067,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-09T03:11:54+00:00",
-      "preview": "What do you mean attached?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171068,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-09T03:12:08+00:00",
-      "preview": "You mean possession?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -461,7 +442,11 @@
     "msg:170504",
     "2026-08-07 07:37:07",
     "msg:170655",
-    "2026-08-07 20:33:15"
+    "2026-08-07 20:33:15",
+    "msg:171067",
+    "2026-08-09 03:11:54",
+    "msg:171068",
+    "2026-08-09 03:12:08"
   ],
   "reply_log": [
     {
@@ -2443,16 +2428,32 @@
       "player": "Horia",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-09T07:12:13+00:00",
+      "pid": "25059",
+      "msg_id": "171067",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "What do you mean attached?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T07:14:16+00:00",
+      "pid": "25059",
+      "msg_id": "171068",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "You mean possession?",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-09 03:11:54|2026-08-09 03:12:08",
-      "msg_ids": [
-        171071
-      ],
-      "last_posted_at": "2026-08-09T04:22:57.947421+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 171100
     }
   }
 }
