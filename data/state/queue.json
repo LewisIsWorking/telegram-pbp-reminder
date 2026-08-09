@@ -137,7 +137,9 @@
       "2026-08-01T00:06:09.315451+00:00",
       "2026-08-01T00:06:09.317227+00:00",
       "2026-08-06T06:38:00.955760+00:00",
-      "2026-08-09T17:58:29.091173+00:00"
+      "2026-08-09T17:58:29.091173+00:00",
+      "2026-08-09T21:57:46.539487+00:00",
+      "2026-08-09T21:57:46.543032+00:00"
     ],
     "40585": [
       "2026-03-31T01:15:56.328646+00:00",
@@ -1471,7 +1473,13 @@
       "2026-08-09T02:15:51.303301+00:00",
       "2026-08-09T02:15:51.305019+00:00",
       "2026-08-09T02:15:51.306777+00:00",
-      "2026-08-09T07:31:51.719238+00:00"
+      "2026-08-09T07:31:51.719238+00:00",
+      "2026-08-09T21:57:46.544876+00:00",
+      "2026-08-09T21:57:46.546759+00:00",
+      "2026-08-09T21:57:46.548533+00:00",
+      "2026-08-09T21:57:46.550322+00:00",
+      "2026-08-09T21:57:46.552109+00:00",
+      "2026-08-09T21:57:46.553931+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1632,62 +1640,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.457781+00:00",
-      "player": "Anthony",
-      "preview": "I rolled everything. If they have a reaction to avoid any at",
-      "msg_id": "166104"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.462697+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "166098"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.471885+00:00",
-      "player": "Anthony",
-      "preview": "Didn't add it to all the tokens bro",
-      "msg_id": "166108"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.490296+00:00",
-      "player": "Anthony",
-      "preview": "Anyways that means i probably need to reroll my crit dmg as ",
-      "msg_id": "166112"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.495205+00:00",
-      "player": "Anthony",
-      "preview": "The rest of the attacks should hit except if they somehow ha",
-      "msg_id": "166113"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.511755+00:00",
-      "player": "Anthony",
-      "preview": "[media]",
-      "msg_id": "166127"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.516765+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "166128"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-08T21:16:22.521789+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "166130"
-    },
     {
       "pid": "40585",
       "time": "2026-07-08T21:16:22.531899+00:00",
@@ -3031,6 +2983,62 @@
       "player": "Buffet",
       "preview": "\"I...yes. The one with all those random creatures chained up",
       "msg_id": "169545"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-09T21:57:46.539487+00:00",
+      "player": "Ryo",
+      "preview": "Cyrus coughs into his hand and look at his sickly moving mar",
+      "msg_id": "171212"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-09T21:57:46.543032+00:00",
+      "player": "Laetheron",
+      "preview": "They give a little nod, \"Mhm, I think we all did. I don't kn",
+      "msg_id": "169572"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T21:57:46.544876+00:00",
+      "player": "Terra",
+      "preview": "[media]",
+      "msg_id": "171134"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T21:57:46.546759+00:00",
+      "player": "Terra",
+      "preview": "soooo Lai's right thigh opens and draws his laser pistol and",
+      "msg_id": "171135"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T21:57:46.548533+00:00",
+      "player": "Terra",
+      "preview": "that's 2 actions no? third action is firing?",
+      "msg_id": "171136"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T21:57:46.550322+00:00",
+      "player": "Terra",
+      "preview": "[media]",
+      "msg_id": "171151"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T21:57:46.552109+00:00",
+      "player": "Terra",
+      "preview": "[media]",
+      "msg_id": "171191"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T21:57:46.553931+00:00",
+      "player": "Terra",
+      "preview": "second shot miss",
+      "msg_id": "171192"
     }
   ],
   "pending_potw_boons": {

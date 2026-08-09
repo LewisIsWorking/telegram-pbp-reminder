@@ -1,61 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 171134,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-09T12:26:11+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171135,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-09T12:28:19+00:00",
-      "preview": "soooo Lai's right thigh opens and draws his laser pistol and fires at the ooze",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171136,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-09T12:31:08+00:00",
-      "preview": "that's 2 actions no? third action is firing?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171151,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-09T13:19:13+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171191,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-09T13:31:20+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171192,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-09T13:31:24+00:00",
-      "preview": "second shot miss",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -307,7 +252,19 @@
     "msg:170753",
     "2026-08-08 12:59:56",
     "msg:170251",
-    "2026-08-05 13:16:35"
+    "2026-08-05 13:16:35",
+    "msg:171134",
+    "2026-08-09 12:26:11",
+    "msg:171135",
+    "2026-08-09 12:28:19",
+    "msg:171136",
+    "2026-08-09 12:31:08",
+    "msg:171151",
+    "2026-08-09 13:19:13",
+    "msg:171191",
+    "2026-08-09 13:31:20",
+    "msg:171192",
+    "2026-08-09 13:31:24"
   ],
   "reply_log": [
     {
@@ -1466,6 +1423,60 @@
       "player": "Anthony",
       "preview": "@Saiminaminah or oozes turn",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:45:52+00:00",
+      "pid": "52083",
+      "msg_id": "171134",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:09+00:00",
+      "pid": "52083",
+      "msg_id": "171135",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "soooo Lai's right thigh opens and draws his laser pistol and fires at the ooze",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:23+00:00",
+      "pid": "52083",
+      "msg_id": "171136",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "that's 2 actions no? third action is firing?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:34+00:00",
+      "pid": "52083",
+      "msg_id": "171151",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:43+00:00",
+      "pid": "52083",
+      "msg_id": "171191",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:47:03+00:00",
+      "pid": "52083",
+      "msg_id": "171192",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "second shot miss",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1478,12 +1489,10 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [
-        171197
-      ],
-      "fingerprint": "2026-08-09 12:26:11|2026-08-09 12:28:19|2026-08-09 12:31:08|2026-08-09 13:19:13|2026-08-09 13:31:20|2026-08-09 13:31:24",
-      "last_posted_at": "2026-08-09T14:41:20.232753+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 171249
     }
   }
 }
