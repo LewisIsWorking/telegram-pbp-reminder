@@ -1,6 +1,25 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 171067,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-08-09T03:11:54+00:00",
+      "preview": "What do you mean attached?",
+      "media_group_id": null
+    },
+    {
+      "message_id": 171068,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-08-09T03:12:08+00:00",
+      "preview": "You mean possession?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2428,10 +2447,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 171054
+      "fingerprint": "2026-08-09 03:11:54|2026-08-09 03:12:08",
+      "msg_ids": [
+        171071
+      ],
+      "last_posted_at": "2026-08-09T04:22:57.947421+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
