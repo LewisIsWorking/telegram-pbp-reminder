@@ -3032,7 +3032,21 @@
       "msg_id": "170251"
     }
   ],
-  "pending_potw_boons": {},
+  "pending_potw_boons": {
+    "52083": {
+      "message_id": 171196,
+      "winner_user_id": "8097377199",
+      "campaign_name": "Hopeful End-Times",
+      "boons": [
+        "A street urchin warns you about a shortcut that's actually legitimate.",
+        "The tax on goods entering the city has been temporarily suspended. You save a day's wages.",
+        "Snow from yesterday has melted in a pattern that reveals a buried path.",
+        "The DC of your next skill check is reduced by 1."
+      ],
+      "base_message": "Player of the Week for Hopeful End-Times: Terra (@Saiminaminah)!\n(2026-08-02 (W31) to 2026-08-09 (W32))\n\n5 posts this week with an average gap of 6.2h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-08-09T14:41:13.870171+00:00"
+    }
+  },
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"
