@@ -2,15 +2,6 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 169545,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-08-01T03:06:44+00:00",
-      "preview": "\"I...yes. The one with all those random creatures chained up for seemingly no reason? And a handful of very unhelpful disembodied voices?\nShe notices your tattoo and unbuckles her left shoulder guard. Alitheia's tattoo is inlaid with a phoenix.\n\"I got one of those too. Did this come from the dream?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 169572,
       "thread_id": 51357,
       "user_id": "8117756377",
@@ -35,6 +26,15 @@
       "user_name": "Cannon",
       "time": "2026-08-03T23:00:22+00:00",
       "preview": "Illiani cheerfully nods. She's getting used to people showing up in type of way.\n\"I'm sure we could use your help! So far, everyone with marks like ours has been pretty capable.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 171212,
+      "thread_id": 51357,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-09T17:48:46+00:00",
+      "preview": "Cyrus coughs into his hand and look at his sickly moving marks on him.\n\n\"Most of us...\"",
       "media_group_id": null
     }
   ],
@@ -310,7 +310,9 @@
     "msg:169430",
     "2026-07-31 21:10:42",
     "msg:169544",
-    "2026-08-01 02:58:59"
+    "2026-08-01 02:58:59",
+    "msg:169545",
+    "2026-08-01 03:06:44"
   ],
   "reply_log": [
     {
@@ -1489,17 +1491,26 @@
       "player": "Laetheron",
       "preview": "With a tilted head and a gesture to their own whale tattoo, Twilight asks, \"Did ",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-09T17:40:20+00:00",
+      "pid": "51357",
+      "msg_id": "169545",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"I...yes. The one with all those random creatures chained up for seemingly no re",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-01 03:06:44|2026-08-01 05:39:47|2026-08-03 21:25:18|2026-08-03 23:00:22",
+      "fingerprint": "2026-08-01 05:39:47|2026-08-03 21:25:18|2026-08-03 23:00:22|2026-08-09 17:48:46",
       "msg_ids": [
-        170414
+        171214
       ],
-      "last_posted_at": "2026-08-06T06:38:05.385467+00:00",
+      "last_posted_at": "2026-08-09T17:58:34.222376+00:00",
       "caught_up_msg_id": null
     },
     "145040": {
