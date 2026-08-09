@@ -97,3 +97,48 @@ def set_slot_msg_ids(slot: dict, msg_ids: list[int],
 def clear_slot(slot: dict) -> None:
     """Reset the slot — call after deleting all tracked messages."""
     SinglePin.clear(slot)
+
+
+def normalise_queue_keys(queues: dict) -> bool:
+    """Force every ``topic_queues`` key to ``str``; merge int/str twins.
+
+    ``topic_queues`` is persisted as JSON, and **JSON object keys are
+    always strings**. But ``parse_message`` returns Telegram's raw
+    ``message_thread_id`` as an ``int``, and that int was used verbatim
+    as the slot key. So ``queues.setdefault(51357, ...)`` missed the
+    on-disk ``"51357"`` slot, handed the poster a fresh empty slot, and
+    the previous batch was never deleted — then the save wrote the int
+    key back out as a *second* string key, stranding the original IDs
+    where even the ``pending_delete`` retry sweep could not reach them.
+    That is the 2026-08-10 C05 orphan (three surviving "Unreplied:"
+    posts). The poster now stringifies at the boundary; this function
+    repairs state already corrupted by the buggy runs.
+
+    When both an int and a string key exist for the same thread, the
+    **int-keyed slot is the newer one** (the buggy run created it after
+    loading the string-keyed slot), so it stays live. The stranded
+    string-keyed IDs are parked in ``pending_delete`` rather than
+    dropped, so the existing retry sweep deletes them on the next run.
+
+    Mutates ``queues`` in place. Returns True if anything changed, so
+    the caller knows to persist.
+    """
+    non_str = [k for k in list(queues) if not isinstance(k, str)]
+    if not non_str:
+        return False
+    for key in non_str:
+        slot = queues.pop(key)
+        skey = str(key)
+        twin = queues.get(skey)
+        queues[skey] = slot
+        if twin is None:
+            continue
+        live = set(slot_msg_ids(slot))
+        stranded = [m for m in slot_msg_ids(twin) if m not in live]
+        stranded += [m for m in (twin.get("pending_delete") or [])
+                     if m not in live]
+        if twin.get("caught_up_msg_id") and twin["caught_up_msg_id"] not in live:
+            stranded.append(twin["caught_up_msg_id"])
+        if stranded:
+            queue_pending_deletes(slot, stranded)
+    return True

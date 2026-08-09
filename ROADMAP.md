@@ -418,6 +418,7 @@ Dated log of discovered bugs — open and resolved.
 
 | Date | Status | Description | Fix |
 |------|--------|-------------|-----|
+| 2026-08-10 | ✅ Fixed 2026-08-10 | **C05 orphan: old "Unreplied:" posts never deleted.** Queue entries carry Telegram's raw **int** `message_thread_id`, but `topic_queues` is JSON so its keys are always **str** — `setdefault(51357, …)` missed the on-disk `"51357"` slot, so `existing.is_empty` was True and the previous batch was never deleted. The save then wrote a second, int-keyed slot, overwriting the real one and stranding those IDs beyond the L28 retry sweep. Missed by the suite because every test passed `thread_id` as a str, the one type production never sends. | `_threads_from_scanned` stringifies at the boundary; new `normalise_queue_keys` heals already-corrupted state and parks stranded IDs in `pending_delete`; `test_topic_queue_key_type.py` (7 tests). Deletion safety untouched — the bot-sent registry guard is still the only `deleteMessage` gate. |
 | 2026-03-27 | ✅ Fixed 2026-03-27 | Unknown voter UIDs displayed as raw numbers in poll pings | Added `"Unknown (uid)"` fallback; added DragonFox2000 to C01 config |
 | 2026-03-27 | ✅ Fixed 2026-03-27 | `None.items()` crash in `session_poll.py` when `poll_user_names` is `null` | Guard added |
 | 2026-03-27 | ✅ Fixed 2026-03-27 | Missing `build_hp_tracker` import in `cmd_conditions_hp.py` (would NameError in production) | Import added |
