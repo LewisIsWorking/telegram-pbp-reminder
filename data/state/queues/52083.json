@@ -9,51 +9,6 @@
       "time": "2026-08-05T13:16:35+00:00",
       "preview": "@Saiminaminah or oozes turn",
       "media_group_id": null
-    },
-    {
-      "message_id": 170749,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-08T12:38:03+00:00",
-      "preview": "Is it dead?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 170750,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-08T12:38:14+00:00",
-      "preview": "If you shoot it",
-      "media_group_id": null
-    },
-    {
-      "message_id": 170751,
-      "thread_id": 145045,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-08T12:38:26+00:00",
-      "preview": "For now it's chilling.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 170752,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-08T12:57:26+00:00",
-      "preview": "I mean... if the group is not against it",
-      "media_group_id": null
-    },
-    {
-      "message_id": 170753,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-08T12:59:56+00:00",
-      "preview": "This one I don't know",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -295,7 +250,17 @@
     "msg:169307",
     "2026-07-31 02:40:37",
     "msg:169308",
-    "2026-07-31 02:41:11"
+    "2026-07-31 02:41:11",
+    "msg:170749",
+    "2026-08-08 12:38:03",
+    "msg:170750",
+    "2026-08-08 12:38:14",
+    "msg:170751",
+    "2026-08-08 12:38:26",
+    "msg:170752",
+    "2026-08-08 12:57:26",
+    "msg:170753",
+    "2026-08-08 12:59:56"
   ],
   "reply_log": [
     {
@@ -1400,6 +1365,51 @@
       "player": "Bruce",
       "preview": "Chua will sustain his warp field and cast richochet at the ooze.",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:29+00:00",
+      "pid": "52083",
+      "msg_id": "170749",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "Is it dead?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:31+00:00",
+      "pid": "52083",
+      "msg_id": "170750",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "If you shoot it",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:33+00:00",
+      "pid": "52083",
+      "msg_id": "170751",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "For now it's chilling.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:37+00:00",
+      "pid": "52083",
+      "msg_id": "170752",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "I mean... if the group is not against it",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:41+00:00",
+      "pid": "52083",
+      "msg_id": "170753",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "This one I don't know",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1413,10 +1423,10 @@
     },
     "145045": {
       "msg_ids": [
-        170761
+        171047
       ],
-      "fingerprint": "2026-08-05 13:16:35|2026-08-08 12:38:03|2026-08-08 12:38:14|2026-08-08 12:38:26|2026-08-08 12:57:26|2026-08-08 12:59:56",
-      "last_posted_at": "2026-08-08T13:02:59.545150+00:00",
+      "fingerprint": "2026-08-05 13:16:35",
+      "last_posted_at": "2026-08-09T02:15:58.619721+00:00",
       "caught_up_msg_id": null
     }
   }

@@ -1460,7 +1460,12 @@
       "2026-07-30T02:54:50.189758+00:00",
       "2026-07-30T02:54:50.191726+00:00",
       "2026-07-31T10:05:23.656149+00:00",
-      "2026-07-31T10:05:23.659614+00:00"
+      "2026-07-31T10:05:23.659614+00:00",
+      "2026-08-09T02:15:51.298188+00:00",
+      "2026-08-09T02:15:51.301553+00:00",
+      "2026-08-09T02:15:51.303301+00:00",
+      "2026-08-09T02:15:51.305019+00:00",
+      "2026-08-09T02:15:51.306777+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1621,41 +1626,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-07-08T04:20:21.608060+00:00",
-      "player": "Cannon",
-      "preview": "Nadya briefly tosses the bodies just in case, but stands rea",
-      "msg_id": "164303"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-07-08T04:20:21.611682+00:00",
-      "player": "Anthony",
-      "preview": "Filiaur stays in between the 2 counters and says.\n\"Well, for",
-      "msg_id": "165294"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-07-08T04:20:21.613170+00:00",
-      "player": "Anthony",
-      "preview": "After that she's gonna pull out the 250gp sailing charts and",
-      "msg_id": "165295"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-07-08T07:34:53.485803+00:00",
-      "player": "Anthony",
-      "preview": "Then she's gonna pull out the set of sliver cutlery, inspect",
-      "msg_id": "165296"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-07-08T19:45:16.039481+00:00",
-      "player": "Anthony",
-      "preview": "Continuing her shopping Filliaur snaps back.\n\"As far as i kn",
-      "msg_id": "166006"
-    },
     {
       "pid": "40585",
       "time": "2026-07-08T21:16:21.681152+00:00",
@@ -3020,6 +2990,41 @@
       "player": "Horia",
       "preview": "Selenor will roll that too",
       "msg_id": "170510"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T02:15:51.298188+00:00",
+      "player": "Terra",
+      "preview": "Is it dead?",
+      "msg_id": "170749"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T02:15:51.301553+00:00",
+      "player": "Anthony",
+      "preview": "If you shoot it",
+      "msg_id": "170750"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T02:15:51.303301+00:00",
+      "player": "Anthony",
+      "preview": "For now it's chilling.",
+      "msg_id": "170751"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T02:15:51.305019+00:00",
+      "player": "Terra",
+      "preview": "I mean... if the group is not against it",
+      "msg_id": "170752"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-09T02:15:51.306777+00:00",
+      "player": "Terra",
+      "preview": "This one I don't know",
+      "msg_id": "170753"
     }
   ],
   "pending_potw_boons": {},
