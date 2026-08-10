@@ -68,13 +68,21 @@ def send_message(chat_id: int, thread_id: int | None, text: str,
 
 
 def send_message_id(chat_id: int, thread_id: int | None, text: str,
-                    parse_mode: str | None = None) -> int | None:
+                    parse_mode: str | None = None,
+                    silent: bool = False) -> int | None:
     """Send a text message and return the message_id, or None on failure.
 
     On success, the returned message_id is recorded in the bot-sent
     registry so a later call to :func:`delete_message` will accept it.
+
+    ``silent`` sets Telegram's ``disable_notification``. It defaults to
+    False so every existing caller behaves exactly as before. It exists
+    for messages that are *replaced* on a schedule rather than
+    announced: the self-refreshing schedule/timer post rewrites itself
+    on every run, and without this it would ping the GM 48 times a day.
     """
-    payload: dict = {"chat_id": chat_id, "text": text, "disable_notification": False}
+    payload: dict = {"chat_id": chat_id, "text": text,
+                     "disable_notification": silent}
     if thread_id is not None:
         payload["message_thread_id"] = thread_id
     if parse_mode:

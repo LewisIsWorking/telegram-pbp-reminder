@@ -20,7 +20,7 @@ same shape ``scheduled.week_welcome`` already uses.
 
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -66,23 +66,65 @@ class TestDueGate:
 
 
 class TestAwardOnlyFiresMonday:
-    """The headline fix: no posting on a random Tuesday."""
+    """The headline fix: no posting on a random Tuesday.
+
+    ⚠️ These fixtures must be able to ACTUALLY AWARD, otherwise the
+    "does not fire" assertions pass for the wrong reason. An earlier
+    draft used ``topic_pairs: []``, so nothing could ever be sent and
+    deleting the weekday gate entirely still left the suite green —
+    a guard that cannot fail proves nothing. ``test_monday_DOES_fire``
+    below is the counterweight: it pins that this config really does
+    produce an award, so the negative cases mean something.
+    """
+
+    CFG = {"group_id": -100, "bot_topic_id": 1,
+           "topic_pairs": [{"name": "DF", "code": "C01",
+                            "pbp_topic_ids": [40585], "chat_topic_id": 200}]}
 
     def _state(self):
-        return {"last_potw": {}, "pending_potw_boons": {}, "potw_week": {}}
+        # Five posts, six hours apart, inside the 7-day window — clears
+        # POTW_MIN_POSTS (5) with a consistent gap so there is a winner.
+        stamps = [(_MON_09 - timedelta(days=1, hours=6 * i)).isoformat()
+                  for i in range(5)]
+        return {
+            "last_potw": {}, "pending_potw_boons": {}, "potw_week": {},
+            "potw_history": [], "mvp_wins": {},
+            "post_timestamps": {"40585": {"u1": stamps}},
+            "players": {"40585:u1": {"first_name": "Anthony",
+                                     "last_name": "", "username": "anth"}},
+        }
+
+    def test_monday_DOES_fire(self, tg_mock):
+        """Proves the fixture is capable of awarding."""
+        from scheduled.potw import player_of_the_week
+        tg_mock.send_message_id.return_value = 900
+        player_of_the_week(self.CFG, self._state(), now=_MON_09)
+        assert tg_mock.send_message_id.called, (
+            "fixture cannot award — the negative tests below would be vacuous")
 
     def test_does_not_fire_midweek(self, tg_mock):
         from scheduled.potw import player_of_the_week
-        cfg = {"group_id": -100, "bot_topic_id": 1, "topic_pairs": []}
-        player_of_the_week(cfg, self._state(), now=_TUE_09)
+        tg_mock.send_message_id.return_value = 900
+        player_of_the_week(self.CFG, self._state(), now=_TUE_09)
         assert not tg_mock.send_message_id.called, (
             "POTW must not fire on a Tuesday — this is the reported bug")
 
     def test_does_not_fire_before_post_hour(self, tg_mock):
         from scheduled.potw import player_of_the_week
-        cfg = {"group_id": -100, "bot_topic_id": 1, "topic_pairs": []}
-        player_of_the_week(cfg, self._state(), now=_MON_02)
+        tg_mock.send_message_id.return_value = 900
+        player_of_the_week(self.CFG, self._state(), now=_MON_02)
         assert not tg_mock.send_message_id.called
+
+    def test_does_not_fire_twice_in_one_week(self, tg_mock):
+        """The cron ticks twice an hour; only the first tick may award."""
+        from scheduled.potw import player_of_the_week
+        tg_mock.send_message_id.return_value = 900
+        state = self._state()
+        player_of_the_week(self.CFG, state, now=_MON_09)
+        first = tg_mock.send_message_id.call_count
+        player_of_the_week(self.CFG, state, now=_MON_09 + timedelta(minutes=30))
+        assert tg_mock.send_message_id.call_count == first, (
+            "second tick on the same Monday must be a no-op")
 
     def test_quiet_week_stamps_so_it_cannot_fire_later(self):
         """The 'fires whenever someone posts' half of the bug.
