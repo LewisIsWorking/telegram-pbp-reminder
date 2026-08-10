@@ -141,6 +141,18 @@ class TestAwardOnlyFiresMonday:
 
 
 class TestRoundup:
+    AWARDED = [{"campaign": "C01", "pid": "1", "winner": {
+        "first_name": "Anthony", "last_name": "", "username": "",
+        "post_count": 12, "avg_gap_hours": 4.2}}]
+
+    def test_roundup_DOES_post_when_there_are_winners(self, tg_mock):
+        """Counterweight: proves the negative tests below can fail."""
+        from scheduled.potw_roundup import post_potw_roundup
+        tg_mock.send_message.return_value = True
+        post_potw_roundup({"group_id": -100, "bot_topic_id": 1}, {},
+                          self.AWARDED, now=_MON_09)
+        assert tg_mock.send_message.called
+
     def test_no_award_means_no_roundup(self, tg_mock):
         from scheduled.potw_roundup import post_potw_roundup
         post_potw_roundup({"group_id": -100, "bot_topic_id": 1}, {}, [],
@@ -177,10 +189,25 @@ class TestRoundup:
 
 
 class TestCountdown:
-    def test_only_fires_on_countdown_day(self, tg_mock):
+    def test_countdown_DOES_post_on_thursday(self, tg_mock):
+        """Counterweight for the negatives — a fixture that can fire.
+
+        Without this, 'does not post' assertions using an empty
+        topic_pairs would pass because nothing could ever post, which is
+        precisely how the Monday-gate guard went hollow.
+        """
         from scheduled.potw_countdown import post_potw_countdown
-        cfg = {"group_id": -100, "bot_topic_id": 1, "topic_pairs": []}
-        post_potw_countdown(cfg, {}, now=_MON_09)
+        tg_mock.send_message.return_value = True
+        post_potw_countdown(TestAwardOnlyFiresMonday.CFG,
+                            TestAwardOnlyFiresMonday()._state(), now=_THU_09)
+        assert tg_mock.send_message.called
+
+    def test_only_fires_on_countdown_day(self, tg_mock):
+        """Same capable fixture as above, wrong day — must stay silent."""
+        from scheduled.potw_countdown import post_potw_countdown
+        tg_mock.send_message.return_value = True
+        post_potw_countdown(TestAwardOnlyFiresMonday.CFG,
+                            TestAwardOnlyFiresMonday()._state(), now=_MON_09)
         assert not tg_mock.send_message.called
 
     def test_says_four_days_to_go_on_thursday(self):

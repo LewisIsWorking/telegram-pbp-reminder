@@ -149,25 +149,74 @@ import _test_state_isolation  # noqa: F401, E402
 # regardless of which module made the call.
 # ---------------------------------------------------------------------------
 import pytest
-from unittest.mock import MagicMock, patch
+from pathlib import Path
+from unittest.mock import MagicMock
+
+
+_TG_MODULE_NAMES: list[str] | None = None
+
+
+def tg_importing_modules() -> list[str]:
+    """Every non-test module in this package that does ``import telegram as tg``.
+
+    Not used by the fixture (see below) but kept as the documented surface
+    the fixture has to cover, and asserted on by
+    ``test_tg_mock_coverage.py``.
+    """
+    global _TG_MODULE_NAMES
+    if _TG_MODULE_NAMES is None:
+        root = Path(__file__).parent
+        found = []
+        for path in root.rglob("*.py"):
+            if path.name.startswith("test_") or path.name == "conftest.py":
+                continue
+            if "__pycache__" in path.parts:
+                continue
+            try:
+                src = path.read_text(encoding="utf-8")
+            except OSError:  # pragma: no cover - unreadable file
+                continue
+            if "import telegram as tg" not in src:
+                continue
+            rel = path.relative_to(root).with_suffix("")
+            found.append(".".join(rel.parts))
+        _TG_MODULE_NAMES = sorted(found)
+    return _TG_MODULE_NAMES
 
 
 @pytest.fixture
 def tg_mock():
-    """Yield a ``MagicMock`` patched into every module that imports
-    ``telegram as tg`` for queue-posting operations.
+    """Yield a ``MagicMock`` standing in for telegram in EVERY module.
 
-    Use this fixture instead of per-module ``patch("<module>.tg")``
-    when a test exercises code paths that span the posting refactor
-    boundary (orchestrator + ``posting`` package).
+    History — this fixture used to hand-list its patch targets, and
+    drifted badly: it named 8 modules while 56 import ``telegram as tg``.
+    Any test using it against one of the other 48 asserted on a mock the
+    code never touched, so ``assert not tg_mock.send_message.called``
+    passed no matter what the code did. Two POTW guards were exactly
+    that; proven on 2026-08-10 by deleting the POTW Monday gate and
+    watching the suite stay green.
+
+    Rather than patch 56 module attributes (correct, but it tripled suite
+    runtime), this swaps the callables on the **shared telegram module
+    object**. Every module does ``import telegram as tg``, and nothing
+    anywhere does ``from telegram import <name>`` — verified by the guard
+    test — so they all hold a reference to that one object. Swapping its
+    attributes therefore reaches all of them at once, covers modules
+    added in future with no registration step, and is O(1).
     """
+    import telegram as tg_module
     mock = MagicMock()
-    with patch("scheduled.topic_queue_poster.tg", mock), \
-         patch("scheduled.gm_queue_history.tg", mock), \
-         patch("posting.sender.tg", mock), \
-         patch("posting.message_batch.tg", mock), \
-         patch("scheduled.potw.tg", mock), \
-         patch("scheduled.potw_roundup.tg", mock), \
-         patch("scheduled.potw_countdown.tg", mock), \
-         patch("scheduled.schedule_post.tg", mock):
+    saved: dict = {}
+    for attr in dir(tg_module):
+        if attr.startswith("_"):
+            continue
+        value = getattr(tg_module, attr)
+        if callable(value):
+            saved[attr] = value
+            setattr(tg_module, attr, getattr(mock, attr))
+    mock.patched_attrs = sorted(saved)
+    try:
         yield mock
+    finally:
+        for name, value in saved.items():
+            setattr(tg_module, name, value)
