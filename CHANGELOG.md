@@ -11,6 +11,51 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.53.2] - 2026-08-10
+
+### Fixed
+
+**`tg_mock` covered 8 of 56 modules, so "did not post" assertions could
+pass vacuously.**
+
+The fixture hand-listed its patch targets. 56 modules do
+`import telegram as tg`; it named 8. Any test using the fixture against
+one of the other 48 asserted on a mock the code never touched, so
+
+    assert not tg_mock.send_message.called
+
+passed regardless of what the code did.
+
+Demonstrated by deleting the POTW Monday gate outright — **the suite
+stayed green.** A guard that cannot fail is not a guard.
+
+The fixture now swaps the callables on the **shared `telegram` module
+object** instead of patching modules one by one. Every module reaches
+telegram through that single object, so one swap covers all of them,
+including any added later — there is no list to keep in sync. It is also
+O(1): patching all 56 individually was correct but tripled suite runtime.
+
+- `test_tg_mock_coverage.py` — guards the guard. Checks discovery still
+  finds the real modules, that the swap covers the actual senders, and —
+  the part that matters — that calls made through several different
+  modules genuinely land on the mock. Coverage alone would not be enough:
+  a fixture that patched *nothing* would still satisfy every `not called`
+  assertion in the suite, so the positive direction is asserted too.
+- A guard forbidding `from telegram import <name>`, which would bind a
+  function at import time and slip past the swap, silently restoring the
+  exact vacuum this fixes.
+- POTW and countdown fixtures given real campaigns and qualifying posts
+  so they *can* fire, plus `test_monday_DOES_fire`,
+  `test_countdown_DOES_post_on_thursday` and
+  `test_roundup_DOES_post_when_there_are_winners` as counterweights —
+  the earlier drafts used `topic_pairs: []`, so nothing could ever be
+  sent and the negative assertions were true for the wrong reason.
+
+Verified by mutation: removing the Monday gate now fails exactly the two
+intended tests, and dropping `silent=True` fails the notification guard.
+
+---
+
 ## [4.53.1] - 2026-08-10
 
 ### Changed
