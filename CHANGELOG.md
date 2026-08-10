@@ -11,6 +11,40 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.53.1] - 2026-08-10
+
+### Changed
+
+**The schedule post now renders in Belfast time, not UTC.**
+
+`Europe/London`, so it is BST in summer and GMT in winter and the label
+next to each time says which. 08:00 UTC reads as 09:00 BST in August and
+08:00 GMT in December.
+
+**Only the rendering changed.** Every gate, every cron trigger and every
+stored timestamp is still UTC — a test pins the POTW row to
+`POTW_WEEKDAY`/`POTW_POST_HOUR` so converting the display can never drag
+a gate with it. Times are built as real datetimes and converted, rather
+than having an hour added, so the DST changeover and any day rollover
+are handled by the zone rather than by arithmetic that is wrong for half
+the year.
+
+- `scheduled/local_time.py` — conversion helper. Degrades to UTC with a
+  log line if the zone cannot be loaded, rather than raising: this runs
+  inside the scheduled-jobs loop and a tz lookup is not worth taking a
+  whole run down for.
+- `tzdata` added to all three workflow install steps. The Ubuntu runner
+  has a system tz database but Windows does not, so without it `ZoneInfo`
+  fails locally.
+- **"Schedule post" added to `QUEUE_CHECKS`.** It advertises a :00/:30
+  cadence and shows a countdown, but the half-past pass only ran
+  `("Queue reminder", "Queue nudge")` — so its timer would have read as
+  expired for half of every hour. Caught by the existing
+  `test_queue_checks_are_real_labels` guard, which then required the spy
+  registering too.
+
+---
+
 ## [4.53.0] - 2026-08-10
 
 ### Added

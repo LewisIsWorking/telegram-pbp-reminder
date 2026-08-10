@@ -62,7 +62,12 @@ from compat import *  # noqa: F401,F403
 # Queue-only subset. The half-hourly `--queue-only` run ingests Telegram
 # updates (so GM reply-to clears register promptly) and refreshes the GM
 # queue, without firing the other ~28 scheduled features every 30 minutes.
-QUEUE_CHECKS = ("Queue reminder", "Queue nudge")
+# The half-past pass. "Schedule post" is included because it advertises
+# a :00/:30 cadence and shows a countdown to the next run — if it only
+# refreshed hourly its timer would read as expired for half of every
+# hour. It is one message replace, so it stays cheap enough for the
+# lightweight pass.
+QUEUE_CHECKS = ("Queue reminder", "Queue nudge", "Schedule post")
 
 
 def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:

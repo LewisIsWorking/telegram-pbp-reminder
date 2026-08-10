@@ -35,7 +35,8 @@ def _labels_run(only):
         import scheduled.queue_reminder as qr
         import scheduled.queue_nudge as qn
         import scheduled.tips as tips
-        with patch.object(checker, "post_queue_reminder", _spy("Queue reminder")), \
+        with patch.object(checker, "post_schedule", _spy("Schedule post")), \
+             patch.object(checker, "post_queue_reminder", _spy("Queue reminder")), \
              patch.object(checker, "check_queue_nudge", _spy("Queue nudge")), \
              patch.object(checker, "post_daily_tip", _spy("Daily tip")), \
              patch.object(checker, "player_of_the_week", _spy("Player of the Week")), \
