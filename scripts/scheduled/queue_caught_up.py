@@ -32,16 +32,26 @@ CAUGHT_UP_TEXT = (
 
 
 def post_caught_up(state: dict, group_id: int, bot_topic: int,
-                   age_lines: list[str] | None = None) -> None:
+                   age_lines: list[str] | None = None,
+                   oldest_line: str | None = None) -> None:
     """Post the caught-up notification via the batch machinery.
 
     ``age_lines`` (from ``queue_silence.campaign_age_lines``) is appended so a
     cleared queue still reports how long each campaign has been quiet. Without
     it the message says only that there is nothing to reply to, which tells the
     GM nothing about which game has gone stale.
+
+    ``oldest_line`` (from ``queue_silence.oldest_campaign_line``) names the
+    single campaign that has gone longest without a post. A populated queue
+    ends with the "Reply to this next" focus message, which is built from
+    unreplied entries — so an empty queue has nothing pointing anywhere. This
+    is the empty-queue equivalent: one clear next action instead of a list the
+    GM has to scan and rank themselves.
     """
     text = CAUGHT_UP_TEXT
     if age_lines:
         text += "\n\n━━ 🕒 Time since last post ━━\n"
         text += "\n".join(age_lines)
+    if oldest_line:
+        text += "\n\n" + oldest_line
     post_and_persist(state, group_id, bot_topic, [text], pin=False)
