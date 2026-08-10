@@ -17,6 +17,7 @@ schema lives in ``posting.SinglePin``; sending/pinning lives in
 
 State per canonical campaign pid in data/state/queues/{pid}.json:
   topic_queues: {thread_id: {msg_ids: [int, ...], fingerprint, ...}}
+    — keys are ALWAYS str (JSON forces it); see _threads_from_scanned
   topic_msg_id, topic_fingerprint — legacy fields, migrated on first run
 """
 
@@ -32,6 +33,7 @@ from scheduled.per_topic_caught_up import build_caught_up_text
 from scheduled.topic_queue_state import (slot_msg_ids, empty_slot,
                                          queue_pending_deletes,
                                          retry_pending_deletes)
+from scheduled.topic_queue_state import normalise_queue_keys as _normalise_queue_keys
 
 
 def _group_id_for(config: dict, pid: str) -> int:
@@ -151,7 +153,12 @@ def _threads_from_scanned(scanned: dict) -> dict[str, tuple[str, list]]:
     for pid, data in scanned.items():
         by_thread: dict[str, list] = {}
         for entry in data["entries"]:
-            tid = entry.get("thread_id", pid)
+            # str() is load-bearing: entries carry Telegram's raw int
+            # thread_id, but topic_queues is JSON so its keys are always
+            # str. An int key misses the on-disk slot and the previous
+            # batch is never deleted — the 2026-08-10 C05 orphan. See
+            # topic_queue_state.normalise_queue_keys.
+            tid = str(entry.get("thread_id", pid))
             by_thread.setdefault(tid, []).append(entry)
         for tid, entries in by_thread.items():
             result[tid] = (pid, entries)
@@ -169,6 +176,7 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
         cq = _load(pid)
         _migrate_legacy(cq, group_id)
         queues = cq.setdefault("topic_queues", {})
+        _normalise_queue_keys(queues)
         slot = queues.setdefault(thread_id, empty_slot())
         _post_thread_queue(group_id, thread_id, slot, entries, now)
         _save(pid, cq)
@@ -180,8 +188,8 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
         group_id = _group_id_for(config, pid)
         _migrate_legacy(cq, group_id)
         queues = cq.get("topic_queues", {})
-        changed = False
-        for thread_id, slot in queues.items():
+        changed = _normalise_queue_keys(queues)
+        for thread_id, slot in list(queues.items()):
             if thread_id not in active_threads and (
                     slot_msg_ids(slot) or slot.get("pending_delete")):
                 _clear_thread_queue(group_id, thread_id, slot,
@@ -192,8 +200,8 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
             _save(pid, cq)
 
 
-# The per-topic-queue schema migration (``_migrate_legacy`` above) is
-# registered in the central migration registry from a sibling module,
-# imported here so registration runs whenever this poster is imported
-# (the migration-registry test triggers it by importing this module).
+# Registers the per-topic-queue schema migration (``_migrate_legacy``) in
+# the central migration registry; imported here so registration runs
+# whenever this poster is imported (the migration-registry test relies on
+# that import side effect).
 from scheduled import topic_queue_migration  # noqa: F401, E402
