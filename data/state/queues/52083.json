@@ -1,6 +1,25 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 171444,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-10T09:20:10+00:00",
+      "preview": "Lai returns the laser pistol to the hidden compartment in his thigh",
+      "media_group_id": null
+    },
+    {
+      "message_id": 171450,
+      "thread_id": 145045,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-08-10T10:11:09+00:00",
+      "preview": "\"His death was greatly exaggerated'",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1516,16 +1535,20 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 169063
+      "fingerprint": "2026-08-10 09:20:10",
+      "msg_ids": [
+        171461
+      ],
+      "last_posted_at": "2026-08-10T10:24:02.749667+00:00",
+      "caught_up_msg_id": null
     },
     "145045": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 171403
+      "msg_ids": [
+        171463
+      ],
+      "fingerprint": "2026-08-10 10:11:09",
+      "last_posted_at": "2026-08-10T10:24:05.591375+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

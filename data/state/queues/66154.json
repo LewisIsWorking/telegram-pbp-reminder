@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 171446,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-10T09:54:44+00:00",
+      "preview": "\u2605 Yaaaaay!? \u2605 (Oh sorry wrong character XD)",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1063,10 +1073,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 171363
+      "fingerprint": "2026-08-10 09:54:44",
+      "msg_ids": [
+        171457
+      ],
+      "last_posted_at": "2026-08-10T10:23:56.949215+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

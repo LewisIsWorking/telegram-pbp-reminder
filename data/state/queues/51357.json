@@ -1,6 +1,16 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 171449,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-08-10T10:09:11+00:00",
+      "preview": "Twilight pipes up with a curious look on their face, \"Challenges?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -1513,10 +1523,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 171274
+      "fingerprint": "2026-08-10 10:09:11",
+      "msg_ids": [
+        171459
+      ],
+      "last_posted_at": "2026-08-10T10:23:59.973986+00:00",
+      "caught_up_msg_id": null
     },
     "145040": {
       "msg_ids": [],
