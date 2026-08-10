@@ -10562,5 +10562,45 @@
     "refused": false,
     "bot_owned": true,
     "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-10T21:12:15.700507+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 171535,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-10T21:12:16.081903+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 171492,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-08-10T21:12:16.442251+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171492,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-10T21:12:16.816027+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171493,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
   }
 ]
