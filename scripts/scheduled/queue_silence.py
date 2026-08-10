@@ -101,15 +101,20 @@ def silent_campaigns(config: dict, state: dict,
                      scanned: dict, now: datetime) -> list[str]:
     """Return formatted lines for campaigns idle >= the silence threshold.
 
-    Each line is ready to append directly to the GM queue message.
+    Longest-silent first. Each line is ready to append directly to the GM
+    queue message.
     """
-    lines = []
+    rows = []
     for _pair, _pid, days, icon, prefix, label, age, link in \
             _idle_campaigns(config, state, scanned, now):
         if days < _SILENCE_THRESHOLD_DAYS:
             continue
-        lines.append(f"  {icon} {prefix}{label} — no posts for {age}{link}")
-    return lines
+        rows.append((days, f"  {icon} {prefix}{label} — no posts for {age}{link}"))
+    # Sorted like campaign_age_lines below. Previously emitted in config
+    # topic_pairs order, so the section read as an arbitrary list rather
+    # than worst-first triage order (reported 2026-08-10).
+    rows.sort(key=lambda r: r[0], reverse=True)
+    return [text for _days, text in rows]
 
 
 def caught_up_campaigns(config: dict, state: dict,
@@ -120,13 +125,45 @@ def caught_up_campaigns(config: dict, state: dict,
     Ensures every configured campaign is represented somewhere in the queue
     rather than vanishing when it is both caught up and recently active.
     """
-    lines = []
+    rows = []
     for _pair, _pid, days, icon, prefix, label, age, link in \
             _idle_campaigns(config, state, scanned, now):
         if days >= _SILENCE_THRESHOLD_DAYS:
             continue
-        lines.append(f"  {icon} {prefix}{label} — last post {age} ago{link}")
-    return lines
+        rows.append((days, f"  {icon} {prefix}{label} — last post {age} ago{link}"))
+    # Longest-idle first, matching campaign_age_lines. Previously emitted in
+    # config topic_pairs order, which is why the section could read
+    # 21h, 0h, 2h, 5h, 4d 2h, 1h (reported 2026-08-10). `days` is a float,
+    # so sub-day ages order correctly against each other too.
+    rows.sort(key=lambda r: r[0], reverse=True)
+    return [text for _days, text in rows]
+
+
+def oldest_campaign_line(config: dict, state: dict,
+                         scanned: dict, now: datetime) -> str | None:
+    """Return a 'go here next' callout naming the longest-idle campaign.
+
+    The GM queue ends with a "Reply to this next" focus message, but that
+    is built from unreplied entries — so when the queue is empty there is
+    nothing pointing anywhere. This is the empty-queue equivalent: with no
+    one waiting on a reply, the most useful next action is the campaign
+    that has gone longest without any post at all.
+
+    Ranking is simply "longest since last post", so a silent campaign
+    naturally outranks a caught-up one without needing a separate rule —
+    9d beats 21h because it is a bigger number, not because of its
+    section. Returns None when every campaign is untracked or the config
+    has none.
+    """
+    ranked = sorted(_idle_campaigns(config, state, scanned, now),
+                    key=lambda row: row[2], reverse=True)
+    if not ranked:
+        return None
+    _pair, _pid, days, icon, prefix, label, age, link = ranked[0]
+    stale = "no posts for" if days >= _SILENCE_THRESHOLD_DAYS else "quiet for"
+    return (f"🕰️ Oldest campaign: {icon} {prefix}{label} — {stale} {age}."
+            f"\nNothing is waiting on a reply, so this is the one that "
+            f"most needs you.{link}")
 
 
 def campaign_age_lines(config: dict, state: dict,

@@ -11,6 +11,51 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.52.1] - 2026-08-10
+
+### Fixed
+
+**Silent and Caught up sections now read longest-idle first.**
+
+Reported from queue #1327, whose Caught up section read `21h, 0h, 2h, 5h,
+4d 2h, 1h` — that is `config["topic_pairs"]` order, not age order.
+`silent_campaigns` and `caught_up_campaigns` built their lists by
+appending in iteration order and never sorted, while `campaign_age_lines`
+ten lines below them in the same module already did
+`rows.sort(key=lambda r: r[0], reverse=True)`.
+
+The data was always there: `_idle_campaigns` yields `days` as a float, so
+sub-day ages (0h vs 21h) discriminate correctly.
+
+This cost more than tidiness. In that same queue **C06 at 4d 2h was the
+oldest caught-up campaign but sat fourth in the list**, which is why it
+read as though C01 at 21h were the worst.
+
+### Added
+
+**"Oldest campaign" callout on an empty queue.**
+
+A populated queue ends with the "Reply to this next" focus message, built
+from unreplied entries — so an empty queue pointed nowhere. When there is
+nothing to reply to, the caught-up notification now names the single
+campaign that has gone longest without any post.
+
+Ranking is just "longest since last post", so a silent campaign outranks
+a caught-up one without a special rule: 9d beats 21h because it is a
+bigger number, not because of which section it is in.
+
+`test_queue_silence_ordering.py` — 10 tests, fixtured with the exact
+campaign ages from the reported queue.
+
+### Not a bug (investigated)
+
+Silent campaigns **do** already count GM posts. `dispatch/tracking.py`
+writes `state["topics"][pid]["last_message_time"]` for every non-bot
+message, GM included — local state shows C09's entry stamped with
+`last_user=Path`, the GM account. The one genuine gap is that posts in a
+campaign's **chat** topic are not counted, because chat topics are not in
+`pbp_topic_ids` and `parse_message` rejects them. That is arguably
+correct: the silence clock measures story activity.
 ## [4.52.0] - 2026-08-10
 
 ### Changed
