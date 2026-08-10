@@ -11,6 +11,52 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.54.0] - 2026-08-10
+
+### Added
+
+**Tests for `/sessionplayed` and `/swimmingdone`, which had none — including
+their GM authorisation check.**
+
+`dispatch/gm_poll_cmds.py` was **78% `# pragma: no cover`** (63 lines). The
+entire bodies of both commands were excluded line by line, *including*:
+
+    gm_ids = set(str(g) for g in config.get("gm_user_ids", []))  # pragma: no cover
+    if user_id not in gm_ids:                                    # pragma: no cover
+        tg.send_message(group_id, bot_topic, "GMs only.")        # pragma: no cover
+
+`grep -rn "sessionplayed\|swimmingdone" test_*.py` returned nothing. Zero
+tests, zero coverage visibility, on an auth gate whose commands mutate
+`session_happened` — the flag that silences poll pings for a whole week.
+**An auth bypass there was invisible.**
+
+Also untested and fully excluded: `handle_poll_closed` in
+`dispatch/poll_router.py` (31 pragmas), which sets the same flag when a poll
+closes, plus the vote-retraction and revoting branches of
+`handle_poll_answer`.
+
+- `scripts/test_gm_poll_cmds.py` — 19 tests. Auth tests assert on **both**
+  halves: that the refusal is sent *and* that state was not mutated. Asserting
+  only the message would still pass if the command fell through and wrote the
+  state anyway.
+- `scripts/test_poll_router_closed.py` — 26 tests. Built around matching the
+  right poll: correct campaign, not a sibling, swimming kept independent,
+  unknown ids touching nothing.
+- Each negative has a positive counterpart (`test_gm_is_allowed`) proving the
+  fixture can fire — the pattern from 4.53.2.
+
+### Changed
+
+- **94 `# pragma: no cover` removed** — all 63 from `gm_poll_cmds.py` and all
+  31 from `poll_router.py`. Both files now measure **100% (131 statements,
+  0 missed)** with no exclusions. Repo total: 503 → 409.
+
+Verified by mutation: deleting both `if user_id not in gm_ids` checks fails
+three tests, and the run log shows `Bot topic: /swimmingdone W14 by Mallory` —
+the non-GM executing the command.
+
+---
+
 ## [4.53.2] - 2026-08-10
 
 ### Fixed
