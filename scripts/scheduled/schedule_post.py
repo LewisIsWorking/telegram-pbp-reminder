@@ -30,7 +30,8 @@ from datetime import datetime, timedelta, timezone
 
 import helpers
 import telegram as tg
-from scheduled.schedule_table import todays_items, day_label, fixed_schedule
+from scheduled import local_time
+from scheduled.schedule_table import todays_items, fixed_schedule
 
 # Interval jobs, as (state key, interval-days, label). These fire relative
 # to their last run rather than on a clock, so they get "next due" rather
@@ -84,18 +85,35 @@ def _interval_lines(state: dict, now: datetime) -> list[str]:
     return [text for _h, text in rows]
 
 
+def _at(now: datetime, hour: int, day_offset: int = 0) -> datetime:
+    """The UTC datetime of ``hour`` on now's date (+offset days).
+
+    Built as a real datetime rather than formatting the raw int so the
+    local-time conversion handles BST/GMT — and any day rollover — by
+    itself. Adding an hour by hand would be wrong for half the year.
+    """
+    base = now.replace(hour=hour, minute=0, second=0, microsecond=0)
+    return base + timedelta(days=day_offset)
+
+
 def build_schedule_text(config: dict, state: dict, now: datetime) -> str:
-    """Render the schedule + timer body."""
-    lines = ["🗓️ Bot schedule — " + now.strftime("%A %d %b, %H:%M UTC"), ""]
+    """Render the schedule + timer body, in the GM's local timezone.
+
+    Gates remain UTC everywhere; only the rendering is converted. See
+    ``scheduled.local_time``.
+    """
+    lines = ["🗓️ Bot schedule — "
+             + local_time.to_local(now).strftime("%A %d %b, %H:%M ")
+             + local_time.tz_label(local_time.to_local(now)), ""]
 
     today = todays_items(config, now)
+    lines.append("━━ Today ━━")
     if today:
-        lines.append("━━ Today ━━")
         for item in today:
             mark = "✅" if item["done"] else "🕒"
-            lines.append(f"  {mark} {item['hour']:02d}:00 — {item['label']}")
+            when = local_time.to_local(_at(now, item["hour"]))
+            lines.append(f"  {mark} {when:%H:%M} — {item['label']}")
     else:
-        lines.append("━━ Today ━━")
         lines.append("  Nothing on the fixed clock today.")
 
     upcoming = _upcoming_days(config, now)
@@ -113,20 +131,25 @@ def build_schedule_text(config: dict, state: dict, now: datetime) -> str:
     nxt = next_tick(now)
     mins = max(0, int((nxt - now).total_seconds() // 60))
     lines.append("")
-    lines.append(f"⏱️ Next run: {nxt.strftime('%H:%M')} UTC (in {mins} min)")
+    lines.append(f"⏱️ Next run: {local_time.fmt(nxt)} (in {mins} min)")
     lines.append("Runs every :00 and :30. This post replaces itself each run.")
     return "\n".join(lines)
 
 
 def _upcoming_days(config: dict, now: datetime, ahead: int = 6) -> list[str]:
-    """Weekday-specific jobs in the next ``ahead`` days, soonest first."""
+    """Weekday-specific jobs in the next ``ahead`` days, soonest first.
+
+    Day names come from the *local* occurrence, not the UTC weekday, so
+    a late-evening UTC job that lands after local midnight is named on
+    the day the GM would actually see it.
+    """
     out = []
     for offset in range(1, ahead + 1):
         day = (now.weekday() + offset) % 7
         for item in fixed_schedule(config):
             if item["day"] == day:
-                out.append(f"  {day_label(day)} {item['hour']:02d}:00 — "
-                           f"{item['label']}")
+                when = local_time.to_local(_at(now, item["hour"], offset))
+                out.append(f"  {when:%A} {when:%H:%M} — {item['label']}")
     return out
 
 

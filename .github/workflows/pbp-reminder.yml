@@ -32,7 +32,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests pytest pytest-cov
+        run: pip install requests pytest pytest-cov tzdata
 
       - name: Run tests and alert on failure
         env:
@@ -74,7 +74,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests pytest pytest-cov
+        run: pip install requests pytest pytest-cov tzdata
 
       - name: Update bot command menu
         env:
@@ -155,7 +155,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests tzdata
 
       - name: Run queue-only checker
         env:
