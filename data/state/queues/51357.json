@@ -263,7 +263,27 @@
     "msg:169117",
     "2026-07-30 07:42:52",
     "msg:169132",
-    "2026-07-30 08:24:22"
+    "2026-07-30 08:24:22",
+    "msg:169434",
+    "2026-07-31 21:24:38",
+    "msg:169244",
+    "2026-07-30 20:20:13",
+    "msg:169245",
+    "2026-07-30 20:23:19",
+    "msg:169430",
+    "2026-07-31 21:10:42",
+    "msg:169544",
+    "2026-08-01 02:58:59",
+    "msg:169545",
+    "2026-08-01 03:06:44",
+    "msg:171212",
+    "2026-08-09 17:48:46",
+    "msg:169572",
+    "2026-08-01 05:39:47",
+    "msg:170077",
+    "2026-08-03 21:25:18",
+    "msg:170098",
+    "2026-08-03 23:00:22"
   ],
   "reply_log": [
     {
@@ -1397,6 +1417,96 @@
       "player": "Buffet",
       "preview": "Yes",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:38:19+00:00",
+      "pid": "51357",
+      "msg_id": "169434",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"Shadow...thing? I mean, I'll never turn down a chance to purge an evil creature",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:38:35+00:00",
+      "pid": "51357",
+      "msg_id": "169244",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "Alitheia sits up in an unfamiliar room and looks around. Her ears are still ring",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:38:47+00:00",
+      "pid": "51357",
+      "msg_id": "169245",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "A blue-scaled lizard folk woman stands in the doorway, clad in armor bearing the",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:39:19+00:00",
+      "pid": "51357",
+      "msg_id": "169430",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight glances up and waves cheerily, \"Heya, we're headed to the Thin Lands ri",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T04:56:06+00:00",
+      "pid": "51357",
+      "msg_id": "169544",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "With a tilted head and a gesture to their own whale tattoo, Twilight asks, \"Did ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T17:40:20+00:00",
+      "pid": "51357",
+      "msg_id": "169545",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"I...yes. The one with all those random creatures chained up for seemingly no re",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:45:06+00:00",
+      "pid": "51357",
+      "msg_id": "171212",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "Cyrus coughs into his hand and look at his sickly moving marks on him.\n\n\"Most of",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:45:43+00:00",
+      "pid": "51357",
+      "msg_id": "169572",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "They give a little nod, \"Mhm, I think we all did. I don't know that much though.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T23:13:09+00:00",
+      "pid": "51357",
+      "msg_id": "170077",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"Well, if you need the support I guess I don't really have anything else to do o",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T23:15:06+00:00",
+      "pid": "51357",
+      "msg_id": "170098",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "Illiani cheerfully nods. She's getting used to people showing up in type of way.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1406,7 +1516,7 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 169128
+      "caught_up_msg_id": 171274
     },
     "145040": {
       "msg_ids": [],

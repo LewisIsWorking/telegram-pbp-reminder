@@ -418,7 +418,35 @@
     "msg:168947",
     "2026-07-28 16:22:29",
     "msg:168948",
-    "2026-07-28 16:23:50"
+    "2026-07-28 16:23:50",
+    "msg:169314",
+    "2026-07-31 03:24:31",
+    "msg:169846",
+    "2026-08-01 18:36:36",
+    "msg:169847",
+    "2026-08-01 18:38:49",
+    "msg:169946",
+    "2026-08-02 23:28:29",
+    "msg:169975",
+    "2026-08-03 07:50:22",
+    "msg:170134",
+    "2026-08-04 05:03:10",
+    "msg:170135",
+    "2026-08-04 05:04:58",
+    "msg:170136",
+    "2026-08-04 05:05:26",
+    "msg:170350",
+    "2026-08-06 02:11:33",
+    "msg:170510",
+    "2026-08-07 08:38:38",
+    "msg:170504",
+    "2026-08-07 07:37:07",
+    "msg:170655",
+    "2026-08-07 20:33:15",
+    "msg:171067",
+    "2026-08-09 03:11:54",
+    "msg:171068",
+    "2026-08-09 03:12:08"
   ],
   "reply_log": [
     {
@@ -2292,6 +2320,132 @@
       "player": "Fuzzy",
       "preview": "Well... As long as I don't make the chaos worse.",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T21:54:03+00:00",
+      "pid": "25059",
+      "msg_id": "169314",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "If necessary.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-03T21:42:43+00:00",
+      "pid": "25059",
+      "msg_id": "169846",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "I'm sitting on the floor, meditating.\n\nI feel the awkward tension surrounding ev",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-03T21:44:03+00:00",
+      "pid": "25059",
+      "msg_id": "169847",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "\"So... What brings you here?\", I ask to Zokar and the child. I look at them, mor",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:38:59+00:00",
+      "pid": "25059",
+      "msg_id": "169946",
+      "thread_id": 25059,
+      "player": "Dalaxiss",
+      "preview": "Katmidlar stays quiet and does not interact, because he did basically nothing du",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:39:42+00:00",
+      "pid": "25059",
+      "msg_id": "169975",
+      "thread_id": 25059,
+      "player": "PJ",
+      "preview": "Baylan will ask for Zokar and the child's consent for a check-up to make sure th",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:41:59+00:00",
+      "pid": "25059",
+      "msg_id": "170134",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "It's our responsibility. We can't let ourselves be bystanders.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:42:22+00:00",
+      "pid": "25059",
+      "msg_id": "170135",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "But also... Kind of.\nI'm made of bronze, which is made with copper.\n\nPennies are",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T01:43:51+00:00",
+      "pid": "25059",
+      "msg_id": "170136",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "But you aren't allowed to steal my toes to buy candy.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-06T02:24:57+00:00",
+      "pid": "25059",
+      "msg_id": "170350",
+      "thread_id": "25059",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-07T15:24:24+00:00",
+      "pid": "25059",
+      "msg_id": "170510",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "Selenor will roll that too",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T02:18:23+00:00",
+      "pid": "25059",
+      "msg_id": "170504",
+      "thread_id": 25059,
+      "player": "PJ",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T02:18:49+00:00",
+      "pid": "25059",
+      "msg_id": "170655",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T07:12:13+00:00",
+      "pid": "25059",
+      "msg_id": "171067",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "What do you mean attached?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T07:14:16+00:00",
+      "pid": "25059",
+      "msg_id": "171068",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "You mean possession?",
+      "via": "reply"
     }
   ],
   "topic_queues": {
@@ -2299,7 +2453,7 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 169062
+      "caught_up_msg_id": 171100
     }
   }
 }

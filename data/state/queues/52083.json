@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 171368,
+      "thread_id": 145045,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-10T04:29:58+00:00",
+      "preview": "?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -236,7 +246,39 @@
     "msg:165926",
     "2026-07-08 01:49:52",
     "msg:167133",
-    "2026-07-14 21:24:51"
+    "2026-07-14 21:24:51",
+    "msg:169307",
+    "2026-07-31 02:40:37",
+    "msg:169308",
+    "2026-07-31 02:41:11",
+    "msg:170749",
+    "2026-08-08 12:38:03",
+    "msg:170750",
+    "2026-08-08 12:38:14",
+    "msg:170751",
+    "2026-08-08 12:38:26",
+    "msg:170752",
+    "2026-08-08 12:57:26",
+    "msg:170753",
+    "2026-08-08 12:59:56",
+    "msg:170251",
+    "2026-08-05 13:16:35",
+    "msg:171134",
+    "2026-08-09 12:26:11",
+    "msg:171135",
+    "2026-08-09 12:28:19",
+    "msg:171136",
+    "2026-08-09 12:31:08",
+    "msg:171151",
+    "2026-08-09 13:19:13",
+    "msg:171191",
+    "2026-08-09 13:31:20",
+    "msg:171192",
+    "2026-08-09 13:31:24",
+    "msg:171325",
+    "2026-08-10 02:37:50",
+    "msg:171367",
+    "2026-08-10 04:29:56"
   ],
   "reply_log": [
     {
@@ -1323,6 +1365,150 @@
       "player": "Anthony",
       "preview": "The electronic music song blasting out from Livy might've drowned the sound of y",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T08:01:38+00:00",
+      "pid": "52083",
+      "msg_id": "169307",
+      "thread_id": 145045,
+      "player": "Bruce",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-07-31T08:02:00+00:00",
+      "pid": "52083",
+      "msg_id": "169308",
+      "thread_id": 145045,
+      "player": "Bruce",
+      "preview": "Chua will sustain his warp field and cast richochet at the ooze.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:29+00:00",
+      "pid": "52083",
+      "msg_id": "170749",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "Is it dead?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:31+00:00",
+      "pid": "52083",
+      "msg_id": "170750",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "If you shoot it",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:33+00:00",
+      "pid": "52083",
+      "msg_id": "170751",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "For now it's chilling.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:37+00:00",
+      "pid": "52083",
+      "msg_id": "170752",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "I mean... if the group is not against it",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T01:59:41+00:00",
+      "pid": "52083",
+      "msg_id": "170753",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "This one I don't know",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T07:14:28+00:00",
+      "pid": "52083",
+      "msg_id": "170251",
+      "thread_id": 145045,
+      "player": "Anthony",
+      "preview": "@Saiminaminah or oozes turn",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:45:52+00:00",
+      "pid": "52083",
+      "msg_id": "171134",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:09+00:00",
+      "pid": "52083",
+      "msg_id": "171135",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "soooo Lai's right thigh opens and draws his laser pistol and fires at the ooze",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:23+00:00",
+      "pid": "52083",
+      "msg_id": "171136",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "that's 2 actions no? third action is firing?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:34+00:00",
+      "pid": "52083",
+      "msg_id": "171151",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:46:43+00:00",
+      "pid": "52083",
+      "msg_id": "171191",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-09T21:47:03+00:00",
+      "pid": "52083",
+      "msg_id": "171192",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "second shot miss",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-10T03:12:57+00:00",
+      "pid": "52083",
+      "msg_id": "171325",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "I'm saving iy",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-10T04:30:27+00:00",
+      "pid": "52083",
+      "msg_id": "171367",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "Boneless is also dead",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1335,10 +1521,12 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 168917
+      "msg_ids": [
+        171383
+      ],
+      "fingerprint": "2026-08-10 04:29:58",
+      "last_posted_at": "2026-08-10T04:45:18.243176+00:00",
+      "caught_up_msg_id": null
     }
   }
 }

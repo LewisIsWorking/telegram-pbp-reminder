@@ -60,6 +60,48 @@ late.
 
 `POTW_INTERVAL_DAYS` is retained but no longer decides when the award
 fires; older state and config settings blocks still reference it.
+## [4.51.13] - 2026-08-10
+
+### Fixed
+
+**Old "Unreplied:" posts stopped being deleted — a type mismatch, not a
+logic error.**
+
+C05 Grand Explorers accumulated three live queue posts (04/08, 06/08,
+09/08) where each should have replaced the last.
+
+`parse_message` returns Telegram's raw `message_thread_id`, which is an
+**int**, and that int is stored verbatim on every queue entry. The
+per-topic poster used it as the key into `cq["topic_queues"]` — but that
+dict is persisted as JSON, and **JSON object keys are always strings**.
+So `queues.setdefault(51357, ...)` never matched the on-disk `"51357"`
+slot. A fresh empty slot was handed to the poster, `existing.is_empty`
+was True, and the previous batch was never deleted.
+
+The save then wrote the int key back out as a *second* string key,
+overwriting the real slot — which is why the L28 `pending_delete` retry
+sweep could not rescue it either. The stranded IDs were gone from state
+entirely, so nothing ever tried to delete them again.
+
+Invisible to the suite because every existing test passes `thread_id` as
+a string (see `test_topic_queue_retry.py`) — the one type production
+never supplies.
+
+- `_threads_from_scanned` now stringifies at the boundary.
+- New `topic_queue_state.normalise_queue_keys` repairs state already
+  corrupted by the buggy runs. Where both an int and a string key exist
+  for one thread, the int-keyed slot is the newer one and stays live; the
+  stranded string-keyed IDs are parked in `pending_delete` so the
+  existing retry sweep removes them rather than dropping them.
+- `test_topic_queue_key_type.py` — 7 tests, including an end-to-end
+  reproduction of the orphan and the duplicate-key merge.
+
+**No change to deletion safety.** The bot still deletes only IDs in the
+bot-sent registry: `perform_guarded_delete` remains the single
+`deleteMessage` call site and the only gate. This fix changes *which slot
+is found*, never *what may be deleted*. The 30 registry/guard/bypass
+tests pass unchanged, and `unpinAllChatMessages` is still never called
+(it is group-wide and would wipe GM pins).
 
 ---
 

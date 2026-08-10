@@ -311,7 +311,9 @@
     "msg:165921",
     "2026-07-08 01:44:41",
     "msg:168880",
-    "2026-07-28 03:01:53"
+    "2026-07-28 03:01:53",
+    "msg:169289",
+    "2026-07-30 22:56:07"
   ],
   "reply_log": [
     {
@@ -1766,6 +1768,15 @@
       "player": "Laetheron",
       "preview": "Sounds like a plan",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:42:13+00:00",
+      "pid": "107171",
+      "msg_id": "169289",
+      "thread_id": 107171,
+      "player": "Bruce",
+      "preview": "Been busy with work and vacation. And laptop died. So still a week out.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1775,7 +1786,7 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 168753
+      "caught_up_msg_id": 169479
     },
     "142887": {
       "fingerprint": "",

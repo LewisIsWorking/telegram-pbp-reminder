@@ -374,7 +374,13 @@
     "msg:166238",
     "2026-07-10 15:55:12",
     "msg:166525",
-    "2026-07-13 18:31:47"
+    "2026-07-13 18:31:47",
+    "msg:169333",
+    "2026-07-31 05:20:14",
+    "msg:170099",
+    "2026-08-03 23:01:42",
+    "msg:170114",
+    "2026-08-03 23:49:20"
   ],
   "reply_log": [
     {
@@ -2100,6 +2106,33 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-07-31T22:40:04+00:00",
+      "pid": "76799",
+      "msg_id": "169333",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "Nodding a little, B\u00e1yakan walks almost up to the doorway. Calling for a huddle a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-03T23:44:25+00:00",
+      "pid": "76799",
+      "msg_id": "170099",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya frowns.\n\n\"Spider mounted? Egh. Better you first than me.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-10T02:04:45+00:00",
+      "pid": "76799",
+      "msg_id": "170114",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"Hey, neither was mine. But you have a shield.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2109,7 +2142,7 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 169065
+      "caught_up_msg_id": 171308
     },
     "144765": {
       "fingerprint": "",
