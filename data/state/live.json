@@ -1,10 +1,10 @@
 {
-  "offset": 619353707,
+  "offset": 619353726,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-09T23:19:46+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-10T02:37:50+00:00",
+      "last_user": "Terra",
+      "last_user_id": "8097377199",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -206,7 +206,7 @@
   },
   "last_state_backup": "2026-08-10T02:22:10.344401+00:00",
   "last_queue_daily": "2026-08-09",
-  "last_queue_fingerprint": "66154:2026-08-05 22:06:33|silent:  \ud83d\udfe3 \ud83e\udd16 C09: Metal City \u2014 no posts for 9d 3h \ud83d\udd17 https://t.me/Path_Wars/107171",
+  "last_queue_fingerprint": "52083:2026-08-10 02:37:50|66154:2026-08-05 22:06:33|silent:  \ud83d\udfe3 \ud83e\udd16 C09: Metal City \u2014 no posts for 9d 3h \ud83d\udd17 https://t.me/Path_Wars/107171",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -298,15 +298,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-09",
-  "last_queue_pin_id": 171309,
-  "queue_post_count": 1325,
+  "last_queue_pin_id": 171332,
+  "queue_post_count": 1326,
   "gm_queue_history": [
     {
       "msg_ids": [
-        171309,
-        171310
+        171332,
+        171333
       ],
-      "pin_id": 171309
+      "pin_id": 171332
     }
   ]
 }

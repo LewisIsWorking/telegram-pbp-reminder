@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 171325,
+      "thread_id": 145045,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-10T02:37:50+00:00",
+      "preview": "I'm saving iy",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1489,10 +1499,12 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
-      "caught_up_msg_id": 171249
+      "msg_ids": [
+        171330
+      ],
+      "fingerprint": "2026-08-10 02:37:50",
+      "last_posted_at": "2026-08-10T02:40:59.472101+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
