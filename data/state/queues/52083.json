@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 171368,
-      "thread_id": 145045,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-10T04:29:58+00:00",
-      "preview": "?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -278,7 +268,9 @@
     "msg:171325",
     "2026-08-10 02:37:50",
     "msg:171367",
-    "2026-08-10 04:29:56"
+    "2026-08-10 04:29:56",
+    "msg:171368",
+    "2026-08-10 04:29:58"
   ],
   "reply_log": [
     {
@@ -1509,6 +1501,15 @@
       "player": "Terra",
       "preview": "Boneless is also dead",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-10T05:06:31+00:00",
+      "pid": "52083",
+      "msg_id": "171368",
+      "thread_id": 145045,
+      "player": "Terra",
+      "preview": "?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1521,12 +1522,10 @@
       "caught_up_msg_id": 169063
     },
     "145045": {
-      "msg_ids": [
-        171383
-      ],
-      "fingerprint": "2026-08-10 04:29:58",
-      "last_posted_at": "2026-08-10T04:45:18.243176+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 171403
     }
   }
 }
