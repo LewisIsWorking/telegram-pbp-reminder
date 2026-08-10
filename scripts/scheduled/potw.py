@@ -11,6 +11,7 @@ from helpers import (
 )
 from helpers_pkg import campaigns
 import telegram as tg
+from scheduled import potw_schedule
 
 
 # Transcript post-link lookup lives in scheduled.potw_links; re-exported
@@ -48,10 +49,24 @@ def _gather_potw_candidates(
 
 
 def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
-    """Award Player of the Week based on smallest average gap between posts."""
+    """Award Player of the Week — Monday only, once per calendar week.
+
+    Fires on ``POTW_WEEKDAY`` at or after ``POTW_POST_HOUR`` UTC, guarded
+    per campaign by an ISO week key. Previously this used a rolling
+    ``interval_elapsed`` gate which drifted later each week and, on a
+    quiet week, fired on the first tick after someone posted — see
+    ``scheduled.potw_schedule`` for the full rationale.
+
+    Every enabled campaign is evaluated in the same pass, so the awards
+    arrive together instead of scattered across the week, and the winners
+    are summarised in a single roundup post.
+    """
     group_id = config["group_id"]
     bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
+
+    if not potw_schedule.due(now, helpers.POTW_WEEKDAY, helpers.POTW_POST_HOUR):
+        return
 
     try:
         with open(helpers.BOONS_PATH, encoding="utf-8") as f:
@@ -62,11 +77,19 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
 
     maps = maps or build_topic_maps(config)
     week_ago = now - timedelta(days=7)
+    # Winners collected across every campaign in this single Monday pass,
+    # then summarised by scheduled.potw_roundup. Per-campaign messages are
+    # still sent individually because boons/handler.py edits each one in
+    # place when its winner claims, keyed by pid in pending_potw_boons.
+    awarded: list[dict] = []
+    week_stamps = state.setdefault("potw_week", {})
 
     for pid, chat_topic_id in maps.to_chat.items():
         if not helpers.feature_enabled(config, pid, "potw"):
             continue
-        if not helpers.interval_elapsed(state["last_potw"].get(pid), helpers.POTW_INTERVAL_DAYS, now):
+        # Per-campaign idempotency: the cron ticks twice an hour, so
+        # without this every tick for the rest of Monday would repost.
+        if week_stamps.get(pid) == potw_schedule.week_key(now):
             continue
 
         name = maps.to_name.get(pid)
@@ -86,6 +109,11 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
 
         candidates = _gather_potw_candidates(topic_timestamps, gm_ids, week_ago, pid, state)
         if not candidates:
+            # Stamp even with no winner. The old code `continue`d without
+            # stamping, which left the gate open so the award fired on the
+            # first tick after someone posted — the "goes off at random"
+            # bug. A quiet week is now simply a week with no award.
+            week_stamps[pid] = potw_schedule.week_key(now)
             print(f"No POTW candidates for {name} (need {helpers.POTW_MIN_POSTS}+ posts)")
             continue
 
@@ -132,6 +160,8 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
                                     base_message + boon_text)
         if msg_id:
             state["last_potw"][pid] = now.isoformat()
+            week_stamps[pid] = potw_schedule.week_key(now)
+            awarded.append({"campaign": name, "pid": pid, "winner": winner})
             _, week_num, _ = now.isocalendar()
             state["pending_potw_boons"][pid] = {
                 "message_id": msg_id,
@@ -166,4 +196,9 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
             from scheduled.potw_streaks import announce_streaks
             announce_streaks(config, state, winner, name, pid,
                              group_id, bot_topic or chat_topic_id)
+
+    # One summary of every campaign's winner, posted after the individual
+    # awards so the roundup can't precede the messages it summarises.
+    from scheduled.potw_roundup import post_potw_roundup
+    post_potw_roundup(config, state, awarded, now=now)
 

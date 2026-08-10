@@ -56,6 +56,97 @@ message, GM included — local state shows C09's entry stamped with
 campaign's **chat** topic are not counted, because chat topics are not in
 `pbp_topic_ids` and `parse_message` rejects them. That is arguably
 correct: the silence clock measures story activity.
+## [4.52.0] - 2026-08-10
+
+### Changed
+
+**Player of the Week now fires on Mondays, once per calendar week,
+instead of drifting.**
+
+Reported as "it doesn't really know when to post it and it seems to fire
+semi-randomly whenever anyone makes a post". Both halves of that were
+real, from one gate:
+`interval_elapsed(state["last_potw"][pid], 7, now)`.
+
+- **It crept.** The award fired on the first cron tick *at or after* the
+  7-day mark. The cron ticks at :00 and :30, so the post time drifted
+  later every week and eventually wandered onto a different weekday.
+- **It fired on player activity.** A week with fewer than
+  `POTW_MIN_POSTS` qualifying posts hit `continue` **without stamping**
+  `last_potw`. The gate stayed open, so the award went off on the first
+  tick after someone posted enough to qualify — exactly the reported
+  symptom.
+- **Every campaign drifted separately**, since `last_potw` is per-pid, so
+  awards scattered across all seven days.
+
+Replaced with a calendar weekday gate plus an ISO week key, the same
+shape `scheduled.week_welcome` already used. A skipped week is now simply
+a skipped week: the no-candidate branch stamps too, so it cannot fire
+late.
+
+### Added
+
+- **Weekly roundup** (`scheduled/potw_roundup.py`) — one summary of every
+  campaign's winner to the bot topic, ranked by average gap. Additive
+  rather than a replacement: the per-campaign messages must stay because
+  `boons/handler.py` edits each one in place when its winner claims, keyed
+  by pid in `pending_potw_boons`.
+- **Midweek standings** (`scheduled/potw_countdown.py`) — Thursday post
+  showing the current leader and the closest chaser per campaign, with
+  the gap between them. Reuses `potw._gather_potw_candidates` and the same
+  `min(avg_gap_hours)` selection as the award, so Thursday can never name
+  a leader that Monday then contradicts.
+- `scheduled/potw_schedule.py` — shared week key and weekday gate, so the
+  award and its countdown cannot disagree about what "this week" means.
+- New tunables, overridable from the config settings block:
+  `potw_weekday` (0 = Monday), `potw_countdown_weekday` (3 = Thursday),
+  `potw_post_hour` (9 UTC).
+- `test_potw_monday_schedule.py` — 18 tests.
+
+`POTW_INTERVAL_DAYS` is retained but no longer decides when the award
+fires; older state and config settings blocks still reference it.
+## [4.51.13] - 2026-08-10
+
+### Fixed
+
+**Old "Unreplied:" posts stopped being deleted — a type mismatch, not a
+logic error.**
+
+C05 Grand Explorers accumulated three live queue posts (04/08, 06/08,
+09/08) where each should have replaced the last.
+
+`parse_message` returns Telegram's raw `message_thread_id`, which is an
+**int**, and that int is stored verbatim on every queue entry. The
+per-topic poster used it as the key into `cq["topic_queues"]` — but that
+dict is persisted as JSON, and **JSON object keys are always strings**.
+So `queues.setdefault(51357, ...)` never matched the on-disk `"51357"`
+slot. A fresh empty slot was handed to the poster, `existing.is_empty`
+was True, and the previous batch was never deleted.
+
+The save then wrote the int key back out as a *second* string key,
+overwriting the real slot — which is why the L28 `pending_delete` retry
+sweep could not rescue it either. The stranded IDs were gone from state
+entirely, so nothing ever tried to delete them again.
+
+Invisible to the suite because every existing test passes `thread_id` as
+a string (see `test_topic_queue_retry.py`) — the one type production
+never supplies.
+
+- `_threads_from_scanned` now stringifies at the boundary.
+- New `topic_queue_state.normalise_queue_keys` repairs state already
+  corrupted by the buggy runs. Where both an int and a string key exist
+  for one thread, the int-keyed slot is the newer one and stays live; the
+  stranded string-keyed IDs are parked in `pending_delete` so the
+  existing retry sweep removes them rather than dropping them.
+- `test_topic_queue_key_type.py` — 7 tests, including an end-to-end
+  reproduction of the orphan and the duplicate-key merge.
+
+**No change to deletion safety.** The bot still deletes only IDs in the
+bot-sent registry: `perform_guarded_delete` remains the single
+`deleteMessage` call site and the only gate. This fix changes *which slot
+is found*, never *what may be deleted*. The 30 registry/guard/bypass
+tests pass unchanged, and `unpinAllChatMessages` is still never called
+(it is group-wide and would wipe GM pins).
 
 ---
 
