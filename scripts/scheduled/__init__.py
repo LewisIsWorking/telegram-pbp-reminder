@@ -4,6 +4,8 @@ from scheduled.tips import post_daily_tip
 from scheduled.alerts import check_and_alert, check_player_activity
 from scheduled.reports import post_roster_summary, post_pace_report
 from scheduled.potw import player_of_the_week
+from scheduled.potw_countdown import post_potw_countdown
+from scheduled.potw_roundup import post_potw_roundup
 from scheduled.milestones import (
     check_streak_milestones, check_anniversaries, _next_anniversary,
 )
@@ -20,7 +22,7 @@ __all__ = [
     "post_daily_tip",
     "check_and_alert", "check_player_activity",
     "post_roster_summary", "post_pace_report",
-    "player_of_the_week",
+    "player_of_the_week", "post_potw_countdown", "post_potw_roundup",
     "check_streak_milestones", "check_anniversaries", "_next_anniversary",
     "check_message_milestones",
     "post_campaign_leaderboard",

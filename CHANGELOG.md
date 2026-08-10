@@ -11,6 +11,58 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.52.0] - 2026-08-10
+
+### Changed
+
+**Player of the Week now fires on Mondays, once per calendar week,
+instead of drifting.**
+
+Reported as "it doesn't really know when to post it and it seems to fire
+semi-randomly whenever anyone makes a post". Both halves of that were
+real, from one gate:
+`interval_elapsed(state["last_potw"][pid], 7, now)`.
+
+- **It crept.** The award fired on the first cron tick *at or after* the
+  7-day mark. The cron ticks at :00 and :30, so the post time drifted
+  later every week and eventually wandered onto a different weekday.
+- **It fired on player activity.** A week with fewer than
+  `POTW_MIN_POSTS` qualifying posts hit `continue` **without stamping**
+  `last_potw`. The gate stayed open, so the award went off on the first
+  tick after someone posted enough to qualify — exactly the reported
+  symptom.
+- **Every campaign drifted separately**, since `last_potw` is per-pid, so
+  awards scattered across all seven days.
+
+Replaced with a calendar weekday gate plus an ISO week key, the same
+shape `scheduled.week_welcome` already used. A skipped week is now simply
+a skipped week: the no-candidate branch stamps too, so it cannot fire
+late.
+
+### Added
+
+- **Weekly roundup** (`scheduled/potw_roundup.py`) — one summary of every
+  campaign's winner to the bot topic, ranked by average gap. Additive
+  rather than a replacement: the per-campaign messages must stay because
+  `boons/handler.py` edits each one in place when its winner claims, keyed
+  by pid in `pending_potw_boons`.
+- **Midweek standings** (`scheduled/potw_countdown.py`) — Thursday post
+  showing the current leader and the closest chaser per campaign, with
+  the gap between them. Reuses `potw._gather_potw_candidates` and the same
+  `min(avg_gap_hours)` selection as the award, so Thursday can never name
+  a leader that Monday then contradicts.
+- `scheduled/potw_schedule.py` — shared week key and weekday gate, so the
+  award and its countdown cannot disagree about what "this week" means.
+- New tunables, overridable from the config settings block:
+  `potw_weekday` (0 = Monday), `potw_countdown_weekday` (3 = Thursday),
+  `potw_post_hour` (9 UTC).
+- `test_potw_monday_schedule.py` — 18 tests.
+
+`POTW_INTERVAL_DAYS` is retained but no longer decides when the award
+fires; older state and config settings blocks still reference it.
+
+---
+
 ## [4.51.12] - 2026-07-15
 
 ### Added

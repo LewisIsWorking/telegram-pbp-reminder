@@ -25,9 +25,27 @@ PLAYER_REMOVE_WEEKS = 4
 
 ROSTER_INTERVAL_DAYS = 3
 
+# Legacy rolling-interval gate. No longer decides when POTW fires (that
+# is a fixed weekday now, see POTW_WEEKDAY) but kept because the settings
+# block and older state files still reference it.
 POTW_INTERVAL_DAYS = 7
 
 POTW_MIN_POSTS = 5
+
+# POTW fires on a fixed calendar weekday rather than a rolling 7-day
+# interval. The old interval anchored to "7 days since this campaign last
+# posted one", which drifted later every week; and because a week with
+# too few posts hit `continue` WITHOUT stamping last_potw, the gate
+# stayed open and fired on the first tick after activity resumed — i.e.
+# seemingly at random, whenever a player happened to post. 0 = Monday.
+POTW_WEEKDAY = 0
+
+# Midweek "who is currently winning" standings post. 3 = Thursday.
+POTW_COUNTDOWN_WEEKDAY = 3
+
+# UTC hour both posts wait for, so they land at a predictable time rather
+# than whenever the cron first ticks past a threshold.
+POTW_POST_HOUR = 9
 
 PACE_INTERVAL_DAYS = 7
 
