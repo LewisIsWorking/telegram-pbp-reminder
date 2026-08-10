@@ -11,6 +11,56 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.53.0] - 2026-08-10
+
+### Added
+
+**Self-replacing schedule + timer post in the GM queue topic.**
+
+One message, rewritten every run: today's fixed-clock jobs with what has
+already fired, weekday jobs coming up, interval jobs and when they are
+next due, and the next cron tick.
+
+Built as **one** message rather than a separate schedule and timer. An
+accurate "next fire" timer has to refresh every run anyway (the cron
+ticks at :00 and :30), and since the post deletes its predecessor,
+refreshing costs no clutter — the topic always holds exactly one. That
+also means one lifecycle and one thing to delete.
+
+Delete-and-repost rather than `editMessageText`, deliberately: editing
+would leave it drifting up the topic as other posts arrive, whereas
+reposting keeps it at the bottom where a glance finds it.
+
+- `scheduled/schedule_table.py` — the fixed-clock schedule as data,
+  reading its hours from the same config keys and `helpers` constants the
+  jobs read, so the post cannot advertise a time a job does not use.
+- `scheduled/schedule_post.py` — renders and replaces the post.
+- `telegram.send_message_id(..., silent=True)` — new opt-in parameter
+  setting `disable_notification`. Defaults to False so every existing
+  caller is unchanged. Without it this post would notify 48 times a day.
+- Disable with `"schedule_post_enabled": false` in config.
+- `test_schedule_post.py` — 19 tests.
+
+### Fixed
+
+**`tg_mock` only patched four modules, so some "did not post" assertions
+passed vacuously.**
+
+The fixture patched `topic_queue_poster`, `gm_queue_history`,
+`posting.sender` and `posting.message_batch` — but not `scheduled.potw`.
+Any test asserting `not tg_mock.send_message_id.called` against a POTW
+path was therefore checking a mock the code never touched.
+
+Proven by mutation: deleting the POTW Monday gate entirely left the suite
+green. Two causes, both fixed — the fixture now also patches `potw`,
+`potw_roundup`, `potw_countdown` and `schedule_post`, and the POTW
+fixtures were given a real campaign and qualifying posts so they *can*
+award. Re-running the same mutation now fails exactly the two intended
+tests. `test_monday_DOES_fire` pins that capability so the negative cases
+cannot silently go hollow again.
+
+---
+
 ## [4.52.1] - 2026-08-10
 
 ### Fixed

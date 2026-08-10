@@ -82,10 +82,11 @@ def _mock_message_link(group_id, topic_id, message_id,
     return f"https://t.me/mock/{topic_id}/{message_id}"
 
 
-def _mock_send_id(chat_id, thread_id, text, parse_mode=None) -> int | None:
+def _mock_send_id(chat_id, thread_id, text, parse_mode=None,
+                  silent=False) -> int | None:
     _sent_messages.append({
         "group_id": chat_id, "topic_id": thread_id,
-        "text": text, "type": "message_id",
+        "text": text, "type": "message_id", "silent": silent,
     })
     return 99997
 
@@ -164,5 +165,9 @@ def tg_mock():
     with patch("scheduled.topic_queue_poster.tg", mock), \
          patch("scheduled.gm_queue_history.tg", mock), \
          patch("posting.sender.tg", mock), \
-         patch("posting.message_batch.tg", mock):
+         patch("posting.message_batch.tg", mock), \
+         patch("scheduled.potw.tg", mock), \
+         patch("scheduled.potw_roundup.tg", mock), \
+         patch("scheduled.potw_countdown.tg", mock), \
+         patch("scheduled.schedule_post.tg", mock):
         yield mock
