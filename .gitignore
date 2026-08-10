@@ -7,3 +7,8 @@ __pycache__/
 
 # Voice-bridge runtime log
 *.log
+
+# Coverage artefacts (run_coverage.py / pytest-cov write these locally)
+.coverage
+.coverage.*
+htmlcov/

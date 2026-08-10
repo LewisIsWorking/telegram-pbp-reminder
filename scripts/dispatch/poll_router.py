@@ -25,40 +25,40 @@ def find_pair(config: dict, code: str) -> dict | None:
     for pair in config.get("topic_pairs", []):
         if pair.get("code") == code:
             return pair
-    return None  # pragma: no cover
+    return None
 
 
 def handle_poll_closed(poll: dict, config: dict, state: dict) -> None:
     """Handle a poll closing (is_closed=True). Auto-marks session as happened."""
-    poll_id = poll.get("id", "")  # pragma: no cover
-    if not poll_id:  # pragma: no cover
-        return  # pragma: no cover
+    poll_id = poll.get("id", "")
+    if not poll_id:
+        return
 
     # Check session polls
-    for code, slot in state.get("session_poll", {}).items():  # pragma: no cover
-        if slot.get("poll_id") == poll_id:  # pragma: no cover
-            slot["session_happened"] = True  # pragma: no cover
-            total = poll.get("total_voter_count", 0)  # pragma: no cover
-            bot_topic = config.get("bot_topic_id")  # pragma: no cover
-            group_id = config["group_id"]  # pragma: no cover
-            if bot_topic:  # pragma: no cover
-                tg.send_message(group_id, bot_topic,  # pragma: no cover
-                                f"📊 {code} poll closed — {total} voted. "  # pragma: no cover
-                                f"No more pings this week.")  # pragma: no cover
-            print(f"Poll closed: {code} (poll_id={poll_id}, voters={total})")  # pragma: no cover
-            return  # pragma: no cover
+    for code, slot in state.get("session_poll", {}).items():
+        if slot.get("poll_id") == poll_id:
+            slot["session_happened"] = True
+            total = poll.get("total_voter_count", 0)
+            bot_topic = config.get("bot_topic_id")
+            group_id = config["group_id"]
+            if bot_topic:
+                tg.send_message(group_id, bot_topic,
+                                f"📊 {code} poll closed — {total} voted. "
+                                f"No more pings this week.")
+            print(f"Poll closed: {code} (poll_id={poll_id}, voters={total})")
+            return
 
     # Check swimming poll
-    swim = state.get("swimming_poll", {})  # pragma: no cover
-    if swim.get("poll_id") == poll_id:  # pragma: no cover
-        swim["session_happened"] = True  # pragma: no cover
-        total = poll.get("total_voter_count", 0)  # pragma: no cover
-        bot_topic = config.get("bot_topic_id")  # pragma: no cover
-        group_id = config["group_id"]  # pragma: no cover
-        if bot_topic:  # pragma: no cover
-            tg.send_message(group_id, bot_topic,  # pragma: no cover
-                            f"📊 Swimming poll closed — {total} voted.")  # pragma: no cover
-        print(f"Poll closed: swimming (poll_id={poll_id}, voters={total})")  # pragma: no cover
+    swim = state.get("swimming_poll", {})
+    if swim.get("poll_id") == poll_id:
+        swim["session_happened"] = True
+        total = poll.get("total_voter_count", 0)
+        bot_topic = config.get("bot_topic_id")
+        group_id = config["group_id"]
+        if bot_topic:
+            tg.send_message(group_id, bot_topic,
+                            f"📊 Swimming poll closed — {total} voted.")
+        print(f"Poll closed: swimming (poll_id={poll_id}, voters={total})")
 
 
 def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
@@ -79,8 +79,8 @@ def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
 
     # Empty option_ids = user retracted their vote (revoting feature)
     if not option_ids:
-        if uid in voted:  # pragma: no cover
-            voted.remove(uid)  # pragma: no cover
+        if uid in voted:
+            voted.remove(uid)
     elif uid and uid not in voted:
         voted.append(uid)
         capture_unknown_voter(uid, code, config, state, option_ids)
@@ -88,7 +88,7 @@ def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     votes = poll.setdefault("votes", {})
     # Remove previous votes from this user across all options (handles revoting)
     for key in votes:
-        votes[key] = [v for v in votes[key] if v != uid]  # pragma: no cover
+        votes[key] = [v for v in votes[key] if v != uid]
     # Record new vote(s) by option index string
     for idx in option_ids:
         votes.setdefault(str(idx), []).append(uid)
@@ -99,9 +99,9 @@ def handle_poll_answer(poll_answer: dict, config: dict, state: dict) -> None:
     # Use stored options to avoid date drift (votes arrive days after poll was posted)
     stored_options = poll.get("options", [])
     if stored_options:
-        raw_labels = [stored_options[i].split()[0]  # pragma: no cover
+        raw_labels = [stored_options[i].split()[0]
                       for i in option_ids if i < len(stored_options)]
-        option_label = " & ".join(raw_labels) if raw_labels else "?"  # pragma: no cover
+        option_label = " & ".join(raw_labels) if raw_labels else "?"
     else:
         option_label = votes_to_option_label(option_ids, pair or {}, datetime.now(timezone.utc))
     if pid:
