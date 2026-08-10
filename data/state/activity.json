@@ -2,10 +2,6 @@
   "post_timestamps": {
     "40585": {
       "1698524397": [
-        "2026-07-26T21:25:37+00:00",
-        "2026-07-26T21:26:18+00:00",
-        "2026-07-26T21:26:44+00:00",
-        "2026-07-26T21:27:16+00:00",
         "2026-07-27T00:33:06+00:00",
         "2026-07-27T00:33:18+00:00",
         "2026-07-27T00:33:25+00:00",
@@ -128,15 +124,9 @@
         "2026-08-03T07:27:56+00:00"
       ],
       "5443237599": [
-        "2026-07-26T21:36:44+00:00",
-        "2026-07-26T21:37:38+00:00",
         "2026-08-03T14:39:16+00:00"
       ],
       "6144366145": [
-        "2026-07-26T21:25:49+00:00",
-        "2026-07-26T21:27:34+00:00",
-        "2026-07-26T21:37:19+00:00",
-        "2026-07-26T21:37:54+00:00",
         "2026-07-27T00:33:57+00:00",
         "2026-07-27T00:34:17+00:00",
         "2026-08-01T07:08:40+00:00",
@@ -3438,6 +3428,25 @@
         "A spider spins a web across a doorway you were about to walk through. The room beyond has a different exit.",
         "The apartment above the shop you're visiting has a fire escape leading to the next street.",
         "Your next Recall Knowledge check gains a +2 circumstance bonus."
+      ],
+      "boon_chosen": null
+    },
+    {
+      "week": "W33",
+      "year": 2026,
+      "date": "2026-08-10",
+      "campaign": "Hopeful End-Times",
+      "campaign_pid": "52083",
+      "user_id": "8097377199",
+      "first_name": "Terra",
+      "username": "Saiminaminah",
+      "post_count": 8,
+      "avg_gap_h": 6.4,
+      "boons_offered": [
+        "A cat sleeping on a windowsill stretches and knocks a useful item off the ledge toward you.",
+        "Your companion notices something you missed and points it out quietly.",
+        "A bard dedicates a song to you in a tavern. Your reputation improves slightly in this district.",
+        "+1 circumstance bonus to your next saving throw."
       ],
       "boon_chosen": null
     }
