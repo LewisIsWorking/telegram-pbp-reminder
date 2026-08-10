@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 171399,
-      "thread_id": 25059,
-      "user_id": "8880317264",
-      "user_name": "PJ",
-      "time": "2026-08-10T05:24:22+00:00",
-      "preview": "Baylan lets Pevrin know she is good to go and play with friends...\n\nBaylan then shares with the party about his findings when he gets the chance without the child overhearing him... \u00dc",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -456,7 +446,9 @@
     "msg:171067",
     "2026-08-09 03:11:54",
     "msg:171068",
-    "2026-08-09 03:12:08"
+    "2026-08-09 03:12:08",
+    "msg:171399",
+    "2026-08-10 05:24:22"
   ],
   "reply_log": [
     {
@@ -2456,16 +2448,23 @@
       "player": "Horia",
       "preview": "You mean possession?",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-10T05:37:41+00:00",
+      "pid": "25059",
+      "msg_id": "171399",
+      "thread_id": 25059,
+      "player": "PJ",
+      "preview": "Baylan lets Pevrin know she is good to go and play with friends...\n\nBaylan then ",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-10 05:24:22",
-      "msg_ids": [
-        171401
-      ],
-      "last_posted_at": "2026-08-10T05:33:27.866458+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 171411
     }
   }
 }
