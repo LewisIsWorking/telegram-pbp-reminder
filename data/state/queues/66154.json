@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 170301,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-05T22:06:33+00:00",
-      "preview": "\"Prep work done Cardigan. We move now. Let's catch this guys and get our paycheck\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -196,7 +186,9 @@
     "msg:166004",
     "2026-07-08 16:05:19",
     "msg:169486",
-    "2026-08-01 00:15:16"
+    "2026-08-01 00:15:16",
+    "msg:170301",
+    "2026-08-05 22:06:33"
   ],
   "reply_log": [
     {
@@ -1056,18 +1048,25 @@
       "player": "Anthony",
       "preview": "Change to a +1 switchsythe.",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-10T04:16:04+00:00",
+      "pid": "66154",
+      "msg_id": "170301",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "\"Prep work done Cardigan. We move now. Let's catch this guys and get our paychec",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-08-05 22:06:33",
-      "msg_ids": [
-        170305
-      ],
-      "last_posted_at": "2026-08-05T22:34:35.677153+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 171363
     }
   }
 }
