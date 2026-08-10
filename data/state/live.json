@@ -1,8 +1,8 @@
 {
-  "offset": 619353771,
+  "offset": 619353791,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-10T03:13:14+00:00",
+      "last_message_time": "2026-08-10T04:30:30+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
@@ -20,13 +20,13 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-08-09T07:14:16+00:00",
+      "last_message_time": "2026-08-10T04:31:01+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-07-31T22:42:13+00:00",
+      "last_message_time": "2026-08-10T04:28:38+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Metal City"
@@ -111,7 +111,7 @@
   "last_roster_snapshot": "C01:7/6|C00:3/6|C04:3/6|C05:5/6|C06:6/6|C07:5/6|C09:2/6|C10:0/6|C08:0/4",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-08-09T19:39:10.645327+00:00"
+    "last_at": null
   },
   "last_recruitment_check": {
     "25059": "2026-08-07T00:09:00.705248+00:00",
@@ -155,7 +155,6 @@
   "dying_alerts_sent": {
     "107151": "active",
     "1242": "active",
-    "107171": "active",
     "40585": "active"
   },
   "last_campaign_table": "2026-08-04T23:09:48.407543+00:00",
@@ -205,7 +204,7 @@
   },
   "last_state_backup": "2026-08-10T02:22:10.344401+00:00",
   "last_queue_daily": "2026-08-09",
-  "last_queue_fingerprint": "empty|silent:  \ud83d\udfe3 \ud83e\udd16 C09: Metal City \u2014 no posts for 9d 5h \ud83d\udd17 https://t.me/Path_Wars/107171",
+  "last_queue_fingerprint": "52083:2026-08-10 04:29:58",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -297,14 +296,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-09",
-  "last_queue_pin_id": 171364,
-  "queue_post_count": 1327,
+  "last_queue_pin_id": 171385,
+  "queue_post_count": 1328,
   "gm_queue_history": [
     {
       "msg_ids": [
-        171364
+        171385,
+        171386
       ],
-      "pin_id": 171364
+      "pin_id": 171385
     }
   ]
 }
