@@ -1,34 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 171446,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-10T09:54:44+00:00",
-      "preview": "\u2605 Yaaaaay!? \u2605 (Oh sorry wrong character XD)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171485,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-10T13:48:29+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171486,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-10T13:48:54+00:00",
-      "preview": "To death and glory!!!!",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -216,7 +188,13 @@
     "msg:169486",
     "2026-08-01 00:15:16",
     "msg:170301",
-    "2026-08-05 22:06:33"
+    "2026-08-05 22:06:33",
+    "msg:171446",
+    "2026-08-10 09:54:44",
+    "msg:171485",
+    "2026-08-10 13:48:29",
+    "msg:171486",
+    "2026-08-10 13:48:54"
   ],
   "reply_log": [
     {
@@ -1085,18 +1063,43 @@
       "player": "Anthony",
       "preview": "\"Prep work done Cardigan. We move now. Let's catch this guys and get our paychec",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-11T00:53:25+00:00",
+      "pid": "66154",
+      "msg_id": "171446",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "\u2605 Yaaaaay!? \u2605 (Oh sorry wrong character XD)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-11T00:53:30+00:00",
+      "pid": "66154",
+      "msg_id": "171485",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-11T00:53:39+00:00",
+      "pid": "66154",
+      "msg_id": "171486",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "To death and glory!!!!",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-08-10 09:54:44|2026-08-10 13:48:29|2026-08-10 13:48:54",
-      "msg_ids": [
-        171490
-      ],
-      "last_posted_at": "2026-08-10T13:55:15.420299+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 171592
     }
   }
 }

@@ -9,15 +9,6 @@
       "time": "2026-08-10T09:20:10+00:00",
       "preview": "Lai returns the laser pistol to the hidden compartment in his thigh",
       "media_group_id": null
-    },
-    {
-      "message_id": 171450,
-      "thread_id": 145045,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-10T10:11:09+00:00",
-      "preview": "\"His death was greatly exaggerated'",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -289,7 +280,9 @@
     "msg:171367",
     "2026-08-10 04:29:56",
     "msg:171368",
-    "2026-08-10 04:29:58"
+    "2026-08-10 04:29:58",
+    "msg:171450",
+    "2026-08-10 10:11:09"
   ],
   "reply_log": [
     {
@@ -1529,6 +1522,15 @@
       "player": "Terra",
       "preview": "?",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-11T00:54:30+00:00",
+      "pid": "52083",
+      "msg_id": "171450",
+      "thread_id": 145045,
+      "player": "Horia",
+      "preview": "\"His death was greatly exaggerated'",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1543,12 +1545,10 @@
       "caught_up_msg_id": null
     },
     "145045": {
-      "msg_ids": [
-        171463
-      ],
-      "fingerprint": "2026-08-10 10:11:09",
-      "last_posted_at": "2026-08-10T10:24:05.591375+00:00",
-      "caught_up_msg_id": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 171591
     }
   }
 }
