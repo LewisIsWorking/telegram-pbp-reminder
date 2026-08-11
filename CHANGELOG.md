@@ -11,6 +11,66 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.54.2] - 2026-08-11
+
+### Fixed
+
+**Nine state keys were written on every run and silently discarded.**
+
+`state.py` documents the trap in one line near the top:
+
+    # Keys not listed here (e.g. _config_cache) are transient and not persisted.
+
+`_save_to_files` writes `{k: state[k] for k in keys if k in state}` per
+partition, so **a key absent from `PARTITIONS` is dropped on every save.**
+Nothing errors, nothing warns, the value is simply gone next run.
+
+This is the actual cause of the duplicate schedule posts. 4.54.1 fixed the
+bot-sent registry, which was a real and necessary bug, but not the one doing
+the damage: `schedule_post_msg_id` was never persisted, so `prev` was always
+`None` and there was never an ID to delete.
+
+Four were mine, three of them idempotency guards that would have re-fired on
+every 30-minute tick:
+
+| key | consequence |
+|---|---|
+| `potw_week` | POTW re-awarded all Monday |
+| `last_potw_roundup` | roundup reposted all Monday |
+| `last_potw_countdown` | standings reposted all Thursday |
+| `schedule_post_msg_id` | schedule post duplicated indefinitely |
+
+Five were pre-existing, found by the new guard:
+
+| key | consequence |
+|---|---|
+| `last_pin_digest` | identical shape — daily pin digest reposted every tick |
+| `last_pin_alert_ts` | non-bot pin alerts re-fired |
+| `poll_identified_voters` | voter identification lost |
+| `availability` | **`/available` player data silently lost** |
+| `timeline_events` | **`/timeline` GM entries silently lost** |
+
+The last two are worse than a duplicate post: user-entered data was being
+discarded every run.
+
+### Added
+
+- **`scripts/test_state_keys_are_declared.py`** — scans production source for
+  keys **written** to `state` and fails if any is missing from `PARTITIONS`.
+  Writes only: a key that is merely *read* needs no entry, which is why the
+  legacy migration reads (`gm_queue`, `gm_reply_log`, `paused`, …) are
+  correctly not flagged. Includes a save/load round-trip, because declaring a
+  key is not the same as it surviving the partition filter.
+
+  The existing `test_state_schema.py` guards *files*, not keys, and
+  `pytest.skip`s when `data/state/` is absent — so an undeclared key was never
+  in its scope. This one is key-level and cannot skip.
+
+Mutation-proven: un-registering `schedule_post_msg_id` fails three tests
+including the round-trip.
+
+---
+
 ## [4.54.1] - 2026-08-11
 
 ### Fixed

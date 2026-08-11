@@ -28,10 +28,29 @@ PARTITIONS: dict[str, list[str]] = {
         "last_week_welcome", "last_queue_daily_slots", "swimming_poll",
         "queue_scan_floor", "last_diagnostic", "last_queue_pin_id",
         "queue_post_count", "gm_queue_history",
+        # Added 2026-08-11. These four were written by new features but
+        # never listed here, so _save_to_files silently dropped them every
+        # run (see the note at the top of this file: keys not listed are
+        # transient). Three are idempotency guards, so losing them meant
+        # the job re-fired on every 30-minute tick:
+        #   potw_week           POTW would re-award all Monday
+        #   last_potw_roundup   roundup would repost all Monday
+        #   last_potw_countdown standings would repost all Thursday
+        #   schedule_post_msg_id  schedule post could never delete its
+        #                         predecessor, so it duplicated forever
+        "potw_week", "last_potw_roundup", "last_potw_countdown",
+        "schedule_post_msg_id",
+        # Pre-existing losses found by the same audit, same mechanism.
+        # last_pin_digest is the identical once-per-day shape: pin_report
+        # does `if state.get("last_pin_digest") == today: return`, so
+        # dropping it meant the daily digest reposted on every tick.
+        "last_pin_digest", "last_pin_alert_ts", "poll_identified_voters",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
         "player_boons", "mvp_wins", "characters", "away",
+        # /available — player-entered data that was being discarded.
+        "availability",
     ],
     "queue": [
         "queue_history", "queue_archive", "pending_potw_boons",
@@ -47,6 +66,8 @@ PARTITIONS: dict[str, list[str]] = {
         "clocks", "conditions", "hp_tracker", "loot", "npcs",
         "pins", "quests", "reactions", "timers", "votes",
         "campaign_notes",
+        # /timeline — GM-entered entries that were being discarded.
+        "timeline_events",
     ],
 }
 
@@ -69,6 +90,10 @@ DEFAULT_STATE: dict = {
     "queue_scan_floor": None, "last_diagnostic": None,
     "last_queue_pin_id": None, "queue_post_count": 0,
     "gm_queue_history": [],
+    "potw_week": {}, "last_potw_roundup": None,
+    "last_potw_countdown": None, "schedule_post_msg_id": None,
+    "last_pin_digest": None, "last_pin_alert_ts": "",
+    "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
 }
 
 STATE_FILENAME = "pbp_state.json"  # kept for gist compatibility
