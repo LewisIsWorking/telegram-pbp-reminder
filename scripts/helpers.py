@@ -21,7 +21,7 @@ from helpers_pkg.config import (
 
 from helpers_pkg.formatting import (
     RANK_ICONS, rank_icon, fmt_date, html_escape,
-    display_name, player_mention, player_full_name, posts_str,
+    display_name, player_mention, player_full_name, posts_str, count_str,
     fmt_relative_date, fmt_brief_relative, trend_icon, deduplicate_posts,
     calc_avg_gap_str,
 )

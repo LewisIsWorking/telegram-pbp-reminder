@@ -18,12 +18,21 @@ def extract_ids_from_live(live: dict) -> list:
 
     Recognises:
         last_queue_pin_id           legacy single pin (one int)
+        schedule_post_msg_id        self-replacing schedule/timer post
         gm_queue_history[*].msg_ids rolling window batch IDs
         gm_queue_history[*].pin_id  pinned-chunk ID inside each batch
     """
     ids: list = []
     if live.get("last_queue_pin_id"):
         ids.append(live["last_queue_pin_id"])
+    # Added 2026-08-11. Omitting it broke the schedule post's self-replacement:
+    # each Actions run is a fresh checkout, so bot_sent_ids.json does not
+    # survive and the registry rebuilds from this scan. An ID the scan does not
+    # know about is not in the registry, so perform_guarded_delete refuses it —
+    # correctly, by its own rules — and the previous post is never removed. Two
+    # posts became three became four, one every 30 minutes.
+    if live.get("schedule_post_msg_id"):
+        ids.append(live["schedule_post_msg_id"])
     for batch in live.get("gm_queue_history") or []:
         for mid in batch.get("msg_ids") or []:
             ids.append(mid)

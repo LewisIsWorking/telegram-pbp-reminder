@@ -3,7 +3,7 @@
 from datetime import datetime, timedelta, timezone
 
 import helpers
-from helpers import build_topic_maps, fmt_date, posts_str
+from helpers import build_topic_maps, count_str, fmt_date, posts_str
 from scheduled.leaderboard_data import _gather_leaderboard_stats
 import telegram as tg
 
