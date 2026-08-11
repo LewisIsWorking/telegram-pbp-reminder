@@ -3,7 +3,7 @@
 from datetime import datetime, timedelta, timezone
 
 import helpers
-from helpers import build_topic_maps, fmt_date, posts_str
+from helpers import build_topic_maps, count_str, fmt_date, posts_str
 from scheduled.leaderboard_data import _gather_leaderboard_stats
 import telegram as tg
 
@@ -39,9 +39,9 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
         label = f"{code}: {c['name']}" if code else c["name"]
         campaign_block = (
             f"[{rank} {label} {c['trend_icon']}]\n"
-            f"- {c['player_7d']} player posts.\n"
+            f"- {count_str(c['player_7d'], 'player post')}.\n"
             f"- {posts_str(c['total_7d'])} total.\n"
-            f"- {c['gm_7d']} GM posts.\n"
+            f"- {count_str(c['gm_7d'], 'GM post')}.\n"
             f"- Avg gap: {c['avg_gap_str']}.\n"
             f"- Last post: {c['last_post_str']}."
         )

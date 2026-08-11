@@ -11,6 +11,59 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.54.1] - 2026-08-11
+
+### Fixed
+
+**The schedule post stopped replacing itself and duplicated every 30 minutes.**
+
+Root cause is mine, and it is the second instance of the same class as the
+2026-08-10 topic-queue orphan: **a bot-sent message ID the registry does not
+know about cannot be deleted.**
+
+`post_schedule` stores `state["schedule_post_msg_id"]`, but I never added that
+field to `posting/bot_sent_state_scan.py` — despite that module's docstring
+stating the contract outright:
+
+> When new fields are added to `live.json` ... that store a bot-sent message
+> ID, that field should be picked up here so the registry's backfill stays
+> accurate.
+
+Every Actions run is a fresh checkout, so `bot_sent_ids.json` does not survive
+and the registry rebuilds from `backfill_from_state`. An unknown ID is absent
+from the registry, so `perform_guarded_delete` **refuses** it — behaving
+exactly as designed — and the previous post is never removed.
+
+The failure is quiet in the worst way: the guard was right, the refusal was
+correct, and the only visible symptom was duplicate posts hours later.
+
+- `schedule_post_msg_id` added to `extract_ids_from_live`.
+- **`test_bot_sent_scan_covers_state.py`** — a guard so the next `_msg_id`
+  field cannot slip the same gap. It scans production source for state keys
+  ending in `_msg_id` / `_message_id` and fails if any is unknown to the scan
+  module, with an allowlist for player/GM ids the bot must *never* delete.
+  Includes a round-trip test, because knowing the key name is not the same as
+  the rebuild actually authorising the delete.
+
+**`1 player posts` / `1 GM posts` in the weekly leaderboard.**
+
+`posts_str` existed but only covers the bare word "post", so the qualified
+counts were hand-rolled f-strings that never pluralised. Generalised into
+`count_str(n, noun, plural=None)` in `helpers_pkg/formatting.py`; `posts_str`
+now delegates to it.
+
+### Changed
+
+- **Weekly leaderboard moved to topic 146780** (`leaderboard_topic_id`
+  137393 → 146780), as requested.
+  ⚠️ `leaderboard_topic_id` is also read by `scheduled/digest.py`,
+  `scheduled/message_milestones.py` and `boons/hero_point.py`, so the weekly
+  digest, message milestones and the MVP hero-point claim move with it. The
+  claim *must* follow its MVP post, and the others are the same weekly-summary
+  family — but say the word if you want them split back out.
+
+---
+
 ## [4.54.0] - 2026-08-10
 
 ### Added

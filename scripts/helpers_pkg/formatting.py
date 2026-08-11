@@ -66,7 +66,20 @@ def player_full_name(player: dict) -> str:
 
 def posts_str(n: int) -> str:
     """Return '1 post' or 'N posts'."""
-    return f"{n} post" if n == 1 else f"{n} posts"
+    return count_str(n, "post")
+
+
+def count_str(n: int, noun: str, plural: str | None = None) -> str:
+    """Return '1 <noun>' or 'N <noun>s' — a generalised ``posts_str``.
+
+    Added 2026-08-11: the weekly leaderboard hand-rolled its counts as
+    f"{n} player posts", which read "1 player posts" and "1 GM posts" for
+    a quiet campaign. ``posts_str`` already existed but only covers the
+    bare word "post", so anything with a qualifier bypassed it.
+
+    ``plural`` covers irregulars; it defaults to ``noun + "s"``.
+    """
+    return f"{n} {noun}" if n == 1 else f"{n} {plural or noun + 's'}"
 
 
 
