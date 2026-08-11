@@ -10892,5 +10892,15 @@
     "refused": false,
     "bot_owned": true,
     "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-11T15:04:41.366607+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171676,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:179"
   }
 ]
