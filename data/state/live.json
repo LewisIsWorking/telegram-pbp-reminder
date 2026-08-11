@@ -1,8 +1,8 @@
 {
-  "offset": 619353950,
+  "offset": 619353982,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-11T00:54:30+00:00",
+      "last_message_time": "2026-08-11T03:33:36+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
@@ -14,7 +14,7 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-08-10T10:09:11+00:00",
+      "last_message_time": "2026-08-11T03:43:21+00:00",
       "last_user": "Laetheron",
       "last_user_id": "8117756377",
       "campaign_name": "Grand Explorers"
@@ -64,7 +64,7 @@
     "107171": "2026-08-09T08:52:52.344454+00:00",
     "40585": "2026-08-10T04:25:50.372510+00:00",
     "76799": "2026-08-11T02:12:52.622507+00:00",
-    "107151": "2026-08-10T02:22:10.344401+00:00",
+    "107151": "2026-08-11T03:52:58.694130+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00"
   },
   "last_roster": {
@@ -111,7 +111,7 @@
   "last_roster_snapshot": "C01:7/6|C00:3/6|C04:3/6|C05:5/6|C06:6/6|C07:5/6|C09:2/6|C10:0/6|C08:0/4",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-08-10T21:49:54.163679+00:00"
+    "last_at": null
   },
   "last_recruitment_check": {
     "25059": "2026-08-07T00:09:00.705248+00:00",
@@ -206,9 +206,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-08-10T02:22:10.344401+00:00",
+  "last_state_backup": "2026-08-11T03:52:58.694130+00:00",
   "last_queue_daily": "2026-08-10",
-  "last_queue_fingerprint": "51357:2026-08-10 10:09:11|52083:2026-08-10 09:20:10",
+  "last_queue_fingerprint": "51357:2026-08-11 03:42:28|51357:2026-08-11 03:43:21",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -300,15 +300,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-10",
-  "last_queue_pin_id": 171593,
-  "queue_post_count": 1333,
+  "last_queue_pin_id": 171633,
+  "queue_post_count": 1334,
   "gm_queue_history": [
     {
       "msg_ids": [
-        171593,
-        171594
+        171633,
+        171634
       ],
-      "pin_id": 171593
+      "pin_id": 171633
     }
   ]
 }

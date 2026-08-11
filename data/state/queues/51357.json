@@ -2,12 +2,21 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 171449,
+      "message_id": 171625,
       "thread_id": 51357,
       "user_id": "8117756377",
       "user_name": "Laetheron",
-      "time": "2026-08-10T10:09:11+00:00",
-      "preview": "Twilight pipes up with a curious look on their face, \"Challenges?\"",
+      "time": "2026-08-11T03:42:28+00:00",
+      "preview": "\"Oooooh,\" Twilight says, \"so that's what you meant.\" \n\nTwilight seems like they hadn't considered the serial killer to be a possibility in the slightest.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 171626,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-08-11T03:43:21+00:00",
+      "preview": "Under their breath, they murmer, \"Maybe this one could be? Sounds fun.\"",
       "media_group_id": null
     }
   ],
@@ -293,7 +302,9 @@
     "msg:170077",
     "2026-08-03 21:25:18",
     "msg:170098",
-    "2026-08-03 23:00:22"
+    "2026-08-03 23:00:22",
+    "msg:171449",
+    "2026-08-10 10:09:11"
   ],
   "reply_log": [
     {
@@ -1517,17 +1528,26 @@
       "player": "Cannon",
       "preview": "Illiani cheerfully nods. She's getting used to people showing up in type of way.",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-11T03:35:32+00:00",
+      "pid": "51357",
+      "msg_id": "171449",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight pipes up with a curious look on their face, \"Challenges?\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-10 10:09:11",
+      "fingerprint": "2026-08-11 03:42:28|2026-08-11 03:43:21",
       "msg_ids": [
-        171459
+        171629
       ],
-      "last_posted_at": "2026-08-10T10:23:59.973986+00:00",
+      "last_posted_at": "2026-08-11T03:53:01.158403+00:00",
       "caught_up_msg_id": null
     },
     "145040": {
