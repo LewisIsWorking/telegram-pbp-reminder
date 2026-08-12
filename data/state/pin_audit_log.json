@@ -11092,5 +11092,25 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:179"
+  },
+  {
+    "timestamp": "2026-08-12T02:30:35.894669+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 171087,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:174"
+  },
+  {
+    "timestamp": "2026-08-12T02:30:37.604701+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 171715,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:179"
   }
 ]
