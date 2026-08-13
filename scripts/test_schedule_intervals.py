@@ -90,10 +90,19 @@ class TestDueCount:
         state = {"last_roster": {"100": _ago(60), "300": _ago(60)}}
         assert "(2 of 2 campaigns)" in _line(_CFG, state, "Roster summary")
 
-    def test_orphans_count_in_the_total_but_never_as_due(self):
-        """The total is the raw dict size; only live campaigns can be due."""
-        state = {"last_roster": {"100": _ago(0.5), "300": _ago(0.5),
-                                 "1242": _ago(60)}}
+    def test_orphans_are_excluded_from_the_total_too(self):
+        """Not just from 'due' — a removed campaign is not one of N either.
+
+        Three entries, one of them an orphan, one live one overdue: the
+        line must read 1 of 2, never 1 of 3.
+        """
+        state = {"last_roster": {"100": _ago(60), "300": _ago(0.5),
+                                 "1242": _ago(90)}}
+        line = _line(_CFG, state, "Roster summary")
+        assert "(1 of 2 campaigns)" in line, line
+
+    def test_no_count_when_nothing_is_due(self):
+        state = {"last_roster": {"100": _ago(0.5), "300": _ago(0.5)}}
         assert "campaigns)" not in _line(_CFG, state, "Roster summary")
 
     def test_single_value_jobs_get_no_count(self):

@@ -121,7 +121,6 @@ def interval_lines(config: dict, state: dict, now: datetime) -> list[str]:
     for job in INTERVAL_JOBS:
         value = state.get(job.key)
         stamps = _stamps(value, known)
-        total = len(value) if isinstance(value, dict) else 1
         if not stamps:
             rows.append((0.0, f"  • {job.label} — due now"))
             continue
@@ -129,9 +128,12 @@ def interval_lines(config: dict, state: dict, now: datetime) -> list[str]:
         hours = (min(due) - now).total_seconds() / 3600
         text = f"  • {job.label} — {_when(hours)}"
         if isinstance(value, dict):
+            # Denominator is len(stamps), not len(value): the orphans
+            # filtered out above must not pad the total either, or the
+            # line reports campaigns that no longer exist.
             overdue = sum(1 for d in due if d <= now)
             if overdue:
-                text += f" ({overdue} of {total} campaigns)"
+                text += f" ({overdue} of {len(stamps)} campaigns)"
         rows.append((hours, text))
     rows.sort(key=lambda r: r[0])
     return [text for _h, text in rows]
