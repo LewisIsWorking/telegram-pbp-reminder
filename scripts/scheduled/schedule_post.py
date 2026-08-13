@@ -24,24 +24,18 @@ Sent with ``silent=True``. Without that this would notify 48 times a
 day. The delete goes through ``tg.delete_message``, so it inherits the
 bot-sent registry guard — this post can only ever remove its own
 previous message.
+
+Moving it between topics needs no migration: ``tg.delete_message`` is
+scoped to the chat and takes no topic, so the run that first posts to a
+new topic also removes the predecessor sitting in the old one.
 """
 
 from datetime import datetime, timedelta, timezone
 
-import helpers
 import telegram as tg
 from scheduled import local_time
+from scheduled.schedule_intervals import interval_lines
 from scheduled.schedule_table import todays_items, fixed_schedule
-
-# Interval jobs, as (state key, interval-days, label). These fire relative
-# to their last run rather than on a clock, so they get "next due" rather
-# than a time of day. Nested dict keys (per-campaign) are summarised by
-# their earliest due entry.
-_INTERVAL_JOBS = [
-    ("last_leaderboard", helpers.LEADERBOARD_INTERVAL_DAYS, "Leaderboard"),
-    ("last_roster", helpers.ROSTER_INTERVAL_DAYS, "Roster summary"),
-    ("last_pace", helpers.PACE_INTERVAL_DAYS, "Pace report"),
-]
 
 
 def next_tick(now: datetime) -> datetime:
@@ -51,38 +45,18 @@ def next_tick(now: datetime) -> datetime:
     return (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
 
 
-def _earliest(value) -> datetime | None:
-    """Earliest ISO timestamp in a str or a dict-of-str, else None."""
-    if isinstance(value, str):
-        raw = [value]
-    elif isinstance(value, dict):
-        raw = [v for v in value.values() if isinstance(v, str)]
-    else:
-        return None
-    stamps = []
-    for s in raw:
-        try:
-            stamps.append(datetime.fromisoformat(s))
-        except (ValueError, TypeError):
-            continue
-    return min(stamps) if stamps else None
+def schedule_topic(config: dict) -> int | None:
+    """Where the schedule post goes.
 
+    Its own key, deliberately, rather than reusing ``gm_queue_topic_id``:
+    ``leaderboard_topic_id`` is shared by four unrelated posts, so moving
+    the leaderboard on 2026-08-12 silently moved the weekly digest,
+    message milestones and the hero-point picker with it. A key per
+    destination means moving one post moves one post.
 
-def _interval_lines(state: dict, now: datetime) -> list[str]:
-    """One 'next due' line per interval job, soonest first."""
-    rows = []
-    for key, days, label in _INTERVAL_JOBS:
-        last = _earliest(state.get(key))
-        if last is None:
-            rows.append((0.0, f"  • {label} — due now"))
-            continue
-        due = last + timedelta(days=days)
-        hours = (due - now).total_seconds() / 3600
-        when = "due now" if hours <= 0 else (
-            f"in {int(hours)}h" if hours < 48 else f"in {int(hours // 24)}d")
-        rows.append((hours, f"  • {label} — {when}"))
-    rows.sort(key=lambda r: r[0])
-    return [text for _h, text in rows]
+    Falls back to ``bot_topic_id`` so an older config still works.
+    """
+    return config.get("schedule_topic_id") or config.get("bot_topic_id")
 
 
 def _at(now: datetime, hour: int, day_offset: int = 0) -> datetime:
@@ -122,7 +96,7 @@ def build_schedule_text(config: dict, state: dict, now: datetime) -> str:
         lines.append("━━ Coming up ━━")
         lines.extend(upcoming)
 
-    interval = _interval_lines(state, now)
+    interval = interval_lines(config, state, now)
     if interval:
         lines.append("")
         lines.append("━━ Interval jobs ━━")
@@ -161,15 +135,15 @@ def post_schedule(config: dict, state: dict, *,
     so the current copy always sits at the bottom where it is visible.
     """
     now = now or datetime.now(timezone.utc)
-    bot_topic = config.get("bot_topic_id")
-    if not bot_topic:
+    topic = schedule_topic(config)
+    if not topic:
         return
     if not config.get("schedule_post_enabled", True):
         return
 
     prev = state.get("schedule_post_msg_id")
     text = build_schedule_text(config, state, now)
-    msg_id = tg.send_message_id(config["group_id"], bot_topic, text,
+    msg_id = tg.send_message_id(config["group_id"], topic, text,
                                 silent=True)
     if not msg_id:
         return  # send failed — keep the old one rather than leaving none

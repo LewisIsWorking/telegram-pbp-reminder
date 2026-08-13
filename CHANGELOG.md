@@ -11,6 +11,87 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.55.0] - 2026-08-13
+
+### Added
+
+**The schedule post has its own topic key, and moves to the GM queue topic.**
+
+`post_schedule` read `bot_topic_id`, while its own docstring had said "for the
+GM queue topic" since it was written. New `schedule_topic_id`, set to 146780,
+falling back to `bot_topic_id` when absent.
+
+Its own key rather than reusing `gm_queue_topic_id`: `leaderboard_topic_id` is
+shared by four unrelated posts, so moving the leaderboard on 2026-08-12 also
+moved the weekly digest, message milestones and the hero-point picker. One key
+per destination means moving one post moves one post.
+
+No migration needed. `tg.delete_message` is scoped to the chat and takes no
+topic, so the first run in the new topic also removes the predecessor sitting
+in the old one.
+
+### Fixed
+
+**The schedule post listed 11 of the 18 scheduled jobs.**
+
+Everything it said was true - every hour, weekday and interval matched its real
+gate. It just left seven jobs out entirely:
+
+| Missing | Gate |
+|---|---|
+| Pin digest | daily at `pin_digest_hour` (08:00 UTC, same hour as the diagnostic) |
+| Recruitment check | 14 days, per campaign |
+| Weekly digest | 7 days |
+| Campaign table | 6.5 days |
+| Pace-drop alerts | 7 days |
+| Daily tip | 22 hours |
+| State backup | 1 day |
+
+The pin digest is the visible one: it fires at the same hour as the diagnostic,
+so the post showed one job at 09:00 BST when two were due.
+
+Every existing guard was *per row* - given a row, does it quote the right
+constant. A missing row has no constant to disagree with, so a job that was
+never added is indistinguishable from a job that does not exist.
+
+`test_schedule_is_complete.py` anchors to `checker._run_checks`, the one
+authoritative registry of what the bot runs, and requires every label there to
+be claimed by a fixed-clock row, an interval row, or an explicit event-driven
+entry with a stated firing condition. Read by AST rather than by importing
+`checker`, which would pull in the whole bot.
+
+**"Roster summary - due now" was stuck, and had been for weeks.**
+
+`last_roster` and `last_pace` are `{pid: iso}`, and the line took the earliest
+value across every key. State accumulates campaign ids indefinitely; `1242` had
+been removed from config and its 2026-07-06 timestamp was still there. Its job
+iterates config, never reaches it, so never restamps it - the earliest value
+could only move further into the past and the line was pinned to "due now"
+permanently. A status line that cannot change reads as information and carries
+none.
+
+Now filtered to configured campaigns, and per-campaign jobs report how many are
+due: `Roster summary - due now (1 of 9 campaigns)`. That count immediately
+surfaced the real straggler - C08 Theria has no players recorded, so its roster
+job skips at the `if not players and not counts` guard without stamping, and
+has not run since 2026-06-07.
+
+### Changed
+
+- `_INTERVAL_JOBS` extracted from `schedule_post.py` to
+  `scheduled/schedule_intervals.py`; the additions would have taken the file
+  past 200 lines. Split by gate shape: `schedule_table` is fixed-clock,
+  `schedule_intervals` is "days since last run".
+- `_interval_lines(state, now)` renamed to `interval_lines(config, state, now)`.
+  Renamed rather than defaulted so every call site had to be revisited.
+- `TestLocalTimeRendering` moved to `test_schedule_local_time.py`;
+  `test_schedule_post.py` had reached 211 lines.
+
+1995 tests passing. The completeness guard is mutation-proven: dropping the pin
+digest row fails it by name.
+
+---
+
 ## [4.54.2] - 2026-08-11
 
 ### Fixed
