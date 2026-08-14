@@ -177,9 +177,10 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         # Only for commands we advertise. An unrecognised /command in this
         # topic may well be aimed at another bot in the group, and
         # answering those would make this bot interrupt every one of them.
-        # Deliberately not "changes campaign data": some of these are
-        # reads (/hp, /available, /pick) that simply need to know which
-        # campaign. Needing campaign context is what they all share.
+        #
+        # The wording is deliberately not "changes campaign data": some of
+        # these are reads (/hp, /available, /pick) that simply need to know
+        # which campaign. Needing campaign context is what all 41 share.
         tg.send_message(group_id, bot_topic,
                         f"{cmd_word} needs to know which campaign, so use it "
                         f"in that campaign's topic. This topic has no "
