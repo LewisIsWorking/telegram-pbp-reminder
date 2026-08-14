@@ -11,6 +11,75 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.56.0] - 2026-08-14
+
+### Fixed
+
+**`/rosterplayers` did nothing, and said nothing.**
+
+Reported from the group: tapped from the Telegram command menu, no reply at
+all - indistinguishable from the bot being down.
+
+It was registered in three of the five places a command needs to exist:
+
+| place | had it? |
+|---|---|
+| `set_commands.py` (the Telegram menu) | yes - so it was tappable |
+| `dispatch/cmd_info.py` (the handler) | yes |
+| `router._READ_CMDS` | **no** |
+| `bot_topic.no_campaign` | **no** |
+| `help_text` | no (nor does `/roster`) |
+
+Two silent consequences, both now fixed, for `/rostercampaigns`,
+`/rosterplayers` and `/rosterall`:
+
+- **From the bot topic** they fell through to `return  # Non-read commands not
+  allowed` and did nothing.
+- **From a campaign topic** they worked, but replied into the in-character pbp
+  thread instead of the chat topic, because `is_read` is computed from
+  `_READ_CMDS`.
+
+Their sibling `/roster` was registered everywhere and behaved correctly, which
+is what made this look like one broken command rather than a missing
+registration. All three are cross-campaign by construction -
+`build_roster_players` and friends take `(config, state)` and no pid - so they
+belong in `no_campaign` beside `/roster`.
+
+Not a `@BotName` problem: the suffix is stripped in four places already
+(`parsing/message.py`, `dispatch/bot_topic.py`, `dispatch/cmd_gm.py`), and
+`/rosterplayers@PathWarsNudgeBot` behaved identically to the bare form
+throughout. Verified before changing anything.
+
+### Added
+
+**An advertised command never answers with silence.**
+
+41 of the 79 commands in the Telegram menu produced no reply from the bot
+topic. Most are write commands that genuinely need campaign context, and
+refusing them there is correct - but refusing them *silently* is not. A
+command in the menu can be tapped, and a tap that does nothing reads as a
+broken bot.
+
+They now answer: *"/scene needs to know which campaign, so use it in that
+campaign's topic."* Deliberately not "changes campaign data" - `/hp`,
+`/available` and `/pick` are reads that simply need to know which campaign.
+
+Only for commands this bot advertises. `_MENU_COMMANDS` is derived from
+`set_commands` rather than relisted, so the menu and the branch cannot
+disagree. An unrecognised `/command` stays silent, because other bots share
+this group and answering `/deploy@SomeOtherBot` would interrupt every one.
+
+`test_no_advertised_command_is_silent.py` asserts the **outcome**, not the
+registration: send every menu command and require a reply. A registry
+cross-check ("every menu command is in `_READ_CMDS`") would be wrong, because
+write commands legitimately are not read commands - and that read/write mapping
+is the thing that was wrong in the first place.
+
+2091 tests passing. Mutation-proven: un-registering the three roster shapes
+fails 6 tests naming both original symptoms.
+
+---
+
 ## [4.55.0] - 2026-08-13
 
 ### Added

@@ -12,6 +12,13 @@ import helpers
 import telegram as tg
 from dispatch.cmd_search import handle_search
 from dispatch.gm_poll_cmds import handle_sessionplayed, handle_swimmingdone, poll_week_num as _poll_week_num
+from set_commands import EVERYONE_COMMANDS, GM_COMMANDS
+
+# Everything this bot puts in the Telegram command menu. Sourced from
+# set_commands rather than relisted, so the menu and this set cannot
+# disagree — a second copy would drift the moment a command is added.
+_MENU_COMMANDS = frozenset(
+    "/" + name for name, _desc in EVERYONE_COMMANDS + GM_COMMANDS)
 
 
 def _poll_week_num(week_iso: str) -> int:
@@ -135,8 +142,15 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         return handle_swimmingdone(  # pragma: no cover
             args, user_id, user_name, config, state, group_id, bot_topic)  # pragma: no cover
 
-    # Global commands don't need a campaign
-    no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help", "/pbphelp", "/queue", "/timeline", "/health", "/queuestats", "/roster"}
+    # Global commands don't need a campaign. The three roster shapes are
+    # cross-campaign by construction — build_roster_players and friends
+    # take (config, state) and no pid — so asking for a campaign name
+    # would be asking for something they cannot use. Added 2026-08-14;
+    # /roster was here and its three siblings were not.
+    no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help",
+                   "/pbphelp", "/queue", "/timeline", "/health",
+                   "/queuestats", "/roster",
+                   "/rostercampaigns", "/rosterplayers", "/rosterall"}
     if cmd_word in no_campaign:
         print(f"Bot topic: {cmd_word} from {user_name} (global)")
         pid = next(iter(maps.to_name), None)
@@ -154,8 +168,26 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         for word in campaign_name.lower().split():
             args = args.replace(word, "", 1).strip()
         text = f"{cmd_word} {args}".strip() if args else cmd_word
+    elif cmd_word in _MENU_COMMANDS:
+        # A command this bot advertises, used somewhere it does not work.
+        # Silence here is what hid the /rosterplayers bug: the command was
+        # in the Telegram menu, Lewis tapped it, and nothing happened —
+        # indistinguishable from the bot being down.
+        #
+        # Only for commands we advertise. An unrecognised /command in this
+        # topic may well be aimed at another bot in the group, and
+        # answering those would make this bot interrupt every one of them.
+        #
+        # The wording is deliberately not "changes campaign data": some of
+        # these are reads (/hp, /available, /pick) that simply need to know
+        # which campaign. Needing campaign context is what all 41 share.
+        tg.send_message(group_id, bot_topic,
+                        f"{cmd_word} needs to know which campaign, so use it "
+                        f"in that campaign's topic. This topic has no "
+                        f"campaign context.")
+        return
     else:
-        return  # Non-read commands not allowed from bot topic
+        return  # Not one of ours; stay quiet in case it is another bot's
 
     gm_ids = helpers.gm_ids_for_campaign(config, pid)
     ctx = {
