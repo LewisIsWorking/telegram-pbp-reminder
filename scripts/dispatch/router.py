@@ -40,6 +40,13 @@ _READ_CMDS = frozenset({
     "/summary", "/activity", "/profile", "/recap", "/gm",
     "/boons", "/boonsall", "/search", "/queue", "/reactions", "/timeline",
     "/waiting", "/session", "/health", "/queuestats", "/registry", "/markdone", "/roster",
+    # Added 2026-08-14. The three other roster shapes were registered with
+    # BotFather and handled in cmd_info, but were in neither this set nor
+    # bot_topic's no_campaign set. Two consequences, both silent:
+    # from the bot topic they fell through to "non-read commands not
+    # allowed" and did nothing at all, and from a campaign topic they
+    # replied into the in-character pbp thread instead of the chat topic.
+    "/rostercampaigns", "/rosterplayers", "/rosterall",
 })
 
 
