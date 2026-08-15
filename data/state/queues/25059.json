@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 172213,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-15T11:06:49+00:00",
-      "preview": "Wait we didn't solve the goat problem?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -460,7 +450,9 @@
     "msg:171399",
     "2026-08-10 05:24:22",
     "msg:172010",
-    "2026-08-14 22:20:46"
+    "2026-08-14 22:20:46",
+    "msg:172213",
+    "2026-08-15 11:06:49"
   ],
   "reply_log": [
     {
@@ -2478,16 +2470,23 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-15T17:13:31+00:00",
+      "pid": "25059",
+      "msg_id": "172213",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "Wait we didn't solve the goat problem?",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-15 11:06:49",
-      "msg_ids": [
-        172222
-      ],
-      "last_posted_at": "2026-08-15T11:26:02.895578+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172270
     }
   }
 }
