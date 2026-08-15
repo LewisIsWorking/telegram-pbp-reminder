@@ -1,10 +1,10 @@
 {
-  "offset": 619354275,
+  "offset": 619354296,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-15T05:58:50+00:00",
-      "last_user": "Terra",
-      "last_user_id": "8097377199",
+      "last_message_time": "2026-08-15T06:38:00+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -64,7 +64,7 @@
     "107171": "2026-08-15T05:30:51.275226+00:00",
     "40585": "2026-08-14T10:10:54.854474+00:00",
     "76799": "2026-08-14T08:21:50.565780+00:00",
-    "107151": "2026-08-14T06:19:17.860204+00:00",
+    "107151": "2026-08-15T06:49:36.938995+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00"
   },
   "last_roster": {
@@ -211,9 +211,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-08-14T06:19:17.860204+00:00",
+  "last_state_backup": "2026-08-15T06:49:36.938995+00:00",
   "last_queue_daily": "2026-08-14",
-  "last_queue_fingerprint": "52083:2026-08-15 05:58:50",
+  "last_queue_fingerprint": "empty",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -305,23 +305,22 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-14",
-  "last_queue_pin_id": 172125,
+  "last_queue_pin_id": null,
   "queue_post_count": 1343,
   "gm_queue_history": [
     {
       "msg_ids": [
-        172125,
-        172126
+        172145
       ],
-      "pin_id": 172125
+      "pin_id": null
     }
   ],
   "potw_week": {},
   "last_potw_roundup": null,
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 172128,
+  "schedule_post_msg_id": 172146,
   "last_pin_digest": "2026-08-14",
-  "last_pin_alert_ts": "2026-08-15T06:05:12.336079+00:00",
+  "last_pin_alert_ts": "2026-08-15T06:49:44.665439+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 172087,
   "last_recruit_focus": "2026-08-15T05:30:51.275226+00:00"
