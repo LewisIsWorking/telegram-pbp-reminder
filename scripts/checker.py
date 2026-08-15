@@ -114,9 +114,9 @@ def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:
         ("Pin digest", run_daily_pin_digest),
         ("Non-bot pin alert", alert_non_bot_pin_actions),
         ("State backup", backup_state),
+        ("Recruit focus", post_recruit_focus),
         # Last: it reports on everything above, so it should
         # render after they have had their turn this run.
-        ("Recruit focus", post_recruit_focus),
         ("Schedule post", post_schedule),
     ]
     for label, func in checks:
