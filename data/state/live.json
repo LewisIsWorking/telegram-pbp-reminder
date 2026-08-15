@@ -1,8 +1,8 @@
 {
-  "offset": 619354318,
+  "offset": 619354331,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-15T07:12:05+00:00",
+      "last_message_time": "2026-08-15T07:48:07+00:00",
       "last_user": "Terra",
       "last_user_id": "8097377199",
       "campaign_name": "Hopeful End-Times"
@@ -32,9 +32,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-15T05:05:28+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-15T07:51:12+00:00",
+      "last_user": "Ryo",
+      "last_user_id": "138025700",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -213,7 +213,7 @@
   },
   "last_state_backup": "2026-08-15T06:49:36.938995+00:00",
   "last_queue_daily": "2026-08-14",
-  "last_queue_fingerprint": "52083:2026-08-15 07:12:05",
+  "last_queue_fingerprint": "40585:2026-08-15 07:51:12|52083:2026-08-15 07:12:05|52083:2026-08-15 07:42:35|52083:2026-08-15 07:48:07",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -305,21 +305,21 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-14",
-  "last_queue_pin_id": 172164,
-  "queue_post_count": 1344,
+  "last_queue_pin_id": 172178,
+  "queue_post_count": 1345,
   "gm_queue_history": [
     {
       "msg_ids": [
-        172164,
-        172165
+        172178,
+        172179
       ],
-      "pin_id": 172164
+      "pin_id": 172178
     }
   ],
   "potw_week": {},
   "last_potw_roundup": null,
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 172167,
+  "schedule_post_msg_id": 172181,
   "last_pin_digest": "2026-08-14",
   "last_pin_alert_ts": "2026-08-15T07:35:49.566744+00:00",
   "poll_identified_voters": {},

@@ -9,6 +9,24 @@
       "time": "2026-08-15T07:12:05+00:00",
       "preview": "\"I...shot it...?\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 172168,
+      "thread_id": 52083,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-15T07:42:35+00:00",
+      "preview": "Rune folded up the bipod and puts it away before slinging the rifle and over his shoulder, keeping an eye on the ysoki as he does this. Satisfied with what he sees he steps over to the others, his fingers flying as he types on his holo-keyboard closely followed by the computerized voice.\n\n\"It's all good. Bit of a pain to fight, but wasn't going to stop us.\n\nLoving the music, all the bass and that fucking drum solo. Shaking the ground and right through me.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 172170,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-15T07:48:07+00:00",
+      "preview": "\"Sorry, I'm still confused what is happening?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1559,11 +1577,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-15 07:12:05",
+      "fingerprint": "2026-08-15 07:12:05|2026-08-15 07:42:35|2026-08-15 07:48:07",
       "msg_ids": [
-        172162
+        172176
       ],
-      "last_posted_at": "2026-08-15T07:35:43.475015+00:00",
+      "last_posted_at": "2026-08-15T07:52:16.769678+00:00",
       "caught_up_msg_id": null
     },
     "145045": {

@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 172171,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-15T07:51:12+00:00",
+      "preview": "\"Next. Next we stop those psychos and protect our city. And if you're lucky and keep your mouth shut unless spoken to you might survive til trial.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5843,10 +5852,12 @@
       "caught_up_msg_id": 170060
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 170384
+      "fingerprint": "2026-08-15 07:51:12",
+      "msg_ids": [
+        172174
+      ],
+      "last_posted_at": "2026-08-15T07:52:10.949059+00:00",
+      "caught_up_msg_id": null
     }
   }
 }
