@@ -11,6 +11,26 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.57.1] - 2026-08-15
+
+### Changed
+
+**C10 The Junction excluded from recruitment.**
+
+It sits at 0/6 and won the recruit focus post every day, which is the same failure
+the C08 Theria exclusion already existed to prevent. Added
+`"disabled_features": ["recruitment"]` to its topic_pair, matching how C08 is handled.
+
+C08 was already excluded and needed no change.
+
+The winner is now **C09 Metal City** (2/6, 4 seats open), and the "N campaigns
+currently short" count correctly drops from 6 to 5.
+
+Note this also silences `check_recruitment_needs` for C10, since both features read
+the same flag. That is the intended meaning of the flag rather than a side effect.
+
+---
+
 ## [4.57.0] - 2026-08-15
 
 ### Added
