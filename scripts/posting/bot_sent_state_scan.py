@@ -33,6 +33,11 @@ def extract_ids_from_live(live: dict) -> list:
     # posts became three became four, one every 30 minutes.
     if live.get("schedule_post_msg_id"):
         ids.append(live["schedule_post_msg_id"])
+    # Added 2026-08-15. Same contract as the schedule post: the recruit
+    # focus deletes its own predecessor, and an id missing from the
+    # registry gets that delete refused by perform_guarded_delete.
+    if live.get("recruit_focus_msg_id"):
+        ids.append(live["recruit_focus_msg_id"])
     for batch in live.get("gm_queue_history") or []:
         for mid in batch.get("msg_ids") or []:
             ids.append(mid)

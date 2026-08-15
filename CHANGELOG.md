@@ -11,6 +11,52 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.57.0] - 2026-08-15
+
+### Added
+
+**"Recruit for this next" — a daily post naming the campaign most in need of players.**
+
+Requested as a sibling to the queue focus message. Where that one names the campaign
+most in need of a *reply*, this names the one most in need of *new players*, in the
+same shape:
+
+    ━━━━━━━━━━━━━━━━
+    🧭 Recruit for this next: 🚦 C10: The Junction
+    ⏳ 6 seats open (0/6 players).
+    ↗ Biggest gap of 6 campaigns currently short.
+    🔗 https://t.me/Path_Wars/146645
+
+Posted to the GM queue topic, **once per 24 hours, deleting its predecessor.** The
+queue focus rides the queue's own message batch and dies with it; this one has no
+batch, so it manages its own lifecycle the same way `schedule_post` does.
+
+Selection: largest shortfall against the campaign's own `roster_target` wins, ties
+broken on the lower fill ratio so a 1-of-2 outranks a 5-of-6 with the same gap.
+
+**Campaigns with `recruitment` in `disabled_features` are excluded.** This is the
+part that matters: C08 Theria sits at 0/4 and would otherwise win every single day,
+which is precisely the campaign Lewis has switched recruitment off for. Mutation-proven
+— deleting the flag check fails two tests by name.
+
+Config: `recruit_focus_enabled` (default true) to switch it off.
+
+### Notes
+
+Two state keys were registered in both places a bot-sent id has to exist —
+`state.PARTITIONS` and `posting/bot_sent_state_scan` — which are the exact two
+omissions that duplicated the schedule post for two days in 4.54.1/4.54.2. Both
+guards from that fix pass.
+
+The schedule-post completeness guard added in 4.55.0 caught this feature mid-build:
+registering "Recruit focus" in `checker._run_checks` and nowhere else failed
+`test_schedule_is_complete` immediately, which is what that guard exists to do. It is
+now listed as an interval job and appears in the schedule post.
+
+2114 tests passing.
+
+---
+
 ## [4.56.0] - 2026-08-14
 
 ### Fixed

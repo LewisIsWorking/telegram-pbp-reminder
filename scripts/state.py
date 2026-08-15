@@ -45,6 +45,11 @@ PARTITIONS: dict[str, list[str]] = {
         # does `if state.get("last_pin_digest") == today: return`, so
         # dropping it meant the daily digest reposted on every tick.
         "last_pin_digest", "last_pin_alert_ts", "poll_identified_voters",
+        # Added 2026-08-15 for the recruit focus post. Both are required:
+        # the msg_id so it can delete its predecessor, the timestamp so the
+        # 24h gate survives a run. Omitting either reproduces the schedule
+        # post bug exactly.
+        "recruit_focus_msg_id", "last_recruit_focus",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
@@ -94,6 +99,7 @@ DEFAULT_STATE: dict = {
     "last_potw_countdown": None, "schedule_post_msg_id": None,
     "last_pin_digest": None, "last_pin_alert_ts": "",
     "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
+    "recruit_focus_msg_id": None, "last_recruit_focus": None,
 }
 
 STATE_FILENAME = "pbp_state.json"  # kept for gist compatibility
