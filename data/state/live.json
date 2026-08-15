@@ -1,5 +1,5 @@
 {
-  "offset": 619354249,
+  "offset": 619354255,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-11T03:33:36+00:00",
@@ -14,9 +14,9 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-08-14T20:58:00+00:00",
-      "last_user": "Cannon",
-      "last_user_id": "7454623139",
+      "last_message_time": "2026-08-15T05:44:15+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -26,7 +26,7 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-08-11T00:49:39+00:00",
+      "last_message_time": "2026-08-15T05:35:11+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Metal City"
@@ -161,7 +161,6 @@
     "107151": "active",
     "1242": "active",
     "66154": "active",
-    "107171": "active",
     "52083": "active"
   },
   "last_campaign_table": "2026-08-11T11:51:20.492281+00:00",
@@ -215,7 +214,7 @@
   },
   "last_state_backup": "2026-08-14T06:19:17.860204+00:00",
   "last_queue_daily": "2026-08-14",
-  "last_queue_fingerprint": "51357:2026-08-14 02:15:37|51357:2026-08-14 03:51:36|51357:2026-08-14 20:58:00",
+  "last_queue_fingerprint": "51357:2026-08-14 03:51:36",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -307,23 +306,23 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-14",
-  "last_queue_pin_id": 171989,
-  "queue_post_count": 1341,
+  "last_queue_pin_id": 172100,
+  "queue_post_count": 1342,
   "gm_queue_history": [
     {
       "msg_ids": [
-        171989,
-        171990
+        172100,
+        172101
       ],
-      "pin_id": 171989
+      "pin_id": 172100
     }
   ],
   "potw_week": {},
   "last_potw_roundup": null,
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 172093,
+  "schedule_post_msg_id": 172103,
   "last_pin_digest": "2026-08-14",
-  "last_pin_alert_ts": "2026-08-15T05:31:31.475730+00:00",
+  "last_pin_alert_ts": "2026-08-15T05:46:28.130612+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 172087,
   "last_recruit_focus": "2026-08-15T05:30:51.275226+00:00"

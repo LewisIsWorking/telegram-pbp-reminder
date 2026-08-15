@@ -2,30 +2,12 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 171895,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-14T02:15:37+00:00",
-      "preview": "\"I'd be okay with that if everyone else is.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 171905,
       "thread_id": 51357,
       "user_id": "7130942567",
       "user_name": "Buffet",
       "time": "2026-08-14T03:51:36+00:00",
       "preview": "\"No complaints here.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 171980,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-14T20:58:00+00:00",
-      "preview": "\"Your assistance I getting us around is greatly appreciated, Doctor.\"",
       "media_group_id": null
     }
   ],
@@ -319,7 +301,11 @@
     "msg:171626",
     "2026-08-11 03:43:21",
     "msg:171638",
-    "2026-08-11 04:29:07"
+    "2026-08-11 04:29:07",
+    "msg:171895",
+    "2026-08-14 02:15:37",
+    "msg:171980",
+    "2026-08-14 20:58:00"
   ],
   "reply_log": [
     {
@@ -1579,17 +1565,35 @@
       "player": "Buffet",
       "preview": "\"Shadow creatures AND serial killers? You guys sure like to keep it interesting,",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-15T05:43:08+00:00",
+      "pid": "51357",
+      "msg_id": "171895",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "\"I'd be okay with that if everyone else is.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-15T05:43:32+00:00",
+      "pid": "51357",
+      "msg_id": "171980",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "\"Your assistance I getting us around is greatly appreciated, Doctor.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-14 02:15:37|2026-08-14 03:51:36|2026-08-14 20:58:00",
+      "fingerprint": "2026-08-14 03:51:36",
       "msg_ids": [
-        171986
+        172098
       ],
-      "last_posted_at": "2026-08-14T21:04:31.985836+00:00",
+      "last_posted_at": "2026-08-15T05:46:21.667680+00:00",
       "caught_up_msg_id": null
     },
     "145040": {
