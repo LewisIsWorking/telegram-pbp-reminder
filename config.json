@@ -118,7 +118,8 @@
       "code": "C10",
       "queue_priority": 1,
       "emoji": "\ud83d\udea6",
-      "disabled_features": ["recruitment"]
+      "disabled_features": ["recruitment"],
+      "recruit_tier": 1
     },
     {
       "name": "Theria",
@@ -137,7 +138,8 @@
       "code": "C08",
       "queue_exclude": true,
       "emoji": "\ud83e\udd84",
-      "roster_target": 4
+      "roster_target": 4,
+      "recruit_tier": 2
     }
   ],
   "settings": {

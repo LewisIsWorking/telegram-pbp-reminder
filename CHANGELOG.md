@@ -11,6 +11,45 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.58.0] - 2026-08-15
+
+### Added
+
+**Recruit tiers — reserve campaigns wait their turn instead of being excluded.**
+
+Asked for after the hard exclusion landed: C10 should appear, but only once every
+other campaign has six players; C08 only once C10 is full.
+
+    tier 0   the normal queue
+    tier 1   C10 The Junction
+    tier 2   C08 Theria
+
+A tier only becomes eligible once **every campaign in every lower tier is full**, so
+the cascade is strict rather than a weighting. Within the eligible tier the existing
+rule applies: largest shortfall, then lowest fill ratio.
+
+**Precedence: an explicit `recruit_tier` beats `disabled_features`.** That ordering
+is load bearing. C10 and C08 both still carry `recruitment` in `disabled_features`
+on purpose - that flag keeps the fortnightly `check_recruitment_needs` nag switched
+off for them, which was not asked to change. Had the disabled check run first, both
+tiered campaigns would have been permanently unreachable and the feature would have
+looked correct while never firing.
+
+The post now says which tier it is drawing from when it is not the normal one:
+
+    📌 Reserve campaign — every campaign in tier 0 and below is full.
+
+and the "N campaigns currently recruiting" count covers the **eligible tier only**,
+since a number that includes queued reserves is one the GM cannot act on.
+
+Verified against live config and state: C09 Metal City wins today from 5 eligible
+tier-0 campaigns; simulating every tier-0 campaign full hands over to C10 with the
+reserve line attached.
+
+2126 tests passing.
+
+---
+
 ## [4.57.1] - 2026-08-15
 
 ### Changed
