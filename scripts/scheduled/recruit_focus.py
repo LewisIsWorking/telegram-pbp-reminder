@@ -52,21 +52,60 @@ def _shortfall(pair: dict, state: dict, config: dict) -> tuple[int, int, int]:
     return target - active, active, target
 
 
+def recruit_tier(pair: dict, config: dict) -> int | None:
+    """Which queue this campaign recruits from, or None for never.
+
+    Tiers let a campaign wait its turn instead of being excluded outright
+    (Lewis, 2026-08-15): **a tier only becomes eligible once every campaign
+    in every lower tier is full.**
+
+      * explicit ``recruit_tier`` on the pair wins
+      * else ``recruitment`` in ``disabled_features`` means **never**
+      * else tier 0, the normal queue
+
+    The precedence matters. Reading the disabled flag first would make an
+    explicit tier unreachable, which is exactly the config C10 and C08 are
+    in — both were hard-excluded on 2026-08-15 and are now tiered instead.
+    """
+    if "recruit_tier" in pair:
+        return pair["recruit_tier"]
+    pid = str(pair["pbp_topic_ids"][0])
+    if not helpers.feature_enabled(config, pid, "recruitment"):
+        return None
+    return 0
+
+
+def _eligible_pairs(config: dict, state: dict) -> list[dict]:
+    """Pairs in the lowest tier that still has a shortfall.
+
+    Every campaign below that tier is full by construction, which is what
+    makes the tier eligible at all.
+    """
+    short: dict[int, list] = {}
+    for pair in config.get("topic_pairs", []):
+        tier = recruit_tier(pair, config)
+        if tier is None:
+            continue
+        if _shortfall(pair, state, config)[0] > 0:
+            short.setdefault(tier, []).append(pair)
+    if not short:
+        return []
+    return short[min(short)]
+
+
 def pick_recruit_pair(config: dict, state: dict) -> dict | None:
     """The campaign most in need of players, or None if all are full.
 
     Mirrors ``queue_focus.pick_focus_pid``: one winner, chosen by a stated
     rule, so the GM is given a single action rather than a league table.
+    Within the eligible tier, largest shortfall wins, then lowest fill
+    ratio.
     """
     candidates = []
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        if not helpers.feature_enabled(config, pid, "recruitment"):
-            continue
+    for pair in _eligible_pairs(config, state):
         missing, active, target = _shortfall(pair, state, config)
-        if missing > 0:
-            ratio = active / target if target else 1.0
-            candidates.append((-missing, ratio, pair))
+        ratio = active / target if target else 1.0
+        candidates.append((-missing, ratio, pair))
     if not candidates:
         return None
     return min(candidates, key=lambda c: (c[0], c[1]))[2]
@@ -86,18 +125,21 @@ def build_recruit_message(config: dict, state: dict) -> str:
     emoji_prefix = f"{emoji} " if emoji else ""
 
     seats = "seat" if missing == 1 else "seats"
-    short_count = sum(
-        1 for p in config.get("topic_pairs", [])
-        if helpers.feature_enabled(config, str(p["pbp_topic_ids"][0]),
-                                   "recruitment")
-        and _shortfall(p, state, config)[0] > 0)
+    # Counted within the eligible tier only. Counting every short campaign
+    # would advertise a number the GM cannot act on — the lower tiers are
+    # full, and anything in a higher tier is not open for recruiting yet.
+    eligible = _eligible_pairs(config, state)
+    tier = recruit_tier(pair, config)
 
     lines = ["━━━━━━━━━━━━━━━━",
              f"🧭 Recruit for this next: {emoji_prefix}{label}",
              f"⏳ {missing} {seats} open ({active}/{target} players)."]
-    if short_count > 1:
-        lines.append(f"↗ Biggest gap of {short_count} campaigns "
-                     f"currently short.")
+    if tier:
+        lines.append(f"📌 Reserve campaign — every campaign in tier "
+                     f"{tier - 1} and below is full.")
+    if len(eligible) > 1:
+        lines.append(f"↗ Biggest gap of {len(eligible)} campaigns "
+                     f"currently recruiting.")
     else:
         lines.append("↗ The only campaign currently below target.")
 
