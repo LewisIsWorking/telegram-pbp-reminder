@@ -11,6 +11,44 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.58.1] - 2026-08-15
+
+### Changed
+
+**200-line limit: 13 files over, now 7, with a ratchet so it cannot regrow.**
+
+Six production files cleared by extraction, never by trimming comments:
+
+| was | now | extracted to |
+|---|---|---|
+| `state.py` 225 | 136 | `state_schema.py` — the partition map and defaults, pure data |
+| `commands/roster.py` 216 | 120 | `commands/roster_members.py` — who counts as on a roster |
+| `dispatch/bot_topic.py` 214 | 190 | `dispatch/bot_topic_dice.py` — `/roll` and `/dc` |
+| `scheduled/topic_queue_poster.py` 207 | 124 | `scheduled/topic_queue_write.py` — the per-thread write path |
+| `scheduled/session_poll.py` 205 | 153 | `scheduled/session_poll_roster.py` — roster and link helpers |
+| `scheduled/potw.py` 204 | 179 | `scheduled/potw_candidates.py` — eligibility |
+
+`bot_topic_dice` took `/roll` and `/dc` specifically because they are the only
+contextless branches that are unconditionally terminal. `/mystats`, `/me` and
+`/waiting` deliberately fall through to campaign handling when given an argument, so
+lifting those would have meant inventing a handled/not-handled protocol.
+
+**`telegram.py` resisted every attempt and is documented rather than forced.** Every
+function needs `_post`, so an extracted module must import back — a cycle. Moving
+`_post` out instead breaks `test_telegram_01_misc`, which asserts on
+`telegram.TELEGRAM_API` after `init()`. A function-local import to dodge the cycle
+resolves to the **mock** telegram module `conftest` installs into `sys.modules`. It
+needs a deliberate transport-layer refactor, not a slice.
+
+`test_file_length_limit.py` guards it as a **ratchet, not an exemption**: listed files
+may not grow, must be removed from the list once cleared, and the list may not gain
+entries. A frozen ceiling would permit regrowth to the worst-ever length.
+Mutation-proven — padding a file to 271 lines fails it by name.
+
+2132 tests passing.
+
+---
+
 ## [4.58.0] - 2026-08-15
 
 ### Added
