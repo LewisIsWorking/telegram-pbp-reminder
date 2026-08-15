@@ -67,6 +67,11 @@ INTERVAL_JOBS: list[IntervalJob] = [
     IntervalJob("last_daily_tip", 22 / 24, "Daily tip", ("Daily tip",)),
     # scheduled/state_backup.py:16
     IntervalJob("last_state_backup", 1, "State backup", ("State backup",)),
+    # scheduled/recruit_focus.py:_GATE_HOURS. Added 2026-08-15 with the
+    # feature itself — the completeness guard failed the moment it was
+    # registered in checker._run_checks and nowhere else, which is what
+    # that guard exists to do.
+    IntervalJob("last_recruit_focus", 1, "Recruit focus", ("Recruit focus",)),
 ]
 
 
