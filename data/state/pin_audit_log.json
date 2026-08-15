@@ -12912,5 +12912,85 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:153"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:43.321385+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 172174,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:65"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:43.657040+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 172174,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:44.893639+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 172195,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:51.292393+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 172197,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:51.635413+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 172178,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:51.960842+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 172178,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:52.300712+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 172179,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-15T09:31:53.088214+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 172187,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:153"
   }
 ]
