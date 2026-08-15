@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from dispatch.cmd_search import handle_search
+from dispatch.bot_topic_dice import handle_dice
 from dispatch.gm_poll_cmds import handle_sessionplayed, handle_swimmingdone, poll_week_num as _poll_week_num
 from set_commands import EVERYONE_COMMANDS, GM_COMMANDS
 
@@ -100,37 +101,12 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
             return
         # With campaign arg, fall through to normal handler below
 
-    # /roll and /dc work without campaign context
+    # /roll and /dc work without campaign context.
+    # Body lives in dispatch/bot_topic_dice — see that module for why
+    # this pair was lifted and the fall-through ones were not.
     if cmd_word in ("/roll", "/dc"):
-        print(f"Bot topic: {cmd_word} from {user_name}: {args}")
-        pid = next(iter(maps.to_name), None)
-        if not pid:
-            return  # pragma: no cover
-        import re as _re
-        raw_text = msg.get("text", "").strip()
-        if cmd_word == "/roll":
-            dice = _re.sub(r"^/roll(@\S+)?", "", raw_text).strip()
-            result = helpers.roll_dice(dice) if dice else None
-            if not result or not dice:
-                tg.send_message(group_id, bot_topic,
-                                "Usage: /roll [dice] [label]\n"
-                                "e.g. /roll 1d20+5 Stealth\n"
-                                "e.g. /roll 4d6kh3")
-            elif result.get("error"):
-                tg.send_message(group_id, bot_topic, result["error"])
-            else:
-                label = result["label"]
-                header = f"🎲 {user_name}"
-                if label:
-                    header += f" — {label}"
-                header += ":"
-                r = result["results"][0]
-                tg.send_message(group_id, bot_topic,
-                                f"{header}\n  {r['detail']} = {r['total']}")
-        else:
-            mention = f"@{user_name}" if user_name else user_name
-            tg.send_message(group_id, bot_topic,
-                            f"The DC is a mystery to be revealed later in the campaign! {mention}")
+        handle_dice(cmd_word, args, msg, maps, group_id, bot_topic,
+                    user_name)
         return
 
     # /sessionplayed <code> <week> — GM marks a live session as happened, stops poll pings
