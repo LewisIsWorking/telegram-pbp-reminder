@@ -1,5 +1,5 @@
 {
-  "offset": 619354243,
+  "offset": 619354248,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-11T03:33:36+00:00",
@@ -20,7 +20,7 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-08-14T22:22:58+00:00",
+      "last_message_time": "2026-08-15T05:04:35+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Doomsday Funtime"
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-10T06:19:26+00:00",
+      "last_message_time": "2026-08-15T05:05:28+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -58,10 +58,10 @@
   },
   "last_alerts": {
     "52083": "2026-08-14T06:19:17.860204+00:00",
-    "66154": "2026-08-14T04:54:24.360684+00:00",
+    "66154": "2026-08-15T05:30:51.275226+00:00",
     "51357": "2026-08-13T04:58:05.862836+00:00",
     "25059": "2026-08-14T08:21:50.565780+00:00",
-    "107171": "2026-08-14T04:54:24.360684+00:00",
+    "107171": "2026-08-15T05:30:51.275226+00:00",
     "40585": "2026-08-14T10:10:54.854474+00:00",
     "76799": "2026-08-14T08:21:50.565780+00:00",
     "107151": "2026-08-14T06:19:17.860204+00:00",
@@ -160,7 +160,6 @@
   "dying_alerts_sent": {
     "107151": "active",
     "1242": "active",
-    "40585": "active",
     "66154": "active",
     "107171": "active",
     "52083": "active"
@@ -322,8 +321,10 @@
   "potw_week": {},
   "last_potw_roundup": null,
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 172079,
+  "schedule_post_msg_id": 172088,
   "last_pin_digest": "2026-08-14",
-  "last_pin_alert_ts": "2026-08-15T04:03:34.184763+00:00",
-  "poll_identified_voters": {}
+  "last_pin_alert_ts": "2026-08-15T04:56:22.863164+00:00",
+  "poll_identified_voters": {},
+  "recruit_focus_msg_id": 172087,
+  "last_recruit_focus": "2026-08-15T05:30:51.275226+00:00"
 }
