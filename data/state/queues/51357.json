@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 171905,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-08-14T03:51:36+00:00",
-      "preview": "\"No complaints here.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -305,7 +295,9 @@
     "msg:171895",
     "2026-08-14 02:15:37",
     "msg:171980",
-    "2026-08-14 20:58:00"
+    "2026-08-14 20:58:00",
+    "msg:171905",
+    "2026-08-14 03:51:36"
   ],
   "reply_log": [
     {
@@ -1583,18 +1575,25 @@
       "player": "Cannon",
       "preview": "\"Your assistance I getting us around is greatly appreciated, Doctor.\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-15T05:54:50+00:00",
+      "pid": "51357",
+      "msg_id": "171905",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"No complaints here.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-14 03:51:36",
-      "msg_ids": [
-        172098
-      ],
-      "last_posted_at": "2026-08-15T05:46:21.667680+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172124
     },
     "145040": {
       "msg_ids": [],
