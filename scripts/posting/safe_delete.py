@@ -43,6 +43,23 @@ sending or knowingly added" — intact.
 from posting.bot_sent_registry import is_bot_sent
 from posting.refusal_log import record_refusal
 from posting.pin_audit import record_action
+from posting.stuck_deletes import is_hopeless, note_failed_delete
+
+# Error bodies that mean the message is ALREADY GONE, so the delete has
+# achieved what it wanted and counts as success. Named and exported
+# (2026-08-16) because the test that guards this list used to hand-write
+# its own copy and feed that to ``_post`` — so it verified the mechanism
+# and never the configuration, and stayed green no matter what
+# ``perform_guarded_delete`` actually passed. Derive the scope, do not
+# retype it.
+#
+# ⚠️ Nothing that means "the message is still there" belongs in here. See
+# the note in perform_guarded_delete about "message can't be deleted".
+ALREADY_GONE_ERRORS = (
+    "message to delete not found",
+    "MESSAGE_ID_INVALID",
+    "message not found",
+)
 
 
 def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
@@ -72,7 +89,23 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
     suppressed in the API call — those just mean Telegram already
     cleaned up the message (e.g. expired poll) and the bot's view of
     state is stale, not that anything went wrong.
+
+    ⚠️ ``"message can't be deleted"`` is deliberately NOT suppressed
+    (changed 2026-08-16). It used to be, on the reasoning that the
+    message "is going to stay there regardless of how many times it
+    asks" — true, and precisely why it is a failure. Suppressing it
+    made ``ok=True``, which cleared the tracked slot and dropped the ID
+    before ``pending_delete`` ever saw it. The message survived and the
+    audit trail said it had not: 715 deletes logged, 715 successes,
+    zero failures, while a 2026-08-03 ``Unreplied: 2`` post sat in C06.
+    The infinite-retry problem that suppression was solving is now
+    solved by ``posting.stuck_deletes`` instead — bounded attempts, then
+    a reported give-up — which fixes it without falsifying the outcome.
     """
+    if is_hopeless(message_id):
+        # Already given up on. Skip the HTTP call, and keep returning
+        # False so callers still treat the message as present — it is.
+        return False
     if not is_bot_sent(message_id):
         print(f"[delete_message] REFUSED chat={chat_id} mid={message_id}: "
               f"not in bot_sent_ids registry. The bot only deletes messages "
@@ -85,12 +118,13 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
     ok = post_fn("deleteMessage", {
         "chat_id": chat_id, "message_id": message_id,
     }, "delete_message",
-    suppress_errors=("message to delete not found", "MESSAGE_ID_INVALID",
-                     "message not found", "message can't be deleted")) is not None
+    suppress_errors=ALREADY_GONE_ERRORS) is not None
     # Deletes are logged because Telegram auto-unpins a deleted message:
     # if a human had pinned this (bot-sent) message, the pin vanishes here
     # with no unpin call. See posting.pin_audit for the full rationale.
     record_action("delete", chat_id, message_id, ok=ok, bot_owned=True)
+    if not ok:
+        note_failed_delete(chat_id, message_id)
     return ok
 
 

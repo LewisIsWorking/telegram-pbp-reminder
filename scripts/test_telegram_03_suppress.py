@@ -108,18 +108,22 @@ def test_post_suppressed_error_no_print(capsys):
 
 
 def test_post_each_safe_delete_suppress_pattern_recognised():
-    """Every pattern documented in ``posting.safe_delete`` must be
+    """Every pattern ``posting.safe_delete`` actually passes must be
     treated as soft success. If any of these regress to returning
     None, the bug Lewis reported on 2026-05-10 returns: GM queue
     batches stuck past max_kept, topic queue prev-deletes spurious.
+
+    ANCHORED 2026-08-16 to ``safe_delete.ALREADY_GONE_ERRORS``. This
+    test used to declare its own copy of the tuple, so it proved that
+    ``_post`` can suppress *some* list and never that the list matched
+    the one production sends. It passed for months while the real tuple
+    carried ``"message can't be deleted"`` — an error meaning the
+    message is still there.
     """
+    from posting.safe_delete import ALREADY_GONE_ERRORS
+
     _tg.init("t")
-    safe_delete_patterns = (
-        "message to delete not found",
-        "MESSAGE_ID_INVALID",
-        "message not found",
-        "message can't be deleted",
-    )
+    safe_delete_patterns = ALREADY_GONE_ERRORS
     for pattern in safe_delete_patterns:
         body = f'{{"ok":false,"description":"Bad Request: {pattern}"}}'
         with patch.object(_tg.requests, "post", return_value=_resp(400, body)):

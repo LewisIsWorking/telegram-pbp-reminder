@@ -19,11 +19,30 @@ treat these as success, not failure. Patterns currently recognised:
   same condition. Still emitted in some edge cases.
 * ``"message not found"`` \u2014 emitted by unpinChatMessage when the
   pinned message is already gone (deleted, or pin was already cleared).
-* ``"message can't be deleted"`` \u2014 emitted for service messages
-  (topic creation, etc.) and a few other edge cases. From the bot's
-  perspective, the message is going to stay there regardless of how
-  many times it asks Telegram to remove it; treating this as failure
-  causes infinite retry loops in queue history eviction.
+The live list is ``posting.safe_delete.ALREADY_GONE_ERRORS`` \u2014 read it
+there rather than trusting this prose, which cannot fail a build.
+
+\u26d4 ``"message can't be deleted"`` **was** on this list and was removed on
+2026-08-16. The old rationale ran: it is emitted for service messages
+and a few other edge cases; from the bot's perspective the message is
+going to stay there regardless of how many times it asks; and treating
+it as failure causes infinite retry loops in queue history eviction.
+
+Every clause of that is true and the conclusion still does not follow.
+"The message is going to stay there" is the *definition* of a failed
+delete, not a soft success. Suppressing it made
+``perform_guarded_delete`` return True, so the caller cleared the
+tracked slot and dropped the ID before ``pending_delete`` could ever
+retry it \u2014 the one mechanism built to catch orphans never saw an orphan.
+The pin audit recorded **715 deletes, 715 successes, zero failures,
+ever**, while an ``Unreplied: 2`` post from 2026-08-03 sat in the C06
+topic for thirteen days until Lewis spotted it. An outcome column with
+one possible value measures nothing.
+
+The retry-loop problem was real, and is now solved where it belongs, in
+``posting.stuck_deletes``: bounded attempts, then the bot stops asking
+and files the ID for a human to remove. That ends the loop without
+falsifying the outcome.
 
 Pre-2026-05-10 ``_post`` returned ``None`` for all these cases. Both
 callers (``posting.safe_delete.perform_guarded_delete`` and

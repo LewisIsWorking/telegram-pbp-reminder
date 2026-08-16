@@ -66,6 +66,16 @@ AUX_FILES = (
                       "safe_delete's guarded paths; read by humans "
                       "diagnosing a vanished pin. Optional — absent "
                       "until the first pin/unpin/delete."),
+    ("stuck_deletes", "Message IDs Telegram declined to delete, with an "
+                      "attempt count. Owner: posting.stuck_deletes. "
+                      "Written by safe_delete on every failed delete; "
+                      "read by safe_delete (to skip IDs it has given up "
+                      "on) and by the retry sweep in "
+                      "scheduled.topic_queue_state. An entry marked "
+                      "hopeless is a message still sitting in a topic "
+                      "that only a human can remove. Added 2026-08-16. "
+                      "Optional — absent until the first refused delete, "
+                      "which before that date could not be observed."),
 )
 
 # Files written once during a one-shot migration or by an external

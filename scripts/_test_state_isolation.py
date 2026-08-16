@@ -40,6 +40,7 @@ from pathlib import Path
 from posting import bot_sent_registry as _bsr
 from posting import refusal_log as _rl
 from posting import pin_audit as _pa
+from posting import stuck_deletes as _sd
 from state_store import StateStore
 
 
@@ -51,3 +52,12 @@ _rl._store = _TEST_STORE
 # pin_audit records every pin/unpin the bot performs; isolate it too so
 # the suite never writes to the real data/state/pin_audit_log.json.
 _pa._store = _TEST_STORE
+# stuck_deletes, added 2026-08-16. Before that date a delete Telegram
+# refused wrote nothing anywhere, so no test could leak through this path
+# — the write did not exist. Making the failure real made it leakable: the
+# first full-suite run after the fix deposited a fixture's
+# chat_id=-1001/mid=12345 into the real data/state/stuck_deletes.json,
+# which CI would then have committed.
+# ⭐ Any module newly persisting through StateStore belongs on this list.
+# A fix that wakes a previously-dead write path is exactly when it bites.
+_sd._store = _TEST_STORE
