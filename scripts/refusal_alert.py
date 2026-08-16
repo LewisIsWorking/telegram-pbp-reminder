@@ -6,19 +6,26 @@ Runs after the main bot job in CI. Reads
 found, posts a summary to the bot's reserved topic in the Path Wars
 group.
 
-A refusal in production means one of two things, both of which the
-operator should know about:
+Entries carry a ``reason`` and are rendered per reason, because the two
+classes call for opposite responses:
 
-  1. The bot tried to delete a message it sent, but the registry
-     didn't know about the ID. Either backfill missed a state field
-     or a sender forgot to call ``record_sent``. Investigate and
-     either fix the sender or seed the registry manually.
+  ``registry``    The registry did not list the ID. Either backfill
+                  missed a state field, a sender forgot ``record_sent``,
+                  or something tried to delete a message the bot never
+                  sent. **A bug to investigate.**
 
-  2. Something tried to delete a message the bot didn't send. The
-     guard correctly refused, but the attempt itself is suspicious
-     and worth understanding.
+  ``undeletable`` Telegram refuses to remove the message and the bot has
+                  given up after ``stuck_deletes.MAX_ATTEMPTS``. The ID
+                  is in the registry and the code is behaving correctly;
+                  the message is simply older than Telegram's 48h limit
+                  for bot deletes. **A chore for a human, not a bug.**
 
-Either way, alert and review.
+⚠️ Until 2026-08-16 this file asserted the first explanation for every
+entry. When ``stuck_deletes`` started routing give-ups through the same
+log, the alert announced 11 of them as registry refusals — and every one
+of those IDs was in the registry. Reusing the transport was right;
+reusing the explanation sent the operator to the wrong runbook. If a
+third reason is ever added, give it its own section here.
 """
 
 import os
@@ -32,28 +39,69 @@ if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
 from helpers_pkg.config import load_config
-from posting.refusal_log import get_unalerted_refusals, mark_alerted
+from posting.refusal_log import (REASON_REGISTRY, REASON_UNDELETABLE,
+                                 get_unalerted_refusals, mark_alerted)
+
+
+def _registry_section(entries: list) -> list:
+    """A delete the bot-sent registry rejected. A code or backfill fault."""
+    out = [f"\U0001f6d1 Registry refusals: {len(entries)}",
+           "The bot tried to delete a message the registry does not list. "
+           "Either backfill missed a state field, a sender forgot "
+           "record_sent, or something tried to delete a message the bot "
+           "never sent. Investigate per docs/dev/delete-safety.md."]
+    for e in entries[:25]:
+        out.append(f"\u2022 {e.get('timestamp', '?')}  "
+                   f"mid={e.get('message_id', '?')}")
+    if len(entries) > 25:
+        out.append(f"\u2026 and {len(entries) - 25} more")
+    return out
+
+
+def _undeletable_section(entries: list) -> list:
+    """Telegram will not remove it. Nothing to fix in code; needs hands."""
+    out = [f"\U0001f4cc Undeletable: {len(entries)}",
+           "Telegram declined these repeatedly, so the bot has stopped "
+           "asking. They are bot messages older than 48h, and admin rights "
+           "do not lift that limit, so ONLY A HUMAN can remove them. This "
+           "is not a code fault and needs no investigation. It needs a tap.",
+           "Delete these by hand:"]
+    for e in entries[:25]:
+        out.append(f"\u2022 https://t.me/Path_Wars/{e.get('message_id', '?')}")
+    if len(entries) > 25:
+        out.append(f"\u2026 and {len(entries) - 25} more "
+                   f"(run maintenance/audit_orphans.py for the full list)")
+    return out
+
+
+# Renderer per reason. A reason with no renderer falls back to the
+# registry wording, which is what every pre-2026-08-16 entry is.
+_SECTIONS = {
+    REASON_REGISTRY: _registry_section,
+    REASON_UNDELETABLE: _undeletable_section,
+}
 
 
 def _format_alert(refusals: list, sha: str) -> str:
-    """Build the Telegram message body from a list of refusal entries."""
-    n = len(refusals)
-    header = (
-        f"\u26a0\ufe0f Delete refusals: {n} message(s) refused since last alert\n"
-        f"sha: {sha}\n\n"
-        f"Each entry below is a delete that ``tg.delete_message`` "
-        f"refused because the message_id was not in the bot-sent "
-        f"registry. Investigate per ``docs/dev/delete-safety.md``.\n"
-    )
-    lines = [header]
-    for entry in refusals[:25]:
-        lines.append(
-            f"\u2022 {entry.get('timestamp', '?')}  "
-            f"chat={entry.get('chat_id', '?')}  "
-            f"mid={entry.get('message_id', '?')}"
-        )
-    if n > 25:
-        lines.append(f"\n\u2026 and {n - 25} more (see refusal_log.json)")
+    """Build the Telegram body, grouped by WHY each delete failed.
+
+    \u26a0\ufe0f The single-cause version of this function announced 11
+    give-ups as "refused because the message_id was not in the bot-sent
+    registry" on 2026-08-16. Every one of those IDs *was* in the
+    registry. Reusing an alert channel for a second failure class is
+    fine; reusing its explanation is not. The two need opposite
+    responses: one is a bug to investigate, the other is a chore to do.
+    """
+    by_reason: dict[str, list] = {}
+    for entry in refusals:
+        by_reason.setdefault(
+            entry.get("reason") or REASON_REGISTRY, []).append(entry)
+
+    lines = [f"\u26a0\ufe0f Delete failures: {len(refusals)} since last alert",
+             f"sha: {sha}"]
+    for reason, entries in sorted(by_reason.items()):
+        lines.append("")
+        lines.extend(_SECTIONS.get(reason, _registry_section)(entries))
     return "\n".join(lines)
 
 
