@@ -43,17 +43,36 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+# The distinct reasons a delete can end up in this log. They are NOT
+# interchangeable: they have different causes, different urgency and
+# different remedies, and an alert that names the wrong one sends the
+# operator to the wrong investigation.
+REASON_REGISTRY = "registry"      # the ID was not in bot_sent_ids
+REASON_UNDELETABLE = "undeletable"  # Telegram refuses; the bot gave up
+
+
 def record_refusal(chat_id: int, message_id: int,
-                   timestamp: str | None = None) -> None:
+                   timestamp: str | None = None,
+                   reason: str = REASON_REGISTRY) -> None:
     """Append a refusal entry to the on-disk log.
 
-    Called from ``safe_delete.perform_guarded_delete`` whenever the
-    registry refuses a delete. ``timestamp`` defaults to "now (UTC)".
+    ``reason`` says WHICH failure this is. It defaults to
+    ``REASON_REGISTRY`` so that pre-2026-08-16 entries, written before
+    this field existed, read correctly — every one of those was a
+    registry refusal, because that was the only caller.
+
+    ⚠️ Added 2026-08-16 after ``stuck_deletes`` began routing its
+    give-ups through this log and the alert announced 11 of them as
+    "refused because the message_id was not in the bot-sent registry".
+    Every one of those IDs *was* in the registry. The transport was
+    reusable; the diagnosis was not. See ``a-failure-must-say-whose-
+    fault-it-is``.
     """
     entry = {
         "timestamp": timestamp or _now_iso(),
         "chat_id": chat_id,
         "message_id": message_id,
+        "reason": reason,
     }
     with _LOCK:
         existing = _store.load_aux(_LOG_NAME, default=[])

@@ -32,7 +32,7 @@ succeeded" is the operational fact either way.
 import threading
 from datetime import datetime, timezone
 
-from posting.refusal_log import record_refusal
+from posting.refusal_log import REASON_UNDELETABLE, record_refusal
 from state_store import StateStore
 
 _LOCK = threading.Lock()
@@ -94,7 +94,12 @@ def note_failed_delete(chat_id: int, message_id: int) -> bool:
         print(f"[delete_message] GIVING UP chat={chat_id} mid={message_id}: "
               f"Telegram declined {MAX_ATTEMPTS} times. The message is still "
               f"in the chat and must be deleted by hand.")
-        record_refusal(chat_id, message_id)
+        # reason= is load-bearing. Without it the alert describes this as
+        # a bot-sent-registry refusal, which it is not — the ID is in the
+        # registry, Telegram simply will not remove the message. That
+        # mislabelling shipped on 2026-08-16 and sent Lewis to the wrong
+        # runbook for 11 messages.
+        record_refusal(chat_id, message_id, reason=REASON_UNDELETABLE)
     return hopeless
 
 
