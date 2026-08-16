@@ -1797,13 +1797,21 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 169479
+      "caught_up_msg_id": null,
+      "pending_delete": [
+        169479
+      ],
+      "caught_up_at": null
     },
     "142887": {
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 161715
+      "caught_up_msg_id": null,
+      "pending_delete": [
+        161715
+      ],
+      "caught_up_at": null
     }
   }
 }

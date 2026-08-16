@@ -1624,7 +1624,11 @@
       "msg_ids": [],
       "fingerprint": "",
       "last_posted_at": null,
-      "caught_up_msg_id": 171591
+      "caught_up_msg_id": null,
+      "pending_delete": [
+        171591
+      ],
+      "caught_up_at": null
     }
   }
 }

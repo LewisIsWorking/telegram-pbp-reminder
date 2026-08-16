@@ -1710,13 +1710,21 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 2691
+      "caught_up_msg_id": null,
+      "pending_delete": [
+        2691
+      ],
+      "caught_up_at": null
     },
     "1825": {
       "msg_ids": [],
       "fingerprint": "",
       "last_posted_at": null,
-      "caught_up_msg_id": 2692
+      "caught_up_msg_id": null,
+      "pending_delete": [
+        2692
+      ],
+      "caught_up_at": null
     }
   }
 }
