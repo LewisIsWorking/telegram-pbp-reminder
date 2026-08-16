@@ -25,6 +25,7 @@ import …``) keep resolving without churn.
 """
 
 from posting import MessageBatch, SinglePin
+from posting.stuck_deletes import is_hopeless
 
 
 def empty_slot() -> dict:
@@ -68,7 +69,13 @@ def retry_pending_deletes(slot: dict, group_id: int) -> None:
         return
     still_failed = MessageBatch(msg_ids=list(pending),
                                 pin_id=None).delete_all(group_id)
-    slot["pending_delete"] = still_failed
+    # Drop IDs the bot has given up on (2026-08-16). Without this the list
+    # is append-only for any message Telegram will never delete, and every
+    # run pays an API call per stuck ID forever. posting.stuck_deletes has
+    # already alerted by the time is_hopeless goes True, so dropping here
+    # loses no information — it moves the record from a growing slot field
+    # to the log built to hold it.
+    slot["pending_delete"] = [m for m in still_failed if not is_hopeless(m)]
 
 
 def slot_msg_ids(slot: dict) -> list[int]:
