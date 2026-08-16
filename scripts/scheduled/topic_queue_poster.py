@@ -57,7 +57,7 @@ def _migrate_legacy(cq: dict, group_id: int) -> None:
 
 
 from scheduled.topic_queue_write import (  # noqa: F401
-    _post_thread_queue, _clear_thread_queue)
+    _post_thread_queue, _clear_thread_queue, sweep_aged_caught_up)
 
 
 def _threads_from_scanned(scanned: dict) -> dict[str, tuple[str, list]]:
@@ -107,10 +107,19 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
         queues = cq.get("topic_queues", {})
         changed = _normalise_queue_keys(queues)
         for thread_id, slot in list(queues.items()):
-            if thread_id not in active_threads and (
-                    slot_msg_ids(slot) or slot.get("pending_delete")):
-                _clear_thread_queue(group_id, thread_id, slot,
-                                    pid=pid, state=state, config=config)
+            if thread_id in active_threads:
+                continue
+            if slot_msg_ids(slot) or slot.get("pending_delete"):
+                _clear_thread_queue(group_id, thread_id, slot, pid=pid,
+                                    state=state, config=config, now=now)
+                changed = True
+                time.sleep(1)
+            # A slot holding ONLY a caught-up notice never entered the
+            # branch above, so nothing ever revisited it and the notice
+            # sat until the thread woke up — often past Telegram's 48h
+            # delete wall. 15 of the 28 orphans found on 2026-08-16 were
+            # these. Sweeping on age is what bounds their lifetime.
+            elif sweep_aged_caught_up(group_id, slot, now):
                 changed = True
                 time.sleep(1)
         if changed or cq.get("topic_msg_id") is not None:

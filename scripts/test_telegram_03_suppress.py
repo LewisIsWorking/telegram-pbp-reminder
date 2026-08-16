@@ -123,13 +123,16 @@ def test_post_each_safe_delete_suppress_pattern_recognised():
     from posting.safe_delete import ALREADY_GONE_ERRORS
 
     _tg.init("t")
-    safe_delete_patterns = ALREADY_GONE_ERRORS
-    for pattern in safe_delete_patterns:
+    # Passed by name, not via a local alias: test_suppressed_errors_are
+    # _declared parses suppress_errors= arguments statically and cannot
+    # follow an assignment, so aliasing it here would hide the list from
+    # the guard. It caught exactly that on 2026-08-16.
+    for pattern in ALREADY_GONE_ERRORS:
         body = f'{{"ok":false,"description":"Bad Request: {pattern}"}}'
         with patch.object(_tg.requests, "post", return_value=_resp(400, body)):
             result = _tg._post(
                 "deleteMessage", {}, "delete_message",
-                suppress_errors=safe_delete_patterns,
+                suppress_errors=ALREADY_GONE_ERRORS,
             )
             assert result is True, f"pattern {pattern!r} regressed to None"
 
