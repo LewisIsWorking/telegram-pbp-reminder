@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 172309,
-      "thread_id": 25059,
-      "user_id": "8880317264",
-      "user_name": "PJ",
-      "time": "2026-08-15T23:09:26+00:00",
-      "preview": "Interviewed farmers in town to find a pattern and possible next target but was adviced that there's no pattern so no idea yet where the next attack will be... \u00dc",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -462,7 +452,9 @@
     "msg:172010",
     "2026-08-14 22:20:46",
     "msg:172213",
-    "2026-08-15 11:06:49"
+    "2026-08-15 11:06:49",
+    "msg:172309",
+    "2026-08-15 23:09:26"
   ],
   "reply_log": [
     {
@@ -2489,16 +2481,24 @@
       "player": "Horia",
       "preview": "Wait we didn't solve the goat problem?",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-16T22:58:26+00:00",
+      "pid": "25059",
+      "msg_id": "172309",
+      "thread_id": 25059,
+      "player": "PJ",
+      "preview": "Interviewed farmers in town to find a pattern and possible next target but was a",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-08-15 23:09:26",
-      "msg_ids": [
-        172311
-      ],
-      "last_posted_at": "2026-08-15T23:26:25.649183+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172541,
+      "caught_up_at": "2026-08-16T23:26:24.744507+00:00"
     }
   }
 }
