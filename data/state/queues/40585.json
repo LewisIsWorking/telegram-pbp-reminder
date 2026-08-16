@@ -18,21 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 172171,
+      "message_id": 172414,
       "thread_id": 40585,
       "user_id": "138025700",
       "user_name": "Ryo",
-      "time": "2026-08-15T07:51:12+00:00",
-      "preview": "\"Next. Next we stop those psychos and protect our city. And if you're lucky and keep your mouth shut unless spoken to you might survive til trial.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172193,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-15T09:12:26+00:00",
-      "preview": "\"Yeah what he said. And you and your bro will be judged after that... For now...\" Daichi removes all weapons bombs elixirs and alchemist tools off of them.",
+      "time": "2026-08-16T10:15:47+00:00",
+      "preview": "\"Kibwe is stronger than you think. Plus I think seeing some of the assholes responsible for this shit getting their due will be rather unifying.\"",
       "media_group_id": null
     }
   ],
@@ -1052,7 +1043,11 @@
     "msg:170330",
     "2026-08-06 01:36:28",
     "msg:170334",
-    "2026-08-06 01:40:14"
+    "2026-08-06 01:40:14",
+    "msg:172171",
+    "2026-08-15 07:51:12",
+    "msg:172193",
+    "2026-08-15 09:12:26"
   ],
   "reply_log": [
     {
@@ -5849,6 +5844,24 @@
       "player": "Anthony",
       "preview": "Daichi tightens the rope and says:\n\"Yeah? Well you better stay still if you don'",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-16T10:07:58+00:00",
+      "pid": "40585",
+      "msg_id": "172171",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "\"Next. Next we stop those psychos and protect our city. And if you're lucky and ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-16T10:09:34+00:00",
+      "pid": "40585",
+      "msg_id": "172193",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "\"Yeah what he said. And you and your bro will be judged after that... For now...",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5861,11 +5874,11 @@
       "caught_up_msg_id": 170060
     },
     "40585": {
-      "fingerprint": "2026-08-15 07:51:12|2026-08-15 09:12:26",
+      "fingerprint": "2026-08-16 10:15:47",
       "msg_ids": [
-        172195
+        172419
       ],
-      "last_posted_at": "2026-08-15T09:31:44.904237+00:00",
+      "last_posted_at": "2026-08-16T10:21:13.968878+00:00",
       "caught_up_msg_id": null
     }
   }
