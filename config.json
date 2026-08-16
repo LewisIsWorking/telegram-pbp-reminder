@@ -118,7 +118,9 @@
       "code": "C10",
       "queue_priority": 1,
       "emoji": "\ud83d\udea6",
-      "disabled_features": ["recruitment"],
+      "disabled_features": [
+        "recruitment"
+      ],
       "recruit_tier": 1
     },
     {
