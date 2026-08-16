@@ -7,7 +7,7 @@ threads need touching at all.
 """
 
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 
 import telegram as tg
 from commands.queue_io import load as _load, save as _save, all_pids as _all_pids
@@ -19,48 +19,8 @@ from scheduled.topic_queue_state import (slot_msg_ids, empty_slot,
                                          queue_pending_deletes,
                                          retry_pending_deletes)
 from scheduled.topic_queue_state import normalise_queue_keys as _normalise_queue_keys
+from scheduled.topic_queue_age import batch_is_stale, caught_up_is_stale
 
-
-
-# ⭐ Telegram will not let a bot delete its own message once it is more
-# than 48 hours old — admin rights and can_delete_messages do NOT lift
-# this. Measured against the live group on 2026-08-16: of the deletes in
-# pin_audit_log, **15 of 15 attempted past the line still exist** and
-# **12 of 12 attempted inside it are gone**. No exceptions either way.
-#
-# That is what orphaned the C06 "Unreplied: 2" post from 2026-08-03. The
-# early return below skips the whole write path while the fingerprint is
-# unchanged, so in a quiet campaign the pinned queue sat untouched for
-# days. By the time a player finally posted and the fingerprint moved,
-# the tracked message was already undeletable — the delete was doomed
-# before it was ever attempted, and no amount of retrying could win.
-#
-# So the fix is not at the delete. It is here: never let a tracked
-# message get old. Refreshing at 36h keeps every ID the bot is holding
-# comfortably inside the window it can still act on, with 12 hours of
-# slack for a missed run or an outage.
-_MAX_TRACKED_AGE = timedelta(hours=36)
-
-
-def _batch_is_stale(slot: dict, now: datetime) -> bool:
-    """True when the tracked batch is old enough to risk becoming undeletable.
-
-    Returns False when the slot carries no timestamp — an untimestamped
-    slot predates ``last_posted_at`` and the next content change will
-    rewrite it anyway. Failing closed here would republish every legacy
-    slot at once on the first run after deploy.
-    """
-    stamp = slot.get("last_posted_at")
-    if not stamp:
-        return False
-    try:
-        posted = datetime.fromisoformat(stamp)
-    except (TypeError, ValueError):
-        return False
-    if posted.tzinfo is None:
-        posted = posted.replace(tzinfo=timezone.utc)
-    reference = now if now.tzinfo else now.replace(tzinfo=timezone.utc)
-    return reference - posted > _MAX_TRACKED_AGE
 
 
 def _post_thread_queue(group_id: int, thread_id: str,
@@ -80,7 +40,7 @@ def _post_thread_queue(group_id: int, thread_id: str,
     retry_pending_deletes(slot, group_id)
     existing = SinglePin.read_batch(slot)
     unchanged = fingerprint == slot.get("fingerprint", "")
-    if unchanged and not existing.is_empty and not _batch_is_stale(slot, now):
+    if unchanged and not existing.is_empty and not batch_is_stale(slot, now):
         return  # No change and still young enough to delete later — skip
 
     # If a "All caught up!" message lingers from a prior clear cycle, drop
@@ -125,13 +85,52 @@ def _post_thread_queue(group_id: int, thread_id: str,
               f"chunks={len(chunks)}")
 
 
+def sweep_aged_caught_up(group_id: int, slot: dict, now: datetime) -> bool:
+    """Remove a caught-up notice before it ages out of reach. True if changed.
+
+    A per-thread "All caught up" notice is only deleted when that thread
+    next has something to queue. In a quiet campaign that can be weeks,
+    by which point the message is past Telegram's 48h wall and the delete
+    is unwinnable — the same defect as the queue post itself, on a path
+    nobody had looked at.
+
+    Found 2026-08-16 by ``maintenance/audit_orphans.py``, which asks
+    Telegram directly instead of trusting our own records. The offline
+    detector could not see these: ``pin_audit`` only timestamps messages
+    the bot *pinned*, and caught-up notices are never pinned. **15 of the
+    28 confirmed orphans were caught-up notices** — 169063, 169383,
+    170384 and 171632 among them.
+
+    We delete rather than refresh. A refresh would repost "All caught up"
+    into a quiet topic every 36 hours forever; the notice has done its
+    job long before then, and an absent notice is the correct end state.
+
+    A slot with no ``caught_up_at`` predates this field. It gets one
+    attempt now rather than a 36h wait, because if it is already old the
+    wait cannot help and if it is young the attempt succeeds.
+    """
+    if not caught_up_is_stale(slot, now):
+        return False
+    mid = slot["caught_up_msg_id"]
+    if not tg.delete_message(group_id, mid):
+        queue_pending_deletes(slot, [mid])
+    slot["caught_up_msg_id"] = None
+    slot["caught_up_at"] = None
+    return True
+
+
 def _clear_thread_queue(group_id: int, thread_id: str, slot: dict,
                         *, pid: str, state: dict | None,
-                        config: dict) -> None:
+                        config: dict, now: datetime) -> None:
     """Send caught-up message and remove every stale pinned message.
 
     Slot is reset via ``SinglePin.clear``; the new caught-up message
-    ID is stored on the slot so the *next* cycle can delete it.
+    ID is stored on the slot, with ``now`` as its timestamp, so it can be
+    removed on age by ``sweep_aged_caught_up`` rather than waiting for a
+    next cycle that may be weeks away. ``now`` is required rather than
+    defaulted: a caught-up notice with no timestamp is exactly the state
+    that orphaned 15 messages, so there must be no way to create one by
+    forgetting an argument.
     Caught-up message body comes from
     ``scheduled.per_topic_caught_up.build_caught_up_text``.
     """
@@ -153,4 +152,8 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict,
         queue_pending_deletes(slot, failed)
     SinglePin.clear(slot)
     slot["caught_up_msg_id"] = new_caught_up
+    # Stamped so sweep_aged_caught_up can remove it while it is still
+    # removable. Without a timestamp the notice's age is unknowable and
+    # it silently becomes permanent — that is how 15 of them orphaned.
+    slot["caught_up_at"] = now.isoformat() if now else None
     print(f"Topic queue cleared: thread={thread_id}")

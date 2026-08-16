@@ -79,8 +79,9 @@ class TestClearThreadCarryForward:
         slot = {"msg_ids": [156513], "fingerprint": "fp"}
         tg_mock.send_message_id.return_value = 8888  # caught-up msg
         tg_mock.delete_message.return_value = False  # queue delete fails
-        _clear_thread_queue(-100, "40585", slot,
-                            pid="40585", state=None, config={})
+        _clear_thread_queue(-100, "40585", slot, pid="40585",
+                            state=None, config={},
+                            now=datetime.now(timezone.utc))
         assert slot["pending_delete"] == [156513]
         assert slot["msg_ids"] == []  # current batch cleared
         assert slot["caught_up_msg_id"] == 8888
@@ -92,8 +93,9 @@ class TestClearThreadCarryForward:
         tg_mock.send_message_id.return_value = 8888
         # Old orphan deletes now; current batch delete also succeeds.
         tg_mock.delete_message.return_value = True
-        _clear_thread_queue(-100, "40585", slot,
-                            pid="40585", state=None, config={})
+        _clear_thread_queue(-100, "40585", slot, pid="40585",
+                            state=None, config={},
+                            now=datetime.now(timezone.utc))
         assert slot["pending_delete"] == []
 
 

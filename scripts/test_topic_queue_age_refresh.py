@@ -30,8 +30,10 @@ from unittest.mock import patch
 
 import pytest
 
+from scheduled import topic_queue_age as tqa
 from scheduled import topic_queue_write as tqw
-from scheduled.topic_queue_write import _batch_is_stale, _post_thread_queue
+from scheduled.topic_queue_age import batch_is_stale
+from scheduled.topic_queue_write import _post_thread_queue
 
 NOW = datetime(2026, 8, 16, 12, 0, tzinfo=timezone.utc)
 GROUP = -1001661053273
@@ -57,13 +59,13 @@ def _slot(hours_old: float | None, msg_ids=(172195,), fingerprint="fp"):
 ])
 def test_staleness_threshold(hours, expected):
     """36h leaves 12 hours of slack before Telegram's wall at 48."""
-    assert _batch_is_stale(_slot(hours), NOW) is expected
+    assert batch_is_stale(_slot(hours), NOW) is expected
 
 
 def test_threshold_sits_safely_inside_the_telegram_limit():
     """The margin is the safety property — assert it, don't assume it."""
-    assert tqw._MAX_TRACKED_AGE < timedelta(hours=48)
-    assert timedelta(hours=48) - tqw._MAX_TRACKED_AGE >= timedelta(hours=6), (
+    assert tqa.MAX_TRACKED_AGE < timedelta(hours=48)
+    assert timedelta(hours=48) - tqa.MAX_TRACKED_AGE >= timedelta(hours=6), (
         "too little slack: one missed run must not push a tracked message "
         "past the point where it can never be deleted")
 
@@ -71,18 +73,18 @@ def test_threshold_sits_safely_inside_the_telegram_limit():
 def test_missing_timestamp_is_not_stale():
     """Legacy slots predate last_posted_at. Failing closed would
     republish every one of them at once on the first run after deploy."""
-    assert _batch_is_stale(_slot(None), NOW) is False
-    assert _batch_is_stale({}, NOW) is False
+    assert batch_is_stale(_slot(None), NOW) is False
+    assert batch_is_stale({}, NOW) is False
 
 
 def test_unparseable_timestamp_is_not_stale():
-    assert _batch_is_stale({"last_posted_at": "not a date"}, NOW) is False
+    assert batch_is_stale({"last_posted_at": "not a date"}, NOW) is False
 
 
 def test_naive_timestamp_is_treated_as_utc():
     """State written before tz-awareness must not crash the poster."""
     naive = (NOW - timedelta(hours=72)).replace(tzinfo=None).isoformat()
-    assert _batch_is_stale({"last_posted_at": naive}, NOW) is True
+    assert batch_is_stale({"last_posted_at": naive}, NOW) is True
 
 
 # ── What the poster does with it ─────────────────────────────────────────────
@@ -152,7 +154,7 @@ def test_the_refresh_can_fail(monkeypatch):
     Setting the threshold beyond any real age reproduces that exactly:
     the stale queue is skipped, which is the orphan being created.
     """
-    monkeypatch.setattr(tqw, "_MAX_TRACKED_AGE", timedelta(days=3650))
+    monkeypatch.setattr(tqa, "MAX_TRACKED_AGE", timedelta(days=3650))
     assert _run(_slot(40)).call_count == 0, (
         "With an unreachable threshold the stale post must be skipped. If "
         "this fails, _post_thread_queue no longer consults _batch_is_stale "

@@ -45,21 +45,13 @@ from posting.refusal_log import record_refusal
 from posting.pin_audit import record_action
 from posting.stuck_deletes import is_hopeless, note_failed_delete
 
-# Error bodies that mean the message is ALREADY GONE, so the delete has
-# achieved what it wanted and counts as success. Named and exported
-# (2026-08-16) because the test that guards this list used to hand-write
-# its own copy and feed that to ``_post`` — so it verified the mechanism
-# and never the configuration, and stayed green no matter what
-# ``perform_guarded_delete`` actually passed. Derive the scope, do not
-# retype it.
-#
-# ⚠️ Nothing that means "the message is still there" belongs in here. See
-# the note in perform_guarded_delete about "message can't be deleted".
-ALREADY_GONE_ERRORS = (
-    "message to delete not found",
-    "MESSAGE_ID_INVALID",
-    "message not found",
-)
+# Re-exported for the call sites below and for existing importers. The
+# list, and the written justification for every entry, live in
+# posting.suppression_registry — where a string cannot get in without one.
+# It is derived from that registry rather than retyped here: the test
+# guarding this used to declare its own copy, so it verified the
+# mechanism and never the configuration (2026-08-16).
+from posting.suppression_registry import ALREADY_GONE_ERRORS  # noqa: F401,E402
 
 
 def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:

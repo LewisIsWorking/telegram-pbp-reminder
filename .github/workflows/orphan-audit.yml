@@ -1,0 +1,63 @@
+name: Orphan audit
+
+# Ask Telegram whether the messages the bot believes it deleted are gone.
+#
+# This exists because on 2026-08-16 a human found an "Unreplied: 2" post
+# from 2026-08-03 still sitting in the C06 topic. The bot's audit trail
+# said it had deleted it. Nothing in the repo disagreed, because every
+# artefact in the repo was derived from the same belief — the state file,
+# the audit log and the whole test suite agreed with each other, and all
+# of them were wrong.
+#
+# The unit tests catch the mechanism we now understand (a delete
+# attempted past Telegram's 48h wall). This job catches the ones we do
+# not, by asking the only authority that cannot be wrong about whether a
+# message exists.
+#
+# It is read-only: the probe removes the bot's own reaction, which the
+# bot has never set, so nothing changes and nobody is notified. It never
+# calls getUpdates, which would consume the poller's offset and make the
+# live bot miss real player messages.
+
+on:
+  schedule:
+    # Weekly, Monday 07:15 UTC. Deliberately not hourly: the answer moves
+    # slowly, and a full sweep is a few hundred API calls.
+    - cron: '15 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'How many recent delete claims to check'
+        required: false
+        default: '300'
+
+# Its own group: a read-only audit must never queue behind, or block, the
+# bot that is actually posting to the group.
+concurrency:
+  group: orphan-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Reconcile delete claims against Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          python scripts/maintenance/audit_orphans.py \
+            --limit "${{ github.event.inputs.limit || '300' }}"
+
+      # No `continue-on-error` and no `|| true` here on purpose. The
+      # script exits 1 when it finds an orphan, and that non-zero exit IS
+      # the alert — a step that detects a fault and then reports success
+      # is the same class of bug this whole job exists to catch.
