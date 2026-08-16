@@ -77,16 +77,27 @@ def _save_locked() -> None:
     _store.save_aux(_AUX_NAME, sorted(_IDS))
 
 
-def record_sent(message_id: int | None) -> None:
+def record_sent(message_id: int | None, text: str | None = None,
+                thread_id: int | None = None, kind: str | None = None) -> None:
     """Add a message ID to the registry. No-op if ``None``.
 
     Called from every successful send in ``telegram.py``. Persists
     immediately so a crash between send and registry-write doesn't
     leave an undeletable orphan. Multiple calls with the same ID are
     free (set semantics).
+
+    ``text`` / ``thread_id`` / ``kind`` are descriptive only and go to
+    ``posting.sent_log``, never into this registry, which stays a flat
+    set of ints because it is the safety structure consulted on every
+    delete. Captured here rather than per send site because every
+    successful send already calls this, so no future sender can forget
+    to describe what it sent (2026-08-16: an alert reported eleven bare
+    message IDs that nobody could triage).
     """
     if message_id is None:
         return
+    from posting.sent_log import record as _record_description
+    _record_description(message_id, text=text, thread_id=thread_id, kind=kind)
     with _LOCK:
         _load_locked()
         if int(message_id) in _IDS:

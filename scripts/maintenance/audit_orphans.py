@@ -57,6 +57,8 @@ _SCRIPTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
+from posting.message_facts import BOT, describe, one_line  # noqa: E402
+
 GROUP_ID = -1001661053273  # Path Wars group
 _AUDIT = Path(_SCRIPTS_DIR).parent / "data" / "state" / "pin_audit_log.json"
 
@@ -130,15 +132,21 @@ def main() -> int:
     api = f"https://api.telegram.org/bot{os.environ['TELEGRAM_BOT_TOKEN']}"
     print(f"Reconciling {len(claims)} delete claim(s) against Telegram.\n")
 
-    survivors, unknown = [], 0
+    survivors, unknown, foreign = [], 0, []
     for mid, stamp in claims:
         verdict = still_exists(api, mid)
         if verdict is None:
             unknown += 1
         elif verdict:
-            survivors.append((mid, stamp))
-            print(f"  ORPHAN {mid}: recorded deleted at {stamp}, "
-                  f"still in the group")
+            facts = describe(mid)
+            survivors.append((mid, stamp, facts))
+            print(f"  ORPHAN {one_line(mid, facts)}")
+            # An orphan the bot did not send is a different animal from a
+            # stale queue post: it means a delete was attempted against
+            # someone else's message. Collected separately so it cannot be
+            # lost in a list of routine chores.
+            if facts["origin"] != BOT:
+                foreign.append((mid, facts))
         time.sleep(_PAUSE)
 
     checked = len(claims) - unknown
@@ -148,12 +156,19 @@ def main() -> int:
         # a-failure-must-say-whose-fault-it-is.
         print(f"⚠️  {unknown} could not be checked (network / rate limit). "
               f"This run did NOT cover them — re-run to close the gap.")
+    if foreign:
+        print(f"\n🚨 {len(foreign)} of these were NOT sent by the bot. A "
+              f"delete was attempted against someone else's message; find "
+              f"the caller before doing anything else:")
+        for mid, facts in foreign:
+            print(f"  {one_line(mid, facts)}")
     if survivors:
         print("\nThese messages are still in the group and the bot believes "
               "they are gone. It cannot remove them itself once they are "
               "past 48h — delete them by hand:")
-        for mid, _ in survivors:
-            print(f"  https://t.me/Path_Wars/{mid}")
+        for mid, _, facts in survivors:
+            print(f"  https://t.me/Path_Wars/{mid} — "
+                  f"{facts.get('preview') or '(no text recorded)'}")
         return 1
     return 0
 

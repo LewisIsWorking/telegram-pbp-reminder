@@ -66,6 +66,15 @@ AUX_FILES = (
                       "safe_delete's guarded paths; read by humans "
                       "diagnosing a vanished pin. Optional — absent "
                       "until the first pin/unpin/delete."),
+    ("sent_messages", "Bounded description of what the bot recently sent "
+                      "(preview, thread, kind) so a later failure can name "
+                      "the message instead of reporting a bare ID. Owner: "
+                      "posting.sent_log, written via record_sent; read by "
+                      "posting.message_facts. Deliberately separate from "
+                      "bot_sent_ids, which is the safety structure and "
+                      "stays a flat set of ints. Added 2026-08-16. Lossy "
+                      "by design — evicted entries fall through to the "
+                      "transcript archive, then to 'unknown'."),
     ("stuck_deletes", "Message IDs Telegram declined to delete, with an "
                       "attempt count. Owner: posting.stuck_deletes. "
                       "Written by safe_delete on every failed delete; "

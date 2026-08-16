@@ -44,6 +44,12 @@ def _entry(mid, reason=None, ts="2026-08-16T12:52:36+00:00"):
     return e
 
 
+def _facts(origin, sender="somebody", preview="hello"):
+    return {"origin": origin, "sender": sender, "preview": preview,
+            "campaign": "Kibwe", "thread_id": 40585, "when": None,
+            "source": "test"}
+
+
 # ── The bug ──────────────────────────────────────────────────────────────────
 
 def test_give_ups_are_not_called_registry_refusals():
@@ -65,7 +71,8 @@ def test_give_ups_say_a_human_must_act():
 def test_registry_refusals_still_say_investigate():
     """The positive counterpart. Softening both classes into one polite
     non-statement would pass every assertion above."""
-    text = _format_alert([_entry(999, REASON_REGISTRY)], "abc123")
+    with patch("refusal_alert.describe", return_value=_facts("bot")):
+        text = _format_alert([_entry(999, REASON_REGISTRY)], "abc123")
     assert "docs/dev/delete-safety.md" in text
     assert "ONLY A HUMAN" not in text
 
@@ -142,7 +149,8 @@ def test_the_guard_can_fail(monkeypatch):
     """
     monkeypatch.setitem(refusal_alert._SECTIONS, REASON_UNDELETABLE,
                         refusal_alert._registry_section)
-    text = _format_alert([_entry(170060, REASON_UNDELETABLE)], "abc123")
+    with patch("refusal_alert.describe", return_value=_facts("bot")):
+        text = _format_alert([_entry(170060, REASON_UNDELETABLE)], "abc123")
     assert "does not list" in text, (
         "With the single-cause renderer restored the give-up must be "
         "mislabelled. If this fails, _format_alert no longer dispatches "
