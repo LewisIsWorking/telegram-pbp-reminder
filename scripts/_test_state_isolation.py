@@ -40,6 +40,7 @@ from pathlib import Path
 from posting import bot_sent_registry as _bsr
 from posting import refusal_log as _rl
 from posting import pin_audit as _pa
+from posting import sent_log as _sl
 from posting import stuck_deletes as _sd
 from state_store import StateStore
 
@@ -61,3 +62,7 @@ _pa._store = _TEST_STORE
 # ⭐ Any module newly persisting through StateStore belongs on this list.
 # A fix that wakes a previously-dead write path is exactly when it bites.
 _sd._store = _TEST_STORE
+# sent_log, added 2026-08-16. record_sent now writes a description of
+# every message the bot sends, and the suite sends a great many — so this
+# is the highest-volume leak path of the lot, not a marginal one.
+_sl._store = _TEST_STORE

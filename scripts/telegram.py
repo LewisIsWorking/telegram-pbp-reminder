@@ -92,7 +92,7 @@ def send_message_id(chat_id: int, thread_id: int | None, text: str,
         return None
     mid = result.get("message_id")
     from posting.bot_sent_registry import record_sent
-    record_sent(mid)
+    record_sent(mid, text, thread_id, "message")
     return mid
 
 
@@ -112,7 +112,7 @@ def send_message_with_buttons(
         return None
     mid = result["message_id"]
     from posting.bot_sent_registry import record_sent
-    record_sent(mid)
+    record_sent(mid, text, thread_id, "buttons")
     return mid
 
 
@@ -163,7 +163,7 @@ def send_poll(chat_id: int, thread_id: int | None, question: str,
         return None
     mid = result.get("message_id")
     from posting.bot_sent_registry import record_sent
-    record_sent(mid)
+    record_sent(mid, question, thread_id, "poll")
     return (mid, result.get("poll", {}).get("id", ""))
 
 
