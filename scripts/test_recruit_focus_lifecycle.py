@@ -25,7 +25,7 @@ from test_recruit_focus import _NOW, _cfg, _pair, _state  # noqa: E402
 class TestPosting:
     def _fire(self, monkeypatch, state, now=_NOW, cfg=None):
         import telegram as tg
-        from scheduled.recruit_focus import post_recruit_focus
+        from scheduled.recruit_focus_post import post_recruit_focus
         sent, deleted = [], []
         monkeypatch.setattr(tg, "send_message_id",
                             lambda g, t, b, **k: sent.append((t, b, k)) or 4242)
@@ -36,9 +36,14 @@ class TestPosting:
         post_recruit_focus(cfg, state, now=now)
         return sent, deleted
 
-    def test_posts_to_the_gm_queue_topic(self, monkeypatch):
+    def test_posts_to_the_campaigns_own_chat_topic(self, monkeypatch):
+        """Changed 2026-08-17. It used to go to the GM queue (146780),
+        which is read by the one person who already knows the campaign is
+        short. It now goes to the table that has the empty seats."""
         sent, _ = self._fire(monkeypatch, {})
-        assert sent and sent[0][0] == 146780
+        # _pair() gives each campaign chat_topic_id = pbp id + 1.
+        assert sent and sent[0][0] == 101
+        assert sent[0][0] != 146780
 
     def test_is_silent(self, monkeypatch):
         """One a day, but still no reason to ping."""
@@ -72,7 +77,7 @@ class TestPosting:
 
     def test_send_failure_keeps_the_old_post(self, monkeypatch):
         import telegram as tg
-        from scheduled.recruit_focus import post_recruit_focus
+        from scheduled.recruit_focus_post import post_recruit_focus
         deleted = []
         monkeypatch.setattr(tg, "send_message_id", lambda *a, **k: None)
         monkeypatch.setattr(tg, "delete_message",
@@ -86,7 +91,7 @@ class TestPosting:
 
     def test_nothing_short_posts_nothing(self, monkeypatch):
         import telegram as tg
-        from scheduled.recruit_focus import post_recruit_focus
+        from scheduled.recruit_focus_post import post_recruit_focus
         sent = []
         monkeypatch.setattr(tg, "send_message_id",
                             lambda g, t, b, **k: sent.append(b) or 1)

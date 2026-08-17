@@ -124,7 +124,7 @@ class TestRecruitmentDisabledIsExcluded:
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C08", "107151", target=6, disabled=["recruitment"]),
                    _pair("C01", "100", target=6))
-        text = build_recruit_message(cfg, _state(**{"107151": 0, "100": 5}))
+        text, _chosen = build_recruit_message(cfg, _state(**{"107151": 0, "100": 5}))
         assert "only campaign currently below target" in text
 
 
@@ -133,7 +133,7 @@ class TestMessage:
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C05", "51357", target=6, emoji="🔭"),
                    _pair("C01", "100", target=6))
-        return build_recruit_message(cfg, _state(**{"51357": 2, "100": 5}))
+        return build_recruit_message(cfg, _state(**{"51357": 2, "100": 5}))[0]
 
     def test_names_the_campaign_with_its_emoji(self):
         assert "🧭 Recruit for this next: 🔭 C05: Camp C05" in self._text()
@@ -144,7 +144,7 @@ class TestMessage:
     def test_one_seat_is_singular(self):
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C01", "100", target=6))
-        text = build_recruit_message(cfg, _state(**{"100": 5}))
+        text, _chosen = build_recruit_message(cfg, _state(**{"100": 5}))
         assert "1 seat open" in text and "1 seats" not in text
 
     def test_links_to_the_campaign_topic(self):
@@ -156,4 +156,4 @@ class TestMessage:
     def test_empty_when_nothing_is_short(self):
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C01", "100", target=6))
-        assert build_recruit_message(cfg, _state(**{"100": 6})) == ""
+        assert build_recruit_message(cfg, _state(**{"100": 6})) == ("", None)
