@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 172587,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-17T05:52:47+00:00",
-      "preview": "\"Fine, fine I'll save your companion. Now where did I put those cards.\"\n\nLeopard starts digging around in his bag for several moments before pulling out a small leather pouch.\n\n\"There we are. Now visualize the effect and...\"\n\nAs he concentrates on the spell and the fat, dying gnome in front of him the card glimmers for a moment then crumbles to dust casting the spell.\n\n\"There, he's stabilized. You're welcome, I wasted a valuable Stabilize cantrip on him. Now talk.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172588,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-17T05:53:48+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1058,7 +1040,19 @@
     "msg:172193",
     "2026-08-15 09:12:26",
     "msg:172414",
-    "2026-08-16 10:15:47"
+    "2026-08-16 10:15:47",
+    "msg:172587",
+    "2026-08-17 05:52:47",
+    "msg:172588",
+    "2026-08-17 05:53:48",
+    "msg:172607",
+    "2026-08-17 06:15:56",
+    "msg:172620",
+    "2026-08-17 06:18:53",
+    "msg:172648",
+    "2026-08-17 06:25:22",
+    "msg:172650",
+    "2026-08-17 06:27:01"
   ],
   "reply_log": [
     {
@@ -5882,6 +5876,60 @@
       "player": "Ryo",
       "preview": "\"Kibwe is stronger than you think. Plus I think seeing some of the assholes resp",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-17T06:12:35+00:00",
+      "pid": "40585",
+      "msg_id": "172587",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "\"Fine, fine I'll save your companion. Now where did I put those cards.\"\n\nLeopard",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T06:12:51+00:00",
+      "pid": "40585",
+      "msg_id": "172588",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T06:16:37+00:00",
+      "pid": "40585",
+      "msg_id": "172607",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "(So he's going to be fine he doesn't need healing)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T06:19:57+00:00",
+      "pid": "40585",
+      "msg_id": "172620",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi checks if there are any elixir of life in the confiscated belongings.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T06:25:37+00:00",
+      "pid": "40585",
+      "msg_id": "172648",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "\"Yeah yeah. Whatever you say. Don't care. Now what was that about the experiment",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T06:27:55+00:00",
+      "pid": "40585",
+      "msg_id": "172650",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi stares back, MENACINGLY",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5896,13 +5944,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-08-17 05:52:47|2026-08-17 05:53:48",
-      "msg_ids": [
-        172590
-      ],
-      "last_posted_at": "2026-08-17T05:59:49.763067+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-17T04:51:11.230036+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172677,
+      "caught_up_at": "2026-08-17T07:07:53.535096+00:00"
     }
   }
 }
