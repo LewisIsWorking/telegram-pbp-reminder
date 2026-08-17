@@ -40,6 +40,13 @@ PARTITIONS: dict[str, list[str]] = {
         #                         predecessor, so it duplicated forever
         "potw_week", "last_potw_roundup", "last_potw_countdown",
         "schedule_post_msg_id",
+        # Added 2026-08-17 with the move to the Nudge Bot Notifications
+        # group. Records WHICH CHAT the current schedule post is in, so
+        # the run that moves it deletes the old copy from the old chat
+        # instead of aiming that id at the new one. Losing this key would
+        # strand a schedule post in the GM queue topic permanently: past
+        # 48h Telegram will not let the bot delete it at all.
+        "schedule_post_chat_id",
         # Pre-existing losses found by the same audit, same mechanism.
         # last_pin_digest is the identical once-per-day shape: pin_report
         # does `if state.get("last_pin_digest") == today: return`, so
@@ -97,6 +104,7 @@ DEFAULT_STATE: dict = {
     "gm_queue_history": [],
     "potw_week": {}, "last_potw_roundup": None,
     "last_potw_countdown": None, "schedule_post_msg_id": None,
+    "schedule_post_chat_id": None,
     "last_pin_digest": None, "last_pin_alert_ts": "",
     "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
     "recruit_focus_msg_id": None, "last_recruit_focus": None,
