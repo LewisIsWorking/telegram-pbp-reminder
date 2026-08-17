@@ -136,7 +136,7 @@ class TestMessage:
         return build_recruit_message(cfg, _state(**{"51357": 2, "100": 5}))[0]
 
     def test_names_the_campaign_with_its_emoji(self):
-        assert "🧭 Recruit for this next: 🔭 C05: Camp C05" in self._text()
+        assert "🧭 This table has room: 🔭 C05: Camp C05" in self._text()
 
     def test_states_seats_and_the_ratio(self):
         assert "4 seats open (2/6 players)." in self._text()
@@ -151,7 +151,9 @@ class TestMessage:
         assert "🔗 https://t.me/Path_Wars/51357" in self._text()
 
     def test_counts_the_other_short_campaigns(self):
-        assert "Biggest gap of 2 campaigns" in self._text()
+        assert "biggest gap of 2 campaigns" in self._text()
+        assert "Know someone?" in self._text(), (
+            "the post is read by players now; give them the action")
 
     def test_empty_when_nothing_is_short(self):
         from scheduled.recruit_focus import build_recruit_message
