@@ -1,25 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 172730,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-17T11:57:50+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172737,
-      "thread_id": 51357,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-17T13:28:28+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -316,7 +297,11 @@
     "msg:171980",
     "2026-08-14 20:58:00",
     "msg:171905",
-    "2026-08-14 03:51:36"
+    "2026-08-14 03:51:36",
+    "msg:172730",
+    "2026-08-17 11:57:50",
+    "msg:172737",
+    "2026-08-17 13:28:28"
   ],
   "reply_log": [
     {
@@ -1603,19 +1588,35 @@
       "player": "Buffet",
       "preview": "\"No complaints here.\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-17T14:25:56+00:00",
+      "pid": "51357",
+      "msg_id": "172730",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T14:32:32+00:00",
+      "pid": "51357",
+      "msg_id": "172737",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-17 11:57:50|2026-08-17 13:28:28",
-      "msg_ids": [
-        172745
-      ],
-      "last_posted_at": "2026-08-17T13:46:05.237745+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172759,
+      "caught_up_at": "2026-08-17T14:34:57.101166+00:00"
     },
     "145040": {
       "msg_ids": [],
