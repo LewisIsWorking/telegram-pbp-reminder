@@ -9,6 +9,15 @@
       "time": "2026-08-17T11:57:50+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 172737,
+      "thread_id": 51357,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-17T13:28:28+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1600,11 +1609,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-17 11:57:50",
+      "fingerprint": "2026-08-17 11:57:50|2026-08-17 13:28:28",
       "msg_ids": [
-        172732
+        172745
       ],
-      "last_posted_at": "2026-08-17T12:56:50.067646+00:00",
+      "last_posted_at": "2026-08-17T13:46:05.237745+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
