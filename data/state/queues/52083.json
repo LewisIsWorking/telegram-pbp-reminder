@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 172152,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-15T07:12:05+00:00",
-      "preview": "\"I...shot it...?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 172168,
       "thread_id": 52083,
       "user_id": "138025700",
@@ -53,15 +44,6 @@
       "user_name": "Terra",
       "time": "2026-08-15T10:11:02+00:00",
       "preview": "\"I'm...Lai\" he replied unsure....",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172331,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-16T06:23:55+00:00",
-      "preview": "\"\u2605HUH\u2605?! You don't know what a \u2605SUPERFAN\u2605 is!?\" What are you doing here then? Actually... \u2605I DONT CARE :) !\u2605\"\n\nLivy leaves Lai and goes to speak to Nikk-Nakk.\n\n\"\u2605NIKK-NAKK\u2605, you didn't tell us that there were \u2605GHOSTBOTS\u2605 at your scrapyard! That's not very \u2605NICE\u2605. What if i had gotten a scratch on my \u2605SUPER IDOL BODY\u2605 huh? Were you gonna pay for my medical bills? It's \u2605EXPENSIVE\u2605 you know!\"",
       "media_group_id": null
     },
     {
@@ -403,7 +385,11 @@
     "msg:171444",
     "2026-08-10 09:20:10",
     "msg:172112",
-    "2026-08-15 05:58:50"
+    "2026-08-15 05:58:50",
+    "msg:172331",
+    "2026-08-16 06:23:55",
+    "msg:172152",
+    "2026-08-15 07:12:05"
   ],
   "reply_log": [
     {
@@ -1670,17 +1656,35 @@
       "player": "Terra",
       "preview": "I look around and ask them in general \"So...what now?\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-17T19:24:35+00:00",
+      "pid": "52083",
+      "msg_id": "172331",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605HUH\u2605?! You don't know what a \u2605SUPERFAN\u2605 is!?\" What are you doing here then? Ac",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-17T19:32:16+00:00",
+      "pid": "52083",
+      "msg_id": "172152",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"I...shot it...?\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-15 07:12:05|2026-08-15 07:42:35|2026-08-15 07:48:07|2026-08-15 09:55:43|2026-08-15 09:55:45|2026-08-15 10:11:02|2026-08-16 06:23:55|2026-08-16 11:50:25|2026-08-16 15:32:26|2026-08-16 15:35:43|2026-08-16 15:36:45|2026-08-16 15:39:04|2026-08-17 15:11:06|2026-08-17 15:21:35",
+      "fingerprint": "2026-08-15 07:42:35|2026-08-15 07:48:07|2026-08-15 09:55:43|2026-08-15 09:55:45|2026-08-15 10:11:02|2026-08-16 11:50:25|2026-08-16 15:32:26|2026-08-16 15:35:43|2026-08-16 15:36:45|2026-08-16 15:39:04|2026-08-17 15:11:06|2026-08-17 15:21:35",
       "msg_ids": [
-        172789
+        172833
       ],
-      "last_posted_at": "2026-08-17T15:31:45.085682+00:00",
+      "last_posted_at": "2026-08-17T19:33:06.210089+00:00",
       "caught_up_msg_id": null
     },
     "145045": {
