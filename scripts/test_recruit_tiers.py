@@ -104,21 +104,21 @@ class TestMessage:
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C01", "100", target=6),
                    _tiered("C10", "200", 1, disabled=["recruitment"]))
-        text = build_recruit_message(cfg, _state(**{"100": 6, "200": 0}))
+        text, _ = build_recruit_message(cfg, _state(**{"100": 6, "200": 0}))
         assert "Reserve campaign" in text
         assert "tier 0 and below is full" in text
 
     def test_normal_campaigns_do_not(self):
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C01", "100", target=6))
-        assert "Reserve campaign" not in build_recruit_message(
-            cfg, _state(**{"100": 5}))
+        text, _ = build_recruit_message(cfg, _state(**{"100": 5}))
+        assert "Reserve campaign" not in text
 
     def test_count_covers_the_eligible_tier_only(self):
         """Two short tier-0 campaigns, one queued reserve: the count is 2."""
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C01", "100", target=6), _pair("C02", "150", target=6),
                    _tiered("C10", "200", 1))
-        text = build_recruit_message(cfg, _state(**{"100": 5, "150": 4,
+        text, _ = build_recruit_message(cfg, _state(**{"100": 5, "150": 4,
                                                     "200": 0}))
         assert "2 campaigns currently recruiting" in text, text

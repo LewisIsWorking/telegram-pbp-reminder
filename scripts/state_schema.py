@@ -57,6 +57,13 @@ PARTITIONS: dict[str, list[str]] = {
         # 24h gate survives a run. Omitting either reproduces the schedule
         # post bug exactly.
         "recruit_focus_msg_id", "last_recruit_focus",
+        # Added 2026-08-17 with the move into each campaign's own chat
+        # topic. Records WHEN the current advert went up, which the
+        # 24h gate cannot answer - the gate says "may I post again",
+        # this says "how old is the thing already up". Needed so a
+        # stale "4 seats open" post is retired inside Telegram's 48h
+        # delete window instead of stranding in a full campaign.
+        "recruit_focus_at",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
@@ -108,4 +115,5 @@ DEFAULT_STATE: dict = {
     "last_pin_digest": None, "last_pin_alert_ts": "",
     "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
     "recruit_focus_msg_id": None, "last_recruit_focus": None,
+    "recruit_focus_at": None,
 }

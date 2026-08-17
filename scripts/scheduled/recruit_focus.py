@@ -42,6 +42,11 @@ from commands.roster import _active_players, _TARGET
 _GATE_HOURS = 24
 _LAST_KEY = "last_recruit_focus"
 _MSG_KEY = "recruit_focus_msg_id"
+# When the current post went up. Separate from _LAST_KEY, which is the
+# once-per-24h gate: the gate answers "may I post again", this answers
+# "how old is the thing already up", and the retirement sweep needs the
+# second question. Added 2026-08-17.
+_AT_KEY = "recruit_focus_at"
 
 
 def _shortfall(pair: dict, state: dict, config: dict) -> tuple[int, int, int]:
@@ -111,11 +116,20 @@ def pick_recruit_pair(config: dict, state: dict) -> dict | None:
     return min(candidates, key=lambda c: (c[0], c[1]))[2]
 
 
-def build_recruit_message(config: dict, state: dict) -> str:
-    """Build the message, or '' when no campaign is short."""
+def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
+    """Return ``(text, pair)``, or ``("", None)`` when no campaign is short.
+
+    ⭐ Returns the CAMPAIGN as well as the words (changed 2026-08-17, when
+    the post moved from the GM queue into the campaign's own chat topic).
+    A bare string names its campaign only in prose, so the caller had to
+    find the destination some other way — and the only way available is to
+    run ``pick_recruit_pair`` a second time, deriving the same answer twice
+    and trusting the two to agree. The message and its destination are one
+    decision, so they are one return value.
+    """
     pair = pick_recruit_pair(config, state)
     if not pair:
-        return ""
+        return "", None
 
     missing, active, target = _shortfall(pair, state, config)
     code = pair.get("code", "")
@@ -147,45 +161,4 @@ def build_recruit_message(config: dict, state: dict) -> str:
     username = config.get("group_username", "")
     if username:
         lines.append(f"🔗 https://t.me/{username}/{topic}")
-    return "\n".join(lines)
-
-
-def post_recruit_focus(config: dict, state: dict, *,
-                       now: datetime | None = None, **_kw) -> None:
-    """Post once per 24h to the GM queue, replacing the previous one.
-
-    Send first, then delete, so a failed send never leaves the topic with
-    no recruit post at all — same ordering as ``schedule_post``.
-    """
-    now = now or datetime.now(timezone.utc)
-    topic = config.get("gm_queue_topic_id") or config.get("bot_topic_id")
-    if not topic:
-        return
-    if not config.get("recruit_focus_enabled", True):
-        return
-
-    last = state.get(_LAST_KEY)
-    if last:
-        try:
-            since = helpers.hours_since(now, datetime.fromisoformat(last))
-        except (ValueError, TypeError):
-            since = _GATE_HOURS
-        if since < _GATE_HOURS:
-            return
-
-    text = build_recruit_message(config, state)
-    if not text:
-        # Every campaign is full. Clear the gate so the next shortfall
-        # posts immediately rather than waiting out a stale 24h window,
-        # and leave any existing post up — it is still true until it is
-        # replaced, and deleting it here would need a second delete path.
-        return
-
-    msg_id = tg.send_message_id(config["group_id"], topic, text, silent=True)
-    if not msg_id:
-        return
-    prev = state.get(_MSG_KEY)
-    if prev:
-        tg.delete_message(config["group_id"], prev)
-    state[_MSG_KEY] = msg_id
-    state[_LAST_KEY] = now.isoformat()
+    return "\n".join(lines), pair
