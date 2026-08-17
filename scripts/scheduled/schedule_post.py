@@ -45,18 +45,39 @@ def next_tick(now: datetime) -> datetime:
     return (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
 
 
-def schedule_topic(config: dict) -> int | None:
-    """Where the schedule post goes.
+def schedule_destination(config: dict) -> tuple[int, int | None] | None:
+    """``(chat_id, thread_id)`` for the schedule post, or None if unset.
 
-    Its own key, deliberately, rather than reusing ``gm_queue_topic_id``:
+    Its own keys, deliberately, rather than reusing ``gm_queue_topic_id``:
     ``leaderboard_topic_id`` is shared by four unrelated posts, so moving
     the leaderboard on 2026-08-12 silently moved the weekly digest,
     message milestones and the hero-point picker with it. A key per
     destination means moving one post moves one post.
 
-    Falls back to ``bot_topic_id`` so an older config still works.
+    ⭐ Returns a CHAT and a thread, not just a thread (changed 2026-08-17,
+    when the post moved to the Nudge Bot Notifications group). The old
+    ``schedule_topic`` could only answer "which topic", so its one caller
+    had to supply ``config["group_id"]`` itself — an assumption that is
+    invisible until the destination is in a different chat, and then
+    wrong. A return value that cannot carry the answer makes the caller
+    invent one.
+
+    ``schedule_chat_id`` set -> that chat, ``schedule_thread_id`` within
+                                it (absent = General, correct for a forum
+                                group's default topic).
+    otherwise                -> the main group, ``schedule_topic_id``
+                                falling back to ``bot_topic_id`` so an
+                                older config still works.
     """
-    return config.get("schedule_topic_id") or config.get("bot_topic_id")
+    chat = config.get("schedule_chat_id")
+    if chat:
+        # Deliberately NOT falling back to schedule_topic_id here. That id
+        # names a topic in the MAIN group; reused against another chat it
+        # would either fail or, worse, land in an unrelated topic that
+        # happens to share the number.
+        return int(chat), config.get("schedule_thread_id")
+    topic = config.get("schedule_topic_id") or config.get("bot_topic_id")
+    return (config["group_id"], topic) if topic else None
 
 
 def _at(now: datetime, hour: int, day_offset: int = 0) -> datetime:
@@ -135,20 +156,29 @@ def post_schedule(config: dict, state: dict, *,
     so the current copy always sits at the bottom where it is visible.
     """
     now = now or datetime.now(timezone.utc)
-    topic = schedule_topic(config)
-    if not topic:
+    destination = schedule_destination(config)
+    if not destination:
         return
     if not config.get("schedule_post_enabled", True):
         return
+    chat_id, thread_id = destination
 
     prev = state.get("schedule_post_msg_id")
+    # Where the PREVIOUS post lives, which is not necessarily where the
+    # next one goes. On the run that moves the post to a new chat these
+    # differ, and deleting `prev` in the new chat would either fail or hit
+    # an unrelated message that happens to share the id. Older state has
+    # no such key, so fall back to the main group — that is where every
+    # post written before 2026-08-17 went.
+    prev_chat = state.get("schedule_post_chat_id") or config["group_id"]
+
     text = build_schedule_text(config, state, now)
-    msg_id = tg.send_message_id(config["group_id"], topic, text,
-                                silent=True)
+    msg_id = tg.send_message_id(chat_id, thread_id, text, silent=True)
     if not msg_id:
         return  # send failed — keep the old one rather than leaving none
     # Delete only after the replacement is up, so a failed send never
-    # leaves the topic with no schedule at all.
+    # leaves the destination with no schedule at all.
     if prev:
-        tg.delete_message(config["group_id"], prev)
+        tg.delete_message(prev_chat, prev)
     state["schedule_post_msg_id"] = msg_id
+    state["schedule_post_chat_id"] = chat_id
