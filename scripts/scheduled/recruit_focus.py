@@ -145,17 +145,26 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
     eligible = _eligible_pairs(config, state)
     tier = recruit_tier(pair, config)
 
+    # ⭐ Written for PLAYERS, not the GM (reworded 2026-08-17, when the post
+    # moved into each campaign's own chat topic). The old copy opened
+    # "Recruit for this next" — an instruction addressed to Lewis, perfectly
+    # clear in the GM queue and addressed to nobody in a room full of
+    # players. Same facts, turned to face the people who can actually act
+    # on them by inviting someone.
     lines = ["━━━━━━━━━━━━━━━━",
-             f"🧭 Recruit for this next: {emoji_prefix}{label}",
+             f"🧭 This table has room: {emoji_prefix}{label}",
              f"⏳ {missing} {seats} open ({active}/{target} players)."]
     if tier:
-        lines.append(f"📌 Reserve campaign — every campaign in tier "
-                     f"{tier - 1} and below is full.")
+        # Tiers are internal scheduling. A player needs neither the word
+        # "tier" nor the number — only that it is open now.
+        lines.append("📌 Now open for new players — the campaigns ahead of "
+                     "it are full.")
     if len(eligible) > 1:
-        lines.append(f"↗ Biggest gap of {len(eligible)} campaigns "
-                     f"currently recruiting.")
+        lines.append(f"↗ Know someone? This is the biggest gap of "
+                     f"{len(eligible)} campaigns currently recruiting.")
     else:
-        lines.append("↗ The only campaign currently below target.")
+        lines.append("↗ Know someone? This is the only campaign currently "
+                     "below target.")
 
     topic = pair["pbp_topic_ids"][0]
     username = config.get("group_username", "")

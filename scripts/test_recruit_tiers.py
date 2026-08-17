@@ -105,14 +105,19 @@ class TestMessage:
         cfg = _cfg(_pair("C01", "100", target=6),
                    _tiered("C10", "200", 1, disabled=["recruitment"]))
         text, _ = build_recruit_message(cfg, _state(**{"100": 6, "200": 0}))
-        assert "Reserve campaign" in text
-        assert "tier 0 and below is full" in text
+        assert "Now open for new players" in text
+        # Reworded 2026-08-17 for a player audience: "tier" is internal
+        # scheduling and the number means nothing to a reader who is
+        # being invited to join. Asserting its ABSENCE, because the
+        # jargon creeping back is the regression worth catching.
+        assert "tier" not in text.lower()
+        assert "the campaigns ahead of it are full" in text
 
     def test_normal_campaigns_do_not(self):
         from scheduled.recruit_focus import build_recruit_message
         cfg = _cfg(_pair("C01", "100", target=6))
         text, _ = build_recruit_message(cfg, _state(**{"100": 5}))
-        assert "Reserve campaign" not in text
+        assert "Now open for new players" not in text
 
     def test_count_covers_the_eligible_tier_only(self):
         """Two short tier-0 campaigns, one queued reserve: the count is 2."""
