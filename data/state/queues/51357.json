@@ -1,6 +1,16 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 172795,
+      "thread_id": 51357,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-08-17T15:34:31+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -1612,10 +1622,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 172759,
+      "fingerprint": "2026-08-17 15:34:31",
+      "msg_ids": [
+        172796
+      ],
+      "last_posted_at": "2026-08-17T15:49:31.573074+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-17T14:34:57.101166+00:00"
     },
     "145040": {
