@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 172587,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-17T05:52:47+00:00",
+      "preview": "\"Fine, fine I'll save your companion. Now where did I put those cards.\"\n\nLeopard starts digging around in his bag for several moments before pulling out a small leather pouch.\n\n\"There we are. Now visualize the effect and...\"\n\nAs he concentrates on the spell and the fat, dying gnome in front of him the card glimmers for a moment then crumbles to dust casting the spell.\n\n\"There, he's stabilized. You're welcome, I wasted a valuable Stabilize cantrip on him. Now talk.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 172588,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-17T05:53:48+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -5878,10 +5896,12 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 172562,
+      "fingerprint": "2026-08-17 05:52:47|2026-08-17 05:53:48",
+      "msg_ids": [
+        172590
+      ],
+      "last_posted_at": "2026-08-17T05:59:49.763067+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-17T04:51:11.230036+00:00"
     }
   }
