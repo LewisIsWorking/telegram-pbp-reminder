@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 172414,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-16T10:15:47+00:00",
-      "preview": "\"Kibwe is stronger than you think. Plus I think seeing some of the assholes responsible for this shit getting their due will be rather unifying.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1047,7 +1038,9 @@
     "msg:172171",
     "2026-08-15 07:51:12",
     "msg:172193",
-    "2026-08-15 09:12:26"
+    "2026-08-15 09:12:26",
+    "msg:172414",
+    "2026-08-16 10:15:47"
   ],
   "reply_log": [
     {
@@ -5862,6 +5855,15 @@
       "player": "Anthony",
       "preview": "\"Yeah what he said. And you and your bro will be judged after that... For now...",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-17T04:33:27+00:00",
+      "pid": "40585",
+      "msg_id": "172414",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "\"Kibwe is stronger than you think. Plus I think seeing some of the assholes resp",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5876,12 +5878,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-08-16 10:15:47",
-      "msg_ids": [
-        172419
-      ],
-      "last_posted_at": "2026-08-16T10:21:13.968878+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172562,
+      "caught_up_at": "2026-08-17T04:51:11.230036+00:00"
     }
   }
 }
