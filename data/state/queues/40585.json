@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 172774,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-08-17T15:22:10+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1061,7 +1052,9 @@
     "msg:172648",
     "2026-08-17 06:25:22",
     "msg:172650",
-    "2026-08-17 06:27:01"
+    "2026-08-17 06:27:01",
+    "msg:172774",
+    "2026-08-17 15:22:10"
   ],
   "reply_log": [
     {
@@ -5939,6 +5932,15 @@
       "player": "Anthony",
       "preview": "Daichi stares back, MENACINGLY",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-17T17:12:11+00:00",
+      "pid": "40585",
+      "msg_id": "172774",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5953,13 +5955,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-08-17 15:22:10",
-      "msg_ids": [
-        172787
-      ],
-      "last_posted_at": "2026-08-17T15:31:42.356561+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-17T07:07:53.535096+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172824,
+      "caught_up_at": "2026-08-17T17:32:53.069481+00:00"
     }
   }
 }
