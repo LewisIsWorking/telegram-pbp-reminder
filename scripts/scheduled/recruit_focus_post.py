@@ -92,13 +92,22 @@ def post_recruit_focus(config: dict, state: dict, *,
     main = tg.send_message_id(config["group_id"], thread_id, text, silent=True)
     if not main:
         return  # primary failed; keep the old copies rather than half-replace
-    posted = [{"chat_id": config["group_id"], "message_id": main}]
+    # ⭐ auto_delete says what happens to this copy NEXT time, and the two
+    # destinations answer differently (Lewis, 2026-08-18):
+    #   campaign topic — replaced each day, so the old one goes. A game
+    #                    thread should not fill with stale adverts.
+    #   mirror topic   — KEPT. That topic is meant to accumulate, so the
+    #                    run of adverts reads as a history of who needed
+    #                    players and when.
+    posted = [{"chat_id": config["group_id"], "message_id": main,
+               "auto_delete": True}]
 
     mirror_chat, mirror_thread = mirror_destination(config)
     if mirror_chat:
         mid = tg.send_message_id(mirror_chat, mirror_thread, text, silent=True)
         if mid:
-            posted.append({"chat_id": mirror_chat, "message_id": mid})
+            posted.append({"chat_id": mirror_chat, "message_id": mid,
+                           "auto_delete": False})
         else:
             # The mirror is a convenience and the advert is already up
             # where it matters. Say so rather than failing the job.
@@ -122,25 +131,45 @@ def mirror_destination(config: dict) -> tuple[int | None, int | None]:
     return int(chat), config.get("recruit_mirror_thread_id")
 
 
+def _keeps_history(entry: dict, config: dict) -> bool:
+    """True when this copy should be left in place as a permanent record.
+
+    Reads the explicit ``auto_delete`` flag. Entries written before that
+    flag existed (2026-08-18) fall back to comparing the chat against the
+    configured mirror — those were the only two destinations in play, so
+    the inference is safe for exactly that one day of state and is not
+    relied on afterwards.
+    """
+    if "auto_delete" in entry:
+        return not entry["auto_delete"]
+    mirror_chat, _thread = mirror_destination(config)
+    return bool(mirror_chat) and entry.get("chat_id") == mirror_chat
+
+
 def _delete_previous(config: dict, state: dict) -> None:
-    """Remove every copy of the last advert, each from its own chat.
+    """Remove the copies that are meant to be replaced, and only those.
+
+    The campaign-topic copy is swept; **the mirror copy is kept**, because
+    that topic is a running history of which campaign needed players and
+    when (Lewis, 2026-08-18). Deleting it would leave the topic showing a
+    single post and no past at all.
 
     ⚠️ Each entry carries its OWN chat_id, and that is load-bearing.
     Message ids are unique per CHAT, so the two copies have unrelated
-    numbers — deleting the mirror's id against the main group would
-    either miss entirely or hit a stranger's message that happens to
-    share the number. Exactly the trap the schedule post hit on
-    2026-08-17, and the reason a bare id was not enough there either.
+    numbers — deleting the mirror's id against the main group would either
+    miss entirely or hit a stranger's message that happens to share the
+    number. Exactly the trap the schedule post hit on 2026-08-17.
 
-    Falls back to the single legacy id for state written before this
-    change, which was always in the main group.
+    Falls back to the single legacy id for state written before the two
+    copies existed, which was always in the main group.
     """
     entries = state.get(_POSTS_KEY)
     if entries:
         for entry in entries:
-            if entry.get("message_id"):
-                tg.delete_message(entry.get("chat_id") or config["group_id"],
-                                  entry["message_id"])
+            if not entry.get("message_id") or _keeps_history(entry, config):
+                continue
+            tg.delete_message(entry.get("chat_id") or config["group_id"],
+                              entry["message_id"])
         return
     if state.get(_MSG_KEY):
         tg.delete_message(config["group_id"], state[_MSG_KEY])
@@ -151,6 +180,10 @@ def _retire_stale_post(config: dict, state: dict, now: datetime) -> None:
 
     Only acts when a post exists. Deliberately does NOT clear ``_LAST_KEY``:
     the 24h gate is about how often to advertise, not about cleanup.
+
+    Takes down the campaign-topic copy only — the mirror copy stays, as
+    everywhere else. "Everyone was full on this date" is exactly the kind
+    of thing the history topic is for.
     """
     if not (state.get(_POSTS_KEY) or state.get(_MSG_KEY)):
         return
