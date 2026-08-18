@@ -1,61 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 172470,
-      "thread_id": 52083,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-16T15:32:26+00:00",
-      "preview": "Roneles just says \"Sup\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172471,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-16T15:35:43+00:00",
-      "preview": "\"sup\" lai repeated slowly \"what is happening? i heard what sounds like music and then that...\" he said pointing where the ooze once stood and to livy and nikk-nakk",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172472,
-      "thread_id": 52083,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-16T15:36:45+00:00",
-      "preview": "\"they killed a hostile slime\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172473,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-16T15:39:04+00:00",
-      "preview": "\"yes....i mean in general\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172771,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-17T15:11:06+00:00",
-      "preview": "\"\u2605RONELES\u2605 are you talking to my 'not stalker'?! Come over here we need to hear what \u2605NIKK-NAKK\u2605 has in store for us, remember we need to make \u2605MONNEY\u2605 for my \u2605SPACE TOUR\u2605!!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 172882,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-17T23:49:00+00:00",
-      "preview": "\"\u2605NARC?\u2605 What's a \u2605NARC\u2605 ?! Rune is a \u2605FUN GUY\u2605! He's also helpful :) .\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -351,7 +296,19 @@
     "msg:172773",
     "2026-08-17 15:21:35",
     "msg:172876",
-    "2026-08-17 23:30:36"
+    "2026-08-17 23:30:36",
+    "msg:172470",
+    "2026-08-16 15:32:26",
+    "msg:172471",
+    "2026-08-16 15:35:43",
+    "msg:172472",
+    "2026-08-16 15:36:45",
+    "msg:172473",
+    "2026-08-16 15:39:04",
+    "msg:172771",
+    "2026-08-17 15:11:06",
+    "msg:172882",
+    "2026-08-17 23:49:00"
   ],
   "reply_log": [
     {
@@ -1708,18 +1665,71 @@
       "player": "Ryo",
       "preview": "Rune sighs and begins typing again.\n\n\"Knew I should have changed while I grabbed",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-18T01:42:13+00:00",
+      "pid": "52083",
+      "msg_id": "172470",
+      "thread_id": 52083,
+      "player": "Horia",
+      "preview": "Roneles just says \"Sup\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-18T01:42:45+00:00",
+      "pid": "52083",
+      "msg_id": "172471",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"sup\" lai repeated slowly \"what is happening? i heard what sounds like music and",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-18T01:43:32+00:00",
+      "pid": "52083",
+      "msg_id": "172472",
+      "thread_id": 52083,
+      "player": "Horia",
+      "preview": "\"they killed a hostile slime\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-18T01:43:44+00:00",
+      "pid": "52083",
+      "msg_id": "172473",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"yes....i mean in general\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-18T01:45:59+00:00",
+      "pid": "52083",
+      "msg_id": "172771",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605RONELES\u2605 are you talking to my 'not stalker'?! Come over here we need to hear ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-18T01:46:33+00:00",
+      "pid": "52083",
+      "msg_id": "172882",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605NARC?\u2605 What's a \u2605NARC\u2605 ?! Rune is a \u2605FUN GUY\u2605! He's also helpful :) .\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-16 15:32:26|2026-08-16 15:35:43|2026-08-16 15:36:45|2026-08-16 15:39:04|2026-08-17 15:11:06|2026-08-17 23:49:00",
-      "msg_ids": [
-        172934
-      ],
-      "last_posted_at": "2026-08-18T01:40:30.123066+00:00",
-      "caught_up_msg_id": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 172949,
+      "caught_up_at": "2026-08-18T01:57:40.378152+00:00"
     },
     "145045": {
       "msg_ids": [],
