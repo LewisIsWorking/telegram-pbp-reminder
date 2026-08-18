@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 173014,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-18T02:27:36+00:00",
-      "preview": "That's why galactic hero points is better",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -325,7 +315,9 @@
     "msg:172924",
     "2026-08-18 01:32:07",
     "msg:172926",
-    "2026-08-18 01:32:18"
+    "2026-08-18 01:32:18",
+    "msg:173014",
+    "2026-08-18 02:27:36"
   ],
   "reply_log": [
     {
@@ -1693,19 +1685,26 @@
       "player": "Laetheron",
       "preview": "\u2639",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-18T03:22:51.652786+00:00",
+      "pid": "51357",
+      "msg_id": "173014",
+      "thread_id": "51357",
+      "player": "Anthony NegetZ",
+      "preview": "That's why galactic hero points is better",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-18 02:27:36",
-      "msg_ids": [
-        173026
-      ],
-      "last_posted_at": "2026-08-18T03:01:57.765199+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-17T19:51:08.115813+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 173086,
+      "caught_up_at": "2026-08-18T03:22:52.347331+00:00"
     },
     "145040": {
       "msg_ids": [],
