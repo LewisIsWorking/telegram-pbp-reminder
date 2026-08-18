@@ -1,5 +1,5 @@
 {
-  "offset": 619355001,
+  "offset": 619355099,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-18T01:46:33+00:00",
@@ -14,9 +14,9 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-08-18T01:38:27+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-18T02:27:36+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -32,7 +32,7 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-17T18:34:01+00:00",
+      "last_message_time": "2026-08-18T02:09:46+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -111,7 +111,7 @@
   "last_roster_snapshot": "C01:7/6|C00:4/6|C04:3/6|C05:5/6|C06:6/6|C07:5/6|C09:2/6|C10:0/6|C08:0/4",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-08-17T21:31:42.394413+00:00"
+    "last_at": null
   },
   "last_recruitment_check": {
     "25059": "2026-08-07T00:09:00.705248+00:00",
@@ -218,7 +218,7 @@
   },
   "last_state_backup": "2026-08-17T07:07:53.535096+00:00",
   "last_queue_daily": "2026-08-17",
-  "last_queue_fingerprint": "empty",
+  "last_queue_fingerprint": "51357:2026-08-18 02:27:36",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -310,14 +310,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-17",
-  "last_queue_pin_id": null,
-  "queue_post_count": 1373,
+  "last_queue_pin_id": 173028,
+  "queue_post_count": 1374,
   "gm_queue_history": [
     {
       "msg_ids": [
-        172950
+        173028,
+        173029
       ],
-      "pin_id": null
+      "pin_id": 173028
     }
   ],
   "potw_week": {
@@ -333,10 +334,10 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 55,
+  "schedule_post_msg_id": 56,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-17",
-  "last_pin_alert_ts": "2026-08-18T01:40:43.252734+00:00",
+  "last_pin_alert_ts": "2026-08-18T03:02:03.896315+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 172581,
   "last_recruit_focus": "2026-08-17T05:40:07.521179+00:00",
