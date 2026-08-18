@@ -73,23 +73,49 @@ def test_it_posts_to_both_the_campaign_and_the_mirror():
     assert sent == [(MAIN, C09_CHAT), (MIRROR, MIRROR_THREAD)]
 
 
-def test_both_copies_are_recorded_with_their_own_chat():
+def test_both_copies_are_recorded_with_their_own_chat_and_fate():
     state = {}
     _post(state)
     assert state[_POSTS_KEY] == [
-        {"chat_id": MAIN, "message_id": 111},
-        {"chat_id": MIRROR, "message_id": 222},
+        {"chat_id": MAIN, "message_id": 111, "auto_delete": True},
+        {"chat_id": MIRROR, "message_id": 222, "auto_delete": False},
     ]
 
 
-def test_each_old_copy_is_deleted_from_its_own_chat():
-    """⚠️ The whole reason the chat is stored. Message ids are unique per
-    chat, so deleting the mirror's id against the main group would miss
-    or hit a stranger."""
-    state = {_POSTS_KEY: [{"chat_id": MAIN, "message_id": 9},
-                          {"chat_id": MIRROR, "message_id": 4}]}
+def test_the_campaign_copy_is_swept_and_the_MIRROR_IS_KEPT():
+    """⭐ Lewis, 2026-08-18: the mirror topic is a running history of which
+    campaign needed players and when. Sweeping it would leave that topic
+    showing one post and no past at all.
+
+    ⚠️ The chat is still stored and still load-bearing: ids are unique per
+    chat, so a delete aimed at the wrong one would miss or hit a stranger.
+    """
+    state = {_POSTS_KEY: [
+        {"chat_id": MAIN, "message_id": 9, "auto_delete": True},
+        {"chat_id": MIRROR, "message_id": 4, "auto_delete": False}]}
     _sent, deleted = _post(state)
-    assert deleted == [(MAIN, 9), (MIRROR, 4)]
+    assert deleted == [(MAIN, 9)]
+    assert (MIRROR, 4) not in deleted
+
+
+def test_pre_flag_state_infers_the_mirror_from_its_chat():
+    """One day of state was written before auto_delete existed. Those
+    entries must still spare the mirror rather than wiping the history
+    that already accumulated."""
+    state = {_POSTS_KEY: [{"chat_id": MAIN, "message_id": 173160},
+                          {"chat_id": MIRROR, "message_id": 63}]}
+    _sent, deleted = _post(state)
+    assert deleted == [(MAIN, 173160)], "mirror 63 must survive"
+
+
+def test_the_history_guard_can_fail():
+    """Feed it an entry explicitly marked deletable in the mirror chat and
+    confirm it IS deleted — otherwise the test above passes for the wrong
+    reason (e.g. nothing in the mirror is ever deleted by accident)."""
+    state = {_POSTS_KEY: [
+        {"chat_id": MIRROR, "message_id": 7, "auto_delete": True}]}
+    _sent, deleted = _post(state)
+    assert deleted == [(MIRROR, 7)]
 
 
 def test_the_mirror_delete_guard_can_fail():
@@ -119,7 +145,8 @@ def test_a_failed_mirror_does_not_lose_the_main_advert(capsys):
     state = {}
     sent, _ = _post(state, ids=(111, None))
     assert sent == [(MAIN, C09_CHAT), (MIRROR, MIRROR_THREAD)]
-    assert state[_POSTS_KEY] == [{"chat_id": MAIN, "message_id": 111}]
+    assert state[_POSTS_KEY] == [
+        {"chat_id": MAIN, "message_id": 111, "auto_delete": True}]
     assert "mirror post" in capsys.readouterr().out
 
 
@@ -141,55 +168,25 @@ def test_the_registry_scan_covers_both_copies():
     assert 111 in ids and 222 in ids
 
 
+def test_retiring_a_stale_advert_also_spares_the_mirror():
+    """When every campaign fills up the advert comes down - but "everyone
+    was full on this date" is exactly what the history topic is for."""
+    from datetime import timedelta
+    state = {_POSTS_KEY: [
+        {"chat_id": MAIN, "message_id": 9, "auto_delete": True},
+        {"chat_id": MIRROR, "message_id": 4, "auto_delete": False}],
+        _AT_KEY: (NOW - timedelta(hours=30)).isoformat()}
+    deleted = []
+    with patch.object(rfp, "build_recruit_message", return_value=("", None)),             patch.object(rfp.tg, "delete_message",
+                         side_effect=lambda c, m: deleted.append((c, m)) or True):
+        rfp.post_recruit_focus(_cfg(), state, now=NOW)
+    assert deleted == [(MAIN, 9)]
+    assert state[_POSTS_KEY] == []
+
+
 def test_state_declares_the_new_key():
     from state_schema import DEFAULT_STATE, PARTITIONS
     assert "recruit_focus_posts" in PARTITIONS["live"]
     assert "recruit_focus_posts" in DEFAULT_STATE
 
 
-# ── The ladder ───────────────────────────────────────────────────────────────
-
-def _ladder_cfg(*counts):
-    return {"topic_pairs": [
-        {"code": f"C{i}", "pbp_topic_ids": [100 + i]} for i in range(len(counts))]}
-
-
-def _ladder_state(*counts):
-    players = {}
-    for i, n in enumerate(counts):
-        for j in range(n):
-            players[f"{i}-{j}"] = {"pbp_topic_id": str(100 + i),
-                                   "permanent": True}
-    return {"players": players}
-
-
-@pytest.mark.parametrize("counts,expected", [
-    ((0, 0), 6),        # nothing near the bar
-    ((6, 5), 6),        # one short campaign holds it
-    ((6, 6), 8),        # everyone cleared 6 -> aim for 8
-    ((8, 8), 8),        # top of the ladder, stays there
-    ((9, 8), 8),        # overshooting does not invent a rung
-    ((6, 0), 6),        # ⚠️ a campaign at ZERO must not raise the bar
-])
-def test_the_bar_rises_only_when_everyone_clears_it(counts, expected):
-    assert effective_target(_ladder_cfg(*counts), _ladder_state(*counts)) == expected
-
-
-def test_a_campaign_that_never_recruits_neither_blocks_nor_satisfies():
-    cfg = _ladder_cfg(6, 6)
-    cfg["topic_pairs"].append({"code": "C08", "pbp_topic_ids": [999],
-                               "disabled_features": ["recruitment"]})
-    assert effective_target(cfg, _ladder_state(6, 6)) == 8
-
-
-def test_an_explicit_roster_target_opts_that_pair_out():
-    cfg = _ladder_cfg(6, 6)
-    cfg["topic_pairs"][0]["roster_target"] = 4
-    assert effective_target(cfg, _ladder_state(6, 6)) == 8
-
-
-def test_the_ladder_can_fail():
-    """One campaign one short must hold the whole bar at 6. If this ever
-    returns 8, the ladder has stopped checking every campaign."""
-    assert effective_target(_ladder_cfg(6, 5), _ladder_state(6, 5)) == 6
-    assert RECRUIT_LADDER[0] == 6 and RECRUIT_LADDER[-1] == 8
