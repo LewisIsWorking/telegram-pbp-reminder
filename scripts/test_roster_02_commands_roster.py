@@ -67,14 +67,35 @@ def test_roster_overview_shows_deficit():
 
 
 def test_roster_overview_satisfied_at_target():
+    """✅ means "meets the target the ladder is currently asking for".
+
+    Updated 2026-08-18 for the recruiting ladder. Six players used to be
+    the target outright; now, once every campaign has cleared 6, the bar
+    moves to 8 (Lewis: *"in the scenario where there are 6 players in ALL
+    campaigns, can we try to get campaigns to 8"*). So a campaign showing
+    six is under target by design, and the top rung is where ✅ lives.
+    """
+    from commands.roster import build_roster_overview
+    config = _config([("C04", "Test")])
+    state = {"players": {
+        f"100:U{i}": _player(100, f"U{i}", f"P{i}") for i in range(8)
+    }}
+    result = build_roster_overview(config, state)
+    assert "✅" in result
+    assert "8/8" in result
+
+
+def test_roster_overview_six_is_under_target_once_the_ladder_steps():
+    """The counterpart, and the behaviour Lewis actually asked for: a
+    campaign that reaches 6 does not stay satisfied, it gets a new bar."""
     from commands.roster import build_roster_overview
     config = _config([("C04", "Test")])
     state = {"players": {
         f"100:U{i}": _player(100, f"U{i}", f"P{i}") for i in range(6)
     }}
     result = build_roster_overview(config, state)
-    assert "✅" in result
-    assert "6/6" in result
+    assert "6/8" in result
+    assert "⚠️" in result
 
 
 def test_roster_overview_excludes_inactive():

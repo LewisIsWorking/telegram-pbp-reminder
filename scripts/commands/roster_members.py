@@ -15,6 +15,18 @@ from players.permanence import is_permanent
 _TARGET = 6
 _ACTIVE_DAYS = 30
 
+# ⭐ The recruiting ladder (Lewis, 2026-08-18): *"in the scenario where
+# there are 6 players in ALL campaigns, can we try to get campaigns to 8
+# players"*. Once every recruiting campaign clears a rung, the bar moves
+# up, so the bot always has somewhere useful to point.
+#
+# ⚠️ It steps only when EVERY recruiting campaign has met the current
+# rung, reserves included. Stepping on the base tier alone would raise
+# the bar to 8 while a tier-1 campaign still sat at 0 players — and the
+# bot would advertise that campaign as needing 8 when what it needed was
+# its first player.
+RECRUIT_LADDER = (6, 8)
+
 
 def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
     """Return players considered part of the campaign's active roster.
@@ -111,3 +123,36 @@ def _split_active(players: list[dict], config: dict) -> tuple[list[dict], list[d
     non_perm = [p for p in players if not is_permanent(p, config)]
     perm = [p for p in players if is_permanent(p, config)]
     return non_perm, perm
+
+
+def effective_target(config: dict, state: dict) -> int:
+    """The roster target every campaign is currently measured against.
+
+    Walks ``RECRUIT_LADDER`` upward while every recruiting campaign meets
+    the rung. Campaigns that never recruit are ignored entirely — they
+    neither block the ladder nor satisfy it, because they are not asking
+    for anybody.
+
+    A pair's own ``roster_target`` still wins for that pair; the ladder
+    only supplies the default. Such a pair is also skipped when deciding
+    whether a rung is cleared, since it has opted out of the shared bar.
+    """
+    from scheduled.recruit_focus import recruit_tier
+
+    recruiting = [p for p in config.get("topic_pairs", [])
+                  if recruit_tier(p, config) is not None
+                  and not p.get("roster_target")]
+    if not recruiting:
+        return RECRUIT_LADDER[0]
+
+    # ⚠️ Returns the rung to AIM FOR, not the rung already achieved. With
+    # every campaign on 6 the answer is 8 — that is the whole request.
+    # The first version returned the highest cleared rung, so a fully
+    # staffed set of campaigns reported a target of 6 and the bot had
+    # nothing to ask for. Caught by the tests, not by reading it.
+    lowest = min(len(_active_players(str(p["pbp_topic_ids"][0]), state, config))
+                 for p in recruiting)
+    for rung in RECRUIT_LADDER:
+        if lowest < rung:
+            return rung
+    return RECRUIT_LADDER[-1]
