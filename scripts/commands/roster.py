@@ -10,6 +10,7 @@ from players.permanence import is_permanent
 
 from commands.roster_members import (  # noqa: F401
     _TARGET, _ACTIVE_DAYS, _active_players, active_poll_uids,
+    effective_target,
     _split_active)
 
 
@@ -30,14 +31,17 @@ def build_roster_overview(config: dict, state: dict) -> str:
         name = pair.get("name", "")
         pid = str(pair["pbp_topic_ids"][0])
         non_perm, perm = _split_active(_active_players(pid, state, config), config)
-        target = pair.get("roster_target", _TARGET)
+        target = pair.get("roster_target") or effective_target(config, state)
         rows.append((len(non_perm), len(perm), code, name, target))
     # Warnings first (non-perm vs target — perm players don't count
     # toward the target per Lewis's 2026-05-12 clarification), then by
     # non-perm count ascending so the most under-staffed campaigns
     # appear first within the warning group.
     rows.sort(key=lambda r: (r[4] <= r[0], r[0]))
-    lines = [f"📋 Campaign Roster (target: {_TARGET}, active last {_ACTIVE_DAYS}d)\n"]
+    # Must show the SAME target the rows are measured against, or
+    # /roster says 6 while the recruit advert says 8.
+    lines = [f"📋 Campaign Roster (target: {effective_target(config, state)}, "
+             f"active last {_ACTIVE_DAYS}d)\n"]
     for non_perm_n, perm_n, code, name, target in rows:
         # Icon gates on NON-PERM count only. Permanent players are full
         # members (counted in the roster, never auto-kicked, shown with
@@ -63,7 +67,7 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
 
     players = _active_players(pid, state, config)
     non_perm, perm = _split_active(players, config)
-    target = pair.get("roster_target", _TARGET)
+    target = pair.get("roster_target") or effective_target(config, state)
     combined = len(non_perm) + len(perm)
     # Icon gates on NON-PERM count only (perm players don't count toward
     # the target). Same rationale as build_roster_overview — see comment

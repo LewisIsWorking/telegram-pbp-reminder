@@ -37,7 +37,8 @@ from datetime import datetime, timezone
 
 import helpers
 import telegram as tg
-from commands.roster import _active_players, _TARGET
+from commands.roster import _active_players
+from commands.roster_members import effective_target
 
 _GATE_HOURS = 24
 _LAST_KEY = "last_recruit_focus"
@@ -47,12 +48,18 @@ _MSG_KEY = "recruit_focus_msg_id"
 # "how old is the thing already up", and the retirement sweep needs the
 # second question. Added 2026-08-17.
 _AT_KEY = "recruit_focus_at"
+# Every copy of the current advert, as {chat_id, message_id}. A bare
+# id cannot hold two posts in two different chats, and the chat is
+# load-bearing because message ids are unique per chat, not globally.
+# Added 2026-08-18 with the Nudge Bot Notifications mirror.
+_POSTS_KEY = "recruit_focus_posts"
 
 
 def _shortfall(pair: dict, state: dict, config: dict) -> tuple[int, int, int]:
     """Return (missing, active, target) for one campaign."""
     pid = str(pair["pbp_topic_ids"][0])
-    target = pair.get("roster_target", _TARGET)
+    # Ladder default; an explicit per-pair roster_target still wins.
+    target = pair.get("roster_target") or effective_target(config, state)
     active = len(_active_players(pid, state, config))
     return target - active, active, target
 

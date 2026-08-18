@@ -38,6 +38,14 @@ def extract_ids_from_live(live: dict) -> list:
     # registry gets that delete refused by perform_guarded_delete.
     if live.get("recruit_focus_msg_id"):
         ids.append(live["recruit_focus_msg_id"])
+    # Added 2026-08-18 with the Nudge Bot Notifications mirror. The advert
+    # now exists in TWO chats and the mirror's id appears nowhere in
+    # recruit_focus_msg_id — so without this its delete gets refused by
+    # perform_guarded_delete and the mirror piles up one copy a day. That
+    # is the schedule-post duplication bug wearing a different hat.
+    for entry in live.get("recruit_focus_posts") or []:
+        if entry.get("message_id"):
+            ids.append(entry["message_id"])
     for batch in live.get("gm_queue_history") or []:
         for mid in batch.get("msg_ids") or []:
             ids.append(mid)

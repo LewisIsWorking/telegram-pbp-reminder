@@ -64,6 +64,13 @@ PARTITIONS: dict[str, list[str]] = {
         # stale "4 seats open" post is retired inside Telegram's 48h
         # delete window instead of stranding in a full campaign.
         "recruit_focus_at",
+        # Every copy of the current advert as {chat_id, message_id}
+        # (2026-08-18, the Nudge Bot Notifications mirror). A bare id
+        # cannot hold two posts in two different chats, and the chat
+        # is load-bearing: message ids are unique per chat, so the
+        # mirror's id against the main group would miss or hit a
+        # stranger. Dropping this key would strand the mirror copy.
+        "recruit_focus_posts",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
@@ -115,5 +122,5 @@ DEFAULT_STATE: dict = {
     "last_pin_digest": None, "last_pin_alert_ts": "",
     "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
     "recruit_focus_msg_id": None, "last_recruit_focus": None,
-    "recruit_focus_at": None,
+    "recruit_focus_at": None, "recruit_focus_posts": [],
 }

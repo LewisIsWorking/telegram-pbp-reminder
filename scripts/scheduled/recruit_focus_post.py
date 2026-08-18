@@ -16,7 +16,8 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from scheduled.recruit_focus import (_AT_KEY, _GATE_HOURS, _LAST_KEY,
-                                     _MSG_KEY, build_recruit_message)
+                                     _MSG_KEY, _POSTS_KEY,
+                                     build_recruit_message)
 
 
 def recruit_destination(pair: dict, config: dict) -> tuple[int | None, bool]:
@@ -84,16 +85,65 @@ def post_recruit_focus(config: dict, state: dict, *,
               f"posting to the GM queue instead. Players of that campaign "
               f"will not see it, which is the one thing this post is for.")
 
-    msg_id = tg.send_message_id(config["group_id"], thread_id, text,
-                                silent=True)
-    if not msg_id:
-        return
-    prev = state.get(_MSG_KEY)
-    if prev:
-        tg.delete_message(config["group_id"], prev)
-    state[_MSG_KEY] = msg_id
+    # ⭐ TWO destinations (Lewis, 2026-08-18): the campaign's own chat
+    # topic, and the standing "What campaign needs people most?" topic in
+    # Nudge Bot Notifications — the same advert, somewhere it reads as a
+    # running list rather than a surprise in a game thread.
+    main = tg.send_message_id(config["group_id"], thread_id, text, silent=True)
+    if not main:
+        return  # primary failed; keep the old copies rather than half-replace
+    posted = [{"chat_id": config["group_id"], "message_id": main}]
+
+    mirror_chat, mirror_thread = mirror_destination(config)
+    if mirror_chat:
+        mid = tg.send_message_id(mirror_chat, mirror_thread, text, silent=True)
+        if mid:
+            posted.append({"chat_id": mirror_chat, "message_id": mid})
+        else:
+            # The mirror is a convenience and the advert is already up
+            # where it matters. Say so rather than failing the job.
+            print(f"[recruit_focus] mirror post to chat {mirror_chat} failed; "
+                  f"the campaign-topic advert is up.")
+
+    _delete_previous(config, state)
+    state[_POSTS_KEY] = posted
+    # Legacy single id kept in step for readers that still expect it,
+    # notably posting/bot_sent_state_scan.
+    state[_MSG_KEY] = main
     state[_AT_KEY] = now.isoformat()
     state[_LAST_KEY] = now.isoformat()
+
+
+def mirror_destination(config: dict) -> tuple[int | None, int | None]:
+    """``(chat_id, thread_id)`` of the standing recruit topic, or (None, None)."""
+    chat = config.get("recruit_mirror_chat_id")
+    if not chat:
+        return None, None
+    return int(chat), config.get("recruit_mirror_thread_id")
+
+
+def _delete_previous(config: dict, state: dict) -> None:
+    """Remove every copy of the last advert, each from its own chat.
+
+    ⚠️ Each entry carries its OWN chat_id, and that is load-bearing.
+    Message ids are unique per CHAT, so the two copies have unrelated
+    numbers — deleting the mirror's id against the main group would
+    either miss entirely or hit a stranger's message that happens to
+    share the number. Exactly the trap the schedule post hit on
+    2026-08-17, and the reason a bare id was not enough there either.
+
+    Falls back to the single legacy id for state written before this
+    change, which was always in the main group.
+    """
+    entries = state.get(_POSTS_KEY)
+    if entries:
+        for entry in entries:
+            if entry.get("message_id"):
+                tg.delete_message(entry.get("chat_id") or config["group_id"],
+                                  entry["message_id"])
+        return
+    if state.get(_MSG_KEY):
+        tg.delete_message(config["group_id"], state[_MSG_KEY])
 
 
 def _retire_stale_post(config: dict, state: dict, now: datetime) -> None:
@@ -102,8 +152,7 @@ def _retire_stale_post(config: dict, state: dict, now: datetime) -> None:
     Only acts when a post exists. Deliberately does NOT clear ``_LAST_KEY``:
     the 24h gate is about how often to advertise, not about cleanup.
     """
-    prev = state.get(_MSG_KEY)
-    if not prev:
+    if not (state.get(_POSTS_KEY) or state.get(_MSG_KEY)):
         return
     posted = state.get(_AT_KEY)
     if posted:
@@ -112,6 +161,7 @@ def _retire_stale_post(config: dict, state: dict, now: datetime) -> None:
                 return  # posted moments ago; let it stand for now
         except (ValueError, TypeError):
             pass
-    tg.delete_message(config["group_id"], prev)
+    _delete_previous(config, state)
+    state[_POSTS_KEY] = []
     state[_MSG_KEY] = None
     state[_AT_KEY] = None
