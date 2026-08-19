@@ -1,10 +1,10 @@
 {
-  "offset": 619355442,
+  "offset": 619355444,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-19T09:38:10+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-19T09:58:19+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -219,7 +219,7 @@
   },
   "last_state_backup": "2026-08-19T07:45:14.355654+00:00",
   "last_queue_daily": "2026-08-19",
-  "last_queue_fingerprint": "empty",
+  "last_queue_fingerprint": "52083:2026-08-19 09:55:04|52083:2026-08-19 09:58:19",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -311,14 +311,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-19",
-  "last_queue_pin_id": null,
-  "queue_post_count": 1377,
+  "last_queue_pin_id": 173388,
+  "queue_post_count": 1378,
   "gm_queue_history": [
     {
       "msg_ids": [
-        173383
+        173388,
+        173389
       ],
-      "pin_id": null
+      "pin_id": 173388
     }
   ],
   "potw_week": {
@@ -334,7 +335,7 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 122,
+  "schedule_post_msg_id": 123,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-19",
   "last_pin_alert_ts": "2026-08-19T09:40:26.337134+00:00",
