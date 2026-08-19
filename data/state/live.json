@@ -1,5 +1,5 @@
 {
-  "offset": 619355408,
+  "offset": 619355416,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-19T06:16:43+00:00",
@@ -334,22 +334,24 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 114,
+  "schedule_post_msg_id": 116,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-18",
-  "last_pin_alert_ts": "2026-08-19T06:22:13.599679+00:00",
+  "last_pin_alert_ts": "2026-08-19T06:22:14.336828+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 173160,
-  "last_recruit_focus": "2026-08-18T06:54:52.178350+00:00",
-  "recruit_focus_at": "2026-08-18T06:54:52.178350+00:00",
+  "recruit_focus_msg_id": 173352,
+  "last_recruit_focus": "2026-08-19T06:55:12.723397+00:00",
+  "recruit_focus_at": "2026-08-19T06:55:12.723397+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 173160
+      "message_id": 173352,
+      "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 63
+      "message_id": 115,
+      "auto_delete": false
     }
   ]
 }
