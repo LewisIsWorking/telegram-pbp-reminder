@@ -29,6 +29,7 @@ answer - a bot whose suite is failing should not be posting either.
 
 import os
 import sys
+from datetime import datetime, timezone
 
 import requests
 
@@ -36,9 +37,11 @@ _SCRIPTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
-from preflight.heartbeat import write_heartbeat  # noqa: E402
-from preflight.prior_runs import (consecutive_failures, explain,  # noqa: E402
-                                  should_alert, should_halt_posting)
+from preflight.heartbeat import (heartbeat_age_hours,  # noqa: E402
+                                 read_heartbeat, write_heartbeat)
+from preflight.prior_runs import (broken_hours,  # noqa: E402
+                                  consecutive_failures, explain, halt_reasons,
+                                  should_alert)
 
 WORKFLOW_FILE = "pbp-reminder.yml"
 RUNS_TO_INSPECT = 40
@@ -75,7 +78,7 @@ def fetch_conclusions(repo: str, token: str, *, branch: str = "main",
         return None
 
 
-def send_alert(streak: int, repo: str) -> None:
+def send_alert(reasons: list, age_hours: float | None, repo: str) -> None:
     """Tell a human, on the streak lengths that warrant it.
 
     ⚠️ This post is itself an unrecorded bot message, and so becomes an
@@ -94,7 +97,7 @@ def send_alert(streak: int, repo: str) -> None:
         print("[preflight] no bot_topic_id; skipping alert")
         return
     text = (
-        f"\U0001f6d1 Bot posting PAUSED\n\n{explain(streak)}\n\n"
+        f"\U0001f6d1 Bot posting PAUSED\n\n{explain(reasons, age_hours)}\n\n"
         f"https://github.com/{repo}/actions/workflows/{WORKFLOW_FILE}"
     )
     try:
@@ -104,7 +107,7 @@ def send_alert(streak: int, repo: str) -> None:
                   "text": text},
             timeout=20,
         )
-        print(f"[preflight] alert sent for streak {streak}")
+        print(f"[preflight] alert sent: {'; '.join(reasons)}")
     except Exception as error:  # noqa: BLE001 - alerting must not break the gate
         print(f"[preflight] alert failed: {error}")
 
@@ -119,26 +122,35 @@ def publish_halt(halt: bool) -> None:
 
 
 def main() -> int:
-    write_heartbeat()
+    # ⚠️ ORDER IS LOAD-BEARING. The committed heartbeat must be read before
+    # this run writes its own, or the gate would measure itself and every
+    # run would look perfectly healthy.
+    age_hours = heartbeat_age_hours(read_heartbeat(),
+                                    datetime.now(timezone.utc))
+    if age_hours is None:
+        print("[preflight] no readable heartbeat yet; relying on run history "
+              "alone for this run.")
 
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     token = os.environ.get("GITHUB_TOKEN", "")
-    if not repo or not token:
-        print("[preflight] no repo/token in env (running locally?); not halting.")
-        publish_halt(False)
-        return 0
-
-    conclusions = fetch_conclusions(repo, token)
+    conclusions = fetch_conclusions(repo, token) if repo and token else None
     if conclusions is None:
-        publish_halt(False)
-        return 0
+        # Not evidence of health, so it cannot clear the heartbeat's verdict.
+        # It simply contributes nothing.
+        print("[preflight] run history unavailable; heartbeat decides.")
+        streak = 0
+    else:
+        streak = consecutive_failures(conclusions)
 
-    streak = consecutive_failures(conclusions)
-    print(f"[preflight] {explain(streak)}")
-    halt = should_halt_posting(streak)
-    publish_halt(halt)
-    if halt and should_alert(streak):
-        send_alert(streak, repo)
+    reasons = halt_reasons(streak, age_hours)
+    print(f"[preflight] {explain(reasons, age_hours)}")
+    publish_halt(bool(reasons))
+    if reasons and should_alert(broken_hours(streak, age_hours)):
+        send_alert(reasons, age_hours, repo)
+
+    # Written last, so this run's own heartbeat can never influence the
+    # decision above, and so a run that halts still refreshes it.
+    write_heartbeat()
     return 0
 
 
