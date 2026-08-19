@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 173268,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-19T03:14:11+00:00",
-      "preview": "Lai flexes his fingers feeling something anomalous looking around them \"i guess I'm part of your tribe(?) from the time being... is that okay? Is that allowed?\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -318,7 +308,11 @@
     "msg:172771",
     "2026-08-17 15:11:06",
     "msg:172882",
-    "2026-08-17 23:49:00"
+    "2026-08-17 23:49:00",
+    "msg:173268",
+    "2026-08-19 03:14:11",
+    "msg:173315",
+    "2026-08-19 05:47:16"
   ],
   "reply_log": [
     {
@@ -1729,19 +1723,35 @@
       "player": "Anthony",
       "preview": "\"\u2605NARC?\u2605 What's a \u2605NARC\u2605 ?! Rune is a \u2605FUN GUY\u2605! He's also helpful :) .\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-19T05:26:02+00:00",
+      "pid": "52083",
+      "msg_id": "173268",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai flexes his fingers feeling something anomalous looking around them \"i guess ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-19T06:16:43+00:00",
+      "pid": "52083",
+      "msg_id": "173315",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy will inspect and size up the mysterious Lai (@Saiminaminah please describe ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-19 03:14:11",
-      "msg_ids": [
-        173339
-      ],
-      "last_posted_at": "2026-08-19T06:10:37.112747+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-18T01:57:40.378152+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 173346,
+      "caught_up_at": "2026-08-19T06:22:09.676487+00:00"
     },
     "145045": {
       "msg_ids": [],
