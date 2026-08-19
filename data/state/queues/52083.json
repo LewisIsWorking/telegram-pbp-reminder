@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 173366,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-19T08:44:47+00:00",
+      "preview": "Lai looks down at himself checking what he looks like a flightsuit under the remnants of his tribal garb, his markings hidden by it, knives strapped to his chest, a blow pipe on his left thigh, a pack on his back and a pistol inside his prosthetic thigh, the original he sold for gear when he arrived at the station after he got off world...\"what is a comm unit?\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1747,10 +1757,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 173346,
+      "fingerprint": "2026-08-19 08:44:47",
+      "msg_ids": [
+        173368
+      ],
+      "last_posted_at": "2026-08-19T08:46:21.485548+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-19T06:22:09.676487+00:00"
     },
     "145045": {
