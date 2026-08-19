@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 173401,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-08-19T12:12:41+00:00",
+      "preview": "Arktos quickly sends out a pulse of magic is response, establishing their warp. When it deploys, Arktos tries to scan the area for the cause of the anomalies. \n\nThey are getting rather tired of surprises during this trip.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1794,9 +1804,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-08-19 12:12:41",
+      "msg_ids": [
+        173407
+      ],
+      "last_posted_at": "2026-08-19T12:59:29.879077+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null

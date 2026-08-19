@@ -17432,5 +17432,85 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:25.519340+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 173086,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:51"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:26.618502+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 173405,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:29.864391+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 173407,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:32.444055+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 173409,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:32.909704+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 173397,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:33.303708+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 173397,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:33.782655+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 173398,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-19T12:59:34.702517+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 127,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
   }
 ]
