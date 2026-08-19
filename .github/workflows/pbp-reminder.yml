@@ -53,6 +53,10 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: write
+      # actions:read is what lets the preflight gate see how previous runs
+      # ended (2026-08-19). Without it the API returns 403, the gate fails
+      # open, and it is disarmed without ever saying so.
+      actions: read
     # Both crons trigger this workflow, so the full pass must exclude the
     # :30 queue-only schedule. Non-schedule events (push, workflow_dispatch)
     # still run the full pass exactly as before.
@@ -76,12 +80,30 @@ jobs:
       - name: Install dependencies
         run: pip install requests pytest pytest-cov tzdata
 
+      # Pause posting when state is not reaching the remote (2026-08-19).
+      # On 2026-08-18 `main` gained branch protection, the commit step
+      # started failing with GH006, and 25 runs in a row reloaded the same
+      # frozen state and re-posted the same queue notice. Nothing noticed
+      # for 15 hours. A message the bot cannot record becomes a permanent
+      # orphan after 48h, so silence is the safe direction here.
+      #
+      # ⚠️ This step must NOT fail the job. The commit step below still
+      # has to run, because a push that succeeds is what turns the run
+      # green and reopens the gate. See scripts/preflight/prior_runs.py.
+      - name: Preflight - can the bot still record what it sends?
+        id: preflight
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: cd scripts && python -m preflight.gate
+
       - name: Update bot command menu
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: cd scripts && python set_commands.py
 
       - name: Run inactivity checker
+        if: steps.preflight.outputs.halt != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
@@ -89,6 +111,7 @@ jobs:
         run: cd scripts && python checker.py
 
       - name: Alert on delete refusals
+        if: steps.preflight.outputs.halt != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
@@ -141,6 +164,7 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: write
+      actions: read  # for the preflight gate; see the `run` job
     if: github.event_name == 'schedule' && github.event.schedule == '30 * * * *'
     steps:
       # Same `ref: main` rule as the full run: the pbp-checker concurrency
@@ -157,7 +181,18 @@ jobs:
       - name: Install dependencies
         run: pip install requests tzdata
 
+      # Same gate as the full run. This job is the one that posted the
+      # four duplicate "Unreplied: 1" notices on 2026-08-19, so leaving it
+      # ungated would have left the reported symptom entirely in place.
+      - name: Preflight - can the bot still record what it sends?
+        id: preflight
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: cd scripts && python -m preflight.gate
+
       - name: Run queue-only checker
+        if: steps.preflight.outputs.halt != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
