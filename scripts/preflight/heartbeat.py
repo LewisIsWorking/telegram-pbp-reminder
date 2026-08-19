@@ -64,6 +64,49 @@ def build_heartbeat(run_id: str, attempt: str, now: datetime) -> dict:
     }
 
 
+def read_heartbeat(path: str = HEARTBEAT_PATH) -> dict | None:
+    """The heartbeat as checked out, or None if there isn't a usable one.
+
+    ⭐ This is the authoritative "is state persisting" signal, and it must
+    be read BEFORE this run writes its own, or it would only ever measure
+    itself.
+
+    Its authority comes from how it gets here: the heartbeat only reaches
+    the remote inside a successful state commit. So a fresh one in the
+    checkout is proof that a recent push landed, and a stale one is proof
+    that none did. Unlike the Actions API it cannot be served from a cache,
+    because it is not a query - it is the repository's own content.
+
+    None means "cannot tell" (absent, unreadable, malformed) and is kept
+    distinct from a stale reading, which is a real answer.
+    """
+    try:
+        with open(path, encoding="utf-8") as handle:
+            record = json.load(handle)
+    except (OSError, ValueError):
+        return None
+    return record if isinstance(record, dict) and record.get("written_at") else None
+
+
+def heartbeat_age_hours(record: dict | None, now: datetime) -> float | None:
+    """Hours since the last state push landed, or None if unknowable.
+
+    A timestamp in the future is treated as unknowable rather than as age
+    zero. Clock skew that large means something is wrong with the reading,
+    and the one thing this must never do is silently report health.
+    """
+    if not record:
+        return None
+    try:
+        written = datetime.fromisoformat(record["written_at"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    if written.tzinfo is None:
+        written = written.replace(tzinfo=timezone.utc)
+    age = (now - written).total_seconds() / 3600.0
+    return None if age < -0.5 else max(age, 0.0)
+
+
 def write_heartbeat(now: datetime | None = None, path: str = HEARTBEAT_PATH) -> dict:
     """Write the heartbeat and return it."""
     record = build_heartbeat(

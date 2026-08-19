@@ -8,8 +8,11 @@ pass the first test and read as working.
 """
 
 from preflight.prior_runs import (HALT_AFTER_CONSECUTIVE_FAILURES,
-                                  REPEAT_ALERT_EVERY, consecutive_failures,
-                                  explain, should_alert, should_halt_posting)
+                                  MAX_HEARTBEAT_AGE_HOURS,
+                                  REPEAT_ALERT_EVERY_HOURS, broken_hours,
+                                  consecutive_failures, explain, halt_reasons,
+                                  should_alert, should_halt_for_stale_heartbeat,
+                                  should_halt_posting)
 
 # The run history as `gh run list` reported it on 2026-08-19, newest first:
 # 25 straight failures after the last success at 2026-08-18T15:01.
@@ -72,38 +75,96 @@ class TestShouldHaltPosting:
         assert not should_halt_posting(consecutive_failures(recovered))
 
 
+class TestStaleHeartbeat:
+    def test_a_fresh_push_does_not_halt(self):
+        assert not should_halt_for_stale_heartbeat(0.5)
+
+    def test_an_old_push_halts(self):
+        assert should_halt_for_stale_heartbeat(MAX_HEARTBEAT_AGE_HOURS + 0.1)
+
+    def test_exactly_at_the_limit_is_tolerated(self):
+        assert not should_halt_for_stale_heartbeat(MAX_HEARTBEAT_AGE_HOURS)
+
+    def test_unknown_age_does_not_halt_on_its_own(self):
+        # ⚠️ "Cannot read the heartbeat" is not evidence of staleness. It
+        # contributes nothing rather than halting, or the very first run
+        # after this ships would silence the bot.
+        assert not should_halt_for_stale_heartbeat(None)
+
+
+class TestHaltReasons:
+    def test_the_cached_api_case_still_halts(self):
+        # ⭐⭐ THE REGRESSION TEST. On 2026-08-19 the Actions API served a
+        # cached page of runs from three days earlier, so the streak read 0
+        # while state had not been pushed for 15 hours. The gate opened and
+        # posting proceeded. Now the heartbeat halts it regardless of what
+        # the API claims.
+        reasons = halt_reasons(0, 15.0)
+        assert reasons, "a stale heartbeat must halt even when the API says all is well"
+        assert "15.0h ago" in reasons[0]
+
+    def test_the_reverse_also_holds(self):
+        # A fresh heartbeat must not clear a failing streak either. Neither
+        # signal may overrule the other; each can only add a reason.
+        assert halt_reasons(25, 0.1)
+
+    def test_both_signals_are_reported_when_both_fire(self):
+        assert len(halt_reasons(25, 15.0)) == 2
+
+    def test_nothing_wrong_means_no_reasons(self):
+        # ⭐ can-fail counterpart: without this, returning a constant
+        # non-empty list would pass every test above.
+        assert halt_reasons(0, 0.5) == []
+
+    def test_unknown_age_with_a_clean_history_does_not_halt(self):
+        assert halt_reasons(0, None) == []
+
+
+class TestBrokenHours:
+    def test_prefers_the_heartbeat(self):
+        assert broken_hours(0, MAX_HEARTBEAT_AGE_HOURS + 5) == 5
+
+    def test_falls_back_to_the_streak_when_age_is_unknown(self):
+        assert broken_hours(6, None) == 3  # two runs an hour
+
+    def test_never_negative(self):
+        assert broken_hours(0, 0.0) == 0
+
+
 class TestShouldAlert:
-    def test_alerts_when_it_first_trips(self):
-        assert should_alert(2)
+    def test_alerts_at_onset(self):
+        assert should_alert(0)
 
     def test_alerts_again_when_nobody_has_looked(self):
-        assert should_alert(6)
+        assert should_alert(3)
 
     def test_stays_quiet_between_those(self):
-        # Otherwise the fix for spam is itself hourly spam.
-        assert not should_alert(3)
-        assert not should_alert(4)
-        assert not should_alert(5)
+        # Otherwise the fix for spam is itself spam.
+        assert not should_alert(1)
+        assert not should_alert(2)
 
     def test_then_once_a_day(self):
-        assert should_alert(REPEAT_ALERT_EVERY)
-        assert should_alert(REPEAT_ALERT_EVERY * 2)
+        assert should_alert(REPEAT_ALERT_EVERY_HOURS)
+        assert should_alert(REPEAT_ALERT_EVERY_HOURS * 2)
 
     def test_not_on_the_hours_in_between(self):
-        assert not should_alert(REPEAT_ALERT_EVERY + 1)
-
-    def test_silent_while_healthy(self):
-        assert not should_alert(0)
-        assert not should_alert(1)
+        assert not should_alert(REPEAT_ALERT_EVERY_HOURS + 1)
+        assert not should_alert(5)
 
 
 class TestExplain:
-    def test_names_the_cause_and_the_consequence_when_halting(self):
-        message = explain(25)
+    def test_names_every_cause_and_the_consequence(self):
+        message = explain(halt_reasons(25, 15.0), 15.0)
         assert "25 consecutive" in message
+        assert "15.0h ago" in message
         # The operator needs to know where to look and why it matters.
         assert "state-commit step" in message
         assert "48h" in message
 
     def test_says_so_when_healthy(self):
-        assert "healthy" in explain(0)
+        assert "healthy" in explain([], 0.4)
+
+    def test_cannot_disagree_with_the_decision(self):
+        # ⭐ explain() takes the reasons the gate acted on, not the raw
+        # numbers, so it cannot report a cause that was not acted upon.
+        assert "healthy" in explain([], 99.0)

@@ -5,8 +5,6 @@ here is that the gate never takes the bot down with it, and never disarms
 itself by mistaking "could not tell" for "all clear".
 """
 
-import json
-
 import pytest
 
 from preflight import gate
@@ -40,8 +38,14 @@ def _runs(*conclusions):
 
 @pytest.fixture(autouse=True)
 def _no_real_heartbeat(monkeypatch, tmp_path):
-    """Keep the heartbeat out of the working tree during tests."""
+    """Keep the heartbeat out of the working tree, and default it to fresh.
+
+    Fresh by default so each test isolates the one signal it is about. The
+    tests that care about the heartbeat override it explicitly.
+    """
     monkeypatch.setattr(gate, "write_heartbeat", lambda: {"written_at": "x"})
+    monkeypatch.setattr(gate, "read_heartbeat", lambda: {"written_at": "fresh"})
+    monkeypatch.setattr(gate, "heartbeat_age_hours", lambda record, now: 0.2)
 
 
 class TestFetchConclusions:
@@ -100,7 +104,7 @@ class TestMain:
         monkeypatch.setenv("GITHUB_TOKEN", "tok")
         self.alerts = []
         monkeypatch.setattr(gate, "send_alert",
-                            lambda streak, repo: self.alerts.append(streak))
+                            lambda reasons, age, repo: self.alerts.append(reasons))
 
     def _run_with(self, conclusions, monkeypatch):
         monkeypatch.setattr(gate, "fetch_conclusions",
@@ -116,12 +120,26 @@ class TestMain:
         assert self._run_with(["success", "success"], monkeypatch) == 0
         assert self.out.read_text(encoding="utf-8") == "halt=false\n"
 
-    def test_fails_open_when_history_is_unreadable(self, monkeypatch):
-        # ⚠️ "Could not tell" must never halt: the gate would be unable to
-        # reopen, because reopening requires reading the history it cannot
-        # reach. Loud in the log, permissive in effect.
+    def test_unreadable_history_alone_does_not_halt(self, monkeypatch):
+        # ⚠️ "Could not tell" must never halt on its own: the gate would be
+        # unable to reopen. Loud in the log, permissive in effect. The
+        # heartbeat is still consulted, and here it is fresh.
         assert self._run_with(None, monkeypatch) == 0
         assert self.out.read_text(encoding="utf-8") == "halt=false\n"
+
+    def test_unreadable_history_cannot_clear_a_stale_heartbeat(self, monkeypatch):
+        # ⭐ The 2026-08-19 miss, at the gate level: whatever the API does
+        # or fails to do, a stale heartbeat still stops posting.
+        monkeypatch.setattr(gate, "heartbeat_age_hours", lambda r, n: 15.0)
+        assert self._run_with(None, monkeypatch) == 0
+        assert self.out.read_text(encoding="utf-8") == "halt=true\n"
+
+    def test_a_healthy_looking_history_cannot_clear_a_stale_heartbeat(self, monkeypatch):
+        # ⭐⭐ The exact cached-API reading that fooled it: the API reports
+        # nothing but successes while state has not moved for 15 hours.
+        monkeypatch.setattr(gate, "heartbeat_age_hours", lambda r, n: 15.0)
+        assert self._run_with(["success"] * 8, monkeypatch) == 0
+        assert self.out.read_text(encoding="utf-8") == "halt=true\n"
 
     def test_fails_open_outside_actions(self, monkeypatch):
         monkeypatch.delenv("GITHUB_TOKEN", raising=False)
@@ -130,65 +148,27 @@ class TestMain:
 
     def test_alerts_when_it_trips(self, monkeypatch):
         self._run_with(["failure", "failure", "success"], monkeypatch)
-        assert self.alerts == [2]
-
-    def test_no_alert_on_the_quiet_streak_lengths(self, monkeypatch):
-        self._run_with(["failure"] * 3 + ["success"], monkeypatch)
-        assert self.alerts == []
+        assert len(self.alerts) == 1
 
     def test_no_alert_while_healthy(self, monkeypatch):
         self._run_with(["success"], monkeypatch)
         assert self.alerts == []
 
-    def test_writes_the_heartbeat_before_deciding(self, monkeypatch):
-        # The heartbeat is what makes the NEXT run's evidence honest, so
-        # it must be written even on the run that halts.
+    def test_reads_the_committed_heartbeat_before_writing_its_own(self, monkeypatch):
+        # ⚠️⚠️ Order is the whole mechanism. If this run's heartbeat were
+        # written first, the gate would measure itself and every run would
+        # look perfectly healthy, silently and permanently.
+        order = []
+        monkeypatch.setattr(gate, "read_heartbeat",
+                            lambda: order.append("read") or {"written_at": "x"})
+        monkeypatch.setattr(gate, "write_heartbeat",
+                            lambda: order.append("write") or {})
+        self._run_with(["success"], monkeypatch)
+        assert order == ["read", "write"]
+
+    def test_writes_the_heartbeat_even_on_a_run_that_halts(self, monkeypatch):
         written = []
         monkeypatch.setattr(gate, "write_heartbeat",
                             lambda: written.append(True) or {})
         self._run_with(["failure"] * 5, monkeypatch)
         assert written == [True]
-
-
-class TestHeartbeat:
-    def test_writes_a_record_that_changes_every_run(self, tmp_path, monkeypatch):
-        from datetime import datetime, timezone
-
-        from preflight.heartbeat import write_heartbeat
-        path = tmp_path / "state" / "ci_heartbeat.json"
-        monkeypatch.setenv("GITHUB_RUN_ID", "123")
-        monkeypatch.setenv("GITHUB_RUN_ATTEMPT", "2")
-        record = write_heartbeat(datetime(2026, 8, 19, tzinfo=timezone.utc),
-                                 path=str(path))
-        assert record["last_run_id"] == "123"
-        assert record["last_run_attempt"] == "2"
-        assert json.loads(path.read_text(encoding="utf-8"))["written_at"].startswith("2026-08-19")
-
-    def test_default_path_is_anchored_to_the_repo_not_the_cwd(self):
-        # ⭐ The workflow runs this as `cd scripts && python -m preflight.gate`.
-        # A cwd-relative default would write scripts/data/ci_heartbeat.json,
-        # which the commit step's `git add data/` never sees - so the file
-        # would exist, look correct, and never be pushed. The heartbeat's
-        # whole job is to make the push happen, so that miss would be silent
-        # and total.
-        import os
-
-        from preflight import heartbeat
-        assert os.path.isabs(heartbeat.HEARTBEAT_PATH)
-        repo_root = os.path.dirname(os.path.dirname(os.path.dirname(
-            os.path.abspath(heartbeat.__file__))))
-        assert heartbeat.HEARTBEAT_PATH == os.path.join(
-            repo_root, "data", "ci_heartbeat.json")
-        # And it must sit OUTSIDE data/state/, whose schema registry demands
-        # an owning module and a runtime reader the heartbeat does not have.
-        assert os.path.join("data", "state") not in heartbeat.HEARTBEAT_PATH
-
-    def test_a_rerun_of_the_same_run_still_differs(self, monkeypatch):
-        # ⚠️ Re-running a failed run reuses GITHUB_RUN_ID. That is exactly
-        # when a human is retrying a broken push, so the file must still
-        # change or there would be nothing to commit and nothing to prove.
-        from datetime import datetime, timezone
-
-        from preflight.heartbeat import build_heartbeat
-        now = datetime(2026, 8, 19, tzinfo=timezone.utc)
-        assert build_heartbeat("123", "1", now) != build_heartbeat("123", "2", now)

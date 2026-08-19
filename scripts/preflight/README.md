@@ -29,9 +29,33 @@ remembers what it sends, it stays quiet.
 
 | file | job |
 |---|---|
-| `prior_runs.py` | pure arithmetic on the workflow's own run conclusions, with no I/O, so every streak length is testable directly |
-| `heartbeat.py` | writes `data/ci_heartbeat.json` each run so there is **always** something to push |
-| `gate.py` | the entry point: heartbeat → read history → publish `halt` → alert |
+| `prior_runs.py` | pure decision logic over both signals, with no I/O, so every case is testable directly |
+| `heartbeat.py` | reads and writes `data/ci_heartbeat.json`, which is both the freshness signal and the guarantee there is **always** something to push |
+| `gate.py` | the entry point: read heartbeat → read history → publish `halt` → alert → write heartbeat |
+
+⚠️ **The heartbeat is read before this run writes its own.** Written first, the
+gate would measure itself and every run would look perfectly healthy, silently
+and permanently. There is a test pinning the call order for exactly this reason.
+
+## ⭐ Two signals, combined as a union
+
+`halt_reasons()` asks both, and **either may add a reason to stay quiet while
+neither can clear the other's.**
+
+| signal | strength | weakness |
+|---|---|---|
+| committed heartbeat age | local repo content, cannot be served from a cache | says nothing until the first heartbeat exists |
+| Actions run history | catches the very first broken run immediately | an API query, so it can be stale or 403 |
+
+This shape was forced by a real miss, hours after the first version shipped. The
+Actions API served a **cached page of runs from three days earlier**, the gate
+read it as *0 failed runs*, and posting proceeded on a run whose real streak was
+27. Re-querying minutes later returned correct data, so it was transient rather
+than a bad query.
+
+The lesson is not "use a better query". It is that a source which can only ever
+make the gate **more** cautious does not need to be reliable. Under a union,
+neither a stale API nor a missing heartbeat can unlock anything.
 
 ## Two properties that are easy to break
 
@@ -71,8 +95,15 @@ returns 403 and the gate fails open, armed in appearance only.
 cd scripts && python -m pytest test_preflight_prior_runs.py test_preflight_gate.py -q
 ```
 
-The guards are proven by mutation, not by reading: inverting
-`should_halt_posting` in either direction, inverting the streak
-arithmetic, and collapsing `None` into `[]` each fail the suite. The
-load-bearing case replays the real 2026-08-18 run history and requires a
-halt, paired with a healthy-history case so a hardcoded `True` cannot pass.
+The guards are proven by mutation, not by reading. Nine mutations, each
+asserted to have **applied** before the run so green can never mean "the probe
+never arrived":
+
+inverting `should_halt_posting` either way, inverting the streak arithmetic,
+collapsing `None` into `[]`, removing the heartbeat signal, making a stale
+heartbeat never halt, making an unknown age halt, **collapsing the union back
+into an intersection**, and **writing the heartbeat before reading it**.
+
+Two load-bearing cases: the real 2026-08-18 run history must halt, and the
+cached-API reading from 2026-08-19 (`streak 0`, heartbeat 15h old) must halt
+anyway. Each is paired with a healthy case so a hardcoded `True` cannot pass.
