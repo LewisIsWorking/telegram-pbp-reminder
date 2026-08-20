@@ -1,10 +1,10 @@
 {
-  "offset": 619355550,
+  "offset": 619355561,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-19T18:44:55+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-08-20T06:33:13+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -58,11 +58,11 @@
   },
   "last_alerts": {
     "52083": "2026-08-14T06:19:17.860204+00:00",
-    "66154": "2026-08-19T06:10:29.674352+00:00",
+    "66154": "2026-08-20T06:56:35.255496+00:00",
     "51357": "2026-08-19T06:10:29.674352+00:00",
-    "25059": "2026-08-19T06:10:29.674352+00:00",
+    "25059": "2026-08-20T06:56:35.255496+00:00",
     "107171": "2026-08-19T06:10:29.674352+00:00",
-    "40585": "2026-08-19T06:10:29.674352+00:00",
+    "40585": "2026-08-20T06:56:35.255496+00:00",
     "76799": "2026-08-19T22:31:21.621510+00:00",
     "107151": "2026-08-19T07:45:14.355654+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00"
@@ -167,7 +167,8 @@
     "107151": "active",
     "1242": "active",
     "66154": "active",
-    "40585": "active"
+    "40585": "active",
+    "25059": "active"
   },
   "last_campaign_table": "2026-08-18T01:40:26.400284+00:00",
   "session_poll": {
@@ -223,7 +224,7 @@
   },
   "last_state_backup": "2026-08-19T07:45:14.355654+00:00",
   "last_queue_daily": "2026-08-19",
-  "last_queue_fingerprint": "52083:2026-08-19 09:55:04|52083:2026-08-19 09:58:19|52083:2026-08-19 10:05:19|52083:2026-08-19 18:44:55",
+  "last_queue_fingerprint": "empty",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -315,15 +316,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-19",
-  "last_queue_pin_id": 173479,
+  "last_queue_pin_id": null,
   "queue_post_count": 1385,
   "gm_queue_history": [
     {
       "msg_ids": [
-        173479,
-        173480
+        173519
       ],
-      "pin_id": 173479
+      "pin_id": null
     }
   ],
   "potw_week": {
@@ -339,23 +339,23 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W33",
-  "schedule_post_msg_id": 159,
+  "schedule_post_msg_id": 161,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-19",
-  "last_pin_alert_ts": "2026-08-20T05:04:09.148235+00:00",
+  "last_pin_alert_ts": "2026-08-20T06:56:43.790014+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 173352,
-  "last_recruit_focus": "2026-08-19T06:55:12.723397+00:00",
-  "recruit_focus_at": "2026-08-19T06:55:12.723397+00:00",
+  "recruit_focus_msg_id": 173520,
+  "last_recruit_focus": "2026-08-20T06:56:35.255496+00:00",
+  "recruit_focus_at": "2026-08-20T06:56:35.255496+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 173352,
+      "message_id": 173520,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 115,
+      "message_id": 160,
       "auto_delete": false
     }
   ]
