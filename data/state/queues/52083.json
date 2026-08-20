@@ -1,6 +1,25 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 173543,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-20T07:58:27+00:00",
+      "preview": "\"Environmental protection module?\" Lai repeats looking form the rectangular device to Livy",
+      "media_group_id": null
+    },
+    {
+      "message_id": 173544,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-20T07:58:59+00:00",
+      "preview": "\"I would very much appreciate that\" lai bow his head a bit",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1802,10 +1821,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 173518,
+      "fingerprint": "2026-08-20 07:58:27|2026-08-20 07:58:59",
+      "msg_ids": [
+        173547
+      ],
+      "last_posted_at": "2026-08-20T08:04:38.385314+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-20T06:56:35.255496+00:00"
     },
     "145045": {
