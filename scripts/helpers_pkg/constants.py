@@ -49,7 +49,27 @@ POTW_POST_HOUR = 9
 
 PACE_INTERVAL_DAYS = 7
 
-LEADERBOARD_INTERVAL_DAYS = 3
+# ⚠️ INTERVAL and WINDOW below MUST stay equal, and a guard test says so.
+#
+# The leaderboard reports a rolling WINDOW every INTERVAL days. If
+# INTERVAL < WINDOW consecutive reports OVERLAP and the same posts are
+# counted again in each. If INTERVAL > WINDOW there is a GAP and activity
+# between reports is never counted at all.
+#
+# Lewis, 2026-08-19: "This is only meant to be weekly." It was firing
+# every 3 days against a 7 day window, so each report re-counted 4 days of
+# the previous one and the MVP of the Week was awarded roughly twice a
+# week (Anthony had reached MVP x15). Every other part of the message
+# already said weekly: the title, the W33 to W34 range, "MVP of the Week",
+# and "replies cleared this week". The interval was the one dissenter.
+# Measured rather than assumed: consecutive posts were 2026-08-16T19:25
+# and 2026-08-19T19:31, exactly 3 days apart.
+LEADERBOARD_INTERVAL_DAYS = 7
+
+# How far back the leaderboard counts. Named rather than left as a bare 7
+# in leaderboard.py so the equality above is something a test can assert
+# instead of something a reader has to happen to notice.
+LEADERBOARD_WINDOW_DAYS = 7
 
 COMBAT_PING_HOURS = 4
 

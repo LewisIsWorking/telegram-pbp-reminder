@@ -12,13 +12,16 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
                         now: datetime, streaks: list | None = None,
                         state: dict | None = None) -> str:
     """Format the leaderboard message from collected stats."""
-    seven_days_ago = now - timedelta(days=7)
+    # Named rather than a bare 7 so the "report the window you post at"
+    # rule in helpers_pkg.constants is checkable, not merely stated. It
+    # was 3 vs 7 from an unknown date until 2026-08-19 and nothing noticed.
+    window_start = now - timedelta(days=helpers.LEADERBOARD_WINDOW_DAYS)
 
     campaign_stats.sort(key=lambda c: c["player_7d"], reverse=True)
     active = [c for c in campaign_stats if c["total_7d"] > 0]
     dead = [c for c in campaign_stats if c["total_7d"] == 0]
 
-    date_from = fmt_date(seven_days_ago)
+    date_from = fmt_date(window_start)
     date_to = fmt_date(now)
 
     lines = [f"📊 Weekly Campaign Leaderboard ({date_from} to {date_to})"]
@@ -114,12 +117,22 @@ def _format_leaderboard(campaign_stats: list, global_player_posts: dict,
             streak_lines.append(f"{icon} {s['name']} — {s['streak']}d streak ({s['campaign']})")
         lines.append("\n━━━━━━━━━━━━━━━━\n\n🔥 Longest Active Streaks:\n\n" + "\n".join(streak_lines))
 
-    # Weekly queue clearance report
+    # Weekly queue clearance report.
+    #
+    # ⚠️ These four lines carried `# pragma: no cover` until 2026-08-19,
+    # which is why nobody noticed the post they sit on was firing twice a
+    # week while saying "this week". Excluded code is code that cannot be
+    # wrong on paper. Now covered by test_leaderboard_is_weekly.py.
+    #
+    # ``now`` is passed explicitly rather than letting get_week_clears
+    # default to the wall clock: a report about a window must measure that
+    # window from the same instant the rest of the message used, or the
+    # line can disagree with the header it sits under.
     if state:
-        from commands.queue_stats import get_week_clears  # pragma: no cover
-        week_clears = get_week_clears(state)  # pragma: no cover
-        if week_clears:  # pragma: no cover
-            lines.append(f"\n━━━━━━━━━━━━━━━━\n\n📬 GM Queue: {week_clears} replies cleared this week.")  # pragma: no cover
+        from commands.queue_stats import get_week_clears
+        week_clears = get_week_clears(state, now)
+        if week_clears:
+            lines.append(f"\n━━━━━━━━━━━━━━━━\n\n📬 GM Queue: {week_clears} replies cleared this week.")
 
     return "\n".join(lines)
 
