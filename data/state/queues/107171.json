@@ -1,25 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 173429,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-19T15:34:38+00:00",
-      "preview": "\"An energy buildup is surging closeby. I suspect another event is about to occur; though I should hope that this one is not bomb.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173430,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-19T15:35:31+00:00",
-      "preview": "\"Shall we investigate? Or avoid it as we head towards the bridge? Thoughts?\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -336,7 +317,11 @@
     "msg:171366",
     "2026-08-10 04:28:38",
     "msg:173401",
-    "2026-08-19 12:12:41"
+    "2026-08-19 12:12:41",
+    "msg:173429",
+    "2026-08-19 15:34:38",
+    "msg:173430",
+    "2026-08-19 15:35:31"
   ],
   "reply_log": [
     {
@@ -1818,20 +1803,36 @@
       "player": "Laetheron",
       "preview": "Arktos quickly sends out a pulse of magic is response, establishing their warp. ",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-20T01:07:55+00:00",
+      "pid": "107171",
+      "msg_id": "173429",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"An energy buildup is surging closeby. I suspect another event is about to occur",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-20T01:08:01+00:00",
+      "pid": "107171",
+      "msg_id": "173430",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Shall we investigate? Or avoid it as we head towards the bridge? Thoughts?\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-19 15:34:38|2026-08-19 15:35:31",
-      "msg_ids": [
-        173434
-      ],
-      "last_posted_at": "2026-08-19T15:57:55.113412+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 173478,
       "pending_delete": [],
-      "caught_up_at": "2026-08-19T14:40:23.727391+00:00"
+      "caught_up_at": "2026-08-20T01:41:08.410041+00:00"
     },
     "142887": {
       "fingerprint": "",

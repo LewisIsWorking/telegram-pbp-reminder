@@ -821,7 +821,9 @@
       "2026-07-28T03:19:58.095748+00:00",
       "2026-08-01T00:06:09.321805+00:00",
       "2026-08-11T02:12:52.614774+00:00",
-      "2026-08-19T14:40:23.720683+00:00"
+      "2026-08-19T14:40:23.720683+00:00",
+      "2026-08-20T01:41:08.406032+00:00",
+      "2026-08-20T01:41:08.409882+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1709,20 +1711,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-07-27T04:42:58.525969+00:00",
-      "player": "Horia",
-      "preview": "hunter's aim then shoot",
-      "msg_id": "168595"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-07-27T04:42:58.531298+00:00",
-      "player": "Anthony",
-      "preview": "Shoo what you can't even see them.",
-      "msg_id": "168596"
-    },
     {
       "pid": "40585",
       "time": "2026-07-27T04:42:58.536698+00:00",
@@ -3108,6 +3096,20 @@
       "player": "Laetheron",
       "preview": "Twilight treads lightly through the copse of trees towards t",
       "msg_id": "173402"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-20T01:41:08.406032+00:00",
+      "player": "Laetheron",
+      "preview": "\"An energy buildup is surging closeby. I suspect another eve",
+      "msg_id": "173429"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-20T01:41:08.409882+00:00",
+      "player": "Laetheron",
+      "preview": "\"Shall we investigate? Or avoid it as we head towards the br",
+      "msg_id": "173430"
     }
   ],
   "pending_potw_boons": {
