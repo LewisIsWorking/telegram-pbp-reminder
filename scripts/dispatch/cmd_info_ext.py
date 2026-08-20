@@ -37,6 +37,23 @@ def handle(ctx: dict) -> bool:
         tg.send_message(gid, reply, build_queue_stats(config, state))
         return True
 
+    # Recruitment venue rotation, added 2026-08-20.
+    if cmd in ("/recruitads", "/recruityield"):
+        from commands.recruit_ads import (build_recruit_ads,
+                                          build_recruit_yield)
+        body = (build_recruit_ads(config, state) if cmd == "/recruitads"
+                else build_recruit_yield(state))
+        tg.send_message(gid, reply, body)
+        return True
+
+    # The two write commands are GM-only: they move the yield figures that
+    # decide where the next hour of effort goes, so a wrong credit quietly
+    # steers the whole search.
+    if cmd in ("/recruitposted", "/recruitjoined"):
+        from dispatch.cmd_recruit import handle_recruit_write
+        handle_recruit_write(cmd, ctx, gm_ids)
+        return True
+
     if cmd == "/reactions":
         from commands.reactions import build_reactions
         tg.send_message(gid, reply, build_reactions(config, state, pid, name))

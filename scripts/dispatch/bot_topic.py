@@ -126,7 +126,14 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
     no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help",
                    "/pbphelp", "/queue", "/timeline", "/health",
                    "/queuestats", "/roster",
-                   "/rostercampaigns", "/rosterplayers", "/rosterall"}
+                   "/rostercampaigns", "/rosterplayers", "/rosterall",
+                   # Recruitment is cross-campaign by construction too:
+                   # the venue rotation covers the whole group, and the
+                   # campaign being advertised comes from recruit_focus
+                   # rather than from wherever the command was typed.
+                   # Added 2026-08-20.
+                   "/recruitads", "/recruityield",
+                   "/recruitposted", "/recruitjoined"}
     if cmd_word in no_campaign:
         print(f"Bot topic: {cmd_word} from {user_name} (global)")
         pid = next(iter(maps.to_name), None)

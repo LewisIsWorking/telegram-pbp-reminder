@@ -47,6 +47,13 @@ _READ_CMDS = frozenset({
     # allowed" and did nothing at all, and from a campaign topic they
     # replied into the in-character pbp thread instead of the chat topic.
     "/rostercampaigns", "/rosterplayers", "/rosterall",
+    # Recruitment venue rotation, added 2026-08-20. All four registries
+    # were updated together: this set, bot_topic's no_campaign set,
+    # cmd_info_ext's handler, and set_commands. The 2026-08-14 note above
+    # is the same bug one layer up, so there is now a guard:
+    # test_every_command_is_reachable.py fails if a command reaches some
+    # of those registries and not the rest.
+    "/recruitads", "/recruityield", "/recruitposted", "/recruitjoined",
 })
 
 

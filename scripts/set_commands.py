@@ -58,10 +58,18 @@ EVERYONE_COMMANDS = [
     ("queuestats", "GM reply stats and productivity"),
     ("registry", "All players who have played in this campaign"),
     ("roster", "Campaign player counts and join/leave history"),
+    # Recruitment venue rotation, added 2026-08-20. Read-only pair here,
+    # the two that write are in GM_COMMANDS below.
+    ("recruitads", "Where to advertise today, and each venue's rules"),
+    ("recruityield", "Which venues have actually produced players"),
 ]
 
 GM_COMMANDS = [
     ("gm", "GM dashboard overview"),
+    # Added 2026-08-20. GM-only because they move the yield figures that
+    # decide where recruitment effort goes next.
+    ("recruitposted", "Record that the advert went up at a venue"),
+    ("recruitjoined", "Credit a new player to the venue they came from"),
     ("rostercampaigns", "Per-campaign full breakdown for every campaign"),
     ("rosterplayers", "Cross-campaign player table with at-risk markers"),
     ("rosterall", "Full roster + at-risk + recent joiners/leavers"),

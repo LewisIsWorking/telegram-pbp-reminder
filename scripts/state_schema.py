@@ -94,6 +94,14 @@ PARTITIONS: dict[str, list[str]] = {
         "campaign_notes",
         # /timeline — GM-entered entries that were being discarded.
         "timeline_events",
+        # Recruitment venue rotation, added 2026-08-20. ⚠️ REQUIRED, not
+        # optional. save() builds each partition as
+        # {k: state[k] for k in keys if k in state}, so a key absent from
+        # this list is DISCARDED on every save, with no error. Every
+        # /recruitposted and /recruitjoined would look like it worked and
+        # be gone by the next run, which is the same bug the
+        # timeline_events note above records.
+        "recruitment_log",
     ],
 }
 
