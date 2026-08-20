@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "seeded": "2026-08-20",
+  "_readme": "Where campaign adverts can go. Hand-edited catalogue; the mutable half (when we last posted, who joined from where) lives in state under recruitment_log. See scripts/recruiting/README.md.",
+  "_cooldown_source": "'rule' means the venue states it. 'assumed' means nobody has checked and the number is a conservative guess. Never shorten an assumed cooldown without reading the venue's rules first: a ban costs more than a missed week.",
+  "_fit": "How well the venue matches THIS offering: free, Pathfinder 2e, play-by-post, on Telegram. A busy venue full of people wanting live voice games is a bad fit no matter how large it is.",
+  "venues": [
+    {
+      "id": "pf2e-discord-lfg",
+      "name": "Pathfinder 2e Discord: looking for players as GM",
+      "url": "",
+      "kind": "discord",
+      "status": "active",
+      "fit": "high",
+      "cooldown_days": 7,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "The venue Lewis already uses. URL and the channel's actual repost rule still need filling in.",
+      "format": {
+        "title": "",
+        "max_chars": 2000,
+        "needs_flair": false
+      },
+      "checked": "2026-08-20",
+      "notes": "The only venue with a track record so far. Everything else in this file is unproven."
+    },
+    {
+      "id": "paizo-recruitment",
+      "name": "Paizo forums: Recruitment",
+      "url": "https://paizo.com/community/forums/gaming/playbypost/recruitment",
+      "kind": "forum",
+      "status": "candidate",
+      "fit": "high",
+      "cooldown_days": 14,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "Paizo's own play-by-post recruitment board. Verify the sticky before the first post.",
+      "format": {
+        "title": "[PF2e] <campaign name> - recruiting <n> players (play-by-post, Telegram)",
+        "max_chars": 0,
+        "needs_flair": false
+      },
+      "checked": "2026-08-20",
+      "notes": "Best on-paper fit: official Pathfinder audience AND explicitly play-by-post. Forum threads keep pulling people in for months instead of scrolling away in an hour."
+    },
+    {
+      "id": "rpg-crossing",
+      "name": "RPG Crossing: Games Seeking Players",
+      "url": "https://www.rpgcrossing.com/",
+      "kind": "forum",
+      "status": "candidate",
+      "fit": "high",
+      "cooldown_days": 14,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "Read the Games Seeking Players sticky before posting.",
+      "format": {
+        "title": "[PF2e] <campaign name> - play-by-post, recruiting <n>",
+        "max_chars": 0,
+        "needs_flair": false
+      },
+      "checked": "2026-08-20",
+      "notes": "30,000+ members and built specifically around play-by-post, with Pathfinder among its supported systems. Second best on-paper fit."
+    },
+    {
+      "id": "rpgnet-pbp",
+      "name": "RPGnet: Roleplay-By-Post recruitment",
+      "url": "https://forum.rpg.net/",
+      "kind": "forum",
+      "status": "candidate",
+      "fit": "medium",
+      "cooldown_days": 14,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "Has a Roleplay-By-Post meta forum carrying PF2e recruitment threads.",
+      "format": {
+        "title": "[Recruitment] Pathfinder 2E - <campaign name>",
+        "max_chars": 0,
+        "needs_flair": false
+      },
+      "checked": "2026-08-20",
+      "notes": "Confirmed to carry PF2e play-by-post recruitment. Smaller and more general than the two above."
+    },
+    {
+      "id": "r-lfg",
+      "name": "reddit: r/lfg",
+      "url": "https://www.reddit.com/r/lfg/",
+      "kind": "reddit",
+      "status": "candidate",
+      "fit": "medium",
+      "cooldown_days": 1,
+      "cooldown_source": "rule",
+      "rules_url": "https://www.reddit.com/r/lfg/",
+      "rules_note": "STATED RULE: no more than one post every 24 hours. Uses a title code system, check the sidebar. Flair is 'GM and player(s) wanted' or 'Player(s) wanted'.",
+      "format": {
+        "title": "[Online][PF2e][Play-by-Post][Telegram] <campaign name> - recruiting <n>",
+        "max_chars": 40000,
+        "needs_flair": true
+      },
+      "checked": "2026-08-20",
+      "notes": "Large but dominated by live voice games, so expect a low conversion rate. The 24h cooldown is a real rule and the only one in this file that is not a guess. Posts reportedly do best Sunday evening US time."
+    },
+    {
+      "id": "r-pbp",
+      "name": "reddit: play-by-post subreddit",
+      "url": "",
+      "kind": "reddit",
+      "status": "candidate",
+      "fit": "unknown",
+      "cooldown_days": 7,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "UNVERIFIED. I could not confirm the exact subreddit name or that it is active. Confirm it exists before adding it to the rotation.",
+      "format": {
+        "title": "",
+        "max_chars": 40000,
+        "needs_flair": true
+      },
+      "checked": "2026-08-20",
+      "notes": "Recorded as a lead, not a venue. Left deliberately incomplete rather than guessed at."
+    },
+    {
+      "id": "giantitp-recruitment",
+      "name": "Giant in the Playground: Recruitment",
+      "url": "https://forums.giantitp.com/",
+      "kind": "forum",
+      "status": "candidate",
+      "fit": "unknown",
+      "cooldown_days": 14,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "UNVERIFIED. Long-running play-by-post forum; PF2e activity level not checked.",
+      "format": {
+        "title": "[PF2e] <campaign name> - play-by-post",
+        "max_chars": 0,
+        "needs_flair": false
+      },
+      "checked": "2026-08-20",
+      "notes": "Recorded as a lead."
+    },
+    {
+      "id": "dndbeyond-lfg",
+      "name": "D&D Beyond forums: Looking For Group",
+      "url": "https://www.dndbeyond.com/forums/d-d-beyond-general/looking-for-players-groups",
+      "kind": "forum",
+      "status": "rejected",
+      "fit": "poor",
+      "cooldown_days": 30,
+      "cooldown_source": "rule",
+      "rules_url": "https://www.dndbeyond.com/forums/d-d-beyond-general/looking-for-players-groups",
+      "rules_note": "STATED RULE: do not spam or bump unless the campaign undergoes a significant change.",
+      "format": {"title": "", "max_chars": 0, "needs_flair": false},
+      "checked": "2026-08-20",
+      "notes": "REJECTED: a D&D 5e audience. Recorded so the decision is not re-litigated in three months."
+    },
+    {
+      "id": "roll20-lfg",
+      "name": "Roll20 Looking For Group",
+      "url": "https://app.roll20.net/lfg/",
+      "kind": "vtt",
+      "status": "rejected",
+      "fit": "poor",
+      "cooldown_days": 30,
+      "cooldown_source": "rule",
+      "rules_url": "https://app.roll20.net/forum/post/2086083/read-first-posting-to-lfg-and-paid-games",
+      "rules_note": "STATED RULE: listings must only use Roll20 to play.",
+      "format": {"title": "", "max_chars": 0, "needs_flair": false},
+      "checked": "2026-08-20",
+      "notes": "REJECTED: the rules require the game to run on Roll20 and ours runs on Telegram. Same reason rules out the Foundry and Fantasy Grounds boards."
+    }
+  ]
+}
