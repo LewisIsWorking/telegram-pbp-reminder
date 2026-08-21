@@ -18852,5 +18852,25 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-08-21T03:09:45.409177+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 173425,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:115"
+  },
+  {
+    "timestamp": "2026-08-21T03:09:47.719364+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 199,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
   }
 ]
