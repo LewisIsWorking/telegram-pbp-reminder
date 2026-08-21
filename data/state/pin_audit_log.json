@@ -18932,5 +18932,25 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-08-21T06:57:51.523990+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 173520,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "recruit_focus_post.py:171"
+  },
+  {
+    "timestamp": "2026-08-21T06:57:52.542775+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 206,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
   }
 ]
