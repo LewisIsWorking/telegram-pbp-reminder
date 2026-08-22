@@ -1,6 +1,34 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 173955,
+      "thread_id": 107171,
+      "user_id": "8379380933",
+      "user_name": "Minork",
+      "time": "2026-08-22T20:52:11+00:00",
+      "preview": "Minork Estra finally raises his eyes to acknowledge his comrades. He doesn\u2019t otherwise move. The cube is still solid, and it is not worth his energy should he remain trapped here. The orc sits heavily in a corner, perhaps a little self-isolating.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 173962,
+      "thread_id": 107171,
+      "user_id": "8701042661",
+      "user_name": "Diabla \"Bella\" Alzarin",
+      "time": "2026-08-22T21:16:34+00:00",
+      "preview": "A large, horned woman stirs awake against one of the walls, in a position that could not have been comfortable to sleep in. . It takes a while before she shakes of the drowsiness, but as soon as she does-\n\nBella just about launches herself across the room, trying to get her claws into, and wrestle open any side of the cube. . Something that she's tried several times by now, never to any degree of success.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 173963,
+      "thread_id": 107171,
+      "user_id": "7919488992",
+      "user_name": "Supreme",
+      "time": "2026-08-22T21:26:58+00:00",
+      "preview": "A dark skinned individual with a shock of neon purple hair lays in the center of the cube, limbs spread outwards as though reaching out for the sides of the cubes. At the sound of a solid body hitting the sides of the cube, he lets out a loud groan.\n\n\"They could've at LEAST left me with my datapad.\" Glowing purple eyes click open as circuitry dances across Reign's skin like glowing veins, the android booting up in earnest \"Can't hack or blast my way out of this thing but I could pass the time wi",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -1838,10 +1866,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 173811,
+      "fingerprint": "2026-08-22 20:52:11|2026-08-22 21:16:34|2026-08-22 21:26:58",
+      "msg_ids": [
+        173968
+      ],
+      "last_posted_at": "2026-08-22T21:28:17.625175+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-08-22T08:57:03.812930+00:00"
     },

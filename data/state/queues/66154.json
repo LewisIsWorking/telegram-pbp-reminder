@@ -2,12 +2,30 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 173926,
+      "message_id": 173959,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-22T21:03:36+00:00",
+      "preview": "I thought it was 4/4 ?",
+      "media_group_id": null
+    },
+    {
+      "message_id": 173960,
+      "thread_id": 66154,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-22T21:03:42+00:00",
+      "preview": "...",
+      "media_group_id": null
+    },
+    {
+      "message_id": 173961,
       "thread_id": 66154,
       "user_id": "5443237599",
       "user_name": "Horia",
-      "time": "2026-08-22T19:48:30+00:00",
-      "preview": "[media]",
+      "time": "2026-08-22T21:04:22+00:00",
+      "preview": "I dod",
       "media_group_id": null
     }
   ],
@@ -212,7 +230,9 @@
     "msg:172767",
     "2026-08-17 15:00:32",
     "msg:172770",
-    "2026-08-17 15:03:32"
+    "2026-08-17 15:03:32",
+    "msg:173926",
+    "2026-08-22 19:48:30"
   ],
   "reply_log": [
     {
@@ -1144,17 +1164,26 @@
       "player": "Anthony",
       "preview": "Ok only need @RyoYamakawa then",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-22T21:03:13+00:00",
+      "pid": "66154",
+      "msg_id": "173926",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-08-22 19:48:30",
+      "fingerprint": "2026-08-22 21:03:36|2026-08-22 21:03:42|2026-08-22 21:04:22",
       "msg_ids": [
-        173938
+        173966
       ],
-      "last_posted_at": "2026-08-22T20:30:27.481121+00:00",
+      "last_posted_at": "2026-08-22T21:28:13.845612+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
