@@ -1,16 +1,16 @@
 {
-  "offset": 619356015,
+  "offset": 619356036,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-22T19:44:43+00:00",
+      "last_message_time": "2026-08-22T20:27:55+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-08-17T19:42:25+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-22T19:48:30+00:00",
+      "last_user": "Horia",
+      "last_user_id": "5443237599",
       "campaign_name": "Riddleport"
     },
     "51357": {
@@ -112,7 +112,7 @@
   "last_roster_snapshot": "C01:7/6|C00:4/6|C04:3/6|C05:5/6|C06:6/6|C07:5/6|C09:2/6|C10:0/6|C08:0/4",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-08-22T08:37:54.898349+00:00"
+    "last_at": null
   },
   "last_recruitment_check": {
     "25059": "2026-08-21T01:46:41.897839+00:00",
@@ -168,7 +168,6 @@
   "dying_alerts_sent": {
     "107151": "active",
     "1242": "active",
-    "66154": "active",
     "25059": "active",
     "76799": "active",
     "51357": "active"
@@ -227,7 +226,7 @@
   },
   "last_state_backup": "2026-08-22T08:37:54.898349+00:00",
   "last_queue_daily": "2026-08-22",
-  "last_queue_fingerprint": "empty|silent:  \ud83d\udfe0 \ud83d\udcb0 C00: Riddleport \u2014 no posts for 5d \ud83d\udd17 https://t.me/Path_Wars/66154",
+  "last_queue_fingerprint": "66154:2026-08-22 19:48:30",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -319,14 +318,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-22",
-  "last_queue_pin_id": 173920,
-  "queue_post_count": 1397,
+  "last_queue_pin_id": 173940,
+  "queue_post_count": 1398,
   "gm_queue_history": [
     {
       "msg_ids": [
-        173920
+        173940,
+        173941
       ],
-      "pin_id": 173920
+      "pin_id": 173940
     }
   ],
   "potw_week": {
@@ -342,10 +342,10 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 280,
+  "schedule_post_msg_id": 281,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-22",
-  "last_pin_alert_ts": "2026-08-22T18:58:09.243701+00:00",
+  "last_pin_alert_ts": "2026-08-22T20:30:33.961748+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 173795,
   "last_recruit_focus": "2026-08-22T07:37:18.946603+00:00",
