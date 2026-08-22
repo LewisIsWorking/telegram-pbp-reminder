@@ -1,61 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 173543,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-20T07:58:27+00:00",
-      "preview": "\"Environmental protection module?\" Lai repeats looking form the rectangular device to Livy",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173544,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-20T07:58:59+00:00",
-      "preview": "\"I would very much appreciate that\" lai bow his head a bit",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173554,
-      "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-20T08:41:10+00:00",
-      "preview": "Rune adjusts his rifle on his shoulder and makes to follow the Ysoki while wondering what he has planned that involves his access to an AbadarCorp warehouse.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173628,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-21T08:07:59+00:00",
-      "preview": "\"Wait don't get it wrong! \u2605THIS\u2605 is a comm Unit. But your \u2605SUIT\u2605 needs an environmental protection module... They're \u2605DIFFERENT\u2605 ok!?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173629,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-21T08:09:13+00:00",
-      "preview": "\"\u2605Niky\u2605 you got a \u2605PRINTER\u2605 we could borrow so we can make him those?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173735,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-21T17:50:07+00:00",
-      "preview": "\"Okay....\" Lai answers",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -377,7 +322,19 @@
     "msg:173391",
     "2026-08-19 10:05:19",
     "msg:173444",
-    "2026-08-19 18:44:55"
+    "2026-08-19 18:44:55",
+    "msg:173543",
+    "2026-08-20 07:58:27",
+    "msg:173544",
+    "2026-08-20 07:58:59",
+    "msg:173554",
+    "2026-08-20 08:41:10",
+    "msg:173628",
+    "2026-08-21 08:07:59",
+    "msg:173629",
+    "2026-08-21 08:09:13",
+    "msg:173735",
+    "2026-08-21 17:50:07"
   ],
   "reply_log": [
     {
@@ -1851,19 +1808,71 @@
       "player": "Anthony",
       "preview": "\" \u2605FIST OF ALL!\u2605 This is a comm unit.\"\nLivy is going to hold out a small glowing",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-22T19:39:26+00:00",
+      "pid": "52083",
+      "msg_id": "173543",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"Environmental protection module?\" Lai repeats looking form the rectangular devi",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-22T19:40:41+00:00",
+      "pid": "52083",
+      "msg_id": "173544",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"I would very much appreciate that\" lai bow his head a bit",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-22T19:42:10+00:00",
+      "pid": "52083",
+      "msg_id": "173554",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "Rune adjusts his rifle on his shoulder and makes to follow the Ysoki while wonde",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-22T19:43:28+00:00",
+      "pid": "52083",
+      "msg_id": "173628",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"Wait don't get it wrong! \u2605THIS\u2605 is a comm Unit. But your \u2605SUIT\u2605 needs an enviro",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-22T19:44:21+00:00",
+      "pid": "52083",
+      "msg_id": "173629",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605Niky\u2605 you got a \u2605PRINTER\u2605 we could borrow so we can make him those?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-22T19:44:43+00:00",
+      "pid": "52083",
+      "msg_id": "173735",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"Okay....\" Lai answers",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-20 07:58:27|2026-08-20 07:58:59|2026-08-20 08:41:10|2026-08-21 08:07:59|2026-08-21 08:09:13|2026-08-21 17:50:07",
-      "msg_ids": [
-        173736
-      ],
-      "last_posted_at": "2026-08-21T17:56:01.617680+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-20T06:56:35.255496+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 173919,
+      "caught_up_at": "2026-08-22T19:45:34.674213+00:00"
     },
     "145045": {
       "msg_ids": [],
