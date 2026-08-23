@@ -1,5 +1,5 @@
 {
-  "offset": 619356108,
+  "offset": 619356130,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-23T09:21:47+00:00",
@@ -187,12 +187,14 @@
         "Can't make it this week"
       ],
       "voted_uids": [
-        "8902183011"
+        "8902183011",
+        "5443237599"
       ],
       "last_ping_day": 739851,
       "votes": {
         "2": [
-          "8902183011"
+          "8902183011",
+          "5443237599"
         ]
       }
     },
@@ -333,7 +335,7 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 313,
+  "schedule_post_msg_id": 314,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-23",
   "last_pin_alert_ts": "2026-08-23T13:10:12.817082+00:00",
