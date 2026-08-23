@@ -1,5 +1,5 @@
 {
-  "offset": 619356178,
+  "offset": 619356179,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-23T09:21:47+00:00",
@@ -221,7 +221,7 @@
   },
   "last_state_backup": "2026-08-23T08:38:28.479889+00:00",
   "last_queue_daily": "2026-08-23",
-  "last_queue_fingerprint": "107171:2026-08-22 20:52:11|107171:2026-08-22 21:16:34|107171:2026-08-22 21:26:58|107171:2026-08-22 22:48:57|107171:2026-08-23 14:25:37|107171:2026-08-23 14:46:38|107171:2026-08-23 15:19:05|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 14h \ud83d\udd17 https://t.me/Path_Wars/25059",
+  "last_queue_fingerprint": "107171:2026-08-22 20:52:11|107171:2026-08-22 21:16:34|107171:2026-08-22 21:26:58|107171:2026-08-22 22:48:57|107171:2026-08-23 14:25:37|107171:2026-08-23 14:46:38|107171:2026-08-23 15:19:05|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 15h \ud83d\udd17 https://t.me/Path_Wars/25059",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -288,7 +288,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-08-23",
   "last_queue_daily_slots": [
-    "2026-08-15:21",
     "2026-08-16:09",
     "2026-08-16:21",
     "2026-08-17:09",
@@ -301,7 +300,8 @@
     "2026-08-21:21",
     "2026-08-22:09",
     "2026-08-22:21",
-    "2026-08-23:09"
+    "2026-08-23:09",
+    "2026-08-23:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -313,15 +313,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-23",
-  "last_queue_pin_id": 174136,
-  "queue_post_count": 1417,
+  "last_queue_pin_id": 174140,
+  "queue_post_count": 1418,
   "gm_queue_history": [
     {
       "msg_ids": [
-        174136,
-        174137
+        174140,
+        174141
       ],
-      "pin_id": 174136
+      "pin_id": 174140
     }
   ],
   "potw_week": {
@@ -337,10 +337,10 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 328,
+  "schedule_post_msg_id": 329,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-23",
-  "last_pin_alert_ts": "2026-08-23T20:31:10.038172+00:00",
+  "last_pin_alert_ts": "2026-08-23T21:28:10.753810+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 173995,
   "last_recruit_focus": "2026-08-23T07:38:55.970743+00:00",
