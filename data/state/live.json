@@ -1,5 +1,5 @@
 {
-  "offset": 619356069,
+  "offset": 619356070,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-22T20:42:21+00:00",
@@ -60,7 +60,7 @@
     "52083": "2026-08-22T18:39:10.425029+00:00",
     "66154": "2026-08-22T07:37:18.946603+00:00",
     "51357": "2026-08-22T16:32:02.017011+00:00",
-    "25059": "2026-08-22T07:37:18.946603+00:00",
+    "25059": "2026-08-23T07:38:55.970743+00:00",
     "107171": "2026-08-22T08:37:54.898349+00:00",
     "40585": "2026-08-22T09:33:13.517191+00:00",
     "76799": "2026-08-23T01:49:38.074382+00:00",
@@ -176,35 +176,18 @@
   "last_campaign_table": "2026-08-18T01:40:26.400284+00:00",
   "session_poll": {
     "C01": {
-      "week_iso": "sun2026-08-16",
-      "poll_id": "5769240843558847785",
-      "poll_message_id": 172344,
+      "week_iso": "sun2026-08-23",
+      "poll_id": "5787185195446699926",
+      "poll_message_id": 173990,
       "options": [
-        "2026-08-21 Friday",
-        "2026-08-22 Saturday",
+        "2026-08-28 Friday",
+        "2026-08-29 Saturday",
         "Both/Either",
         "Can't make it this week"
       ],
-      "voted_uids": [
-        "1698524397",
-        "5443237599",
-        "8255519522",
-        "8902183011",
-        "8880317264"
-      ],
-      "last_ping_day": 739850,
-      "votes": {
-        "2": [
-          "1698524397",
-          "5443237599",
-          "8255519522",
-          "8902183011"
-        ],
-        "1": [],
-        "0": [
-          "8880317264"
-        ]
-      }
+      "voted_uids": [],
+      "last_ping_day": 739851,
+      "votes": {}
     },
     "C11": {
       "week_iso": "sun2026-06-28",
@@ -292,7 +275,7 @@
   "paused_campaigns": {},
   "current_scenes": {},
   "poll_unknown_voters": {},
-  "last_week_welcome": "sun2026-08-16",
+  "last_week_welcome": "sun2026-08-23",
   "last_queue_daily_slots": [
     "2026-08-15:09",
     "2026-08-15:21",
@@ -343,23 +326,23 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 299,
+  "schedule_post_msg_id": 301,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-22",
-  "last_pin_alert_ts": "2026-08-23T06:52:45.972770+00:00",
+  "last_pin_alert_ts": "2026-08-23T07:39:01.685086+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 173795,
-  "last_recruit_focus": "2026-08-22T07:37:18.946603+00:00",
-  "recruit_focus_at": "2026-08-22T07:37:18.946603+00:00",
+  "recruit_focus_msg_id": 173995,
+  "last_recruit_focus": "2026-08-23T07:38:55.970743+00:00",
+  "recruit_focus_at": "2026-08-23T07:38:55.970743+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 173795,
+      "message_id": 173995,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 254,
+      "message_id": 300,
       "auto_delete": false
     }
   ]
