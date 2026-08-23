@@ -1,34 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 173959,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-22T21:03:36+00:00",
-      "preview": "I thought it was 4/4 ?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173960,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-22T21:03:42+00:00",
-      "preview": "...",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173961,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-08-22T21:04:22+00:00",
-      "preview": "I dod",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -232,7 +204,13 @@
     "msg:172770",
     "2026-08-17 15:03:32",
     "msg:173926",
-    "2026-08-22 19:48:30"
+    "2026-08-22 19:48:30",
+    "msg:173961",
+    "2026-08-22 21:04:22",
+    "msg:173959",
+    "2026-08-22 21:03:36",
+    "msg:173960",
+    "2026-08-22 21:03:42"
   ],
   "reply_log": [
     {
@@ -1173,20 +1151,45 @@
       "player": "Horia",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-23T09:22:07+00:00",
+      "pid": "66154",
+      "msg_id": "173961",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "I dod",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-23T09:22:15+00:00",
+      "pid": "66154",
+      "msg_id": "173959",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "I thought it was 4/4 ?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-23T09:22:18+00:00",
+      "pid": "66154",
+      "msg_id": "173960",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "...",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-08-22 21:03:36|2026-08-22 21:03:42|2026-08-22 21:04:22",
-      "msg_ids": [
-        173966
-      ],
-      "last_posted_at": "2026-08-22T21:28:13.845612+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 174014,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-08-23T09:33:59.627458+00:00"
     }
   }
 }

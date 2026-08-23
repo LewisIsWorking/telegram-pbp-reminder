@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 173944,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-22T20:42:21+00:00",
-      "preview": "\"\u2605SUPER SECRET MISSION PLANS!!!\u2605 I'm following you \u2605NICKY\u2605!!!\"\nLivy follows Nikk-Nakk",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -346,7 +336,9 @@
     "msg:173735",
     "2026-08-21 17:50:07",
     "msg:173931",
-    "2026-08-22 19:56:46"
+    "2026-08-22 19:56:46",
+    "msg:173944",
+    "2026-08-22 20:42:21"
   ],
   "reply_log": [
     {
@@ -1883,19 +1875,26 @@
       "player": "Terra",
       "preview": "Lai nods and follows them to the manhole cover",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-23T09:21:47+00:00",
+      "pid": "52083",
+      "msg_id": "173944",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605SUPER SECRET MISSION PLANS!!!\u2605 I'm following you \u2605NICKY\u2605!!!\"\nLivy follows Nikk",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-22 20:42:21",
-      "msg_ids": [
-        173950
-      ],
-      "last_posted_at": "2026-08-22T20:49:02.917045+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-22T19:45:34.674213+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 174013,
+      "caught_up_at": "2026-08-23T09:33:59.627458+00:00"
     },
     "145045": {
       "msg_ids": [],
