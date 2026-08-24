@@ -290,16 +290,6 @@
       "last_post_time": "2026-06-22T12:13:14+00:00",
       "last_warned_week": 1
     },
-    "40585:6023408187": {
-      "user_id": "6023408187",
-      "first_name": "Caelum",
-      "last_name": "(Thi\u00ean)",
-      "username": "Thien_Ming",
-      "campaign_name": "Kibwe",
-      "pbp_topic_id": "40585",
-      "last_post_time": "2026-07-27T05:39:18+00:00",
-      "last_warned_week": 3
-    },
     "107171:8117756377": {
       "user_id": "8117756377",
       "first_name": "Laetheron",
@@ -633,6 +623,12 @@
       "first_name": "Bre",
       "username": "BreIrish",
       "campaign_name": "Riddleport"
+    },
+    "40585:6023408187": {
+      "removed_at": "2026-08-24T05:43:33.890932+00:00",
+      "first_name": "Caelum",
+      "username": "Thien_Ming",
+      "campaign_name": "Kibwe"
     }
   },
   "player_registry": {
@@ -1511,6 +1507,14 @@
       "name": "Sasuken09",
       "username": "Sasuken09",
       "at": "2026-08-17T15:31:33.611222+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "40585",
+      "user_id": "6023408187",
+      "name": "Caelum",
+      "username": "Thien_Ming",
+      "at": "2026-08-24T05:43:34.395252+00:00"
     }
   ],
   "player_boons": {
