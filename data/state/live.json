@@ -1,5 +1,5 @@
 {
-  "offset": 619356184,
+  "offset": 619356188,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-23T09:21:47+00:00",
@@ -125,7 +125,7 @@
     "1242": "2026-07-05T17:20:11.677414+00:00",
     "146645": "2026-08-13T04:58:05.862836+00:00"
   },
-  "last_archived_week": "2026-W33",
+  "last_archived_week": "2026-W34",
   "celebrated_streaks": {
     "107151:7454623139": 7,
     "107151:6482311444": 7
@@ -142,7 +142,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-08-22T03:00:29.442282+00:00",
-  "last_daily_tip": "2026-08-23T01:49:38.074382+00:00",
+  "last_daily_tip": "2026-08-24T01:47:26.622034+00:00",
   "used_tip_indices": [
     3,
     34,
@@ -163,7 +163,8 @@
     23,
     26,
     28,
-    40
+    40,
+    36
   ],
   "last_pace_drop_check": "2026-08-22T03:00:29.442282+00:00",
   "dying_alerts_sent": {
@@ -189,14 +190,18 @@
       "voted_uids": [
         "8902183011",
         "5443237599",
-        "8255519522"
+        "8255519522",
+        "8880317264"
       ],
-      "last_ping_day": 739851,
+      "last_ping_day": 739852,
       "votes": {
         "2": [
           "8902183011",
           "5443237599",
           "8255519522"
+        ],
+        "0": [
+          "8880317264"
         ]
       }
     },
@@ -221,7 +226,7 @@
   },
   "last_state_backup": "2026-08-23T08:38:28.479889+00:00",
   "last_queue_daily": "2026-08-23",
-  "last_queue_fingerprint": "107171:2026-08-22 20:52:11|107171:2026-08-22 21:16:34|107171:2026-08-22 21:26:58|107171:2026-08-22 22:48:57|107171:2026-08-23 14:25:37|107171:2026-08-23 14:46:38|107171:2026-08-23 15:19:05|107171:2026-08-23 23:43:18|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 17h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83d\udd0d C04: Magni Guard \u2014 no posts for 5d 1h \ud83d\udd17 https://t.me/Path_Wars/76799",
+  "last_queue_fingerprint": "107171:2026-08-22 20:52:11|107171:2026-08-22 21:16:34|107171:2026-08-22 21:26:58|107171:2026-08-22 22:48:57|107171:2026-08-23 14:25:37|107171:2026-08-23 14:46:38|107171:2026-08-23 15:19:05|107171:2026-08-23 23:43:18|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 19h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83d\udd0d C04: Magni Guard \u2014 no posts for 5d 3h \ud83d\udd17 https://t.me/Path_Wars/76799",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -313,15 +318,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-23",
-  "last_queue_pin_id": 174154,
-  "queue_post_count": 1421,
+  "last_queue_pin_id": 174161,
+  "queue_post_count": 1422,
   "gm_queue_history": [
     {
       "msg_ids": [
-        174154,
-        174155
+        174161,
+        174162
       ],
-      "pin_id": 174154
+      "pin_id": 174161
     }
   ],
   "potw_week": {
@@ -337,10 +342,10 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 334,
+  "schedule_post_msg_id": 335,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-23",
-  "last_pin_alert_ts": "2026-08-23T23:27:26.231997+00:00",
+  "last_pin_alert_ts": "2026-08-24T01:47:35.229797+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 173995,
   "last_recruit_focus": "2026-08-23T07:38:55.970743+00:00",
