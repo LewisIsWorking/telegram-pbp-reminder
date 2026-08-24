@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 174501,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-24T13:12:19+00:00",
+      "preview": "Lai just squints and looks at the pin board and everything on it",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -1890,10 +1900,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 174013,
+      "fingerprint": "2026-08-24 13:12:19",
+      "msg_ids": [
+        174502
+      ],
+      "last_posted_at": "2026-08-24T13:29:59.754665+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-23T09:33:59.627458+00:00"
     },
     "145045": {
