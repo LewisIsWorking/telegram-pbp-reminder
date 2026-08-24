@@ -1,5 +1,5 @@
 {
-  "offset": 619356190,
+  "offset": 619356230,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-23T09:21:47+00:00",
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-08-23T23:43:18+00:00",
-      "last_user": "Laetheron",
-      "last_user_id": "8117756377",
+      "last_message_time": "2026-08-24T03:31:03+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -191,14 +191,16 @@
         "8902183011",
         "5443237599",
         "8255519522",
-        "8880317264"
+        "8880317264",
+        "1698524397"
       ],
       "last_ping_day": 739852,
       "votes": {
         "2": [
           "8902183011",
           "5443237599",
-          "8255519522"
+          "8255519522",
+          "1698524397"
         ],
         "0": [
           "8880317264"
@@ -290,7 +292,9 @@
   },
   "paused_campaigns": {},
   "current_scenes": {},
-  "poll_unknown_voters": {},
+  "poll_unknown_voters": {
+    "C01": []
+  },
   "last_week_welcome": "sun2026-08-23",
   "last_queue_daily_slots": [
     "2026-08-16:09",
@@ -342,11 +346,17 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 337,
+  "schedule_post_msg_id": 338,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-23",
   "last_pin_alert_ts": "2026-08-24T03:10:51.058139+00:00",
-  "poll_identified_voters": {},
+  "poll_identified_voters": {
+    "1698524397": {
+      "username": "Path",
+      "first_name": "Path",
+      "code": "C01"
+    }
+  },
   "recruit_focus_msg_id": 173995,
   "last_recruit_focus": "2026-08-23T07:38:55.970743+00:00",
   "recruit_focus_at": "2026-08-23T07:38:55.970743+00:00",
