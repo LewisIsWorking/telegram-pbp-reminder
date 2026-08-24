@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 173955,
-      "thread_id": 107171,
-      "user_id": "8379380933",
-      "user_name": "Minork",
-      "time": "2026-08-22T20:52:11+00:00",
-      "preview": "Minork Estra finally raises his eyes to acknowledge his comrades. He doesn\u2019t otherwise move. The cube is still solid, and it is not worth his energy should he remain trapped here. The orc sits heavily in a corner, perhaps a little self-isolating.",
-      "media_group_id": null
-    },
-    {
       "message_id": 173962,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -398,7 +389,9 @@
     "msg:173523",
     "2026-08-20 07:25:11",
     "msg:174183",
-    "2026-08-24 03:29:06"
+    "2026-08-24 03:29:06",
+    "msg:173955",
+    "2026-08-22 20:52:11"
   ],
   "reply_log": [
     {
@@ -1916,17 +1909,26 @@
       "player": "Laetheron",
       "preview": "Arktos spends the next minute tinkering with the cube and making idling conversa",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-24T03:32:31+00:00",
+      "pid": "107171",
+      "msg_id": "173955",
+      "thread_id": 107171,
+      "player": "Minork",
+      "preview": "Minork Estra finally raises his eyes to acknowledge his comrades. He doesn\u2019t oth",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-22 20:52:11|2026-08-22 21:16:34|2026-08-22 21:26:58|2026-08-22 22:48:57|2026-08-23 14:25:37|2026-08-23 14:46:38|2026-08-23 15:19:05|2026-08-23 23:43:18",
+      "fingerprint": "2026-08-22 21:16:34|2026-08-22 21:26:58|2026-08-22 22:48:57|2026-08-23 14:25:37|2026-08-23 14:46:38|2026-08-23 15:19:05|2026-08-23 23:43:18",
       "msg_ids": [
-        174152
+        174243
       ],
-      "last_posted_at": "2026-08-23T23:45:14.760836+00:00",
+      "last_posted_at": "2026-08-24T04:53:06.234320+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-08-22T08:57:03.812930+00:00"

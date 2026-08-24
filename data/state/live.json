@@ -1,8 +1,8 @@
 {
-  "offset": 619356230,
+  "offset": 619356283,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-23T09:21:47+00:00",
+      "last_message_time": "2026-08-24T03:45:47+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
@@ -20,25 +20,25 @@
       "campaign_name": "Grand Explorers"
     },
     "25059": {
-      "last_message_time": "2026-08-18T05:59:19+00:00",
+      "last_message_time": "2026-08-24T03:32:45+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-08-24T03:31:03+00:00",
+      "last_message_time": "2026-08-24T03:32:31+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-08-21T08:53:44+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-08-24T03:42:07+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-08-18T21:49:00+00:00",
+      "last_message_time": "2026-08-24T03:33:33+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Magni Guard"
@@ -170,10 +170,7 @@
   "dying_alerts_sent": {
     "107151": "active",
     "1242": "active",
-    "25059": "active",
-    "76799": "active",
-    "51357": "active",
-    "40585": "active"
+    "51357": "active"
   },
   "last_campaign_table": "2026-08-18T01:40:26.400284+00:00",
   "session_poll": {
@@ -228,7 +225,7 @@
   },
   "last_state_backup": "2026-08-23T08:38:28.479889+00:00",
   "last_queue_daily": "2026-08-23",
-  "last_queue_fingerprint": "107171:2026-08-22 20:52:11|107171:2026-08-22 21:16:34|107171:2026-08-22 21:26:58|107171:2026-08-22 22:48:57|107171:2026-08-23 14:25:37|107171:2026-08-23 14:46:38|107171:2026-08-23 15:19:05|107171:2026-08-23 23:43:18|silent:  \ud83d\udfe0 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 5d 21h \ud83d\udd17 https://t.me/Path_Wars/25059|  \ud83d\udfe0 \ud83d\udd0d C04: Magni Guard \u2014 no posts for 5d 5h \ud83d\udd17 https://t.me/Path_Wars/76799",
+  "last_queue_fingerprint": "107171:2026-08-22 21:16:34|107171:2026-08-22 21:26:58|107171:2026-08-22 22:48:57|107171:2026-08-23 14:25:37|107171:2026-08-23 14:46:38|107171:2026-08-23 15:19:05|107171:2026-08-23 23:43:18|40585:2026-08-24 03:42:07",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -292,9 +289,7 @@
   },
   "paused_campaigns": {},
   "current_scenes": {},
-  "poll_unknown_voters": {
-    "C01": []
-  },
+  "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-08-23",
   "last_queue_daily_slots": [
     "2026-08-16:09",
@@ -322,15 +317,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-23",
-  "last_queue_pin_id": 174169,
-  "queue_post_count": 1424,
+  "last_queue_pin_id": 174245,
+  "queue_post_count": 1425,
   "gm_queue_history": [
     {
       "msg_ids": [
-        174169,
-        174170
+        174245,
+        174246
       ],
-      "pin_id": 174169
+      "pin_id": 174245
     }
   ],
   "potw_week": {
@@ -346,17 +341,11 @@
   },
   "last_potw_roundup": "2026-W34",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 338,
+  "schedule_post_msg_id": 339,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-23",
-  "last_pin_alert_ts": "2026-08-24T03:10:51.058139+00:00",
-  "poll_identified_voters": {
-    "1698524397": {
-      "username": "Path",
-      "first_name": "Path",
-      "code": "C01"
-    }
-  },
+  "last_pin_alert_ts": "2026-08-24T04:53:13.902954+00:00",
+  "poll_identified_voters": {},
   "recruit_focus_msg_id": 173995,
   "last_recruit_focus": "2026-08-23T07:38:55.970743+00:00",
   "recruit_focus_at": "2026-08-23T07:38:55.970743+00:00",
