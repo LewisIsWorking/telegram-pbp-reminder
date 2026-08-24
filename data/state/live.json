@@ -1,5 +1,5 @@
 {
-  "offset": 619356571,
+  "offset": 619356576,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-24T13:12:19+00:00",
@@ -285,14 +285,15 @@
     "25059:Fuzzy": "2026-07-22T20:16:20.134212+00:00",
     "25059:Dalaxiss": "2026-07-25T11:18:29.695586+00:00",
     "25059:PJ": "2026-08-05T09:41:24.469785+00:00",
-    "40585:Horia Constantinescu": "2026-08-05T14:54:37.335944+00:00"
+    "40585:Horia Constantinescu": "2026-08-05T14:54:37.335944+00:00",
+    "107171:Diabla \"Bella\" Alzarin": "2026-08-24T21:35:52.922174+00:00",
+    "107171:Supreme": "2026-08-24T21:35:52.922174+00:00"
   },
   "paused_campaigns": {},
   "current_scenes": {},
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-08-23",
   "last_queue_daily_slots": [
-    "2026-08-16:21",
     "2026-08-17:09",
     "2026-08-17:21",
     "2026-08-19:09",
@@ -305,7 +306,8 @@
     "2026-08-22:21",
     "2026-08-23:09",
     "2026-08-23:21",
-    "2026-08-24:09"
+    "2026-08-24:09",
+    "2026-08-24:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -317,15 +319,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-24",
-  "last_queue_pin_id": 174549,
-  "queue_post_count": 1436,
+  "last_queue_pin_id": 174559,
+  "queue_post_count": 1437,
   "gm_queue_history": [
     {
       "msg_ids": [
-        174549,
-        174550
+        174559,
+        174560
       ],
-      "pin_id": 174549
+      "pin_id": 174559
     }
   ],
   "potw_week": {
@@ -341,10 +343,10 @@
   },
   "last_potw_roundup": "2026-W35",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 370,
+  "schedule_post_msg_id": 371,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-24",
-  "last_pin_alert_ts": "2026-08-24T20:38:23.430761+00:00",
+  "last_pin_alert_ts": "2026-08-24T21:35:59.988796+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 174450,
   "last_recruit_focus": "2026-08-24T08:56:04.012306+00:00",
