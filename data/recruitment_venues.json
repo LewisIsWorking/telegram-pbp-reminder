@@ -166,7 +166,26 @@
       "rules_note": "STATED RULE: listings must only use Roll20 to play.",
       "format": {"title": "", "max_chars": 0, "needs_flair": false},
       "checked": "2026-08-20",
-      "notes": "REJECTED: the rules require the game to run on Roll20 and ours runs on Telegram. Same reason rules out the Foundry and Fantasy Grounds boards."
+      "notes": "REJECTED: the rules require the game to run on Roll20 and ours does not. ⚠️ CORRECTED 2026-08-25: this note previously generalised the same reason to Foundry, which was WRONG. These campaigns DO run on Foundry VTT (mechanics, maps, automation) with Telegram carrying the asynchronous posting, so a Foundry venue is eligible and Roll20 is not. See foundry-lfg below."
+    },
+    {
+      "id": "foundry-lfg",
+      "name": "Foundry VTT community Discord: looking for group",
+      "url": "https://discord.gg/foundryvtt",
+      "kind": "discord",
+      "status": "candidate",
+      "fit": "high",
+      "cooldown_days": 7,
+      "cooldown_source": "assumed",
+      "rules_url": "",
+      "rules_note": "UNVERIFIED. Read the LFG channel's pinned rules and its repost interval before the first post; I could not read them from outside the server. Until then the assumed 7 days stands.",
+      "format": {
+        "title": "",
+        "max_chars": 2000,
+        "needs_flair": false
+      },
+      "checked": "2026-08-25",
+      "notes": "Added 2026-08-25 after Lewis pointed out the game is Telegram + Foundry. The audience is self-selected for running Foundry, which is a real requirement of joining these tables and a real filter: someone who already has Foundry working needs no onboarding. Roughly 110,000 members, though only a fraction read LFG."
     }
   ]
 }

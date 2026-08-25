@@ -11,7 +11,7 @@ external ads can never disagree with the internal one.
 
 from datetime import datetime, timezone
 
-from recruiting import catalogue, log, rotation
+from recruiting import catalogue, log, readiness, rotation
 
 
 def _format_line(venue: dict) -> list:
@@ -56,9 +56,18 @@ def build_recruit_ads(config: dict, state: dict,
 
     lines = ["\U0001f4e2 Recruitment: where to post"]
 
-    campaign = _neediest_campaign(config, state)
-    if campaign:
-        lines.append(f"\nAdvertising: {campaign}")
+    pair = _focus_pair(config, state)
+    if pair:
+        label = _label(pair)
+        if label:
+            lines.append(f"\nAdvertising: {label}")
+        # ⚠️ Before the venue list, not after. A warning printed under
+        # three venues and a "post now" instruction is read second, if
+        # at all. It is also NOT conditional on the label rendering:
+        # the risk is the point, the name is decoration.
+        quiet = readiness.warning(pair, state, now)
+        if quiet:
+            lines.append(quiet)
 
     if due:
         lines.append(f"\n── Due now ({len(due)}) ──")
@@ -77,24 +86,26 @@ def build_recruit_ads(config: dict, state: dict,
     return "\n".join(lines)
 
 
-def _neediest_campaign(config: dict, state: dict) -> str | None:
+def _focus_pair(config: dict, state: dict) -> dict | None:
     """The campaign recruit_focus would advertise, or None.
 
-    Wrapped because the external ads must name the same campaign as the
-    in-group advert. Failing softly: a missing campaign makes the message
-    less useful, not wrong, and should not cost the operator the venue
-    list they asked for.
+    Returns the pair rather than a label because the readiness check
+    needs its topic ids. Failing softly: a missing campaign makes the
+    message less useful, not wrong, and should not cost the operator the
+    venue list they asked for.
     """
     try:
         from scheduled.recruit_focus import build_recruit_message
         _text, pair = build_recruit_message(config, state)
     except Exception:  # noqa: BLE001 - never fail the whole command for this
         return None
-    if not pair:
-        return None
+    return pair or None
+
+
+def _label(pair: dict) -> str:
     code = pair.get("code", "")
     name = pair.get("name") or pair.get("campaign_name") or ""
-    return f"{code}: {name}".strip(": ") or None
+    return f"{code}: {name}".strip(": ")
 
 
 def build_recruit_yield(state: dict, venues: list | None = None) -> str:
