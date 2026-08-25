@@ -5,38 +5,19 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
-from commands.queue_format import (
-    entry_age_icon, age_str, short_preview, format_queue_line,
-    NO_PRIORITY, build_priority_map,
-)
+from commands.queue_format import NO_PRIORITY, build_priority_map
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import (
     silent_campaigns, caught_up_campaigns, campaign_age_lines,
-    oldest_campaign_line,
 )
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
-from scheduled.queue_focus import build_focus_message
+from scheduled.queue_followup import build_followup
 from scheduled.queue_render import (
     build_streak, build_summary, build_momentum_map, build_header,
-    chunk_messages,
+    chunk_messages, build_body_lines,
 )
 
-
-def _gm_mentions(config: dict, state: dict, pid: str) -> str:
-    gm_ids = helpers.gm_ids_for_campaign(config, pid)
-    if not gm_ids:
-        return "@PathWars"  # pragma: no cover
-    names = []
-    for uid in gm_ids:
-        match = next((p for p in state.get("players", {}).values()
-                       if p.get("user_id") == str(uid)), None)
-        if match:
-            u = match.get("username", "")  # pragma: no cover
-            names.append(f"@{u}" if u else match.get("first_name", "@PathWars"))  # pragma: no cover
-        else:
-            names.append("@PathWars")
-    return ", ".join(names)
 
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     bot_topic = config.get("gm_queue_topic_id") or config.get("bot_topic_id")
@@ -71,6 +52,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             is_daily = True
 
     group_id = config["group_id"]
+    # Built before the early returns because all three exits need it to
+    # choose a follow-up. Lower number = higher priority; legacy
+    # queue_priority: True maps to level 1.
+    priority_map = build_priority_map(config)
     silent_lines = silent_campaigns(config, state, scanned, now)
     if silent_lines:
         fingerprint += "|silent:" + "|".join(silent_lines)
@@ -93,7 +78,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             # machinery so the previous GM queue gets evicted.
             _post_caught_up(state, group_id, bot_topic,
                              campaign_age_lines(config, state, scanned, now),
-                             oldest_campaign_line(config, state, scanned, now))
+                             build_followup(config, state, scanned,
+                                            priority_map, now))
         state["last_queue_fingerprint"] = "empty"
         return
 
@@ -104,14 +90,12 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             # shape but might in the future). Same fix as line-68.
             _post_caught_up(state, group_id, bot_topic,
                              campaign_age_lines(config, state, scanned, now),
-                             oldest_campaign_line(config, state, scanned, now))
+                             build_followup(config, state, scanned,
+                                            priority_map, now))
         state["last_queue_fingerprint"] = fingerprint
         return
 
-    # Build priority map from config — lower number = higher priority
-    # queue_priority: True (legacy) → level 1; numeric value used directly
-    # C11 uses level 0 (highest), C06 uses level 1, rest use level 2
-    priority_map = build_priority_map(config)
+    # C11 uses level 0 (highest), C06 uses level 1, rest use level 2.
     priority_pids = set(priority_map.keys())  # kept for pin-icon display
 
     def sort_key(pid):
@@ -128,35 +112,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     queue_num = state.get("queue_post_count", 0) + 1
     lines = [build_header(queue_num, total, streak, summary)]
 
-    entry_num = 1
-    for pid in sorted_pids:
-        data = scanned[pid]
-        entries = data["entries"]
-        name = data["campaign"]
-        code = data.get("code", "")
-        # Look up campaign emoji from config
-        emoji = next((p.get("emoji", "") for p in config.get("topic_pairs", [])
-                      if p.get("code") == code), "")
-        label = f"{code}: {name}" if code else name
-        gm = _gm_mentions(config, state, pid)
-        scene = state.get("current_scenes", {}).get(pid, "")
-        scene_str = f" 🎭 {scene}" if scene else ""
-        pin = "📌 " if pid in priority_pids else ""
-        fast_key = code if code else name
-        fast = f" ⚡{momentum_map[fast_key]}" if fast_key in momentum_map else ""
-        emoji_prefix = f"{emoji} " if emoji else ""
-        lines.append(f"━━ {pin}{emoji_prefix}{label} ({len(entries)}){scene_str} ━━ {gm}{fast}")
-        for entry in entries:
-            hours = 0
-            try:
-                posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
-                posted = posted.replace(tzinfo=timezone.utc)
-                hours = helpers.hours_since(now, posted)
-            except (ValueError, KeyError):  # pragma: no cover
-                pass  # pragma: no cover
-            line = format_queue_line(entry_num, entry, hours)
-            lines.append(line)
-            entry_num += 1
+    lines.extend(build_body_lines(config, state, scanned, sorted_pids,
+                                  priority_pids, momentum_map, now))
 
     if silent_lines:
         lines.append("━━ 💤 Silent campaigns ━━")
@@ -176,9 +133,12 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
 
     msgs = chunk_messages(lines, message)
 
-    # "Reply to this next" follow-up. Appended to the same batch so it is
-    # evicted with the queue it describes rather than lingering once answered.
-    focus = build_focus_message(config, scanned, priority_map, now)
+    # The "go here next" follow-up, appended to the same batch so it is
+    # evicted with the queue it describes rather than lingering once
+    # answered. build_followup picks between the reply focus and the
+    # oldest-campaign callout, so no exit from this module can reach
+    # neither. See its docstring for the bug that caused.
+    focus = build_followup(config, state, scanned, priority_map, now)
     if focus:
         msgs.append(focus)
 
