@@ -5,7 +5,9 @@
   "gm_user_ids": [
     1698524397
   ],
-  "permanent_user_ids": [
+  "permanent_user_ids": [],
+  "_permanent_user_ids_note": "PAUSED 2026-08-25 at Lewis's request: permanent status was inflating roster counts, because a permanent player is counted as active however long they have been silent. The mechanism, /setpermanent and /unsetpermanent are all untouched. To resume, move the ids below back into permanent_user_ids. See scripts/test_no_permanent_players.py, which fails if anyone becomes permanent again without that test being updated deliberately.",
+  "permanent_user_ids_paused": [
     6144366145,
     5443237599,
     138025700
