@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 174860,
+      "thread_id": 107171,
+      "user_id": "8701042661",
+      "user_name": "Diabla \"Bella\" Alzarin",
+      "time": "2026-08-25T19:54:36+00:00",
+      "preview": "\"Hi Oofy! I'm Bella- \"\n\nNearly falling over from the impact, she tries to look to the nearest window,\n\n\"You know, that explains a lot.\"\n\"Iss. . Do you think we could try and get away from the Zombies before doing anything else? I have to imagine the pirates don't want to get their souls sucked out as much as we do. . But also you did probably kill their friends.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2003,10 +2013,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 174710,
+      "fingerprint": "2026-08-25 19:54:36",
+      "msg_ids": [
+        174863
+      ],
+      "last_posted_at": "2026-08-25T19:55:19.555744+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-08-25T08:51:17.862591+00:00"
     },
