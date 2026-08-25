@@ -9,6 +9,33 @@
       "time": "2026-08-25T09:54:49+00:00",
       "preview": "\"Awww.. \u2605WHY?\u2605 We have to \u2605EXPOSE THEM\u2605 don't we?!\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 174745,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-25T10:46:32+00:00",
+      "preview": "\"we are going to send a message i assume?\" Lai says thinking out loud trying to read the clippings",
+      "media_group_id": null
+    },
+    {
+      "message_id": 174746,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-08-25T10:47:57+00:00",
+      "preview": "\"telling them that someone knows what they are doing and that this is their chance to make it right...?\" He continued unsure if he followed nikk-nakk's train of thought",
+      "media_group_id": null
+    },
+    {
+      "message_id": 174747,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-25T10:51:29+00:00",
+      "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the money !!\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1922,11 +1949,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-25 09:54:49",
+      "fingerprint": "2026-08-25 09:54:49|2026-08-25 10:46:32|2026-08-25 10:47:57|2026-08-25 10:51:29",
       "msg_ids": [
-        174734
+        174749
       ],
-      "last_posted_at": "2026-08-25T09:58:55.069823+00:00",
+      "last_posted_at": "2026-08-25T10:59:15.699545+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
     },
