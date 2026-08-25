@@ -16,7 +16,7 @@ So the premise goes **third**. Lines one and two earn the right to it.
 ## ⚠️ The strongest thing this table has is not the setting
 
 Every recruitment ad claims a good story. The reader has no way to check, and
-has been burned before — the number one reason people quit play-by-post is that
+has been burned before. The number one reason people quit play-by-post is that
 **the GM went quiet and nobody noticed**.
 
 This table has an actual, checkable answer to that: a bot that tracks every
@@ -32,7 +32,7 @@ to the fear that stops people applying. **Lead on it.**
 
 Replace `<...>`. Keep the first two lines close to what they say here.
 
-> **We play on Telegram, so the game comes to you** — a few lines from your
+> **We play on Telegram, so the game comes to you.** A few lines from your
 > phone whenever you have a minute, no scheduled session, no four-hour block to
 > defend in your calendar.
 >
@@ -40,7 +40,7 @@ Replace `<...>`. Keep the first two lines close to what they say here.
 > VTT**, so the maths is automated instead of counted out by hand in a post.
 >
 > **The game**
-> `<one line on the premise — what the party is doing and where>`
+> `<one line on the premise: what the party is doing and where>`
 > Pathfinder 2e, free, running since `<date>`. `<n>` of 6 seats open.
 >
 > **The GM does not ghost, and you do not have to take my word for it**
@@ -50,18 +50,18 @@ Replace `<...>`. Keep the first two lines close to what they say here.
 > points and boons, so none of it depends on anyone remembering.
 >
 > **What we ask**
-> • A post every day or two on weekdays. Real life happens — *say so* and it is
+> • A post every day or two on weekdays. Real life happens, so *say so* and it is
 >   fine. Silence is the only thing that actually kills a table.
 > • A free Foundry account, and a character in Pathbuilder or Foundry.
 > • A few sentences in character rather than "I attack".
 >
-> **Interested?** `<contact — reply here / DM @handle>`
+> **Interested?** `<contact: reply here / DM @handle>`
 
 ## Per-venue notes
 
 | venue | what changes |
 |---|---|
-| **r/lfg** | Title must follow the sidebar code system and needs a flair. Full text is fine, it allows 40,000 characters. One post per 24h — a **stated rule**, not a guess. |
+| **r/lfg** | Title must follow the sidebar code system and needs a flair. Full text is fine, it allows 40,000 characters. One post per 24h, a **stated rule**, not a guess. |
 | **Foundry Discord** | Lead harder on Foundry; it is why they are there. 2,000-char limit, so cut "what we ask" to two bullets. |
 | **PF2e Discord** | They know the system. Cut the PF2e explanation, keep the Telegram justification, it is still the unusual part. |
 | **Paizo / RPG Crossing / RPGnet** | Play-by-post natives, so drop the "what is play-by-post" framing entirely and spend the space on the premise. These are the best-fit venues; expect them to out-perform the big general boards. |
@@ -71,10 +71,10 @@ Every cooldown in the catalogue except r/lfg's is a **guess**.
 
 ## Do not advertise a table nobody is posting at
 
-Checked automatically now — `/recruitads` warns when the campaign it is about to
+Checked automatically now: `/recruitads` warns when the campaign it is about to
 advertise has had no player post in 14 days. See `scripts/recruiting/README.md`.
 
 The reason is not politeness. A joiner who arrives at a silent table posts an
-introduction, gets one reply, and leaves — and the recruitment log records that
+introduction, gets one reply, and leaves, and the recruitment log records that
 as **the venue** failing. A good venue then gets dropped for a table problem,
 and the drop looks evidence-based.
