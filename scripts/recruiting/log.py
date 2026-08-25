@@ -36,13 +36,41 @@ def get_log(state: dict) -> dict:
 
 
 def record_post(state: dict, venue_id: str,
-                now: datetime | None = None) -> str:
-    """Note that the advert went up at ``venue_id``. Returns the timestamp."""
+                now: datetime | None = None,
+                url: str = "") -> dict:
+    """Note that the advert went up at ``venue_id``. Returns the entry.
+
+    ``url`` is where it went up, and it is worth capturing at exactly this
+    moment because it is never recoverable later. Finding your own advert
+    again is what lets you check for replies, bump it, or take it down when
+    the campaign fills. Added 2026-08-25, the first time a real posting
+    handed over a permalink that this function had nowhere to put.
+
+    ⚠️ Entries changed from a bare ISO string to ``{"at": ..., "url": ...}``
+    on the same day. That deliberately broke every reader rather than
+    silently accepting two shapes: see ``_stamp``, which now has to know
+    about both, and is the only place that does.
+    """
     now = now or datetime.now(timezone.utc)
-    stamp = now.isoformat()
-    posts = get_log(state)["posts"]
-    posts.setdefault(venue_id, []).append(stamp)
-    return stamp
+    entry = {"at": now.isoformat(), "url": url or ""}
+    get_log(state)["posts"].setdefault(venue_id, []).append(entry)
+    return entry
+
+
+def _stamp(entry) -> str:
+    """The timestamp of a post entry, in either shape.
+
+    Legacy entries are a bare ISO string. Reading them has to keep working
+    because state files predate the change and are not migrated on load.
+    """
+    if isinstance(entry, dict):
+        return entry.get("at", "")
+    return entry or ""
+
+
+def post_url(entry) -> str:
+    """Where a post went up, or "" for legacy entries that never recorded it."""
+    return entry.get("url", "") if isinstance(entry, dict) else ""
 
 
 def record_join(state: dict, venue_id: str, player: str,
@@ -60,14 +88,27 @@ def record_join(state: dict, venue_id: str, player: str,
 
 
 def posts_for(state: dict, venue_id: str) -> list:
-    """Every timestamp we posted to this venue, oldest first."""
+    """Every post entry for this venue, in the order they were recorded."""
     return list(get_log(state)["posts"].get(venue_id, []))
+
+
+def stamps_for(state: dict, venue_id: str) -> list:
+    """Just the timestamps, for callers that only care when."""
+    return [_stamp(e) for e in posts_for(state, venue_id)]
 
 
 def last_posted(state: dict, venue_id: str) -> str | None:
     """When the advert last went up here, or None if it never has."""
-    stamps = posts_for(state, venue_id)
+    stamps = [s for s in stamps_for(state, venue_id) if s]
     return max(stamps) if stamps else None
+
+
+def last_post_url(state: dict, venue_id: str) -> str:
+    """The link to the most recent advert here, or "" if unrecorded."""
+    entries = [e for e in posts_for(state, venue_id) if _stamp(e)]
+    if not entries:
+        return ""
+    return post_url(max(entries, key=_stamp))
 
 
 def joins_for(state: dict, venue_id: str) -> list:

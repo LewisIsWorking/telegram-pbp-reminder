@@ -81,6 +81,13 @@ def build_recruit_ads(config: dict, state: dict,
         lines.append(f"\n── Cooling down ({len(waiting)}) ──")
         for venue, remaining in waiting[:6]:
             lines.append(f"• {venue['name']}: {remaining:.1f}d left")
+            # The live advert, when its link was recorded. This is the
+            # section where "where is the thing I posted" is the actual
+            # question: it is up right now, and checking it for replies
+            # or retiring it are the only two useful actions.
+            posted_at = log.last_post_url(state, venue["id"])
+            if posted_at:
+                lines.append(f"  ↗ live: {posted_at}")
 
     lines.append("\n\U0001f4a1 When someone joins: /recruitjoined <venue-id> <name>")
     return "\n".join(lines)

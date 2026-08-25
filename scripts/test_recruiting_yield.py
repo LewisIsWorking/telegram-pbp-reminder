@@ -22,7 +22,7 @@ class TestRecording:
     def test_a_post_is_remembered(self):
         state = {}
         log.record_post(state, "paizo", NOW)
-        assert log.posts_for(state, "paizo") == [NOW.isoformat()]
+        assert log.stamps_for(state, "paizo") == [NOW.isoformat()]
 
     def test_posts_accumulate(self):
         state = {}
@@ -128,7 +128,7 @@ class TestItSurvivesBeingSaved:
         for partition in PARTITIONS:
             reloaded.update(store.load_partition(partition) or {})
 
-        assert log.posts_for(reloaded, "paizo") == [NOW.isoformat()]
+        assert log.stamps_for(reloaded, "paizo") == [NOW.isoformat()]
         assert log.joins_for(reloaded, "paizo")[0]["player"] == "Terra"
         assert state_module  # imported to prove the module still loads
 
