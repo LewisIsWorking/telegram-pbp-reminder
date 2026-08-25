@@ -833,7 +833,13 @@
       "2026-08-25T08:40:08.648389+00:00",
       "2026-08-25T08:40:08.650341+00:00",
       "2026-08-25T08:40:08.652329+00:00",
-      "2026-08-25T08:40:08.654264+00:00"
+      "2026-08-25T08:40:08.654264+00:00",
+      "2026-08-25T08:51:17.849296+00:00",
+      "2026-08-25T08:51:17.853225+00:00",
+      "2026-08-25T08:51:17.855564+00:00",
+      "2026-08-25T08:51:17.857890+00:00",
+      "2026-08-25T08:51:17.860196+00:00",
+      "2026-08-25T08:51:17.862457+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1737,48 +1743,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-07-27T15:48:00.031279+00:00",
-      "player": "Fuzzy",
-      "preview": "Even during a 100 year slumber, I usually am covered by ligh",
-      "msg_id": "168814"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-07-27T19:45:17.404010+00:00",
-      "player": "Dalaxiss",
-      "preview": "Listening to this conversation, Katmidlar offers the constru",
-      "msg_id": "168822"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-07-28T03:19:57.351945+00:00",
-      "player": "Fuzzy",
-      "preview": "Thank you, but I have my personal mix.\n\nAlthough I'd appreci",
-      "msg_id": "168863"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-07-28T03:19:58.095748+00:00",
-      "player": "Laetheron",
-      "preview": "Sounds like a plan",
-      "msg_id": "168880"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-28T04:41:40.544087+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "167949"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-28T04:41:40.547484+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "167950"
-    },
     {
       "pid": "52083",
       "time": "2026-07-28T04:41:40.549159+00:00",
@@ -3136,6 +3100,48 @@
       "player": "Laetheron",
       "preview": "Arktos replies while they get tools out from their belt, \"An",
       "msg_id": "174151"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-25T08:51:17.849296+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Finally- Thank you!\" \n\nOn her way out, Bella offers Reign a",
+      "msg_id": "174494"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-25T08:51:17.853225+00:00",
+      "player": "Supreme",
+      "preview": "Reign allows themselves to be lifted and placed on their fee",
+      "msg_id": "174527"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-25T08:51:17.855564+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Bella smiles at the android, following him to grab her belon",
+      "msg_id": "174539"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-25T08:51:17.857890+00:00",
+      "player": "Minork",
+      "preview": "Minork rises, and begins to stretch. With a grunt, he turns ",
+      "msg_id": "174576"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-25T08:51:17.860196+00:00",
+      "player": "Laetheron",
+      "preview": "\"They seem to have gathered at the bridge.\"",
+      "msg_id": "174585"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-08-25T08:51:17.862457+00:00",
+      "player": "Laetheron",
+      "preview": "\"If everyone is ready, then I would suggest we eject the pir",
+      "msg_id": "174586"
     }
   ],
   "pending_potw_boons": {

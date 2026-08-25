@@ -1,61 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 174494,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-08-24T12:49:21+00:00",
-      "preview": "\"Finally- Thank you!\" \n\nOn her way out, Bella offers Reign a hand- or, rather, she holds the android's forearms, and tries to hoist them up onto their feet.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174527,
-      "thread_id": 107171,
-      "user_id": "7919488992",
-      "user_name": "Supreme",
-      "time": "2026-08-24T17:22:01+00:00",
-      "preview": "Reign allows themselves to be lifted and placed on their feet with little struggle, stretching their limbs a bit once they're set down \"Thanks, muscles. You always know how to pick me up when I'm down.\"\n\nThe android moves to the nearby storage chest to rummage around for their things \"We'd have to take apart the Prison Cube of Infinite Boredom for me to make stuff out of it, and honestly I'd rather destroy it out of spite.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174539,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-08-24T18:23:54+00:00",
-      "preview": "Bella smiles at the android, following him to grab her belongings too,\n\n\"I guess we'd have to destroy it *carefully* to do anything with it, huh. . Yeahh, we can just break it- Do we have time for that actually?\"\n\nShe turns over her shoulder towards Arktos, who seems to have the best grasp on the situation,\n\n\"The pirates are. . still here somewhere? Right?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174576,
-      "thread_id": 107171,
-      "user_id": "8379380933",
-      "user_name": "Minork",
-      "time": "2026-08-25T01:01:32+00:00",
-      "preview": "Minork rises, and begins to stretch. With a grunt, he turns to find his equipment and arm himself. \u201cAll right, let\u2019s make them see the error in their ways.\u201d",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174585,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-25T02:08:45+00:00",
-      "preview": "\"They seem to have gathered at the bridge.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174586,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-25T02:10:38+00:00",
-      "preview": "\"If everyone is ready, then I would suggest we eject the pirates out into vaccuum before another incident can occur.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -396,7 +341,19 @@
     "msg:174095",
     "2026-08-23 15:19:05",
     "msg:174151",
-    "2026-08-23 23:43:18"
+    "2026-08-23 23:43:18",
+    "msg:174494",
+    "2026-08-24 12:49:21",
+    "msg:174527",
+    "2026-08-24 17:22:01",
+    "msg:174539",
+    "2026-08-24 18:23:54",
+    "msg:174576",
+    "2026-08-25 01:01:32",
+    "msg:174585",
+    "2026-08-25 02:08:45",
+    "msg:174586",
+    "2026-08-25 02:10:38"
   ],
   "reply_log": [
     {
@@ -1986,20 +1943,72 @@
       "player": "Laetheron",
       "preview": "Arktos replies while they get tools out from their belt, \"Another energy pulse e",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:43:58+00:00",
+      "pid": "107171",
+      "msg_id": "174494",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Finally- Thank you!\" \n\nOn her way out, Bella offers Reign a hand- or, rather, s",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:44:41+00:00",
+      "pid": "107171",
+      "msg_id": "174527",
+      "thread_id": 107171,
+      "player": "Supreme",
+      "preview": "Reign allows themselves to be lifted and placed on their feet with little strugg",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:45:17+00:00",
+      "pid": "107171",
+      "msg_id": "174539",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Bella smiles at the android, following him to grab her belongings too,\n\n\"I guess",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:47:03+00:00",
+      "pid": "107171",
+      "msg_id": "174576",
+      "thread_id": 107171,
+      "player": "Minork",
+      "preview": "Minork rises, and begins to stretch. With a grunt, he turns to find his equipmen",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:47:18+00:00",
+      "pid": "107171",
+      "msg_id": "174585",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"They seem to have gathered at the bridge.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:47:46+00:00",
+      "pid": "107171",
+      "msg_id": "174586",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"If everyone is ready, then I would suggest we eject the pirates out into vaccuu",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-24 12:49:21|2026-08-24 17:22:01|2026-08-24 18:23:54|2026-08-25 01:01:32|2026-08-25 02:08:45|2026-08-25 02:10:38",
-      "msg_ids": [
-        174698
-      ],
-      "last_posted_at": "2026-08-25T08:40:26.496140+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 174710,
       "pending_delete": [],
-      "caught_up_at": "2026-08-22T08:57:03.812930+00:00"
+      "caught_up_at": "2026-08-25T08:51:17.862591+00:00"
     },
     "142887": {
       "fingerprint": "",
