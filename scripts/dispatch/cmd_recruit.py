@@ -46,10 +46,17 @@ def handle_recruit_write(cmd: str, ctx: dict, gm_ids: set) -> bool:
         return True
 
     if cmd == "/recruitposted":
-        log.record_post(state, venue_id)
+        # ⚠️ The link is only ever available at this moment. Without it,
+        # finding your own advert again later (to check for replies, bump
+        # it, or take it down once the campaign fills) means hunting
+        # through a channel by hand. Optional, because a posting recorded
+        # without a link is still worth far more than one not recorded.
+        url = args[1].strip() if len(args) > 1 else ""
+        log.record_post(state, venue_id, url=url)
+        note = "" if url else "\n💡 Tip: paste the link after the id and the bot will keep it."
         tg.send_message(gid, reply,
                         f"✅ Recorded a post to {venue['name']}. "
-                        f"Next due in {venue['cooldown_days']:g}d.")
+                        f"Next due in {venue['cooldown_days']:g}d.{note}")
         return True
 
     player = " ".join(args[1:]).strip()
@@ -66,7 +73,9 @@ def handle_recruit_write(cmd: str, ctx: dict, gm_ids: set) -> bool:
 
 def _usage(cmd: str) -> str:
     if cmd == "/recruitposted":
-        return "Usage: /recruitposted <venue-id>\nSee /recruitads for ids."
+        return ("Usage: /recruitposted <venue-id> [link]\n"
+                "The link is optional but worth pasting: it is the only "
+                "moment it is easy to get.\nSee /recruitads for ids.")
     return ("Usage: /recruitjoined <venue-id> <player name>\n"
             "Use 'unknown' as the venue if you genuinely cannot tell. "
             "That is recorded honestly rather than guessed at.")
