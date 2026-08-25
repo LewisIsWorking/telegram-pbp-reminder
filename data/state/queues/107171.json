@@ -2,51 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 173973,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-08-22T22:48:57+00:00",
-      "preview": "\"That's why you gotta make your own . .fun-!\"\n\nThe oni stumbles backwards, losing what little grip she had on the sides of the cube. She doesn't seem deterred, immediately turning to the wall now nearest to her.\n\n\"Think you could get a Pad case made out of this? You could drop it out of orbit and it'd be fine.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174077,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-23T14:25:37+00:00",
-      "preview": "Arktos drifts into the room. Upon hearing the last comment, they make a dry remark, \"An amusing and rather practical thought considering the situation. Though I suppose you all would rather be freed before stripping the cube for parts?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174087,
-      "thread_id": 107171,
-      "user_id": "8379380933",
-      "user_name": "Minork",
-      "time": "2026-08-23T14:46:38+00:00",
-      "preview": "Minork chortles darkly. \u201cThe cube is quite comfortable. Please take all the time you need.\u201d He says sarcastically.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174095,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-08-23T15:19:05+00:00",
-      "preview": "\"Hu- Oh! Yeah get us out of here please!\"\nBella waves to Arktos, pressing herself closer to the furthest wall . . In case the process of freeing them happened to be particularly destructive.\n\n\"I didn't notice you earlier . . Did something happen out there? Well, clearly /something/ did, but how much.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174151,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-23T23:43:18+00:00",
-      "preview": "Arktos replies while they get tools out from their belt, \"Another energy pulse event, though as for what prompted or resulted from it, we are unsure. Also the pirates. Can't forget about those; rather inconvienient lot, them. \"",
-      "media_group_id": null
-    },
-    {
       "message_id": 174494,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -431,7 +386,17 @@
     "msg:173962",
     "2026-08-22 21:16:34",
     "msg:173963",
-    "2026-08-22 21:26:58"
+    "2026-08-22 21:26:58",
+    "msg:173973",
+    "2026-08-22 22:48:57",
+    "msg:174077",
+    "2026-08-23 14:25:37",
+    "msg:174087",
+    "2026-08-23 14:46:38",
+    "msg:174095",
+    "2026-08-23 15:19:05",
+    "msg:174151",
+    "2026-08-23 23:43:18"
   ],
   "reply_log": [
     {
@@ -1976,17 +1941,62 @@
       "player": "Supreme",
       "preview": "A dark skinned individual with a shock of neon purple hair lays in the center of",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:23:24+00:00",
+      "pid": "107171",
+      "msg_id": "173973",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"That's why you gotta make your own . .fun-!\"\n\nThe oni stumbles backwards, losin",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:24:06+00:00",
+      "pid": "107171",
+      "msg_id": "174077",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos drifts into the room. Upon hearing the last comment, they make a dry rema",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:24:36+00:00",
+      "pid": "107171",
+      "msg_id": "174087",
+      "thread_id": 107171,
+      "player": "Minork",
+      "preview": "Minork chortles darkly. \u201cThe cube is quite comfortable. Please take all the time",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:25:28+00:00",
+      "pid": "107171",
+      "msg_id": "174095",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Hu- Oh! Yeah get us out of here please!\"\nBella waves to Arktos, pressing hersel",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:26:15+00:00",
+      "pid": "107171",
+      "msg_id": "174151",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos replies while they get tools out from their belt, \"Another energy pulse e",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-22 22:48:57|2026-08-23 14:25:37|2026-08-23 14:46:38|2026-08-23 15:19:05|2026-08-23 23:43:18|2026-08-24 12:49:21|2026-08-24 17:22:01|2026-08-24 18:23:54|2026-08-25 01:01:32|2026-08-25 02:08:45|2026-08-25 02:10:38",
+      "fingerprint": "2026-08-24 12:49:21|2026-08-24 17:22:01|2026-08-24 18:23:54|2026-08-25 01:01:32|2026-08-25 02:08:45|2026-08-25 02:10:38",
       "msg_ids": [
-        174621
+        174698
       ],
-      "last_posted_at": "2026-08-25T08:22:09.724040+00:00",
+      "last_posted_at": "2026-08-25T08:40:26.496140+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-08-22T08:57:03.812930+00:00"

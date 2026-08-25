@@ -1,15 +1,5 @@
 {
   "players": {
-    "66154:138025700": {
-      "user_id": "138025700",
-      "first_name": "Ryo",
-      "last_name": "Yamakawa",
-      "username": "RyoYamakawa",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-06-29T00:35:06+00:00",
-      "last_warned_week": 2
-    },
     "25059:5443237599": {
       "user_id": "5443237599",
       "first_name": "Horia",
@@ -50,16 +40,6 @@
       "last_post_time": "2026-08-20T08:41:10+00:00",
       "last_warned_week": 0
     },
-    "76799:138025700": {
-      "user_id": "138025700",
-      "first_name": "Ryo",
-      "last_name": "Yamakawa",
-      "username": "RyoYamakawa",
-      "campaign_name": "Magni Guard",
-      "pbp_topic_id": "76799",
-      "last_post_time": "2026-06-29T00:18:09+00:00",
-      "last_warned_week": 2
-    },
     "76799:8353586922": {
       "user_id": "8353586922",
       "first_name": "Chase",
@@ -88,7 +68,7 @@
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
       "last_post_time": "2026-08-03T14:39:16+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "52083:6144366145": {
       "user_id": "6144366145",
@@ -200,15 +180,6 @@
       "last_post_time": "2026-08-18T05:58:17+00:00",
       "last_warned_week": 1
     },
-    "25059:6482311444": {
-      "user_id": "6482311444",
-      "first_name": "Moss",
-      "username": "Mossssssssssssssssssssssssss",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-04-21T12:39:04.376187+00:00",
-      "last_warned_week": 2
-    },
     "51357:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -256,7 +227,7 @@
       "username": "PathWars",
       "campaign_name": "Theria",
       "pbp_topic_id": "107151",
-      "last_post_time": "2026-05-24T17:46:25+00:00",
+      "last_post_time": "2026-08-25T08:36:47+00:00",
       "last_warned_week": 0
     },
     "40585:7130942567": {
@@ -328,16 +299,6 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-08-02T23:28:29+00:00",
       "last_warned_week": 3
-    },
-    "25059:138025700": {
-      "user_id": "138025700",
-      "first_name": "Ryo",
-      "last_name": "Yamakawa",
-      "username": "RyoYamakawa",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-07-27T10:29:38+00:00",
-      "last_warned_week": 2
     },
     "107171:7077683276": {
       "user_id": "7077683276",
@@ -628,6 +589,30 @@
       "first_name": "Caelum",
       "username": "Thien_Ming",
       "campaign_name": "Kibwe"
+    },
+    "66154:138025700": {
+      "removed_at": "2026-08-25T08:40:09.325178+00:00",
+      "first_name": "Ryo",
+      "username": "RyoYamakawa",
+      "campaign_name": "Riddleport"
+    },
+    "76799:138025700": {
+      "removed_at": "2026-08-25T08:40:09.325178+00:00",
+      "first_name": "Ryo",
+      "username": "RyoYamakawa",
+      "campaign_name": "Magni Guard"
+    },
+    "25059:6482311444": {
+      "removed_at": "2026-08-25T08:40:09.325178+00:00",
+      "first_name": "Moss",
+      "username": "Mossssssssssssssssssssssssss",
+      "campaign_name": "Doomsday Funtime"
+    },
+    "25059:138025700": {
+      "removed_at": "2026-08-25T08:40:09.325178+00:00",
+      "first_name": "Ryo",
+      "username": "RyoYamakawa",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -1514,6 +1499,38 @@
       "name": "Caelum",
       "username": "Thien_Ming",
       "at": "2026-08-24T05:43:34.395252+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-08-25T08:40:12.499703+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "76799",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-08-25T08:40:16.172503+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "6482311444",
+      "name": "Moss",
+      "username": "Mossssssssssssssssssssssssss",
+      "at": "2026-08-25T08:40:17.132210+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-08-25T08:40:17.859729+00:00"
     }
   ],
   "player_boons": {
