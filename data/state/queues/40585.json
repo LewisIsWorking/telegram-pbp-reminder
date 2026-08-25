@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 174809,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-25T15:06:44+00:00",
+      "preview": "We take the time to search everywhere.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1058,7 +1067,9 @@
     "msg:173630",
     "2026-08-21 08:15:14",
     "msg:174214",
-    "2026-08-24 03:42:07"
+    "2026-08-24 03:42:07",
+    "msg:174486",
+    "2026-08-24 12:04:02"
   ],
   "reply_log": [
     {
@@ -5963,6 +5974,15 @@
       "player": "Anthony",
       "preview": "Group will probably go towards the trapped staircase and search for all the trap",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T15:03:22+00:00",
+      "pid": "40585",
+      "msg_id": "174486",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5977,10 +5997,12 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 174497,
+      "fingerprint": "2026-08-25 15:06:44",
+      "msg_ids": [
+        174810
+      ],
+      "last_posted_at": "2026-08-25T15:20:46.559668+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-24T13:03:06.785208+00:00"
     }
   }
