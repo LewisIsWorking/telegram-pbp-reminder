@@ -30,7 +30,12 @@ EM_DASH = "—"
 
 # Measured 2026-08-25, over scripts/ and docs/, AFTER clearing the 15 I
 # had just added. 367 files carry them; the bulk are old design docs.
-CEILING = 1762
+#
+# 1762 -> 1761 the same day: rewriting a comment in queue_reminder.py
+# dropped one, and the slack test refused to let the ceiling stay above
+# reality. That is the both-directions design earning its keep on its
+# first real use.
+CEILING = 1761
 
 _ROOTS = ("scripts", "docs")
 _EXTS = (".py", ".md")

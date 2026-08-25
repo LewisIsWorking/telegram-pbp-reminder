@@ -4,7 +4,16 @@ Extracted from ``queue_reminder.py`` on 2026-07-30 to bring that module back
 under the 200-line rule after the focus message and the caught-up age lines
 were added. Everything here turns already-gathered data into text; the
 orchestration, state writes and posting stay in ``queue_reminder``.
+
+``build_body_lines`` and ``_gm_mentions`` joined them on 2026-08-25, for the
+same reason: wiring in the follow-up chooser pushed the caller past 200. The
+division is unchanged, only more of the rendering now lives here.
 """
+
+from datetime import datetime, timezone
+
+import helpers
+from commands.queue_format import format_queue_line
 
 AGE_LEGEND = ("Age: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d "
               "🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d 🟤14d 🟫15d ⚫16d ⬛17d "
@@ -78,3 +87,59 @@ def chunk_messages(lines: list, message: str) -> list:
     if current.strip():
         msgs.append(current.rstrip())
     return msgs
+
+
+def _gm_mentions(config: dict, state: dict, pid: str) -> str:
+    gm_ids = helpers.gm_ids_for_campaign(config, pid)
+    if not gm_ids:
+        return "@PathWars"  # pragma: no cover
+    names = []
+    for uid in gm_ids:
+        match = next((p for p in state.get("players", {}).values()
+                       if p.get("user_id") == str(uid)), None)
+        if match:
+            u = match.get("username", "")  # pragma: no cover
+            names.append(f"@{u}" if u else match.get("first_name", "@PathWars"))  # pragma: no cover
+        else:
+            names.append("@PathWars")
+    return ", ".join(names)
+
+
+def build_body_lines(config: dict, state: dict, scanned: dict,
+                     sorted_pids: list, priority_pids: set,
+                     momentum_map: dict, now) -> list:
+    """One section per campaign with unreplied entries, in ``sorted_pids`` order.
+
+    Entry numbering runs across the whole body rather than restarting per
+    campaign, because ``/markdone N`` takes that number.
+    """
+    lines = []
+    entry_num = 1
+    for pid in sorted_pids:
+        data = scanned[pid]
+        entries = data["entries"]
+        name = data["campaign"]
+        code = data.get("code", "")
+        # Look up campaign emoji from config
+        emoji = next((p.get("emoji", "") for p in config.get("topic_pairs", [])
+                      if p.get("code") == code), "")
+        label = f"{code}: {name}" if code else name
+        gm = _gm_mentions(config, state, pid)
+        scene = state.get("current_scenes", {}).get(pid, "")
+        scene_str = f" 🎭 {scene}" if scene else ""
+        pin = "📌 " if pid in priority_pids else ""
+        fast_key = code if code else name
+        fast = f" ⚡{momentum_map[fast_key]}" if fast_key in momentum_map else ""
+        emoji_prefix = f"{emoji} " if emoji else ""
+        lines.append(f"━━ {pin}{emoji_prefix}{label} ({len(entries)}){scene_str} ━━ {gm}{fast}")
+        for entry in entries:
+            hours = 0
+            try:
+                posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
+                posted = posted.replace(tzinfo=timezone.utc)
+                hours = helpers.hours_since(now, posted)
+            except (ValueError, KeyError):  # pragma: no cover
+                pass  # pragma: no cover
+            lines.append(format_queue_line(entry_num, entry, hours))
+            entry_num += 1
+    return lines
