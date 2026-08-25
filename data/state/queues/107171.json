@@ -2,24 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 173962,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-08-22T21:16:34+00:00",
-      "preview": "A large, horned woman stirs awake against one of the walls, in a position that could not have been comfortable to sleep in. . It takes a while before she shakes of the drowsiness, but as soon as she does-\n\nBella just about launches herself across the room, trying to get her claws into, and wrestle open any side of the cube. . Something that she's tried several times by now, never to any degree of success.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 173963,
-      "thread_id": 107171,
-      "user_id": "7919488992",
-      "user_name": "Supreme",
-      "time": "2026-08-22T21:26:58+00:00",
-      "preview": "A dark skinned individual with a shock of neon purple hair lays in the center of the cube, limbs spread outwards as though reaching out for the sides of the cubes. At the sound of a solid body hitting the sides of the cube, he lets out a loud groan.\n\n\"They could've at LEAST left me with my datapad.\" Glowing purple eyes click open as circuitry dances across Reign's skin like glowing veins, the android booting up in earnest \"Can't hack or blast my way out of this thing but I could pass the time wi",
-      "media_group_id": null
-    },
-    {
       "message_id": 173973,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -445,7 +427,11 @@
     "msg:174183",
     "2026-08-24 03:29:06",
     "msg:173955",
-    "2026-08-22 20:52:11"
+    "2026-08-22 20:52:11",
+    "msg:173962",
+    "2026-08-22 21:16:34",
+    "msg:173963",
+    "2026-08-22 21:26:58"
   ],
   "reply_log": [
     {
@@ -1972,17 +1958,35 @@
       "player": "Minork",
       "preview": "Minork Estra finally raises his eyes to acknowledge his comrades. He doesn\u2019t oth",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:18:48+00:00",
+      "pid": "107171",
+      "msg_id": "173962",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "A large, horned woman stirs awake against one of the walls, in a position that c",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T08:21:37+00:00",
+      "pid": "107171",
+      "msg_id": "173963",
+      "thread_id": 107171,
+      "player": "Supreme",
+      "preview": "A dark skinned individual with a shock of neon purple hair lays in the center of",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-22 21:16:34|2026-08-22 21:26:58|2026-08-22 22:48:57|2026-08-23 14:25:37|2026-08-23 14:46:38|2026-08-23 15:19:05|2026-08-23 23:43:18|2026-08-24 12:49:21|2026-08-24 17:22:01|2026-08-24 18:23:54|2026-08-25 01:01:32|2026-08-25 02:08:45|2026-08-25 02:10:38",
+      "fingerprint": "2026-08-22 22:48:57|2026-08-23 14:25:37|2026-08-23 14:46:38|2026-08-23 15:19:05|2026-08-23 23:43:18|2026-08-24 12:49:21|2026-08-24 17:22:01|2026-08-24 18:23:54|2026-08-25 01:01:32|2026-08-25 02:08:45|2026-08-25 02:10:38",
       "msg_ids": [
-        174587
+        174621
       ],
-      "last_posted_at": "2026-08-25T03:05:51.817442+00:00",
+      "last_posted_at": "2026-08-25T08:22:09.724040+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-08-22T08:57:03.812930+00:00"
