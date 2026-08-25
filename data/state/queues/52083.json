@@ -2,21 +2,12 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 174754,
+      "message_id": 174792,
       "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-25T11:00:04+00:00",
-      "preview": "Lai looks at Livy then at Nikk-Nakk waiting for an answer",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174767,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-25T11:40:10+00:00",
-      "preview": "Lai nods in understanding",
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-25T14:15:17+00:00",
+      "preview": "\"Why would we go to \u2605PRISON\u2605? We can just do a \u2605DELAYED LIVE\u2605 and wear \u2605MASKS\u2605!\"",
       "media_group_id": null
     }
   ],
@@ -369,7 +360,11 @@
     "msg:174746",
     "2026-08-25 10:47:57",
     "msg:174747",
-    "2026-08-25 10:51:29"
+    "2026-08-25 10:51:29",
+    "msg:174754",
+    "2026-08-25 11:00:04",
+    "msg:174767",
+    "2026-08-25 11:40:10"
   ],
   "reply_log": [
     {
@@ -1969,17 +1964,35 @@
       "player": "Anthony",
       "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the money !!\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T14:12:13+00:00",
+      "pid": "52083",
+      "msg_id": "174754",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai looks at Livy then at Nikk-Nakk waiting for an answer",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T14:12:24+00:00",
+      "pid": "52083",
+      "msg_id": "174767",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai nods in understanding",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-25 11:00:04|2026-08-25 11:40:10",
+      "fingerprint": "2026-08-25 14:15:17",
       "msg_ids": [
-        174768
+        174796
       ],
-      "last_posted_at": "2026-08-25T11:54:42.682398+00:00",
+      "last_posted_at": "2026-08-25T14:21:34.877330+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
     },

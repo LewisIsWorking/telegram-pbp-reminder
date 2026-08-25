@@ -1588,7 +1588,9 @@
       "2026-08-25T11:34:17.077817+00:00",
       "2026-08-25T11:34:17.081141+00:00",
       "2026-08-25T11:34:17.083460+00:00",
-      "2026-08-25T11:34:17.085753+00:00"
+      "2026-08-25T11:34:17.085753+00:00",
+      "2026-08-25T14:21:32.613859+00:00",
+      "2026-08-25T14:21:32.617954+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1749,20 +1751,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-07-30T02:54:50.187503+00:00",
-      "player": "Fuzzy",
-      "preview": "Well... As long as I don't make the chaos worse.",
-      "msg_id": "168948"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-30T02:54:50.189758+00:00",
-      "player": "Terra",
-      "preview": "Lai stops beside Rune(?) \n\"What did you wake up?\"",
-      "msg_id": "165926"
-    },
     {
       "pid": "52083",
       "time": "2026-07-30T02:54:50.191726+00:00",
@@ -3148,6 +3136,20 @@
       "player": "Anthony",
       "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the m",
       "msg_id": "174747"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-25T14:21:32.613859+00:00",
+      "player": "Terra",
+      "preview": "Lai looks at Livy then at Nikk-Nakk waiting for an answer",
+      "msg_id": "174754"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-25T14:21:32.617954+00:00",
+      "player": "Terra",
+      "preview": "Lai nods in understanding",
+      "msg_id": "174767"
     }
   ],
   "pending_potw_boons": {
