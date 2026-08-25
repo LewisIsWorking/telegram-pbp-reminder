@@ -19,6 +19,18 @@ from recruiting import catalogue, log
 # The rest are not lost, they are simply next.
 MAX_SUGGESTIONS = 3
 
+# How well a venue matches THIS offering, lower sorting first. Used only
+# to break ties between venues nobody has posted to yet.
+#
+# ⚠️ Without this the tie falls through to position in the JSON file, so
+# with MAX_SUGGESTIONS at 3 the command offers the first three venues in
+# the file rather than the three most likely to work. Nothing starves:
+# posting to a venue makes it "tried" and drops it below the untried
+# ones, so the queue drains. This is an ordering fix, not a starvation
+# fix. Added 2026-08-25 with foundry-lfg, the fourth high-fit venue.
+_FIT_ORDER = {"high": 0, "medium": 1, "low": 2}
+_FIT_UNKNOWN = 3
+
 
 def days_since(then_iso: str | None, now: datetime) -> float | None:
     """Days since an ISO timestamp, or None if it never happened.
@@ -58,10 +70,16 @@ def _priority(venue: dict, state: dict, now: datetime) -> tuple:
     Never-posted venues come first: an untried venue is the only kind that
     can still teach us something, and the whole exercise is a search. After
     that, whichever has been waiting longest.
+
+    ``fit`` breaks ties only. It cannot outrank an untried venue over a
+    tried one, because a guess about fit is exactly what posting is meant
+    to test, and letting it reorder the search would make the search
+    confirm the guess.
     """
     elapsed = days_since(log.last_posted(state, venue["id"]), now)
     never_tried = elapsed is None
-    return (0 if never_tried else 1, -(elapsed or 0.0))
+    fit = _FIT_ORDER.get(venue.get("fit"), _FIT_UNKNOWN)
+    return (0 if never_tried else 1, -(elapsed or 0.0), fit)
 
 
 def due_venues(state: dict, now: datetime | None = None,
