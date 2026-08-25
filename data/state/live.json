@@ -1,5 +1,5 @@
 {
-  "offset": 619356757,
+  "offset": 619356764,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-25T11:40:10+00:00",
@@ -62,7 +62,7 @@
     "51357": "2026-08-24T16:46:56.073667+00:00",
     "25059": "2026-08-25T04:46:28.949580+00:00",
     "107171": "2026-08-22T08:37:54.898349+00:00",
-    "40585": "2026-08-23T09:33:59.627458+00:00",
+    "40585": "2026-08-25T12:59:50.455011+00:00",
     "76799": "2026-08-25T04:46:28.949580+00:00",
     "107151": "2026-08-24T08:56:04.012306+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00"
@@ -226,7 +226,7 @@
   },
   "last_state_backup": "2026-08-25T09:42:11.197048+00:00",
   "last_queue_daily": "2026-08-25",
-  "last_queue_fingerprint": "52083:2026-08-25 11:00:04|52083:2026-08-25 11:40:10|silent:  \ud83d\udfe0 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 5d 21h \ud83d\udd17 https://t.me/Path_Wars/51357",
+  "last_queue_fingerprint": "52083:2026-08-25 11:00:04|52083:2026-08-25 11:40:10|silent:  \ud83d\udfe0 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 5d 22h \ud83d\udd17 https://t.me/Path_Wars/51357",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -320,15 +320,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-25",
-  "last_queue_pin_id": 174770,
-  "queue_post_count": 1457,
+  "last_queue_pin_id": 174775,
+  "queue_post_count": 1458,
   "gm_queue_history": [
     {
       "msg_ids": [
-        174770,
-        174771
+        174775,
+        174776
       ],
-      "pin_id": 174770
+      "pin_id": 174775
     }
   ],
   "potw_week": {
@@ -344,10 +344,10 @@
   },
   "last_potw_roundup": "2026-W35",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 427,
+  "schedule_post_msg_id": 429,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-25",
-  "last_pin_alert_ts": "2026-08-25T11:34:27.760672+00:00",
+  "last_pin_alert_ts": "2026-08-25T12:59:54.304321+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 174727,
   "last_recruit_focus": "2026-08-25T09:42:11.197048+00:00",
