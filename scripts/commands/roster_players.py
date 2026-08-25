@@ -97,9 +97,21 @@ def _aggregate_by_user(state: dict, pid_to_code: dict[str, str],
     for player in state.get("players", {}).values():
         uid = str(player.get("user_id", ""))
         pid = str(player.get("pbp_topic_id", ""))
-        code = pid_to_code.get(pid, "?")
         if not uid:
             continue
+        # Retiring a campaign from config does NOT remove its player
+        # rows from state. C11 Dark Pockets was retired in #22 and left
+        # two rows behind on topic 1242, which no pair claims. They were
+        # still counted here as unique players and printed with a "?"
+        # code, so every cross-campaign total carried two people who
+        # cannot post anywhere. Found 2026-08-25, when Lewis asked how
+        # 43 seats were possible across his campaigns.
+        #
+        # Skipped, not deleted: the rows stay in state as history, they
+        # simply stop counting as a live roster.
+        if pid not in pid_to_code:
+            continue
+        code = pid_to_code[pid]
         days = _days_ago(player, now)
         slot = by_user.setdefault(uid, {
             "name": player.get("first_name")
