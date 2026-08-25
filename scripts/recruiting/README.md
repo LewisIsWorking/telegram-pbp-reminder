@@ -56,7 +56,7 @@ are about to advertise actually alive?*
 ## ⭐ The biggest gap and the deadest table are usually the same campaign
 
 `recruit_focus` picks whichever campaign is shortest of players. For the in-group
-advert that is right — everyone reading already knows the table. For an external
+advert that is right, because everyone reading already knows the table. For an external
 advert it is dangerous on its own, because seats are empty **because** nobody is
 posting, and nobody is posting **because** seats are empty.
 
@@ -64,7 +64,7 @@ Found live on 2026-08-25: C04 Magni Guard was surfaced as the biggest gap at
 "3/6 players", while its three seats had been silent 21, 24 and **56** days and
 the whole campaign had produced **two** player posts that month.
 
-A stranger who joins that gets one GM reply and leaves inside a month — and
+A stranger who joins that gets one GM reply and leaves inside a month, and
 `recruitment_log` records it as **the venue failing**. That is how a good venue
 gets dropped for a table problem, with what looks like evidence.
 
@@ -159,7 +159,7 @@ plausible guesses.
 
 The Roll20 rejection is sound: its rules require the game to run on Roll20 and
 this one does not. The original note then generalised *"same reason rules out the
-Foundry and Fantasy Grounds boards"* — and that was **wrong**, because these
+Foundry and Fantasy Grounds boards"*, and that was **wrong**, because these
 campaigns **do** run on Foundry VTT. Foundry carries the mechanics, maps and
 automation; Telegram carries the asynchronous posting.
 

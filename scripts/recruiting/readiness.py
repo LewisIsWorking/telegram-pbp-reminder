@@ -8,7 +8,7 @@ same campaign more often than not: seats empty because nobody is posting,
 and nobody is posting because seats are empty.
 
 Advertising a dormant table is worse than not advertising. The joiner
-writes an introduction, gets one GM reply, waits a fortnight, and leaves —
+writes an introduction, gets one GM reply, waits a fortnight, and leaves,
 and the recruitment log records that as **the venue failing**, which is
 how a good venue gets dropped for a table problem. See
 ``a-measurement-that-blames-the-wrong-subject``.
@@ -76,8 +76,8 @@ def is_quiet(pair: dict, state: dict, now: datetime | None = None) -> bool:
 def warning(pair: dict, state: dict, now: datetime | None = None) -> str:
     """The line to show above the venue list, or "" when the table is fine.
 
-    Returns advice, not a refusal. The GM knows things this does not —
-    a table can be quiet because everyone agreed to pause — so this
+    Returns advice, not a refusal. The GM knows things this does not
+    (a table can be quiet because everyone agreed to pause), so this
     never blocks the advert, it only makes the risk visible before the
     post goes out rather than after the joiner has left.
     """
@@ -89,7 +89,7 @@ def warning(pair: dict, state: dict, now: datetime | None = None) -> str:
     else:
         measured = f"no player has posted for {quiet_for:.0f} days"
     return (f"\n⚠️ This table is quiet: {measured}. A new arrival posts an "
-            f"introduction, hears nothing, and leaves — and the yield log "
+            f"introduction, hears nothing, and leaves, and the yield log "
             f"blames the venue for it. Consider waking the seated players "
             f"first, or advertise anyway knowing the first reply has to "
             f"come fast.")
