@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 174809,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-25T15:06:44+00:00",
-      "preview": "We take the time to search everywhere.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1069,7 +1060,11 @@
     "msg:174214",
     "2026-08-24 03:42:07",
     "msg:174486",
-    "2026-08-24 12:04:02"
+    "2026-08-24 12:04:02",
+    "msg:174809",
+    "2026-08-25 15:06:44",
+    "msg:174824",
+    "2026-08-25 15:39:33"
   ],
   "reply_log": [
     {
@@ -5983,6 +5978,24 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T15:36:13+00:00",
+      "pid": "40585",
+      "msg_id": "174809",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "We take the time to search everywhere.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T15:42:24+00:00",
+      "pid": "40585",
+      "msg_id": "174824",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Uhh. No the staircase",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -5997,13 +6010,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-08-25 15:06:44",
-      "msg_ids": [
-        174810
-      ],
-      "last_posted_at": "2026-08-25T15:20:46.559668+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-24T13:03:06.785208+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 174828,
+      "caught_up_at": "2026-08-25T15:51:44.309637+00:00"
     }
   }
 }
