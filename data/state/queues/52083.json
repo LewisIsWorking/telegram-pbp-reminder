@@ -2,39 +2,12 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 174730,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-25T09:54:49+00:00",
-      "preview": "\"Awww.. \u2605WHY?\u2605 We have to \u2605EXPOSE THEM\u2605 don't we?!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174745,
+      "message_id": 174754,
       "thread_id": 52083,
       "user_id": "8097377199",
       "user_name": "Terra",
-      "time": "2026-08-25T10:46:32+00:00",
-      "preview": "\"we are going to send a message i assume?\" Lai says thinking out loud trying to read the clippings",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174746,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-25T10:47:57+00:00",
-      "preview": "\"telling them that someone knows what they are doing and that this is their chance to make it right...?\" He continued unsure if he followed nikk-nakk's train of thought",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174747,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-25T10:51:29+00:00",
-      "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the money !!\"",
+      "time": "2026-08-25T11:00:04+00:00",
+      "preview": "Lai looks at Livy then at Nikk-Nakk waiting for an answer",
       "media_group_id": null
     }
   ],
@@ -379,7 +352,15 @@
     "msg:174501",
     "2026-08-24 13:12:19",
     "msg:174728",
-    "2026-08-25 09:50:10"
+    "2026-08-25 09:50:10",
+    "msg:174730",
+    "2026-08-25 09:54:49",
+    "msg:174745",
+    "2026-08-25 10:46:32",
+    "msg:174746",
+    "2026-08-25 10:47:57",
+    "msg:174747",
+    "2026-08-25 10:51:29"
   ],
   "reply_log": [
     {
@@ -1943,17 +1924,53 @@
       "player": "Anthony",
       "preview": "\"So..! We're gonna \u2605STEAL ALL THE MONNEY\u2605 and \u2605STREAM IT TO THE WHOLE WORLD\u2605! \u2605R",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T11:16:51+00:00",
+      "pid": "52083",
+      "msg_id": "174730",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"Awww.. \u2605WHY?\u2605 We have to \u2605EXPOSE THEM\u2605 don't we?!\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T11:17:13+00:00",
+      "pid": "52083",
+      "msg_id": "174745",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"we are going to send a message i assume?\" Lai says thinking out loud trying to ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T11:18:29+00:00",
+      "pid": "52083",
+      "msg_id": "174746",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"telling them that someone knows what they are doing and that this is their chan",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-25T11:19:34+00:00",
+      "pid": "52083",
+      "msg_id": "174747",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the money !!\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-25 09:54:49|2026-08-25 10:46:32|2026-08-25 10:47:57|2026-08-25 10:51:29",
+      "fingerprint": "2026-08-25 11:00:04",
       "msg_ids": [
-        174749
+        174762
       ],
-      "last_posted_at": "2026-08-25T10:59:15.699545+00:00",
+      "last_posted_at": "2026-08-25T11:34:23.955530+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
     },
