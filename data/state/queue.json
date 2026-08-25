@@ -1583,7 +1583,8 @@
       "2026-08-22T19:45:34.674076+00:00",
       "2026-08-22T20:30:26.429708+00:00",
       "2026-08-23T09:33:59.620893+00:00",
-      "2026-08-25T09:42:11.195370+00:00"
+      "2026-08-25T09:42:11.195370+00:00",
+      "2026-08-25T09:58:51.996591+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1744,13 +1745,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-07-28T04:41:40.550819+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "167952"
-    },
     {
       "pid": "52083",
       "time": "2026-07-28T04:41:40.552487+00:00",
@@ -3143,6 +3137,13 @@
       "player": "Terra",
       "preview": "Lai just squints and looks at the pin board and everything o",
       "msg_id": "174501"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-25T09:58:51.996591+00:00",
+      "player": "Anthony",
+      "preview": "\"So..! We're gonna \u2605STEAL ALL THE MONNEY\u2605 and \u2605STREAM IT TO ",
+      "msg_id": "174728"
     }
   ],
   "pending_potw_boons": {
@@ -3157,7 +3158,8 @@
         "Recover 1d6 extra HP during your next rest."
       ],
       "base_message": "Player of the Week for Hopeful End-Times: Terra (@Saiminaminah)!\n(2026-08-17 (W34) to 2026-08-24 (W35))\n\n6 posts this week with an average gap of 17.7h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-08-24T09:56:06.822594+00:00"
+      "posted_at": "2026-08-24T09:56:06.822594+00:00",
+      "reminders_sent": 1
     },
     "107171": {
       "message_id": 174470,
@@ -3170,7 +3172,8 @@
         "Recover 1d6 extra HP during your next rest."
       ],
       "base_message": "Player of the Week for Metal City: Laetheron (@StorybookRhizome)!\n(2026-08-17 (W34) to 2026-08-24 (W35))\n\n6 posts this week with an average gap of 22.3h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-08-24T09:56:06.822594+00:00"
+      "posted_at": "2026-08-24T09:56:06.822594+00:00",
+      "reminders_sent": 1
     }
   },
   "pending_hero_points": {
