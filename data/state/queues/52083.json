@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 174501,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-24T13:12:19+00:00",
-      "preview": "Lai just squints and looks at the pin board and everything on it",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -348,7 +338,9 @@
     "msg:173931",
     "2026-08-22 19:56:46",
     "msg:173944",
-    "2026-08-22 20:42:21"
+    "2026-08-22 20:42:21",
+    "msg:174501",
+    "2026-08-24 13:12:19"
   ],
   "reply_log": [
     {
@@ -1894,19 +1886,26 @@
       "player": "Anthony",
       "preview": "\"\u2605SUPER SECRET MISSION PLANS!!!\u2605 I'm following you \u2605NICKY\u2605!!!\"\nLivy follows Nikk",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-25T09:41:32+00:00",
+      "pid": "52083",
+      "msg_id": "174501",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai just squints and looks at the pin board and everything on it",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-24 13:12:19",
-      "msg_ids": [
-        174502
-      ],
-      "last_posted_at": "2026-08-24T13:29:59.754665+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-23T09:33:59.627458+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 174724,
+      "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
     },
     "145045": {
       "msg_ids": [],
