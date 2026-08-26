@@ -1,5 +1,5 @@
 {
-  "offset": 619356878,
+  "offset": 619356883,
   "topics": {
     "52083": {
       "last_message_time": "2026-08-25T17:35:05+00:00",
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-08-26T00:16:02+00:00",
-      "last_user": "Minork",
-      "last_user_id": "8379380933",
+      "last_message_time": "2026-08-26T02:10:12+00:00",
+      "last_user": "Laetheron",
+      "last_user_id": "8117756377",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -113,7 +113,7 @@
   "last_roster_snapshot": "C01:5/6|C00:3/6|C04:2/6|C05:5/6|C06:5/6|C07:5/6|C09:5/6|C10:0/6|C08:1/4",
   "gm_escalation": {
     "level": 1,
-    "last_at": null
+    "last_at": "2026-08-26T03:12:26.490128+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-08-21T01:46:41.897839+00:00",
@@ -228,7 +228,7 @@
   },
   "last_state_backup": "2026-08-25T09:42:11.197048+00:00",
   "last_queue_daily": "2026-08-25",
-  "last_queue_fingerprint": "107171:2026-08-25 19:54:36|107171:2026-08-26 00:16:02|52083:2026-08-25 14:15:17|52083:2026-08-25 17:33:09|52083:2026-08-25 17:35:05|silent:  \ud83d\udfe7 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 6d 11h \ud83d\udd17 https://t.me/Path_Wars/51357",
+  "last_queue_fingerprint": "107171:2026-08-25 19:54:36|107171:2026-08-26 00:16:02|107171:2026-08-26 02:10:12|52083:2026-08-25 14:15:17|52083:2026-08-25 17:33:09|52083:2026-08-25 17:35:05|silent:  \ud83d\udfe7 \ud83d\udd2d C05: Grand Explorers \u2014 no posts for 6d 12h \ud83d\udd17 https://t.me/Path_Wars/51357",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -322,15 +322,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-25",
-  "last_queue_pin_id": 174898,
-  "queue_post_count": 1475,
+  "last_queue_pin_id": 174908,
+  "queue_post_count": 1476,
   "gm_queue_history": [
     {
       "msg_ids": [
-        174898,
-        174899
+        174908,
+        174909
       ],
-      "pin_id": 174898
+      "pin_id": 174908
     }
   ],
   "potw_week": {
@@ -346,10 +346,10 @@
   },
   "last_potw_roundup": "2026-W35",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 468,
+  "schedule_post_msg_id": 470,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-25",
-  "last_pin_alert_ts": "2026-08-26T01:47:22.385857+00:00",
+  "last_pin_alert_ts": "2026-08-26T03:12:37.711724+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 174727,
   "last_recruit_focus": "2026-08-25T09:42:11.197048+00:00",
