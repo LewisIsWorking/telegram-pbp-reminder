@@ -382,7 +382,11 @@
     "msg:170114",
     "2026-08-03 23:49:20",
     "msg:172919",
-    "2026-08-18 01:28:37"
+    "2026-08-18 01:28:37",
+    "msg:174951",
+    "2026-08-26 04:11:35",
+    "msg:174958",
+    "2026-08-26 04:42:12"
   ],
   "reply_log": [
     {
@@ -2143,6 +2147,24 @@
       "thread_id": "76799",
       "player": "?",
       "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T04:39:46+00:00",
+      "pid": "76799",
+      "msg_id": "174951",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "Rex walks into the room dawning a worn breast plate , tattered by field \"experie",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T04:43:08+00:00",
+      "pid": "76799",
+      "msg_id": "174958",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "I'm always ready ! What we killing today ? *I draw my thunder mace *",
       "via": "reply"
     }
   ],

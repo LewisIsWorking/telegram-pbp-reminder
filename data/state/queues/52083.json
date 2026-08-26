@@ -2,30 +2,12 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 174792,
+      "message_id": 174954,
       "thread_id": 52083,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-08-25T14:15:17+00:00",
-      "preview": "\"Why would we go to \u2605PRISON\u2605? We can just do a \u2605DELAYED LIVE\u2605 and wear \u2605MASKS\u2605!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174836,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-25T17:33:09+00:00",
-      "preview": "\"No, I'm...not adept with instruments\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 174837,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-25T17:35:05+00:00",
-      "preview": "\"I do not know what capitalism is, not much anyway, but i do know the look of abusing others for one's own gain\"",
+      "time": "2026-08-26T04:22:45+00:00",
+      "preview": "Livy also looks at rune with \u2605SPARKLING\u2605",
       "media_group_id": null
     }
   ],
@@ -382,7 +364,15 @@
     "msg:174754",
     "2026-08-25 11:00:04",
     "msg:174767",
-    "2026-08-25 11:40:10"
+    "2026-08-25 11:40:10",
+    "msg:174792",
+    "2026-08-25 14:15:17",
+    "msg:174836",
+    "2026-08-25 17:33:09",
+    "msg:174837",
+    "2026-08-25 17:35:05",
+    "msg:174957",
+    "2026-08-26 04:42:11"
   ],
   "reply_log": [
     {
@@ -2000,17 +1990,53 @@
       "player": "Terra",
       "preview": "Lai nods in understanding",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T03:43:24+00:00",
+      "pid": "52083",
+      "msg_id": "174792",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"Why would we go to \u2605PRISON\u2605? We can just do a \u2605DELAYED LIVE\u2605 and wear \u2605MASKS\u2605!\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T03:44:07+00:00",
+      "pid": "52083",
+      "msg_id": "174836",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"No, I'm...not adept with instruments\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T03:44:20+00:00",
+      "pid": "52083",
+      "msg_id": "174837",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"I do not know what capitalism is, not much anyway, but i do know the look of ab",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T04:43:55+00:00",
+      "pid": "52083",
+      "msg_id": "174957",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai holds it by the string looking at it",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-25 14:15:17|2026-08-25 17:33:09|2026-08-25 17:35:05",
+      "fingerprint": "2026-08-26 04:22:45",
       "msg_ids": [
-        174839
+        174971
       ],
-      "last_posted_at": "2026-08-25T17:36:49.311481+00:00",
+      "last_posted_at": "2026-08-26T04:48:05.013066+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
     },
