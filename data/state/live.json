@@ -1,10 +1,10 @@
 {
-  "offset": 619357091,
+  "offset": 619357155,
   "topics": {
     "52083": {
-      "last_message_time": "2026-08-26T05:59:08+00:00",
-      "last_user": "Ryo",
-      "last_user_id": "138025700",
+      "last_message_time": "2026-08-26T06:01:37+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -14,9 +14,9 @@
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-08-26T05:38:29+00:00",
-      "last_user": "Anthony",
-      "last_user_id": "6144366145",
+      "last_message_time": "2026-08-26T06:24:23+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -38,7 +38,7 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-08-26T04:52:27+00:00",
+      "last_message_time": "2026-08-26T06:44:52+00:00",
       "last_user": "Cannon",
       "last_user_id": "7454623139",
       "campaign_name": "Magni Guard"
@@ -109,8 +109,8 @@
   },
   "combat": {},
   "last_leaderboard": "2026-08-19T19:31:23.379941+00:00",
-  "last_roster_nudge": "2026-08-26T04:48:01.035663+00:00",
-  "last_roster_snapshot": "C01:5/6|C00:3/6|C04:3/6|C05:5/6|C06:5/6|C07:5/6|C09:5/6|C10:0/6|C08:1/4",
+  "last_roster_nudge": "2026-08-26T06:59:37.384196+00:00",
+  "last_roster_snapshot": "C01:5/6|C00:3/6|C04:5/6|C05:5/6|C06:5/6|C07:5/6|C09:5/6|C10:0/6|C08:1/4",
   "gm_escalation": {
     "level": 1,
     "last_at": null
@@ -228,7 +228,7 @@
   },
   "last_state_backup": "2026-08-25T09:42:11.197048+00:00",
   "last_queue_daily": "2026-08-25",
-  "last_queue_fingerprint": "51357:2026-08-26 05:32:37|51357:2026-08-26 05:32:37|51357:2026-08-26 05:38:29|51357:2026-08-26 05:38:29|51357:2026-08-26 05:38:29|52083:2026-08-26 05:59:08|76799:2026-08-26 04:50:11|76799:2026-08-26 04:52:27",
+  "last_queue_fingerprint": "76799:2026-08-26 06:16:35|76799:2026-08-26 06:29:08|76799:2026-08-26 06:34:23|76799:2026-08-26 06:44:52",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -322,15 +322,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-08-25",
-  "last_queue_pin_id": 175085,
-  "queue_post_count": 1480,
+  "last_queue_pin_id": 175145,
+  "queue_post_count": 1481,
   "gm_queue_history": [
     {
       "msg_ids": [
-        175085,
-        175086
+        175145,
+        175146
       ],
-      "pin_id": 175085
+      "pin_id": 175145
     }
   ],
   "potw_week": {
@@ -346,10 +346,10 @@
   },
   "last_potw_roundup": "2026-W35",
   "last_potw_countdown": "2026-W34",
-  "schedule_post_msg_id": 478,
+  "schedule_post_msg_id": 479,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-25",
-  "last_pin_alert_ts": "2026-08-26T05:40:17.815603+00:00",
+  "last_pin_alert_ts": "2026-08-26T06:59:52.383369+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 174727,
   "last_recruit_focus": "2026-08-25T09:42:11.197048+00:00",

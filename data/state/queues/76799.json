@@ -2,21 +2,39 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 174978,
+      "message_id": 175100,
       "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-26T04:50:11+00:00",
-      "preview": "Nadya turns lazily and shoots an attempt at a charming smile towards the newcomer. She slinks around to in front of Changer to greet Rex and holds out a hand in greeting.\n\n\"I'm not sure if I'm insulted by the lieutenant sending us reinforcements, or if I'm ashamed we actually need them. I'm Nadya, I'm sure we'll have time to get to know each-other later. Here's the scoop, quick-like: The construct is weird. The little bat guy is smart. I'm ex-shadow district intelligence, so whatever you did to ",
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-08-26T06:16:35+00:00",
+      "preview": "A few minutes just behind Rex, and only theoretically aware of the situation, came the metallic clinking of someone in armor that was a mix of leather and metal. Then, in came a fellow who looked only slightly less incongruous than the bat, the fox, and the gigantic automaton, was what looked like a young man who looked as pale as the driven snow, standing nearly 6 feet tall.\n\nSteele, former sergeant of the Magnimar City Guard, looked uncannily human for someone with white fur covering her entir",
       "media_group_id": null
     },
     {
-      "message_id": 174979,
+      "message_id": 175115,
+      "thread_id": 76799,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-26T06:29:08+00:00",
+      "preview": "\"Don't forget me!\"\n\nKitt huffs and steps out to be seen better before looking up at the tall, armored human and the furred human-like person as they look over the newcomers with curious eyes.\n\n\"I'm Kitt. I'm on assignment from the Chaplain Unit. Nice to meet you both.\"\n\nThe short, plump looking kobold wearing a modified but very much still obvious Magni-Guard uniform holds out their hand in greeting, the jeweled rings on their hand glistening in the light in the room. A holy symbol hangs around ",
+      "media_group_id": null
+    },
+    {
+      "message_id": 175120,
+      "thread_id": 76799,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-08-26T06:34:23+00:00",
+      "preview": "\"Chaplain...\" The professional tone of Steele slips slightly as she hears the kobold speak up, and the mask fades to a brief moment of anxiety, and then stern consideration.\n\nTo the outside world, she was clearly deliberating the upsides and downsides of mentioning something. Then, with a loud, dramatic sigh, unbecoming of an officer and a gentleman, she speaks again, her voice now slightly less confident.\n\n\"I require void healing if it matters in the future. It is better mentioned now than expl",
+      "media_group_id": null
+    },
+    {
+      "message_id": 175122,
       "thread_id": 76799,
       "user_id": "7454623139",
       "user_name": "Cannon",
-      "time": "2026-08-26T04:52:27+00:00",
-      "preview": "\"Technically we're supposed to avoid deaths, otherwise the grease in the Justice Court can't get their power trip before killing em anyway.\"",
+      "time": "2026-08-26T06:44:52+00:00",
+      "preview": "Nadya narrows her eyes raises her head slightly to sniff the air. She shakes her head after a moment of consideration.\n\n\"Ah well. Stick close to me if that's the case. Where magic fails, chirurgery works.\"",
       "media_group_id": null
     }
   ],
@@ -405,7 +423,13 @@
     "msg:174951",
     "2026-08-26 04:11:35",
     "msg:174958",
-    "2026-08-26 04:42:12"
+    "2026-08-26 04:42:12",
+    "msg:174978",
+    "2026-08-26 04:50:11",
+    "msg:174979",
+    "2026-08-26 04:52:27",
+    "msg:175097",
+    "2026-08-26 06:05:37"
   ],
   "reply_log": [
     {
@@ -2185,17 +2209,44 @@
       "player": "Volf",
       "preview": "I'm always ready ! What we killing today ? *I draw my thunder mace *",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:25:27+00:00",
+      "pid": "76799",
+      "msg_id": "174978",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "Nadya turns lazily and shoots an attempt at a charming smile towards the newcome",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:26:04+00:00",
+      "pid": "76799",
+      "msg_id": "174979",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"Technically we're supposed to avoid deaths, otherwise the grease in the Justice",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:26:39+00:00",
+      "pid": "76799",
+      "msg_id": "175097",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "*looking quite a bit surprised but rex shakes out of it *\n\n\" Roger that we're an",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-08-26 04:50:11|2026-08-26 04:52:27",
+      "fingerprint": "2026-08-26 06:16:35|2026-08-26 06:29:08|2026-08-26 06:34:23|2026-08-26 06:44:52",
       "msg_ids": [
-        175009
+        175140
       ],
-      "last_posted_at": "2026-08-26T05:04:53.400108+00:00",
+      "last_posted_at": "2026-08-26T06:59:40.109551+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null

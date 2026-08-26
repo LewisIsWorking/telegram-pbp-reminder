@@ -1,25 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 175067,
-      "thread_id": 145040,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-26T05:32:37+00:00",
-      "preview": "[media]",
-      "media_group_id": "14301778857048476"
-    },
-    {
-      "message_id": 175069,
-      "thread_id": 145040,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-26T05:38:29+00:00",
-      "preview": "[media]",
-      "media_group_id": "14301781672181036"
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -338,7 +319,14 @@
     "msg:173014",
     "2026-08-18 02:27:36",
     "msg:173402",
-    "2026-08-19 12:22:02"
+    "2026-08-19 12:22:02",
+    "msg:175067",
+    "2026-08-26 05:32:37",
+    "msg:175068",
+    "msg:175069",
+    "2026-08-26 05:38:29",
+    "msg:175070",
+    "msg:175071"
   ],
   "reply_log": [
     {
@@ -1724,6 +1712,51 @@
       "player": "Laetheron",
       "preview": "Twilight treads lightly through the copse of trees towards the ritual site. As t",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:03:12+00:00",
+      "pid": "51357",
+      "msg_id": "175067",
+      "thread_id": 145040,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:03:24+00:00",
+      "pid": "51357",
+      "msg_id": "175068",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:03:38+00:00",
+      "pid": "51357",
+      "msg_id": "175069",
+      "thread_id": 145040,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:03:53+00:00",
+      "pid": "51357",
+      "msg_id": "175070",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:04:18+00:00",
+      "pid": "51357",
+      "msg_id": "175071",
+      "thread_id": "51357",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1737,14 +1770,12 @@
       "caught_up_at": null
     },
     "145040": {
-      "msg_ids": [
-        175075
-      ],
-      "fingerprint": "2026-08-26 05:32:37|2026-08-26 05:32:37|2026-08-26 05:38:29|2026-08-26 05:38:29|2026-08-26 05:38:29",
-      "last_posted_at": "2026-08-26T05:40:08.726087+00:00",
-      "caught_up_msg_id": null,
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 175142,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-08-26T06:59:37.384196+00:00"
     },
     "56842": {
       "msg_ids": [],

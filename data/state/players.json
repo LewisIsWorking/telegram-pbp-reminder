@@ -337,7 +337,7 @@
       "username": "ArtyArtillery",
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-08-26T04:52:27+00:00",
+      "last_post_time": "2026-08-26T06:44:52+00:00",
       "last_warned_week": 0
     },
     "52083:8097377199": {
@@ -397,7 +397,27 @@
       "username": "",
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-08-26T04:42:12+00:00",
+      "last_post_time": "2026-08-26T06:05:37+00:00",
+      "last_warned_week": 0
+    },
+    "76799:1358791105": {
+      "user_id": "1358791105",
+      "first_name": "Alastair",
+      "last_name": "Tan",
+      "username": "altan19931993",
+      "campaign_name": "Magni Guard",
+      "pbp_topic_id": "76799",
+      "last_post_time": "2026-08-26T06:34:23+00:00",
+      "last_warned_week": 0
+    },
+    "76799:138025700": {
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "last_name": "Yamakawa",
+      "username": "RyoYamakawa",
+      "campaign_name": "Magni Guard",
+      "pbp_topic_id": "76799",
+      "last_post_time": "2026-08-26T06:29:08+00:00",
       "last_warned_week": 0
     }
   },
@@ -605,12 +625,6 @@
       "first_name": "Ryo",
       "username": "RyoYamakawa",
       "campaign_name": "Riddleport"
-    },
-    "76799:138025700": {
-      "removed_at": "2026-08-25T08:40:09.325178+00:00",
-      "first_name": "Ryo",
-      "username": "RyoYamakawa",
-      "campaign_name": "Magni Guard"
     },
     "25059:6482311444": {
       "removed_at": "2026-08-25T08:40:09.325178+00:00",
@@ -884,7 +898,7 @@
       },
       "138025700": {
         "id": 4,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-03-31T02:10:00.044798+00:00"
       },
       "8787586972": {
@@ -901,6 +915,11 @@
         "id": 7,
         "name": "Volf",
         "joined": "2026-08-26T04:48:01.020588+00:00"
+      },
+      "1358791105": {
+        "id": 8,
+        "name": "Alastair",
+        "joined": "2026-08-26T06:59:35.934048+00:00"
       }
     },
     "51357": {
@@ -1546,6 +1565,14 @@
       "name": "Ryo",
       "username": "RyoYamakawa",
       "at": "2026-08-25T08:40:17.859729+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "76799",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-08-26T06:59:35.942859+00:00"
     }
   ],
   "player_boons": {

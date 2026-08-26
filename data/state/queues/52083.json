@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 175081,
-      "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-26T05:59:08+00:00",
-      "preview": "Rune considers what Nikk-Nakk has shown them and what he has gleaned from reading his, and the others, lips before grinning. He starts quickly typing on his keyboard, the voice starting as his fingers continue to fly.\n\n\"I always hated this job so why the hell not? Especially if they are hurting people. Hit them where it hurts, their greed.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -378,7 +368,9 @@
     "msg:174982",
     "2026-08-26 04:54:32",
     "msg:174988",
-    "2026-08-26 04:57:02"
+    "2026-08-26 04:57:02",
+    "msg:175081",
+    "2026-08-26 05:59:08"
   ],
   "reply_log": [
     {
@@ -2059,19 +2051,26 @@
       "player": "Anthony",
       "preview": "\"YES a \u2605GHOSTBOT\u2605, like the ooze we just took out, and the robots down under the",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T06:01:30+00:00",
+      "pid": "52083",
+      "msg_id": "175081",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "Rune considers what Nikk-Nakk has shown them and what he has gleaned from readin",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-26 05:59:08",
-      "msg_ids": [
-        175083
-      ],
-      "last_posted_at": "2026-08-26T05:59:40.986533+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-26T05:40:05.460896+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 175144,
+      "caught_up_at": "2026-08-26T06:59:37.384196+00:00"
     },
     "145045": {
       "msg_ids": [],

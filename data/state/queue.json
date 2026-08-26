@@ -159,7 +159,12 @@
       "2026-08-18T01:40:26.397646+00:00",
       "2026-08-18T01:40:26.399783+00:00",
       "2026-08-18T03:22:51.652786+00:00",
-      "2026-08-19T14:40:23.727113+00:00"
+      "2026-08-19T14:40:23.727113+00:00",
+      "2026-08-26T06:59:35.917893+00:00",
+      "2026-08-26T06:59:35.920136+00:00",
+      "2026-08-26T06:59:35.922206+00:00",
+      "2026-08-26T06:59:35.924278+00:00",
+      "2026-08-26T06:59:35.926348+00:00"
     ],
     "40585": [
       "2026-03-31T02:09:59.560691+00:00",
@@ -1321,7 +1326,10 @@
       "2026-08-10T02:22:10.342395+00:00",
       "2026-08-19T06:10:29.669844+00:00",
       "2026-08-26T04:48:01.025920+00:00",
-      "2026-08-26T04:48:01.033070+00:00"
+      "2026-08-26T04:48:01.033070+00:00",
+      "2026-08-26T06:59:35.936897+00:00",
+      "2026-08-26T06:59:35.939359+00:00",
+      "2026-08-26T06:59:35.941794+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1602,7 +1610,8 @@
       "2026-08-26T04:48:01.035459+00:00",
       "2026-08-26T05:04:52.272883+00:00",
       "2026-08-26T05:04:52.281307+00:00",
-      "2026-08-26T05:40:05.037392+00:00"
+      "2026-08-26T05:40:05.037392+00:00",
+      "2026-08-26T06:59:35.913712+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1763,69 +1772,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-07-30T10:38:00.440759+00:00",
-      "player": "Buffet",
-      "preview": "Yes",
-      "msg_id": "169132"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-31T10:05:23.656149+00:00",
-      "player": "Bruce",
-      "preview": "[media]",
-      "msg_id": "169307"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-07-31T10:05:23.659614+00:00",
-      "player": "Bruce",
-      "preview": "Chua will sustain his warp field and cast richochet at the o",
-      "msg_id": "169308"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-07-31T22:10:58.094337+00:00",
-      "player": "Fuzzy",
-      "preview": "If necessary.",
-      "msg_id": "169314"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-01T00:06:09.310097+00:00",
-      "player": "Buffet",
-      "preview": "\"Shadow...thing? I mean, I'll never turn down a chance to pu",
-      "msg_id": "169434"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-01T00:06:09.313633+00:00",
-      "player": "Buffet",
-      "preview": "Alitheia sits up in an unfamiliar room and looks around. Her",
-      "msg_id": "169244"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-01T00:06:09.315451+00:00",
-      "player": "Buffet",
-      "preview": "A blue-scaled lizard folk woman stands in the doorway, clad ",
-      "msg_id": "169245"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-01T00:06:09.317227+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight glances up and waves cheerily, \"Heya, we're headed ",
-      "msg_id": "169430"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-08-01T00:06:09.319626+00:00",
-      "player": "Chase",
-      "preview": "Nodding a little, B\u00e1yakan walks almost up to the doorway. Ca",
-      "msg_id": "169333"
-    },
     {
       "pid": "107171",
       "time": "2026-08-01T00:06:09.321805+00:00",
@@ -3162,6 +3108,69 @@
       "player": "Anthony",
       "preview": "\"YES a \u2605GHOSTBOT\u2605, like the ooze we just took out, and the r",
       "msg_id": "174988"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-08-26T06:59:35.913712+00:00",
+      "player": "Ryo",
+      "preview": "Rune considers what Nikk-Nakk has shown them and what he has",
+      "msg_id": "175081"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-26T06:59:35.917893+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "175067"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-26T06:59:35.920136+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "175068"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-26T06:59:35.922206+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "175069"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-26T06:59:35.924278+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "175070"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-08-26T06:59:35.926348+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "175071"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-08-26T06:59:35.936897+00:00",
+      "player": "Cannon",
+      "preview": "Nadya turns lazily and shoots an attempt at a charming smile",
+      "msg_id": "174978"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-08-26T06:59:35.939359+00:00",
+      "player": "Cannon",
+      "preview": "\"Technically we're supposed to avoid deaths, otherwise the g",
+      "msg_id": "174979"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-08-26T06:59:35.941794+00:00",
+      "player": "Volf",
+      "preview": "*looking quite a bit surprised but rex shakes out of it *\n\n\"",
+      "msg_id": "175097"
     }
   ],
   "pending_potw_boons": {
