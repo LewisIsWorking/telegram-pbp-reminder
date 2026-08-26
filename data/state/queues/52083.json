@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 174988,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-26T04:57:02+00:00",
-      "preview": "\"YES a \u2605GHOSTBOT\u2605, like the ooze we just took out, and the robots down under the station we met before... They were \u2605CRAZY\u2605 robots that kept saying \u2605BIRTH, BIRTH\u2605 or something like that!!\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -376,7 +366,9 @@
     "msg:174954",
     "2026-08-26 04:22:45",
     "msg:174982",
-    "2026-08-26 04:54:32"
+    "2026-08-26 04:54:32",
+    "msg:174988",
+    "2026-08-26 04:57:02"
   ],
   "reply_log": [
     {
@@ -2048,19 +2040,26 @@
       "player": "Anthony",
       "preview": "Livy looks a bit hesitant...\n\"Uh... Are we sure the big robot, didn't turn into ",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T05:05:23+00:00",
+      "pid": "52083",
+      "msg_id": "174988",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"YES a \u2605GHOSTBOT\u2605, like the ooze we just took out, and the robots down under the",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-26 04:57:02",
-      "msg_ids": [
-        175011
-      ],
-      "last_posted_at": "2026-08-26T05:04:56.201316+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 175077,
+      "caught_up_at": "2026-08-26T05:40:05.460896+00:00"
     },
     "145045": {
       "msg_ids": [],
