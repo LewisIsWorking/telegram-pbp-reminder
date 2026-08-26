@@ -1,6 +1,34 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 175419,
+      "thread_id": 66154,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-08-26T18:34:10+00:00",
+      "preview": "A small gnomish woman behind a desk in the corner of the room perks up an ear at the word \"Attack\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 175420,
+      "thread_id": 66154,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-08-26T18:34:30+00:00",
+      "preview": "So, what's that about an \"attack\"?",
+      "media_group_id": null
+    },
+    {
+      "message_id": 175422,
+      "thread_id": 66154,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-08-26T18:35:11+00:00",
+      "preview": "She's hard to see, because her desk is completely swamped with piles of paperwork.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1184,9 +1212,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-08-26 18:34:10|2026-08-26 18:34:30|2026-08-26 18:35:11",
+      "msg_ids": [
+        175452
+      ],
+      "last_posted_at": "2026-08-26T19:09:00.846158+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
