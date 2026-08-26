@@ -18,6 +18,24 @@
       "time": "2026-08-26T18:34:43+00:00",
       "preview": "damage total is 13 piercing and 12 spirit (the two hits are combined for resistance purposes)",
       "media_group_id": null
+    },
+    {
+      "message_id": 175556,
+      "thread_id": 51357,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-08-26T20:11:19+00:00",
+      "preview": "\"Yes, it seems so. I wonder if they are aware we are seeking after someone, or if they simply attacked because of our presence here.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 175569,
+      "thread_id": 51357,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-08-26T20:33:38+00:00",
+      "preview": "Alitheia barely has time to react before the group of creatures is dispatched.\n\"Wow, you guys are pretty efficient.\"\nShe kneels down next to one and examines it for a few moments, and rolls to recall knowledge.\n\"Wonder what these are. Definitely not from around here.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1913,9 +1931,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-08-26 20:11:19|2026-08-26 20:33:38",
+      "msg_ids": [
+        175614
+      ],
+      "last_posted_at": "2026-08-26T23:16:14.926473+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },

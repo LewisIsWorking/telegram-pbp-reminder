@@ -9,15 +9,6 @@
       "time": "2026-08-26T14:23:29+00:00",
       "preview": "lai holds the instrument by the string staring at it while everyone is talking seeing the hole he blows into it stopping to inhale more then blows into it and stops confused why there was no sound",
       "media_group_id": null
-    },
-    {
-      "message_id": 175384,
-      "thread_id": 52083,
-      "user_id": "8471667081",
-      "user_name": "Paul",
-      "time": "2026-08-26T14:29:12+00:00",
-      "preview": "https://youtube.com/watch?v=I4havW4fWws&is=x86HiV9Y7Fqcvo8p",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -389,7 +380,9 @@
     "msg:174988",
     "2026-08-26 04:57:02",
     "msg:175081",
-    "2026-08-26 05:59:08"
+    "2026-08-26 05:59:08",
+    "msg:175384",
+    "2026-08-26 14:29:12"
   ],
   "reply_log": [
     {
@@ -2079,17 +2072,26 @@
       "player": "Ryo",
       "preview": "Rune considers what Nikk-Nakk has shown them and what he has gleaned from readin",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T21:01:28+00:00",
+      "pid": "52083",
+      "msg_id": "175384",
+      "thread_id": 52083,
+      "player": "Paul",
+      "preview": "https://youtube.com/watch?v=I4havW4fWws&is=x86HiV9Y7Fqcvo8p",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-26 14:23:29|2026-08-26 14:29:12",
+      "fingerprint": "2026-08-26 14:23:29",
       "msg_ids": [
-        175386
+        175616
       ],
-      "last_posted_at": "2026-08-26T14:51:18.964781+00:00",
+      "last_posted_at": "2026-08-26T23:16:17.543966+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-26T06:59:37.384196+00:00"
     },
