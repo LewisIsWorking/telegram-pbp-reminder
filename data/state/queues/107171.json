@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 174902,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-26T02:10:12+00:00",
-      "preview": "\"Arktos.\" They gesture with one limb towards their robotic companion, \"And that would be LUKA. Now, I do wish these were better circumstances, but considering the time, shall we get going?\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -367,7 +357,9 @@
     "msg:174860",
     "2026-08-25 19:54:36",
     "msg:174893",
-    "2026-08-26 00:16:02"
+    "2026-08-26 00:16:02",
+    "msg:174902",
+    "2026-08-26 02:10:12"
   ],
   "reply_log": [
     {
@@ -2029,20 +2021,27 @@
       "player": "Minork",
       "preview": "With a curt nod, Minork simply replies \u201cMinork Estra.\u201d He looks at the others wi",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T04:54:47+00:00",
+      "pid": "107171",
+      "msg_id": "174902",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Arktos.\" They gesture with one limb towards their robotic companion, \"And that ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-26 02:10:12",
-      "msg_ids": [
-        174973
-      ],
-      "last_posted_at": "2026-08-26T04:48:11.206594+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 175013,
       "pending_delete": [],
-      "caught_up_at": "2026-08-25T08:51:17.862591+00:00"
+      "caught_up_at": "2026-08-26T05:04:52.284538+00:00"
     },
     "142887": {
       "fingerprint": "",

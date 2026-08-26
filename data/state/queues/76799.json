@@ -1,6 +1,25 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 174978,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-08-26T04:50:11+00:00",
+      "preview": "Nadya turns lazily and shoots an attempt at a charming smile towards the newcomer. She slinks around to in front of Changer to greet Rex and holds out a hand in greeting.\n\n\"I'm not sure if I'm insulted by the lieutenant sending us reinforcements, or if I'm ashamed we actually need them. I'm Nadya, I'm sure we'll have time to get to know each-other later. Here's the scoop, quick-like: The construct is weird. The little bat guy is smart. I'm ex-shadow district intelligence, so whatever you did to ",
+      "media_group_id": null
+    },
+    {
+      "message_id": 174979,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-08-26T04:52:27+00:00",
+      "preview": "\"Technically we're supposed to avoid deaths, otherwise the grease in the Justice Court can't get their power trip before killing em anyway.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2172,9 +2191,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-08-26 04:50:11|2026-08-26 04:52:27",
+      "msg_ids": [
+        175009
+      ],
+      "last_posted_at": "2026-08-26T05:04:53.400108+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null

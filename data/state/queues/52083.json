@@ -2,12 +2,12 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 174954,
+      "message_id": 174988,
       "thread_id": 52083,
       "user_id": "6144366145",
       "user_name": "Anthony",
-      "time": "2026-08-26T04:22:45+00:00",
-      "preview": "Livy also looks at rune with \u2605SPARKLING\u2605",
+      "time": "2026-08-26T04:57:02+00:00",
+      "preview": "\"YES a \u2605GHOSTBOT\u2605, like the ooze we just took out, and the robots down under the station we met before... They were \u2605CRAZY\u2605 robots that kept saying \u2605BIRTH, BIRTH\u2605 or something like that!!\"",
       "media_group_id": null
     }
   ],
@@ -372,7 +372,11 @@
     "msg:174837",
     "2026-08-25 17:35:05",
     "msg:174957",
-    "2026-08-26 04:42:11"
+    "2026-08-26 04:42:11",
+    "msg:174954",
+    "2026-08-26 04:22:45",
+    "msg:174982",
+    "2026-08-26 04:54:32"
   ],
   "reply_log": [
     {
@@ -2026,17 +2030,35 @@
       "player": "Terra",
       "preview": "Lai holds it by the string looking at it",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T04:53:05+00:00",
+      "pid": "52083",
+      "msg_id": "174954",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy also looks at rune with \u2605SPARKLING\u2605",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-26T04:55:23+00:00",
+      "pid": "52083",
+      "msg_id": "174982",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy looks a bit hesitant...\n\"Uh... Are we sure the big robot, didn't turn into ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-26 04:22:45",
+      "fingerprint": "2026-08-26 04:57:02",
       "msg_ids": [
-        174971
+        175011
       ],
-      "last_posted_at": "2026-08-26T04:48:05.013066+00:00",
+      "last_posted_at": "2026-08-26T05:04:56.201316+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-25T09:42:11.197048+00:00"
     },
