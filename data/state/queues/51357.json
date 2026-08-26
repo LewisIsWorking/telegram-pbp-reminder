@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 175222,
-      "thread_id": 145040,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-08-26T11:47:40+00:00",
-      "preview": "Twilight asks a mountain spirit to set the enemies alight. The tiny salamander obliges, tearing open a hole in the earth. Molten earth spews out, engulfing two of the shadows. Sensing weakness, the lava also seems to swarm around the weaker of the two shadows, illuminating their figures with fire and liquid earth.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -342,7 +332,9 @@
     "msg:175221",
     "2026-08-26 11:42:11",
     "msg:175220",
-    "2026-08-26 11:41:51"
+    "2026-08-26 11:41:51",
+    "msg:175222",
+    "2026-08-26 11:47:40"
   ],
   "reply_log": [
     {
@@ -1800,6 +1792,15 @@
       "player": "Laetheron",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-26T13:08:13+00:00",
+      "pid": "51357",
+      "msg_id": "175222",
+      "thread_id": 145040,
+      "player": "Laetheron",
+      "preview": "Twilight asks a mountain spirit to set the enemies alight. The tiny salamander o",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1813,14 +1814,12 @@
       "caught_up_at": null
     },
     "145040": {
-      "msg_ids": [
-        175329
-      ],
-      "fingerprint": "2026-08-26 11:47:40",
-      "last_posted_at": "2026-08-26T13:05:28.187744+00:00",
-      "caught_up_msg_id": null,
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 175376,
       "pending_delete": [],
-      "caught_up_at": "2026-08-26T06:59:37.384196+00:00"
+      "caught_up_at": "2026-08-26T13:33:39.804784+00:00"
     },
     "56842": {
       "msg_ids": [],
