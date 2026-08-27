@@ -25,6 +25,20 @@
       "notes": "The only venue with a track record so far. Everything else in this file is unproven."
     },
     {
+      "id": "personal-network",
+      "name": "Personal network (friends, word of mouth)",
+      "url": "",
+      "kind": "personal",
+      "status": "active",
+      "fit": "high",
+      "rotates": false,
+      "rules_url": "",
+      "rules_note": "Not a place you post. Present so a player who arrived this way can be credited honestly rather than as 'unknown', which means 'we asked and did not find out'.",
+      "format": {"title": "", "max_chars": 0, "needs_flair": false},
+      "checked": "2026-08-27",
+      "notes": "Added 2026-08-27 when Paul Rowan joined C07 and Lewis said he is an IRL friend. Historically the highest-converting source for any small game and the one nobody records, which is exactly why it is worth recording: without it the venue comparison silently omits a share of the arrivals and the advertised venues look better or worse than they are."
+    },
+    {
       "id": "paizo-recruitment",
       "name": "Paizo forums: Recruitment",
       "url": "https://paizo.com/community/forums/gaming/playbypost/recruitment",

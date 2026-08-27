@@ -135,6 +135,10 @@ def yield_table(state: dict, venues: list) -> list:
             "id": venue["id"],
             "name": venue["name"],
             "status": venue["status"],
+            # Read straight off the venue rather than importing the
+            # catalogue: this module is about state, and the default
+            # has to match catalogue.rotates or the two disagree.
+            "rotates": bool(venue.get("rotates", True)),
             "posts": posted,
             "joins": gained,
             "per_post": (gained / posted) if posted else None,

@@ -122,9 +122,20 @@ def build_recruit_yield(state: dict, venues: list | None = None) -> str:
     except (OSError, ValueError) as error:
         return f"⚠️ Could not read the venue catalogue: {error}"
 
-    rows = log.yield_table(state, catalogue.postable(venues))
+    # creditable, not postable: a player who arrived through somebody's
+    # personal network is a real result and belongs in the comparison,
+    # even though there is nowhere to post an advert.
+    rows = log.yield_table(state, catalogue.creditable(venues))
     lines = ["\U0001f4ca Recruitment yield\n"]
     for row in rows:
+        if not row["rotates"]:
+            # ⚠️ "never posted" is meaningless for a source you cannot
+            # post to, and worse, it HID the players who came from it.
+            # Paul rendered as "never posted" while being the only
+            # arrival credited there.
+            lines.append(f"• {row['name']}: {row['joins']} player(s), "
+                         f"no advert involved")
+            continue
         if not row["posts"]:
             lines.append(f"• {row['name']}: never posted")
             continue
