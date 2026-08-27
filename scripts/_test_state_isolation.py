@@ -38,6 +38,9 @@ import tempfile
 from pathlib import Path
 
 from commands import queue_io as _qio
+from scheduled import state_backup as _sbk
+from transcript import finalize as _tfin
+from transcript import logger as _tlog
 from posting import bot_sent_registry as _bsr
 from posting import refusal_log as _rl
 from posting import pin_audit as _pa
@@ -81,3 +84,26 @@ _sl._store = _TEST_STORE
 # queue_io reached the disk a different way. A comment claiming isolation
 # is not isolation: see ``a-measurement-written-into-prose-has-no-expiry``.
 _qio._store = _TEST_STORE
+
+# ⛔ The transcript writers, added 2026-08-27, a few hours after queue_io
+# and for the same reason: cleaning the queue files fixed nothing,
+# because the GM queue is REBUILT FROM THE TRANSCRIPTS on every run.
+# scan_transcripts reads data/pbp_logs/, so the 43 imaginary "Paul"
+# entries came back the moment the bot ran again.
+#
+# transcript.logger.append_to_transcript is called by track_message for
+# any non-command message, so every test that tracks a player message
+# was appending to a REAL campaign transcript. 48 fixture blocks reached
+# Hopeful End-Times and 8 reached Kibwe.
+#
+# ⚠️ It looked isolated in a full suite run and was not: running the
+# offending file ALONE re-added 10 blocks. Something else in the suite
+# happened to patch _LOGS_DIR in an order that masked it. An
+# accidentally-passing isolation is worse than a missing one, because
+# the full-suite measurement says clean.
+_TEST_LOGS_DIR = _TEST_STATE_DIR / "pbp_logs"
+_TEST_LOGS_DIR.mkdir(parents=True, exist_ok=True)
+_tlog._LOGS_DIR = _TEST_LOGS_DIR
+_tfin._LOGS_DIR = _TEST_LOGS_DIR
+# Writes data/state_backup.json on every scheduled backup.
+_sbk._BACKUP_PATH = _TEST_STATE_DIR / "state_backup.json"
