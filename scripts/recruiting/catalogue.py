@@ -33,6 +33,21 @@ STATUSES = ("active", "candidate", "rejected")
 COOLDOWN_SOURCES = ("rule", "assumed")
 
 
+def rotates(venue: dict) -> bool:
+    """Can an advert be POSTED here, as opposed to merely credited?
+
+    ⚠️ These are two different questions and one field cannot answer
+    both. Added 2026-08-27, when Paul joined C07 and Lewis said he is an
+    IRL friend. That is a real, known source: crediting him to
+    ``UNKNOWN_VENUE`` would be a lie, because unknown means "we asked and
+    did not find out". But a friend is not somewhere you post an advert,
+    so it must never appear in the rotation.
+
+    Absent means True, so every existing venue keeps its behaviour.
+    """
+    return bool(venue.get("rotates", True))
+
+
 class CatalogueError(ValueError):
     """The catalogue is malformed. Raised rather than silently skipping.
 
@@ -44,13 +59,21 @@ class CatalogueError(ValueError):
 
 def _check(venue: dict, index: int) -> None:
     where = venue.get("id") or f"venue #{index}"
-    for field in ("id", "name", "kind", "status", "cooldown_days",
-                  "cooldown_source"):
+    required = ["id", "name", "kind", "status"]
+    if "rotates" in venue and not isinstance(venue["rotates"], bool):
+        raise CatalogueError(f"{where}: rotates must be true or false")
+    # A source you cannot post to has no cooldown, and demanding a
+    # meaningless number would only invite a made-up one.
+    if rotates(venue):
+        required += ["cooldown_days", "cooldown_source"]
+    for field in required:
         if field not in venue:
             raise CatalogueError(f"{where}: missing required field {field!r}")
     if venue["status"] not in STATUSES:
         raise CatalogueError(
             f"{where}: status {venue['status']!r} not one of {STATUSES}")
+    if not rotates(venue):
+        return
     if venue["cooldown_source"] not in COOLDOWN_SOURCES:
         raise CatalogueError(
             f"{where}: cooldown_source {venue['cooldown_source']!r} "
@@ -83,14 +106,25 @@ def load(path: str = CATALOGUE_PATH) -> list:
     return venues
 
 
-def postable(venues: list) -> list:
-    """The venues we are willing to post to at all.
+def creditable(venues: list) -> list:
+    """Every source a player can be credited to, for the yield table.
 
     ``rejected`` venues stay IN the file on purpose: the reason a venue
     was ruled out is worth keeping, or it gets rediscovered and
     re-evaluated every few months. They are filtered out here instead.
     """
     return [v for v in venues if v["status"] in ("active", "candidate")]
+
+
+def postable(venues: list) -> list:
+    """The subset of those we can actually put an advert in.
+
+    ⚠️ Deliberately narrower than ``creditable``. Before 2026-08-27 this
+    answered both questions, which was fine only while every source was
+    also a place you post. It stopped being true the moment a player
+    arrived through somebody's personal network.
+    """
+    return [v for v in creditable(venues) if rotates(v)]
 
 
 def by_id(venues: list, venue_id: str) -> dict | None:

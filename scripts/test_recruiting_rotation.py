@@ -149,7 +149,12 @@ class TestTheRealCatalogue:
         assert len(venues) >= 5
 
     def test_every_assumed_cooldown_respects_the_floor(self):
-        for venue in catalogue.load():
+        # ⚠️ postable(), not load(): a non-rotating source such as
+        # personal-network has no cooldown at all, because there is
+        # nowhere to post and so nothing to wait for. Added 2026-08-27;
+        # this test read cooldown_source unconditionally and was the
+        # caller the schema change was meant to break.
+        for venue in catalogue.postable(catalogue.load()):
             if venue["cooldown_source"] == "assumed":
                 assert venue["cooldown_days"] >= catalogue.MIN_ASSUMED_COOLDOWN_DAYS
 
