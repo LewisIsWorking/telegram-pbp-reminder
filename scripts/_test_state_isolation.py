@@ -37,6 +37,7 @@ the module rather than monkeypatching individual file paths.
 import tempfile
 from pathlib import Path
 
+from commands import queue_io as _qio
 from posting import bot_sent_registry as _bsr
 from posting import refusal_log as _rl
 from posting import pin_audit as _pa
@@ -66,3 +67,17 @@ _sd._store = _TEST_STORE
 # every message the bot sends, and the suite sends a great many — so this
 # is the highest-volume leak path of the lot, not a marginal one.
 _sl._store = _TEST_STORE
+# ⛔ queue_io, added 2026-08-27 after the WORST leak of the lot reached
+# real players. Any test calling track_message with a non-GM user records
+# an unreplied entry, and those went into the REAL data/state/queues/.
+# The suite had quietly built data/state/queues/100.json, a pid that has
+# never existed, carrying a 1,796-entry reply_log of Alice/Bob fixtures.
+# On 2026-08-27 the GM queue posted 43 of them to the group as messages
+# from Paul awaiting a reply. They do not exist.
+#
+# ⚠️ queue_io's own docstring asserted it "runs in tmp_path context via
+# _test_state_isolation". It never did. It was not on this list, because
+# the list was written for modules persisting through StateStore and
+# queue_io reached the disk a different way. A comment claiming isolation
+# is not isolation: see ``a-measurement-written-into-prose-has-no-expiry``.
+_qio._store = _TEST_STORE
