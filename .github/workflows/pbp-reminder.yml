@@ -12,6 +12,12 @@ on:
     branches: [main]
     paths-ignore:
       - 'data/**'
+  # Added 2026-08-27. Until now NOTHING ran the tests before a merge, so
+  # every guard in the suite gated nothing: PR #64 committed a queue file
+  # built entirely from test fixtures and merged green. Only the `test`
+  # job may run for this event; see the run job's condition.
+  pull_request:
+    branches: [main]
   workflow_dispatch: # Allow manual trigger for testing
 
 concurrency:
@@ -23,7 +29,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: >-
+      github.event_name == 'push'
+      || github.event_name == 'pull_request'
+      || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v6
 
@@ -32,7 +41,9 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests pytest pytest-cov tzdata
+        # pyyaml is for test_workflow_cannot_post_from_a_pr.py, which
+        # parses this file and asserts the job conditions.
+        run: pip install requests pytest pytest-cov tzdata pyyaml
 
       - name: Run tests and alert on failure
         env:
@@ -46,6 +57,32 @@ jobs:
           if [ $EXIT_CODE -ne 0 ]; then
             python3 scripts/ci_alert.py
           fi
+          exit $EXIT_CODE
+
+      # ⛔ The backstop for every write path nobody has enumerated.
+      #
+      # scripts/test_tests_never_touch_real_data.py checks the writers we
+      # KNOW about, one test per module. This checks the invariant itself:
+      # a test run must leave data/ and config.json untouched, whatever
+      # module did the writing and whether or not anyone remembered to
+      # add it to _test_state_isolation.
+      #
+      # Written after test fixtures reached the group as 43 imaginary
+      # messages from a player who does not exist. The suite had been
+      # writing real transcripts and real queue files for months.
+      - name: Fail if the test run modified real data
+        run: |
+          DIRTY=$(git status --porcelain data/ config.json)
+          if [ -n "$DIRTY" ]; then
+            echo "::error::The test suite modified files under data/."
+            echo "$DIRTY"
+            echo ""
+            echo "Something wrote to the real tree instead of the session"
+            echo "tmp dir. Add it to scripts/_test_state_isolation.py."
+            git --no-pager diff --stat data/ config.json
+            exit 1
+          fi
+          echo "data/ and config.json untouched by the test run."
 
   run:
     runs-on: ubuntu-latest
@@ -58,9 +95,19 @@ jobs:
       # open, and it is disarmed without ever saying so.
       actions: read
     # Both crons trigger this workflow, so the full pass must exclude the
-    # :30 queue-only schedule. Non-schedule events (push, workflow_dispatch)
-    # still run the full pass exactly as before.
-    if: github.event_name != 'schedule' || github.event.schedule == '0 * * * *'
+    # :30 queue-only schedule. Push and workflow_dispatch still run the
+    # full pass exactly as before.
+    #
+    # ⛔ REWRITTEN 2026-08-27 from a denylist to an allowlist. It read
+    # `github.event_name != 'schedule' || ...`, which opts IN every
+    # trigger type anyone adds later. Adding the pull_request trigger
+    # above would therefore have made this job run on every PR, and this
+    # job posts to Telegram, writes state and pushes commits. A condition
+    # phrased as "not X" is a standing invitation for exactly that.
+    if: >-
+      github.event_name == 'push'
+      || github.event_name == 'workflow_dispatch'
+      || (github.event_name == 'schedule' && github.event.schedule == '0 * * * *')
     steps:
       # `ref: main` instead of the default (which checks out GITHUB_SHA,
       # the SHA that triggered the workflow). When the concurrency group
