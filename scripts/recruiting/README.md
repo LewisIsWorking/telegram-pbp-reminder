@@ -38,6 +38,58 @@ What is real, and unchanged: **20 humans hold 41 seats and the top five hold
 22.** That is a concentration risk, not a churn one. One person leaving costs up
 to six seats at once, and that is the failure this package cannot help with.
 
+## ✅ 2026-08-27: the first advert, and what it did
+
+One post to the Pathfinder 2e Discord on 2026-08-25 at 13:21 UTC.
+
+| arrived 2026-08-26 | campaign | credited to |
+|---|---|---|
+| Volf | C04 | `pf2e-discord-lfg` |
+| Alastair Tan | C04 | `pf2e-discord-lfg` |
+| Paul Rowan | C07 | `personal-network` |
+
+Ryo also rejoined C04 the same morning, unprompted.
+
+```
+📊 Recruitment yield
+• Pathfinder 2e Discord: 2 from 1 post(s) (2.00/post)
+• Personal network (friends, word of mouth): 1 player(s), no advert involved
+• Paizo forums: Recruitment: never posted
+```
+
+### The roster, before and after
+
+| | 2026-08-20 | 2026-08-27 |
+|---|---|---|
+| seats | 41 | **44** |
+| distinct humans | 20 | **25** |
+| top five hold | 22 of 41 (54%) | **20 of 44 (45%)** |
+
+Every campaign except The Junction (not recruiting) and Theria (different GM)
+now sits at 5/6 or 6/6. C04 Magni Guard went from **2/6 to 5/6** in two days,
+having been the campaign the readiness check flagged as too quiet to advertise.
+
+⚠️ Part of that improvement came from **pausing permanent status**, which stopped
+counting players who had not posted in months. The count did not only rise, it
+also stopped lying.
+
+### What this does and does not prove
+
+Two players from one post is a good rate, and it is **one** datapoint from the
+venue that already had a track record. It says nothing yet about Paizo, RPG
+Crossing or the Foundry Discord, which is exactly why the rotation exists.
+
+⛔ Paul was **not** credited to the Discord even though he arrived the same day.
+Lewis said he is a friend. A venue credited by guesswork survives review looking
+like evidence, and crediting him there would have made the advert look 50%
+better than it was.
+
+### Next
+
+`paizo-recruitment`, then `rpg-crossing`, then `foundry-lfg`. The Discord is
+cooling down until 2026-09-01. Space them a day or two apart: three postings in
+one afternoon and one arrival tells you nothing about which one worked.
+
 ## The two halves
 
 **`catalogue.py`** is the venue list: URLs, cooldowns, the exact format each

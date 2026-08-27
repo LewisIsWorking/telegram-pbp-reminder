@@ -11,6 +11,77 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.59.0] - 2026-08-27
+
+### Fixed
+
+**The test suite was writing to real transcripts and queues, and the GM queue
+posted 43 imaginary messages to the group.**
+
+Of 66 unreplied entries in queue #1495, **47 were test fixtures**. The real
+backlog was 19.
+
+`track_message` records a queue entry and appends to the campaign transcript for
+any non-command message, and neither write was isolated during tests. Debris had
+accumulated for months: `data/state/queues/100.json` held a 1,796-entry
+reply_log for a pid that has never existed, and 56 fixture message blocks sat in
+two live transcripts. It reached the repository through local test runs plus
+`git add data/`, not through CI.
+
+Two second-order effects nobody would have spotted:
+
+- the all-time cleared counter read **3521** when it was **1725**, because it
+  sums every campaign's reply_log and the fixture file counted as a campaign
+- a fixture entry carrying `message_id 42` produced a **valid** `t.me` link to a
+  real early group message, so Telegram rendered a preview card for a years-old
+  spam link underneath the queue post
+
+Cleaning the queue files fixed nothing, because `scan_transcripts` rebuilds the
+queue from the transcripts on every run. Full write-up in
+`docs/dev/incident-2026-08-27-fixtures-in-production.md`.
+
+**Nothing ran the tests before a merge, and a failing suite exited 0.**
+
+The `test` job had no `pull_request` trigger, so every guard in the suite gated
+nothing at review time. The pytest step ended with the `if` that fires the CI
+alert, so a red suite left the job green: the tests could not fail the build
+even on push.
+
+Both fixed. The `run` and `run-queue` jobs are now allowlists rather than
+`!= 'schedule'` denylists, so they cannot fire for a pull request; that job
+posts to Telegram, writes state and pushes commits.
+
+**A player who joined by posting left no trace.** `_track_player` branched three
+ways and every branch assumed the person had been seen before, so a first-time
+poster was seated and nothing else happened: no `player_history` entry and no
+roster post. `on_join` existed and was only ever called by `/addplayer`.
+
+### Added
+
+- `_test_state_isolation` now covers `queue_io`, `transcript.logger`,
+  `transcript.finalize` and `state_backup`.
+- A CI step that fails the build when a test run leaves `data/` or `config.json`
+  dirty, whatever module wrote it. This is the backstop for write paths nobody
+  has enumerated.
+- `test_tests_never_touch_real_data.py`, `test_no_test_data_in_live_queues.py`
+  and `test_workflow_cannot_post_from_a_pr.py`.
+- Recruitment: a `personal-network` source that is creditable but never
+  postable, a `rotates` flag on venues, and post links stored via
+  `/recruitposted <venue-id> [link]`.
+- A readiness warning on `/recruitads` when the campaign it is about to
+  advertise has had no player post in 14 days.
+
+### Changed
+
+- Permanent player status paused. The three config ids moved to
+  `permanent_user_ids_paused` and one per-record flag cleared, because a
+  permanent player was counted as active however long they had been silent.
+  C01 had been reporting 7 players against a target of 6.
+- The weekly leaderboard is genuinely weekly; the interval and the window are
+  now both 7 days and a guard test says so.
+
+---
+
 ## [4.58.1] - 2026-08-15
 
 ### Changed
