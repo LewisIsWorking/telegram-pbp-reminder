@@ -35,7 +35,12 @@ EM_DASH = "—"
 # dropped one, and the slack test refused to let the ceiling stay above
 # reality. That is the both-directions design earning its keep on its
 # first real use.
-CEILING = 1759
+#
+# 1759 -> 1751 on 2026-08-27, when fenced code blocks stopped being
+# counted. That is a change of MEASUREMENT, not a cleanup: eight of the
+# dashes were inside quoted output all along. Re-measured rather than
+# assumed.
+CEILING = 1751
 
 _ROOTS = ("scripts", "docs")
 _EXTS = (".py", ".md")
@@ -46,6 +51,28 @@ _SELF = os.path.basename(__file__)
 
 def _repo_root() -> str:
     return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _strip_fenced(text: str) -> str:
+    """Drop ``` fenced blocks. They are quoted evidence, not prose.
+
+    Added 2026-08-27. The incident write-up quotes a GM queue post
+    verbatim, and that post contains an em dash because the bot's own
+    header format uses one. Editing a quoted artefact to satisfy a
+    style rule would falsify the evidence, so the rule stops at the
+    fence instead.
+
+    ⚠️ Deliberately narrow: only fenced blocks, only whole lines. An
+    inline `code span` is still prose around a term and still counts.
+    """
+    out, fenced = [], False
+    for line in text.splitlines():
+        if line.lstrip().startswith("```"):
+            fenced = not fenced
+            continue
+        if not fenced:
+            out.append(line)
+    return "\n".join(out)
 
 
 def _counts() -> dict:
@@ -60,7 +87,7 @@ def _counts() -> dict:
                     continue
                 path = os.path.join(dirpath, name)
                 with open(path, encoding="utf-8") as handle:
-                    hits = handle.read().count(EM_DASH)
+                    hits = _strip_fenced(handle.read()).count(EM_DASH)
                 if hits:
                     key = os.path.relpath(path, _repo_root())
                     found[key.replace(os.sep, "/")] = hits
