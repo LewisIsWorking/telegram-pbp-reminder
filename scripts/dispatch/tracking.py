@@ -150,6 +150,34 @@ def _track_player(parsed: dict, state: dict, config: dict,
             tag = f" ({char})" if char else ""
             tg.send_message(group_id, chat_tid,
                             f"\U0001f44b{mention} {user_name}{tag} is back in {campaign_name}!")
+    elif not old_player:
+        # ⚠️ A brand new person, arriving the ordinary way: by posting.
+        # Every other branch here assumes we have seen them before, and
+        # until 2026-08-27 a first-time poster fell through ALL of them.
+        # They were written into state["players"] above and nothing else
+        # happened: no player_history entry and no roster post to the
+        # campaign topic. on_join existed, was correct, and was only
+        # ever called by /addplayer, so organic arrivals were invisible
+        # in the history Lewis actually reads.
+        #
+        # Found when C07 read 6/6 and he asked whether that was real. It
+        # was: Paul had joined by posting. So had Volf and Alastair in
+        # C04. None of the three appear in player_history.
+        #
+        # ⚠️ The history entry is written for ANY first message, so the
+        # history never disagrees with the roster: the seat above is
+        # written unconditionally, so the record of it must be too.
+        # The roster POST is suppressed for commands, matching every
+        # other announcement in this file (the comeback check and the
+        # transcript both skip `/`). Passing config=None is how on_join
+        # already expresses "log it, do not announce it".
+        #
+        # test_checker_misc_b.py::test_pick_vote caught this: a stranger
+        # typing /pick is seated by the code above, and announcing that
+        # as an arrival put a roster post after the vote confirmation.
+        from players.history import on_join
+        on_join(pid, user_id, user_name, parsed.get("username", ""),
+                state, None if text.startswith("/") else config)
     elif old_warn_level >= 2:
         print(f"Warned player {user_name} returned to {campaign_name}")  # pragma: no cover
         chat_tid = maps.to_chat.get(pid)  # pragma: no cover
