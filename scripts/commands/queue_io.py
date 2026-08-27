@@ -28,11 +28,20 @@ from pathlib import Path
 
 from state_store import StateStore
 
-# Per-call StateStore from the package default state_dir. queue_io's
-# tests don't currently patch the location — they all run in tmp_path
-# context via _test_state_isolation — so a module-level instance is
-# fine. If a future test needs to redirect, monkeypatch ``_store``
-# in the same shape as ``posting.bot_sent_registry``.
+# Per-call StateStore from the package default state_dir.
+#
+# ⛔ CORRECTED 2026-08-27. This comment used to say queue_io's tests
+# "all run in tmp_path context via _test_state_isolation". They did not.
+# queue_io was never on that module's list, because the list was written
+# for modules persisting through StateStore and this one reached the disk
+# before that migration. Every suite run therefore wrote REAL queue
+# files: data/state/queues/100.json accumulated a 1,796-entry reply_log
+# of Alice/Bob fixtures, and on 2026-08-27 the GM queue posted 43
+# imaginary messages from "Paul" to the group.
+#
+# It is isolated now, and test_no_test_data_in_live_queues.py fails if
+# that stops being true. Do not restate the claim without a test behind
+# it: a comment asserting isolation is not isolation.
 _store = StateStore()
 
 # Test-compat hook: many existing test fixtures monkeypatch
