@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 175721,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-27T14:13:20+00:00",
-      "preview": "So yeah search the door then. We don't know for sure which is trapped or not",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175724,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-08-27T14:40:44+00:00",
-      "preview": "Tarsus will try to detect magic as we investigate.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1082,7 +1064,11 @@
     "msg:174809",
     "2026-08-25 15:06:44",
     "msg:174824",
-    "2026-08-25 15:39:33"
+    "2026-08-25 15:39:33",
+    "msg:175724",
+    "2026-08-27 14:40:44",
+    "msg:175721",
+    "2026-08-27 14:13:20"
   ],
   "reply_log": [
     {
@@ -6014,6 +6000,24 @@
       "player": "Anthony",
       "preview": "Uhh. No the staircase",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-29T12:59:35+00:00",
+      "pid": "40585",
+      "msg_id": "175724",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "Tarsus will try to detect magic as we investigate.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-29T12:59:47+00:00",
+      "pid": "40585",
+      "msg_id": "175721",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "So yeah search the door then. We don't know for sure which is trapped or not",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6028,13 +6032,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-08-27 14:13:20|2026-08-27 14:40:44",
-      "msg_ids": [
-        175906
-      ],
-      "last_posted_at": "2026-08-29T09:16:39.061016+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 175917,
+      "caught_up_at": "2026-08-29T14:38:05.150836+00:00"
     }
   }
 }
