@@ -28102,5 +28102,45 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-08-29T02:22:05.779293+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 175710,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:67"
+  },
+  {
+    "timestamp": "2026-08-29T02:22:06.127964+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 175710,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-29T02:22:07.088181+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 175902,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-29T02:22:09.803218+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 653,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
   }
 ]
