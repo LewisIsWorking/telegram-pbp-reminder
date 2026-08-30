@@ -71,6 +71,11 @@ PARTITIONS: dict[str, list[str]] = {
         # mirror's id against the main group would miss or hit a
         # stranger. Dropping this key would strand the mirror copy.
         "recruit_focus_posts",
+        # Added 2026-08-30 with the weekly community roster. Only a
+        # timestamp: that post is never deleted, so there is no id to
+        # keep. Losing this key would make the weekly gate see "never
+        # run" on every tick and post the roster every hour.
+        "last_community_roster",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
@@ -131,4 +136,5 @@ DEFAULT_STATE: dict = {
     "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
     "recruit_focus_msg_id": None, "last_recruit_focus": None,
     "recruit_focus_at": None, "recruit_focus_posts": [],
+    "last_community_roster": None,
 }

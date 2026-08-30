@@ -48,7 +48,7 @@ def configured_pids(config: dict) -> set:
             for t in pair.get("pbp_topic_ids", [])}
 
 
-def _posted_days_ago(player: dict, asof: datetime.datetime) -> float | None:
+def posted_days_ago(player: dict, asof: datetime.datetime) -> float | None:
     """Days since this seat last posted, or ``None`` if it never has.
 
     ``None`` rather than a large number: "never posted" and "posted long
@@ -83,7 +83,7 @@ def counts(players: dict, config: dict,
     # trap as `days_since` in log.py.
     active = []
     for player in seats:
-        ago = _posted_days_ago(player, asof)
+        ago = posted_days_ago(player, asof)
         if ago is not None and ago <= window:
             active.append(player)
 

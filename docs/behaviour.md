@@ -135,6 +135,42 @@ to specific messages.
 
 ---
 
+## Community Roster (weekly)
+
+Every 7 days the bot posts the full community roster into the GM queue
+topic (`community_roster_topic_id`, falling back to `gm_queue_topic_id`).
+It **deletes nothing**: the run of these posts is the record of the
+community over time, which is the reason to have it.
+
+It shows the working rather than a headline number, because a headline
+number is what went wrong on 2026-08-30 (see `CHANGELOG` 4.60.1):
+
+- **people and seats separately.** One person can hold five seats, and
+  which of the two you quote decides whether recruiting looks solved.
+- **enrolled and active separately.** Active means posted within 30 days,
+  matching `roster_members._ACTIVE_DAYS`, and the post says so in words.
+- **every campaign with its players named**, plus a 💤 line for seats that
+  are silent and how long they have been.
+- **rows in no current campaign**, which is where retired campaigns leave
+  ghost seats that inflate every enrolment total.
+
+The 💤 list is the **complement** of the active list, derived by
+subtracting it rather than by re-testing `last_post_time`. Permanent
+players count as active through any amount of silence (the L20 rule), so
+a second opinion would print the same person as both active and quiet in
+a single post.
+
+Sent silent: it @-mentions the whole community by design, and a weekly
+notification each is how a topic gets muted.
+
+Ad-hoc equivalent, any revision, nothing posted:
+
+```bash
+cd scripts && python -m recruiting.roster_basis
+```
+
+---
+
 ## Weekly Welcome
 
 On Sunday at `poll_post_hour` UTC, the bot posts a "Welcome to Week X"

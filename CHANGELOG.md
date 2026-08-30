@@ -11,6 +11,56 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.61.0] - 2026-08-30
+
+### Added
+
+**A weekly community roster, posted to the GM queue topic.**
+
+Lewis: *"You should be able to give me the accurate figure more often, maybe
+once a week the bot could post the full community roster in
+https://t.me/Path_Wars/146780"*
+
+```
+👥 Community roster - 2026-08-30
+━━━━━━━━━━━━━━━━
+📊 23 people hold 39 seats across 9 campaigns.
+✅ 19 people (33 seats) have posted in the last 30 days.
+🔝 The top five hold 17 of 33 active seats (52%).
+
+💰 C00: Riddleport - 4/6
+   @fuzzystudios, @MrNegetZ, @Nemesiux, @Sasuken09
+🦄 C08: Theria - 1/4
+   @PathWars
+   💤 @Linksanelf2006 180d, @czarchasm23 176d, @Ravnos1 124d, ...
+
+🕯 In no current campaign: @Luke_Skillen, @Verminatrix
+
+ℹ️ "Active" means posted within 30 days. One person can hold several seats,
+   which is why people and seats differ.
+```
+
+It shows the working rather than a headline number, because a headline number is
+what went wrong. People and seats are separate, enrolled and active are
+separate, the window is stated in the post itself, and the rows belonging to no
+current campaign are named rather than hidden inside a total.
+
+**It deletes nothing.** The run of these posts is the record of the community
+over time, which is the point of having it. Sent silent: it @-mentions everybody
+by design, and a weekly notification each is how a topic gets muted.
+
+The 💤 list is the **complement** of the active list, derived by subtracting it
+rather than by re-testing `last_post_time`. Permanent players count as active
+through any amount of silence, so a second opinion would print the same person
+as both active and quiet in one post.
+
+Seven mutations, all killed. One survived the first pass: replacing the
+subtraction with `not p.get("permanent")` passed every test, because each
+fixture held a single seat. With two seats in one campaign it prints an active
+player in the names line and in the quiet line of the same block.
+
+---
+
 ## [4.60.1] - 2026-08-30
 
 ### Fixed

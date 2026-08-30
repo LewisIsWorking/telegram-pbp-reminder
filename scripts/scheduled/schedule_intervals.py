@@ -72,6 +72,9 @@ INTERVAL_JOBS: list[IntervalJob] = [
     # registered in checker._run_checks and nowhere else, which is what
     # that guard exists to do.
     IntervalJob("last_recruit_focus", 1, "Recruit focus", ("Recruit focus",)),
+    # scheduled/community_roster.py:INTERVAL_DAYS. Added 2026-08-30.
+    IntervalJob("last_community_roster", 7, "Community roster",
+                ("Community roster",)),
 ]
 
 
