@@ -135,6 +135,39 @@ to specific messages.
 
 ---
 
+## Inactivity: warnings and removals are separate
+
+Two feature flags, because nagging a player and sweeping a dead seat are
+different acts with different audiences:
+
+| `disabled_features` | effect |
+|---|---|
+| *(neither)* | warn at 1, 2, 3 weeks; remove at 4. The default. |
+| `warnings` | **stay quiet, stay tidy.** No nudges to players, seats still swept at 4 weeks. What another GM's table wants. |
+| `removals` | warn, but never act on it. |
+| both | prefer `paused_campaigns`, which says *why*. |
+
+Until 2026-08-30 one flag named `warnings` gated both, so C08 Theria,
+which disables it because another GM runs that table, accumulated **five
+seats silent 110 to 176 days**. Theria read up to five players larger
+than it was in `/roster`, in the recruit advert and in the weekly
+community roster.
+
+Independent of both flags:
+
+- **permanent players** are never removed (the L20 rule);
+- **`/away`** players are never warned or removed while away;
+- **`paused_campaigns`** stops both, and is the right switch for a hiatus;
+- the **GM bottleneck** suppresses warnings when the GM has been quiet 3+
+  days, but deliberately does **not** suppress removals. A seat silent
+  for a month is dead whoever is at fault.
+
+One roster post per campaign per sweep, not one per person: five removals
+in a run used to mean five near-identical rosters in that campaign's
+chat.
+
+---
+
 ## Community Roster (weekly)
 
 Every 7 days the bot posts the full community roster into the GM queue

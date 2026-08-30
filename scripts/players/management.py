@@ -2,10 +2,9 @@
 Player management: kick and addplayer commands.
 """
 
-from datetime import datetime, timezone
-
 import helpers
 import telegram as tg
+from players.retire import retire_seat
 
 
 def handle_kick(pid: str, campaign_name: str, target: str,
@@ -34,18 +33,12 @@ def handle_kick(pid: str, campaign_name: str, target: str,
                         f"No player matching '{target}' found in {campaign_name}.")
         return
 
-    # Remove player
-    removed = state["players"].pop(match_key)
-    from players.history import on_leave
-    on_leave(pid, str(removed.get("user_id", "")),
-             removed["first_name"], removed.get("username", ""), state, config)
-    state["removed_players"][match_key] = {
-        "removed_at": datetime.now(timezone.utc).isoformat(),
-        "first_name": removed["first_name"],
-        "username": removed.get("username", ""),
-        "campaign_name": campaign_name,
-        "kicked": True,
-    }
+    # Remove player. Shares one path with the 4-week inactivity sweep
+    # (extracted 2026-08-30): both must pop the record, write the leave
+    # event and file removed_players, and a copy that forgets the third
+    # makes the player's next message read as a first join.
+    removed = retire_seat(match_key, state, config,
+                          kicked=True, campaign_name=campaign_name)
 
     name = helpers.player_full_name(removed)
     tg.send_message(group_id, thread_id,

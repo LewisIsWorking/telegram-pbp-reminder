@@ -5,38 +5,11 @@ from datetime import datetime, timezone
 import helpers
 from helpers import build_topic_maps, fmt_date
 import telegram as tg
+from players.history import post_roster
 from players.permanence import is_permanent
-
-
-def _gm_last_post(config: dict, state: dict, pid: str) -> datetime | None:
-    """Return the most recent GM post time for a campaign, or None."""
-    gm_ids = helpers.gm_ids_for_campaign(config, pid)
-    topic_ts = helpers.get_topic_timestamps(state, pid)
-    gm_last = None
-    for gm_id in gm_ids:
-        gm_stamps = topic_ts.get(gm_id, [])
-        if gm_stamps:
-            gm_dt = datetime.fromisoformat(gm_stamps[-1])  # pragma: no cover
-            if gm_last is None or gm_dt > gm_last:  # pragma: no cover
-                gm_last = gm_dt  # pragma: no cover
-    return gm_last
-
-
-def _gm_note(config: dict, state: dict, pid: str, now: datetime) -> str:
-    """Return a GM inactivity note if the GM isn't the last poster, else ''."""
-    topic_state = state.get("topics", {}).get(pid, {})
-    last_user_id = topic_state.get("last_user_id", "")
-    gm_ids = helpers.gm_ids_for_campaign(config, pid)
-    if last_user_id in gm_ids:
-        return ""  # pragma: no cover
-    gm_last = _gm_last_post(config, state, pid)
-    if not gm_last:
-        return ""
-    gm_elapsed = helpers.hours_since(now, gm_last)  # pragma: no cover
-    gm_days = int(gm_elapsed) // 24  # pragma: no cover
-    gm_hours = int(gm_elapsed) % 24  # pragma: no cover
-    gm_time = f"{gm_days}d {gm_hours}h" if gm_days > 0 else f"{gm_hours}h"  # pragma: no cover
-    return f"\n\nGM hasn't posted in {gm_time}."  # pragma: no cover
+from players.retire import retire_seat
+from scheduled.gm_bottleneck import gm_last_post, gm_note
+from scheduled.inactivity_policy import sweep_and_warn
 
 
 def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -93,7 +66,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
             f"No new posts in {name} PBP for {time_str}.\n"
             f"Last post was from {last_user}{count_str} on {last_date}."
         )
-        message += _gm_note(config, state, pid, now)
+        message += gm_note(config, state, pid, now)
 
         print(f"Sending alert for {name}: {time_str} inactive")
         if tg.send_message(group_id, bot_topic or chat_topic_id, message):
@@ -107,7 +80,12 @@ _INACTIVITY_TEMPLATES = {
 
 
 def check_player_activity(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
-    """Warn inactive players at 1/2/3 weeks, remove at 4 weeks."""
+    """Warn inactive players at 1/2/3 weeks, remove at 4 weeks.
+
+    The two halves are gated separately (``warnings`` and ``removals``),
+    because nagging a player and sweeping a dead seat are different acts
+    with different audiences. See ``scheduled/inactivity_policy``.
+    """
     group_id = config["group_id"]
     bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
@@ -125,9 +103,8 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         chat_topic_id = maps.to_chat.get(pbp_topic_id)
         if not chat_topic_id:
             continue  # pragma: no cover
-        if not helpers.feature_enabled(config, pbp_topic_id, "warnings"):
-            continue
-        if pbp_topic_id in state.get("paused_campaigns", {}):
+        sweeps, warns = sweep_and_warn(config, state, pbp_topic_id)
+        if not (sweeps or warns):
             continue
         # Skip players who are marked as away
         user_id = player.get("user_id", "")
@@ -135,7 +112,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
             continue
         # Cache GM bottleneck status (3+ days inactive)
         if pbp_topic_id not in _gm_bottleneck:
-            gm_last = _gm_last_post(config, state, pbp_topic_id)
+            gm_last = gm_last_post(config, state, pbp_topic_id)
             _gm_bottleneck[pbp_topic_id] = (
                 gm_last is not None and helpers.days_since(now, gm_last) >= 3
             )
@@ -151,24 +128,28 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         days_inactive = int(elapsed_days)
         last_date = fmt_date(last_post)
 
-        # 4+ weeks: remove (ALWAYS fires, even when GM is bottleneck)
+        # 4+ weeks: remove. Fires even when the GM is the bottleneck, and
+        # (since 2026-08-30) even when `warnings` is disabled: sweeping a
+        # dead seat is roster hygiene, not a message to a player. Gated
+        # on its own `removals` feature instead. See inactivity_policy.
         # Permanent players are never removed — skip the removal block entirely
         if not is_permanent(player, config) and current_week >= helpers.PLAYER_REMOVE_WEEKS:
-            if last_warned < helpers.PLAYER_REMOVE_WEEKS:
+            if sweeps and last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (
                     f"{mention} has not posted in {campaign} PBP for "
                     f"{days_inactive} days (last: {last_date}). They are no longer tracked "
                     f"as an active player in this campaign."
                 )
-                message += _gm_note(config, state, pbp_topic_id, now)
+                message += gm_note(config, state, pbp_topic_id, now)
                 print(f"Removing {first_name} from {campaign} ({days_inactive}d)")
                 tg.send_message(group_id, bot_topic or chat_topic_id, message)
                 players_to_remove.append(player_key)
             continue
 
-        # 1, 2, 3 week warnings (suppressed when GM is the bottleneck)
-        if _gm_bottleneck[pbp_topic_id]:
-            continue  # pragma: no cover
+        # 1, 2, 3 week warnings: only when this campaign wants them, and
+        # never while the GM is the one holding the game up.
+        if not warns or _gm_bottleneck[pbp_topic_id]:
+            continue
         for week_mark in helpers.PLAYER_WARN_WEEKS:
             # Skip week-3 warning for permanent players (it mentions auto-removal)
             if week_mark == 3 and is_permanent(player, config):
@@ -179,21 +160,22 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                     mention=mention, campaign=campaign,
                     days=days_inactive, date=last_date,
                 )
-                message += _gm_note(config, state, pbp_topic_id, now)
+                message += gm_note(config, state, pbp_topic_id, now)
                 print(f"Warning {first_name} in {campaign}: week {week_mark}")
                 if tg.send_message(group_id, bot_topic or chat_topic_id, message):
                     player["last_warned_week"] = week_mark
                 break  # One warning per player per run
 
-    # Move removed players out
+    # Move removed players out. Not kicked: nobody decided this, they
+    # simply stopped posting, and the history should not imply otherwise.
+    #
+    # ⚠️ announce=False, then ONE roster post per campaign at the end.
+    # Announcing per removal put five near-identical rosters into C08's
+    # chat topic in a single run when its 2026-08-30 backlog was swept,
+    # four of them showing intermediate states nobody needs.
+    swept = set()
     for key in players_to_remove:
-        removed = state["players"].pop(key)
-        __import__("players.history", fromlist=["on_leave"]).on_leave(
-            str(removed.get("pbp_topic_id", "")), str(removed.get("user_id", "")),
-            removed["first_name"], removed.get("username", ""), state, config)
-        state["removed_players"][key] = {
-            "removed_at": now.isoformat(),
-            "first_name": removed["first_name"],
-            "username": removed.get("username", ""),
-            "campaign_name": removed["campaign_name"],
-        }
+        removed = retire_seat(key, state, config, now=now, announce=False)
+        swept.add(str(removed.get("pbp_topic_id", "")))
+    for pid in sorted(swept):
+        post_roster(pid, config, state)
