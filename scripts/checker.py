@@ -32,6 +32,7 @@ from scheduled.potw import player_of_the_week
 from scheduled.potw_countdown import post_potw_countdown
 from scheduled.schedule_post import post_schedule
 from scheduled.recruit_focus_post import post_recruit_focus
+from scheduled.community_roster import post_community_roster
 from scheduled.milestones import check_streak_milestones, check_anniversaries
 from scheduled.message_milestones import check_message_milestones
 from scheduled.leaderboard import post_campaign_leaderboard
@@ -115,6 +116,7 @@ def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:
         ("Non-bot pin alert", alert_non_bot_pin_actions),
         ("State backup", backup_state),
         ("Recruit focus", post_recruit_focus),
+        ("Community roster", post_community_roster),
         # Last: it reports on everything above, so it should
         # render after they have had their turn this run.
         ("Schedule post", post_schedule),
