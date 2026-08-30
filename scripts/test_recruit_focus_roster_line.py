@@ -16,9 +16,9 @@ that is wrong and reads as right.
 finished text and compares them, so the divergence fails a test rather
 than reaching the group.
 
-⚠️ Two of the 44 seated players really have no username (measured
-2026-08-29), one of them a 2026-08-26 recruit, so the fallback path is
-live code and is pinned with a can-fail counterpart below.
+⚠️ Two player records really have no username (2 of 41 on 2026-08-30),
+one of them a 2026-08-26 recruit, so the fallback path is live code and
+is pinned with a can-fail counterpart below.
 """
 
 import os

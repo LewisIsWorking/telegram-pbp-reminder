@@ -11,6 +11,52 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.60.1] - 2026-08-30
+
+### Fixed
+
+**"44 active players" was none of those words.** Lewis asked whether there
+really were 44. There were 44 *records* in `players.json` on 2026-08-27, held by
+25 people, of whom 20 had posted inside the 30-day window. The recruiting README
+quoted the first number under the heading "seats", where it reads as reach.
+
+Re-measured on 2026-08-30: **41 records, 25 people, 19 active.** Three things
+the single number hid:
+
+- two records sit in **C11 Dark Pockets**, retired, whose roster rows were never
+  swept. The same ghost-row shape as the `/rosterplayers` bug of 2026-08-20, one
+  layer down
+- six of the eight silent seats are **C08 Theria**, silent 110 to 180 days. It
+  has `warnings` disabled so nothing sweeps them, which is right for a campaign
+  another GM runs and wrong to count as reach
+- three seats were auto-removed on 2026-08-29, all Bruce (@Ravnos1), silent
+  since 30 July. That is the permanence pause working: the drop from 44 to 41 is
+  the count correcting, not the game shrinking
+
+Measured the same way at all three dates, the recruiting result survives and is
+smaller than the enrolment figures implied: **14 active people to 19**, and the
+top five holding **62% to 52%** of active seats.
+
+### Added
+
+**`recruiting/roster_basis`, so the answer is re-run rather than re-derived.**
+
+```
+python -m recruiting.roster_basis                 # today
+git show <rev>:data/state/players.json | python -m recruiting.roster_basis - --asof 2026-08-20
+```
+
+Prints records, seats and active side by side, each by seat and by person, with
+the basis named on every line. `--asof` is load-bearing: without it an old
+revision is measured against today's clock, which answers a different question
+and prints it under the same heading (23 active seats rather than 29).
+
+Proven by five mutations, including the one that matters most here: a seat that
+posted moments ago measures `0.0` days, and `0.0` is falsy, so the terse
+`if ago` form files the most active player in the group under "never posted".
+
+---
+
 ## [4.60.0] - 2026-08-29
 
 ### Added
@@ -40,10 +86,9 @@ advert say `4/6` above five names, and both lines would look right on their own.
 so a later change that filtered either side fails a test rather than reaching
 the group.
 
-Two of the 44 seated players have no Telegram username (measured 2026-08-29),
-one of them a 2026-08-26 recruit. They are named plainly rather than skipped:
-dropping them
-from the list without dropping them from the count is precisely the
+Two player records have no Telegram username (2 of 41 on 2026-08-30), one of
+them a 2026-08-26 recruit. They are named plainly rather than skipped: dropping
+them from the list without dropping them from the count is precisely the
 contradiction above.
 
 A campaign seating nobody (C10 The Junction, today) emits no roster line at all
