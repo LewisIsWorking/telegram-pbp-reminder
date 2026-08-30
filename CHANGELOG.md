@@ -11,6 +11,53 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.60.0] - 2026-08-29
+
+### Added
+
+**The recruit advert names the players who are already at the table.**
+
+Lewis, on a live C00 Riddleport advert: *"These are great but could we add a 4th
+line of 'Current Players:' then their telegram @s?"*
+
+```
+━━━━━━━━━━━━━━━━
+🧭 This table has room: 💰 C00: Riddleport
+⏳ 2 seats open (4/6 players).
+👥 Current players: @fuzzystudios, @MrNegetZ, @Nemesiux, @Sasuken09
+↗ Know someone? This is the biggest gap of 7 campaigns currently recruiting.
+🔗 https://t.me/Path_Wars/66154
+```
+
+Fourth line counting the separator, directly under the seat count it
+substantiates.
+
+The names and the count come from **one** roster resolution: `_shortfall` now
+returns the seated players rather than how many there are, so both halves of the
+post are built from the same list. A second `_active_players` call would let an
+advert say `4/6` above five names, and both lines would look right on their own.
+`test_recruit_focus_roster_line` parses the finished post and compares the two,
+so a later change that filtered either side fails a test rather than reaching
+the group.
+
+Two of the 44 seated players have no Telegram username (measured 2026-08-29),
+one of them a 2026-08-26 recruit. They are named plainly rather than skipped:
+dropping them
+from the list without dropping them from the count is precisely the
+contradiction above.
+
+A campaign seating nobody (C10 The Junction, today) emits no roster line at all
+rather than a bare label or a blank line.
+
+### Fixed
+
+**`VERSION` had been stale since 4.58.1, and it is stamped into every state
+backup.** Every backup written since then carries the wrong version.
+`test_version_matches_the_changelog.py` now fails when the file and the newest
+changelog entry disagree, in either direction.
+
+---
+
 ## [4.59.0] - 2026-08-27
 
 ### Fixed
@@ -2996,9 +3043,6 @@ and produces a `manifest.json` with metadata.
   directly with `python`, now uses `pytest -q` consistently)
 - All 7 test files enumerated explicitly in the test step
 - Commit step message updated to reflect state files being committed
-
----
-## [4.18.0] - 2026-03-27
 
 ### Changed — File-Primary State (Data Migration)
 

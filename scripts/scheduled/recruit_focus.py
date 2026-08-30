@@ -39,6 +39,7 @@ import helpers
 import telegram as tg
 from commands.roster import _active_players
 from commands.roster_members import effective_target
+from scheduled.recruit_roster_line import current_players_line
 
 _GATE_HOURS = 24
 _LAST_KEY = "last_recruit_focus"
@@ -55,13 +56,22 @@ _AT_KEY = "recruit_focus_at"
 _POSTS_KEY = "recruit_focus_posts"
 
 
-def _shortfall(pair: dict, state: dict, config: dict) -> tuple[int, int, int]:
-    """Return (missing, active, target) for one campaign."""
+def _shortfall(pair: dict, state: dict,
+               config: dict) -> tuple[int, list[dict], int]:
+    """Return (missing, seated_players, target) for one campaign.
+
+    ⭐ Returns the PLAYERS, not a count of them (changed 2026-08-29, when
+    the advert began naming them). Counting here and resolving the names
+    somewhere else means two ``_active_players`` calls deciding the same
+    question, and a post that says "4/6" above five names is wrong in a
+    way that reads as correct. The signature was widened rather than
+    added to so every caller had to look at what it now receives.
+    """
     pid = str(pair["pbp_topic_ids"][0])
     # Ladder default; an explicit per-pair roster_target still wins.
     target = pair.get("roster_target") or effective_target(config, state)
-    active = len(_active_players(pid, state, config))
-    return target - active, active, target
+    players = _active_players(pid, state, config)
+    return target - len(players), players, target
 
 
 def recruit_tier(pair: dict, config: dict) -> int | None:
@@ -115,8 +125,8 @@ def pick_recruit_pair(config: dict, state: dict) -> dict | None:
     """
     candidates = []
     for pair in _eligible_pairs(config, state):
-        missing, active, target = _shortfall(pair, state, config)
-        ratio = active / target if target else 1.0
+        missing, players, target = _shortfall(pair, state, config)
+        ratio = len(players) / target if target else 1.0
         candidates.append((-missing, ratio, pair))
     if not candidates:
         return None
@@ -138,7 +148,8 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
     if not pair:
         return "", None
 
-    missing, active, target = _shortfall(pair, state, config)
+    missing, players, target = _shortfall(pair, state, config)
+    active = len(players)
     code = pair.get("code", "")
     name = pair.get("name", "")
     label = f"{code}: {name}" if code else name
@@ -161,6 +172,11 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
     lines = ["━━━━━━━━━━━━━━━━",
              f"🧭 This table has room: {emoji_prefix}{label}",
              f"⏳ {missing} {seats} open ({active}/{target} players)."]
+    # Named from the SAME list the ratio above was counted from. Omitted
+    # entirely when the campaign seats nobody. Lewis, 2026-08-29.
+    roster_line = current_players_line(players)
+    if roster_line:
+        lines.append(roster_line)
     if tier:
         # Tiers are internal scheduling. A player needs neither the word
         # "tier" nor the number — only that it is open now.
