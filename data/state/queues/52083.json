@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 175703,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-08-27T13:21:30+00:00",
-      "preview": "\"It's...made out of wood?\" Lai replies confused \"still don't know how to use it\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -386,7 +376,9 @@
     "msg:175383",
     "2026-08-26 14:23:29",
     "msg:175689",
-    "2026-08-27 11:17:07"
+    "2026-08-27 11:17:07",
+    "msg:175703",
+    "2026-08-27 13:21:30"
   ],
   "reply_log": [
     {
@@ -2103,19 +2095,26 @@
       "player": "Terra",
       "preview": "I hand her the ukelele by the neck and watch her",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-30T15:34:17+00:00",
+      "pid": "52083",
+      "msg_id": "175703",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"It's...made out of wood?\" Lai replies confused \"still don't know how to use it\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-08-27 13:21:30",
-      "msg_ids": [
-        175902
-      ],
-      "last_posted_at": "2026-08-29T02:22:07.110559+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-08-27T11:47:37.093172+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 176323,
+      "caught_up_at": "2026-08-30T17:18:11.236411+00:00"
     },
     "145045": {
       "msg_ids": [],

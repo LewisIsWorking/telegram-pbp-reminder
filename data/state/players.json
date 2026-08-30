@@ -7,8 +7,8 @@
       "username": "Nemesiux",
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
-      "last_post_time": "2026-08-15T11:06:49+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-08-30T13:36:43+00:00",
+      "last_warned_week": 0
     },
     "66154:5443237599": {
       "user_id": "5443237599",
@@ -348,6 +348,26 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-08-26T18:35:11+00:00",
+      "last_warned_week": 0
+    },
+    "66154:1358791105": {
+      "user_id": "1358791105",
+      "first_name": "Alastair",
+      "last_name": "Tan",
+      "username": "altan19931993",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-08-30T13:19:25+00:00",
+      "last_warned_week": 0
+    },
+    "146645:6144366145": {
+      "user_id": "6144366145",
+      "first_name": "Anthony",
+      "last_name": "NegetZ",
+      "username": "MrNegetZ",
+      "campaign_name": "The Junction",
+      "pbp_topic_id": "146645",
+      "last_post_time": "2026-08-30T15:44:48+00:00",
       "last_warned_week": 0
     }
   },
@@ -741,7 +761,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.414530+00:00"
       },
       "5443237599": {
@@ -763,7 +783,7 @@
     "25059": {
       "5443237599": {
         "id": 1,
-        "name": "Horia Constantinescu",
+        "name": "Horia",
         "joined": "2026-03-27T17:19:50.742597+00:00"
       },
       "1698524397": {
@@ -867,6 +887,11 @@
         "id": 10,
         "name": "Fuzzy",
         "joined": "2026-08-26T19:08:58.010880+00:00"
+      },
+      "1358791105": {
+        "id": 11,
+        "name": "Alastair",
+        "joined": "2026-08-30T17:18:10.379510+00:00"
       }
     },
     "76799": {
@@ -1065,8 +1090,13 @@
     "146645": {
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-08-30T12:18:52.412683+00:00"
+      },
+      "6144366145": {
+        "id": 1,
+        "name": "Anthony",
+        "joined": "2026-08-30T17:18:11.234527+00:00"
       }
     }
   },
@@ -1670,6 +1700,22 @@
       "name": "Cannon",
       "username": "ArtyArtillery",
       "at": "2026-08-30T12:35:21.882125+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "1358791105",
+      "name": "Alastair",
+      "username": "altan19931993",
+      "at": "2026-08-30T17:18:09.631110+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "146645",
+      "user_id": "6144366145",
+      "name": "Anthony",
+      "username": "MrNegetZ",
+      "at": "2026-08-30T17:18:10.798416+00:00"
     }
   ],
   "player_boons": {
