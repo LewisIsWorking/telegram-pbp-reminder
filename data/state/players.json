@@ -80,56 +80,6 @@
       "last_post_time": "2026-08-26T04:57:02+00:00",
       "last_warned_week": 0
     },
-    "107151:8353586922": {
-      "user_id": "8353586922",
-      "first_name": "Chase",
-      "last_name": "Darkthorne",
-      "username": "ChaseDarkthorne",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-05-11T16:56:50+00:00",
-      "last_warned_week": 0
-    },
-    "107151:6482311444": {
-      "user_id": "6482311444",
-      "first_name": "Moss",
-      "last_name": "",
-      "username": "Mossssssssssssssssssssssssss",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-04-27T18:03:29+00:00",
-      "last_warned_week": 0
-    },
-    "107151:7077683276": {
-      "user_id": "7077683276",
-      "first_name": "Bruce",
-      "last_name": "",
-      "username": "Ravnos1",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-04-27T21:57:02+00:00",
-      "last_warned_week": 0
-    },
-    "107151:8383886822": {
-      "user_id": "8383886822",
-      "first_name": "CzarChasm23",
-      "last_name": "\"Lowda Medina\"",
-      "username": "czarchasm23",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-03-07T02:21:59+00:00",
-      "last_warned_week": 0
-    },
-    "107151:7454623139": {
-      "user_id": "7454623139",
-      "first_name": "Cannon",
-      "last_name": "McMahon",
-      "username": "ArtyArtillery",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-04-27T22:36:01+00:00",
-      "last_warned_week": 0
-    },
     "40585:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -640,6 +590,36 @@
       "removed_at": "2026-08-30T12:13:16.289146+00:00",
       "first_name": "Link",
       "username": "Linksanelf2006",
+      "campaign_name": "Theria"
+    },
+    "107151:8353586922": {
+      "removed_at": "2026-08-30T12:35:19.551487+00:00",
+      "first_name": "Chase",
+      "username": "ChaseDarkthorne",
+      "campaign_name": "Theria"
+    },
+    "107151:6482311444": {
+      "removed_at": "2026-08-30T12:35:19.551487+00:00",
+      "first_name": "Moss",
+      "username": "Mossssssssssssssssssssssssss",
+      "campaign_name": "Theria"
+    },
+    "107151:7077683276": {
+      "removed_at": "2026-08-30T12:35:19.551487+00:00",
+      "first_name": "Bruce",
+      "username": "Ravnos1",
+      "campaign_name": "Theria"
+    },
+    "107151:8383886822": {
+      "removed_at": "2026-08-30T12:35:19.551487+00:00",
+      "first_name": "CzarChasm23",
+      "username": "czarchasm23",
+      "campaign_name": "Theria"
+    },
+    "107151:7454623139": {
+      "removed_at": "2026-08-30T12:35:19.551487+00:00",
+      "first_name": "Cannon",
+      "username": "ArtyArtillery",
       "campaign_name": "Theria"
     }
   },
@@ -1650,6 +1630,46 @@
       "name": "Link",
       "username": "Linksanelf2006",
       "at": "2026-08-30T12:13:16.289146+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "8353586922",
+      "name": "Chase",
+      "username": "ChaseDarkthorne",
+      "at": "2026-08-30T12:35:21.882079+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "6482311444",
+      "name": "Moss",
+      "username": "Mossssssssssssssssssssssssss",
+      "at": "2026-08-30T12:35:21.882103+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "7077683276",
+      "name": "Bruce",
+      "username": "Ravnos1",
+      "at": "2026-08-30T12:35:21.882111+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "8383886822",
+      "name": "CzarChasm23",
+      "username": "czarchasm23",
+      "at": "2026-08-30T12:35:21.882119+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "7454623139",
+      "name": "Cannon",
+      "username": "ArtyArtillery",
+      "at": "2026-08-30T12:35:21.882125+00:00"
     }
   ],
   "player_boons": {
