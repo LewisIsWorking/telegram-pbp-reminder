@@ -80,16 +80,6 @@
       "last_post_time": "2026-08-26T04:57:02+00:00",
       "last_warned_week": 0
     },
-    "107151:7863964681": {
-      "user_id": "7863964681",
-      "first_name": "Link",
-      "last_name": "",
-      "username": "Linksanelf2006",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-03-02T18:51:44+00:00",
-      "last_warned_week": 0
-    },
     "107151:8353586922": {
       "user_id": "8353586922",
       "first_name": "Chase",
@@ -645,6 +635,12 @@
       "first_name": "Bruce",
       "username": "Ravnos1",
       "campaign_name": "Metal City"
+    },
+    "107151:7863964681": {
+      "removed_at": "2026-08-30T12:13:16.289146+00:00",
+      "first_name": "Link",
+      "username": "Linksanelf2006",
+      "campaign_name": "Theria"
     }
   },
   "player_registry": {
@@ -1639,6 +1635,14 @@
       "name": "Bruce",
       "username": "Ravnos1",
       "at": "2026-08-29T21:37:33.855971+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "7863964681",
+      "name": "Link",
+      "username": "Linksanelf2006",
+      "at": "2026-08-30T12:13:16.289146+00:00"
     }
   ],
   "player_boons": {
