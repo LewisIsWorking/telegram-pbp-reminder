@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 176343,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-30T21:44:46+00:00",
+      "preview": "Everyone is gonna roll perception prob.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 176344,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-08-30T22:03:45+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6032,10 +6050,12 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 175917,
+      "fingerprint": "2026-08-30 21:44:46|2026-08-30 22:03:45",
+      "msg_ids": [
+        176357
+      ],
+      "last_posted_at": "2026-08-30T23:21:28.394626+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-29T14:38:05.150836+00:00"
     }
   }
