@@ -1796,24 +1796,12 @@
       "2026-06-22T14:59:58.811223+00:00"
     ],
     "146645": [
-      "2026-08-30T17:18:11.234975+00:00"
+      "2026-08-30T17:18:11.234975+00:00",
+      "2026-08-30T17:40:43.549749+00:00",
+      "2026-08-30T17:40:43.553104+00:00"
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-08-06T03:21:30.748437+00:00",
-      "player": "Fuzzy",
-      "preview": "But also... Kind of.\nI'm made of bronze, which is made with ",
-      "msg_id": "170135"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-08-06T03:21:30.750282+00:00",
-      "player": "Fuzzy",
-      "preview": "But you aren't allowed to steal my toes to buy candy.",
-      "msg_id": "170136"
-    },
     {
       "pid": "40585",
       "time": "2026-08-06T03:21:30.754282+00:00",
@@ -3199,6 +3187,20 @@
       "player": "Anthony",
       "preview": "No",
       "msg_id": "176283"
+    },
+    {
+      "pid": "146645",
+      "time": "2026-08-30T17:40:43.549749+00:00",
+      "player": "Anthony",
+      "preview": "Don't",
+      "msg_id": "176285"
+    },
+    {
+      "pid": "146645",
+      "time": "2026-08-30T17:40:43.553104+00:00",
+      "player": "Anthony",
+      "preview": "Finish Kibwe",
+      "msg_id": "176288"
     }
   ],
   "pending_potw_boons": {

@@ -1,19 +1,13 @@
 {
   "pid": "146645",
-  "unreplied": [
-    {
-      "message_id": 176285,
-      "thread_id": 146645,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-30T15:44:48+00:00",
-      "preview": "Don't",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:176283",
-    "2026-08-30 15:44:39"
+    "2026-08-30 15:44:39",
+    "msg:176285",
+    "2026-08-30 15:44:48",
+    "msg:176288",
+    "2026-08-30 15:44:59"
   ],
   "reply_log": [
     {
@@ -24,15 +18,33 @@
       "player": "Anthony",
       "preview": "No",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-30T15:44:50+00:00",
+      "pid": "146645",
+      "msg_id": "176285",
+      "thread_id": 146645,
+      "player": "Anthony",
+      "preview": "Don't",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-30T15:45:02+00:00",
+      "pid": "146645",
+      "msg_id": "176288",
+      "thread_id": 146645,
+      "player": "Anthony",
+      "preview": "Finish Kibwe",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "146645": {
-      "msg_ids": [
-        176321
-      ],
-      "fingerprint": "2026-08-30 15:44:48",
-      "last_posted_at": "2026-08-30T17:18:22.894343+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 176329,
+      "caught_up_at": "2026-08-30T17:40:43.554534+00:00"
     }
   }
 }
