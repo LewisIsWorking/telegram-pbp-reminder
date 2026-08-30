@@ -134,7 +134,13 @@ def validate_config(config: dict) -> list[str]:
             all_pbp_ids.add(tid_str)
 
         # Validate disabled_features if present
-        valid_features = {"roster", "potw", "pace", "recruitment", "combat", "anniversary", "alerts", "warnings"}
+        # "removals" split from "warnings" on 2026-08-30: one flag was
+        # gating both the 1/2/3-week nudges and the 4-week sweep, so C08
+        # accumulated five dead seats. "smart_alerts" was used in code
+        # and missing here, so disabling it warned about itself.
+        valid_features = {"roster", "potw", "pace", "recruitment", "combat",
+                          "anniversary", "alerts", "warnings", "removals",
+                          "smart_alerts"}
         disabled = pair.get("disabled_features", [])
         for feat in disabled:
             if feat not in valid_features:

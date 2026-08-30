@@ -11,6 +11,74 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.62.0] - 2026-08-30
+
+### Fixed
+
+**Disabling `warnings` also silently disabled the 4-week removal, so C08 Theria
+kept five seats silent 110 to 176 days.**
+
+Lewis: *"Well if people have been gone from 08 for 100 days, they should have
+been kicked as players."* They should have.
+
+One flag named `warnings` gated two different things: the 1, 2 and 3 week nudges
+(**messages to a player**) and the 4 week removal (**roster hygiene**). C08 has
+`warnings` in `disabled_features` because another GM runs that table and the bot
+should not nag their players. That switched off the sweep too, and Theria read up
+to five players larger than it was in `/roster`, in the recruit advert and in the
+weekly community roster.
+
+⛔ The comment on the removal block read *"ALWAYS fires, even when GM is
+bottleneck"*. True of the condition it was written about, false of the function,
+because a `continue` thirty lines earlier meant the block was never reached. A
+docblock stating a rule the predicate does not enforce, for the third time in
+this repo.
+
+Now two flags, and all four combinations are meaningful:
+
+| `disabled_features` | effect |
+|---|---|
+| *(neither)* | warn at 1/2/3 weeks, remove at 4. Unchanged default. |
+| `warnings` | **stay quiet, stay tidy.** No nudges, seats still swept. |
+| `removals` | warn, but never act on it. |
+| both | prefer `paused_campaigns`, which says why. |
+
+Permanent players, `/away` players, paused campaigns and the GM-bottleneck
+suppression are all unchanged.
+
+**Five removals in one run posted five near-identical rosters into the
+campaign's chat.** `on_leave` announces per event, which is right for one
+removal and wrong for a backlog. Now one roster post per campaign per sweep.
+Found by dry-running the sweep against the real roster before merging: ten
+messages where five were expected.
+
+`smart_alerts` was also missing from `valid_features`, so disabling it warned
+about itself.
+
+### Changed
+
+**`retire_seat` is now the one path off a roster**, shared by the inactivity
+sweep and `/kick`. The same twelve lines existed twice and differed on one
+field. Three things have to happen together, and a copy that forgets one is
+silently wrong: the record leaves `players`, `on_leave` records it, and
+`removed_players` gains an entry. Without the third, the player's next message
+reads as a **first join** rather than a rejoin.
+
+An inactivity sweep is no longer recorded as `kicked`. Nobody decided it.
+
+`scheduled/alerts.py` reached 201 lines, so `gm_bottleneck` (is the GM the one
+holding the game up) and `inactivity_policy` (does this campaign warn, sweep or
+neither) were extracted rather than trimmed.
+
+Seven mutations, all killed, including re-gating the sweep on `warnings`, which
+is the original bug.
+
+**On the next hourly run this removes exactly five C08 seats** and nobody else,
+verified by dry run: Chase (110d), Moss, Bruce, Cannon (124d) and CzarChasm23
+(176d).
+
+---
+
 ## [4.61.1] - 2026-08-30
 
 ### Changed

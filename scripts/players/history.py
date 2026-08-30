@@ -25,8 +25,18 @@ def _log(event: str, pid: str, user_id: str,
     print(f"Player history: {event} — {name} in pid {pid}")
 
 
-def _post_roster(pid: str, config: dict, state: dict) -> None:
-    """Post updated campaign roster to its chat topic."""
+def post_roster(pid: str, config: dict, state: dict) -> None:
+    """Post updated campaign roster to its chat topic.
+
+    ⚠️ Public since 2026-08-30 so a caller removing SEVERAL seats in one
+    run can announce once at the end instead of once per person. Five
+    removals used to mean five roster posts into the campaign's chat,
+    four of them showing intermediate states nobody needs. That never
+    bit while removals arrived one at a time; the C08 Theria backlog of
+    five made it bite immediately.
+    """
+    if not config:
+        return
     pair = next((p for p in config.get("topic_pairs", [])
                  if str(p["pbp_topic_ids"][0]) == pid), None)
     if not pair:
@@ -47,7 +57,7 @@ def on_rejoin(pid: str, user_id: str, name: str,
     print(f"Player {name} rejoined pid {pid}")
     _log("join", pid, user_id, name, username, state)
     if config:
-        _post_roster(pid, config, state)
+        post_roster(pid, config, state)
 
 
 def on_join(pid: str, user_id: str, name: str,
@@ -56,7 +66,7 @@ def on_join(pid: str, user_id: str, name: str,
     """Called when a new player is added via /addplayer."""
     _log("join", pid, user_id, name, username, state)
     if config:
-        _post_roster(pid, config, state)
+        post_roster(pid, config, state)
 
 
 def on_leave(pid: str, user_id: str, name: str,
@@ -65,4 +75,4 @@ def on_leave(pid: str, user_id: str, name: str,
     """Called when a player is kicked or auto-removed."""
     _log("leave", pid, user_id, name, username, state)
     if config:
-        _post_roster(pid, config, state)
+        post_roster(pid, config, state)
