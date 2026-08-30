@@ -21,11 +21,16 @@ the two cannot drift apart later without a test failing.
 
 Why nobody is ever dropped
 --------------------------
-Two of the 44 seated players have no Telegram username, and one of them
-(Volf, C04) is a 2026-08-26 recruit, so this is a live case rather than a
-hypothetical one. Skipping them would be the divergence above with extra
-steps, so the renderer always emits something: username, else first name,
-else ``?``, matching ``commands/roster.py``.
+Two player records have no Telegram username (2 of 41 on 2026-08-30), and
+one of them (Volf, C04) is a 2026-08-26 recruit, so this is a live case
+rather than a hypothetical one. Skipping them would be the divergence
+above with extra steps, so the renderer always emits something: username,
+else first name, else ``?``, matching ``commands/roster.py``.
+
+⚠️ "41" counts SEAT RECORDS, not people and not active players. 41
+records are held by 25 people, of whom 19 have posted inside the 30-day
+window. Every one of those three numbers is the honest answer to a
+different question, which is why this note names which one.
 """
 
 _LABEL = "\U0001f465 Current players: "

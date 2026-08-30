@@ -73,6 +73,78 @@ having been the campaign the readiness check flagged as too quiet to advertise.
 counting players who had not posted in months. The count did not only rise, it
 also stopped lying.
 
+### ⚠️ Corrected 2026-08-30: "44 seats" was enrolment, not activity
+
+Lewis asked whether there were really 44 active players. There were not, and the
+table above says "seats" without saying what a seat is counted by.
+
+**44 was the number of player RECORDS on 2026-08-27**, which is a fair count of
+enrolment and a poor proxy for a living game. Re-measured on 2026-08-30:
+
+| measured 2026-08-30 | seats | people |
+|---|---|---|
+| records in `players.json` | 41 | 25 |
+| in a campaign that still exists | 39 | 23 |
+| posted within 30 days (the bot's own "active") | **33** | **19** |
+| posted within 7 days | 23 | 16 |
+
+Three things the single number hid:
+
+* **Two records belong to a retired campaign.** Luke and Poo are still seated in
+  C11 Dark Pockets (pid 1242), which has not existed since it retired. Same
+  ghost-row shape as the `/rosterplayers` bug of 2026-08-20, one layer down.
+* **Six of the eight silent seats are C08 Theria**, silent 110 to 180 days. It
+  has `warnings` disabled, so nothing sweeps them, which is correct for a
+  campaign a different GM runs and wrong to count as evidence of reach.
+* **Three seats were auto-removed on 2026-08-29**, all Bruce (@Ravnos1), silent
+  since 30 July. That is the permanence pause working as intended: the removals
+  were always going to fire, and the roster falling from 44 to 41 is the count
+  correcting rather than the game shrinking.
+
+### The same three dates, measured the same way
+
+The 41/44 row above is enrolment. Re-running the identical measurement over
+`players.json` at each date, counting only seats that had posted within the
+preceding 30 days:
+
+| activity basis | 08-20 | 08-27 | 08-30 |
+|---|---|---|---|
+| active seats | 29 | 36 | **33** |
+| **active humans** | 14 | 20 | **19** |
+| top five hold | 62% | 50% | **52%** |
+
+The recruiting result survives the stricter measurement and is smaller than the
+enrolment figures implied: **14 active people to 19**, and concentration from
+62% to 52%. The dip from the 27th is Bruce's three seats being swept, not
+players leaving.
+
+⚠️ Note what the two bases disagree about. Enrolment said concentration went
+54% to 45%; activity says 62% to 52%. Same direction, different magnitude, and
+the enrolment version is the flattering one. **Quote the activity row.**
+
+### Re-run it, do not re-derive it
+
+Every figure above comes out of one command, so nobody has to rebuild the
+arithmetic and get a different answer than last time:
+
+```bash
+cd scripts
+python -m recruiting.roster_basis                       # today
+git show <rev>:data/state/players.json \
+  | python -m recruiting.roster_basis - --asof 2026-08-20
+```
+
+⚠️ `--asof` is not optional when reading an old revision. Without it a
+2026-08-20 roster is measured against today's clock, which answers *"how many
+people enrolled then have posted recently"* and prints it under the heading
+`active`. That is 23 seats rather than 29: plausible, differently defined, and
+wrong for the comparison being made.
+
+⭐ The lesson is the one `readiness.py` already encodes and this table did not
+follow: **enrolled, seated and posting are three different questions.** A figure
+that does not name which one it answers will be read as whichever is most
+flattering.
+
 ### What this does and does not prove
 
 Two players from one post is a good rate, and it is **one** datapoint from the
