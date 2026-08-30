@@ -1,120 +1,58 @@
 """Silent and caught-up campaign sections for the GM queue.
 
-A campaign with zero unreplied entries is either:
-  - **silent**    — its RP topics have had no messages for >= 5 days, or
-  - **caught up** — it posted within the last 5 days (the GM is on top of it).
+A campaign with zero unreplied entries is one of:
+  - **never posted**: the bot has seen no message in it at all, or
+  - **silent**:       its RP topics have had no messages for >= 5 days, or
+  - **caught up**:    it posted within the last 5 days (the GM is on top of it).
 
 Campaigns with unreplied entries appear in the main queue body instead; the
-two sections here account for everything else so no campaign silently vanishes
+sections here account for everything else so no campaign silently vanishes
 from the queue (players were confused when caught-up campaigns disappeared).
+
+⭐ Never-posted campaigns were dropped entirely until 2026-08-30. See
+``queue_silence_rows`` for that bug and why they now rank first. Row
+building, wording and the threshold live there; this module is only the
+four section builders.
 """
 
 from datetime import datetime
 
-import helpers
-from commands.queue_format import entry_age_icon
+from scheduled.queue_silence_rows import (SILENCE_THRESHOLD_DAYS, callout_phrase,
+                                          idle_campaigns, phrase)
 
-_SILENCE_THRESHOLD_DAYS = 5
+_SILENCE_THRESHOLD_DAYS = SILENCE_THRESHOLD_DAYS
 
 
-def _age_str(hours: float) -> str:
-    """Format an age as '12d', '9d 20h', or '5h'.
+def _line(row) -> str:
+    """Render one row as a queue line."""
+    return f"  {row.icon} {row.prefix}{row.label} — {phrase(row)}{row.link}"
 
-    Drops the hours part only when it is zero AND there is a days part, so
-    silent lines stay byte-compatible with the previous formatter ('12d'),
-    while sub-day caught-up lines read cleanly ('5h' rather than '0d 5h').
+
+def _sorted_lines(rows) -> list[str]:
+    """Longest-idle first, then rendered.
+
+    Sorted rather than emitted in config ``topic_pairs`` order, which is why
+    a section could once read 21h, 0h, 2h, 5h, 4d 2h, 1h (reported
+    2026-08-10). ``days`` is a float, so sub-day ages order correctly against
+    each other, and ``inf`` puts a never-posted campaign at the top with no
+    special case.
     """
-    d, h = divmod(int(hours), 24)
-    if d and h:
-        return f"{d}d {h}h"
-    if d:
-        return f"{d}d"
-    return f"{h}h"
-
-
-def _latest_last_post(state: dict, pair: dict) -> datetime | None:
-    """Most recent last_message_time across all of a campaign's RP topics.
-
-    Multi-topic campaigns (e.g. C00 Riddleport) may be active in a secondary
-    topic while the canonical one is quiet, so consider them all.
-    """
-    topics = state.get("topics", {})
-    latest = None
-    for tid in pair.get("pbp_topic_ids", []):
-        ts = topics.get(str(tid), {}).get("last_message_time")
-        if not ts:
-            continue
-        try:
-            dt = datetime.fromisoformat(ts)
-        except (ValueError, TypeError):
-            continue
-        if latest is None or dt > latest:
-            latest = dt
-    return latest
-
-
-def _topic_link(config: dict, pair: dict, pid: str) -> str:
-    """Build a ' 🔗 <url>' suffix to a campaign's canonical topic, group-aware.
-
-    Uses ``campaign_link_target`` so cross-group campaigns (e.g. C11 Dark
-    Pockets) resolve to their own group rather than inheriting the global
-    ``group_username`` and pointing at the wrong group.
-    """
-    gid, guser = helpers.campaign_link_target(config, pair)
-    if guser:
-        return f" 🔗 https://t.me/{guser}/{pid}"
-    if gid:
-        digits = str(abs(gid))
-        if digits.startswith("100"):
-            digits = digits[3:]
-        return f" 🔗 https://t.me/c/{digits}/{pid}"
-    return ""
-
-
-def _idle_campaigns(config: dict, state: dict, scanned: dict, now: datetime):
-    """Yield ``(pair, pid, days, icon, prefix, label, age, link)`` for each
-    campaign that has no unreplied entries and a known last-post time."""
-    for pair in config.get("topic_pairs", []):
-        pid = str(pair["pbp_topic_ids"][0])
-        # Skip if the campaign has unreplied entries — it is shown in the body
-        if pid in scanned and scanned[pid].get("entries"):
-            continue
-        if helpers.is_excluded(config, pid):
-            continue
-        last_dt = _latest_last_post(state, pair)
-        if last_dt is None:
-            continue  # never posted / untracked — neither silent nor caught up
-        days = (now - last_dt).total_seconds() / 86400
-        hours = days * 24
-        code = pair.get("code", "")
-        name = pair.get("name", pid)
-        emoji = pair.get("emoji", "")
-        label = f"{code}: {name}" if code else name
-        prefix = f"{emoji} " if emoji else ""
-        icon = entry_age_icon(hours)
-        age = _age_str(hours)
-        link = _topic_link(config, pair, pid)
-        yield pair, pid, days, icon, prefix, label, age, link
+    return [_line(row) for row in sorted(rows, key=lambda r: r.days, reverse=True)]
 
 
 def silent_campaigns(config: dict, state: dict,
                      scanned: dict, now: datetime) -> list[str]:
     """Return formatted lines for campaigns idle >= the silence threshold.
 
+    A campaign with no posts at all belongs here rather than under "Caught
+    up": nothing about it is caught up. ``days=inf`` satisfies the same
+    comparison the threshold already used, so it needs no extra clause.
+
     Longest-silent first. Each line is ready to append directly to the GM
     queue message.
     """
-    rows = []
-    for _pair, _pid, days, icon, prefix, label, age, link in \
-            _idle_campaigns(config, state, scanned, now):
-        if days < _SILENCE_THRESHOLD_DAYS:
-            continue
-        rows.append((days, f"  {icon} {prefix}{label} — no posts for {age}{link}"))
-    # Sorted like campaign_age_lines below. Previously emitted in config
-    # topic_pairs order, so the section read as an arbitrary list rather
-    # than worst-first triage order (reported 2026-08-10).
-    rows.sort(key=lambda r: r[0], reverse=True)
-    return [text for _days, text in rows]
+    return _sorted_lines([r for r in idle_campaigns(config, state, scanned, now)
+                          if r.days >= _SILENCE_THRESHOLD_DAYS])
 
 
 def caught_up_campaigns(config: dict, state: dict,
@@ -125,18 +63,8 @@ def caught_up_campaigns(config: dict, state: dict,
     Ensures every configured campaign is represented somewhere in the queue
     rather than vanishing when it is both caught up and recently active.
     """
-    rows = []
-    for _pair, _pid, days, icon, prefix, label, age, link in \
-            _idle_campaigns(config, state, scanned, now):
-        if days >= _SILENCE_THRESHOLD_DAYS:
-            continue
-        rows.append((days, f"  {icon} {prefix}{label} — last post {age} ago{link}"))
-    # Longest-idle first, matching campaign_age_lines. Previously emitted in
-    # config topic_pairs order, which is why the section could read
-    # 21h, 0h, 2h, 5h, 4d 2h, 1h (reported 2026-08-10). `days` is a float,
-    # so sub-day ages order correctly against each other too.
-    rows.sort(key=lambda r: r[0], reverse=True)
-    return [text for _days, text in rows]
+    return _sorted_lines([r for r in idle_campaigns(config, state, scanned, now)
+                          if r.days < _SILENCE_THRESHOLD_DAYS])
 
 
 def oldest_campaign_line(config: dict, state: dict,
@@ -144,26 +72,26 @@ def oldest_campaign_line(config: dict, state: dict,
     """Return a 'go here next' callout naming the longest-idle campaign.
 
     The GM queue ends with a "Reply to this next" focus message, but that
-    is built from unreplied entries — so when the queue is empty there is
+    is built from unreplied entries, so when the queue is empty there is
     nothing pointing anywhere. This is the empty-queue equivalent: with no
     one waiting on a reply, the most useful next action is the campaign
     that has gone longest without any post at all.
 
     Ranking is simply "longest since last post", so a silent campaign
-    naturally outranks a caught-up one without needing a separate rule —
+    naturally outranks a caught-up one without needing a separate rule.
     9d beats 21h because it is a bigger number, not because of its
-    section. Returns None when every campaign is untracked or the config
-    has none.
+    section. A campaign with no posts at all outranks both, for the same
+    reason and by the same comparison. Returns None when the config has
+    no eligible campaigns.
     """
-    ranked = sorted(_idle_campaigns(config, state, scanned, now),
-                    key=lambda row: row[2], reverse=True)
-    if not ranked:
+    rows = idle_campaigns(config, state, scanned, now)
+    if not rows:
         return None
-    _pair, _pid, days, icon, prefix, label, age, link = ranked[0]
-    stale = "no posts for" if days >= _SILENCE_THRESHOLD_DAYS else "quiet for"
-    return (f"🕰️ Oldest campaign: {icon} {prefix}{label} — {stale} {age}."
+    row = max(rows, key=lambda r: r.days)
+    return (f"🕰️ Oldest campaign: {row.icon} {row.prefix}{row.label} — "
+            f"{callout_phrase(row)}."
             f"\nNothing is waiting on a reply, so this is the one that "
-            f"most needs you.{link}")
+            f"most needs you.{row.link}")
 
 
 def campaign_age_lines(config: dict, state: dict,
@@ -172,15 +100,6 @@ def campaign_age_lines(config: dict, state: dict,
 
     Used by the "All caught up!" notification so a cleared queue still shows
     how long each campaign has been quiet. Wording matches the in-queue
-    sections: campaigns past the silence threshold read "no posts for X",
-    the rest read "last post X ago".
+    sections, via the same ``phrase``.
     """
-    rows = []
-    for _pair, _pid, days, icon, prefix, label, age, link in             _idle_campaigns(config, state, scanned, now):
-        if days >= _SILENCE_THRESHOLD_DAYS:
-            text = f"  {icon} {prefix}{label} — no posts for {age}{link}"
-        else:
-            text = f"  {icon} {prefix}{label} — last post {age} ago{link}"
-        rows.append((days, text))
-    rows.sort(key=lambda r: r[0], reverse=True)
-    return [text for _days, text in rows]
+    return _sorted_lines(idle_campaigns(config, state, scanned, now))

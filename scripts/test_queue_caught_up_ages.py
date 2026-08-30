@@ -62,15 +62,29 @@ def test_campaign_with_unreplied_entries_is_omitted():
     assert len(lines) == 2
 
 
-def test_untracked_campaign_is_skipped():
+def test_untracked_campaigns_are_listed_first_as_never_posted():
+    """⛔ REVERSED 2026-08-30. Asserted len(lines) == 1, i.e. that the two
+    untracked campaigns were skipped.
+
+    That was the C10 The Junction bug: a campaign the bot had never seen
+    a message in vanished from this listing, which is the one that goes
+    out on the "All caught up!" post. They now lead it, because no posts
+    at all outranks any finite age.
+    """
     lines = campaign_age_lines(_cfg(), _state({"25059": 2}), {}, NOW)
-    assert len(lines) == 1
-    assert "C01" in lines[0]
+    assert len(lines) == 3
+    assert "C09" in lines[0] and "no posts yet" in lines[0]
+    assert "C06" in lines[1] and "no posts yet" in lines[1]
+    assert "C01" in lines[2] and "last post 2h ago" in lines[2]
 
 
 def test_links_are_included():
     lines = campaign_age_lines(_cfg(), _state({"25059": 2}), {}, NOW)
-    assert "https://t.me/Path_Wars/25059" in lines[0]
+    tracked = [ln for ln in lines if "C01" in ln]
+    assert "https://t.me/Path_Wars/25059" in tracked[0]
+    # A never-posted campaign still carries its link. Naming it is only
+    # useful if the GM can click through to the empty topic.
+    assert "https://t.me/Path_Wars/107171" in lines[0]
 
 
 # ── the posted message ───────────────────────────────────────────────────

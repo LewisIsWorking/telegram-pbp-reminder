@@ -53,6 +53,14 @@ def test_potw_links(tmp_path):
         assert isinstance(_find_player_post_links("Kibwe", "Alice", "100", week_ago), list)
 
 def test_queue_reminder_empty_queue():
+    """⚠️ AMENDED 2026-08-30: the campaign now needs a recent post.
+
+    An untracked campaign used to be dropped from ``silent_campaigns``,
+    so this reached the "empty" branch by accident. It now reports as
+    'no posts yet', which is a silent campaign and correctly NOT an
+    empty queue. Giving Kibwe a last_message_time is what the test
+    always meant: nothing unreplied AND nothing quiet.
+    """
     from scheduled.queue_reminder import post_queue_reminder
     now = datetime(2026, 4, 3, 10, tzinfo=timezone.utc)
     config = {"group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],
@@ -60,7 +68,8 @@ def test_queue_reminder_empty_queue():
                   {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe",
                    "gm_user_ids": [999]}]}
     state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-             "last_queue_pin_id": None, "last_queue_daily_slots": []}
+             "last_queue_pin_id": None, "last_queue_daily_slots": [],
+             "topics": {"100": {"last_message_time": "2026-04-03T08:00:00+00:00"}}}
     with patch("scheduled.queue_reminder.scan_transcripts", return_value={}), \
          patch("scheduled.queue_reminder.post_topic_queues"):
         post_queue_reminder(config, state, now=now)

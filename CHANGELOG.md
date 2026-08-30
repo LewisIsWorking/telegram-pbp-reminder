@@ -11,6 +11,73 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.62.1] - 2026-08-30
+
+### Fixed
+
+**A campaign the bot had never seen a message in was dropped from every queue
+section, so the quietest campaign was the one guaranteed not to be named.**
+
+Lewis, on C10 The Junction: *"But it doesn't do the 'all caught up' and such
+messages, etc."* It did not, and neither did it appear under Silent, under Caught
+up, in the age list on the "All caught up!" post, or in the "oldest campaign"
+callout. C10 was configured on 2026-08-13 and named in none of them until an
+empty GM post happened to land on 2026-08-30 12:07.
+
+One line in `queue_silence._idle_campaigns`:
+
+```python
+if last_dt is None:
+    continue  # never posted / untracked — neither silent nor caught up
+```
+
+⛔ The docstring on `caught_up_campaigns` promised the opposite: *"Ensures every
+configured campaign is represented somewhere in the queue rather than
+vanishing."* True of the function it was written on, false of the helper feeding
+it. A docblock stating a rule the predicate does not enforce, for the fourth time
+in this repo.
+
+"Never posted" is not a third category beside silent and caught up. It is the
+**most** silent a campaign can be. It now ranks first everywhere via
+`days = inf`, so every existing threshold comparison and every sort places it
+correctly with no special case to forget:
+
+```
+  ☠️ 🚦 C10: The Junction — no posts yet 🔗 https://t.me/Path_Wars/146645
+```
+
+⭐ The line deliberately carries **no age**. `silent_campaigns` feeds the
+fingerprint that decides whether the GM queue reposts, so a ticking age there
+would have reposted the whole queue hourly, forever. Two tests pin that the line
+is byte-identical an hour and a year later, with a can-fail counterpart proving a
+posted campaign's line does move.
+
+An unparseable `last_message_time` now reads the same way rather than being
+skipped: it means no usable last-post time, and surfacing it gets it looked at.
+
+### Changed
+
+- `scheduled/queue_silence.py` 186 to 105 lines; row building, wording and the
+  threshold extracted to `scheduled/queue_silence_rows.py`. Rows are a
+  `NamedTuple` rather than a bare 8-tuple, so adding `ever_posted` broke call
+  sites by attribute instead of shifting positional unpacking.
+- `callout_phrase` is separate from `phrase` because the oldest-campaign callout
+  says "quiet for 1d" where the sections say "last post 1d ago". One shared
+  function silently rewrote that line; a test now pins all three phrasings.
+- Em dash ceiling 1751 to 1746. The guard fired upward first (+7 in docstrings
+  just written), and the rewrite removed five more than the split added.
+
+### Notes
+
+- C10 The Junction is the only campaign in `config.json` with no `created` date,
+  so it gets no anniversary post and no age in `/campaign`. Needs the date.
+- The per-topic *"All caught up. Time for players to post!"* message inside a
+  campaign's own topic is unchanged and still requires a queue to have existed
+  there first. It marks a transition, and a campaign with no unreplied messages
+  ever has not made one.
+
+---
+
 ## [4.62.0] - 2026-08-30
 
 ### Fixed
