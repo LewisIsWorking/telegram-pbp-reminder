@@ -28942,5 +28942,65 @@
     "refused": false,
     "bot_owned": true,
     "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-08-30T12:19:06.578903+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 176174,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-08-30T12:19:07.058886+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 176089,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "gm_queue_history.py:120"
+  },
+  {
+    "timestamp": "2026-08-30T12:19:07.550126+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 176089,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-30T12:19:08.002812+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 176090,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-30T12:19:08.490039+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 176091,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-08-30T12:19:09.499070+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 671,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
   }
 ]
