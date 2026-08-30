@@ -11,6 +11,48 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.61.1] - 2026-08-30
+
+### Changed
+
+**C08 Theria: Anthony (@MrNegetZ) takes over as GM from Link
+(@Linksanelf2006), and capacity goes from 4 to 6.**
+
+Lewis: *"Anthony (Negetz) is taking over for C08 as Jason (Link) has gone, and
+he isn't coming back."*
+
+- `gm_user_ids` `[7863964681]` to `[6144366145]`. The pair-level list
+  **replaces** the global one rather than merging, so C08's GM is exactly one
+  person and it is now Anthony. Lewis confirmed the rule: *"Each campaign only
+  has 1 GM."*
+- `roster_target` 4 to 6.
+- Link's C08 seat retired, with a `player_history` leave event and a
+  `removed_players` entry, exactly as `/kick` would have written them. He had
+  already left his five other campaigns between May and June 2026, so this was
+  the last record.
+
+### Added
+
+**`test_one_gm_per_campaign.py`**, which fails on two things at once:
+
+- any campaign resolving to a number of GMs other than one;
+- a campaign's GM also holding a **player seat** in that campaign.
+
+The second is not cosmetic. `track_message` skips `_track_player` for anyone in
+`gm_ids`, so a GM never accrues a record by posting: one that exists is a
+leftover from before they were GM, and it occupies a seat in the roster count,
+in the recruit advert's player list and in the weekly community roster.
+
+C08 was in exactly that state until today, and the guard was proven by running
+it against the pre-change config and roster, where it fails naming
+`{'C08': ['7863964681']}`.
+
+It also pins the replace-not-merge semantics of `gm_ids_for_campaign`, because
+"fixing" that into a union would silently hand the global GM rights in every
+campaign that deliberately names somebody else.
+
+---
+
 ## [4.61.0] - 2026-08-30
 
 ### Added
