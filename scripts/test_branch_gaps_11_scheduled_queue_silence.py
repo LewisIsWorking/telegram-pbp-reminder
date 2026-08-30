@@ -87,21 +87,13 @@ def test_silent_campaigns_skips_when_recent():
     assert silent_campaigns(config, state, {}, now) == []
 
 
-def test_silent_campaigns_skips_when_no_topic_data():
-    """Campaign with no tracked message time is skipped gracefully."""
-    from scheduled.queue_silence import silent_campaigns
-    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
-    config = {"topic_pairs": [{"pbp_topic_ids": [100], "code": "C00", "name": "Test"}]}
-    assert silent_campaigns(config, {}, {}, now) == []
-
-
-def test_silent_campaigns_skips_invalid_timestamp():
-    """Invalid ISO timestamp is caught and skipped."""
-    from scheduled.queue_silence import silent_campaigns
-    now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
-    config = {"topic_pairs": [{"pbp_topic_ids": [100], "code": "C00", "name": "Test"}]}
-    state = {"topics": {"100": {"last_message_time": "not-a-date"}}}
-    assert silent_campaigns(config, state, {}, now) == []
+# ⛔ MOVED 2026-08-30 to test_never_posted_is_the_silent_one.py:
+# test_silent_campaigns_skips_when_no_topic_data and
+# test_silent_campaigns_skips_invalid_timestamp. Both asserted `== []`
+# and so pinned the bug Lewis reported on C10 The Junction: a campaign
+# the bot had never seen a message in was dropped from every queue
+# section. They now assert the listing, alongside the rest of that
+# behaviour, rather than living here as two orphaned reversals.
 
 
 def test_silent_campaigns_returns_line_when_silent():

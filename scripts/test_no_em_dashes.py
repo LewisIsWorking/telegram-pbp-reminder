@@ -40,7 +40,12 @@ EM_DASH = "—"
 # counted. That is a change of MEASUREMENT, not a cleanup: eight of the
 # dashes were inside quoted output all along. Re-measured rather than
 # assumed.
-CEILING = 1751
+#
+# 1751 -> 1746 on 2026-08-30, splitting queue_silence.py. The guard
+# fired UPWARD first (+7, all in new docstrings I had just written),
+# those were rewritten as commas and colons, and the rewrite took five
+# more with it than the split had added. Both directions in one change.
+CEILING = 1746
 
 _ROOTS = ("scripts", "docs")
 _EXTS = (".py", ".md")

@@ -30,6 +30,35 @@ Posted at the hours configured in `queue_daily_hours` (default: `[9, 21]`
 = 9am and 9pm UTC), **plus** immediately whenever the queue fingerprint changes
 (new unreplied messages arrive between scheduled posts).
 
+### Every campaign appears somewhere
+
+A campaign with no unreplied entries is not omitted, it is placed in one of
+three states so nothing quietly vanishes from the queue:
+
+| State | Condition | Reads |
+|---|---|---|
+| never posted | no `last_message_time` at all | `no posts yet` |
+| silent | idle >= 5 days | `no posts for 12d` |
+| caught up | posted within 5 days | `last post 1d ago` |
+
+⛔ **Never posted was dropped entirely until 2026-08-30** (see `CHANGELOG`
+4.62.1). C10 The Junction was configured on 2026-08-13 and appeared in no
+section for 17 days, which is exactly backwards: no posts at all is the most
+silent a campaign can be, not a fourth thing to skip. It now sorts above every
+finite age via `days = inf`.
+
+The never-posted line carries **no age on purpose**. `silent_campaigns` feeds
+the fingerprint above, so an age ticking there would repost the whole queue
+every hour forever.
+
+`queue_exclude` (C08 Theria) is the switch for a campaign that should not be
+listed at all, and it still suppresses every section.
+
+The per-topic *"All caught up. Time for players to post!"* message posted inside
+a campaign's own topic is a different thing: it marks the transition from having
+unreplied entries to having none, so a campaign that has never had an entry does
+not get one.
+
 ---
 
 ## Session Polls (C01 Doomsday Funtime & C11 Dark Pockets)
