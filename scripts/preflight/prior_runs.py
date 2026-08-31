@@ -61,21 +61,25 @@ PROVEN:   ``test_preflight_prior_runs.py`` feeds it the real 2026-08-18
 # has posted at most one unrecorded message rather than none.
 HALT_AFTER_CONSECUTIVE_FAILURES = 2
 
-# When to alert, measured in whole hours broken. Deliberately computed
-# from the observations themselves rather than from a "have I already
-# alerted" marker, because the marker would live in the very state that is
-# not persisting. A stateless rule is the only kind that works while state
-# is frozen.
-FIRST_ALERT_HOURS = (0, 3)
-REPEAT_ALERT_EVERY_HOURS = 24
+# Alert cadence moved to preflight/alert_cadence.py on 2026-08-31, which
+# is where its rationale now lives. Re-exported because gate.py and
+# test_preflight_prior_runs.py import these from here.
+from preflight import alert_cadence as _cadence  # noqa: E402
+from preflight.alert_cadence import (FIRST_ALERT_HOURS,  # noqa: F401,E402
+                                     REPEAT_ALERT_EVERY_HOURS, RUNS_PER_HOUR,
+                                     should_alert)
 
-# Roughly two runs an hour: the hourly full pass plus the :30 queue pass.
-# Only used to turn a streak into hours when the heartbeat cannot be read.
-RUNS_PER_HOUR = 2
-
-# The bot runs hourly, plus a queue-only pass on the half hour, so a
-# healthy heartbeat is under an hour old. 3h leaves room for a delayed
-# GitHub scheduler without letting a real outage sit unnoticed for long.
+# The bot asks GitHub for two runs an hour, so a healthy heartbeat is
+# under an hour old. 3h left room for a delayed scheduler without letting
+# a real outage sit unnoticed for long.
+#
+# ⚠️ "Asks for" is not "gets". From 2026-08-27 GitHub delivered as few as
+# 4 scheduled runs a day against 48 requested, producing 13 gaps over this
+# limit in nine days and a worst gap of 11h. Every one of those pauses
+# posting on the next run that does fire. The threshold is NOT raised to
+# cover that: at 11h a genuine push failure would sit unnoticed for half a
+# day, and the fix belongs at the cause. See scheduled/schedule_delivery.py
+# and tools/schedule_delivery_report.py.
 MAX_HEARTBEAT_AGE_HOURS = 3.0
 
 SUCCESS = "success"
@@ -127,29 +131,8 @@ def should_halt_posting(streak: int) -> bool:
 
 
 def broken_hours(streak: int, age_hours: float | None) -> int:
-    """Whole hours this has been broken, from whichever signal can say.
-
-    Prefers the heartbeat, which measures the outage directly. Falls back
-    to converting the run streak, which is a proxy and is only needed
-    before the first heartbeat exists.
-    """
-    if age_hours is not None:
-        return max(0, int(age_hours - MAX_HEARTBEAT_AGE_HOURS))
-    return streak // RUNS_PER_HOUR
-
-
-def should_alert(hours: int) -> bool:
-    """True on the elapsed times worth interrupting a human for.
-
-    Alerts at onset, again at 3h (nobody has looked), then once a day.
-    Alerting every run would replace one kind of spam with another, and
-    the operator would learn to ignore exactly the channel that is trying
-    to tell them the bot is down.
-    """
-    if hours in FIRST_ALERT_HOURS:
-        return True
-    return (hours > max(FIRST_ALERT_HOURS)
-            and hours % REPEAT_ALERT_EVERY_HOURS == 0)
+    """Whole hours this has been broken. See preflight/alert_cadence."""
+    return _cadence.broken_hours(streak, age_hours, MAX_HEARTBEAT_AGE_HOURS)
 
 
 def halt_reasons(streak: int, age_hours: float | None) -> list:
@@ -179,6 +162,20 @@ def halt_reasons(streak: int, age_hours: float | None) -> list:
     return reasons
 
 
+# ⛔ A stale heartbeat has TWO causes and this module cannot tell them
+# apart. Our push failed, or GitHub never ran us. Both leave the
+# repository looking identical: a run that never happened writes nothing,
+# and a run whose push failed also leaves nothing behind. Until
+# 2026-08-31 the alert named only the first, and it sent Lewis to a
+# state-commit step that had never failed while GitHub was delivering 4
+# scheduled runs a day out of 48. Name both, in the order they are worth
+# checking.
+_STALE_ADVICE = ("Check two things: the state-commit step of the latest "
+                 "run, and whether runs are happening at all (the run list "
+                 "shows the gaps).")
+_FAILED_ADVICE = "Check the state-commit step of the latest run."
+
+
 def explain(reasons: list, age_hours: float | None = None) -> str:
     """One line naming the fault and what it stops, for logs and alerts.
 
@@ -186,12 +183,18 @@ def explain(reasons: list, age_hours: float | None = None) -> str:
     disagree with the decision: they are computed from the same list.
     Reporting a cause the gate did not act on, or acting on one it did not
     report, is how an operator ends up debugging the wrong thing.
+
+    ⭐ The advice is chosen the same way, from the same list. A failed run
+    IS evidence the commit step ran and lost, so that case keeps the
+    direct instruction; a stale heartbeat alone is not.
     """
     if not reasons:
         seen = "unknown age" if age_hours is None else f"{age_hours:.1f}h ago"
         return f"State persistence looks healthy (last push {seen})."
+    failed = any("runs failed" in reason for reason in reasons)
     return (
         f"Posting is paused because {', and '.join(reasons)}. Any message "
         f"sent now would have its id lost, and would become permanently "
-        f"undeletable after 48h. Check the state-commit step of the latest run."
+        f"undeletable after 48h. "
+        f"{_FAILED_ADVICE if failed else _STALE_ADVICE}"
     )
