@@ -57,8 +57,8 @@
       "username": "RyoYamakawa",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-08-17T05:53:48+00:00",
-      "last_warned_week": 1
+      "last_post_time": "2026-08-31T07:15:42+00:00",
+      "last_warned_week": 0
     },
     "40585:5443237599": {
       "user_id": "5443237599",
@@ -77,7 +77,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-08-26T04:57:02+00:00",
+      "last_post_time": "2026-08-31T07:11:05+00:00",
       "last_warned_week": 0
     },
     "40585:6144366145": {
@@ -87,7 +87,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-08-30T21:44:46+00:00",
+      "last_post_time": "2026-08-31T07:20:09+00:00",
       "last_warned_week": 0
     },
     "1242:6464119705": {
@@ -167,7 +167,7 @@
       "username": "buffetraider",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-08-30T22:03:45+00:00",
+      "last_post_time": "2026-08-31T07:15:43+00:00",
       "last_warned_week": 0
     },
     "1242:7820428748": {
@@ -208,16 +208,6 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-08-04T05:05:26+00:00",
-      "last_warned_week": 3
-    },
-    "25059:8902183011": {
-      "user_id": "8902183011",
-      "first_name": "Dalaxiss",
-      "last_name": "",
-      "username": "",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-08-02T23:28:29+00:00",
       "last_warned_week": 3
     },
     "51357:8117756377": {
@@ -641,6 +631,12 @@
       "first_name": "Cannon",
       "username": "ArtyArtillery",
       "campaign_name": "Theria"
+    },
+    "25059:8902183011": {
+      "removed_at": "2026-08-31T07:30:55.743927+00:00",
+      "first_name": "Dalaxiss",
+      "username": "",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -689,7 +685,7 @@
       },
       "138025700": {
         "id": 2,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-03-27T05:34:54.094618+00:00"
       },
       "6144366145": {
@@ -731,7 +727,7 @@
     "52083": {
       "6144366145": {
         "id": 1,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-03-27T16:19:57.447694+00:00"
       },
       "5190471248": {
@@ -1716,6 +1712,14 @@
       "name": "Anthony",
       "username": "MrNegetZ",
       "at": "2026-08-30T17:18:10.798416+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "8902183011",
+      "name": "Dalaxiss",
+      "username": "",
+      "at": "2026-08-31T07:30:56.183378+00:00"
     }
   ],
   "player_boons": {

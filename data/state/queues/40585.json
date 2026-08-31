@@ -18,20 +18,29 @@
       "preview": "[media]"
     },
     {
-      "message_id": 176343,
+      "message_id": 176379,
       "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-08-30T21:44:46+00:00",
-      "preview": "Everyone is gonna roll perception prob.",
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-08-31T07:15:42+00:00",
+      "preview": "[media]",
       "media_group_id": null
     },
     {
-      "message_id": 176344,
+      "message_id": 176380,
       "thread_id": 40585,
       "user_id": "7130942567",
       "user_name": "Buffet",
-      "time": "2026-08-30T22:03:45+00:00",
+      "time": "2026-08-31T07:15:43+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 176382,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-31T07:20:09+00:00",
       "preview": "[media]",
       "media_group_id": null
     }
@@ -1086,7 +1095,13 @@
     "msg:175724",
     "2026-08-27 14:40:44",
     "msg:175721",
-    "2026-08-27 14:13:20"
+    "2026-08-27 14:13:20",
+    "msg:176343",
+    "2026-08-30 21:44:46",
+    "msg:176344",
+    "2026-08-30 22:03:45",
+    "msg:176373",
+    "2026-08-31 07:07:36"
   ],
   "reply_log": [
     {
@@ -6036,6 +6051,33 @@
       "player": "Anthony",
       "preview": "So yeah search the door then. We don't know for sure which is trapped or not",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-31T06:57:56+00:00",
+      "pid": "40585",
+      "msg_id": "176343",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Everyone is gonna roll perception prob.",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-31T06:59:43+00:00",
+      "pid": "40585",
+      "msg_id": "176344",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-08-31T07:10:20+00:00",
+      "pid": "40585",
+      "msg_id": "176373",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6050,11 +6092,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-08-30 21:44:46|2026-08-30 22:03:45",
+      "fingerprint": "2026-08-31 07:15:42|2026-08-31 07:15:43|2026-08-31 07:20:09",
       "msg_ids": [
-        176357
+        176400
       ],
-      "last_posted_at": "2026-08-30T23:21:28.394626+00:00",
+      "last_posted_at": "2026-08-31T07:31:10.570132+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-08-29T14:38:05.150836+00:00"
     }

@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 176378,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-08-31T07:11:05+00:00",
+      "preview": "I think only the slime?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -378,7 +388,9 @@
     "msg:175689",
     "2026-08-27 11:17:07",
     "msg:175703",
-    "2026-08-27 13:21:30"
+    "2026-08-27 13:21:30",
+    "msg:176370",
+    "2026-08-31 07:04:36"
   ],
   "reply_log": [
     {
@@ -2104,16 +2116,27 @@
       "player": "Terra",
       "preview": "\"It's...made out of wood?\" Lai replies confused \"still don't know how to use it\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-08-31T07:10:37+00:00",
+      "pid": "52083",
+      "msg_id": "176370",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "While they're busy learning to play Livy will make some stuff out of the monster",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 176323,
+      "fingerprint": "2026-08-31 07:11:05",
+      "msg_ids": [
+        176402
+      ],
+      "last_posted_at": "2026-08-31T07:31:13.119010+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-08-30T17:18:11.236411+00:00"
     },
     "145045": {
