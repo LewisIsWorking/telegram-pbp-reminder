@@ -11,6 +11,102 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.63.0] - 2026-08-31
+
+### Fixed
+
+**GitHub was delivering a quarter of the scheduled runs, and the only symptom
+was the bot pausing its own posting.**
+
+Lewis pasted the alert: *"Bot posting PAUSED ... the last state push landed 3.2h
+ago ... Check the state-commit step of the latest run."*
+
+The state-commit step is fine and has never failed. Every run that fires logs
+`State push succeeded on attempt 1`. **The runs were not happening.** Measured
+two independent ways that agree, the Actions API and the git history of
+`data/ci_heartbeat.json`:
+
+```
+2026-08-23 .. 08-31   173 of 372 scheduled runs delivered = 46%
+13 gaps over the preflight 3h limit, worst 11.0h
+  08-23  45      08-26  29      08-29  10
+  08-24  41      08-27  11      08-30  18
+  08-25  52      08-28   4      08-31   2
+```
+
+The cron asked for `0 * * * *` and `30 * * * *`. GitHub's own docs: *"The
+schedule event can be delayed during periods of high loads ... High load times
+include the start of every hour."* We were asking for the two most contended
+minutes on the platform. Now `13` and `43`, still exactly 30 apart so the queue
+pass keeps its "clears show up within ~30 min" promise.
+
+⛔ **preflight cannot tell a dropped run from a failed push**, and never could.
+Both leave the repository looking identical, because a run that never happened
+writes nothing and a run whose push failed also leaves nothing behind. It named
+only the second, which is what sent a human to a healthy step. The alert now
+names both, chosen from the same `reasons` list as the decision, the discipline
+`explain` already applied to the cause:
+
+> ... Check two things: the state-commit step of the latest run, and whether
+> runs are happening at all (the run list shows the gaps).
+
+A **failed** run is different: it is evidence the commit step ran and lost, so
+that case keeps the direct instruction and does not hedge. The 2026-08-18
+branch-protection outage was that shape and must still read that way.
+
+⚠️ `MAX_HEARTBEAT_AGE_HOURS` is deliberately **not** raised to cover the gaps.
+At the observed worst of 11h a genuine push failure would sit unnoticed for half
+a day. The fix belongs at the cause.
+
+**The daily diagnostic could not have caught this, at any level of brokenness.**
+It asked the API for `per_page=25` while a healthy day is **48** runs, so the
+instrument's maximum reading was half the healthy value, and it printed that
+number as "across N hourly runs" with no denominator. 24 and 4 read the same.
+
+### Added
+
+- **Scheduler line on the daily diagnostic**, carrying its own basis:
+  `⚠️ Scheduler: 4 of 48 scheduled runs delivered (8%). Expected 90%+. GitHub is
+  dropping scheduled runs, which ages the preflight heartbeat and pauses
+  posting; the state-commit step is not the fault.` Only `schedule` runs count,
+  so a busy day of merges cannot disguise a dead cron.
+- `tools/schedule_delivery_report.py`, the same figure from git history rather
+  than the API. Independence is the point: the Actions API has been caught
+  serving a three-day-old cached page (2026-08-19) and nearly unlocked the
+  posting gate with it. Git history cannot be served stale.
+- `tools/README.md`.
+
+### Changed
+
+- Diagnostic `per_page` 25 to 100, above a healthy day, and a truncated reading
+  now says `at least` instead of being presented as a measurement.
+- The report says how many logs it actually opened (`_LOG_CAP`, 24) alongside
+  the run count. Two different figures; printing only the first presents a
+  sample as the whole, which is how "✅ All clear" gets believed.
+- A window with no runs used to `return` silently, so a total scheduler outage
+  suppressed the one message about the scheduler. It now posts the line.
+- `preflight/prior_runs.py` was at 197 lines; the alert cadence moved to
+  `preflight/alert_cadence.py`. Its `RUNS_PER_HOUR = 2` is now documented as an
+  upper bound rather than a rate, since a streak of N failures can span far more
+  than N/2 hours when GitHub is dropping runs.
+
+### Verification
+
+16 mutations, 16 killed, across three groups: the cron placement and spacing,
+the delivery measurement and its wiring into the report, and the alert advice.
+Including reverting the cron to `:00`, dropping `per_page` back to 25, counting
+push runs so merges mask a dead cron, and reverting the alert to naming only the
+commit step. Full suite **2680 passed**.
+
+### Notes
+
+⚠️ Moving the cron is the documented mitigation, not a proof. It cannot be shown
+to work from here; re-measure in a few days with the tool above rather than
+assuming. If delivery stays low at `:13`, the next option is a second trigger
+from an external scheduler, since the fault is entirely on GitHub's side.
+
+---
+
 ## [4.62.1] - 2026-08-30
 
 ### Fixed

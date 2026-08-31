@@ -2,12 +2,35 @@ name: PBP Inactivity Reminder
 
 on:
   schedule:
-    # Run every hour to process messages and check for inactivity
-    - cron: '0 * * * *'
-    # Half-past the hour: lightweight queue-only pass. Ingests updates so
-    # GM reply-to clears show up within ~30 min instead of ~60, without
-    # firing the other ~28 scheduled features. See the run-queue job.
-    - cron: '30 * * * *'
+    # ⛔ MINUTES ARE DELIBERATELY NOT :00 AND :30. Changed 2026-08-31.
+    #
+    # GitHub's own docs: "The schedule event can be delayed during periods
+    # of high loads of GitHub Actions workflow runs. High load times
+    # include the start of every hour." :00 and :30 are the two most
+    # contended minutes on the platform, and we were asking for both.
+    #
+    # Measured over 2026-08-23 to 08-31: 173 scheduled runs delivered of
+    # 372 requested, a 46% delivery rate, with 13 gaps over three hours
+    # and a worst gap of 11h. Per day it fell off a cliff:
+    #     08-23  45    08-27  5     08-30  12
+    #     08-24  41    08-28  4     08-31   2
+    #     08-25  45    08-29  10
+    # Every run that did fire pushed state successfully, so nothing was
+    # broken here; the runs simply never happened. The visible symptom
+    # was preflight pausing posting because the heartbeat aged past 3h
+    # (see preflight/prior_runs.py, which cannot tell a dropped run from
+    # a failed push).
+    #
+    # Hourly full pass: messages, inactivity, and the ~28 scheduled
+    # features.
+    - cron: '13 * * * *'
+    # Half-past: lightweight queue-only pass. Ingests updates so GM
+    # reply-to clears show up within ~30 min instead of ~60, without
+    # firing the other features. See the run-queue job.
+    #
+    # ⚠️ Keep these exactly 30 minutes apart. The gap, not the absolute
+    # minute, is what the queue-latency promise above rests on.
+    - cron: '43 * * * *'
   push:
     branches: [main]
     paths-ignore:

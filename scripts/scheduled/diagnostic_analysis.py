@@ -82,18 +82,28 @@ def _analyse_logs(logs: list[str]) -> dict:
     }
 
 
-def _build_report(analysis: dict, run_count: int, now: datetime) -> str:
+def _build_report(analysis: dict, run_count: int, now: datetime,
+                  scheduler_line: str = "",
+                  logs_read: int | None = None) -> str:
     issues   = analysis["issues"]
     events   = analysis["events"]
     n_errors = analysis["runs_with_errors"]
 
     status = "✅ All clear" if not issues else f"⚠️ {len(issues)} issue type(s) found"
+    # ⭐ "across N hourly runs" was a count with no basis, and it read the
+    # same at 48 runs a day as at 4 (2026-08-27 to 08-31). scheduler_line
+    # carries the denominator. logs_read names what was actually opened,
+    # because only the first _LOG_CAP runs' logs are downloaded, and a
+    # sample presented as the whole is how "All clear" gets believed.
+    read = f", logs read for {logs_read}" if logs_read is not None else ""
     lines = [
         f"━━━━━━━━━━━━━━━━",
         f"🔍 Daily Diagnostic — {now.strftime('%Y-%m-%d')}",
-        f"{status} across {run_count} hourly runs",
-        "",
+        f"{status} across {run_count} runs in the last 25h{read}",
     ]
+    if scheduler_line:
+        lines.append(scheduler_line)
+    lines.append("")
 
     if issues:
         lines.append("Issues:")
