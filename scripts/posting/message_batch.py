@@ -61,6 +61,29 @@ class MessageBatch:
                 failed.append(mid)
         return failed
 
+    def edit_all(self, group_id: int, chunks: list[str]) -> bool:
+        """Rewrite this batch in place. True if every chunk was edited.
+
+        ⭐⭐ **Editing has no 48-hour limit. Deleting does.** That
+        asymmetry is the whole reason this exists: once a tracked message
+        is past the wall, delete-and-repost is guaranteed to strand it,
+        while an edit still works and reuses the same message.
+
+        Added 2026-09-01 after a 15h outage orphaned three more queue
+        posts. See ``scheduled/topic_queue_age.can_still_delete``.
+
+        ⚠️ Requires the chunk count to match exactly. A batch of 2 cannot
+        become a batch of 3 by editing, and rewriting only the first two
+        would silently drop content. Returns False so the caller decides,
+        rather than half-doing it.
+        """
+        if not self.msg_ids or len(chunks) != len(self.msg_ids):
+            return False
+        for mid, text in zip(self.msg_ids, chunks):
+            if not tg.edit_message(group_id, mid, text):
+                return False
+        return True
+
     def to_dict(self) -> dict:
         """Serialise to the on-disk dict shape."""
         return {"msg_ids": list(self.msg_ids), "pin_id": self.pin_id}
