@@ -11,6 +11,70 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.68.0] - 2026-09-01
+
+### Added
+
+**`tools/external_heartbeat.py` — run the bot from outside GitHub, because
+GitHub's scheduler is the fault.**
+
+⛔⛔ **The watchdog cannot save the bot from this one, and that is the point.**
+`.github/workflows/watchdog.yml` is itself schedule-driven, so it shares the
+exact failure mode it exists to detect. It recovers a *broken workflow*. It
+cannot recover a *scheduler that has stopped delivering*, because then the
+watchdog does not run either.
+
+Measured **after** moving the crons off the contended `:00`/`:30` minutes,
+which was supposed to fix delivery:
+
+```
+2026-08-30   18 / 48   38%
+2026-08-31    3 / 48    6%     <-- the 15h outage
+2026-09-01    8 / 48   17%
+worst gap 27.8h
+```
+
+The bot asks for 48 runs a day and gets between 3 and 18. That is not jitter,
+and no code inside the repository fixes it. ⚠️ It matters more here than for
+most bots: a tracked message ID is a **perishable asset with a hard 48h
+expiry**, so an outage over 12h strands messages permanently. **Uptime is a
+correctness requirement, and it is currently outsourced to something that does
+not provide it.**
+
+The script belongs on the VPS crontab. It reads the run history and dispatches
+only when nothing has **actually run** in 45 minutes, so a day when GitHub
+behaves costs nothing.
+
+⛔ **A `skipped` run does not count as running.** That distinction is the whole
+of the 2026-08-31 outage: every run was skipped, nothing was red, and any
+counter asking "did a run happen" said yes.
+
+⚠️ A **failed** run does count, deliberately. A failure means the bot ran and
+something went wrong, which more runs will not fix; firing there would just
+multiply a broken run.
+
+### Notes
+
+- ✅ **The watchdog was not broken.** It looked dead because GitHub took ~3
+  hours to register a newly added scheduled workflow. It first fired at 19:31
+  and correctly reported `State persistence looks healthy (last push 1.6h ago)`.
+- Setup, including the token handling and the crontab line, is in
+  `tools/README.md`. ⛔ The PAT never goes in the repo.
+
+### Verification
+
+**7 mutations, 7 killed** — including counting `skipped` as a run, no history
+reading as healthy, and picking the oldest run instead of the newest.
+
+⚠️ One survived the first pass: widening `QUIET_AFTER` to ten hours. The
+boundary test read the constant it was meant to pin, so **it moved with the
+mutation**. Now pinned in absolute terms (longer than the 30-minute run
+interval, no more than 2h) with the reasoning stated.
+
+Full suite **2781 passed**.
+
+---
+
 ## [4.67.0] - 2026-09-01
 
 ### Fixed
