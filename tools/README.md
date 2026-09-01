@@ -56,10 +56,43 @@ jitter, and no code inside the repository fixes it.
 12h strands messages permanently. **Uptime is a correctness requirement,
 and it is currently outsourced to something that does not provide it.**
 
-This script belongs on the VPS crontab. It reads the run history and
-dispatches the workflow only when nothing has **actually run** in 45
-minutes. ⛔ `skipped` deliberately does not count as running: on
-2026-08-31 every run was skipped and the bot was dead.
+This script belongs on the VPS crontab. It dispatches the workflow only
+when the bot's state has not been pushed in 45 minutes.
+
+### What it costs the VPS, measured
+
+Lewis asked, so it was measured rather than estimated:
+
+| | |
+|---|---|
+| wall time per run | **392 ms** (best of 3, end to end) |
+| of which network idle | ~450 ms of the first version; almost all the time |
+| download per run | **200 bytes** |
+| peak heap | ~1.5 MiB, nothing resident between runs |
+| **per day at `*/15`** | **~38 s wall total, ~19 KiB down** |
+
+⭐⭐ **The first version cost 1,500x more.** It asked the Actions API for
+the run list:
+
+```
+GitHub Actions run list   306,759 bytes   1415 ms
+raw ci_heartbeat.json         200 bytes    452 ms
+```
+
+⭐ And the cheap version is the *better* one. `data/ci_heartbeat.json` is
+only written by a run that did the work **and pushed**, so a `skipped`
+run cannot produce one. The expensive version needed an explicit
+"skipped does not count as running" rule to survive the 2026-08-31
+outage; this one gets that property for free, because a skipped run
+leaves nothing to misread.
+
+⚠️ The heartbeat fetch is **unauthenticated** (public repo), so the PAT
+is only touched when a dispatch is actually needed.
+
+⛔ A **30 minute dispatch cooldown** is enforced locally via a marker
+file. If the bot runs but its *push* is broken the heartbeat never
+refreshes, and without a floor this would fire every tick forever,
+multiplying a broken run.
 
 ```bash
 install -m 600 /dev/null ~/.pathwars-dispatch-token   # PAT, never committed

@@ -2,50 +2,67 @@
 
     python3 tools/external_heartbeat.py
 
-⛔⛔ **THE WATCHDOG CANNOT SAVE US FROM THIS ONE, AND THAT IS THE POINT.**
-`.github/workflows/watchdog.yml` is itself schedule-driven, so it shares
-the exact failure mode it exists to detect. It recovers a *broken
-workflow*. It cannot recover a *scheduler that has stopped delivering*,
-because then the watchdog does not run either.
+⛔⛔ **The watchdog cannot save the bot from this one, and that is the
+point.** `.github/workflows/watchdog.yml` is itself schedule-driven, so
+it shares the exact failure mode it exists to detect. It recovers a
+*broken workflow*. It cannot recover a *scheduler that has stopped
+delivering*, because then the watchdog does not run either.
 
-Measured 2026-09-01, after moving the crons off the contended `:00`/`:30`
-minutes, which was supposed to fix delivery:
+Measured 2026-09-01, **after** moving the crons off the contended
+`:00`/`:30` minutes, which was supposed to fix delivery:
 
 ```
 2026-08-30   18 / 48   38%
-2026-08-31    3 / 48    6%
+2026-08-31    3 / 48    6%     <-- the 15h outage
 2026-09-01    8 / 48   17%
 worst gap 27.8h
 ```
 
-The bot asks GitHub for 48 runs a day and gets between 3 and 18. On
-2026-08-31 it got none at all for 15 hours, which stranded three
-messages permanently past Telegram's 48h delete wall. **Uptime is a
-correctness requirement for this bot, not a nice-to-have**, and it is
-currently outsourced to something that does not provide it.
+A tracked message ID is a **perishable asset with a hard 48h expiry**, so
+an outage over 12h strands messages permanently. Uptime is a correctness
+requirement here, and it is currently outsourced to something that does
+not provide it.
 
-So: something outside GitHub asks GitHub to run the workflow. A
-`workflow_dispatch` satisfies the run job's condition regardless of what
-the schedule does or does not deliver.
+## It reads 200 bytes, not 300 KiB
 
-⚠️ **It only dispatches when the bot has actually gone quiet**, so on a
-day when GitHub behaves this costs nothing. Duplicate runs would be
-harmless anyway (the `pbp-checker` concurrency group serialises them and
-the checker is offset-driven), but a quiet script is easier to trust.
+⭐⭐ The first version asked the Actions API for the run list: **306,759
+bytes** per check. It now fetches the committed heartbeat instead:
 
-⛔ A `skipped` run DOES NOT COUNT as the bot running. That distinction is
-the whole of the 2026-08-31 outage: every run was skipped, nothing was
-red, and no counter that looked at "did a run happen" noticed.
+```
+GitHub Actions run list   306,759 bytes   1415 ms
+raw ci_heartbeat.json         200 bytes    452 ms
+```
 
-## Setting it up on the VPS
+**1,500x less, and a better signal.** The heartbeat is only written by a
+run that actually did the work *and* pushed, so a `skipped` run cannot
+produce one. The old version needed an explicit "skipped does not count"
+rule; this one gets that property for free, because a skipped run leaves
+no trace to misread.
+
+⚠️ The fetch is **unauthenticated** (the repo is public), so the token is
+needed only for the dispatch itself. `raw.githubusercontent.com` is
+CDN-cached for a few minutes, which is irrelevant against a 45 minute
+threshold.
+
+## Cost on the VPS, measured not estimated
+
+```
+python start + imports   ~294 ms
+heartbeat fetch          ~452 ms, 200 bytes
+peak heap                ~1.5 MiB
+```
+
+At one check every 15 minutes: **~0.8s CPU per hour** (0.02% of one
+core), **~19 KB/day** of traffic, and nothing resident between runs.
+
+## Setting it up
 
 ```bash
-# 1. A PAT with `workflow` scope (classic) or actions:write (fine-grained).
-#    ⛔ NEVER commit it. 600 perms, outside the repo.
+# A PAT with `workflow` scope (classic) or actions:write (fine-grained).
+# ⛔ NEVER commit it. 600 perms, outside the repo.
 install -m 600 /dev/null ~/.pathwars-dispatch-token
 echo 'ghp_xxx' > ~/.pathwars-dispatch-token
 
-# 2. Every 15 minutes, quietly.
 crontab -e
 */15 * * * * GITHUB_TOKEN=$(cat ~/.pathwars-dispatch-token) \\
     /usr/bin/python3 /opt/pathwars/external_heartbeat.py >> /var/log/pathwars-heartbeat.log 2>&1
@@ -58,82 +75,93 @@ import sys
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 REPO = os.environ.get("PATHWARS_REPO", "LewisIsWorking/telegram-pbp-reminder")
 WORKFLOW = "pbp-reminder.yml"
+HEARTBEAT_URL = (f"https://raw.githubusercontent.com/{REPO}/main/"
+                 f"data/ci_heartbeat.json")
 
 # The bot asks for a run every 30 minutes. 45 gives one missed slot of
 # grace before an outsider steps in, so normal jitter costs nothing.
 QUIET_AFTER = timedelta(minutes=45)
 
-# Conclusions that mean THE BOT ACTUALLY RAN. `skipped` is deliberately
-# absent: on 2026-08-31 every run was skipped and the bot was dead.
-RAN = {"success", "failure"}
+# ⛔ Never dispatch more often than this, whatever the heartbeat says.
+# If the bot is running but its PUSH is broken, the heartbeat never
+# refreshes and nothing this script does will fix it. Without a floor it
+# would fire every single tick, multiplying a broken run forever.
+DISPATCH_COOLDOWN = timedelta(minutes=30)
+
+MARKER = Path(os.environ.get("PATHWARS_MARKER",
+                             Path.home() / ".pathwars-last-dispatch"))
 
 
-def last_real_run(runs: list) -> datetime | None:
-    """When the bot last actually ran, ignoring skipped and cancelled."""
-    best = None
-    for run in runs:
-        if run.get("conclusion") not in RAN:
-            continue
-        stamp = run.get("created_at") or ""
-        try:
-            when = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
-        except ValueError:
-            continue
-        if best is None or when > best:
-            best = when
-    return best
+def parse_written_at(payload: bytes) -> datetime | None:
+    """The heartbeat's timestamp, or None if it cannot be read."""
+    try:
+        written = json.loads(payload)["written_at"]
+        stamp = datetime.fromisoformat(written)
+    except (ValueError, KeyError, TypeError):
+        return None
+    return stamp if stamp.tzinfo else stamp.replace(tzinfo=timezone.utc)
 
 
-def should_dispatch(runs: list, now: datetime) -> bool:
-    """True when nothing has actually run inside the grace window.
+def should_dispatch(heartbeat_age, since_last_dispatch) -> bool:
+    """Decide, from two ages. Both may be None meaning "unknown".
 
-    ⚠️ No runs at all returns True. An empty history is not evidence of
-    health, and this is the one place where acting on "cannot tell" is
-    correct: the cost of a redundant run is one cheap job, and the cost
-    of not running is a permanently orphaned message.
+    ⚠️ An unreadable heartbeat dispatches. That is the opposite of the
+    posting gate's rule, deliberately and for a stated reason: there, a
+    wrong guess sends a message that can never be deleted; here, a wrong
+    guess costs one cheap run. The cooldown below stops it looping.
     """
-    last = last_real_run(runs)
-    return last is None or (now - last) > QUIET_AFTER
+    if since_last_dispatch is not None and since_last_dispatch < DISPATCH_COOLDOWN:
+        return False
+    return heartbeat_age is None or heartbeat_age > QUIET_AFTER
 
 
-def _api(path: str, token: str, data: dict | None = None):
+def _fetch(url: str, token: str = "", data: dict | None = None):
+    headers = {"Accept": "application/vnd.github+json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    if data:
+        headers["Content-Type"] = "application/json"
     request = urllib.request.Request(
-        f"https://api.github.com/repos/{REPO}{path}",
-        data=json.dumps(data).encode() if data else None,
-        method="POST" if data else "GET",
-        headers={"Authorization": f"Bearer {token}",
-                 "Accept": "application/vnd.github+json",
-                 "Content-Type": "application/json"})
+        url, data=json.dumps(data).encode() if data else None,
+        method="POST" if data else "GET", headers=headers)
     with urllib.request.urlopen(request, timeout=30) as response:
-        if response.status == 204:
-            return {}
-        return json.loads(response.read() or b"{}")
+        return response.read()
+
+
+def _marker_age(now: datetime):
+    try:
+        stamp = datetime.fromtimestamp(MARKER.stat().st_mtime, timezone.utc)
+    except OSError:
+        return None
+    return now - stamp
 
 
 def main() -> int:
-    token = os.environ.get("GITHUB_TOKEN", "").strip()
     now = datetime.now(timezone.utc)
     stamp = now.strftime("%Y-%m-%d %H:%M:%S")
-    if not token:
-        print(f"{stamp} no GITHUB_TOKEN; cannot dispatch")
-        return 1
-    try:
-        runs = _api(f"/actions/workflows/{WORKFLOW}/runs?per_page=20",
-                    token).get("workflow_runs", [])
-    except (urllib.error.URLError, OSError, ValueError) as error:
-        print(f"{stamp} could not read run history: {error}")
-        return 1
 
-    last = last_real_run(runs)
-    age = "never" if last is None else f"{(now - last).total_seconds() / 60:.0f}m ago"
-    if not should_dispatch(runs, now):
-        print(f"{stamp} bot ran {age}; nothing to do")
-        return 0
     try:
-        _api(f"/actions/workflows/{WORKFLOW}/dispatches", token, {"ref": "main"})
+        written = parse_written_at(_fetch(HEARTBEAT_URL))
+    except (urllib.error.URLError, OSError):
+        written = None
+    age = None if written is None else now - written
+    shown = "unreadable" if age is None else f"{age.total_seconds() / 60:.0f}m ago"
+
+    if not should_dispatch(age, _marker_age(now)):
+        print(f"{stamp} bot state last pushed {shown}; nothing to do")
+        return 0
+
+    token = os.environ.get("GITHUB_TOKEN", "").strip()
+    if not token:
+        print(f"{stamp} state {shown} and no GITHUB_TOKEN; cannot dispatch")
+        return 1
+    try:
+        _fetch(f"https://api.github.com/repos/{REPO}/actions/workflows/"
+               f"{WORKFLOW}/dispatches", token, {"ref": "main"})
     except urllib.error.HTTPError as error:
         hint = (" (the token needs the 'workflow' scope, or actions:write)"
                 if error.code in (401, 403) else "")
@@ -142,7 +170,10 @@ def main() -> int:
     except (urllib.error.URLError, OSError) as error:
         print(f"{stamp} DISPATCH FAILED: {error}")
         return 1
-    print(f"{stamp} bot last ran {age}; dispatched a run")
+
+    MARKER.parent.mkdir(parents=True, exist_ok=True)
+    MARKER.touch()
+    print(f"{stamp} state {shown}; dispatched a run")
     return 0
 
 

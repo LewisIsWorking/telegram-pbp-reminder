@@ -11,6 +11,59 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.68.1] - 2026-09-02
+
+### Changed
+
+**`external_heartbeat.py` now costs 1,500x less on the VPS.** Lewis: *"I don't
+want to put a lot of pressure on the VPS though, how much resources would this
+use?"* Fair question, so it was measured rather than estimated, and the answer
+was bad enough to redesign it.
+
+The first version asked the Actions API for the run list. It now fetches the
+committed heartbeat:
+
+```
+GitHub Actions run list   306,759 bytes   1415 ms
+raw ci_heartbeat.json         200 bytes    452 ms
+```
+
+Measured cost on the VPS, end to end:
+
+| | |
+|---|---|
+| wall time per run | **392 ms**, almost all of it network idle |
+| download per run | **200 bytes** |
+| peak heap | ~1.5 MiB, nothing resident between runs |
+| **per day at `*/15`** | **~38 s wall total, ~19 KiB down** |
+
+⭐⭐ **And the cheap version is the more correct one.** `data/ci_heartbeat.json`
+is only written by a run that did the work **and pushed**, so a `skipped` run
+cannot produce one. The expensive version needed an explicit "skipped does not
+count as running" rule to survive the 2026-08-31 outage; this gets that
+property for free, because a skipped run leaves nothing to misread. **The
+cheaper signal was also the one with fewer ways to be wrong.**
+
+⚠️ The heartbeat fetch is **unauthenticated** (public repo), so the PAT is only
+touched when a dispatch is actually needed.
+
+### Added
+
+⛔ **A 30-minute dispatch cooldown**, held in a local marker file. If the bot
+runs but its *push* is broken, the heartbeat never refreshes and nothing this
+script does will help. Without a floor it would fire every tick forever,
+multiplying a broken run. The API version had no such protection.
+
+### Verification
+
+**9 mutations, 9 killed** — removing the cooldown, widening it to a day,
+treating never-dispatched as just-dispatched, an unreadable heartbeat reading
+as healthy, and leaving a naive timestamp without a timezone.
+
+Full suite **2785 passed**.
+
+---
+
 ## [4.68.0] - 2026-09-01
 
 ### Added
