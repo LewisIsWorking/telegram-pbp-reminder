@@ -127,10 +127,19 @@ jobs:
     # above would therefore have made this job run on every PR, and this
     # job posts to Telegram, writes state and pushes commits. A condition
     # phrased as "not X" is a standing invitation for exactly that.
+    #
+    # ⛔⛔ THESE CRON STRINGS MUST MATCH THE `schedule:` BLOCK EXACTLY.
+    # Broken 2026-08-31 by PR #75, which moved the crons off the
+    # contended :00/:30 minutes and left these comparisons pointing at
+    # the old ones. Both jobs' conditions went false on every scheduled
+    # run, GitHub reported the whole workflow as **skipped** rather than
+    # failed, and the bot silently stopped for 15 hours. Nothing was red.
+    # test_schedule_conditions_match_the_crons.py fails if they diverge
+    # again.
     if: >-
       github.event_name == 'push'
       || github.event_name == 'workflow_dispatch'
-      || (github.event_name == 'schedule' && github.event.schedule == '0 * * * *')
+      || (github.event_name == 'schedule' && github.event.schedule == '13 * * * *')
     steps:
       # `ref: main` instead of the default (which checks out GITHUB_SHA,
       # the SHA that triggered the workflow). When the concurrency group
@@ -235,7 +244,9 @@ jobs:
     permissions:
       contents: write
       actions: read  # for the preflight gate; see the `run` job
-    if: github.event_name == 'schedule' && github.event.schedule == '30 * * * *'
+    # ⛔ Must match the second cron in the `schedule:` block. See the
+    # note on the `run` job: a mismatch here skips silently.
+    if: github.event_name == 'schedule' && github.event.schedule == '43 * * * *'
     steps:
       # Same `ref: main` rule as the full run: the pbp-checker concurrency
       # group serialises runs, so this must check out main HEAD to pick up
@@ -297,3 +308,39 @@ jobs:
               exit 1
             fi
           done
+
+  # ⛔⛔ THE WATCHDOG MUST NOT LIVE INSIDE THE THING IT WATCHES.
+  #
+  # Added 2026-09-01. From 08-31 21:28 to 09-01 12:43 the crons said :13
+  # and :43 while both job conditions still said :00 and :30, so no job's
+  # `if:` was ever true and GitHub marked every scheduled run SKIPPED.
+  # A skipped run runs no jobs, therefore runs no preflight gate,
+  # therefore sends no alert. The bot was down for 15 hours and nothing
+  # went red. The only thing that could have complained was the code that
+  # was not executing.
+  #
+  # ⭐ This job names NO cron literal. It fires on any schedule at all, so
+  # it cannot be disarmed by the exact class of mistake it exists to
+  # catch. It reads the committed heartbeat, alerts if state has stopped
+  # persisting, and writes nothing — writing a heartbeat here would
+  # refresh the very signal that proves the outage.
+  watchdog:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Alert if the bot has stopped running
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: cd scripts && python -m preflight.gate --watch

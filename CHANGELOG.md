@@ -11,6 +11,67 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.64.1] - 2026-09-01
+
+### Fixed
+
+⛔⛔ **I TOOK THE BOT DOWN FOR 15 HOURS AND NOTHING WENT RED.**
+
+PR #75 moved the crons off GitHub's contended `:00`/`:30` minutes to `:13` and
+`:43`. Both side-effecting jobs gate on the **literal cron string**, and I did
+not update them:
+
+```yaml
+- cron: '13 * * * *'                          # schedule block, changed
+if: ... github.event.schedule == '0 * * * *'  # run, NOT changed
+if: ... github.event.schedule == '30 * * * *' # run-queue, NOT changed
+```
+
+No job's condition was ever true, so GitHub marked every scheduled run
+**`skipped`**. From 2026-08-31 21:28 to 2026-09-01 12:43 the bot did not run at
+all.
+
+⭐ **`skipped` is neither success nor failure**, so nothing looked broken.
+Worse: the preflight gate that exists to catch exactly this **runs inside the
+jobs that were being skipped**. A skipped run runs no jobs, therefore runs no
+gate, therefore sends no alert. **The watchdog was living inside the thing it
+watches.**
+
+Found only because Lewis asked why an RP queue post had not been replaced. It
+had not been replaced because nothing had run since it was posted.
+
+### Added
+
+- **`test_schedule_conditions_match_the_crons.py`** — asserts the relationship
+  in **both** directions: every job must name a cron that exists in the
+  `schedule` block, and every declared cron must be claimed by a job.
+  ⚠️ The guard written in #75 checked the cron **minutes** and not the wiring
+  those minutes feed. It asserted `:13` and `:43` were uncontended and exactly
+  30 apart. Both true, both useless. **A guard that validates one end of a
+  reference and not the other end is half a guard.**
+- **A `watchdog` job**, gated on `github.event_name == 'schedule'` and naming
+  **no cron literal**, so it cannot be disarmed by the class of mistake it
+  exists to catch. It runs `preflight.gate --watch`: reads the committed
+  heartbeat, alerts if state has stopped persisting, holds `contents: read`
+  only, and deliberately **does not write a heartbeat** — writing one would
+  refresh the very signal that proves the outage.
+- Tests pinning all three watchdog properties, added after a mutation tried to
+  give it a cron literal and found nothing to fail against.
+
+### Changed
+
+- Workflow line endings normalised to CRLF. Appending the watchdog job left 36
+  bare LF lines in a CRLF file, which is invisible in a diff and made two
+  mutations silently fail to apply.
+
+### Verification
+
+**7 mutations, 7 killed**, including the real #75 breakage replayed exactly, a
+cron nobody claims, both jobs gating on one cron, and all three watchdog
+properties. Full suite **2724 passed**.
+
+---
+
 ## [4.64.0] - 2026-09-01
 
 ### Added

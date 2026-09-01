@@ -121,7 +121,42 @@ def publish_halt(halt: bool) -> None:
         handle.write(f"halt={'true' if halt else 'false'}\n")
 
 
+def watch() -> int:
+    """Report-only. Alert if state is not persisting; change nothing.
+
+    ⛔⛔ **THE WATCHDOG MUST NOT LIVE INSIDE THE THING IT WATCHES.**
+    2026-08-31 to 09-01: a cron/condition mismatch meant no job's ``if:``
+    was ever true, so GitHub marked every scheduled run **skipped**. A
+    skipped run runs no jobs, therefore runs no gate, therefore sends no
+    alert. The bot stopped for 15 hours and nothing went red, because the
+    only thing that could have complained was the code that was not
+    executing. A human noticed a stale queue post.
+
+    This runs from a job gated on ``github.event_name == 'schedule'``
+    alone, naming **no cron literal**, so it cannot be switched off by
+    the class of mistake it exists to catch.
+
+    ⚠️ It deliberately does NOT ``write_heartbeat()``. Writing one here
+    would refresh the very signal that proves the outage, and the
+    watchdog would then report health forever while nothing else ran.
+    """
+    age_hours = heartbeat_age_hours(read_heartbeat(),
+                                    datetime.now(timezone.utc))
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    token = os.environ.get("GITHUB_TOKEN", "")
+    conclusions = fetch_conclusions(repo, token) if repo and token else None
+    streak = consecutive_failures(conclusions) if conclusions else 0
+
+    reasons = halt_reasons(streak, age_hours)
+    print(f"[watchdog] {explain(reasons, age_hours)}")
+    if reasons and should_alert(broken_hours(streak, age_hours)):
+        send_alert(reasons, age_hours, repo)
+    return 0
+
+
 def main() -> int:
+    if "--watch" in sys.argv:
+        return watch()
     # ⚠️ ORDER IS LOAD-BEARING. The committed heartbeat must be read before
     # this run writes its own, or the gate would measure itself and every
     # run would look perfectly healthy.
