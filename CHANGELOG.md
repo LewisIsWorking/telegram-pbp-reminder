@@ -11,6 +11,80 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.66.0] - 2026-09-01
+
+### Fixed
+
+**The bot read one page of a several-hundred-update backlog and announced
+conclusions from it.** Lewis reported three things in one message, all with
+this single cause:
+
+- the daily "campaign that needs players most" post never arrived;
+- the GM queue looked wrong;
+- the bot posted **"All caught up. Time for players to post!"** into C07 while
+  two player messages sat unanswered.
+
+⛔⛔ `getUpdates` returns **at most 100 updates per call**, and `checker.main`
+called it exactly once per run. After the 15h outage there were several hundred
+queued. The 16:33 run logged:
+
+```
+Received 100 new updates
+```
+
+drained the **oldest** hundred (still 2026-08-31), advanced the offset, and then
+ran every scheduled check against that partial view. From inside that run C07
+genuinely had nothing unreplied, because Anthony's 11:20 and Terra's 11:28
+messages had not been read yet.
+
+⭐ **The caught-up notice was not wrong. It was answered from half a page.**
+
+So the fix is two halves, and the second is the important one:
+
+1. `dispatch/drain.py` pages until Telegram returns a **short** page.
+2. **A partial read must not produce posts.** If the backlog is still full after
+   `MAX_PAGES` (2000 updates), the scheduled checks are skipped entirely and the
+   run says so. State is still saved, so the next run continues the drain rather
+   than re-reading.
+
+⚠️ `PAGE_LIMIT` is imported from `telegram_utils` rather than repeated, and a
+test asserts the request **actually sends it**. A literal `100` in `drain.py`
+could drift from what the request asks for, and then a full page would read as
+short: the original bug, restored. That is the same duplicated-literal shape
+that skipped every scheduled run earlier the same day.
+
+### Changed
+
+- `state(C06)`: **Ji Yun's seat restored** (Caelum @Thien_Ming), auto-removed
+  2026-08-24 while still being listed as party. Kibwe now reads **5/6**:
+  Anthony, Buffet, Caelum, Horia *(played by @MrNegetZ)*, Ryo.
+- `checker.py` 200 to 188 lines; the drain and its logging moved to
+  `dispatch/drain.drain_into`.
+- Orphan IDs and the reason each batch exists extracted to `_orphan_ids.py`
+  (that guard reached 219 lines).
+
+### Notes
+
+⛔ **Three messages were permanently orphaned by the outage** — 175996, 175998,
+176000, all 57.5h old when anything ran again. Recorded as a **separate, dated
+set**, because the existing list means "already broken when the guard was
+written" and these mean the guard was working and the code was correct: the bot
+simply did not run.
+
+⚠️ **Any outage longer than 12h (48h wall minus the 36h refresh) strands
+whatever the bot was holding.** A message ID is a perishable asset with a hard
+expiry, so uptime here is a correctness requirement, not a nice-to-have.
+
+### Verification
+
+**9 mutations, 9 killed.** Two survived the first run, both my own assertions
+being too loose: one checked that `drain_into` and `_run_checks` both *appear*
+in the checker, which stays true when the gating `if` is deleted; the other
+checked that `drain.py` imports `PAGE_LIMIT` but never that the request sends
+it. Full suite **2753 passed**.
+
+---
+
 ## [4.65.0] - 2026-09-01
 
 ### Added

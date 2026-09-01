@@ -163,14 +163,18 @@ def main(queue_only: bool = False) -> None:
     print(f"Tracking {len(bot_state.get('topics', {}))} topics, "
           f"{len(bot_state.get('players', {}))} players")
 
-    offset = bot_state.get("offset", 0)
-    updates = tg.get_updates(offset)
-    print(f"Received {len(updates)} new updates")
-
-    if updates:
-        bot_state["offset"] = process_updates(updates, config, bot_state)  # pragma: no cover
-
-    _run_checks(config, bot_state, only=QUEUE_CHECKS if queue_only else ())
+    # ⛔ Drain the WHOLE backlog before concluding anything from it.
+    # getUpdates returns at most PAGE_LIMIT per call, and this used to be
+    # a single call: after the 2026-08-31 outage the bot read the oldest
+    # 100 of several hundred and then announced "All caught up" from that
+    # half-read page. See dispatch/drain.py.
+    # ⭐ A partial read must not produce posts. State is still saved
+    # below either way, so the next run carries on from here rather than
+    # re-reading these updates.
+    from dispatch.drain import drain_into
+    if drain_into(bot_state, tg.get_updates,
+                  lambda updates: process_updates(updates, config, bot_state)):
+        _run_checks(config, bot_state, only=QUEUE_CHECKS if queue_only else ())
     cleanup_timestamps(bot_state)
 
     try:

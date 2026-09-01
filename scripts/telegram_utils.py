@@ -2,6 +2,14 @@
 import json
 import requests
 
+# Telegram's own maximum for one getUpdates call. ⛔ A FULL PAGE MEANS
+# THERE IS MORE WAITING, which is why dispatch/drain.py imports this
+# constant instead of repeating 100: on 2026-09-01 the checker read one
+# page of a several-hundred-update backlog and announced "All caught up"
+# from it. A duplicated literal across a module boundary is the same
+# shape that took the bot down earlier that day.
+PAGE_LIMIT = 100
+
 
 def fetch_updates(api_base: str, offset: int) -> list:
     """Fetch new updates from Telegram Bot API. Returns list of updates."""
@@ -10,7 +18,7 @@ def fetch_updates(api_base: str, offset: int) -> list:
             f"{api_base}/getUpdates",
             params={
                 "offset": offset,
-                "limit": 100,
+                "limit": PAGE_LIMIT,
                 "timeout": 5,
                 "allowed_updates": json.dumps(
                     ["message", "callback_query", "message_reaction",
