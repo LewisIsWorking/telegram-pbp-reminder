@@ -33,6 +33,15 @@ from datetime import datetime, timedelta, timezone
 # missed run, a Telegram outage, or a workflow queued behind others.
 MAX_TRACKED_AGE = timedelta(hours=36)
 
+# ⛔⛔ TELEGRAM'S OWN WALL. Not ours to choose and not liftable by admin
+# rights. Past this, the delete API refuses forever.
+DELETE_WALL = timedelta(hours=48)
+
+# Under the wall by a margin, because the check runs at the START of a
+# run and the delete lands seconds later, and because the timestamp is
+# when WE recorded the send rather than when Telegram did.
+SAFE_TO_DELETE = timedelta(hours=46)
+
 
 def _parse(stamp) -> datetime | None:
     """Parse an ISO timestamp, assuming UTC when it carries no zone."""
@@ -71,6 +80,34 @@ def is_past(stamp, now: datetime, limit: timedelta | None = None) -> bool:
 def batch_is_stale(slot: dict, now: datetime) -> bool:
     """True when a slot's posted batch is old enough to need replacing."""
     return is_past(slot.get("last_posted_at"), now)
+
+
+def can_still_delete(slot: dict, now: datetime) -> bool:
+    """True when this slot's batch can still be deleted by Telegram.
+
+    ⭐⭐ Added 2026-09-01, after the 15h outage stranded three more queue
+    posts and Lewis said *"this needs fixing, this is a big issue."* It
+    is, and hand-deleting them was never the fix.
+
+    The 36h republish above is a **mitigation**: it keeps IDs fresh so a
+    later delete can win. It cannot help once a run has been missed for
+    long enough, and at that point the code did the one thing guaranteed
+    to lose: it attempted the delete anyway, and orphaned the message.
+
+    This is the question that was never asked: **can this delete possibly
+    succeed?** When the answer is no the caller must not try. It edits
+    the message in place instead, which Telegram allows with no time
+    limit, so the message is reused rather than abandoned.
+
+    ⚠️ An unknown timestamp reads as **deletable**. A slot predating the
+    field is almost certainly fresh, and refusing on "don't know" would
+    put every legacy slot into edit-only mode permanently, which is the
+    opposite of the intent.
+    """
+    stamp = slot.get("last_posted_at")
+    if not stamp:
+        return True
+    return not is_past(stamp, now, SAFE_TO_DELETE)
 
 
 def caught_up_is_stale(slot: dict, now: datetime) -> bool:

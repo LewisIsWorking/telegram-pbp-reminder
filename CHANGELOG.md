@@ -11,6 +11,70 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.67.0] - 2026-09-01
+
+### Fixed
+
+**Past Telegram's 48h wall the bot now EDITS the message instead of orphaning
+it.** Lewis, on the third batch of stranded queue posts: *"this needs fixing,
+this is a big issue."* It is, and hand-deleting them was never the fix.
+
+⛔ **The design carried the fault.** The queue updates itself by *delete the
+old, post the new*. Telegram refuses to delete a bot's own message after 48
+hours and admin rights do not lift it, so **every queue post carried a 48h
+fuse**, and the 36h republish in `topic_queue_age` existed only to keep
+relighting it. That mitigation cannot survive a missed run:
+
+```
+175996, 175998, 176000 — 57.5h old, deleted 0 of 3, orphaned 3 of 3
+```
+
+⭐⭐ **The question never asked was: can this delete possibly succeed?** When
+the answer is no, attempting it is not a risk. It is a loss that has already
+happened, and the old code attempted it anyway.
+
+**Editing has no time limit. Deleting does.** So past the wall:
+
+- the queue post is **edited in place** and keeps its IDs, its pin and its
+  original send time;
+- the caught-up notice is **the same message edited again**, which matters
+  because caught-up notices were 15 of the 28 confirmed orphans;
+- one message per thread, kept current indefinitely, nothing abandoned.
+
+⚠️ **Nothing changes for a message inside the window.** The normal path still
+deletes and reposts, which is what keeps the notification on a real content
+change. A can-fail test pins that.
+
+⚠️ `last_posted_at` is deliberately **not** refreshed on an edit. It records
+when the IDs were *sent*, which is what governs deletability, and an edit does
+not move that clock. Refreshing it would make the slot look freshly deletable
+and walk straight back into doomed deletes. Likewise a reused caught-up notice
+gets `caught_up_at = None` rather than `now`, because it is as old as the
+message it came from.
+
+### Changed
+
+- `topic_queue_write.py` 222 to 129 lines; the clear path moved to
+  `scheduled/topic_queue_clear.py`. The split is where it is because both
+  modules obey the same rule: never attempt a delete that cannot win.
+
+### Verification
+
+**10 mutations, 10 killed**, including restoring the doomed delete on both
+paths, moving the margin past the wall, treating an unknown age as
+non-deletable, editing a mismatched chunk count anyway, and refreshing the send
+clock on an edit.
+
+⭐ Two of the ten only die because of `test_the_write_path_edits_past_the_wall`,
+which drives the real writer end to end. The unit tests for `can_still_delete`
+and `edit_all` pass whether or not anything calls them, and **a fix nothing
+calls is exactly how three messages were orphaned while a guard sat green**.
+Fourth time in one session the harness caught that shape.
+
+Full suite **2770 passed**.
+
+---
+
 ## [4.66.0] - 2026-09-01
 
 ### Fixed
