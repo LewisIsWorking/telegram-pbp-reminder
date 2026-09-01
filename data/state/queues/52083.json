@@ -1,6 +1,25 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 176497,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-09-01T11:20:39+00:00",
+      "preview": "Livy will make a basic environmental protection module for 10 credits of Space gremlin parts (we had 25 credits of them left).",
+      "media_group_id": null
+    },
+    {
+      "message_id": 176505,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-09-01T11:28:00+00:00",
+      "preview": "I watch Nikk-Nakk and try again",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -2132,10 +2151,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 176615,
+      "fingerprint": "2026-09-01 11:20:39|2026-09-01 11:28:00",
+      "msg_ids": [
+        176642
+      ],
+      "last_posted_at": "2026-09-01T17:17:05.458656+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-09-01T16:33:51.263367+00:00"
     },
     "145045": {
