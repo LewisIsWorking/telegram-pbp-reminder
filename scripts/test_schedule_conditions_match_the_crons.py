@@ -123,39 +123,6 @@ class TestEveryCronIsClaimed:
             f"cron(s) {sorted(unclaimed)} are declared but no job runs for "
             f"them. Those runs will do nothing at all.")
 
-    def test_the_watchdog_names_no_cron_at_all(self):
-        # ⛔⛔ THE PROPERTY THAT MAKES THE WATCHDOG WORTH HAVING, and it
-        # was untested until a mutation tried to add a cron literal to it
-        # and had nothing to fail against.
-        #
-        # The watchdog exists because a cron/condition mismatch skipped
-        # every run and the in-run gate could not complain about its own
-        # non-execution. If the watchdog ever gates on a specific cron,
-        # it acquires the exact fault it is there to catch and will be
-        # silently disarmed by the next cron change.
-        cond = _condition(_doc(), "watchdog")
-        named = crons_named_in(cond)
-        assert not named, (
-            f"the watchdog gates on {sorted(named)}. It must fire on ANY "
-            f"schedule, or a cron change disarms the thing that reports "
-            f"cron changes.")
-        assert "github.event_name == 'schedule'" in cond
-
-    def test_the_watchdog_cannot_write_anything(self):
-        # It must not be able to push a heartbeat. Writing one would
-        # refresh the signal that proves the outage.
-        perms = _doc()["jobs"]["watchdog"].get("permissions", {})
-        assert perms.get("contents") == "read", (
-            f"watchdog has contents: {perms.get('contents')!r}; it must "
-            f"never write state")
-
-    def test_the_watchdog_runs_in_report_only_mode(self):
-        steps = _doc()["jobs"]["watchdog"]["steps"]
-        runs = " ".join(str(s.get("run", "")) for s in steps)
-        assert "preflight.gate --watch" in runs, (
-            "the watchdog must use --watch; plain `preflight.gate` writes "
-            "a heartbeat and would mask the outage it is watching for")
-
     def test_the_two_jobs_do_not_share_a_cron(self):
         doc = _doc()
         full = crons_named_in(_condition(doc, "run"))

@@ -86,6 +86,18 @@ def send_alert(reasons: list, age_hours: float | None, repo: str) -> None:
     most once a day, because it is the only thing that brings a human to
     fix the cause. Nothing else the bot sends earns that trade.
     """
+    notify(f"\U0001f6d1 Bot posting PAUSED\n\n{explain(reasons, age_hours)}\n\n"
+           f"https://github.com/{repo}/actions/workflows/{WORKFLOW_FILE}")
+
+
+def notify(text: str) -> None:
+    """Send one message to the bot topic. Never raises.
+
+    Extracted from ``send_alert`` on 2026-09-01 so the self-repair path
+    can report what it did through the same channel. ⚠️ Every caller is
+    posting an unrecorded message and creating an orphan; that price is
+    only worth paying for things that bring a human to the keyboard.
+    """
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     if not token:
         print("[preflight] no bot token; skipping alert")
@@ -96,10 +108,6 @@ def send_alert(reasons: list, age_hours: float | None, repo: str) -> None:
     if not thread_id:
         print("[preflight] no bot_topic_id; skipping alert")
         return
-    text = (
-        f"\U0001f6d1 Bot posting PAUSED\n\n{explain(reasons, age_hours)}\n\n"
-        f"https://github.com/{repo}/actions/workflows/{WORKFLOW_FILE}"
-    )
     try:
         requests.post(
             f"https://api.telegram.org/bot{token}/sendMessage",
@@ -107,7 +115,7 @@ def send_alert(reasons: list, age_hours: float | None, repo: str) -> None:
                   "text": text},
             timeout=20,
         )
-        print(f"[preflight] alert sent: {'; '.join(reasons)}")
+        print("[preflight] alert sent")
     except Exception as error:  # noqa: BLE001 - alerting must not break the gate
         print(f"[preflight] alert failed: {error}")
 
@@ -122,36 +130,10 @@ def publish_halt(halt: bool) -> None:
 
 
 def watch() -> int:
-    """Report-only. Alert if state is not persisting; change nothing.
-
-    ⛔⛔ **THE WATCHDOG MUST NOT LIVE INSIDE THE THING IT WATCHES.**
-    2026-08-31 to 09-01: a cron/condition mismatch meant no job's ``if:``
-    was ever true, so GitHub marked every scheduled run **skipped**. A
-    skipped run runs no jobs, therefore runs no gate, therefore sends no
-    alert. The bot stopped for 15 hours and nothing went red, because the
-    only thing that could have complained was the code that was not
-    executing. A human noticed a stale queue post.
-
-    This runs from a job gated on ``github.event_name == 'schedule'``
-    alone, naming **no cron literal**, so it cannot be switched off by
-    the class of mistake it exists to catch.
-
-    ⚠️ It deliberately does NOT ``write_heartbeat()``. Writing one here
-    would refresh the very signal that proves the outage, and the
-    watchdog would then report health forever while nothing else ran.
-    """
-    age_hours = heartbeat_age_hours(read_heartbeat(),
-                                    datetime.now(timezone.utc))
-    repo = os.environ.get("GITHUB_REPOSITORY", "")
-    token = os.environ.get("GITHUB_TOKEN", "")
-    conclusions = fetch_conclusions(repo, token) if repo and token else None
-    streak = consecutive_failures(conclusions) if conclusions else 0
-
-    reasons = halt_reasons(streak, age_hours)
-    print(f"[watchdog] {explain(reasons, age_hours)}")
-    if reasons and should_alert(broken_hours(streak, age_hours)):
-        send_alert(reasons, age_hours, repo)
-    return 0
+    """Report-only entry point. Implementation in preflight/watchdog.py,
+    which was extracted 2026-09-01 when this file reached 211 lines."""
+    from preflight.watchdog import watch as _watch
+    return _watch(fetch_conclusions, send_alert, notify)
 
 
 def main() -> int:

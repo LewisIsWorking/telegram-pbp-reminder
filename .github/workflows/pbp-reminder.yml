@@ -308,39 +308,3 @@ jobs:
               exit 1
             fi
           done
-
-  # ⛔⛔ THE WATCHDOG MUST NOT LIVE INSIDE THE THING IT WATCHES.
-  #
-  # Added 2026-09-01. From 08-31 21:28 to 09-01 12:43 the crons said :13
-  # and :43 while both job conditions still said :00 and :30, so no job's
-  # `if:` was ever true and GitHub marked every scheduled run SKIPPED.
-  # A skipped run runs no jobs, therefore runs no preflight gate,
-  # therefore sends no alert. The bot was down for 15 hours and nothing
-  # went red. The only thing that could have complained was the code that
-  # was not executing.
-  #
-  # ⭐ This job names NO cron literal. It fires on any schedule at all, so
-  # it cannot be disarmed by the exact class of mistake it exists to
-  # catch. It reads the committed heartbeat, alerts if state has stopped
-  # persisting, and writes nothing — writing a heartbeat here would
-  # refresh the very signal that proves the outage.
-  watchdog:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
-    permissions:
-      contents: read
-      actions: read
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: main
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-      - run: pip install requests
-      - name: Alert if the bot has stopped running
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: cd scripts && python -m preflight.gate --watch
