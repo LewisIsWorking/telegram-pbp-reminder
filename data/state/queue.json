@@ -179,9 +179,6 @@
       "2026-08-26T20:33:10.300040+00:00"
     ],
     "40585": [
-      "2026-03-31T03:26:05.912584+00:00",
-      "2026-03-31T03:26:05.914891+00:00",
-      "2026-03-31T03:26:05.915920+00:00",
       "2026-03-31T03:26:05.917053+00:00",
       "2026-03-31T03:26:05.918091+00:00",
       "2026-03-31T03:26:05.919105+00:00",
@@ -678,7 +675,10 @@
       "2026-08-29T14:38:05.150619+00:00",
       "2026-08-31T07:30:54.671700+00:00",
       "2026-08-31T07:30:54.677813+00:00",
-      "2026-08-31T07:30:55.174676+00:00"
+      "2026-08-31T07:30:55.174676+00:00",
+      "2026-09-01T16:33:51.246371+00:00",
+      "2026-09-01T16:33:51.254005+00:00",
+      "2026-09-01T16:33:51.260556+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1637,7 +1637,8 @@
       "2026-08-27T11:47:37.083203+00:00",
       "2026-08-27T11:47:37.090504+00:00",
       "2026-08-30T17:18:10.797806+00:00",
-      "2026-08-31T07:30:55.176539+00:00"
+      "2026-08-31T07:30:55.176539+00:00",
+      "2026-09-01T16:33:51.262959+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1803,34 +1804,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-08-09T02:15:51.298188+00:00",
-      "player": "Terra",
-      "preview": "Is it dead?",
-      "msg_id": "170749"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T02:15:51.301553+00:00",
-      "player": "Anthony",
-      "preview": "If you shoot it",
-      "msg_id": "170750"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T02:15:51.303301+00:00",
-      "player": "Anthony",
-      "preview": "For now it's chilling.",
-      "msg_id": "170751"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T02:15:51.305019+00:00",
-      "player": "Terra",
-      "preview": "I mean... if the group is not against it",
-      "msg_id": "170752"
-    },
     {
       "pid": "52083",
       "time": "2026-08-09T02:15:51.306777+00:00",
@@ -3202,38 +3175,37 @@
       "player": "Anthony",
       "preview": "While they're busy learning to play Livy will make some stuf",
       "msg_id": "176370"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-01T16:33:51.246371+00:00",
+      "player": "Ryo",
+      "preview": "[media]",
+      "msg_id": "176379"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-01T16:33:51.254005+00:00",
+      "player": "Buffet",
+      "preview": "[media]",
+      "msg_id": "176380"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-01T16:33:51.260556+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "176382"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T16:33:51.262959+00:00",
+      "player": "Anthony",
+      "preview": "I think only the slime?",
+      "msg_id": "176378"
     }
   ],
-  "pending_potw_boons": {
-    "52083": {
-      "message_id": 174468,
-      "winner_user_id": "8097377199",
-      "campaign_name": "Hopeful End-Times",
-      "boons": [
-        "You find a horseshoe lying open-end up. Classic lucky orientation.",
-        "The summer heat has made the guards lazy. Shift changes take longer.",
-        "Carrier pigeons at a roost include one that will fly to your destination.",
-        "Recover 1d6 extra HP during your next rest."
-      ],
-      "base_message": "Player of the Week for Hopeful End-Times: Terra (@Saiminaminah)!\n(2026-08-17 (W34) to 2026-08-24 (W35))\n\n6 posts this week with an average gap of 17.7h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-08-24T09:56:06.822594+00:00",
-      "reminders_sent": 3
-    },
-    "107171": {
-      "message_id": 174470,
-      "winner_user_id": "8117756377",
-      "campaign_name": "Metal City",
-      "boons": [
-        "A dock worker offers to carry your heaviest item for free. No strings attached.",
-        "A herbalist identifies a plant near camp that has mild healing properties.",
-        "The chimney is wide enough to climb and leads to an unguarded room.",
-        "Recover 1d6 extra HP during your next rest."
-      ],
-      "base_message": "Player of the Week for Metal City: Laetheron (@StorybookRhizome)!\n(2026-08-17 (W34) to 2026-08-24 (W35))\n\n6 posts this week with an average gap of 22.3h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-08-24T09:56:06.822594+00:00",
-      "reminders_sent": 3
-    }
-  },
+  "pending_potw_boons": {},
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"

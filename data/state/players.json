@@ -109,7 +109,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-08-18T05:58:17+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "51357:6144366145": {
       "user_id": "6144366145",
@@ -149,7 +149,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-08-17T15:21:35+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "107151:1698524397": {
       "user_id": "1698524397",
@@ -200,16 +200,6 @@
       "pbp_topic_id": "51357",
       "last_post_time": "2026-08-26T20:33:38+00:00",
       "last_warned_week": 0
-    },
-    "25059:8525518483": {
-      "user_id": "8525518483",
-      "first_name": "Fuzzy",
-      "last_name": "",
-      "username": "fuzzystudios",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-08-04T05:05:26+00:00",
-      "last_warned_week": 3
     },
     "51357:8117756377": {
       "user_id": "8117756377",
@@ -637,6 +627,12 @@
       "removed_at": "2026-08-31T07:30:55.743927+00:00",
       "first_name": "Dalaxiss",
       "username": "",
+      "campaign_name": "Doomsday Funtime"
+    },
+    "25059:8525518483": {
+      "removed_at": "2026-09-01T16:33:51.263367+00:00",
+      "first_name": "Fuzzy",
+      "username": "fuzzystudios",
       "campaign_name": "Doomsday Funtime"
     }
   },
@@ -1721,6 +1717,14 @@
       "name": "Dalaxiss",
       "username": "",
       "at": "2026-08-31T07:30:56.183378+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "8525518483",
+      "name": "Fuzzy",
+      "username": "fuzzystudios",
+      "at": "2026-09-01T16:33:58.617935+00:00"
     }
   ],
   "player_boons": {
@@ -1881,6 +1885,12 @@
           "date": "2026-05-10",
           "campaign": "Metal City",
           "week": "W19"
+        },
+        {
+          "text": "A dock worker offers to carry your heaviest item for free. No strings attached.",
+          "date": "2026-09-01",
+          "campaign": "Metal City",
+          "week": "W36"
         }
       ],
       "8383886822": [
@@ -1927,6 +1937,14 @@
           "date": "2026-07-25",
           "campaign": "Hopeful End-Times",
           "week": "W30"
+        }
+      ],
+      "8097377199": [
+        {
+          "text": "You find a horseshoe lying open-end up. Classic lucky orientation.",
+          "date": "2026-09-01",
+          "campaign": "Hopeful End-Times",
+          "week": "W36"
         }
       ]
     },
