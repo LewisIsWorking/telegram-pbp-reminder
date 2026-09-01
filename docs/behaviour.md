@@ -164,6 +164,42 @@ to specific messages.
 
 ---
 
+## Characters somebody else rolls for: `played_by`
+
+```
+/setproxy @absent_player @who_posts_for_them
+/clearproxy @absent_player
+```
+
+The bot measures **who posts**, not **who plays**. A character whose player
+has gone quiet while a friend makes their rolls is indistinguishable from an
+absent one, and gets nudged, then swept, while standing in the current scene.
+
+⛔ Found 2026-09-01 on C06 Kibwe, from Anthony in the group: *"somebody
+actually does your rolls for you and all... And that somebody is me
+tragically."* Horia was at **28.84 days, week 4, last warned week 3** with
+`PLAYER_REMOVE_WEEKS = 4`. The next hourly run would have swept Lorn. Ji Yun's
+player had already gone the same way a week earlier.
+
+⭐⭐ **`played_by` is a redirection, not an exemption**, and that is what makes
+it honest:
+
+| | `permanent` | `played_by` |
+|---|---|---|
+| Meaning | do not measure this person | measure them **through** someone else |
+| If the other person goes quiet | n/a | **this seat goes quiet too, same clock** |
+| Nudges | week-3 warning suppressed | all warnings suppressed |
+| Removal | never | **yes, on the proxy's clock** |
+
+- A proxy must be **on the same campaign's roster**. Activity in another game is
+  not evidence this character is being played here.
+- ⛔ **A broken pointer falls back to the seat's own posting.** A typo or a
+  departed proxy must degrade to "measured normally", never to "exempt forever".
+- **One hop only**, so a cycle is harmless.
+- The roster names the proxy inline: `Horia (@Nemesiux) [played by @MrNegetZ]`,
+  and says so loudly when a proxy does not resolve. A seat that counts for a
+  reason the reader cannot see is how a roster stops being believed.
+
 ## Inactivity: warnings and removals are separate
 
 Two feature flags, because nagging a player and sweeping a dead seat are

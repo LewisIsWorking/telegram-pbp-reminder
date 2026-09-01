@@ -7,6 +7,7 @@
 
 from datetime import datetime, timezone, timedelta
 from players.permanence import is_permanent
+from players.proxy import proxy_note
 
 from commands.roster_members import (  # noqa: F401
     _TARGET, _ACTIVE_DAYS, _active_players, active_poll_uids,
@@ -80,8 +81,13 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
     # inline tag was easy to miss when scanning. Two sections (omitted
     # when empty) make the split visually unambiguous. See L26.
     def _name_line(p: dict) -> str:
+        # ⭐ The proxy note is not decoration. This seat may be counted on
+        # somebody else's posting, and a roster that counts a name for a
+        # reason the reader cannot see is exactly the disagreement this
+        # feature exists to end. See players/proxy.py.
         return (f"  • {p.get('first_name', '?')}"
-                + (f" (@{p['username']})" if p.get("username") else ""))
+                + (f" (@{p['username']})" if p.get("username") else "")
+                + proxy_note(p, pid, state))
 
     def _section(label: str, group: list[dict]) -> str:
         if not group:

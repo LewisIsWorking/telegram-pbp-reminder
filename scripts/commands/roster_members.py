@@ -11,6 +11,7 @@ touching it.
 
 from datetime import datetime, timezone, timedelta
 from players.permanence import is_permanent
+from players.proxy import effective_post_time
 
 _TARGET = 6
 _ACTIVE_DAYS = 30
@@ -66,14 +67,13 @@ def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
             # add a recency check here — perm = always counted.
             result.append(p)
             continue
-        try:
-            last = datetime.fromisoformat(p["last_post_time"])
-            if last.tzinfo is None:
-                last = last.replace(tzinfo=timezone.utc)
-            if last >= cutoff:
-                result.append(p)
-        except (KeyError, ValueError):
-            pass
+        # ``played_by`` resolves to whoever actually posts for this
+        # character (2026-09-01). A redirection, not an exemption: if the
+        # proxy is quiet, this seat is quiet too. An unresolvable proxy
+        # falls back to the seat's own time. See players/proxy.py.
+        last = effective_post_time(p, pid, state)
+        if last is not None and last >= cutoff:
+            result.append(p)
     return result
 
 
