@@ -54,17 +54,10 @@ WALL = dt.timedelta(hours=48)
 _AUDIT = (Path(__file__).resolve().parent.parent
           / "data" / "state" / "pin_audit_log.json")
 
-# The 15 messages already stranded when this test was written. They are
-# still in the Path Wars group and only a human can remove them; the
-# audit log will keep reporting them until it rotates past them.
-#
-# ⚠️ This set may SHRINK (as the bounded log rotates) but must never
-# GROW. A new ID here means the bot has orphaned another message, which
-# is the regression this file exists to catch. Do not add to it.
-KNOWN_PRE_FIX_ORPHANS = {
-    167205, 167207, 167324, 167366, 167442, 168070, 168444,
-    169729, 170029, 170106, 170125, 170258, 170305, 170414, 171640,
-}
+# The IDs and the reason each batch exists live in _orphan_ids.py,
+# extracted 2026-09-01 when this file passed 200 lines.
+from _orphan_ids import ALL as KNOWN_PRE_FIX_ORPHANS  # noqa: E402
+
 
 
 def _load_audit():
