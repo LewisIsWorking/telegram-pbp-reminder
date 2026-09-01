@@ -11,6 +11,66 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.65.0] - 2026-09-01
+
+### Added
+
+**The bot restarts itself.** Lewis, after the 15 hour outage in 4.64.1:
+*"you should really be able for the bot to fix itself or something, killing
+itself like that is not good."* He is right. 4.64.1 only made the outage
+**visible**; this makes it **recoverable**.
+
+⭐⭐ **The mechanism was already in the main workflow's own condition:**
+
+```yaml
+github.event_name == 'push'
+|| github.event_name == 'workflow_dispatch'      # <-- this branch
+|| (github.event_name == 'schedule' && github.event.schedule == '...')
+```
+
+A `workflow_dispatch` satisfies that **regardless of what the cron literals
+say**. A watchdog that dispatches on a stale heartbeat would have carried the
+bot straight through 2026-08-31: the schedule branch was dead, the dispatch
+branch was not.
+
+- **`.github/workflows/watchdog.yml`** — a **separate workflow file** with its
+  own schedule (`7,37`). 4.64.1 put the watchdog inside `pbp-reminder.yml`,
+  which covers a mis-gated job but **not a broken `on:` block**: a YAML error
+  or bad cron there means nothing in the file runs, watchdog included. It now
+  shares nothing with what it monitors except the repository, and it is not in
+  the `pbp-checker` concurrency group, because a stuck main run must not be
+  able to block the thing that notices stuck main runs.
+- **`preflight/self_repair.py`** — decides and dispatches.
+- **`preflight/watchdog.py`** — extracted when `gate.py` reached 211 lines.
+
+### The rules that keep it from making things worse
+
+- ⛔ **Only dispatches on a positive reading.** An unreadable heartbeat means
+  *cannot tell*, and cannot-tell must not trigger anything. Same discipline
+  `prior_runs` uses for halting, pointed the other way.
+- ⛔ **`GITHUB_TOKEN` cannot do this.** GitHub refuses to start new workflow
+  runs from events created with the automatic token, to stop a workflow
+  triggering itself forever. Self-repair uses the existing `GIST_TOKEN` PAT,
+  and **says so in Telegram, naming the scope required**, if it is missing or
+  refused. A self-repair that silently does nothing is worse than none: it
+  looks like cover that is not there.
+- ⛔ **`contents: read` only.** The watchdog must never be able to write a
+  heartbeat, which would refresh the very signal that proves the outage and
+  report health forever while nothing ran.
+
+### Verification
+
+**11 mutations, 11 killed.** ⚠️ One survived the first run, and it was the
+most important: deleting the entire repair block from `watch()` left the suite
+green, because every test exercised `should_repair`, `dispatch` and
+`repair_message` **directly** and none showed the watchdog calls any of them.
+**Third time this session the harness has caught me testing pieces and not
+wiring.** Fixed with an end-to-end test of `watch()`.
+
+Full suite **2741 passed**.
+
+---
+
 ## [4.64.1] - 2026-09-01
 
 ### Fixed

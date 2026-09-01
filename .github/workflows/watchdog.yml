@@ -1,0 +1,65 @@
+name: Bot Watchdog
+
+# ⛔⛔ A SEPARATE FILE ON PURPOSE. THE WATCHDOG MUST NOT LIVE INSIDE THE
+# THING IT WATCHES.
+#
+# 2026-08-31 21:28 to 09-01 12:43: pbp-reminder.yml's crons said :13/:43
+# while both job conditions still said :00/:30. No job's `if:` was ever
+# true, GitHub marked every run **skipped**, and the bot was down for 15
+# hours with nothing red anywhere. The preflight gate that exists to
+# catch that runs INSIDE those jobs, so it never executed.
+#
+# The first fix put a watchdog job in pbp-reminder.yml. That covers a
+# mis-gated job but NOT a broken `on:` block: a YAML error or a bad cron
+# there means nothing in the file runs at all, watchdog included.
+#
+# ⭐ So it lives here, with its own schedule, and shares nothing with the
+# workflow it monitors except the repository.
+#
+# Minutes deliberately unlike the main workflow's :13/:43, and off the
+# contended :00/:30 for the reason documented there.
+
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+
+# ⚠️ NOT in the `pbp-checker` concurrency group. Sharing it would let a
+# stuck main run block the watchdog, which is precisely when it is needed.
+concurrency:
+  group: bot-watchdog
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    permissions:
+      # ⛔ Read only. The watchdog must never be able to write a
+      # heartbeat: doing so would refresh the very signal that proves the
+      # outage, and it would then report health forever while nothing
+      # else ran.
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests
+
+      - name: Is the bot still running, and restart it if not
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # ⛔ GITHUB_TOKEN CANNOT START A RUN. GitHub refuses to trigger
+          # new workflow runs from events created with the automatic
+          # token, to stop a workflow triggering itself forever. The
+          # self-repair dispatch therefore needs the PAT, and says so
+          # loudly in Telegram if it is missing or lacks the scope.
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: cd scripts && python -m preflight.gate --watch
