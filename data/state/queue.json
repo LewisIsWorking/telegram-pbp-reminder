@@ -179,7 +179,6 @@
       "2026-08-26T20:33:10.300040+00:00"
     ],
     "40585": [
-      "2026-03-31T03:26:05.918091+00:00",
       "2026-03-31T03:26:05.919105+00:00",
       "2026-03-31T03:26:05.920107+00:00",
       "2026-03-31T04:50:35.807138+00:00",
@@ -678,7 +677,8 @@
       "2026-09-01T16:33:51.246371+00:00",
       "2026-09-01T16:33:51.254005+00:00",
       "2026-09-01T16:33:51.260556+00:00",
-      "2026-09-01T17:16:54.976712+00:00"
+      "2026-09-01T17:16:54.976712+00:00",
+      "2026-09-01T17:26:08.760166+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1638,7 +1638,18 @@
       "2026-08-27T11:47:37.090504+00:00",
       "2026-08-30T17:18:10.797806+00:00",
       "2026-08-31T07:30:55.176539+00:00",
-      "2026-09-01T16:33:51.262959+00:00"
+      "2026-09-01T16:33:51.262959+00:00",
+      "2026-09-01T17:26:08.136263+00:00",
+      "2026-09-01T17:26:08.142888+00:00",
+      "2026-09-01T17:26:08.768185+00:00",
+      "2026-09-01T17:26:08.770668+00:00",
+      "2026-09-01T17:26:08.773176+00:00",
+      "2026-09-01T17:26:08.775649+00:00",
+      "2026-09-01T17:26:08.778176+00:00",
+      "2026-09-01T17:26:08.780654+00:00",
+      "2026-09-01T17:26:08.783104+00:00",
+      "2026-09-01T17:26:08.785569+00:00",
+      "2026-09-01T17:26:08.788082+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1804,90 +1815,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-08-09T02:34:49.562149+00:00",
-      "player": "PJ",
-      "preview": "[media]",
-      "msg_id": "170504"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-08-09T02:34:49.564686+00:00",
-      "player": "Horia",
-      "preview": "[media]",
-      "msg_id": "170655"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-08-09T07:31:50.565115+00:00",
-      "player": "Horia",
-      "preview": "What do you mean attached?",
-      "msg_id": "171067"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-08-09T07:31:51.717431+00:00",
-      "player": "Horia",
-      "preview": "You mean possession?",
-      "msg_id": "171068"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T07:31:51.719238+00:00",
-      "player": "Anthony",
-      "preview": "@Saiminaminah or oozes turn",
-      "msg_id": "170251"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-09T17:58:29.091173+00:00",
-      "player": "Buffet",
-      "preview": "\"I...yes. The one with all those random creatures chained up",
-      "msg_id": "169545"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-09T21:57:46.539487+00:00",
-      "player": "Ryo",
-      "preview": "Cyrus coughs into his hand and look at his sickly moving mar",
-      "msg_id": "171212"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-09T21:57:46.543032+00:00",
-      "player": "Laetheron",
-      "preview": "They give a little nod, \"Mhm, I think we all did. I don't kn",
-      "msg_id": "169572"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T21:57:46.544876+00:00",
-      "player": "Terra",
-      "preview": "[media]",
-      "msg_id": "171134"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T21:57:46.546759+00:00",
-      "player": "Terra",
-      "preview": "soooo Lai's right thigh opens and draws his laser pistol and",
-      "msg_id": "171135"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T21:57:46.548533+00:00",
-      "player": "Terra",
-      "preview": "that's 2 actions no? third action is firing?",
-      "msg_id": "171136"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-09T21:57:46.550322+00:00",
-      "player": "Terra",
-      "preview": "[media]",
-      "msg_id": "171151"
-    },
     {
       "pid": "52083",
       "time": "2026-08-09T21:57:46.552109+00:00",
@@ -3203,6 +3130,90 @@
       "player": "Anthony",
       "preview": "[media]",
       "msg_id": "176524"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.136263+00:00",
+      "player": "Terra",
+      "preview": "I watch Nikk-Nakk and try again",
+      "msg_id": "176505"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.142888+00:00",
+      "player": "Anthony",
+      "preview": "Livy will make a basic environmental protection module for 1",
+      "msg_id": "176497"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-01T17:26:08.760166+00:00",
+      "player": "Horia",
+      "preview": "Lorn says \"Let me check\"",
+      "msg_id": "176624"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.768185+00:00",
+      "player": "Anthony",
+      "preview": "No because it's a basic item",
+      "msg_id": "176566"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.770668+00:00",
+      "player": "Anthony",
+      "preview": "No because I'm using normal crafting with MP",
+      "msg_id": "176567"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.773176+00:00",
+      "player": "Anthony",
+      "preview": "No because nobody really knows how it works",
+      "msg_id": "176568"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.775649+00:00",
+      "player": "Anthony",
+      "preview": "Idk bro",
+      "msg_id": "176569"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.778176+00:00",
+      "player": "Anthony",
+      "preview": "Would you infuse a rope with MP?",
+      "msg_id": "176570"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.780654+00:00",
+      "player": "Anthony",
+      "preview": "We can say stuff but technically we have been breaking MP ru",
+      "msg_id": "176571"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.783104+00:00",
+      "player": "Anthony",
+      "preview": "Making shit like bags of holding",
+      "msg_id": "176572"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.785569+00:00",
+      "player": "Anthony",
+      "preview": "And other book items",
+      "msg_id": "176573"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-01T17:26:08.788082+00:00",
+      "player": "Anthony",
+      "preview": "MP ruleset is just a bad way to circumvent crafting",
+      "msg_id": "176574"
     }
   ],
   "pending_potw_boons": {},
