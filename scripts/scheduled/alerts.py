@@ -7,6 +7,7 @@ from helpers import build_topic_maps, fmt_date
 import telegram as tg
 from players.history import post_roster
 from players.permanence import is_permanent
+from players.proxy import effective_post_time, is_proxied
 from players.retire import retire_seat
 from scheduled.gm_bottleneck import gm_last_post, gm_note
 from scheduled.inactivity_policy import sweep_and_warn
@@ -117,7 +118,14 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                 gm_last is not None and helpers.days_since(now, gm_last) >= 3
             )
 
-        last_post = datetime.fromisoformat(player["last_post_time"])
+        # ``played_by``: measure this seat through whoever posts for it.
+        # Added 2026-09-01 after Horia reached week 4 while Anthony was
+        # rolling for Lorn in every scene. A redirection, not an
+        # exemption: a quiet proxy still gets this seat swept, and an
+        # unresolvable proxy falls back to the seat's own clock.
+        last_post = effective_post_time(player, pbp_topic_id, state)
+        if last_post is None:
+            continue  # pragma: no cover - no usable timestamp either way
         elapsed_days = helpers.days_since(now, last_post)
         current_week = int(elapsed_days / 7)
         last_warned = player.get("last_warned_week", 0)
@@ -148,7 +156,14 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
 
         # 1, 2, 3 week warnings: only when this campaign wants them, and
         # never while the GM is the one holding the game up.
-        if not warns or _gm_bottleneck[pbp_topic_id]:
+        #
+        # ⭐ And never for a proxied seat. The warning @-mentions the
+        # player to ask why they have not posted; for a character
+        # somebody else rolls for, that question has an answer and the
+        # person receiving it is not the one who could act on it. The
+        # 4-week REMOVAL above still applies, on the proxy's clock:
+        # this suppresses the nagging, not the hygiene.
+        if not warns or _gm_bottleneck[pbp_topic_id] or is_proxied(player):
             continue
         for week_mark in helpers.PLAYER_WARN_WEEKS:
             # Skip week-3 warning for permanent players (it mentions auto-removal)

@@ -153,6 +153,10 @@ def handle(ctx: dict) -> bool:
                         f"✅ @{target_username} → {char_name}")
         return True
 
+    if text.startswith("/setproxy") or text.startswith("/clearproxy"):
+        from dispatch.cmd_proxy import handle_proxy
+        return handle_proxy(text, raw_text, pid, name, state, gid, tid)
+
     if text.startswith("/setpermanent") or text.startswith("/unsetpermanent"):
         is_set = text.startswith("/setpermanent")
         cmd_len = 13 if is_set else 15

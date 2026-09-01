@@ -11,6 +11,76 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.64.0] - 2026-09-01
+
+### Added
+
+**`played_by`: a character somebody else rolls for is played, not absent.**
+
+```
+/setproxy @absent_player @who_posts_for_them
+/clearproxy @absent_player
+```
+
+The bot measures **who posts**, not **who plays**. Anthony, in the C06 group,
+explaining to a prospective recruit why the advert said 4 when seven characters
+are at the table: *"somebody actually does your rolls for you and all... And
+that somebody is me tragically."*
+
+Measured at that moment: **Horia @Nemesiux, 28.84 days, week 4,
+`last_warned_week` 3**, against `PLAYER_REMOVE_WEEKS = 4`. He already met the
+removal condition. **The next hourly run would have swept Lorn out of a scene
+Lorn is standing in.** Ji Yun's player had gone the same way a week earlier,
+removed 2026-08-24 as Caelum (@Thien_Ming) while still being listed as party.
+
+⭐⭐ **It is a redirection, not an exemption**, which is the whole design:
+
+| | `permanent` | `played_by` |
+|---|---|---|
+| Meaning | do not measure this person | measure them **through** someone else |
+| If the other person goes quiet | n/a | **this seat goes quiet too, same clock** |
+| Nudges | week-3 only | all suppressed |
+| Removal | never | **yes, on the proxy's clock** |
+
+A flag that made a seat immortal would inflate the roster in exactly the
+direction the recruit advert must not lie.
+
+⛔ **A broken pointer must not grant immortality.** An unresolvable proxy (typo,
+departed player, renamed account) falls back to the seat's **own** last post
+time. The failure mode is "measured normally", never "exempt forever". Same for
+a proxy in a different campaign: activity elsewhere is not evidence this
+character is being played *here*. One hop only, so a cycle is harmless.
+
+The roster names it inline and does not stay quiet when it fails:
+
+```
+  • Horia (@Nemesiux) [played by @MrNegetZ]
+  • Ghost (@Ghost) [played by @Nobody: NOT ON THIS ROSTER, measured normally]
+```
+
+### Fixed
+
+- Horia's seat on C06 has `played_by: MrNegetZ` set in live state, so the
+  pending removal will not fire.
+
+### Verification
+
+**10 mutations, 10 killed** — including a broken proxy returning `None`, the
+proxy becoming a blanket exemption, accepting a cross-campaign proxy, following
+the chain instead of one hop, and dropping the roster note.
+
+⚠️ **Two of those ten survived the first run, and both were my own tests passing
+for the wrong reason.** The nudge-suppression test put the proxy at 1.55 days,
+which resolves the proxied seat to week 0, so no warning was ever due and
+deleting `is_proxied(player)` changed nothing. The roster-note test called
+`proxy_note` directly and never went through `build_roster_campaign`. Both are
+fixed by making the fixture demand the behaviour: the proxy is now 8 days quiet
+so a warning is genuinely due, and the note is asserted on the posted roster.
+
+Full suite **2711 passed**.
+
+---
+
 ## [4.63.0] - 2026-08-31
 
 ### Fixed
