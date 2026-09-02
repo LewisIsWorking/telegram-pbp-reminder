@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 176788,
+      "thread_id": 25059,
+      "user_id": "8880317264",
+      "user_name": "PJ",
+      "time": "2026-09-02T18:34:36+00:00",
+      "preview": "Baylan to the party once we regroup:\n\"Unless we can immediately find information on where the next possible ghost attack is going to be, we'll most likely end up going to the prison to continue exorcising it... Who knows, we might find info there about this ghost that slashes throats.\"  \u00dc",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2593,9 +2603,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-02 18:34:36",
+      "msg_ids": [
+        176793
+      ],
+      "last_posted_at": "2026-09-02T18:41:17.634821+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
