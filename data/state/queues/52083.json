@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 176699,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-09-02T09:23:44+00:00",
+      "preview": "Lai just continues on keeping an ear on their conversation",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -2275,10 +2285,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 176655,
+      "fingerprint": "2026-09-02 09:23:44",
+      "msg_ids": [
+        176710
+      ],
+      "last_posted_at": "2026-09-02T09:39:35.164025+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-09-01T17:26:08.788369+00:00"
     },
     "145045": {
