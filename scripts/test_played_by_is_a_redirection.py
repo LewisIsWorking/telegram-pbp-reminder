@@ -52,8 +52,8 @@ def _state(*seats) -> dict:
 
 
 # The real 2026-09-01 pair, names kept so the fixture is recognisable.
-def _horia(**kw):
-    return _seat("Horia", "Nemesiux", 28.84, **kw)
+def _horia(days=28.84, **kw):
+    return _seat("Horia", "Nemesiux", days, **kw)
 
 
 def _anthony(days=1.55):
@@ -88,8 +88,20 @@ class TestItIsARedirectionNotAnExemption:
         # Anthony stops posting for 40 days. BOTH seats go quiet. A
         # feature that kept Horia active here would be `permanent` with
         # extra steps, and would inflate the recruit advert.
-        state = _state(_horia(played_by="MrNegetZ"), _anthony(days=40))
+        #
+        # ⚠️ AMENDED 2026-09-02: Horia's OWN time is now 50d, not the
+        # fixture's 28.84d. Resolution takes the LATER of the two since
+        # `played_by` began surviving a post, so at 28.84d he was still
+        # active on his own account and this asserted the wrong thing.
+        # For the proxy to drag him down, he has to be quiet too.
+        state = _state(_horia(days=50, played_by="MrNegetZ"),
+                       _anthony(days=40))
         assert _active_players(_PID, state, {}) == []
+
+    # ⭐ The other half of this rule (an ACTIVE seat must not be dragged
+    # down by a quiet proxy) lives in
+    # test_posting_must_not_erase_gm_settings, with the live case that
+    # produced it. Not duplicated here.
 
     def test_the_proxy_itself_is_still_measured_normally(self):
         state = _state(_horia(played_by="MrNegetZ"), _anthony(days=40))
@@ -122,12 +134,15 @@ class TestABrokenPointerMustNotGrantImmortality:
         assert effective_post_time(seat, _PID, state).isoformat() == _ago(28.84)
 
     def test_a_proxy_cycle_terminates(self):
-        # One hop only: A resolves to B's own time, B to A's own time.
-        # No recursion, no infinite loop, no exemption for either.
+        # One hop only: no recursion, no infinite loop, no exemption.
+        # ⚠️ AMENDED 2026-09-02: resolution now takes the LATER of the
+        # seat's own time and its proxy's, so a mutual pair both resolve
+        # to the more recent of the two (50d). The property that matters
+        # is unchanged and asserted last: neither is rescued by the cycle.
         a = _seat("A", "aaa", 50, played_by="bbb")
         b = _seat("B", "bbb", 60, played_by="aaa")
         state = _state(a, b)
-        assert effective_post_time(a, _PID, state).isoformat() == _ago(60)
+        assert effective_post_time(a, _PID, state).isoformat() == _ago(50)
         assert effective_post_time(b, _PID, state).isoformat() == _ago(50)
         assert _active_players(_PID, state, {}) == []
 
