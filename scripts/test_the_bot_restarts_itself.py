@@ -32,6 +32,12 @@ from preflight.self_repair import (REPAIR_AFTER_HOURS, dispatch,
                                    should_repair)
 
 
+# An age that BOTH repairs and alerts. ⚠️ REPAIR_AFTER_HOURS + 5 lands in
+# a deliberate lull in the alert cadence (broken_hours 4 is skipped), so a
+# fixture there proves nothing about the message.
+_ALERTING_AGE = 3.5
+
+
 class TestWhenItDecidesToRestartTheBot:
     def test_a_stale_heartbeat_triggers_a_restart(self):
         assert should_repair(REPAIR_AFTER_HOURS + 0.1)
@@ -147,15 +153,19 @@ class TestTheWatchdogActuallyCallsIt:
         # candidate cannot test which candidate is chosen.
         monkeypatch.setenv("GIST_TOKEN", "pat-123")
         monkeypatch.setenv("GITHUB_TOKEN", "auto-456")
+        # ⚠️ The repair outcome arrives as send_alert's `extra` since
+        # 2026-09-02, not as a separate notify. See
+        # test_the_watchdog_does_not_spam_orphans for why.
         watchdog.watch(fetch_conclusions=lambda r, t: None,
-                       send_alert=lambda *a: None,
+                       send_alert=lambda reasons, age, repo, extra="":
+                           calls["notify"].append(extra),
                        notify=lambda text: calls["notify"].append(text))
         return calls
 
     def test_a_stale_heartbeat_makes_it_dispatch(self, monkeypatch):
         # ⭐⭐ The end-to-end behaviour Lewis asked for: the bot restarts
         # itself instead of staying dead.
-        calls = self._watch(monkeypatch, REPAIR_AFTER_HOURS + 5)
+        calls = self._watch(monkeypatch, _ALERTING_AGE)
         assert calls["dispatch"] == [("owner/repo", "auto-456")], (
             "the watchdog must dispatch with the AUTOMATIC token; reaching "
             "for the PAT is what returned HTTP 403 on 2026-09-02")
@@ -168,6 +178,6 @@ class TestTheWatchdogActuallyCallsIt:
         assert calls["dispatch"] == [] and calls["notify"] == []
 
     def test_a_failed_dispatch_is_still_reported(self, monkeypatch):
-        calls = self._watch(monkeypatch, REPAIR_AFTER_HOURS + 5,
+        calls = self._watch(monkeypatch, _ALERTING_AGE,
                             dispatch_result=(False, "HTTP 403"))
         assert calls["notify"] and "cannot restart itself" in calls["notify"][0]

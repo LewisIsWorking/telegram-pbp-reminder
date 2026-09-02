@@ -11,6 +11,51 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.69.1] - 2026-09-02
+
+### Fixed
+
+**The watchdog was manufacturing the exact harm it exists to prevent.** Lewis:
+*"verify, make sure it's safe."* It was not.
+
+⛔⛔ `watch()` called `notify()` on **every** repair attempt, ungated. The
+watchdog runs twice an hour, so a day of downtime was **48 Telegram messages**.
+Each one is an unrecorded bot message, which becomes **permanently undeletable
+after 48 hours** — precisely the thing the preflight gate pauses posting to
+avoid. The gate was saying *"any message sent now would have its id lost"* while
+the watchdog beside it sent 48 of them.
+
+Lewis's own paste showed the shape: **PAUSED, self-repair, PAUSED**. Three
+messages for one outage.
+
+Modelled over a 24h outage, watchdog firing every 30 minutes:
+
+```
+ungated (before)   ~46 messages, all permanent orphans after 48h
+alert cadence      <=8 messages, and >=1 so a human is still reached
+```
+
+⭐ **The dispatch is unchanged and still fires on every tick.** It is free, the
+concurrency group serialises it, and it is the actual recovery. Only the
+*message* is rationed. The repair outcome now rides on the single pause alert
+via `send_alert(..., extra=...)` instead of being a second message.
+
+### Verification
+
+**6 mutations, 6 killed** — restoring the ungated notify, bypassing the cadence,
+dropping the repair outcome from the alert, and rationing the *repair* along
+with the message.
+
+⚠️ One survived the first pass: `send_alert` silently discarding the `extra` it
+was handed. Every test stubbed `send_alert`, so **the real one could drop the
+repair outcome and nothing would notice**. Fourth time this session that the
+harness has caught me testing pieces rather than wiring; now asserted against
+the real `gate.send_alert`.
+
+Full suite **2799 passed**.
+
+---
+
 ## [4.69.0] - 2026-09-02
 
 ### Fixed

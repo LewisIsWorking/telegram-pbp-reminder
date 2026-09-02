@@ -29,12 +29,18 @@ from preflight.self_repair import (dispatch, dispatch_token, repair_message,
                                    should_repair)
 
 
-def watch(fetch_conclusions, send_alert, notify) -> int:
+def watch(fetch_conclusions, send_alert, notify=None) -> int:
     """Report, then repair. Writes nothing.
 
     Collaborators are passed in rather than imported so this can be
     tested without patching module globals, and so it cannot reach
     ``write_heartbeat`` even by accident.
+
+    ⚠️ ``notify`` is accepted and unused since 2026-09-02. The repair
+    outcome now rides on ``send_alert``, so there is exactly one message
+    per alert. The parameter stays because gate.py passes it and a
+    future caller may want an ungated channel; it is deliberately NOT
+    wired to anything that fires per-tick.
 
     ⚠️ It deliberately never writes a heartbeat. Doing so would refresh
     the very signal that proves the outage, and the watchdog would then
@@ -49,15 +55,27 @@ def watch(fetch_conclusions, send_alert, notify) -> int:
 
     reasons = halt_reasons(streak, age_hours)
     print(f"[watchdog] {explain(reasons, age_hours)}")
-    if reasons and should_alert(broken_hours(streak, age_hours)):
-        send_alert(reasons, age_hours, repo)
 
-    # ⭐ Then try to fix it. A workflow_dispatch satisfies the main
-    # workflow's own condition regardless of what its cron literals say,
-    # so this recovers the 2026-08-31 failure with no human involved.
-    # See preflight/self_repair.py for why it needs a PAT.
+    # ⭐ Repair FIRST, so its outcome can ride on the one alert below.
+    # A workflow_dispatch satisfies the main workflow's own condition
+    # regardless of what its cron literals say, so this recovers the
+    # 2026-08-31 failure with no human involved.
+    #
+    # ⚠️ The DISPATCH runs on every tick while the bot is down. It is
+    # free, the concurrency group serialises it, and it is the actual
+    # recovery. Only the MESSAGE is rationed.
+    repair = ""
     if should_repair(age_hours):
         ok, detail = dispatch(repo, dispatch_token(os.environ))
         print(f"[watchdog] self-repair: {detail}")
-        notify(repair_message(ok, detail, age_hours))
+        repair = repair_message(ok, detail, age_hours)
+
+    # ⛔⛔ ONE MESSAGE, ON THE ALERT CADENCE. Corrected 2026-09-02.
+    # This used to notify on every repair attempt, ungated: 48 Telegram
+    # messages a day during an outage, each an unrecorded bot message
+    # that becomes permanently undeletable after 48h. The watchdog was
+    # manufacturing the exact harm it exists to prevent, during the one
+    # window in which posting is forbidden for that reason.
+    if reasons and should_alert(broken_hours(streak, age_hours)):
+        send_alert(reasons, age_hours, repo, extra=repair)
     return 0
