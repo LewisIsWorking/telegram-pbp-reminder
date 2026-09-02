@@ -11,6 +11,73 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.70.0] - 2026-09-02
+
+### Fixed
+
+⛔⛔ **Posting deleted everything a GM had set about a player, and had done for
+months.** `_track_player` did `state["players"][key] = {...}` — a wholesale
+replace of the record with the eight fields the bot observes. Anything else on
+it was discarded on that player's next message.
+
+Found by reading the live Kibwe log: Horia had `played_by: MrNegetZ` set on
+09-01, posted on 09-02, and the field was gone.
+
+**`/setpermanent` was the real casualty.** Measured against live state:
+
+```
+records with permanent=True in state: 0
+config permanent_user_ids:            []
+field names across ALL 40-odd records:
+  campaign_name, first_name, last_name, last_post_time,
+  last_warned_week, pbp_topic_id, user_id, username
+```
+
+Exactly the eight the writer produces, and nothing else. Meanwhile
+`roster_members._active_players` carries a long, carefully argued docstring
+about the permanent rule (L20, *"Lewis explicitly flagged this design on
+2026-05-10"*) and a warning not to add a recency check to it. **The rule was
+elaborately documented and could not survive a single post.**
+
+⭐ A player record is two things with two owners: what the bot **observes**,
+which must always win, and what a human **decided**, which the bot has no
+business touching. The write path conflated them. It now merges: the eight
+observed fields overwrite, everything else survives, including fields nobody
+has invented yet.
+
+**A proxy no longer makes an active player look quiet.** Now that `played_by`
+survives a post, `effective_post_time` returns the **later** of the seat's own
+time and its proxy's. Horia posted on 09-02 while proxied by Anthony;
+returning the proxy's time blindly would measure an active player against
+somebody else's silence and sweep him for it. ⚠️ This does not weaken
+"redirection, not exemption": if both are quiet the seat is still swept.
+
+### Changed
+
+- `dispatch/tracking.py` 210 to 112 lines; the per-player record update moved
+  to `dispatch/track_player.py`. The split is where the bot's observations meet
+  a human's decisions, which is exactly what went wrong.
+- Horia's `played_by` restored in live state, now that it survives his posts.
+
+### Verification
+
+**7 mutations, 7 killed** — restoring the wholesale replace, stopping the
+observed fields winning, and both directions of the proxy `max()`.
+
+⚠️ Two survived the first pass, both fixture weaknesses worth naming:
+- `test_the_post_time_is_updated` compared two separately-built fixtures whose
+  29-day-old timestamps differ **by microseconds in the wrong direction**, so a
+  mutation that kept the old value still satisfied `rec > before`. **Two
+  nearly-equal values cannot test which one was chosen.** Now asserted against
+  `now`.
+- Nothing covered a proxy record carrying an unparseable timestamp, so
+  returning `None` there survived. That would make the seat unmeasurable, which
+  reads as "not active" and sweeps a player who is posting.
+
+Full suite **2809 passed**.
+
+---
+
 ## [4.69.1] - 2026-09-02
 
 ### Fixed

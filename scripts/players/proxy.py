@@ -84,7 +84,21 @@ def effective_post_time(player: dict, pid: str, state: dict) -> datetime | None:
     if proxy is None:
         return own
     # One hop: the proxy's OWN time, never the proxy's proxy.
-    return _parse(proxy.get("last_post_time")) or own
+    other = _parse(proxy.get("last_post_time"))
+    if other is None:
+        return own
+    if own is None:
+        return other
+    # ⭐⭐ THE LATER OF THE TWO, not simply the proxy's. Corrected
+    # 2026-09-02, and it is live: Horia was proxied by Anthony on 09-01
+    # and then posted himself on 09-02. Returning the proxy's time
+    # blindly would measure an ACTIVE player against somebody else's
+    # silence, and sweep him for it.
+    #
+    # ⚠️ This does not weaken "a redirection, not an exemption". If BOTH
+    # are quiet the seat is quiet and is swept exactly as before; the max
+    # only ever helps a seat that is genuinely posting.
+    return max(own, other)
 
 
 def proxy_note(player: dict, pid: str, state: dict) -> str:
