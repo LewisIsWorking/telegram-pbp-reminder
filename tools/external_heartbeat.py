@@ -8,6 +8,14 @@ it shares the exact failure mode it exists to detect. It recovers a
 *broken workflow*. It cannot recover a *scheduler that has stopped
 delivering*, because then the watchdog does not run either.
 
+⚠️ **2026-09-02: this is now a SECOND line of defence, not the only
+one.** The in-repo watchdog can restart the bot on its own since its job
+was given `actions: write` (it was failing with HTTP 403 on `read`, and
+no PAT was ever needed: GitHub exempts `workflow_dispatch` from the
+GITHUB_TOKEN recursion guard). This script still matters, because it is
+the only thing that survives GitHub delivering **no schedules at all**,
+which is precisely what the watchdog cannot survive.
+
 Measured 2026-09-01, **after** moving the crons off the contended
 `:00`/`:30` minutes, which was supposed to fix delivery:
 

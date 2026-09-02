@@ -25,7 +25,8 @@ from datetime import datetime, timezone
 from preflight.heartbeat import heartbeat_age_hours, read_heartbeat
 from preflight.prior_runs import (broken_hours, consecutive_failures,
                                   explain, halt_reasons, should_alert)
-from preflight.self_repair import dispatch, repair_message, should_repair
+from preflight.self_repair import (dispatch, dispatch_token, repair_message,
+                                   should_repair)
 
 
 def watch(fetch_conclusions, send_alert, notify) -> int:
@@ -56,7 +57,7 @@ def watch(fetch_conclusions, send_alert, notify) -> int:
     # so this recovers the 2026-08-31 failure with no human involved.
     # See preflight/self_repair.py for why it needs a PAT.
     if should_repair(age_hours):
-        ok, detail = dispatch(repo, os.environ.get("GIST_TOKEN", ""))
+        ok, detail = dispatch(repo, dispatch_token(os.environ))
         print(f"[watchdog] self-repair: {detail}")
         notify(repair_message(ok, detail, age_hours))
     return 0

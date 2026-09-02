@@ -11,6 +11,63 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.69.0] - 2026-09-02
+
+### Fixed
+
+⛔⛔ **The self-repair fired for real on the outage it was built for, and
+failed. I had the token rule backwards.**
+
+```
+🔧 Bot self-repair: no state push for 2.6h (limit 2h).
+⛔ Could not force a run: HTTP 403: the token cannot dispatch workflows.
+The bot is down and cannot restart itself.
+```
+
+`self_repair.py` was written asserting that `GITHUB_TOKEN` cannot start a run,
+so it reached for a PAT and the watchdog job held `actions: read`. GitHub's
+docs say the opposite:
+
+> *"events triggered by the `GITHUB_TOKEN` will not create a new workflow run,
+> **with the following exceptions: `workflow_dispatch` and `repository_dispatch`
+> events always create workflow runs**."*
+
+The recursion guard I was thinking of is real, and `workflow_dispatch` is
+explicitly exempt from it. **The automatic token works, needs no setup from
+anyone, and the whole thing only ever needed one line: `actions: write`.**
+
+- The watchdog job now holds `actions: write`.
+- `dispatch_token()` prefers `GITHUB_TOKEN` and keeps `GIST_TOKEN` as a
+  fallback for a repository with locked-down default permissions.
+- Every comment, docstring and doc asserting the wrong rule is corrected
+  rather than quietly rewritten, because the wrong version was load-bearing
+  for a real design decision.
+
+⭐ **The honest-failure design is what made this a five-minute diagnosis.** The
+message named the exact missing scope instead of failing silently, which is why
+a wrong assumption surfaced as one readable line rather than a mystery outage.
+A self-repair that quietly did nothing would still be wrong today.
+
+⚠️ `tools/external_heartbeat.py` is now a **second** line of defence rather than
+the only one. It still matters: it is the only thing that survives GitHub
+delivering **no schedules at all**, which is exactly what the watchdog cannot
+survive.
+
+### Verification
+
+**8 mutations, 8 killed** — including reverting `actions` to `read` (the real
+403), preferring the PAT, an empty automatic token shadowing the PAT, and the
+403 message no longer naming the fix.
+
+⚠️ One survived the first pass: reverting the watchdog to read `GIST_TOKEN`
+directly. The wiring fixture set **only** the PAT, so both token orders passed
+it. **A fixture that supplies one candidate cannot test which candidate is
+chosen.** It now sets both and asserts the automatic one is used.
+
+Full suite **2790 passed**.
+
+---
+
 ## [4.68.1] - 2026-09-02
 
 ### Changed
