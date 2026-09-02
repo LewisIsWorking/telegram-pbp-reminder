@@ -11,6 +11,73 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.70.1] - 2026-09-02
+
+### Fixed
+
+⛔⛔ **`/markdone` in the bot topic crashed, silently.** `dispatch/bot_topic.py`
+builds its ctx by hand and set `"parsed": None`, because there is no Telegram
+message to parse there. **Seven handlers in `_HANDLERS` open with
+`parsed["raw_text"]` before checking their own command word**: `cmd_gm`,
+`cmd_trackers`, `cmd_trackers_items`, `cmd_conditions_hp`, `cmd_clocks`,
+`cmd_votes_timers`, `cmd_player`. Any bot-topic command reaching the chain
+raised `TypeError: 'NoneType' object is not subscriptable`, and `router.py`
+wraps the loop in `except Exception: print(...)`, so the GM tapped a command
+that is in the Telegram menu and **nothing happened at all**.
+
+Only `/markdone` got that far: a bot-topic command must pass `cmd_info` and
+`cmd_info_ext` first, and it is the one read command handled by the last entry
+in `_HANDLERS`.
+
+⭐ Fixing `cmd_gm` alone just moved the identical crash to `cmd_trackers`, which
+is the whole lesson. The fix is owed at the source, once, not at seven call
+sites: `bot_topic` now supplies a real `parsed` dict.
+
+⛔ **`/markdone Kibwe 3` from the bot topic could never have worked either.**
+`resolve_campaign` matched the whole argument string, so it looked up a campaign
+called "kibwe 3", found none, and answered *"Specify a campaign"*, while
+`markdone.py`'s own docstring says it works "in any PBP topic or bot topic". It
+now walks prefixes longest-first, so multi-word campaign names ("The Junction")
+still beat their own first word.
+
+⚠️ **The authorisation gate in `cmd_gm.handle` now comes first.** It sat below
+twelve ctx lookups, one of which was the crash above, so a non-GM could take
+down the handler chain on a command they were not allowed to run.
+
+### Changed
+
+`cmd_gm.handle` canonicalises the pid **once**, at the top, for every branch.
+Four branches did it by hand and seven did not, which is how `/setproxy`
+inherited the wrong shape from being written next to one that did not.
+
+⚠️ **Honest scope, and a correction to my own measurement.** I first wrote this
+up as *"17 topics affected across every campaign"*. That was wrong. Both callers
+already canonicalise: `parsing/message.py:50` does
+`maps.to_canonical[thread_id_str]` and rejects any thread that is not a pbp
+topic at all, and `bot_topic` resolves via `maps.name_to_pid`. The reachable
+blast radius was **zero topics**; this is defence in depth. The number came from
+counting secondary and chat topics in the config instead of tracing which of
+them can deliver a message to that function. **Counting things in the config is
+not measuring the code.**
+
+### Internal
+
+- New `dispatch/gm_args.py` (`canonical_pid`, `campaign_name`, `arg`) and
+  `dispatch/campaign_lookup.py` (`resolve_campaign`), extracted so `cmd_gm.py`
+  and `bot_topic.py` come back under the 200-line limit. `resolve_campaign` is
+  re-exported from `bot_topic` so existing imports keep working.
+- Three new test files, 34 tests. All five changed modules at **100%**
+  coverage; suite 2809 to 2843.
+- **12 of 12 mutations killed.** Three survived a first attempt, and each named
+  a test that was passing for the wrong reason: a fixture with an empty roster
+  (a loop iterating nothing cannot test which candidate it picks), a per-seat
+  equality check blind to a duplicate record written under a different key, and
+  a bot-topic test whose command never reached a handler, so "nothing raised"
+  was indistinguishable from "nothing ran". The regression tests now assert
+  **which handlers were reached**, not just that no exception escaped.
+
+---
+
 ## [4.70.0] - 2026-09-02
 
 ### Fixed
