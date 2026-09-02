@@ -78,16 +78,27 @@ def fetch_conclusions(repo: str, token: str, *, branch: str = "main",
         return None
 
 
-def send_alert(reasons: list, age_hours: float | None, repo: str) -> None:
+def send_alert(reasons: list, age_hours: float | None, repo: str,
+               extra: str = "") -> None:
     """Tell a human, on the streak lengths that warrant it.
 
     ⚠️ This post is itself an unrecorded bot message, and so becomes an
     orphan - the exact harm the gate exists to prevent. It is worth it at
     most once a day, because it is the only thing that brings a human to
     fix the cause. Nothing else the bot sends earns that trade.
+
+    ⭐ ``extra`` carries the self-repair outcome so it rides on THIS
+    message instead of being a second one. Added 2026-09-02: the
+    watchdog was notifying on every repair attempt, ungated, which is
+    48 messages a day during an outage. Each one is an unrecorded bot
+    message that becomes permanently undeletable after 48h, so the
+    watchdog was manufacturing the exact harm it exists to prevent,
+    during the very window in which posting is forbidden for that reason.
     """
-    notify(f"\U0001f6d1 Bot posting PAUSED\n\n{explain(reasons, age_hours)}\n\n"
-           f"https://github.com/{repo}/actions/workflows/{WORKFLOW_FILE}")
+    body = f"\U0001f6d1 Bot posting PAUSED\n\n{explain(reasons, age_hours)}"
+    if extra:
+        body += f"\n\n{extra}"
+    notify(f"{body}\n\nhttps://github.com/{repo}/actions/workflows/{WORKFLOW_FILE}")
 
 
 def notify(text: str) -> None:
