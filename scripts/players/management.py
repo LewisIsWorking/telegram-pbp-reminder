@@ -82,7 +82,13 @@ def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
     first_name = name_parts[0]
     last_name = name_parts[1] if len(name_parts) > 1 else ""
 
-    state["players"][player_key] = {
+    # Merge, for the same reason dispatch/track_player does: a record
+    # holds the bot's observations AND a GM's decisions, and only the
+    # first set belongs to the writer. Re-running /addplayer over an
+    # existing seat must not silently drop its `permanent` or
+    # `played_by`. See the 2026-09-02 note in track_player.py.
+    record = dict(state["players"].get(player_key, {}))
+    record.update({
         "user_id": placeholder_id,
         "first_name": first_name,
         "last_name": last_name,
@@ -91,7 +97,8 @@ def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
         "pbp_topic_id": pid,
         "last_post_time": now_iso,
         "last_warned_week": 0,
-    }
+    })
+    state["players"][player_key] = record
 
     # Also clear from removed_players if they were previously removed
     for rkey in list(state["removed_players"].keys()):

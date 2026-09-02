@@ -12,6 +12,11 @@ import helpers
 import telegram as tg
 from dispatch.cmd_search import handle_search
 from dispatch.bot_topic_dice import handle_dice
+# Re-exported deliberately: resolve_campaign lived in this module until
+# 2026-09-02 and is imported from here by name elsewhere, so moving the
+# body out must not move the name. See dispatch/campaign_lookup.py for
+# why the whole-string match it used to do was wrong.
+from dispatch.campaign_lookup import resolve_campaign
 from dispatch.gm_poll_cmds import handle_sessionplayed, handle_swimmingdone, poll_week_num as _poll_week_num
 from set_commands import EVERYONE_COMMANDS, GM_COMMANDS
 
@@ -29,20 +34,6 @@ def _poll_week_num(week_iso: str) -> int:
         return datetime.strptime(date_part, "%Y-%m-%d").isocalendar()[1]  # pragma: no cover
     except (ValueError, AttributeError):  # pragma: no cover
         return 0  # pragma: no cover
-
-
-def resolve_campaign(args: str, maps) -> tuple[str | None, str | None]:
-    """Resolve a campaign name/keyword to (pid, campaign_name) or (None, None)."""
-    key = args.strip().lower()
-    if not key:
-        return None, None
-    pid = maps.name_to_pid.get(key)
-    if pid:
-        return pid, maps.to_name[pid]
-    for name, p in maps.name_to_pid.items():
-        if name.startswith(key):
-            return p, maps.to_name[p]
-    return None, None
 
 
 def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
@@ -189,7 +180,17 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         "config": config,
         "state": state,
         "maps": maps,
-        "parsed": None,
+        # ⛔⛔ This was `None`, and SEVEN handlers in _HANDLERS open with
+        # `parsed["raw_text"]` before checking their own command word, so
+        # `/markdone` here crashed and router.py turned that into
+        # silence. Full account: the module docstring of
+        # test_bot_topic_supplies_a_parsed_message.py.
+        #
+        # `text`, not the message's own text: for a read command the
+        # campaign name has already been stripped out of it above, so the
+        # `parsed["raw_text"][N:]` slicing those handlers do lines up
+        # with `cmd_word`.
+        "parsed": {"raw_text": text, "user_name": user_name},
     }
 
     for handler in handlers:
