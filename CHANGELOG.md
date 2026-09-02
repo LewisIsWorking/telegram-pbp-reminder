@@ -11,6 +11,46 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.70.2] - 2026-09-02
+
+### Fixed
+
+⛔ **The recruit advert linked to the campaign's in-character thread, not its
+chat topic.** Lewis, on the live C01 post:
+
+> *"why does this not link to DF chat? https://t.me/Path_Wars/21514 is the DF
+> Chat."*
+
+`build_recruit_message` used `pair["pbp_topic_ids"][0]`, so C01's advert pointed
+at `25059`. The link sits directly under *"↗ Know someone?"*, which makes it the
+one you forward to a prospective player, and it was dropping them somewhere they
+cannot ask to join without posting out of character in the middle of a scene.
+
+⚠️ **It mattered most in the mirror copy.** The advert goes to two places: the
+campaign's own chat topic, where the reader is already in the right room, and
+the standing "what campaign needs people most" topic in Nudge Bot Notifications,
+where **this link is the only route to the campaign at all**. There the wrong
+link was the whole message.
+
+Now uses `chat_topic_id`, falling back to the pbp topic for a campaign
+configured without one, since an advert with no way to reach the campaign is
+worse than one pointing at the wrong thread.
+
+### Internal
+
+- New `scheduled/recruit_link.py`, extracted so `recruit_focus.py` stays under
+  the 200-line limit (214 to 198) and the reasoning lives next to the decision.
+- Verified by rendering the advert against the **live config and state**: byte
+  for byte the message Lewis pasted, with `21514` in place of `25059`.
+- Reverting the one-line change fails two of the four new tests, including one
+  built from the real C01 topic ids so the case stays recognisable. Both changed
+  modules at 100% coverage; suite 2843 to 2846.
+- Checked the other recruitment surfaces (`recruiting/`, `commands/recruit_ads`,
+  `scheduled/community_roster`): none build a campaign link, so this was the
+  only place with the defect.
+
+---
+
 ## [4.70.1] - 2026-09-02
 
 ### Fixed

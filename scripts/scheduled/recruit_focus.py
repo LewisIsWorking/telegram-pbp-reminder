@@ -39,6 +39,7 @@ import helpers
 import telegram as tg
 from commands.roster import _active_players
 from commands.roster_members import effective_target
+from scheduled.recruit_link import recruit_link
 from scheduled.recruit_roster_line import current_players_line
 
 _GATE_HOURS = 24
@@ -189,8 +190,9 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
         lines.append("↗ Know someone? This is the only campaign currently "
                      "below target.")
 
-    topic = pair["pbp_topic_ids"][0]
-    username = config.get("group_username", "")
-    if username:
-        lines.append(f"🔗 https://t.me/{username}/{topic}")
+    # ⛔ The CHAT topic, not the pbp topic (Lewis, 2026-09-02). Why, and
+    # why it matters most in the mirror copy: scheduled/recruit_link.py.
+    link = recruit_link(pair, config)
+    if link:
+        lines.append(link)
     return "\n".join(lines), pair

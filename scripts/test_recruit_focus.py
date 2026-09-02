@@ -147,8 +147,47 @@ class TestMessage:
         text, _chosen = build_recruit_message(cfg, _state(**{"100": 5}))
         assert "1 seat open" in text and "1 seats" not in text
 
-    def test_links_to_the_campaign_topic(self):
-        assert "🔗 https://t.me/Path_Wars/51357" in self._text()
+    def test_links_to_the_chat_topic_not_the_pbp_topic(self):
+        # ⛔ Lewis, 2026-09-02, on the live C01 advert: "why does this not
+        # link to DF chat?" It linked to 25059, the in-character thread.
+        # The line answers "Know someone?", so it is the link you forward
+        # to a prospective player, and it dropped them somewhere they
+        # cannot ask to join without posting OOC in the middle of a
+        # scene. _pair() sets chat_topic_id to pid + 1.
+        text = self._text()
+        assert "🔗 https://t.me/Path_Wars/51358" in text
+        assert "https://t.me/Path_Wars/51357" not in text, (
+            "still linking to the in-character pbp topic")
+
+    def test_the_real_c01_advert_links_to_df_chat(self):
+        # The live numbers from the message Lewis pasted, so the case is
+        # recognisable rather than abstract: C01 pbp 25059, chat 21514.
+        from scheduled.recruit_focus import build_recruit_message
+        cfg = _cfg({"name": "Doomsday Funtime", "code": "C01",
+                    "chat_topic_id": 21514, "pbp_topic_ids": [25059, 22566],
+                    "roster_target": 6})
+        text, _ = build_recruit_message(cfg, _state(**{"25059": 3}))
+        assert "🔗 https://t.me/Path_Wars/21514" in text
+        assert "25059" not in text
+
+    def test_a_private_group_gets_no_link_line_rather_than_a_fake_one(self):
+        # Private groups have no t.me/<name> form. Omitting the line is
+        # the honest outcome; a half-built URL would look clickable.
+        from scheduled.recruit_link import recruit_link
+        pair = {"chat_topic_id": 21514, "pbp_topic_ids": [25059]}
+        assert recruit_link(pair, {}) == ""
+        assert recruit_link(pair, {"group_username": "Path_Wars"}) == (
+            "🔗 https://t.me/Path_Wars/21514")
+
+    def test_a_campaign_with_no_chat_topic_still_gets_a_link(self):
+        # can-fail counterpart: the fallback must not silently drop the
+        # link entirely. A recruit advert with no way to reach the
+        # campaign is worse than one pointing at the wrong thread.
+        from scheduled.recruit_focus import build_recruit_message
+        cfg = _cfg({"name": "Camp C01", "code": "C01",
+                    "pbp_topic_ids": [100], "roster_target": 6})
+        text, _ = build_recruit_message(cfg, _state(**{"100": 5}))
+        assert "🔗 https://t.me/Path_Wars/100" in text
 
     def test_counts_the_other_short_campaigns(self):
         assert "biggest gap of 2 campaigns" in self._text()
