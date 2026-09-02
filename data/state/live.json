@@ -1,5 +1,5 @@
 {
-  "offset": 619358800,
+  "offset": 619358805,
   "topics": {
     "52083": {
       "last_message_time": "2026-09-02T09:23:44+00:00",
@@ -208,7 +208,8 @@
         "1698524397",
         "5443237599",
         "8255519522",
-        "8902183011"
+        "8902183011",
+        "6144366145"
       ],
       "last_ping_day": 739861,
       "votes": {
@@ -218,7 +219,8 @@
           "8902183011"
         ],
         "1": [
-          "8255519522"
+          "8255519522",
+          "6144366145"
         ],
         "0": []
       }
@@ -367,10 +369,10 @@
   },
   "last_potw_roundup": "2026-W35",
   "last_potw_countdown": "2026-W35",
-  "schedule_post_msg_id": 718,
+  "schedule_post_msg_id": 719,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-27",
-  "last_pin_alert_ts": "2026-09-02T09:39:44.334025+00:00",
+  "last_pin_alert_ts": "2026-09-02T09:39:45.485038+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 176622,
   "last_recruit_focus": "2026-09-01T16:33:51.263367+00:00",
