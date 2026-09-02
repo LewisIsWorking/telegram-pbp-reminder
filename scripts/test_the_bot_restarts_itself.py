@@ -28,7 +28,8 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 
 from preflight.self_repair import (REPAIR_AFTER_HOURS, dispatch,
-                                   repair_message, should_repair)
+                                   dispatch_token, repair_message,
+                                   should_repair)
 
 
 class TestWhenItDecidesToRestartTheBot:
@@ -51,10 +52,9 @@ class TestWhenItDecidesToRestartTheBot:
 class TestItCannotFailSilently:
     """A self-repair that quietly does nothing is worse than none."""
 
-    def test_no_pat_is_reported_not_swallowed(self):
+    def test_no_token_at_all_is_reported_not_swallowed(self):
         ok, detail = dispatch("owner/repo", "")
-        assert not ok
-        assert "GIST_TOKEN" in detail and "GITHUB_TOKEN cannot" in detail
+        assert not ok and "no token available" in detail
 
     def test_no_repo_is_reported(self):
         ok, detail = dispatch("", "tok")
@@ -69,15 +69,48 @@ class TestItCannotFailSilently:
         text = repair_message(True, "dispatched", 5.0)
         assert "Forced a run via workflow_dispatch" in text
 
-    def test_a_403_names_the_scope_needed(self):
-        # The operator must be able to act on the message without
-        # reading the source.
+    def test_a_403_names_the_fix(self):
+        # ⭐ This message is why a wrong design was caught in one reading
+        # rather than becoming a mystery. It fired for real on
+        # 2026-09-02 and named exactly what was missing.
         import urllib.error
         from unittest.mock import patch
         err = urllib.error.HTTPError("u", 403, "Forbidden", {}, None)
         with patch("urllib.request.urlopen", side_effect=err):
             ok, detail = dispatch("owner/repo", "tok")
-        assert not ok and "workflow" in detail and "actions:write" in detail
+        assert not ok and "actions: write" in detail
+
+
+class TestTheAutomaticTokenIsPreferred:
+    """⛔⛔ I had the token rule backwards, and it cost a real outage.
+
+    ``self_repair`` was written asserting that ``GITHUB_TOKEN`` cannot
+    start a run, so it reached for a PAT. It then fired for real on the
+    outage it was built for and returned **HTTP 403**.
+
+    GitHub's docs say the opposite: *"events triggered by the
+    GITHUB_TOKEN will not create a new workflow run, **with the
+    following exceptions: workflow_dispatch and repository_dispatch
+    events always create workflow runs**."*
+
+    The automatic token works and needs no setup by anyone. Preferring
+    the PAT makes self-repair depend on a secret that may not exist.
+    """
+
+    def test_the_automatic_token_wins(self):
+        assert dispatch_token({"GITHUB_TOKEN": "auto",
+                               "GIST_TOKEN": "pat"}) == "auto"
+
+    def test_the_pat_is_the_fallback(self):
+        assert dispatch_token({"GIST_TOKEN": "pat"}) == "pat"
+
+    def test_neither_present_is_empty_not_an_error(self):
+        assert dispatch_token({}) == ""
+
+    def test_an_empty_automatic_token_falls_through(self):
+        # can-fail counterpart: an unset secret arrives as "", which must
+        # not shadow a working PAT.
+        assert dispatch_token({"GITHUB_TOKEN": "", "GIST_TOKEN": "pat"}) == "pat"
 
     def test_a_network_error_does_not_raise(self):
         import urllib.error
@@ -108,8 +141,12 @@ class TestTheWatchdogActuallyCallsIt:
                             lambda repo, token: calls["dispatch"].append(
                                 (repo, token)) or dispatch_result)
         monkeypatch.setenv("GITHUB_REPOSITORY", "owner/repo")
+        # ⛔ BOTH tokens are set on purpose. The first version set only
+        # the PAT, so reverting the watchdog to read GIST_TOKEN directly
+        # passed and the mutation survived: a fixture that supplies one
+        # candidate cannot test which candidate is chosen.
         monkeypatch.setenv("GIST_TOKEN", "pat-123")
-        monkeypatch.delenv("GITHUB_TOKEN", raising=False)
+        monkeypatch.setenv("GITHUB_TOKEN", "auto-456")
         watchdog.watch(fetch_conclusions=lambda r, t: None,
                        send_alert=lambda *a: None,
                        notify=lambda text: calls["notify"].append(text))
@@ -119,7 +156,9 @@ class TestTheWatchdogActuallyCallsIt:
         # ⭐⭐ The end-to-end behaviour Lewis asked for: the bot restarts
         # itself instead of staying dead.
         calls = self._watch(monkeypatch, REPAIR_AFTER_HOURS + 5)
-        assert calls["dispatch"] == [("owner/repo", "pat-123")]
+        assert calls["dispatch"] == [("owner/repo", "auto-456")], (
+            "the watchdog must dispatch with the AUTOMATIC token; reaching "
+            "for the PAT is what returned HTTP 403 on 2026-09-02")
         assert calls["notify"] and "workflow_dispatch" in calls["notify"][0]
 
     def test_a_healthy_heartbeat_dispatches_nothing(self, monkeypatch):

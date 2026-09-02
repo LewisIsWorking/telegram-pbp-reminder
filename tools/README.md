@@ -33,6 +33,14 @@ printed in the output for that reason.
 
 ## `external_heartbeat.py`
 
+> ⛔⛔ **CORRECTED 2026-09-02:** the in-repo watchdog CAN now restart the
+> bot by itself. It was failing with HTTP 403 because its job held
+> `actions: read`; GitHub exempts `workflow_dispatch` from the
+> GITHUB_TOKEN recursion guard, so no PAT was ever needed. **This script
+> is now a second line of defence, not the only one.** It still matters:
+> it is the only thing that survives GitHub delivering no schedules at
+> all, which is what the watchdog cannot do.
+
 ⛔⛔ **The watchdog inside GitHub cannot save the bot from GitHub's own
 scheduler, because it is scheduled too.** `.github/workflows/watchdog.yml`
 recovers a *broken workflow*. It cannot recover a *scheduler that has

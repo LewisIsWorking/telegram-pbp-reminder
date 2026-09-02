@@ -39,7 +39,18 @@ jobs:
       # outage, and it would then report health forever while nothing
       # else ran.
       contents: read
-      actions: read
+      # ⛔⛔ actions: WRITE, corrected 2026-09-02. This was `read`, and the
+      # self-repair fired for real on the outage it was built for and got
+      # HTTP 403. I had assumed GITHUB_TOKEN could not start a run at all
+      # and reached for a PAT. GitHub's docs say the opposite:
+      #
+      #   "events triggered by the GITHUB_TOKEN will not create a new
+      #    workflow run, with the following exceptions: workflow_dispatch
+      #    and repository_dispatch events always create workflow runs."
+      #
+      # So the automatic token works, needs no setup by anyone, and only
+      # ever needed this one line.
+      actions: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -55,11 +66,10 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # ⛔ GITHUB_TOKEN CANNOT START A RUN. GitHub refuses to trigger
-          # new workflow runs from events created with the automatic
-          # token, to stop a workflow triggering itself forever. The
-          # self-repair dispatch therefore needs the PAT, and says so
-          # loudly in Telegram if it is missing or lacks the scope.
+          # ⭐ Kept only as a FALLBACK, for a repository whose default
+          # token permissions are locked down. GITHUB_TOKEN above is the
+          # primary and needs no setup by anyone; see the permissions
+          # block. Order is asserted by test_the_bot_restarts_itself.
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: cd scripts && python -m preflight.gate --watch

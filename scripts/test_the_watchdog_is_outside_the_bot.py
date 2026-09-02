@@ -17,7 +17,7 @@ Four properties are load-bearing and each has its own test:
    cannot block the thing that notices stuck main runs;
 3. it holds **``contents: read``**, so it can never write a heartbeat and
    erase the evidence of the outage; and
-4. it is handed the **PAT**, because ``GITHUB_TOKEN`` cannot start a run.
+4. it holds **``actions: write``**, without which it cannot dispatch.
 """
 
 import os
@@ -80,14 +80,28 @@ class TestTheWatchdogIsOutsideWhatItWatches:
             "plain `preflight.gate` writes a heartbeat and would mask the "
             "outage it is watching for")
 
-    def test_it_is_given_the_pat_not_just_the_automatic_token(self):
+    def test_it_can_actually_write_actions(self):
+        # ⛔⛔ THE ONE LINE THAT WAS MISSING ON 2026-09-02. The self-repair
+        # fired for real on the outage it was built for and got HTTP 403,
+        # because this said `read`.
+        #
+        # I had assumed GITHUB_TOKEN could not start a run at all. GitHub's
+        # docs: "events triggered by the GITHUB_TOKEN will not create a new
+        # workflow run, with the following exceptions: workflow_dispatch and
+        # repository_dispatch events always create workflow runs."
+        perms = _load(_WATCHDOG)["jobs"]["watch"].get("permissions", {})
+        assert perms.get("actions") == "write", (
+            f"watchdog has actions: {perms.get('actions')!r}. Without write "
+            f"it cannot dispatch, and the self-repair is decoration.")
+
+    def test_it_still_gets_both_tokens(self):
+        # ⭐ GITHUB_TOKEN is the primary and needs no setup; GIST_TOKEN is
+        # the fallback for a repo with locked-down default permissions.
         steps = _load(_WATCHDOG)["jobs"]["watch"]["steps"]
         env = {}
         for step in steps:
             env.update(step.get("env") or {})
-        assert "GIST_TOKEN" in env, (
-            "without a PAT the dispatch is refused by GitHub and the bot "
-            "cannot restart itself")
+        assert "GITHUB_TOKEN" in env and "GIST_TOKEN" in env
 
     def test_it_dispatches_the_main_workflow_by_name(self):
         assert WORKFLOW_FILE == os.path.basename(_MAIN)
