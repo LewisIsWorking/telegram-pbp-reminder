@@ -2,12 +2,12 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 176788,
+      "message_id": 176854,
       "thread_id": 25059,
-      "user_id": "8880317264",
-      "user_name": "PJ",
-      "time": "2026-09-02T18:34:36+00:00",
-      "preview": "Baylan to the party once we regroup:\n\"Unless we can immediately find information on where the next possible ghost attack is going to be, we'll most likely end up going to the prison to continue exorcising it... Who knows, we might find info there about this ghost that slashes throats.\"  \u00dc",
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-09-03T03:03:13+00:00",
+      "preview": "Alisee glancing at Cardigan reading will put a hand on her shoulder and say:\n\"Don't read that book Cardigan, it's bad for you...\"",
       "media_group_id": null
     }
   ],
@@ -482,7 +482,9 @@
     "msg:173145",
     "2026-08-18 05:58:17",
     "msg:176233",
-    "2026-08-30 13:36:43"
+    "2026-08-30 13:36:43",
+    "msg:176788",
+    "2026-09-02 18:34:36"
   ],
   "reply_log": [
     {
@@ -2599,15 +2601,24 @@
       "player": "Horia",
       "preview": "Getting a session next week",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-03T02:57:55+00:00",
+      "pid": "25059",
+      "msg_id": "176788",
+      "thread_id": 25059,
+      "player": "PJ",
+      "preview": "Baylan to the party once we regroup:\n\"Unless we can immediately find information",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-09-02 18:34:36",
+      "fingerprint": "2026-09-03 03:03:13",
       "msg_ids": [
-        176793
+        176858
       ],
-      "last_posted_at": "2026-09-02T18:41:17.634821+00:00",
+      "last_posted_at": "2026-09-03T05:00:29.400907+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
