@@ -68,19 +68,37 @@ jobs:
         # parses this file and asserts the job conditions.
         run: pip install requests pytest pytest-cov tzdata pyyaml
 
-      - name: Run tests and alert on failure
+      # ⛔⛔ THE REAL TOKEN IS DELIBERATELY NOT HERE. Split from the
+      # alert step on 2026-09-04, after the suite posted 14 fixture-filled
+      # diagnostics into the live debug topic across two CI runs. The
+      # sending code returns early with no token, so on a developer
+      # machine the leaking tests could not fail even in principle; this
+      # step handed them a real one.
+      #
+      # scripts/_test_no_real_network.py blocks the calls outright and is
+      # the actual guard. This is the second lock: even if that were
+      # bypassed, there is no credential here to misuse. The obviously
+      # fake value keeps the code path identical to production so the
+      # blocker is still exercised.
+      - name: Run tests
+        id: tests
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ci-token-never-valid
           GITHUB_SHA: ${{ github.sha }}
         run: |
           set +e
           python -m pytest scripts/ -q --cov=scripts --cov-config=.coveragerc --cov-report=term-missing 2>&1 | tee /tmp/pytest_output.txt
           EXIT_CODE=${PIPESTATUS[0]}
           set -e
-          if [ $EXIT_CODE -ne 0 ]; then
-            python3 scripts/ci_alert.py
-          fi
           exit $EXIT_CODE
+
+      # Only this step gets the real credential, and it runs no tests.
+      - name: Alert on test failure
+        if: failure() && steps.tests.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: python3 scripts/ci_alert.py
 
       # ⛔ The backstop for every write path nobody has enumerated.
       #

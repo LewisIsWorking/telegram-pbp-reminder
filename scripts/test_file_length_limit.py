@@ -45,7 +45,6 @@ _BACKLOG = {
     "test_branch_gaps_11_scheduled_queue_silence.py": 256,
     "test_potw_monday_schedule.py": 251,
     "test_topic_queue.py": 225,
-    "conftest.py": 222,
     "test_branch_gaps_05_scheduled_session_poll.py": 213,
     "telegram.py": 207,
     "test_branch_gaps_12_queue_reminder_silent_a.py": 201,
