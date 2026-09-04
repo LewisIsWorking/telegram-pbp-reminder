@@ -156,7 +156,7 @@ class TestTheWatchdogActuallyCallsIt:
         # ⚠️ The repair outcome arrives as send_alert's `extra` since
         # 2026-09-02, not as a separate notify. See
         # test_the_watchdog_does_not_spam_orphans for why.
-        watchdog.watch(fetch_conclusions=lambda r, t: None,
+        watchdog.watch(fetch_runs=lambda r, t: None,
                        send_alert=lambda reasons, age, repo, extra="":
                            calls["notify"].append(extra),
                        notify=lambda text: calls["notify"].append(text))

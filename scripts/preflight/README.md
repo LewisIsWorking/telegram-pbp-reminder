@@ -34,6 +34,9 @@ remembers what it sends, it stays quiet.
 | `run_history.py` | the Actions API call and nothing else; the only file here that touches the network |
 | `delivery_gap.py` | tells *"GitHub never ran us"* apart from *"our push failed"*, from the run timestamps (2026-09-04) |
 | `gate.py` | the entry point: read heartbeat → read history → publish `halt` → alert → write heartbeat |
+| `alerting.py` | the two Telegram destinations and nothing else; the only file here that posts |
+| `diagnostics.py` | the verbose report: verdict, cause, heartbeat, runs, gaps, delivery rate, orphan risk (2026-09-04) |
+| `orphan_risk.py` | how long each tracked queue message has left before Telegram's 48h delete wall (2026-09-04) |
 | `watchdog.py`, `self_repair.py`, `alert_cadence.py` | is anything running at all, force a run if not, and how often to say so |
 
 ⚠️ **The heartbeat is read before this run writes its own.** Written first, the
@@ -88,6 +91,62 @@ suppressed**: that is direct evidence a push lost.
 Replayed against the real run history, all 8 pauses in 2026-09-02..04 were
 delivery gaps. `test_the_gate_tells_a_gap_from_a_broken_push.py` holds both
 directions, and seven mutations of the logic were each confirmed to fail it.
+
+## ⭐ Two destinations, opposite economics (2026-09-04)
+
+Lewis, after three uninformative pauses in one day: *"You should add more
+debugging to the bot stopped posting messages"* and *"post messages of the bot
+having issues also here, it's a debug topic called 'The Bot is Dead'."*
+
+| destination | config | what it gets | why |
+|---|---|---|---|
+| bot topic | `group_id` + `bot_topic_id` | one short line, rationed to onset / 3h / daily | every message here is unrecorded and becomes an **undeletable orphan** after 48h |
+| "The Bot is Dead" | `debug_chat_id` + `debug_topic_id` (767) | the full report, on every fault | a log, meant to accumulate. No orphan cost, so no reason to be terse |
+
+The report answers the questions in the order they actually get asked, and every
+section is there because a real session had to go and fetch it by hand:
+
+1. the verdict and the reasons
+2. **which of the two causes**, plus the evidence, or `UNDETERMINED` when the
+   history cannot prove itself fresh
+3. the heartbeat, and which run wrote it
+4. this run, with a link
+5. recent runs **and the gaps between them**, which is what makes non-delivery
+   obvious at a glance
+6. delivery rate over 24h against the 48 that were asked for
+7. queue posts approaching the 48h delete wall
+
+⚠️ `_send` now reads Telegram's response. It used to print "alert sent"
+without looking, so a wrong topic id, a removed bot, or an over-length message
+all reported success. An alerting path that cannot tell you it failed turns an
+outage into a silence that looks handled.
+
+⭐ To prove the channel without waiting for an outage:
+
+```
+gh workflow run watchdog.yml -f debug_ping=true
+```
+
+## ⛔ The 48h delete wall, and the gap that ate four posts
+
+Between 2026-08-30 07:05 and 2026-09-01 16:34 GitHub delivered no run that
+republished the topic queues: a gap of **57.5h** against a 36h republish
+cadence. Four tracked posts crossed Telegram's 48h wall in that one window and
+became permanently undeletable:
+
+```
+thread 145040  m175996      thread 51357  m175998   (the one Lewis spotted)
+thread 107171  m176000      thread 52083  m175902
+```
+
+`topic_queue_age.can_still_delete` (merged 2026-09-01 17:56 UTC, **82 minutes
+after** the last of these) stops it recurring: past 46h the poster edits the
+message in place instead of abandoning it. Verified across every thread: zero
+orphans created since.
+
+But nothing ever said the clock was running, and three more threads cleared the
+wall by under two hours in the same week; **66154 made it by twelve minutes**.
+`orphan_risk.py` is that missing sentence, and it rides in the report.
 
 ## Two properties that are easy to break
 

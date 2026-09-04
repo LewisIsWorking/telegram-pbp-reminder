@@ -37,7 +37,10 @@ _SCRIPTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
+from preflight.alerting import (notify,  # noqa: F401,E402
+                                notify_debug, send_alert)
 from preflight.delivery_gap import drop_stale_heartbeat_reason  # noqa: E402
+from preflight.diagnostics import build as build_report  # noqa: E402
 from preflight.heartbeat import (heartbeat_age_hours,  # noqa: E402
                                  read_heartbeat, write_heartbeat)
 from preflight.run_history import (RUNS_TO_INSPECT,  # noqa: F401,E402
@@ -46,59 +49,6 @@ from preflight.run_history import (RUNS_TO_INSPECT,  # noqa: F401,E402
 from preflight.prior_runs import (broken_hours,  # noqa: E402
                                   consecutive_failures, explain, halt_reasons,
                                   should_alert)
-
-
-def send_alert(reasons: list, age_hours: float | None, repo: str,
-               extra: str = "") -> None:
-    """Tell a human, on the streak lengths that warrant it.
-
-    ⚠️ This post is itself an unrecorded bot message, and so becomes an
-    orphan - the exact harm the gate exists to prevent. It is worth it at
-    most once a day, because it is the only thing that brings a human to
-    fix the cause. Nothing else the bot sends earns that trade.
-
-    ⭐ ``extra`` carries the self-repair outcome so it rides on THIS
-    message instead of being a second one. Added 2026-09-02: the
-    watchdog was notifying on every repair attempt, ungated, which is
-    48 messages a day during an outage. Each one is an unrecorded bot
-    message that becomes permanently undeletable after 48h, so the
-    watchdog was manufacturing the exact harm it exists to prevent,
-    during the very window in which posting is forbidden for that reason.
-    """
-    body = f"\U0001f6d1 Bot posting PAUSED\n\n{explain(reasons, age_hours)}"
-    if extra:
-        body += f"\n\n{extra}"
-    notify(f"{body}\n\nhttps://github.com/{repo}/actions/workflows/{WORKFLOW_FILE}")
-
-
-def notify(text: str) -> None:
-    """Send one message to the bot topic. Never raises.
-
-    Extracted from ``send_alert`` on 2026-09-01 so the self-repair path
-    can report what it did through the same channel. ⚠️ Every caller is
-    posting an unrecorded message and creating an orphan; that price is
-    only worth paying for things that bring a human to the keyboard.
-    """
-    token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-    if not token:
-        print("[preflight] no bot token; skipping alert")
-        return
-    from helpers_pkg.config import load_config
-    config = load_config()
-    thread_id = config.get("bot_topic_id")
-    if not thread_id:
-        print("[preflight] no bot_topic_id; skipping alert")
-        return
-    try:
-        requests.post(
-            f"https://api.telegram.org/bot{token}/sendMessage",
-            json={"chat_id": config["group_id"], "message_thread_id": thread_id,
-                  "text": text},
-            timeout=20,
-        )
-        print("[preflight] alert sent")
-    except Exception as error:  # noqa: BLE001 - alerting must not break the gate
-        print(f"[preflight] alert failed: {error}")
 
 
 def publish_halt(halt: bool) -> None:
@@ -114,10 +64,37 @@ def watch() -> int:
     """Report-only entry point. Implementation in preflight/watchdog.py,
     which was extracted 2026-09-01 when this file reached 211 lines."""
     from preflight.watchdog import watch as _watch
-    return _watch(fetch_conclusions, send_alert, notify)
+    return _watch(fetch_runs, send_alert, notify, notify_debug)
+
+
+def debug_ping() -> int:
+    """Send one real report to the debug topic and say what happened.
+
+    ⭐ Exists because a misconfigured destination is INVISIBLE otherwise.
+    The gate only reports when something is wrong, so a wrong
+    ``debug_topic_id`` would be discovered during the next outage, which
+    is the worst possible moment to learn the alerting channel was never
+    working. This proves the channel on demand instead:
+
+        gh workflow run watchdog.yml -f debug_ping=true
+
+    ⚠️ Reads the state it would read for real rather than sending a
+    hardcoded "hello". A ping that exercises a different code path from
+    the thing it is vouching for proves nothing about the thing.
+    """
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    runs = fetch_runs(repo, os.environ.get("GITHUB_TOKEN", "")) if repo else None
+    heartbeat = read_heartbeat()
+    age = heartbeat_age_hours(heartbeat, datetime.now(timezone.utc))
+    notify_debug(build_report(
+        [], age, heartbeat, runs, os.environ.get("GITHUB_RUN_ID"), repo,
+        extra="PING: manual check that this topic is reachable. Not a fault."))
+    return 0
 
 
 def main() -> int:
+    if "--debug-ping" in sys.argv:
+        return debug_ping()
     if "--watch" in sys.argv:
         return watch()
     # ⚠️ ORDER IS LOAD-BEARING. The committed heartbeat must be read before
@@ -147,14 +124,24 @@ def main() -> int:
     # alerts on 2026-09-04 alone. Applied AFTER halt_reasons so the union
     # shape is untouched: this can only ever remove the one reason it can
     # positively explain, and only on evidence the history is fresh.
+    run_id = os.environ.get("GITHUB_RUN_ID")
     reasons, note = drop_stale_heartbeat_reason(
-        reasons, runs, heartbeat, os.environ.get("GITHUB_RUN_ID"))
+        reasons, runs, heartbeat, run_id)
     if note:
         print(f"[preflight] not halting for the stale heartbeat: {note}.")
     print(f"[preflight] {explain(reasons, age_hours)}")
     publish_halt(bool(reasons))
     if reasons and should_alert(broken_hours(streak, age_hours)):
         send_alert(reasons, age_hours, repo)
+
+    # ⭐ The debug topic gets the full report on anything NOTABLE: a halt,
+    # or a stale heartbeat we declined to halt for. Deliberately NOT
+    # rationed like the bot-topic alert - this is a log, and the trail
+    # across an outage is the thing that was missing. Deliberately not on
+    # every healthy run either, or the signal would drown in 48 a day.
+    if reasons or note:
+        notify_debug(build_report(reasons, age_hours, heartbeat, runs,
+                                  run_id, repo, note=note))
 
     # Written last, so this run's own heartbeat can never influence the
     # decision above, and so a run that halts still refreshes it.
