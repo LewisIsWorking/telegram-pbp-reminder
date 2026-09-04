@@ -22,6 +22,7 @@ still dies with a broken ``on:`` block there.
 import os
 from datetime import datetime, timezone
 
+from preflight.diagnostics import build as build_report
 from preflight.heartbeat import heartbeat_age_hours, read_heartbeat
 from preflight.prior_runs import (broken_hours, consecutive_failures,
                                   explain, halt_reasons, should_alert)
@@ -29,7 +30,7 @@ from preflight.self_repair import (dispatch, dispatch_token, repair_message,
                                    should_repair)
 
 
-def watch(fetch_conclusions, send_alert, notify=None) -> int:
+def watch(fetch_runs, send_alert, notify=None, notify_debug=None) -> int:
     """Report, then repair. Writes nothing.
 
     Collaborators are passed in rather than imported so this can be
@@ -50,7 +51,8 @@ def watch(fetch_conclusions, send_alert, notify=None) -> int:
                                     datetime.now(timezone.utc))
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     token = os.environ.get("GITHUB_TOKEN", "")
-    conclusions = fetch_conclusions(repo, token) if repo and token else None
+    runs = fetch_runs(repo, token) if repo and token else None
+    conclusions = None if runs is None else [r.get("conclusion") for r in runs]
     streak = consecutive_failures(conclusions) if conclusions else 0
 
     reasons = halt_reasons(streak, age_hours)
@@ -78,4 +80,20 @@ def watch(fetch_conclusions, send_alert, notify=None) -> int:
     # window in which posting is forbidden for that reason.
     if reasons and should_alert(broken_hours(streak, age_hours)):
         send_alert(reasons, age_hours, repo, extra=repair)
+
+    # ⭐ The debug topic gets the FULL picture every time something is
+    # wrong, ungated. Added 2026-09-04. This is the report that matters
+    # most: the watchdog runs when the main workflow is not, so during a
+    # delivery outage it is the only thing still speaking. The ration
+    # above exists because the bot topic orphans its messages; a debug
+    # topic is a log and has no such cost.
+    #
+    # ⚠️ `cause_block` will say UNDETERMINED here, correctly: the
+    # watchdog runs in its OWN workflow, so its run id is absent from the
+    # main workflow's history and the freshness proof cannot pass. The
+    # run table and the gaps between runs carry the answer anyway.
+    if reasons and notify_debug:
+        notify_debug(build_report(reasons, age_hours, read_heartbeat(), runs,
+                                  os.environ.get("GITHUB_RUN_ID"), repo,
+                                  extra=repair))
     return 0

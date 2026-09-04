@@ -38,6 +38,7 @@ class _Watch:
     def __init__(self, monkeypatch, age_hours, dispatch_ok=True):
         from preflight import watchdog
         self.alerts, self.notifies, self.dispatches = [], [], []
+        self.debugs = []
         monkeypatch.setattr(watchdog, "read_heartbeat", lambda: {"x": 1})
         monkeypatch.setattr(watchdog, "heartbeat_age_hours",
                             lambda record, now: age_hours)
@@ -47,10 +48,11 @@ class _Watch:
         monkeypatch.setenv("GITHUB_REPOSITORY", "owner/repo")
         monkeypatch.setenv("GITHUB_TOKEN", "auto")
         monkeypatch.delenv("GIST_TOKEN", raising=False)
-        watchdog.watch(fetch_conclusions=lambda r, t: None,
+        watchdog.watch(fetch_runs=lambda r, t: None,
                        send_alert=lambda reasons, age, repo, extra="":
                            self.alerts.append(extra),
-                       notify=lambda text: self.notifies.append(text))
+                       notify=lambda text: self.notifies.append(text),
+                       notify_debug=lambda text: self.debugs.append(text))
 
     @property
     def messages(self):
@@ -91,9 +93,13 @@ class TestTheRealSendAlertCarriesIt:
     branch survived until this existed."""
 
     def _sent(self, monkeypatch, **kwargs):
-        from preflight import gate
+        # ⚠️ Patch it where send_alert RESOLVES it. `gate.notify` is a
+        # re-export since the 2026-09-04 alerting extraction, so
+        # patching the gate name leaves the real one running and this
+        # test would capture nothing.
+        from preflight import alerting, gate
         out = []
-        monkeypatch.setattr(gate, "notify", lambda text: out.append(text))
+        monkeypatch.setattr(alerting, "notify", lambda text: out.append(text))
         gate.send_alert(["a reason"], 5.0, "owner/repo", **kwargs)
         return out[0]
 

@@ -23,6 +23,11 @@ on:
   schedule:
     - cron: '7,37 * * * *'
   workflow_dispatch:
+    inputs:
+      debug_ping:
+        description: 'Send one test report to the "The Bot is Dead" debug topic and stop'
+        type: boolean
+        default: false
 
 # ⚠️ NOT in the `pbp-checker` concurrency group. Sharing it would let a
 # stuck main run block the watchdog, which is precisely when it is needed.
@@ -62,7 +67,20 @@ jobs:
 
       - run: pip install requests
 
+      # ⭐ Proves the debug channel on demand. A wrong debug_topic_id is
+      # invisible until the next outage, which is the worst moment to
+      # discover the alerting was never wired. `if:` guards BOTH steps so
+      # a ping run does not also dispatch a repair.
+      - name: Debug-topic ping
+        if: ${{ inputs.debug_ping }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: cd scripts && python -m preflight.gate --debug-ping
+
       - name: Is the bot still running, and restart it if not
+        if: ${{ !inputs.debug_ping }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
