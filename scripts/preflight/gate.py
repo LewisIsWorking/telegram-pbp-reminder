@@ -37,45 +37,15 @@ _SCRIPTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
+from preflight.delivery_gap import drop_stale_heartbeat_reason  # noqa: E402
 from preflight.heartbeat import (heartbeat_age_hours,  # noqa: E402
                                  read_heartbeat, write_heartbeat)
+from preflight.run_history import (RUNS_TO_INSPECT,  # noqa: F401,E402
+                                   WORKFLOW_FILE, fetch_conclusions,
+                                   fetch_runs)
 from preflight.prior_runs import (broken_hours,  # noqa: E402
                                   consecutive_failures, explain, halt_reasons,
                                   should_alert)
-
-WORKFLOW_FILE = "pbp-reminder.yml"
-RUNS_TO_INSPECT = 40
-
-
-def fetch_conclusions(repo: str, token: str, *, branch: str = "main",
-                      session=requests) -> list | None:
-    """Recent run conclusions for this workflow, newest first.
-
-    Returns ``None`` - distinct from ``[]`` - when the history could not
-    be read at all. An empty list is a real answer meaning "no prior
-    runs"; ``None`` means "no answer", and only the second one may skip
-    the check. Collapsing the two would let an auth failure read as a
-    clean history and quietly disarm the gate.
-    """
-    url = f"https://api.github.com/repos/{repo}/actions/workflows/{WORKFLOW_FILE}/runs"
-    try:
-        response = session.get(
-            url,
-            params={"branch": branch, "per_page": RUNS_TO_INSPECT,
-                    "exclude_pull_requests": "true"},
-            headers={"Authorization": f"Bearer {token}",
-                     "Accept": "application/vnd.github+json"},
-            timeout=20,
-        )
-        if response.status_code != 200:
-            print(f"[preflight] could not read run history: HTTP "
-                  f"{response.status_code}. Proceeding without the check.")
-            return None
-        return [run.get("conclusion") for run in response.json().get("workflow_runs", [])]
-    except Exception as error:  # noqa: BLE001 - any failure means "no answer"
-        print(f"[preflight] could not read run history: {error}. "
-              f"Proceeding without the check.")
-        return None
 
 
 def send_alert(reasons: list, age_hours: float | None, repo: str,
@@ -153,15 +123,16 @@ def main() -> int:
     # ⚠️ ORDER IS LOAD-BEARING. The committed heartbeat must be read before
     # this run writes its own, or the gate would measure itself and every
     # run would look perfectly healthy.
-    age_hours = heartbeat_age_hours(read_heartbeat(),
-                                    datetime.now(timezone.utc))
+    heartbeat = read_heartbeat()
+    age_hours = heartbeat_age_hours(heartbeat, datetime.now(timezone.utc))
     if age_hours is None:
         print("[preflight] no readable heartbeat yet; relying on run history "
               "alone for this run.")
 
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     token = os.environ.get("GITHUB_TOKEN", "")
-    conclusions = fetch_conclusions(repo, token) if repo and token else None
+    runs = fetch_runs(repo, token) if repo and token else None
+    conclusions = None if runs is None else [r.get("conclusion") for r in runs]
     if conclusions is None:
         # Not evidence of health, so it cannot clear the heartbeat's verdict.
         # It simply contributes nothing.
@@ -171,6 +142,15 @@ def main() -> int:
         streak = consecutive_failures(conclusions)
 
     reasons = halt_reasons(streak, age_hours)
+    # ⭐ A stale heartbeat with no run behind it is GitHub's silence, not a
+    # lost push, and pausing for it is a false positive that cost three
+    # alerts on 2026-09-04 alone. Applied AFTER halt_reasons so the union
+    # shape is untouched: this can only ever remove the one reason it can
+    # positively explain, and only on evidence the history is fresh.
+    reasons, note = drop_stale_heartbeat_reason(
+        reasons, runs, heartbeat, os.environ.get("GITHUB_RUN_ID"))
+    if note:
+        print(f"[preflight] not halting for the stale heartbeat: {note}.")
     print(f"[preflight] {explain(reasons, age_hours)}")
     publish_halt(bool(reasons))
     if reasons and should_alert(broken_hours(streak, age_hours)):
