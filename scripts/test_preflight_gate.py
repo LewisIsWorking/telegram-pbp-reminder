@@ -107,6 +107,13 @@ class TestMain:
         self.alerts = []
         monkeypatch.setattr(gate, "send_alert",
                             lambda reasons, age, repo: self.alerts.append(reasons))
+        # ⛔⛔ Not optional. `main` reports to the debug topic on any fault
+        # since 2026-09-04, and unstubbed that is a REAL Telegram send:
+        # five tests in this class posted fixture values ("25 consecutive
+        # workflow runs failed", github.com/o/r/...) into the live "The
+        # Bot is Dead" topic from CI, twice, before anyone noticed.
+        self.debugs = []
+        monkeypatch.setattr(gate, "notify_debug", self.debugs.append)
 
     def _run_with(self, conclusions, monkeypatch):
         """Drive main() from a list of conclusions, newest first.

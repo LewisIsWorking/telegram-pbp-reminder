@@ -120,10 +120,46 @@ class TestAFailingSuiteFailsTheBuild:
             "the pytest step does not propagate its exit code, so a "
             "failing suite leaves the job green")
 
+    def _alert_step(self) -> dict:
+        for step in _workflow()["jobs"]["test"]["steps"]:
+            if "ci_alert.py" in str(step.get("run", "")):
+                return step
+        raise AssertionError("nothing in the test job runs ci_alert.py")
+
     def test_the_alert_still_fires(self):
         # can-fail counterpart: propagating the code must not have
-        # removed the notification.
-        assert "ci_alert.py" in self._test_step()
+        # removed the notification. Moved to its own step on 2026-09-04
+        # (see below), so this looks for the step rather than the string.
+        assert "failure()" in str(self._alert_step().get("if", "")), (
+            "the alert step is not conditioned on failure, so it either "
+            "never runs or runs on every green build")
+
+    def test_the_pytest_step_holds_no_real_credential(self):
+        # ⛔⛔ 2026-09-04: the suite posted 14 fixture-filled diagnostics
+        # into the live debug topic from CI, because the pytest step
+        # carried the real bot token for the alert that shared it.
+        # _test_no_real_network blocks the calls; this keeps the
+        # credential itself out of reach of anything the suite runs.
+        token = self._test_step_env().get("TELEGRAM_BOT_TOKEN", "")
+        assert "secrets." not in str(token), (
+            f"the pytest step has the real bot token ({token!r}); a "
+            f"leaking test can then send for real")
+        assert "never-valid" in str(token), (
+            "keep an obviously fake token here so the sending code path "
+            "is still exercised rather than skipped")
+
+    def test_the_alert_step_does_have_it(self):
+        # ⭐ Can-fail counterpart: the credential must have MOVED, not
+        # been deleted, or a red suite would notify nobody.
+        env = self._alert_step().get("env", {})
+        assert "secrets.TELEGRAM_BOT_TOKEN" in str(
+            env.get("TELEGRAM_BOT_TOKEN", ""))
+
+    def _test_step_env(self) -> dict:
+        for step in _workflow()["jobs"]["test"]["steps"]:
+            if "python -m pytest" in str(step.get("run", "")):
+                return step.get("env", {})
+        raise AssertionError("no step in the test job invokes pytest")
 
 
 class TestTheDataGateExists:

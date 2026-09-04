@@ -173,6 +173,8 @@ class TestEndToEndThroughMain:
         self.alerts = []
         monkeypatch.setattr(gate, "send_alert",
                             lambda *a, **k: self.alerts.append(a))
+        # ⛔ See test_preflight_gate: unstubbed this posts for real.
+        monkeypatch.setattr(gate, "notify_debug", lambda *a, **k: None)
         monkeypatch.setattr(gate, "write_heartbeat", lambda *a, **k: {})
 
     def _main(self, runs, heartbeat, monkeypatch):

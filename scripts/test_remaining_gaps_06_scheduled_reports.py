@@ -64,9 +64,9 @@ def test_milestones_1_year_msg():
 # ─── misc one-liners ─────────────────────────────────────────────────────────
 
 def test_conftest_get_updates():
-    import conftest
-    result = conftest._mock_get_updates(0)
-    assert result == []
+    # Moved to _test_telegram_mock on 2026-09-04 when conftest was split.
+    import _test_telegram_mock
+    assert _test_telegram_mock._mock_get_updates(0) == []
 
 
 def test_parsing_message_video_note():

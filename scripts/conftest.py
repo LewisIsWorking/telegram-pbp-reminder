@@ -7,118 +7,28 @@ is collected or imported. This ensures that:
 - Modules that do `import telegram as tg` at module-level get the mock
 - No real Telegram API calls are ever made during tests
 
+``_test_no_real_network`` then blocks requests outright, which is what
+makes that last line true for the eleven modules that never touch
+telegram.py. See its docstring for the incident that proved it necessary.
+
 The mock provides all functions currently used by production code.
 Any new telegram.py function must be added here to avoid AttributeError
 contamination that silently breaks unrelated tests.
 """
 
 import sys
-import types
+import types  # noqa: F401
 
-_sent_messages: list = []
-_mock_tg = types.ModuleType("telegram")
-_mock_tg.TELEGRAM_API = ""
-
-
-def _mock_init(token: str) -> None:
-    pass
+from _test_telegram_mock import (_mock_tg,  # noqa: F401
+                                 _sent_messages)
 
 
-def _mock_send(group_id, topic_id, text, parse_mode=None) -> bool:
-    _sent_messages.append({
-        "group_id": group_id, "topic_id": topic_id,
-        "text": text, "type": "message",
-    })
-    return True
-
-
-def _mock_send_buttons(group_id, topic_id, text, buttons) -> int:
-    _sent_messages.append({
-        "group_id": group_id, "topic_id": topic_id,
-        "text": text, "buttons": buttons, "type": "buttons",
-    })
-    return 99999
-
-
-def _mock_edit(chat_id, message_id, text,
-               parse_mode=None, remove_keyboard=False) -> bool:
-    _sent_messages.append({
-        "chat_id": chat_id, "message_id": message_id,
-        "text": text, "type": "edit",
-    })
-    return True
-
-
-def _mock_answer(cb_id, text="") -> bool:
-    _sent_messages.append({"cb_id": cb_id, "text": text, "type": "answer"})
-    return True
-
-
-def _mock_get_updates(offset: int) -> list:
-    return []
-
-
-def _mock_send_poll(chat_id, thread_id, question, options,
-                    is_anonymous=False, allows_multiple_answers=False,
-                    allows_adding_options=False, allows_revoting=False,
-                    open_period=None, explanation=None):
-    _sent_messages.append({
-        "type": "poll", "chat_id": chat_id,
-        "question": question, "options": options,
-    })
-    return (99998, "mock_poll_id_001")
-
-
-def _mock_pin_message(chat_id, message_id,
-                      disable_notification=True) -> bool:
-    _sent_messages.append({
-        "type": "pin", "chat_id": chat_id, "message_id": message_id,
-    })
-    return True
-
-
-def _mock_message_link(group_id, topic_id, message_id,
-                       group_username=None) -> str:
-    return f"https://t.me/mock/{topic_id}/{message_id}"
-
-
-def _mock_send_id(chat_id, thread_id, text, parse_mode=None,
-                  silent=False) -> int | None:
-    _sent_messages.append({
-        "group_id": chat_id, "topic_id": thread_id,
-        "text": text, "type": "message_id", "silent": silent,
-    })
-    return 99997
-
-
-def _mock_unpin(chat_id, message_id) -> bool:
-    _sent_messages.append({"type": "unpin", "chat_id": chat_id, "message_id": message_id})
-    return True
-
-
-# Install all functions
-_mock_tg.init = _mock_init
-_mock_tg.send_message = _mock_send
-_mock_tg.send_message_id = _mock_send_id
-_mock_tg.send_message_with_buttons = _mock_send_buttons
-_mock_tg.edit_message = _mock_edit
-_mock_tg.answer_callback = _mock_answer
-_mock_tg.get_updates = _mock_get_updates
-_mock_tg.send_poll = _mock_send_poll
-_mock_tg.pin_message = _mock_pin_message
-_mock_tg.unpin_message = _mock_unpin
-_mock_tg.message_link = _mock_message_link
-
-
-def _mock_delete(chat_id: int, message_id: int) -> bool:
-    _sent_messages.append({"type": "delete", "chat_id": chat_id, "message_id": message_id})
-    return True
-
-
-_mock_tg.delete_message = _mock_delete
-
-# Register before any test module is imported
-sys.modules["telegram"] = _mock_tg
+# ⛔⛔ MUST come before anything that could make a request. Replaces
+# requests' entry points so a real HTTP call raises instead of happening.
+# The tg mock above only covers code going through telegram.py; eleven
+# modules use requests directly, and on 2026-09-04 one of them posted 14
+# fixture-filled messages into the live debug topic from CI.
+import _test_no_real_network  # noqa: F401, E402
 
 
 # Session-wide isolation of bot_sent_registry and refusal_log state paths.
