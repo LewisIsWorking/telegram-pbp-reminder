@@ -7,6 +7,7 @@ question that came up once and will come up again.
 |---|---|
 | `schedule_delivery_report.py` | Is GitHub actually running the workflow as often as the cron asks? |
 | `external_heartbeat.py` | Runs the bot from OUTSIDE GitHub when GitHub stops running it. Meant for the VPS crontab. |
+| `audit_queue_deletes.py` | Which superseded queue posts were actually deleted, and which became orphans? |
 | `_splitter_pack.py`, `_splitter_helpers.py`, `test_splitter.py` | Message splitting for long Telegram posts. |
 
 ## `schedule_delivery_report.py`
@@ -117,3 +118,42 @@ Decision logic tested in `scripts/test_the_external_heartbeat_decides_well.py`.
 Written 2026-08-31, when GitHub delivered 4 scheduled runs in a day
 against 48 requested and the only symptom was the bot pausing its own
 posting.
+
+## `audit_queue_deletes.py`
+
+```bash
+py -3 tools/audit_queue_deletes.py             # problems only, since 2026-08-01
+py -3 tools/audit_queue_deletes.py --all       # every superseded post
+py -3 tools/audit_queue_deletes.py --since 2026-09-01
+```
+
+⛔ **Exists because I got this wrong by inferring it.** Hunting orphaned queue
+posts on 2026-09-04, I measured the GAP between consecutive posts in a thread
+and called anything over Telegram's 48h delete wall an orphan. That gave four,
+and Lewis deleted four messages by hand on my word. Only three were real:
+`m175902` had been deleted by the bot on the first attempt, and
+`pin_audit_log.json` recorded exactly that the whole time.
+
+The gap is a proxy. It supports *"a delete attempted at the END of this window
+could not have succeeded"* and nothing more. It agreed with the direct evidence
+three times in four, which is how a proxy earns trust it has not got.
+
+This reads the direct record instead:
+
+| file | what it contributes |
+|---|---|
+| `pin_audit_log.json` | every delete ATTEMPT, with `ok` / `refused` |
+| `stuck_deletes.json` | ids the bot gave up on, for a human to clear |
+| `sent_messages.json` | what was posted, when, to which thread |
+
+Three verdicts, and the third is the one that matters most:
+
+- **deleted**: an attempt succeeded.
+- **ORPHAN**: attempts were made and all failed. History, not a broken build.
+  Shows `(resolved <date>)` once a human has removed it.
+- **DROPPED**: no delete was ever attempted. This is the only exit-1 case,
+  because it means ids are being lost *before* Telegram is ever asked.
+
+Measured 2026-09-04: **292 superseded, 289 deleted cleanly, 3 orphans (all
+resolved), 0 dropped.** `scripts/test_orphans_are_counted_from_the_delete_log.py`
+runs it against the real state files so it cannot rot into a fixture-only tool.
