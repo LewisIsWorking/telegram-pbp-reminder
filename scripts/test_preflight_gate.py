@@ -5,6 +5,8 @@ here is that the gate never takes the bot down with it, and never disarms
 itself by mistaking "could not tell" for "all clear".
 """
 
+from datetime import datetime, timezone
+
 import pytest
 
 from preflight import gate
@@ -107,8 +109,20 @@ class TestMain:
                             lambda reasons, age, repo: self.alerts.append(reasons))
 
     def _run_with(self, conclusions, monkeypatch):
-        monkeypatch.setattr(gate, "fetch_conclusions",
-                            lambda *a, **k: conclusions)
+        """Drive main() from a list of conclusions, newest first.
+
+        ⚠️ Each synthetic run is stamped ``created_at`` = now, i.e. AFTER
+        any committed heartbeat. That is what these tests mean by "a
+        history": runs ARE happening, and only their outcomes are in
+        question. Unstamped, they would read as a delivery gap (see
+        ``preflight/delivery_gap``) and the stale-heartbeat cases below
+        would start passing for the wrong reason.
+        """
+        runs = None if conclusions is None else [
+            {"id": 1000 + i, "conclusion": c,
+             "created_at": datetime.now(timezone.utc).isoformat()}
+            for i, c in enumerate(conclusions)]
+        monkeypatch.setattr(gate, "fetch_runs", lambda *a, **k: runs)
         return gate.main()
 
     def test_halts_on_a_failing_streak(self, monkeypatch):
