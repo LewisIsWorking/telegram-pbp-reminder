@@ -127,17 +127,35 @@ outage into a silence that looks handled.
 gh workflow run watchdog.yml -f debug_ping=true
 ```
 
-## ⛔ The 48h delete wall, and the gap that ate four posts
+## ⛔ The 48h delete wall, and the gap that ate three posts
 
 Between 2026-08-30 07:05 and 2026-09-01 16:34 GitHub delivered no run that
 republished the topic queues: a gap of **57.5h** against a 36h republish
-cadence. Four tracked posts crossed Telegram's 48h wall in that one window and
-became permanently undeletable:
+cadence. Three tracked posts crossed Telegram's 48h wall in that one window and
+became permanently undeletable by the bot. Lewis removed them by hand on
+2026-09-04:
 
 ```
-thread 145040  m175996      thread 51357  m175998   (the one Lewis spotted)
-thread 107171  m176000      thread 52083  m175902
+thread 145040  m175996   thread 51357  m175998   thread 107171  m176000
+                         (the one Lewis spotted)
 ```
+
+⚠️ **This said FOUR until 2026-09-04**, and named `m175902` (thread 52083)
+as the fourth. It was never an orphan: `pin_audit_log` records its delete
+succeeding on the first attempt. The count came from spotting a >48h **gap
+between posts** and inferring the outcome, while the log recording the actual
+outcome was available all along. The proxy agreed with the direct evidence three
+times out of four, which is how a proxy earns trust it has not got.
+
+Count them with the direct record, never the gaps:
+
+```
+python tools/audit_queue_deletes.py
+```
+
+Run over every superseded queue post since 2026-08-01, that tool reports **292
+superseded, 0 dropped without a delete attempt**. The bookkeeping itself is
+sound; what failed was one 57.5h window in which the attempts could not win.
 
 `topic_queue_age.can_still_delete` (merged 2026-09-01 17:56 UTC, **82 minutes
 after** the last of these) stops it recurring: past 46h the poster edits the

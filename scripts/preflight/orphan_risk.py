@@ -11,10 +11,19 @@ being lost - it **is** lost, before anything is attempted.
 
 ⛔ It happened. Between 2026-08-30 07:05 and 2026-09-01 16:34 GitHub
 delivered no run that republished the queues, a gap of **57.5h**, and
-four posts crossed the wall in that one window::
+three posts crossed the wall in that one window (all deleted by hand by
+Lewis on 2026-09-04)::
 
-    thread 145040  m175996      thread 51357  m175998
-    thread 107171  m176000      thread 52083  m175902
+    thread 145040  m175996   thread 51357  m175998   thread 107171  m176000
+
+⚠️ This said FOUR until 2026-09-04, and named m175902 (thread 52083) as
+the fourth. It was not an orphan: ``pin_audit_log`` records its delete
+succeeding on the first attempt. The number came from spotting a >48h
+GAP BETWEEN POSTS and inferring the outcome, while the log that records
+the actual outcome was sitting right there. A proxy agreed with the
+direct evidence three times out of four, which is exactly how a proxy
+earns trust it has not got. Count orphans with
+``tools/audit_queue_deletes.py``, never from the gaps.
 
 ``topic_queue_age.can_still_delete`` (2026-09-01) stops those becoming
 orphans: past 46h the poster edits the message in place instead of
