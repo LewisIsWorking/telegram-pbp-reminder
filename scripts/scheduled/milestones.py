@@ -105,7 +105,6 @@ def _next_anniversary(config: dict, today) -> str | None:
 def check_anniversaries(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
     """Post a celebration when a campaign hits a yearly anniversary."""
     group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
     today = now.date()
 
@@ -155,5 +154,12 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
             message += f"\n\n———\n\n{next_ann}"
 
         print(f"Anniversary for {name}: {year_str}")
-        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
+        # ⭐ The campaign's own chat topic, NOT `bot_topic or ...`. Corrected
+        # 2026-09-04: Metal City's first anniversary landed in the bot topic,
+        # where its players do not read. This is a message ABOUT one campaign
+        # addressed TO that campaign's players, which is the opposite of the
+        # operational alerts and reports the bot topic exists to keep out of
+        # the way. The other 14 `bot_topic or chat_topic_id` sends are
+        # deliberately unchanged; they are for the operator, not the table.
+        if tg.send_message(group_id, chat_topic_id, message):
             state["last_anniversary"][anniversary_key] = now.isoformat()
