@@ -25,13 +25,16 @@ never change.
 There are already 41 such orphans. So when the bot cannot show that it
 remembers what it sends, it stays quiet.
 
-## The three pieces
+## The pieces
 
 | file | job |
 |---|---|
 | `prior_runs.py` | pure decision logic over both signals, with no I/O, so every case is testable directly |
 | `heartbeat.py` | reads and writes `data/ci_heartbeat.json`, which is both the freshness signal and the guarantee there is **always** something to push |
+| `run_history.py` | the Actions API call and nothing else; the only file here that touches the network |
+| `delivery_gap.py` | tells *"GitHub never ran us"* apart from *"our push failed"*, from the run timestamps (2026-09-04) |
 | `gate.py` | the entry point: read heartbeat → read history → publish `halt` → alert → write heartbeat |
+| `watchdog.py`, `self_repair.py`, `alert_cadence.py` | is anything running at all, force a run if not, and how often to say so |
 
 ⚠️ **The heartbeat is read before this run writes its own.** Written first, the
 gate would measure itself and every run would look perfectly healthy, silently
@@ -56,6 +59,35 @@ than a bad query.
 The lesson is not "use a better query". It is that a source which can only ever
 make the gate **more** cautious does not need to be reliable. Under a union,
 neither a stale API nor a missing heartbeat can unlock anything.
+
+## ⭐ A stale heartbeat has two causes (2026-09-04)
+
+Not posting is *cheap*, but it is not free, and for a while it was being paid
+for nothing. On 2026-09-04 the bot paused and alerted Lewis three times, at
+3.2h, 3.1h and 3.3h, while **every one of the last 40 runs had concluded
+`success`**. No push had failed. GitHub had skipped two hours of a cron it was
+delivering about 27% of, and each gap read as a state-persistence outage.
+
+The heartbeat only advances inside a successful push, so its timestamp `H` is
+the moment of the last one. That makes the causes separable:
+
+| observation | meaning |
+|---|---|
+| a run finished after `H`, and `H` did not move | the push is broken, **halt** |
+| no run finished after `H` at all | nothing has tried yet, the scheduler is quiet, **post** |
+
+⛔⛔ **The suppression is refused unless the history proves itself fresh**, and it
+proves it the only way a cache cannot forge: *the currently executing run must
+appear in it*. Without that proof this would have re-opened the 2026-08-19
+incident above, because a cached page of old runs looks exactly like a quiet
+scheduler: old runs, none since `H`.
+
+It removes the stale-heartbeat reason only. A **failed-run streak is never
+suppressed**: that is direct evidence a push lost.
+
+Replayed against the real run history, all 8 pauses in 2026-09-02..04 were
+delivery gaps. `test_the_gate_tells_a_gap_from_a_broken_push.py` holds both
+directions, and seven mutations of the logic were each confirmed to fail it.
 
 ## Two properties that are easy to break
 
@@ -92,7 +124,8 @@ returns 403 and the gate fails open, armed in appearance only.
 ## Testing
 
 ```
-cd scripts && python -m pytest test_preflight_prior_runs.py test_preflight_gate.py -q
+cd scripts && python -m pytest test_preflight_prior_runs.py test_preflight_gate.py \
+    test_the_gate_tells_a_gap_from_a_broken_push.py -q
 ```
 
 The guards are proven by mutation, not by reading. Nine mutations, each
@@ -107,3 +140,9 @@ into an intersection**, and **writing the heartbeat before reading it**.
 Two load-bearing cases: the real 2026-08-18 run history must halt, and the
 cached-API reading from 2026-08-19 (`streak 0`, heartbeat 15h old) must halt
 anyway. Each is paired with a healthy case so a hardcoded `True` cannot pass.
+
+Seven more cover `delivery_gap` (2026-09-04): removing the freshness proof,
+emptying `finished_since`, counting in-progress runs as evidence, making the
+suppression a no-op, letting it reach the streak reason, cutting it out of
+`main`, and swapping started-after for finished-after. Every one was confirmed
+to fail the suite before being reverted.

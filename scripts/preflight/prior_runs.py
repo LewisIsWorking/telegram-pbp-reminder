@@ -167,9 +167,9 @@ def halt_reasons(streak: int, age_hours: float | None) -> list:
 # repository looking identical: a run that never happened writes nothing,
 # and a run whose push failed also leaves nothing behind. Until
 # 2026-08-31 the alert named only the first, and it sent Lewis to a
-# state-commit step that had never failed while GitHub was delivering 4
-# scheduled runs a day out of 48. Name both, in the order they are worth
-# checking.
+# state-commit step that had never failed. THIS module still cannot
+# separate them; ``preflight/delivery_gap`` can, from the run TIMESTAMPS
+# this one never asks for. Where it cannot prove it, name both.
 _STALE_ADVICE = ("Check two things: the state-commit step of the latest "
                  "run, and whether runs are happening at all (the run list "
                  "shows the gaps).")
