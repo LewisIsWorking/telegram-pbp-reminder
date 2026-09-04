@@ -92,6 +92,34 @@ def test_check_anniversaries_fires_on_date():
     assert len(anniv_msgs) == 1
     assert "100:2" in state["last_anniversary"]
 
+
+def test_check_anniversaries_posts_to_the_campaign_topic():
+    """The celebration goes where that campaign's players read it.
+
+    ⭐ The gap that let the bug ship: every earlier anniversary test
+    asserted a message was sent and what it said, and none asserted
+    WHERE. `_make_config` sets bot_topic_id=300 and chat_topic_id=200, so
+    the old `bot_topic or chat_topic_id` sent all nine campaigns'
+    anniversaries to 300 and every test still passed. Restore that
+    expression and this fails.
+    """
+    _reset()
+    now = datetime.now(timezone.utc)
+    created_str = now.replace(year=now.year - 2).strftime("%Y-%m-%d")
+
+    config = _make_config(pairs=[
+        {"name": "OldCampaign", "chat_topic_id": 200, "pbp_topic_ids": [100],
+         "created": created_str},
+    ])
+    assert config["bot_topic_id"] == 300, "fixture must be able to tell them apart"
+
+    checker.check_anniversaries(config, _make_state(), now=now)
+
+    anniv = [m for m in _sent_messages if "2 years" in m.get("text", "")]
+    assert len(anniv) == 1
+    assert anniv[0]["topic_id"] == 200
+
+
 def test_check_anniversaries_no_duplicate():
     _reset()
     now = datetime.now(timezone.utc)
