@@ -18,24 +18,6 @@
       "time": "2026-08-26T18:34:43+00:00",
       "preview": "damage total is 13 piercing and 12 spirit (the two hits are combined for resistance purposes)",
       "media_group_id": null
-    },
-    {
-      "message_id": 175556,
-      "thread_id": 51357,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-26T20:11:19+00:00",
-      "preview": "\"Yes, it seems so. I wonder if they are aware we are seeking after someone, or if they simply attacked because of our presence here.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175569,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-08-26T20:33:38+00:00",
-      "preview": "Alitheia barely has time to react before the group of creatures is dispatched.\n\"Wow, you guys are pretty efficient.\"\nShe kneels down next to one and examines it for a few moments, and rolls to recall knowledge.\n\"Wonder what these are. Definitely not from around here.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -386,7 +368,11 @@
     "msg:175413",
     "2026-08-26 18:33:49",
     "msg:175414",
-    "2026-08-26 18:33:50"
+    "2026-08-26 18:33:50",
+    "msg:175556",
+    "2026-08-26 20:11:19",
+    "msg:175569",
+    "2026-08-26 20:33:38"
   ],
   "reply_log": [
     {
@@ -1925,19 +1911,35 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-04T21:41:53+00:00",
+      "pid": "51357",
+      "msg_id": "175556",
+      "thread_id": 51357,
+      "player": "Cannon",
+      "preview": "\"Yes, it seems so. I wonder if they are aware we are seeking after someone, or i",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-04T21:42:23+00:00",
+      "pid": "51357",
+      "msg_id": "175569",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "Alitheia barely has time to react before the group of creatures is dispatched.\n\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-08-26 20:11:19|2026-08-26 20:33:38",
-      "msg_ids": [
-        176967
-      ],
-      "last_posted_at": "2026-09-04T18:33:20.956896+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 177050,
+      "caught_up_at": "2026-09-04T22:23:31.181104+00:00",
       "pending_delete": []
     },
     "145040": {

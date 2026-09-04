@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 175508,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-08-26T19:55:28+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -371,7 +361,9 @@
     "msg:174902",
     "2026-08-26 02:10:12",
     "msg:175211",
-    "2026-08-26 11:18:17"
+    "2026-08-26 11:18:17",
+    "msg:175508",
+    "2026-08-26 19:55:28"
   ],
   "reply_log": [
     {
@@ -2051,20 +2043,27 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"Yeah . . So sounds like, try and beat the pirates up as fast as we can, then fl",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-04T22:19:26+00:00",
+      "pid": "107171",
+      "msg_id": "175508",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-08-26 19:55:28",
-      "msg_ids": [
-        176971
-      ],
-      "last_posted_at": "2026-09-04T18:33:28.634809+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 177049,
       "pending_delete": [],
-      "caught_up_at": "2026-08-26T13:33:39.804784+00:00"
+      "caught_up_at": "2026-09-04T22:23:31.181104+00:00"
     },
     "142887": {
       "fingerprint": "",
