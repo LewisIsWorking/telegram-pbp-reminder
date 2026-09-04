@@ -1,5 +1,5 @@
 {
-  "offset": 619359005,
+  "offset": 619359009,
   "topics": {
     "52083": {
       "last_message_time": "2026-09-03T03:48:42+00:00",
@@ -123,7 +123,7 @@
   "last_roster_snapshot": "C01:3/6|C00:5/6|C04:5/6|C05:5/6|C06:5/6|C07:5/6|C09:4/6|C10:1/6|C08:1/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-09-04T00:04:58.624206+00:00"
+    "last_at": "2026-09-04T14:20:48.148558+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-09-04T11:40:15.698531+00:00",
@@ -153,7 +153,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-08-29T21:37:20.861788+00:00",
-  "last_daily_tip": "2026-09-03T15:01:24.620937+00:00",
+  "last_daily_tip": "2026-09-04T14:20:48.148558+00:00",
   "used_tip_indices": [
     3,
     34,
@@ -183,7 +183,8 @@
     19,
     10,
     29,
-    2
+    2,
+    8
   ],
   "last_pace_drop_check": "2026-08-29T21:37:20.861788+00:00",
   "dying_alerts_sent": {
@@ -376,10 +377,10 @@
   },
   "last_potw_roundup": "2026-W35",
   "last_potw_countdown": "2026-W36",
-  "schedule_post_msg_id": 763,
+  "schedule_post_msg_id": 764,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-08-27",
-  "last_pin_alert_ts": "2026-09-04T11:40:38.228115+00:00",
+  "last_pin_alert_ts": "2026-09-04T14:20:57.487486+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 176909,
   "last_recruit_focus": "2026-09-03T18:00:07.484545+00:00",
