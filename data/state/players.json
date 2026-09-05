@@ -370,6 +370,16 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-09-05T04:00:19+00:00",
       "last_warned_week": 0
+    },
+    "25059:8902183011": {
+      "user_id": "8902183011",
+      "first_name": "Dalaxiss",
+      "last_name": "",
+      "username": "Dalaxiss",
+      "campaign_name": "Doomsday Funtime",
+      "pbp_topic_id": "25059",
+      "last_post_time": "2026-09-05T08:39:19+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -636,12 +646,6 @@
       "first_name": "Cannon",
       "username": "ArtyArtillery",
       "campaign_name": "Theria"
-    },
-    "25059:8902183011": {
-      "removed_at": "2026-08-31T07:30:55.743927+00:00",
-      "first_name": "Dalaxiss",
-      "username": "",
-      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -1749,6 +1753,14 @@
       "name": "Fuzzy",
       "username": "fuzzystudios",
       "at": "2026-09-05T04:25:21.543567+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "25059",
+      "user_id": "8902183011",
+      "name": "Dalaxiss",
+      "username": "Dalaxiss",
+      "at": "2026-09-05T09:03:21.141925+00:00"
     }
   ],
   "player_boons": {
