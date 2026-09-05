@@ -360,6 +360,16 @@
       "pbp_topic_id": "40585",
       "last_post_time": "2026-09-01T17:16:15.025588+00:00",
       "last_warned_week": 0
+    },
+    "25059:8525518483": {
+      "user_id": "8525518483",
+      "first_name": "Fuzzy",
+      "last_name": "",
+      "username": "fuzzystudios",
+      "campaign_name": "Doomsday Funtime",
+      "pbp_topic_id": "25059",
+      "last_post_time": "2026-09-05T04:00:19+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -631,12 +641,6 @@
       "removed_at": "2026-08-31T07:30:55.743927+00:00",
       "first_name": "Dalaxiss",
       "username": "",
-      "campaign_name": "Doomsday Funtime"
-    },
-    "25059:8525518483": {
-      "removed_at": "2026-09-01T16:33:51.263367+00:00",
-      "first_name": "Fuzzy",
-      "username": "fuzzystudios",
       "campaign_name": "Doomsday Funtime"
     }
   },
@@ -1737,6 +1741,14 @@
       "name": "Caelum",
       "username": "Thien_Ming",
       "at": "2026-09-01T17:16:15.025588+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "25059",
+      "user_id": "8525518483",
+      "name": "Fuzzy",
+      "username": "fuzzystudios",
+      "at": "2026-09-05T04:25:21.543567+00:00"
     }
   ],
   "player_boons": {
