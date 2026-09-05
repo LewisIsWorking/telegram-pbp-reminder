@@ -18,6 +18,24 @@
       "time": "2026-08-26T18:34:43+00:00",
       "preview": "damage total is 13 piercing and 12 spirit (the two hits are combined for resistance purposes)",
       "media_group_id": null
+    },
+    {
+      "message_id": 177150,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-09-05T15:22:44+00:00",
+      "preview": "Twilight regards the portal to the shadow lands with a grim sense of wariness.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 177151,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-09-05T15:25:31+00:00",
+      "preview": "\"Is everyone prepared? The Shadow Lands aren't a nice place for the unready. Especially for mortals.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1935,10 +1953,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 177050,
+      "fingerprint": "2026-09-05 15:22:44|2026-09-05 15:25:31",
+      "msg_ids": [
+        177155
+      ],
+      "last_posted_at": "2026-09-05T16:03:31.635875+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-09-04T22:23:31.181104+00:00",
       "pending_delete": []
     },
