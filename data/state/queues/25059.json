@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 177114,
-      "thread_id": 25059,
-      "user_id": "8902183011",
-      "user_name": "Dalaxiss",
-      "time": "2026-09-05T08:39:19+00:00",
-      "preview": "Katmidlar seems to be interested in this conversation as well.\n\"Maybe i dont get something, but what is wrong with her reading a book of obscene character? She looks old enoung to know to be able to grasp this kind of stuff.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -488,7 +478,9 @@
     "msg:176854",
     "2026-09-03 03:03:13",
     "msg:177097",
-    "2026-09-05 04:00:19"
+    "2026-09-05 04:00:19",
+    "msg:177114",
+    "2026-09-05 08:39:19"
   ],
   "reply_log": [
     {
@@ -2632,17 +2624,24 @@
       "player": "Fuzzy",
       "preview": "Warden: I can be entertaining, if it will improve your patience.",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-06T18:04:25+00:00",
+      "pid": "25059",
+      "msg_id": "177114",
+      "thread_id": 25059,
+      "player": "Dalaxiss",
+      "preview": "Katmidlar seems to be interested in this conversation as well.\n\"Maybe i dont get",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-09-05 08:39:19",
-      "msg_ids": [
-        177302
-      ],
-      "last_posted_at": "2026-09-06T17:20:02.954092+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-09-04T21:00:53.809022+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 177313,
+      "caught_up_at": "2026-09-06T18:04:51.883757+00:00"
     }
   }
 }
