@@ -6,6 +6,7 @@ import helpers
 import telegram as tg
 from commands.queue_scan import scan_transcripts
 from commands.queue_format import NO_PRIORITY, build_priority_map
+from scheduled.due import latest_due_slot
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import (
     silent_campaigns, caught_up_campaigns, campaign_age_lines,
@@ -44,12 +45,13 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         [config["queue_daily_hour"]] if config.get("queue_daily_hour") is not None else []
     )
     daily_hours = raw if isinstance(raw, list) else [raw]
-    is_daily = False
-    if now.hour in daily_hours:
-        slot_key = f"{now.date().isoformat()}:{now.hour:02d}"
-        posted_slots = state.get("last_queue_daily_slots", [])
-        if slot_key not in posted_slots:
-            is_daily = True
+    # ⛔⛔ Was `if now.hour in daily_hours` until 2026-09-06. With GitHub
+    # delivering ~27% of the cron, that missed 10 of 28 daily slots in a
+    # fortnight, both slots on three separate days. Now the first run at
+    # or after a slot's hour posts it. See scheduled/due.py.
+    slot_key = latest_due_slot(now, daily_hours,
+                               state.get("last_queue_daily_slots", []))
+    is_daily = slot_key is not None
 
     group_id = config["group_id"]
     # Built before the early returns because all three exits need it to
@@ -147,7 +149,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         state["last_queue_fingerprint"] = fingerprint
         state["queue_post_count"] = queue_num
         if is_daily:
-            slot_key = f"{now.date().isoformat()}:{now.hour:02d}"
+            # ⚠️ The slot computed ABOVE, not now.hour. A catch-up post
+            # at 14:00 fills the 09:00 slot; keying the record on the
+            # wall clock would file it as a 14:00 slot that nothing ever
+            # asked for, and 09:00 would stay due forever.
             slots = state.setdefault("last_queue_daily_slots", [])
             if slot_key not in slots:
                 slots.append(slot_key)

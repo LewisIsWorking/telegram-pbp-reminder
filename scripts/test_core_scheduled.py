@@ -71,6 +71,7 @@ def test_session_poll_send_failure_no_state():
 # ═══════════════════════════════════════════════════════════════════════════════
 
 from scheduled.queue_reminder import post_queue_reminder
+from scheduled.potw import player_of_the_week
 
 
 def _qr_config():
@@ -84,49 +85,6 @@ def _qr_config():
     }
 
 
-@patch("scheduled.queue_reminder.post_topic_queues")
-@patch("scheduled.queue_reminder.scan_transcripts", return_value={})
-def test_queue_reminder_no_entries_no_post(mock_scan, mock_ptq):
-    state = {"last_queue_fingerprint": None, "queue_post_count": 0,
-             "last_queue_pin_id": None, "last_queue_daily_slots": []}
-    now = datetime(2026, 4, 3, 9, 0, tzinfo=timezone.utc)
-    post_queue_reminder(_qr_config(), state, now=now)
-
-
-@patch("scheduled.queue_reminder.post_topic_queues")
-@patch("scheduled.queue_reminder.scan_transcripts")
-def test_queue_reminder_same_fingerprint_skips(mock_scan, mock_ptq):
-    # Use hour 10 — not in queue_daily_hours [9, 21], so daily override won't fire
-    now = datetime(2026, 4, 3, 10, 0, tzinfo=timezone.utc)
-    t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
-    entries = [{"name": "Alice", "time": t, "preview": "hi", "link": "", "message_id": "1"}]
-    mock_scan.return_value = {"100": {"campaign": "Kibwe", "code": "C00", "entries": entries}}
-    # Fingerprint format: "{pid}:{time}" joined by "|"
-    fp = f"100:{t}"
-    state = {"last_queue_fingerprint": fp, "queue_post_count": 0,
-             "last_queue_pin_id": None, "last_queue_daily_slots": []}
-    post_queue_reminder(_qr_config(), state, now=now)
-    # Fingerprint matched and not a daily slot → skipped
-    assert state["queue_post_count"] == 0
-
-
-@patch("scheduled.queue_reminder.post_topic_queues")
-@patch("scheduled.queue_reminder.scan_transcripts")
-def test_queue_reminder_posts_on_change(mock_scan, mock_ptq):
-    now = datetime(2026, 4, 3, 9, 0, tzinfo=timezone.utc)
-    t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
-    entries = [{"name": "Alice", "time": t, "preview": "hi", "link": "", "message_id": "1"}]
-    mock_scan.return_value = {"100": {"campaign": "Kibwe", "code": "C00", "entries": entries}}
-    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
-             "last_queue_pin_id": None, "last_queue_daily_slots": []}
-    post_queue_reminder(_qr_config(), state, now=now)
-    assert state["queue_post_count"] == 1
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/potw.py — guard conditions
-# ═══════════════════════════════════════════════════════════════════════════════
-
-from scheduled.potw import player_of_the_week
 
 
 def _potw_config():

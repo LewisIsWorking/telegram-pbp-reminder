@@ -25,6 +25,8 @@ topic. State keys: ``last_pin_digest`` (date str) and
 
 from datetime import datetime, timedelta, timezone
 
+from scheduled.due import is_due
+
 import telegram as tg
 from posting import pin_audit
 
@@ -56,10 +58,10 @@ def run_daily_pin_digest(config: dict, state: dict, *,
     """Post the once-per-day pin-activity summary to the bot topic."""
     now = now or datetime.now(timezone.utc)
     hour = config.get("pin_digest_hour", config.get("diagnostic_hour", 8))
-    if now.hour != hour:
-        return
+    # ⛔⛔ Same ten-day silent death as the diagnostic; same cause, same
+    # hour. See scheduled/due.py.
     today = now.date().isoformat()
-    if state.get("last_pin_digest") == today:
+    if not is_due(now, hour, state.get("last_pin_digest")):
         return
     bot_topic = config.get("bot_topic_id")
     group_id = config.get("group_id")
