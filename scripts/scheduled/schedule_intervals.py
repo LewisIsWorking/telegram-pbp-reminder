@@ -36,6 +36,13 @@ class IntervalJob(NamedTuple):
     days: float
     label: str
     checks: tuple[str, ...]
+    # ⛔ The per-campaign feature flag the job itself checks, if any.
+    # Without it a campaign with the feature OFF is never iterated, so
+    # its timestamp freezes and the job reads as permanently "due now".
+    # The Junction had recruitment off, and the schedule post said
+    # "Recruitment check - due now (1 of 8 campaigns)" every day from
+    # 2026-08-13 until this was added on 2026-09-06.
+    feature: str | None = None
 
 
 # Ordered by nothing in particular — the post sorts by due time.
@@ -45,16 +52,16 @@ INTERVAL_JOBS: list[IntervalJob] = [
                 "Leaderboard", ("Leaderboard",)),
     # scheduled/reports.py:23 — per campaign
     IntervalJob("last_roster", helpers.ROSTER_INTERVAL_DAYS,
-                "Roster summary", ("Roster summary",)),
+                "Roster summary", ("Roster summary",), "roster"),
     # scheduled/reports.py:105 — per campaign
     IntervalJob("last_pace", helpers.PACE_INTERVAL_DAYS,
-                "Pace report", ("Pace report",)),
+                "Pace report", ("Pace report",), "pace"),
     # Added 2026-08-13. The six below were all running on a real interval
     # gate and none of them appeared in the schedule post, so it listed 11
     # of the 18 scheduled jobs while claiming to be the schedule.
     # scheduled/maintenance.py:147 — per campaign
     IntervalJob("last_recruitment_check", helpers.RECRUITMENT_INTERVAL_DAYS,
-                "Recruitment check", ("Recruitment",)),
+                "Recruitment check", ("Recruitment",), "recruitment"),
     # scheduled/digest.py:80
     IntervalJob("last_weekly_digest", 7, "Weekly digest", ("Weekly digest",)),
     # scheduled/campaign_table.py:127
@@ -78,8 +85,11 @@ INTERVAL_JOBS: list[IntervalJob] = [
 ]
 
 
-def _live_pids(config: dict) -> set[str]:
+def live_pids(config: dict) -> set[str]:
     """Canonical campaign ids currently in config, or empty if unknowable.
+
+    ⭐ Public since 2026-09-06: ``preflight/stale_features`` needs the
+    same orphan filtering, and a second copy of it would drift.
 
     Empty means "do not filter". An empty result is ambiguous — it is
     equally what a config with no campaigns and an unreadable config
@@ -93,8 +103,34 @@ def _live_pids(config: dict) -> set[str]:
         return set()
 
 
-def _stamps(value, known: set[str]) -> list[datetime]:
-    """Parsed timestamps from a str or a ``{pid: iso}`` dict."""
+def job_pids(config: dict, job: "IntervalJob"):
+    """Campaigns this job actually iterates.
+
+    Returns ``None`` for "cannot tell", which callers must treat as "do
+    not filter" - an unreadable config is not evidence that a campaign
+    is gone. Returns an EMPTY set only when the job is genuinely
+    switched off everywhere, which is different and means the job has
+    nothing to be overdue for.
+    """
+    pids = live_pids(config)
+    if not pids:
+        return None
+    if not job.feature:
+        return pids
+    try:
+        return {p for p in pids
+                if helpers.feature_enabled(config, p, job.feature)}
+    except (KeyError, TypeError, AttributeError):
+        return None
+
+
+def stamps(value, known: set[str]) -> list[datetime]:
+    """Parsed timestamps from a str or a ``{pid: iso}`` dict.
+
+    ⭐ Public since 2026-09-06, shared with ``preflight/stale_features``.
+    ⚠️ ``known`` is what stops a REMOVED campaign's timestamp sitting in
+    the past forever and reading as permanently overdue. Orphan 1242 did
+    exactly that."""
     if isinstance(value, str):
         raw = [value]
     elif isinstance(value, dict):
@@ -124,24 +160,26 @@ def interval_lines(config: dict, state: dict, now: datetime) -> list[str]:
     "due now" on its own cannot distinguish one straggler from the whole
     set — and a single permanently-stalled campaign is the common case.
     """
-    known = _live_pids(config)
     rows: list[tuple[float, str]] = []
     for job in INTERVAL_JOBS:
+        eligible = job_pids(config, job)
+        if eligible is not None and not eligible:
+            continue  # the job is switched off everywhere; nothing is due
         value = state.get(job.key)
-        stamps = _stamps(value, known)
-        if not stamps:
+        found = stamps(value, eligible or set())
+        if not found:
             rows.append((0.0, f"  • {job.label} — due now"))
             continue
-        due = [s + timedelta(days=job.days) for s in stamps]
+        due = [s + timedelta(days=job.days) for s in found]
         hours = (min(due) - now).total_seconds() / 3600
         text = f"  • {job.label} — {_when(hours)}"
         if isinstance(value, dict):
-            # Denominator is len(stamps), not len(value): the orphans
+            # Denominator is len(found), not len(value): the orphans
             # filtered out above must not pad the total either, or the
             # line reports campaigns that no longer exist.
             overdue = sum(1 for d in due if d <= now)
             if overdue:
-                text += f" ({overdue} of {len(stamps)} campaigns)"
+                text += f" ({overdue} of {len(found)} campaigns)"
         rows.append((hours, text))
     rows.sort(key=lambda r: r[0])
     return [text for _h, text in rows]
