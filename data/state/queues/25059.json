@@ -2,15 +2,6 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 177097,
-      "thread_id": 25059,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-05T04:00:19+00:00",
-      "preview": "Warden: I can be entertaining, if it will improve your patience.",
-      "media_group_id": null
-    },
-    {
       "message_id": 177114,
       "thread_id": 25059,
       "user_id": "8902183011",
@@ -495,7 +486,9 @@
     "msg:176788",
     "2026-09-02 18:34:36",
     "msg:176854",
-    "2026-09-03 03:03:13"
+    "2026-09-03 03:03:13",
+    "msg:177097",
+    "2026-09-05 04:00:19"
   ],
   "reply_log": [
     {
@@ -2630,15 +2623,24 @@
       "player": "Anthony",
       "preview": "Alisee glancing at Cardigan reading will put a hand on her shoulder and say:\n\"Do",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-06T17:15:05+00:00",
+      "pid": "25059",
+      "msg_id": "177097",
+      "thread_id": 25059,
+      "player": "Fuzzy",
+      "preview": "Warden: I can be entertaining, if it will improve your patience.",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-09-05 04:00:19|2026-09-05 08:39:19",
+      "fingerprint": "2026-09-05 08:39:19",
       "msg_ids": [
-        177118
+        177302
       ],
-      "last_posted_at": "2026-09-05T09:03:28.091493+00:00",
+      "last_posted_at": "2026-09-06T17:20:02.954092+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-09-04T21:00:53.809022+00:00"
     }
