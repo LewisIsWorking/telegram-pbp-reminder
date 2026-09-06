@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from preflight.stale_features import CADENCES, overdue, summarise
+from preflight.stale_features import cadences, overdue, summarise
 
 NOW = datetime(2026, 9, 6, 14, 0, tzinfo=timezone.utc)
 
@@ -56,7 +56,10 @@ class TestTheAwkwardCases:
         """⛔ "no record of ever running" is the strongest version of the
         thing being looked for. Skipping it would hide the worst case."""
         rows = overdue(_state(last_diagnostic=None), NOW)
-        assert ("daily diagnostic", None, 2) in rows
+        # ⚠️ Assert the LABEL and the None, not the tolerance. Tolerances
+        # are derived from schedule_intervals now, so pinning the number
+        # here would make a legitimate cadence change look like a bug.
+        assert ("daily diagnostic", None) in [(r[0], r[1]) for r in rows]
 
     @pytest.mark.parametrize("bad", ["", "soon", 20260827, {"d": 1}])
     def test_an_unreadable_marker_is_reported_too(self, bad):
@@ -91,11 +94,65 @@ class TestAgainstTheRealState:
         return json.loads(path.read_text(encoding="utf-8"))
 
     def test_the_markers_this_check_names_still_exist(self):
-        """⛔ Every key here is a string this module made up. If the state
-        schema renames one, this check silently stops watching it and
-        reports 'nothing overdue' for a feature it can no longer see."""
+        """⛔ If the state schema renames a marker, this check silently
+        stops watching it and reports "nothing overdue" for a feature it
+        can no longer see.
+
+        ⭐ Since 2026-09-06 most keys are DERIVED from
+        ``schedule_intervals.INTERVAL_JOBS`` rather than invented here,
+        so this also catches that table drifting from real state."""
         live = self._live()
-        present = [k for k in CADENCES if k in live]
-        assert len(present) >= 8, (
-            f"only {len(present)} of {len(CADENCES)} tracked markers exist in "
-            f"live.json: missing {sorted(set(CADENCES) - set(live))}")
+        tracked = cadences()
+        present = [k for k in tracked if k in live]
+        assert len(present) >= 12, (
+            f"only {len(present)} of {len(tracked)} tracked markers exist in "
+            f"live.json: missing {sorted(set(tracked) - set(live))}")
+
+
+class TestAFeatureSwitchedOffIsNotOverdue:
+    """⛔⛔ The Junction has recruitment OFF, so that job never iterates
+    it and its timestamp freezes on the day it was last enabled.
+
+    This check cried wolf about it the very first time it ran, and the
+    SCHEDULE POST had been doing the same thing since 2026-08-13: it
+    said "Recruitment check - due now (1 of 8 campaigns)" every day, on
+    a job that was running perfectly for all seven campaigns that have
+    it enabled.
+
+    Same shape as the removed-campaign trap `live_pids` was built for,
+    one level down: not "is this campaign still here" but "does this
+    campaign run this job at all".
+    """
+
+    def _config(self, junction_recruitment):
+        # ⚠️ The REAL shape: an opt-OUT list named disabled_features, not
+        # an opt-in map. My first fixture invented {"features": {...}},
+        # which feature_enabled ignores entirely, so it read as enabled
+        # and the test failed for a reason that had nothing to do with
+        # the behaviour under test.
+        junction = {"name": "Junction", "chat_topic_id": 2,
+                    "pbp_topic_ids": [146645]}
+        if not junction_recruitment:
+            junction["disabled_features"] = ["recruitment"]
+        return {"group_id": -100, "gm_user_ids": [1], "topic_pairs": [
+            {"name": "Live", "chat_topic_id": 1, "pbp_topic_ids": [51357]},
+            junction,
+        ]}
+
+    def _state(self):
+        # The real shape: everyone current, The Junction frozen 24d back.
+        return {"last_recruitment_check": {
+            "51357": "2026-09-04T00:00:00+00:00",
+            "146645": "2026-08-13T00:00:00+00:00"}}
+
+    def test_a_frozen_timestamp_on_a_disabled_campaign_is_ignored(self):
+        rows = overdue(self._state(), NOW, self._config(False))
+        assert rows == [], f"cried wolf over a switched-off campaign: {rows}"
+
+    def test_but_the_SAME_state_is_overdue_when_it_is_enabled(self):
+        """⭐⭐ Can-fail counterpart, and the one that matters. Identical
+        state and dates; only the feature flag differs. Without this the
+        test above would pass on a check that reports nothing, ever."""
+        rows = overdue(self._state(), NOW, self._config(True))
+        assert [r[0] for r in rows] == ["Recruitment check"]
+        assert rows[0][1] == 24
