@@ -36,6 +36,15 @@
       "time": "2026-09-05T15:25:31+00:00",
       "preview": "\"Is everyone prepared? The Shadow Lands aren't a nice place for the unready. Especially for mortals.\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 177353,
+      "thread_id": 51357,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-09-06T20:09:25+00:00",
+      "preview": "\"Even if we were unready, I do not think we have time to change that fact. We can only hope this passage goes both ways, and we can return if we are overwhelmed.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1953,11 +1962,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-09-05 15:22:44|2026-09-05 15:25:31",
+      "fingerprint": "2026-09-05 15:22:44|2026-09-05 15:25:31|2026-09-06 20:09:25",
       "msg_ids": [
-        177155
+        177355
       ],
-      "last_posted_at": "2026-09-05T16:03:31.635875+00:00",
+      "last_posted_at": "2026-09-06T20:15:25.005644+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-09-04T22:23:31.181104+00:00",
       "pending_delete": []
