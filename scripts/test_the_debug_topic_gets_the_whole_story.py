@@ -77,6 +77,21 @@ class TestItCarriesTheEvidence:
                                    now=NOW)
         assert "33900000000" in report
 
+    def test_it_reports_daily_jobs_that_have_stopped_happening(self, monkeypatch):
+        """⛔⛔ The section that would have caught two features being dead
+        for ten days while every other line said healthy.
+
+        A mutation deleting this section from the report SURVIVED the
+        whole suite: the block was built and tested on its own, and
+        nothing asserted it reached the message. Building a diagnostic
+        and not wiring it in is the same as not having it.
+        """
+        monkeypatch.setattr(diagnostics, "summarise_from_disk",
+                            lambda now: "Daily jobs: 10 tracked, 2 overdue")
+        report = diagnostics.build([], 1.0, heartbeat(1.0), None, THIS_RUN,
+                                   REPO, now=NOW)
+        assert "2 overdue" in report
+
     def test_a_broken_section_costs_only_itself(self, monkeypatch):
         """⛔ This is read when nothing else works. One raising section
         must not take the other six down with it."""

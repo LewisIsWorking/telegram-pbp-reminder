@@ -10,7 +10,9 @@ import os
 import re
 import json
 import urllib.request
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
+
+from scheduled.due import is_due
 
 import helpers
 import telegram as tg
@@ -73,11 +75,13 @@ def run_daily_diagnostic(config: dict, state: dict, *,
                          now: datetime | None = None, **_kw) -> None:
     """Fetch recent run logs, analyse, post health report to bot topic."""
     now = now or datetime.now(timezone.utc)
-    if now.hour != config.get("diagnostic_hour", 8):
-        return
-
+    # ⛔⛔ Was `now.hour != diagnostic_hour: return` until 2026-09-06, and
+    # that silently killed this feature for TEN DAYS: last_diagnostic sat
+    # at 2026-08-27 because no scheduled run landed in hour 08 for 8
+    # straight days. See scheduled/due.py for the measurement.
     today = now.date().isoformat()
-    if state.get("last_diagnostic") == today:
+    if not is_due(now, config.get("diagnostic_hour", 8),
+                  state.get("last_diagnostic")):
         return
 
     bot_topic = config.get("bot_topic_id")

@@ -45,7 +45,7 @@ EM_DASH = "—"
 # fired UPWARD first (+7, all in new docstrings I had just written),
 # those were rewritten as commas and colons, and the rewrite took five
 # more with it than the split had added. Both directions in one change.
-CEILING = 1746
+CEILING = 1745
 
 _ROOTS = ("scripts", "docs")
 _EXTS = (".py", ".md")

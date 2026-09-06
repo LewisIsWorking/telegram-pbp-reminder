@@ -38,6 +38,7 @@ from datetime import datetime, timedelta, timezone
 from preflight.delivery_gap import (finished_since, history_is_fresh,
                                     is_delivery_gap, _moment)
 from preflight.orphan_risk import scan, summarise
+from preflight.stale_features import summarise_from_disk
 
 # Telegram's limit is 4096. The margin absorbs the header the caller adds.
 MAX_MESSAGE = 3800
@@ -157,7 +158,11 @@ def build(reasons: list, age_hours: float | None, heartbeat: dict | None,
     for section in (lambda: cause_block(runs, heartbeat, run_id, age_hours),
                     lambda: runs_block(runs, now),
                     lambda: delivery_line(runs, now),
-                    lambda: summarise(scan(now))):
+                    lambda: summarise(scan(now)),
+                    # ⛔ The section that would have caught two
+                    # features being dead for ten days while every
+                    # other line of this report said healthy.
+                    lambda: summarise_from_disk(now)):
         try:
             parts.append(section())
         except Exception as error:  # noqa: BLE001 - one bad section, not six
