@@ -149,7 +149,6 @@
     },
     "52083": {
       "1698524397": [
-        "2026-08-23T09:21:47+00:00",
         "2026-08-24T03:33:58+00:00",
         "2026-08-24T03:34:14+00:00",
         "2026-08-24T03:34:19+00:00",
@@ -348,11 +347,6 @@
       ]
     },
     "66154": {
-      "1698524397": [
-        "2026-08-23T09:22:07+00:00",
-        "2026-08-23T09:22:15+00:00",
-        "2026-08-23T09:22:18+00:00"
-      ],
       "8525518483": [
         "2026-08-26T18:34:10+00:00",
         "2026-08-26T18:34:30+00:00",
@@ -3700,6 +3694,25 @@
         "Recover 1d6 extra HP during your next rest."
       ],
       "boon_chosen": "A dock worker offers to carry your heaviest item for free. No strings attached."
+    },
+    {
+      "week": "W37",
+      "year": 2026,
+      "date": "2026-09-07",
+      "campaign": "Hopeful End-Times",
+      "campaign_pid": "52083",
+      "user_id": "6144366145",
+      "first_name": "Anthony",
+      "username": "MrNegetZ",
+      "post_count": 6,
+      "avg_gap_h": 8.1,
+      "boons_offered": [
+        "A cantrip you cast is slightly more effective than usual for no clear reason.",
+        "A loose flagstone tips when your enemy steps on it.",
+        "Barnacles on the hull create just enough drag to slow the ship before hitting the rocks.",
+        "+1 circumstance bonus on your next skill check."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {

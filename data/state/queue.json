@@ -3225,7 +3225,21 @@
       "msg_id": "177114"
     }
   ],
-  "pending_potw_boons": {},
+  "pending_potw_boons": {
+    "52083": {
+      "message_id": 177430,
+      "winner_user_id": "6144366145",
+      "campaign_name": "Hopeful End-Times",
+      "boons": [
+        "A cantrip you cast is slightly more effective than usual for no clear reason.",
+        "A loose flagstone tips when your enemy steps on it.",
+        "Barnacles on the hull create just enough drag to slow the ship before hitting the rocks.",
+        "+1 circumstance bonus on your next skill check."
+      ],
+      "base_message": "Player of the Week for Hopeful End-Times: Anthony NegetZ (@MrNegetZ)!\n(2026-08-31 (W36) to 2026-09-07 (W37))\n\n6 posts this week with an average gap of 8.1h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-09-07T09:30:22.477517+00:00"
+    }
+  },
   "pending_hero_points": {
     "138025700": {
       "name": "Ryo Yamakawa"
