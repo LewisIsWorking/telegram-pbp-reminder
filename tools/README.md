@@ -8,6 +8,7 @@ question that came up once and will come up again.
 | `schedule_delivery_report.py` | Is GitHub actually running the workflow as often as the cron asks? |
 | `external_heartbeat.py` | Runs the bot from OUTSIDE GitHub when GitHub stops running it. Meant for the VPS crontab. |
 | `audit_queue_deletes.py` | Which superseded queue posts were actually deleted, and which became orphans? |
+| `deploy-bot.ps1` | Kick a workflow run right now instead of waiting for the cron tick. |
 | `_splitter_pack.py`, `_splitter_helpers.py`, `test_splitter.py` | Message splitting for long Telegram posts. |
 
 ## `schedule_delivery_report.py`
@@ -157,3 +158,30 @@ Three verdicts, and the third is the one that matters most:
 Measured 2026-09-04: **292 superseded, 289 deleted cleanly, 3 orphans (all
 resolved), 0 dropped.** `scripts/test_orphans_are_counted_from_the_delete_log.py`
 runs it against the real state files so it cannot rot into a fixture-only tool.
+
+## `deploy-bot.ps1`
+
+```powershell
+pwsh -File tools/deploy-bot.ps1 -Watch    # trigger and tail to completion
+pwsh -File tools/deploy-bot.ps1 -DryRun   # show what would happen, fire nothing
+```
+
+Behind `Desktop\Nudge-Now.bat`. The merge is the deploy; this only kicks the cron
+earlier, for when you want a change live now rather than within the hour.
+
+⛔ **Moved here from `ComeOnOverUno/scripts/` on 2026-09-07**, a private repo it
+had no other connection to: no imports, no repo-relative paths, nothing but this
+workflow and this repo's name.
+
+The split was not merely untidy. Adding the VPS heartbeat here on 2026-09-06
+broke this script's run-selection logic **over there**, because
+`workflow_dispatch` stopped being rare: it picks the newest dispatch run to
+watch, and the heartbeat now fires about twelve a day. If one of those had
+already finished, `gh run watch` returned instantly with its conclusion and the
+script reported success for a run the user never triggered.
+
+A change and its consequence in different repositories is the coupling that
+hides a defect. The fix then had to travel back through a release-note gate and
+a version bump belonging to an unrelated product, and still could not go live,
+because that working copy was six commits behind and stuck. Here, the copy on
+disk is the copy that ships.
