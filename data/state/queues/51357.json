@@ -1,25 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 175407,
-      "thread_id": 145040,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-26T18:31:35+00:00",
-      "preview": "Illiani channels the life-energies from her body into the wood of her bow, through the fibers of the bowstring, and brings them to a focused point in the arrowhead. She looses two shots at the remaining shadow in quick succession, so each lands true at nearly the same moment.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175421,
-      "thread_id": 145040,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-26T18:34:43+00:00",
-      "preview": "damage total is 13 piercing and 12 spirit (the two hits are combined for resistance purposes)",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -378,7 +359,11 @@
     "msg:177151",
     "2026-09-05 15:25:31",
     "msg:177353",
-    "2026-09-06 20:09:25"
+    "2026-09-06 20:09:25",
+    "msg:175407",
+    "2026-08-26 18:31:35",
+    "msg:175421",
+    "2026-08-26 18:34:43"
   ],
   "reply_log": [
     {
@@ -1962,6 +1947,24 @@
       "player": "Cannon",
       "preview": "\"Even if we were unready, I do not think we have time to change that fact. We ca",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-07T18:12:13+00:00",
+      "pid": "51357",
+      "msg_id": "175407",
+      "thread_id": 145040,
+      "player": "Cannon",
+      "preview": "Illiani channels the life-energies from her body into the wood of her bow, throu",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-07T18:12:20+00:00",
+      "pid": "51357",
+      "msg_id": "175421",
+      "thread_id": 145040,
+      "player": "Cannon",
+      "preview": "damage total is 13 piercing and 12 spirit (the two hits are combined for resista",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1976,14 +1979,12 @@
       "pending_delete": []
     },
     "145040": {
-      "msg_ids": [
-        177225
-      ],
-      "fingerprint": "2026-08-26 18:31:35|2026-08-26 18:34:43",
-      "last_posted_at": "2026-09-06T09:25:56.336323+00:00",
-      "caught_up_msg_id": null,
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 177511,
       "pending_delete": [],
-      "caught_up_at": "2026-08-26T13:33:39.804784+00:00"
+      "caught_up_at": "2026-09-07T18:15:46.928300+00:00"
     },
     "56842": {
       "msg_ids": [],
