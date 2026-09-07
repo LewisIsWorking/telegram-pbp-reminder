@@ -2,60 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 175173,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-08-26T07:38:28+00:00",
-      "preview": "The sides of Steele's grey lips raise, to a smile that hints at some fangs. \"I'm more used to having the questions directed at me, but asking questions may be a welcome change.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175176,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-26T07:51:23+00:00",
-      "preview": "\"Knock out the kobolds who took these hostages before they fill my abdomen with darts for the third time today and you might get the opportunity faster.\"\n\nShe gestures with mockingly dramatic flair towards the door the group had been stacking up to charge through before the backup arrived.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175204,
-      "thread_id": 76799,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-08-26T10:54:21+00:00",
-      "preview": "\"I see...\"\n\nKitt takes a moment to consider it before nodding their head.\n\n\"I'll make sure in the future any assignments we share that I will have prayed for magics that can heal you then. Sorry that I can't help this time.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175237,
-      "thread_id": 76799,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-08-26T12:07:04+00:00",
-      "preview": "*I give an approving nod steele*\nIt looks like we're on eviction duty . It's good to have another solid fighter in the front . Though this mechanical on me * gives a look at Changer*  mention something about non-lethal method . That concept is much to my chagrin.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175423,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-08-26T18:46:50+00:00",
-      "preview": "\"You should have joined a little earlier. We had to kill basically an entire zoo the other day. But for now, caution and restraint. They have hostages.\"\n\nNadya seems serious throughout the whole response, although she lets out a grim sigh after mentioning the hostages.\n\n\"We really should hurry.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175621,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-08-26T23:22:19+00:00",
-      "preview": "\"An entire zoo...\"\n\nSteele trails off, as a droplet of saliva slowly descends from her lips, before she clenches her eyes shut, and slides her gauntlet's wrist across her face. She slaps her face with both hands. \n\n\"Focus,\" she muttered loudly to herself.",
-      "media_group_id": null
-    },
-    {
       "message_id": 175623,
       "thread_id": 76799,
       "user_id": "8969117742",
@@ -526,7 +472,19 @@
     "msg:175153",
     "2026-08-26 07:15:35",
     "msg:175170",
-    "2026-08-26 07:34:03"
+    "2026-08-26 07:34:03",
+    "msg:175173",
+    "2026-08-26 07:38:28",
+    "msg:175176",
+    "2026-08-26 07:51:23",
+    "msg:175204",
+    "2026-08-26 10:54:21",
+    "msg:175237",
+    "2026-08-26 12:07:04",
+    "msg:175423",
+    "2026-08-26 18:46:50",
+    "msg:175621",
+    "2026-08-26 23:22:19"
   ],
   "reply_log": [
     {
@@ -2405,17 +2363,71 @@
       "player": "Cannon",
       "preview": "\"Good. Last thing I need as people trying to get a lesson on why some elixirs el",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-07T17:50:55+00:00",
+      "pid": "76799",
+      "msg_id": "175173",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "The sides of Steele's grey lips raise, to a smile that hints at some fangs. \"I'm",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-07T17:52:10+00:00",
+      "pid": "76799",
+      "msg_id": "175176",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"Knock out the kobolds who took these hostages before they fill my abdomen with ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-07T17:52:57+00:00",
+      "pid": "76799",
+      "msg_id": "175204",
+      "thread_id": 76799,
+      "player": "Ryo",
+      "preview": "\"I see...\"\n\nKitt takes a moment to consider it before nodding their head.\n\n\"I'll",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-07T17:53:29+00:00",
+      "pid": "76799",
+      "msg_id": "175237",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "*I give an approving nod steele*\nIt looks like we're on eviction duty . It's goo",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-07T17:54:20+00:00",
+      "pid": "76799",
+      "msg_id": "175423",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"You should have joined a little earlier. We had to kill basically an entire zoo",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-07T17:55:36+00:00",
+      "pid": "76799",
+      "msg_id": "175621",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "\"An entire zoo...\"\n\nSteele trails off, as a droplet of saliva slowly descends fr",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-08-26 07:38:28|2026-08-26 07:51:23|2026-08-26 10:54:21|2026-08-26 12:07:04|2026-08-26 18:46:50|2026-08-26 23:22:19|2026-08-26 23:36:49|2026-08-27 03:31:50|2026-08-27 05:11:34|2026-08-27 05:24:44|2026-08-27 15:37:32|2026-08-27 23:57:00|2026-09-02 08:16:13",
+      "fingerprint": "2026-08-26 23:36:49|2026-08-27 03:31:50|2026-08-27 05:11:34|2026-08-27 05:24:44|2026-08-27 15:37:32|2026-08-27 23:57:00|2026-09-02 08:16:13",
       "msg_ids": [
-        177453
+        177502
       ],
-      "last_posted_at": "2026-09-07T11:15:32.542663+00:00",
+      "last_posted_at": "2026-09-07T18:09:17.279276+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
