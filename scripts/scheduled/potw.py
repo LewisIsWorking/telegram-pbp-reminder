@@ -37,7 +37,6 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
     are summarised in a single roundup post.
     """
     group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
     now = now or datetime.now(timezone.utc)
 
     if not potw_schedule.due(now, helpers.POTW_WEEKDAY, helpers.POTW_POST_HOUR):
@@ -131,7 +130,18 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         # send_message_id (not send_message_with_buttons) since there
         # are no inline buttons anymore. Returns the message id for
         # tracking the pending POTW entry in state, same as before.
-        msg_id = tg.send_message_id(group_id, bot_topic or chat_topic_id,
+        # ⭐ The campaign's OWN chat topic, not `bot_topic or ...`.
+        # Changed 2026-09-07 at Lewis's request. This is an award made TO
+        # one campaign's player, naming them, offering them a boon to
+        # claim - it belongs where their table reads. The cross-campaign
+        # ROUNDUP still goes to the bot topic, and deliberately so: it
+        # exists to answer "who won this week" in one glance instead of
+        # touring a dozen topics.
+        #
+        # ⚠️ Safe for boon claiming. `pending_potw_boons` is keyed by pid
+        # and boons/handler.py edits by (chat_id, message_id), neither of
+        # which involves the topic.
+        msg_id = tg.send_message_id(group_id, chat_topic_id,
                                     base_message + boon_text)
         if msg_id:
             state["last_potw"][pid] = now.isoformat()
@@ -169,8 +179,11 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
             entry["count"] += 1
             # Check and announce streaks
             from scheduled.potw_streaks import announce_streaks
+            # Campaign streak goes to the campaign; the COMMUNITY one
+            # is posted to the bot topic by announce_streaks itself,
+            # because it is about the whole group rather than this table.
             announce_streaks(config, state, winner, name, pid,
-                             group_id, bot_topic or chat_topic_id)
+                             group_id, chat_topic_id)
 
     # One summary of every campaign's winner, posted after the individual
     # awards so the roundup can't precede the messages it summarises.
