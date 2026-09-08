@@ -2,60 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 175419,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-08-26T18:34:10+00:00",
-      "preview": "A small gnomish woman behind a desk in the corner of the room perks up an ear at the word \"Attack\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175420,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-08-26T18:34:30+00:00",
-      "preview": "So, what's that about an \"attack\"?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175422,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-08-26T18:35:11+00:00",
-      "preview": "She's hard to see, because her desk is completely swamped with piles of paperwork.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 176223,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-08-30T13:19:25+00:00",
-      "preview": "A young server, what looks like a blonde-haired teenager, about 1.2 metres tall, in a light blue tunic and linen trousers, is carrying an empty tray, before he trips and falls onto the ground with a soft whelp and a grunt, right in front of Davy. While nothing breaks, he's instantly apologetic.\n\n\"I'm sorry, I won't do it again!\"\n\nRin wasn't a very good server, even part-time, but he did occasionally glow weirdly when excited or apologetic. And sometimes, his shadow moved only after he did, as if",
-      "media_group_id": null
-    },
-    {
-      "message_id": 177325,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-06T18:23:38+00:00",
-      "preview": "Tater: \"Rin, I'm new here, but it feels like you're just letting everyone step all over you. And also, speaking as a professional dancer and barmaid... You should probably change your shoes to something that won't slip as much\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 177327,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-06T18:25:20+00:00",
-      "preview": "\"but at least you're cute in a pathetic way when fumbling like that \ud83d\ude18\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 177376,
       "thread_id": 66154,
       "user_id": "1358791105",
@@ -274,7 +220,19 @@
     "msg:173959",
     "2026-08-22 21:03:36",
     "msg:173960",
-    "2026-08-22 21:03:42"
+    "2026-08-22 21:03:42",
+    "msg:175419",
+    "2026-08-26 18:34:10",
+    "msg:175420",
+    "2026-08-26 18:34:30",
+    "msg:175422",
+    "2026-08-26 18:35:11",
+    "msg:176223",
+    "2026-08-30 13:19:25",
+    "msg:177325",
+    "2026-09-06 18:23:38",
+    "msg:177327",
+    "2026-09-06 18:25:20"
   ],
   "reply_log": [
     {
@@ -1242,17 +1200,71 @@
       "player": "Anthony",
       "preview": "...",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-08T02:45:25+00:00",
+      "pid": "66154",
+      "msg_id": "175419",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "A small gnomish woman behind a desk in the corner of the room perks up an ear at",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T02:45:53+00:00",
+      "pid": "66154",
+      "msg_id": "175420",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "So, what's that about an \"attack\"?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T02:46:18+00:00",
+      "pid": "66154",
+      "msg_id": "175422",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "She's hard to see, because her desk is completely swamped with piles of paperwor",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T02:47:15+00:00",
+      "pid": "66154",
+      "msg_id": "176223",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "A young server, what looks like a blonde-haired teenager, about 1.2 metres tall,",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T02:47:46+00:00",
+      "pid": "66154",
+      "msg_id": "177325",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "Tater: \"Rin, I'm new here, but it feels like you're just letting everyone step a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T02:48:24+00:00",
+      "pid": "66154",
+      "msg_id": "177327",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "\"but at least you're cute in a pathetic way when fumbling like that \ud83d\ude18\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-08-26 18:34:10|2026-08-26 18:34:30|2026-08-26 18:35:11|2026-08-30 13:19:25|2026-09-06 18:23:38|2026-09-06 18:25:20|2026-09-06 23:02:06",
+      "fingerprint": "2026-09-06 23:02:06",
       "msg_ids": [
-        177378
+        177594
       ],
-      "last_posted_at": "2026-09-06T23:08:50.743735+00:00",
+      "last_posted_at": "2026-09-08T03:30:18.307261+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
