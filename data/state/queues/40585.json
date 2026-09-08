@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 177625,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-08T07:37:05+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 177626,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-08T07:37:47+00:00",
-      "preview": "Leopard will stay back, preparing himself for the battles ahead while those more talented in other ways clear the way.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1112,7 +1094,11 @@
     "msg:177568",
     "2026-09-08 01:10:42",
     "msg:177569",
-    "2026-09-08 01:11:24"
+    "2026-09-08 01:11:24",
+    "msg:177626",
+    "2026-09-08 07:37:47",
+    "msg:177625",
+    "2026-09-08 07:37:05"
   ],
   "reply_log": [
     {
@@ -6179,29 +6165,43 @@
       "player": "Buffet",
       "preview": "i'm 45 feet from the nearest slab at this point",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-08T12:57:12+00:00",
+      "pid": "40585",
+      "msg_id": "177626",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "Leopard will stay back, preparing himself for the battles ahead while those more",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T12:57:41+00:00",
+      "pid": "40585",
+      "msg_id": "177625",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-09-08 07:37:05",
-      "msg_ids": [
-        177631
-      ],
-      "last_posted_at": "2026-09-08T08:00:23.673992+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 177669,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-08T13:00:20.295122+00:00"
     },
     "40585": {
-      "fingerprint": "2026-09-08 07:37:47",
-      "msg_ids": [
-        177633
-      ],
-      "last_posted_at": "2026-09-08T08:00:25.691389+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 177670,
+      "caught_up_at": "2026-09-08T13:00:20.295122+00:00"
     }
   }
 }
