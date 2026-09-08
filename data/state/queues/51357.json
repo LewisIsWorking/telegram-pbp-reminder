@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 177555,
-      "thread_id": 145040,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-09-08T00:27:14+00:00",
-      "preview": "Are we all good to head through?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -373,7 +363,11 @@
     "msg:175407",
     "2026-08-26 18:31:35",
     "msg:175421",
-    "2026-08-26 18:34:43"
+    "2026-08-26 18:34:43",
+    "msg:177555",
+    "2026-09-08 00:27:14",
+    "msg:177562",
+    "2026-09-08 00:40:13"
   ],
   "reply_log": [
     {
@@ -1975,6 +1969,24 @@
       "player": "Cannon",
       "preview": "damage total is 13 piercing and 12 spirit (the two hits are combined for resista",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-08T01:05:09+00:00",
+      "pid": "51357",
+      "msg_id": "177555",
+      "thread_id": 145040,
+      "player": "Laetheron",
+      "preview": "Are we all good to head through?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-08T01:19:27+00:00",
+      "pid": "51357",
+      "msg_id": "177562",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "\"I carry Sarenrae's light, even in that realm of shadow it will protect us. If w",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -1989,14 +2001,12 @@
       "pending_delete": []
     },
     "145040": {
-      "msg_ids": [
-        177556
-      ],
-      "fingerprint": "2026-09-08 00:27:14",
-      "last_posted_at": "2026-09-08T00:39:35.959443+00:00",
-      "caught_up_msg_id": null,
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 177576,
       "pending_delete": [],
-      "caught_up_at": "2026-09-07T18:15:46.928300+00:00"
+      "caught_up_at": "2026-09-08T01:30:22.415521+00:00"
     },
     "56842": {
       "msg_ids": [],
