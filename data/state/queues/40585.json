@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 177625,
+      "thread_id": 137075,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-08T07:37:05+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 177626,
+      "thread_id": 40585,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-08T07:37:47+00:00",
+      "preview": "Leopard will stay back, preparing himself for the battles ahead while those more talented in other ways clear the way.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6167,17 +6185,21 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-08 07:37:05",
+      "msg_ids": [
+        177631
+      ],
+      "last_posted_at": "2026-09-08T08:00:23.673992+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-08 07:37:47",
+      "msg_ids": [
+        177633
+      ],
+      "last_posted_at": "2026-09-08T08:00:25.691389+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
