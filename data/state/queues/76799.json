@@ -9,6 +9,24 @@
       "time": "2026-09-08T05:42:09+00:00",
       "preview": "\"Former Sergeant Steele of the Magnimar City Watch. Although I was, against my will, away without leave for a few years.\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 177930,
+      "thread_id": 144765,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-09T12:04:11+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 177931,
+      "thread_id": 76799,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-09T12:05:11+00:00",
+      "preview": "Steele is about to repeat her rank for the Changer, but not before the bolt launches. She startles, with an unintentionally ghoulish hiss, before composing herself. (Initiative: 8)",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2446,19 +2464,21 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-09-08 05:42:09",
+      "fingerprint": "2026-09-08 05:42:09|2026-09-09 12:05:11",
       "msg_ids": [
-        177925
+        177934
       ],
-      "last_posted_at": "2026-09-09T12:00:28.311409+00:00",
+      "last_posted_at": "2026-09-09T13:00:35.431412+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
     },
     "144765": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-09 12:04:11",
+      "msg_ids": [
+        177936
+      ],
+      "last_posted_at": "2026-09-09T13:00:37.672774+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
