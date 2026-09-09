@@ -45,7 +45,13 @@ EM_DASH = "—"
 # fired UPWARD first (+7, all in new docstrings I had just written),
 # those were rewritten as commas and colons, and the rewrite took five
 # more with it than the split had added. Both directions in one change.
-CEILING = 1745
+#
+# 1745 -> 1744 on 2026-09-09, documenting recruit_tier. The one dash
+# went with the stale queue_priority row in docs/configuration.md, which
+# still described the legacy boolean. A docs-only change, so the ratchet
+# firing here is the guard doing its job rather than a side effect worth
+# suppressing.
+CEILING = 1744
 
 _ROOTS = ("scripts", "docs")
 _EXTS = (".py", ".md")
