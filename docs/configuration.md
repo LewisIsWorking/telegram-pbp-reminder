@@ -43,7 +43,7 @@ Fields set inside each entry in `topic_pairs`:
 | `poll_user_ids`          | Explicit list of Telegram user IDs to ping (overrides PBP roster) |
 | `poll_user_names`        | `{uid: username}` map — fallback @mention for players not in PBP registry |
 | `emoji`                  | Campaign emoji shown in queue section headers (e.g. `🦠`) |
-| `queue_priority`         | `true` — campaign always sorts first in the GM reply queue |
+| `queue_priority`         | Queue rank, **lower wins**. `true` is a legacy alias for rank 1. Unset means rank 99. See [GM queue ranks](gm-queue.md#campaign-exclusions) |
 | `queue_exclude`          | `true` — campaign is excluded from the GM reply queue entirely |
 | `gm_user_ids`            | **Replaces** the global GM list for this campaign only — see [Per-campaign GMs](#per-campaign-gms) |
 | `disabled_features`      | Feature names switched off for this campaign (e.g. `["warnings", "recruitment"]`) |
@@ -51,6 +51,36 @@ Fields set inside each entry in `topic_pairs`:
 | `nudge_topic_id`         | Topic to send session-poll nudges to (defaults to the poll topic) |
 | `poll_roster_filter`     | `true` — opt in to poll-roster filtering (see `commands/roster.py`) |
 | `created`                | Campaign start date `YYYY-MM-DD`, used by `/campaign` and the timeline |
+| `recruit_tier`           | Which recruitment queue this campaign draws from. See [Recruitment tiers](#recruitment-tiers) |
+
+### Recruitment tiers
+
+`recruit_tier` decides **which campaigns the recruitment advert offers**, and it
+is a queue rather than a switch. Lewis, 2026-08-15: *a tier only becomes eligible
+once every campaign in every lower tier is full*. That lets a table wait its turn
+instead of being excluded outright.
+
+| Tier | Meaning | Currently |
+|------|---------|-----------|
+| `0` | The normal queue. Implicit for any campaign that does not say otherwise. | Everything not listed below |
+| `1` | Offered only once every tier-0 campaign is full. | C10 The Junction |
+| `2` | Offered only once tiers 0 and 1 are full. | C08 Theria |
+| `None` | Never recruited. | Any campaign with `recruitment` in `disabled_features` and no explicit tier |
+
+⚠️ **Precedence matters, and it is the opposite of what reading the config
+suggests.** An explicit `recruit_tier` is read **before** `disabled_features`, so
+a campaign can carry `"recruitment"` in its disabled list and still be recruited
+for when its tier comes up. C10 and C08 are both in exactly that state: hard
+excluded on 2026-08-15, tiered since. Reading the disabled flag first would make
+an explicit tier unreachable.
+
+⚠️ A tier is **not** a reply-queue rank. `queue_priority` orders the GM reply
+queue; `recruit_tier` orders who gets offered new players. A campaign can be
+top of one and absent from the other, and C08 Theria is: `queue_exclude: true`
+keeps it out of the reply queue entirely while tier 2 still recruits for it.
+
+The rule lives in `scheduled/recruit_focus.py:recruit_tier`, and the "lowest tier
+with a shortfall" selection in `_eligible_pairs` beside it.
 
 ### Per-campaign GMs
 

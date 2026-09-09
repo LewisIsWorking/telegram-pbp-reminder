@@ -73,7 +73,8 @@ Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
 ## Viewing the queue
 
 `/queue` — posts the full queue sorted by:
-1. Priority campaigns first (configured with `queue_priority: true`)
+1. Priority campaigns first, by rank (see [Campaign exclusions](#campaign-exclusions)).
+   `queue_priority` is a number, lower first; `true` is a legacy alias for rank 1
 2. Oldest unreplied message first within each campaign
 
 Each entry shows:
