@@ -2,69 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 175623,
-      "thread_id": 76799,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-08-26T23:36:49+00:00",
-      "preview": "*rex stares into the door way changer pointed at *\nI think it's time for us to head in and cause some trouble.\n*Rex cautiously walk into the doorway *",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175640,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-08-27T03:31:50+00:00",
-      "preview": "\"Authority? I am... Am I still a sergeant?\" Steele's initial hesitance turns into asking herself aloud, as she crosses her arms, with one of the hands still holding the sap.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175646,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-08-27T05:11:34+00:00",
-      "preview": "Observing the backup squad quietly, the trench coat wearing nyktera nods them in. Prior to anyone going through the door, he once again points out the snare trap across the threshold, and the spider mounted kobold lurking above.\n\n\"Consulting Detective B\u00e1yakan. Status : less sturdy than you. So welcome to the front.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175648,
-      "thread_id": 76799,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-08-27T05:24:44+00:00",
-      "preview": "Oh there's a trap you say ? Does anybody have a way to disable it ?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175745,
-      "thread_id": 76799,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-08-27T15:37:32+00:00",
-      "preview": "@PathWars  could I try thievery or perception for this trap",
-      "media_group_id": null
-    },
-    {
-      "message_id": 175846,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-08-27T23:57:00+00:00",
-      "preview": "\"I'm not so sturdy enough to take an ambushing shot, and I did not bring a shield. We'll need someone to disable the trap first.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 176693,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-09-02T08:16:13+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 177608,
       "thread_id": 76799,
       "user_id": "1358791105",
@@ -493,7 +430,21 @@
     "msg:175423",
     "2026-08-26 18:46:50",
     "msg:175621",
-    "2026-08-26 23:22:19"
+    "2026-08-26 23:22:19",
+    "msg:175623",
+    "2026-08-26 23:36:49",
+    "msg:175640",
+    "2026-08-27 03:31:50",
+    "msg:175646",
+    "2026-08-27 05:11:34",
+    "msg:175648",
+    "2026-08-27 05:24:44",
+    "msg:175745",
+    "2026-08-27 15:37:32",
+    "msg:175846",
+    "2026-08-27 23:57:00",
+    "msg:176693",
+    "2026-09-02 08:16:13"
   ],
   "reply_log": [
     {
@@ -2426,17 +2377,80 @@
       "player": "Alastair",
       "preview": "\"An entire zoo...\"\n\nSteele trails off, as a droplet of saliva slowly descends fr",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:09:30+00:00",
+      "pid": "76799",
+      "msg_id": "175623",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "*rex stares into the door way changer pointed at *\nI think it's time for us to h",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:10:09+00:00",
+      "pid": "76799",
+      "msg_id": "175640",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "\"Authority? I am... Am I still a sergeant?\" Steele's initial hesitance turns int",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:10:57+00:00",
+      "pid": "76799",
+      "msg_id": "175646",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "Observing the backup squad quietly, the trench coat wearing nyktera nods them in",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:13:04+00:00",
+      "pid": "76799",
+      "msg_id": "175648",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "Oh there's a trap you say ? Does anybody have a way to disable it ?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:13:13+00:00",
+      "pid": "76799",
+      "msg_id": "175745",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "@PathWars  could I try thievery or perception for this trap",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:14:11+00:00",
+      "pid": "76799",
+      "msg_id": "175846",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "\"I'm not so sturdy enough to take an ambushing shot, and I did not bring a shiel",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-09T11:18:36+00:00",
+      "pid": "76799",
+      "msg_id": "176693",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-08-26 23:36:49|2026-08-27 03:31:50|2026-08-27 05:11:34|2026-08-27 05:24:44|2026-08-27 15:37:32|2026-08-27 23:57:00|2026-09-02 08:16:13|2026-09-08 05:42:09",
+      "fingerprint": "2026-09-08 05:42:09",
       "msg_ids": [
-        177614
+        177925
       ],
-      "last_posted_at": "2026-09-08T06:00:30.061401+00:00",
+      "last_posted_at": "2026-09-09T12:00:28.311409+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
