@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 177344,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-09-06T18:37:48+00:00",
-      "preview": "Lai puts down the ukelele and pulls out his pistol from his leg compartment. He unloads the battery and proceeds to charge it like how livy did it",
-      "media_group_id": null
-    },
-    {
       "message_id": 177992,
       "thread_id": 52083,
       "user_id": "8097377199",
@@ -446,7 +437,9 @@
     "msg:176849",
     "2026-09-03 02:29:56",
     "msg:176856",
-    "2026-09-03 03:48:42"
+    "2026-09-03 03:48:42",
+    "msg:177344",
+    "2026-09-06 18:37:48"
   ],
   "reply_log": [
     {
@@ -2352,17 +2345,26 @@
       "player": "Anthony",
       "preview": "Oh i forgot:\nFilm the whole thing.\nPost the video with the scam evidence on Abso",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-10T15:49:06+00:00",
+      "pid": "52083",
+      "msg_id": "177344",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai puts down the ukelele and pulls out his pistol from his leg compartment. He ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-06 18:37:48|2026-09-09 18:33:16|2026-09-10 04:39:33",
+      "fingerprint": "2026-09-09 18:33:16|2026-09-10 04:39:33",
       "msg_ids": [
-        178123
+        178200
       ],
-      "last_posted_at": "2026-09-10T05:13:02.743577+00:00",
+      "last_posted_at": "2026-09-10T16:23:04.442141+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-09-01T17:26:08.788369+00:00"
     },
