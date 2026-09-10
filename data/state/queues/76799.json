@@ -1,6 +1,43 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 178096,
+      "thread_id": 144765,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-10T03:49:36+00:00",
+      "preview": "Action Plan: (if starting 1 grid east of Kitt)\n\n1: Move 2 S, 1 SW. (Standing north west of where the spider is)\n2: Snagging Strike with Sap\n3: Strike again.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 178097,
+      "thread_id": 144765,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-10T03:51:07+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 178098,
+      "thread_id": 144765,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-10T03:51:26+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 178103,
+      "thread_id": 144765,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-10T04:29:38+00:00",
+      "preview": "[media]",
+      "media_group_id": "14312116630857129"
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2477,10 +2514,12 @@
       "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
     },
     "144765": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 178072,
+      "fingerprint": "2026-09-10 03:49:36|2026-09-10 03:51:07|2026-09-10 03:51:26|2026-09-10 04:29:38|2026-09-10 04:29:39",
+      "msg_ids": [
+        178107
+      ],
+      "last_posted_at": "2026-09-10T04:30:20.388339+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
     }
