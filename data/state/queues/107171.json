@@ -1,25 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 177130,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-09-05T11:41:19+00:00",
-      "preview": "\"-There we go.\"\n\nThe oni stows her knife away, then straightens herself to look across at the bridge. She looks left and right as far as she can see, then over to the captain. .\n\n\"Just you in there?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 177149,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-09-05T15:20:51+00:00",
-      "preview": "Arktos chimes in, leaning on LUKA, \"I don't suppose you'd mind capitulating without a fight, would you? There seems to be more pressing undead matters at hand.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -382,7 +363,11 @@
     "msg:175211",
     "2026-08-26 11:18:17",
     "msg:175508",
-    "2026-08-26 19:55:28"
+    "2026-08-26 19:55:28",
+    "msg:177130",
+    "2026-09-05 11:41:19",
+    "msg:177149",
+    "2026-09-05 15:20:51"
   ],
   "reply_log": [
     {
@@ -2071,20 +2056,36 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-10T03:24:53+00:00",
+      "pid": "107171",
+      "msg_id": "177130",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"-There we go.\"\n\nThe oni stows her knife away, then straightens herself to look ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-10T03:26:45+00:00",
+      "pid": "107171",
+      "msg_id": "177149",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos chimes in, leaning on LUKA, \"I don't suppose you'd mind capitulating with",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-05 11:41:19|2026-09-05 15:20:51",
-      "msg_ids": [
-        177693
-      ],
-      "last_posted_at": "2026-09-08T16:45:29.184998+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 178083,
       "pending_delete": [],
-      "caught_up_at": "2026-09-04T22:23:31.181104+00:00"
+      "caught_up_at": "2026-09-10T03:30:19.347363+00:00"
     },
     "142887": {
       "fingerprint": "",
