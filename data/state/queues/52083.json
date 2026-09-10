@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 176749,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-09-02T12:59:40+00:00",
-      "preview": "She'll also recharge batteries.",
-      "media_group_id": null
-    },
-    {
       "message_id": 176849,
       "thread_id": 52083,
       "user_id": "6144366145",
@@ -458,7 +449,9 @@
     "msg:176699",
     "2026-09-02 09:23:44",
     "msg:176736",
-    "2026-09-02 12:23:33"
+    "2026-09-02 12:23:33",
+    "msg:176749",
+    "2026-09-02 12:59:40"
   ],
   "reply_log": [
     {
@@ -2337,17 +2330,26 @@
       "player": "Anthony",
       "preview": "Livy will also make a weapon out of these monster parts (since my class doesn't ",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-10T00:41:42+00:00",
+      "pid": "52083",
+      "msg_id": "176749",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "She'll also recharge batteries.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-02 12:59:40|2026-09-03 02:29:56|2026-09-03 03:48:42|2026-09-06 18:37:48|2026-09-09 18:33:16",
+      "fingerprint": "2026-09-03 02:29:56|2026-09-03 03:48:42|2026-09-06 18:37:48|2026-09-09 18:33:16",
       "msg_ids": [
-        178028
+        178054
       ],
-      "last_posted_at": "2026-09-09T21:56:40.796805+00:00",
+      "last_posted_at": "2026-09-10T01:30:25.332360+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-09-01T17:26:08.788369+00:00"
     },
