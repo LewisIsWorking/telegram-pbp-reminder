@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 178240,
+      "thread_id": 107171,
+      "user_id": "8379380933",
+      "user_name": "Minork",
+      "time": "2026-09-10T23:47:01+00:00",
+      "preview": "Minork raises his gun, pointed at the pirate next to the Captain. \u201cCap, you have 2 seconds to explain before I start blasting.\u201d",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2080,10 +2090,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 178083,
+      "fingerprint": "2026-09-10 23:47:01",
+      "msg_ids": [
+        178251
+      ],
+      "last_posted_at": "2026-09-11T00:16:11.433785+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-10T03:30:19.347363+00:00"
     },
