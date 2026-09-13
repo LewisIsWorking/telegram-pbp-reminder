@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 178240,
-      "thread_id": 107171,
-      "user_id": "8379380933",
-      "user_name": "Minork",
-      "time": "2026-09-10T23:47:01+00:00",
-      "preview": "Minork raises his gun, pointed at the pirate next to the Captain. \u201cCap, you have 2 seconds to explain before I start blasting.\u201d",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -377,7 +367,9 @@
     "msg:177130",
     "2026-09-05 11:41:19",
     "msg:177149",
-    "2026-09-05 15:20:51"
+    "2026-09-05 15:20:51",
+    "msg:178240",
+    "2026-09-10 23:47:01"
   ],
   "reply_log": [
     {
@@ -2084,20 +2076,27 @@
       "player": "Laetheron",
       "preview": "Arktos chimes in, leaning on LUKA, \"I don't suppose you'd mind capitulating with",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T18:37:52+00:00",
+      "pid": "107171",
+      "msg_id": "178240",
+      "thread_id": 107171,
+      "player": "Minork",
+      "preview": "Minork raises his gun, pointed at the pirate next to the Captain. \u201cCap, you have",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-10 23:47:01",
-      "msg_ids": [
-        178427
-      ],
-      "last_posted_at": "2026-09-12T13:00:29.423331+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 178768,
       "pending_delete": [],
-      "caught_up_at": "2026-09-10T03:30:19.347363+00:00"
+      "caught_up_at": "2026-09-13T19:27:01.799287+00:00"
     },
     "142887": {
       "fingerprint": "",
