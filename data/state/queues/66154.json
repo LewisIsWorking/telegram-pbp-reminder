@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 178134,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-10T06:07:11+00:00",
-      "preview": "A slow, white, simulacrum of a wide grin appears on the 'face' of the shadow. Rin shoots a look at the shadow, who stops smiling, then shrugs theatrically as soon as Rin looks away.",
-      "media_group_id": null
-    },
-    {
       "message_id": 178423,
       "thread_id": 66154,
       "user_id": "1358791105",
@@ -258,7 +249,9 @@
     "msg:177721",
     "2026-09-08 19:22:15",
     "msg:178495",
-    "2026-09-12 21:01:07"
+    "2026-09-12 21:01:07",
+    "msg:178134",
+    "2026-09-10 06:07:11"
   ],
   "reply_log": [
     {
@@ -1316,17 +1309,26 @@
       "player": "Fuzzy",
       "preview": "So... What did he do to piss off the boss?",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T18:22:03+00:00",
+      "pid": "66154",
+      "msg_id": "178134",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "A slow, white, simulacrum of a wide grin appears on the 'face' of the shadow. Ri",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-09-10 06:07:11|2026-09-12 12:51:46|2026-09-12 21:33:13",
+      "fingerprint": "2026-09-12 12:51:46|2026-09-12 21:33:13",
       "msg_ids": [
-        178507
+        178727
       ],
-      "last_posted_at": "2026-09-12T21:36:35.779803+00:00",
+      "last_posted_at": "2026-09-13T18:32:17.303787+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
