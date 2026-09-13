@@ -14,6 +14,7 @@ from scheduled.queue_silence import (
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_followup import build_followup
+from scheduled.queue_focus_dm import send_focus_dm
 from scheduled.queue_render import (
     build_streak, build_summary, build_momentum_map, build_header,
     chunk_messages, build_body_lines,
@@ -160,4 +161,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             state["last_queue_daily_slots"] = slots[-14:]
             state["last_queue_daily"] = now.date().isoformat()  # backwards compat
         print(f"Queue reminder: {total} unreplied ({len(msgs)} msg)")
+        # Also DM the GM the focus message, but only when its target has
+        # moved. See queue_focus_dm for why it is not sent on every post.
+        # ⚠️ tg.send_message is looked up HERE, at call time, so a test
+        # patching telegram.send_message still reaches it.
+        if send_focus_dm(config, state, scanned, priority_map, now,
+                         send=tg.send_message):
+            print("Queue focus DM sent: target changed")
 

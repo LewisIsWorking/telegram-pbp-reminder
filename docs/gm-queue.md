@@ -284,6 +284,29 @@ The follow-up is appended to the queue's own message batch, so it is deleted
 together with that queue on the next post. That is deliberate: a focus message
 outliving its queue would keep pointing at a message already answered.
 
+### Also sent to the GM as a DM, when the target changes
+
+Since 2026-09-13 the same message is DMed to `gm_user_id`, the way the
+escalation already is (`scheduled/queue_focus_dm.py`).
+
+⚠️ **Only when the target moves, not on every queue post.** The queue posts
+roughly once an hour (measured 1706 to 1735 in 24h), and the follow-up rides
+along with each post. A DM per post would be around 25 a day, mostly
+identical, burying the escalations. So it is sent when "Reply to this next"
+starts pointing at a **different message**, and stays quiet otherwise.
+
+- The target is the **message**, not the campaign. Answering the oldest message
+  in a campaign moves the focus to that campaign's next oldest, and that is
+  announced even though the campaign is unchanged.
+- It is **not deleted** when superseded, unlike the group copy. It cannot
+  mislead the same way: answering the target moves the focus, which sends a
+  newer DM. The DMs read as a timeline, the newest always current.
+- A DM Telegram refuses is **not** recorded as sent, so it is retried on the
+  next post.
+- Only the focus message is DMed, never the quiet-campaign fallback that
+  replaces it when nothing is owed a reply.
+- No DM is sent if the group queue post itself failed.
+
 ---
 
 ## Queue stats

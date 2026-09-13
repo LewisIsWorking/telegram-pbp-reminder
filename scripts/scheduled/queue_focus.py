@@ -57,6 +57,25 @@ def pick_focus_pid(scanned: dict, priority_map: dict) -> str | None:
     return min(pool, key=sort_key)
 
 
+def focus_key(scanned: dict, priority_map: dict) -> str | None:
+    """A stable identity for the current focus target, or None if there is none.
+
+    Used by ``queue_focus_dm`` to tell "the target moved" from "the same target
+    was posted again". Built from ``pick_focus_pid`` and ``_oldest_entry``, the
+    same two calls ``build_focus_message`` makes, so the key and the message
+    cannot disagree about which message is being pointed at.
+
+    ⚠️ Identifies the MESSAGE, not the campaign. Answering the oldest message in
+    a campaign keeps the same campaign in focus but moves the target to its next
+    oldest, and that is exactly a change worth announcing.
+    """
+    pid = pick_focus_pid(scanned, priority_map)
+    if not pid:
+        return None
+    entry = _oldest_entry(scanned[pid]["entries"])
+    return entry.get("link") or f"{pid}@{entry.get('time', '')}"
+
+
 def build_focus_message(config: dict, scanned: dict, priority_map: dict,
                         now: datetime) -> str:
     """Build the focus message, or '' when there is nothing to point at."""
