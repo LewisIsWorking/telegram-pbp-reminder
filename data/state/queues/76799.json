@@ -1,25 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 178114,
-      "thread_id": 76799,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-10T04:33:25+00:00",
-      "preview": "Kitt flicks their hand as a vine flies and wraps around the kobold, Kreski, restricting their movement to potentially slow his retreat. They then raise their shield.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 178115,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-10T04:35:19+00:00",
-      "preview": "Steele steps forward, with her sap, annoyed that she wasn't holding her sword in the other hand. She strikes the spider on the noggin', then grabs onto the mount, before whiffing her next sap strike.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -471,7 +452,11 @@
     "msg:178375",
     "2026-09-12 01:44:33",
     "msg:178104",
-    "2026-09-10 04:29:39"
+    "2026-09-10 04:29:39",
+    "msg:178114",
+    "2026-09-10 04:33:25",
+    "msg:178115",
+    "2026-09-10 04:35:19"
   ],
   "reply_log": [
     {
@@ -2548,20 +2533,36 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T16:20:33+00:00",
+      "pid": "76799",
+      "msg_id": "178114",
+      "thread_id": 76799,
+      "player": "Ryo",
+      "preview": "Kitt flicks their hand as a vine flies and wraps around the kobold, Kreski, rest",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-13T16:20:48+00:00",
+      "pid": "76799",
+      "msg_id": "178115",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "Steele steps forward, with her sap, annoyed that she wasn't holding her sword in",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-09-10 04:33:25|2026-09-10 04:35:19",
-      "msg_ids": [
-        178558
-      ],
-      "last_posted_at": "2026-09-13T06:07:31.304345+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 178699,
       "pending_delete": [],
-      "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
+      "caught_up_at": "2026-09-13T17:00:17.705023+00:00"
     },
     "144765": {
       "fingerprint": "",
