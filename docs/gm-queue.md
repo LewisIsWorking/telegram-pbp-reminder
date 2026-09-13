@@ -195,11 +195,41 @@ ticking**; one was a real change.
 
 The fingerprint now uses which campaigns are silent, not their rendered lines
 (`queue_silence.silent_ids`). A campaign going silent or waking up is a change.
-Its age and icon band are presentation, refreshed at the next real change or
-daily slot, so a silent line's age can be up to about twelve hours stale.
 
 The caught-up section had already been kept out of the fingerprint for exactly
 this reason. The silent section was not, which is how it got missed.
+
+### An unchanged queue is refreshed in place
+
+⚠️ **Fixing that removed the only visible sign the bot was alive.** The hourly
+repost had doubled as a heartbeat, so a healthy quiet queue became
+indistinguishable from a dead one. Lewis reported "the queue isn't updating"
+the same day; state history showed it was updating on every real change.
+
+So on a run where the queue has **not** changed, the pinned queue is **edited**
+rather than left alone (`scheduled/queue_refresh.py`):
+
+- Its first message carries **"🕒 Checked HH:MM BST"**, updated every run.
+- **Ages are current** again, instead of frozen until the next real change.
+- **Nothing is posted and nobody is notified**, because Telegram edits don't
+  notify. It stays quiet.
+
+It **reposts instead** whenever it cannot edit cleanly, and never needs to know
+exactly why:
+
+| Situation | Why it reposts |
+|---|---|
+| Telegram refuses an edit | Its edit time limit isn't reliably documented (48h per some sources, unlimited for admins per another). A repost makes a fresh message. |
+| The message count changed | `post_batch` records a chunk's id only if it sent, so an earlier failure leaves the ids shifted. Editing by position would put text in the wrong message. |
+| There's no batch to edit | Nothing was recorded yet. |
+
+**Unchanged messages are skipped, not re-sent.** Only the first message has the
+Checked time; the others are often identical between runs, and Telegram rejects
+an identical edit as "message is not modified". What each message last said is
+kept in `gm_queue_texts`, which **must stay declared in `state_schema.py`**: an
+undeclared key is discarded on every save, and the queue would repost every run.
+
+A refresh keeps the current **"GM Queue #N"**. Only a real repost increments it.
 
 ---
 

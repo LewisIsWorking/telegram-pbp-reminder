@@ -28,6 +28,13 @@ PARTITIONS: dict[str, list[str]] = {
         "last_week_welcome", "last_queue_daily_slots", "swimming_poll",
         "queue_scan_floor", "last_diagnostic", "last_queue_pin_id",
         "queue_post_count", "gm_queue_history",
+        # ⛔ Added 2026-09-13 with the queue's edit-in-place refresh, and
+        # caught by test_state_keys_are_declared before it shipped. Undeclared,
+        # it would be discarded on every save, so every run would find no
+        # remembered texts, re-send unchanged messages, get "not modified",
+        # and repost: the hourly-repost bug back again, with all the unit
+        # tests passing because they never save.
+        "gm_queue_texts",
         # Added 2026-08-11. These four were written by new features but
         # never listed here, so _save_to_files silently dropped them every
         # run (see the note at the top of this file: keys not listed are
@@ -128,7 +135,7 @@ DEFAULT_STATE: dict = {
     "last_queue_daily_slots": [], "swimming_poll": {},
     "queue_scan_floor": None, "last_diagnostic": None,
     "last_queue_pin_id": None, "queue_post_count": 0,
-    "gm_queue_history": [],
+    "gm_queue_history": [], "gm_queue_texts": [],
     "potw_week": {}, "last_potw_roundup": None,
     "last_potw_countdown": None, "schedule_post_msg_id": None,
     "schedule_post_chat_id": None,

@@ -17,6 +17,7 @@ silent_campaigns itself would have faked away the very code that was wrong.
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
+from _test_queue_post_fakes import edit_ok, faithful_post_and_persist
 from scheduled.queue_silence_rows import IdleRow
 
 T0 = datetime(2026, 9, 13, 10, 0, tzinfo=timezone.utc)
@@ -47,14 +48,21 @@ def _idle(silent):
 
 
 def _post(state, now, silent, scanned=None):
-    """Run one queue pass. Returns how many times the queue was posted."""
+    """Run one queue pass. Returns how many times the queue was REPOSTED.
+
+    ⚠️ Since 2026-09-13 an unchanged queue is edited in place rather than
+    left alone, so the post fake must record its batch the way the real one
+    does, or every unchanged run finds nothing to edit and reposts. See
+    _test_queue_post_fakes.
+    """
     with patch("scheduled.queue_silence.idle_campaigns", _idle(silent)), \
          patch("scheduled.queue_reminder.scan_transcripts",
                return_value=scanned or {}), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
          patch("scheduled.queue_reminder.send_focus_dm", return_value=False), \
          patch("scheduled.queue_reminder.post_and_persist",
-               return_value=(True, 1)) as posted, \
+               side_effect=faithful_post_and_persist) as posted, \
+         patch("scheduled.queue_reminder.tg.edit_message", side_effect=edit_ok), \
          patch("scheduled.queue_caught_up.post_and_persist",
                return_value=(True, 1)):
         from scheduled.queue_reminder import post_queue_reminder

@@ -16,6 +16,7 @@ from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_followup import build_followup
 from scheduled.queue_focus_dm import send_focus_dm
+from scheduled.queue_refresh import checked_line, refresh_in_place
 from scheduled.queue_render import (
     build_streak, build_summary, build_momentum_map, build_header,
     chunk_messages, build_body_lines,
@@ -69,8 +70,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     ids = silent_ids(rows)
     if ids:
         fingerprint += "|silent:" + "|".join(ids)
-    if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
-        return
+    # ⚠️ No longer an early return. An unchanged queue is edited in place
+    # further down, which needs the render. The caught-up branches below guard
+    # themselves against reposting. See scheduled/queue_refresh.py.
+    refreshing = (not is_daily
+                  and fingerprint == state.get("last_queue_fingerprint", ""))
 
     if not scanned and not silent_lines:
         # Queue is empty AND no silent campaigns to display. If we're
@@ -119,43 +123,58 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     streak = build_streak(state, now)
     summary = build_summary(scanned, sorted_pids)
     momentum_map = build_momentum_map(state, config)
-    queue_num = state.get("queue_post_count", 0) + 1
-    lines = [build_header(queue_num, total, streak, summary)]
 
-    lines.extend(build_body_lines(config, state, scanned, sorted_pids,
-                                  priority_pids, momentum_map, now))
+    def _render(queue_num):
+        """The queue batch for a given post number.
 
-    if silent_lines:
-        lines.append("━━ 💤 Silent campaigns ━━")
-        lines.extend(silent_lines)
+        ⚠️ Takes the number rather than computing count+1, because a refresh
+        must show the CURRENT number and a repost the next. Computing it here
+        would renumber a queue that has not changed, on every run.
+        """
+        lines = [build_header(queue_num, total, streak, summary),
+                 checked_line(now)]
+        lines.extend(build_body_lines(config, state, scanned, sorted_pids,
+                                      priority_pids, momentum_map, now))
+        if silent_lines:
+            lines.append("━━ 💤 Silent campaigns ━━")
+            lines.extend(silent_lines)
+        # Caught-up campaigns (no unreplied entries, posted recently). Kept OUT
+        # of the fingerprint: their ages tick every hour, so including them
+        # would re-post the queue continuously. Moving in/out of caught-up
+        # always coincides with an unreplied or silent change anyway.
+        caught_up_lines = caught_up_campaigns(config, state, scanned, now)
+        if caught_up_lines:
+            lines.append("━━ ✅ Caught up ━━")
+            lines.extend(caught_up_lines)
+        msgs = chunk_messages(lines, "\n".join(lines))
+        # The "go here next" follow-up, in the same batch so it is evicted
+        # with the queue it describes. build_followup picks between the reply
+        # focus and the oldest-campaign callout; see its docstring.
+        focus = build_followup(config, state, scanned, priority_map, now)
+        if focus:
+            msgs.append(focus)
+        return msgs
 
-    # Caught-up campaigns (no unreplied entries, posted recently). Computed at
-    # render time and deliberately kept OUT of the fingerprint: their ages tick
-    # every hour, so including them would re-post the queue continuously. A
-    # campaign moving in/out of caught-up always coincides with an unreplied or
-    # silent change, which already drives the re-post.
-    caught_up_lines = caught_up_campaigns(config, state, scanned, now)
-    if caught_up_lines:
-        lines.append("━━ ✅ Caught up ━━")
-        lines.extend(caught_up_lines)
+    count = state.get("queue_post_count", 0)
+    if refreshing:
+        # Unchanged queue: edit it in place so it visibly stays alive without
+        # notifying anyone. Any failure to edit cleanly reposts below.
+        if refresh_in_place(state, group_id, _render(count),
+                            edit=tg.edit_message):
+            print(f"Queue reminder: refreshed in place ({total} unreplied)")
+            return
+        print("Queue reminder: could not refresh in place, reposting")
 
-    message = "\n".join(lines)
-
-    msgs = chunk_messages(lines, message)
-
-    # The "go here next" follow-up, appended to the same batch so it is
-    # evicted with the queue it describes rather than lingering once
-    # answered. build_followup picks between the reply focus and the
-    # oldest-campaign callout, so no exit from this module can reach
-    # neither. See its docstring for the bug that caused.
-    focus = build_followup(config, state, scanned, priority_map, now)
-    if focus:
-        msgs.append(focus)
+    queue_num = count + 1
+    msgs = _render(queue_num)
 
     sent, _first_msg_id = post_and_persist(state, group_id, bot_topic, msgs)
     if sent:
         state["last_queue_fingerprint"] = fingerprint
         state["queue_post_count"] = queue_num
+        # What each message now says, so the next unchanged run can skip
+        # re-sending identical text. See queue_refresh.refresh_in_place.
+        state["gm_queue_texts"] = list(msgs)
         if is_daily:
             # ⚠️ The slot computed ABOVE, not now.hour. A catch-up post
             # at 14:00 fills the 09:00 slot; keying the record on the
