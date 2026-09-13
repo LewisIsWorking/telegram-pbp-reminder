@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 178096,
-      "thread_id": 144765,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-10T03:49:36+00:00",
-      "preview": "Action Plan: (if starting 1 grid east of Kitt)\n\n1: Move 2 S, 1 SW. (Standing north west of where the spider is)\n2: Snagging Strike with Sap\n3: Strike again.",
-      "media_group_id": null
-    },
-    {
       "message_id": 178097,
       "thread_id": 144765,
       "user_id": "1358791105",
@@ -504,7 +495,9 @@
     "msg:177608",
     "2026-09-08 05:42:09",
     "msg:177931",
-    "2026-09-09 12:05:11"
+    "2026-09-09 12:05:11",
+    "msg:178096",
+    "2026-09-10 03:49:36"
   ],
   "reply_log": [
     {
@@ -2527,6 +2520,15 @@
       "player": "Alastair",
       "preview": "Steele is about to repeat her rank for the Changer, but not before the bolt laun",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T14:36:33+00:00",
+      "pid": "76799",
+      "msg_id": "178096",
+      "thread_id": 144765,
+      "player": "Alastair",
+      "preview": "Action Plan: (if starting 1 grid east of Kitt)\n\n1: Move 2 S, 1 SW. (Standing nor",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2543,11 +2545,11 @@
       "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
     },
     "144765": {
-      "fingerprint": "2026-09-10 03:49:36|2026-09-10 03:51:07|2026-09-10 03:51:26|2026-09-10 04:29:38|2026-09-10 04:29:39|2026-09-12 01:44:33",
+      "fingerprint": "2026-09-10 03:51:07|2026-09-10 03:51:26|2026-09-10 04:29:38|2026-09-10 04:29:39|2026-09-12 01:44:33",
       "msg_ids": [
-        178377
+        178656
       ],
-      "last_posted_at": "2026-09-12T02:30:20.123890+00:00",
+      "last_posted_at": "2026-09-13T14:45:24.050040+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
