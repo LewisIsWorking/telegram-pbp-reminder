@@ -187,6 +187,20 @@ The bot posts the full queue automatically at the hours set in
 It also posts immediately whenever the queue changes (new unreplied
 messages arrive), so the GM always has an up-to-date view.
 
+⛔ **Until 2026-09-13 it reposted every hour instead, whether or not anything
+changed.** The change fingerprint included the silent-campaign lines, and each
+line carries an age ("no posts for 13d 20h") that ticks hourly. Measured from
+committed state history, **12 of 13 consecutive reposts were only an age
+ticking**; one was a real change.
+
+The fingerprint now uses which campaigns are silent, not their rendered lines
+(`queue_silence.silent_ids`). A campaign going silent or waking up is a change.
+Its age and icon band are presentation, refreshed at the next real change or
+daily slot, so a silent line's age can be up to about twelve hours stale.
+
+The caught-up section had already been kept out of the fingerprint for exactly
+this reason. The silent section was not, which is how it got missed.
+
 ---
 
 ## Queue nudge
@@ -289,10 +303,9 @@ outliving its queue would keep pointing at a message already answered.
 Since 2026-09-13 the same message is DMed to `gm_user_id`, the way the
 escalation already is (`scheduled/queue_focus_dm.py`).
 
-⚠️ **Only when the target moves, not on every queue post.** The queue posts
-roughly once an hour (measured 1706 to 1735 in 24h), and the follow-up rides
-along with each post. A DM per post would be around 25 a day, mostly
-identical, burying the escalations. So it is sent when "Reply to this next"
+⚠️ **Only when the target moves, not on every queue post.** Most reposts do
+not change what should be replied to next: a new message in another campaign,
+a campaign going quiet, a daily slot. So it is sent when "Reply to this next"
 starts pointing at a **different message**, and stays quiet otherwise.
 
 - The target is the **message**, not the campaign. Answering the oldest message

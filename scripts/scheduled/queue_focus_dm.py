@@ -3,15 +3,24 @@
 Lewis, 2026-09-13: the "SORT IT OUT, GM!" escalation already reaches him as
 a DM, and he asked for the focus message to arrive the same way.
 
-⛔⛔ **It is sent on CHANGE, not on every queue post.** The queue posts about
-once an hour, measured 2026-09-13 as 1706 -> 1735 in 24h. The focus message
-rides along with each of those. DMing every copy would be ~25 DMs a day, most
-of them identical, and would bury the escalation messages he actually reads.
+⛔⛔ **It is sent when the reply target changes, not on every queue post.**
+Lewis, 2026-09-13: "I only actually need the DM message when the message to
+reply to next changes."
 
-What is worth a notification is "your next reply has moved". So the DM goes
-out when the target changes, and stays quiet while it does not. The newest DM
-is therefore always current, and the older ones read as a timeline, which is
-how he already reads the escalation DMs.
+Most queue posts do not change that target. A new message in some other
+campaign, a campaign going quiet, a daily slot: each reposts the queue, and
+in each the answer to "what do I reply to next" is the same as before. A DM
+per post would repeat itself.
+
+⚠️ A CORRECTION TO THIS COMMENT'S FIRST VERSION. It originally justified the
+design by saying the queue "posts about once an hour", measured as 1706 ->
+1735 in 24h. That was true, and it was a BUG, not the queue's normal rhythm:
+ticking ages in the change fingerprint reposted it hourly for nothing (12 of
+13 reposts). Fixed in the same change, see queue_silence.silent_ids. The
+design stands; only the reason given for it was wrong.
+
+The newest DM is always current, and the older ones read as a timeline, which
+is how he already reads the escalation DMs.
 
 ⚠️ Deliberately NOT deleted when superseded, unlike the copy in the group
 topic, which is evicted with its batch. That one must go because it would keep

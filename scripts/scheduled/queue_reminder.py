@@ -9,7 +9,8 @@ from commands.queue_format import NO_PRIORITY, build_priority_map
 from scheduled.due import latest_due_slot
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import (
-    silent_campaigns, caught_up_campaigns, campaign_age_lines,
+    silent_rows, silent_lines_for, silent_ids, caught_up_campaigns,
+    campaign_age_lines,
 )
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
@@ -59,9 +60,15 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     # choose a follow-up. Lower number = higher priority; legacy
     # queue_priority: True maps to level 1.
     priority_map = build_priority_map(config)
-    silent_lines = silent_campaigns(config, state, scanned, now)
-    if silent_lines:
-        fingerprint += "|silent:" + "|".join(silent_lines)
+    # One list of silent rows, two views of it, so the lines shown and the
+    # ids fingerprinted can never disagree. See queue_silence.silent_rows.
+    rows = silent_rows(config, state, scanned, now)
+    silent_lines = silent_lines_for(rows)
+    # ⛔ The ids, not silent_lines. The lines carry ages that tick hourly,
+    # which reposted the queue every hour for nothing. See silent_ids.
+    ids = silent_ids(rows)
+    if ids:
+        fingerprint += "|silent:" + "|".join(ids)
     if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
         return
 

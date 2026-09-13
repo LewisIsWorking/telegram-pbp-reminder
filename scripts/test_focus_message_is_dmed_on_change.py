@@ -3,10 +3,13 @@
 Lewis, 2026-09-13: the escalation already arrives as a DM and he wanted the
 focus message the same way.
 
-⛔ The property that matters most is the one that makes it NOT fire. The
-queue posts about once an hour (measured 1706 -> 1735 in 24h, 2026-09-13).
-A DM on every post would be ~25 a day, mostly identical, and would bury the
-escalations he actually reads. So most of these tests are about silence.
+⛔ The property that matters most is the one that makes it NOT fire. Lewis
+only needs the DM when the message to reply to next changes, and most queue
+posts do not change it. So most of these tests are about silence.
+
+(An earlier version of this docstring cited the queue reposting hourly. That
+was a fingerprint bug, fixed alongside: see
+test_queue_does_not_repost_for_a_ticking_age.py.)
 
 The key itself and the wiring into the real queue post are in
 test_focus_dm_key_and_wiring.py.
@@ -44,7 +47,7 @@ class TestItFires:
 
 class TestItStaysQuiet:
     def test_the_same_target_again_is_not_resent(self):
-        """⭐⭐ The core property. Without it this is ~25 DMs a day."""
+        """⭐⭐ The core property: a repost with the same target is not a DM."""
         send, state, queue = Send(), {}, two_campaigns()
         for _ in range(25):
             send_focus_dm(config(), state, queue, {}, NOW, send=send)
