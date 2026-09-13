@@ -187,6 +187,20 @@ The bot posts the full queue automatically at the hours set in
 It also posts immediately whenever the queue changes (new unreplied
 messages arrive), so the GM always has an up-to-date view.
 
+⛔ **Until 2026-09-13 it reposted every hour instead, whether or not anything
+changed.** The change fingerprint included the silent-campaign lines, and each
+line carries an age ("no posts for 13d 20h") that ticks hourly. Measured from
+committed state history, **12 of 13 consecutive reposts were only an age
+ticking**; one was a real change.
+
+The fingerprint now uses which campaigns are silent, not their rendered lines
+(`queue_silence.silent_ids`). A campaign going silent or waking up is a change.
+Its age and icon band are presentation, refreshed at the next real change or
+daily slot, so a silent line's age can be up to about twelve hours stale.
+
+The caught-up section had already been kept out of the fingerprint for exactly
+this reason. The silent section was not, which is how it got missed.
+
 ---
 
 ## Queue nudge
@@ -283,6 +297,28 @@ Selection rule (`scheduled/queue_focus.py`):
 The follow-up is appended to the queue's own message batch, so it is deleted
 together with that queue on the next post. That is deliberate: a focus message
 outliving its queue would keep pointing at a message already answered.
+
+### Also sent to the GM as a DM, when the target changes
+
+Since 2026-09-13 the same message is DMed to `gm_user_id`, the way the
+escalation already is (`scheduled/queue_focus_dm.py`).
+
+⚠️ **Only when the target moves, not on every queue post.** Most reposts do
+not change what should be replied to next: a new message in another campaign,
+a campaign going quiet, a daily slot. So it is sent when "Reply to this next"
+starts pointing at a **different message**, and stays quiet otherwise.
+
+- The target is the **message**, not the campaign. Answering the oldest message
+  in a campaign moves the focus to that campaign's next oldest, and that is
+  announced even though the campaign is unchanged.
+- It is **not deleted** when superseded, unlike the group copy. It cannot
+  mislead the same way: answering the target moves the focus, which sends a
+  newer DM. The DMs read as a timeline, the newest always current.
+- A DM Telegram refuses is **not** recorded as sent, so it is retried on the
+  next post.
+- Only the focus message is DMed, never the quiet-campaign fallback that
+  replaces it when nothing is owed a reply.
+- No DM is sent if the group queue post itself failed.
 
 ---
 

@@ -40,19 +40,64 @@ def _sorted_lines(rows) -> list[str]:
     return [_line(row) for row in sorted(rows, key=lambda r: r.days, reverse=True)]
 
 
-def silent_campaigns(config: dict, state: dict,
-                     scanned: dict, now: datetime) -> list[str]:
-    """Return formatted lines for campaigns idle >= the silence threshold.
+def silent_rows(config: dict, state: dict,
+                scanned: dict, now: datetime) -> list:
+    """The campaigns idle >= the silence threshold, as rows.
+
+    ⭐ The ONE filter. The queue needs two views of silence, the lines it
+    shows and the ids it fingerprints, and both are derived from this single
+    list so they cannot disagree. They were briefly two independent calls on
+    2026-09-13, and a test that stubbed only the lines exposed it at once: the
+    lines said "no silent campaigns" while the ids still found one.
 
     A campaign with no posts at all belongs here rather than under "Caught
     up": nothing about it is caught up. ``days=inf`` satisfies the same
     comparison the threshold already used, so it needs no extra clause.
+    """
+    return [r for r in idle_campaigns(config, state, scanned, now)
+            if r.days >= _SILENCE_THRESHOLD_DAYS]
+
+
+def silent_lines_for(rows: list) -> list[str]:
+    """Render silent rows as queue lines, longest-silent first."""
+    return _sorted_lines(rows)
+
+
+def silent_ids(rows: list) -> list[str]:
+    """WHICH campaigns are silent, for the queue's change fingerprint.
+
+    ⛔⛔ Not the rendered lines. Until 2026-09-13 the fingerprint appended the
+    rendered lines, and every line carries its age ("no posts for 13d 20h").
+    The age ticks every hour, so the fingerprint changed every hour, so the
+    queue reposted every hour whether or not anything in it had changed.
+    Measured from state history: **12 of 13 consecutive reposts were nothing
+    but an age ticking**, one was a real change.
+
+    The caught-up section had already been kept out of the fingerprint for
+    exactly this reason. The silent section got the same ticking text and
+    was not.
+
+    A campaign entering or leaving the silent list IS a queue change, so the
+    set of ids is kept. Its age and its icon band are presentation, refreshed
+    by the next real change or the next daily slot, so never more than about
+    twelve hours stale.
+
+    ⚠️ Sorted because ``idle_campaigns`` walks ``topic_pairs`` in config
+    order. That is stable run to run, but reordering campaigns in config.json
+    would otherwise read as a change and repost for nothing.
+    """
+    return sorted(r.pid for r in rows)
+
+
+def silent_campaigns(config: dict, state: dict,
+                     scanned: dict, now: datetime) -> list[str]:
+    """Return formatted lines for campaigns idle >= the silence threshold.
 
     Longest-silent first. Each line is ready to append directly to the GM
-    queue message.
+    queue message. Kept for callers that want only the lines; the queue
+    itself uses ``silent_rows`` so its lines and fingerprint share one list.
     """
-    return _sorted_lines([r for r in idle_campaigns(config, state, scanned, now)
-                          if r.days >= _SILENCE_THRESHOLD_DAYS])
+    return silent_lines_for(silent_rows(config, state, scanned, now))
 
 
 def caught_up_campaigns(config: dict, state: dict,

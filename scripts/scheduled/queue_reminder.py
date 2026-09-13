@@ -9,11 +9,13 @@ from commands.queue_format import NO_PRIORITY, build_priority_map
 from scheduled.due import latest_due_slot
 from scheduled.topic_queue_poster import post_topic_queues
 from scheduled.queue_silence import (
-    silent_campaigns, caught_up_campaigns, campaign_age_lines,
+    silent_rows, silent_lines_for, silent_ids, caught_up_campaigns,
+    campaign_age_lines,
 )
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_followup import build_followup
+from scheduled.queue_focus_dm import send_focus_dm
 from scheduled.queue_render import (
     build_streak, build_summary, build_momentum_map, build_header,
     chunk_messages, build_body_lines,
@@ -58,9 +60,15 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     # choose a follow-up. Lower number = higher priority; legacy
     # queue_priority: True maps to level 1.
     priority_map = build_priority_map(config)
-    silent_lines = silent_campaigns(config, state, scanned, now)
-    if silent_lines:
-        fingerprint += "|silent:" + "|".join(silent_lines)
+    # One list of silent rows, two views of it, so the lines shown and the
+    # ids fingerprinted can never disagree. See queue_silence.silent_rows.
+    rows = silent_rows(config, state, scanned, now)
+    silent_lines = silent_lines_for(rows)
+    # ⛔ The ids, not silent_lines. The lines carry ages that tick hourly,
+    # which reposted the queue every hour for nothing. See silent_ids.
+    ids = silent_ids(rows)
+    if ids:
+        fingerprint += "|silent:" + "|".join(ids)
     if not is_daily and fingerprint == state.get("last_queue_fingerprint", ""):
         return
 
@@ -160,4 +168,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             state["last_queue_daily_slots"] = slots[-14:]
             state["last_queue_daily"] = now.date().isoformat()  # backwards compat
         print(f"Queue reminder: {total} unreplied ({len(msgs)} msg)")
+        # Also DM the GM the focus message, but only when its target has
+        # moved. See queue_focus_dm for why it is not sent on every post.
+        # ⚠️ tg.send_message is looked up HERE, at call time, so a test
+        # patching telegram.send_message still reaches it.
+        if send_focus_dm(config, state, scanned, priority_map, now,
+                         send=tg.send_message):
+            print("Queue focus DM sent: target changed")
 

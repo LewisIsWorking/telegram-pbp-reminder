@@ -95,7 +95,7 @@ def test_caught_up_message_posted_when_queue_first_empties():
     with patch("scheduled.queue_reminder.scan_transcripts",
                return_value=_empty_scanned()), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
-         patch("scheduled.queue_reminder.silent_campaigns",
+         patch("scheduled.queue_reminder.silent_rows",
                return_value=[]), \
          patch("scheduled.queue_reminder._post_caught_up") as mock_caught:
         post_queue_reminder(config, state, now=now)
@@ -150,7 +150,7 @@ def test_caught_up_silent_when_already_marked_empty():
     with patch("scheduled.queue_reminder.scan_transcripts",
                return_value=_empty_scanned()), \
          patch("scheduled.queue_reminder.post_topic_queues"), \
-         patch("scheduled.queue_reminder.silent_campaigns",
+         patch("scheduled.queue_reminder.silent_rows",
                return_value=[]), \
          patch("scheduled.queue_reminder.tg.send_message",
                side_effect=_capture), \
