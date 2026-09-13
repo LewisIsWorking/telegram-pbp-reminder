@@ -18,15 +18,6 @@
       "time": "2026-09-10T04:35:19+00:00",
       "preview": "Steele steps forward, with her sap, annoyed that she wasn't holding her sword in the other hand. She strikes the spider on the noggin', then grabs onto the mount, before whiffing her next sap strike.",
       "media_group_id": null
-    },
-    {
-      "message_id": 178375,
-      "thread_id": 144765,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-09-12T01:44:33+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -476,7 +467,11 @@
     "msg:178097",
     "2026-09-10 03:51:07",
     "msg:178098",
-    "2026-09-10 03:51:26"
+    "2026-09-10 03:51:26",
+    "msg:178375",
+    "2026-09-12 01:44:33",
+    "msg:178104",
+    "2026-09-10 04:29:39"
   ],
   "reply_log": [
     {
@@ -2535,6 +2530,24 @@
       "player": "Alastair",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T16:11:18+00:00",
+      "pid": "76799",
+      "msg_id": "178375",
+      "thread_id": 144765,
+      "player": "Cannon",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-13T16:11:45+00:00",
+      "pid": "76799",
+      "msg_id": "178104",
+      "thread_id": "76799",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2551,14 +2564,12 @@
       "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
     },
     "144765": {
-      "fingerprint": "2026-09-10 04:29:39|2026-09-12 01:44:33",
-      "msg_ids": [
-        178666
-      ],
-      "last_posted_at": "2026-09-13T15:45:30.277083+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 178680,
       "pending_delete": [],
-      "caught_up_at": "2026-09-10T02:30:17.283771+00:00"
+      "caught_up_at": "2026-09-13T16:15:03.085747+00:00"
     }
   }
 }
