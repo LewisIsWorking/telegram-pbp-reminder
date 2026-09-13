@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 178711,
+      "thread_id": 76799,
+      "user_id": "8969117742",
+      "user_name": "Volf",
+      "time": "2026-09-13T17:54:55+00:00",
+      "preview": "Rex enters a rage , alright let's get these guys cleaned up.  He quickly strides to the flank of Kreski. Though with that momentum he couldn't fully get the right angle on the swing , so he missed embarrassingly. \nHe then scoffs \" this one is slippery , be careful comrades \"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -456,7 +466,9 @@
     "msg:178114",
     "2026-09-10 04:33:25",
     "msg:178115",
-    "2026-09-10 04:35:19"
+    "2026-09-10 04:35:19",
+    "msg:178704",
+    "2026-09-13 17:41:40"
   ],
   "reply_log": [
     {
@@ -2551,16 +2563,27 @@
       "player": "Alastair",
       "preview": "Steele steps forward, with her sap, annoyed that she wasn't holding her sword in",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T17:46:11+00:00",
+      "pid": "76799",
+      "msg_id": "178704",
+      "thread_id": 144765,
+      "player": "Volf",
+      "preview": "Rex stride twice to get in position to flank Kreski and strike with his mace. Bu",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 178699,
+      "fingerprint": "2026-09-13 17:54:55",
+      "msg_ids": [
+        178713
+      ],
+      "last_posted_at": "2026-09-13T18:00:21.884601+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-13T17:00:17.705023+00:00"
     },
