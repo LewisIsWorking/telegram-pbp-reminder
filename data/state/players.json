@@ -131,16 +131,6 @@
       "last_post_time": "2026-09-06T20:09:25+00:00",
       "last_warned_week": 0
     },
-    "52083:5443237599": {
-      "user_id": "5443237599",
-      "first_name": "Horia",
-      "last_name": "Constantinescu",
-      "username": "Nemesiux",
-      "campaign_name": "Hopeful End-Times",
-      "pbp_topic_id": "52083",
-      "last_post_time": "2026-08-17T15:21:35+00:00",
-      "last_warned_week": 3
-    },
     "107151:1698524397": {
       "user_id": "1698524397",
       "first_name": "Path",
@@ -230,16 +220,6 @@
       "pbp_topic_id": "52083",
       "last_post_time": "2026-09-10T21:59:27+00:00",
       "last_warned_week": 0
-    },
-    "66154:5029858993": {
-      "user_id": "5029858993",
-      "first_name": "Sasuken09",
-      "last_name": "",
-      "username": "Sasuken09",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-08-17T15:03:06+00:00",
-      "last_warned_week": 3
     },
     "107171:8379380933": {
       "user_id": "8379380933",
@@ -652,6 +632,18 @@
       "first_name": "Ryo",
       "username": "RyoYamakawa",
       "campaign_name": "Grand Explorers"
+    },
+    "52083:5443237599": {
+      "removed_at": "2026-09-14T16:00:20.805364+00:00",
+      "first_name": "Horia",
+      "username": "Nemesiux",
+      "campaign_name": "Hopeful End-Times"
+    },
+    "66154:5029858993": {
+      "removed_at": "2026-09-14T16:00:20.805364+00:00",
+      "first_name": "Sasuken09",
+      "username": "Sasuken09",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -1788,6 +1780,22 @@
       "name": "Ryo",
       "username": "RyoYamakawa",
       "at": "2026-09-14T13:45:20.518423+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "52083",
+      "user_id": "5443237599",
+      "name": "Horia",
+      "username": "Nemesiux",
+      "at": "2026-09-14T16:00:22.362740+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "5029858993",
+      "name": "Sasuken09",
+      "username": "Sasuken09",
+      "at": "2026-09-14T16:00:22.362767+00:00"
     }
   ],
   "player_boons": {
