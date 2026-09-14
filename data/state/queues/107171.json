@@ -388,7 +388,9 @@
     "msg:177149",
     "2026-09-05 15:20:51",
     "msg:178240",
-    "2026-09-10 23:47:01"
+    "2026-09-10 23:47:01",
+    "msg:178927",
+    "2026-09-14 04:00:53"
   ],
   "reply_log": [
     {
@@ -2103,6 +2105,15 @@
       "thread_id": 107171,
       "player": "Minork",
       "preview": "Minork raises his gun, pointed at the pirate next to the Captain. \u201cCap, you have",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T23:30:35+00:00",
+      "pid": "107171",
+      "msg_id": "178927",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
       "via": "reply"
     }
   ],
