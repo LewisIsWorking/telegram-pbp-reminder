@@ -1,6 +1,25 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 178921,
+      "thread_id": 142887,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-14T03:21:28+00:00",
+      "preview": "[media]",
+      "media_group_id": "14314848706927105"
+    },
+    {
+      "message_id": 178924,
+      "thread_id": 107171,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-14T03:35:01+00:00",
+      "preview": "The four-armed Ysoki appears to adjust himself before out of the blue he stabs at his captain with a Main-Gauche, narrowly missing slicing his clothes before the true intent becomes obvious as the Phase Cutlass in his left hand slices true across the man's back and side. Glaring at the man with unbridled hatred he screams, spittle flying. \n\n\"After six fucking years I finally get my revenge you twice-damned bastard!\"\n\nHis eyes, still burning in rage glance over to the new arrivals and former crew",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2091,17 +2110,21 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 178768,
+      "fingerprint": "2026-09-14 03:35:01",
+      "msg_ids": [
+        178929
+      ],
+      "last_posted_at": "2026-09-14T04:00:59.850101+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-13T19:27:01.799287+00:00"
     },
     "142887": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-14 03:21:28|2026-09-14 03:21:29|2026-09-14 03:21:30",
+      "msg_ids": [
+        178927
+      ],
+      "last_posted_at": "2026-09-14T04:00:54.576171+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
