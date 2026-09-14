@@ -1,25 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 178902,
-      "thread_id": 144765,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-09-14T01:56:00+00:00",
-      "preview": "Ignore what I did before, I stride in and shot Margle with my cross bow for 3 damage",
-      "media_group_id": null
-    },
-    {
-      "message_id": 178903,
-      "thread_id": 76799,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-09-14T01:57:37+00:00",
-      "preview": "Okay retcon\nI push past people to get into the room. There I saw the spider and the kobold in the upper floor. I pull out my cross bow and take a shot at the spider",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -481,7 +462,11 @@
     "msg:178711",
     "2026-09-13 17:54:55",
     "msg:178895",
-    "2026-09-14 01:09:00"
+    "2026-09-14 01:09:00",
+    "msg:178902",
+    "2026-09-14 01:56:00",
+    "msg:178903",
+    "2026-09-14 01:57:37"
   ],
   "reply_log": [
     {
@@ -2603,30 +2588,44 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-14T02:15:53+00:00",
+      "pid": "76799",
+      "msg_id": "178902",
+      "thread_id": 144765,
+      "player": "Volf",
+      "preview": "Ignore what I did before, I stride in and shot Margle with my cross bow for 3 da",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T02:16:29+00:00",
+      "pid": "76799",
+      "msg_id": "178903",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "Okay retcon\nI push past people to get into the room. There I saw the spider and ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-09-14 01:57:37",
-      "msg_ids": [
-        178908
-      ],
-      "last_posted_at": "2026-09-14T02:00:23.581801+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 178916,
       "pending_delete": [],
-      "caught_up_at": "2026-09-13T18:32:14.249524+00:00"
+      "caught_up_at": "2026-09-14T03:00:20.962586+00:00"
     },
     "144765": {
-      "fingerprint": "2026-09-14 01:56:00",
-      "msg_ids": [
-        178906
-      ],
-      "last_posted_at": "2026-09-14T02:00:21.327615+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 178917,
       "pending_delete": [],
-      "caught_up_at": "2026-09-13T16:15:03.085747+00:00"
+      "caught_up_at": "2026-09-14T03:00:20.962586+00:00"
     }
   }
 }
