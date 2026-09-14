@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 178940,
+      "thread_id": 66154,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-14T07:58:04+00:00",
+      "preview": "Rin seems to be frantically pushing down his shadow figure like someone who is unwillingly being roughed by someone underwater inside a swimming pool. Shadow Rin is grinning, almost literally, from ear-to-ear.\n\n\"I'm the parts of him he refuses to acknowledge,\" cheered Shadow Rin, in between bobbing up and down in the ground. \"Heya.\"\n\n\"No, no, no!\" protested Rin. He leaps, using both hands to push down his shadow. But, like a bubble underneath wrapping paper, Shadow pops back up the moment Rin ma",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1327,10 +1337,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 178779,
+      "fingerprint": "2026-09-14 07:58:04",
+      "msg_ids": [
+        178941
+      ],
+      "last_posted_at": "2026-09-14T08:15:22.016446+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-13T19:30:12.934169+00:00"
     }
