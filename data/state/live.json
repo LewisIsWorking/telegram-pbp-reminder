@@ -331,7 +331,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-09-13",
   "last_queue_daily_slots": [
-    "2026-09-07:21",
     "2026-09-08:09",
     "2026-09-08:21",
     "2026-09-09:09",
@@ -344,7 +343,8 @@
     "2026-09-12:21",
     "2026-09-13:09",
     "2026-09-13:21",
-    "2026-09-14:09"
+    "2026-09-14:09",
+    "2026-09-14:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -356,15 +356,15 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-09-14",
-  "last_queue_pin_id": 179013,
-  "queue_post_count": 1754,
+  "last_queue_pin_id": 179022,
+  "queue_post_count": 1755,
   "gm_queue_history": [
     {
       "msg_ids": [
-        179013,
-        179014
+        179022,
+        179023
       ],
-      "pin_id": 179013
+      "pin_id": 179022
     }
   ],
   "potw_week": {
@@ -380,7 +380,7 @@
   },
   "last_potw_roundup": "2026-W38",
   "last_potw_countdown": "2026-W36",
-  "schedule_post_msg_id": 1135,
+  "schedule_post_msg_id": 1136,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-09-14",
   "last_pin_alert_ts": "2026-09-14T19:20:58.848933+00:00",
