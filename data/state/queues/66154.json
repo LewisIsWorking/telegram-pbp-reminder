@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 179495,
+      "thread_id": 66154,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-09-15T19:00:12+00:00",
+      "preview": "Tater: Gladly *munch*\nWhen did you have *munch* the time to make it?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1404,10 +1414,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 179490,
+      "fingerprint": "2026-09-15 19:00:12",
+      "msg_ids": [
+        179498
+      ],
+      "last_posted_at": "2026-09-15T19:00:29.729778+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-15T18:10:43.898905+00:00"
     }
