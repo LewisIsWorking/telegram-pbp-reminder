@@ -1,52 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 179033,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-14T23:26:18+00:00",
-      "preview": "Tater: Oh, lucky me, it looks like I found a two for one deal! Hopefully It'll be worth pulling out the popcorn.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179034,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-14T23:26:53+00:00",
-      "preview": "So, shadow, what's your deal with him? And are you willing to share?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179046,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-14T23:59:24+00:00",
-      "preview": "\"Yeah, we're okay!\" says Shadow, wriggling free from Rin's grasp. He surfaces fully, crossing his arms in triumph while Rin is on his knees, panting.\n\nRin says nothing, not otherwise protesting more.\n\n\"And he's good at doing a lot of magic stuff. And my deal is that I'm here to hit things.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179047,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-15T00:24:51+00:00",
-      "preview": "Tater: So, rin... What kind of magic stuff do you do?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179123,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-15T11:46:32+00:00",
-      "preview": "Rin mutters, looking away. \"Some... things. I just focus and it happens, I guess.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -284,7 +238,19 @@
     "msg:178506",
     "2026-09-12 21:33:13",
     "msg:178940",
-    "2026-09-14 07:58:04"
+    "2026-09-14 07:58:04",
+    "msg:179033",
+    "2026-09-14 23:26:18",
+    "msg:179034",
+    "2026-09-14 23:26:53",
+    "msg:179046",
+    "2026-09-14 23:59:24",
+    "msg:179047",
+    "2026-09-15 00:24:51",
+    "msg:179123",
+    "2026-09-15 11:46:32",
+    "msg:179487",
+    "2026-09-15 17:48:06"
   ],
   "reply_log": [
     {
@@ -1378,20 +1344,72 @@
       "player": "Alastair",
       "preview": "Rin seems to be frantically pushing down his shadow figure like someone who is u",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:43:46+00:00",
+      "pid": "66154",
+      "msg_id": "179033",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "Tater: Oh, lucky me, it looks like I found a two for one deal! Hopefully It'll b",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:44:32+00:00",
+      "pid": "66154",
+      "msg_id": "179034",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "So, shadow, what's your deal with him? And are you willing to share?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:45:01+00:00",
+      "pid": "66154",
+      "msg_id": "179046",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "\"Yeah, we're okay!\" says Shadow, wriggling free from Rin's grasp. He surfaces fu",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:45:15+00:00",
+      "pid": "66154",
+      "msg_id": "179047",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "Tater: So, rin... What kind of magic stuff do you do?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:45:29+00:00",
+      "pid": "66154",
+      "msg_id": "179123",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin mutters, looking away. \"Some... things. I just focus and it happens, I guess",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:57:40+00:00",
+      "pid": "66154",
+      "msg_id": "179487",
+      "thread_id": "66154",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-09-14 23:26:18|2026-09-14 23:26:53|2026-09-14 23:59:24|2026-09-15 00:24:51|2026-09-15 11:46:32",
-      "msg_ids": [
-        179126
-      ],
-      "last_posted_at": "2026-09-15T12:15:25.357478+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179490,
       "pending_delete": [],
-      "caught_up_at": "2026-09-13T19:30:12.934169+00:00"
+      "caught_up_at": "2026-09-15T18:10:43.898905+00:00"
     }
   }
 }
