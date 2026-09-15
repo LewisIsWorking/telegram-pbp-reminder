@@ -14,6 +14,7 @@ instead of one meant it half-worked.
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
+from _test_queue_post_fakes import edit_ok, faithful_post_and_persist
 from scheduled.queue_reminder import post_queue_reminder
 from test_core_scheduled import _qr_config
 
@@ -35,18 +36,34 @@ def test_queue_reminder_same_fingerprint_skips(mock_scan, mock_ptq):
     # in [9, 21]; catch-up made that a due slot, correctly. What the
     # test is actually for is the FINGERPRINT gate, so the daily slot
     # has to be satisfied rather than merely mistimed.
+    #
+    # ⚠️ 2026-09-13: an unchanged queue is now EDITED IN PLACE, not left
+    # alone, so the gate means "refresh, don't repost". That needs a batch to
+    # edit, so this runs twice: a real first post that records one, then an
+    # unchanged pass that must refresh it. A single pass with no batch
+    # correctly falls back to reposting, which is not what this test is about.
     now = datetime(2026, 4, 3, 10, 0, tzinfo=timezone.utc)
     t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
     entries = [{"name": "Alice", "time": t, "preview": "hi", "link": "", "message_id": "1"}]
     mock_scan.return_value = {"100": {"campaign": "Kibwe", "code": "C00", "entries": entries}}
-    # Fingerprint format: "{pid}:{time}" joined by "|"
-    fp = f"100:{t}"
-    state = {"last_queue_fingerprint": fp, "queue_post_count": 0,
+    state = {"last_queue_fingerprint": "OLD", "queue_post_count": 0,
              "last_queue_pin_id": None,
              "last_queue_daily_slots": ["2026-04-03:09"]}
-    post_queue_reminder(_qr_config(), state, now=now)
-    # Fingerprint matched and the daily slot is done → skipped
-    assert state["queue_post_count"] == 0
+    with patch("scheduled.queue_reminder.post_and_persist",
+               side_effect=faithful_post_and_persist) as posted, \
+         patch("scheduled.queue_reminder.tg.edit_message", side_effect=edit_ok) as edits, \
+         patch("scheduled.queue_reminder.send_focus_dm", return_value=False):
+        post_queue_reminder(_qr_config(), state, now=now)
+        assert state["queue_post_count"] == 1, "the first pass should post"
+        edits.reset_mock()
+
+        post_queue_reminder(_qr_config(), state, now=now + timedelta(minutes=30))
+
+    # Fingerprint matched and the daily slot is done: no second post...
+    assert posted.call_count == 1
+    assert state["queue_post_count"] == 1
+    # ...but the queue WAS refreshed, which is the point of the change.
+    assert edits.call_count >= 1
 
 
 @patch("scheduled.queue_reminder.post_topic_queues")
