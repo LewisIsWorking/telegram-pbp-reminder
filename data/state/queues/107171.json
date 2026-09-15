@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 178924,
-      "thread_id": 107171,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-14T03:35:01+00:00",
-      "preview": "The four-armed Ysoki appears to adjust himself before out of the blue he stabs at his captain with a Main-Gauche, narrowly missing slicing his clothes before the true intent becomes obvious as the Phase Cutlass in his left hand slices true across the man's back and side. Glaring at the man with unbridled hatred he screams, spittle flying. \n\n\"After six fucking years I finally get my revenge you twice-damned bastard!\"\n\nHis eyes, still burning in rage glance over to the new arrivals and former crew",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -387,7 +377,17 @@
     "msg:178922",
     "2026-09-14 03:21:29",
     "msg:178923",
-    "2026-09-14 03:21:30"
+    "2026-09-14 03:21:30",
+    "msg:178924",
+    "2026-09-14 03:35:01",
+    "msg:179424",
+    "2026-09-15 17:08:09",
+    "msg:179425",
+    "2026-09-15 17:08:10",
+    "msg:179426",
+    "2026-09-15 17:08:11",
+    "msg:179427",
+    "2026-09-15 17:08:12"
   ],
   "reply_log": [
     {
@@ -2139,20 +2139,63 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:06:17+00:00",
+      "pid": "107171",
+      "msg_id": "178924",
+      "thread_id": 107171,
+      "player": "Ryo",
+      "preview": "The four-armed Ysoki appears to adjust himself before out of the blue he stabs a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:08:22+00:00",
+      "pid": "107171",
+      "msg_id": "179424",
+      "thread_id": 142887,
+      "player": "Laetheron",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:09:01+00:00",
+      "pid": "107171",
+      "msg_id": "179425",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:09:41+00:00",
+      "pid": "107171",
+      "msg_id": "179426",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:10:04+00:00",
+      "pid": "107171",
+      "msg_id": "179427",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-14 03:35:01",
-      "msg_ids": [
-        179365
-      ],
-      "last_posted_at": "2026-09-15T16:15:25.003794+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179454,
       "pending_delete": [],
-      "caught_up_at": "2026-09-13T19:27:01.799287+00:00"
+      "caught_up_at": "2026-09-15T17:15:18.268800+00:00"
     },
     "142887": {
       "fingerprint": "",
