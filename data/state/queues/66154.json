@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 179495,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-09-15T19:00:12+00:00",
-      "preview": "Tater: Gladly *munch*\nWhen did you have *munch* the time to make it?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -260,7 +250,9 @@
     "msg:179123",
     "2026-09-15 11:46:32",
     "msg:179487",
-    "2026-09-15 17:48:06"
+    "2026-09-15 17:48:06",
+    "msg:179495",
+    "2026-09-15 19:00:12"
   ],
   "reply_log": [
     {
@@ -1408,20 +1400,27 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-15T19:08:28+00:00",
+      "pid": "66154",
+      "msg_id": "179495",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "Tater: Gladly *munch*\nWhen did you have *munch* the time to make it?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-09-15 19:00:12",
-      "msg_ids": [
-        179498
-      ],
-      "last_posted_at": "2026-09-15T19:00:29.729778+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179509,
       "pending_delete": [],
-      "caught_up_at": "2026-09-15T18:10:43.898905+00:00"
+      "caught_up_at": "2026-09-15T19:10:37.280200+00:00"
     }
   }
 }
