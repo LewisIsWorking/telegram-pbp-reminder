@@ -1098,7 +1098,13 @@
     "msg:177626",
     "2026-09-08 07:37:47",
     "msg:177625",
-    "2026-09-08 07:37:05"
+    "2026-09-08 07:37:05",
+    "msg:178872",
+    "2026-09-13 22:44:54",
+    "msg:179208",
+    "2026-09-15 14:28:53",
+    "msg:179215",
+    "2026-09-15 14:29:47"
   ],
   "reply_log": [
     {
@@ -6183,6 +6189,33 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T23:03:19+00:00",
+      "pid": "40585",
+      "msg_id": "178872",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "Uhhh. Daichi probably strides twice and activates arcane cascade to get resistan",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T14:34:27+00:00",
+      "pid": "40585",
+      "msg_id": "179208",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "First, initially, a blonde, short-haired human-like entity lands face-first on t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T14:36:24+00:00",
+      "pid": "40585",
+      "msg_id": "179215",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Rin/Shadow Rin:\nRin A1, A2: Stride 2x 25ft\nShadow A1, A2: Stride 2x 25ft",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6192,16 +6225,16 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": null,
+      "caught_up_msg_id": 179350,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-15T15:15:28.943150+00:00"
     },
     "40585": {
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "caught_up_msg_id": 179351,
+      "caught_up_at": "2026-09-15T15:15:28.943150+00:00"
     }
   }
 }

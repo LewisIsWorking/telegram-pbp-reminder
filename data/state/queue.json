@@ -188,9 +188,6 @@
       "2026-09-08T01:30:22.415221+00:00"
     ],
     "40585": [
-      "2026-03-31T04:50:35.813489+00:00",
-      "2026-03-31T04:50:36.222028+00:00",
-      "2026-03-31T04:50:36.223092+00:00",
       "2026-03-31T04:50:36.224132+00:00",
       "2026-03-31T04:50:36.225114+00:00",
       "2026-03-31T04:50:36.226087+00:00",
@@ -687,7 +684,10 @@
       "2026-09-08T01:30:22.406546+00:00",
       "2026-09-08T01:30:22.412722+00:00",
       "2026-09-08T13:00:20.286323+00:00",
-      "2026-09-08T13:00:20.294740+00:00"
+      "2026-09-08T13:00:20.294740+00:00",
+      "2026-09-13T23:30:24.015050+00:00",
+      "2026-09-15T15:15:28.505469+00:00",
+      "2026-09-15T15:15:28.510785+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -872,7 +872,17 @@
       "2026-08-26T13:33:39.804426+00:00",
       "2026-09-04T22:23:31.180006+00:00",
       "2026-09-10T03:30:19.340829+00:00",
-      "2026-09-10T03:30:19.345482+00:00"
+      "2026-09-10T03:30:19.345482+00:00",
+      "2026-09-13T19:27:01.790439+00:00",
+      "2026-09-14T23:58:25.432287+00:00",
+      "2026-09-15T01:27:09.074727+00:00",
+      "2026-09-15T01:27:09.078452+00:00",
+      "2026-09-15T01:27:09.080467+00:00",
+      "2026-09-15T17:15:17.601126+00:00",
+      "2026-09-15T17:15:18.260308+00:00",
+      "2026-09-15T17:15:18.262973+00:00",
+      "2026-09-15T17:15:18.265632+00:00",
+      "2026-09-15T17:15:18.268340+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1393,7 +1403,12 @@
       "2026-09-13T17:00:17.696518+00:00",
       "2026-09-13T17:00:17.701739+00:00",
       "2026-09-13T18:00:19.224433+00:00",
-      "2026-09-13T18:32:14.249048+00:00"
+      "2026-09-13T18:32:14.249048+00:00",
+      "2026-09-14T02:00:19.652584+00:00",
+      "2026-09-14T03:00:20.956789+00:00",
+      "2026-09-14T03:00:20.962254+00:00",
+      "2026-09-14T16:00:20.798441+00:00",
+      "2026-09-14T23:58:25.421630+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1504,7 +1519,10 @@
       "2026-09-12T19:37:17.032492+00:00",
       "2026-09-12T20:30:39.788462+00:00",
       "2026-09-12T21:30:21.100643+00:00",
-      "2026-09-13T18:32:14.243754+00:00"
+      "2026-09-13T18:32:14.243754+00:00",
+      "2026-09-13T19:30:12.928692+00:00",
+      "2026-09-13T19:30:12.932655+00:00",
+      "2026-09-14T23:58:25.425547+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1714,7 +1732,8 @@
       "2026-09-10T16:22:59.094954+00:00",
       "2026-09-12T21:30:21.103702+00:00",
       "2026-09-13T18:00:18.627037+00:00",
-      "2026-09-13T18:00:19.230249+00:00"
+      "2026-09-13T18:00:19.230249+00:00",
+      "2026-09-13T19:28:48.553039+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1876,178 +1895,12 @@
     "146645": [
       "2026-08-30T17:18:11.234975+00:00",
       "2026-08-30T17:40:43.549749+00:00",
-      "2026-08-30T17:40:43.553104+00:00"
+      "2026-08-30T17:40:43.553104+00:00",
+      "2026-09-13T19:44:19.742594+00:00",
+      "2026-09-14T23:58:25.438374+00:00"
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-08-18T06:54:52.167095+00:00",
-      "player": "Anthony",
-      "preview": "Right the Ethereal plane",
-      "msg_id": "173141"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-08-18T06:54:52.170000+00:00",
-      "player": "Anthony",
-      "preview": "Can't Sonneraie access this?",
-      "msg_id": "173142"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-08-18T06:54:52.175245+00:00",
-      "player": "Anthony",
-      "preview": "No Ethereal Jaunt is the way to get to the Ethereal plane",
-      "msg_id": "173145"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-08-19T06:10:29.669844+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "172919"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-19T06:22:09.669756+00:00",
-      "player": "Terra",
-      "preview": "Lai flexes his fingers feeling something anomalous looking a",
-      "msg_id": "173268"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-19T06:22:09.676341+00:00",
-      "player": "Anthony",
-      "preview": "Livy will inspect and size up the mysterious Lai (@Saiminami",
-      "msg_id": "173315"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-19T09:40:22.440509+00:00",
-      "player": "Terra",
-      "preview": "Lai looks down at himself checking what he looks like a flig",
-      "msg_id": "173366"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-19T14:40:23.720683+00:00",
-      "player": "Laetheron",
-      "preview": "Arktos quickly sends out a pulse of magic is response, estab",
-      "msg_id": "173401"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-19T14:40:23.727113+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight treads lightly through the copse of trees towards t",
-      "msg_id": "173402"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-20T01:41:08.406032+00:00",
-      "player": "Laetheron",
-      "preview": "\"An energy buildup is surging closeby. I suspect another eve",
-      "msg_id": "173429"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-20T01:41:08.409882+00:00",
-      "player": "Laetheron",
-      "preview": "\"Shall we investigate? Or avoid it as we head towards the br",
-      "msg_id": "173430"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-20T06:56:35.246257+00:00",
-      "player": "Anthony",
-      "preview": "\"\u2605AWAWA\u2605?! You're practically \u2605NAKED\u2605 in that suit. And you'",
-      "msg_id": "173384"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-20T06:56:35.250108+00:00",
-      "player": "Anthony",
-      "preview": "\"But!! \u2605DON'T WORRY\u2605, the one and only \u2605SUPER IDOL LIVY\u2605 wil",
-      "msg_id": "173385"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-20T06:56:35.252226+00:00",
-      "player": "Terra",
-      "preview": "Lai looks at them confused",
-      "msg_id": "173391"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-20T06:56:35.255355+00:00",
-      "player": "Anthony",
-      "preview": "\" \u2605FIST OF ALL!\u2605 This is a comm unit.\"\nLivy is going to hold",
-      "msg_id": "173444"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-21T09:07:18.335733+00:00",
-      "player": "Anthony",
-      "preview": "Daichi looks and them and chuckles a little at the ridiculou",
-      "msg_id": "173630"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-22T08:57:03.811219+00:00",
-      "player": "Laetheron",
-      "preview": "\"Very well.\" And with that, Arktos floats off with L.U.K.A i",
-      "msg_id": "173523"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T19:45:34.662680+00:00",
-      "player": "Terra",
-      "preview": "\"Environmental protection module?\" Lai repeats looking form ",
-      "msg_id": "173543"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T19:45:34.665265+00:00",
-      "player": "Terra",
-      "preview": "\"I would very much appreciate that\" lai bow his head a bit",
-      "msg_id": "173544"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T19:45:34.667537+00:00",
-      "player": "Ryo",
-      "preview": "Rune adjusts his rifle on his shoulder and makes to follow t",
-      "msg_id": "173554"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T19:45:34.669703+00:00",
-      "player": "Anthony",
-      "preview": "\"Wait don't get it wrong! \u2605THIS\u2605 is a comm Unit. But your \u2605S",
-      "msg_id": "173628"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T19:45:34.671883+00:00",
-      "player": "Anthony",
-      "preview": "\"\u2605Niky\u2605 you got a \u2605PRINTER\u2605 we could borrow so we can make h",
-      "msg_id": "173629"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T19:45:34.674076+00:00",
-      "player": "Terra",
-      "preview": "\"Okay....\" Lai answers",
-      "msg_id": "173735"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-22T20:30:26.429708+00:00",
-      "player": "Terra",
-      "preview": "Lai nods and follows them to the manhole cover",
-      "msg_id": "173931"
-    },
     {
       "pid": "66154",
       "time": "2026-08-22T21:28:10.169485+00:00",
@@ -3279,22 +3132,190 @@
       "player": "Volf",
       "preview": "Rex enters a rage , alright let's get these guys cleaned up.",
       "msg_id": "178711"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-13T19:27:01.790439+00:00",
+      "player": "Minork",
+      "preview": "Minork raises his gun, pointed at the pirate next to the Cap",
+      "msg_id": "178240"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-13T19:28:48.553039+00:00",
+      "player": "Anthony",
+      "preview": "Livy's gonna stealthly make a camera drone with the remainin",
+      "msg_id": "178303"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-09-13T19:30:12.928692+00:00",
+      "player": "Alastair",
+      "preview": "Rin flinches, but then his shadow, seemingly unable to take ",
+      "msg_id": "178423"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-09-13T19:30:12.932655+00:00",
+      "player": "Fuzzy",
+      "preview": "Well, why not wait him out? If he tries to break in, we don'",
+      "msg_id": "178506"
+    },
+    {
+      "pid": "146645",
+      "time": "2026-09-13T19:44:19.742594+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "176289"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-13T23:30:24.015050+00:00",
+      "player": "Anthony",
+      "preview": "Uhhh. Daichi probably strides twice and activates arcane cas",
+      "msg_id": "178872"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-14T02:00:19.652584+00:00",
+      "player": "Chase",
+      "preview": "[media]",
+      "msg_id": "178895"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-14T03:00:20.956789+00:00",
+      "player": "Volf",
+      "preview": "Ignore what I did before, I stride in and shot Margle with m",
+      "msg_id": "178902"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-14T03:00:20.962254+00:00",
+      "player": "Volf",
+      "preview": "Okay retcon\nI push past people to get into the room. There I",
+      "msg_id": "178903"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-14T16:00:20.798441+00:00",
+      "player": "Alastair",
+      "preview": "(Retcon)\nA1: Stride 5ft east, 5ft south\nA2: Demoralise on Kr",
+      "msg_id": "178937"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-14T23:58:25.421630+00:00",
+      "player": "Alastair",
+      "preview": "(Retcon)\nSteele marches in, shouting, \"Surrender! You're out",
+      "msg_id": "178938"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-09-14T23:58:25.425547+00:00",
+      "player": "Alastair",
+      "preview": "Rin seems to be frantically pushing down his shadow figure l",
+      "msg_id": "178940"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-14T23:58:25.432287+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "178927"
+    },
+    {
+      "pid": "146645",
+      "time": "2026-09-14T23:58:25.438374+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "178783"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T01:27:09.074727+00:00",
+      "player": "Ryo",
+      "preview": "[media]",
+      "msg_id": "178921"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T01:27:09.078452+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "178922"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T01:27:09.080467+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "178923"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-15T15:15:28.505469+00:00",
+      "player": "Alastair",
+      "preview": "First, initially, a blonde, short-haired human-like entity l",
+      "msg_id": "179208"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-15T15:15:28.510785+00:00",
+      "player": "Alastair",
+      "preview": "Rin/Shadow Rin:\nRin A1, A2: Stride 2x 25ft\nShadow A1, A2: St",
+      "msg_id": "179215"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T17:15:17.601126+00:00",
+      "player": "Ryo",
+      "preview": "The four-armed Ysoki appears to adjust himself before out of",
+      "msg_id": "178924"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T17:15:18.260308+00:00",
+      "player": "Laetheron",
+      "preview": "[media]",
+      "msg_id": "179424"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T17:15:18.262973+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179425"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T17:15:18.265632+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179426"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-15T17:15:18.268340+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179427"
     }
   ],
   "pending_potw_boons": {
-    "52083": {
-      "message_id": 177430,
-      "winner_user_id": "6144366145",
-      "campaign_name": "Hopeful End-Times",
+    "76799": {
+      "message_id": 178952,
+      "winner_user_id": "1358791105",
+      "campaign_name": "Magni Guard",
       "boons": [
-        "A cantrip you cast is slightly more effective than usual for no clear reason.",
-        "A loose flagstone tips when your enemy steps on it.",
-        "Barnacles on the hull create just enough drag to slow the ship before hitting the rocks.",
-        "+1 circumstance bonus on your next skill check."
+        "Your reputation precedes you into this town. For once, that's helpful.",
+        "The soil here is soft enough to set tent stakes but firm enough to sleep on.",
+        "A street performer's acrobatics demonstrate that the rooftop you need to reach is accessible.",
+        "The DC of your next skill check is reduced by 1."
       ],
-      "base_message": "Player of the Week for Hopeful End-Times: Anthony NegetZ (@MrNegetZ)!\n(2026-08-31 (W36) to 2026-09-07 (W37))\n\n6 posts this week with an average gap of 8.1h between posts. The most consistent driver of the story.",
-      "posted_at": "2026-09-07T09:30:22.477517+00:00",
-      "reminders_sent": 3
+      "base_message": "Player of the Week for Magni Guard: Alastair Tan (@altan19931993)!\n(2026-09-07 (W37) to 2026-09-14 (W38))\n\n5 posts this week with an average gap of 36.5h between posts. The most consistent driver of the story.",
+      "posted_at": "2026-09-14T09:15:28.537020+00:00",
+      "reminders_sent": 1
     }
   },
   "pending_hero_points": {

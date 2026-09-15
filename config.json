@@ -17,6 +17,7 @@
     {
       "name": "Doomsday Funtime",
       "chat_topic_id": 21514,
+      "combat_topic_id": 22566,
       "nudge_topic_id": 137393,
       "created": "2023-07-14",
       "pbp_topic_ids": [
@@ -46,6 +47,7 @@
     {
       "name": "Riddleport",
       "chat_topic_id": 91008,
+      "combat_topic_id": 133428,
       "created": "2024-12-20",
       "pbp_topic_ids": [
         66154,
@@ -57,6 +59,7 @@
     {
       "name": "Magni Guard",
       "chat_topic_id": 75826,
+      "combat_topic_id": 144765,
       "created": "2025-03-04",
       "pbp_topic_ids": [
         76799,
@@ -68,6 +71,7 @@
     {
       "name": "Grand Explorers",
       "chat_topic_id": 47889,
+      "combat_topic_id": 145040,
       "created": "2024-08-20",
       "pbp_topic_ids": [
         51357,
@@ -80,6 +84,7 @@
     {
       "name": "Kibwe",
       "chat_topic_id": 21528,
+      "combat_topic_id": 137075,
       "created": "2024-04-17",
       "pbp_topic_ids": [
         40585,
@@ -92,6 +97,7 @@
     {
       "name": "Hopeful End-Times",
       "chat_topic_id": 50890,
+      "combat_topic_id": 145045,
       "created": "2024-08-26",
       "pbp_topic_ids": [
         52083,
@@ -103,6 +109,7 @@
     {
       "name": "Metal City",
       "chat_topic_id": 104202,
+      "combat_topic_id": 142887,
       "created": "2025-09-04",
       "pbp_topic_ids": [
         107171,
@@ -114,6 +121,7 @@
     {
       "name": "The Junction",
       "chat_topic_id": 107186,
+      "combat_topic_id": 146645,
       "pbp_topic_ids": [
         146645
       ],
@@ -128,9 +136,11 @@
     {
       "name": "Theria",
       "chat_topic_id": 107141,
+      "combat_topic_id": 174683,
       "created": "2025-10-06",
       "pbp_topic_ids": [
-        107151
+        107151,
+        174683
       ],
       "gm_user_ids": [
         6144366145

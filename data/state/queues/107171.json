@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 178240,
-      "thread_id": 107171,
-      "user_id": "8379380933",
-      "user_name": "Minork",
-      "time": "2026-09-10T23:47:01+00:00",
-      "preview": "Minork raises his gun, pointed at the pirate next to the Captain. \u201cCap, you have 2 seconds to explain before I start blasting.\u201d",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -377,7 +367,27 @@
     "msg:177130",
     "2026-09-05 11:41:19",
     "msg:177149",
-    "2026-09-05 15:20:51"
+    "2026-09-05 15:20:51",
+    "msg:178240",
+    "2026-09-10 23:47:01",
+    "msg:178927",
+    "2026-09-14 04:00:53",
+    "msg:178921",
+    "2026-09-14 03:21:28",
+    "msg:178922",
+    "2026-09-14 03:21:29",
+    "msg:178923",
+    "2026-09-14 03:21:30",
+    "msg:178924",
+    "2026-09-14 03:35:01",
+    "msg:179424",
+    "2026-09-15 17:08:09",
+    "msg:179425",
+    "2026-09-15 17:08:10",
+    "msg:179426",
+    "2026-09-15 17:08:11",
+    "msg:179427",
+    "2026-09-15 17:08:12"
   ],
   "reply_log": [
     {
@@ -2084,28 +2094,116 @@
       "player": "Laetheron",
       "preview": "Arktos chimes in, leaning on LUKA, \"I don't suppose you'd mind capitulating with",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-13T18:37:52+00:00",
+      "pid": "107171",
+      "msg_id": "178240",
+      "thread_id": 107171,
+      "player": "Minork",
+      "preview": "Minork raises his gun, pointed at the pirate next to the Captain. \u201cCap, you have",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T23:30:35+00:00",
+      "pid": "107171",
+      "msg_id": "178927",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T00:58:57+00:00",
+      "pid": "107171",
+      "msg_id": "178921",
+      "thread_id": 142887,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T00:59:20+00:00",
+      "pid": "107171",
+      "msg_id": "178922",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T00:59:32+00:00",
+      "pid": "107171",
+      "msg_id": "178923",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:06:17+00:00",
+      "pid": "107171",
+      "msg_id": "178924",
+      "thread_id": 107171,
+      "player": "Ryo",
+      "preview": "The four-armed Ysoki appears to adjust himself before out of the blue he stabs a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:08:22+00:00",
+      "pid": "107171",
+      "msg_id": "179424",
+      "thread_id": 142887,
+      "player": "Laetheron",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:09:01+00:00",
+      "pid": "107171",
+      "msg_id": "179425",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:09:41+00:00",
+      "pid": "107171",
+      "msg_id": "179426",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T17:10:04+00:00",
+      "pid": "107171",
+      "msg_id": "179427",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-10 23:47:01",
-      "msg_ids": [
-        178427
-      ],
-      "last_posted_at": "2026-09-12T13:00:29.423331+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179454,
       "pending_delete": [],
-      "caught_up_at": "2026-09-10T03:30:19.347363+00:00"
+      "caught_up_at": "2026-09-15T17:15:18.268800+00:00"
     },
     "142887": {
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": null,
+      "caught_up_msg_id": 179064,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-15T01:27:09.704727+00:00"
     }
   }
 }

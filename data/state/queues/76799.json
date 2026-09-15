@@ -460,7 +460,17 @@
     "msg:178704",
     "2026-09-13 17:41:40",
     "msg:178711",
-    "2026-09-13 17:54:55"
+    "2026-09-13 17:54:55",
+    "msg:178895",
+    "2026-09-14 01:09:00",
+    "msg:178902",
+    "2026-09-14 01:56:00",
+    "msg:178903",
+    "2026-09-14 01:57:37",
+    "msg:178937",
+    "2026-09-14 07:50:41",
+    "msg:178938",
+    "2026-09-14 07:52:12"
   ],
   "reply_log": [
     {
@@ -2573,6 +2583,51 @@
       "player": "Volf",
       "preview": "Rex enters a rage , alright let's get these guys cleaned up.  He quickly strides",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-14T01:09:04+00:00",
+      "pid": "76799",
+      "msg_id": "178895",
+      "thread_id": 144765,
+      "player": "Chase",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T02:15:53+00:00",
+      "pid": "76799",
+      "msg_id": "178902",
+      "thread_id": 144765,
+      "player": "Volf",
+      "preview": "Ignore what I did before, I stride in and shot Margle with my cross bow for 3 da",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T02:16:29+00:00",
+      "pid": "76799",
+      "msg_id": "178903",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "Okay retcon\nI push past people to get into the room. There I saw the spider and ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T15:21:12+00:00",
+      "pid": "76799",
+      "msg_id": "178937",
+      "thread_id": 144765,
+      "player": "Alastair",
+      "preview": "(Retcon)\nA1: Stride 5ft east, 5ft south\nA2: Demoralise on Kreski (the kobold)\nA3",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-14T23:08:44+00:00",
+      "pid": "76799",
+      "msg_id": "178938",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "(Retcon)\nSteele marches in, shouting, \"Surrender! You're outnumbered!\" Reaching ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2582,17 +2637,17 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 178729,
+      "caught_up_msg_id": 179041,
       "pending_delete": [],
-      "caught_up_at": "2026-09-13T18:32:14.249524+00:00"
+      "caught_up_at": "2026-09-14T23:58:25.438658+00:00"
     },
     "144765": {
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 178680,
+      "caught_up_msg_id": 179012,
       "pending_delete": [],
-      "caught_up_at": "2026-09-13T16:15:03.085747+00:00"
+      "caught_up_at": "2026-09-14T16:00:20.805364+00:00"
     }
   }
 }
