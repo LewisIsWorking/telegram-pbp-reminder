@@ -16,7 +16,8 @@ from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_followup import build_followup
 from scheduled.queue_focus_dm import send_focus_dm
-from scheduled.queue_refresh import checked_line, refresh_in_place
+from scheduled.queue_refresh import (checked_line, next_check_line,
+                                     refresh_in_place)
 from scheduled.queue_render import (
     build_streak, build_summary, build_momentum_map, build_header,
     chunk_messages, build_body_lines,
@@ -132,7 +133,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         would renumber a queue that has not changed, on every run.
         """
         lines = [build_header(queue_num, total, streak, summary),
-                 checked_line(now)]
+                 checked_line(now), next_check_line(now)]
         lines.extend(build_body_lines(config, state, scanned, sorted_pids,
                                       priority_pids, momentum_map, now))
         if silent_lines:
