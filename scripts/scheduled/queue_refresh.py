@@ -30,12 +30,43 @@ exact reason never has to be known:
   chunk 2's message. A count mismatch reposts instead.
 """
 
+from datetime import timedelta
+
 from scheduled import local_time
+
+# ⛔ The minutes of the two crons in .github/workflows/pbp-reminder.yml.
+# test_next_queue_check_matches_the_crons fails if they drift apart.
+CHECK_MINUTES = (13, 43)
 
 
 def checked_line(now) -> str:
     """The visible heartbeat, in the time zone Lewis reads."""
     return f"🕒 Checked {local_time.fmt(now)}"
+
+
+def next_check(now):
+    """The next scheduled cron after ``now``.
+
+    Lewis, 2026-09-15, asked for a countdown to the next queue check. A
+    Telegram message cannot tick, so the queue shows the TIME instead, and
+    every run's edit keeps it current.
+
+    ⚠️ An estimate, hence the "~" in the line. GitHub delivers these crons
+    late or not at all, and the VPS heartbeat then dispatches a run at its
+    own minute (15 September's runs landed at :15 and :30). The cron is the
+    earliest the next check can come, and usually close to it.
+    """
+    start = now.replace(second=0, microsecond=0)
+    for step in range(1, 61):
+        candidate = start + timedelta(minutes=step)
+        if candidate.minute in CHECK_MINUTES:
+            return candidate
+    raise ValueError(f"no minute in {CHECK_MINUTES}")  # pragma: no cover
+
+
+def next_check_line(now) -> str:
+    """The line under "Checked": when the queue is next looked at."""
+    return f"⏭ Next check ~{local_time.fmt(next_check(now))}"
 
 
 def refresh_in_place(state: dict, group_id: int, msgs: list[str], *,

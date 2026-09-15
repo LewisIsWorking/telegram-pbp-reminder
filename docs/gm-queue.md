@@ -210,6 +210,12 @@ So on a run where the queue has **not** changed, the pinned queue is **edited**
 rather than left alone (`scheduled/queue_refresh.py`):
 
 - Its first message carries **"🕒 Checked HH:MM BST"**, updated every run.
+- Under it, **"⏭ Next check ~HH:MM BST"**: the next `:13` or `:43` cron.
+  Lewis asked for a live countdown (2026-09-15); a Telegram message cannot
+  tick, so it shows the time instead. The `~` is honest: GitHub delivers these
+  crons late or not at all, and the heartbeat's dispatched runs land at their
+  own minute. `CHECK_MINUTES` in `queue_refresh.py` restates the crons, and
+  `test_queue_next_check.py` fails if the two drift apart.
 - **Ages are current** again, instead of frozen until the next real change.
 - **Nothing is posted and nobody is notified**, because Telegram edits don't
   notify. It stays quiet.
