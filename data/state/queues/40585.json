@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 179208,
-      "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-15T14:28:53+00:00",
-      "preview": "First, initially, a blonde, short-haired human-like entity lands face-first on the floor. He yells, \"Ouch!\"\n\nThen, another \"Ouch!\", in the same voice, comes from beneath him. Like an affront to physics, another head, this time, inky-black in skin and of white hair, but looking not unlike the figure above him, except in inverse colours.\n\n\"Where the fuck are we?!\" the shadow asks, glancing around.\n\n\"Language!\" retorted Rin, slowly getting to his feet.\n\n\"Taldane!\" shouted back the shadow, as he ros",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179215,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-15T14:29:47+00:00",
-      "preview": "Rin/Shadow Rin:\nRin A1, A2: Stride 2x 25ft\nShadow A1, A2: Stride 2x 25ft",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1118,7 +1100,11 @@
     "msg:177625",
     "2026-09-08 07:37:05",
     "msg:178872",
-    "2026-09-13 22:44:54"
+    "2026-09-13 22:44:54",
+    "msg:179208",
+    "2026-09-15 14:28:53",
+    "msg:179215",
+    "2026-09-15 14:29:47"
   ],
   "reply_log": [
     {
@@ -6212,29 +6198,43 @@
       "player": "Anthony",
       "preview": "Uhhh. Daichi probably strides twice and activates arcane cascade to get resistan",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-15T14:34:27+00:00",
+      "pid": "40585",
+      "msg_id": "179208",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "First, initially, a blonde, short-haired human-like entity lands face-first on t",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-15T14:36:24+00:00",
+      "pid": "40585",
+      "msg_id": "179215",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Rin/Shadow Rin:\nRin A1, A2: Stride 2x 25ft\nShadow A1, A2: Stride 2x 25ft",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-09-15 14:29:47",
-      "msg_ids": [
-        179228
-      ],
-      "last_posted_at": "2026-09-15T14:30:29.645662+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179350,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-15T15:15:28.943150+00:00"
     },
     "40585": {
-      "fingerprint": "2026-09-15 14:28:53",
-      "msg_ids": [
-        179226
-      ],
-      "last_posted_at": "2026-09-15T14:30:27.205926+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179351,
+      "caught_up_at": "2026-09-15T15:15:28.943150+00:00"
     }
   }
 }
