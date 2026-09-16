@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 179516,
-      "thread_id": 51357,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-09-15T19:34:55+00:00",
-      "preview": "\"We can do it\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -377,7 +367,9 @@
     "msg:177555",
     "2026-09-08 00:27:14",
     "msg:177562",
-    "2026-09-08 00:40:13"
+    "2026-09-08 00:40:13",
+    "msg:179516",
+    "2026-09-15 19:34:55"
   ],
   "reply_log": [
     {
@@ -1997,19 +1989,26 @@
       "player": "Buffet",
       "preview": "\"I carry Sarenrae's light, even in that realm of shadow it will protect us. If w",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T10:27:13+00:00",
+      "pid": "51357",
+      "msg_id": "179516",
+      "thread_id": 51357,
+      "player": "Horia",
+      "preview": "\"We can do it\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-09-15 19:34:55",
-      "msg_ids": [
-        179527
-      ],
-      "last_posted_at": "2026-09-15T20:00:38.161865+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179596,
+      "caught_up_at": "2026-09-16T10:30:35.523788+00:00",
       "pending_delete": []
     },
     "145040": {
