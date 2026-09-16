@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 179560,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-09-16T00:23:06+00:00",
-      "preview": "Lai chuckle \"I miss it. Before i got here it was the sea side for me and on the other side is thick trees\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 179605,
       "thread_id": 52083,
       "user_id": "6144366145",
@@ -449,7 +440,9 @@
     "msg:178303",
     "2026-09-11 12:00:31",
     "msg:179494",
-    "2026-09-15 18:29:19"
+    "2026-09-15 18:29:19",
+    "msg:179560",
+    "2026-09-16 00:23:06"
   ],
   "reply_log": [
     {
@@ -2409,17 +2402,26 @@
       "player": "Terra",
       "preview": "\"I... pack light, no use being a pollutant cause of the ton of gear...i may need",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T17:27:05+00:00",
+      "pid": "52083",
+      "msg_id": "179560",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai chuckle \"I miss it. Before i got here it was the sea side for me and on the ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-16 00:23:06|2026-09-16 12:33:20",
+      "fingerprint": "2026-09-16 12:33:20",
       "msg_ids": [
-        179610
+        179892
       ],
-      "last_posted_at": "2026-09-16T13:00:24.817806+00:00",
+      "last_posted_at": "2026-09-16T18:15:23.079579+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-09-15T19:10:37.280200+00:00"
     },

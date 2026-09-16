@@ -189,7 +189,6 @@
       "2026-09-16T10:30:35.521101+00:00"
     ],
     "40585": [
-      "2026-03-31T04:50:36.227057+00:00",
       "2026-03-31T04:50:36.228077+00:00",
       "2026-03-31T04:50:36.229094+00:00",
       "2026-03-31T04:50:36.230246+00:00",
@@ -688,7 +687,8 @@
       "2026-09-15T15:15:28.510785+00:00",
       "2026-09-16T15:37:40.671181+00:00",
       "2026-09-16T15:37:40.776198+00:00",
-      "2026-09-16T15:37:40.877782+00:00"
+      "2026-09-16T15:37:40.877782+00:00",
+      "2026-09-16T18:15:20.002608+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -888,7 +888,14 @@
       "2026-09-16T17:15:52.049264+00:00",
       "2026-09-16T17:15:52.050841+00:00",
       "2026-09-16T17:15:52.054621+00:00",
-      "2026-09-16T17:15:52.057418+00:00"
+      "2026-09-16T17:15:52.057418+00:00",
+      "2026-09-16T18:15:19.980253+00:00",
+      "2026-09-16T18:15:19.982219+00:00",
+      "2026-09-16T18:15:19.984086+00:00",
+      "2026-09-16T18:15:19.986048+00:00",
+      "2026-09-16T18:15:19.991727+00:00",
+      "2026-09-16T18:15:19.997718+00:00",
+      "2026-09-16T18:15:20.004998+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1747,7 +1754,8 @@
       "2026-09-13T18:00:18.627037+00:00",
       "2026-09-13T18:00:19.230249+00:00",
       "2026-09-13T19:28:48.553039+00:00",
-      "2026-09-15T19:10:37.279925+00:00"
+      "2026-09-15T19:10:37.279925+00:00",
+      "2026-09-16T18:15:19.989702+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1915,69 +1923,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.855564+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "Bella smiles at the android, following him to grab her belon",
-      "msg_id": "174539"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.857890+00:00",
-      "player": "Minork",
-      "preview": "Minork rises, and begins to stretch. With a grunt, he turns ",
-      "msg_id": "174576"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.860196+00:00",
-      "player": "Laetheron",
-      "preview": "\"They seem to have gathered at the bridge.\"",
-      "msg_id": "174585"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.862457+00:00",
-      "player": "Laetheron",
-      "preview": "\"If everyone is ready, then I would suggest we eject the pir",
-      "msg_id": "174586"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T09:42:11.195370+00:00",
-      "player": "Terra",
-      "preview": "Lai just squints and looks at the pin board and everything o",
-      "msg_id": "174501"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T09:58:51.996591+00:00",
-      "player": "Anthony",
-      "preview": "\"So..! We're gonna \u2605STEAL ALL THE MONNEY\u2605 and \u2605STREAM IT TO ",
-      "msg_id": "174728"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.077817+00:00",
-      "player": "Anthony",
-      "preview": "\"Awww.. \u2605WHY?\u2605 We have to \u2605EXPOSE THEM\u2605 don't we?!\"",
-      "msg_id": "174730"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.081141+00:00",
-      "player": "Terra",
-      "preview": "\"we are going to send a message i assume?\" Lai says thinking",
-      "msg_id": "174745"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.083460+00:00",
-      "player": "Terra",
-      "preview": "\"telling them that someone knows what they are doing and tha",
-      "msg_id": "174746"
-    },
     {
       "pid": "52083",
       "time": "2026-08-25T11:34:17.085753+00:00",
@@ -3314,6 +3259,69 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "Yeah. Idk if Foundry has a way to mark that so my bad if it ",
       "msg_id": "179812"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.980253+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "msg_id": "179844"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.982219+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "msg_id": "179845"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.984086+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Either way REign's turn done",
+      "msg_id": "179846"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.986048+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Reign's turn:\n1A Stride to get in sight of Knemdom\n2A cast H",
+      "msg_id": "179843"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-16T18:15:19.989702+00:00",
+      "player": "Terra",
+      "preview": "Lai chuckle \"I miss it. Before i got here it was the sea sid",
+      "msg_id": "179560"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.991727+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Gotta get through this somehow",
+      "msg_id": "179852"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.997718+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179862"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T18:15:20.002608+00:00",
+      "player": "Anthony",
+      "preview": "Daichi's turn:\nA1 and 2:\nCast longstrider Heightenend to 2nd",
+      "msg_id": "179857"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:20.004998+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"It'd be nice not to kill them, I think. Could help us get a",
+      "msg_id": "179818"
     }
   ],
   "pending_potw_boons": {

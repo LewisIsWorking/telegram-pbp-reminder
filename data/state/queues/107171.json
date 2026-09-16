@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 179818,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-09-16T17:11:32+00:00",
-      "preview": "\"It'd be nice not to kill them, I think. Could help us get away from the Ghouls.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 179827,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -416,7 +407,21 @@
     "msg:179807",
     "2026-09-16 17:08:29",
     "msg:179812",
-    "2026-09-16 17:09:18"
+    "2026-09-16 17:09:18",
+    "msg:179844",
+    "2026-09-16 17:22:54",
+    "msg:179845",
+    "2026-09-16 17:23:43",
+    "msg:179846",
+    "2026-09-16 17:23:50",
+    "msg:179843",
+    "2026-09-16 17:21:33",
+    "msg:179852",
+    "2026-09-16 17:25:55",
+    "msg:179862",
+    "2026-09-16 18:03:25",
+    "msg:179818",
+    "2026-09-16 17:11:32"
   ],
   "reply_log": [
     {
@@ -2258,17 +2263,80 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "Yeah. Idk if Foundry has a way to mark that so my bad if it does, but I did say ",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T17:24:33+00:00",
+      "pid": "107171",
+      "msg_id": "179844",
+      "thread_id": 142887,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T17:24:44+00:00",
+      "pid": "107171",
+      "msg_id": "179845",
+      "thread_id": 142887,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T17:24:53+00:00",
+      "pid": "107171",
+      "msg_id": "179846",
+      "thread_id": 142887,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Either way REign's turn done",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T17:25:19+00:00",
+      "pid": "107171",
+      "msg_id": "179843",
+      "thread_id": 142887,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Reign's turn:\n1A Stride to get in sight of Knemdom\n2A cast Horizon Thunder Spher",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T17:27:13+00:00",
+      "pid": "107171",
+      "msg_id": "179852",
+      "thread_id": 142887,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Gotta get through this somehow",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:03:37+00:00",
+      "pid": "107171",
+      "msg_id": "179862",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:13:39+00:00",
+      "pid": "107171",
+      "msg_id": "179818",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"It'd be nice not to kill them, I think. Could help us get away from the Ghouls.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-16 17:11:32|2026-09-16 17:15:16",
+      "fingerprint": "2026-09-16 17:15:16",
       "msg_ids": [
-        179834
+        179894
       ],
-      "last_posted_at": "2026-09-16T17:15:55.065535+00:00",
+      "last_posted_at": "2026-09-16T18:15:29.453746+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-16T16:30:21.766350+00:00"
