@@ -2,12 +2,12 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 179827,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-09-16T17:15:16+00:00",
-      "preview": "Sprinting into the room, Bella practically throws the Kusarigama off her belt towards the pirate helmsman. The sickle flies past the Ysoki's neck, wrapping around before Bella catches it in her other hand.\n\nWith a mighty thud, the ratfolk is slammed into the floor. Groans of pain indicate that he's still alive. . But sure as hell isn't going to be getting up any time soon.",
+      "message_id": 179961,
+      "thread_id": 142887,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-16T19:02:00+00:00",
+      "preview": "[media]",
       "media_group_id": null
     }
   ],
@@ -421,7 +421,17 @@
     "msg:179862",
     "2026-09-16 18:03:25",
     "msg:179818",
-    "2026-09-16 17:11:32"
+    "2026-09-16 17:11:32",
+    "msg:179827",
+    "2026-09-16 17:15:16",
+    "msg:179901",
+    "2026-09-16 18:17:33",
+    "msg:179911",
+    "2026-09-16 18:20:39",
+    "msg:179931",
+    "2026-09-16 18:26:41",
+    "msg:179946",
+    "2026-09-16 18:35:54"
   ],
   "reply_log": [
     {
@@ -2326,25 +2336,70 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"It'd be nice not to kill them, I think. Could help us get away from the Ghouls.",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:16:49+00:00",
+      "pid": "107171",
+      "msg_id": "179827",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Sprinting into the room, Bella practically throws the Kusarigama off her belt to",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:18:00+00:00",
+      "pid": "107171",
+      "msg_id": "179901",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Oh- Goddammit. We probably don't want them to get away, huh?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:21:08+00:00",
+      "pid": "107171",
+      "msg_id": "179911",
+      "thread_id": 142887,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Keep, I still have stamina",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:27:26+00:00",
+      "pid": "107171",
+      "msg_id": "179931",
+      "thread_id": 142887,
+      "player": "Ryo",
+      "preview": "reroll",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:52:27+00:00",
+      "pid": "107171",
+      "msg_id": "179946",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"RIGHT!\" Bella steadies herself against the console, \"Where are the pods? Or doe",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-16 17:15:16",
-      "msg_ids": [
-        179894
-      ],
-      "last_posted_at": "2026-09-16T18:15:29.453746+00:00",
-      "caught_up_msg_id": null,
-      "pending_delete": [],
-      "caught_up_at": "2026-09-16T16:30:21.766350+00:00"
-    },
-    "142887": {
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
+      "caught_up_msg_id": 179967,
+      "pending_delete": [],
+      "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
+    },
+    "142887": {
+      "fingerprint": "2026-09-16 19:02:00",
+      "msg_ids": [
+        179965
+      ],
+      "last_posted_at": "2026-09-16T19:15:22.544088+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null

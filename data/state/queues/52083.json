@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 179605,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-09-16T12:33:20+00:00",
-      "preview": "\"Only the little \u2605LAI\u2605 needs gear, but do you also do \u2605AGUMENTATIONS\u2605 Nicky? We got \u2605MONNEY\u2605\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -442,7 +432,11 @@
     "msg:179494",
     "2026-09-15 18:29:19",
     "msg:179560",
-    "2026-09-16 00:23:06"
+    "2026-09-16 00:23:06",
+    "msg:179605",
+    "2026-09-16 12:33:20",
+    "msg:179957",
+    "2026-09-16 18:53:18"
   ],
   "reply_log": [
     {
@@ -2411,19 +2405,35 @@
       "player": "Terra",
       "preview": "Lai chuckle \"I miss it. Before i got here it was the sea side for me and on the ",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:53:18+00:00",
+      "pid": "52083",
+      "msg_id": "179605",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"Only the little \u2605LAI\u2605 needs gear, but do you also do \u2605AGUMENTATIONS\u2605 Nicky? We ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T18:53:24+00:00",
+      "pid": "52083",
+      "msg_id": "179957",
+      "thread_id": "52083",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-16 12:33:20",
-      "msg_ids": [
-        179892
-      ],
-      "last_posted_at": "2026-09-16T18:15:23.079579+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-09-15T19:10:37.280200+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179968,
+      "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
     },
     "145045": {
       "msg_ids": [],

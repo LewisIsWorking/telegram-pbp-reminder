@@ -189,8 +189,6 @@
       "2026-09-16T10:30:35.521101+00:00"
     ],
     "40585": [
-      "2026-03-31T04:50:36.228077+00:00",
-      "2026-03-31T04:50:36.229094+00:00",
       "2026-03-31T04:50:36.230246+00:00",
       "2026-03-31T06:31:49.489842+00:00",
       "2026-04-03T12:16:20.626717+00:00",
@@ -688,7 +686,9 @@
       "2026-09-16T15:37:40.671181+00:00",
       "2026-09-16T15:37:40.776198+00:00",
       "2026-09-16T15:37:40.877782+00:00",
-      "2026-09-16T18:15:20.002608+00:00"
+      "2026-09-16T18:15:20.002608+00:00",
+      "2026-09-16T19:15:20.225363+00:00",
+      "2026-09-16T19:15:20.246876+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -895,7 +895,12 @@
       "2026-09-16T18:15:19.986048+00:00",
       "2026-09-16T18:15:19.991727+00:00",
       "2026-09-16T18:15:19.997718+00:00",
-      "2026-09-16T18:15:20.004998+00:00"
+      "2026-09-16T18:15:20.004998+00:00",
+      "2026-09-16T19:15:19.363038+00:00",
+      "2026-09-16T19:15:20.215659+00:00",
+      "2026-09-16T19:15:20.228191+00:00",
+      "2026-09-16T19:15:20.234932+00:00",
+      "2026-09-16T19:15:20.252881+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1755,7 +1760,9 @@
       "2026-09-13T18:00:19.230249+00:00",
       "2026-09-13T19:28:48.553039+00:00",
       "2026-09-15T19:10:37.279925+00:00",
-      "2026-09-16T18:15:19.989702+00:00"
+      "2026-09-16T18:15:19.989702+00:00",
+      "2026-09-16T19:15:20.255848+00:00",
+      "2026-09-16T19:15:20.258794+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1923,69 +1930,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.085753+00:00",
-      "player": "Anthony",
-      "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the m",
-      "msg_id": "174747"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T14:21:32.613859+00:00",
-      "player": "Terra",
-      "preview": "Lai looks at Livy then at Nikk-Nakk waiting for an answer",
-      "msg_id": "174754"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T14:21:32.617954+00:00",
-      "player": "Terra",
-      "preview": "Lai nods in understanding",
-      "msg_id": "174767"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-25T15:20:44.733677+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "174486"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-25T15:51:44.296201+00:00",
-      "player": "Anthony",
-      "preview": "We take the time to search everywhere.",
-      "msg_id": "174809"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-25T15:51:44.309426+00:00",
-      "player": "Anthony",
-      "preview": "Uhh. No the staircase",
-      "msg_id": "174824"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-26T04:48:01.005454+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Hi Oofy! I'm Bella- \"\n\nNearly falling over from the impact,",
-      "msg_id": "174860"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-26T04:48:01.009940+00:00",
-      "player": "Minork",
-      "preview": "With a curt nod, Minork simply replies \u201cMinork Estra.\u201d He lo",
-      "msg_id": "174893"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-26T04:48:01.012648+00:00",
-      "player": "Anthony",
-      "preview": "\"Why would we go to \u2605PRISON\u2605? We can just do a \u2605DELAYED LIVE",
-      "msg_id": "174792"
-    },
     {
       "pid": "52083",
       "time": "2026-08-26T04:48:01.015312+00:00",
@@ -3322,6 +3266,69 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"It'd be nice not to kill them, I think. Could help us get a",
       "msg_id": "179818"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:19.363038+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Sprinting into the room, Bella practically throws the Kusari",
+      "msg_id": "179827"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.215659+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Oh- Goddammit. We probably don't want them to get away, huh",
+      "msg_id": "179901"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T19:15:20.225363+00:00",
+      "player": "Horia",
+      "preview": "lorn hunter's aim then shot the bad guy",
+      "msg_id": "179902"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.228191+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Keep, I still have stamina",
+      "msg_id": "179911"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.234932+00:00",
+      "player": "Ryo",
+      "preview": "reroll",
+      "msg_id": "179931"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T19:15:20.246876+00:00",
+      "player": "Horia",
+      "preview": "then Lorn readies an action for when an enemy will show up",
+      "msg_id": "179934"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.252881+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"RIGHT!\" Bella steadies herself against the console, \"Where ",
+      "msg_id": "179946"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-16T19:15:20.255848+00:00",
+      "player": "Anthony",
+      "preview": "\"Only the little \u2605LAI\u2605 needs gear, but do you also do \u2605AGUME",
+      "msg_id": "179605"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-16T19:15:20.258794+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179957"
     }
   ],
   "pending_potw_boons": {
