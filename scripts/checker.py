@@ -42,6 +42,7 @@ from scheduled.maintenance import (
 from scheduled.smart_alerts import check_pace_drop, check_conversation_dying
 from scheduled.digest import post_weekly_digest
 from scheduled.combat_ping import check_combat_turns, check_expired_timers
+from combat.foundry_sync import sync_foundry_encounters
 from scheduled.queue_reminder import post_queue_reminder
 from scheduled.queue_nudge import check_queue_nudge
 from scheduled.campaign_table import post_campaign_table
@@ -94,6 +95,7 @@ def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:
         ("Streak milestones", check_streak_milestones),
         ("Anniversaries", check_anniversaries),
         ("Message milestones", check_message_milestones),
+        ("Foundry encounters", sync_foundry_encounters),
         ("Combat pings", check_combat_turns),
         ("Leaderboard", post_campaign_leaderboard),
         ("Weekly digest", post_weekly_digest),

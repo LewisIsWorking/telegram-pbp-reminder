@@ -205,6 +205,9 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
+          # Foundry encounters from ComeOnOverUno (2026-09-16). Unset, the
+          # sync does nothing: the server's read is closed without the key.
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
         run: cd scripts && python checker.py
 
       - name: Alert on delete refusals

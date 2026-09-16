@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import helpers
 from helpers import build_topic_maps, fmt_date
 import telegram as tg
+from combat.foundry_sync import SOURCE as FOUNDRY, ping_waiting
 
 
 def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -40,6 +41,13 @@ def check_combat_turns(config: dict, state: dict, *, now: datetime | None = None
             since_ping = helpers.hours_since(now, datetime.fromisoformat(last_ping_str))
             if since_ping < helpers.COMBAT_PING_HOURS:
                 continue
+
+        # ⚔️ A Foundry encounter knows exactly who is still to act, and its
+        #    tracker lives in the combat topic, so the reminder goes there.
+        if combat.get("source") == FOUNDRY:
+            ping_waiting(config, state, pid, now,
+                         f"Round {combat.get('round', 1)}: still waiting ({int(hours_elapsed)}h)")
+            continue
 
         # Find all known players in this campaign who haven't acted
         acted_raw = combat.get("players_acted", {})

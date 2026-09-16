@@ -60,6 +60,21 @@ The bot responds to these commands in any monitored PBP topic:
 - `/endcombat` - End combat with log summary.
 - `/enemies [list]` - View or set enemy roster.
 - `/clog <event>` - Add combat log entry.
+
+#### Combat run from Foundry
+
+When the GM runs an encounter in Foundry with Tongs Browser's encounter sync on, Foundry drives the
+bot and none of the commands above are needed. Each hourly run reads the campaign's latest encounter
+from ComeOnOverUno, matched by its `code`, and:
+
+- pings the linked players still to act in the campaign's `combat_topic_id` when a round's allies
+  phase starts, naming them by Telegram id so a player with no username is notified too;
+- reminds whoever is still waiting every `combat_ping_hours`, skipping anyone `/away`;
+- ignores chat messages as turns, because Foundry says who has acted;
+- ends its combat when Foundry ends that encounter.
+
+Needs the `PATHWARS_BOT_READ_KEY` secret, the same value as the server's `PATHWARS_BOT_READ_KEY`.
+Without it the sync does nothing. `COO_SERVER_URL` overrides the server address.
 - `/pause [reason]` - Pause inactivity tracking (for breaks, holidays, between arcs).
 - `/resume` - Resume inactivity tracking.
 - `/markdone [N|msg_id|url|all]` - Manually clear queue entries. Accepts queue position, message ID, full t.me link, or "all".
