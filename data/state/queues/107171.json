@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 179518,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-09-15T19:53:19+00:00",
-      "preview": "Bella clips the kusarigama back to her outfit, still definitely stiff but looking somewhat disappointed,\n\n\"Well. . Goddamn. At least I'm not worried about my safety around you guys.\"\n\nShe pats Arktos on the . . Bell, shifting closer towards the other pirates, just to be passively intimidating.\n\n\"So. Let's get the fuck out, everyone! Like. Fast. I don't know how ships work but let me know if I need to yank something.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -397,7 +387,9 @@
     "msg:179426",
     "2026-09-15 17:08:11",
     "msg:179427",
-    "2026-09-15 17:08:12"
+    "2026-09-15 17:08:12",
+    "msg:179518",
+    "2026-09-15 19:53:19"
   ],
   "reply_log": [
     {
@@ -2194,20 +2186,27 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T15:46:32+00:00",
+      "pid": "107171",
+      "msg_id": "179518",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Bella clips the kusarigama back to her outfit, still definitely stiff but lookin",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-15 19:53:19",
-      "msg_ids": [
-        179529
-      ],
-      "last_posted_at": "2026-09-15T20:00:43.923939+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179766,
       "pending_delete": [],
-      "caught_up_at": "2026-09-15T17:15:18.268800+00:00"
+      "caught_up_at": "2026-09-16T16:30:21.766350+00:00"
     },
     "142887": {
       "fingerprint": "",
