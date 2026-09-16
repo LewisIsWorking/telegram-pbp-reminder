@@ -16,33 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 179622,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-16T14:42:28+00:00",
-      "preview": "Actions:\n\nZerius:\nA1: Tandem Movement (northwest 3 squares, 2 west)\nA2: Tandem Movement (6 west)\nA3: Tandem Movement (6 west)\n\nEidolon (Little Dread):\nTandem Movement 1: (northwest 5 squares)\nTandem Movement 2: (west 7 squares)\nTandem Movement 3: (west 7 squares)\nA4: No action",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179624,
-      "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-16T14:43:50+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 179627,
-      "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-16T14:49:48+00:00",
-      "preview": "In that glow, a smooth but firm voice is in the middle of shouting, in the Taldane tongue, \"THIS WAY! Be- WHOA!\"\n\nThen, as the androgynous, slightly feminine figure in a breastplate, pale white as the snow, with pointy ears, black eyes, and a white tail, waving with his sword and shield, in the middle of ushering a group, gasps in surprise when the ground beneath him changes. He stumbles, and almost crashes into the creature next to time.\n\nThe creature next to him looks like a bulette, except mu",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1131,7 +1104,13 @@
     "msg:179208",
     "2026-09-15 14:28:53",
     "msg:179215",
-    "2026-09-15 14:29:47"
+    "2026-09-15 14:29:47",
+    "msg:179624",
+    "2026-09-16 14:43:50",
+    "msg:179627",
+    "2026-09-16 14:49:48",
+    "msg:179622",
+    "2026-09-16 14:42:28"
   ],
   "reply_log": [
     {
@@ -6243,29 +6222,52 @@
       "player": "Alastair",
       "preview": "Rin/Shadow Rin:\nRin A1, A2: Stride 2x 25ft\nShadow A1, A2: Stride 2x 25ft",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-16T15:11:43+00:00",
+      "pid": "40585",
+      "msg_id": "179624",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T15:12:43+00:00",
+      "pid": "40585",
+      "msg_id": "179627",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "In that glow, a smooth but firm voice is in the middle of shouting, in the Talda",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-16T15:12:59+00:00",
+      "pid": "40585",
+      "msg_id": "179622",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Actions:\n\nZerius:\nA1: Tandem Movement (northwest 3 squares, 2 west)\nA2: Tandem M",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-09-16 14:42:28",
-      "msg_ids": [
-        179631
-      ],
-      "last_posted_at": "2026-09-16T15:00:20.571540+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179667,
       "pending_delete": [],
-      "caught_up_at": "2026-09-15T15:15:28.943150+00:00"
+      "caught_up_at": "2026-09-16T15:37:40.995881+00:00"
     },
     "40585": {
-      "fingerprint": "2026-09-16 14:43:50|2026-09-16 14:49:48",
-      "msg_ids": [
-        179633
-      ],
-      "last_posted_at": "2026-09-16T15:00:23.082852+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-09-15T15:15:28.943150+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 179668,
+      "caught_up_at": "2026-09-16T15:37:40.995881+00:00"
     }
   }
 }
