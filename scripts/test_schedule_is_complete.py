@@ -64,6 +64,7 @@ _EVENT_DRIVEN = {
     "Streak milestones": "fires when a player's streak crosses a threshold",
     "Anniversaries": "fires on a campaign's created-date anniversary",
     "Message milestones": "fires when a count crosses a round number",
+    "Foundry encounters": "fires when a Foundry encounter starts a new phase",
     "Combat pings": "fires when a combat turn passes COMBAT_PING_HOURS",
     "Archive": "fires on the first tick of a new ISO week, at no set hour",
     "Conversation dying": "fires when a thread's gap crosses the threshold",

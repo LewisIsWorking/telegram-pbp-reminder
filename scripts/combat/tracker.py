@@ -144,7 +144,10 @@ def handle_combat_message(
 
     # Track player action during combat (with timestamp)
     combat = state["combat"].get(pid)
+    # ⚔️ Not for a Foundry encounter: Foundry says who has acted, and a
+    #    chat message is not a turn taken there.
     if (combat and combat.get("active")
+            and combat.get("source") != "foundry"
             and combat["current_phase"] == "players"
             and user_id not in gm_ids):
         acted = combat.get("players_acted", {})
