@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 180077,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-09-16T22:40:32+00:00",
+      "preview": "Livy's probably going to buy an armored coat and a commercial force field upgrade to go with it.\n(220 credits total)",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -2429,10 +2439,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 179968,
+      "fingerprint": "2026-09-16 22:40:32",
+      "msg_ids": [
+        180078
+      ],
+      "last_posted_at": "2026-09-16T22:55:15.724178+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
     },
     "145045": {
