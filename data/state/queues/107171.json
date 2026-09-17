@@ -9,6 +9,15 @@
       "time": "2026-09-16T22:32:55+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 180236,
+      "thread_id": 107171,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-09-17T18:53:33+00:00",
+      "preview": "He spits in her direction as he holsters his gun.\n\n\"Always did forget I was also a decent shot, dumbass...\"\n\nTurning around, he calls out to the last pirate, not really caring if they hear him or not.\n\n\"If I ever see your face again you'll wish you got off as lucky as she did.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2409,10 +2418,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 179967,
+      "fingerprint": "2026-09-17 18:53:33",
+      "msg_ids": [
+        180241
+      ],
+      "last_posted_at": "2026-09-17T19:00:32.504951+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
     },

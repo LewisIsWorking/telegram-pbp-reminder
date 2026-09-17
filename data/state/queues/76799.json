@@ -1,6 +1,25 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 180234,
+      "thread_id": 144765,
+      "user_id": "8969117742",
+      "user_name": "Volf",
+      "time": "2026-09-17T18:50:59+00:00",
+      "preview": "Rex attempts to fire more bolts at the spider. However he missed both hits",
+      "media_group_id": null
+    },
+    {
+      "message_id": 180235,
+      "thread_id": 76799,
+      "user_id": "8969117742",
+      "user_name": "Volf",
+      "time": "2026-09-17T18:51:50+00:00",
+      "preview": "Rex unimpressed by his last performance . Attempts to shoot reload and shoot again at the spider. However the spider proven to be too high on the ceiling and his bolts both missed tragicly",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2634,17 +2653,21 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-17 18:51:50",
+      "msg_ids": [
+        180239
+      ],
+      "last_posted_at": "2026-09-17T19:00:27.510095+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
     },
     "144765": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-17 18:50:59",
+      "msg_ids": [
+        180237
+      ],
+      "last_posted_at": "2026-09-17T19:00:25.038377+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
