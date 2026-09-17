@@ -1,21 +1,21 @@
 {
   "topics": {
     "52083": {
-      "last_message_time": "2026-09-16T00:23:06+00:00",
-      "last_user": "Terra",
-      "last_user_id": "8097377199",
+      "last_message_time": "2026-09-16T22:40:32+00:00",
+      "last_user": "Anthony",
+      "last_user_id": "6144366145",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-09-15T19:08:28+00:00",
+      "last_message_time": "2026-09-17T02:13:19+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-09-15T19:34:55+00:00",
-      "last_user": "Horia",
-      "last_user_id": "5443237599",
+      "last_message_time": "2026-09-17T02:01:32+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -25,13 +25,13 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-09-15T19:53:19+00:00",
-      "last_user": "Diabla \"Bella\" Alzarin",
-      "last_user_id": "8701042661",
+      "last_message_time": "2026-09-16T22:32:55+00:00",
+      "last_user": "Ryo",
+      "last_user_id": "138025700",
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-09-15T17:34:44+00:00",
+      "last_message_time": "2026-09-16T18:28:26+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -63,24 +63,24 @@
   },
   "last_alerts": {
     "52083": "2026-09-14T20:15:23.354837+00:00",
-    "66154": "2026-09-11T07:30:23.981419+00:00",
+    "66154": "2026-09-16T19:15:20.261449+00:00",
     "51357": "2026-09-15T05:15:26.374747+00:00",
-    "25059": "2026-09-15T20:00:30.010589+00:00",
+    "25059": "2026-09-16T20:07:24.360995+00:00",
     "107171": "2026-09-13T00:59:30.805751+00:00",
     "40585": "2026-09-14T23:07:25.021422+00:00",
-    "76799": "2026-09-13T02:15:23.628832+00:00",
-    "107151": "2026-09-16T01:45:20.328665+00:00",
+    "76799": "2026-09-16T18:15:20.005477+00:00",
+    "107151": "2026-09-17T02:13:44.123120+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00",
-    "146645": "2026-09-16T00:15:25.131899+00:00"
+    "146645": "2026-09-17T01:00:22.850895+00:00"
   },
   "last_roster": {
-    "25059": "2026-09-14T01:03:04.387579+00:00",
-    "66154": "2026-09-14T01:03:04.387579+00:00",
-    "51357": "2026-09-14T01:03:04.387579+00:00",
-    "52083": "2026-09-14T01:03:04.387579+00:00",
-    "107171": "2026-09-14T01:03:04.387579+00:00",
-    "40585": "2026-09-14T01:03:04.387579+00:00",
-    "76799": "2026-09-14T01:03:04.387579+00:00",
+    "25059": "2026-09-17T01:24:11.474371+00:00",
+    "66154": "2026-09-17T01:24:11.474371+00:00",
+    "51357": "2026-09-17T01:24:11.474371+00:00",
+    "52083": "2026-09-17T01:24:11.474371+00:00",
+    "107171": "2026-09-17T01:24:11.474371+00:00",
+    "40585": "2026-09-17T01:24:11.474371+00:00",
+    "76799": "2026-09-17T01:24:11.474371+00:00",
     "107151": "2026-09-08T00:15:24.261346+00:00",
     "1242": "2026-07-06T04:16:24.180955+00:00",
     "146645": "2026-09-14T13:45:19.744445+00:00"
@@ -117,7 +117,7 @@
     "107171:1": "2026-09-04T00:04:58.624206+00:00"
   },
   "combat": {},
-  "last_leaderboard": "2026-09-10T01:30:18.635903+00:00",
+  "last_leaderboard": "2026-09-17T02:13:44.123120+00:00",
   "last_roster_nudge": "2026-09-15T20:00:30.010589+00:00",
   "last_roster_snapshot": "C01:5/6|C00:4/6|C04:5/6|C05:5/6|C06:6/6|C07:4/6|C09:5/6|C10:1/6|C08:1/6",
   "gm_escalation": {
@@ -152,15 +152,17 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-09-13T00:15:24.792691+00:00",
-  "last_daily_tip": "2026-09-15T23:15:17.985120+00:00",
+  "last_daily_tip": "2026-09-16T21:15:25.644639+00:00",
   "used_tip_indices": [
-    4
+    4,
+    22
   ],
   "last_pace_drop_check": "2026-09-13T00:15:24.792691+00:00",
   "dying_alerts_sent": {
     "1242": "active",
     "107151": "active",
-    "25059": "active"
+    "25059": "active",
+    "146645": "active"
   },
   "last_campaign_table": "2026-09-13T08:30:21.292649+00:00",
   "session_poll": {
@@ -182,7 +184,7 @@
         "1698524397",
         "8880317264"
       ],
-      "last_ping_day": 739875,
+      "last_ping_day": 739876,
       "votes": {
         "2": [
           "8902183011",
@@ -217,9 +219,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-09-15T01:27:09.704727+00:00",
-  "last_queue_daily": "2026-09-15",
-  "last_queue_fingerprint": "107171:2026-09-15 19:53:19|51357:2026-09-15 19:34:55|52083:2026-09-16 00:23:06",
+  "last_state_backup": "2026-09-16T01:45:20.328665+00:00",
+  "last_queue_daily": "2026-09-16",
+  "last_queue_fingerprint": "107171:2026-09-16 19:02:00|107171:2026-09-16 22:32:55|52083:2026-09-16 22:40:32",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -293,8 +295,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-09-13",
   "last_queue_daily_slots": [
-    "2026-09-09:09",
-    "2026-09-09:21",
     "2026-09-10:09",
     "2026-09-10:21",
     "2026-09-11:09",
@@ -306,7 +306,9 @@
     "2026-09-14:09",
     "2026-09-14:21",
     "2026-09-15:09",
-    "2026-09-15:21"
+    "2026-09-15:21",
+    "2026-09-16:09",
+    "2026-09-16:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -317,21 +319,21 @@
     "session_happened": true
   },
   "queue_scan_floor": null,
-  "last_diagnostic": "2026-09-15",
-  "last_queue_pin_id": 179563,
-  "queue_post_count": 1770,
+  "last_diagnostic": "2026-09-16",
+  "last_queue_pin_id": 180082,
+  "queue_post_count": 1781,
   "gm_queue_history": [
     {
       "msg_ids": [
-        179563,
-        179564
+        180082,
+        180083
       ],
-      "pin_id": 179563
+      "pin_id": 180082
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1770 \u2014 Unreplied: 3 | \ud83c\udfc6 1859 all-time\nC05:1 C09:1 C07:1\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 02:45 BST\n\u2501\u2501 \ud83d\udd2d C05: Grand Explorers (1) \u2501\u2501 @PathWars \u26a1Horia (~0h)\n01 [179516] \ud83c\udf3f 6h. Horia Constantinescu: \"We can do it\" \ud83d\udd17 https://t.me/Path_Wars/51357/179516\n\u2501\u2501 \ud83e\udd16 C09: Metal City (1) \u2501\u2501 @PathWars \u26a1Laetheron (~3h)\n02 [179518] \ud83c\udf31 5h. Diabla \"Bella\" Alzarin: Bella clips the kusarigama back to her outfit, still definitely stiff but looking somewhat disappointed,... \ud83d\udd17 https://t.me/Path_Wars/107171/179518\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (1) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n03 [179560] \ud83c\udf31 1h. Terra: Lai chuckle \"I miss it. Before i got here it was the sea side for... \ud83d\udd17 https://t.me/Path_Wars/52083/179560\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe9 \ud83d\udcc6 C01: Doomsday Funtime \u2014 last post 2d 6h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83d\udfe2 \ud83d\udea6 C10: The Junction \u2014 last post 1d 1h ago \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83c\udf3f \ud83d\udd0d C04: Magni Guard \u2014 last post 8h ago \ud83d\udd17 https://t.me/Path_Wars/76799\n  \ud83c\udf3f \ud83e\udda0 C06: Kibwe \u2014 last post 8h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udf3f \ud83d\udcb0 C00: Riddleport \u2014 last post 6h ago \ud83d\udd17 https://t.me/Path_Wars/66154",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83d\udd2d C05: Grand Explorers\n\u23f3 Oldest message waiting 6h (1 unreplied in this campaign).\n\u2197 Horia Constantinescu: \"We can do it\"\n\ud83d\udd17 https://t.me/Path_Wars/51357/179516"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1781 \u2014 Unreplied: 3 | \u2705 1 today | \ud83c\udfc6 1887 all-time\nC09:2 C07:1\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 03:13 BST\n\u23ed Next check ~03:43 BST\n\u2501\u2501 \ud83e\udd16 C09: Metal City (2) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~1h)\n01 [179961] \ud83c\udf3f 7h. Ryo Yamakawa: *[image]* A1 - Move 30 ft A2 - Instinctive Aim (Switch Hands and Aim) A3... \ud83d\udd17 https://t.me/Path_Wars/142887/179961\n02 [180074] \ud83c\udf31 3h. Ryo Yamakawa: *[image]* \ud83d\udd17 https://t.me/Path_Wars/142887/180074\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (1) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n03 [180077] \ud83c\udf31 3h. Anthony NegetZ: Livy's probably going to buy an armored coat and a commercial force field upgrade to... \ud83d\udd17 https://t.me/Path_Wars/52083/180077\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe1 \ud83d\udcc6 C01: Doomsday Funtime \u2014 last post 3d 6h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83d\udfe9 \ud83d\udea6 C10: The Junction \u2014 last post 2d 2h ago \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83d\udfe2 \ud83d\udd0d C04: Magni Guard \u2014 last post 1d 9h ago \ud83d\udd17 https://t.me/Path_Wars/76799\n  \ud83c\udf3f \ud83e\udda0 C06: Kibwe \u2014 last post 7h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udd95 \ud83d\udd2d C05: Grand Explorers \u2014 last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83c\udd95 \ud83d\udcb0 C00: Riddleport \u2014 last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/66154",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udd16 C09: Metal City\n\u23f3 Oldest message waiting 7h (2 unreplied in this campaign).\n\u2197 Ryo Yamakawa: *[image]* A1 - Move 30 ft A2 - Instinctive Aim (Switch Hands and Aim) A3 - Attack with...\n\ud83d\udd17 https://t.me/Path_Wars/142887/179961"
   ],
   "potw_week": {
     "25059": "2026-W38",
@@ -346,23 +348,23 @@
   },
   "last_potw_roundup": "2026-W38",
   "last_potw_countdown": "2026-W36",
-  "schedule_post_msg_id": 1176,
+  "schedule_post_msg_id": 1211,
   "schedule_post_chat_id": -1004303231713,
-  "last_pin_digest": "2026-09-15",
-  "last_pin_alert_ts": "2026-09-16T00:46:11.289447+00:00",
+  "last_pin_digest": "2026-09-16",
+  "last_pin_alert_ts": "2026-09-17T01:40:11.109818+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 179068,
-  "last_recruit_focus": "2026-09-15T01:27:09.704727+00:00",
-  "recruit_focus_at": "2026-09-15T01:27:09.704727+00:00",
+  "recruit_focus_msg_id": 179569,
+  "last_recruit_focus": "2026-09-16T01:45:20.328665+00:00",
+  "recruit_focus_at": "2026-09-16T01:45:20.328665+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 179068,
+      "message_id": 179569,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 1142,
+      "message_id": 1177,
       "auto_delete": false
     }
   ],
@@ -425,7 +427,7 @@
       "username": "Nemesiux",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-09-01T17:05:55+00:00",
+      "last_post_time": "2026-09-16T18:27:42+00:00",
       "last_warned_week": 0,
       "played_by": "MrNegetZ"
     },
@@ -436,7 +438,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-09-11T12:00:31+00:00",
+      "last_post_time": "2026-09-16T22:40:32+00:00",
       "last_warned_week": 0
     },
     "40585:6144366145": {
@@ -446,7 +448,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-09-13T22:44:54+00:00",
+      "last_post_time": "2026-09-16T17:30:16+00:00",
       "last_warned_week": 0
     },
     "1242:6464119705": {
@@ -477,7 +479,7 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-08-26T19:51:00+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "66154:6144366145": {
       "user_id": "6144366145",
@@ -567,7 +569,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-09-02T18:34:36+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "76799:7454623139": {
       "user_id": "7454623139",
@@ -606,7 +608,7 @@
       "username": "exspiravit_1",
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
-      "last_post_time": "2026-09-15T19:53:19+00:00",
+      "last_post_time": "2026-09-16T18:35:54+00:00",
       "last_warned_week": 0
     },
     "107171:7919488992": {
@@ -657,7 +659,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-08-26T14:29:12+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "66154:8525518483": {
       "user_id": "8525518483",
@@ -726,7 +728,7 @@
       "username": "RyoYamakawa",
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
-      "last_post_time": "2026-09-14T03:35:01+00:00",
+      "last_post_time": "2026-09-16T22:32:55+00:00",
       "last_warned_week": 0
     },
     "40585:1358791105": {
@@ -736,7 +738,7 @@
       "username": "altan19931993",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-09-15T14:29:47+00:00",
+      "last_post_time": "2026-09-16T14:49:48+00:00",
       "last_warned_week": 0
     },
     "51357:5443237599": {
@@ -1070,7 +1072,7 @@
     "40585": {
       "1698524397": {
         "id": 0,
-        "name": "Path",
+        "name": "GM",
         "joined": "2026-03-26T22:59:46.875788+00:00"
       },
       "7077683276": {
@@ -1120,7 +1122,7 @@
       },
       "1358791105": {
         "id": 10,
-        "name": "Alastair",
+        "name": "Alastair Tan",
         "joined": "2026-09-15T14:30:23.662663+00:00"
       }
     },
@@ -1157,7 +1159,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "Path",
+        "name": "GM",
         "joined": "2026-03-29T16:09:32.414530+00:00"
       },
       "5443237599": {
@@ -1286,7 +1288,7 @@
       },
       "1358791105": {
         "id": 11,
-        "name": "Alastair",
+        "name": "Alastair Tan",
         "joined": "2026-08-30T17:18:10.379510+00:00"
       }
     },
@@ -1298,7 +1300,7 @@
       },
       "8353586922": {
         "id": 2,
-        "name": "Chase",
+        "name": "Chase Darkthorne",
         "joined": "2026-03-29T00:31:35.507919+00:00"
       },
       "7863964681": {
@@ -1308,7 +1310,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "Path",
+        "name": "GM",
         "joined": "2026-03-29T00:31:35.507986+00:00"
       },
       "138025700": {
@@ -1333,7 +1335,7 @@
       },
       "1358791105": {
         "id": 8,
-        "name": "Alastair",
+        "name": "Alastair Tan",
         "joined": "2026-08-26T06:59:35.934048+00:00"
       }
     },
@@ -1385,7 +1387,7 @@
       },
       "5443237599": {
         "id": 9,
-        "name": "Horia",
+        "name": "Horia Constantinescu",
         "joined": "2026-09-15T20:00:29.437419+00:00"
       }
     },
@@ -1422,7 +1424,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "Path",
+        "name": "GM",
         "joined": "2026-03-29T16:09:32.902136+00:00"
       },
       "8787586972": {
@@ -1447,7 +1449,7 @@
       },
       "138025700": {
         "id": 11,
-        "name": "Ryo",
+        "name": "Ryo Yamakawa",
         "joined": "2026-09-14T04:00:53.039553+00:00"
       }
     },
@@ -2625,7 +2627,7 @@
     },
     "1358791105": {
       "name": "Alastair Tan",
-      "count": 2
+      "count": 3
     }
   },
   "characters": {},
@@ -2817,15 +2819,11 @@
       "2026-09-07T18:15:46.923636+00:00",
       "2026-09-07T18:15:46.928111+00:00",
       "2026-09-08T01:30:22.389941+00:00",
-      "2026-09-08T01:30:22.415221+00:00"
+      "2026-09-08T01:30:22.415221+00:00",
+      "2026-09-16T10:30:35.521101+00:00",
+      "2026-09-17T02:13:44.120919+00:00"
     ],
     "40585": [
-      "2026-03-31T04:50:36.224132+00:00",
-      "2026-03-31T04:50:36.225114+00:00",
-      "2026-03-31T04:50:36.226087+00:00",
-      "2026-03-31T04:50:36.227057+00:00",
-      "2026-03-31T04:50:36.228077+00:00",
-      "2026-03-31T04:50:36.229094+00:00",
       "2026-03-31T04:50:36.230246+00:00",
       "2026-03-31T06:31:49.489842+00:00",
       "2026-04-03T12:16:20.626717+00:00",
@@ -3319,7 +3317,13 @@
       "2026-09-08T13:00:20.294740+00:00",
       "2026-09-13T23:30:24.015050+00:00",
       "2026-09-15T15:15:28.505469+00:00",
-      "2026-09-15T15:15:28.510785+00:00"
+      "2026-09-15T15:15:28.510785+00:00",
+      "2026-09-16T15:37:40.671181+00:00",
+      "2026-09-16T15:37:40.776198+00:00",
+      "2026-09-16T15:37:40.877782+00:00",
+      "2026-09-16T18:15:20.002608+00:00",
+      "2026-09-16T19:15:20.225363+00:00",
+      "2026-09-16T19:15:20.246876+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -3514,7 +3518,24 @@
       "2026-09-15T17:15:18.260308+00:00",
       "2026-09-15T17:15:18.262973+00:00",
       "2026-09-15T17:15:18.265632+00:00",
-      "2026-09-15T17:15:18.268340+00:00"
+      "2026-09-15T17:15:18.268340+00:00",
+      "2026-09-16T16:30:21.381483+00:00",
+      "2026-09-16T17:15:52.049264+00:00",
+      "2026-09-16T17:15:52.050841+00:00",
+      "2026-09-16T17:15:52.054621+00:00",
+      "2026-09-16T17:15:52.057418+00:00",
+      "2026-09-16T18:15:19.980253+00:00",
+      "2026-09-16T18:15:19.982219+00:00",
+      "2026-09-16T18:15:19.984086+00:00",
+      "2026-09-16T18:15:19.986048+00:00",
+      "2026-09-16T18:15:19.991727+00:00",
+      "2026-09-16T18:15:19.997718+00:00",
+      "2026-09-16T18:15:20.004998+00:00",
+      "2026-09-16T19:15:19.363038+00:00",
+      "2026-09-16T19:15:20.215659+00:00",
+      "2026-09-16T19:15:20.228191+00:00",
+      "2026-09-16T19:15:20.234932+00:00",
+      "2026-09-16T19:15:20.252881+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -4373,7 +4394,10 @@
       "2026-09-13T18:00:18.627037+00:00",
       "2026-09-13T18:00:19.230249+00:00",
       "2026-09-13T19:28:48.553039+00:00",
-      "2026-09-15T19:10:37.279925+00:00"
+      "2026-09-15T19:10:37.279925+00:00",
+      "2026-09-16T18:15:19.989702+00:00",
+      "2026-09-16T19:15:20.255848+00:00",
+      "2026-09-16T19:15:20.258794+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -4541,202 +4565,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:22:05.873603+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "A large, horned woman stirs awake against one of the walls, ",
-      "msg_id": "173962"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:22:05.877568+00:00",
-      "player": "Supreme",
-      "preview": "A dark skinned individual with a shock of neon purple hair l",
-      "msg_id": "173963"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:40:08.646293+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"That's why you gotta make your own . .fun-!\"\n\nThe oni stumb",
-      "msg_id": "173973"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:40:08.648389+00:00",
-      "player": "Laetheron",
-      "preview": "Arktos drifts into the room. Upon hearing the last comment, ",
-      "msg_id": "174077"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:40:08.650341+00:00",
-      "player": "Minork",
-      "preview": "Minork chortles darkly. \u201cThe cube is quite comfortable. Plea",
-      "msg_id": "174087"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:40:08.652329+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Hu- Oh! Yeah get us out of here please!\"\nBella waves to Ark",
-      "msg_id": "174095"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:40:08.654264+00:00",
-      "player": "Laetheron",
-      "preview": "Arktos replies while they get tools out from their belt, \"An",
-      "msg_id": "174151"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.849296+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Finally- Thank you!\" \n\nOn her way out, Bella offers Reign a",
-      "msg_id": "174494"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.853225+00:00",
-      "player": "Supreme",
-      "preview": "Reign allows themselves to be lifted and placed on their fee",
-      "msg_id": "174527"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.855564+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "Bella smiles at the android, following him to grab her belon",
-      "msg_id": "174539"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.857890+00:00",
-      "player": "Minork",
-      "preview": "Minork rises, and begins to stretch. With a grunt, he turns ",
-      "msg_id": "174576"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.860196+00:00",
-      "player": "Laetheron",
-      "preview": "\"They seem to have gathered at the bridge.\"",
-      "msg_id": "174585"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-25T08:51:17.862457+00:00",
-      "player": "Laetheron",
-      "preview": "\"If everyone is ready, then I would suggest we eject the pir",
-      "msg_id": "174586"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T09:42:11.195370+00:00",
-      "player": "Terra",
-      "preview": "Lai just squints and looks at the pin board and everything o",
-      "msg_id": "174501"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T09:58:51.996591+00:00",
-      "player": "Anthony",
-      "preview": "\"So..! We're gonna \u2605STEAL ALL THE MONNEY\u2605 and \u2605STREAM IT TO ",
-      "msg_id": "174728"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.077817+00:00",
-      "player": "Anthony",
-      "preview": "\"Awww.. \u2605WHY?\u2605 We have to \u2605EXPOSE THEM\u2605 don't we?!\"",
-      "msg_id": "174730"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.081141+00:00",
-      "player": "Terra",
-      "preview": "\"we are going to send a message i assume?\" Lai says thinking",
-      "msg_id": "174745"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.083460+00:00",
-      "player": "Terra",
-      "preview": "\"telling them that someone knows what they are doing and tha",
-      "msg_id": "174746"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T11:34:17.085753+00:00",
-      "player": "Anthony",
-      "preview": "\"\u2605EHH?!\u2605 Who would do \u2605THAT\u2605? We're just gonna \u2605SEIZE\u2605 the m",
-      "msg_id": "174747"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T14:21:32.613859+00:00",
-      "player": "Terra",
-      "preview": "Lai looks at Livy then at Nikk-Nakk waiting for an answer",
-      "msg_id": "174754"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-25T14:21:32.617954+00:00",
-      "player": "Terra",
-      "preview": "Lai nods in understanding",
-      "msg_id": "174767"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-25T15:20:44.733677+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "174486"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-25T15:51:44.296201+00:00",
-      "player": "Anthony",
-      "preview": "We take the time to search everywhere.",
-      "msg_id": "174809"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-08-25T15:51:44.309426+00:00",
-      "player": "Anthony",
-      "preview": "Uhh. No the staircase",
-      "msg_id": "174824"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-26T04:48:01.005454+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Hi Oofy! I'm Bella- \"\n\nNearly falling over from the impact,",
-      "msg_id": "174860"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-26T04:48:01.009940+00:00",
-      "player": "Minork",
-      "preview": "With a curt nod, Minork simply replies \u201cMinork Estra.\u201d He lo",
-      "msg_id": "174893"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-26T04:48:01.012648+00:00",
-      "player": "Anthony",
-      "preview": "\"Why would we go to \u2605PRISON\u2605? We can just do a \u2605DELAYED LIVE",
-      "msg_id": "174792"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-26T04:48:01.015312+00:00",
-      "player": "Terra",
-      "preview": "\"No, I'm...not adept with instruments\"",
-      "msg_id": "174836"
-    },
     {
       "pid": "52083",
       "time": "2026-08-26T04:48:01.017741+00:00",
@@ -5940,6 +5768,202 @@
       "player": "Terra",
       "preview": "\"I... pack light, no use being a pollutant cause of the ton ",
       "msg_id": "179494"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-09-16T10:30:35.521101+00:00",
+      "player": "Horia",
+      "preview": "\"We can do it\"",
+      "msg_id": "179516"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T15:37:40.671181+00:00",
+      "player": "Alastair",
+      "preview": "[media]",
+      "msg_id": "179624"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T15:37:40.776198+00:00",
+      "player": "Alastair",
+      "preview": "In that glow, a smooth but firm voice is in the middle of sh",
+      "msg_id": "179627"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T15:37:40.877782+00:00",
+      "player": "Alastair",
+      "preview": "Actions:\n\nZerius:\nA1: Tandem Movement (northwest 3 squares, ",
+      "msg_id": "179622"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T16:30:21.381483+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Bella clips the kusarigama back to her outfit, still definit",
+      "msg_id": "179518"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T17:15:52.049264+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "msg_id": "179796"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T17:15:52.050841+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "msg_id": "179797"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T17:15:52.054621+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Incapacitates*",
+      "msg_id": "179807"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T17:15:52.057418+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Yeah. Idk if Foundry has a way to mark that so my bad if it ",
+      "msg_id": "179812"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.980253+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "msg_id": "179844"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.982219+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "[media]",
+      "msg_id": "179845"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.984086+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Either way REign's turn done",
+      "msg_id": "179846"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.986048+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Reign's turn:\n1A Stride to get in sight of Knemdom\n2A cast H",
+      "msg_id": "179843"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-16T18:15:19.989702+00:00",
+      "player": "Terra",
+      "preview": "Lai chuckle \"I miss it. Before i got here it was the sea sid",
+      "msg_id": "179560"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.991727+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Gotta get through this somehow",
+      "msg_id": "179852"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:19.997718+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179862"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T18:15:20.002608+00:00",
+      "player": "Anthony",
+      "preview": "Daichi's turn:\nA1 and 2:\nCast longstrider Heightenend to 2nd",
+      "msg_id": "179857"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T18:15:20.004998+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"It'd be nice not to kill them, I think. Could help us get a",
+      "msg_id": "179818"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:19.363038+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Sprinting into the room, Bella practically throws the Kusari",
+      "msg_id": "179827"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.215659+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Oh- Goddammit. We probably don't want them to get away, huh",
+      "msg_id": "179901"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T19:15:20.225363+00:00",
+      "player": "Horia",
+      "preview": "lorn hunter's aim then shot the bad guy",
+      "msg_id": "179902"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.228191+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Keep, I still have stamina",
+      "msg_id": "179911"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.234932+00:00",
+      "player": "Ryo",
+      "preview": "reroll",
+      "msg_id": "179931"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-16T19:15:20.246876+00:00",
+      "player": "Horia",
+      "preview": "then Lorn readies an action for when an enemy will show up",
+      "msg_id": "179934"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-16T19:15:20.252881+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"RIGHT!\" Bella steadies herself against the console, \"Where ",
+      "msg_id": "179946"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-16T19:15:20.255848+00:00",
+      "player": "Anthony",
+      "preview": "\"Only the little \u2605LAI\u2605 needs gear, but do you also do \u2605AGUME",
+      "msg_id": "179605"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-09-16T19:15:20.258794+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179957"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-09-17T02:13:44.120919+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "179592"
     }
   ],
   "pending_potw_boons": {
@@ -5993,8 +6017,6 @@
   "post_timestamps": {
     "40585": {
       "1698524397": [
-        "2026-09-01T12:09:15+00:00",
-        "2026-09-01T17:01:21+00:00",
         "2026-09-02T10:18:34+00:00",
         "2026-09-02T17:18:26+00:00",
         "2026-09-04T22:06:06+00:00",
@@ -6078,7 +6100,18 @@
         "2026-09-15T16:59:42+00:00",
         "2026-09-15T17:33:29+00:00",
         "2026-09-15T17:33:53+00:00",
-        "2026-09-15T17:34:44+00:00"
+        "2026-09-15T17:34:44+00:00",
+        "2026-09-16T15:11:43+00:00",
+        "2026-09-16T15:12:43+00:00",
+        "2026-09-16T15:12:59+00:00",
+        "2026-09-16T15:13:20+00:00",
+        "2026-09-16T15:38:09+00:00",
+        "2026-09-16T15:40:08+00:00",
+        "2026-09-16T15:40:15+00:00",
+        "2026-09-16T18:05:19+00:00",
+        "2026-09-16T18:06:40+00:00",
+        "2026-09-16T18:20:46+00:00",
+        "2026-09-16T18:28:26+00:00"
       ],
       "138025700": [
         "2026-09-08T07:37:05+00:00",
@@ -6090,17 +6123,19 @@
         "2026-09-08T01:11:24+00:00"
       ],
       "6144366145": [
-        "2026-09-01T11:45:50+00:00",
-        "2026-09-01T11:46:36+00:00",
-        "2026-09-13T22:44:54+00:00"
-      ],
-      "5443237599": [
-        "2026-09-01T16:51:52+00:00",
-        "2026-09-01T17:05:55+00:00"
+        "2026-09-13T22:44:54+00:00",
+        "2026-09-16T17:30:16+00:00"
       ],
       "1358791105": [
         "2026-09-15T14:28:53+00:00",
-        "2026-09-15T14:29:47+00:00"
+        "2026-09-15T14:29:47+00:00",
+        "2026-09-16T14:42:28+00:00",
+        "2026-09-16T14:43:50+00:00",
+        "2026-09-16T14:49:48+00:00"
+      ],
+      "5443237599": [
+        "2026-09-16T18:17:57+00:00",
+        "2026-09-16T18:27:42+00:00"
       ]
     },
     "51357": {
@@ -6120,7 +6155,11 @@
         "2026-09-07T18:12:20+00:00",
         "2026-09-08T01:05:09+00:00",
         "2026-09-08T01:19:27+00:00",
-        "2026-09-15T19:10:47+00:00"
+        "2026-09-15T19:10:47+00:00",
+        "2026-09-16T10:27:13+00:00",
+        "2026-09-16T10:27:28+00:00",
+        "2026-09-16T10:29:20+00:00",
+        "2026-09-17T02:01:32+00:00"
       ],
       "7130942567": [
         "2026-09-08T00:40:13+00:00"
@@ -6139,23 +6178,6 @@
     },
     "52083": {
       "1698524397": [
-        "2026-09-01T12:42:05+00:00",
-        "2026-09-01T12:42:35+00:00",
-        "2026-09-01T12:42:57+00:00",
-        "2026-09-01T17:13:37+00:00",
-        "2026-09-01T17:13:40+00:00",
-        "2026-09-01T17:13:43+00:00",
-        "2026-09-01T17:13:47+00:00",
-        "2026-09-01T17:13:51+00:00",
-        "2026-09-01T17:13:55+00:00",
-        "2026-09-01T17:13:58+00:00",
-        "2026-09-01T17:14:04+00:00",
-        "2026-09-01T17:14:23+00:00",
-        "2026-09-01T17:14:58+00:00",
-        "2026-09-01T22:02:10+00:00",
-        "2026-09-01T22:02:12+00:00",
-        "2026-09-01T22:02:22+00:00",
-        "2026-09-01T22:02:31+00:00",
         "2026-09-09T18:30:32+00:00",
         "2026-09-09T21:50:54+00:00",
         "2026-09-10T00:41:42+00:00",
@@ -6166,29 +6188,21 @@
         "2026-09-13T17:25:28+00:00",
         "2026-09-13T17:50:41+00:00",
         "2026-09-13T19:27:30+00:00",
-        "2026-09-15T19:09:17+00:00"
+        "2026-09-15T19:09:17+00:00",
+        "2026-09-16T17:27:05+00:00",
+        "2026-09-16T18:53:18+00:00",
+        "2026-09-16T18:53:24+00:00"
       ],
       "6144366145": [
-        "2026-09-01T11:20:39+00:00",
-        "2026-09-01T12:43:36+00:00",
-        "2026-09-01T12:44:04+00:00",
-        "2026-09-01T12:44:22+00:00",
-        "2026-09-01T12:44:53+00:00",
-        "2026-09-01T12:45:10+00:00",
-        "2026-09-01T12:47:56+00:00",
-        "2026-09-01T12:48:04+00:00",
-        "2026-09-01T12:48:47+00:00",
-        "2026-09-01T12:49:12+00:00",
         "2026-09-02T12:23:33+00:00",
         "2026-09-02T12:59:40+00:00",
         "2026-09-03T02:29:56+00:00",
         "2026-09-03T03:48:42+00:00",
-        "2026-09-11T12:00:31+00:00"
+        "2026-09-11T12:00:31+00:00",
+        "2026-09-16T12:33:20+00:00",
+        "2026-09-16T22:40:32+00:00"
       ],
       "8097377199": [
-        "2026-09-01T11:28:00+00:00",
-        "2026-09-01T21:53:32+00:00",
-        "2026-09-01T21:54:43+00:00",
         "2026-09-02T09:23:44+00:00",
         "2026-09-06T18:37:48+00:00",
         "2026-09-09T18:33:16+00:00",
@@ -6270,7 +6284,74 @@
         "2026-09-15T17:08:22+00:00",
         "2026-09-15T17:09:01+00:00",
         "2026-09-15T17:09:41+00:00",
-        "2026-09-15T17:10:04+00:00"
+        "2026-09-15T17:10:04+00:00",
+        "2026-09-16T10:38:43+00:00",
+        "2026-09-16T15:46:32+00:00",
+        "2026-09-16T17:08:11+00:00",
+        "2026-09-16T17:08:23+00:00",
+        "2026-09-16T17:08:46+00:00",
+        "2026-09-16T17:09:46+00:00",
+        "2026-09-16T17:24:33+00:00",
+        "2026-09-16T17:24:44+00:00",
+        "2026-09-16T17:24:53+00:00",
+        "2026-09-16T17:25:02+00:00",
+        "2026-09-16T17:25:19+00:00",
+        "2026-09-16T17:27:13+00:00",
+        "2026-09-16T18:03:02+00:00",
+        "2026-09-16T18:03:02+00:00",
+        "2026-09-16T18:03:37+00:00",
+        "2026-09-16T18:03:49+00:00",
+        "2026-09-16T18:09:46+00:00",
+        "2026-09-16T18:09:56+00:00",
+        "2026-09-16T18:11:47+00:00",
+        "2026-09-16T18:13:09+00:00",
+        "2026-09-16T18:13:39+00:00",
+        "2026-09-16T18:14:04+00:00",
+        "2026-09-16T18:14:35+00:00",
+        "2026-09-16T18:14:50+00:00",
+        "2026-09-16T18:15:12+00:00",
+        "2026-09-16T18:16:12+00:00",
+        "2026-09-16T18:16:49+00:00",
+        "2026-09-16T18:18:00+00:00",
+        "2026-09-16T18:18:04+00:00",
+        "2026-09-16T18:18:19+00:00",
+        "2026-09-16T18:18:31+00:00",
+        "2026-09-16T18:20:01+00:00",
+        "2026-09-16T18:20:02+00:00",
+        "2026-09-16T18:20:15+00:00",
+        "2026-09-16T18:20:32+00:00",
+        "2026-09-16T18:21:08+00:00",
+        "2026-09-16T18:21:12+00:00",
+        "2026-09-16T18:21:16+00:00",
+        "2026-09-16T18:21:36+00:00",
+        "2026-09-16T18:22:04+00:00",
+        "2026-09-16T18:22:13+00:00",
+        "2026-09-16T18:22:17+00:00",
+        "2026-09-16T18:23:42+00:00",
+        "2026-09-16T18:23:56+00:00",
+        "2026-09-16T18:24:45+00:00",
+        "2026-09-16T18:24:54+00:00",
+        "2026-09-16T18:25:03+00:00",
+        "2026-09-16T18:25:06+00:00",
+        "2026-09-16T18:25:12+00:00",
+        "2026-09-16T18:25:39+00:00",
+        "2026-09-16T18:25:59+00:00",
+        "2026-09-16T18:26:14+00:00",
+        "2026-09-16T18:26:36+00:00",
+        "2026-09-16T18:27:26+00:00",
+        "2026-09-16T18:27:35+00:00",
+        "2026-09-16T18:28:05+00:00",
+        "2026-09-16T18:28:06+00:00",
+        "2026-09-16T18:28:32+00:00",
+        "2026-09-16T18:29:20+00:00",
+        "2026-09-16T18:29:37+00:00",
+        "2026-09-16T18:30:15+00:00",
+        "2026-09-16T18:30:42+00:00",
+        "2026-09-16T18:31:05+00:00",
+        "2026-09-16T18:31:20+00:00",
+        "2026-09-16T18:31:46+00:00",
+        "2026-09-16T18:52:27+00:00",
+        "2026-09-16T18:52:52+00:00"
       ],
       "8117756377": [
         "2026-09-05T15:20:51+00:00",
@@ -6281,7 +6362,21 @@
       ],
       "8701042661": [
         "2026-09-05T11:41:19+00:00",
-        "2026-09-15T19:53:19+00:00"
+        "2026-09-15T19:53:19+00:00",
+        "2026-09-16T17:07:19+00:00",
+        "2026-09-16T17:07:32+00:00",
+        "2026-09-16T17:08:29+00:00",
+        "2026-09-16T17:09:18+00:00",
+        "2026-09-16T17:11:32+00:00",
+        "2026-09-16T17:15:16+00:00",
+        "2026-09-16T17:21:33+00:00",
+        "2026-09-16T17:22:54+00:00",
+        "2026-09-16T17:23:43+00:00",
+        "2026-09-16T17:23:50+00:00",
+        "2026-09-16T17:25:55+00:00",
+        "2026-09-16T18:17:33+00:00",
+        "2026-09-16T18:20:39+00:00",
+        "2026-09-16T18:35:54+00:00"
       ],
       "8379380933": [
         "2026-09-10T23:47:01+00:00"
@@ -6290,7 +6385,10 @@
         "2026-09-14T03:21:28+00:00",
         "2026-09-14T03:21:29+00:00",
         "2026-09-14T03:21:30+00:00",
-        "2026-09-14T03:35:01+00:00"
+        "2026-09-14T03:35:01+00:00",
+        "2026-09-16T18:26:41+00:00",
+        "2026-09-16T19:02:00+00:00",
+        "2026-09-16T22:32:55+00:00"
       ]
     },
     "66154": {
@@ -6339,7 +6437,9 @@
         "2026-09-15T17:48:06+00:00",
         "2026-09-15T17:48:19+00:00",
         "2026-09-15T17:57:40+00:00",
-        "2026-09-15T19:08:28+00:00"
+        "2026-09-15T19:08:28+00:00",
+        "2026-09-17T02:01:26+00:00",
+        "2026-09-17T02:13:19+00:00"
       ]
     },
     "76799": {
@@ -6428,13 +6528,13 @@
   },
   "message_counts": {
     "52083": {
-      "1698524397": 501,
+      "1698524397": 504,
       "5190471248": 24,
       "7863964681": 12,
       "7077683276": 20,
       "138025700": 36,
       "8383886822": 18,
-      "6144366145": 109,
+      "6144366145": 111,
       "5443237599": 11,
       "8097377199": 49,
       "8471667081": 1
@@ -6444,7 +6544,7 @@
       "7961602816": 6,
       "5443237599": 29,
       "6134825204": 16,
-      "1698524397": 355,
+      "1698524397": 357,
       "8203214315": 16,
       "6717906753": 11,
       "6144366145": 18,
@@ -6455,7 +6555,7 @@
     },
     "51357": {
       "7863964681": 26,
-      "1698524397": 491,
+      "1698524397": 495,
       "7454623139": 40,
       "138025700": 20,
       "6144366145": 38,
@@ -6482,7 +6582,7 @@
     },
     "107171": {
       "6134825204": 8,
-      "1698524397": 574,
+      "1698524397": 641,
       "7863964681": 40,
       "7077683276": 27,
       "8117756377": 52,
@@ -6490,22 +6590,22 @@
       "8748487163": 21,
       "8787586972": 24,
       "8379380933": 5,
-      "8701042661": 10,
+      "8701042661": 24,
       "7919488992": 2,
-      "138025700": 4
+      "138025700": 7
     },
     "40585": {
-      "6144366145": 142,
-      "1698524397": 2283,
+      "6144366145": 143,
+      "1698524397": 2294,
       "7130942567": 67,
       "138025700": 83,
-      "5443237599": 47,
+      "5443237599": 49,
       "7842002561": 41,
       "7077683276": 49,
       "7863964681": 60,
       "6023408187": 62,
       "1395063293": 16,
-      "1358791105": 2
+      "1358791105": 5
     },
     "76799": {
       "1698524397": 624,
@@ -6652,14 +6752,15 @@
         "21": 11,
         "13": 2,
         "17": 3,
-        "12": 16,
+        "12": 17,
         "6": 3,
         "8": 4,
         "20": 10,
         "5": 1,
         "18": 1,
         "4": 3,
-        "7": 2
+        "7": 2,
+        "22": 1
       },
       "138025700": {
         "1": 5,
@@ -6691,11 +6792,11 @@
         "1": 57,
         "2": 10,
         "3": 32,
-        "18": 8,
+        "18": 10,
         "12": 27,
         "9": 13,
         "16": 11,
-        "17": 19,
+        "17": 20,
         "10": 7,
         "13": 12,
         "11": 19,
@@ -6773,7 +6874,7 @@
         "4": 24,
         "23": 9,
         "0": 14,
-        "2": 17,
+        "2": 19,
         "7": 6,
         "9": 4,
         "21": 8,
@@ -7142,21 +7243,21 @@
         "22": 16,
         "11": 7,
         "8": 28,
-        "15": 98,
+        "15": 99,
         "20": 26,
         "13": 8,
         "14": 37,
         "9": 5,
         "7": 7,
         "16": 14,
-        "17": 46,
-        "18": 38,
+        "17": 56,
+        "18": 93,
         "19": 55,
         "23": 23,
         "12": 20,
         "5": 10,
         "6": 4,
-        "10": 10
+        "10": 11
       },
       "8117756377": {
         "6": 2,
@@ -7257,16 +7358,20 @@
         "22": 1,
         "15": 1,
         "12": 1,
-        "18": 1,
+        "18": 4,
         "19": 3,
-        "11": 2
+        "11": 2,
+        "17": 11
       },
       "7919488992": {
         "21": 1,
         "17": 1
       },
       "138025700": {
-        "3": 4
+        "3": 4,
+        "18": 1,
+        "19": 1,
+        "22": 1
       }
     },
     "51357": {
@@ -7274,7 +7379,7 @@
         "3": 15,
         "23": 49,
         "0": 24,
-        "2": 37,
+        "2": 38,
         "21": 23,
         "22": 13,
         "18": 7,
@@ -7292,7 +7397,8 @@
         "6": 50,
         "7": 11,
         "11": 20,
-        "4": 5
+        "4": 5,
+        "10": 3
       },
       "6144366145": {
         "23": 3,
@@ -7412,7 +7518,7 @@
         "10": 60,
         "13": 124,
         "14": 71,
-        "15": 162,
+        "15": 169,
         "20": 102,
         "19": 97,
         "11": 101,
@@ -7420,7 +7526,7 @@
         "5": 57,
         "16": 64,
         "6": 116,
-        "18": 151,
+        "18": 155,
         "4": 72
       },
       "138025700": {
@@ -7514,7 +7620,8 @@
         "20": 1,
         "21": 4,
         "4": 1,
-        "5": 1
+        "5": 1,
+        "18": 2
       },
       "7842002561": {
         "22": 3,
@@ -7537,7 +7644,7 @@
       "6144366145": {
         "15": 6,
         "16": 9,
-        "17": 20,
+        "17": 21,
         "13": 2,
         "14": 2,
         "3": 4,
@@ -7586,7 +7693,7 @@
         "1": 1
       },
       "1358791105": {
-        "14": 2
+        "14": 5
       }
     },
     "1242": {
@@ -7732,7 +7839,7 @@
         "5": 19,
         "6": 14,
         "0": 11,
-        "2": 13,
+        "2": 15,
         "3": 3,
         "1": 31
       },
@@ -7756,7 +7863,7 @@
         "5": 50,
         "6": 85,
         "1": 145,
-        "2": 45,
+        "2": 48,
         "3": 34,
         "0": 70,
         "4": 32
@@ -7807,7 +7914,7 @@
         "1": 43,
         "0": 71,
         "2": 68,
-        "3": 6,
+        "3": 8,
         "4": 2
       },
       "138025700": {
@@ -8019,7 +8126,7 @@
         "0": 135,
         "1": 88,
         "4": 18,
-        "2": 25
+        "2": 92
       },
       "8117756377": {
         "5": 7,
@@ -8084,14 +8191,15 @@
         "6": 1,
         "0": 2,
         "1": 2,
-        "2": 2
+        "2": 16
       },
       "7919488992": {
         "5": 1,
         "0": 1
       },
       "138025700": {
-        "0": 4
+        "0": 4,
+        "2": 3
       }
     },
     "51357": {
@@ -8099,9 +8207,9 @@
         "5": 38,
         "6": 95,
         "1": 75,
-        "2": 78,
+        "2": 81,
         "0": 133,
-        "3": 45,
+        "3": 46,
         "4": 13
       },
       "6144366145": {
@@ -8169,7 +8277,7 @@
         "6": 417,
         "0": 377,
         "1": 486,
-        "2": 210,
+        "2": 221,
         "3": 77,
         "4": 353
       },
@@ -8209,7 +8317,7 @@
       },
       "5443237599": {
         "1": 14,
-        "2": 2,
+        "2": 4,
         "4": 7,
         "5": 10,
         "3": 1,
@@ -8229,7 +8337,7 @@
         "4": 18,
         "0": 17,
         "5": 17,
-        "2": 27,
+        "2": 28,
         "3": 6,
         "6": 14
       },
@@ -8252,7 +8360,8 @@
         "3": 1
       },
       "1358791105": {
-        "1": 2
+        "1": 2,
+        "2": 3
       }
     },
     "1242": {
@@ -8319,9 +8428,9 @@
     },
     "52083": {
       "138025700": 694,
-      "1698524397": 7228,
+      "1698524397": 7279,
       "8383886822": 1861,
-      "6144366145": 1546,
+      "6144366145": 1583,
       "7077683276": 384,
       "5190471248": 219,
       "7863964681": 362,
@@ -8330,7 +8439,7 @@
       "8471667081": 1
     },
     "66154": {
-      "1698524397": 5335,
+      "1698524397": 5337,
       "138025700": 512,
       "5443237599": 1292,
       "7961602816": 181,
@@ -8369,7 +8478,7 @@
       "8880317264": 143
     },
     "107171": {
-      "1698524397": 6601,
+      "1698524397": 7038,
       "8117756377": 1220,
       "7077683276": 435,
       "6134825204": 198,
@@ -8378,12 +8487,12 @@
       "8748487163": 1391,
       "8787586972": 952,
       "8379380933": 129,
-      "8701042661": 525,
+      "8701042661": 702,
       "7919488992": 184,
-      "138025700": 96
+      "138025700": 97
     },
     "51357": {
-      "1698524397": 8841,
+      "1698524397": 8867,
       "6144366145": 451,
       "7454623139": 994,
       "138025700": 380,
@@ -8395,17 +8504,17 @@
       "5443237599": 4
     },
     "40585": {
-      "1698524397": 32839,
+      "1698524397": 33174,
       "138025700": 1452,
       "7077683276": 1102,
       "7863964681": 2003,
       "7130942567": 1146,
-      "5443237599": 718,
+      "5443237599": 738,
       "7842002561": 1260,
-      "6144366145": 1049,
+      "6144366145": 1063,
       "6023408187": 547,
       "1395063293": 1028,
-      "1358791105": 168
+      "1358791105": 380
     },
     "1242": {
       "1698524397": 3295,
@@ -8423,26 +8532,26 @@
     }
   },
   "session_counts": {
-    "51357": 47,
-    "40585": 112,
-    "107171": 52,
+    "51357": 49,
+    "40585": 113,
+    "107171": 53,
     "107151": 30,
     "25059": 60,
     "76799": 47,
-    "66154": 37,
-    "52083": 54,
+    "66154": 38,
+    "52083": 55,
     "1242": 34,
     "146645": 3
   },
   "session_last_day": {
-    "51357": "2026-09-15",
-    "40585": "2026-09-15",
-    "107171": "2026-09-15",
+    "51357": "2026-09-17",
+    "40585": "2026-09-16",
+    "107171": "2026-09-16",
     "107151": "2026-05-05",
     "25059": "2026-09-13",
     "76799": "2026-09-15",
-    "66154": "2026-09-15",
-    "52083": "2026-09-15",
+    "66154": "2026-09-17",
+    "52083": "2026-09-16",
     "1242": "2026-06-29",
     "146645": "2026-09-14"
   },
@@ -9803,8 +9912,7 @@
       "1698524397": 1
     },
     "51357": {
-      "1698524397": 1,
-      "5443237599": 1
+      "1698524397": 3
     },
     "56842": {
       "1698524397": 8
@@ -9816,10 +9924,11 @@
       "1698524397": 2
     },
     "137075": {
-      "1698524397": 3
+      "5443237599": 2,
+      "1698524397": 2
     },
     "52083": {
-      "8097377199": 1
+      "6144366145": 1
     },
     "145045": {
       "1698524397": 1
@@ -9828,11 +9937,11 @@
       "1698524397": 1
     },
     "107171": {
-      "8701042661": 1
+      "1698524397": 9,
+      "8701042661": 2
     },
     "142887": {
-      "1698524397": 5,
-      "8117756377": 4
+      "138025700": 1
     },
     "1242": {
       "1698524397": 1
@@ -9842,6 +9951,12 @@
     },
     "133428": {},
     "146645": {
+      "1698524397": 1
+    },
+    "66154": {
+      "1698524397": 2
+    },
+    "51357": {
       "1698524397": 1
     }
   },
@@ -9884,6 +9999,6 @@
       }
     ]
   },
-  "_backup_timestamp": "2026-09-16T01:45:20.328665+00:00",
+  "_backup_timestamp": "2026-09-17T02:13:44.123120+00:00",
   "_backup_version": "4.70.2"
 }
