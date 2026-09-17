@@ -37,6 +37,7 @@ the module rather than monkeypatching individual file paths.
 import tempfile
 from pathlib import Path
 
+from combat import encounter_records as _enc
 from commands import queue_io as _qio
 from scheduled import state_backup as _sbk
 from transcript import finalize as _tfin
@@ -107,3 +108,7 @@ _tlog._LOGS_DIR = _TEST_LOGS_DIR
 _tfin._LOGS_DIR = _TEST_LOGS_DIR
 # Writes data/state_backup.json on every scheduled backup.
 _sbk._BACKUP_PATH = _TEST_STATE_DIR / "state_backup.json"
+# ⛔ encounter_records, added 2026-09-17. The Foundry sync job writes each
+# encounter to data/encounters/, which the wiki publishes, so a fixture
+# fight leaking there would appear on the public wiki as a real one.
+_enc.RECORDS_DIR = _TEST_STATE_DIR / "encounters"
