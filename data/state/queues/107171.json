@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 179961,
-      "thread_id": 142887,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-16T19:02:00+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 180074,
       "thread_id": 142887,
       "user_id": "138025700",
@@ -440,7 +431,11 @@
     "msg:179931",
     "2026-09-16 18:26:41",
     "msg:179946",
-    "2026-09-16 18:35:54"
+    "2026-09-16 18:35:54",
+    "msg:180207",
+    "2026-09-17 17:47:20",
+    "msg:179961",
+    "2026-09-16 19:02:00"
   ],
   "reply_log": [
     {
@@ -2390,6 +2385,24 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"RIGHT!\" Bella steadies herself against the console, \"Where are the pods? Or doe",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-17T17:47:41+00:00",
+      "pid": "107171",
+      "msg_id": "180207",
+      "thread_id": "107171",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-17T17:48:42+00:00",
+      "pid": "107171",
+      "msg_id": "179961",
+      "thread_id": 142887,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2404,11 +2417,11 @@
       "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
     },
     "142887": {
-      "fingerprint": "2026-09-16 19:02:00|2026-09-16 22:32:55",
+      "fingerprint": "2026-09-16 22:32:55",
       "msg_ids": [
-        180080
+        180227
       ],
-      "last_posted_at": "2026-09-16T22:55:18.859476+00:00",
+      "last_posted_at": "2026-09-17T18:12:14.706061+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
