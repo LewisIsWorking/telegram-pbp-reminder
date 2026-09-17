@@ -24,6 +24,7 @@ import requests
 
 import helpers
 import telegram as tg
+from combat import encounter_records
 
 DEFAULT_SERVER = "https://cooserver.duckdns.org"
 KEY_HEADER = "X-PathWars-Bot-Key"
@@ -128,6 +129,8 @@ def sync_foundry_encounters(config: dict, state: dict, *, now: datetime, maps=No
     encounters = fetch()
     if encounters is None:
         return
+    # 📜 The wiki's record of each fight (2026-09-17); see encounter_records.
+    encounter_records.save_records(config, state, encounters)
     for pid in reconcile(config, state, encounters, now):
         combat = state["combat"][pid]
         if combat["current_phase"] == "players":
