@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 180144,
-      "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-17T03:39:55+00:00",
-      "preview": "Zerius clutches his head for a moment with his sword hand, then releases it. \"Well... I see,\" he replies weakly, in a tone that sounds unsure. Even with all the events imprinted, they still feel far away.\n\n\"How... bad is it?\" he asks, before adding on, \"The Sun Temple just told me many things. What is immediately pertinent is harder to say.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1125,7 +1116,9 @@
     "msg:179902",
     "2026-09-16 18:17:57",
     "msg:179934",
-    "2026-09-16 18:27:42"
+    "2026-09-16 18:27:42",
+    "msg:180144",
+    "2026-09-17 03:39:55"
   ],
   "reply_log": [
     {
@@ -6291,6 +6284,15 @@
       "player": "Horia",
       "preview": "then Lorn readies an action for when an enemy will show up",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-17T14:52:46+00:00",
+      "pid": "40585",
+      "msg_id": "180144",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "Zerius clutches his head for a moment with his sword hand, then releases it. \"We",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6305,13 +6307,11 @@
       "caught_up_at": "2026-09-16T15:37:40.995881+00:00"
     },
     "40585": {
-      "fingerprint": "2026-09-17 03:39:55",
-      "msg_ids": [
-        180148
-      ],
-      "last_posted_at": "2026-09-17T04:00:25.082575+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-09-16T15:37:40.995881+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 180186,
+      "caught_up_at": "2026-09-17T15:15:33.692526+00:00"
     }
   }
 }

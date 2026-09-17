@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 180145,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-17T03:45:11+00:00",
-      "preview": "Rin is a quiet sleeper, and his shadow is well-behaved throughout the night, at least, until the goblin bangs the pots. Rin slowly gets up, rubbing his eyes, while his shadow pops up from underneath Rin, and lunges at the goblin, hands reached out to, presumably, strangle someone.\n\n\"Fuck the shut up!\" shouts Shadow Rin.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -262,7 +252,9 @@
     "msg:179487",
     "2026-09-15 17:48:06",
     "msg:179495",
-    "2026-09-15 19:00:12"
+    "2026-09-15 19:00:12",
+    "msg:180145",
+    "2026-09-17 03:45:11"
   ],
   "reply_log": [
     {
@@ -1419,20 +1411,27 @@
       "player": "Fuzzy",
       "preview": "Tater: Gladly *munch*\nWhen did you have *munch* the time to make it?",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-17T14:54:02+00:00",
+      "pid": "66154",
+      "msg_id": "180145",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin is a quiet sleeper, and his shadow is well-behaved throughout the night, at ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-09-17 03:45:11",
-      "msg_ids": [
-        180146
-      ],
-      "last_posted_at": "2026-09-17T04:00:22.443836+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 180187,
       "pending_delete": [],
-      "caught_up_at": "2026-09-15T19:10:37.280200+00:00"
+      "caught_up_at": "2026-09-17T15:15:33.692526+00:00"
     }
   }
 }
