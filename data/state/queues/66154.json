@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 180145,
+      "thread_id": 66154,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-17T03:45:11+00:00",
+      "preview": "Rin is a quiet sleeper, and his shadow is well-behaved throughout the night, at least, until the goblin bangs the pots. Rin slowly gets up, rubbing his eyes, while his shadow pops up from underneath Rin, and lunges at the goblin, hands reached out to, presumably, strangle someone.\n\n\"Fuck the shut up!\" shouts Shadow Rin.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1415,10 +1425,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 179509,
+      "fingerprint": "2026-09-17 03:45:11",
+      "msg_ids": [
+        180146
+      ],
+      "last_posted_at": "2026-09-17T04:00:22.443836+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-15T19:10:37.280200+00:00"
     }
