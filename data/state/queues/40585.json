@@ -25,6 +25,15 @@
       "time": "2026-09-18T14:18:36+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 180343,
+      "thread_id": 40585,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-19T00:21:32+00:00",
+      "preview": "\"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulette' further away, raises his paw and waves too.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6318,10 +6327,12 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 180186,
+      "fingerprint": "2026-09-19 00:21:32",
+      "msg_ids": [
+        180344
+      ],
+      "last_posted_at": "2026-09-19T00:36:12.577838+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-09-17T15:15:33.692526+00:00"
     }
   }
