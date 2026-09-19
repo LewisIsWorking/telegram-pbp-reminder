@@ -1,5 +1,5 @@
 {
-  "offset": 619362011,
+  "offset": 619362023,
   "topics": {
     "52083": {
       "last_message_time": "2026-09-19T14:09:30+00:00",
@@ -38,9 +38,9 @@
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-09-19T15:50:30+00:00",
-      "last_user": "Volf",
-      "last_user_id": "8969117742",
+      "last_message_time": "2026-09-19T22:24:19+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Magni Guard"
     },
     "107151": {
@@ -66,7 +66,7 @@
     "52083": "2026-09-19T00:19:46.289231+00:00",
     "66154": "2026-09-19T05:51:59.974748+00:00",
     "51357": "2026-09-19T02:30:25.776179+00:00",
-    "25059": "2026-09-18T21:40:21.839532+00:00",
+    "25059": "2026-09-19T22:30:16.717952+00:00",
     "107171": "2026-09-18T20:00:21.716515+00:00",
     "40585": "2026-09-14T23:07:25.021422+00:00",
     "76799": "2026-09-18T20:00:21.716515+00:00",
@@ -226,7 +226,7 @@
   },
   "last_state_backup": "2026-09-19T02:30:25.776179+00:00",
   "last_queue_daily": "2026-09-19",
-  "last_queue_fingerprint": "107171:2026-09-16 22:32:55|107171:2026-09-19 14:52:55|107171:2026-09-19 21:27:22|40585:2026-09-18 14:18:36|40585:2026-09-19 00:21:32|52083:2026-09-16 22:40:32|52083:2026-09-19 14:09:30|66154:2026-09-17 16:19:48|66154:2026-09-17 21:18:01|66154:2026-09-18 04:56:55|76799:2026-09-19 15:50:30|silent:25059",
+  "last_queue_fingerprint": "107171:2026-09-16 22:32:55|107171:2026-09-19 14:52:55|107171:2026-09-19 21:27:22|40585:2026-09-18 14:18:36|40585:2026-09-19 00:21:32|52083:2026-09-16 22:40:32|52083:2026-09-19 14:09:30|66154:2026-09-17 16:19:48|66154:2026-09-17 21:18:01|66154:2026-09-18 04:56:55|silent:25059",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -326,20 +326,20 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-09-19",
-  "last_queue_pin_id": 180478,
-  "queue_post_count": 1800,
+  "last_queue_pin_id": 180494,
+  "queue_post_count": 1801,
   "gm_queue_history": [
     {
       "msg_ids": [
-        180478,
-        180479
+        180494,
+        180495
       ],
-      "pin_id": 180478
+      "pin_id": 180494
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1800 \u2014 Unreplied: 11 | \u2705 3 today | \ud83c\udfc6 1894 all-time\nC06:2 C09:3 C07:2 C00:3 C04:1\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 22:43 BST\n\u23ed Next check ~23:13 BST\n\u2501\u2501 \ud83d\udccc \ud83e\udda0 C06: Kibwe (2) \u2501\u2501 @PathWars \u26a1Horia (~0h)\n01 [180302] \ud83d\udfe2 1d 7h. Buffet Raider: *[image]* Tarsus arrives at the nearest table right after Tal'lysae. He examines the rune. 2a... \ud83d\udd17 https://t.me/Path_Wars/137075/180302\n02 [180343] \ud83c\udf33 21h. Alastair Tan: \"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulette' further away,... \ud83d\udd17 https://t.me/Path_Wars/40585/180343\n\u2501\u2501 \ud83e\udd16 C09: Metal City (3) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~1h)\n03 [180074] \ud83d\udfe9 2d 23h. Ryo Yamakawa: *[image]* \ud83d\udd17 https://t.me/Path_Wars/142887/180074\n04 [180416] \ud83c\udf3f 6h. Diabla \"Bella\" Alzarin: It takes a while of running around like a headless chicken for Bella to realize... \ud83d\udd17 https://t.me/Path_Wars/107171/180416\n05 [180472] \ud83c\udd95 0h. Laetheron: Arktos rushes to the helm, trying to get the ship out of dodge before they... \ud83d\udd17 https://t.me/Path_Wars/107171/180472\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (2) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n06 [180077] \ud83d\udfe9 2d 23h. Anthony NegetZ: Livy's probably going to buy an armored coat and a commercial force field upgrade to... \ud83d\udd17 https://t.me/Path_Wars/52083/180077\n07 [180377] \ud83c\udf3f 7h. Anthony NegetZ: \"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\" \ud83d\udd17 https://t.me/Path_Wars/52083/180377\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (3) \u2501\u2501 @PathWars \u26a1Fuzzy (~3h)\n08 [180200] \ud83d\udfe9 2d 5h. Fuzzy: Tater tosses a fan at the goblin, annoyed at all the noise. Somehow, she was... \ud83d\udd17 https://t.me/Path_Wars/66154/180200\n09 [180248] \ud83d\udfe9 2d 0h. Anthony NegetZ: Filiaur... Is already up. And reading... She manages to keep her cool through the annoying... \ud83d\udd17 https://t.me/Path_Wars/66154/180248\n10 [180268] \ud83d\udfe2 1d 16h. Alastair Tan: Shadow, doding the an thrown by Tater, with a grumble, slips back underneath Rin, who... \ud83d\udd17 https://t.me/Path_Wars/66154/180268\n\u2501\u2501 \ud83d\udd0d C04: Magni Guard (1) \u2501\u2501 @PathWars \u26a1Ryo (~2h)\n11 [180454] \ud83c\udf31 5h. Volf: Oh I didn't know we have any \ud83d\udd17 https://t.me/Path_Wars/144765/180454\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe7 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 6d 2h \ud83d\udd17 https://t.me/Path_Wars/25059\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe8 \ud83d\udea6 C10: The Junction \u2014 last post 4d 21h ago \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83d\udfe9 \ud83d\udd2d C05: Grand Explorers \u2014 last post 2d 19h ago \ud83d\udd17 https://t.me/Path_Wars/51357",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udda0 C06: Kibwe\n\ud83d\udccc Prioritised campaign, so it jumps the age queue.\n\u23f3 Oldest message waiting 1d 7h (2 unreplied in this campaign).\n\u2197 Buffet Raider: *[image]* Tarsus arrives at the nearest table right after Tal'lysae. He examines the rune. 2a stride 1a recall...\n\ud83d\udd17 https://t.me/Path_Wars/137075/180302"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1801 \u2014 Unreplied: 10 | \u2705 4 today | \ud83c\udfc6 1895 all-time\nC06:2 C09:3 C07:2 C00:3\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 23:30 BST\n\u23ed Next check ~23:43 BST\n\u2501\u2501 \ud83d\udccc \ud83e\udda0 C06: Kibwe (2) \u2501\u2501 @PathWars \u26a1Horia (~0h)\n01 [180302] \ud83d\udfe2 1d 8h. Buffet Raider: *[image]* Tarsus arrives at the nearest table right after Tal'lysae. He examines the rune. 2a... \ud83d\udd17 https://t.me/Path_Wars/137075/180302\n02 [180343] \ud83c\udf33 22h. Alastair Tan: \"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulette' further away,... \ud83d\udd17 https://t.me/Path_Wars/40585/180343\n\u2501\u2501 \ud83e\udd16 C09: Metal City (3) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~1h)\n03 [180074] \ud83d\udfe9 2d 23h. Ryo Yamakawa: *[image]* \ud83d\udd17 https://t.me/Path_Wars/142887/180074\n04 [180416] \ud83c\udf3f 7h. Diabla \"Bella\" Alzarin: It takes a while of running around like a headless chicken for Bella to realize... \ud83d\udd17 https://t.me/Path_Wars/107171/180416\n05 [180472] \ud83c\udf31 1h. Laetheron: Arktos rushes to the helm, trying to get the ship out of dodge before they... \ud83d\udd17 https://t.me/Path_Wars/107171/180472\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (2) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n06 [180077] \ud83d\udfe9 2d 23h. Anthony NegetZ: Livy's probably going to buy an armored coat and a commercial force field upgrade to... \ud83d\udd17 https://t.me/Path_Wars/52083/180077\n07 [180377] \ud83c\udf3f 8h. Anthony NegetZ: \"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\" \ud83d\udd17 https://t.me/Path_Wars/52083/180377\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (3) \u2501\u2501 @PathWars \u26a1Fuzzy (~3h)\n08 [180200] \ud83d\udfe9 2d 6h. Fuzzy: Tater tosses a fan at the goblin, annoyed at all the noise. Somehow, she was... \ud83d\udd17 https://t.me/Path_Wars/66154/180200\n09 [180248] \ud83d\udfe9 2d 1h. Anthony NegetZ: Filiaur... Is already up. And reading... She manages to keep her cool through the annoying... \ud83d\udd17 https://t.me/Path_Wars/66154/180248\n10 [180268] \ud83d\udfe2 1d 17h. Alastair Tan: Shadow, doding the an thrown by Tater, with a grumble, slips back underneath Rin, who... \ud83d\udd17 https://t.me/Path_Wars/66154/180268\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe7 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 6d 3h \ud83d\udd17 https://t.me/Path_Wars/25059\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe8 \ud83d\udea6 C10: The Junction \u2014 last post 4d 22h ago \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83d\udfe9 \ud83d\udd2d C05: Grand Explorers \u2014 last post 2d 20h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83c\udd95 \ud83d\udd0d C04: Magni Guard \u2014 last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/76799",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udda0 C06: Kibwe\n\ud83d\udccc Prioritised campaign, so it jumps the age queue.\n\u23f3 Oldest message waiting 1d 8h (2 unreplied in this campaign).\n\u2197 Buffet Raider: *[image]* Tarsus arrives at the nearest table right after Tal'lysae. He examines the rune. 2a stride 1a recall...\n\ud83d\udd17 https://t.me/Path_Wars/137075/180302"
   ],
   "potw_week": {
     "25059": "2026-W38",
@@ -354,10 +354,10 @@
   },
   "last_potw_roundup": "2026-W38",
   "last_potw_countdown": "2026-W38",
-  "schedule_post_msg_id": 1303,
+  "schedule_post_msg_id": 1304,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-09-19",
-  "last_pin_alert_ts": "2026-09-19T21:30:34.924471+00:00",
+  "last_pin_alert_ts": "2026-09-19T22:30:32.648900+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 180354,
   "last_recruit_focus": "2026-09-19T02:30:25.776179+00:00",
