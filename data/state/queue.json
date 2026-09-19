@@ -1430,7 +1430,9 @@
       "2026-09-14T03:00:20.956789+00:00",
       "2026-09-14T03:00:20.962254+00:00",
       "2026-09-14T16:00:20.798441+00:00",
-      "2026-09-14T23:58:25.421630+00:00"
+      "2026-09-14T23:58:25.421630+00:00",
+      "2026-09-19T15:15:18.979052+00:00",
+      "2026-09-19T15:15:18.985305+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1935,20 +1937,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-08-26T05:04:52.278765+00:00",
-      "player": "Laetheron",
-      "preview": "\"Arktos.\" They gesture with one limb towards their robotic c",
-      "msg_id": "174902"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-26T05:04:52.281307+00:00",
-      "player": "Anthony",
-      "preview": "Livy looks a bit hesitant...\n\"Uh... Are we sure the big robo",
-      "msg_id": "174982"
-    },
     {
       "pid": "52083",
       "time": "2026-08-26T05:40:05.037392+00:00",
@@ -3334,6 +3322,20 @@
       "player": "Ryo",
       "preview": "He spits in her direction as he holsters his gun.\n\n\"Always d",
       "msg_id": "180236"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-19T15:15:18.979052+00:00",
+      "player": "Volf",
+      "preview": "Rex unimpressed by his last performance . Attempts to shoot ",
+      "msg_id": "180235"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-19T15:15:18.985305+00:00",
+      "player": "Volf",
+      "preview": "Rex attempts to fire more bolts at the spider. However he mi",
+      "msg_id": "180234"
     }
   ],
   "pending_potw_boons": {
