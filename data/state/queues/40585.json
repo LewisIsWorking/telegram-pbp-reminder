@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 180302,
-      "thread_id": 137075,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-09-18T14:18:36+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 180343,
       "thread_id": 40585,
       "user_id": "1358791105",
@@ -1136,7 +1127,9 @@
     "msg:179934",
     "2026-09-16 18:27:42",
     "msg:180144",
-    "2026-09-17 03:39:55"
+    "2026-09-17 03:39:55",
+    "msg:180302",
+    "2026-09-18 14:18:36"
   ],
   "reply_log": [
     {
@@ -6311,20 +6304,27 @@
       "player": "Alastair",
       "preview": "Zerius clutches his head for a moment with his sword hand, then releases it. \"We",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-20T07:25:13+00:00",
+      "pid": "40585",
+      "msg_id": "180302",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-09-18 14:18:36",
-      "msg_ids": [
-        180523
-      ],
-      "last_posted_at": "2026-09-20T03:30:23.701627+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 180535,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-20T07:45:22.507686+00:00"
     },
     "40585": {
       "fingerprint": "2026-09-19 00:21:32",
