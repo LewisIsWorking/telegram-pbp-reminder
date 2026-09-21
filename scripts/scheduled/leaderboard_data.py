@@ -3,6 +3,7 @@
 from datetime import datetime, timedelta
 
 import helpers
+from helpers_pkg.listing import listed_pids
 from helpers import (
     build_topic_maps, deduplicate_posts, timestamps_in_window,
 )
@@ -21,6 +22,8 @@ def _gather_leaderboard_stats(config: dict, state: dict, now: datetime) -> tuple
     maps = build_topic_maps(config)
 
     for pid, name in maps.to_name.items():
+        if pid not in listed_pids(config):
+            continue
         topic_timestamps = helpers.get_topic_timestamps(state, pid)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 

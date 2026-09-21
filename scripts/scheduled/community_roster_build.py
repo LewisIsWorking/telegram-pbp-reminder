@@ -27,6 +27,7 @@ against production data.
 import datetime
 
 from commands.roster_members import _active_players, effective_target
+from helpers_pkg.listing import listed_pairs
 from recruiting.roster_basis import (configured_pids, counts, posted_days_ago)
 from scheduled.recruit_roster_line import mention
 
@@ -102,7 +103,7 @@ def build_community_roster(config: dict, state: dict,
                            now: datetime.datetime) -> str:
     figures = counts(state.get("players", {}), config, now,
                      window=QUIET_DAYS)
-    pairs = list(config.get("topic_pairs", []))
+    pairs = listed_pairs(config)
 
     lines = [
         f"👥 Community roster - {now.date().isoformat()}",
