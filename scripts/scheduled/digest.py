@@ -3,6 +3,7 @@
 from datetime import datetime, timedelta, timezone
 
 import helpers
+from helpers_pkg.listing import listed_pids
 from helpers import (
     build_topic_maps, fmt_date, posts_str, timestamps_in_window,
 )
@@ -18,6 +19,8 @@ def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
     all_campaigns = helpers.players_by_campaign(state)
 
     for pid, name in maps.to_name.items():
+        if pid not in listed_pids(config):
+            continue
         topic_ts = helpers.get_topic_timestamps(state, pid)
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
         pace = helpers.pace_split(topic_ts, gm_ids, now)

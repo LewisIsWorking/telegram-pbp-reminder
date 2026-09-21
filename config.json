@@ -154,6 +154,16 @@
       "emoji": "\ud83e\udd84",
       "roster_target": 6,
       "recruit_tier": 2
+    },
+    {
+      "name": "Tongs Testing",
+      "code": "C99",
+      "chat_topic_id": 75843,
+      "pbp_topic_ids": [75843],
+      "combat_topic_id": 75843,
+      "created": "2026-09-21",
+      "queue_exclude": true,
+      "disabled_features": ["alerts", "smart_alerts", "roster", "potw", "pace", "recruitment", "anniversary", "listing"]
     }
   ],
   "settings": {

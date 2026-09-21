@@ -8,6 +8,7 @@
 from datetime import datetime, timezone, timedelta
 from players.permanence import is_permanent
 from players.proxy import proxy_note
+from helpers_pkg.listing import listed_pairs
 
 from commands.roster_members import (  # noqa: F401
     _TARGET, _ACTIVE_DAYS, _active_players, active_poll_uids,
@@ -27,7 +28,7 @@ def _find_pair(arg: str, config: dict) -> dict | None:
 
 def build_roster_overview(config: dict, state: dict) -> str:
     rows = []
-    for pair in config.get("topic_pairs", []):
+    for pair in listed_pairs(config):
         code = pair.get("code", "")
         name = pair.get("name", "")
         pid = str(pair["pbp_topic_ids"][0])

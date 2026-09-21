@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 
 import telegram as tg
 from commands.roster import build_roster_overview, _active_players, _TARGET
+from helpers_pkg.listing import listed_pairs
 
 _INTERVAL_DAYS = 3
 _NUDGE_KEY = "last_roster_nudge"
@@ -13,7 +14,7 @@ _SNAP_KEY = "last_roster_snapshot"
 def _roster_snapshot(config: dict, state: dict) -> str:
     """Build a compact string summarising current roster counts per campaign."""
     parts = []
-    for pair in config.get("topic_pairs", []):
+    for pair in listed_pairs(config):
         pid = str(pair["pbp_topic_ids"][0])
         count = len(_active_players(pid, state, config))
         target = pair.get("roster_target", _TARGET)
@@ -23,7 +24,7 @@ def _roster_snapshot(config: dict, state: dict) -> str:
 
 def _needs_nudge(config: dict, state: dict) -> bool:
     """Return True if any campaign is below its target."""
-    for pair in config.get("topic_pairs", []):
+    for pair in listed_pairs(config):
         pid = str(pair["pbp_topic_ids"][0])
         target = pair.get("roster_target", _TARGET)
         if len(_active_players(pid, state, config)) < target:
