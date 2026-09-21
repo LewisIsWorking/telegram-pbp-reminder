@@ -19,6 +19,7 @@ which is six ASCII characters in the source and an em dash at runtime.
 """
 
 import os
+import sys
 import subprocess
 
 EM_DASH = chr(0x2014)
@@ -28,9 +29,12 @@ _EXEMPT_PREFIXES = ("data/", "docs/data/")
 
 
 def _tracked_files() -> list[str]:
-    out = subprocess.run(["git", "ls-files"], cwd=_ROOT, capture_output=True,
-                         text=True, encoding="utf-8", check=True).stdout
-    return [f for f in out.splitlines() if f and not f.startswith(_EXEMPT_PREFIXES)]
+    # -z and quotepath off (2026-09-21). Plain ls-files quotes and escapes
+    # non-ASCII paths as quoted octal escapes, open() then raises FileNotFoundError,
+    # and the catch below used to skip the file without a word.
+    out = subprocess.run(["git", "-c", "core.quotepath=off", "ls-files", "-z"], cwd=_ROOT,
+                         capture_output=True, text=True, encoding="utf-8", check=True).stdout
+    return [f for f in out.split("\0") if f and not f.startswith(_EXEMPT_PREFIXES)]
 
 
 def _offenders() -> list[str]:
@@ -41,8 +45,8 @@ def _offenders() -> list[str]:
                 for n, line in enumerate(f, 1):
                     if EM_DASH in line:
                         found.append(f"{rel}:{n}: {line.strip()[:100]}")
-        except (UnicodeDecodeError, FileNotFoundError, IsADirectoryError):
-            continue  # binary files, and files deleted but not yet committed
+        except UnicodeDecodeError:
+            continue  # binary files
     return found
 
 
@@ -108,3 +112,20 @@ def test_no_em_dash_hidden_in_an_escape():
 
 def test_verbatim_transcripts_are_exempt():
     assert not any(f.startswith("data/") for f in _tracked_files())
+
+
+
+def test_accented_filenames_are_read_not_skipped(tmp_path, monkeypatch):
+    """Plain `git ls-files` returns a quoted, octal-escaped name for a file like
+    Bayakan-with-an-accent.md, open() fails, and the old catch skipped it
+    silently. The listing must give the real name, and the file must be read."""
+    import subprocess as sp
+    repo = tmp_path / "r"
+    repo.mkdir()
+    sp.run(["git", "init", "-q"], cwd=repo, check=True)
+    name = "B" + chr(0xE1) + "yakan.md"
+    (repo / name).write_text("x " + EM_DASH + " y\n", encoding="utf-8")
+    sp.run(["git", "add", "."], cwd=repo, check=True)
+    monkeypatch.setattr(sys.modules[__name__], "_ROOT", str(repo))
+    assert name in _tracked_files()
+    assert _offenders() == [name + ":1: x " + EM_DASH + " y"]
