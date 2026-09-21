@@ -174,9 +174,14 @@ def main(queue_only: bool = False) -> None:
     # below either way, so the next run carries on from here rather than
     # re-reading these updates.
     from dispatch.drain import drain_into
+    from scheduled import queue_refire
+    before = bot_state.get("last_queue_fingerprint")
     if drain_into(bot_state, tg.get_updates,
                   lambda updates: process_updates(updates, config, bot_state)):
         _run_checks(config, bot_state, only=QUEUE_CHECKS if queue_only else ())
+    queue_refire.announce(queue_refire.decide(
+        bot_state, before, bot_state.get("last_queue_fingerprint"),
+        queue_refire.is_refire_run()))
     cleanup_timestamps(bot_state)
 
     try:

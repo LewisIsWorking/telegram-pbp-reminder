@@ -42,6 +42,11 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch: # Allow manual trigger for testing
+    inputs:
+      refire:
+        description: 'Set by queue-refire.yml for a quick queue re-check. Leave unticked by hand.'
+        type: boolean
+        default: false
 
 concurrency:
   group: pbp-checker
@@ -134,7 +139,7 @@ jobs:
       # actions:read is what lets the preflight gate see how previous runs
       # ended (2026-08-19). Without it the API returns 403, the gate fails
       # open, and it is disarmed without ever saying so.
-      actions: read
+      actions: write  # read: the preflight gate; write: starting queue-refire.yml
     # Both crons trigger this workflow, so the full pass must exclude the
     # :30 queue-only schedule. Push and workflow_dispatch still run the
     # full pass exactly as before.
@@ -200,6 +205,7 @@ jobs:
         run: cd scripts && python set_commands.py
 
       - name: Run inactivity checker
+        id: checker
         if: steps.preflight.outputs.halt != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -208,6 +214,7 @@ jobs:
           # Foundry encounters from ComeOnOverUno (2026-09-16). Unset, the
           # sync does nothing: the server's read is closed without the key.
           PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
+          QUEUE_REFIRE_RUN: ${{ inputs.refire }}
         run: cd scripts && python checker.py
 
       - name: Alert on delete refusals
@@ -254,6 +261,17 @@ jobs:
             fi
           done
 
+      # Quick queue re-check (scheduled/queue_refire.py). Lewis, 2026-09-13:
+      # "if the queue changes, refire in 10 minutes or less... if unchanged go
+      # back to 30". After the state push, so the re-check starts from it.
+      # queue-refire.yml waits OUTSIDE the pbp-checker lock; waiting in here
+      # would hold that lock and stall the scheduled runs behind it.
+      - name: Ask for a quick queue re-check
+        if: steps.checker.outputs.refire == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run queue-refire.yml --repo "$GITHUB_REPOSITORY" --ref main
+
   # Lightweight half-hourly pass: process Telegram updates (so GM reply-to
   # clears register within ~30 min) and refresh the queue only. Deliberately
   # skips set_commands, refusal_alert and the other ~28 scheduled features so
@@ -264,7 +282,7 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: write
-      actions: read  # for the preflight gate; see the `run` job
+      actions: write  # preflight gate (read) and queue-refire.yml (write)
     # ⛔ Must match the second cron in the `schedule:` block. See the
     # note on the `run` job: a mismatch here skips silently.
     if: github.event_name == 'schedule' && github.event.schedule == '43 * * * *'
@@ -294,11 +312,13 @@ jobs:
         run: cd scripts && python -m preflight.gate
 
       - name: Run queue-only checker
+        id: checker
         if: steps.preflight.outputs.halt != 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
+          QUEUE_REFIRE_RUN: ${{ inputs.refire }}
         run: cd scripts && python checker.py --queue-only
 
       - name: Commit data (archive + transcripts + state)
@@ -329,3 +349,14 @@ jobs:
               exit 1
             fi
           done
+
+      # Quick queue re-check (scheduled/queue_refire.py). Lewis, 2026-09-13:
+      # "if the queue changes, refire in 10 minutes or less... if unchanged go
+      # back to 30". After the state push, so the re-check starts from it.
+      # queue-refire.yml waits OUTSIDE the pbp-checker lock; waiting in here
+      # would hold that lock and stall the scheduled runs behind it.
+      - name: Ask for a quick queue re-check
+        if: steps.checker.outputs.refire == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run queue-refire.yml --repo "$GITHUB_REPOSITORY" --ref main

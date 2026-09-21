@@ -165,11 +165,34 @@ Clearing is not instant. An entry disappears only after the next workflow run
 processes the Telegram update containing your reply, so a queue post can show
 entries you have already replied to.
 
-The workflow declares `cron: '0 * * * *'` and `cron: '30 * * * *'`, but GitHub
-gives **no timing guarantee** for scheduled runs and drops them under load —
-observed gaps on this repo have run to 2–4.5 hours even with the hourly cron.
-The `:30` queue-only pass exists to give a second chance each hour; it is not a
-promise of 30-minute cadence.
+The workflow declares `cron: '13 * * * *'` and `cron: '43 * * * *'` (moved off
+`:00`/`:30` on 2026-08-31), but GitHub gives **no timing guarantee** for
+scheduled runs and drops them under load. Observed gaps on this repo have run to
+2 to 4.5 hours even with the hourly cron. The `:43` queue-only pass exists to
+give a second chance each hour; it is not a promise of 30-minute cadence.
+
+### A changed queue is re-checked about 10 minutes later
+
+Lewis, 2026-09-13: *"if the queue changes, refire in 10 minutes or less... if
+unchanged go back to 30"*. A change means someone is posting or the GM is
+replying right now, which is exactly when waiting half an hour hurts most.
+
+- **What counts as a change:** the queue's fingerprint moved during the run: a
+  new unreplied post, a cleared reply, a silent campaign coming or going, or the
+  queue emptying. An in-place refresh or the daily repost does **not** count.
+- **How:** the run writes `refire=true` to its step output, and after the state
+  push starts `queue-refire.yml`. That workflow waits about 7 minutes **outside**
+  the `pbp-checker` lock (waiting inside it would stall the scheduled runs), then
+  dispatches a normal run with `refire=true`.
+- **When it stops:** a re-check that finds nothing changed asks for nothing, so
+  the cadence falls back to the schedule by itself. A chain of **6** re-checks in
+  a row is the cap (`MAX_CHAIN`, counted in `queue_refire_chain`), so a busy
+  evening cannot dispatch a run every 10 minutes indefinitely.
+
+Code: `scripts/scheduled/queue_refire.py`, called from `checker.main`, which
+compares the fingerprint before and after the checks. Tests:
+`scripts/test_queue_refire.py`, including the workflow wiring, where a typo in a
+step id or output name would otherwise switch the feature off silently.
 
 **Before concluding a reply was lost, check the timestamps.** Compare the run
 time (`gh run list --workflow "PBP Inactivity Reminder"`) against when you

@@ -1,0 +1,39 @@
+name: Quick queue re-check
+
+# Lewis, 2026-09-13: "if the queue changes, refire in 10 minutes or less...
+# if unchanged go back to 30". Started by pbp-reminder.yml after a run in
+# which the GM queue changed (see scripts/scheduled/queue_refire.py).
+#
+# ⛔ This waits OUTSIDE the pbp-checker concurrency group, on purpose. A run
+# that slept inside that group would hold the lock for the whole wait and
+# stall every scheduled run behind it. Here the wait costs nothing, and the
+# run it dispatches queues behind the lock like any other.
+#
+# It dispatches a normal run with refire=true, so that run counts toward the
+# MAX_CHAIN cap. A re-check that finds the queue unchanged asks for nothing
+# more, and the cadence falls back to the scheduled 30 minutes.
+
+on:
+  workflow_dispatch:
+
+# One wait at a time. A newer request replaces a pending one: two changes a
+# minute apart need one re-check, not two.
+concurrency:
+  group: queue-refire
+  cancel-in-progress: false
+
+jobs:
+  wait-then-dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      # About 7 minutes, plus the dispatched run's own queue and start-up,
+      # lands the re-check near 10 minutes after the change.
+      - name: Wait
+        run: sleep 420
+
+      - name: Start the re-check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pbp-reminder.yml --repo "$GITHUB_REPOSITORY" --ref main -f refire=true

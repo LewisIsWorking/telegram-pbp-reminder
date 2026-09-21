@@ -51,7 +51,7 @@ EM_DASH = "—"
 # still described the legacy boolean. A docs-only change, so the ratchet
 # firing here is the guard doing its job rather than a side effect worth
 # suppressing.
-CEILING = 1744
+CEILING = 1743
 
 _ROOTS = ("scripts", "docs")
 _EXTS = (".py", ".md")
