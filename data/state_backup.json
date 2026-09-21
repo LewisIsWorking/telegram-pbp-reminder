@@ -31,9 +31,9 @@
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-09-19T00:21:32+00:00",
-      "last_user": "Alastair",
-      "last_user_id": "1358791105",
+      "last_message_time": "2026-09-20T07:25:13+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
@@ -62,16 +62,16 @@
     }
   },
   "last_alerts": {
-    "52083": "2026-09-19T00:19:46.289231+00:00",
-    "66154": "2026-09-19T05:51:59.974748+00:00",
-    "51357": "2026-09-20T03:30:19.210079+00:00",
-    "25059": "2026-09-19T22:30:16.717952+00:00",
-    "107171": "2026-09-18T20:00:21.716515+00:00",
+    "52083": "2026-09-20T14:30:17.653503+00:00",
+    "66154": "2026-09-20T06:14:02.198587+00:00",
+    "51357": "2026-09-21T04:00:19.762657+00:00",
+    "25059": "2026-09-20T23:15:22.368982+00:00",
+    "107171": "2026-09-20T22:25:43.104871+00:00",
     "40585": "2026-09-20T00:30:17.461203+00:00",
-    "76799": "2026-09-18T20:00:21.716515+00:00",
-    "107151": "2026-09-20T03:30:19.210079+00:00",
+    "76799": "2026-09-20T22:25:43.104871+00:00",
+    "107151": "2026-09-21T04:00:19.762657+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00",
-    "146645": "2026-09-20T02:30:21.631654+00:00"
+    "146645": "2026-09-21T03:00:22.157736+00:00"
   },
   "last_roster": {
     "25059": "2026-09-20T02:30:21.631654+00:00",
@@ -83,7 +83,7 @@
     "76799": "2026-09-20T02:30:21.631654+00:00",
     "107151": "2026-09-08T00:15:24.261346+00:00",
     "1242": "2026-07-06T04:16:24.180955+00:00",
-    "146645": "2026-09-17T14:15:28.225193+00:00"
+    "146645": "2026-09-20T14:30:17.653503+00:00"
   },
   "last_potw": {
     "66154": "2026-06-01T05:48:30.651000+00:00",
@@ -97,16 +97,16 @@
     "51357": "2026-07-30T22:13:33.190034+00:00"
   },
   "last_pace": {
-    "76799": "2026-09-13T13:45:18.716768+00:00",
+    "76799": "2026-09-20T14:30:17.653503+00:00",
     "40585": "2026-09-20T00:30:17.461203+00:00",
     "51357": "2026-09-20T00:30:17.461203+00:00",
-    "25059": "2026-09-13T13:45:18.716768+00:00",
+    "25059": "2026-09-20T14:30:17.653503+00:00",
     "66154": "2026-09-17T11:30:20.943250+00:00",
     "52083": "2026-09-20T00:30:17.461203+00:00",
     "107171": "2026-09-15T17:15:18.268800+00:00",
     "107151": "2026-09-01T16:33:51.263367+00:00",
     "1242": "2026-06-30T12:53:55.877976+00:00",
-    "146645": "2026-09-13T13:45:18.716768+00:00"
+    "146645": "2026-09-20T14:30:17.653503+00:00"
   },
   "last_anniversary": {
     "76799:1": "2026-03-04T00:26:01.824834+00:00",
@@ -122,7 +122,7 @@
   "last_roster_snapshot": "C01:5/6|C00:3/6|C04:5/6|C05:5/6|C06:6/6|C07:4/6|C09:5/6|C10:1/6|C08:1/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-09-19T23:02:28.822446+00:00"
+    "last_at": "2026-09-21T00:15:26.374278+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-09-18T12:45:27.152795+00:00",
@@ -135,7 +135,7 @@
     "1242": "2026-07-05T17:20:11.677414+00:00",
     "146645": "2026-08-13T04:58:05.862836+00:00"
   },
-  "last_archived_week": "2026-W37",
+  "last_archived_week": "2026-W38",
   "celebrated_streaks": {
     "107151:7454623139": 7,
     "107151:6482311444": 7
@@ -152,13 +152,14 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-09-20T00:30:17.461203+00:00",
-  "last_daily_tip": "2026-09-19T17:45:24.768154+00:00",
+  "last_daily_tip": "2026-09-20T16:47:27.880234+00:00",
   "used_tip_indices": [
     4,
     22,
     25,
     11,
-    37
+    37,
+    2
   ],
   "last_pace_drop_check": "2026-09-20T00:30:17.461203+00:00",
   "dying_alerts_sent": {
@@ -166,29 +167,29 @@
     "107151": "active",
     "25059": "active",
     "146645": "active",
-    "51357": "active"
+    "51357": "active",
+    "66154": "active"
   },
   "last_campaign_table": "2026-09-19T20:38:03.883717+00:00",
   "session_poll": {
     "C01": {
-      "week_iso": "sun2026-09-13",
-      "poll_id": "5850522914952053944",
-      "poll_message_id": 178569,
+      "week_iso": "sun2026-09-20",
+      "poll_id": "5873020812641961305",
+      "poll_message_id": 180539,
       "options": [
-        "2026-09-18 Friday",
-        "2026-09-19 Saturday",
+        "2026-09-25 Friday",
+        "2026-09-26 Saturday",
         "Both/Either",
         "Can't make it this week"
       ],
       "voted_uids": [
         "8902183011",
-        "8255519522",
-        "8525518483",
         "5443237599",
+        "8255519522",
         "1698524397",
         "8880317264"
       ],
-      "last_ping_day": 739878,
+      "last_ping_day": 739880,
       "votes": {
         "2": [
           "8902183011",
@@ -199,7 +200,6 @@
           "8255519522"
         ],
         "0": [
-          "8525518483",
           "8880317264"
         ]
       }
@@ -223,9 +223,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-09-19T02:30:25.776179+00:00",
-  "last_queue_daily": "2026-09-19",
-  "last_queue_fingerprint": "107171:2026-09-16 22:32:55|107171:2026-09-19 14:52:55|107171:2026-09-19 21:27:22|40585:2026-09-18 14:18:36|40585:2026-09-19 00:21:32|52083:2026-09-16 22:40:32|52083:2026-09-19 14:09:30|66154:2026-09-17 16:19:48|66154:2026-09-17 21:18:01|66154:2026-09-18 04:56:55|silent:146645|25059",
+  "last_state_backup": "2026-09-20T03:30:19.210079+00:00",
+  "last_queue_daily": "2026-09-20",
+  "last_queue_fingerprint": "107171:2026-09-16 22:32:55|107171:2026-09-19 14:52:55|107171:2026-09-19 21:27:22|40585:2026-09-19 00:21:32|52083:2026-09-16 22:40:32|52083:2026-09-19 14:09:30|66154:2026-09-17 16:19:48|66154:2026-09-17 21:18:01|66154:2026-09-18 04:56:55|silent:146645|25059",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -293,15 +293,14 @@
     "76799:Volf": "2026-08-28T18:54:39.072699+00:00",
     "66154:Alastair Tan": "2026-09-01T16:33:51.263367+00:00",
     "107171:Minork Estra": "2026-09-13T00:15:24.792691+00:00",
-    "107171:Ryo Yamakawa": "2026-09-18T22:45:18.375636+00:00"
+    "107171:Ryo Yamakawa": "2026-09-18T22:45:18.375636+00:00",
+    "40585:Alastair Tan": "2026-09-21T00:28:28.698876+00:00"
   },
   "paused_campaigns": {},
   "current_scenes": {},
   "poll_unknown_voters": {},
-  "last_week_welcome": "sun2026-09-13",
+  "last_week_welcome": "sun2026-09-20",
   "last_queue_daily_slots": [
-    "2026-09-13:09",
-    "2026-09-13:21",
     "2026-09-14:09",
     "2026-09-14:21",
     "2026-09-15:09",
@@ -313,7 +312,9 @@
     "2026-09-18:09",
     "2026-09-18:21",
     "2026-09-19:09",
-    "2026-09-19:21"
+    "2026-09-19:21",
+    "2026-09-20:09",
+    "2026-09-20:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -324,21 +325,21 @@
     "session_happened": true
   },
   "queue_scan_floor": null,
-  "last_diagnostic": "2026-09-19",
-  "last_queue_pin_id": 180506,
-  "queue_post_count": 1802,
+  "last_diagnostic": "2026-09-20",
+  "last_queue_pin_id": 180633,
+  "queue_post_count": 1805,
   "gm_queue_history": [
     {
       "msg_ids": [
-        180506,
-        180507
+        180633,
+        180634
       ],
-      "pin_id": 180506
+      "pin_id": 180633
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1802 \u2014 Unreplied: 10 | \ud83c\udfc6 1895 all-time\nC06:2 C09:3 C07:2 C00:3\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 04:30 BST\n\u23ed Next check ~04:43 BST\n\u2501\u2501 \ud83d\udccc \ud83e\udda0 C06: Kibwe (2) \u2501\u2501 @PathWars \u26a1Horia (~0h)\n01 [180302] \ud83d\udfe2 1d 13h. Buffet Raider: *[image]* Tarsus arrives at the nearest table right after Tal'lysae. He examines the rune. 2a... \ud83d\udd17 https://t.me/Path_Wars/137075/180302\n02 [180343] \ud83d\udfe2 1d 3h. Alastair Tan: \"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulette' further away,... \ud83d\udd17 https://t.me/Path_Wars/40585/180343\n\u2501\u2501 \ud83e\udd16 C09: Metal City (3) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~0h)\n03 [180074] \ud83d\udfe1 3d 4h. Ryo Yamakawa: *[image]* \ud83d\udd17 https://t.me/Path_Wars/142887/180074\n04 [180416] \ud83c\udf33 12h. Diabla \"Bella\" Alzarin: It takes a while of running around like a headless chicken for Bella to realize... \ud83d\udd17 https://t.me/Path_Wars/107171/180416\n05 [180472] \ud83c\udf3f 6h. Laetheron: Arktos rushes to the helm, trying to get the ship out of dodge before they... \ud83d\udd17 https://t.me/Path_Wars/107171/180472\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (2) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n06 [180077] \ud83d\udfe1 3d 4h. Anthony NegetZ: Livy's probably going to buy an armored coat and a commercial force field upgrade to... \ud83d\udd17 https://t.me/Path_Wars/52083/180077\n07 [180377] \ud83c\udf33 13h. Anthony NegetZ: \"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\" \ud83d\udd17 https://t.me/Path_Wars/52083/180377\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (3) \u2501\u2501 @PathWars \u26a1Fuzzy (~3h)\n08 [180200] \ud83d\udfe9 2d 11h. Fuzzy: Tater tosses a fan at the goblin, annoyed at all the noise. Somehow, she was... \ud83d\udd17 https://t.me/Path_Wars/66154/180200\n09 [180248] \ud83d\udfe9 2d 6h. Anthony NegetZ: Filiaur... Is already up. And reading... She manages to keep her cool through the annoying... \ud83d\udd17 https://t.me/Path_Wars/66154/180248\n10 [180268] \ud83d\udfe2 1d 22h. Alastair Tan: Shadow, doding the an thrown by Tater, with a grumble, slips back underneath Rin, who... \ud83d\udd17 https://t.me/Path_Wars/66154/180268\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe7 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 6d 8h \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83d\udfe0 \ud83d\udea6 C10: The Junction \u2014 no posts for 5d 3h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe1 \ud83d\udd2d C05: Grand Explorers \u2014 last post 3d 1h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83c\udf31 \ud83d\udd0d C04: Magni Guard \u2014 last post 5h ago \ud83d\udd17 https://t.me/Path_Wars/76799",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udda0 C06: Kibwe\n\ud83d\udccc Prioritised campaign, so it jumps the age queue.\n\u23f3 Oldest message waiting 1d 13h (2 unreplied in this campaign).\n\u2197 Buffet Raider: *[image]* Tarsus arrives at the nearest table right after Tal'lysae. He examines the rune. 2a stride 1a recall...\n\ud83d\udd17 https://t.me/Path_Wars/137075/180302"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1805 \u2014 Unreplied: 9 | \ud83c\udfc6 1896 all-time\nC06:1 C09:3 C07:2 C00:3\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 05:00 BST\n\u23ed Next check ~05:13 BST\n\u2501\u2501 \ud83d\udccc \ud83e\udda0 C06: Kibwe (1) \u2501\u2501 @PathWars \u26a1Horia (~0h)\n01 [180343] \ud83d\udfe9 2d 3h. Alastair Tan: \"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulette' further away,... \ud83d\udd17 https://t.me/Path_Wars/40585/180343\n\u2501\u2501 \ud83e\udd16 C09: Metal City (3) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~0h)\n02 [180074] \ud83d\udfe8 4d 5h. Ryo Yamakawa: *[image]* \ud83d\udd17 https://t.me/Path_Wars/142887/180074\n03 [180416] \ud83d\udfe2 1d 13h. Diabla \"Bella\" Alzarin: It takes a while of running around like a headless chicken for Bella to realize... \ud83d\udd17 https://t.me/Path_Wars/107171/180416\n04 [180472] \ud83d\udfe2 1d 6h. Laetheron: Arktos rushes to the helm, trying to get the ship out of dodge before they... \ud83d\udd17 https://t.me/Path_Wars/107171/180472\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (2) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n05 [180077] \ud83d\udfe8 4d 5h. Anthony NegetZ: Livy's probably going to buy an armored coat and a commercial force field upgrade to... \ud83d\udd17 https://t.me/Path_Wars/52083/180077\n06 [180377] \ud83d\udfe2 1d 13h. Anthony NegetZ: \"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\" \ud83d\udd17 https://t.me/Path_Wars/52083/180377\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (3) \u2501\u2501 @PathWars \u26a1Fuzzy (~3h)\n07 [180200] \ud83d\udfe1 3d 11h. Fuzzy: Tater tosses a fan at the goblin, annoyed at all the noise. Somehow, she was... \ud83d\udd17 https://t.me/Path_Wars/66154/180200\n08 [180248] \ud83d\udfe1 3d 6h. Anthony NegetZ: Filiaur... Is already up. And reading... She manages to keep her cool through the annoying... \ud83d\udd17 https://t.me/Path_Wars/66154/180248\n09 [180268] \ud83d\udfe9 2d 23h. Alastair Tan: Shadow, doding the an thrown by Tater, with a grumble, slips back underneath Rin, who... \ud83d\udd17 https://t.me/Path_Wars/66154/180268\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udd34 \ud83d\udcc6 C01: Doomsday Funtime \u2014 no posts for 7d 8h \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83d\udfe7 \ud83d\udea6 C10: The Junction \u2014 no posts for 6d 4h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe8 \ud83d\udd2d C05: Grand Explorers \u2014 last post 4d 1h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83d\udfe2 \ud83d\udd0d C04: Magni Guard \u2014 last post 1d 5h ago \ud83d\udd17 https://t.me/Path_Wars/76799",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udda0 C06: Kibwe\n\ud83d\udccc Prioritised campaign, so it jumps the age queue.\n\u23f3 Oldest message waiting 2d 3h (1 unreplied in this campaign).\n\u2197 Alastair Tan: \"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulette' further away, raises his paw...\n\ud83d\udd17 https://t.me/Path_Wars/40585/180343"
   ],
   "potw_week": {
     "25059": "2026-W38",
@@ -353,27 +354,27 @@
   },
   "last_potw_roundup": "2026-W38",
   "last_potw_countdown": "2026-W38",
-  "schedule_post_msg_id": 1310,
+  "schedule_post_msg_id": 1342,
   "schedule_post_chat_id": -1004303231713,
-  "last_pin_digest": "2026-09-19",
-  "last_pin_alert_ts": "2026-09-20T03:30:23.600755+00:00",
+  "last_pin_digest": "2026-09-20",
+  "last_pin_alert_ts": "2026-09-21T04:00:26.816336+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 180354,
-  "last_recruit_focus": "2026-09-19T02:30:25.776179+00:00",
-  "recruit_focus_at": "2026-09-19T02:30:25.776179+00:00",
+  "recruit_focus_msg_id": 180525,
+  "last_recruit_focus": "2026-09-20T03:30:19.210079+00:00",
+  "recruit_focus_at": "2026-09-20T03:30:19.210079+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 180354,
+      "message_id": 180525,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 1276,
+      "message_id": 1311,
       "auto_delete": false
     }
   ],
-  "last_community_roster": "2026-09-13T13:45:18.716768+00:00",
+  "last_community_roster": "2026-09-20T14:30:17.653503+00:00",
   "players": {
     "25059:5443237599": {
       "user_id": "5443237599",
@@ -403,7 +404,7 @@
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
       "last_post_time": "2026-09-14T01:09:00+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "40585:138025700": {
       "user_id": "138025700",
@@ -1073,7 +1074,7 @@
     "40585": {
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-26T22:59:46.875788+00:00"
       },
       "7077683276": {
@@ -2833,7 +2834,6 @@
       "2026-09-17T02:13:44.120919+00:00"
     ],
     "40585": [
-      "2026-03-31T06:31:49.489842+00:00",
       "2026-04-03T12:16:20.626717+00:00",
       "2026-04-06T07:35:18.718613+00:00",
       "2026-04-06T07:35:18.720643+00:00",
@@ -3332,7 +3332,8 @@
       "2026-09-16T18:15:20.002608+00:00",
       "2026-09-16T19:15:20.225363+00:00",
       "2026-09-16T19:15:20.246876+00:00",
-      "2026-09-17T15:15:33.689245+00:00"
+      "2026-09-17T15:15:33.689245+00:00",
+      "2026-09-20T07:45:22.504530+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -4581,13 +4582,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-08-26T06:59:35.913712+00:00",
-      "player": "Ryo",
-      "preview": "Rune considers what Nikk-Nakk has shown them and what he has",
-      "msg_id": "175081"
-    },
     {
       "pid": "51357",
       "time": "2026-08-26T06:59:35.917893+00:00",
@@ -5980,6 +5974,13 @@
       "player": "Volf",
       "preview": "Oh I didn't know we have any",
       "msg_id": "180454"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-09-20T07:45:22.504530+00:00",
+      "player": "Buffet",
+      "preview": "[media]",
+      "msg_id": "180302"
     }
   ],
   "pending_potw_boons": {
@@ -5995,7 +5996,7 @@
       ],
       "base_message": "Player of the Week for Magni Guard: Alastair Tan (@altan19931993)!\n(2026-09-07 (W37) to 2026-09-14 (W38))\n\n5 posts this week with an average gap of 36.5h between posts. The most consistent driver of the story.",
       "posted_at": "2026-09-14T09:15:28.537020+00:00",
-      "reminders_sent": 2
+      "reminders_sent": 3
     }
   },
   "pending_hero_points": {
@@ -6115,7 +6116,8 @@
         "2026-09-16T18:28:26+00:00",
         "2026-09-17T14:52:46+00:00",
         "2026-09-17T14:53:39+00:00",
-        "2026-09-17T17:50:21+00:00"
+        "2026-09-17T17:50:21+00:00",
+        "2026-09-20T07:25:13+00:00"
       ],
       "138025700": [
         "2026-09-08T07:37:05+00:00",
@@ -6164,8 +6166,6 @@
         "2026-09-08T00:40:13+00:00"
       ],
       "8117756377": [
-        "2026-09-05T15:22:44+00:00",
-        "2026-09-05T15:25:31+00:00",
         "2026-09-08T00:27:14+00:00"
       ],
       "7454623139": [
@@ -6214,12 +6214,6 @@
         "2026-09-06T17:15:05+00:00",
         "2026-09-06T18:04:25+00:00",
         "2026-09-13T19:16:29+00:00"
-      ],
-      "8525518483": [
-        "2026-09-05T04:00:19+00:00"
-      ],
-      "8902183011": [
-        "2026-09-05T08:39:19+00:00"
       ]
     },
     "107171": {
@@ -6341,7 +6335,6 @@
         "2026-09-19T14:11:42+00:00"
       ],
       "8117756377": [
-        "2026-09-05T15:20:51+00:00",
         "2026-09-15T17:08:09+00:00",
         "2026-09-15T17:08:10+00:00",
         "2026-09-15T17:08:11+00:00",
@@ -6349,7 +6342,6 @@
         "2026-09-19T21:27:22+00:00"
       ],
       "8701042661": [
-        "2026-09-05T11:41:19+00:00",
         "2026-09-15T19:53:19+00:00",
         "2026-09-16T17:07:19+00:00",
         "2026-09-16T17:07:32+00:00",
@@ -6601,7 +6593,7 @@
     },
     "40585": {
       "6144366145": 143,
-      "1698524397": 2297,
+      "1698524397": 2298,
       "7130942567": 68,
       "138025700": 83,
       "5443237599": 49,
@@ -7520,7 +7512,7 @@
         "1": 92,
         "2": 122,
         "3": 115,
-        "7": 153,
+        "7": 154,
         "22": 43,
         "12": 71,
         "9": 35,
@@ -8290,7 +8282,7 @@
     "40585": {
       "1698524397": {
         "5": 244,
-        "6": 417,
+        "6": 418,
         "0": 377,
         "1": 486,
         "2": 221,
@@ -8522,7 +8514,7 @@
       "5443237599": 4
     },
     "40585": {
-      "1698524397": 33243,
+      "1698524397": 33280,
       "138025700": 1452,
       "7077683276": 1102,
       "7863964681": 2003,
@@ -8551,7 +8543,7 @@
   },
   "session_counts": {
     "51357": 49,
-    "40585": 114,
+    "40585": 115,
     "107171": 55,
     "107151": 30,
     "25059": 60,
@@ -8563,7 +8555,7 @@
   },
   "session_last_day": {
     "51357": "2026-09-17",
-    "40585": "2026-09-17",
+    "40585": "2026-09-20",
     "107171": "2026-09-19",
     "107151": "2026-05-05",
     "25059": "2026-09-13",
@@ -9942,7 +9934,7 @@
       "1358791105": 1
     },
     "137075": {
-      "7130942567": 1
+      "1698524397": 1
     },
     "52083": {
       "6144366145": 1
@@ -10009,6 +10001,6 @@
       }
     ]
   },
-  "_backup_timestamp": "2026-09-20T03:30:19.210079+00:00",
+  "_backup_timestamp": "2026-09-21T04:00:19.762657+00:00",
   "_backup_version": "4.70.2"
 }
