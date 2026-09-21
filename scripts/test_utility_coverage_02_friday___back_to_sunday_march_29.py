@@ -1,4 +1,4 @@
-"""Tests extracted from test_utility_coverage.py — bin 2.
+"""Tests extracted from test_utility_coverage.py - bin 2.
 
 Sections in this file:
   - Friday → back to Sunday March 29

@@ -7,7 +7,7 @@ Dates shown as `[YYYY-MM-DD]` next to status icons indicate when work was comple
 
 ---
 
-## v1.1.0 — Player Self-Service & Awareness
+## v1.1.0 - Player Self-Service & Awareness
 
 ### ✅ `/mystats` command
 Players type `/mystats` in any PBP topic to see their own stats:
@@ -26,7 +26,7 @@ features so each one gets explained eventually.
 
 ---
 
-## v1.2.0 — Streaks & Celebrations
+## v1.2.0 - Streaks & Celebrations
 
 ### ✅ Posting streaks
 Track consecutive days each player posts. Display in `/mystats` and roster.
@@ -39,7 +39,7 @@ across all campaigns. Encourage consistent engagement over burst posting.
 
 ---
 
-## v1.3.0 — Cross-Campaign Intelligence
+## v1.3.0 - Cross-Campaign Intelligence
 
 ### ✅ Weekly digest
 A compact newsletter posted to the leaderboard topic once per week.
@@ -55,7 +55,7 @@ attention without reading every stat.
 
 ---
 
-## v1.4.0 — Archive & History
+## v1.4.0 - Archive & History
 
 ### ✅ PBP transcript archive
 Every message in every PBP topic is logged to persistent markdown files
@@ -76,7 +76,7 @@ counts for the last 8 weeks as a text sparkline chart.
 
 ---
 
-## v1.5.0 — History Import & Per-Campaign GMs
+## v1.5.0 - History Import & Per-Campaign GMs
 
 ### ✅ Historical transcript backfill
 `scripts/import_history.py` imports past PBP messages from Telegram Desktop
@@ -92,7 +92,7 @@ or between arcs. Pause reason displayed in `/status` and `/campaign`.
 
 ---
 
-## v1.6.0 — GM Roster Management
+## v1.6.0 - GM Roster Management
 
 ### ✅ `/kick @player`
 Manually remove a player from tracking without waiting for the 4-week
@@ -104,7 +104,7 @@ the roster and get tracked.
 
 ---
 
-## v1.9.0 — Character Awareness
+## v1.9.0 - Character Awareness
 
 ### ✅ Character name mapping
 Optional `characters` field per campaign maps user IDs to character names.
@@ -115,7 +115,7 @@ Shows the in-fiction party composition: character names, players, activity.
 
 ---
 
-## v1.8.0 — Message Milestones
+## v1.8.0 - Message Milestones
 
 ### ✅ Campaign milestones (every 500 messages)
 Celebrates in the campaign's chat topic with escalating icons.
@@ -125,7 +125,7 @@ Celebrates across all campaigns in the leaderboard topic.
 
 ---
 
-## v1.7.0 — Player Catch-Up
+## v1.7.0 - Player Catch-Up
 
 ### ✅ `/catchup`
 Shows what happened since you last posted: message counts by person,
@@ -133,7 +133,7 @@ time since last post, and combat state. Essential for returning PBP players.
 
 ---
 
-## v2.0.0 — Dashboard v2 & Smart Alerts
+## v2.0.0 - Dashboard v2 & Smart Alerts
 
 ### ✅ Dashboard v2
 Summary cards, week filter, sortable columns, player drill-down,
@@ -147,7 +147,7 @@ flag (enabled by default). Use `/pause` to silence during planned breaks.
 
 ---
 
-## v2.1.0 — Scene Markers & GM Notes
+## v2.1.0 - Scene Markers & GM Notes
 
 ### ✅ Scene markers
 `/scene <n>` marks a narrative scene boundary in the campaign's
@@ -161,7 +161,7 @@ with `/notes`, delete with `/delnote <N>`. Latest notes shown in
 
 ---
 
-## v2.2.0 — Activity Insights
+## v2.2.0 - Activity Insights
 
 ### ✅ Activity tracking
 Every message records hour-of-day and day-of-week counters.
@@ -178,7 +178,7 @@ Matches by username, first name, or full name.
 
 ---
 
-## v2.4.0 — Absence Tracking & Recap
+## v2.4.0 - Absence Tracking & Recap
 
 ### ✅ `/away` and `/back`
 Players declare absences with duration or indefinitely. Away players
@@ -191,7 +191,7 @@ Quick catch-up for returning players using the persistent log files.
 
 ---
 
-## v2.5.0 — Dice Roller
+## v2.5.0 - Dice Roller
 
 ### ✅ `/roll`
 Roll dice inline with Pathfinder-standard notation. Supports modifiers,
@@ -200,7 +200,7 @@ name when configured.
 
 ---
 
-## v2.6.0 — Quest Tracker & GM Dashboard
+## v2.6.0 - Quest Tracker & GM Dashboard
 
 ### ✅ Quest tracking
 `/quest`, `/quests`, `/done`, `/delquest`. Track active objectives per
@@ -212,7 +212,7 @@ combat/pause/away/quest flags. One command to check everything.
 
 ---
 
-## v2.7.0 — DC Lookup, Pins & Loot
+## v2.7.0 - DC Lookup, Pins & Loot
 
 ### ✅ `/dc`
 PF2e DC lookup by level and difficulty. Proficiency DCs. Short aliases.
@@ -225,7 +225,7 @@ PF2e DC lookup by level and difficulty. Proficiency DCs. Short aliases.
 
 ---
 
-## v2.8.0 — NPC & Condition Trackers
+## v2.8.0 - NPC & Condition Trackers
 
 ### ✅ NPC tracker
 `/npc`, `/npcs`, `/delnpc`. Track named NPCs with descriptions.
@@ -236,7 +236,7 @@ Track buffs, debuffs, and persistent effects during combat and RP.
 
 ---
 
-## v2.9.0 — HP Tracker & Progress Clocks
+## v2.9.0 - HP Tracker & Progress Clocks
 
 ### ✅ HP Tracker
 `/hp set`, `/hp d`, `/hp h`, `/hp remove`, `/hp clear`, `/hp` view.
@@ -251,7 +251,7 @@ HP tracker, conditions, and clocks now shown in `/status` and `/summary`.
 
 ---
 
-## v3.0.0 — Combat System Rebuild
+## v3.0.0 - Combat System Rebuild
 
 ### ✅ Foundry-compatible combat tracking
 Rebuilt for async PBP alongside Foundry VTT. `/combat` to start, `/next` to
@@ -260,31 +260,31 @@ advance phases, auto-notify GM when all players have acted, combat log with
 
 ---
 
-## v4.0.0 — Codebase Modularization (✅ Complete)
+## v4.0.0 - Codebase Modularization (✅ Complete)
 
 Refactor all Python files to a **200-line hard maximum**. No code removal,
 no compression, no comment removal. Pure extraction, OOP, and SOLID
 principles. Incremental commits, each chunk tested and deployed.
 
-### 🔧 Chunk 1 — Scaffold & Boons
+### 🔧 Chunk 1 - Scaffold & Boons
 - Create package directories (boons, combat, commands, transcript,
   scheduled, dispatch, parsing, players, helpers_pkg)
 - Extract `boons/handler.py` (94 lines)
 
-### 🔧 Chunk 2 — Combat & Parsing
+### 🔧 Chunk 2 - Combat & Parsing
 - Extract `combat/display.py` (111 lines): whosturn, combatlog, format_elapsed
 - Extract `combat/tracker.py` (159 lines): combat message routing, all-acted check
 - Extract `combat/commands.py` (131 lines): start, next, end, enemies
 - Extract `parsing/message.py` (81 lines): Telegram message parser
 
-### 🔧 Chunk 3 — Commands (status/info)
+### 🔧 Chunk 3 - Commands (status/info)
 - Extract `commands/status.py` (194 lines): build_status, build_overview
 - Extract `commands/campaign.py` (168 lines): build_campaign_report, roster_user_stats, roster_block
 - Extract `commands/player.py` (130 lines): build_mystats, build_myhistory, sparkline
 - Moved `calc_streak` + `health_icon` to helpers.py (shared utilities)
 - Remaining: gm_dashboard, summary, party, profile, catchup, activity, recap → chunk 4
 
-### 🔧 Chunk 4 — Commands (trackers, mechanics, summary, dashboard, profile, catchup, recap)
+### 🔧 Chunk 4 - Commands (trackers, mechanics, summary, dashboard, profile, catchup, recap)
 - Extract `commands/trackers.py` (124 lines): notes, quests, pins, loot, npcs, conditions
 - Extract `commands/mechanics.py` (113 lines): vote, timer, hp_tracker, clocks
 - Extract `commands/summary.py` (175 lines): summary, party
@@ -294,13 +294,13 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `commands/recap.py` (136 lines): rich transcript recap
 - checker.py: 4744 → 3431 lines (−1313)
 
-### 🔧 Chunk 5 — Transcript
+### 🔧 Chunk 5 - Transcript
 - Extract `transcript/formatting.py` (94 lines): log entry + content formatting
 - Extract `transcript/logger.py` (154 lines): append_to_transcript, write_scene_marker, cache
 - Extract `transcript/finalize.py` (179 lines): month finalization + index generation
 - checker.py: 3431 → 3055 lines (−376)
 
-### 🔧 Chunk 6 — Scheduled Tasks
+### 🔧 Chunk 6 - Scheduled Tasks
 - Extract `scheduled/tips_data.py` (164 lines): _TIPS constant
 - Extract `scheduled/tips.py` (49 lines): post_daily_tip
 - Extract `scheduled/alerts.py` (146 lines): check_and_alert, check_player_activity
@@ -316,7 +316,7 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `scheduled/combat_ping.py` (102 lines): combat turns, expired timers
 - checker.py: 3055 → 1632 lines (−1423)
 
-### 🔧 Chunk 7 — Dispatch & Players
+### 🔧 Chunk 7 - Dispatch & Players
 - Extract `dispatch/router.py` (116 lines): process_updates main loop
 - Extract `dispatch/cmd_info.py` (168 lines): 28 read-only info commands
 - Extract `dispatch/cmd_gm.py` (81 lines): pause, resume, kick, addplayer, scene
@@ -331,7 +331,7 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `players/management.py` (109 lines): handle_kick, handle_addplayer
 - checker.py: 1632 → 277 lines (−1355)
 
-### 🔧 Chunk 8 — Split helpers.py
+### 🔧 Chunk 8 - Split helpers.py
 - Extract `helpers_pkg/constants.py` (60 lines): all config constants
 - Extract `helpers_pkg/config.py` (180 lines): load, validate, settings, GM helpers
 - Extract `helpers_pkg/formatting.py` (146 lines): display_name, rank_icon, fmt_*, html_escape, etc.
@@ -344,17 +344,17 @@ principles. Incremental commits, each chunk tested and deployed.
 - Extract `helpers_pkg/character.py` (character names, away tracking)
 - Extract `helpers_pkg/trackers.py` (hp_bar, clock_display, timers)
 
-### 🔧 Chunk 9 — Test Files (deferred)
+### 🔧 Chunk 9 - Test Files (deferred)
 - test_checker.py (5053 lines) uses backward-compat aliases in checker.py
-- Splitting would require a test framework or shared runner — deferred to future session
+- Splitting would require a test framework or shared runner - deferred to future session
 - test_helpers.py (385 lines) and test_import_history.py (334 lines) are test-only, not production code
 
-### 🔧 Chunk 10 — Final Cleanup
+### 🔧 Chunk 10 - Final Cleanup
 - Rewrote checker.py as clean orchestrator (201 lines: orchestration + backward-compat test aliases)
 - Verified all production files ≤200 lines (43 modules)
-- Remaining minor overages: post_changelog.py (207), import_history.py (312) — standalone utilities, not core bot
+- Remaining minor overages: post_changelog.py (207), import_history.py (312) - standalone utilities, not core bot
 
-### ✅ Chunk 11 — Last two overages (v4.51.7)
+### ✅ Chunk 11 - Last two overages (v4.51.7)
 - Extracted `boons/resolution.py` (101 lines) from `boons/handler.py` (214 → 138):
   boon result formatting, campaign-name resolution, storage, `_resolve_boon`.
 - Extracted `scheduled/potw_links.py` (57 lines) from `scheduled/potw.py` (205 → 169):
@@ -369,14 +369,14 @@ principles. Incremental commits, each chunk tested and deployed.
 
 ## Future Ideas (unscheduled)
 
-### ✅ Data Migration — Gist → Structured Repo JSON
+### ✅ Data Migration - Gist → Structured Repo JSON
 
 Completed in v4.18.0. State is now stored in four partition files under
 `data/state/` and committed to the repo every hourly run. The gist is
 retained as an emergency dual-write backup. See CHANGELOG for details.
 
 
-### ✅ C11 Dark Pockets — Multi-Group Campaign Support
+### ✅ C11 Dark Pockets - Multi-Group Campaign Support
 
 Completed in v4.21.0–v4.25.0. C11 runs in a separate Telegram group
 (`-1003496373617`). Full PBP tracking, weekly session poll (Mon–Sun,
@@ -397,7 +397,7 @@ IDs still pending for 4 C11 players (placeholders in config):
 `@Luke_Skillen` (Luke Skillen), `@EliciaRoseT` (Elicia Rose Taylor).
 Patrick Coxx (`@Thefununlce`, placeholder `9100000006`) also pending.
 IDs auto-captured when they vote. Run `promote_poll_voters.py --commit` after.
-Note: `9100000xxx` range now detected — fixed 2026-04-08.
+Note: `9100000xxx` range now detected - fixed 2026-04-08.
 
 
 - Optional AI-generated "story so far" recap using Anthropic API
@@ -414,26 +414,26 @@ Note: `9100000xxx` range now detected — fixed 2026-04-08.
 
 ## Bug Log
 
-Dated log of discovered bugs — open and resolved.
+Dated log of discovered bugs - open and resolved.
 
 | Date | Status | Description | Fix |
 |------|--------|-------------|-----|
-| 2026-08-10 | ✅ Fixed 2026-08-10 | **C05 orphan: old "Unreplied:" posts never deleted.** Queue entries carry Telegram's raw **int** `message_thread_id`, but `topic_queues` is JSON so its keys are always **str** — `setdefault(51357, …)` missed the on-disk `"51357"` slot, so `existing.is_empty` was True and the previous batch was never deleted. The save then wrote a second, int-keyed slot, overwriting the real one and stranding those IDs beyond the L28 retry sweep. Missed by the suite because every test passed `thread_id` as a str, the one type production never sends. | `_threads_from_scanned` stringifies at the boundary; new `normalise_queue_keys` heals already-corrupted state and parks stranded IDs in `pending_delete`; `test_topic_queue_key_type.py` (7 tests). Deletion safety untouched — the bot-sent registry guard is still the only `deleteMessage` gate. |
+| 2026-08-10 | ✅ Fixed 2026-08-10 | **C05 orphan: old "Unreplied:" posts never deleted.** Queue entries carry Telegram's raw **int** `message_thread_id`, but `topic_queues` is JSON so its keys are always **str** - `setdefault(51357, …)` missed the on-disk `"51357"` slot, so `existing.is_empty` was True and the previous batch was never deleted. The save then wrote a second, int-keyed slot, overwriting the real one and stranding those IDs beyond the L28 retry sweep. Missed by the suite because every test passed `thread_id` as a str, the one type production never sends. | `_threads_from_scanned` stringifies at the boundary; new `normalise_queue_keys` heals already-corrupted state and parks stranded IDs in `pending_delete`; `test_topic_queue_key_type.py` (7 tests). Deletion safety untouched - the bot-sent registry guard is still the only `deleteMessage` gate. |
 | 2026-03-27 | ✅ Fixed 2026-03-27 | Unknown voter UIDs displayed as raw numbers in poll pings | Added `"Unknown (uid)"` fallback; added DragonFox2000 to C01 config |
 | 2026-03-27 | ✅ Fixed 2026-03-27 | `None.items()` crash in `session_poll.py` when `poll_user_names` is `null` | Guard added |
 | 2026-03-27 | ✅ Fixed 2026-03-27 | Missing `build_hp_tracker` import in `cmd_conditions_hp.py` (would NameError in production) | Import added |
-| 2026-04-06 | ✅ Fixed 2026-04-06 | C11 queue links broken — private group requires `t.me/c/…` not `t.me/Path_Wars/…` | `_build_link()` added to `queue_scan.py` using per-campaign `group_username` |
-| 2026-04-06 | ✅ Fixed 2026-04-06 | "Send failed ×7" — `unpin_message` logs 400 errors when Telegram already auto-unpinned expired polls | `suppress_errors` param added to `_post`; unpin and delete silently ignore "message not found" |
-| 2026-04-08 | ✅ Fixed 2026-04-08 | Poll week number wrong — Sunday W14 poll labelled "W14/52" instead of "W15/52" | Use Monday's ISO week number when posting on Sunday |
-| 2026-04-08 | ✅ Fixed 2026-04-08 | Vote notification dates drift mid-week — Monday shown as Apr 14 instead of Apr 6 | Poll options stored in state at creation; all notifications use stored options |
+| 2026-04-06 | ✅ Fixed 2026-04-06 | C11 queue links broken - private group requires `t.me/c/…` not `t.me/Path_Wars/…` | `_build_link()` added to `queue_scan.py` using per-campaign `group_username` |
+| 2026-04-06 | ✅ Fixed 2026-04-06 | "Send failed ×7" - `unpin_message` logs 400 errors when Telegram already auto-unpinned expired polls | `suppress_errors` param added to `_post`; unpin and delete silently ignore "message not found" |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Poll week number wrong - Sunday W14 poll labelled "W14/52" instead of "W15/52" | Use Monday's ISO week number when posting on Sunday |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Vote notification dates drift mid-week - Monday shown as Apr 14 instead of Apr 6 | Poll options stored in state at creation; all notifications use stored options |
 | 2026-04-08 | ✅ Fixed 2026-04-08 | `promote_poll_voters.py` missed `9100000xxx` placeholder range (Patrick Coxx) | Expanded `_is_placeholder` to cover `9100000xxx` |
 | 2026-04-08 | ✅ Fixed 2026-04-08 | Telegram rate-limit warnings from per-topic queue bursts | 1s sleep between campaign posts in `topic_queue_poster.py` |
-| 2026-04-08 | ✅ Fixed 2026-04-08 | Diagnostic showed `Worker ID: {...}` as rate-limit context — GitHub Actions infra lines not filtered correctly | Fixed filter to run on timestamp-stripped line; expanded infra prefix list |
+| 2026-04-08 | ✅ Fixed 2026-04-08 | Diagnostic showed `Worker ID: {...}` as rate-limit context - GitHub Actions infra lines not filtered correctly | Fixed filter to run on timestamp-stripped line; expanded infra prefix list |
 | 2026-04-09 | ✅ Fixed 2026-04-09 | Per-topic queue posted to wrong thread in multi-topic campaigns (C06 Kibwe combat entries posted to PBP thread) | Added `thread_id` to scan entries; poster groups by thread and posts to each separately |
 | 2026-04-13 | ✅ Fixed 2026-04-13 | Diagnostic showing git credential file paths as rate-limit context | Added path-based filter for `/home/runner` and `git-credentials-` lines; preview bumped to 200 chars |
-| 2026-04-15 | ✅ Closed 2026-04-15 | C09 Metal City CHAT topic `104202` — decision on whether to track | Won't track. OOC/general discussion channel, not RP content. Queue, inactivity, and milestones don't apply. |
-| 2026-06-15 | ✅ Fixed 2026-06-15 | Bot unpinned posts it didn't own — GM pins vanished when a thread's queue first posted | `_post_thread_queue` empty-slot branch called `unpin_all_messages` (Telegram `unpinAllChatMessages`, which ignores `message_thread_id` and clears pins group-wide). Removed the call; bot now only ever unpins a specific message id it pinned itself |
-| 2026-04-15 | ✅ Closed 2026-04-15 | C11 unknown poll UIDs `7754924188`, `6464119705`, `6234551152` | No action needed — `promote_poll_voters.py` auto-captures real UIDs on next Sunday vote. |
+| 2026-04-15 | ✅ Closed 2026-04-15 | C09 Metal City CHAT topic `104202` - decision on whether to track | Won't track. OOC/general discussion channel, not RP content. Queue, inactivity, and milestones don't apply. |
+| 2026-06-15 | ✅ Fixed 2026-06-15 | Bot unpinned posts it didn't own - GM pins vanished when a thread's queue first posted | `_post_thread_queue` empty-slot branch called `unpin_all_messages` (Telegram `unpinAllChatMessages`, which ignores `message_thread_id` and clears pins group-wide). Removed the call; bot now only ever unpins a specific message id it pinned itself |
+| 2026-04-15 | ✅ Closed 2026-04-15 | C11 unknown poll UIDs `7754924188`, `6464119705`, `6234551152` | No action needed - `promote_poll_voters.py` auto-captures real UIDs on next Sunday vote. |
 
 ---
 
@@ -450,6 +450,6 @@ falsy/absent inputs for every fallback path.
 
 **Key rule:** 100% coverage does not mean 100% correct. For any function
 with a fallback (`entry.get("x", "")`, `if value: ... else: ...`), tests
-must include cases where the primary value is `None`, missing, or empty —
+must include cases where the primary value is `None`, missing, or empty -
 not just the happy path. Untested fallback paths are how bugs ship despite
 full coverage.

@@ -1,4 +1,4 @@
-"""Tests for refusal_alert.py — Telegram alert poster for delete refusals.
+"""Tests for refusal_alert.py - Telegram alert poster for delete refusals.
 
 Covers:
   * No refusals -> no Telegram call, return 0
@@ -64,7 +64,7 @@ def test_refusals_with_config_posts_and_marks(monkeypatch):
 def test_missing_config_returns_one_does_not_mark(monkeypatch):
     rl.record_refusal(-1001, 12345, timestamp="2026-05-09T10:00:00+00:00")
 
-    # No env, no config — clear environment
+    # No env, no config - clear environment
     monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
     monkeypatch.delenv("GITHUB_SHA", raising=False)
 
@@ -74,7 +74,7 @@ def test_missing_config_returns_one_does_not_mark(monkeypatch):
 
     assert rc == 1
     post.assert_not_called()
-    # Refusal not marked — should still be visible next run.
+    # Refusal not marked - should still be visible next run.
     assert len(rl.get_unalerted_refusals()) == 1
 
 
@@ -90,7 +90,7 @@ def test_telegram_failure_returns_one_does_not_mark(monkeypatch):
         rc = refusal_alert.main()
 
     assert rc == 1
-    # Marker not advanced — refusal still visible
+    # Marker not advanced - refusal still visible
     assert len(rl.get_unalerted_refusals()) == 1
 
 

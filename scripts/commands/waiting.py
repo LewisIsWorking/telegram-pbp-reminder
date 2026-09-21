@@ -117,5 +117,5 @@ def build_waiting_all(user_id: str, user_name: str,
     if not lines:
         return f"Nothing waiting on you, {user_name}. GM's all caught up!"
 
-    lines.insert(0, f"⏳ {user_name} — waiting on GM: {total}\n")
+    lines.insert(0, f"⏳ {user_name} - waiting on GM: {total}\n")
     return "\n".join(lines)

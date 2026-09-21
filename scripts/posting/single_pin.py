@@ -2,7 +2,7 @@
 Replace-only single-pin slot for per-thread pinned queues.
 
 Where ``QueueHistory`` retains the last N batches, ``SinglePin``
-retains just one — the current pin in a topic. When a new batch is
+retains just one - the current pin in a topic. When a new batch is
 posted, the previous batch is deleted and the new one becomes current.
 
 Used by per-campaign topic queues, where only the latest queue should
@@ -30,7 +30,7 @@ from posting.message_batch import MessageBatch
 class SinglePin:
     """Manage the single 'current pin' batch for one topic thread.
 
-    All methods are static — the class is a namespace, not a stateful
+    All methods are static - the class is a namespace, not a stateful
     object. The slot dict is the source of truth; methods read from
     and write to it in place.
     """

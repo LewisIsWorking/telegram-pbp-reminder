@@ -1,7 +1,7 @@
 """The state schema: which keys exist, and which partition file holds each.
 
 Extracted from ``state.py`` on 2026-08-15, which had reached 225 lines.
-Pure data, no I/O — ``state.py`` stays the load/save coordinator and this
+Pure data, no I/O - ``state.py`` stays the load/save coordinator and this
 file answers "what is state made of".
 
 ⚠️ **A key absent from PARTITIONS is silently discarded on every save.**
@@ -91,7 +91,7 @@ PARTITIONS: dict[str, list[str]] = {
     "players": [
         "players", "removed_players", "player_registry", "player_history",
         "player_boons", "mvp_wins", "characters", "away",
-        # /available — player-entered data that was being discarded.
+        # /available - player-entered data that was being discarded.
         "availability",
     ],
     "queue": [
@@ -108,7 +108,7 @@ PARTITIONS: dict[str, list[str]] = {
         "clocks", "conditions", "hp_tracker", "loot", "npcs",
         "pins", "quests", "reactions", "timers", "votes",
         "campaign_notes",
-        # /timeline — GM-entered entries that were being discarded.
+        # /timeline - GM-entered entries that were being discarded.
         "timeline_events",
         # Recruitment venue rotation, added 2026-08-20. ⚠️ REQUIRED, not
         # optional. save() builds each partition as

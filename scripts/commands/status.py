@@ -126,7 +126,7 @@ def build_overview(config: dict, state: dict) -> str:
     week_ago = now - timedelta(days=7)
     maps = build_topic_maps(config)
 
-    lines = ["Path Wars — Campaign Overview:", ""]
+    lines = ["Path Wars - Campaign Overview:", ""]
 
     total_posts_all = 0
     total_players_all = 0
@@ -159,7 +159,7 @@ def build_overview(config: dict, state: dict) -> str:
             else:
                 age = f"{int(hours / 24)}d"
         else:
-            age = "—"  # pragma: no cover
+            age = "-"  # pragma: no cover
 
         # Player count (excluding GMs)
         players = [p for p in state.get("players", {}).values()

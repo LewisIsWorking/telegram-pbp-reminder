@@ -1,4 +1,4 @@
-"""Tests extracted from test_final_100.py — bin 3.
+"""Tests extracted from test_final_100.py - bin 3.
 
 Sections in this file:
   - commands/summary.py content branches
@@ -87,7 +87,7 @@ def test_summary_quests():
 
 def test_summary_notes():
     from commands.summary import build_summary
-    # notes show as "N notes (/notes)" — check for notes keyword
+    # notes show as "N notes (/notes)" - check for notes keyword
     state = {"clocks": {}, "loot": {}, "npcs": {}, "quests": {},
              "hp_tracker": {}, "conditions": {}, "away": {}, "pins": {},
              "notes": {"100": ["Session notes: the party split up"]}}

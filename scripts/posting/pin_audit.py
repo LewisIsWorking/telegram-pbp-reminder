@@ -2,15 +2,15 @@
 
 Complements ``refusal_log`` (which records only *blocked* mutations).
 This log records every pin, unpin, and delete the bot actually
-attempts — success or failure, plus the resolved originating call site
-— so that when a pinned message disappears we can answer definitively:
+attempts - success or failure, plus the resolved originating call site
+- so that when a pinned message disappears we can answer definitively:
 did the bot touch it, and from which code path?
 
 Deletes are logged too because of a second, subtler way a pin can
 vanish: Telegram **auto-unpins a message when it is deleted**. If a GM
 or player manually pinned a message the *bot* had sent, and the bot
 later deletes that message during queue eviction, the pin disappears
-with no unpin call ever happening — so an unpin-only log would show
+with no unpin call ever happening - so an unpin-only log would show
 nothing. Logging deletes closes that blind spot: the vanished message
 id will appear here as a ``delete`` entry instead.
 
@@ -19,23 +19,23 @@ Entries append to ``data/state/pin_audit_log.json``. Each is a dict:
     action      "pin" | "unpin" | "delete"
     chat_id     Telegram chat the action targeted
     message_id  the message pinned/unpinned/deleted
-    ok          bool — did Telegram accept the call?
-    refused     bool — True for a mutation the registry guard blocked
-    bot_owned   bool|None — was the target in the bot-sent registry?
+    ok          bool - did Telegram accept the call?
+    refused     bool - True for a mutation the registry guard blocked
+    bot_owned   bool|None - was the target in the bot-sent registry?
                 False = the bot touched a message it did NOT make (the
                 non-bot alert's trigger); None on older/uncertain entries
     site        "file:line" of the originating caller (wrapper frames
                 in telegram.py / safe_delete.py / this file are skipped)
 
 Why an on-disk trail: only this bot has pin rights in the affected
-group, yet human pins have gone missing — so we need ground truth on
+group, yet human pins have gone missing - so we need ground truth on
 what the bot pins, unpins, and deletes, surviving the process exit and
 landing in the next CI commit for review.
 
 The log is bounded to the most recent ``_MAX_ENTRIES`` rows. Deletes
 are higher-volume than pins/unpins (a multi-chunk queue eviction
 deletes several ids per run), so the cap is set to retain roughly two
-weeks of combined activity — enough to still hold the relevant rows
+weeks of combined activity - enough to still hold the relevant rows
 when a disappearance is reported days later. Recording is best-effort:
 a logging failure must never break the actual pin/unpin/delete, so
 ``record_action`` swallows its own exceptions.
@@ -52,7 +52,7 @@ _LOG_NAME = "pin_audit_log"
 _MAX_ENTRIES = 3000
 _store = StateStore()
 
-# Frames in these files are wrappers, not the true caller — skip them
+# Frames in these files are wrappers, not the true caller - skip them
 # when resolving the originating call site.
 _WRAPPER_FILES = ("pin_audit.py", "safe_delete.py", "telegram.py")
 
@@ -82,7 +82,7 @@ def record_action(action: str, chat_id: int, message_id: int, ok: bool,
     """Append a pin/unpin/delete audit entry (bounded to the most recent rows).
 
     ``bot_owned`` records whether the target message was in the bot-sent
-    registry at action time — False marks the bot touching a message it
+    registry at action time - False marks the bot touching a message it
     did NOT make, which is the red-flag the non-bot alert watches for.
     Callers pass it explicitly (unpin/delete know it from the guard; pin
     is unguarded so it checks). Left ``None`` when a caller can't say.
@@ -111,7 +111,7 @@ def record_action(action: str, chat_id: int, message_id: int, ok: bool,
             if len(existing) > _MAX_ENTRIES:
                 existing = existing[-_MAX_ENTRIES:]
             _store.save_aux(_LOG_NAME, existing)
-    except Exception as e:  # pragma: no cover — diagnostic must never break ops
+    except Exception as e:  # pragma: no cover - diagnostic must never break ops
         print(f"[pin_audit] failed to record {action} "
               f"mid={message_id}: {e}")
 
@@ -152,7 +152,7 @@ def is_non_bot(entry: dict) -> bool:
 
 
 def reset_for_test() -> None:
-    """Test helper — wipe the on-disk audit log.
+    """Test helper - wipe the on-disk audit log.
 
     Tests should monkeypatch ``_store`` to a tmp-rooted StateStore
     before calling this, so production state is not touched.

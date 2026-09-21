@@ -2,7 +2,7 @@
 Per-topic pinned queue message formatter.
 
 Formats a slim queue message for posting directly in a PBP topic
-thread. No campaign header, no age legend, no quote/preview text —
+thread. No campaign header, no age legend, no quote/preview text -
 the reader is already in context and can scroll to see the
 cited message. The bot-topic GM Queue (scheduled/queue_reminder.py)
 remains verbose by design; this per-topic format is the slim sibling.
@@ -14,7 +14,7 @@ about the meta brick in RP channels):
     ↗ Ryo · 🌳 14h · t.me/Path_Wars/51357/153422
     ↗ Bruce · 🌳 13h · t.me/Path_Wars/142887/153432
 
-The link is preserved (Lewis hard requirement — every entry needs
+The link is preserved (Lewis hard requirement - every entry needs
 its own jumpable link), the age icon is preserved (urgency hint),
 and everything else is stripped. See L27 in REFACTOR_PROGRESS.md
 for the two-tier rationale.
@@ -55,7 +55,7 @@ def _format_topic_line(entry: dict, hours: float) -> str:
     Drops the numbered prefix, message-id brackets, and quote/preview
     text used by the bot-topic format. Players see only what's needed
     to identify the unreplied message and jump to it. If the entry has
-    no link, the line is just "↗ Firstname · {icon} {age}" — no
+    no link, the line is just "↗ Firstname · {icon} {age}" - no
     trailing separator dangling.
     """
     icon = entry_age_icon(hours)

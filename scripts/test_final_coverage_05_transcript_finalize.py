@@ -1,13 +1,13 @@
-"""Tests extracted from test_final_coverage.py — bin 5.
+"""Tests extracted from test_final_coverage.py - bin 5.
 
 Sections in this file:
-  - transcript/finalize.py — update_transcript_index
-  - commands/player.py — build_mystats_all
-  - commands/player.py — build_mystats_all
-  - scheduled/reports.py — post_roster_summary with active player
-  - scheduled/reports.py — post_roster_summary with active player
-  - helpers_pkg/time_utils.py — parse_away_date
-  - helpers_pkg/time_utils.py — parse_away_date
+  - transcript/finalize.py - update_transcript_index
+  - commands/player.py - build_mystats_all
+  - commands/player.py - build_mystats_all
+  - scheduled/reports.py - post_roster_summary with active player
+  - scheduled/reports.py - post_roster_summary with active player
+  - helpers_pkg/time_utils.py - parse_away_date
+  - helpers_pkg/time_utils.py - parse_away_date
 """
 """
 Tests targeting the remaining coverage gaps:
@@ -69,7 +69,7 @@ def _lb_config():
                               "name": "Kibwe", "gm_user_ids": [999]}]}
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# transcript/finalize.py — update_transcript_index
+# transcript/finalize.py - update_transcript_index
 
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -104,7 +104,7 @@ def test_update_transcript_index_empty_dir(tmp_path):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# commands/player.py — build_mystats_all
+# commands/player.py - build_mystats_all
 
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -140,7 +140,7 @@ def test_mystats_all_with_posts(mock_helpers):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/reports.py — post_roster_summary with active player
+# scheduled/reports.py - post_roster_summary with active player
 
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -178,4 +178,4 @@ def test_roster_posts_active_player(mock_helpers):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# helpers_pkg/time_utils.py — parse_away_date
+# helpers_pkg/time_utils.py - parse_away_date

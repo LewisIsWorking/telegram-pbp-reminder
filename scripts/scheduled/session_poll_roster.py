@@ -20,7 +20,7 @@ def _poll_roster(config: dict, state: dict, pid: str, pair: dict) -> dict:
     # active_poll_uids honours the optional per-campaign poll_roster_filter:
     # when set, the list is trimmed to the campaign's active roster so players
     # who have left/gone inactive are no longer polled or pinged. (A filtered
-    # result of [] yields an empty roster — it must NOT fall through to the
+    # result of [] yields an empty roster - it must NOT fall through to the
     # pbp-topic player scan, which would re-add the dropped players.)
     if pair.get("poll_user_ids"):
         for uid in active_poll_uids(pair, config, state):

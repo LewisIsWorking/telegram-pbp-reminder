@@ -2,12 +2,12 @@
 
 | Data | Location | Persistence |
 |------|----------|-------------|
-| Live state — operational | `data/state/live.json` | Written every run, git-committed |
-| Live state — players | `data/state/players.json` | Written every run, git-committed |
-| Live state — GM queue | `data/state/queue.json` | Written every run, git-committed |
+| Live state - operational | `data/state/live.json` | Written every run, git-committed |
+| Live state - players | `data/state/players.json` | Written every run, git-committed |
+| Live state - GM queue | `data/state/queue.json` | Written every run, git-committed |
 | Per-campaign queues | `data/state/queues/{pid}.json` | Written on each reply/markdone, git-committed |
-| Live state — activity | `data/state/activity.json` | Written every run, git-committed |
-| Live state — trackers | `data/state/trackers.json` | Written every run, git-committed |
+| Live state - activity | `data/state/activity.json` | Written every run, git-committed |
+| Live state - trackers | `data/state/trackers.json` | Written every run, git-committed |
 | Emergency backup | GitHub Gist `pbp_state.json` | Written every run (read-only fallback) |
 | Legacy state backup | `data/state_backup.json` | Daily snapshot (superseded by state files) |
 | PBP transcripts | `data/pbp_logs/` | Per-campaign monthly markdown files |
@@ -16,9 +16,9 @@
 
 ### Load order
 
-1. **Files** — `data/state/*.json` (all four core partitions must exist)
-2. **Gist** — fallback if any file is missing (e.g. first run after a fresh checkout)
-3. **Defaults** — empty state if neither source is available
+1. **Files** - `data/state/*.json` (all four core partitions must exist)
+2. **Gist** - fallback if any file is missing (e.g. first run after a fresh checkout)
+3. **Defaults** - empty state if neither source is available
 
 The bot refuses to save if no source loaded successfully, preventing an
 empty-state write from wiping data.
@@ -28,7 +28,7 @@ empty-state write from wiping data.
 Campaigns in separate Telegram groups (e.g. C11 Dark Pockets) carry a
 `group_id` override in their `config.json` topic pair. The bot operates
 across all groups simultaneously in each hourly run. `send_message` and
-`send_poll` accept any `chat_id`, so no extra authentication is needed —
+`send_poll` accept any `chat_id`, so no extra authentication is needed -
 just ensure the bot is a member of each group.
 
 ### State partition layout
@@ -46,7 +46,7 @@ Every file is committed to the repo by the workflow on each run,
 giving a complete git history of all state changes.
 
 
-### Per-campaign queue files — topic pin state
+### Per-campaign queue files - topic pin state
 
 Each `data/state/queues/{pid}.json` now carries two additional fields
 alongside `unreplied`, `replied`, and `reply_log`:
@@ -57,7 +57,7 @@ alongside `unreplied`, `replied`, and `reply_log`:
 | `topic_fingerprint` | `string` | Change-detection string (`"t1\|t2\|…"` or `"empty"`). The hourly poster skips reposting if this matches the current entries. |
 
 These fields are managed exclusively by `scheduled/topic_queue_poster.py`
-and require no manual migration — they default to absent/null on first run.
+and require no manual migration - they default to absent/null on first run.
 
 ## Versioning
 

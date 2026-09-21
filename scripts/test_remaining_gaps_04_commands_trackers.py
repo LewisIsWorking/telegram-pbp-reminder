@@ -1,17 +1,17 @@
-"""Tests extracted from test_remaining_gaps.py — bin 4.
+"""Tests extracted from test_remaining_gaps.py - bin 4.
 
 Sections in this file:
-  - commands/trackers.py:97 — no NPCs
-  - commands/waiting.py:110-111 — invalid time in all-campaigns view
-  - dispatch/bot_topic.py:138 — global cmd campaign_name
-  - dispatch/cmd_clocks.py:123 — clock not found message
-  - dispatch/cmd_conditions_hp.py:194 — hp bad args
-  - dispatch/cmd_gm.py:99-106 — /session set
-  - dispatch/cmd_info.py:130-131 — /queue for GM
-  - dispatch/cmd_player.py:136 — roll error branch
-  - dispatch/cmd_search.py:87 — blocked category skipped
+  - commands/trackers.py:97 - no NPCs
+  - commands/waiting.py:110-111 - invalid time in all-campaigns view
+  - dispatch/bot_topic.py:138 - global cmd campaign_name
+  - dispatch/cmd_clocks.py:123 - clock not found message
+  - dispatch/cmd_conditions_hp.py:194 - hp bad args
+  - dispatch/cmd_gm.py:99-106 - /session set
+  - dispatch/cmd_info.py:130-131 - /queue for GM
+  - dispatch/cmd_player.py:136 - roll error branch
+  - dispatch/cmd_search.py:87 - blocked category skipped
 """
-"""Final targeted tests for all remaining coverage gaps — 6% to close."""
+"""Final targeted tests for all remaining coverage gaps - 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -34,7 +34,7 @@ def _ctx(**kwargs):
     base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
     return base
 
-# ─── commands/trackers.py:97 — no NPCs ──────────────────────────────────────
+# ─── commands/trackers.py:97 - no NPCs ──────────────────────────────────────
 
 def test_trackers_no_npcs():
     from commands.trackers import build_npcs
@@ -43,7 +43,7 @@ def test_trackers_no_npcs():
 
 
 
-# ─── commands/waiting.py:110-111 — invalid time in all-campaigns view ────────
+# ─── commands/waiting.py:110-111 - invalid time in all-campaigns view ────────
 
 def test_waiting_all_invalid_time():
     from commands.waiting import build_waiting_all
@@ -61,7 +61,7 @@ def test_waiting_all_invalid_time():
 
 
 
-# ─── dispatch/bot_topic.py:138 — global cmd campaign_name ───────────────────
+# ─── dispatch/bot_topic.py:138 - global cmd campaign_name ───────────────────
 
 def test_bot_topic_global_cmd_sets_campaign_name():
     from dispatch.bot_topic import handle_bot_topic_cmd
@@ -85,7 +85,7 @@ def test_bot_topic_global_cmd_sets_campaign_name():
 
 
 
-# ─── dispatch/cmd_clocks.py:123 — clock not found message ───────────────────
+# ─── dispatch/cmd_clocks.py:123 - clock not found message ───────────────────
 
 def test_cmd_clocks_not_found_message():
     from dispatch.cmd_clocks import handle as clocks_handle
@@ -97,7 +97,7 @@ def test_cmd_clocks_not_found_message():
 
 
 
-# ─── dispatch/cmd_conditions_hp.py:194 — hp bad args ────────────────────────
+# ─── dispatch/cmd_conditions_hp.py:194 - hp bad args ────────────────────────
 
 def test_cmd_hp_bad_args():
     from dispatch.cmd_conditions_hp import handle as hp_handle
@@ -109,7 +109,7 @@ def test_cmd_hp_bad_args():
 
 
 
-# ─── dispatch/cmd_gm.py:99-106 — /session set ────────────────────────────────
+# ─── dispatch/cmd_gm.py:99-106 - /session set ────────────────────────────────
 
 def test_cmd_gm_session_set():
     from dispatch.cmd_gm import handle as gm_handle
@@ -129,7 +129,7 @@ def test_cmd_gm_session_set_invalid():
 
 
 
-# ─── dispatch/cmd_info.py:130-131 — /queue for GM ────────────────────────────
+# ─── dispatch/cmd_info.py:130-131 - /queue for GM ────────────────────────────
 
 def test_cmd_info_queue_gm():
     from dispatch.cmd_info import handle as info_handle
@@ -145,7 +145,7 @@ def test_cmd_info_queue_gm():
 
 
 
-# ─── dispatch/cmd_player.py:136 — roll error branch ─────────────────────────
+# ─── dispatch/cmd_player.py:136 - roll error branch ─────────────────────────
 
 def test_cmd_player_roll_error():
     from dispatch.cmd_player import handle as player_handle
@@ -158,7 +158,7 @@ def test_cmd_player_roll_error():
 
 
 
-# ─── dispatch/cmd_search.py:87 — blocked category skipped ───────────────────
+# ─── dispatch/cmd_search.py:87 - blocked category skipped ───────────────────
 
 def test_search_blocked_category_skipped():
     from dispatch.cmd_search import handle_search
@@ -171,6 +171,6 @@ def test_search_blocked_category_skipped():
     ], "total": {"value": 1}}}
     with patch("dispatch.cmd_search.requests.post", return_value=m):
         handle_search("goblin", -1, 999, tg)
-    # Creature is blocked — no results shown but no crash
+    # Creature is blocked - no results shown but no crash
     assert tg.send_message.call_count == 1
 

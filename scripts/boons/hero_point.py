@@ -1,4 +1,4 @@
-"""Hero Point campaign picker — MVP of the Week award handler."""
+"""Hero Point campaign picker - MVP of the Week award handler."""
 
 import telegram as tg
 
@@ -41,7 +41,7 @@ def post_hero_point_picker(winner_uid: str, winner_name: str,
 
     tg.send_message_with_buttons(
         group_id, leaderboard_topic,
-        f"🎲 {winner_name} — which campaign gets the Hero Point?",
+        f"🎲 {winner_name} - which campaign gets the Hero Point?",
         buttons,
     )
 
@@ -69,7 +69,7 @@ def process_hero_campaign_callback(cb: dict, config: dict, state: dict) -> bool:
     bot_topic = config.get("bot_topic_id")
     if bot_topic:
         tg.send_message(config["group_id"], bot_topic,
-                        f"✅ +1 Hero Point for {campaign} — {name}")
+                        f"✅ +1 Hero Point for {campaign} - {name}")
     del state["pending_hero_points"][uid]
     print(f"Hero Point claimed by {name} for {campaign}")
     return True

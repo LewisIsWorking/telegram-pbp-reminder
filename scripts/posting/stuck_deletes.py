@@ -1,12 +1,12 @@
 """Persistent record of message IDs Telegram will not let the bot delete.
 
 Added 2026-08-16 alongside the ``perform_guarded_delete`` fix. Before
-that fix the bot could not tell "deleted" from "Telegram refused" —
+that fix the bot could not tell "deleted" from "Telegram refused" -
 ``"message can't be deleted"`` was in ``_post``'s ``suppress_errors``
 tuple, so a refusal came back as soft success. Result: **715 deletes in
 the pin audit, 715 successes, zero failures, ever**, while an
 ``Unreplied: 2`` post from 2026-08-03 sat in the C06 topic the whole
-time. See ``a-printed-fault-is-not-a-gate`` — detecting a fault and
+time. See ``a-printed-fault-is-not-a-gate`` - detecting a fault and
 recording it as fine is the same as not detecting it.
 
 Removing the suppression makes a refused delete return ``False``, which
@@ -38,7 +38,7 @@ from state_store import StateStore
 _LOCK = threading.Lock()
 
 # Aux file name; StateStore keeps it beside refusal_log.json rather than
-# in live.json, for the same reason refusal_log does — an audit record
+# in live.json, for the same reason refusal_log does - an audit record
 # must not vanish through routine state mutation.
 _LOG_NAME = "stuck_deletes"
 _store = StateStore()
@@ -95,7 +95,7 @@ def note_failed_delete(chat_id: int, message_id: int) -> bool:
               f"Telegram declined {MAX_ATTEMPTS} times. The message is still "
               f"in the chat and must be deleted by hand.")
         # reason= is load-bearing. Without it the alert describes this as
-        # a bot-sent-registry refusal, which it is not — the ID is in the
+        # a bot-sent-registry refusal, which it is not - the ID is in the
         # registry, Telegram simply will not remove the message. That
         # mislabelling shipped on 2026-08-16 and sent Lewis to the wrong
         # runbook for 11 messages.
@@ -120,7 +120,7 @@ def hopeless_ids() -> list[int]:
 
 
 def clear_stuck(message_id: int) -> None:
-    """Forget one ID — for when a human deletes the message manually.
+    """Forget one ID - for when a human deletes the message manually.
 
     Also the escape hatch if the bot regains delete rights: without it a
     hopeless ID stays hopeless forever on a counter that no longer
@@ -134,6 +134,6 @@ def clear_stuck(message_id: int) -> None:
 
 
 def reset_for_test() -> None:
-    """Test helper — wipe the log. Monkeypatch ``_store`` first."""
+    """Test helper - wipe the log. Monkeypatch ``_store`` first."""
     with _LOCK:
         _store.delete_aux(_LOG_NAME)

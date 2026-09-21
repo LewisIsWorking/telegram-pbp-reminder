@@ -1,4 +1,4 @@
-"""Tests extracted from test_push_to_100.py — bin 1.
+"""Tests extracted from test_push_to_100.py - bin 1.
 
 Sections in this file:
   - cmd_clocks.py

@@ -23,7 +23,7 @@ def build_health(config: dict, state: dict) -> str:
         topic = state.get("topics", {}).get(pid, {})
         last_time = topic.get("last_message_time")
         if not last_time:
-            lines.append(f"⚫ {label} — no data")
+            lines.append(f"⚫ {label} - no data")
             continue
 
         last_dt = datetime.fromisoformat(last_time)
@@ -78,7 +78,7 @@ def build_health(config: dict, state: dict) -> str:
         q_str = f" 📋{queue_count}" if queue_count else ""
 
         lines.append(
-            f"{icon} {label}{session_str} — "
+            f"{icon} {label}{session_str} - "
             f"{week_posts}/wk, {player_count}p, last {age}{q_str}"
         )
 

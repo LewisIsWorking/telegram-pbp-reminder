@@ -1,4 +1,4 @@
-"""Tests for checker.py — profile (part b) group.
+"""Tests for checker.py - profile (part b) group.
 
 Extracted from test_checker.py during the test-split refactor (phase 2).
 Module imports, helpers, and the _LOGS_DIR redirection setup live in
@@ -133,7 +133,7 @@ def test_npc_add():
     config = _make_config()
     state = _make_state()
 
-    updates = [_make_msg(1, 100, "/npc Gorund — Dwarven blacksmith", user_id=999, first_name="GM")]
+    updates = [_make_msg(1, 100, "/npc Gorund - Dwarven blacksmith", user_id=999, first_name="GM")]
     checker.process_updates(updates, config, state)
 
     npcs = state.get("npcs", {}).get("100", [])

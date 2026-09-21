@@ -14,7 +14,7 @@ from players.permanence import is_permanent
 
 
 def test_is_permanent_per_record_flag_true():
-    """Per-record flag True is recognised \u2014 backward compatible
+    """Per-record flag True is recognised - backward compatible
     with the pre-2026-05-17 behaviour."""
     assert is_permanent({"user_id": "1", "permanent": True}, {}) is True
 

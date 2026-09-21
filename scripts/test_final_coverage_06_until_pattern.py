@@ -1,7 +1,7 @@
-"""Tests extracted from test_final_coverage.py — bin 6.
+"""Tests extracted from test_final_coverage.py - bin 6.
 
 Sections in this file:
-  - until pattern — may parse or return None, but must not raise
+  - until pattern - may parse or return None, but must not raise
   - Misc single-line gaps
 """
 """
@@ -83,7 +83,7 @@ def test_parse_away_duration_weeks():
 
 def test_parse_away_duration_until():
     now = datetime(2026, 4, 3, tzinfo=timezone.utc)
-    # until pattern — may parse or return None, but must not raise
+    # until pattern - may parse or return None, but must not raise
     result = parse_away_duration("until May 1 vacation", now)
     assert isinstance(result, tuple)
 

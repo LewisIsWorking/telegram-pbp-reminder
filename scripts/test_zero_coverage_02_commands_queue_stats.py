@@ -1,4 +1,4 @@
-"""Tests extracted from test_zero_coverage.py — bin 2.
+"""Tests extracted from test_zero_coverage.py - bin 2.
 
 Sections in this file:
   - Entry with no time still produces output (uses epoch as fallback)

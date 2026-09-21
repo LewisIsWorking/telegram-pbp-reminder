@@ -1,4 +1,4 @@
-"""Tests for scheduled/gm_queue_history.py — rolling 3-batch retention.
+"""Tests for scheduled/gm_queue_history.py - rolling 3-batch retention.
 
 Internal implementation lives in ``posting`` (MessageBatch, QueueHistory,
 post_batch). Tests patch the underlying telegram module references in

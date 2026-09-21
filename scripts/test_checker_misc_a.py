@@ -1,4 +1,4 @@
-"""Tests for checker.py — misc (part a) group.
+"""Tests for checker.py - misc (part a) group.
 
 Extracted from test_checker.py during the test-split refactor (phase 2.3).
 Module imports, helpers, and the _LOGS_DIR redirection setup live in
@@ -126,7 +126,7 @@ def test_pace_drop_skips_low_activity():
     now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
     state = _make_state()
 
-    # Last week had only 3 posts (below threshold of 5) — should not alert
+    # Last week had only 3 posts (below threshold of 5) - should not alert
     two_weeks_ago = now - timedelta(days=14)
     last_week_times = [(two_weeks_ago + timedelta(hours=i * 24)).isoformat() for i in range(3)]
 

@@ -6,8 +6,8 @@ This is the inverse of ``MessageBatch.delete_all``: where that method
 turns a batch into a list of failed IDs, this function turns a list of
 chunks into a batch (or ``None`` if every send failed).
 
-The function exists in its own module — rather than as a static method
-on ``MessageBatch`` — so the dataclass stays free of side-effecting
+The function exists in its own module - rather than as a static method
+on ``MessageBatch`` - so the dataclass stays free of side-effecting
 imports beyond the deletion helper. ``post_batch`` is the only place in
 the package that knows how to *create* a batch by talking to Telegram.
 """

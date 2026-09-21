@@ -114,7 +114,7 @@ def build_activity(pid: str, campaign_name: str, state: dict, gm_ids: set) -> st
 
     total_posts = sum(hour_totals.values())
 
-    lines = [f"📊 Activity Patterns — {campaign_name}", f"({total_posts} tracked posts)", ""]
+    lines = [f"📊 Activity Patterns - {campaign_name}", f"({total_posts} tracked posts)", ""]
 
     # Best days
     lines.append("Busiest days:")

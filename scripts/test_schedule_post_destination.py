@@ -16,7 +16,7 @@ Bot Notifications group.
 ⭐ The interesting run is the FIRST one after the move, and it is the one
 that is easy to get wrong. ``state["schedule_post_msg_id"]`` names a
 message in the OLD chat, while the next post goes to the NEW one. Deleting
-that id against the new chat either fails or — far worse — removes an
+that id against the new chat either fails or - far worse - removes an
 unrelated message that happens to share the number, because message ids
 are per-chat and collide freely across chats.
 
@@ -61,7 +61,7 @@ def test_the_old_topic_id_is_not_reused_against_a_new_chat():
 
 
 def test_without_a_chat_it_stays_in_the_main_group():
-    """The positive counterpart — the pre-move behaviour must survive."""
+    """The positive counterpart - the pre-move behaviour must survive."""
     dest = schedule_destination({"group_id": MAIN, "schedule_topic_id": 146780})
     assert dest == (MAIN, 146780)
 
@@ -134,8 +134,8 @@ def test_the_first_ever_post_deletes_nothing():
 # ── PROVE the guard can fail ─────────────────────────────────────────────────
 
 def test_the_migration_guard_can_fail():
-    """Restore the pre-fix behaviour — delete against the destination
-    chat — and confirm the migration test would go red.
+    """Restore the pre-fix behaviour - delete against the destination
+    chat - and confirm the migration test would go red.
 
     Before this change post_schedule used config["group_id"] for both the
     send and the delete, which happened to be right only because the two

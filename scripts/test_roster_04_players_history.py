@@ -1,6 +1,6 @@
-"""test_roster.py — bin 4.
+"""test_roster.py - bin 4.
 
-  - players/history.py — _post_roster (part a)
+  - players/history.py - _post_roster (part a)
 """
 """Tests for commands/roster.py and players/history.py."""
 
@@ -114,7 +114,7 @@ def test_post_roster_unknown_pid_no_crash():
     with patch("players.history.tg.send_message",
                side_effect=lambda g, t, m: sent.append(m)):
         on_join("999", "U1", "Alice", "alice", state, config)
-    assert not sent  # unknown pid — no pair found, no post
+    assert not sent  # unknown pid - no pair found, no post
 
 
 def test_roster_campaign_history_shows_leave():

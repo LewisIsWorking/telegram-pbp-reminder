@@ -1,4 +1,4 @@
-"""Tests for checker.py — milestone (part b) group.
+"""Tests for checker.py - milestone (part b) group.
 
 Extracted from test_checker.py during the test-split refactor. Module
 imports, helper functions (_make_config, _make_state, _make_msg, _utc,
@@ -14,7 +14,7 @@ from _test_checker_helpers import (
 
 
 def test_milestone_messages_milestone_missing_uses_generic():
-    """Thread is in JSON but milestone key missing — falls back to generic."""
+    """Thread is in JSON but milestone key missing - falls back to generic."""
     from scheduled.message_milestones import _MilestoneMessages, _build_msg
     _MilestoneMessages.reset()
     _MilestoneMessages._data = {"66154": {"1000": "Different milestone."}}

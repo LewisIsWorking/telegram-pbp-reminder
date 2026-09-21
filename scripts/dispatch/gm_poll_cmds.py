@@ -1,8 +1,8 @@
 """
 GM poll management commands for the bot topic.
 
-/sessionplayed <code> <week> — mark a campaign's session as happened
-/swimmingdone <week>         — mark swimming as happened
+/sessionplayed <code> <week> - mark a campaign's session as happened
+/swimmingdone <week>         - mark swimming as happened
 
 Both stop poll pings for the rest of the week and reset on Sunday.
 """
@@ -55,7 +55,7 @@ def handle_sessionplayed(args: str, user_id: str, user_name: str,
         return True
     poll["session_happened"] = True
     tg.send_message(group_id, bot_topic,
-                    f"✅ {code} week {week_num} marked as played — no more pings.")
+                    f"✅ {code} week {week_num} marked as played - no more pings.")
     print(f"Bot topic: /sessionplayed {code} W{week_num} by {user_name}")
     return True
 
@@ -85,6 +85,6 @@ def handle_swimmingdone(args: str, user_id: str, user_name: str,
         return True
     sw["session_happened"] = True
     tg.send_message(group_id, bot_topic,
-                    f"✅ Swimming week {week_num} marked as done — no more pings. 🏊")
+                    f"✅ Swimming week {week_num} marked as done - no more pings. 🏊")
     print(f"Bot topic: /swimmingdone W{week_num} by {user_name}")
     return True

@@ -1,7 +1,7 @@
-"""Tests extracted from test_utility_coverage.py — bin 5.
+"""Tests extracted from test_utility_coverage.py - bin 5.
 
 Sections in this file:
-  - promote_poll_voters.py  — test helper functions
+  - promote_poll_voters.py  - test helper functions
 """
 """
 Coverage tests for:
@@ -34,7 +34,7 @@ def _now():
     return datetime(2026, 4, 3, 12, 0, tzinfo=timezone.utc)  # Friday
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# promote_poll_voters.py  — test helper functions
+# promote_poll_voters.py  - test helper functions
 # ═══════════════════════════════════════════════════════════════════════════════
 
 _ppv_spec = _ilu.spec_from_file_location(

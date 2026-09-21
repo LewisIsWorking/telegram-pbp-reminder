@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 15.
+"""Tests extracted from test_branch_gaps.py - bin 15.
 
 Sections in this file:
   - dispatch/cmd_gm.py: _canonical_pid and kick from chat topic

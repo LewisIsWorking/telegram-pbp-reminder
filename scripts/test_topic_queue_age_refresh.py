@@ -3,7 +3,7 @@
 COVERS  ``scheduled.topic_queue_write._batch_is_stale`` and the early
         return in ``_post_thread_queue`` that it now gates.
 MISSES  The 48h limit itself. That is Telegram's behaviour, not ours, and
-        the only way to observe it is against the live API — measured by
+        the only way to observe it is against the live API - measured by
         hand on 2026-08-16 and recorded below rather than asserted here.
 PROVEN  by ``test_the_refresh_can_fail``.
 
@@ -22,7 +22,7 @@ untouched for days, and by the time a player posted and the fingerprint
 moved, the delete was already unwinnable.
 
 This is the fix for the cause. ``test_delete_can_actually_fail.py`` is
-the fix for the reporting — both are needed, because the reporting is
+the fix for the reporting - both are needed, because the reporting is
 what makes the next occurrence visible instead of silent.
 """
 from datetime import datetime, timedelta, timezone
@@ -63,7 +63,7 @@ def test_staleness_threshold(hours, expected):
 
 
 def test_threshold_sits_safely_inside_the_telegram_limit():
-    """The margin is the safety property — assert it, don't assume it."""
+    """The margin is the safety property - assert it, don't assume it."""
     assert tqa.MAX_TRACKED_AGE < timedelta(hours=48)
     assert timedelta(hours=48) - tqa.MAX_TRACKED_AGE >= timedelta(hours=6), (
         "too little slack: one missed run must not push a tracked message "
@@ -104,7 +104,7 @@ def _run(slot, entries=None):
 
 
 def test_young_unchanged_queue_is_left_alone():
-    """The early return must survive — this is the common case by far."""
+    """The early return must survive - this is the common case by far."""
     assert _run(_slot(2)).call_count == 0
 
 
@@ -120,7 +120,7 @@ def test_age_refresh_is_silent():
 
 
 def test_real_content_change_still_notifies():
-    """The positive counterpart — silencing everything would be a
+    """The positive counterpart - silencing everything would be a
     different bug, and one nobody would notice for weeks."""
     post = _run(_slot(2, fingerprint="something-else"))
     assert post.call_count == 1
@@ -141,7 +141,7 @@ def test_stale_queue_deletes_the_old_batch_first():
 
 
 def test_empty_slot_still_posts():
-    """Nothing tracked means nothing to age out — post as normal."""
+    """Nothing tracked means nothing to age out - post as normal."""
     assert _run(_slot(2, msg_ids=())).call_count == 1
 
 

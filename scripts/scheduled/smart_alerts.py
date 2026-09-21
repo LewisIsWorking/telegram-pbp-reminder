@@ -59,7 +59,7 @@ def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, m
                 f"Posts dropped from {last_week} last week to {this_week} "
                 f"this week ({drop_pct:.0f}% decrease).\n"
                 f"\n"
-                f"Just a heads-up — no action needed if the break is "
+                f"Just a heads-up - no action needed if the break is "
                 f"intentional."
             )
             print(f"Pace drop alert for {name}: {last_week} -> {this_week} ({drop_pct:.0f}%)")
@@ -74,7 +74,7 @@ def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, m
 def check_conversation_dying(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Warn when ALL participants (including GM) are silent for 48h+.
 
-    Distinct from the 4-hour nudge (which just prompts the next post) — this
+    Distinct from the 4-hour nudge (which just prompts the next post) - this
     fires once when a campaign crosses the 48h threshold, suggesting the
     campaign may need attention or a deliberate pause.
     """
@@ -89,7 +89,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
     for pid, chat_topic_id in maps.to_chat.items():
         if not helpers.feature_enabled(config, pid, "smart_alerts"):
             continue  # pragma: no cover
-        # Skip paused campaigns — they're intentionally quiet
+        # Skip paused campaigns - they're intentionally quiet
         if state.get("paused", {}).get(pid):
             continue
 
@@ -126,7 +126,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
                 f"💤 {name} has been completely silent for "
                 f"{days_silent:.1f} days.\n"
                 f"\n"
-                f"No posts from anyone — GM or players — since "
+                f"No posts from anyone - GM or players - since "
                 f"{fmt_date(latest_dt)}."
             )
             print(f"Conversation dying alert for {name}: {days_silent:.1f} days silent")

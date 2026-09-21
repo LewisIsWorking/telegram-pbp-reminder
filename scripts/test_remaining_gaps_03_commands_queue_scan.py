@@ -1,15 +1,15 @@
-"""Tests extracted from test_remaining_gaps.py — bin 3.
+"""Tests extracted from test_remaining_gaps.py - bin 3.
 
 Sections in this file:
-  - commands/queue_scan.py:107 — silence break
-  - commands/queue_stats.py:123 — excluded campaign
-  - commands/reactions.py:67 — negative count reset
-  - commands/recap.py:124-128 — long content truncation
-  - commands/status.py:162 — no last_message_time
-  - commands/summary.py:138 — many conditions
-  - commands/timeline.py:42-44 — removed players events
+  - commands/queue_scan.py:107 - silence break
+  - commands/queue_stats.py:123 - excluded campaign
+  - commands/reactions.py:67 - negative count reset
+  - commands/recap.py:124-128 - long content truncation
+  - commands/status.py:162 - no last_message_time
+  - commands/summary.py:138 - many conditions
+  - commands/timeline.py:42-44 - removed players events
 """
-"""Final targeted tests for all remaining coverage gaps — 6% to close."""
+"""Final targeted tests for all remaining coverage gaps - 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -32,7 +32,7 @@ def _ctx(**kwargs):
     base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
     return base
 
-# ─── commands/queue_scan.py:107 — silence break ──────────────────────────────
+# ─── commands/queue_scan.py:107 - silence break ──────────────────────────────
 
 def test_queue_scan_silence_break(tmp_path, monkeypatch):
     from commands.queue_scan import scan_transcripts
@@ -43,7 +43,7 @@ def test_queue_scan_silence_break(tmp_path, monkeypatch):
     log_dir.mkdir()
     month = now.strftime("%Y-%m")
     (log_dir / f"{month}.md").write_text(
-        "**Alice** (2026-03-01 10:00:00):\nHello\n*— [silence] —*\nMore stuff\n"
+        "**Alice** (2026-03-01 10:00:00):\nHello\n*- [silence] -*\nMore stuff\n"
     , encoding="utf-8")
     with patch("commands.queue_scan.helpers") as mh, \
          patch("commands.queue_scan._LOGS_DIR", tmp_path), \
@@ -60,7 +60,7 @@ def test_queue_scan_silence_break(tmp_path, monkeypatch):
 
 
 
-# ─── commands/queue_stats.py:123 — excluded campaign ────────────────────────
+# ─── commands/queue_stats.py:123 - excluded campaign ────────────────────────
 
 def test_queue_stats_excluded_campaign():
     from commands.queue_stats import build_queue_stats
@@ -79,7 +79,7 @@ def test_queue_stats_excluded_campaign():
 
 
 
-# ─── commands/reactions.py:67 — negative count reset ────────────────────────
+# ─── commands/reactions.py:67 - negative count reset ────────────────────────
 
 def test_reactions_negative_reset():
     from commands.reactions import build_reactions
@@ -92,7 +92,7 @@ def test_reactions_negative_reset():
 
 
 
-# ─── commands/recap.py:124-128 — long content truncation ────────────────────
+# ─── commands/recap.py:124-128 - long content truncation ────────────────────
 
 def test_recap_truncates_at_word_boundary():
     from commands.recap import build_recap
@@ -117,7 +117,7 @@ def test_recap_truncates_at_word_boundary():
 
 
 
-# ─── commands/status.py:162 — no last_message_time ──────────────────────────
+# ─── commands/status.py:162 - no last_message_time ──────────────────────────
 
 def test_status_no_last_message():
     from commands.status import build_status
@@ -135,11 +135,11 @@ def test_status_no_last_message():
         mh.player_full_name.return_value = "Alice"
         mh.players_by_campaign.return_value = {"100": []}
         result = build_status("100", "Kibwe", state, set(), {})
-    assert "—" in result or "Kibwe" in result
+    assert "-" in result or "Kibwe" in result
 
 
 
-# ─── commands/summary.py:138 — many conditions ───────────────────────────────
+# ─── commands/summary.py:138 - many conditions ───────────────────────────────
 
 def test_summary_many_conditions():
     from commands.summary import build_summary
@@ -159,7 +159,7 @@ def test_summary_many_conditions():
 
 
 
-# ─── commands/timeline.py:42-44 — removed players events ────────────────────
+# ─── commands/timeline.py:42-44 - removed players events ────────────────────
 
 def test_timeline_removed_player_events():
     from commands.timeline import build_timeline

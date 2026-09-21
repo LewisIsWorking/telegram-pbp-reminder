@@ -1,4 +1,4 @@
-"""Tests for posting.pin_audit — the pin/unpin forensic trail.
+"""Tests for posting.pin_audit - the pin/unpin forensic trail.
 
 Covers the append/bound/read behaviour of the log, the automatic
 call-site resolution, and that the safe_delete pin/unpin paths write

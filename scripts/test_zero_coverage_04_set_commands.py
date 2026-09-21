@@ -1,4 +1,4 @@
-"""Tests extracted from test_zero_coverage.py — bin 4.
+"""Tests extracted from test_zero_coverage.py - bin 4.
 
 Sections in this file:
   - set_commands.py

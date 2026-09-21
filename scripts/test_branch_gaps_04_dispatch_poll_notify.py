@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 4.
+"""Tests extracted from test_branch_gaps.py - bin 4.
 
 Sections in this file:
   - dispatch/poll_notify.py: capture_unknown_voter + identify_unknown_voter

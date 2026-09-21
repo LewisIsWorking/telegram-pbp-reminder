@@ -1,4 +1,4 @@
-"""Tests for checker.py — root file after phase-2.3 extraction.
+"""Tests for checker.py - root file after phase-2.3 extraction.
 
 All major feature-area tests have moved to sibling ``test_checker_<group>``
 files. See ``docs/dev/REFACTOR_PROGRESS.md`` for the full split history.

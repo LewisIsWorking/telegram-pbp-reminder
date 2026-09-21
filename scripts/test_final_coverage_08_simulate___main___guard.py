@@ -1,4 +1,4 @@
-"""Tests extracted from test_final_coverage.py — bin 8.
+"""Tests extracted from test_final_coverage.py - bin 8.
 
 Sections in this file:
   - simulate __main__ guard (part b)

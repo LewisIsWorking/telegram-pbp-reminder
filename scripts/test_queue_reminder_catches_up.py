@@ -104,5 +104,5 @@ def test_queue_reminder_posts_on_change(mock_scan, mock_ptq):
     assert state["queue_post_count"] == 1
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/potw.py — guard conditions
+# scheduled/potw.py - guard conditions
 # ═══════════════════════════════════════════════════════════════════════════════

@@ -80,7 +80,7 @@ def choose_boon_by_text(pid: str, user_id: str, choice_num: int,
     """Handle /chooseboon N command. Returns response message.
 
     Looks up pending boon by pid first, then falls back to searching by
-    winner_user_id — handles the case where the command is typed in a
+    winner_user_id - handles the case where the command is typed in a
     chat topic rather than the PBP topic the boon was issued from.
     """
     all_pending = state.get("pending_potw_boons", {})

@@ -70,7 +70,7 @@ def posts_str(n: int) -> str:
 
 
 def count_str(n: int, noun: str, plural: str | None = None) -> str:
-    """Return '1 <noun>' or 'N <noun>s' — a generalised ``posts_str``.
+    """Return '1 <noun>' or 'N <noun>s' - a generalised ``posts_str``.
 
     Added 2026-08-11: the weekly leaderboard hand-rolled its counts as
     f"{n} player posts", which read "1 player posts" and "1 GM posts" for

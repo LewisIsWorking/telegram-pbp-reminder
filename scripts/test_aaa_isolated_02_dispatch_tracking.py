@@ -1,19 +1,19 @@
-"""Tests extracted from test_aaa_isolated.py — bin 2.
+"""Tests extracted from test_aaa_isolated.py - bin 2.
 
 Sections in this file:
-  - dispatch/tracking.py:175-182 — warned player comeback
-  - helpers_pkg/config.py:43 — load settings into globals
-  - helpers_pkg/time_utils.py:110 — until-date parse returns
-  - helpers_pkg/dice.py:80 — non-kept die rolled
-  - helpers_pkg/dc_lookup.py:110-112 — adjustment returned
-  - helpers_pkg/mechanics.py:124 — hp red icon
-  - import_formatting.py:85 — media bracket
-  - transcript/formatting.py:84 — media in transcript
-  - transcript/finalize.py:51 — empty dir returns
-  - scheduled/maintenance.py:147 — excluded continue
-  - scheduled/combat_ping.py:95 — excluded continue
-  - scheduled/smart_alerts.py:110 — feature disabled continue
-  - scheduled/diagnostic_analysis.py:43 — no info match
+  - dispatch/tracking.py:175-182 - warned player comeback
+  - helpers_pkg/config.py:43 - load settings into globals
+  - helpers_pkg/time_utils.py:110 - until-date parse returns
+  - helpers_pkg/dice.py:80 - non-kept die rolled
+  - helpers_pkg/dc_lookup.py:110-112 - adjustment returned
+  - helpers_pkg/mechanics.py:124 - hp red icon
+  - import_formatting.py:85 - media bracket
+  - transcript/formatting.py:84 - media in transcript
+  - transcript/finalize.py:51 - empty dir returns
+  - scheduled/maintenance.py:147 - excluded continue
+  - scheduled/combat_ping.py:95 - excluded continue
+  - scheduled/smart_alerts.py:110 - feature disabled continue
+  - scheduled/diagnostic_analysis.py:43 - no info match
 """
 """
 MUST RUN FIRST (alphabetical ordering): these tests cover lines that
@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── dispatch/tracking.py:175-182 — warned player comeback ────────────────────
+# ── dispatch/tracking.py:175-182 - warned player comeback ────────────────────
 def test_tracking_warned_comeback_early():
     from dispatch.tracking import track_message
     now = datetime.now(timezone.utc)
@@ -62,7 +62,7 @@ def test_tracking_warned_comeback_early():
 
 
 
-# ── helpers_pkg/config.py:43 — load settings into globals ────────────────────
+# ── helpers_pkg/config.py:43 - load settings into globals ────────────────────
 def test_config_load_settings_line43():
     from helpers_pkg.config import load_settings
     # Providing a settings dict with known keys exercises lines 39-43
@@ -71,18 +71,18 @@ def test_config_load_settings_line43():
 
 
 
-# ── helpers_pkg/time_utils.py:110 — until-date parse returns ─────────────────
+# ── helpers_pkg/time_utils.py:110 - until-date parse returns ─────────────────
 def test_time_until_parse_returns():
     from helpers_pkg.time_utils import parse_away_duration
     # Use naive datetime (avoids timezone comparison issues in the function)
     now = datetime(2026, 4, 3, 12, 0, 0)
     dt, reason = parse_away_duration("until June 15", now)
-    # The function tries strptime formats — it may or may not parse
+    # The function tries strptime formats - it may or may not parse
     # Either way line 110 (return dt, reason) should be hit if it parsed
 
 
 
-# ── helpers_pkg/dice.py:80 — non-kept die rolled ─────────────────────────────
+# ── helpers_pkg/dice.py:80 - non-kept die rolled ─────────────────────────────
 def test_dice_non_kept():
     from helpers_pkg.dice import roll_dice
     # 4d6kh3: roll 4, keep highest 3 → dropped dice stringified on line 80
@@ -91,7 +91,7 @@ def test_dice_non_kept():
 
 
 
-# ── helpers_pkg/dc_lookup.py:110-112 — adjustment returned ───────────────────
+# ── helpers_pkg/dc_lookup.py:110-112 - adjustment returned ───────────────────
 def test_dc_adjustment_returned():
     from helpers_pkg.dc_lookup import dc_lookup, _DC_ADJUSTMENTS
     key = next(iter(_DC_ADJUSTMENTS))
@@ -100,7 +100,7 @@ def test_dc_adjustment_returned():
 
 
 
-# ── helpers_pkg/mechanics.py:124 — hp red icon ───────────────────────────────
+# ── helpers_pkg/mechanics.py:124 - hp red icon ───────────────────────────────
 def test_hp_icon_red_branch():
     from helpers_pkg.mechanics import hp_status_icon
     # 20% or less → red (line 124: return "🔴")
@@ -108,7 +108,7 @@ def test_hp_icon_red_branch():
 
 
 
-# ── import_formatting.py:85 — media bracket ──────────────────────────────────
+# ── import_formatting.py:85 - media bracket ──────────────────────────────────
 def test_import_fmt_media_bracket():
     from import_formatting import format_entry
     # "[document:x.pdf]" triggers the media bracket branch at line 85
@@ -117,7 +117,7 @@ def test_import_fmt_media_bracket():
 
 
 
-# ── transcript/formatting.py:84 — media in transcript ────────────────────────
+# ── transcript/formatting.py:84 - media in transcript ────────────────────────
 def test_transcript_fmt_media():
     from transcript.formatting import format_transcript_content
     result = format_transcript_content("[document:notes.pdf]")
@@ -125,7 +125,7 @@ def test_transcript_fmt_media():
 
 
 
-# ── transcript/finalize.py:51 — empty dir returns ────────────────────────────
+# ── transcript/finalize.py:51 - empty dir returns ────────────────────────────
 def test_finalize_empty_dir(tmp_path):
     from transcript.finalize import update_transcript_index
     (tmp_path / "Kibwe").mkdir()  # dir with no .md files → return
@@ -136,7 +136,7 @@ def test_finalize_empty_dir(tmp_path):
 
 
 
-# ── scheduled/maintenance.py:147 — excluded continue ─────────────────────────
+# ── scheduled/maintenance.py:147 - excluded continue ─────────────────────────
 def test_maintenance_excluded_early():
     from scheduled.maintenance import check_recruitment_needs
     config = {"group_id": -1, "gm_user_ids": [],
@@ -149,7 +149,7 @@ def test_maintenance_excluded_early():
 
 
 
-# ── scheduled/combat_ping.py:95 — excluded continue ─────────────────────────
+# ── scheduled/combat_ping.py:95 - excluded continue ─────────────────────────
 def test_combat_ping_excluded_early():
     from scheduled.combat_ping import check_combat_turns
     config = {"group_id": -1, "bot_topic_id": 999, "gm_user_ids": [],
@@ -162,7 +162,7 @@ def test_combat_ping_excluded_early():
 
 
 
-# ── scheduled/smart_alerts.py:110 — feature disabled continue ────────────────
+# ── scheduled/smart_alerts.py:110 - feature disabled continue ────────────────
 def test_smart_alerts_feature_disabled_early():
     from scheduled.smart_alerts import check_pace_drop
     now = datetime(2026, 4, 3, 12, tzinfo=timezone.utc)
@@ -175,7 +175,7 @@ def test_smart_alerts_feature_disabled_early():
 
 
 
-# ── scheduled/diagnostic_analysis.py:43 — no info match ─────────────────────
+# ── scheduled/diagnostic_analysis.py:43 - no info match ─────────────────────
 def test_diagnostic_no_info_match():
     from scheduled.diagnostic_analysis import _analyse_logs
     result = _analyse_logs(["just a regular log line"])

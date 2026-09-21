@@ -1,7 +1,7 @@
 """GM-only poll commands: /sessionplayed and /swimmingdone (2026-08-10).
 
 ⚠️ These had **zero tests**. ``dispatch/gm_poll_cmds.py`` was 78%
-``# pragma: no cover`` — 63 excluded lines covering the entire bodies of
+``# pragma: no cover`` - 63 excluded lines covering the entire bodies of
 both commands, *including the GM authorisation check*::
 
     gm_ids = set(str(g) for g in config.get("gm_user_ids", []))  # pragma: no cover
@@ -15,7 +15,7 @@ is worth protecting: a non-GM able to set it could quietly switch off
 everyone's reminders.
 
 The auth test is written first and deliberately asserts on **both**
-halves — that the refusal is sent *and* that the state was not mutated.
+halves - that the refusal is sent *and* that the state was not mutated.
 Asserting only the message would pass even if the command carried on and
 wrote the state anyway.
 """
@@ -79,7 +79,7 @@ class TestSessionPlayedAuth:
         assert state["session_poll"]["C11"]["session_happened"] is False
 
     def test_gm_is_allowed(self, tg_mock):
-        """Counterweight — proves the refusal test can fail."""
+        """Counterweight - proves the refusal test can fail."""
         from dispatch.gm_poll_cmds import handle_sessionplayed
         state = _state()
         handle_sessionplayed("C11 14", _GM, "Lewis",
@@ -88,7 +88,7 @@ class TestSessionPlayedAuth:
         assert "GMs only" not in _texts(tg_mock)
 
     def test_gm_ids_compare_as_strings(self, tg_mock):
-        """config holds ints, Telegram gives str — the cast must hold."""
+        """config holds ints, Telegram gives str - the cast must hold."""
         from dispatch.gm_poll_cmds import handle_sessionplayed
         state = _state()
         handle_sessionplayed("C11 14", "111", "Lewis",

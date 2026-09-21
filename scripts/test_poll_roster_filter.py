@@ -80,5 +80,5 @@ def test_tally_denominator_uses_filtered_count():
     slot = {"votes": {}, "voted_uids": []}
     out = build_tally_block("C01", slot, ["Friday", "Saturday"],
                             _config(pair), state)
-    assert "C01 — 0/2 voted" in out  # 2 active, not 3 configured
+    assert "C01 - 0/2 voted" in out  # 2 active, not 3 configured
     assert "@charlie" not in out

@@ -1,4 +1,4 @@
-"""Tests extracted from test_scheduled_coverage.py — bin 4.
+"""Tests extracted from test_scheduled_coverage.py - bin 4.
 
 Sections in this file:
   - Build message > 4096 chars with paragraph breaks so it splits

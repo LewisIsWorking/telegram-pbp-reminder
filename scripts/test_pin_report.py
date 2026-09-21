@@ -1,4 +1,4 @@
-"""Tests for scheduled.pin_report — daily pin digest + non-bot alert."""
+"""Tests for scheduled.pin_report - daily pin digest + non-bot alert."""
 
 from datetime import datetime, timezone
 from unittest.mock import MagicMock

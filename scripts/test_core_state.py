@@ -7,7 +7,7 @@ from unittest.mock import patch, MagicMock, call
 sys.path.insert(0, os.path.dirname(__file__))
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# state.py — gist and file I/O paths
+# state.py - gist and file I/O paths
 # ═══════════════════════════════════════════════════════════════════════════════
 
 import state as st

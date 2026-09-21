@@ -1,6 +1,6 @@
 """A report must name the message, not just its ID.
 
-COVERS  ``posting.message_facts`` — all four sources, their precedence,
+COVERS  ``posting.message_facts`` - all four sources, their precedence,
         and the one_line renderer.
 MISSES  whether the transcript archive is complete. If the bot never
         ingested a message it cannot describe it, and that is exactly
@@ -24,7 +24,7 @@ structurally unable to report its own most important finding.
 
 ⭐ ``unknown`` is the loud verdict, not the quiet one. An ID that no
 local record recognises means something asked the bot to delete a message
-it has never seen — which is stranger than either normal case.
+it has never seen - which is stranger than either normal case.
 """
 from unittest.mock import patch
 
@@ -33,7 +33,7 @@ import pytest
 from posting import message_facts as mf
 from posting.message_facts import BOT, PLAYER, UNKNOWN, describe, one_line
 
-TRANSCRIPT = """# Kibwe — 2026-08
+TRANSCRIPT = """# Kibwe - 2026-08
 
 **Ryo Yamakawa** (2026-08-15 07:51:12) msg#172171@40585:
 "Next. Next we stop those psychos and protect our city."
@@ -94,7 +94,7 @@ def test_a_registry_id_with_no_text_is_still_known_to_be_ours(tmp_path,
     """Weakest source, decisive question.
 
     Without it, every message sent before sent_log existed would read as
-    unrecognised — and 'unknown' would stop meaning anything, because the
+    unrecognised - and 'unknown' would stop meaning anything, because the
     genuinely alarming case would drown in harmless ones.
     """
     monkeypatch.setattr(mf, "_LOGS", tmp_path / "none")

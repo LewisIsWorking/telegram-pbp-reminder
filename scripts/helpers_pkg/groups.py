@@ -24,7 +24,7 @@ def campaign_link_target(config: dict, pair: dict) -> tuple[int, str | None]:
     A campaign with its own ``group_id`` (e.g. C11 Dark Pockets) runs in a
     *separate* Telegram group, so it must NOT inherit the global
     ``group_username``. Inheriting it produces links that point at the wrong
-    group — ``t.me/Path_Wars/1242`` instead of the campaign's own private group.
+    group - ``t.me/Path_Wars/1242`` instead of the campaign's own private group.
     Only campaigns that share the global group fall back to the global username.
 
     Returns ``group_username=None`` for separate groups without their own public

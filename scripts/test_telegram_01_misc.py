@@ -1,8 +1,8 @@
-"""test_telegram.py — bin 1.
+"""test_telegram.py - bin 1.
 
   - misc (part a)
 """
-"""Full coverage tests for telegram.py — all network calls mocked.
+"""Full coverage tests for telegram.py - all network calls mocked.
 
 conftest.py installs a mock 'telegram' in sys.modules before collection.
 We load the real implementation directly by file path to bypass this.
@@ -12,7 +12,7 @@ import importlib.util
 from unittest.mock import patch, MagicMock
 import requests as _req
 
-# Load the real telegram.py by path — bypasses sys.modules mock from conftest
+# Load the real telegram.py by path - bypasses sys.modules mock from conftest
 _spec = importlib.util.spec_from_file_location(
     "_real_telegram",
     os.path.join(os.path.dirname(__file__), "telegram.py")

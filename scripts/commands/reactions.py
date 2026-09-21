@@ -24,7 +24,7 @@ def process_reaction(update: dict, config: dict, state: dict, maps) -> None:
     # Find which campaign this reaction is in
     # Reactions don't have message_thread_id, but we can match via
     # the gm_queue or transcript data. For now, skip thread matching
-    # and just track globally — we can't reliably determine the topic
+    # and just track globally - we can't reliably determine the topic
     # from a reaction update alone.
     #
     # UPDATE: Telegram DOES include message_thread_id in reactions

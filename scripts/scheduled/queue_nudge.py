@@ -65,7 +65,7 @@ def check_queue_nudge(config: dict, state: dict, *, now: datetime | None = None,
             tg.send_message(
                 group_id, bot_topic,
                 f"━━━━━━━━━━━━━━━━\n"
-                f"⚠️ {gm} — {user}'s message in {label} "
+                f"⚠️ {gm} - {user}'s message in {label} "
                 f"is {int(hours)}h old!{count_str}{link_str}")
             nudged[player_key] = now.isoformat()
             print(f"Queue nudge: {user} in {name} ({int(hours)}h)")

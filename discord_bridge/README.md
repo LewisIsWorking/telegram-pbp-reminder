@@ -1,7 +1,7 @@
 # Discord → Telegram voice bridge
 
 Posts a message to a Telegram forum topic whenever someone **joins, leaves, or
-switches** a Discord voice channel — the Tatsu-style behaviour Telegram's own
+switches** a Discord voice channel - the Tatsu-style behaviour Telegram's own
 Bot API can't provide.
 
 ```
@@ -34,7 +34,7 @@ repo's `scripts/telegram.py` to post, but runs as its own always-on process.
 cp .env.example .env        # then edit .env
 ```
 Fill in `DISCORD_BOT_TOKEN` and `TELEGRAM_BOT_TOKEN` (the **same** Telegram bot
-this project already uses). Everything else has defaults — it posts to Telegram
+this project already uses). Everything else has defaults - it posts to Telegram
 topic **119703** in the group from `config.json`.
 
 ### 3. Install + run
@@ -49,7 +49,7 @@ On connect it prints `Voice bridge online as <bot> -> Telegram chat <id>, topic
 
 The bot is only live while its process is. Pick a host:
 
-### Windows (your PC) — recommended: one-line auto-start
+### Windows (your PC) - recommended: one-line auto-start
 Registers a Scheduled Task that starts the bridge at logon, restarts it on
 failure, runs hidden, and logs to `bridge.log`:
 ```
@@ -84,8 +84,8 @@ journalctl -u voice-bridge -f
 
 | Env var | Default | Purpose |
 |---|---|---|
-| `DISCORD_BOT_TOKEN` | — | **Required.** Discord bot token. |
-| `TELEGRAM_BOT_TOKEN` | — | **Required.** Telegram bot token. |
+| `DISCORD_BOT_TOKEN` | - | **Required.** Discord bot token. |
+| `TELEGRAM_BOT_TOKEN` | - | **Required.** Telegram bot token. |
 | `TG_VOICE_TOPIC_ID` | `119703` | Telegram forum topic to post into. |
 | `TG_GROUP_ID` | `config.json` `group_id` | Telegram group id. |
 | `DISCORD_GUILD_ID` | (all) | Restrict to one Discord server. |
@@ -94,4 +94,4 @@ journalctl -u voice-bridge -f
 ## Tests
 
 `format_event` is unit-tested in `scripts/test_voice_bridge_format.py` (runs in
-the normal `pytest` suite — no Discord connection or token needed).
+the normal `pytest` suite - no Discord connection or token needed).

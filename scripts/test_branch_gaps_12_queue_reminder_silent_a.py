@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 12.
+"""Tests extracted from test_branch_gaps.py - bin 12.
 
 Sections in this file:
   - queue_reminder silent section integration (part a)

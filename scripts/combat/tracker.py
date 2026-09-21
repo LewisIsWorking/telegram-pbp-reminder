@@ -88,7 +88,7 @@ def _check_all_acted(pid: str, campaign_name: str, group_id: int, thread_id: int
         gm_str = " ".join(gm_mentions) if gm_mentions else "GM"
         tg.send_message(group_id, thread_id,
                         f"✅ All players have posted their actions for Round {combat['round']}!\n"
-                        f"{gm_str} — ready to resolve.")
+                        f"{gm_str} - ready to resolve.")
 
 
 def handle_combat_message(
@@ -105,10 +105,10 @@ def handle_combat_message(
         phase_started_at: ISO timestamp
         players_acted: {user_id: timestamp}  (dict now, not list)
         last_ping_at: ISO timestamp or None
-        enemies: [str]              — named enemy roster
-        combat_log: [{round, text, at}]  — key moment log
+        enemies: [str]              - named enemy roster
+        combat_log: [{round, text, at}]  - key moment log
         started_at: ISO timestamp
-        all_players_notified: bool  — have we pinged GM that everyone's done?
+        all_players_notified: bool  - have we pinged GM that everyone's done?
     """
     if user_id in gm_ids:
         if text.startswith("/round"):

@@ -13,7 +13,7 @@ Selection rule:
 
 The message is appended to the queue's own message batch, so it is deleted
 along with that batch on the next post (``MAX_KEPT_BATCHES = 1``). That
-matters — a focus message that outlived its queue would keep pointing at a
+matters - a focus message that outlived its queue would keep pointing at a
 message the GM has already answered.
 """
 

@@ -1,4 +1,4 @@
-"""CI alert script — reads pytest output and posts failure details to bot topic.
+"""CI alert script - reads pytest output and posts failure details to bot topic.
 
 Called by the GitHub Actions test job when pytest exits non-zero.
 Reads /tmp/pytest_output.txt and posts FAILED test names + coverage gaps.
@@ -42,4 +42,4 @@ if tid and token:
     )
     print(f"Alert posted for sha {sha}")
 else:
-    print("No bot_topic_id or token — skipping alert")
+    print("No bot_topic_id or token - skipping alert")

@@ -151,7 +151,7 @@ def check_anniversaries(config: dict, state: dict, *, now: datetime | None = Non
         # Append next upcoming anniversary
         next_ann = _next_anniversary(config, today)
         if next_ann:
-            message += f"\n\n———\n\n{next_ann}"
+            message += f"\n\n━━━\n\n{next_ann}"
 
         print(f"Anniversary for {name}: {year_str}")
         # ⭐ The campaign's own chat topic, NOT `bot_topic or ...`. Corrected

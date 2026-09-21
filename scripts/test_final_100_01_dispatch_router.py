@@ -1,4 +1,4 @@
-"""Tests extracted from test_final_100.py — bin 1.
+"""Tests extracted from test_final_100.py - bin 1.
 
 Sections in this file:
   - dispatch/router.py: _build_poll_id_map, _find_pair, _handle_poll_answer

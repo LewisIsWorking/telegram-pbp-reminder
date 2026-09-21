@@ -1,8 +1,8 @@
-"""test_telegram.py — bin 2.
+"""test_telegram.py - bin 2.
 
   - misc (part b)
 """
-"""Full coverage tests for telegram.py — all network calls mocked.
+"""Full coverage tests for telegram.py - all network calls mocked.
 
 conftest.py installs a mock 'telegram' in sys.modules before collection.
 We load the real implementation directly by file path to bypass this.
@@ -12,7 +12,7 @@ import importlib.util
 from unittest.mock import patch, MagicMock
 import requests as _req
 
-# Load the real telegram.py by path — bypasses sys.modules mock from conftest
+# Load the real telegram.py by path - bypasses sys.modules mock from conftest
 _spec = importlib.util.spec_from_file_location(
     "_real_telegram",
     os.path.join(os.path.dirname(__file__), "telegram.py")
@@ -112,7 +112,7 @@ def test_unpin_fail():
         assert _tg.unpin_message(-1, 55) is False
 
 def test_unpin_refuses_non_bot_message():
-    """A message ID the bot never sent is not unpinned — no HTTP call made.
+    """A message ID the bot never sent is not unpinned - no HTTP call made.
 
     Regression for the bot clearing GMs' / players' manual pins.
     """

@@ -8,7 +8,7 @@ lift this. Measured against the live Path Wars group on 2026-08-16:
     deletes attempted UNDER it:                 0 of 12 still exist
 
 No exceptions either way. So holding a message ID for longer than that is
-not a risk of failure, it is a **loss that has already happened** — the
+not a risk of failure, it is a **loss that has already happened** - the
 delete is unwinnable before it is attempted, and no retry can recover it.
 
 That is what orphaned the C06 "Unreplied: 2" post from 2026-08-03. The
@@ -18,8 +18,8 @@ by the time a player posted and the fingerprint moved, the tracked
 message was already out of reach.
 
 Extracted from ``topic_queue_write.py`` on 2026-08-16 at 202 lines. The
-split is not arbitrary: this module owns one rule — **never hold an ID
-longer than you can act on it** — and it applies to every tracked message,
+split is not arbitrary: this module owns one rule - **never hold an ID
+longer than you can act on it** - and it applies to every tracked message,
 not only the queue batch. The caught-up notice sweep lives here for the
 same reason, and 15 of the 28 confirmed orphans were caught-up notices.
 
@@ -29,7 +29,7 @@ it belongs on this clock too. Storing an ID means owning its lifetime.
 
 from datetime import datetime, timedelta, timezone
 
-# 36h leaves 12 hours of slack against the 48h wall — enough to absorb a
+# 36h leaves 12 hours of slack against the 48h wall - enough to absorb a
 # missed run, a Telegram outage, or a workflow queued behind others.
 MAX_TRACKED_AGE = timedelta(hours=36)
 
@@ -60,7 +60,7 @@ def is_past(stamp, now: datetime, limit: timedelta | None = None) -> bool:
     ⚠️ The default is resolved at CALL time, not bound in the signature.
     A ``limit=MAX_TRACKED_AGE`` default would be captured when this
     function is defined, so monkeypatching the module constant would
-    silently have no effect — and the can-fail test that patches it to
+    silently have no effect - and the can-fail test that patches it to
     prove this guard works would itself prove nothing.
 
     Returns False for a missing or unparseable timestamp. That direction
@@ -118,7 +118,7 @@ def caught_up_is_stale(slot: dict, now: datetime) -> bool:
     timestamp gets rewritten by the next content change anyway, whereas a
     notice with no timestamp is only ever revisited when its thread wakes
     up, which may be never. Treating it as stale gives it one attempt now
-    — if it is already old that attempt cannot hurt, and if it is young it
+    - if it is already old that attempt cannot hurt, and if it is young it
     succeeds.
     """
     if not slot.get("caught_up_msg_id"):

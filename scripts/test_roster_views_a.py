@@ -1,4 +1,4 @@
-"""Tests for /rostercampaigns (Shape 1) — bin A.
+"""Tests for /rostercampaigns (Shape 1) - bin A.
 
 Verifies that build_roster_campaigns emits one block per campaign
 in config['topic_pairs'] order, reusing build_roster_campaign's
@@ -63,7 +63,7 @@ def test_campaigns_view_splits_current_and_perm_sections():
     from commands.roster_views import build_roster_campaigns
     out = build_roster_campaigns(_two_campaign_config(),
                                  _state_with_players_in_each())
-    # Bob is the perm player — should appear under a Perm: section.
+    # Bob is the perm player - should appear under a Perm: section.
     assert "Perm:\n  \u2022 Bob" in out, (
         f"Expected Bob under a Perm: section; got:\n{out}"
     )

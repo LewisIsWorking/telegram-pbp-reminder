@@ -41,7 +41,7 @@ def write_scene_marker(campaign_name: str, scene_name: str) -> None:
 
     with open(log_file, "a", encoding="utf-8") as f:
         if is_new:
-            f.write(f"# {campaign_name} — {month_str}\n\n")
+            f.write(f"# {campaign_name} - {month_str}\n\n")
             f.write("*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n")
         ts = now.strftime("%Y-%m-%d %H:%M")
         f.write(f"\n---\n\n### 🎭 Scene: {scene_name}\n*({ts})*\n\n---\n\n")
@@ -123,7 +123,7 @@ def append_to_transcript(parsed: dict, gm_ids: set, config: dict | None = None) 
 
     with open(log_file, "a", encoding="utf-8") as f:
         if is_new:
-            f.write(f"# {campaign_name} — {month_str}\n\n")
+            f.write(f"# {campaign_name} - {month_str}\n\n")
             f.write("*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n")
             finalize_previous_month(campaign_dir, month_str, campaign_name)
 
@@ -144,7 +144,7 @@ def append_to_transcript(parsed: dict, gm_ids: set, config: dict | None = None) 
                 gap_str = f"{silence_hours / 24:.1f} days"  # pragma: no cover
             else:
                 gap_str = f"{silence_hours:.0f}h"
-            f.write(f"*\u2014 {gap_str} of silence \u2014*\n\n")
+            f.write(f"*- {gap_str} of silence -*\n\n")
 
         entry = format_log_entry(parsed, gm_ids, char_name)
         f.write(entry + "\n")

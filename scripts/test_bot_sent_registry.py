@@ -1,4 +1,4 @@
-"""Tests for posting.bot_sent_registry — the bot's delete-safety registry.
+"""Tests for posting.bot_sent_registry - the bot's delete-safety registry.
 
 This is a critical-safety module, so the test surface is broad:
 
@@ -105,7 +105,7 @@ def test_corrupt_state_file_starts_empty(tmp_path, monkeypatch, capsys):
 
 
 def test_missing_state_file_starts_empty():
-    """No file on disk yet — first call should succeed and create it."""
+    """No file on disk yet - first call should succeed and create it."""
     assert reg.is_bot_sent(12345) is False
     reg.record_sent(99)
     assert reg.is_bot_sent(99) is True
@@ -177,7 +177,7 @@ def test_backfill_idempotent(tmp_path, monkeypatch):
 
     # First load triggers the backfill.
     assert reg.is_bot_sent(42) is True
-    # Force another reload — backfill runs again, no error, still True.
+    # Force another reload - backfill runs again, no error, still True.
     reg.reset_for_test()
     assert reg.is_bot_sent(42) is True
 

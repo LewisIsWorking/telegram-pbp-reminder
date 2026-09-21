@@ -1,7 +1,7 @@
 """Carry-forward-and-retry for per-topic queue deletes (L28, 2026-05-28).
 
 The C01 orphan: a per-topic queue's old message wasn't deleted even
-after new messages arrived and a new queue was posted. Root cause —
+after new messages arrived and a new queue was posted. Root cause -
 ``_post_thread_queue`` logged a failed delete and then overwrote the
 slot with only the new message, abandoning the failed ID forever. The
 bot is a group admin (no 48h delete limit on its own messages), so a

@@ -1,7 +1,7 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 9.
+"""Tests extracted from test_dispatch_coverage.py - bin 9.
 
 Sections in this file:
-  - dispatch/poll_notify.py — _poll_link_for and updated capture_unknown_voter
+  - dispatch/poll_notify.py - _poll_link_for and updated capture_unknown_voter
 """
 """
 Coverage tests for:
@@ -93,7 +93,7 @@ _CHECKER_FUNCS = [
     "backup_state",
 ]
 
-# ── dispatch/poll_notify.py — _poll_link_for and updated capture_unknown_voter ─
+# ── dispatch/poll_notify.py - _poll_link_for and updated capture_unknown_voter ─
 
 def _pn_config_with_poll():
     return {
@@ -142,7 +142,7 @@ def test_capture_unknown_voter_skips_known_uid():
     from dispatch.poll_notify import capture_unknown_voter
     config = _pn_config_with_poll()
     state = {"poll_unknown_voters": {}, "session_poll": {}}
-    # uid 111 is in poll_user_ids — should not be captured
+    # uid 111 is in poll_user_ids - should not be captured
     capture_unknown_voter("111", "C01", config, state)
     assert "C01" not in state["poll_unknown_voters"]
 
@@ -151,7 +151,7 @@ def test_capture_unknown_voter_skips_known_name_uid():
     from dispatch.poll_notify import capture_unknown_voter
     config = _pn_config_with_poll()
     state = {"poll_unknown_voters": {}, "session_poll": {}}
-    # uid "111" is in poll_user_names — should not be captured
+    # uid "111" is in poll_user_names - should not be captured
     capture_unknown_voter("111", "C01", config, state)
     assert "C01" not in state["poll_unknown_voters"]
 

@@ -46,7 +46,7 @@ ALLOWED_DELETEMESSAGE_FILES = {
     # White-box tests of telegram._post's suppressed-error handling.
     # Calls _post directly with 'deleteMessage' as the method arg to
     # verify both soft-success and hard-failure paths. Not a bypass
-    # of safe_delete — it's testing the layer below safe_delete.
+    # of safe_delete - it's testing the layer below safe_delete.
     "scripts/test_telegram_03_suppress.py",
 }
 
@@ -105,7 +105,7 @@ def test_no_direct_api_url_for_delete():
     offenders = []
     for fp, rel in _all_python_files():
         # The bypass-test file itself mentions the URL pattern in its
-        # own docstring as documentation — skip it for this check.
+        # own docstring as documentation - skip it for this check.
         if rel == "scripts/test_no_direct_delete_bypass.py":
             continue
         try:
@@ -138,7 +138,7 @@ def test_only_safe_delete_calls_post_with_deletemessage():
     pattern = re.compile(r"""\(\s*["']deleteMessage["']\s*,""")
     test_post_callers_ok = {
         # White-box tests of _post's deleteMessage path. Not a
-        # bypass — they pass through the same _post that
+        # bypass - they pass through the same _post that
         # safe_delete pass-through uses, but with mocked HTTP.
         "scripts/test_telegram_03_suppress.py",
     }

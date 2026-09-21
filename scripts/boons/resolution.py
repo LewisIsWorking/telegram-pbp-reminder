@@ -57,7 +57,7 @@ def _resolve_campaign_name(pending: dict, config: dict, topic_id: str) -> str:
     Preference order:
       1. pending["campaign_name"] if set and not the legacy "Unknown" sentinel
       2. Live campaigns config (handles maps/config staleness during cron)
-      3. topic_id itself — diagnosable in players.json, never the string "Unknown"
+      3. topic_id itself - diagnosable in players.json, never the string "Unknown"
 
     Why this exists: older bot versions (pre-2026-05-21) had
     `name = maps.to_name.get(pid, "Unknown")` in potw.py and matching
@@ -73,7 +73,7 @@ def _resolve_campaign_name(pending: dict, config: dict, topic_id: str) -> str:
     resolved = campaigns.try_get_name(config, topic_id)
     if resolved:
         return resolved
-    # 🪪 Last resort — topic_id is at least diagnosable later, unlike "Unknown".
+    # 🪪 Last resort - topic_id is at least diagnosable later, unlike "Unknown".
     print(f"[boons] WARNING: campaign for topic {topic_id} could not be resolved; "
           f"persisting topic_id as campaign label")
     return topic_id
@@ -93,7 +93,7 @@ def _resolve_boon(state: dict, topic_id: str, choice_idx: int, label: str,
     new_text = _format_boon_result(pending["boons"], choice_idx, pending["base_message"], label)
 
     # 🛡️ Resolve campaign name from config rather than passing through whatever
-    # the pending entry happens to hold — see _resolve_campaign_name docstring.
+    # the pending entry happens to hold - see _resolve_campaign_name docstring.
     campaign_name = _resolve_campaign_name(pending, config, topic_id)
     _store_boon(state, topic_id, pending["winner_user_id"],
                 pending["boons"][choice_idx], campaign_name, now)

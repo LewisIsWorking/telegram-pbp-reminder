@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 13.
+"""Tests extracted from test_branch_gaps.py - bin 13.
 
 Sections in this file:
   - queue_reminder silent section integration (part b)
@@ -78,7 +78,7 @@ def test_queue_reminder_empty_scanned_no_silent_returns_early():
             {"pbp_topic_ids": [200], "code": "C08", "name": "Recent"},
         ],
     }
-    # Recent activity — not silent
+    # Recent activity - not silent
     recent_iso = (now - timedelta(days=2)).isoformat()
     state = {
         "last_queue_fingerprint": "OLD",
@@ -92,6 +92,6 @@ def test_queue_reminder_empty_scanned_no_silent_returns_early():
          patch("scheduled.queue_reminder.tg.send_message_id",
                side_effect=lambda g, t, m: sent_texts.append(m) or 42):
         post_queue_reminder(config, state, now=now)
-    # Nothing sent — returned early via "not scanned and not silent_lines"
+    # Nothing sent - returned early via "not scanned and not silent_lines"
     assert not any("Silent" in t for t in sent_texts)
     assert state["last_queue_fingerprint"] == "empty"

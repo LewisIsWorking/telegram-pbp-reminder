@@ -1,4 +1,4 @@
-"""Tests extracted from test_final_coverage.py — bin 1.
+"""Tests extracted from test_final_coverage.py - bin 1.
 
 Sections in this file:
   - dispatch/cmd_search.py

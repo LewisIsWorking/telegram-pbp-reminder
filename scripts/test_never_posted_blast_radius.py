@@ -35,19 +35,19 @@ class TestTheWordingDidNotDrift:
     def test_silent_reads_no_posts_for(self):
         line = silent_campaigns(config(OLD), state(**{"40585": 12}),
                                 {}, NOW)[0]
-        assert "— no posts for 12d 🔗" in line
+        assert "- no posts for 12d 🔗" in line
 
     def test_caught_up_reads_last_post_ago(self):
         line = caught_up_campaigns(config(OLD), state(**{"40585": 1}),
                                    {}, NOW)[0]
-        assert "— last post 1d ago 🔗" in line
+        assert "- last post 1d ago 🔗" in line
 
     def test_the_callout_reads_quiet_for(self):
         # ⚠️ The callout says "quiet for", the section says "last post X
         # ago". One shared phrase() would have rewritten this line.
         line = oldest_campaign_line(config(OLD), state(**{"40585": 1}),
                                     {}, NOW)
-        assert "— quiet for 1d." in line
+        assert "- quiet for 1d." in line
 
 
 class TestItDoesNotRepostForever:

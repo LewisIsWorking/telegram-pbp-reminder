@@ -1,5 +1,5 @@
 """
-Weekly swimming poll — posted Sunday in the Dark Pockets main chat.
+Weekly swimming poll - posted Sunday in the Dark Pockets main chat.
 
 Separate from the session polls; this is a social/logistics poll for
 a regular swim session. Pings 7 players weekly to find the best day.
@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import telegram as tg
 from scheduled.session_poll_build import sunday_week_key
 
-# Dark Pockets group — main chat is thread_id 1
+# Dark Pockets group - main chat is thread_id 1
 _GROUP_ID  = -1003496373617
 _TOPIC_ID  = 1
 
@@ -52,15 +52,15 @@ def post_swimming_poll(config: dict, state: dict, *,
         return
 
     week_num = now.isocalendar()[1]
-    question = f"🏊 Week {week_num}/52 — Swimming this week?"
+    question = f"🏊 Week {week_num}/52 - Swimming this week?"
 
-    # topic_id=1 is the main chat — send without thread_id
+    # topic_id=1 is the main chat - send without thread_id
     result = tg.send_poll(
         _GROUP_ID, None, question, _OPTIONS,
         is_anonymous=False, allows_multiple_answers=True,
         allows_adding_options=True,
         allows_revoting=True,
-        open_period=518400,  # 6 days — auto-closes Saturday night
+        open_period=518400,  # 6 days - auto-closes Saturday night
     )
     msg_id, poll_id = result if result else (None, None)
     if not msg_id:
@@ -92,7 +92,7 @@ def post_swimming_ping(config: dict, state: dict, *,
     if swim_state.get("week_iso") != week_key:
         return
 
-    # Swimming already happened — no more pings this week
+    # Swimming already happened - no more pings this week
     if swim_state.get("session_happened"):
         return  # pragma: no cover
 
@@ -116,7 +116,7 @@ def post_swimming_ping(config: dict, state: dict, *,
 
     week_num = now.isocalendar()[1]
     msg = (f"━━━━━━━━━━━━━━━━\n"
-           f"🏊 Week {week_num}/52 — Vote in the swimming poll!{link}\n\n"
+           f"🏊 Week {week_num}/52 - Vote in the swimming poll!{link}\n\n"
            f"Waiting on:\n" + "\n".join(unvoted))
 
     if tg.send_message(_GROUP_ID, None, msg):

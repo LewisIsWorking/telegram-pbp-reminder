@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 1.
+"""Tests extracted from test_branch_gaps.py - bin 1.
 
 Sections in this file:
   - dispatch/cmd_gm.py: /setchar branches

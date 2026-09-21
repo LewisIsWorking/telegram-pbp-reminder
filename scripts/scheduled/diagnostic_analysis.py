@@ -6,7 +6,7 @@ Extracted from diagnostic.py to keep both files under 200 lines.
 import re
 from datetime import datetime
 
-# Error patterns — lines matching these are bucketed as issues
+# Error patterns - lines matching these are bucketed as issues
 _ERROR_PATTERNS = [
     (re.compile(r"rate limit|429",      re.I), "Warning: Rate limited"),
     (re.compile(r"FATAL|SystemExit",    re.I), "Fatal error"),
@@ -19,7 +19,7 @@ _ERROR_PATTERNS = [
     (re.compile(r"could not load gist", re.I), "Gist load failed"),
 ]
 
-# Info patterns — lines matching these are surfaced as activity events
+# Info patterns - lines matching these are surfaced as activity events
 _INFO_PATTERNS = [
     re.compile(r"Poll vote"),
     re.compile(r"Session poll (posted|ping)"),
@@ -98,7 +98,7 @@ def _build_report(analysis: dict, run_count: int, now: datetime,
     read = f", logs read for {logs_read}" if logs_read is not None else ""
     lines = [
         f"━━━━━━━━━━━━━━━━",
-        f"🔍 Daily Diagnostic — {now.strftime('%Y-%m-%d')}",
+        f"🔍 Daily Diagnostic - {now.strftime('%Y-%m-%d')}",
         f"{status} across {run_count} runs in the last 25h{read}",
     ]
     if scheduler_line:

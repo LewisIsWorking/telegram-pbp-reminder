@@ -50,9 +50,9 @@ def build_party(pid: str, campaign_name: str, config: dict, state: dict) -> str:
                 active_str = f"active {int(days_ago)}d ago"  # pragma: no cover
             else:  # pragma: no cover
                 active_str = f"last seen {int(days_ago)}d ago"  # pragma: no cover
-            active_chars.append(f"  ⚔️ {char_name} ({player_name}) — {active_str}")
+            active_chars.append(f"  ⚔️ {char_name} ({player_name}) - {active_str}")
         else:
-            orphan_chars.append(f"  🔇 {char_name} — no recent posts")
+            orphan_chars.append(f"  🔇 {char_name} - no recent posts")
 
     for line in active_chars:
         lines.append(line)
@@ -67,7 +67,7 @@ def build_party(pid: str, campaign_name: str, config: dict, state: dict) -> str:
 
 def build_summary(pid: str, campaign_name: str, state: dict, config: dict) -> str:
     """Build a one-stop campaign state summary."""
-    lines = [f"📖 Summary — {campaign_name}", ""]
+    lines = [f"📖 Summary - {campaign_name}", ""]
 
     # Current scene
     scene = state.get("current_scene", {}).get(pid)
@@ -79,7 +79,7 @@ def build_summary(pid: str, campaign_name: str, state: dict, config: dict) -> st
     if combat.get("active"):
         phase = combat.get("phase", "?")
         round_num = combat.get("round", "?")
-        lines.append(f"⚔️ Combat: Round {round_num} — {phase}")
+        lines.append(f"⚔️ Combat: Round {round_num} - {phase}")
 
     # Timer
     timer = state.get("timers", {}).get(pid)
@@ -92,7 +92,7 @@ def build_summary(pid: str, campaign_name: str, state: dict, config: dict) -> st
             mins = int((remaining.total_seconds() % 3600) // 60)
             time_str = f"{hours}h {mins}m" if hours > 0 else f"{mins}m"
             reason = timer.get("reason", "")
-            lines.append(f"⏳ Timer: {time_str} left" + (f" — {reason}" if reason else ""))
+            lines.append(f"⏳ Timer: {time_str} left" + (f" - {reason}" if reason else ""))
         else:
             lines.append("⏰ Timer EXPIRED!")  # pragma: no cover
 

@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 11.
+"""Tests extracted from test_branch_gaps.py - bin 11.
 
 Sections in this file:
   - scheduled/queue_silence.py
@@ -150,7 +150,7 @@ def _cross_group_config():
 
 def test_silent_campaigns_cross_group_link_not_path_wars():
     """Regression: a silent cross-group campaign (C11) must NOT inherit the
-    global Path_Wars username — its link points at its own private group."""
+    global Path_Wars username - its link points at its own private group."""
     from scheduled.queue_silence import silent_campaigns
     now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
     last = (now - timedelta(days=9, hours=20)).isoformat()

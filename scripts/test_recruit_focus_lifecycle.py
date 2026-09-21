@@ -1,8 +1,8 @@
-"""Recruit focus post — lifecycle (2026-08-15).
+"""Recruit focus post - lifecycle (2026-08-15).
 
 Split from ``test_recruit_focus.py``, which reached 239 lines. That file
 asks *which campaign gets named*; this one asks *how the message lives
-and dies* — the 24h gate, the self-delete, and refusing to delete when
+and dies* - the 24h gate, the self-delete, and refusing to delete when
 the replacement never sent.
 
 The two state keys behind that lifecycle are guarded mechanically

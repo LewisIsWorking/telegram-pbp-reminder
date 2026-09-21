@@ -11,14 +11,14 @@ canonical pid thread.
 
 A single thread's queue may overflow Telegram's 4096-char limit and be
 sent as multiple messages. Every message ID is tracked so the entire
-previous batch can be deleted before the next one is posted — slot
+previous batch can be deleted before the next one is posted - slot
 schema lives in ``posting.SinglePin``; sending/pinning lives in
 ``posting.post_batch``.
 
 State per canonical campaign pid in data/state/queues/{pid}.json:
   topic_queues: {thread_id: {msg_ids: [int, ...], fingerprint, ...}}
-    — keys are ALWAYS str (JSON forces it); see _threads_from_scanned
-  topic_msg_id, topic_fingerprint — legacy fields, migrated on first run
+    - keys are ALWAYS str (JSON forces it); see _threads_from_scanned
+  topic_msg_id, topic_fingerprint - legacy fields, migrated on first run
 """
 
 import time
@@ -46,7 +46,7 @@ def _migrate_legacy(cq: dict, group_id: int) -> None:
     """Migrate old top-level topic_msg_id/topic_fingerprint into topic_queues.
 
     Tries to delete the stale message so it doesn't linger in the chat.
-    Safe to call multiple times — no-ops if already migrated.
+    Safe to call multiple times - no-ops if already migrated.
     """
     old_msg_id = cq.get("topic_msg_id")
     if old_msg_id is None:
@@ -73,7 +73,7 @@ def _threads_from_scanned(scanned: dict) -> dict[str, tuple[str, list]]:
             # str() is load-bearing: entries carry Telegram's raw int
             # thread_id, but topic_queues is JSON so its keys are always
             # str. An int key misses the on-disk slot and the previous
-            # batch is never deleted — the 2026-08-10 C05 orphan. See
+            # batch is never deleted - the 2026-08-10 C05 orphan. See
             # topic_queue_state.normalise_queue_keys.
             tid = str(entry.get("thread_id", pid))
             by_thread.setdefault(tid, []).append(entry)
@@ -87,7 +87,7 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
     """Post/update/clear per-thread pinned queues. ``state`` enables caught-up roster tagging via per_topic_caught_up."""
     active_threads = _threads_from_scanned(scanned)
 
-    # Active threads — post or refresh
+    # Active threads - post or refresh
     for thread_id, (pid, entries) in active_threads.items():
         group_id = _group_id_for(config, pid)
         cq = _load(pid)
@@ -99,7 +99,7 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
         _save(pid, cq)
         time.sleep(1)
 
-    # Inactive threads — clear any stale pins
+    # Inactive threads - clear any stale pins
     for pid in _all_pids():
         cq = _load(pid)
         group_id = _group_id_for(config, pid)
@@ -116,7 +116,7 @@ def post_topic_queues(config: dict, scanned: dict, now: datetime,
                 time.sleep(1)
             # A slot holding ONLY a caught-up notice never entered the
             # branch above, so nothing ever revisited it and the notice
-            # sat until the thread woke up — often past Telegram's 48h
+            # sat until the thread woke up - often past Telegram's 48h
             # delete wall. 15 of the 28 orphans found on 2026-08-16 were
             # these. Sweeping on age is what bounds their lifetime.
             elif sweep_aged_caught_up(group_id, slot, now):

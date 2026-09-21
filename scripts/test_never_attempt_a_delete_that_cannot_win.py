@@ -16,7 +16,7 @@ hours the messages crossed the wall, and then the code **attempted the
 delete anyway**:
 
 ```
-175996, 175998, 176000 — 57.5h old, deleted 0 of 3, orphaned 3 of 3
+175996, 175998, 176000 - 57.5h old, deleted 0 of 3, orphaned 3 of 3
 ```
 
 ⭐⭐ **The question never asked was: can this delete possibly succeed?**

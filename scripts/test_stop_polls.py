@@ -3,7 +3,7 @@
 * ``swimming_poll_enabled: false`` (top-level) stops the weekly 🏊 swimming
   poll + its daily pings.
 * ``session_poll_disabled: true`` on a hybrid campaign (C11) stops its session
-  poll, daily nudges, and Friday result announcement — without flipping
+  poll, daily nudges, and Friday result announcement - without flipping
   ``hybrid_live`` (which also drives campaign-table labelling / warnings).
 
 Both default to current behaviour, so existing tests are unaffected.

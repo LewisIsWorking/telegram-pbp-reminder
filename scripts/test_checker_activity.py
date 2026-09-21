@@ -1,4 +1,4 @@
-"""Tests for checker.py — activity group.
+"""Tests for checker.py - activity group.
 
 Extracted from test_checker.py during the test-split refactor (phase 2.3).
 Module imports, helpers, and the _LOGS_DIR redirection setup live in

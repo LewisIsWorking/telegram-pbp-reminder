@@ -1,8 +1,8 @@
-"""Tests extracted from test_utility_coverage.py — bin 3.
+"""Tests extracted from test_utility_coverage.py - bin 3.
 
 Sections in this file:
   - Just call and verify it returns "unknown" on OSError
-  - migrate_gist_to_files.py  — test helper functions in isolation
+  - migrate_gist_to_files.py  - test helper functions in isolation
 """
 """
 Coverage tests for:
@@ -99,4 +99,4 @@ def test_backup_state_handles_os_error(tmp_path):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# migrate_gist_to_files.py  — test helper functions in isolation
+# migrate_gist_to_files.py  - test helper functions in isolation

@@ -4,7 +4,7 @@ Lewis, 07:06: *"There are some serious bugs with the GM queue, such as
 Paul's messages that don't exist."*
 
 ```
-📋 GM Queue #1495 — Unreplied: 66 | ✅ 7 today | 🏆 3521 all-time
+📋 GM Queue #1495 - Unreplied: 66 | ✅ 7 today | 🏆 3521 all-time
 ━━ 📌 🦠 C06: Kibwe (4) ━━
 01 [42] 🆕 0h. Alice: Hi! 🔗 https://t.me/Path_Wars/100/42
 ...

@@ -11,7 +11,7 @@ Reported from queue #1327, whose Caught up section read:
 
 which is ``config["topic_pairs"]`` order, not age order. ``silent_campaigns``
 and ``caught_up_campaigns`` both built their lists by appending in iteration
-order and never sorted — while ``campaign_age_lines``, ten lines below them in
+order and never sorted - while ``campaign_age_lines``, ten lines below them in
 the same module, already did ``rows.sort(key=lambda r: r[0], reverse=True)``.
 
 The data needed was always there: ``_idle_campaigns`` yields ``days`` as a
@@ -80,7 +80,7 @@ class TestCaughtUpOrdering:
         assert "C09" not in _codes(caught_up_campaigns(_CFG, _STATE, {}, _NOW))
 
     def test_sub_day_ages_discriminate(self):
-        """0h vs 21h must order correctly — `days` is a float, not an int."""
+        """0h vs 21h must order correctly - `days` is a float, not an int."""
         from scheduled.queue_silence import caught_up_campaigns
         codes = _codes(caught_up_campaigns(_CFG, _STATE, {}, _NOW))
         assert codes.index("C01") < codes.index("C00")
@@ -103,12 +103,12 @@ class TestOldestCampaignLine:
         assert "no posts for" in line
 
     def test_falls_through_to_caught_up_when_nothing_is_silent(self):
-        """With C09 gone the oldest is C06 at 4d 2h — a caught-up campaign.
+        """With C09 gone the oldest is C06 at 4d 2h - a caught-up campaign.
 
         Worth stating plainly because the original report guessed C01 (21h)
         would be next after C09. It would not: C06 at 4d 2h was sitting in
         the same Caught up list, four rows further down. That mis-read is
-        the bug's actual cost — an unsorted list hides the worst entry in
+        the bug's actual cost - an unsorted list hides the worst entry in
         the middle of the block.
         """
         from scheduled.queue_silence import oldest_campaign_line

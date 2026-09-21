@@ -1,11 +1,11 @@
-"""Slice 8 of P3/9 — LockRegistry and per-resource save locking.
+"""Slice 8 of P3/9 - LockRegistry and per-resource save locking.
 
 The tests in this file split into two groups:
 
-  1. ``LockRegistry`` mechanics in isolation — lazy creation, name
+  1. ``LockRegistry`` mechanics in isolation - lazy creation, name
      filtering, snapshot immutability. Pure unit tests.
 
-  2. End-to-end save locking via ``StateStore`` — verifies that
+  2. End-to-end save locking via ``StateStore`` - verifies that
      ``save_aux`` / ``save_partition`` / ``save_queue`` actually
      acquire the right keyed lock and that two concurrent saves to
      the same resource serialise. Uses a short-blocking write to
@@ -13,7 +13,7 @@ The tests in this file split into two groups:
      wall-clock timing.
 
 Slice 8 is pure setup for P3/10. Production code today doesn't have
-observed concurrency bugs — the bot runs hourly via a single CI
+observed concurrency bugs - the bot runs hourly via a single CI
 worker. The locks are wired in so that when slice 10 (and beyond)
 adds read-modify-write APIs, the serialisation primitive is already
 in place.
@@ -30,7 +30,7 @@ from state_store.locks import LockRegistry
 
 
 # ---------------------------------------------------------------------------
-# StateStore save locking — lock acquisition is observable
+# StateStore save locking - lock acquisition is observable
 # ---------------------------------------------------------------------------
 
 
@@ -80,7 +80,7 @@ def test_aux_and_partition_with_same_name_use_distinct_locks(
 
 
 # ---------------------------------------------------------------------------
-# StateStore save locking — instance scoping
+# StateStore save locking - instance scoping
 # ---------------------------------------------------------------------------
 
 
@@ -90,14 +90,14 @@ def test_lock_registries_are_per_instance(tmp_path: Path) -> None:
     Critical for test isolation: tests that construct
     ``StateStore(state_dir=tmp_path)`` for a fresh tmp dir
     shouldn't see locks left over from prior tests' StateStores.
-    Per-instance registries make this automatic — there's no
+    Per-instance registries make this automatic - there's no
     shared mutable state between instances.
     """
     a = StateStore(state_dir=tmp_path / "a")
     b = StateStore(state_dir=tmp_path / "b")
     assert a._locks is not b._locks
     a.save_aux("foo", 1)
-    # b's registry stays empty — the save on a didn't leak.
+    # b's registry stays empty - the save on a didn't leak.
     assert "aux:foo" not in b._locks.names()
 
 
@@ -112,7 +112,7 @@ def test_concurrent_saves_to_same_aux_serialise(tmp_path: Path) -> None:
     Verified by tracking the order of acquisition: both threads
     acquire the lock around their save, but only one can hold it at
     a time. If the lock is held by thread A when thread B tries to
-    enter, B blocks until A releases — we observe this via a
+    enter, B blocks until A releases - we observe this via a
     counter incremented inside the lock that should never read 2
     while another thread is also inside.
     """
@@ -140,7 +140,7 @@ def test_concurrent_saves_to_same_aux_serialise(tmp_path: Path) -> None:
     t2.join()
 
     # If serialisation works, no two threads were ever in the
-    # critical section simultaneously — max_seen must be 1.
+    # critical section simultaneously - max_seen must be 1.
     assert max_seen[0] == 1, (
         f"Expected serialised access (max_seen=1), got max_seen="
         f"{max_seen[0]}. Lock not held during write."

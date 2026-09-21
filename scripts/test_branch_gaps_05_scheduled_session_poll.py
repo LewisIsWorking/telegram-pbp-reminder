@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 5.
+"""Tests extracted from test_branch_gaps.py - bin 5.
 
 Sections in this file:
   - scheduled/session_poll.py: exception isolation

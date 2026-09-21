@@ -1,7 +1,7 @@
-"""Tests extracted from test_commands_coverage.py — bin 4.
+"""Tests extracted from test_commands_coverage.py - bin 4.
 
 Sections in this file:
-  - Still "2026-04-03" — not run again
+  - Still "2026-04-03" - not run again
 """
 """
 Coverage tests for:
@@ -9,7 +9,7 @@ Coverage tests for:
   commands/player_registry.py
   scheduled/poll_result.py
   scheduled/diagnostic.py
-  scheduled/reports.py  (partial — tg-calling functions mocked)
+  scheduled/reports.py  (partial - tg-calling functions mocked)
 """
 import sys, os, json, pytest, tempfile
 from datetime import datetime, timezone, timedelta
@@ -65,7 +65,7 @@ def test_diagnostic_skips_already_run():
     now = datetime(2026, 4, 3, 8, tzinfo=timezone.utc)
     state = {"last_diagnostic": "2026-04-03"}
     run_daily_diagnostic(config, state, now=now)
-    # Still "2026-04-03" — not run again
+    # Still "2026-04-03" - not run again
     assert state["last_diagnostic"] == "2026-04-03"
 
 

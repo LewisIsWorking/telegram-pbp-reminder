@@ -1,18 +1,18 @@
-"""Tests extracted from test_final_push.py — bin 5.
+"""Tests extracted from test_final_push.py - bin 5.
 
 Sections in this file:
   - dispatch/cmd_clocks.py:123
   - dispatch/cmd_conditions_hp.py:184
-  - dispatch/cmd_info.py:102-103 — /showvote
-  - dispatch/cmd_votes_timers.py:108-111 — tied/no-votes
+  - dispatch/cmd_info.py:102-103 - /showvote
+  - dispatch/cmd_votes_timers.py:108-111 - tied/no-votes
   - dispatch/cmd_trackers.py:115
   - dispatch/cmd_trackers_items.py:108
-  - dispatch/cmd_gm.py:57 — /kick no target
-  - dispatch/bot_topic.py:104 — no pid for global cmd
-  - scheduled/session_poll.py:136 — empty roster
+  - dispatch/cmd_gm.py:57 - /kick no target
+  - dispatch/bot_topic.py:104 - no pid for global cmd
+  - scheduled/session_poll.py:136 - empty roster
 """
 """
-Definitive final coverage push — verified to actually hit each line.
+Definitive final coverage push - verified to actually hit each line.
 Uses real function calls with minimal/no mocking where possible.
 """
 import sys, os, json, pytest
@@ -52,7 +52,7 @@ def test_cmd_hp_real():
 
 
 
-# ── dispatch/cmd_info.py:102-103 — /showvote ─────────────────────────────────
+# ── dispatch/cmd_info.py:102-103 - /showvote ─────────────────────────────────
 def test_cmd_info_showvote_real():
     from dispatch.cmd_info import handle
     ctx = {"cmd_word": "/showvote", "text": "/showvote",
@@ -67,7 +67,7 @@ def test_cmd_info_showvote_real():
 
 
 
-# ── dispatch/cmd_votes_timers.py:108-111 — tied/no-votes ────────────────────
+# ── dispatch/cmd_votes_timers.py:108-111 - tied/no-votes ────────────────────
 def test_cmd_endvote_real():
     from dispatch.cmd_votes_timers import handle
     ctx = {"cmd_word": "/endvote", "text": "/endvote",
@@ -114,7 +114,7 @@ def test_cmd_trackers_items_loot_real():
 
 
 
-# ── dispatch/cmd_gm.py:57 — /kick no target ─────────────────────────────────
+# ── dispatch/cmd_gm.py:57 - /kick no target ─────────────────────────────────
 def test_cmd_gm_kick_real():
     from dispatch.cmd_gm import handle
     ctx = {"cmd_word": "/kick", "text": "/kick",
@@ -128,7 +128,7 @@ def test_cmd_gm_kick_real():
 
 
 
-# ── dispatch/bot_topic.py:104 — no pid for global cmd ───────────────────────
+# ── dispatch/bot_topic.py:104 - no pid for global cmd ───────────────────────
 def test_bot_topic_no_pid_real():
     from dispatch.bot_topic import handle_bot_topic_cmd
     maps = MagicMock()
@@ -142,7 +142,7 @@ def test_bot_topic_no_pid_real():
 
 
 
-# ── scheduled/session_poll.py:136 — empty roster ────────────────────────────
+# ── scheduled/session_poll.py:136 - empty roster ────────────────────────────
 def test_session_poll_empty_roster_real():
     from scheduled.session_poll import post_session_poll
     now = datetime(2026, 3, 30, 10, tzinfo=timezone.utc)

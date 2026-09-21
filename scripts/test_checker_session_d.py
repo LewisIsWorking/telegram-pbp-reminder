@@ -1,4 +1,4 @@
-"""Tests for checker.py — session (part d) group.
+"""Tests for checker.py - session (part d) group.
 
 Extracted from test_checker.py during the test-split refactor (phase 2).
 Module imports, helpers, and the _LOGS_DIR redirection setup live in
@@ -75,7 +75,7 @@ def test_recap_basic():
 
     # Write a test transcript file
     content = (
-        "# TestCampaign — 2026-02\n\n"
+        "# TestCampaign - 2026-02\n\n"
         "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
         "**Alice** (2026-02-26 10:00:00):\nI search the room.\n\n"
         "**Bob** [GM] (2026-02-26 10:05:00):\nYou find a hidden door.\n\n"
@@ -104,7 +104,7 @@ def test_recap_command():
     campaign_dir = pathlib.Path(checker._LOGS_DIR) / "TestCampaign"
     campaign_dir.mkdir(parents=True, exist_ok=True)
     content = (
-        "# TestCampaign — 2026-02\n\n"
+        "# TestCampaign - 2026-02\n\n"
         "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
         "**Alice** (2026-02-26 10:00:00):\nHello world.\n\n"
     )
@@ -128,7 +128,7 @@ def test_recap_with_count():
     for i in range(20):
         entries += f"**Alice** (2026-02-26 {10+i//60:02d}:{i%60:02d}:00):\nEntry {i+1}.\n\n"
     content = (
-        "# TestCampaign — 2026-02\n\n"
+        "# TestCampaign - 2026-02\n\n"
         "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
         + entries
     )
@@ -145,7 +145,7 @@ def test_recap_gm_tag():
     campaign_dir = pathlib.Path(checker._LOGS_DIR) / "TestCampaign"
     campaign_dir.mkdir(parents=True, exist_ok=True)
     content = (
-        "# TestCampaign — 2026-02\n\n"
+        "# TestCampaign - 2026-02\n\n"
         "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
         "**Lewis** [GM] (2026-02-26 10:00:00):\nThe ogre swings at you.\n\n"
         "**Alice** (Cardigan) (2026-02-26 10:05:00):\nI dodge!\n\n"
@@ -163,7 +163,7 @@ def test_recap_scene_boundary():
     campaign_dir = pathlib.Path(checker._LOGS_DIR) / "TestCampaign"
     campaign_dir.mkdir(parents=True, exist_ok=True)
     content = (
-        "# TestCampaign — 2026-02\n\n"
+        "# TestCampaign - 2026-02\n\n"
         "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
         "**Alice** (2026-02-26 10:00:00):\nOld scene post.\n\n"
         "\n---\n\n### 🎭 Scene: The Dark Cave\n*(2026-02-26 10:30)*\n\n---\n\n"

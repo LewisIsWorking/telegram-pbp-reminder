@@ -1,4 +1,4 @@
-"""Recruit tiers — reserve campaigns wait their turn (2026-08-15).
+"""Recruit tiers - reserve campaigns wait their turn (2026-08-15).
 
 Asked for after the hard exclusion landed: *"Could C10 pop up but only if
 every other campaign has at least 6 players? C08 could also popup but only
@@ -7,14 +7,14 @@ if C10 is full."*
 So the rule is a strict cascade, not a filter:
 
     tier 0   the normal queue
-    tier 1   C10 — eligible only once every tier-0 campaign is full
-    tier 2   C08 — eligible only once C10 is full as well
+    tier 1   C10 - eligible only once every tier-0 campaign is full
+    tier 2   C08 - eligible only once C10 is full as well
 
 Precedence is the part worth guarding
 -------------------------------------
 An explicit ``recruit_tier`` **must** beat ``disabled_features``. C10 and
 C08 both still carry ``recruitment`` in ``disabled_features``, deliberately
-— that flag keeps the fortnightly ``check_recruitment_needs`` nag switched
+- that flag keeps the fortnightly ``check_recruitment_needs`` nag switched
 off for them, which is behaviour Lewis did not ask to change. If the
 disabled check ran first, both tiered campaigns would be unreachable and
 the feature would look correct while never firing.

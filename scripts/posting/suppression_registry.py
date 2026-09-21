@@ -1,6 +1,6 @@
 """Which Telegram error bodies may be treated as success, and why.
 
-``telegram._post`` returns ``True`` — soft success — for any response
+``telegram._post`` returns ``True`` - soft success - for any response
 matching a ``suppress_errors`` entry. That is correct **only** when the
 error means the caller's goal is already achieved. It is catastrophic
 when the error means the operation did not happen, because every
@@ -10,7 +10,7 @@ On 2026-05-10 ``"message can't be deleted"`` was added to the delete
 list. It means the message is **still there**. For three months the bot
 recorded 715 deletes, 715 successes and zero failures while 28 messages
 it believed it had removed sat in the group. Lewis found it by scrolling
-Telegram — no test, guard or report ever mentioned it.
+Telegram - no test, guard or report ever mentioned it.
 
 ⭐ The registry lives here, in production code, rather than in the test
 that checks it. ``ALREADY_GONE_ERRORS`` is *derived* from the dict below,
@@ -20,7 +20,7 @@ the guard, it is the mechanism of the guard.
 
 ⛔ THE RULE. The error must mean **the thing you wanted is already true**.
 If it means "I refused", "I could not", or "not permitted", it is a
-FAILURE. Bound the retry instead — see ``posting.stuck_deletes`` — and
+FAILURE. Bound the retry instead - see ``posting.stuck_deletes`` - and
 leave the outcome honest.
 """
 

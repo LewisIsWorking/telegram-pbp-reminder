@@ -1,9 +1,9 @@
-"""/heropoint command — typed fallback for the MVP Hero Point claim.
+"""/heropoint command - typed fallback for the MVP Hero Point claim.
 
 The weekly leaderboard MVP earns one Hero Point to spend in a campaign of
 their choice. Normally they tap a campaign button under the leaderboard
 (boons/hero_point.py), but that button is a Telegram callback that only
-resolves on the next hourly cron run — players read it as "the button does
+resolves on the next hourly cron run - players read it as "the button does
 nothing". This command is the typed equivalent: ``/heropoint <campaign>``.
 
 Both routes share the ``pending_hero_points`` state entry, so claiming by
@@ -72,7 +72,7 @@ def claim_or_prompt(user_id: str, user_name: str | None, arg: str,
     pending = state.get("pending_hero_points", {}).get(user_id)
     if not pending:
         tg.send_message(group_id, reply_topic,
-                        "You don't have a Hero Point to claim right now — "
+                        "You don't have a Hero Point to claim right now - "
                         "the weekly leaderboard MVP earns one. 🏆")
         return
 
@@ -100,7 +100,7 @@ def claim_or_prompt(user_id: str, user_name: str | None, arg: str,
     bot_topic = config.get("bot_topic_id")
     if bot_topic and bot_topic != reply_topic:
         tg.send_message(config["group_id"], bot_topic,
-                        f"✅ +1 Hero Point for {campaign} — {name}")
+                        f"✅ +1 Hero Point for {campaign} - {name}")
     state.get("pending_hero_points", {}).pop(user_id, None)
     print(f"Hero Point claimed by {name} for {campaign} (via /heropoint)")
 

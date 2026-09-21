@@ -1,4 +1,4 @@
-"""Tests extracted from test_scheduled_coverage.py — bin 3.
+"""Tests extracted from test_scheduled_coverage.py - bin 3.
 
 Sections in this file:
   - All swimmers voted

@@ -1,4 +1,4 @@
-"""Tests for checker.py — transcript (part b) group.
+"""Tests for checker.py - transcript (part b) group.
 
 Extracted from test_checker.py during the test-split refactor. Module
 imports, helper functions (_make_config, _make_state, _make_msg, _utc,
@@ -35,7 +35,7 @@ def test_transcript_multi_day_silence():
 
     content = (checker._LOGS_DIR / "longsilence_test" / "2026-02.md").read_text(encoding="utf-8")
     # Day header takes precedence over silence marker when day changes.
-    # But if both day changes AND silence is large — day header shown, silence suppressed.
+    # But if both day changes AND silence is large - day header shown, silence suppressed.
     assert "📅 Thursday, Feb 26" in content
 
     shutil.rmtree(test_dir)
@@ -76,7 +76,7 @@ def test_transcript_monthly_stats_footer():
     # Create a fake February file with some entries
     test_dir.mkdir(parents=True)
     feb_content = (
-        "# stats_test — 2026-02\n\n"
+        "# stats_test - 2026-02\n\n"
         "*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n"
         "**Alice** (2026-02-23 10:00:00):\nHello world\n\n"
         "**Bob** [GM] (2026-02-23 11:00:00):\nWelcome\n\n"
@@ -101,7 +101,7 @@ def test_transcript_monthly_stats_footer():
 
     # Check it's idempotent (writing another March msg doesn't duplicate footer)
     p2 = {**base, "msg_time_iso": "2026-03-02T10:00:00+00:00", "raw_text": "march2"}
-    # Need to force is_new check — march file already exists now, so won't re-finalize
+    # Need to force is_new check - march file already exists now, so won't re-finalize
     feb_final2 = (test_dir / "2026-02.md").read_text(encoding="utf-8")
     assert feb_final2.count("📊 Month Summary") == 1
 

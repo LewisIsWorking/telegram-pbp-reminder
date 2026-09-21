@@ -4,7 +4,7 @@
 Written 2026-08-16 for the orphan Lewis spotted in C06: an
 ``Unreplied: 2`` post from 2026-08-03 (mid 170029) still sitting in the
 topic thirteen days after the bot recorded deleting it. That recording
-was wrong — ``"message can't be deleted"`` was suppressed as a soft
+was wrong - ``"message can't be deleted"`` was suppressed as a soft
 success, so the ID was cleared from its slot and never retried. The code
 fix stops that happening again; it cannot remove the messages already
 stranded, because nothing tracks them any more.
@@ -18,13 +18,13 @@ had ever been recorded. Running this answers it directly.
   TELEGRAM_BOT_TOKEN=xxx py -3 scripts/maintenance/delete_orphan_message.py 170029
 
 ⚠️ IDs are checked against the bot-sent registry first, exactly like every
-other delete path — this script has no force flag and cannot remove a
+other delete path - this script has no force flag and cannot remove a
 player's or GM's message. If an ID is refused as not-bot-sent, that is
 the guard working; do not work around it.
 
 ⚠️ Being an admin of the group is what lets a bot delete its own messages
 past Telegram's 48-hour window. If every ID here fails with a permission
-error, check the bot's admin rights before touching the code — the 15
+error, check the bot's admin rights before touching the code - the 15
 over-48h deletes in the pin audit are all consistent with the bot having
 quietly lost ``can_delete_messages``.
 """
@@ -57,12 +57,12 @@ def main() -> int:
     gone = stuck = 0
     for mid in ids:
         if not is_bot_sent(mid):
-            print(f"  {mid}: SKIPPED — not in the bot-sent registry. The bot "
+            print(f"  {mid}: SKIPPED - not in the bot-sent registry. The bot "
                   f"only deletes its own messages.")
             stuck += 1
             continue
         # A previous run may have marked this hopeless. Clear it first so
-        # this attempt is a real attempt rather than the cached give-up —
+        # this attempt is a real attempt rather than the cached give-up -
         # otherwise the script would report the old verdict as if it were
         # a fresh one, which is the same class of lie it exists to undo.
         if is_hopeless(mid):
@@ -75,7 +75,7 @@ def main() -> int:
             # telegram._post has already printed Telegram's own error body
             # for anything outside ALREADY_GONE_ERRORS, so the reason is
             # on stdout immediately above this line.
-            print(f"  {mid}: FAILED — see the Telegram error printed above. "
+            print(f"  {mid}: FAILED - see the Telegram error printed above. "
                   f"The message is still in the chat.")
             stuck += 1
         time.sleep(0.2)

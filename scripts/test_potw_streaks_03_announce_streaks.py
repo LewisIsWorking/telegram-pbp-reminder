@@ -1,4 +1,4 @@
-"""test_potw_streaks.py — bin 3.
+"""test_potw_streaks.py - bin 3.
 
   - announce_streaks
 """
@@ -111,6 +111,6 @@ def test_announce_streaks_no_bot_topic(mock_helpers, mock_tg):
     state = _make_state(history)
     config = {"group_id": -1001}  # no bot_topic_id
     announce_streaks(config, state, _make_winner(), "Kibwe", "100", -1001, 40585)
-    # Community milestone exists but no bot topic — should not send
+    # Community milestone exists but no bot topic - should not send
     mock_tg.send_message.assert_not_called()
 

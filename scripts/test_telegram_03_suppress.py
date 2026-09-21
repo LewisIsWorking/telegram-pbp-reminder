@@ -75,7 +75,7 @@ def test_post_unsuppressed_error_still_returns_none():
 
 def test_post_no_suppress_errors_keeps_legacy_none_behaviour():
     """When the caller passes no suppress patterns, every non-200
-    response still returns None \u2014 same as before this fix."""
+    response still returns None - same as before this fix."""
     _tg.init("t")
     body = '{"ok":false,"description":"Bad Request: anything"}'
     with patch.object(_tg.requests, "post", return_value=_resp(400, body)):
@@ -96,7 +96,7 @@ def test_post_unsuppressed_error_prints_diagnostic(capsys):
 
 
 def test_post_suppressed_error_no_print(capsys):
-    """Suppressed errors must NOT print \u2014 they're soft success, not
+    """Suppressed errors must NOT print - they're soft success, not
     something an operator needs to see."""
     _tg.init("t")
     body = '{"ok":false,"description":"Bad Request: message to delete not found"}'
@@ -117,7 +117,7 @@ def test_post_each_safe_delete_suppress_pattern_recognised():
     test used to declare its own copy of the tuple, so it proved that
     ``_post`` can suppress *some* list and never that the list matched
     the one production sends. It passed for months while the real tuple
-    carried ``"message can't be deleted"`` — an error meaning the
+    carried ``"message can't be deleted"`` - an error meaning the
     message is still there.
     """
     from posting.safe_delete import ALREADY_GONE_ERRORS
@@ -152,7 +152,7 @@ def test_post_success_path_still_returns_result_payload():
 
 def test_post_delete_success_returns_true_unchanged():
     """For a successful deleteMessage, Telegram returns
-    ``{ok: true, result: true}`` \u2014 verify this still flows through
+    ``{ok: true, result: true}`` - verify this still flows through
     as True (the result payload), not the new soft-success True.
     The end value is the same but the code path is different and
     callers must not be surprised by either."""

@@ -4,7 +4,7 @@
 
 Each campaign independently awards a Player of the Week (POTW) to the
 most consistently posting player. Winners receive a choice of flavour
-boons — small narrative advantages that carry into play.
+boons - small narrative advantages that carry into play.
 
 ---
 
@@ -12,7 +12,7 @@ boons — small narrative advantages that carry into play.
 
 The winner is the non-GM player who posted at least `potw_min_posts`
 (default 5) times in the period with the **lowest average gap** between
-posts — rewarding consistency over volume.
+posts - rewarding consistency over volume.
 
 GMs and away players are excluded.
 
@@ -21,10 +21,10 @@ GMs and away players are excluded.
 ## Boon offer
 
 The winner receives 4 boons:
-- **3 flavour boons** — randomly selected from `boons.json` (1000 entries).
+- **3 flavour boons** - randomly selected from `boons.json` (1000 entries).
   These are subtle narrative advantages ("A cat follows you and hisses at
   anyone who lies to you.").
-- **1 mechanical boon** — chosen from `helpers.MECHANICAL_BOONS`. These have
+- **1 mechanical boon** - chosen from `helpers.MECHANICAL_BOONS`. These have
   direct game effects ("Recover 1d6 extra HP during your next rest.").
 
 The offer is posted in the campaign's chat topic with inline buttons **and**

@@ -1,16 +1,16 @@
-"""Tests extracted from test_remaining_gaps.py — bin 1.
+"""Tests extracted from test_remaining_gaps.py - bin 1.
 
 Sections in this file:
   - helpers
-  - boons/handler.py:105 — _resolve_boon returns None on missing boon
-  - boons/reminders.py:56-61 — third reminder at 6 days
-  - checker.py:145 — __main__ guard
-  - combat/commands.py:110-111 — no active combat
-  - combat/display.py:106 — empty log
-  - combat/tracker.py:140-142 — /clog with no combat
-  - commands/campaign.py:169 — notes truncation
+  - boons/handler.py:105 - _resolve_boon returns None on missing boon
+  - boons/reminders.py:56-61 - third reminder at 6 days
+  - checker.py:145 - __main__ guard
+  - combat/commands.py:110-111 - no active combat
+  - combat/display.py:106 - empty log
+  - combat/tracker.py:140-142 - /clog with no combat
+  - commands/campaign.py:169 - notes truncation
 """
-"""Final targeted tests for all remaining coverage gaps — 6% to close."""
+"""Final targeted tests for all remaining coverage gaps - 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -52,7 +52,7 @@ def _ctx(**kwargs):
 
 
 
-# ─── boons/handler.py:105 — _resolve_boon returns None on missing boon ───────
+# ─── boons/handler.py:105 - _resolve_boon returns None on missing boon ───────
 
 def test_boons_handler_resolve_none():
     from boons.handler import _resolve_boon
@@ -66,7 +66,7 @@ def test_boons_handler_resolve_none():
 
 
 
-# ─── boons/reminders.py:56-61 — third reminder at 6 days ────────────────────
+# ─── boons/reminders.py:56-61 - third reminder at 6 days ────────────────────
 
 def test_boons_third_reminder():
     from boons.reminders import check_boon_reminders
@@ -89,16 +89,16 @@ def test_boons_third_reminder():
 
 
 
-# ─── checker.py:145 — __main__ guard ────────────────────────────────────────
+# ─── checker.py:145 - __main__ guard ────────────────────────────────────────
 
 def test_checker_main_guard_line():
-    # The if __name__ == "__main__": main() line — covered by import
+    # The if __name__ == "__main__": main() line - covered by import
     import checker
     assert hasattr(checker, "main")
 
 
 
-# ─── combat/commands.py:110-111 — no active combat ──────────────────────────
+# ─── combat/commands.py:110-111 - no active combat ──────────────────────────
 
 def test_combat_no_active():
     from combat.commands import handle_enemies_command
@@ -107,7 +107,7 @@ def test_combat_no_active():
 
 
 
-# ─── combat/display.py:106 — empty log ──────────────────────────────────────
+# ─── combat/display.py:106 - empty log ──────────────────────────────────────
 
 def test_combat_display_no_log():
     from combat.display import build_combatlog
@@ -117,7 +117,7 @@ def test_combat_display_no_log():
 
 
 
-# ─── combat/tracker.py:140-142 — /clog with no combat ───────────────────────
+# ─── combat/tracker.py:140-142 - /clog with no combat ───────────────────────
 
 def test_combat_tracker_clog_no_combat():
     from combat.tracker import handle_combat_message
@@ -136,7 +136,7 @@ def test_combat_tracker_clog_no_arg():
 
 
 
-# ─── commands/campaign.py:169 — notes truncation ────────────────────────────
+# ─── commands/campaign.py:169 - notes truncation ────────────────────────────
 
 def test_campaign_notes_more():
     from commands.campaign import build_campaign_report

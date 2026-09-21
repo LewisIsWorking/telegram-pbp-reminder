@@ -2,19 +2,19 @@
 
 Two scheduled tasks (dispatched from ``checker.py``) that both read the
 ``posting.pin_audit`` trail. They exist because Telegram shows nothing
-in the chat when a message is unpinned — so without these, all of the
+in the chat when a message is unpinned - so without these, all of the
 bot's pin activity is invisible to a human watching the group.
 
-* ``run_daily_pin_digest`` — once per day, posts a plain-language
+* ``run_daily_pin_digest`` - once per day, posts a plain-language
   "Pin activity (24h)" summary to the bot topic: how many messages the
   bot pinned, unpinned, and deleted, and whether any touched a message
   the bot didn't make. Passive reassurance / trend visibility.
 
-* ``alert_non_bot_pin_actions`` — every run, scans for any pin/unpin/
+* ``alert_non_bot_pin_actions`` - every run, scans for any pin/unpin/
   delete the bot performed on a message it did NOT make (``bot_owned``
   is False) since the last check, and posts an immediate warning naming
   the message id and call site. In normal operation the bot only ever
-  touches its own pins, so this should never fire — if it does, it is
+  touches its own pins, so this should never fire - if it does, it is
   the vanishing-pin bug caught in the act.
 
 Both are best-effort: a failure to post leaves the day/marker unmoved so
@@ -38,14 +38,14 @@ def _format_digest(window: list) -> str:
     dels = sum(1 for e in window if e.get("action") == "delete")
     nonbot = [e for e in window if pin_audit.is_non_bot(e)]
     lines = [
-        "📌 Pin activity — last 24h",
+        "📌 Pin activity - last 24h",
         "━━━━━━━━━━━━━━━━",
         f"📌 Pinned: {pins}",
         f"📍 Unpinned: {unpins}",
         f"🗑 Deleted: {dels}",
     ]
     if nonbot:
-        lines.append(f"⚠️ {len(nonbot)} action(s) on NON-bot messages — "
+        lines.append(f"⚠️ {len(nonbot)} action(s) on NON-bot messages - "
                      f"see the alert(s) and pin_audit_log.json")
     else:
         lines.append(f"✅ All {len(window)} actions were on the bot's own "
@@ -82,7 +82,7 @@ def _format_alert(nonbot: list) -> str:
         lines.append(f"• {e.get('action')} mid={e.get('message_id')} "
                      f"chat={e.get('chat_id')} refused={e.get('refused')} "
                      f"@ {str(e.get('timestamp', ''))[:19]} [{e.get('site')}]")
-    lines.append("This is the vanishing-pin signal — check pin_audit_log.json.")
+    lines.append("This is the vanishing-pin signal - check pin_audit_log.json.")
     return "\n".join(lines)
 
 

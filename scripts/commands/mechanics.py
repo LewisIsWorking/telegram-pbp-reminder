@@ -18,7 +18,7 @@ def build_vote(pid: str, campaign_name: str, state: dict) -> str:
     if not vote or vote.get("closed"):
         return "No active vote. GMs can start one with /vote <question> | <option1> | <option2> [| ...]"
 
-    lines = [f"🗳️ Vote — {campaign_name}:", ""]
+    lines = [f"🗳️ Vote - {campaign_name}:", ""]
     lines.append(f"❓ {vote['question']}")
     lines.append("")
 
@@ -66,7 +66,7 @@ def build_timer(pid: str, campaign_name: str, state: dict) -> str:
     reason_str = f"\n📝 {reason}" if reason else ""
 
     return (
-        f"⏳ Timer — {campaign_name}\n"
+        f"⏳ Timer - {campaign_name}\n"
         f"⏰ {time_str} remaining (deadline: {deadline.strftime('%b %d %H:%M UTC')})"
         f"{reason_str}\n"
         f"GMs: /canceltimer to clear"
@@ -82,7 +82,7 @@ def build_hp_tracker(pid: str, campaign_name: str, state: dict) -> str:
                 "      /hp d <n> <amount>   (damage)\n"
                 "      /hp h <n> <amount>   (heal)")
 
-    lines = [f"❤️ HP Tracker — {campaign_name}:", ""]
+    lines = [f"❤️ HP Tracker - {campaign_name}:", ""]
     for name, hp in sorted(hp_entries.items()):
         icon = helpers.hp_status_icon(hp["current"], hp["max"])
         bar = helpers.hp_bar(hp["current"], hp["max"])
@@ -102,7 +102,7 @@ def build_clocks(pid: str, campaign_name: str, state: dict) -> str:
                 "      /tick <n> [N]          (advance)\n"
                 "      /untick <n> [N]        (reverse)")
 
-    lines = [f"⏱️ Progress Clocks — {campaign_name}:", ""]
+    lines = [f"⏱️ Progress Clocks - {campaign_name}:", ""]
     for name, clock in sorted(clocks.items()):
         display = helpers.clock_display(clock["filled"], clock["segments"])
         complete = " ✅" if clock["filled"] >= clock["segments"] else ""

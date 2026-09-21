@@ -27,7 +27,7 @@ class TestLocalTimeRendering:
     def test_summer_hours_shift_to_bst(self):
         from scheduled.schedule_post import build_schedule_text
         text = build_schedule_text(_CFG, {}, _MON)   # 10 Aug -> BST
-        assert "09:00 — Daily diagnostic" in text, (
+        assert "09:00 - Daily diagnostic" in text, (
             "08:00 UTC must render as 09:00 BST")
         assert "BST" in text
 
@@ -35,8 +35,8 @@ class TestLocalTimeRendering:
         from scheduled.schedule_post import build_schedule_text
         winter = datetime(2026, 12, 14, 9, 15, tzinfo=timezone.utc)  # Monday
         text = build_schedule_text(_CFG, {}, winter)
-        assert "08:00 — Daily diagnostic" in text, (
-            "08:00 UTC is 08:00 GMT in winter — no shift")
+        assert "08:00 - Daily diagnostic" in text, (
+            "08:00 UTC is 08:00 GMT in winter - no shift")
         assert "GMT" in text
 
     def test_gates_are_untouched_by_display(self):

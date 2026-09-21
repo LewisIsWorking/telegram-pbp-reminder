@@ -13,7 +13,7 @@ def _real_reply_id(msg: dict) -> int | None:
     """Return the replied-to message ID only if it's a genuine reply.
 
     In Telegram forum topics, every message has reply_to_message set to
-    the topic header (forum_topic_created). We must ignore those — they
+    the topic header (forum_topic_created). We must ignore those - they
     are not actual replies to a player message.
     """
     r = msg.get("reply_to_message", {})

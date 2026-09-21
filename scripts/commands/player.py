@@ -1,8 +1,8 @@
 """
 Player statistics commands.
 
-/mystats — personal posting stats
-/myhistory — 8-week sparkline activity chart
+/mystats - personal posting stats
+/myhistory - 8-week sparkline activity chart
 """
 
 from datetime import datetime, timezone, timedelta
@@ -57,7 +57,7 @@ def build_mystats(pid: str, user_id: str, campaign_name: str,
 
     header = f"Your stats in {campaign_name} ({role})"
     if char_name:
-        header += f" — playing {char_name}"
+        header += f" - playing {char_name}"
     header += ":"
 
     lines = [
@@ -134,7 +134,7 @@ def build_mystats_all(user_id: str, user_name: str, config: dict, state: dict) -
     """Build cross-campaign stats for /mystats from bot topic."""
     now = datetime.now(timezone.utc)
     week_ago = now - timedelta(days=7)
-    lines = [f"📊 {user_name} — Cross-Campaign Stats\n"]
+    lines = [f"📊 {user_name} - Cross-Campaign Stats\n"]
     total_posts = 0
     total_week = 0
     campaigns_active = 0

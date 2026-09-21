@@ -5,7 +5,7 @@ Why this guard exists
 ``conftest.tg_mock`` used to hand-list its patch targets. It named 8
 modules; 56 import ``telegram as tg``. Any test that used the fixture
 while exercising one of the other 48 was asserting against a mock the
-code never touched — so::
+code never touched - so::
 
     assert not tg_mock.send_message.called
 
@@ -16,7 +16,7 @@ watching the suite stay green.
 The fixture now discovers its targets by scanning source, so it cannot
 drift as modules are added. This file is the guard on the guard: it
 checks the discovery still finds the real modules, that the fixture
-actually patched them, and — most importantly — that a call made through
+actually patched them, and - most importantly - that a call made through
 any of them is visible on the mock. A fixture that patches nothing would
 still "pass" a `not called` assertion, so coverage alone is not enough;
 the positive direction has to be checked too.
@@ -34,7 +34,7 @@ class TestDiscovery:
     def test_finds_a_realistic_number_of_modules(self):
         names = conftest.tg_importing_modules()
         assert len(names) > 40, (
-            f"only {len(names)} modules discovered — the source scan has "
+            f"only {len(names)} modules discovered - the source scan has "
             f"probably broken, which would silently hollow out every "
             f"'not called' assertion in the suite")
 
@@ -57,7 +57,7 @@ class TestNoDirectFromImports:
     The fixture swaps callables on the shared ``telegram`` module object,
     which every module reaches via ``import telegram as tg``. A module
     doing ``from telegram import send_message`` would bind the real
-    function at import time and slip straight past the mock — silently
+    function at import time and slip straight past the mock - silently
     restoring the exact vacuum this whole guard exists to prevent.
     """
 
@@ -88,7 +88,7 @@ class TestFixtureActuallyPatches:
 
 
 class TestCallsAreVisible:
-    """Coverage is not enough — calls must actually land on the mock.
+    """Coverage is not enough - calls must actually land on the mock.
 
     A fixture that patched nothing would still satisfy every ``not
     called`` assertion in the suite. These check the positive direction,

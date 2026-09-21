@@ -149,7 +149,7 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
 
         # Count active players (excluding GM), split by permanent flag.
         # Permanent players are full members but don't fill "out of N"
-        # target slots — see L23 in REFACTOR_PROGRESS.md for the three-
+        # target slots - see L23 in REFACTOR_PROGRESS.md for the three-
         # role model. Recruitment is gated on non-perm count vs target,
         # so a campaign at "5/6 +1 perm" still needs 1 non-perm recruit;
         # a campaign at "6/6 +2 perm" needs zero.
@@ -167,7 +167,7 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
 
         if needed <= 0:
             # Non-perm target met, reset timer. Perm padding doesn't
-            # contribute here — only non-perm activity gates the alert.
+            # contribute here - only non-perm activity gates the alert.
             state["last_recruitment_check"][pid] = now.isoformat()
             continue
 

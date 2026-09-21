@@ -1,5 +1,5 @@
 """
-Tests for state.py — file I/O, public load/save API, and save guard.
+Tests for state.py - file I/O, public load/save API, and save guard.
 
 Partition contract tests live in test_state_partitions.py.
 """

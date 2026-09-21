@@ -7,7 +7,7 @@ from unittest.mock import patch, MagicMock, call
 sys.path.insert(0, os.path.dirname(__file__))
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/session_poll.py — guard conditions
+# scheduled/session_poll.py - guard conditions
 # ═══════════════════════════════════════════════════════════════════════════════
 
 from scheduled.session_poll import post_session_poll
@@ -67,7 +67,7 @@ def test_session_poll_send_failure_no_state():
     assert not state.get("session_poll", {}).get("C01", {}).get("week_iso")
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/queue_reminder.py — guard conditions
+# scheduled/queue_reminder.py - guard conditions
 # ═══════════════════════════════════════════════════════════════════════════════
 
 from scheduled.queue_reminder import post_queue_reminder

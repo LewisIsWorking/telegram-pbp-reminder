@@ -3,7 +3,7 @@
 The C05 Grand Explorers orphan: three "Unreplied:" posts (04/08, 06/08,
 09/08) all survived in the topic instead of each replacing the last.
 
-Root cause — a type mismatch, not a logic error:
+Root cause - a type mismatch, not a logic error:
 
 ``parsing.message.parse_message`` returns Telegram's raw
 ``message_thread_id``, which is an **int**. That int is stored verbatim
@@ -20,7 +20,7 @@ The lookup misses, a fresh empty slot is handed to
 ``_post_thread_queue``, ``existing.is_empty`` is True, and the previous
 batch is never deleted. Worse, the save then serialises the int key back
 to ``"51357"``, overwriting the real slot and losing those message IDs
-permanently — so ``pending_delete`` never sees them either and the retry
+permanently - so ``pending_delete`` never sees them either and the retry
 sweep (L28) cannot help.
 
 This is invisible to the pre-existing suite because every test passes
@@ -100,7 +100,7 @@ class TestPreviousBatchIsDeleted:
 
         deleted = [c.args[1] for c in tg_mock.delete_message.call_args_list]
         assert 170098 in deleted, (
-            "the previous Unreplied post was orphaned — this is the C05 bug")
+            "the previous Unreplied post was orphaned - this is the C05 bug")
         assert slot["msg_ids"] == [170500]
         assert len(queues) == 1, "must not create a second, int-keyed slot"
 

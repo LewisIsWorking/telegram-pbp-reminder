@@ -7,14 +7,14 @@ Reported from the live weekly post, which read:
     - 5 posts total.
     - 4 GM posts.
 
-``posts_str`` already existed and handles "1 post" correctly — the *total*
+``posts_str`` already existed and handles "1 post" correctly - the *total*
 line was fine. But the qualified counts were hand-rolled f-strings
 (``f"{c['player_7d']} player posts"``) which bypassed it entirely, so any
 campaign with exactly one player post or one GM post read wrong.
 
 Also worth a guard because the first fix attempt **silently no-op'd**: a
 scripted string replacement did not match, so the import landed and the
-f-strings did not. Nothing failed — the suite stayed green and the bug
+f-strings did not. Nothing failed - the suite stayed green and the bug
 shipped in the diff. A test asserting the rendered output is the only
 thing that catches a formatting change that did not happen.
 """
@@ -53,7 +53,7 @@ class TestCountStr:
 class TestRenderedBlock:
     """Assert the actual rendered text, not just the helper.
 
-    The helper being correct does not prove the leaderboard uses it — that
+    The helper being correct does not prove the leaderboard uses it - that
     was exactly the failure mode when the edit silently did not apply.
     """
 

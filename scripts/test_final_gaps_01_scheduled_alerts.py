@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_gaps.py — bin 1.
+"""Coverage tests extracted from test_final_gaps.py - bin 1.
 
 Tests grouped by the first production module they import. This bin
 covers branches in:
@@ -91,7 +91,7 @@ def test_milestones_anniversary_disabled():
         check_streak_milestones(config, {})
 
 def test_reports_no_timestamps():
-    # reports.py:106 — continue when no timestamps for campaign
+    # reports.py:106 - continue when no timestamps for campaign
     from scheduled.reports import post_pace_report
     now = datetime(2026, 4, 3, 12, tzinfo=timezone.utc)
     config = {"group_id": -1001, "bot_topic_id": 999, "gm_user_ids": [999],

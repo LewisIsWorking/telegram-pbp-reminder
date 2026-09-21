@@ -14,7 +14,7 @@ import os
 from _splitter_helpers import safe_name
 
 
-HEADER_TEMPLATE = '''"""Tests extracted from {orig}.py — bin {idx}.
+HEADER_TEMPLATE = '''"""Tests extracted from {orig}.py - bin {idx}.
 
 Sections in this file:
 {label_block}
@@ -37,8 +37,8 @@ def pack_bins(section_ranges, target, tests_in_range, section_preamble):
     so the chunked sub-file still has its imports/helpers.
 
     Bin entries are tagged tuples:
-        ("SECTION", s, e, title, span)                  — full section
-        ("CHUNK", label, total, preamble, [(s, e), …])  — partial section
+        ("SECTION", s, e, title, span)                  - full section
+        ("CHUNK", label, total, preamble, [(s, e), …])  - partial section
     """
     bins = []
     current = []

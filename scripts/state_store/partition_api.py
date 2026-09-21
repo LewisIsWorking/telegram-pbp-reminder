@@ -1,4 +1,4 @@
-"""Partition API — main state-shape JSON files.
+"""Partition API - main state-shape JSON files.
 
 Mixin extracted from ``state_store/store.py`` to keep that file
 under the 200-line cap while still grouping all partition-related
@@ -7,7 +7,7 @@ callers can treat the partition API as just another method group.
 
 Partition files are the five JSON files written by ``state.py``:
 ``live`` / ``players`` / ``queue`` / ``activity`` / ``trackers``.
-On disk they have the same shape as aux files — just bigger, with
+On disk they have the same shape as aux files - just bigger, with
 multi-key dicts. Slice 3 of P3/9 added the read side; slice 4 made
 writes atomic; slice 8 (this file's reason for existing as a
 mixin) adds per-partition locking so concurrent writes can't
@@ -18,7 +18,7 @@ the two have similar implementations today, but later slices add
 partition-only concerns (migration registry in slice 7, schema
 validation in slice 6+) that aux files don't need. Keeping the
 namespaces separate also gives the lock registry distinct keys
-(``partition:live`` vs ``aux:live``) — a safety property that
+(``partition:live`` vs ``aux:live``) - a safety property that
 becomes meaningful if an aux file and a partition ever share a
 name.
 """
@@ -31,14 +31,14 @@ class PartitionAPI:
     """Mixin providing main-state-partition load/save methods.
 
     Expects ``self._state_dir`` (Path) and ``self._locks``
-    (LockRegistry) to be set by the host class — both are
+    (LockRegistry) to be set by the host class - both are
     initialised by ``StateStore.__init__``. The aux_path/load_aux
     methods are also provided by the host class; partition_exists
     and load_partition delegate to them since the read side has no
     partition-specific concerns yet.
     """
 
-    # Set by StateStore.__init__ — declared here so type-checkers
+    # Set by StateStore.__init__ - declared here so type-checkers
     # don't flag the attribute access in mixin methods.
     _state_dir: Path
 
@@ -52,7 +52,7 @@ class PartitionAPI:
         Returns the parsed dict on success, or None if the file is
         missing or unparseable. Callers (e.g. ``state.py``) get to
         decide whether "missing" means "defaults" or "fall back to
-        gist". Corrupt files are logged but don't raise — the
+        gist". Corrupt files are logged but don't raise - the
         contract matches ``load_aux``.
         """
         path = self._state_dir / f"{name}.json"
@@ -74,13 +74,13 @@ class PartitionAPI:
         {name}")``. Two concurrent calls to save_partition for the
         same name will serialise; calls for different names run in
         parallel. The lock is released as soon as the rename
-        completes — readers that have already opened the path before
+        completes - readers that have already opened the path before
         the rename see the old bytes, readers that open after see the
         new bytes; partial-byte reads are impossible.
 
         Why this no longer delegates to save_aux: doing so would
         acquire BOTH the ``partition:{name}`` lock and the
-        ``aux:{name}`` lock (different keys, no deadlock — but
+        ``aux:{name}`` lock (different keys, no deadlock - but
         wasteful). Inlining the atomic write here uses one lock per
         save, matching the queue and aux paths.
         """

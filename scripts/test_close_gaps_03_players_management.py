@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_close_gaps.py — bin 3.
+"""Coverage tests extracted from test_close_gaps.py - bin 3.
 
 Tests grouped by the first production module they import. This bin
 covers branches in:

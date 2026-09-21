@@ -1,17 +1,17 @@
-"""Tests extracted from test_remaining_100.py — bin 1.
+"""Tests extracted from test_remaining_100.py - bin 1.
 
 Sections in this file:
-  - commands/summary.py:80-82 — active combat
-  - commands/dashboard.py:68 — paused flag
-  - commands/mechanics.py:58-59 — days+hours timer
-  - commands/reactions.py:67 — negative count reset
-  - commands/recap.py:124-128 — truncation
-  - commands/status.py:162 — no last_message_time
-  - commands/waiting.py:83 — name not found continue
-  - commands/catchup.py:161 — list acted → set
+  - commands/summary.py:80-82 - active combat
+  - commands/dashboard.py:68 - paused flag
+  - commands/mechanics.py:58-59 - days+hours timer
+  - commands/reactions.py:67 - negative count reset
+  - commands/recap.py:124-128 - truncation
+  - commands/status.py:162 - no last_message_time
+  - commands/waiting.py:83 - name not found continue
+  - commands/catchup.py:161 - list acted → set
 """
 """
-Definitive final coverage push — verified state for every remaining gap.
+Definitive final coverage push - verified state for every remaining gap.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -34,7 +34,7 @@ def _ctx(**kw):
 
 
 
-# ── commands/summary.py:80-82 — active combat ────────────────────────────────
+# ── commands/summary.py:80-82 - active combat ────────────────────────────────
 def test_summary_active_combat():
     from commands.summary import build_summary
     state = {"combat": {"100": {"active": True, "phase": "player", "round": 2}},
@@ -46,7 +46,7 @@ def test_summary_active_combat():
 
 
 
-# ── commands/dashboard.py:68 — paused flag ───────────────────────────────────
+# ── commands/dashboard.py:68 - paused flag ───────────────────────────────────
 def test_dashboard_paused_flag():
     from commands.dashboard import build_gm_dashboard
     config = {"group_id": -1, "gm_user_ids": [], "topic_pairs": [
@@ -71,7 +71,7 @@ def test_dashboard_paused_flag():
 
 
 
-# ── commands/mechanics.py:58-59 — days+hours timer ───────────────────────────
+# ── commands/mechanics.py:58-59 - days+hours timer ───────────────────────────
 def test_timer_days_hours():
     from commands.mechanics import build_timer
     now = datetime.now(timezone.utc)
@@ -82,7 +82,7 @@ def test_timer_days_hours():
 
 
 
-# ── commands/reactions.py:67 — negative count reset ─────────────────────────
+# ── commands/reactions.py:67 - negative count reset ─────────────────────────
 def test_reactions_neg_reset():
     from commands.reactions import build_reactions
     state = {"reactions": {"100": {
@@ -97,7 +97,7 @@ def test_reactions_neg_reset():
 
 
 
-# ── commands/recap.py:124-128 — truncation ───────────────────────────────────
+# ── commands/recap.py:124-128 - truncation ───────────────────────────────────
 def test_recap_word_truncation(tmp_path):
     from commands.recap import build_recap
     (tmp_path / "Kibwe").mkdir()
@@ -118,7 +118,7 @@ def test_recap_word_truncation(tmp_path):
 
 
 
-# ── commands/status.py:162 — no last_message_time ───────────────────────────
+# ── commands/status.py:162 - no last_message_time ───────────────────────────
 def test_status_no_time():
     from commands.status import build_status
     state = {"topics": {"100": {}}, "post_timestamps": {}, "message_counts": {},
@@ -135,11 +135,11 @@ def test_status_no_time():
         mh.trend_icon.return_value = "➡️"
         mh.posts_str.return_value = "0"
         result = build_status("100", "Kibwe", state, set(), {})
-    assert "—" in result or "no posts" in result.lower()
+    assert "-" in result or "no posts" in result.lower()
 
 
 
-# ── commands/waiting.py:83 — name not found continue ─────────────────────────
+# ── commands/waiting.py:83 - name not found continue ─────────────────────────
 def test_waiting_no_match():
     from commands.waiting import build_waiting_all
     with patch("commands.waiting.scan_transcripts") as ms:
@@ -153,7 +153,7 @@ def test_waiting_no_match():
 
 
 
-# ── commands/catchup.py:161 — list acted → set ───────────────────────────────
+# ── commands/catchup.py:161 - list acted → set ───────────────────────────────
 def test_catchup_list_acted():
     from commands.catchup import build_catchup
     now = datetime.now(timezone.utc)

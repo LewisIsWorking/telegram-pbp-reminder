@@ -1,5 +1,5 @@
 """
-Weekly welcome post — fires Sunday morning at poll_post_hour UTC.
+Weekly welcome post - fires Sunday morning at poll_post_hour UTC.
 
 Posts a "Welcome to Week X" message to the bot topic, giving a quick
 orientation at the start of each new week.
@@ -44,7 +44,7 @@ def post_week_welcome(config: dict, state: dict, *,
     msg = (
         f"━━━━━━━━━━━━━━━━\n"
         f"🗓️ Welcome to Week {week_num}/{year}!\n\n"
-        f"Session polls are up — check your campaign chats.\n"
+        f"Session polls are up - check your campaign chats.\n"
         f"New week, new stories. Let's go! 🎲\n\n"
         f"📋 Queue age icons:\n{legend}"
     )

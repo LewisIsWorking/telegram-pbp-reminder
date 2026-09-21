@@ -2,7 +2,7 @@
 
 import time
 import requests
-from telegram_utils import fetch_updates, message_link  # noqa: F401 — re-exported
+from telegram_utils import fetch_updates, message_link  # noqa: F401 - re-exported
 
 TELEGRAM_API = ""
 
@@ -19,14 +19,14 @@ def _post(method: str, payload: dict, label: str = "request",
 
     Returns the parsed ``result`` payload on 200+ok=true. Returns
     ``True`` when a non-2xx response body matches a ``suppress_errors``
-    substring (soft success — the desired end state is already
+    substring (soft success - the desired end state is already
     achieved). Returns ``None`` for hard failures (network errors,
     rate-limit-after-retry, unrecognised error bodies).
 
     See ``scripts/telegram_post_notes.py`` for the full rationale,
     the catalogue of recognised soft-success patterns, and the
     safety argument (this is downstream of
-    ``posting.bot_sent_registry`` — it does NOT change *which* IDs
+    ``posting.bot_sent_registry`` - it does NOT change *which* IDs
     get attempted, only how the result is interpreted).
     """
     for attempt in range(2):
@@ -178,7 +178,7 @@ def pin_message(chat_id: int, message_id: int,
 def unpin_message(chat_id: int, message_id: int) -> bool:
     """Unpin a specific message the bot itself pinned. True on success.
 
-    Thin delegate to ``posting.safe_delete.perform_guarded_unpin`` —
+    Thin delegate to ``posting.safe_delete.perform_guarded_unpin`` -
     that module owns the bot-sent-registry safety check (the bot only
     unpins IDs it sent, so a stale/crossed ID can never clear a GM's or
     player's manual pin) and the actual Telegram API call. See its
@@ -192,14 +192,14 @@ def unpin_message(chat_id: int, message_id: int) -> bool:
 # `unpinAllChatMessages` is group-wide (it ignores `message_thread_id`),
 # so calling it per-thread wiped GM pins the bot never created (4.51.3).
 # Always unpin a specific id with `unpin_message` instead. If a genuine
-# per-topic clear is ever needed, use `unpinAllForumTopicMessages` — but
+# per-topic clear is ever needed, use `unpinAllForumTopicMessages` - but
 # note even that removes GM pins within the topic.
 
 
 def delete_message(chat_id: int, message_id: int) -> bool:
     """Delete a message that the bot itself sent.
 
-    Thin delegate to ``posting.safe_delete.perform_guarded_delete`` —
+    Thin delegate to ``posting.safe_delete.perform_guarded_delete`` -
     that module owns the bot-sent-registry safety check and the actual
     Telegram API call. See its docstring for the full contract.
     """

@@ -1,4 +1,4 @@
-"""Coverage tests extracted from test_final_gaps.py — bin 2.
+"""Coverage tests extracted from test_final_gaps.py - bin 2.
 
 Tests grouped by the first production module they import. This bin
 covers branches in:
@@ -71,7 +71,7 @@ def test_status_no_last_msg():
         mh.trend_icon.return_value = "➡️"
         mh.posts_str.return_value = "0"
         result = build_status("100", "Kibwe", state, set(), {})
-    assert "—" in result or "no posts" in result.lower()
+    assert "-" in result or "no posts" in result.lower()
 
 def test_summary_player_active():
     from commands.summary import build_summary

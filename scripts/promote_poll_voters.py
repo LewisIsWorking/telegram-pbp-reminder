@@ -36,7 +36,7 @@ def main() -> None:  # pragma: no cover
 
     unknown_by_code = state.get("poll_unknown_voters", {})
     if not unknown_by_code:
-        print("No unknown voters in state — nothing to promote.")
+        print("No unknown voters in state - nothing to promote.")
         return
 
     for code, unknown_uids in unknown_by_code.items():
@@ -69,7 +69,7 @@ def main() -> None:  # pragma: no cover
             print(f"  {ph_uid} → @{uname}")
 
         if not placeholders:
-            print("  (none — all placeholders resolved)")
+            print("  (none - all placeholders resolved)")
             continue
 
         identified = state.get("poll_identified_voters", {})
@@ -91,7 +91,7 @@ def main() -> None:  # pragma: no cover
                     _promote(pair, ph_uid, uid, uname)
                 matched.append((uid, ph_uid))
         if not matched:
-            print("\nNo automatic matches — manual edit of config.json required.")
+            print("\nNo automatic matches - manual edit of config.json required.")
 
     if commit:
         CONFIG.write_text(json.dumps(config, indent=2), encoding="utf-8")
@@ -100,7 +100,7 @@ def main() -> None:  # pragma: no cover
         STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
         print("\nconfig.json and live.json updated.")
     else:
-        print("\nDry run — pass --commit to apply changes.")
+        print("\nDry run - pass --commit to apply changes.")
 
 
 def _promote(pair: dict, placeholder: str, real_uid: str, uname: str) -> None:

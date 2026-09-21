@@ -9,7 +9,7 @@ import helpers
 from helpers import build_topic_maps
 from parsing.message import parse_message
 from combat.tracker import handle_combat_message
-# process_boon_callback removed 2026-05-11 — boon selection moved to the
+# process_boon_callback removed 2026-05-11 - boon selection moved to the
 # website. Inline buttons on old POTW messages now go unhandled.
 from dispatch import cmd_info, cmd_info_ext, cmd_gm, cmd_trackers, cmd_trackers_items
 from commands.markdone import handle_markdone as _handle_markdone

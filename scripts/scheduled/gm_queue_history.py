@@ -3,8 +3,8 @@ Rolling history of recent GM queue posts in the bot topic.
 
 A single queue post may span multiple Telegram messages when the
 formatted text exceeds Telegram's 4096-char limit. This module tracks
-each post as a *batch* — the full list of message IDs that were
-returned by the send loop — and keeps only the most recent
+each post as a *batch* - the full list of message IDs that were
+returned by the send loop - and keeps only the most recent
 ``MAX_KEPT_BATCHES`` batches in the topic.
 
 State shape (unchanged for backwards compatibility)::
@@ -22,7 +22,7 @@ the public ``post_and_persist`` entry point.
 
 When a new batch is appended and the cap is exceeded, the oldest
 batches are deleted from Telegram. Failed deletes keep the batch in
-history so the next run retries — see ``posting.queue_history``.
+history so the next run retries - see ``posting.queue_history``.
 """
 
 import telegram as tg
@@ -35,8 +35,8 @@ from posting import QueueHistory, post_batch
 # Set to 1 (2026-05-10): Lewis wants only the newest GM queue visible
 # at any time, matching the per-topic queue UX (single pinned message
 # per thread). Multi-chunk queues (msg_ids = [a, b, c]) are still
-# evicted as atomic units — ``MessageBatch.delete_all`` iterates every
-# chunk in the batch — so a 3-chunk queue evicting another 3-chunk
+# evicted as atomic units - ``MessageBatch.delete_all`` iterates every
+# chunk in the batch - so a 3-chunk queue evicting another 3-chunk
 # queue produces 3 delete_message calls, all of them safeguard-gated.
 MAX_KEPT_BATCHES = 1
 
@@ -46,7 +46,7 @@ _history = QueueHistory(max_kept=MAX_KEPT_BATCHES)
 def migrate_legacy(state: dict) -> None:
     """Seed ``gm_queue_history`` from the legacy ``last_queue_pin_id`` field.
 
-    Idempotent — if history is already populated this is a no-op. When
+    Idempotent - if history is already populated this is a no-op. When
     history is empty but the legacy pin exists, a single-message batch
     is synthesised so the legacy pin participates in normal eviction
     rather than lingering forever.
@@ -93,7 +93,7 @@ def post_and_persist(state: dict, group_id: int, bot_topic: int,
     The ``pin`` parameter (added 2026-05-12) is False for the
     "All caught up!" notification posted by ``queue_reminder.py``.
     That message gets tracked in ``gm_queue_history`` like any GM
-    queue batch — so the previous batch is evicted (its chat
+    queue batch - so the previous batch is evicted (its chat
     messages deleted) when the "All caught up!" lands, and the
     "All caught up!" message itself is then evicted by the next
     real GM queue post. Without that history tracking the previous
@@ -118,7 +118,7 @@ def post_and_persist(state: dict, group_id: int, bot_topic: int,
     prev_pin = state.get("last_queue_pin_id")
     if prev_pin:
         tg.unpin_message(group_id, prev_pin)
-    # When pin=False, batch.pin_id is None — so last_queue_pin_id
+    # When pin=False, batch.pin_id is None - so last_queue_pin_id
     # clears, the next call sees no prior pin to unpin, and the
     # "All caught up!" message has no pin notification.
     state["last_queue_pin_id"] = batch.pin_id

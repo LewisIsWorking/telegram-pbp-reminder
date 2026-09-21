@@ -1,4 +1,4 @@
-"""Tests extracted from test_zero_coverage.py — bin 5.
+"""Tests extracted from test_zero_coverage.py - bin 5.
 
 Sections in this file:
   - Load diagnostic.py to get the pattern constants
@@ -75,7 +75,7 @@ _d_spec = _ilu.spec_from_file_location(
 )
 _diag = _ilu.module_from_spec(_d_spec)
 
-# diagnostic.py imports telegram — patch it before exec
+# diagnostic.py imports telegram - patch it before exec
 import types as _types
 _fake_tg = _types.ModuleType("telegram")
 _fake_tg.send_message = lambda *a, **kw: True

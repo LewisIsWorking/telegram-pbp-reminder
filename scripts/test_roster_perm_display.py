@@ -49,7 +49,7 @@ def test_overview_shows_perm_suffix_when_perm_present():
     from commands.roster import build_roster_overview
     state = _state(non_perm_recent=4, perm=2, pid="100")
     out = build_roster_overview(_config(), state)
-    assert "C00: Riddleport \u2014 4/6 +2 perm" in out
+    assert "C00: Riddleport - 4/6 +2 perm" in out
 
 
 def test_overview_omits_perm_suffix_when_zero_perm():
@@ -58,7 +58,7 @@ def test_overview_omits_perm_suffix_when_zero_perm():
     state = _state(non_perm_recent=5, perm=0, pid="100")
     out = build_roster_overview(_config(), state)
     # Should read cleanly as "5/6", not "5/6 +0 perm"
-    assert "C00: Riddleport \u2014 5/6\n" in out or out.endswith("C00: Riddleport \u2014 5/6")
+    assert "C00: Riddleport - 5/6\n" in out or out.endswith("C00: Riddleport - 5/6")
     assert "+0 perm" not in out
 
 
@@ -119,7 +119,7 @@ def test_campaign_view_splits_current_and_perm_sections():
     assert "Perm:\n  \u2022 Perm0" in out, (
         f"Expected Perm section to list Perm0; got:\n{out}"
     )
-    # Inline [perm] tag is GONE — the section header carries the meaning.
+    # Inline [perm] tag is GONE - the section header carries the meaning.
     assert "[perm]" not in out
 
 

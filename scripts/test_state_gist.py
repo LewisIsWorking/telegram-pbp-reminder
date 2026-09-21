@@ -1,4 +1,4 @@
-"""Tests for state_gist.py — pure gist load/save functions."""
+"""Tests for state_gist.py - pure gist load/save functions."""
 
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
@@ -31,7 +31,7 @@ class TestGistLoad:
         assert result == {"offset": 42}
 
     def test_missing_file_returns_none(self):
-        """Gist exists but doesn't contain our state file — treat as None."""
+        """Gist exists but doesn't contain our state file - treat as None."""
         from state_gist import gist_load
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -51,7 +51,7 @@ class TestGistLoad:
                 gist_load("http://fake", "tok", _FILENAME)
 
     def test_network_error_aborts(self):
-        """Network failure must abort, not return None — same protection."""
+        """Network failure must abort, not return None - same protection."""
         from state_gist import gist_load
         import requests as _req
         with patch("state_gist.requests.get",
@@ -80,7 +80,7 @@ class TestGistSave:
         assert "saved to gist" in captured.out
 
     def test_http_failure_does_not_raise(self):
-        """A failed save must never crash the bot — gist is best-effort backup."""
+        """A failed save must never crash the bot - gist is best-effort backup."""
         from state_gist import gist_save
         mock_resp = MagicMock()
         mock_resp.status_code = 500
@@ -88,7 +88,7 @@ class TestGistSave:
             gist_save("http://fake", "tok", _FILENAME, {"offset": 1})  # no raise
 
     def test_network_error_does_not_raise(self):
-        """Network exception during save must be caught — same reason."""
+        """Network exception during save must be caught - same reason."""
         from state_gist import gist_save
         import requests as _req
         with patch("state_gist.requests.patch",

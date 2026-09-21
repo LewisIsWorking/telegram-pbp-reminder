@@ -1,4 +1,4 @@
-"""test_import_history.py — bin 1.
+"""test_import_history.py - bin 1.
 
   - misc (part a)
 """

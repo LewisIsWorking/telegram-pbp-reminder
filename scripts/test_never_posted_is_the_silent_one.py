@@ -9,7 +9,7 @@ one line in ``queue_silence._idle_campaigns``:
 
 ```python
 if last_dt is None:
-    continue  # never posted / untracked — neither silent nor caught up
+    continue  # never posted / untracked - neither silent nor caught up
 ```
 
 ⛔ The docstring on ``caught_up_campaigns`` promised the opposite:
@@ -22,7 +22,7 @@ removed, the consumers reported:
 
 ```
 idle pids:  ['25059', '40585']
-oldest:     C06: Kibwe — quiet for 1d 3h      <-- C10 had NEVER posted
+oldest:     C06: Kibwe - quiet for 1d 3h      <-- C10 had NEVER posted
 ```
 
 The fix ranks a never-posted campaign first by giving it ``days = inf``,
@@ -56,7 +56,7 @@ class TestItIsListedAtAll:
         # formatting `age` directly renders a dangling phrase.
         line = silent_campaigns(config(NEW), NEVER, {}, NOW)[0]
         assert line.endswith("https://t.me/Path_Wars/146645")
-        assert "— no posts yet 🔗" in line
+        assert "- no posts yet 🔗" in line
         assert "no posts for " not in line
         # ☠️ is entry_age_icon's oldest bucket. It falls out of passing
         # inf, which every comparison in that function fails without

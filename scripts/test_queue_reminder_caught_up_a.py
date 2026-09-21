@@ -1,6 +1,6 @@
 """Tests for the 'All caught up!' branch in scheduled/queue_reminder.py.
 
-Covers the empty-queue branch at queue_reminder.py:73-77 — previously
+Covers the empty-queue branch at queue_reminder.py:73-77 - previously
 marked ``# pragma: no cover`` because no test exercised it. The
 branch fires when:
 
@@ -10,14 +10,14 @@ branch fires when:
      and
   3. There are no silent campaigns to display.
 
-Sub-cases covered in this file (line-73 DEFENSIVE path — scanner
+Sub-cases covered in this file (line-73 DEFENSIVE path - scanner
 returns campaigns with empty entries lists, which the production
 scanner does not currently do but might in the future):
 
-  * ``last_queue_fingerprint != "empty"`` — bot posts "All caught up!"
+  * ``last_queue_fingerprint != "empty"`` - bot posts "All caught up!"
     once, then sets fingerprint to "empty" so subsequent runs don't
     repeat it.
-  * ``last_queue_fingerprint == "empty"`` (already marked empty) —
+  * ``last_queue_fingerprint == "empty"`` (already marked empty) -
     bot stays silent. Reaching this case requires bypassing the
     duplicate-fingerprint early return at line 65, which only
     happens on a daily-hour run with the slot not yet posted.
@@ -42,7 +42,7 @@ def _empty_scanned() -> dict:
     but the ``entries`` list is empty (so ``total == 0`` at line 73).
 
     Note: the production scanner ``commands.queue_scan.scan_transcripts``
-    does NOT actually return this shape — it omits empty campaigns
+    does NOT actually return this shape - it omits empty campaigns
     entirely (see queue_scan.py:185-197). The ``_no_scanned()``
     helper below produces the shape the production scanner uses
     when every queue is clean. The two shapes hit different early-
@@ -90,7 +90,7 @@ def test_caught_up_message_posted_when_queue_first_empties():
     # the _post_caught_up helper (which goes through
     # gm_queue_history.post_and_persist) so the previous GM queue
     # batch gets evicted. Mock the helper directly to verify it's
-    # called — testing the deeper post_and_persist chain would
+    # called - testing the deeper post_and_persist chain would
     # duplicate the gm_queue_history tests' coverage.
     with patch("scheduled.queue_reminder.scan_transcripts",
                return_value=_empty_scanned()), \
@@ -160,7 +160,7 @@ def test_caught_up_silent_when_already_marked_empty():
          patch("scheduled.queue_reminder.tg.unpin_message"):
         post_queue_reminder(config, state, now=now)
 
-    # No 'All caught up!' message — we already told them.
+    # No 'All caught up!' message - we already told them.
     assert captured == [], (
         f"Expected silent re-empty (no message), but got: {captured}"
     )

@@ -1,4 +1,4 @@
-"""Tests extracted from test_push_to_100.py — bin 4.
+"""Tests extracted from test_push_to_100.py - bin 4.
 
 Sections in this file:
   - commands/status.py

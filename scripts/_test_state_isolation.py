@@ -30,7 +30,7 @@ StateStore on the registry module rather than monkeypatching a
 ``_STATE_PATH`` constant.
 
 P3/9 slice 2 update: refusal_log now also persists through
-``StateStore``. Same pattern — install a tmp-rooted StateStore on
+``StateStore``. Same pattern - install a tmp-rooted StateStore on
 the module rather than monkeypatching individual file paths.
 """
 
@@ -60,7 +60,7 @@ _rl._store = _TEST_STORE
 _pa._store = _TEST_STORE
 # stuck_deletes, added 2026-08-16. Before that date a delete Telegram
 # refused wrote nothing anywhere, so no test could leak through this path
-# — the write did not exist. Making the failure real made it leakable: the
+# - the write did not exist. Making the failure real made it leakable: the
 # first full-suite run after the fix deposited a fixture's
 # chat_id=-1001/mid=12345 into the real data/state/stuck_deletes.json,
 # which CI would then have committed.
@@ -68,7 +68,7 @@ _pa._store = _TEST_STORE
 # A fix that wakes a previously-dead write path is exactly when it bites.
 _sd._store = _TEST_STORE
 # sent_log, added 2026-08-16. record_sent now writes a description of
-# every message the bot sends, and the suite sends a great many — so this
+# every message the bot sends, and the suite sends a great many - so this
 # is the highest-volume leak path of the lot, not a marginal one.
 _sl._store = _TEST_STORE
 # ⛔ queue_io, added 2026-08-27 after the WORST leak of the lot reached

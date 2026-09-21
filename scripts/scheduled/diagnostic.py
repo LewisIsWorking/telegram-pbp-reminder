@@ -51,7 +51,7 @@ def _fetch_run_log(run_id: int) -> str:
     })
     try:
         resp = urllib.request.urlopen(req, timeout=15)
-        # Follow redirect — GitHub returns a zip download URL
+        # Follow redirect - GitHub returns a zip download URL
         z = zipfile.ZipFile(io.BytesIO(resp.read()))
         for name in z.namelist():
             if "check-inactivity" in name:

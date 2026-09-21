@@ -1,10 +1,10 @@
-"""Tests extracted from test_final_100.py — bin 4.
+"""Tests extracted from test_final_100.py - bin 4.
 
 Sections in this file:
   - commands/mechanics.py
   - dispatch/cmd_info.py all commands
   - helpers/config.py
-  - helpers/time_utils.py:72-73 — weeks duration
+  - helpers/time_utils.py:72-73 - weeks duration
   - commands/dashboard.py
 """
 """
@@ -129,7 +129,7 @@ def test_config_missing_pbp_topic_ids():
 
 
 
-# ─── helpers/time_utils.py:72-73 — weeks duration ────────────────────────────
+# ─── helpers/time_utils.py:72-73 - weeks duration ────────────────────────────
 
 def test_parse_away_weeks():
     from helpers_pkg.time_utils import parse_away_duration

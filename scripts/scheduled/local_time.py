@@ -1,6 +1,6 @@
 """Display-time conversion to Lewis's local clock (Belfast).
 
-The bot reasons in UTC everywhere — cron fires in UTC, every gate
+The bot reasons in UTC everywhere - cron fires in UTC, every gate
 compares UTC hours, and all state timestamps are UTC. **None of that
 changes.** This module exists purely so posts can be *rendered* in the
 timezone the GM actually lives in, because "09:00 UTC" is a small piece
@@ -14,7 +14,7 @@ in force.
 ``tzdata`` is an explicit dependency (installed in the workflow) because
 Windows has no system tz database, so ``ZoneInfo`` fails there without
 it. If the zone still cannot be loaded for any reason, ``to_local``
-degrades to returning the UTC value unchanged rather than raising —
+degrades to returning the UTC value unchanged rather than raising -
 this runs inside the scheduled-jobs loop, and a timezone lookup is never
 worth taking the whole run down for.
 """
@@ -56,7 +56,7 @@ def to_local(dt: datetime) -> datetime:
 
 
 def tz_label(dt: datetime) -> str:
-    """Short label for the converted time — 'BST', 'GMT', or 'UTC'.
+    """Short label for the converted time - 'BST', 'GMT', or 'UTC'.
 
     Takes the *converted* datetime so the label always matches the clock
     reading next to it.

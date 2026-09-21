@@ -1,13 +1,13 @@
-"""Tests extracted from test_aaa_isolated.py — bin 1.
+"""Tests extracted from test_aaa_isolated.py - bin 1.
 
 Sections in this file:
-  - commands/waiting.py:83 — continue when no name match
-  - commands/mechanics.py:52 — timer with hours only
-  - commands/summary.py:75 — scene line
-  - commands/dashboard.py:61 — vote flag
-  - combat/display.py:76 — enemies listed in whosturn
-  - dispatch/comeback.py:38 — no bot_topic → return
-  - dispatch/router.py:181-182 — exception in update processing
+  - commands/waiting.py:83 - continue when no name match
+  - commands/mechanics.py:52 - timer with hours only
+  - commands/summary.py:75 - scene line
+  - commands/dashboard.py:61 - vote flag
+  - combat/display.py:76 - enemies listed in whosturn
+  - dispatch/comeback.py:38 - no bot_topic → return
+  - dispatch/router.py:181-182 - exception in update processing
 """
 """
 MUST RUN FIRST (alphabetical ordering): these tests cover lines that
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── commands/waiting.py:83 — continue when no name match ─────────────────────
+# ── commands/waiting.py:83 - continue when no name match ─────────────────────
 def test_waiting_pid_not_in_scanned():
     # Line 83: pid not in scanned → continue
     from commands.waiting import build_waiting_all
@@ -41,7 +41,7 @@ def test_waiting_pid_not_in_scanned():
 
 
 
-# ── commands/mechanics.py:52 — timer with hours only ─────────────────────────
+# ── commands/mechanics.py:52 - timer with hours only ─────────────────────────
 def test_timer_hours_only():
     from commands.mechanics import build_timer
     now = datetime.now(timezone.utc)
@@ -53,7 +53,7 @@ def test_timer_hours_only():
 
 
 
-# ── commands/summary.py:75 — scene line ──────────────────────────────────────
+# ── commands/summary.py:75 - scene line ──────────────────────────────────────
 def test_summary_current_scene():
     from commands.summary import build_summary
     state = {"combat": {}, "clocks": {}, "notes": {}, "quests": {}, "loot": {},
@@ -65,7 +65,7 @@ def test_summary_current_scene():
 
 
 
-# ── commands/dashboard.py:61 — vote flag ─────────────────────────────────────
+# ── commands/dashboard.py:61 - vote flag ─────────────────────────────────────
 def test_dashboard_vote_flag():
     from commands.dashboard import build_gm_dashboard
     config = {"group_id": -1, "gm_user_ids": [], "topic_pairs": [
@@ -92,7 +92,7 @@ def test_dashboard_vote_flag():
 
 
 
-# ── combat/display.py:76 — enemies listed in whosturn ────────────────────────
+# ── combat/display.py:76 - enemies listed in whosturn ────────────────────────
 def test_combat_whosturn_with_enemies():
     from combat.display import build_whosturn
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -111,7 +111,7 @@ def test_combat_whosturn_with_enemies():
 
 
 
-# ── dispatch/comeback.py:38 — no bot_topic → return ─────────────────────────
+# ── dispatch/comeback.py:38 - no bot_topic → return ─────────────────────────
 def test_comeback_no_bot_topic_early_return():
     from dispatch.comeback import check_comeback
     now = datetime.now(timezone.utc)
@@ -129,7 +129,7 @@ def test_comeback_no_bot_topic_early_return():
 
 
 
-# ── dispatch/router.py:181-182 — exception in update processing ───────────────
+# ── dispatch/router.py:181-182 - exception in update processing ───────────────
 def test_router_update_exception():
     from dispatch.router import process_updates
     maps = MagicMock()

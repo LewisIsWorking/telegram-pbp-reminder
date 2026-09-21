@@ -25,7 +25,7 @@ _SILENCE_THRESHOLD_DAYS = SILENCE_THRESHOLD_DAYS
 
 def _line(row) -> str:
     """Render one row as a queue line."""
-    return f"  {row.icon} {row.prefix}{row.label} — {phrase(row)}{row.link}"
+    return f"  {row.icon} {row.prefix}{row.label} - {phrase(row)}{row.link}"
 
 
 def _sorted_lines(rows) -> list[str]:
@@ -133,7 +133,7 @@ def oldest_campaign_line(config: dict, state: dict,
     if not rows:
         return None
     row = max(rows, key=lambda r: r.days)
-    return (f"🕰️ Oldest campaign: {row.icon} {row.prefix}{row.label} — "
+    return (f"🕰️ Oldest campaign: {row.icon} {row.prefix}{row.label} - "
             f"{callout_phrase(row)}."
             f"\nNothing is waiting on a reply, so this is the one that "
             f"most needs you.{row.link}")

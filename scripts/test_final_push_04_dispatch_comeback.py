@@ -1,17 +1,17 @@
-"""Tests extracted from test_final_push.py — bin 4.
+"""Tests extracted from test_final_push.py - bin 4.
 
 Sections in this file:
-  - dispatch/comeback.py:38 — no bot_topic
-  - boons/handler.py:105 — resolve None
-  - players/management.py:73 — no match
-  - commands/campaign.py:169 — notes > 3
-  - commands/timeline.py:34 — removed_players
-  - commands/markdone.py:80-84 — clear by id
+  - dispatch/comeback.py:38 - no bot_topic
+  - boons/handler.py:105 - resolve None
+  - players/management.py:73 - no match
+  - commands/campaign.py:169 - notes > 3
+  - commands/timeline.py:34 - removed_players
+  - commands/markdone.py:80-84 - clear by id
   - commands/mechanics.py:63
   - commands/waiting.py:83
 """
 """
-Definitive final coverage push — verified to actually hit each line.
+Definitive final coverage push - verified to actually hit each line.
 Uses real function calls with minimal/no mocking where possible.
 """
 import sys, os, json, pytest
@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── dispatch/comeback.py:38 — no bot_topic ──────────────────────────────────
+# ── dispatch/comeback.py:38 - no bot_topic ──────────────────────────────────
 def test_comeback_no_bot_topic_real():
     from dispatch.comeback import check_comeback
     now = datetime.now(timezone.utc)
@@ -39,7 +39,7 @@ def test_comeback_no_bot_topic_real():
 
 
 
-# ── boons/handler.py:105 — resolve None ─────────────────────────────────────
+# ── boons/handler.py:105 - resolve None ─────────────────────────────────────
 def test_boons_resolve_none_real():
     from boons.handler import _resolve_boon
     state = {"pending_potw_boons": {"100": {
@@ -50,7 +50,7 @@ def test_boons_resolve_none_real():
 
 
 
-# ── players/management.py:73 — no match ─────────────────────────────────────
+# ── players/management.py:73 - no match ─────────────────────────────────────
 def test_management_no_match_real():
     from players.management import handle_kick
     state = {"players": {"100:U2": {"user_id": "U2", "first_name": "Bob",
@@ -59,7 +59,7 @@ def test_management_no_match_real():
 
 
 
-# ── commands/campaign.py:169 — notes > 3 ────────────────────────────────────
+# ── commands/campaign.py:169 - notes > 3 ────────────────────────────────────
 def test_campaign_notes_real():
     from commands.campaign import build_campaign_report
     state = {"notes": {"100": [f"N{i}" for i in range(5)]},
@@ -90,7 +90,7 @@ def test_campaign_notes_real():
 
 
 
-# ── commands/timeline.py:34 — removed_players ───────────────────────────────
+# ── commands/timeline.py:34 - removed_players ───────────────────────────────
 def test_timeline_removed_real():
     from commands.timeline import build_timeline
     now = datetime.now(timezone.utc)
@@ -105,7 +105,7 @@ def test_timeline_removed_real():
 
 
 
-# ── commands/markdone.py:80-84 — clear by id ────────────────────────────────
+# ── commands/markdone.py:80-84 - clear by id ────────────────────────────────
 def test_markdone_found_real(tmp_path, monkeypatch):
     from commands.markdone import handle_markdone
     from commands import queue_io

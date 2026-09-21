@@ -4,23 +4,23 @@ The bug this prevents
 ---------------------
 The posted schedule read:
 
-    • Roster summary — due now
-    • Pace report — due now
+    • Roster summary - due now
+    • Pace report - due now
 
-Both had read "due now" for weeks, and both were technically true — but
+Both had read "due now" for weeks, and both were technically true - but
 the reason was not the one a reader would take from it.
 
 ``last_roster`` and ``last_pace`` are ``{pid: iso}``, and the line was
 computed from the *earliest* value across every key. State accumulates
 campaign ids indefinitely; ``1242`` had been removed from ``config`` and
 its 2026-07-06 timestamp was still sitting there. Its job iterates
-``config``, never reaches it, and so never restamps it — so the earliest
+``config``, never reaches it, and so never restamps it - so the earliest
 value could only ever move further into the past, and the line was
 pinned to "due now" for good. A permanently-stuck status line is worse
 than no line: it reads as information and carries none.
 
 Filtering to configured campaigns fixes the orphan. The count is the
-other half — "due now" alone cannot distinguish one stalled campaign
+other half - "due now" alone cannot distinguish one stalled campaign
 from all nine, and one stalled campaign is the common case (``107151``
 has no players recorded, so its roster job skips without stamping).
 """
@@ -71,7 +71,7 @@ class TestOrphanCampaignsAreIgnored:
         assert "due now" in _line(_CFG, state, "Roster summary")
 
     def test_no_configured_campaigns_means_no_filtering(self):
-        """Empty is ambiguous — an unreadable config must not blank the line.
+        """Empty is ambiguous - an unreadable config must not blank the line.
 
         Filtering on an empty set would drop every timestamp and render
         every per-campaign job permanently "due now", which is the bug
@@ -91,7 +91,7 @@ class TestDueCount:
         assert "(2 of 2 campaigns)" in _line(_CFG, state, "Roster summary")
 
     def test_orphans_are_excluded_from_the_total_too(self):
-        """Not just from 'due' — a removed campaign is not one of N either.
+        """Not just from 'due' - a removed campaign is not one of N either.
 
         Three entries, one of them an orphan, one live one overdue: the
         line must read 1 of 2, never 1 of 3.

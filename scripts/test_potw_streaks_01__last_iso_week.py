@@ -1,4 +1,4 @@
-"""test_potw_streaks.py — bin 1.
+"""test_potw_streaks.py - bin 1.
 
   - _last_iso_week
   - _consecutive_weeks
@@ -115,7 +115,7 @@ def test_campaign_streak_broken():
         {"campaign_pid": "100", "user_id": "U1", "year": 2026, "week": "W4"},
         {"campaign_pid": "100", "user_id": "U1", "year": 2026, "week": "W6"},
     ]
-    # Gap at W5 — streak is only 1 (just W6)
+    # Gap at W5 - streak is only 1 (just W6)
     assert compute_campaign_streak(history, "100", "U1") == 1
 
 def test_campaign_streak_longer():

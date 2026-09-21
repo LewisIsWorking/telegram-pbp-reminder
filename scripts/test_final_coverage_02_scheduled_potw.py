@@ -1,7 +1,7 @@
-"""Tests extracted from test_final_coverage.py — bin 2.
+"""Tests extracted from test_final_coverage.py - bin 2.
 
 Sections in this file:
-  - scheduled/potw.py — winner selection and announcement (part a)
+  - scheduled/potw.py - winner selection and announcement (part a)
 """
 """
 Tests targeting the remaining coverage gaps:

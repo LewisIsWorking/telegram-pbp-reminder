@@ -1,4 +1,4 @@
-"""Tests for scheduled/topic_queue_state.py — slot schema helpers."""
+"""Tests for scheduled/topic_queue_state.py - slot schema helpers."""
 
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))

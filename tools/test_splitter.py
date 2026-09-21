@@ -6,8 +6,8 @@ file ever drifts back over 200 lines, the splitter can be re-run
 without re-deriving twelve sessions of debugging.
 
 See:
-  * docs/dev/ROADMAP.md  — entry P0/1 explains why this lives in tools/
-  * docs/dev/REFACTOR_PROGRESS.md  — the L1—L14 learnings encoded here
+  * docs/dev/ROADMAP.md  - entry P0/1 explains why this lives in tools/
+  * docs/dev/REFACTOR_PROGRESS.md  - the L1-L14 learnings encoded here
 
 Three splitting strategies, picked per file:
 
@@ -170,7 +170,7 @@ def _run_cli(stems):
                 overlong.append(path)
 
     if overlong:
-        print(f"\n⚠ {len(overlong)} files over 200 — retrying with target=110")
+        print(f"\n⚠ {len(overlong)} files over 200 - retrying with target=110")
         for p in overlong:
             os.remove(p)
         for stem in stems:

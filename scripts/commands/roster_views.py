@@ -3,10 +3,10 @@
 Two companion commands to /roster (count-only overview) and
 /rosterplayers (cross-campaign player table):
 
-* /rostercampaigns \u2014 per-campaign full breakdown for every campaign.
+* /rostercampaigns - per-campaign full breakdown for every campaign.
   Equivalent to running /roster <code> for each campaign in turn,
   emitted as one combined message.
-* /rosterall \u2014 per-campaign blocks followed by the at-risk and
+* /rosterall - per-campaign blocks followed by the at-risk and
   recent-history footer from roster_players. The footer surfaces
   the actionable bits (who's at risk, who joined / left) without
   duplicating the per-player table that's already implicit in the
@@ -57,7 +57,7 @@ def build_roster_all(config: dict, state: dict) -> str:
     The footer (at-risk players + recent joiners / leavers) is
     appended below the per-campaign blocks via a thick rule. The
     full cross-campaign player table from /rosterplayers is NOT
-    re-emitted here \u2014 it's redundant with the per-campaign blocks
+    re-emitted here - it's redundant with the per-campaign blocks
     that already list every player by name. Only the actionable
     summary carries over.
     """

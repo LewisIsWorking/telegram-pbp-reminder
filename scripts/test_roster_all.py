@@ -93,7 +93,7 @@ def test_all_view_omits_footer_when_nothing_to_report():
 
 def test_all_view_omits_player_table_redundant_with_blocks():
     """The cross-campaign player table from /rosterplayers is NOT
-    re-emitted in /rosterall \u2014 it's redundant with the per-campaign
+    re-emitted in /rosterall - it's redundant with the per-campaign
     blocks that already list every player. Only the actionable
     footer (at-risk + history) carries over."""
     from commands.roster_views import build_roster_all
@@ -102,6 +102,6 @@ def test_all_view_omits_player_table_redundant_with_blocks():
                    "pbp_topic_id": 100, "last_post_time": _now_iso(2)},
     }}
     out = build_roster_all(_config(), state)
-    # The "Player Roster — N unique players across M campaigns" header
+    # The "Player Roster - N unique players across M campaigns" header
     # from build_roster_players should NOT appear in build_roster_all
     assert "unique players across" not in out

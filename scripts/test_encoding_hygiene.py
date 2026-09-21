@@ -2,7 +2,7 @@
 
 Background (4.51.x): the bot writes UTF-8 transcripts, but `open()`,
 `Path.read_text()` and `Path.write_text()` without an explicit
-`encoding=` use the platform default — utf-8 on the Linux CI runner,
+`encoding=` use the platform default - utf-8 on the Linux CI runner,
 but cp1252 on a Windows dev box. That mismatch silently corrupted
 em-dashes and broke ~7 tests only on Windows, and is a latent
 transcript-corruption risk if the bot ever runs on a non-utf-8 host.
@@ -10,7 +10,7 @@ transcript-corruption risk if the bot ever runs on a non-utf-8 host.
 This test walks the whole source tree with the `ast` module (so it
 ignores matches inside strings/comments) and fails if any text-mode
 open/read_text/write_text omits an encoding. Binary modes ("rb"/"wb"
-/…) are correctly exempt — encoding is invalid there.
+/…) are correctly exempt - encoding is invalid there.
 
 If this fails: add `encoding="utf-8"` to the flagged call. Don't rely
 on the platform default.
@@ -63,6 +63,6 @@ def test_no_unqualified_text_file_io():
         violations.extend(_violations_in(py))
     assert not violations, (
         "Text file I/O without encoding=\"utf-8\" found "
-        "(platform-default encoding is non-deterministic — see this file's "
+        "(platform-default encoding is non-deterministic - see this file's "
         f"docstring):\n  " + "\n  ".join(violations)
     )

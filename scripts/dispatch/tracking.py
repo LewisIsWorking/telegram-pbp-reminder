@@ -26,7 +26,7 @@ def track_message(parsed: dict, state: dict, config: dict,
         "campaign_name": campaign_name,
     }
 
-    # Message count — per canonical pid (existing) and per physical thread (new)
+    # Message count - per canonical pid (existing) and per physical thread (new)
     user_counts = state["message_counts"].setdefault(pid, {})
     user_counts[user_id] = user_counts.get(user_id, 0) + 1
     thread_id = parsed.get("thread_id", pid)
@@ -77,7 +77,7 @@ def track_message(parsed: dict, state: dict, config: dict,
                     })
                     queue_io.save(pid, cq)
     else:
-        # GM replied to a specific message — mark it cleared
+        # GM replied to a specific message - mark it cleared
         if not text.startswith("/"):
             reply_to = parsed.get("reply_to_message_id")
             if reply_to:

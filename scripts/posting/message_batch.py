@@ -2,7 +2,7 @@
 A single batch of Telegram messages forming one logical post.
 
 A 'batch' is one or more chunks (messages) that were sent as part of a
-single post — typically because the formatted text exceeded Telegram's
+single post - typically because the formatted text exceeded Telegram's
 4096-char limit and had to be split. The chunks share a lifecycle: they
 were posted together and they are deleted together.
 
@@ -30,7 +30,7 @@ class MessageBatch:
     Attributes:
         msg_ids: All message IDs that were sent in this batch, in send
             order. The first ID is conventionally the pinned message
-            but this class does not enforce that — callers decide.
+            but this class does not enforce that - callers decide.
         pin_id: The pinned message ID, if any. ``None`` for unpinned
             batches. Often equal to ``msg_ids[0]`` but tracked
             separately so a batch can be re-pinned to a different

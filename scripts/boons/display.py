@@ -1,5 +1,5 @@
 """
-Boon display helpers — /boons and /boonsall command formatters.
+Boon display helpers - /boons and /boonsall command formatters.
 
 Extracted from boons/handler.py to keep that file under 200 lines.
 """

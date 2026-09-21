@@ -46,7 +46,7 @@ def handle(ctx: dict) -> bool:
         else:
             msg = f"✈️ {user_name} marked as away (indefinite).\nReason: {reason}"
         msg += "\nUse /back when you return."
-        print(f"Away: {user_name} in {campaign_name} — {reason}")
+        print(f"Away: {user_name} in {campaign_name} - {reason}")
         tg.send_message(group_id, thread_id, msg)
         return True
 
@@ -114,7 +114,7 @@ def handle(ctx: dict) -> bool:
     # ---- /chooseboon REMOVED 2026-05-11. Boon selection lives on the
     # ---- website. See scripts/scheduled/potw.py for the new flow.
     # ---- Players who type /chooseboon now get no response from this
-    # ---- dispatcher — the command falls through to the router which
+    # ---- dispatcher - the command falls through to the router which
     # ---- also no longer handles it.
 
     # ---- /roll command (everyone) ----
@@ -145,7 +145,7 @@ def handle(ctx: dict) -> bool:
 
                 header = f"🎲 {roller}"
                 if label:
-                    header += f" — {label}"
+                    header += f" - {label}"
                 header += ":"
 
                 if len(result["results"]) == 1:

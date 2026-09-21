@@ -43,7 +43,7 @@ def handle_poll_closed(poll: dict, config: dict, state: dict) -> None:
             group_id = config["group_id"]
             if bot_topic:
                 tg.send_message(group_id, bot_topic,
-                                f"📊 {code} poll closed — {total} voted. "
+                                f"📊 {code} poll closed - {total} voted. "
                                 f"No more pings this week.")
             print(f"Poll closed: {code} (poll_id={poll_id}, voters={total})")
             return
@@ -57,7 +57,7 @@ def handle_poll_closed(poll: dict, config: dict, state: dict) -> None:
         group_id = config["group_id"]
         if bot_topic:
             tg.send_message(group_id, bot_topic,
-                            f"📊 Swimming poll closed — {total} voted.")
+                            f"📊 Swimming poll closed - {total} voted.")
         print(f"Poll closed: swimming (poll_id={poll_id}, voters={total})")
 
 

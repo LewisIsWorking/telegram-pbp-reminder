@@ -1,4 +1,4 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 7.
+"""Tests extracted from test_dispatch_coverage.py - bin 7.
 
 Sections in this file:
   - voting_code not in any pair's code → no posts but no crash (part a)

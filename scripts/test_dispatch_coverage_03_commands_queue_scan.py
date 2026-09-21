@@ -1,4 +1,4 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 3.
+"""Tests extracted from test_dispatch_coverage.py - bin 3.
 
 Sections in this file:
   - commands/queue_scan.py

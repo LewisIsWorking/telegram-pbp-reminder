@@ -1,4 +1,4 @@
-"""Tests for posting.safe_delete — the guarded deletion/unpin paths.
+"""Tests for posting.safe_delete - the guarded deletion/unpin paths.
 
 Verifies that both safety guards (delete and unpin):
   * Refuse (return False, call no API) when the ID is unknown
@@ -82,7 +82,7 @@ def test_suppress_errors_passed_through():
 
 
 def test_no_force_flag_in_signature():
-    """The guard takes (chat_id, message_id, post_fn) — no bypass arg.
+    """The guard takes (chat_id, message_id, post_fn) - no bypass arg.
 
     Locks in the design promise that there is no force/bypass parameter;
     a future change that adds one to make 'just this once' deletes
@@ -96,7 +96,7 @@ def test_no_force_flag_in_signature():
 # ── unpin guard ────────────────────────────────────────────────────────────
 # The bug this fixes: unpin_message used to POST unpinChatMessage for any ID
 # a caller passed, so a stale/crossed pin id cleared a GM's or player's manual
-# pin. The guard now refuses IDs the bot never sent — same rule as delete.
+# pin. The guard now refuses IDs the bot never sent - same rule as delete.
 
 
 def test_unpin_refuses_unknown_id_no_api_call():

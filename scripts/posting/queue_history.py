@@ -3,7 +3,7 @@ Rolling window of recent message batches with retry-on-failure eviction.
 
 A ``QueueHistory`` retains the most recent ``max_kept`` batches in a
 Telegram topic. When a new batch is appended and the cap is exceeded,
-older batches are evicted — every message ID inside an evicted batch is
+older batches are evicted - every message ID inside an evicted batch is
 deleted from Telegram.
 
 Eviction is *not* fire-and-forget. If any delete returns False
@@ -12,7 +12,7 @@ only its failed IDs so the next run can retry. This means a persistent
 delete failure causes temporary overflow rather than silently orphaning
 a message in the topic.
 
-State is owned by the caller — this class does not read or write any
+State is owned by the caller - this class does not read or write any
 state file. It operates on plain ``list[MessageBatch]`` values that the
 caller persists.
 """

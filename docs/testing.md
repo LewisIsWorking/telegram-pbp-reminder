@@ -8,7 +8,7 @@ The CI workflow enforces this on every run.
 
 ## What 100% coverage does NOT guarantee
 
-Coverage tells you which lines were *executed* by tests — not whether
+Coverage tells you which lines were *executed* by tests - not whether
 those lines behaved correctly for all relevant inputs.
 
 A line can be covered and still be buggy if:
@@ -25,7 +25,7 @@ mid = entry.get("message_id", "")
 pfx = f"{entry_num:02d} [{mid}]" if mid else f"{entry_num:02d}"
 ```
 
-Tests passed `message_id: "1970"` — the line was covered. But in
+Tests passed `message_id: "1970"` - the line was covered. But in
 production, `message_id` is `None` when the transcript lacks a `msg#`
 tag, so `mid` was falsy and no ID was shown. Coverage was 100%. The
 bug shipped anyway.
@@ -45,16 +45,16 @@ where the primary value is absent or falsy. Specifically:
 
 ## Checklist before shipping a new function
 
-1. **Happy path** — normal input, expected output
-2. **Missing key** — `entry.get("x")` when `"x"` is not in the dict
-3. **Falsy value** — `entry.get("x")` when `"x"` is `None`, `""`, `0`, or `[]`
-4. **Fallback path** — whatever the `else` / `or` branch does
-5. **Edge cases** — empty lists, zero counts, very long strings
+1. **Happy path** - normal input, expected output
+2. **Missing key** - `entry.get("x")` when `"x"` is not in the dict
+3. **Falsy value** - `entry.get("x")` when `"x"` is `None`, `""`, `0`, or `[]`
+4. **Fallback path** - whatever the `else` / `or` branch does
+5. **Edge cases** - empty lists, zero counts, very long strings
 
 ## Mocking external calls
 
 All Telegram API calls (`tg.send_message`, `tg.edit_message`, etc.) must
-be mocked in tests. External-call files are tested via mocking only —
+be mocked in tests. External-call files are tested via mocking only -
 never make real API calls from tests.
 
 ## File size

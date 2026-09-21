@@ -11,7 +11,7 @@ Two independent drift sources, both from the old rolling gate
    eventually wandered onto a different weekday.
 2. A week with fewer than POTW_MIN_POSTS qualifying posts hit ``continue``
    **without stamping** ``last_potw``. The gate stayed open, so the award
-   fired on the first tick after activity resumed — literally whenever a
+   fired on the first tick after activity resumed - literally whenever a
    player next posted enough to qualify.
 
 Both are replaced by a calendar weekday gate plus an ISO week key, the
@@ -71,7 +71,7 @@ class TestAwardOnlyFiresMonday:
     ⚠️ These fixtures must be able to ACTUALLY AWARD, otherwise the
     "does not fire" assertions pass for the wrong reason. An earlier
     draft used ``topic_pairs: []``, so nothing could ever be sent and
-    deleting the weekday gate entirely still left the suite green —
+    deleting the weekday gate entirely still left the suite green -
     a guard that cannot fail proves nothing. ``test_monday_DOES_fire``
     below is the counterweight: it pins that this config really does
     produce an award, so the negative cases mean something.
@@ -82,7 +82,7 @@ class TestAwardOnlyFiresMonday:
                             "pbp_topic_ids": [40585], "chat_topic_id": 200}]}
 
     def _state(self):
-        # Five posts, six hours apart, inside the 7-day window — clears
+        # Five posts, six hours apart, inside the 7-day window - clears
         # POTW_MIN_POSTS (5) with a consistent gap so there is a winner.
         stamps = [(_MON_09 - timedelta(days=1, hours=6 * i)).isoformat()
                   for i in range(5)]
@@ -100,14 +100,14 @@ class TestAwardOnlyFiresMonday:
         tg_mock.send_message_id.return_value = 900
         player_of_the_week(self.CFG, self._state(), now=_MON_09)
         assert tg_mock.send_message_id.called, (
-            "fixture cannot award — the negative tests below would be vacuous")
+            "fixture cannot award - the negative tests below would be vacuous")
 
     def test_does_not_fire_midweek(self, tg_mock):
         from scheduled.potw import player_of_the_week
         tg_mock.send_message_id.return_value = 900
         player_of_the_week(self.CFG, self._state(), now=_TUE_09)
         assert not tg_mock.send_message_id.called, (
-            "POTW must not fire on a Tuesday — this is the reported bug")
+            "POTW must not fire on a Tuesday - this is the reported bug")
 
     def test_does_not_fire_before_post_hour(self, tg_mock):
         from scheduled.potw import player_of_the_week
@@ -190,7 +190,7 @@ class TestRoundup:
 
 class TestCountdown:
     def test_countdown_DOES_post_on_thursday(self, tg_mock):
-        """Counterweight for the negatives — a fixture that can fire.
+        """Counterweight for the negatives - a fixture that can fire.
 
         Without this, 'does not post' assertions using an empty
         topic_pairs would pass because nothing could ever post, which is
@@ -203,7 +203,7 @@ class TestCountdown:
         assert tg_mock.send_message.called
 
     def test_only_fires_on_countdown_day(self, tg_mock):
-        """Same capable fixture as above, wrong day — must stay silent."""
+        """Same capable fixture as above, wrong day - must stay silent."""
         from scheduled.potw_countdown import post_potw_countdown
         tg_mock.send_message.return_value = True
         post_potw_countdown(TestAwardOnlyFiresMonday.CFG,

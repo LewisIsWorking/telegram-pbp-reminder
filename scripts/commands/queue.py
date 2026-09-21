@@ -18,7 +18,7 @@ def build_queue(config: dict, state: dict) -> str:
 
     total = sum(len(d["entries"]) for d in scanned.values())
 
-    # Build numeric priority map — lower = higher position in queue
+    # Build numeric priority map - lower = higher position in queue
     # queue_priority: True (legacy bool) → level 1; int used directly
     priority_map = build_priority_map(config)
     priority_pids = set(priority_map.keys())  # kept for pin-icon display

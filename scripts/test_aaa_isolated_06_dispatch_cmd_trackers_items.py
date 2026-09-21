@@ -1,7 +1,7 @@
-"""Tests extracted from test_aaa_isolated.py — bin 6.
+"""Tests extracted from test_aaa_isolated.py - bin 6.
 
 Sections in this file:
-  - dispatch/cmd_trackers_items.py:108 — loot not found
+  - dispatch/cmd_trackers_items.py:108 - loot not found
 """
 """
 MUST RUN FIRST (alphabetical ordering): these tests cover lines that
@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── dispatch/cmd_trackers_items.py:108 — loot not found ─────────────────────
+# ── dispatch/cmd_trackers_items.py:108 - loot not found ─────────────────────
 def test_cmd_loot_nf():
     from dispatch.cmd_trackers_items import handle
     ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},

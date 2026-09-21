@@ -1,6 +1,6 @@
-"""Tests for /rosterplayers (Shape 2) — bin B: at-risk and history footer.
+"""Tests for /rosterplayers (Shape 2) - bin B: at-risk and history footer.
 
-Companion to test_roster_players_a.py — covers the at-risk section,
+Companion to test_roster_players_a.py - covers the at-risk section,
 the recent join/leave history, and the no-footer fallthrough.
 """
 import sys

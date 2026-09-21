@@ -97,12 +97,12 @@ def test_post_caught_up_appends_the_age_block():
         return True, 1
 
     with patch.object(queue_caught_up, "post_and_persist", _fake):
-        queue_caught_up.post_caught_up({}, -1, 9, ["  a — last post 2h ago",
-                                                   "  b — no posts for 9d"])
+        queue_caught_up.post_caught_up({}, -1, 9, ["  a - last post 2h ago",
+                                                   "  b - no posts for 9d"])
     assert "All caught up!" in sent["text"]
     assert "Time since last post" in sent["text"]
-    assert "  a — last post 2h ago" in sent["text"]
-    assert "  b — no posts for 9d" in sent["text"]
+    assert "  a - last post 2h ago" in sent["text"]
+    assert "  b - no posts for 9d" in sent["text"]
 
 
 def test_post_caught_up_unchanged_without_ages():

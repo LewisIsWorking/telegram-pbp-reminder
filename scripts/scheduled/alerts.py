@@ -140,7 +140,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         # (since 2026-08-30) even when `warnings` is disabled: sweeping a
         # dead seat is roster hygiene, not a message to a player. Gated
         # on its own `removals` feature instead. See inactivity_policy.
-        # Permanent players are never removed — skip the removal block entirely
+        # Permanent players are never removed - skip the removal block entirely
         if not is_permanent(player, config) and current_week >= helpers.PLAYER_REMOVE_WEEKS:
             if sweeps and last_warned < helpers.PLAYER_REMOVE_WEEKS:
                 message = (

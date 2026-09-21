@@ -36,7 +36,7 @@ POTW_MIN_POSTS = 5
 # interval. The old interval anchored to "7 days since this campaign last
 # posted one", which drifted later every week; and because a week with
 # too few posts hit `continue` WITHOUT stamping last_potw, the gate
-# stayed open and fired on the first tick after activity resumed — i.e.
+# stayed open and fired on the first tick after activity resumed - i.e.
 # seemingly at random, whenever a player happened to post. 0 = Monday.
 POTW_WEEKDAY = 0
 

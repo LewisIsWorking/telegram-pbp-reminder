@@ -7,7 +7,7 @@ production call sites; this module only registers it for discovery and
 the slice-7 regression test (``test_migration_registry``).
 
 The poster imports this module at the bottom of its file so the
-registration runs whenever the poster is imported — preserving the
+registration runs whenever the poster is imported - preserving the
 behaviour the migration-registry test relies on (it triggers
 registration by importing the poster).
 """

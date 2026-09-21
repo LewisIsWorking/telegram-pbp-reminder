@@ -31,7 +31,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     now = now or datetime.now(timezone.utc)
     scanned = scan_transcripts(config, state)
 
-    # Maintain per-topic pinned queues — always runs, independent of bot-topic posting
+    # Maintain per-topic pinned queues - always runs, independent of bot-topic posting
     post_topic_queues(config, scanned, now, state=state)
 
     # Build a fingerprint of the current queue state
@@ -85,11 +85,11 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         # same message every cron tick.
         #
         # Note: the scanner (queue_scan.py:185-197) omits campaigns
-        # with zero entries, so this branch — not the total==0 branch
-        # below — is the one that actually fires when every queue is
+        # with zero entries, so this branch - not the total==0 branch
+        # below - is the one that actually fires when every queue is
         # clean.
         if state.get("last_queue_fingerprint", "empty") != "empty":
-            # See _post_caught_up docstring — routes via batch
+            # See _post_caught_up docstring - routes via batch
             # machinery so the previous GM queue gets evicted.
             _post_caught_up(state, group_id, bot_topic,
                              campaign_age_lines(config, state, scanned, now),

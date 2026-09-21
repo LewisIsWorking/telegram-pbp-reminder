@@ -14,8 +14,8 @@ loudly*. They came from the same request and are two questions.
 
 Lewis: *"You should capture the message's contents and sender so you know
 if it is an issue."* A bare ``mid=`` cannot answer that. Worse, it makes
-the guard's most important finding — the bot reaching for a player's
-message — indistinguishable from routine bookkeeping.
+the guard's most important finding - the bot reaching for a player's
+message - indistinguishable from routine bookkeeping.
 """
 from unittest.mock import patch
 
@@ -39,7 +39,7 @@ def test_a_refusal_on_a_player_message_escalates():
 
     A registry refusal on a bot message is bookkeeping. On a player's
     message it is the guard stopping what it was built to stop, and the
-    two must not look alike — which under the bare-mid format they did.
+    two must not look alike - which under the bare-mid format they did.
     """
     with patch("refusal_alert.describe",
                return_value=_facts("player", "Ryo Yamakawa", "Next. Next")):

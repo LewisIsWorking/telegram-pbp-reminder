@@ -1,4 +1,4 @@
-"""Tests for checker.py — transcript (part a) group.
+"""Tests for checker.py - transcript (part a) group.
 
 Extracted from test_checker.py during the test-split refactor. Module
 imports, helper functions (_make_config, _make_state, _make_msg, _utc,
@@ -113,11 +113,11 @@ def test_transcript_silence_gap():
     p1 = {**base, "msg_time_iso": "2026-02-23T08:00:00+00:00", "raw_text": "morning"}
     checker._append_to_transcript(p1, {"999"})
 
-    # 2 hours later — no silence marker
+    # 2 hours later - no silence marker
     p2 = {**base, "msg_time_iso": "2026-02-23T10:00:00+00:00", "raw_text": "still here"}
     checker._append_to_transcript(p2, {"999"})
 
-    # 18 hours later (same day-ish) — should get silence marker
+    # 18 hours later (same day-ish) - should get silence marker
     p3 = {**base, "msg_time_iso": "2026-02-24T04:00:00+00:00", "raw_text": "back after silence"}
     checker._append_to_transcript(p3, {"999"})
 

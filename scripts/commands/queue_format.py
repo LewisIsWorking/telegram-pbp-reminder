@@ -35,13 +35,13 @@ def build_priority_map(config: dict) -> dict[str, int]:
 def entry_age_icon(hours: float) -> str:
     """Return an icon showing how long a message has been unreplied.
 
-    Under 24h — growth sequence:
-      🆕  < 1h    — just posted
-      🌱  1–6h    — seedling
-      🌿  6–12h   — growing
-      🌳  12–24h  — established
+    Under 24h - growth sequence:
+      🆕  < 1h    - just posted
+      🌱  1–6h    - seedling
+      🌿  6–12h   - growing
+      🌳  12–24h  - established
 
-    Days 1–16 — colour circle then square, one icon per day:
+    Days 1–16 - colour circle then square, one icon per day:
       🟢  day 1   🟩  day 2
       🟡  day 3   🟨  day 4
       🟠  day 5   🟧  day 6

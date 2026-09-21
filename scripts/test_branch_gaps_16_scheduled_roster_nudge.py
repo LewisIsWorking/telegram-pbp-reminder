@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 16.
+"""Tests extracted from test_branch_gaps.py - bin 16.
 
 Sections in this file:
   - scheduled/roster_nudge.py

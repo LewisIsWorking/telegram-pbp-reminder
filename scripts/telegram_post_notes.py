@@ -11,15 +11,15 @@ For "is the message there?" operations, certain Telegram error bodies
 indicate the *desired end state is already achieved*. The bot should
 treat these as success, not failure. Patterns currently recognised:
 
-* ``"message to delete not found"`` \u2014 deleteMessage on an already-gone
+* ``"message to delete not found"`` - deleteMessage on an already-gone
   message ID. Could be: message deleted in a prior bot run, message
   deleted by an admin, message deleted by the author, expired
   service message, etc.
-* ``"MESSAGE_ID_INVALID"`` \u2014 Telegram's old-style error code for the
+* ``"MESSAGE_ID_INVALID"`` - Telegram's old-style error code for the
   same condition. Still emitted in some edge cases.
-* ``"message not found"`` \u2014 emitted by unpinChatMessage when the
+* ``"message not found"`` - emitted by unpinChatMessage when the
   pinned message is already gone (deleted, or pin was already cleared).
-The live list is ``posting.safe_delete.ALREADY_GONE_ERRORS`` \u2014 read it
+The live list is ``posting.safe_delete.ALREADY_GONE_ERRORS`` - read it
 there rather than trusting this prose, which cannot fail a build.
 
 \u26d4 ``"message can't be deleted"`` **was** on this list and was removed on
@@ -33,7 +33,7 @@ Every clause of that is true and the conclusion still does not follow.
 delete, not a soft success. Suppressing it made
 ``perform_guarded_delete`` return True, so the caller cleared the
 tracked slot and dropped the ID before ``pending_delete`` could ever
-retry it \u2014 the one mechanism built to catch orphans never saw an orphan.
+retry it - the one mechanism built to catch orphans never saw an orphan.
 The pin audit recorded **715 deletes, 715 successes, zero failures,
 ever**, while an ``Unreplied: 2`` post from 2026-08-03 sat in the C06
 topic for thirteen days until Lewis spotted it. An outcome column with
@@ -58,7 +58,7 @@ The fix is downstream of ``posting.bot_sent_registry.is_bot_sent``.
 The registry remains the gatekeeper: any message ID not recorded as
 sent by the bot is refused at the safe_delete layer before any HTTP
 call is made. Treating Telegram's "not found" responses as soft
-success does NOT change *which* IDs are attempted \u2014 it only changes
+success does NOT change *which* IDs are attempted - it only changes
 how the result is interpreted for IDs the safeguard has already
 approved.
 
