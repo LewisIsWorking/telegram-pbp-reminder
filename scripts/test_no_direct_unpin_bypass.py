@@ -91,7 +91,7 @@ def test_no_direct_api_url_for_unpin():
     """No file constructs ``api.telegram.org/.../unpinChatMessage`` URLs.
 
     Even a file on the allow-list (because it documents the API) must
-    NOT build a URL pointing directly at the unpin endpoint — that would
+    NOT build a URL pointing directly at the unpin endpoint - that would
     bypass the registry guard exactly as the 2026-05-08 purge script
     bypassed the delete guard.
     """
@@ -100,7 +100,7 @@ def test_no_direct_api_url_for_unpin():
     )
     offenders = []
     for fp, rel in _all_python_files():
-        # This file names the URL pattern in its own docstring — skip it.
+        # This file names the URL pattern in its own docstring - skip it.
         if rel == "scripts/test_no_direct_unpin_bypass.py":
             continue
         try:

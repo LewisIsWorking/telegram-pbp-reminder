@@ -1,15 +1,15 @@
-"""Tests extracted from test_remaining_gaps.py — bin 5.
+"""Tests extracted from test_remaining_gaps.py - bin 5.
 
 Sections in this file:
-  - dispatch/cmd_trackers.py:115-118 — quest not found
-  - dispatch/cmd_trackers_items.py:139-140 — npc not found
-  - dispatch/cmd_votes_timers.py:119 — /timer no args
-  - dispatch/comeback.py:36-52 — sends comeback alert
-  - dispatch/poll_notify.py:62 — 3-way tie
-  - dispatch/router.py:181-182 — exception isolation
-  - dispatch/tracking.py:175-182 — warned player comeback
+  - dispatch/cmd_trackers.py:115-118 - quest not found
+  - dispatch/cmd_trackers_items.py:139-140 - npc not found
+  - dispatch/cmd_votes_timers.py:119 - /timer no args
+  - dispatch/comeback.py:36-52 - sends comeback alert
+  - dispatch/poll_notify.py:62 - 3-way tie
+  - dispatch/router.py:181-182 - exception isolation
+  - dispatch/tracking.py:175-182 - warned player comeback
 """
-"""Final targeted tests for all remaining coverage gaps — 6% to close."""
+"""Final targeted tests for all remaining coverage gaps - 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -32,7 +32,7 @@ def _ctx(**kwargs):
     base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
     return base
 
-# ─── dispatch/cmd_trackers.py:115-118 — quest not found ─────────────────────
+# ─── dispatch/cmd_trackers.py:115-118 - quest not found ─────────────────────
 
 def test_cmd_trackers_quest_not_found_msg():
     from dispatch.cmd_trackers import handle as trackers_handle
@@ -53,7 +53,7 @@ def test_cmd_trackers_quest_non_numeric():
 
 
 
-# ─── dispatch/cmd_trackers_items.py:139-140 — npc not found ──────────────────
+# ─── dispatch/cmd_trackers_items.py:139-140 - npc not found ──────────────────
 
 def test_cmd_trackers_npc_not_found():
     from dispatch.cmd_trackers_items import handle as ti_handle
@@ -74,7 +74,7 @@ def test_cmd_trackers_npc_non_numeric():
 
 
 
-# ─── dispatch/cmd_votes_timers.py:119 — /timer no args ───────────────────────
+# ─── dispatch/cmd_votes_timers.py:119 - /timer no args ───────────────────────
 
 def test_cmd_timer_no_args():
     from dispatch.cmd_votes_timers import handle as vt_handle
@@ -85,7 +85,7 @@ def test_cmd_timer_no_args():
 
 
 
-# ─── dispatch/comeback.py:36-52 — sends comeback alert ──────────────────────
+# ─── dispatch/comeback.py:36-52 - sends comeback alert ──────────────────────
 
 def test_comeback_sends_alert():
     from dispatch.comeback import check_comeback
@@ -108,7 +108,7 @@ def test_comeback_sends_alert():
 
 
 
-# ─── dispatch/poll_notify.py:62 — 3-way tie ──────────────────────────────────
+# ─── dispatch/poll_notify.py:62 - 3-way tie ──────────────────────────────────
 
 def test_poll_notify_three_way_tie():
     from dispatch.poll_tally import _lead_summary
@@ -119,7 +119,7 @@ def test_poll_notify_three_way_tie():
 
 
 
-# ─── dispatch/router.py:181-182 — exception isolation ────────────────────────
+# ─── dispatch/router.py:181-182 - exception isolation ────────────────────────
 
 def test_router_exception_isolation():
     from dispatch.router import process_updates
@@ -134,7 +134,7 @@ def test_router_exception_isolation():
 
 
 
-# ─── dispatch/tracking.py:175-182 — warned player comeback ──────────────────
+# ─── dispatch/tracking.py:175-182 - warned player comeback ──────────────────
 
 def test_tracking_warned_player_returns():
     from dispatch.tracking import track_message

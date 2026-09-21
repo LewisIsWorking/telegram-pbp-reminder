@@ -35,7 +35,7 @@ The bot responds to these commands in any monitored PBP topic:
 - `/boonsall` - View all your boons across campaigns.
 - `/chooseboon <N>` - Choose a POTW boon by number.
 - `/pick <choice>` - Vote in an active poll.
-- `/search <query>` - Search Archives of Nethys (spells, feats, items — no creatures).
+- `/search <query>` - Search Archives of Nethys (spells, feats, items - no creatures).
 - `/reactions` - Reaction stats for the current campaign.
 - `/timeline` - Cross-campaign event timeline.
 - `/available <days>` - Set your posting days (e.g. `/available mon wed fri`).
@@ -90,9 +90,9 @@ Without it the sync does nothing. `COO_SERVER_URL` overrides the server address.
 - `/delpin <N>` - Delete a pin.
 - `/loot <item>` - Add item to party loot tracker.
 - `/delloot <N>` - Remove item from loot.
-- `/npc <n> — <desc>` - Add NPC to tracker.
+- `/npc <n> - <desc>` - Add NPC to tracker.
 - `/delnpc <N>` - Remove NPC.
-- `/condition <target> — <effect> [| duration]` - Track a condition.
+- `/condition <target> - <effect> [| duration]` - Track a condition.
 - `/endcondition <N>` - Remove a condition.
 - `/clearconditions` - Clear all conditions.
 - `/hp set <n> <cur>/<max>` - Track enemy HP.

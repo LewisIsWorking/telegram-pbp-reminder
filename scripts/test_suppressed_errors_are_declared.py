@@ -12,7 +12,7 @@ PROVEN  by ``test_the_guard_can_fail``.
 
 ────────────────────────────────────────────────────────────────────────
 
-``telegram._post`` returns ``True`` — soft success — for any response
+``telegram._post`` returns ``True`` - soft success - for any response
 body matching a ``suppress_errors`` entry. That is correct **only** when
 the error means the caller's goal is already achieved. It is catastrophic
 when the error means the operation did not happen, because every
@@ -25,7 +25,7 @@ recorded 715 deletes, 715 successes and zero failures, while 28
 messages it believed it had removed sat in the group. Lewis found it by
 scrolling Telegram.
 
-The judgement is one word per entry, and it is not hard — *achieved* or
+The judgement is one word per entry, and it is not hard - *achieved* or
 *abandoned*. This test forces someone to write that word down.
 """
 import ast
@@ -34,7 +34,7 @@ from pathlib import Path
 # ── The declaration ──────────────────────────────────────────────────────────
 # Imported, never retyped. The registry is production code, so a string
 # cannot reach a suppress_errors argument without a written reason
-# attached — that is the mechanism; this file is the enforcement.
+# attached - that is the mechanism; this file is the enforcement.
 from posting.suppression_registry import (  # noqa: E402
     NEVER_SUPPRESS,
     SUPPRESSIONS_THAT_MEAN_ALREADY_ACHIEVED,
@@ -102,7 +102,7 @@ def test_every_suppressed_string_is_declared():
         f"caller records a SUCCESS. That is only correct when the error "
         f"means the goal is already achieved.\n"
         f"Ask: does this error mean 'already true', or 'I could not'? If "
-        f"the latter, it is a failure — bound the retry (see "
+        f"the latter, it is a failure - bound the retry (see "
         f"posting.stuck_deletes), do not suppress it. If the former, add "
         f"it to SUPPRESSIONS_THAT_MEAN_ALREADY_ACHIEVED with the reason."
     )
@@ -155,7 +155,7 @@ def test_the_named_constant_matches_the_declaration():
     """safe_delete.ALREADY_GONE_ERRORS must itself be fully declared.
 
     It is exempted from the literal check above, so without this it would
-    be the one unaudited way in — the exemption would become the hole.
+    be the one unaudited way in - the exemption would become the hole.
     """
     from posting.safe_delete import ALREADY_GONE_ERRORS
     undeclared = [s for s in ALREADY_GONE_ERRORS

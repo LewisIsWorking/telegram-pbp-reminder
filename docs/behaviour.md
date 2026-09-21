@@ -22,7 +22,7 @@ incoming GM messages and marks that specific entry as replied.
 - Any player activity.
 
 This was a known bug before v4.26.0: the transcript scanner treated any GM
-message as clearing all accumulated player messages. Fixed — the scanner now
+message as clearing all accumulated player messages. Fixed - the scanner now
 relies solely on reply-to tracking.
 
 ### Queue reminder schedule
@@ -64,12 +64,12 @@ not get one.
 ## Session Polls (C01 Doomsday Funtime & C11 Dark Pockets)
 
 ### Poll lifecycle
-1. **Sunday at `poll_post_hour` UTC (default 07:00)** — poll is posted and pinned
+1. **Sunday at `poll_post_hour` UTC (default 07:00)** - poll is posted and pinned
    to the campaign's chat topic.
-2. **Each day (Mon–Sun)** — players who haven't voted receive a daily ping with a
+2. **Each day (Mon–Sun)** - players who haven't voted receive a daily ping with a
    direct link to the pinned poll.
-3. **Once everyone has voted** — "All X players have voted!" confirmation posted once.
-4. **Friday at 15:00 UTC** — result announced in each campaign's chat topic.
+3. **Once everyone has voted** - "All X players have voted!" confirmation posted once.
+4. **Friday at 15:00 UTC** - result announced in each campaign's chat topic.
 
 ### Vote notifications (cross-campaign)
 C01 and C11 are linked (`linked_polls` config). When any player votes in either
@@ -97,7 +97,7 @@ promote captured IDs into `config.json`.
 ### Selection
 Each campaign independently runs POTW on a configurable interval
 (`potw_interval_days`, default 7). The winner is the non-GM player with the
-most consistent posting — lowest average gap between posts — with a minimum
+most consistent posting - lowest average gap between posts - with a minimum
 post count (`potw_min_posts`, default 5).
 
 ### Boon offer
@@ -135,7 +135,7 @@ The bot monitors the time since the last message in each PBP topic.
 | 3 weeks | Third warning |
 | 4 weeks (`player_remove_weeks`) | Player removed from tracking |
 
-Campaigns can be paused with `/pause [reason]` — all inactivity tracking
+Campaigns can be paused with `/pause [reason]` - all inactivity tracking
 suspended until `/resume`.
 
 ---
@@ -329,7 +329,7 @@ cleared. The key cap is 200 entries (oldest evicted first).
 
 Telegram sends each image in a multi-photo post as a separate message
 update, each with the same `media_group_id`. Only the **first** message
-of a group is added to the GM reply queue — subsequent images in the
+of a group is added to the GM reply queue - subsequent images in the
 same group are skipped. Replying to the first image clears the group.
 
 ---
@@ -338,5 +338,5 @@ same group are skipped. Replying to the first image clears the group.
 
 In Telegram forum topics, every message has `reply_to_message` set to
 the topic's root header (same message ID as the thread ID, contains
-`forum_topic_created`). The bot ignores these — only genuine
+`forum_topic_created`). The bot ignores these - only genuine
 reply-to-a-specific-message events clear queue entries.

@@ -1,6 +1,6 @@
 """The bot must stop asking Telegram to delete what it cannot delete.
 
-COVERS  ``posting.stuck_deletes`` — the bounded give-up, the one-time
+COVERS  ``posting.stuck_deletes`` - the bounded give-up, the one-time
         alert, the manual clear, and the ``pending_delete`` sweep in
         ``scheduled.topic_queue_state.retry_pending_deletes``.
 MISSES  Whether the give-up threshold is the right number. Four attempts
@@ -18,7 +18,7 @@ distinction to be made explicit.
 Why a give-up exists at all: ``"message can't be deleted"`` used to be
 suppressed as a soft success, on the reasoning that the message will
 never delete so retrying is pointless. The reasoning was right and the
-remedy was wrong — it lied about the outcome instead of bounding the
+remedy was wrong - it lied about the outcome instead of bounding the
 retry. This is the bound, with the outcome left honest.
 """
 import json
@@ -163,7 +163,7 @@ def test_retry_sweep_drops_hopeless_ids(monkeypatch):
 
 
 def test_retry_sweep_keeps_ids_still_worth_retrying(monkeypatch):
-    """The positive counterpart — the sweep must not drop everything."""
+    """The positive counterpart - the sweep must not drop everything."""
     from scheduled import topic_queue_state as tqs
     monkeypatch.setattr(tqs, "is_hopeless", lambda mid: False)
     slot = {"pending_delete": [MID, 999]}
@@ -186,8 +186,8 @@ def test_the_sweep_can_fail(monkeypatch):
     """Feed the sweep the pre-fix behaviour and confirm it goes red.
 
     Per ``guards-that-mean-something``: prove the guard by feeding it the
-    bug. With is_hopeless always False — which is what the code did
-    before this change, because nothing ever recorded a failure — the
+    bug. With is_hopeless always False - which is what the code did
+    before this change, because nothing ever recorded a failure - the
     hopeless ID survives the sweep and grows the list forever.
     """
     from scheduled import topic_queue_state as tqs

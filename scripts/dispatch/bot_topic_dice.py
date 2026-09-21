@@ -4,7 +4,7 @@ Extracted from ``dispatch/bot_topic.py`` on 2026-08-15, which had reached
 214 lines against the 200 limit.
 
 This pair was chosen over the other contextless branches because it is the
-only one that is **unconditionally terminal** — it always answers and always
+only one that is **unconditionally terminal** - it always answers and always
 returns. ``/mystats``, ``/me`` and ``/waiting`` deliberately *fall through*
 to normal campaign handling when given an argument, so lifting them would
 have meant inventing a handled/not-handled protocol and getting the
@@ -20,7 +20,7 @@ import telegram as tg
 
 def handle_dice(cmd_word: str, args: str, msg: dict, maps,
                 group_id: int, bot_topic: int, user_name: str) -> None:
-    """Answer ``/roll`` or ``/dc``. Always terminal — the caller returns."""
+    """Answer ``/roll`` or ``/dc``. Always terminal - the caller returns."""
     print(f"Bot topic: {cmd_word} from {user_name}: {args}")
     pid = next(iter(maps.to_name), None)
     if not pid:
@@ -47,7 +47,7 @@ def handle_dice(cmd_word: str, args: str, msg: dict, maps,
     label = result["label"]
     header = f"🎲 {user_name}"
     if label:
-        header += f" — {label}"
+        header += f" - {label}"
     header += ":"
     r = result["results"][0]
     tg.send_message(group_id, bot_topic,

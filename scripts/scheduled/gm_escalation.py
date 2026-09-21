@@ -19,8 +19,8 @@ from commands.queue_scan import scan_transcripts
 _INTERVAL_H = 12
 
 _HEADERS = [
-    "📋 Hey — some campaigns have replies waiting. Don't let them slip! 🙂",
-    "⚠️ GM queue alert — players are waiting on you!",
+    "📋 Hey - some campaigns have replies waiting. Don't let them slip! 🙂",
+    "⚠️ GM queue alert - players are waiting on you!",
     "🔴 These queues are getting really stale. Get on it! 🚨",
     "🚨🚨 SORT IT OUT, GM! 🚨🚨",
 ]
@@ -96,7 +96,7 @@ def check_gm_escalation(config: dict, state: dict,
     header = _HEADERS[level - 1]
     lines = [header, ""]
     for label, hours in sorted(stale, key=lambda x: -x[1]):
-        lines.append(f"  {label} — {hours}h")
+        lines.append(f"  {label} - {hours}h")
     msg = "\n".join(lines)
 
     tg.send_message(group_id, bot_topic, msg)

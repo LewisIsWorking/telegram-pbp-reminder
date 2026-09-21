@@ -1,11 +1,11 @@
-"""Tests extracted from test_remaining_gaps.py — bin 6.
+"""Tests extracted from test_remaining_gaps.py - bin 6.
 
 Sections in this file:
-  - scheduled/reports.py:93-157 — post_pace_report
-  - scheduled/milestones.py:134 — exactly 1 year message
+  - scheduled/reports.py:93-157 - post_pace_report
+  - scheduled/milestones.py:134 - exactly 1 year message
   - misc one-liners
 """
-"""Final targeted tests for all remaining coverage gaps — 6% to close."""
+"""Final targeted tests for all remaining coverage gaps - 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -28,7 +28,7 @@ def _ctx(**kwargs):
     base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
     return base
 
-# ─── scheduled/reports.py:93-157 — post_pace_report ─────────────────────────
+# ─── scheduled/reports.py:93-157 - post_pace_report ─────────────────────────
 
 def test_reports_pace_report_skips_feature_disabled():
     from scheduled.reports import post_pace_report
@@ -45,7 +45,7 @@ def test_reports_pace_report_skips_feature_disabled():
 
 
 
-# ─── scheduled/milestones.py:134 — exactly 1 year message ───────────────────
+# ─── scheduled/milestones.py:134 - exactly 1 year message ───────────────────
 
 def test_milestones_1_year_msg():
     from scheduled.milestones import check_anniversaries

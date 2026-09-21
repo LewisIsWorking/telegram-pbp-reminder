@@ -8,7 +8,7 @@ remember.
 
 Why a week key instead of a rolling interval
 --------------------------------------------
-POTW used to fire on ``interval_elapsed(last_potw[pid], 7, now)`` — "seven
+POTW used to fire on ``interval_elapsed(last_potw[pid], 7, now)`` - "seven
 days since this campaign last posted one". That drifted two ways:
 
 * It fires on the first cron tick *at or after* the 7-day mark, and the
@@ -16,7 +16,7 @@ days since this campaign last posted one". That drifted two ways:
   eventually wandered onto a different day.
 * Worse, a week with fewer than ``POTW_MIN_POSTS`` qualifying posts hit
   ``continue`` **without stamping** ``last_potw``. The gate stayed open,
-  so the award fired on the first tick after activity resumed — that is
+  so the award fired on the first tick after activity resumed - that is
   the "it goes off whenever someone posts" behaviour.
 
 A week key fixes both by construction: the gate is a calendar fact, not a

@@ -1,4 +1,4 @@
-## Test consolidation pass — plan for ROADMAP P2/6
+## Test consolidation pass - plan for ROADMAP P2/6
 
 Status: **draft for review**. Risky enough that it deserves a written
 plan before any test gets deleted.
@@ -102,7 +102,7 @@ Output: `tools/test_consolidation_map.json` with shape
 }
 ```
 
-This step is mechanical — script it.
+This step is mechanical - script it.
 
 **Step 2. Establish the baseline.** Run
 
@@ -137,7 +137,7 @@ sub-file. If a sub-file ends up empty, delete it.
 
 **Step 5. Update the splitter.** `tools/test_splitter.py` will
 have to deal with smaller source files going forward. No changes
-to the splitter itself — it only runs when a file is over 200 lines,
+to the splitter itself - it only runs when a file is over 200 lines,
 so as long as the new feature files stay small, the splitter stays
 dormant.
 
@@ -174,17 +174,17 @@ catch real edge cases the feature tests miss.
 
 Process modules in *risk order*, lowest-risk first:
 
-1. **Pure helper modules** (`helpers_pkg/*`, `parsing/*`) — small
+1. **Pure helper modules** (`helpers_pkg/*`, `parsing/*`) - small
    modules with simple contracts. Easy to verify "feature test
    covers all branches".
 2. **Display/formatting modules** (`boons/display.py`,
-   `commands/queue_io.py`) — output-shape tests dominate; easy to
+   `commands/queue_io.py`) - output-shape tests dominate; easy to
    spot duplicates.
-3. **Command modules** (`commands/*`, `dispatch/*`) — medium
+3. **Command modules** (`commands/*`, `dispatch/*`) - medium
    complexity. Behaviour usually well-covered by feature tests.
-4. **Scheduled jobs** (`scheduled/*`) — complex flows. Coverage-
+4. **Scheduled jobs** (`scheduled/*`) - complex flows. Coverage-
    seed tests here often catch real edge cases.
-5. **`checker.py`** — the orchestrator. Last, because it's the
+5. **`checker.py`** - the orchestrator. Last, because it's the
    most-shared module and any miss here has the widest blast
    radius.
 
@@ -225,7 +225,7 @@ alongside `tools/test_splitter.py`.
 
 ### Why this is P2 not P1
 
-The duplicate tests aren't *wrong* — they pass, they cover code,
+The duplicate tests aren't *wrong* - they pass, they cover code,
 they stay green. The cost is maintenance overhead (changes to a
 production function require updating multiple tests) and CI time
 (~12 seconds today, but it grows with every coverage-seed file).

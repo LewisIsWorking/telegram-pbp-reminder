@@ -16,8 +16,8 @@ PROVEN  by ``test_the_guard_can_fail``.
     the message_id was not in the bot-sent registry.
 
 **All eleven IDs were in the registry.** They were give-ups from
-``stuck_deletes`` — messages Telegram will not remove because they are
-over 48h old — routed through ``record_refusal`` because it was the
+``stuck_deletes`` - messages Telegram will not remove because they are
+over 48h old - routed through ``record_refusal`` because it was the
 existing alert channel. The transport was reusable. The explanation was
 not, and it pointed at a bug that did not exist while hiding a chore
 that did: eleven messages needing manual deletion.

@@ -54,7 +54,7 @@ def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
 
         line = f"{health} {name}: {posts_str(total)} {trend} ({party}){combat_str}"
         if top_name:
-            line += f" — MVP: {top_name}"
+            line += f" - MVP: {top_name}"
 
         campaign_lines.append((total, line))
 
@@ -62,7 +62,7 @@ def _build_weekly_digest(config: dict, state: dict, now: datetime) -> str:
     campaign_lines.sort(key=lambda x: x[0], reverse=True)
 
     date_str = fmt_date(now)
-    header = f"📰 Weekly Digest — {date_str}"
+    header = f"📰 Weekly Digest - {date_str}"
     body = "\n".join(line for _, line in campaign_lines)
 
     legend = "\n\n🟢 20+ posts | 🟡 10-19 | 🟠 5-9 | 🔴 <5"

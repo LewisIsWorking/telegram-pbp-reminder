@@ -1,15 +1,15 @@
-"""Tests extracted from test_final_push.py — bin 1.
+"""Tests extracted from test_final_push.py - bin 1.
 
 Sections in this file:
-  - commands/summary.py:113 — away count line
-  - commands/reactions.py:67 — negative count reset
-  - commands/catchup.py:161 — acted_ids from list
-  - commands/recap.py:124-128 — truncation at word boundary
-  - commands/status.py:162 — no last_message_time
-  - commands/dashboard.py:74 / 80 — at-risk flag
+  - commands/summary.py:113 - away count line
+  - commands/reactions.py:67 - negative count reset
+  - commands/catchup.py:161 - acted_ids from list
+  - commands/recap.py:124-128 - truncation at word boundary
+  - commands/status.py:162 - no last_message_time
+  - commands/dashboard.py:74 / 80 - at-risk flag
 """
 """
-Definitive final coverage push — verified to actually hit each line.
+Definitive final coverage push - verified to actually hit each line.
 Uses real function calls with minimal/no mocking where possible.
 """
 import sys, os, json, pytest
@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── commands/summary.py:113 — away count line ────────────────────────────────
+# ── commands/summary.py:113 - away count line ────────────────────────────────
 def test_summary_away_real(monkeypatch):
     from commands.summary import build_summary
     import helpers as h
@@ -39,7 +39,7 @@ def test_summary_away_real(monkeypatch):
 
 
 
-# ── commands/reactions.py:67 — negative count reset ─────────────────────────
+# ── commands/reactions.py:67 - negative count reset ─────────────────────────
 def test_reactions_neg_real():
     from commands.reactions import build_reactions
     state = {"reactions": {"100": {"U1": {"👍": 5, "🎉": -2}}}}
@@ -52,7 +52,7 @@ def test_reactions_neg_real():
 
 
 
-# ── commands/catchup.py:161 — acted_ids from list ───────────────────────────
+# ── commands/catchup.py:161 - acted_ids from list ───────────────────────────
 def test_catchup_acted_list_real():
     from commands.catchup import build_catchup
     now = datetime.now(timezone.utc)
@@ -76,11 +76,11 @@ def test_catchup_acted_list_real():
 
 
 
-# ── commands/recap.py:124-128 — truncation at word boundary ─────────────────
+# ── commands/recap.py:124-128 - truncation at word boundary ─────────────────
 def test_recap_truncation_real(tmp_path):
     from commands.recap import build_recap
     import helpers as h
-    # recap reads real log files — create one with a long entry
+    # recap reads real log files - create one with a long entry
     long_text = "wordword " * 30  # > 200 chars
     campaign_dir = tmp_path / "Kibwe"
     campaign_dir.mkdir()
@@ -99,11 +99,11 @@ def test_recap_truncation_real(tmp_path):
 
 
 
-# ── commands/status.py:162 — no last_message_time ───────────────────────────
+# ── commands/status.py:162 - no last_message_time ───────────────────────────
 def test_status_no_last_time_real():
     from commands.status import build_status
     state = {
-        "topics": {"100": {}},  # no last_message_time → age = "—"
+        "topics": {"100": {}},  # no last_message_time → age = "-"
         "post_timestamps": {}, "message_counts": {}, "players": {},
         "paused_campaigns": {}, "current_scenes": {},
     }
@@ -119,11 +119,11 @@ def test_status_no_last_time_real():
         mh.trend_icon.return_value = "➡️"
         mh.posts_str.return_value = "0"
         result = build_status("100", "Kibwe", state, set(), {})
-    assert "—" in result or "no posts" in result.lower()
+    assert "-" in result or "no posts" in result.lower()
 
 
 
-# ── commands/dashboard.py:74 / 80 — at-risk flag ────────────────────────────
+# ── commands/dashboard.py:74 / 80 - at-risk flag ────────────────────────────
 def test_dashboard_at_risk_real():
     from commands.dashboard import build_gm_dashboard
     now = datetime.now(timezone.utc)

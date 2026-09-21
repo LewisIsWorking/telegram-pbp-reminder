@@ -9,7 +9,7 @@ What it does:
     2. Splits it into data/state/{live,players,queue,activity}.json
     3. Writes data/state/manifest.json with metadata
     4. Verifies all keys are accounted for
-    5. Prints a summary — does NOT modify the gist
+    5. Prints a summary - does NOT modify the gist
 
 After running:
     git add data/state/
@@ -100,7 +100,7 @@ def _write_partitions(state: dict) -> None:
         path = STATE_DIR / f"{partition}.json"
         path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
         size = path.stat().st_size
-        print(f"  Wrote {partition}.json — {len(data)} keys, {size:,} bytes")
+        print(f"  Wrote {partition}.json - {len(data)} keys, {size:,} bytes")
 
 
 def _write_manifest(state: dict) -> None:
@@ -127,7 +127,7 @@ def _print_summary(state: dict) -> None:
     print(f"  Migrated:  {len(migrated)} keys → data/state/")
     print(f"  Excluded:  {len(excluded)} keys (transient, not stored)")
     if unmapped:
-        print(f"  ⚠️ Unmapped: {len(unmapped)} keys — {unmapped}")  # pragma: no cover
+        print(f"  ⚠️ Unmapped: {len(unmapped)} keys - {unmapped}")  # pragma: no cover
     print("\nNext steps:")
     print("  git add data/state/")
     print('  git commit -m "feat(state): migrate gist state to file partitions"')

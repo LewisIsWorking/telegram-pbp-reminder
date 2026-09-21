@@ -27,7 +27,7 @@ def handle_combat_start(args: str, pid: str, campaign_name: str,
     }
 
     lines = [f"⚔️ Combat started in {campaign_name}!",
-             f"Round 1 — Players' turn."]
+             f"Round 1 - Players' turn."]
     if enemies:
         lines.append("")
         lines.append("Enemies:")
@@ -57,7 +57,7 @@ def handle_next_command(pid: str, campaign_name: str, now_iso: str,
         combat["phase_started_at"] = now_iso
         combat["last_ping_at"] = None
         tg.send_message(group_id, thread_id,
-                        f"Round {old_round} — Enemies' turn.")
+                        f"Round {old_round} - Enemies' turn.")
     else:
         # Advance to next round, players
         new_round = old_round + 1
@@ -68,7 +68,7 @@ def handle_next_command(pid: str, campaign_name: str, now_iso: str,
         combat["last_ping_at"] = None
         combat["all_players_notified"] = False
         tg.send_message(group_id, thread_id,
-                        f"Round {new_round} — Players' turn.\n"
+                        f"Round {new_round} - Players' turn.\n"
                         f"Post your actions!")
 
     print(f"Combat in {campaign_name}: Round {combat['round']}, {combat['current_phase']}")
@@ -104,7 +104,7 @@ def handle_endcombat(pid: str, campaign_name: str,
 
 def handle_enemies_command(args: str, pid: str, campaign_name: str,
                            now_iso: str, group_id: int, thread_id: int, state: dict) -> None:
-    """/enemies — view or set enemy roster."""
+    """/enemies - view or set enemy roster."""
     combat = state["combat"].get(pid)
     if not combat or not combat.get("active"):
         tg.send_message(group_id, thread_id, "No active combat. Start with /combat")

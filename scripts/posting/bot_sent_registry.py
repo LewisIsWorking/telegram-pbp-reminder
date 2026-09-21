@@ -2,12 +2,12 @@
 
 Single source of truth for "did the bot send this message?". Used by
 ``telegram.delete_message`` to refuse deletion of any message ID not
-in the registry — preventing accidental deletion of player or other
+in the registry - preventing accidental deletion of player or other
 non-bot messages by maintenance scripts, ID-range sweepers, race
 conditions, or corrupted state.
 
 State lives in ``data/state/bot_sent_ids.json`` as a JSON list of
-ints. The list is append-only — once recorded, an ID stays in the
+ints. The list is append-only - once recorded, an ID stays in the
 registry forever (a deletion does not remove the ID, since the
 underlying Telegram message no longer exists anyway, and we don't
 want to "forget" a previously-sent ID and then refuse to clean it up
@@ -18,11 +18,11 @@ scans every existing bot state file (live.json, queues/*.json) for
 message IDs the bot was already tracking pre-registry. Idempotent.
 
 Why this is unconditional: Telegram bots with admin+delete permissions
-can delete ANY message in the chat — including player messages — when
+can delete ANY message in the chat - including player messages - when
 asked. The only safe rule is "the bot may only delete IDs it sent".
 The registry enforces that rule at the lowest possible layer (the
-Telegram wrapper), so all callers — scheduled posters, maintenance
-scripts, future code — get the protection automatically.
+Telegram wrapper), so all callers - scheduled posters, maintenance
+scripts, future code - get the protection automatically.
 """
 
 import threading
@@ -40,7 +40,7 @@ _IDS: set[int] = set()
 
 # Persistence routes through StateStore (slice 1 of P3/9). The aux
 # file is named ``bot_sent_ids`` and resolves to
-# ``<state_dir>/bot_sent_ids.json`` — default ``<repo>/data/state/``.
+# ``<state_dir>/bot_sent_ids.json`` - default ``<repo>/data/state/``.
 # Tests monkeypatch ``_store`` to a tmp-rooted StateStore for isolation;
 # see ``_test_state_isolation.py`` and the per-test fixtures in
 # ``test_bot_sent_registry.py`` / ``test_safe_delete.py``.
@@ -51,7 +51,7 @@ _store = StateStore()
 def _load_locked() -> None:
     """Load the registry from disk into the in-memory set.
 
-    Caller must hold ``_LOCK``. Idempotent — only loads on first call.
+    Caller must hold ``_LOCK``. Idempotent - only loads on first call.
     Always runs ``backfill_from_state`` once after the on-disk file is
     read so older state-file IDs are picked up.
     """
@@ -152,7 +152,7 @@ def _backfill_locked() -> int:
     directly with json.load. Slice 3 of P3/9 will replace these with
     ``_store.load_partition`` / ``_store.load_queue``.
     """
-    import json  # local import — see slice-3 note above
+    import json  # local import - see slice-3 note above
     state_dir = _store.state_dir
     added = 0
     candidates: list = []
@@ -191,7 +191,7 @@ def _backfill_locked() -> int:
 
 
 def reset_for_test() -> None:
-    """Reset in-memory state. Tests only — never call in production."""
+    """Reset in-memory state. Tests only - never call in production."""
     global _LOADED, _IDS
     with _LOCK:
         _LOADED = False

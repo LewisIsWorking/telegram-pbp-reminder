@@ -1,4 +1,4 @@
-"""Tests extracted from test_scheduled_coverage.py — bin 2.
+"""Tests extracted from test_scheduled_coverage.py - bin 2.
 
 Sections in this file:
   - Count should not increase

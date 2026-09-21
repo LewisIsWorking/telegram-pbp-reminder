@@ -1,6 +1,6 @@
-"""test_roster.py — bin 5.
+"""test_roster.py - bin 5.
 
-  - players/history.py — _post_roster (part b)
+  - players/history.py - _post_roster (part b)
 """
 """Tests for commands/roster.py and players/history.py."""
 

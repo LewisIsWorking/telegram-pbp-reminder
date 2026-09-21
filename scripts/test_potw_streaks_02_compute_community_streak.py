@@ -1,4 +1,4 @@
-"""test_potw_streaks.py — bin 2.
+"""test_potw_streaks.py - bin 2.
 
   - compute_community_streak
   - streak_announcement

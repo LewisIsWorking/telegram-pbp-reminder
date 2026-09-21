@@ -3,7 +3,7 @@
 The bug this prevents
 ---------------------
 I added ``state["schedule_post_msg_id"]`` for the self-replacing schedule
-post and did not add it to ``posting/bot_sent_state_scan.py`` — despite
+post and did not add it to ``posting/bot_sent_state_scan.py`` - despite
 that module's docstring stating the contract explicitly:
 
     When new fields are added to ``live.json`` ... that store a bot-sent
@@ -13,8 +13,8 @@ that module's docstring stating the contract explicitly:
 Consequence: every GitHub Actions run is a fresh checkout, so
 ``bot_sent_ids.json`` does not survive and the registry rebuilds from
 ``backfill_from_state``. An ID the scan does not know about is absent
-from the registry, so ``perform_guarded_delete`` **refuses** it — doing
-exactly what it should — and the previous post is never deleted. The
+from the registry, so ``perform_guarded_delete`` **refuses** it - doing
+exactly what it should - and the previous post is never deleted. The
 schedule post stopped replacing itself and accumulated one message every
 30 minutes.
 
@@ -42,7 +42,7 @@ _SCAN = _ROOT / "posting" / "bot_sent_state_scan.py"
 # Keys that look like message ids but are not bot-sent ids the bot deletes.
 # Each needs a reason; an unexplained entry here is how this guard would rot.
 _NOT_BOT_SENT = {
-    # Player/GM message ids recorded for queue tracking — the bot must never
+    # Player/GM message ids recorded for queue tracking - the bot must never
     # delete these, so they must NOT be in the registry.
     "message_id", "reply_to_message_id", "last_message_id",
 }
@@ -74,7 +74,7 @@ class TestScanCoversEveryMessageIdField:
         """If the regex breaks, the guard silently passes forever."""
         keys = _state_msg_id_keys()
         assert len(keys) >= 2, (
-            f"only found {keys} — the source scan has probably broken, which "
+            f"only found {keys} - the source scan has probably broken, which "
             f"would make this guard vacuous")
 
     def test_schedule_post_msg_id_is_registered(self):
@@ -94,7 +94,7 @@ class TestScanCoversEveryMessageIdField:
 
 
 class TestRegistryRoundTrip:
-    """The positive direction — an ID in state must survive a rebuild.
+    """The positive direction - an ID in state must survive a rebuild.
 
     Coverage of the key name is not enough; what matters is that a fresh
     registry (as every Actions run gets) can actually authorise the delete.

@@ -66,7 +66,7 @@ class TestFormatTopicQueue:
         assert "t.me/" not in out
 
     def test_multiple_entries_no_numbered_prefix(self):
-        # Slim format drops 01/02 numbering — ↗ prefix is the cue.
+        # Slim format drops 01/02 numbering - ↗ prefix is the cue.
         entries = [self._e("Alice"), self._e("Bob", "2026-04-05 09:00:00")]
         result = self._full(entries)
         assert "📋 Unreplied: 2" in result
@@ -99,7 +99,7 @@ class TestFormatTopicQueue:
         assert all(len(chunk) <= 4096 for chunk in result)
 
 
-# ── topic_queue_poster — helpers ────────────────────────────────────────────
+# ── topic_queue_poster - helpers ────────────────────────────────────────────
 
 _CFG = {
     "group_id": -1001234567890,
@@ -161,7 +161,7 @@ class TestPostThreadQueue:
 
         Regression: the old empty-slot branch called
         ``unpinAllChatMessages``, which unpins *every* pin in the whole
-        group — wiping GM pins the bot never created. With nothing of our
+        group - wiping GM pins the bot never created. With nothing of our
         own tracked, the post path must touch no unpin endpoint at all.
         """
         from scheduled.topic_queue_poster import _post_thread_queue
@@ -173,7 +173,7 @@ class TestPostThreadQueue:
 
     def test_update_unpins_only_own_pin(self, tg_mock):
         """Refreshing a tracked queue unpins exactly the bot's own pin id,
-        via the targeted unpinChatMessage endpoint — never unpin-all."""
+        via the targeted unpinChatMessage endpoint - never unpin-all."""
         from scheduled.topic_queue_poster import _post_thread_queue
         slot = {"msg_ids": [7777], "fingerprint": "stale"}
         tg_mock.send_message_id.return_value = 9999

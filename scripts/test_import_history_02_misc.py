@@ -1,4 +1,4 @@
-"""test_import_history.py — bin 2.
+"""test_import_history.py - bin 2.
 
   - misc (part b)
 """
@@ -86,12 +86,12 @@ def test_import_messages_writes_files():
         june = (campaign_dir / "2025-06.md").read_text(encoding="utf-8")
         assert "First post" in june
         assert "[GM]" in june  # GM tagged
-        assert "TestCampaign — 2025-06" in june
+        assert "TestCampaign - 2025-06" in june
 
         july = (campaign_dir / "2025-07.md").read_text(encoding="utf-8")
         assert "July post" in july
 
-        # Verify idempotency — second run imports nothing
+        # Verify idempotency - second run imports nothing
         results2 = import_history.import_messages(str(export_path))
         assert results2["TestCampaign"] == 0
 

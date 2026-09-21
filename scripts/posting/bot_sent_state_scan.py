@@ -28,8 +28,8 @@ def extract_ids_from_live(live: dict) -> list:
     # Added 2026-08-11. Omitting it broke the schedule post's self-replacement:
     # each Actions run is a fresh checkout, so bot_sent_ids.json does not
     # survive and the registry rebuilds from this scan. An ID the scan does not
-    # know about is not in the registry, so perform_guarded_delete refuses it —
-    # correctly, by its own rules — and the previous post is never removed. Two
+    # know about is not in the registry, so perform_guarded_delete refuses it -
+    # correctly, by its own rules - and the previous post is never removed. Two
     # posts became three became four, one every 30 minutes.
     if live.get("schedule_post_msg_id"):
         ids.append(live["schedule_post_msg_id"])
@@ -40,7 +40,7 @@ def extract_ids_from_live(live: dict) -> list:
         ids.append(live["recruit_focus_msg_id"])
     # Added 2026-08-18 with the Nudge Bot Notifications mirror. The advert
     # now exists in TWO chats and the mirror's id appears nowhere in
-    # recruit_focus_msg_id — so without this its delete gets refused by
+    # recruit_focus_msg_id - so without this its delete gets refused by
     # perform_guarded_delete and the mirror piles up one copy a day. That
     # is the schedule-post duplication bug wearing a different hat.
     for entry in live.get("recruit_focus_posts") or []:

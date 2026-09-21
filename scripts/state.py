@@ -1,5 +1,5 @@
 """
-State persistence — file-primary with gist backup.
+State persistence - file-primary with gist backup.
 
 Primary:  data/state/{live,players,queue,activity}.json (git-committed each run)
 Fallback: GitHub Gist (read if files absent; always written for safety)
@@ -33,7 +33,7 @@ _loaded_ok  = False   # guards against saving after a failed load
 
 
 def init(gist_token: str, gist_id: str) -> None:
-    """Set gist credentials (called by checker.py — signature unchanged)."""
+    """Set gist credentials (called by checker.py - signature unchanged)."""
     global _GIST_TOKEN, _GIST_API
     _GIST_TOKEN = gist_token
     _GIST_API   = f"https://api.github.com/gists/{gist_id}" if gist_id else ""
@@ -42,11 +42,11 @@ def init(gist_token: str, gist_id: str) -> None:
 # ── Public API ─────────────────────────────────────────────────────────────────
 
 def load() -> dict:
-    """Load state — files first, gist fallback, then defaults."""
+    """Load state - files first, gist fallback, then defaults."""
     global _loaded_ok
     state = _load_from_files()
     if state is None:
-        print("State files absent — falling back to gist")
+        print("State files absent - falling back to gist")
         state = gist_load(_GIST_API, _GIST_TOKEN, STATE_FILENAME)
     if state is None:
         print("Warning: could not load state from files or gist; using defaults")
@@ -58,7 +58,7 @@ def load() -> dict:
 
 
 def save(state: dict) -> None:
-    """Persist state — writes files (primary) and gist (safety backup)."""
+    """Persist state - writes files (primary) and gist (safety backup)."""
     if not _loaded_ok:
         print("REFUSING to save: state was not successfully loaded")
         return
@@ -75,7 +75,7 @@ def _state_dir() -> Path:
 def _load_from_files() -> dict | None:
     """Load and merge all partition files. Returns None if core files are missing.
 
-    The 'trackers' partition is optional — if absent (e.g. fresh checkout or
+    The 'trackers' partition is optional - if absent (e.g. fresh checkout or
     pre-v4.18 install) the bot will still load and write the file on next save.
 
     Slice 3 of P3/9: per-partition reads now go through
@@ -101,7 +101,7 @@ def _load_from_files() -> dict | None:
             raw = store.load_partition(partition)
             if raw is None:
                 # File exists but parse failed (StateStore already
-                # printed a diagnostic) — treat as corruption and
+                # printed a diagnostic) - treat as corruption and
                 # fall back to gist for a known-good snapshot.
                 print(f"Warning: corrupt {partition}.json, "
                       f"falling back to gist")
@@ -122,7 +122,7 @@ def _save_to_files(state: dict) -> None:
     ``StateStore.save_partition``, which uses tmp+rename so a crash
     mid-write cannot leave a half-written file. Pre-slice-4 this
     function did ``path.write_text(json.dumps(...))`` per partition,
-    which the docstring claimed was atomic but actually wasn't —
+    which the docstring claimed was atomic but actually wasn't -
     Python's ``write_text`` opens the target file directly. With the
     new path, ``StateStore.save_aux`` writes to ``{name}.json.tmp``
     first and only ``os.replace``s onto ``{name}.json`` once the

@@ -1,4 +1,4 @@
-"""Tests for checker.py — build (part a) group.
+"""Tests for checker.py - build (part a) group.
 
 Extracted from test_checker.py during the test-split refactor. Module
 imports, helper functions (_make_config, _make_state, _make_msg, _utc,

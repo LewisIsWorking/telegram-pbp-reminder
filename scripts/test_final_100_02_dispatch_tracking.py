@@ -1,4 +1,4 @@
-"""Tests extracted from test_final_100.py — bin 2.
+"""Tests extracted from test_final_100.py - bin 2.
 
 Sections in this file:
   - dispatch/tracking.py: GM reply logging

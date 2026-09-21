@@ -1,15 +1,15 @@
-"""Tests extracted from test_remaining_100.py — bin 2.
+"""Tests extracted from test_remaining_100.py - bin 2.
 
 Sections in this file:
-  - commands/markdone.py:80-84 — by id
-  - commands/campaign.py:169 — notes >3
-  - commands/profile.py:57 — days ago
-  - commands/timeline.py:34 — potw events
-  - dispatch/cmd_gm.py:57 — /resume not paused
-  - dispatch/comeback.py:38 — no bot_topic
+  - commands/markdone.py:80-84 - by id
+  - commands/campaign.py:169 - notes >3
+  - commands/profile.py:57 - days ago
+  - commands/timeline.py:34 - potw events
+  - dispatch/cmd_gm.py:57 - /resume not paused
+  - dispatch/comeback.py:38 - no bot_topic
 """
 """
-Definitive final coverage push — verified state for every remaining gap.
+Definitive final coverage push - verified state for every remaining gap.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -32,7 +32,7 @@ def _ctx(**kw):
 
 
 
-# ── commands/markdone.py:80-84 — by id ───────────────────────────────────────
+# ── commands/markdone.py:80-84 - by id ───────────────────────────────────────
 def test_markdone_id_found(tmp_path, monkeypatch):
     # Lines 80-82: scan has entries but msg_id doesn't match any →
     # falls to _clear_by_msg_id which finds it in queue file
@@ -67,7 +67,7 @@ def test_markdone_id_not_found(tmp_path, monkeypatch):
 
 
 
-# ── commands/campaign.py:169 — notes >3 ──────────────────────────────────────
+# ── commands/campaign.py:169 - notes >3 ──────────────────────────────────────
 def test_campaign_notes_more():
     from commands.campaign import build_campaign_report
     state = {"notes": {"100": [f"N{i}" for i in range(5)]},
@@ -97,7 +97,7 @@ def test_campaign_notes_more():
 
 
 
-# ── commands/profile.py:57 — days ago ────────────────────────────────────────
+# ── commands/profile.py:57 - days ago ────────────────────────────────────────
 def test_profile_days():
     from commands.profile import build_profile
     two_days = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
@@ -121,7 +121,7 @@ def test_profile_days():
 
 
 
-# ── commands/timeline.py:34 — potw events ────────────────────────────────────
+# ── commands/timeline.py:34 - potw events ────────────────────────────────────
 def test_timeline_potw():
     from commands.timeline import build_timeline
     now = datetime.now(timezone.utc)
@@ -140,7 +140,7 @@ def test_timeline_potw():
 
 
 
-# ── dispatch/cmd_gm.py:57 — /resume not paused ───────────────────────────────
+# ── dispatch/cmd_gm.py:57 - /resume not paused ───────────────────────────────
 def test_cmd_gm_resume_not_paused():
     from dispatch.cmd_gm import handle
     ctx = _ctx(cmd_word="/resume", text="/resume",
@@ -150,7 +150,7 @@ def test_cmd_gm_resume_not_paused():
 
 
 
-# ── dispatch/comeback.py:38 — no bot_topic ───────────────────────────────────
+# ── dispatch/comeback.py:38 - no bot_topic ───────────────────────────────────
 def test_comeback_no_bot_topic():
     from dispatch.comeback import check_comeback
     now = datetime.now(timezone.utc)

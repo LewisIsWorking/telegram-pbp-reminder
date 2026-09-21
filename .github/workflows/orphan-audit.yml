@@ -5,7 +5,7 @@ name: Orphan audit
 # This exists because on 2026-08-16 a human found an "Unreplied: 2" post
 # from 2026-08-03 still sitting in the C06 topic. The bot's audit trail
 # said it had deleted it. Nothing in the repo disagreed, because every
-# artefact in the repo was derived from the same belief — the state file,
+# artefact in the repo was derived from the same belief - the state file,
 # the audit log and the whole test suite agreed with each other, and all
 # of them were wrong.
 #
@@ -59,5 +59,5 @@ jobs:
 
       # No `continue-on-error` and no `|| true` here on purpose. The
       # script exits 1 when it finds an orphan, and that non-zero exit IS
-      # the alert — a step that detects a fault and then reports success
+      # the alert - a step that detects a fault and then reports success
       # is the same class of bug this whole job exists to catch.

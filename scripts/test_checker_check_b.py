@@ -1,4 +1,4 @@
-"""Tests for checker.py — check (part b) group.
+"""Tests for checker.py - check (part b) group.
 
 Extracted from test_checker.py during the test-split refactor. Module
 imports, helper functions (_make_config, _make_state, _make_msg, _utc,
@@ -138,7 +138,7 @@ def test_check_anniversaries_no_duplicate():
 def test_check_anniversaries_wrong_day():
     _reset()
     now = datetime.now(timezone.utc)
-    # Use a date that's NOT today — use day=1 to avoid month-length overflow
+    # Use a date that's NOT today - use day=1 to avoid month-length overflow
     wrong_date = now.replace(year=now.year - 1, month=(now.month % 12) + 1, day=1)
     created_str = wrong_date.strftime("%Y-%m-%d")
 

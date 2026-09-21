@@ -28,7 +28,7 @@ The other three were waiting for the right weekday.
 Why the existing guard missed it
 --------------------------------
 ``test_state_schema.py::test_every_top_level_state_file_is_known`` guards
-*files* — a new ``data/state/*.json`` without a schema entry. An undeclared
+*files* - a new ``data/state/*.json`` without a schema entry. An undeclared
 **key** inside an existing partition was never in scope. It also
 ``pytest.skip``s when ``data/state/`` is absent, so it can self-disable.
 
@@ -46,7 +46,7 @@ from state import PARTITIONS  # noqa: E402
 
 _ROOT = Path(os.path.dirname(__file__))
 
-# Keys deliberately NOT persisted. Each needs a reason — an unexplained
+# Keys deliberately NOT persisted. Each needs a reason - an unexplained
 # entry here is how this guard would rot into a rubber stamp.
 _TRANSIENT = {
     "_config_cache",      # rebuilt per run from config.json; state.py says so
@@ -56,7 +56,7 @@ _TRANSIENT = {
 def _persisted_state_keys() -> set[str]:
     """Keys **written** to the ``state`` dict by production code.
 
-    Writes only — ``state["x"] = ...`` and ``state.setdefault("x", ...)``.
+    Writes only - ``state["x"] = ...`` and ``state.setdefault("x", ...)``.
     A key that is merely *read* needs no partition entry: the legacy
     migration path reads ``gm_queue`` / ``gm_queue_replied`` /
     ``gm_reply_log`` / ``paused`` / ``current_scene`` from old snapshots
@@ -87,7 +87,7 @@ class TestDiscovery:
         """If the regex breaks, this guard silently passes forever."""
         keys = _persisted_state_keys()
         assert len(keys) > 20, (
-            f"only found {len(keys)} state keys — the source scan has "
+            f"only found {len(keys)} state keys - the source scan has "
             f"probably broken, which would make this guard vacuous")
 
     def test_finds_the_keys_that_caused_the_bug(self):
@@ -134,7 +134,7 @@ class TestTheFourRegressions:
 class TestSaveLoadRoundTrip:
     """The property that actually matters: does a write survive a reload?
 
-    Declaring the key is necessary but not sufficient — this exercises
+    Declaring the key is necessary but not sufficient - this exercises
     the real partition filter in ``_save_to_files``.
     """
 

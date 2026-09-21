@@ -7,7 +7,7 @@ because moving the post into each campaign's chat topic made the second
 question big enough to have its own file.
 
 The two halves meet at ``build_recruit_message``, which returns the text
-AND the campaign — one decision, one return value, so the destination can
+AND the campaign - one decision, one return value, so the destination can
 never disagree with the words.
 """
 
@@ -30,7 +30,7 @@ def recruit_destination(pair: dict, config: dict) -> tuple[int | None, bool]:
 
     Falls back to the GM queue when a campaign has no ``chat_topic_id``,
     and returns False so the caller can say so out loud. A silent fallback
-    would put the post back where it started and look like it worked —
+    would put the post back where it started and look like it worked -
     the campaign nobody can see is exactly the one that needed the advert.
     """
     topic = pair.get("chat_topic_id")
@@ -44,12 +44,12 @@ def post_recruit_focus(config: dict, state: dict, *,
     """Post once per 24h into the neediest campaign's chat topic.
 
     Send first, then delete, so a failed send never leaves the topic with
-    no recruit post at all — same ordering as ``schedule_post``.
+    no recruit post at all - same ordering as ``schedule_post``.
 
     The previous post may be in a DIFFERENT topic to the new one, because
     the neediest campaign changes. That costs nothing to handle: message
     ids are unique per chat, not per topic, and every campaign topic lives
-    in the same group — so the delete finds it wherever it sat. (Contrast
+    in the same group - so the delete finds it wherever it sat. (Contrast
     ``schedule_post``, which moved to another *chat* and therefore had to
     record which one.)
     """
@@ -70,7 +70,7 @@ def post_recruit_focus(config: dict, state: dict, *,
     if not text or not pair:
         # Every campaign is full. Take the stale advert down rather than
         # leaving it: it says "4 seats open" and that is no longer true.
-        # ⚠️ It also has to come down BEFORE it is 48h old — past that
+        # ⚠️ It also has to come down BEFORE it is 48h old - past that
         # Telegram will not let the bot delete its own message at all, and
         # a permanently stranded "seats open" post in a full campaign's
         # chat is worse than one that lingers a day.
@@ -87,16 +87,16 @@ def post_recruit_focus(config: dict, state: dict, *,
 
     # ⭐ TWO destinations (Lewis, 2026-08-18): the campaign's own chat
     # topic, and the standing "What campaign needs people most?" topic in
-    # Nudge Bot Notifications — the same advert, somewhere it reads as a
+    # Nudge Bot Notifications - the same advert, somewhere it reads as a
     # running list rather than a surprise in a game thread.
     main = tg.send_message_id(config["group_id"], thread_id, text, silent=True)
     if not main:
         return  # primary failed; keep the old copies rather than half-replace
     # ⭐ auto_delete says what happens to this copy NEXT time, and the two
     # destinations answer differently (Lewis, 2026-08-18):
-    #   campaign topic — replaced each day, so the old one goes. A game
+    #   campaign topic - replaced each day, so the old one goes. A game
     #                    thread should not fill with stale adverts.
-    #   mirror topic   — KEPT. That topic is meant to accumulate, so the
+    #   mirror topic   - KEPT. That topic is meant to accumulate, so the
     #                    run of adverts reads as a history of who needed
     #                    players and when.
     posted = [{"chat_id": config["group_id"], "message_id": main,
@@ -136,7 +136,7 @@ def _keeps_history(entry: dict, config: dict) -> bool:
 
     Reads the explicit ``auto_delete`` flag. Entries written before that
     flag existed (2026-08-18) fall back to comparing the chat against the
-    configured mirror — those were the only two destinations in play, so
+    configured mirror - those were the only two destinations in play, so
     the inference is safe for exactly that one day of state and is not
     relied on afterwards.
     """
@@ -156,7 +156,7 @@ def _delete_previous(config: dict, state: dict) -> None:
 
     ⚠️ Each entry carries its OWN chat_id, and that is load-bearing.
     Message ids are unique per CHAT, so the two copies have unrelated
-    numbers — deleting the mirror's id against the main group would either
+    numbers - deleting the mirror's id against the main group would either
     miss entirely or hit a stranger's message that happens to share the
     number. Exactly the trap the schedule post hit on 2026-08-17.
 
@@ -181,7 +181,7 @@ def _retire_stale_post(config: dict, state: dict, now: datetime) -> None:
     Only acts when a post exists. Deliberately does NOT clear ``_LAST_KEY``:
     the 24h gate is about how often to advertise, not about cleanup.
 
-    Takes down the campaign-topic copy only — the mirror copy stays, as
+    Takes down the campaign-topic copy only - the mirror copy stays, as
     everywhere else. "Everyone was full on this date" is exactly the kind
     of thing the history topic is for.
     """

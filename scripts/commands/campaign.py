@@ -1,7 +1,7 @@
 """
 Campaign report builders.
 
-/campaign — comprehensive campaign scoreboard
+/campaign - comprehensive campaign scoreboard
 Roster helpers shared with post_roster_summary.
 """
 

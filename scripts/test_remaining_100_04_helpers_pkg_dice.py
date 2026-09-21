@@ -1,22 +1,22 @@
-"""Tests extracted from test_remaining_100.py — bin 4.
+"""Tests extracted from test_remaining_100.py - bin 4.
 
 Sections in this file:
-  - helpers_pkg/dice.py:80 — non-kept die
-  - helpers_pkg/mechanics.py:124 — red icon
-  - helpers_pkg/time_utils.py:110 — until date parse
-  - import_formatting.py:85 — media bracket
-  - parsing/message.py:110 — sticker
-  - players/management.py:73 — no match continue
-  - boons/handler.py:105 — resolve None
-  - combat/commands.py:98 — long log
-  - combat/display.py:90 — all acted
-  - combat/tracker.py:115 — GM round command
-  - transcript/formatting.py:84 — media bracket
-  - transcript/finalize.py:51 — empty dir returns
-  - transcript/logger.py:144 — silence in days
+  - helpers_pkg/dice.py:80 - non-kept die
+  - helpers_pkg/mechanics.py:124 - red icon
+  - helpers_pkg/time_utils.py:110 - until date parse
+  - import_formatting.py:85 - media bracket
+  - parsing/message.py:110 - sticker
+  - players/management.py:73 - no match continue
+  - boons/handler.py:105 - resolve None
+  - combat/commands.py:98 - long log
+  - combat/display.py:90 - all acted
+  - combat/tracker.py:115 - GM round command
+  - transcript/formatting.py:84 - media bracket
+  - transcript/finalize.py:51 - empty dir returns
+  - transcript/logger.py:144 - silence in days
 """
 """
-Definitive final coverage push — verified state for every remaining gap.
+Definitive final coverage push - verified state for every remaining gap.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -39,7 +39,7 @@ def _ctx(**kw):
 
 
 
-# ── helpers_pkg/dice.py:80 — non-kept die ────────────────────────────────────
+# ── helpers_pkg/dice.py:80 - non-kept die ────────────────────────────────────
 def test_dice_drop():
     from helpers_pkg.dice import roll_dice
     result = roll_dice("4d6kh3")
@@ -47,14 +47,14 @@ def test_dice_drop():
 
 
 
-# ── helpers_pkg/mechanics.py:124 — red icon ──────────────────────────────────
+# ── helpers_pkg/mechanics.py:124 - red icon ──────────────────────────────────
 def test_hp_red():
     from helpers_pkg.mechanics import hp_status_icon
     assert hp_status_icon(2, 10) == "🔴"
 
 
 
-# ── helpers_pkg/time_utils.py:110 — until date parse ────────────────────────
+# ── helpers_pkg/time_utils.py:110 - until date parse ────────────────────────
 def test_parse_until():
     from helpers_pkg.time_utils import parse_away_duration
     now = datetime(2026, 4, 3, 12, 0, 0)
@@ -63,7 +63,7 @@ def test_parse_until():
 
 
 
-# ── import_formatting.py:85 — media bracket ──────────────────────────────────
+# ── import_formatting.py:85 - media bracket ──────────────────────────────────
 def test_import_fmt():
     from import_formatting import format_entry
     result = format_entry({"text": "[document:x.pdf]", "is_gm": False}, False)
@@ -71,7 +71,7 @@ def test_import_fmt():
 
 
 
-# ── parsing/message.py:110 — sticker ─────────────────────────────────────────
+# ── parsing/message.py:110 - sticker ─────────────────────────────────────────
 def test_parsing_sticker():
     from parsing.message import _detect_media
     result = _detect_media({"sticker": {"emoji": "😎"}})
@@ -79,7 +79,7 @@ def test_parsing_sticker():
 
 
 
-# ── players/management.py:73 — no match continue ─────────────────────────────
+# ── players/management.py:73 - no match continue ─────────────────────────────
 def test_management_no_match():
     from players.management import handle_kick
     state = {"players": {"100:U2": {"user_id": "U2", "first_name": "Bob",
@@ -88,7 +88,7 @@ def test_management_no_match():
 
 
 
-# ── boons/handler.py:105 — resolve None ──────────────────────────────────────
+# ── boons/handler.py:105 - resolve None ──────────────────────────────────────
 def test_boons_resolve_none():
     from boons.handler import _resolve_boon
     state = {"pending_potw_boons": {"100": {
@@ -98,7 +98,7 @@ def test_boons_resolve_none():
 
 
 
-# ── combat/commands.py:98 — long log ─────────────────────────────────────────
+# ── combat/commands.py:98 - long log ─────────────────────────────────────────
 def test_combat_long_log():
     from combat.commands import handle_enemies_command
     state = {"combat": {"100": {"active": True, "enemies": [],
@@ -107,7 +107,7 @@ def test_combat_long_log():
 
 
 
-# ── combat/display.py:90 — all acted ─────────────────────────────────────────
+# ── combat/display.py:90 - all acted ─────────────────────────────────────────
 def test_combat_all_acted():
     from combat.display import build_whosturn
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -131,7 +131,7 @@ def test_combat_all_acted():
 
 
 
-# ── combat/tracker.py:115 — GM round command ─────────────────────────────────
+# ── combat/tracker.py:115 - GM round command ─────────────────────────────────
 def test_combat_gm_round():
     from combat.tracker import handle_combat_message
     state = {"combat": {"100": {"active": True, "log": [], "round": 1,
@@ -142,7 +142,7 @@ def test_combat_gm_round():
 
 
 
-# ── transcript/formatting.py:84 — media bracket ──────────────────────────────
+# ── transcript/formatting.py:84 - media bracket ──────────────────────────────
 def test_transcript_fmt():
     from transcript.formatting import format_transcript_content
     result = format_transcript_content("[document:f.pdf]")
@@ -150,7 +150,7 @@ def test_transcript_fmt():
 
 
 
-# ── transcript/finalize.py:51 — empty dir returns ────────────────────────────
+# ── transcript/finalize.py:51 - empty dir returns ────────────────────────────
 def test_finalize_empty(tmp_path):
     from transcript.finalize import update_transcript_index
     (tmp_path / "Kibwe").mkdir()
@@ -161,7 +161,7 @@ def test_finalize_empty(tmp_path):
 
 
 
-# ── transcript/logger.py:144 — silence in days ───────────────────────────────
+# ── transcript/logger.py:144 - silence in days ───────────────────────────────
 def test_logger_silence(tmp_path):
     from transcript.logger import append_to_transcript
     now = datetime.now(timezone.utc)

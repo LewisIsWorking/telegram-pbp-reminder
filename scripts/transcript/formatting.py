@@ -45,7 +45,7 @@ def format_transcript_content(text: str) -> str:
         elif stripped.startswith(">"):
             content = stripped[1:].lstrip()
             out.append(f"> {content}")
-        # Mechanical line — style in italics
+        # Mechanical line - style in italics
         elif _MECHANICAL_PATTERNS.match(stripped):
             out.append(f"*{stripped}*")
         else:

@@ -1,163 +1,110 @@
-"""Lewis, standing, all repos: no em dashes.
+"""Lewis, standing, all repos: no em dashes. Zero, not fewer.
 
-I broke this rule three times on 2026-08-25 in files I had just written,
-including inside a string that goes out over Telegram. A rule I keep
-breaking by hand is a missing guard, not a missing intention.
+History: this started on 2026-08-25 as a ratchet on the count (1,762 across
+scripts/ and docs/), meant to fall as files were touched. It only ever fell
+by one or two at a time. On 2026-09-21 a PR tripped the ratchet and the
+failure reached Lewis's Telegram, and he answered: "There should be NO em
+dashes across any repo!" Every one outside data/ was removed that day
+(2,301 of them), and this is now a zero check over the whole repository.
 
-## Why a single number and not an allowlist
+What it covers: every tracked text file, whatever its extension, except:
 
-There are ~1,760 of them already, across ~367 files, most in transcripts
-of old design docs. Clearing that is not this session's work, and a
-367-entry allowlist is a file nobody reads.
+* ``data/`` and ``docs/data/``: verbatim transcripts and archives of what
+  people actually posted. Rewriting those would falsify the record.
+* This file, which names the character by code point only anyway.
 
-So this is a **ratchet on the count**, and it fails in BOTH directions:
-
-* more than ``CEILING`` means new ones were added, which is the bug;
-* fewer than ``CEILING`` means somebody cleaned up and did not lower the
-  number, so the guard has quietly gained slack and would stop catching
-  the next batch.
-
-A ratchet that only ever fails upward is just a high-water mark with
-extra steps. See ``a-ratchet-that-never-tightens``.
-
-⚠️ When you clear some, LOWER ``CEILING`` to whatever the failure message
-reports. Never raise it.
+Code that must still RECOGNISE an em dash (players' phones turn "--" into
+one, and old transcripts keep theirs) writes it as the escape ``\\u2014``,
+which is six ASCII characters in the source and an em dash at runtime.
 """
 
 import os
+import subprocess
 
-EM_DASH = "—"
+EM_DASH = chr(0x2014)
 
-# Measured 2026-08-25, over scripts/ and docs/, AFTER clearing the 15 I
-# had just added. 367 files carry them; the bulk are old design docs.
-#
-# 1762 -> 1761 the same day: rewriting a comment in queue_reminder.py
-# dropped one, and the slack test refused to let the ceiling stay above
-# reality. That is the both-directions design earning its keep on its
-# first real use.
-#
-# 1759 -> 1751 on 2026-08-27, when fenced code blocks stopped being
-# counted. That is a change of MEASUREMENT, not a cleanup: eight of the
-# dashes were inside quoted output all along. Re-measured rather than
-# assumed.
-#
-# 1751 -> 1746 on 2026-08-30, splitting queue_silence.py. The guard
-# fired UPWARD first (+7, all in new docstrings I had just written),
-# those were rewritten as commas and colons, and the rewrite took five
-# more with it than the split had added. Both directions in one change.
-#
-# 1745 -> 1744 on 2026-09-09, documenting recruit_tier. The one dash
-# went with the stale queue_priority row in docs/configuration.md, which
-# still described the legacy boolean. A docs-only change, so the ratchet
-# firing here is the guard doing its job rather than a side effect worth
-# suppressing.
-CEILING = 1743
-
-_ROOTS = ("scripts", "docs")
-_EXTS = (".py", ".md")
-_SKIP_DIRS = {"__pycache__", ".pytest_cache", "htmlcov"}
-# This file necessarily contains the character it forbids.
-_SELF = os.path.basename(__file__)
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_EXEMPT_PREFIXES = ("data/", "docs/data/")
 
 
-def _repo_root() -> str:
-    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+def _tracked_files() -> list[str]:
+    out = subprocess.run(["git", "ls-files"], cwd=_ROOT, capture_output=True,
+                         text=True, encoding="utf-8", check=True).stdout
+    return [f for f in out.splitlines() if f and not f.startswith(_EXEMPT_PREFIXES)]
 
 
-def _strip_fenced(text: str) -> str:
-    """Drop ``` fenced blocks. They are quoted evidence, not prose.
-
-    Added 2026-08-27. The incident write-up quotes a GM queue post
-    verbatim, and that post contains an em dash because the bot's own
-    header format uses one. Editing a quoted artefact to satisfy a
-    style rule would falsify the evidence, so the rule stops at the
-    fence instead.
-
-    ⚠️ Deliberately narrow: only fenced blocks, only whole lines. An
-    inline `code span` is still prose around a term and still counts.
-    """
-    out, fenced = [], False
-    for line in text.splitlines():
-        if line.lstrip().startswith("```"):
-            fenced = not fenced
-            continue
-        if not fenced:
-            out.append(line)
-    return "\n".join(out)
-
-
-def _counts() -> dict:
-    """{relative path: occurrences}, for every file that has any."""
-    found = {}
-    for root in _ROOTS:
-        base = os.path.join(_repo_root(), root)
-        for dirpath, dirnames, filenames in os.walk(base):
-            dirnames[:] = [d for d in dirnames if d not in _SKIP_DIRS]
-            for name in filenames:
-                if not name.endswith(_EXTS) or name == _SELF:
-                    continue
-                path = os.path.join(dirpath, name)
-                with open(path, encoding="utf-8") as handle:
-                    hits = _strip_fenced(handle.read()).count(EM_DASH)
-                if hits:
-                    key = os.path.relpath(path, _repo_root())
-                    found[key.replace(os.sep, "/")] = hits
+def _offenders() -> list[str]:
+    found = []
+    for rel in _tracked_files():
+        try:
+            with open(os.path.join(_ROOT, rel), encoding="utf-8") as f:
+                for n, line in enumerate(f, 1):
+                    if EM_DASH in line:
+                        found.append(f"{rel}:{n}: {line.strip()[:100]}")
+        except (UnicodeDecodeError, FileNotFoundError, IsADirectoryError):
+            continue  # binary files, and files deleted but not yet committed
     return found
 
 
-class TestTheRatchet:
-    def test_the_scan_finds_files_at_all(self):
-        # ⭐ Without this, a walk that silently matched nothing would make
-        # the ratchet below pass against zero and check nothing. The
-        # backlog is real, so "found nothing" means the scanner broke,
-        # not that the repo is clean.
-        assert _counts(), "scanner found no files at all, so it is broken"
-
-    def test_no_new_em_dashes(self):
-        total = sum(_counts().values())
-        assert total <= CEILING, (
-            f"{total - CEILING} new em dash(es). Rewrite them: a comma, a "
-            f"colon, or two sentences almost always reads better anyway. "
-            f"Worst files: {sorted(_counts().items(), key=lambda kv: -kv[1])[:5]}")
-
-    def test_the_ceiling_has_no_slack(self):
-        total = sum(_counts().values())
-        assert total >= CEILING, (
-            f"only {total} em dashes remain but CEILING is {CEILING}. "
-            f"Somebody cleaned up without tightening the ratchet, so it "
-            f"has gained {CEILING - total} of slack and would not catch "
-            f"the next batch. Set CEILING = {total}.")
+def test_there_are_no_em_dashes_anywhere():
+    found = _offenders()
+    assert not found, (
+        f"{len(found)} line(s) with an em dash. Lewis: \"There should be NO em "
+        f"dashes across any repo!\" Use a hyphen, comma, colon or full stop. "
+        f"Code that must match one writes the escape \\u2014.\n  "
+        + "\n  ".join(found[:30]))
 
 
-class TestTheRuleAppliesToTheNewestWork:
-    # The recruitment work is where the rule was broken, so it is pinned
-    # exactly rather than left to float inside a four-figure total. A
-    # ratchet at 1,747 cannot notice one new dash arriving as another
-    # leaves; these can.
-    RECENT = (
-        "scripts/recruiting/readiness.py",
-        "scripts/recruiting/rotation.py",
-        "scripts/recruiting/catalogue.py",
-        "scripts/recruiting/log.py",
-        "scripts/recruiting/README.md",
-        "scripts/commands/recruit_ads.py",
-        "docs/recruitment-ad.md",
-        "scripts/test_recruiting_readiness.py",
-        "scripts/test_recruiting_fit.py",
-        "scripts/test_recruiting_rotation.py",
-        "scripts/test_recruiting_yield.py",
-    )
+def test_the_guard_can_fail(monkeypatch):
+    """A zero check that cannot fail is decoration. Plant one and look."""
+    probe = os.path.join(_ROOT, "scripts", "_em_dash_probe.md")
+    with open(probe, "w", encoding="utf-8") as f:
+        f.write("a " + EM_DASH + " b\n")
+    try:
+        monkeypatch.setitem(globals(), "_tracked_files",
+                            lambda: ["scripts/_em_dash_probe.md"])
+        assert _offenders() == ["scripts/_em_dash_probe.md:1: a " + EM_DASH + " b"]
+    finally:
+        os.remove(probe)
 
-    def test_the_recruitment_files_are_clean(self):
-        found = _counts()
-        dirty = {path: found[path] for path in self.RECENT if path in found}
-        assert not dirty, f"em dashes in recently written files: {dirty}"
 
-    def test_those_files_all_exist(self):
-        # ⭐ can-fail counterpart. A path typo would make the test above
-        # pass by checking nothing, which is the failure mode this whole
-        # file exists to prevent.
-        root = _repo_root()
-        missing = [p for p in self.RECENT
-                   if not os.path.exists(os.path.join(root, *p.split("/")))]
-        assert not missing, f"listed but absent: {missing}"
+# The only places allowed to spell an em dash as an escape: parsers that must
+# RECOGNISE one, in players' input or old verbatim transcripts. Before
+# 2026-09-21 the old guard counted the literal character only, and 35 escapes
+# had crept in to get past it while still PRINTING em dashes (the roster,
+# refusal alerts, the transcript silence marker). An escape is the character.
+_ESCAPES = ("\\u2014", "\\N{EM DASH}", "&mdash;")
+_ESCAPE_ALLOWED = {
+    "scripts/commands/queue_scan.py": 1,          # old transcripts' silence line
+    "scripts/dispatch/cmd_conditions_hp.py": 2,    # /condition, phones type one
+    "scripts/dispatch/cmd_trackers_items.py": 2,   # /npc, same
+}
+
+
+def _escape_counts() -> dict:
+    found = {}
+    for rel in _tracked_files():
+        if rel == "scripts/test_no_em_dashes.py":
+            continue  # names the escapes in order to forbid them
+        try:
+            with open(os.path.join(_ROOT, rel), encoding="utf-8") as f:
+                text = f.read()
+        except (UnicodeDecodeError, FileNotFoundError, IsADirectoryError):
+            continue
+        n = sum(text.count(e) for e in _ESCAPES)
+        if n:
+            found[rel] = n
+    return found
+
+
+def test_no_em_dash_hidden_in_an_escape():
+    found = _escape_counts()
+    extra = {f: n for f, n in found.items() if n > _ESCAPE_ALLOWED.get(f, 0)}
+    assert not extra, (
+        f"em dashes spelled as escapes, which still print as em dashes: {extra}. "
+        f"Only a parser that must recognise one in input or old transcripts may "
+        f"use the escape; add it to _ESCAPE_ALLOWED with a reason if so.")
+
+
+def test_verbatim_transcripts_are_exempt():
+    assert not any(f.startswith("data/") for f in _tracked_files())

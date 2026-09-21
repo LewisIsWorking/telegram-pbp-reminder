@@ -1,4 +1,4 @@
-"""test_helpers.py — bin 1.
+"""test_helpers.py - bin 1.
 
   - misc (part a)
 """

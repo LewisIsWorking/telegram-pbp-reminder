@@ -1,7 +1,7 @@
 """
 Transcript recap builder.
 
-Command: /recap [N] — show last N transcript entries with rich formatting.
+Command: /recap [N] - show last N transcript entries with rich formatting.
 """
 
 import re
@@ -88,7 +88,7 @@ def build_recap(pid: str, campaign_name: str, config: dict, count: int = 10) -> 
     display.sort(key=lambda x: x[0])
     display = display[-(count + 5):]
 
-    lines = [f"📜 Recap — {campaign_name} (last {len(window_entries)}):", ""]
+    lines = [f"📜 Recap - {campaign_name} (last {len(window_entries)}):", ""]
 
     prev_ts = None
     for ts, name, char_name, is_gm, content, kind in display:

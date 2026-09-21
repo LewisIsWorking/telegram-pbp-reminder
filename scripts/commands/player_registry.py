@@ -62,7 +62,7 @@ def build_registry(pid: str, campaign_name: str, config: dict,
         return f"No players registered yet for {campaign_name}."
 
     label = helpers.get_label(config, pid)
-    lines = [f"📋 {label} — Player Registry\n"]
+    lines = [f"📋 {label} - Player Registry\n"]
 
     # Sort by ID
     sorted_players = sorted(registry.items(),

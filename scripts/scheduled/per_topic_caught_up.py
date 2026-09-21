@@ -4,7 +4,7 @@ The per-topic pinned queue lifecycle (managed by
 ``scheduled/topic_queue_poster.py``) emits a caught-up message when
 the thread transitions from "unreplied" to "everyone replied."
 
-Format (Lewis 2026-05-19, Option A — full pings):
+Format (Lewis 2026-05-19, Option A - full pings):
     📋 All caught up. Time for players to post!
     @user1 @user2 @user3 ...
 
@@ -45,7 +45,7 @@ def build_caught_up_text(pid: str, state: dict | None,
 
     When ``state`` is None or the campaign has no active players,
     falls back to the bare "📋 All caught up here." form
-    (no tag line, no nudge — nobody to nudge). When the active
+    (no tag line, no nudge - nobody to nudge). When the active
     roster is non-empty, every player gets an @-mention so the
     transition fires notifications.
 

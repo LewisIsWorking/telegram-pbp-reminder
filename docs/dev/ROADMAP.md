@@ -11,7 +11,7 @@ through.
 
 ---
 
-## P0 — Hygiene
+## P0 - Hygiene
 
 ### 1. Workspace cleanup: `.refactor-fix/`
 
@@ -20,7 +20,7 @@ artefacts from the phase-3-7 re-split work: 13 fetched-from-git
 originals, the regenerated `out/` sub-files (now living in `scripts/`),
 old progress-doc copies, and `fixed_splitter.py`.
 
-The splitter has real value as a maintenance tool — it encodes 12+
+The splitter has real value as a maintenance tool - it encodes 12+
 learnings about section-marker styles, cross-section helpers, module-
 level constants, and section preambles. Re-deriving it would be a
 multi-hour exercise.
@@ -38,7 +38,7 @@ multi-hour exercise.
 **Done when:** `git status` is clean, `tools/test_splitter.py` exists,
 `.refactor-fix/` is gone.
 
-**Risk:** none — these are all session artefacts.
+**Risk:** none - these are all session artefacts.
 
 ### 2. Memory update
 
@@ -55,11 +55,11 @@ Claude's memory should record three new facts:
 **Done when:** the user instructs the memory update, or this session
 ends with the user reading the summary.
 
-**Risk:** none — declarative.
+**Risk:** none - declarative.
 
 ---
 
-## P1 — Safety hardening
+## P1 - Safety hardening
 
 ### 0. `_post` soft-success semantics (2026-05-10)
 
@@ -70,13 +70,13 @@ deleted (state had 6 batches retained against `MAX_KEPT_BATCHES = 3`)
 and topic queue prev-deletes were logging spurious failures even
 when the messages were actually gone. Investigation found:
 
-* All affected msg_ids were in `bot_sent_ids.json` — the safeguard
+* All affected msg_ids were in `bot_sent_ids.json` - the safeguard
   was NOT refusing.
-* `refusal_log.json` did not exist — confirms no safeguard
+* `refusal_log.json` did not exist - confirms no safeguard
   refusals.
 * CI logs showed `Topic queue prev-delete failed:
   thread=107171 undeleted=[150803, 150804]` with no Telegram
-  error printed — indicating the response was suppressed.
+  error printed - indicating the response was suppressed.
 
 Root cause: `telegram._post` returned `None` for both real failures
 and suppressed-error responses (“message to delete not found”, etc.).
@@ -88,7 +88,7 @@ in state.
 Fix landed: `_post` now returns `True` for suppressed-error
 responses, signalling soft success. Real failures still print and
 return `None`. The safety argument: this is downstream of
-`bot_sent_registry.is_bot_sent` — it does NOT change *which* IDs
+`bot_sent_registry.is_bot_sent` - it does NOT change *which* IDs
 get attempted, only how the result is interpreted. Catalogue of
 recognised soft-success patterns is in
 `scripts/telegram_post_notes.py`. White-box tests in
@@ -101,18 +101,18 @@ lost track of its msg_id at some earlier point so neither the
 safeguard nor this fix can reach it. Resolution requires either
 manual deletion or Lewis supplying the msg_id so it can be added
 to the registry and a one-shot delete invoked. **Do NOT auto-
-discover candidate IDs** — that's exactly the path the 2026-05-08
+discover candidate IDs** - that's exactly the path the 2026-05-08
 incident took.
 
 **2026-05-11 update:** the same class of bug bit again, producing
 duplicate GM queue #360 and a duplicate per-topic-queue post. Root
 cause was the workflow's checkout pinning to GITHUB_SHA, defeating
-the concurrency group's serialisation guarantee — documented in
+the concurrency group's serialisation guarantee - documented in
 L21 and mitigated by the same-day workflow fix. The 2026-05-03
 orphan was almost certainly produced by this same mechanism. The
 fix prevents future occurrences; previously-orphaned messages
 (2026-05-03 and 2026-05-11) remain Lewis's manual cleanup task.
-**Claude must never perform orphan cleanup** — hard rule, recorded
+**Claude must never perform orphan cleanup** - hard rule, recorded
 in Claude's persistent memory.
 
 ### 3. Audit codebase for bypass paths
@@ -135,7 +135,7 @@ The safeguard works because every delete in the codebase routes through
 **Done when:** the bypass test passes, and a deliberate audit found no
 direct callers.
 
-**Risk:** low — adding a regression test, no behaviour change.
+**Risk:** low - adding a regression test, no behaviour change.
 
 ### 4. Document the safeguard
 
@@ -163,8 +163,8 @@ extend the bot without re-introducing the bug.
 ### 5. Registry refusal monitoring
 
 If `tg.delete_message` refuses a delete in production, that's either
-(a) a bug — the bot tried to delete its own message but the ID isn't
-in the registry, or (b) an attempted incident — something tried to
+(a) a bug - the bot tried to delete its own message but the ID isn't
+in the registry, or (b) an attempted incident - something tried to
 delete a non-bot message.
 
 Either way, the operator should know.
@@ -180,11 +180,11 @@ Either way, the operator should know.
 
 **Done when:** a refusal is observable from outside the CI logs.
 
-**Risk:** low — additive logging.
+**Risk:** low - additive logging.
 
 ---
 
-## P2 — Tech debt from the refactor
+## P2 - Tech debt from the refactor
 
 ### 6. Test consolidation pass
 
@@ -199,7 +199,7 @@ order (helpers first, `checker.py` last). Use **branch coverage** as
 the safety net, not line coverage. Target -25% test code while
 keeping coverage at baseline. ~25 hours, multi-session.
 
-**Risk:** medium — deleting a test that *looks* like a duplicate but
+**Risk:** medium - deleting a test that *looks* like a duplicate but
 covers an edge case the feature test misses is silent. Branch
 coverage + per-module commits are the mitigation.
 
@@ -216,7 +216,7 @@ resolves to *next* January).
 passes cleanly across all 1664 tests. No production strptime
 calls anywhere else in the codebase use year-less formats.
 
-**Risk:** low — narrow, well-bounded.
+**Risk:** low - narrow, well-bounded.
 
 ### 8. Test sub-file naming cleanup ✅
 
@@ -227,11 +227,11 @@ module it covers.
 **Verified 2026-05-10:** scan of `scripts/test_*.py` finds zero
 files exceeding the 60-char limit.
 
-**Risk:** none — pure rename.
+**Risk:** none - pure rename.
 
 ---
 
-## P3 — Architectural improvements
+## P3 - Architectural improvements
 
 ### 9. State layer extraction (`StateStore`)
 
@@ -254,15 +254,15 @@ locking primitives ready for P3/10. Eight vertical slices, each
 independently shippable.
 
 **Slice progress:**
-* ✅ Slice 1 — `state_store/` package shell, aux file API
+* ✅ Slice 1 - `state_store/` package shell, aux file API
   (`load_aux`/`save_aux`/`delete_aux`/`list_aux`), `bot_sent_ids`
   migrated. 17 new tests; 1623 total passing.
-* ✅ Slice 2 — `refusal_log` migrated to use `StateStore`. Both
+* ✅ Slice 2 - `refusal_log` migrated to use `StateStore`. Both
   `refusal_log` (entries) and `refusal_log_alerted` (marker) now
   flow through `_store.load_aux`/`save_aux`. Test isolation hook
   in `_test_state_isolation.py` simplified to a single shared
   `_TEST_STORE` for both modules.
-* ✅ Slice 3 — partitions read path. `StateStore.partition_exists` /
+* ✅ Slice 3 - partitions read path. `StateStore.partition_exists` /
   `load_partition` added. `state.py:_load_from_files` now
   delegates per-partition reads to StateStore. Corrupt-file policy
   preserved (returns None → gist fallback) but tightened: previously
@@ -271,18 +271,18 @@ independently shippable.
   "file missing" (continue, e.g. trackers.json on fresh checkout)
   from "file exists but parse failed" (return None, don't merge
   half-loaded state). 5 new partition tests; 1636 total passing.
-* ✅ Slice 4 — partitions write path. `StateStore.save_partition`
+* ✅ Slice 4 - partitions write path. `StateStore.save_partition`
   added (delegates to `save_aux` for tmp+rename atomic write).
   `state.py:_save_to_files` migrated. The previous implementation
   did `path.write_text(json.dumps(...))` per partition with a
-  docstring claiming atomicity — it wasn't. Now every partition
+  docstring claiming atomicity - it wasn't. Now every partition
   write goes through tmp+rename so a crash mid-write cannot leave
   a half-written `live.json`. `import json` dropped from `state.py`
   (no longer used). Test file split into `test_state_store.py`
   (aux API, slices 1+2) and `test_state_store_partitions.py`
   (partition API, slices 3+4) to stay under the 200-line cap. 5
   new save tests; 1641 total passing.
-* ✅ Slice 5 — queue partitions. `QueueAPI` mixin in
+* ✅ Slice 5 - queue partitions. `QueueAPI` mixin in
   `state_store/queue_api.py` (`queue_path` / `queue_exists` /
   `load_queue` / `save_queue` / `list_queues`); `StateStore`
   inherits via `class StateStore(QueueAPI):`. `commands/queue_io.py`
@@ -291,7 +291,7 @@ independently shippable.
   existing fixture pattern across ~24 test files so the slice
   doesn't force a touch on every test that ever exercised the old
   layout. 1641 total passing.
-* ✅ Slice 6 — schema-completeness regression test.
+* ✅ Slice 6 - schema-completeness regression test.
   `state_store/schema.py` declares the canonical inventory of
   expected state files (5 PARTITIONS, 3 AUX_FILES, 1 WRITE_ONCE).
   `test_state_schema.py` asserts: (a) every file under
@@ -301,7 +301,7 @@ independently shippable.
   entries (e.g. `manifest.json` from the 2026-04 migration) have
   no dedicated loader, (e) queue files match the digits-only pid
   shape. 1648 total passing.
-* ✅ Slice 7 — migration registry. `state_store/migration_registry.py`
+* ✅ Slice 7 - migration registry. `state_store/migration_registry.py`
   centralises every state migration in one discoverable place.
   Production call sites still invoke each migration directly
   (pure refactor, no behaviour change); the registry exists for
@@ -315,7 +315,7 @@ independently shippable.
   idempotent on (target, name), (e) `for_target` filtering works,
   (f) `all_migrations` returns an immutable tuple. 1654 total
   passing.
-* ✅ Slice 8 — locking primitives (P3/10 prerequisite).
+* ✅ Slice 8 - locking primitives (P3/10 prerequisite).
   `state_store/locks.py` provides `LockRegistry`, a thread-safe
   registry of named `threading.Lock` objects with lazy creation.
   Every `save_*` method now acquires a per-resource lock for the
@@ -336,10 +336,10 @@ independently shippable.
 
   What this slice does NOT yet provide: read-modify-write
   atomicity. A reader holding stale data can still overwrite a
-  concurrent writer's update — last-write-wins. P3/10 will add
+  concurrent writer's update - last-write-wins. P3/10 will add
   the read-modify-write API on top of these primitives.
 
-**Risk:** high — touches every state read/write in production. Slice
+**Risk:** high - touches every state read/write in production. Slice
 plan keeps each slice small and independently testable.
 
 ### 10. Race condition strategy
@@ -350,7 +350,7 @@ position: F1 (different machines, shared FS) doesn't apply to this
 deployment, so the simpler primitive is sufficient for actual risk
 reduction today. F3 (in-process concurrency) is covered fully.
 
-Full strategy: **`docs/dev/concurrency-strategy.md`** — see the
+Full strategy: **`docs/dev/concurrency-strategy.md`** - see the
 "What slice 8 actually landed" section for what's in production
 and the "Path forward if F1 ever applies" section for the file-
 lock upgrade path (~45-60 min effort, deferred).
@@ -367,7 +367,7 @@ if F2 actually bites.
 
 **Risk:** medium given the recommendation; high if we picked B or C.
 
-**2026-05-11 update — F2 bit.** The duplicate-#360 incident was a
+**2026-05-11 update - F2 bit.** The duplicate-#360 incident was a
 textbook F2 manifestation: two pushes 32s apart triggered back-to-
 back runs, the second checked out its trigger SHA (which predated
 the first run's state commit), read stale state, and posted the
@@ -376,12 +376,12 @@ from 2026-05-03 was almost certainly the same root cause. Both are
 documented in L21.
 
 Mitigation shipped (also 2026-05-11): two-line workflow fix
-— `ref: main` on the run-job's checkout, plus retry-with-rebase
+- `ref: main` on the run-job's checkout, plus retry-with-rebase
 on the state push. After concurrency-group serialisation, Run B
 now checks out main HEAD (including any state commits from Run A)
 rather than the stale trigger SHA. The fingerprint check then
 trips and Run B skips the duplicate. State pushes that race no
-longer silently drop — the loop retries with `git pull --rebase`
+longer silently drop - the loop retries with `git pull --rebase`
 or fails the job loudly. F2 is **no longer a known-tolerable
 limitation**; it's a fixed bug.
 
@@ -396,24 +396,24 @@ on its own merits, but F2 specifically is closed.
 * Phase 3-7 re-split fix-up (helpers, preambles, constants)
 * Delete safeguard (`bot_sent_registry`, `safe_delete`,
   `tg.delete_message` guard)
-* P0/1 — Workspace cleanup: `tools/test_splitter.py` (commit
+* P0/1 - Workspace cleanup: `tools/test_splitter.py` (commit
   `967d4a5`)
-* P0/2 — Memory update (memory entries #11, #12, #13)
-* P1/3 — Bypass audit + regression test
+* P0/2 - Memory update (memory entries #11, #12, #13)
+* P1/3 - Bypass audit + regression test
   `scripts/test_no_direct_delete_bypass.py` (commit `c5fd4b5`).
   Audit found no production bypass; the test now locks that in.
-* P1/4 — `docs/dev/delete-safety.md` written; cross-linked from
+* P1/4 - `docs/dev/delete-safety.md` written; cross-linked from
   `docs/troubleshooting.md`.
-* P1/5 — Refusal logging (`posting/refusal_log.py`) + Telegram
+* P1/5 - Refusal logging (`posting/refusal_log.py`) + Telegram
   alert (`refusal_alert.py`) + workflow step + 16 tests + global
   test isolation (`_test_state_isolation.py`) plugging the
   `data/state/bot_sent_ids.json` pollution leak (commit `76252c9`).
-* P2/7 — `datetime.strptime` deprecation fixed in
+* P2/7 - `datetime.strptime` deprecation fixed in
   `helpers_pkg/time_utils.py` `parse_away_duration`. Year-less
   formats now synthesize the current year before parsing,
   eliminating the Python 3.15 DeprecationWarning. Full suite went
   from 5 warnings to 0.
-* P2/8 — Sub-file naming cleanup. Seven test files with auto-
+* P2/8 - Sub-file naming cleanup. Seven test files with auto-
   generated 60+ char names (slugified verbatim from section
   comments) renamed to short production-module slugs:
   `test_scheduled_coverage_04_boons_display.py`,

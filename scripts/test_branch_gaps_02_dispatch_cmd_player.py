@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 2.
+"""Tests extracted from test_branch_gaps.py - bin 2.
 
 Sections in this file:
   - dispatch/cmd_player.py: grand_total branch

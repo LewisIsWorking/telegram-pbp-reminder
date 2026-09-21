@@ -1,4 +1,4 @@
-"""Tests for checker.py — combat (part b) group.
+"""Tests for checker.py - combat (part b) group.
 
 Extracted from test_checker.py during the test-split refactor (phase 2).
 Module imports, helpers, and the _LOGS_DIR redirection setup live in
@@ -37,7 +37,7 @@ def test_condition_add():
     config = _make_config()
     state = _make_state()
 
-    updates = [_make_msg(1, 100, "/condition Cardigan — Frightened 2 | end of next turn", user_id=999, first_name="GM")]
+    updates = [_make_msg(1, 100, "/condition Cardigan - Frightened 2 | end of next turn", user_id=999, first_name="GM")]
     checker.process_updates(updates, config, state)
 
     conds = state.get("conditions", {}).get("100", [])
@@ -53,7 +53,7 @@ def test_condition_no_duration():
     config = _make_config()
     state = _make_state()
 
-    updates = [_make_msg(1, 100, "/condition All — Inspired +1", user_id=999, first_name="GM")]
+    updates = [_make_msg(1, 100, "/condition All - Inspired +1", user_id=999, first_name="GM")]
     checker.process_updates(updates, config, state)
 
     conds = state.get("conditions", {}).get("100", [])
@@ -111,7 +111,7 @@ def test_condition_non_gm():
     config = _make_config()
     state = _make_state()
 
-    updates = [_make_msg(1, 100, "/condition Me — Invincible", user_id=42, first_name="Player")]
+    updates = [_make_msg(1, 100, "/condition Me - Invincible", user_id=42, first_name="Player")]
     checker.process_updates(updates, config, state)
 
     assert len(state.get("conditions", {}).get("100", [])) == 0
@@ -175,7 +175,7 @@ def test_combat_auto_notify():
         "all_players_notified": False,
     }
 
-    # Bob posts — now everyone has acted
+    # Bob posts - now everyone has acted
     updates = [_make_msg(1, 100, "I swing my axe!", user_id=43, first_name="Bob")]
     checker.process_updates(updates, config, state)
 

@@ -12,7 +12,7 @@ config pair plus state into one comparable row.
 
 ```python
 if last_dt is None:
-    continue  # never posted / untracked — neither silent nor caught up
+    continue  # never posted / untracked - neither silent nor caught up
 ```
 
 so a campaign the bot had never seen a message in was dropped from the

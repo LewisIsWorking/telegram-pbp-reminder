@@ -61,7 +61,7 @@ def test_calc_age_days():
 
 def test_calc_age_missing():
     age, hours_val = _calc_age(None, NOW)
-    assert age == "—"
+    assert age == "-"
     assert hours_val == pytest.approx(99.0 * 24)
 
 

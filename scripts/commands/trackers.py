@@ -17,7 +17,7 @@ def build_notes(pid: str, campaign_name: str, state: dict) -> str:
     if not notes:
         return f"No GM notes for {campaign_name}.\nGMs can add notes with /note <text>"
 
-    lines = [f"📝 GM Notes — {campaign_name}:", ""]
+    lines = [f"📝 GM Notes - {campaign_name}:", ""]
     for i, note in enumerate(notes, 1):
         created = note.get("created_at", "")[:10]  # YYYY-MM-DD
         lines.append(f"{i}. {note['text']}")
@@ -37,7 +37,7 @@ def build_quests(pid: str, campaign_name: str, state: dict) -> str:
     active = [(i, q) for i, q in enumerate(quests, 1) if q.get("status") == "active"]
     completed = [(i, q) for i, q in enumerate(quests, 1) if q.get("status") == "completed"]
 
-    lines = [f"📋 Quests — {campaign_name}:", ""]
+    lines = [f"📋 Quests - {campaign_name}:", ""]
 
     if active:
         lines.append("Active:")
@@ -63,11 +63,11 @@ def build_pins(pid: str, campaign_name: str, state: dict) -> str:
     if not pins:
         return f"No pins for {campaign_name}.\nGMs can bookmark moments with /pin <text>"
 
-    lines = [f"📌 Pins — {campaign_name}:", ""]
+    lines = [f"📌 Pins - {campaign_name}:", ""]
     for i, pin in enumerate(pins, 1):
         created = pin.get("created_at", "")[:10]
         author = pin.get("author", "")
-        author_tag = f" — {author}" if author else ""
+        author_tag = f" - {author}" if author else ""
         lines.append(f"{i}. {pin['text']}")
         if created:
             lines.append(f"   ({created}{author_tag})")
@@ -82,7 +82,7 @@ def build_lootlist(pid: str, campaign_name: str, state: dict) -> str:
     if not loot:
         return f"No loot tracked for {campaign_name}.\nGMs can add items with /loot <text>"
 
-    lines = [f"💰 Party Loot — {campaign_name}:", ""]
+    lines = [f"💰 Party Loot - {campaign_name}:", ""]
     for i, item in enumerate(loot, 1):
         lines.append(f"  {i}. {item['text']}")
     lines.append("")
@@ -94,15 +94,15 @@ def build_npcs(pid: str, campaign_name: str, state: dict) -> str:
     """Build the NPC list for /npcs command."""
     npcs = state.get("npcs", {}).get(pid, [])
     if not npcs:
-        return f"No NPCs tracked for {campaign_name}.\nGMs can add NPCs with /npc <n> — <description>"
+        return f"No NPCs tracked for {campaign_name}.\nGMs can add NPCs with /npc <n> - <description>"
 
-    lines = [f"🎭 NPCs — {campaign_name}:", ""]
+    lines = [f"🎭 NPCs - {campaign_name}:", ""]
     for i, npc in enumerate(npcs, 1):
         desc = npc.get("desc", "")
-        desc_str = f" — {desc}" if desc else ""
+        desc_str = f" - {desc}" if desc else ""
         lines.append(f"  {i}. {npc['name']}{desc_str}")
     lines.append("")
-    lines.append(f"{len(npcs)}/{_MAX_NPCS_PER_CAMPAIGN} NPCs. GMs: /npc <n> — <desc>, /delnpc <N>")
+    lines.append(f"{len(npcs)}/{_MAX_NPCS_PER_CAMPAIGN} NPCs. GMs: /npc <n> - <desc>, /delnpc <N>")
     return "\n".join(lines)
 
 
@@ -110,9 +110,9 @@ def build_conditions(pid: str, campaign_name: str, state: dict, config: dict) ->
     """Build the active conditions list for /conditions command."""
     conds = state.get("conditions", {}).get(pid, [])
     if not conds:
-        return f"No active conditions in {campaign_name}.\nGMs can add with /condition <target> — <effect>"
+        return f"No active conditions in {campaign_name}.\nGMs can add with /condition <target> - <effect>"
 
-    lines = [f"⚡ Active Conditions — {campaign_name}:", ""]
+    lines = [f"⚡ Active Conditions - {campaign_name}:", ""]
     for i, c in enumerate(conds, 1):
         target = c.get("target", "Unknown")
         effect = c.get("effect", "")

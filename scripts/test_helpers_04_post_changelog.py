@@ -1,4 +1,4 @@
-"""test_helpers.py — bin 4.
+"""test_helpers.py - bin 4.
 
   - post_changelog
 """

@@ -1,4 +1,4 @@
-"""Tests for scheduled/gm_escalation.py — global timer, level from hours."""
+"""Tests for scheduled/gm_escalation.py - global timer, level from hours."""
 
 import sys, os
 from datetime import datetime, timezone, timedelta

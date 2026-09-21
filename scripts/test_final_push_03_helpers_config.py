@@ -1,20 +1,20 @@
-"""Tests extracted from test_final_push.py — bin 3.
+"""Tests extracted from test_final_push.py - bin 3.
 
 Sections in this file:
-  - helpers/config.py:95-96 — empty pbp_topic_ids error
-  - scheduled/milestones.py:134 — continue
-  - scheduled/reports.py:106 — no topic_timestamps continue
-  - scheduled/smart_alerts.py:110 — feature disabled continue
-  - scheduled/alerts.py:169 — excluded continue
-  - scheduled/combat_ping.py:95 — excluded continue
-  - scheduled/maintenance.py:147 — excluded continue
-  - scheduled/diagnostic_analysis.py:43 — continue
+  - helpers/config.py:95-96 - empty pbp_topic_ids error
+  - scheduled/milestones.py:134 - continue
+  - scheduled/reports.py:106 - no topic_timestamps continue
+  - scheduled/smart_alerts.py:110 - feature disabled continue
+  - scheduled/alerts.py:169 - excluded continue
+  - scheduled/combat_ping.py:95 - excluded continue
+  - scheduled/maintenance.py:147 - excluded continue
+  - scheduled/diagnostic_analysis.py:43 - continue
   - scheduled/combat_ping.py already covered; combat/display.py:90
   - combat/tracker.py:115
-  - combat/commands.py:98 — long log
+  - combat/commands.py:98 - long log
 """
 """
-Definitive final coverage push — verified to actually hit each line.
+Definitive final coverage push - verified to actually hit each line.
 Uses real function calls with minimal/no mocking where possible.
 """
 import sys, os, json, pytest
@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── helpers/config.py:95-96 — empty pbp_topic_ids error ────────────────────
+# ── helpers/config.py:95-96 - empty pbp_topic_ids error ────────────────────
 def test_config_empty_pids_real():
     from helpers_pkg.config import validate_config
     issues = validate_config({"group_id": -1, "gm_user_ids": [],
@@ -35,7 +35,7 @@ def test_config_empty_pids_real():
 
 
 
-# ── scheduled/milestones.py:134 — continue ──────────────────────────────────
+# ── scheduled/milestones.py:134 - continue ──────────────────────────────────
 def test_milestones_skip_real():
     from scheduled.milestones import check_streak_milestones
     config = {"group_id": -1, "bot_topic_id": 999, "gm_user_ids": [],
@@ -52,7 +52,7 @@ def test_milestones_skip_real():
 
 
 
-# ── scheduled/reports.py:106 — no topic_timestamps continue ─────────────────
+# ── scheduled/reports.py:106 - no topic_timestamps continue ─────────────────
 def test_reports_no_timestamps_real():
     from scheduled.reports import post_pace_report
     now = datetime(2026, 4, 3, 12, tzinfo=timezone.utc)
@@ -71,7 +71,7 @@ def test_reports_no_timestamps_real():
 
 
 
-# ── scheduled/smart_alerts.py:110 — feature disabled continue ───────────────
+# ── scheduled/smart_alerts.py:110 - feature disabled continue ───────────────
 def test_smart_alerts_disabled_real():
     from scheduled.smart_alerts import check_pace_drop
     now = datetime(2026, 4, 3, 12, tzinfo=timezone.utc)
@@ -84,7 +84,7 @@ def test_smart_alerts_disabled_real():
 
 
 
-# ── scheduled/alerts.py:169 — excluded continue ─────────────────────────────
+# ── scheduled/alerts.py:169 - excluded continue ─────────────────────────────
 def test_alerts_excluded_real():
     from scheduled.alerts import check_and_alert
     config = {"group_id": -1, "gm_user_ids": [], "bot_topic_id": 999,
@@ -97,7 +97,7 @@ def test_alerts_excluded_real():
 
 
 
-# ── scheduled/combat_ping.py:95 — excluded continue ─────────────────────────
+# ── scheduled/combat_ping.py:95 - excluded continue ─────────────────────────
 def test_combat_ping_excluded_real():
     from scheduled.combat_ping import check_combat_turns
     config = {"group_id": -1, "bot_topic_id": 999, "gm_user_ids": [],
@@ -110,7 +110,7 @@ def test_combat_ping_excluded_real():
 
 
 
-# ── scheduled/maintenance.py:147 — excluded continue ────────────────────────
+# ── scheduled/maintenance.py:147 - excluded continue ────────────────────────
 def test_maintenance_excluded_real():
     from scheduled.maintenance import check_recruitment_needs
     config = {"group_id": -1, "gm_user_ids": [],
@@ -123,7 +123,7 @@ def test_maintenance_excluded_real():
 
 
 
-# ── scheduled/diagnostic_analysis.py:43 — continue ──────────────────────────
+# ── scheduled/diagnostic_analysis.py:43 - continue ──────────────────────────
 def test_diagnostic_no_match_real():
     from scheduled.diagnostic_analysis import _analyse_logs
     result = _analyse_logs(["just a normal line"])
@@ -161,7 +161,7 @@ def test_combat_tracker_gm_msg_real():
 
 
 
-# ── combat/commands.py:98 — long log ─────────────────────────────────────────
+# ── combat/commands.py:98 - long log ─────────────────────────────────────────
 def test_combat_long_log_real():
     from combat.commands import handle_enemies_command
     state = {"combat": {"100": {

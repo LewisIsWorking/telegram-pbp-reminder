@@ -20,7 +20,7 @@ Seven of the original thirteen were cleared on 2026-08-15 by extraction:
 
 ``telegram.py`` resisted every split attempt and is the interesting one.
 Every function in it needs ``_post``, so any extracted module must import
-back — a cycle. Moving ``_post`` out instead breaks
+back - a cycle. Moving ``_post`` out instead breaks
 ``test_telegram_01_misc``, which asserts on ``telegram.TELEGRAM_API``
 directly after ``init()``. And a function-local import to dodge the cycle
 resolves to the **mock** telegram module that ``conftest`` installs into
@@ -67,7 +67,7 @@ class TestDiscovery:
         """If the scan breaks, this guard silently passes forever."""
         found = _lengths()
         assert len(found) > 300, (
-            f"only found {len(found)} python files — the scan has probably "
+            f"only found {len(found)} python files - the scan has probably "
             f"broken, which would make this guard vacuous")
 
     def test_the_backlog_entries_all_exist(self):
@@ -86,7 +86,7 @@ class TestNoNewOffenders:
             f"these files exceed the {_LIMIT}-line limit and are not in the "
             f"backlog: {over}.\n"
             f"**Extract, do not trim.** Pull a coherent responsibility into "
-            f"its own module and import it back — removing comments or "
+            f"its own module and import it back - removing comments or "
             f"docstrings to get under the line is not a fix.")
 
 

@@ -9,11 +9,11 @@ is preserved so existing callers and tests keep working.
 Schema evolution:
 
   Legacy slot:  {"msg_id": int|None, "fingerprint": str}
-                — single message tracked, multi-message posts orphaned.
+                - single message tracked, multi-message posts orphaned.
 
   Current slot: {"msg_ids": list[int], "fingerprint": str,
                  "last_posted_at": iso8601 str | None}
-                — every chunk tracked; replace-on-write semantics.
+                - every chunk tracked; replace-on-write semantics.
 
 Migration is implicit: ``slot_msg_ids`` reads either shape, and
 ``set_slot_msg_ids`` always writes the current shape (dropping legacy
@@ -45,7 +45,7 @@ def queue_pending_deletes(slot: dict, ids) -> None:
     To stop that, every failed delete is parked in ``pending_delete``
     on the slot. ``retry_pending_deletes`` re-attempts them on every
     subsequent run until they succeed (the bot is a group admin, so its
-    own messages have no 48h delete limit — a retry always eventually
+    own messages have no 48h delete limit - a retry always eventually
     wins). This is the fix for the 2026-05-28 C01 orphan: ``Unreplied:
     5`` survived because its delete was abandoned, not retried. See L28.
 
@@ -73,7 +73,7 @@ def retry_pending_deletes(slot: dict, group_id: int) -> None:
     # is append-only for any message Telegram will never delete, and every
     # run pays an API call per stuck ID forever. posting.stuck_deletes has
     # already alerted by the time is_hopeless goes True, so dropping here
-    # loses no information — it moves the record from a growing slot field
+    # loses no information - it moves the record from a growing slot field
     # to the log built to hold it.
     slot["pending_delete"] = [m for m in still_failed if not is_hopeless(m)]
 
@@ -102,7 +102,7 @@ def set_slot_msg_ids(slot: dict, msg_ids: list[int],
 
 
 def clear_slot(slot: dict) -> None:
-    """Reset the slot — call after deleting all tracked messages."""
+    """Reset the slot - call after deleting all tracked messages."""
     SinglePin.clear(slot)
 
 
@@ -114,7 +114,7 @@ def normalise_queue_keys(queues: dict) -> bool:
     ``message_thread_id`` as an ``int``, and that int was used verbatim
     as the slot key. So ``queues.setdefault(51357, ...)`` missed the
     on-disk ``"51357"`` slot, handed the poster a fresh empty slot, and
-    the previous batch was never deleted — then the save wrote the int
+    the previous batch was never deleted - then the save wrote the int
     key back out as a *second* string key, stranding the original IDs
     where even the ``pending_delete`` retry sweep could not reach them.
     That is the 2026-08-10 C05 orphan (three surviving "Unreplied:"

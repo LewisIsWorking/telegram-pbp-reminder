@@ -33,7 +33,7 @@ import pytest
 # ⚠️ Patch where the function LIVES, not where it is re-exported.
 # post_recruit_focus moved to recruit_focus_post on 2026-08-17 and is
 # re-exported from recruit_focus so the scheduler's import path keeps
-# resolving — but it reads its OWN module globals, so patching
+# resolving - but it reads its OWN module globals, so patching
 # recruit_focus.build_recruit_message has no effect on it at all. The
 # re-export preserves the import, never the patch target.
 from scheduled import recruit_focus_post as rf
@@ -70,7 +70,7 @@ def test_it_goes_to_the_campaigns_own_chat_topic():
 
 def test_a_campaign_without_a_chat_topic_falls_back_but_says_so():
     """A silent fallback would put the post back where it started and
-    look like it worked — and the campaign nobody can see is precisely
+    look like it worked - and the campaign nobody can see is precisely
     the one that needed the advert."""
     thread, own = recruit_destination(_c09(chat_topic_id=None), _cfg())
     assert (thread, own) == (GM_QUEUE, False)
@@ -178,7 +178,7 @@ def test_the_routing_guard_can_fail():
     red. Before this change every advert went to the GM queue."""
     thread, _own = recruit_destination(_c09(chat_topic_id=None), _cfg())
     assert thread == GM_QUEUE, (
-        "with no chat topic the post must fall back to the GM queue — if "
+        "with no chat topic the post must fall back to the GM queue - if "
         "this fails, test_it_goes_to_the_campaigns_own_chat_topic is not "
         "distinguishing the two destinations at all")
 

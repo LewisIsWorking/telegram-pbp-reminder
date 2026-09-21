@@ -1,7 +1,7 @@
-"""Tests extracted from test_commands_coverage.py — bin 5.
+"""Tests extracted from test_commands_coverage.py - bin 5.
 
 Sections in this file:
-  - scheduled/reports.py  — test post_roster_summary guard conditions
+  - scheduled/reports.py  - test post_roster_summary guard conditions
 """
 """
 Coverage tests for:
@@ -9,7 +9,7 @@ Coverage tests for:
   commands/player_registry.py
   scheduled/poll_result.py
   scheduled/diagnostic.py
-  scheduled/reports.py  (partial — tg-calling functions mocked)
+  scheduled/reports.py  (partial - tg-calling functions mocked)
 """
 import sys, os, json, pytest, tempfile
 from datetime import datetime, timezone, timedelta
@@ -48,7 +48,7 @@ def _rpt_config():
     }
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/reports.py  — test post_roster_summary guard conditions
+# scheduled/reports.py  - test post_roster_summary guard conditions
 # ═══════════════════════════════════════════════════════════════════════════════
 
 from scheduled.reports import post_roster_summary

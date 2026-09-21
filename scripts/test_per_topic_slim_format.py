@@ -36,7 +36,7 @@ class TestSlimLineFormat:
         assert "Yamakawa" not in out
 
     def test_line_has_age_icon_and_age(self):
-        """Age icon (🌳, 🌱 etc) and age string kept — urgency hint
+        """Age icon (🌳, 🌱 etc) and age string kept - urgency hint
         survives the trim. Lewis specifically asked to keep the icon."""
         from commands.topic_queue_format import format_topic_queue
         # 1h ago → 🌱
@@ -103,7 +103,7 @@ class TestSlimLineFormat:
 # ── build_caught_up_text: roster tagging + edge cases ───────────────────────
 
 def _player(uid, username, permanent=False, last_post=None):
-    # Default to a recent post relative to *now* — _active_players counts
+    # Default to a recent post relative to *now* - _active_players counts
     # non-permanent players only if they posted within the last 30 days
     # (checked against datetime.now()). A hardcoded absolute date would
     # rot out of that window as real time passes and silently drop these
@@ -134,7 +134,7 @@ def _state_with(*players):
 
 class TestCaughtUpBuilder:
     def test_no_state_falls_back_to_bare(self):
-        """state=None means caller couldn't compute roster — emit
+        """state=None means caller couldn't compute roster - emit
         the bare ``📋 All caught up here.`` form."""
         from scheduled.per_topic_caught_up import build_caught_up_text
         out = build_caught_up_text("100", None, _config_with_perms())
@@ -173,7 +173,7 @@ class TestCaughtUpBuilder:
         """Perm players (config permanent_user_ids) appear in tags too.
         This is the Anthony/Horia/Ryo path post-4.50.0."""
         from scheduled.per_topic_caught_up import build_caught_up_text
-        # Bob is in config but not flagged per-record — should still tag.
+        # Bob is in config but not flagged per-record - should still tag.
         state = _state_with(
             _player("1", "alice"),
             _player("99", "permabob"),  # permanent=False per-record
@@ -183,7 +183,7 @@ class TestCaughtUpBuilder:
         assert "@alice" in out and "@permabob" in out
 
     def test_excludes_players_in_other_campaigns(self):
-        """Only the queried pid's roster — players in OTHER campaigns
+        """Only the queried pid's roster - players in OTHER campaigns
         (different pbp_topic_id) are not tagged here."""
         from scheduled.per_topic_caught_up import build_caught_up_text
         state = _state_with(_player("1", "alice"))
@@ -196,5 +196,5 @@ class TestCaughtUpBuilder:
         out = build_caught_up_text("100", state, _config_with_perms())
         assert "@alice" in out
         assert "@bob" not in out, (
-            "Bob is in pid 999, not the queried 100 — must not be tagged"
+            "Bob is in pid 999, not the queried 100 - must not be tagged"
         )

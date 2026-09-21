@@ -1,7 +1,7 @@
 """The bot's fixed-clock schedule, as data.
 
 Every entry here mirrors a real gate in a ``scheduled/`` module. The
-gates stay authoritative — this table exists so the schedule post can
+gates stay authoritative - this table exists so the schedule post can
 *describe* them without each job needing to publish its own timing.
 
 ⚠️ **If you change a gate, change it here too.** The pairing is checked
@@ -13,7 +13,7 @@ naming their source line so a grep finds them.
 
 Only *fixed-clock* jobs live here. Interval jobs (leaderboard every 3
 days, pace every 7, recruitment every 14, roster every 3) fire relative
-to when they last ran, so they have no clock time to advertise — they
+to when they last ran, so they have no clock time to advertise - they
 are summarised separately by ``schedule_post`` from their ``last_*``
 state instead.
 """
@@ -36,7 +36,7 @@ def fixed_schedule(config: dict) -> list[dict]:
 
     ``checks`` names the labels the job is registered under in
     ``checker._run_checks``. That pairing is what makes completeness
-    machine-checkable — see ``test_schedule_is_complete.py``. A source
+    machine-checkable - see ``test_schedule_is_complete.py``. A source
     comment naming the gate's line number, which is all this table had
     before 2026-08-13, tells a reader where to look but cannot notice a
     job that was never added at all.
@@ -44,7 +44,7 @@ def fixed_schedule(config: dict) -> list[dict]:
     poll_hour = config.get("poll_post_hour", 7)
     diag_hour = config.get("diagnostic_hour", 8)
     # Mirrors scheduled/pin_report.py:58 exactly, including its fallback
-    # to the diagnostic hour — the two share 08:00 UTC by default.
+    # to the diagnostic hour - the two share 08:00 UTC by default.
     pin_hour = config.get("pin_digest_hour", diag_hour)
     raw = config.get("queue_daily_hours") or (
         [config["queue_daily_hour"]]
@@ -67,14 +67,14 @@ def fixed_schedule(config: dict) -> list[dict]:
         # scheduled/poll_result.py:14
         {"day": 4, "hour": 15, "label": "Session poll result",
          "checks": ("Poll result",)},
-        # scheduled/pin_report.py:59. Added 2026-08-13 — it fires daily at
+        # scheduled/pin_report.py:59. Added 2026-08-13 - it fires daily at
         # the same hour as the diagnostic, so the post showed one job at
         # 09:00 BST when two were due.
         {"day": None, "hour": pin_hour, "label": "📌 Pin digest",
          "checks": ("Pin digest",)},
     ]
     if config.get("swimming_poll_enabled", True):
-        # scheduled/swimming_poll.py:42 — same Sunday slot as the session
+        # scheduled/swimming_poll.py:42 - same Sunday slot as the session
         # poll, but listed separately because it is independently
         # switchable and currently off.
         items.append({"day": 6, "hour": poll_hour, "label": "🏊 Swimming poll",

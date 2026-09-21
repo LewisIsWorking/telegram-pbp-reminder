@@ -27,13 +27,14 @@ def handle(ctx: dict) -> bool:
         raw_args = parsed["raw_text"][10:].strip()
         if not raw_args:
             tg.send_message(group_id, thread_id,
-                            "Usage: /condition <target> — <effect> [| duration]\n"
-                            "e.g. /condition Cardigan — Frightened 2 | until end of next turn\n"
-                            "e.g. /condition All — Inspired +1")
+                            "Usage: /condition <target> - <effect> [| duration]\n"
+                            "e.g. /condition Cardigan - Frightened 2 | until end of next turn\n"
+                            "e.g. /condition All - Inspired +1")
         else:
-            # Parse: target — effect [| duration]
-            if " — " in raw_args:
-                target, rest = raw_args.split(" — ", 1)
+            # target - effect [| duration]. Phones turn "--" into an em dash, so
+            # it is still accepted, as an escape: the repo holds none (2026-09-21).
+            if " \u2014 " in raw_args:
+                target, rest = raw_args.split(" \u2014 ", 1)
             elif " -- " in raw_args:
                 target, rest = raw_args.split(" -- ", 1)
             elif " - " in raw_args:
@@ -55,7 +56,7 @@ def handle(ctx: dict) -> bool:
             })
             tg.send_message(group_id, thread_id,
                             f"⚡ Condition on {target.strip()}: {effect.strip()}")
-            print(f"Condition in {campaign_name}: {target.strip()} — {effect.strip()[:50]}")
+            print(f"Condition in {campaign_name}: {target.strip()} - {effect.strip()[:50]}")
         return True
 
     # ---- /endcondition command (GM only) ----
@@ -67,7 +68,7 @@ def handle(ctx: dict) -> bool:
             if 0 <= idx < len(conds):
                 removed = conds.pop(idx)
                 tg.send_message(group_id, thread_id,
-                                f"✅ Ended: {removed['target']} — {removed['effect']}")
+                                f"✅ Ended: {removed['target']} - {removed['effect']}")
             else:
                 tg.send_message(group_id, thread_id,
                                 f"Condition #{num_str} not found. Use /conditions to see list.")

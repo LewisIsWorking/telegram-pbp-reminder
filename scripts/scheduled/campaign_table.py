@@ -137,7 +137,7 @@ def post_campaign_table(config: dict, state: dict, *,
 def _calc_age(last_time: str | None, now: datetime) -> tuple[str, float]:
     """Return (age_str, hours_elapsed) for a last-post timestamp."""
     if not last_time:
-        return "—", 99.0 * 24
+        return "-", 99.0 * 24
     hours = helpers.hours_since(now, datetime.fromisoformat(last_time))
     if hours < 24:
         return f"{int(hours)}h", hours

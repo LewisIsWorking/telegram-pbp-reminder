@@ -12,7 +12,7 @@ PROVEN  by ``test_the_sweep_can_fail``.
 
 The gap this closes. A caught-up notice was only ever deleted when its
 thread next had something to queue. In a quiet campaign that can be
-weeks — and Telegram will not let a bot delete its own message after 48
+weeks - and Telegram will not let a bot delete its own message after 48
 hours, so by then it is permanent.
 
 Nothing in the repo could see this. ``pin_audit`` records pin / unpin /
@@ -20,7 +20,7 @@ delete, and a caught-up notice is never pinned, so it had no recorded
 birth and no age. The offline detector
 (``test_no_delete_attempted_past_the_wall.py``) is structurally blind to
 it. It was found by ``maintenance/audit_orphans.py`` asking Telegram
-directly: **28 orphans, of which 15 were caught-up notices** — 169063,
+directly: **28 orphans, of which 15 were caught-up notices** - 169063,
 169383, 170384 and 171632 among them.
 
 ⭐ The lesson worth keeping is not about notices. It is that **a message
@@ -70,7 +70,7 @@ def test_an_untimestamped_notice_counts_as_stale():
 
     A batch with no timestamp is rewritten by the next content change
     anyway. A notice with no timestamp is only revisited when its thread
-    wakes up, which may be never — so it gets its one attempt now, while
+    wakes up, which may be never - so it gets its one attempt now, while
     that attempt can still succeed.
     """
     assert caught_up_is_stale(_slot(stamped=False), NOW) is True
@@ -99,7 +99,7 @@ def test_young_notice_is_left_alone():
 
 
 def test_failed_delete_is_parked_for_retry():
-    """A notice already past the wall must not vanish silently — it is a
+    """A notice already past the wall must not vanish silently - it is a
     real message still in the topic and someone has to know."""
     slot = _slot(40)
     with patch.object(tqw.tg, "delete_message", return_value=False):
@@ -141,7 +141,7 @@ def test_clearing_a_thread_stamps_the_new_notice():
 
 def test_poster_sweeps_a_slot_holding_only_a_notice():
     """Before the fix this slot matched no branch at all, so nothing ever
-    looked at it again — which is precisely how the notices aged out."""
+    looked at it again - which is precisely how the notices aged out."""
     from scheduled import topic_queue_poster as tqp
     cq = {"topic_queues": {"40585": _slot(40)}}
     with patch.object(tqp, "_load", return_value=cq), \
@@ -159,7 +159,7 @@ def test_poster_sweeps_a_slot_holding_only_a_notice():
 # ── PROVE the guard can fail ─────────────────────────────────────────────────
 
 def test_the_sweep_can_fail(monkeypatch):
-    """Push the threshold out of reach — the old behaviour — and confirm
+    """Push the threshold out of reach - the old behaviour - and confirm
     the expired notice survives, which is the orphan being created."""
     monkeypatch.setattr(tqa, "MAX_TRACKED_AGE", timedelta(days=3650))
     slot = _slot(100)

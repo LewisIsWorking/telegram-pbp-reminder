@@ -1,4 +1,4 @@
-"""Tests extracted from test_utility_coverage.py — bin 4.
+"""Tests extracted from test_utility_coverage.py - bin 4.
 
 Sections in this file:
   - Use a key that IS in PARTITIONS

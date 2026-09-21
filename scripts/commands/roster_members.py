@@ -23,7 +23,7 @@ _ACTIVE_DAYS = 30
 #
 # ⚠️ It steps only when EVERY recruiting campaign has met the current
 # rung, reserves included. Stepping on the base tier alone would raise
-# the bar to 8 while a tier-1 campaign still sat at 0 players — and the
+# the bar to 8 while a tier-1 campaign still sat at 0 players - and the
 # bot would advertise that campaign as needing 8 when what it needed was
 # its first player.
 RECRUIT_LADDER = (6, 8)
@@ -34,17 +34,17 @@ def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
 
     Inclusion rules (in priority order):
 
-    1. **Permanent players are always counted** — regardless of when
+    1. **Permanent players are always counted** - regardless of when
        they last posted. This is INTENTIONAL, not a bug. The
        ``permanent`` flag (set via ``/setpermanent``) marks players
        who are members of the campaign even during dormant stretches:
        trusted long-term players, GMs-as-players who post sporadically,
        and people who explicitly want to stay enrolled across quiet
        weeks. The same flag suppresses the week-3 auto-removal ping
-       in the inactivity reminder — the two behaviours together
+       in the inactivity reminder - the two behaviours together
        implement the contract "this person is a member full stop;
        don't measure them, don't kick them." Do NOT add a recency
-       check here — it would silently demote permanent players from
+       check here - it would silently demote permanent players from
        the roster count and break the user-facing meaning of
        ``/setpermanent``.
 
@@ -64,7 +64,7 @@ def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
         if is_permanent(p, config):
             # Intentional: permanent (per-record OR config-listed) =
             # roster member, full stop. See docstring above. Do not
-            # add a recency check here — perm = always counted.
+            # add a recency check here - perm = always counted.
             result.append(p)
             continue
         # ``played_by`` resolves to whoever actually posts for this
@@ -82,11 +82,11 @@ def active_poll_uids(pair: dict, config: dict, state: dict) -> list[str]:
 
     Opt-in per campaign via ``pair['poll_roster_filter']``:
 
-    * **Unset (default)** — the full ``poll_user_ids`` list is returned
+    * **Unset (default)** - the full ``poll_user_ids`` list is returned
       unchanged. This is required for campaigns whose players are not tracked
       in the shared registry (e.g. C11 runs in a *separate* Telegram group),
       where an active-roster intersection would wrongly empty the list.
-    * **Set** — only poll users who are on the campaign's active roster
+    * **Set** - only poll users who are on the campaign's active roster
       (``_active_players`` for the campaign's first pbp topic) are returned,
       so players who have left or gone inactive stop being pinged and stop
       counting toward the vote total.
@@ -111,7 +111,7 @@ def _split_active(players: list[dict], config: dict) -> tuple[list[dict], list[d
     actually posting within the recency window. Lewis requested this
     on 2026-05-11 after spotting the gap between /roster (counts perms)
     and /overview (does not). The icon (✅/⚠️) still gates on the
-    combined count so the set of warned campaigns stays the same —
+    combined count so the set of warned campaigns stays the same -
     only the display becomes more informative.
 
     As of 2026-05-17 (L26), "permanent" is decided by
@@ -129,7 +129,7 @@ def effective_target(config: dict, state: dict) -> int:
     """The roster target every campaign is currently measured against.
 
     Walks ``RECRUIT_LADDER`` upward while every recruiting campaign meets
-    the rung. Campaigns that never recruit are ignored entirely — they
+    the rung. Campaigns that never recruit are ignored entirely - they
     neither block the ladder nor satisfy it, because they are not asking
     for anybody.
 
@@ -146,7 +146,7 @@ def effective_target(config: dict, state: dict) -> int:
         return RECRUIT_LADDER[0]
 
     # ⚠️ Returns the rung to AIM FOR, not the rung already achieved. With
-    # every campaign on 6 the answer is 8 — that is the whole request.
+    # every campaign on 6 the answer is 8 - that is the whole request.
     # The first version returned the highest cleared rung, so a fully
     # staffed set of campaigns reported a target of 6 and the bot had
     # nothing to ask for. Caught by the tests, not by reading it.

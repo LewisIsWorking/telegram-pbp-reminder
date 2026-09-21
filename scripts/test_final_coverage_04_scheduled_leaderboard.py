@@ -1,9 +1,9 @@
-"""Tests extracted from test_final_coverage.py — bin 4.
+"""Tests extracted from test_final_coverage.py - bin 4.
 
 Sections in this file:
-  - scheduled/leaderboard.py — post_campaign_leaderboard
-  - scheduled/leaderboard.py — post_campaign_leaderboard
-  - transcript/finalize.py — update_transcript_index
+  - scheduled/leaderboard.py - post_campaign_leaderboard
+  - scheduled/leaderboard.py - post_campaign_leaderboard
+  - transcript/finalize.py - update_transcript_index
 """
 """
 Tests targeting the remaining coverage gaps:
@@ -129,7 +129,7 @@ def test_choose_boon_no_bot_topic():
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/leaderboard.py — post_campaign_leaderboard
+# scheduled/leaderboard.py - post_campaign_leaderboard
 
 # ═══════════════════════════════════════════════════════════════════════════════
 

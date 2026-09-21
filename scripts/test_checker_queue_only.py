@@ -1,4 +1,4 @@
-"""Coverage tests for checker._run_checks(only=...) — the --queue-only pass.
+"""Coverage tests for checker._run_checks(only=...) - the --queue-only pass.
 
 The half-hourly run must stay cheap: it processes Telegram updates (so GM
 reply-to clears register promptly) but fires ONLY the queue checks. These
@@ -91,7 +91,7 @@ def test_main_passes_queue_only_through():
          patch.object(checker, "update_transcript_index"):
         checker.main(queue_only=True)
 
-    # Updates are still fetched — this is what clears GM reply-to entries.
+    # Updates are still fetched - this is what clears GM reply-to entries.
     get_updates.assert_called_once_with(5)
     # State is still persisted, so the consumed offset is not lost.
     save.assert_called_once()

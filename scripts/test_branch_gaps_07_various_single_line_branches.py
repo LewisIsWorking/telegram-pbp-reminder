@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 7.
+"""Tests extracted from test_branch_gaps.py - bin 7.
 
 Sections in this file:
   - Various single-line branches (part a)
@@ -179,6 +179,6 @@ def test_queue_scan_section_break(tmp_path):
         result = scan_transcripts({"group_id": -1, "gm_user_ids": [], "topic_pairs": [
             {"pbp_topic_ids": [100], "code": "C00", "name": "Kibwe", "gm_user_ids": [999]}
         ]}, {})
-    # Section break stops content — entry still added but with limited preview
+    # Section break stops content - entry still added but with limited preview
     if "100" in result:
         assert result["100"]["entries"][0]["name"] == "Alice"

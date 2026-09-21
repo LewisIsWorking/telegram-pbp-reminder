@@ -1,4 +1,4 @@
-"""Tests for posting.refusal_log — persistent refusal audit trail.
+"""Tests for posting.refusal_log - persistent refusal audit trail.
 
 Covers:
   * record_refusal appends to disk

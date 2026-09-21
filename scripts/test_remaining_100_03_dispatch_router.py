@@ -1,20 +1,20 @@
-"""Tests extracted from test_remaining_100.py — bin 3.
+"""Tests extracted from test_remaining_100.py - bin 3.
 
 Sections in this file:
   - dispatch/router.py:181-182
-  - dispatch/tracking.py:175-182 — warned comeback
+  - dispatch/tracking.py:175-182 - warned comeback
   - dispatch/cmd_clocks.py:123
   - dispatch/cmd_conditions_hp.py:184
-  - dispatch/cmd_info.py:98-99 — /npcs
+  - dispatch/cmd_info.py:98-99 - /npcs
   - dispatch/cmd_trackers.py:115
   - dispatch/cmd_trackers_items.py:108
   - dispatch/cmd_votes_timers.py:108-111
-  - dispatch/bot_topic.py:104 — no campaigns
-  - helpers_pkg/config.py:39-43 — load_settings
-  - helpers_pkg/dc_lookup.py:110-112 — adjustment
+  - dispatch/bot_topic.py:104 - no campaigns
+  - helpers_pkg/config.py:39-43 - load_settings
+  - helpers_pkg/dc_lookup.py:110-112 - adjustment
 """
 """
-Definitive final coverage push — verified state for every remaining gap.
+Definitive final coverage push - verified state for every remaining gap.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -52,7 +52,7 @@ def test_router_exception():
 
 
 
-# ── dispatch/tracking.py:175-182 — warned comeback ───────────────────────────
+# ── dispatch/tracking.py:175-182 - warned comeback ───────────────────────────
 def test_tracking_warned_comeback():
     from dispatch.tracking import track_message
     now = datetime.now(timezone.utc)
@@ -98,7 +98,7 @@ def test_cmd_hp_bad():
 
 
 
-# ── dispatch/cmd_info.py:98-99 — /npcs ───────────────────────────────────────
+# ── dispatch/cmd_info.py:98-99 - /npcs ───────────────────────────────────────
 def test_cmd_info_npcs():
     from dispatch.cmd_info import handle
     ctx = _ctx(cmd_word="/npcs", text="/npcs",
@@ -148,7 +148,7 @@ def test_endvote_no_votes():
 
 
 
-# ── dispatch/bot_topic.py:104 — no campaigns ────────────────────────────────
+# ── dispatch/bot_topic.py:104 - no campaigns ────────────────────────────────
 def test_bot_topic_no_pid():
     from dispatch.bot_topic import handle_bot_topic_cmd
     maps = MagicMock()
@@ -162,7 +162,7 @@ def test_bot_topic_no_pid():
 
 
 
-# ── helpers_pkg/config.py:39-43 — load_settings ──────────────────────────────
+# ── helpers_pkg/config.py:39-43 - load_settings ──────────────────────────────
 def test_config_load_settings():
     from helpers_pkg.config import load_settings
     config = {"settings": {"REQUIRED_PLAYERS": 5, "POTW_MIN_POSTS": 3}}
@@ -176,7 +176,7 @@ def test_config_empty_topic_pairs():
 
 
 
-# ── helpers_pkg/dc_lookup.py:110-112 — adjustment ────────────────────────────
+# ── helpers_pkg/dc_lookup.py:110-112 - adjustment ────────────────────────────
 def test_dc_adjustment():
     from helpers_pkg.dc_lookup import dc_lookup, _DC_ADJUSTMENTS
     key = next(iter(_DC_ADJUSTMENTS))

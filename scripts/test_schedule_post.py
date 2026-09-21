@@ -80,7 +80,7 @@ class TestScheduleMatchesRealGates:
 
 class TestTodaysItems:
     def test_marks_past_hours_done(self):
-        """Keyed by hour, not label — 'GM queue digest' appears twice."""
+        """Keyed by hour, not label - 'GM queue digest' appears twice."""
         from scheduled.schedule_table import todays_items
         items = todays_items(_CFG, _MON)   # Monday 09:15
         done_at = {i["hour"]: i["done"] for i in items}

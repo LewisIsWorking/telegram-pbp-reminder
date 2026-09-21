@@ -1,4 +1,4 @@
-"""``handle_poll_closed`` — the other fully-excluded poll path (2026-08-10).
+"""``handle_poll_closed`` - the other fully-excluded poll path (2026-08-10).
 
 ``dispatch/poll_router.py`` carried 31 ``# pragma: no cover``, and the whole
 of ``handle_poll_closed`` was inside them. The existing
@@ -72,7 +72,7 @@ class TestSessionPollClose:
         assert not tg_mock.send_message.called
 
     def test_missing_poll_id_is_a_noop(self, tg_mock):
-        """Guards the early return — an empty id must not match an empty slot."""
+        """Guards the early return - an empty id must not match an empty slot."""
         from dispatch.poll_router import handle_poll_closed
         state = {"session_poll": {"C11": {"session_happened": False}}}
         handle_poll_closed({"id": "", "total_voter_count": 0}, _CFG, state)

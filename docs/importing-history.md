@@ -29,7 +29,7 @@ the import script.
    git push
    ```
 
-The script is idempotent — safe to run multiple times on the same export.
+The script is idempotent - safe to run multiple times on the same export.
 It tracks imported message IDs per campaign and only appends new ones.
 
 ---

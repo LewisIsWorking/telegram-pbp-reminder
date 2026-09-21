@@ -7,7 +7,7 @@ and the next cron tick.
 Why one message and not two
 ---------------------------
 A "next fire" timer is only useful if it is current, and the cron ticks
-twice an hour — so an accurate timer has to refresh every run anyway.
+twice an hour - so an accurate timer has to refresh every run anyway.
 Since the post deletes its predecessor, refreshing costs no clutter: the
 topic always holds exactly one of these. Folding the schedule into the
 same message means one lifecycle to manage rather than two, and one
@@ -22,7 +22,7 @@ the bot is about to do.
 
 Sent with ``silent=True``. Without that this would notify 48 times a
 day. The delete goes through ``tg.delete_message``, so it inherits the
-bot-sent registry guard — this post can only ever remove its own
+bot-sent registry guard - this post can only ever remove its own
 previous message.
 
 Moving it between topics needs no migration: ``tg.delete_message`` is
@@ -57,7 +57,7 @@ def schedule_destination(config: dict) -> tuple[int, int | None] | None:
     ⭐ Returns a CHAT and a thread, not just a thread (changed 2026-08-17,
     when the post moved to the Nudge Bot Notifications group). The old
     ``schedule_topic`` could only answer "which topic", so its one caller
-    had to supply ``config["group_id"]`` itself — an assumption that is
+    had to supply ``config["group_id"]`` itself - an assumption that is
     invisible until the destination is in a different chat, and then
     wrong. A return value that cannot carry the answer makes the caller
     invent one.
@@ -84,7 +84,7 @@ def _at(now: datetime, hour: int, day_offset: int = 0) -> datetime:
     """The UTC datetime of ``hour`` on now's date (+offset days).
 
     Built as a real datetime rather than formatting the raw int so the
-    local-time conversion handles BST/GMT — and any day rollover — by
+    local-time conversion handles BST/GMT - and any day rollover - by
     itself. Adding an hour by hand would be wrong for half the year.
     """
     base = now.replace(hour=hour, minute=0, second=0, microsecond=0)
@@ -97,7 +97,7 @@ def build_schedule_text(config: dict, state: dict, now: datetime) -> str:
     Gates remain UTC everywhere; only the rendering is converted. See
     ``scheduled.local_time``.
     """
-    lines = ["🗓️ Bot schedule — "
+    lines = ["🗓️ Bot schedule - "
              + local_time.to_local(now).strftime("%A %d %b, %H:%M ")
              + local_time.tz_label(local_time.to_local(now)), ""]
 
@@ -107,7 +107,7 @@ def build_schedule_text(config: dict, state: dict, now: datetime) -> str:
         for item in today:
             mark = "✅" if item["done"] else "🕒"
             when = local_time.to_local(_at(now, item["hour"]))
-            lines.append(f"  {mark} {when:%H:%M} — {item['label']}")
+            lines.append(f"  {mark} {when:%H:%M} - {item['label']}")
     else:
         lines.append("  Nothing on the fixed clock today.")
 
@@ -144,7 +144,7 @@ def _upcoming_days(config: dict, now: datetime, ahead: int = 6) -> list[str]:
         for item in fixed_schedule(config):
             if item["day"] == day:
                 when = local_time.to_local(_at(now, item["hour"], offset))
-                out.append(f"  {when:%A} {when:%H:%M} — {item['label']}")
+                out.append(f"  {when:%A} {when:%H:%M} - {item['label']}")
     return out
 
 
@@ -168,14 +168,14 @@ def post_schedule(config: dict, state: dict, *,
     # next one goes. On the run that moves the post to a new chat these
     # differ, and deleting `prev` in the new chat would either fail or hit
     # an unrelated message that happens to share the id. Older state has
-    # no such key, so fall back to the main group — that is where every
+    # no such key, so fall back to the main group - that is where every
     # post written before 2026-08-17 went.
     prev_chat = state.get("schedule_post_chat_id") or config["group_id"]
 
     text = build_schedule_text(config, state, now)
     msg_id = tg.send_message_id(chat_id, thread_id, text, silent=True)
     if not msg_id:
-        return  # send failed — keep the old one rather than leaving none
+        return  # send failed - keep the old one rather than leaving none
     # Delete only after the replacement is up, so a failed send never
     # leaves the destination with no schedule at all.
     if prev:

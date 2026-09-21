@@ -66,7 +66,7 @@ from compat import *  # noqa: F401,F403
 # updates (so GM reply-to clears register promptly) and refreshes the GM
 # queue, without firing the other ~28 scheduled features every 30 minutes.
 # The half-past pass. "Schedule post" is included because it advertises
-# a :00/:30 cadence and shows a countdown to the next run — if it only
+# a :00/:30 cadence and shows a countdown to the next run - if it only
 # refreshed hourly its timer would read as expired for half of every
 # hour. It is one message replace, so it stays cheap enough for the
 # lightweight pass.

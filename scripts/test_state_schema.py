@@ -1,13 +1,13 @@
-"""Slice 6 of P3/9 — schema-completeness regression tests.
+"""Slice 6 of P3/9 - schema-completeness regression tests.
 
 Walks the on-disk ``data/state/`` directory and asserts that every
 JSON file there matches an entry in ``state_store/schema.py``. New
 state files added without integration will fail this test, forcing
 either:
 
-  * Adding a reader/writer (most cases — promote to PARTITIONS or
+  * Adding a reader/writer (most cases - promote to PARTITIONS or
     AUX_FILES with matching StateStore methods), or
-  * Documenting it as WRITE_ONCE with a clear rationale (rare — the
+  * Documenting it as WRITE_ONCE with a clear rationale (rare - the
     only current example is ``manifest.json`` from the 2026-04
     partition migration).
 
@@ -73,7 +73,7 @@ def test_partitions_match_state_module() -> None:
 
     ``state.PARTITIONS`` is the production source of truth for which
     partition files exist (it maps each partition→keys). The schema
-    must mirror it exactly — drift means either schema declares a
+    must mirror it exactly - drift means either schema declares a
     partition the bot doesn't actually have, or the bot has one the
     schema doesn't know about.
     """
@@ -107,7 +107,7 @@ def test_every_partition_has_loader_and_saver() -> None:
         assert callable(getattr(store, "save_partition", None)), (
             "StateStore.save_partition missing"
         )
-        # The methods accept any name string — we don't actually call
+        # The methods accept any name string - we don't actually call
         # them here (would require synthesising data). Existence is
         # enough for the schema-completeness contract; data-shape
         # tests live in test_state_store_partitions.py.
@@ -160,8 +160,8 @@ def test_queue_files_match_pid_shape() -> None:
 
     pid is digits-only (Telegram thread IDs). A non-digit filename
     here means something other than a campaign queue has been
-    written into the queues directory — either accidentally or by
-    a bug — and should be investigated.
+    written into the queues directory - either accidentally or by
+    a bug - and should be investigated.
     """
     queues_dir = _STATE_DIR / QUEUE_FILES_DIR
     if not queues_dir.exists():

@@ -168,7 +168,7 @@ jobs:
       # the SHA that triggered the workflow). When the concurrency group
       # `pbp-checker` serialises runs, Run B (queued behind Run A) MUST
       # check out main HEAD so it picks up Run A's state push. The default
-      # pins to the trigger SHA which was set BEFORE Run A finished —
+      # pins to the trigger SHA which was set BEFORE Run A finished -
       # that stale checkout is what caused the 2026-05-11 duplicate-post-
       # of-#360 incident. See L21 in docs/dev/REFACTOR_PROGRESS.md.
       - uses: actions/checkout@v6
@@ -256,7 +256,7 @@ jobs:
             fi
             echo "Push attempt $i failed; rebasing onto origin/main and retrying..."
             if ! git pull --rebase origin main; then
-              echo "ERROR: rebase failed — likely merge conflict in state files" >&2
+              echo "ERROR: rebase failed - likely merge conflict in state files" >&2
               exit 1
             fi
           done
@@ -345,7 +345,7 @@ jobs:
             fi
             echo "Push attempt $i failed; rebasing onto origin/main and retrying..."
             if ! git pull --rebase origin main; then
-              echo "ERROR: rebase failed — likely merge conflict in state files" >&2
+              echo "ERROR: rebase failed - likely merge conflict in state files" >&2
               exit 1
             fi
           done

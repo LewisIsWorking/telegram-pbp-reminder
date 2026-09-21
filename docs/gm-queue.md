@@ -14,7 +14,7 @@ Direct 🔗 links to messages require a `msg#12345` tag in the transcript.
 These tags started being written on **20 March 2026 (v4.18.0)** when live
 message ID tracking was introduced.
 
-Entries from before that date show in the queue without a link — the
+Entries from before that date show in the queue without a link - the
 Telegram Bot API cannot retroactively fetch message IDs for historical
 messages. This only affects pre-v4.18 entries and resolves naturally as
 old 🟤 entries are replied to and cleared.
@@ -35,7 +35,7 @@ responses across all campaigns.
 
 ---
 
-## Manual queue management — `/markdone`
+## Manual queue management - `/markdone`
 
 If a message was replied to outside Telegram's reply feature, or before
 the bot started tracking replies, use `/markdone` in the PBP topic:
@@ -56,7 +56,7 @@ Each manual clear is written to `gm_reply_log` with `"via": "markdone"`.
 Every queue post has this structure:
 ```
 ━━━━━━━━━━━━━━━━
-📋 GM Queue #42 — Unreplied: 90 | ✅ 34 cleared today
+📋 GM Queue #42 - Unreplied: 90 | ✅ 34 cleared today
 C06:23 C09:17 C00:7 ...
 Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
 ━━ 📌 🦠 C06: Kibwe (23) ━━ @PathWars ⚡Caelum (~0h)
@@ -64,15 +64,15 @@ Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
 02 🟣 6d 12h. Link: He has a +15... 🔗 https://t.me/...
 ```
 
-- **GM Queue #N** — increments every post
-- **Position numbers** — 01–99 across all campaigns; Kibwe always starts at 01
-- **Campaign emoji** — matches the Telegram chat emoji
-- **15-word previews** — enough context to recognise the message
-- **Pinned** — latest queue post is always pinned in the bot topic
+- **GM Queue #N** - increments every post
+- **Position numbers** - 01–99 across all campaigns; Kibwe always starts at 01
+- **Campaign emoji** - matches the Telegram chat emoji
+- **15-word previews** - enough context to recognise the message
+- **Pinned** - latest queue post is always pinned in the bot topic
 
 ## Viewing the queue
 
-`/queue` — posts the full queue sorted by:
+`/queue` - posts the full queue sorted by:
 1. Priority campaigns first, by rank (see [Campaign exclusions](#campaign-exclusions)).
    `queue_priority` is a number, lower first; `true` is a legacy alias for rank 1
 2. Oldest unreplied message first within each campaign
@@ -83,7 +83,7 @@ Each entry shows:
 - Player name and message preview
 - Direct Telegram link to the message (where available)
 
-The queue reminder is **pinned** to the bot topic automatically —
+The queue reminder is **pinned** to the bot topic automatically -
 the previous pin is unpinned when a new one is posted.
 
 ### Age icon legend
@@ -130,11 +130,11 @@ deleted from Telegram so the topic stays scannable.
 
 A *batch* is the full set of messages produced by a single queue post.
 A long queue (more than ~4000 chars) is sent as multiple Telegram
-messages but counts as one batch — all of its messages are evicted
+messages but counts as one batch - all of its messages are evicted
 together when the batch falls off the end.
 
 The retention applies only to the bot's GM Queue topic. Per-topic
-pinned queues (in PBP campaign threads) are unaffected — they always
+pinned queues (in PBP campaign threads) are unaffected - they always
 keep exactly one current pin per thread, with the previous pin's
 messages deleted on each refresh.
 
@@ -156,7 +156,7 @@ marks that entry as replied.
 - Player messages
 - Time passing
 
-This is intentional — the queue represents messages that genuinely need
+This is intentional - the queue represents messages that genuinely need
 a GM response, not just topics where the GM has been recently active.
 
 ### When a clear becomes visible
@@ -196,7 +196,7 @@ step id or output name would otherwise switch the feature off silently.
 
 **Before concluding a reply was lost, check the timestamps.** Compare the run
 time (`gh run list --workflow "PBP Inactivity Reminder"`) against when you
-replied — the committed state in `data/state/queues/*.json` is only as fresh as
+replied - the committed state in `data/state/queues/*.json` is only as fresh as
 the last run that pushed it. `reply_log` in that file records every reply the
 bot *has* accepted, so a recent entry there proves the mechanism is working.
 
@@ -280,8 +280,8 @@ reports how long each campaign has been quiet, **longest idle first**:
 📋 All caught up! No unreplied messages.
 
 ━━ 🕒 Time since last post ━━
-  💀 🤖 C09: Metal City — no posts for 22d 11h 🔗 ...
-  🟡 🦠 C06: Kibwe — last post 3d 7h ago 🔗 ...
+  💀 🤖 C09: Metal City - no posts for 22d 11h 🔗 ...
+  🟡 🦠 C06: Kibwe - last post 3d 7h ago 🔗 ...
 ```
 
 Notes:
@@ -302,7 +302,7 @@ Set `queue_exclude: true` in a campaign's topic_pair to skip it entirely.
 
 **C08 Theria (pid `107151`) is excluded because Tyler Link runs it, not the
 global GM.** Its topic_pair sets `gm_user_ids: [7863964681]`, which *replaces*
-the global GM list for that campaign — see
+the global GM list for that campaign - see
 [Per-campaign GMs](configuration.md#per-campaign-gms). Its queue file still
 contains ~180 historical `unreplied` entries from before it was excluded; they
 are inert and nothing reports them, so that number is not a backlog.
@@ -347,7 +347,7 @@ Selection rule (`scheduled/queue_focus.py`):
    been waiting longest.
 2. If **any** campaign flagged `queue_priority` has unreplied entries, the
    choice is made among those only. A prioritised campaign is never passed
-   over because another campaign has an older message — C01 with a 2-hour-old
+   over because another campaign has an older message - C01 with a 2-hour-old
    message beats C07 with a 19-day-old one.
 3. Between prioritised campaigns, lower rank number wins first, then age.
    So C10 (rank 1) beats C01/C06 (rank 2) whenever C10 is waiting, and when
@@ -383,7 +383,7 @@ starts pointing at a **different message**, and stays quiet otherwise.
 
 ## Queue stats
 
-`/queuestats` — Shows reply streaks, average response time, and
+`/queuestats` - Shows reply streaks, average response time, and
 cleared-per-day stats for the GM.
 
 ---
@@ -392,13 +392,13 @@ cleared-per-day stats for the GM.
 
 The queue is built from two sources:
 
-1. **Live queue** (`state["gm_queue"]`) — populated in real time as
+1. **Live queue** (`state["gm_queue"]`) - populated in real time as
    messages arrive. Cleared immediately when the GM replies.
 
-2. **Transcript scanner** (`queue_scan.py`) — scans recent markdown
+2. **Transcript scanner** (`queue_scan.py`) - scans recent markdown
    transcript files as a backup, catching any messages the live queue
    might have missed (e.g. during bot downtime). Only uses
-   `gm_queue_replied` state to filter — does NOT clear on GM activity.
+   `gm_queue_replied` state to filter - does NOT clear on GM activity.
 
 Both sources are merged and deduplicated by the `/queue` command and
 the scheduled reminder.

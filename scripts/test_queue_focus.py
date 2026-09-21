@@ -1,4 +1,4 @@
-"""Tests for scheduled/queue_focus.py — the 'reply to this next' follow-up.
+"""Tests for scheduled/queue_focus.py - the 'reply to this next' follow-up.
 
 Pins the selection rule: oldest-waiting campaign normally, but prioritised
 campaigns (queue_priority) win outright whenever any of them is waiting.

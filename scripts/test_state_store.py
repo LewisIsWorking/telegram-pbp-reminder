@@ -1,4 +1,4 @@
-"""Tests for state_store.StateStore \u2014 slice 1 aux file API.
+"""Tests for state_store.StateStore - slice 1 aux file API.
 
 Coverage:
   * load_aux: missing file returns default
@@ -78,7 +78,7 @@ def test_save_aux_is_atomic_no_tmp_left_behind(tmp_path):
 
 
 def test_save_aux_overwrite_replaces_atomically(tmp_path):
-    """Two consecutive saves \u2014 last write wins, no merge weirdness."""
+    """Two consecutive saves - last write wins, no merge weirdness."""
     store = StateStore(state_dir=tmp_path)
     store.save_aux("ids", [1, 2, 3])
     store.save_aux("ids", [99])
@@ -121,7 +121,7 @@ def test_list_aux_missing_dir_returns_empty(tmp_path):
 
 
 def test_list_aux_does_not_recurse_into_queues(tmp_path):
-    """``queues/`` is a partition concern \u2014 list_aux must not
+    """``queues/`` is a partition concern - list_aux must not
     descend into it. (Slice 5 adds list_queues separately.)"""
     store = StateStore(state_dir=tmp_path)
     store.save_aux("foo", [])
@@ -132,7 +132,7 @@ def test_list_aux_does_not_recurse_into_queues(tmp_path):
 
 
 def test_save_aux_indented_for_human_readability(tmp_path):
-    """State files get committed to git \u2014 readable diffs matter."""
+    """State files get committed to git - readable diffs matter."""
     store = StateStore(state_dir=tmp_path)
     store.save_aux("ids", [1, 2, 3])
     raw = (tmp_path / "ids.json").read_text(encoding="utf-8")
@@ -142,7 +142,7 @@ def test_save_aux_indented_for_human_readability(tmp_path):
 
 def test_save_aux_uses_default_str_for_unserialisable(tmp_path):
     """``default=str`` lets us serialise datetime objects without
-    callers having to convert them first \u2014 same contract as the
+    callers having to convert them first - same contract as the
     legacy state.py:_save_to_files used."""
     from datetime import datetime, timezone
     store = StateStore(state_dir=tmp_path)

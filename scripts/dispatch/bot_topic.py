@@ -22,7 +22,7 @@ from set_commands import EVERYONE_COMMANDS, GM_COMMANDS
 
 # Everything this bot puts in the Telegram command menu. Sourced from
 # set_commands rather than relisted, so the menu and this set cannot
-# disagree — a second copy would drift the moment a command is added.
+# disagree - a second copy would drift the moment a command is added.
 _MENU_COMMANDS = frozenset(
     "/" + name for name, _desc in EVERYONE_COMMANDS + GM_COMMANDS)
 
@@ -62,7 +62,7 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         handle_search(args, group_id, bot_topic, tg)
         return
 
-    # /heropoint — MVP claims their Hero Point by campaign name/code. Not a
+    # /heropoint - MVP claims their Hero Point by campaign name/code. Not a
     # read command (it mutates pending_hero_points), so it gets its own branch
     # here rather than falling through to the read-only dispatch below.
     if cmd_word == "/heropoint":
@@ -93,14 +93,14 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
         # With campaign arg, fall through to normal handler below
 
     # /roll and /dc work without campaign context.
-    # Body lives in dispatch/bot_topic_dice — see that module for why
+    # Body lives in dispatch/bot_topic_dice - see that module for why
     # this pair was lifted and the fall-through ones were not.
     if cmd_word in ("/roll", "/dc"):
         handle_dice(cmd_word, args, msg, maps, group_id, bot_topic,
                     user_name)
         return
 
-    # /sessionplayed <code> <week> — GM marks a live session as happened, stops poll pings
+    # /sessionplayed <code> <week> - GM marks a live session as happened, stops poll pings
     if cmd_word == "/sessionplayed":
         return handle_sessionplayed(  # pragma: no cover
             args, user_id, user_name, config, state, group_id, bot_topic)  # pragma: no cover
@@ -110,8 +110,8 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
             args, user_id, user_name, config, state, group_id, bot_topic)  # pragma: no cover
 
     # Global commands don't need a campaign. The three roster shapes are
-    # cross-campaign by construction — build_roster_players and friends
-    # take (config, state) and no pid — so asking for a campaign name
+    # cross-campaign by construction - build_roster_players and friends
+    # take (config, state) and no pid - so asking for a campaign name
     # would be asking for something they cannot use. Added 2026-08-14;
     # /roster was here and its three siblings were not.
     no_campaign = {"/gm", "/overview", "/boonsall", "/profile", "/help",
@@ -145,7 +145,7 @@ def handle_bot_topic_cmd(msg: dict, config: dict, state: dict,
     elif cmd_word in _MENU_COMMANDS:
         # A command this bot advertises, used somewhere it does not work.
         # Silence here is what hid the /rosterplayers bug: the command was
-        # in the Telegram menu, Lewis tapped it, and nothing happened —
+        # in the Telegram menu, Lewis tapped it, and nothing happened -
         # indistinguishable from the bot being down.
         #
         # Only for commands we advertise. An unrecognised /command in this

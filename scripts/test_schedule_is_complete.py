@@ -3,7 +3,7 @@
 The bug this prevents
 ---------------------
 Lewis asked whether the posted schedule was correct. Everything it said
-was true — every hour, weekday and interval matched its real gate,
+was true - every hour, weekday and interval matched its real gate,
 because ``test_schedule_post.py`` already checks the rows it *has*
 against the constants they quote.
 
@@ -11,7 +11,7 @@ It listed 11 of the 18 scheduled jobs.
 
 Missing entirely: the daily pin digest (which fires at the same hour as
 the diagnostic, so the post showed one job at 09:00 BST when two were
-due), plus six interval jobs — recruitment, weekly digest, campaign
+due), plus six interval jobs - recruitment, weekly digest, campaign
 table, pace-drop alerts, daily tip and state backup.
 
 Why nothing caught it
@@ -19,7 +19,7 @@ Why nothing caught it
 Every existing guard is *per row*: given a row, does it quote the right
 constant. A missing row has no constant to disagree with, so a job that
 was never added is indistinguishable from a job that does not exist.
-That is a gap that reads as done — the suite is green, the post renders,
+That is a gap that reads as done - the suite is green, the post renders,
 and the only way to notice is to hold the schedule beside the job list
 and count.
 
@@ -52,7 +52,7 @@ _MAX_CFG = {
     "swimming_poll_enabled": True,
 }
 
-# Jobs with no schedule because they have no schedule — they fire on a
+# Jobs with no schedule because they have no schedule - they fire on a
 # condition, not a clock or an interval. Each needs a reason; an
 # unexplained entry here is how this guard would rot into a rubber stamp.
 _EVENT_DRIVEN = {
@@ -112,7 +112,7 @@ class TestDiscovery:
     def test_finds_the_whole_registry(self):
         checks = _registered_checks()
         assert len(checks) > 25, (
-            f"only found {len(checks)} checks in checker._run_checks — the "
+            f"only found {len(checks)} checks in checker._run_checks - the "
             f"AST scan has probably broken, which would make this guard "
             f"vacuous")
 
@@ -133,7 +133,7 @@ class TestEveryJobIsAccountedFor:
             f"these jobs run but appear nowhere in the schedule post: "
             f"{missing}.\nAdd a row to scheduled/schedule_table.py (fixed "
             f"clock) or scheduled/schedule_intervals.py (interval gate), "
-            f"naming the check in its `checks` field — or add it to "
+            f"naming the check in its `checks` field - or add it to "
             f"_EVENT_DRIVEN in this file with the condition it fires on.\n"
             f"A job missing from the post is invisible to the GM, who has "
             f"no other list of what the bot does.")
@@ -146,7 +146,7 @@ class TestEveryJobIsAccountedFor:
         assert not dangling, (
             f"these are claimed by the schedule but are not registered in "
             f"checker._run_checks: {dangling}. Either the check was renamed "
-            f"or removed — update the `checks` field or drop the row.")
+            f"or removed - update the `checks` field or drop the row.")
 
     def test_event_driven_entries_all_give_a_reason(self):
         blank = [k for k, v in _EVENT_DRIVEN.items() if not v.strip()]

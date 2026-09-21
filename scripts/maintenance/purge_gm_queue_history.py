@@ -13,8 +13,8 @@ directly. That routing is *the* reason this version is safe:
     a GM message, or anything else the bot didn't post), the call is
     refused, a diagnostic line is printed, and no API request is made.
 
-The previous version of this script — committed in 5a7df4d / 0a18a6f
-— blindly POSTed to ``deleteMessage`` for every ID in the range
+The previous version of this script - committed in 5a7df4d / 0a18a6f
+- blindly POSTed to ``deleteMessage`` for every ID in the range
 without consulting the registry. Because the bot has admin+delete
 permissions in the Path Wars group, the Telegram API happily deleted
 non-bot messages too, including ~200 player and GM messages across
@@ -67,7 +67,7 @@ def main() -> None:
             # tg.delete_message returns False both when the registry
             # refuses (printing its own diagnostic) AND when the API
             # call itself fails. We can't distinguish them from the
-            # return value alone — both count as "skipped".
+            # return value alone - both count as "skipped".
             refused += 1
         time.sleep(0.05)
 

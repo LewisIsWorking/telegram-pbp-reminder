@@ -3,7 +3,7 @@
 COVERS  the Nudge Bot Notifications mirror (both posts, both deletes, the
         bot-sent registry scan) and ``roster_members.effective_target``.
 MISSES  whether topic 50 exists. Verified by hand against the live API on
-        2026-08-18 — *"What campaign needs people most?"*.
+        2026-08-18 - *"What campaign needs people most?"*.
 PROVEN  by ``test_the_mirror_delete_guard_can_fail`` and
         ``test_the_ladder_can_fail``.
 
@@ -16,7 +16,7 @@ Lewis, 2026-08-18, two asks:
 
 ⚠️ **The mirror is the third time this session that a bare message id
 could not carry the answer.** The advert now lives in two CHATS, and
-message ids are unique per chat — the mirror's id against the main group
+message ids are unique per chat - the mirror's id against the main group
 would miss, or hit a stranger. So state records ``{chat_id, message_id}``
 per copy, exactly as the schedule post had to on 2026-08-17.
 """
@@ -110,7 +110,7 @@ def test_pre_flag_state_infers_the_mirror_from_its_chat():
 
 def test_the_history_guard_can_fail():
     """Feed it an entry explicitly marked deletable in the mirror chat and
-    confirm it IS deleted — otherwise the test above passes for the wrong
+    confirm it IS deleted - otherwise the test above passes for the wrong
     reason (e.g. nothing in the mirror is ever deleted by accident)."""
     state = {_POSTS_KEY: [
         {"chat_id": MIRROR, "message_id": 7, "auto_delete": True}]}
@@ -159,7 +159,7 @@ def test_a_failed_primary_posts_nothing_at_all():
 
 def test_the_registry_scan_covers_both_copies():
     """An id the scan misses gets its delete refused, and that copy then
-    piles up one a day — the schedule-post bug in a new hat."""
+    piles up one a day - the schedule-post bug in a new hat."""
     from posting.bot_sent_state_scan import extract_ids_from_live
     ids = extract_ids_from_live({
         "recruit_focus_msg_id": 111,

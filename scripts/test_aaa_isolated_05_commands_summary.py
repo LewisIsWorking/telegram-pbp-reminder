@@ -1,14 +1,14 @@
-"""Tests extracted from test_aaa_isolated.py — bin 5.
+"""Tests extracted from test_aaa_isolated.py - bin 5.
 
 Sections in this file:
-  - commands/summary.py:49-52 — player activity strings
-  - commands/reactions.py:67 — negative count reset
-  - commands/catchup.py:161 — list acted→set
-  - commands/recap.py:124-128 — truncation
-  - dispatch/cmd_votes_timers.py:108-111 — tied/no votes
-  - dispatch/cmd_conditions_hp.py:184 — bad hp subcommand
-  - dispatch/cmd_clocks.py:91 — clock tick found but no change needed
-  - dispatch/cmd_trackers.py:115 — quest not found
+  - commands/summary.py:49-52 - player activity strings
+  - commands/reactions.py:67 - negative count reset
+  - commands/catchup.py:161 - list acted→set
+  - commands/recap.py:124-128 - truncation
+  - dispatch/cmd_votes_timers.py:108-111 - tied/no votes
+  - dispatch/cmd_conditions_hp.py:184 - bad hp subcommand
+  - dispatch/cmd_clocks.py:91 - clock tick found but no change needed
+  - dispatch/cmd_trackers.py:115 - quest not found
 """
 """
 MUST RUN FIRST (alphabetical ordering): these tests cover lines that
@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── commands/summary.py:49-52 — player activity strings ──────────────────────
+# ── commands/summary.py:49-52 - player activity strings ──────────────────────
 def test_summary_player_activity():
     from commands.summary import build_summary
     now = datetime.now(timezone.utc)
@@ -40,7 +40,7 @@ def test_summary_player_activity():
 
 
 
-# ── commands/reactions.py:67 — negative count reset ──────────────────────────
+# ── commands/reactions.py:67 - negative count reset ──────────────────────────
 def test_reactions_negative_count():
     from commands.reactions import build_reactions
     state = {"reactions": {"100": {"given": {"U1": {"count": -1, "name": "A"}},
@@ -53,7 +53,7 @@ def test_reactions_negative_count():
 
 
 
-# ── commands/catchup.py:161 — list acted→set ─────────────────────────────────
+# ── commands/catchup.py:161 - list acted→set ─────────────────────────────────
 def test_catchup_list_acted():
     from commands.catchup import build_catchup
     now = datetime.now(timezone.utc)
@@ -71,7 +71,7 @@ def test_catchup_list_acted():
 
 
 
-# ── commands/recap.py:124-128 — truncation ───────────────────────────────────
+# ── commands/recap.py:124-128 - truncation ───────────────────────────────────
 def test_recap_truncation(tmp_path):
     from commands.recap import build_recap
     (tmp_path / "Kibwe").mkdir()
@@ -89,7 +89,7 @@ def test_recap_truncation(tmp_path):
 
 
 
-# ── dispatch/cmd_votes_timers.py:108-111 — tied/no votes ─────────────────────
+# ── dispatch/cmd_votes_timers.py:108-111 - tied/no votes ─────────────────────
 def test_endvote_tied():
     from dispatch.cmd_votes_timers import handle
     ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
@@ -118,7 +118,7 @@ def test_endvote_no_votes():
 
 
 
-# ── dispatch/cmd_conditions_hp.py:184 — bad hp subcommand ────────────────────
+# ── dispatch/cmd_conditions_hp.py:184 - bad hp subcommand ────────────────────
 def test_hp_bad_sub():
     from dispatch.cmd_conditions_hp import handle
     ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
@@ -132,7 +132,7 @@ def test_hp_bad_sub():
 
 
 
-# ── dispatch/cmd_clocks.py:91 — clock tick found but no change needed ─────────
+# ── dispatch/cmd_clocks.py:91 - clock tick found but no change needed ─────────
 def test_clock_tick_already_full():
     from dispatch.cmd_clocks import handle
     ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},
@@ -150,7 +150,7 @@ def test_clock_tick_already_full():
 
 
 
-# ── dispatch/cmd_trackers.py:115 — quest not found ───────────────────────────
+# ── dispatch/cmd_trackers.py:115 - quest not found ───────────────────────────
 def test_cmd_trackers_quest_nf():
     from dispatch.cmd_trackers import handle
     ctx = {"user_id": "GM1", "user_name": "L", "gm_ids": {"GM1"},

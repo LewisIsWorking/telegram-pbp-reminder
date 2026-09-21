@@ -13,10 +13,10 @@ Weekly native Telegram polls to schedule live sessions for hybrid campaigns.
 
 ### Lifecycle
 
-1. **Sunday at 07:00 UTC** — poll posted and pinned to the campaign chat topic.
-2. **Daily (Mon–Sun)** — players who haven't voted get a ping with a link to the poll.
-3. **All voted** — "All X players have voted!" posted once.
-4. **Friday 15:00 UTC** — result announced in each campaign's chat topic.
+1. **Sunday at 07:00 UTC** - poll posted and pinned to the campaign chat topic.
+2. **Daily (Mon–Sun)** - players who haven't voted get a ping with a link to the poll.
+3. **All voted** - "All X players have voted!" posted once.
+4. **Friday 15:00 UTC** - result announced in each campaign's chat topic.
 
 ### Cross-campaign notifications
 
@@ -61,14 +61,14 @@ regular swim session.
 | Natasha | @NitNatty | ✅ confirmed |
 | Jack | @JackGrah | ✅ confirmed |
 | Elicia | @EliciaRoseT | ⏳ pending ID |
-| — | @deft_369 | ⏳ pending ID |
-| — | @Verminatrix | ⏳ pending ID |
-| — | @anweshaborah190 | ⏳ pending ID |
-| — | @TwoBad22 | ⏳ pending ID |
+| - | @deft_369 | ⏳ pending ID |
+| - | @Verminatrix | ⏳ pending ID |
+| - | @anweshaborah190 | ⏳ pending ID |
+| - | @TwoBad22 | ⏳ pending ID |
 
 IDs for the 5 unknown swimmers are captured automatically when they
 vote. The swim poll voter IDs are tracked separately from C11 session
-poll IDs — update `swimming_poll.py` directly when promoting.
+poll IDs - update `swimming_poll.py` directly when promoting.
 
 ---
 

@@ -1,13 +1,13 @@
 """
-/markdone — GM command to manually mark queue entries as replied.
+/markdone - GM command to manually mark queue entries as replied.
 
 Usage (in any PBP topic or bot topic):
-  /markdone                 — show usage (a message number or ID is required)
-  /markdone 3               — clear entry #3 from the queue list
-  /markdone 2 3 5           — clear multiple entries atomically (use this!
+  /markdone                 - show usage (a message number or ID is required)
+  /markdone 3               - clear entry #3 from the queue list
+  /markdone 2 3 5           - clear multiple entries atomically (use this!
                               sequential single commands will renumber)
-  /markdone 140368          — clear by Telegram message ID
-  /markdone all             — clear ALL entries for this campaign
+  /markdone 140368          - clear by Telegram message ID
+  /markdone all             - clear ALL entries for this campaign
 
 Each cleared entry is written to gm_reply_log for audit purposes.
 """
@@ -41,7 +41,7 @@ def handle_markdone(ctx: dict) -> bool:
 
     arg = text[len("/markdone"):].strip()
 
-    # Accept full t.me links — extract the trailing message ID
+    # Accept full t.me links - extract the trailing message ID
     # e.g. https://t.me/Path_Wars/40585/139231 → "139231"
     if arg.startswith("http") and "/" in arg:
         arg = arg.rstrip("/").rsplit("/", 1)[-1]
@@ -80,7 +80,7 @@ def handle_markdone(ctx: dict) -> bool:
             _clear_entries(to_clear, pid, state, now)
             if len(to_clear) == 1:
                 tg.send_message(gid, tid,
-                                f"✅ Marked done: {to_clear[0].get('name','?')} — "
+                                f"✅ Marked done: {to_clear[0].get('name','?')} - "
                                 f"{to_clear[0].get('preview','')[:60]}")
             else:
                 names = ", ".join(e.get("name", "?") for e in to_clear)  # pragma: no cover
@@ -102,11 +102,11 @@ def handle_markdone(ctx: dict) -> bool:
             tg.send_message(gid, tid, f"Message ID {arg} not found in {name} queue.")
         return True
 
-    # No arg — require explicit target, never clear silently
+    # No arg - require explicit target, never clear silently
     if not arg:
         tg.send_message(gid, tid,
                         "Usage: /markdone 3  /markdone 2 3 5  /markdone <msg_id>  /markdone all\n"
-                        "Tip: use /markdone 2 3 to clear multiple at once — "
+                        "Tip: use /markdone 2 3 to clear multiple at once - "
                         "sequential commands renumber the queue.")
         return True
 
@@ -147,7 +147,7 @@ def _clear_entries(entries: list[dict], pid: str,
                          preview=e.get("preview", ""),
                          now=now)
 
-        # Remove from unreplied — compare as strings to handle int/str mismatch
+        # Remove from unreplied - compare as strings to handle int/str mismatch
         cq["unreplied"] = [
             q for q in cq.get("unreplied", [])
             if str(q.get("message_id", "")) != mid_str

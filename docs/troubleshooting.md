@@ -28,7 +28,7 @@ hatch (`posting.bot_sent_registry.record_sent(mid)`).
 
 **Bot deleted a player message:**
 This should not be possible after the 2026-05-08 safeguard landed.
-If it did, it's a P0 bug — something bypassed
+If it did, it's a P0 bug - something bypassed
 `telegram.delete_message`. Check `scripts/test_no_direct_delete_bypass.py`
 is still in CI and that no maintenance script POSTs to
 `api.telegram.org/.../deleteMessage` directly. See

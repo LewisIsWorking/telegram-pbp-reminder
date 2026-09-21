@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 8.
+"""Tests extracted from test_branch_gaps.py - bin 8.
 
 Sections in this file:
   - Various single-line branches (part b)

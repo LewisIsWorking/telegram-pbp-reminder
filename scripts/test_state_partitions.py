@@ -1,5 +1,5 @@
 """
-Tests for state.py — PARTITIONS contract.
+Tests for state.py - PARTITIONS contract.
 
 Verifies that every state key used in the codebase is assigned to exactly
 one partition, and that critical keys land in the right partition.
@@ -40,7 +40,7 @@ def test_all_default_state_keys_are_partitioned():
 # ── Critical key placement ────────────────────────────────────────────────────
 
 def test_characters_in_players_partition():
-    """/setchar writes here — must persist between runs."""
+    """/setchar writes here - must persist between runs."""
     assert "characters" in PARTITIONS["players"]
 
 
@@ -75,5 +75,5 @@ def test_post_timestamps_in_activity_partition():
 
 
 def test_offset_in_live_partition():
-    """offset is the most critical key — must always be in live.json."""
+    """offset is the most critical key - must always be in live.json."""
     assert "offset" in PARTITIONS["live"]

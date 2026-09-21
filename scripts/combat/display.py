@@ -37,7 +37,7 @@ def build_whosturn(pid: str, campaign_name: str, state: dict) -> str:
     elapsed = helpers.hours_since(now, phase_start)
 
     lines = [
-        f"⚔️ {campaign_name} — Round {round_num}, {phase_label}' turn",
+        f"⚔️ {campaign_name} - Round {round_num}, {phase_label}' turn",
         f"Phase started: {format_elapsed(elapsed)} ago",
     ]
 
@@ -77,7 +77,7 @@ def build_whosturn(pid: str, campaign_name: str, state: dict) -> str:
             else:
                 # How long have they been holding things up?
                 wait_h = helpers.hours_since(now, phase_start)
-                wait_str = f" — waiting {format_elapsed(wait_h)}" if wait_h >= 1 else ""
+                wait_str = f" - waiting {format_elapsed(wait_h)}" if wait_h >= 1 else ""
                 waiting_list.append(f"  ⏳ {p['first_name']}{wait_str}")
 
         if waiting_list:
@@ -105,7 +105,7 @@ def build_combatlog(pid: str, campaign_name: str, state: dict) -> str:
     if not log:
         return f"No combat log entries yet.\nGMs: /clog <event> to add entries."
 
-    lines = [f"📝 Combat Log — {campaign_name} (Round {combat['round']}):", ""]
+    lines = [f"📝 Combat Log - {campaign_name} (Round {combat['round']}):", ""]
     for entry in log:
         lines.append(f"  R{entry['round']}: {entry['text']}")
     return "\n".join(lines)

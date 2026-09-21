@@ -7,7 +7,7 @@ What is worth guarding here, and why
 ------------------------------------
 The selection rule is the interesting part, and the exclusion is the part
 most likely to rot. **C08 Theria has ``recruitment`` in
-``disabled_features`` and would win on shortfall almost every day** — it
+``disabled_features`` and would win on shortfall almost every day** - it
 has the emptiest roster in the group. A version of this feature that
 forgot the feature flag would look completely correct in testing against
 a synthetic config and would name the one campaign Lewis has explicitly
@@ -55,7 +55,7 @@ def _state(**counts):
     Mirrors the real record shape read by ``commands.roster._active_players``:
     membership is ``pbp_topic_id`` (a single pid, not a list) and recency is
     ``last_post_time``. ``permanent`` is set so the count does not depend on
-    a wall-clock cutoff — ``_active_players`` measures recency against the
+    a wall-clock cutoff - ``_active_players`` measures recency against the
     real ``datetime.now``, not the ``now`` passed into the job, so a
     non-permanent fixture would rot the day this test is run late enough.
     """

@@ -1,7 +1,7 @@
-"""Tests extracted from test_commands_coverage.py — bin 3.
+"""Tests extracted from test_commands_coverage.py - bin 3.
 
 Sections in this file:
-  - No votes — tally is "No votes"
+  - No votes - tally is "No votes"
   - scheduled/diagnostic.py
 """
 """
@@ -10,7 +10,7 @@ Coverage tests for:
   commands/player_registry.py
   scheduled/poll_result.py
   scheduled/diagnostic.py
-  scheduled/reports.py  (partial — tg-calling functions mocked)
+  scheduled/reports.py  (partial - tg-calling functions mocked)
 """
 import sys, os, json, pytest, tempfile
 from datetime import datetime, timezone, timedelta
@@ -128,7 +128,7 @@ def test_poll_result_tie():
 def test_poll_result_no_votes():
     state = {"session_poll": {"C01": {"votes": {}}}}
     announce_poll_result(_pr_config(), state, now=_FRIDAY_3PM)
-    # No votes — tally is "No votes"
+    # No votes - tally is "No votes"
     assert "poll_results" in state
 
 

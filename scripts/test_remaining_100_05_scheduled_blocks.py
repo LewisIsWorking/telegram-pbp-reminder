@@ -1,10 +1,10 @@
-"""Tests extracted from test_remaining_100.py — bin 5.
+"""Tests extracted from test_remaining_100.py - bin 5.
 
 Sections in this file:
-  - scheduled blocks — all verified to hit their continue/return lines
+  - scheduled blocks - all verified to hit their continue/return lines
 """
 """
-Definitive final coverage push — verified state for every remaining gap.
+Definitive final coverage push - verified state for every remaining gap.
 """
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
@@ -27,7 +27,7 @@ def _ctx(**kw):
 
 
 
-# ── scheduled blocks — all verified to hit their continue/return lines ────────
+# ── scheduled blocks - all verified to hit their continue/return lines ────────
 def test_alerts_excl():
     from scheduled.alerts import check_and_alert
     config = {"group_id": -1, "gm_user_ids": [], "bot_topic_id": 999,

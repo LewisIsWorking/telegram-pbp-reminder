@@ -33,12 +33,12 @@ def phase(label, test_args, append=False, report=False, html=False):
     return subprocess.run(cmd).returncode
 
 
-rc1 = phase("Phase 1 — isolated edge-case tests",
+rc1 = phase("Phase 1 - isolated edge-case tests",
             ["scripts/test_aaa_isolated.py"],
             append=False, report=False)
 
 html = "--html" in sys.argv
-rc2 = phase("Phase 2 — full test suite",
+rc2 = phase("Phase 2 - full test suite",
             ["scripts/"],
             append=True, report=True, html=html)
 

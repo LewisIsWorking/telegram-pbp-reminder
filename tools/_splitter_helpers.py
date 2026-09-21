@@ -25,7 +25,7 @@ def find_sections(LINES):
         stripped = line.lstrip("#").strip()
         stripped = re.sub(r"^[─━═]+|[─━═]+$", "", stripped).strip()
         if not stripped:
-            # Pure marker line — title is on next non-empty comment line
+            # Pure marker line - title is on next non-empty comment line
             j = i
             while j < len(LINES):
                 nxt = LINES[j].strip()
@@ -59,7 +59,7 @@ def safe_name(title):
     path/extension/space chars with underscore and strips anything
     outside ``[a-z0-9_]``. Returns ``"misc"`` if the result is empty.
     """
-    s = title.split(":")[0].split("—")[0].split("(")[0].strip()
+    s = title.split(":")[0].split("-")[0].split("(")[0].strip()
     s = s.replace("/", "_").replace(".py", "").replace(" ", "_")
     return re.sub(r"[^a-z0-9_]", "_", s.lower()) or "misc"
 

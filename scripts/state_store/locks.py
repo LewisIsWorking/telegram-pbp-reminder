@@ -1,6 +1,6 @@
 """Per-resource locks for StateStore.
 
-Slice 8 of P3/9. Provides ``LockRegistry`` — a thread-safe registry
+Slice 8 of P3/9. Provides ``LockRegistry`` - a thread-safe registry
 of named locks that StateStore acquires during save operations.
 Sets up the locking primitives that P3/10 (actual concurrency
 hardening) will use; the bot itself doesn't have observed
@@ -29,7 +29,7 @@ Design notes:
   independent.
 
 * **What this DOES guarantee.** Two concurrent calls to
-  ``save_*`` on the same resource will serialise — the second
+  ``save_*`` on the same resource will serialise - the second
   blocks until the first's tmp+rename completes. Different
   resources run in parallel. Lock acquisition is FIFO-ish (Python
   threading.Lock isn't strictly FIFO but is fair enough for
@@ -37,7 +37,7 @@ Design notes:
 
 * **What this does NOT yet guarantee.** Read-modify-write
   atomicity. A reader holding stale data can still overwrite a
-  concurrent writer's update — last-write-wins. Slice 10 will add
+  concurrent writer's update - last-write-wins. Slice 10 will add
   the read-modify-write API; for now save-side locking just
   prevents byte-level corruption from two writers fighting over
   ``tmp.replace()``.
@@ -95,7 +95,7 @@ class LockRegistry:
 
         Used by the slice-8 regression tests to introspect which
         resources have been locked. Production code should not
-        depend on this — it's debug/test surface only.
+        depend on this - it's debug/test surface only.
         """
         with self._meta:
             return tuple(self._locks.keys())

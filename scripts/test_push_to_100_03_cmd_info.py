@@ -1,7 +1,7 @@
-"""Tests extracted from test_push_to_100.py — bin 3.
+"""Tests extracted from test_push_to_100.py - bin 3.
 
 Sections in this file:
-  - cmd_info.py — missing commands
+  - cmd_info.py - missing commands
 """
 """Tests for the 4 largest remaining coverage gaps."""
 import sys, os
@@ -55,7 +55,7 @@ def _run_status(state, gm_ids=None, hours=1.0):
         mh.posts_str.return_value = "0"
         return build_status("100", "Kibwe", state, gm_ids or set(), {})
 
-# ── cmd_info.py — missing commands ────────────────────────────────────────────
+# ── cmd_info.py - missing commands ────────────────────────────────────────────
 
 def _ic(cmd, state=None):
     return {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},

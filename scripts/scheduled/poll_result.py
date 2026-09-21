@@ -1,4 +1,4 @@
-"""Session poll result announcement — fires Friday afternoon for each campaign."""
+"""Session poll result announcement - fires Friday afternoon for each campaign."""
 
 from datetime import datetime, timezone
 
@@ -48,11 +48,11 @@ def announce_poll_result(config: dict, state: dict, *,
             w_label = options[winners[0]].split()[0]
             camp_hist["wins"][str(winners[0])] = camp_hist["wins"].get(str(winners[0]), 0) + 1
             msg = (f"━━━━━━━━━━━━━━━━\n"
-                   f"🎲 {code} Week {week_num}/52 — {w_label} wins!\n"
+                   f"🎲 {code} Week {week_num}/52 - {w_label} wins!\n"
                    f"{tally_str}")
         else:
             msg = (f"━━━━━━━━━━━━━━━━\n"
-                   f"🎲 {code} Week {week_num}/52 — It's a tie!\n"
+                   f"🎲 {code} Week {week_num}/52 - It's a tie!\n"
                    f"{tally_str}\nGM's call!")
 
         # All-time summary

@@ -1,4 +1,4 @@
-"""Tests extracted from test_commands_coverage.py — bin 2.
+"""Tests extracted from test_commands_coverage.py - bin 2.
 
 Sections in this file:
   - Name updated
@@ -10,7 +10,7 @@ Coverage tests for:
   commands/player_registry.py
   scheduled/poll_result.py
   scheduled/diagnostic.py
-  scheduled/reports.py  (partial — tg-calling functions mocked)
+  scheduled/reports.py  (partial - tg-calling functions mocked)
 """
 import sys, os, json, pytest, tempfile
 from datetime import datetime, timezone, timedelta

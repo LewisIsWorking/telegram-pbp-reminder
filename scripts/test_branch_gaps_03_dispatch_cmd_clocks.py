@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 3.
+"""Tests extracted from test_branch_gaps.py - bin 3.
 
 Sections in this file:
   - dispatch/cmd_clocks.py: clock not found

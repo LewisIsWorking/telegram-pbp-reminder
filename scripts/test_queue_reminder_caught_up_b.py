@@ -1,6 +1,6 @@
 """Tests for the 'All caught up!' branch in scheduled/queue_reminder.py.
 
-Covers the empty-queue branch at queue_reminder.py:73-77 — previously
+Covers the empty-queue branch at queue_reminder.py:73-77 - previously
 marked ``# pragma: no cover`` because no test exercised it. The
 branch fires when:
 
@@ -10,13 +10,13 @@ branch fires when:
      and
   3. There are no silent campaigns to display.
 
-Sub-cases covered in this file (line-68 PRODUCTION path — scanner
+Sub-cases covered in this file (line-68 PRODUCTION path - scanner
 returns an empty dict, the actual scanner contract today):
 
-  * ``last_queue_fingerprint != "empty"`` — bot posts "All caught up!"
+  * ``last_queue_fingerprint != "empty"`` - bot posts "All caught up!"
     once, then sets fingerprint to "empty" so subsequent runs don't
     repeat it.
-  * ``last_queue_fingerprint == "empty"`` (already marked empty) —
+  * ``last_queue_fingerprint == "empty"`` (already marked empty) -
     bot stays silent. Reaching this case requires bypassing the
     duplicate-fingerprint early return at line 65, which only
     happens on a daily-hour run with the slot not yet posted.
@@ -41,7 +41,7 @@ def _empty_scanned() -> dict:
     but the ``entries`` list is empty (so ``total == 0`` at line 73).
 
     Note: the production scanner ``commands.queue_scan.scan_transcripts``
-    does NOT actually return this shape — it omits empty campaigns
+    does NOT actually return this shape - it omits empty campaigns
     entirely (see queue_scan.py:185-197). The ``_no_scanned()``
     helper below produces the shape the production scanner uses
     when every queue is clean. The two shapes hit different early-
@@ -70,7 +70,7 @@ def test_caught_up_message_when_scanner_returns_empty():
     GM has replied to every queued message, the scanner returns
     an empty dict (it omits empty campaigns rather than including
     them with empty entries lists). Pre-2026-05-10 this branch was
-    a silent skip — the message was only on the unreachable line-73
+    a silent skip - the message was only on the unreachable line-73
     path. Lewis flagged the missing notification, so the line-68
     branch now mirrors line 73's spam-prevented send.
     """

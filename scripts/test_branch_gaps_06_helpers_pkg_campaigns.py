@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 6.
+"""Tests extracted from test_branch_gaps.py - bin 6.
 
 Sections in this file:
   - helpers_pkg/campaigns.py: get_campaign_pids

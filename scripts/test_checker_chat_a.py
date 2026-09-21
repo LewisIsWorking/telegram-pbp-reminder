@@ -1,4 +1,4 @@
-"""Tests for checker.py — chat (part a) group.
+"""Tests for checker.py - chat (part a) group.
 
 Extracted from test_checker.py during the test-split refactor (phase 2.3).
 Module imports, helpers, and the _LOGS_DIR redirection setup live in
@@ -81,7 +81,7 @@ def test_append_to_transcript():
     log_file = log_dir / "2026-02.md"
     assert log_file.exists()
     content = log_file.read_text(encoding="utf-8")
-    assert "transcript_test — 2026-02" in content
+    assert "transcript_test - 2026-02" in content
     assert "**Alice**" in content
     assert "Hello world!" in content
 
@@ -90,7 +90,7 @@ def test_append_to_transcript():
     checker._append_to_transcript(parsed, {"999"})
     content = log_file.read_text(encoding="utf-8")
     assert "Second message" in content
-    assert content.count("transcript_test — 2026-02") == 1  # Header only once
+    assert content.count("transcript_test - 2026-02") == 1  # Header only once
 
     shutil.rmtree(test_dir)
 
@@ -156,7 +156,7 @@ def test_conversation_dying_not_repeated():
     state["dying_alerts_sent"] = {"100": "active"}
 
     checker.check_conversation_dying(config, state, now=now)
-    # Should NOT send again — already flagged
+    # Should NOT send again - already flagged
     assert len(_sent_messages) == 0
 
 def test_conversation_dying_resets_on_activity():
@@ -165,7 +165,7 @@ def test_conversation_dying_resets_on_activity():
     now = datetime(2026, 2, 20, 12, 0, tzinfo=timezone.utc)
     state = _make_state()
 
-    # Recent post (1h ago) — should clear the flag
+    # Recent post (1h ago) - should clear the flag
     recent = (now - timedelta(hours=1)).isoformat()
     state["post_timestamps"]["100"] = {"42": [recent]}
     state["dying_alerts_sent"] = {"100": "active"}

@@ -1,4 +1,4 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 6.
+"""Tests extracted from test_dispatch_coverage.py - bin 6.
 
 Sections in this file:
   - dispatch/cmd_info_ext.py

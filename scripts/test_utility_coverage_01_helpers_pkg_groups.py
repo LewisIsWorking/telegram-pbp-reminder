@@ -1,9 +1,9 @@
-"""Tests extracted from test_utility_coverage.py — bin 1.
+"""Tests extracted from test_utility_coverage.py - bin 1.
 
 Sections in this file:
-  - helpers_pkg/groups.py  — pure functions, no mocking needed
-  - scheduled/session_poll_build.py  — pure functions
-  - scheduled/session_poll_build.py  — pure functions
+  - helpers_pkg/groups.py  - pure functions, no mocking needed
+  - scheduled/session_poll_build.py  - pure functions
+  - scheduled/session_poll_build.py  - pure functions
 """
 """
 Coverage tests for:
@@ -34,7 +34,7 @@ def _now():
     return datetime(2026, 4, 3, 12, 0, tzinfo=timezone.utc)  # Friday
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# helpers_pkg/groups.py  — pure functions, no mocking needed
+# helpers_pkg/groups.py  - pure functions, no mocking needed
 
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -99,4 +99,4 @@ def test_pid_for_code_not_found():
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/session_poll_build.py  — pure functions
+# scheduled/session_poll_build.py  - pure functions

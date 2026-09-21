@@ -1,4 +1,4 @@
-"""Tests for topic_queue_poster — _threads_from_scanned, _clear_thread_queue, post_topic_queues."""
+"""Tests for topic_queue_poster - _threads_from_scanned, _clear_thread_queue, post_topic_queues."""
 
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
@@ -145,7 +145,7 @@ class TestClearThreadQueue:
 
 class TestPostThreadMultiMessage:
     """The original bug: when a topic queue posts as multiple messages,
-    every old message must be deleted on update — not just the first."""
+    every old message must be deleted on update - not just the first."""
 
     def test_update_deletes_all_old_messages(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue
@@ -163,7 +163,7 @@ class TestPostThreadMultiMessage:
 
 class TestPostDeletesLingeringCaughtUp:
     """Caught-up notices left from a prior clear cycle must be removed
-    before a fresh queue post — otherwise the topic stacks them up."""
+    before a fresh queue post - otherwise the topic stacks them up."""
 
     def test_caught_up_id_deleted_and_reset_on_post(self, tg_mock):
         from scheduled.topic_queue_poster import _post_thread_queue

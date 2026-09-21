@@ -71,7 +71,7 @@ def build_timeline(config: dict, state: dict, count: int = 20) -> str:
             date_str = dt.strftime("%b %d")
         except (ValueError, TypeError):
             date_str = "?"
-        lines.append(f"{e['icon']} {date_str} — {e['text']}")
+        lines.append(f"{e['icon']} {date_str} - {e['text']}")
 
     return "\n".join(lines)
 

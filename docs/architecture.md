@@ -38,7 +38,7 @@ scripts/
     tracker.py            #   Message routing, all-acted detection
   commands/               # All /command output builders
     queue_io.py           #   Per-campaign queue load/save (data/state/queues/{pid}.json)
-    markdone.py           #   /markdone — manual queue entry clearing
+    markdone.py           #   /markdone - manual queue entry clearing
     campaign.py           #   /campaign, roster blocks
     catchup.py            #   /catchup
     dashboard.py          #   /gm, /activity
@@ -106,7 +106,7 @@ scripts/
     poll_result.py        #   Friday result announcement (all hybrid campaigns)
     week_welcome.py       #   Sunday 'Welcome to Week X' + colour legend
     swimming_poll.py      #   Weekly swimming poll (Dark Pockets main chat)
-    diagnostic.py         #   Daily health check — analyses run logs, posts report
+    diagnostic.py         #   Daily health check - analyses run logs, posts report
     diagnostic_analysis.py #  Log scanning helpers for diagnostic.py
   boons/                  # Player of the Week boon system
     handler.py            #   Boon resolution, /chooseboon, expiry
@@ -125,7 +125,7 @@ scripts/
   test_state_partitions.py # 11 tests (partition contract, critical key placement)
   test_state_io.py        # 11 tests (file round-trip, public API, save guard)
   test_queue_format.py    # 44 tests (9-tier age icons, age_str, preview)
-  conftest.py             # Shared mock telegram — installed before all test imports
+  conftest.py             # Shared mock telegram - installed before all test imports
   migrate_gist_to_files.py # One-time migration script (gist → data/state/)
   promote_poll_voters.py  # Promote captured unknown voter IDs into config
 config.json               # Your configuration

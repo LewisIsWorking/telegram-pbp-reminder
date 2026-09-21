@@ -1,9 +1,9 @@
-"""Tests extracted from test_final_coverage.py — bin 3.
+"""Tests extracted from test_final_coverage.py - bin 3.
 
 Sections in this file:
-  - scheduled/potw.py — winner selection and announcement
-  - boons/handler.py — choose_boon_by_text
-  - boons/handler.py — choose_boon_by_text
+  - scheduled/potw.py - winner selection and announcement
+  - boons/handler.py - choose_boon_by_text
+  - boons/handler.py - choose_boon_by_text
 """
 """
 Tests targeting the remaining coverage gaps:
@@ -65,7 +65,7 @@ def _lb_config():
                               "name": "Kibwe", "gm_user_ids": [999]}]}
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# scheduled/potw.py — winner selection and announcement
+# scheduled/potw.py - winner selection and announcement
 
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -134,4 +134,4 @@ def test_potw_announces_winner(mock_helpers):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# boons/handler.py — choose_boon_by_text
+# boons/handler.py - choose_boon_by_text

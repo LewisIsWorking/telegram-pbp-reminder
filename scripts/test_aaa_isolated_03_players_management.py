@@ -1,15 +1,15 @@
-"""Tests extracted from test_aaa_isolated.py — bin 3.
+"""Tests extracted from test_aaa_isolated.py - bin 3.
 
 Sections in this file:
-  - players/management.py:73 — no match continue
-  - combat/commands.py:98 — long log truncated
-  - combat/tracker.py:115 — GM round command
-  - dispatch/bot_topic.py:104 — no pid for global cmd
-  - dispatch/cmd_trackers.py:115 — quest not found
-  - scheduled/session_poll.py:136 — empty roster return
-  - checker.py:132 — process_updates called in main loop
-  - dispatch/cmd_clocks.py:98-103 — /untick with amount
-  - helpers_pkg/dc_lookup.py:110-112 — adjustment key lookup
+  - players/management.py:73 - no match continue
+  - combat/commands.py:98 - long log truncated
+  - combat/tracker.py:115 - GM round command
+  - dispatch/bot_topic.py:104 - no pid for global cmd
+  - dispatch/cmd_trackers.py:115 - quest not found
+  - scheduled/session_poll.py:136 - empty roster return
+  - checker.py:132 - process_updates called in main loop
+  - dispatch/cmd_clocks.py:98-103 - /untick with amount
+  - helpers_pkg/dc_lookup.py:110-112 - adjustment key lookup
 """
 """
 MUST RUN FIRST (alphabetical ordering): these tests cover lines that
@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── players/management.py:73 — no match continue ─────────────────────────────
+# ── players/management.py:73 - no match continue ─────────────────────────────
 def test_players_no_match_continue():
     from players.management import handle_kick
     state = {"players": {
@@ -37,7 +37,7 @@ def test_players_no_match_continue():
 
 
 
-# ── combat/commands.py:98 — long log truncated ───────────────────────────────
+# ── combat/commands.py:98 - long log truncated ───────────────────────────────
 def test_combat_long_log_early():
     from combat.commands import handle_enemies_command
     state = {"combat": {"100": {
@@ -48,7 +48,7 @@ def test_combat_long_log_early():
 
 
 
-# ── combat/tracker.py:115 — GM round command ─────────────────────────────────
+# ── combat/tracker.py:115 - GM round command ─────────────────────────────────
 def test_combat_tracker_gm_early():
     from combat.tracker import handle_combat_message
     state = {"combat": {"100": {
@@ -62,7 +62,7 @@ def test_combat_tracker_gm_early():
 
 
 
-# ── dispatch/bot_topic.py:104 — no pid for global cmd ────────────────────────
+# ── dispatch/bot_topic.py:104 - no pid for global cmd ────────────────────────
 def test_bot_topic_no_pid_early():
     from dispatch.bot_topic import handle_bot_topic_cmd
     maps = MagicMock()
@@ -76,7 +76,7 @@ def test_bot_topic_no_pid_early():
 
 
 
-# ── dispatch/cmd_trackers.py:115 — quest not found ───────────────────────────
+# ── dispatch/cmd_trackers.py:115 - quest not found ───────────────────────────
 def test_cmd_trackers_quest_nf_early():
     from dispatch.cmd_trackers import handle
     ctx = {"user_id": "GM1", "user_name": "Lewis", "gm_ids": {"GM1"},
@@ -92,7 +92,7 @@ def test_cmd_trackers_quest_nf_early():
 
 
 
-# ── scheduled/session_poll.py:136 — empty roster return ──────────────────────
+# ── scheduled/session_poll.py:136 - empty roster return ──────────────────────
 def test_session_poll_empty_roster_early():
     from scheduled.session_poll import post_session_poll
     now = datetime(2026, 3, 30, 10, tzinfo=timezone.utc)
@@ -109,7 +109,7 @@ def test_session_poll_empty_roster_early():
 
 
 
-# ── checker.py:132 — process_updates called in main loop ────────────────────
+# ── checker.py:132 - process_updates called in main loop ────────────────────
 def test_checker_loop_call():
     from dispatch.router import process_updates
     maps = MagicMock()
@@ -123,7 +123,7 @@ def test_checker_loop_call():
 
 
 
-# ── dispatch/cmd_clocks.py:98-103 — /untick with amount ──────────────────────
+# ── dispatch/cmd_clocks.py:98-103 - /untick with amount ──────────────────────
 def test_untick_with_amount():
     from dispatch.cmd_clocks import handle
     from unittest.mock import MagicMock
@@ -163,7 +163,7 @@ def test_untick_amount_not_int():
 
 
 
-# ── helpers_pkg/dc_lookup.py:110-112 — adjustment key lookup ─────────────────
+# ── helpers_pkg/dc_lookup.py:110-112 - adjustment key lookup ─────────────────
 def test_dc_adjustment_key():
     from helpers_pkg.dc_lookup import dc_lookup, _DC_ADJUSTMENTS
     key = next(iter(_DC_ADJUSTMENTS))

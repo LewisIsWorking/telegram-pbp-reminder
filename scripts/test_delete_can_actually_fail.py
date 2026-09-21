@@ -4,7 +4,7 @@ COVERS  ``posting.safe_delete.perform_guarded_delete`` outcome reporting,
         and the bounded give-up in ``posting.stuck_deletes``.
 MISSES  Whether Telegram actually refuses a given message. That depends
         on the bot's admin rights and the 48h window, and cannot be
-        determined without a live API call — see the note at the bottom.
+        determined without a live API call - see the note at the bottom.
 ANCHORED to ``safe_delete.ALREADY_GONE_ERRORS`` rather than a retyped
         copy of it, so the two cannot drift apart again.
 PROVEN  by ``test_the_guard_can_fail`` below, which restores the old
@@ -15,7 +15,7 @@ The bug, 2026-08-16. ``"message can't be deleted"`` sat in the
 ``_post`` as ``True``. Every caller reads that as success: the tracked
 slot is cleared, the ID is never parked in ``pending_delete``, and the
 message stays in the chat forever. The pin audit held 715 deletes and
-715 successes — no delete had ever failed in the bot's recorded history —
+715 successes - no delete had ever failed in the bot's recorded history -
 while a C06 ``Unreplied: 2`` post from 2026-08-03 was still sitting in
 the topic thirteen days later.
 """
@@ -121,7 +121,7 @@ def test_undeletable_string_is_not_treated_as_gone():
 
 
 # The bounded give-up that replaces the old infinite-retry worry, and the
-# pending_delete sweep, live in ``test_delete_gives_up.py`` — split out
+# pending_delete sweep, live in ``test_delete_gives_up.py`` - split out
 # 2026-08-16 when this file hit 224 lines.
 
 
@@ -143,7 +143,7 @@ def test_the_guard_can_fail(clean_stuck, monkeypatch):
     with patch.object(safe_delete, "record_action"):
         result = perform_guarded_delete(CHAT, MID, _post_returning(body))
     assert result is True, (
-        "With the old tuple restored the refusal reads as success — that is "
+        "With the old tuple restored the refusal reads as success - that is "
         "the bug. If this assertion fails, perform_guarded_delete no longer "
         "reads ALREADY_GONE_ERRORS and these tests are checking nothing.")
 

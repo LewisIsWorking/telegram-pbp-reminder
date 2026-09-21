@@ -15,13 +15,13 @@ under the old alert format both arrived looking identical.
 
 Three sources, most authoritative first:
 
-1. ``posting.sent_log`` — what the bot recorded at send time. Definitive
+1. ``posting.sent_log`` - what the bot recorded at send time. Definitive
    for bot messages, because it was written by the code that sent them.
-2. The transcript archive under ``data/pbp_logs/`` — every player and GM
+2. The transcript archive under ``data/pbp_logs/`` - every player and GM
    message the bot has ever ingested, stored as
    ``**Name** [GM] (timestamp) msg#<id>@<thread>:`` followed by the text.
    Definitive for non-bot messages.
-3. The per-campaign queue state — ``unreplied`` entries carry
+3. The per-campaign queue state - ``unreplied`` entries carry
    ``user_name`` and ``preview`` for anything currently awaiting a reply.
 
 ⭐ When all three miss, that is **not** a shrug. An ID nothing recognises
@@ -62,7 +62,7 @@ def _from_sent_log(message_id: int) -> dict | None:
 
 
 def _from_transcripts(message_id: int) -> dict | None:
-    """Scan the archive for this ID. Newest files first — a message being
+    """Scan the archive for this ID. Newest files first - a message being
     asked about is far more likely to be recent, and stopping early keeps
     a rare alert from reading 3.5MB of markdown."""
     needle = f"msg#{message_id}@"
@@ -150,10 +150,10 @@ def one_line(message_id: int, facts: dict | None = None) -> str:
     """A single human-readable line for an alert or report."""
     facts = facts or describe(message_id)
     if facts["origin"] == UNKNOWN:
-        return f"mid={message_id} — ⁉️ no local record of this message"
+        return f"mid={message_id} - ⁉️ no local record of this message"
     who = facts.get("sender") or "?"
     if facts.get("is_gm"):
         who += " [GM]"
     where = facts.get("campaign") or facts.get("thread_id") or "?"
     preview = facts.get("preview") or "(no text)"
-    return f"mid={message_id} — {who} in {where}: “{preview}”"
+    return f"mid={message_id} - {who} in {where}: “{preview}”"

@@ -22,7 +22,7 @@ Top-level settings:
 | Setting             | Default | Description                                    |
 |---------------------|---------|------------------------------------------------|
 | `alert_after_hours` | 4       | Hours of topic silence before inactivity alert |
-| `group_username`    | —       | Public @username for t.me message links        |
+| `group_username`    | -       | Public @username for t.me message links        |
 | `poll_post_hour`    | 7       | UTC hour on Sunday to post the weekly poll     |
 | `queue_daily_hours` | [9, 21] | UTC hours to post the GM queue reminder daily  |
 | `diagnostic_hour`   | 8       | UTC hour to run the daily bot health diagnostic |
@@ -33,23 +33,23 @@ Fields set inside each entry in `topic_pairs`:
 
 | Field                    | Description |
 |--------------------------|-------------|
-| `hybrid_live`            | `true` — campaign has live sessions; enables the session poll |
+| `hybrid_live`            | `true` - campaign has live sessions; enables the session poll |
 | `group_id`               | Override Telegram group ID (for campaigns in a separate group, e.g. C11) |
 | `group_username`         | Override `@username` for message links in this group |
 | `linked_polls`           | List of campaign codes whose polls are cross-notified with this one |
 | `poll_options`           | Custom poll answer labels (default: dynamic Fri/Sat/Can't dates) |
-| `allows_multiple_answers`| `true` — players can pick more than one option (e.g. C11) |
-| `poll_any_day`           | `true` — daily ping runs every day of the week (default: Mon–Sun anyway) |
+| `allows_multiple_answers`| `true` - players can pick more than one option (e.g. C11) |
+| `poll_any_day`           | `true` - daily ping runs every day of the week (default: Mon–Sun anyway) |
 | `poll_user_ids`          | Explicit list of Telegram user IDs to ping (overrides PBP roster) |
-| `poll_user_names`        | `{uid: username}` map — fallback @mention for players not in PBP registry |
+| `poll_user_names`        | `{uid: username}` map - fallback @mention for players not in PBP registry |
 | `emoji`                  | Campaign emoji shown in queue section headers (e.g. `🦠`) |
 | `queue_priority`         | Queue rank, **lower wins**. `true` is a legacy alias for rank 1. Unset means rank 99. See [GM queue ranks](gm-queue.md#campaign-exclusions) |
-| `queue_exclude`          | `true` — campaign is excluded from the GM reply queue entirely |
-| `gm_user_ids`            | **Replaces** the global GM list for this campaign only — see [Per-campaign GMs](#per-campaign-gms) |
+| `queue_exclude`          | `true` - campaign is excluded from the GM reply queue entirely |
+| `gm_user_ids`            | **Replaces** the global GM list for this campaign only - see [Per-campaign GMs](#per-campaign-gms) |
 | `disabled_features`      | Feature names switched off for this campaign (e.g. `["warnings", "recruitment"]`) |
 | `roster_target`          | Target player count; overrides the default used by `/roster` and the roster nudge |
 | `nudge_topic_id`         | Topic to send session-poll nudges to (defaults to the poll topic) |
-| `poll_roster_filter`     | `true` — opt in to poll-roster filtering (see `commands/roster.py`) |
+| `poll_roster_filter`     | `true` - opt in to poll-roster filtering (see `commands/roster.py`) |
 | `created`                | Campaign start date `YYYY-MM-DD`, used by `/campaign` and the timeline |
 | `recruit_tier`           | Which recruitment queue this campaign draws from. See [Recruitment tiers](#recruitment-tiers) |
 
@@ -89,8 +89,8 @@ by somebody else sets its own `gm_user_ids` inside its `topic_pair`.
 
 > ⚠️ **The per-campaign list REPLACES the global one, it does not merge.**
 > `helpers_pkg/config.py::gm_ids_for_campaign` returns the pair's list as-is
-> whenever the key is present. Anyone not named in it — *including the global
-> GM* — counts as a **player** in that campaign: their posts get queued as
+> whenever the key is present. Anyone not named in it - *including the global
+> GM* - counts as a **player** in that campaign: their posts get queued as
 > needing a reply, and their reply-tos do not clear entries.
 
 Campaigns with a non-default GM:
@@ -101,7 +101,7 @@ Campaigns with a non-default GM:
 
 C08's queue file (`data/state/queues/107151.json`) still holds ~180 historical
 `unreplied` entries dated 2026-03-24 to 2026-05-24, from before these settings
-were added. They are **inert** — `queue_exclude` means nothing reads or reports
+were added. They are **inert** - `queue_exclude` means nothing reads or reports
 them. Do not mistake that count for a live backlog.
 
 ### Example: C11 Dark Pockets (separate group, linked poll)

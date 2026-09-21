@@ -1,7 +1,7 @@
 """
 Catch-up builder for returning players.
 
-Command: /catchup — shows what happened since last post.
+Command: /catchup - shows what happened since last post.
 """
 
 import re
@@ -146,7 +146,7 @@ def build_catchup(pid: str, user_id: str, campaign_name: str,
             lines.append("")
 
         if total_since > len(recent_posts):
-            lines.append(f"(+{total_since - len(recent_posts)} more — use /recap {min(total_since, 25)} for full history)")
+            lines.append(f"(+{total_since - len(recent_posts)} more - use /recap {min(total_since, 25)} for full history)")
 
     # Combat state
     combat = state.get("combat", {}).get(pid, {})
@@ -162,6 +162,6 @@ def build_catchup(pid: str, user_id: str, campaign_name: str,
         if user_id in acted_ids:
             lines.append("✅ You've already acted this round.")
         else:
-            lines.append("⏳ You haven't acted yet — post your actions!")
+            lines.append("⏳ You haven't acted yet - post your actions!")
 
     return "\n".join(lines)

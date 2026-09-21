@@ -5,20 +5,20 @@ about whether the thing still sitting in the group is a stale
 ``Unreplied: 2`` nobody will miss, or something that matters.
 
 ``bot_sent_registry`` deliberately does not hold this. It is the safety
-structure — an append-only set that must stay small, cheap and boring,
+structure - an append-only set that must stay small, cheap and boring,
 because ``perform_guarded_delete`` consults it on every call and the
 consequence of corrupting it is the bot deleting a player's message.
 This is the descriptive record beside it: bounded, disposable, and free
 to change shape without touching the guard.
 
 Written by ``bot_sent_registry.record_sent``, which every successful send
-in ``telegram.py`` already calls — so capture is automatic and no new
+in ``telegram.py`` already calls - so capture is automatic and no new
 call site can forget it.
 
 ⚠️ Bounded to ``MAX_ENTRIES`` most recent. Losing the description of a
 six-month-old message costs a line of context in a report; letting this
 file grow forever costs a checkout on every CI run. The registry keeps
-the ID for the safety check regardless — only the prose is evicted.
+the ID for the safety check regardless - only the prose is evicted.
 """
 
 import threading
@@ -82,6 +82,6 @@ def describe(message_id: int) -> dict | None:
 
 
 def reset_for_test() -> None:
-    """Test helper — wipe the log. Monkeypatch ``_store`` first."""
+    """Test helper - wipe the log. Monkeypatch ``_store`` first."""
     with _LOCK:
         _store.delete_aux(_AUX_NAME)

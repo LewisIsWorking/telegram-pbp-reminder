@@ -1,8 +1,8 @@
-"""Tests extracted from test_final_push.py — bin 6.
+"""Tests extracted from test_final_push.py - bin 6.
 
 Sections in this file:
   - scheduled/potw.py:136-138
-  - scheduled/queue_reminder.py:98-100 — momentum key:val parse
+  - scheduled/queue_reminder.py:98-100 - momentum key:val parse
   - transcript/formatting.py:84
   - transcript/finalize.py:51
   - transcript/logger.py:144
@@ -11,7 +11,7 @@ Sections in this file:
   - __main__ guards
 """
 """
-Definitive final coverage push — verified to actually hit each line.
+Definitive final coverage push - verified to actually hit each line.
 Uses real function calls with minimal/no mocking where possible.
 """
 import sys, os, json, pytest
@@ -38,7 +38,7 @@ def test_potw_links_real(tmp_path):
 
 
 
-# ── scheduled/queue_reminder.py:98-100 — momentum key:val parse ──────────────
+# ── scheduled/queue_reminder.py:98-100 - momentum key:val parse ──────────────
 def test_queue_reminder_momentum_real():
     from scheduled.queue_reminder import post_queue_reminder
     now = datetime(2026, 4, 3, 10, tzinfo=timezone.utc)

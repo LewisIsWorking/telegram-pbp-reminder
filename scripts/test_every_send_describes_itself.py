@@ -11,7 +11,7 @@ Lewis, 2026-08-16: *"You should capture the message's contents and sender
 so you know if it is an issue."*
 
 Capture lives in ``record_sent`` rather than at each send site precisely
-so it cannot be forgotten — every successful send already calls it. But
+so it cannot be forgotten - every successful send already calls it. But
 "cannot be forgotten" is a claim about code that does not exist yet, and
 a claim like that needs a guard rather than a comment. A future
 ``send_photo`` that calls ``record_sent(mid)`` with no text would compile,
@@ -20,7 +20,7 @@ pass every other test, and quietly restore the bare-ID reports.
 ⚠️ The description is **best-effort by design**: ``sent_log.record``
 swallows its own exceptions. A diagnostic must never be able to break a
 send that has already happened. That is deliberate, and it is why the
-wiring needs a test — a silent writer with no test is a writer that can
+wiring needs a test - a silent writer with no test is a writer that can
 stop working unnoticed.
 """
 import ast
@@ -114,7 +114,7 @@ def _production_record_sent_calls():
 def test_every_production_send_passes_a_description():
     """A send that records only the ID puts a bare mid back in the alerts.
 
-    ``record_many`` is exempt by construction — it takes IDs the bot is
+    ``record_many`` is exempt by construction - it takes IDs the bot is
     reconciling from state, not messages it just sent, so there is no
     text to capture.
     """
@@ -123,7 +123,7 @@ def test_every_production_send_passes_a_description():
     assert not bare, (
         f"record_sent called with only an ID at {bare}. Pass the message "
         f"text (and thread_id / kind) so a later delete failure can name "
-        f"what it is about. A bare message_id cannot be triaged — that is "
+        f"what it is about. A bare message_id cannot be triaged - that is "
         f"the whole reason this capture exists."
     )
 

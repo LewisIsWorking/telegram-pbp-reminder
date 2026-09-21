@@ -58,7 +58,7 @@ def record_refusal(chat_id: int, message_id: int,
 
     ``reason`` says WHICH failure this is. It defaults to
     ``REASON_REGISTRY`` so that pre-2026-08-16 entries, written before
-    this field existed, read correctly — every one of those was a
+    this field existed, read correctly - every one of those was a
     registry refusal, because that was the only caller.
 
     ⚠️ Added 2026-08-16 after ``stuck_deletes`` began routing its
@@ -115,7 +115,7 @@ def mark_alerted(through_timestamp: str | None = None) -> None:
 
 
 def reset_for_test() -> None:
-    """Test helper — wipe the on-disk log and marker.
+    """Test helper - wipe the on-disk log and marker.
 
     Tests that exercise refusal logging should monkeypatch ``_store``
     to a tmp-rooted StateStore before calling this, so production

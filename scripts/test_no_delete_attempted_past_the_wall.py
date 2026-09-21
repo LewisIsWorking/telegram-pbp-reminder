@@ -2,7 +2,7 @@
 
 COVERS  every delete recorded in ``data/state/pin_audit_log.json`` whose
         target's send time is also recorded there, i.e. every message the
-        bot pinned. That is the topic-queue posts and GM queue batches —
+        bot pinned. That is the topic-queue posts and GM queue batches -
         the ones that orphan.
 MISSES  messages the bot sent but never pinned. ``pin_audit`` only
         records pin / unpin / delete, so an unpinned message has no birth
@@ -13,7 +13,7 @@ ANCHORED to the audit log on disk, not to a hand-written list of
         incidents. It reads whatever is there.
 PROVEN  by ``test_the_detector_can_fail``, and by the fact that on the
         day it was written it identified exactly the 15 known orphans
-        with no false positives — see ``KNOWN_PRE_FIX_ORPHANS``.
+        with no false positives - see ``KNOWN_PRE_FIX_ORPHANS``.
 
 ────────────────────────────────────────────────────────────────────────
 
@@ -28,8 +28,8 @@ So an attempted delete past the wall is not a risk, it is a **loss that
 has already happened**. The message will stay in the topic forever, and
 before 2026-08-16 the bot recorded each one as a success.
 
-Why this test and not a state invariant. The obvious guard — "no tracked
-message may be older than 48h" — cannot work, and the reason is worth
+Why this test and not a state invariant. The obvious guard - "no tracked
+message may be older than 48h" - cannot work, and the reason is worth
 keeping. Checking the committed state at 2026-08-06T06:38, minutes after
 the C06 orphan was created:
 
@@ -73,7 +73,7 @@ def _load_audit():
 def deletes_past_the_wall(rows) -> dict[int, float]:
     """Return {message_id: age_in_hours} for every doomed delete attempt.
 
-    Birth is the earliest recorded action for an ID — a pin, in practice,
+    Birth is the earliest recorded action for an ID - a pin, in practice,
     since that is the first thing the bot does after sending. An ID whose
     first recorded action IS the delete has no known birth and is skipped
     rather than guessed at: reporting an unknown as a violation would
@@ -114,7 +114,7 @@ def test_no_new_delete_is_attempted_past_the_wall():
         f"This means something is holding a message ID for longer than 36h "
         f"without refreshing it. Check scheduled/topic_queue_age.py, which "
         f"owns that clock, and any NEW code path that stores a message ID "
-        f"for later deletion — caught-up notices, poll messages, pinned "
+        f"for later deletion - caught-up notices, poll messages, pinned "
         f"reports. Storing an ID means owning its lifetime."
     )
 
@@ -135,7 +135,7 @@ def test_the_known_orphan_list_does_not_grow():
 
 def test_healthy_deletes_are_the_overwhelming_majority():
     """Sanity floor. If most deletes were doomed the detector above would
-    be measuring something other than what it claims — a clock bug, a
+    be measuring something other than what it claims - a clock bug, a
     timestamp format change, a rewritten audit schema."""
     rows = _load_audit()
     total = sum(1 for r in rows if r.get("action") == "delete")
@@ -144,7 +144,7 @@ def test_healthy_deletes_are_the_overwhelming_majority():
     doomed = len(deletes_past_the_wall(rows))
     assert doomed / total < 0.25, (
         f"{doomed} of {total} deletes were past the wall. That is too many "
-        f"to be a lifecycle bug — suspect the timestamps themselves."
+        f"to be a lifecycle bug - suspect the timestamps themselves."
     )
 
 
@@ -154,7 +154,7 @@ def test_the_detector_can_fail():
     """Feed it a synthetic doomed delete and confirm it is reported.
 
     Per ``guards-that-mean-something``: a green detector is evidence only
-    if it would have gone red. This is the whole file in miniature — a
+    if it would have gone red. This is the whole file in miniature - a
     message born, then deleted three days later.
     """
     born = dt.datetime(2026, 8, 1, 12, 0, tzinfo=dt.timezone.utc)
@@ -182,7 +182,7 @@ def test_unknown_birth_is_not_guessed_at():
 
 # ⚠️ THE GAP: only PINNED messages have a birth timestamp, because
 # pin_audit records pin/unpin/delete and nothing else. Caught-up notices,
-# the recruit focus post and poll messages are invisible here — 15 of the
+# the recruit focus post and poll messages are invisible here - 15 of the
 # 28 orphans found on 2026-08-16 were caught-up notices, and only
 # maintenance/audit_orphans.py (which asks Telegram) could see them.
 # Closing it properly means timestamping bot_sent_ids.json, today a flat

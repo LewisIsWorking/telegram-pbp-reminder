@@ -8,8 +8,8 @@ Structure:
   {
     "pid":       "40585",
     "unreplied": [...],   # live queue entries (msg_id, time, player, preview, link)
-    "replied":   [...],   # reply keys (msg:id, timestamp) — no cap
-    "reply_log": [...]    # permanent audit trail — no cap
+    "replied":   [...],   # reply keys (msg:id, timestamp) - no cap
+    "reply_log": [...]    # permanent audit trail - no cap
   }
 
 This replaces the monolithic gm_queue / gm_queue_replied / gm_reply_log
@@ -18,7 +18,7 @@ cross-campaign eviction.
 
 Slice 5 of P3/9: persistence routes through ``StateStore.load_queue``
 and ``StateStore.save_queue``. The previous ``path.write_text`` save
-was non-atomic — a crash mid-write could leave a half-written
+was non-atomic - a crash mid-write could leave a half-written
 ``queues/{pid}.json`` that the next process startup would fail to
 parse. The new path uses tmp+rename so the partial write is invisible
 until the bytes are durable.
@@ -171,7 +171,7 @@ def mark_replied(pid: str, mid_key: str, ts_key: str | None,
 def migrate_from_state(state: dict) -> int:
     """One-time migration: copy gm_queue_replied from shared state to per-campaign files.
 
-    Safe to call multiple times — skips PIDs already migrated.
+    Safe to call multiple times - skips PIDs already migrated.
     Returns number of campaigns migrated.
     """
     migrated = 0

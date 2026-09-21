@@ -13,7 +13,7 @@ A schema-completeness test would have caught the related class of
 bug: state files getting written but nothing reading them, or
 readers expecting files that no writer creates.
 
-This module is purely declarative — no I/O, no logic. The schema
+This module is purely declarative - no I/O, no logic. The schema
 is a plain tuple of ``(name, description)`` pairs grouped by kind.
 Adding a new state file must:
 
@@ -25,7 +25,7 @@ Adding a new state file must:
      description so a future maintainer knows it's deliberate.
 
 The slice-6 regression test will fail if a new file is added under
-``data/state/`` without a matching entry here — forcing the
+``data/state/`` without a matching entry here - forcing the
 integration question to the surface rather than letting orphans
 quietly accumulate.
 """
@@ -34,9 +34,9 @@ quietly accumulate.
 # Migrated to ``StateStore.save_partition`` / ``load_partition`` in
 # slices 3 and 4 of P3/9. The set of partitions is fixed by
 # ``state.PARTITIONS`` (the partition\u2192keys mapping) and must stay in
-# sync with this list — the slice-6 test asserts that.
+# sync with this list - the slice-6 test asserts that.
 PARTITIONS = (
-    ("live", "Hot state — offset, gm_queue_history, last_queue_pin_id, "
+    ("live", "Hot state - offset, gm_queue_history, last_queue_pin_id, "
               "topic timestamps."),
     ("players", "Per-player tracking, inactivity windows, permanent flags."),
     ("queue", "Legacy monolithic GM queue state. Per-campaign queues now "
@@ -45,7 +45,7 @@ PARTITIONS = (
               "all-time stats."),
     ("activity", "Per-topic activity timestamps and session markers."),
     ("trackers", "Long-running trackers (poll IDs, milestone markers, "
-                 "diagnostic state). Optional — absent on fresh checkout."),
+                 "diagnostic state). Optional - absent on fresh checkout."),
 )
 
 # Auxiliary files written by their owning module, single-purpose.
@@ -55,7 +55,7 @@ AUX_FILES = (
                      "posting.safe_delete to refuse non-bot deletes. "
                      "Owner: posting.bot_sent_registry."),
     ("refusal_log", "Append-only log of safe_delete refusals. Owner: "
-                    "posting.refusal_log. Optional — absent until first "
+                    "posting.refusal_log. Optional - absent until first "
                     "refusal occurs."),
     ("refusal_log_alerted", "Marker for the last alerted refusal so the "
                             "alert script doesn't re-send. Owner: "
@@ -64,7 +64,7 @@ AUX_FILES = (
                       "the bot performs (id, chat, ok, refused, call "
                       "site). Owner: posting.pin_audit. Written by "
                       "safe_delete's guarded paths; read by humans "
-                      "diagnosing a vanished pin. Optional — absent "
+                      "diagnosing a vanished pin. Optional - absent "
                       "until the first pin/unpin/delete."),
     ("sent_messages", "Bounded description of what the bot recently sent "
                       "(preview, thread, kind) so a later failure can name "
@@ -73,7 +73,7 @@ AUX_FILES = (
                       "posting.message_facts. Deliberately separate from "
                       "bot_sent_ids, which is the safety structure and "
                       "stays a flat set of ints. Added 2026-08-16. Lossy "
-                      "by design — evicted entries fall through to the "
+                      "by design - evicted entries fall through to the "
                       "transcript archive, then to 'unknown'."),
     ("stuck_deletes", "Message IDs Telegram declined to delete, with an "
                       "attempt count. Owner: posting.stuck_deletes. "
@@ -83,13 +83,13 @@ AUX_FILES = (
                       "scheduled.topic_queue_state. An entry marked "
                       "hopeless is a message still sitting in a topic "
                       "that only a human can remove. Added 2026-08-16. "
-                      "Optional — absent until the first refused delete, "
+                      "Optional - absent until the first refused delete, "
                       "which before that date could not be observed."),
 )
 
 # Files written once during a one-shot migration or by an external
 # tooling step, with NO runtime reader. Their presence on disk is
-# intentional — do NOT add a reader unless promoting the file to a
+# intentional - do NOT add a reader unless promoting the file to a
 # partition or aux entry.
 WRITE_ONCE = (
     ("manifest", "Migration manifest from migrate_gist_to_files.py "
@@ -101,7 +101,7 @@ WRITE_ONCE = (
 
 # Queue files live under ``data/state/queues/{pid}.json``. The pid
 # itself is dynamic (one file per active campaign) so we don't list
-# them individually — the regression test instead asserts shape
+# them individually - the regression test instead asserts shape
 # (filename matches a campaign pid) and that StateStore has the
 # matching read/write methods (slice 5).
 QUEUE_FILES_DIR = "queues"

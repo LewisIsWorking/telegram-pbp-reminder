@@ -59,7 +59,7 @@ def build_tally_block(code: str, slot: dict, options: list[str],
     """Build a multi-line campaign tally block.
 
     Example output:
-      C01 — 2/3 voted  |  waiting: @MrNegetZ @DragonFox2000
+      C01 - 2/3 voted  |  waiting: @MrNegetZ @DragonFox2000
         Friday:         1  @PathWars
         Either:         2  @Elinoa @Selenor
         → Either leads
@@ -77,7 +77,7 @@ def build_tally_block(code: str, slot: dict, options: list[str],
 
     waiting = _waiting_for_code(code, config, state)
     wait_str = f"  |  waiting: {' '.join(waiting)}" if waiting else ""
-    header = f"{code} — {roster_voted}/{roster_size} voted{wait_str}"
+    header = f"{code} - {roster_voted}/{roster_size} voted{wait_str}"
 
     lines = [header]
     for i, label in enumerate(options):

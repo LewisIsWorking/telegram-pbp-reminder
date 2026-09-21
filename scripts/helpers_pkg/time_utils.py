@@ -110,7 +110,7 @@ def parse_away_duration(text: str, now: datetime) -> tuple[datetime | None, str]
             return dt, reason  # pragma: no cover
         except ValueError:
             pass
-        # Year-having formats: try these first — no DeprecationWarning.
+        # Year-having formats: try these first - no DeprecationWarning.
         for fmt in ("%B %d %Y", "%b %d %Y"):
             try:
                 return datetime.strptime(date_str, fmt), reason
@@ -129,8 +129,8 @@ def parse_away_duration(text: str, now: datetime) -> tuple[datetime | None, str]
                 return dt, reason
             except ValueError:
                 continue
-        # Couldn't parse date — treat whole thing as reason
+        # Couldn't parse date - treat whole thing as reason
         return None, text
 
-    # No duration pattern matched — indefinite with the whole text as reason
+    # No duration pattern matched - indefinite with the whole text as reason
     return None, text

@@ -21,14 +21,14 @@ def sweep_aged_caught_up(group_id: int, slot: dict, now: datetime) -> bool:
     A per-thread "All caught up" notice is only deleted when that thread
     next has something to queue. In a quiet campaign that can be weeks,
     by which point the message is past Telegram's 48h wall and the delete
-    is unwinnable — the same defect as the queue post itself, on a path
+    is unwinnable - the same defect as the queue post itself, on a path
     nobody had looked at.
 
     Found 2026-08-16 by ``maintenance/audit_orphans.py``, which asks
     Telegram directly instead of trusting our own records. The offline
     detector could not see these: ``pin_audit`` only timestamps messages
     the bot *pinned*, and caught-up notices are never pinned. **15 of the
-    28 confirmed orphans were caught-up notices** — 169063, 169383,
+    28 confirmed orphans were caught-up notices** - 169063, 169383,
     170384 and 171632 among them.
 
     We delete rather than refresh. A refresh would repost "All caught up"
@@ -110,6 +110,6 @@ def _clear_thread_queue(group_id: int, thread_id: str, slot: dict,
     slot["caught_up_msg_id"] = new_caught_up
     # Stamped so sweep_aged_caught_up can remove it while it is still
     # removable. Without a timestamp the notice's age is unknowable and
-    # it silently becomes permanent — that is how 15 of them orphaned.
+    # it silently becomes permanent - that is how 15 of them orphaned.
     slot["caught_up_at"] = now.isoformat() if now else None
     print(f"Topic queue cleared: thread={thread_id}")

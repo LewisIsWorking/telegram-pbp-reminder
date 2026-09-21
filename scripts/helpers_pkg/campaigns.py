@@ -30,7 +30,7 @@ def try_get_name(config: dict, pid: str) -> str | None:
     """Get campaign name for a PID, or None if it can't be resolved.
 
     Use this at any state-write boundary where persisting the literal
-    string "Unknown" would poison data — callers should treat None as
+    string "Unknown" would poison data - callers should treat None as
     "skip the write" or fall back to a diagnosable sentinel (e.g. the
     topic_id) rather than baking "Unknown" into players.json.
     See potw.py:_potw_run and boons/handler.py:_resolve_campaign_name."""

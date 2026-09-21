@@ -12,7 +12,7 @@ of plain ``tg.send_message``: post_and_persist updates
 chat messages get deleted). That's what makes the previous GM
 queue go away when the caught-up message lands. Pre-2026-05-12
 this used ``tg.send_message`` directly, so the previous GM queue
-orphaned in chat \u2014 visible alongside the caught-up message and
+orphaned in chat - visible alongside the caught-up message and
 never auto-evicted.
 
 Pin=False on this path: the caught-up notification is
@@ -44,7 +44,7 @@ def post_caught_up(state: dict, group_id: int, bot_topic: int,
     ``oldest_line`` (from ``queue_silence.oldest_campaign_line``) names the
     single campaign that has gone longest without a post. A populated queue
     ends with the "Reply to this next" focus message, which is built from
-    unreplied entries — so an empty queue has nothing pointing anywhere. This
+    unreplied entries - so an empty queue has nothing pointing anywhere. This
     is the empty-queue equivalent: one clear next action instead of a list the
     GM has to scan and rank themselves.
     """

@@ -64,7 +64,7 @@ def build_momentum_map(state: dict, config: dict) -> dict:
 def build_header(queue_num: int, total: int, streak: str, summary: str) -> str:
     """Return the queue post's first block."""
     return (f"━━━━━━━━━━━━━━━━\n"
-            f"📋 GM Queue #{queue_num} — Unreplied: {total}{streak}\n"
+            f"📋 GM Queue #{queue_num} - Unreplied: {total}{streak}\n"
             f"{summary}\n{AGE_LEGEND}")
 
 

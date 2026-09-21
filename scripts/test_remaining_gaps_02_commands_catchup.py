@@ -1,14 +1,14 @@
-"""Tests extracted from test_remaining_gaps.py — bin 2.
+"""Tests extracted from test_remaining_gaps.py - bin 2.
 
 Sections in this file:
-  - commands/catchup.py:161 — acted_ids from list
-  - commands/dashboard.py:85 — active quests flag
-  - commands/markdone.py:80-84 — clear by msg_id branches
-  - commands/mechanics.py:80 — no HP tracked
-  - commands/profile.py:57-59 — last seen branches
-  - commands/queue_analytics.py:28 — skip empty entries
+  - commands/catchup.py:161 - acted_ids from list
+  - commands/dashboard.py:85 - active quests flag
+  - commands/markdone.py:80-84 - clear by msg_id branches
+  - commands/mechanics.py:80 - no HP tracked
+  - commands/profile.py:57-59 - last seen branches
+  - commands/queue_analytics.py:28 - skip empty entries
 """
-"""Final targeted tests for all remaining coverage gaps — 6% to close."""
+"""Final targeted tests for all remaining coverage gaps - 6% to close."""
 import sys, os, json, pytest
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -31,7 +31,7 @@ def _ctx(**kwargs):
     base["cmd_word"] = base["text"].split()[0] if base["text"] else base.get("cmd_word", "")
     return base
 
-# ─── commands/catchup.py:161 — acted_ids from list ──────────────────────────
+# ─── commands/catchup.py:161 - acted_ids from list ──────────────────────────
 
 def test_catchup_acted_as_list():
     from commands.catchup import build_catchup
@@ -55,7 +55,7 @@ def test_catchup_acted_as_list():
 
 
 
-# ─── commands/dashboard.py:85 — active quests flag ───────────────────────────
+# ─── commands/dashboard.py:85 - active quests flag ───────────────────────────
 
 def test_dashboard_quests_flag():
     from commands.dashboard import build_gm_dashboard
@@ -82,7 +82,7 @@ def test_dashboard_quests_flag():
 
 
 
-# ─── commands/markdone.py:80-84 — clear by msg_id branches ──────────────────
+# ─── commands/markdone.py:80-84 - clear by msg_id branches ──────────────────
 
 def test_markdone_clear_by_id_found(tmp_path, monkeypatch):
     from commands.markdone import handle_markdone
@@ -111,7 +111,7 @@ def test_markdone_clear_by_id_not_found(tmp_path, monkeypatch):
 
 
 
-# ─── commands/mechanics.py:80 — no HP tracked ───────────────────────────────
+# ─── commands/mechanics.py:80 - no HP tracked ───────────────────────────────
 
 def test_mechanics_no_hp():
     from commands.mechanics import build_hp_tracker
@@ -120,7 +120,7 @@ def test_mechanics_no_hp():
 
 
 
-# ─── commands/profile.py:57-59 — last seen branches ─────────────────────────
+# ─── commands/profile.py:57-59 - last seen branches ─────────────────────────
 
 def test_profile_last_seen_days():
     from commands.profile import build_profile
@@ -155,7 +155,7 @@ def test_profile_no_timestamps():
 
 
 
-# ─── commands/queue_analytics.py:28 — skip empty entries ────────────────────
+# ─── commands/queue_analytics.py:28 - skip empty entries ────────────────────
 
 def test_age_heatmap_skips_empty_entries():
     from commands.queue_analytics import age_heatmap

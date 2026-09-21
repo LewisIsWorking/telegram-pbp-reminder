@@ -1,10 +1,10 @@
-"""Tests for queue_format helpers — new 22-tier age icon scale."""
+"""Tests for queue_format helpers - new 22-tier age icon scale."""
 
 import pytest
 from commands.queue_format import entry_age_icon, age_str, short_preview
 
 
-# ── entry_age_icon — 22-tier scale ─────────────────────────────────────────────
+# ── entry_age_icon - 22-tier scale ─────────────────────────────────────────────
 
 @pytest.mark.parametrize("hours, expected", [
     # 🆕 < 1h

@@ -1,4 +1,4 @@
-"""Queue partition API — per-campaign queue files.
+"""Queue partition API - per-campaign queue files.
 
 Mixin extracted from ``state_store/store.py`` to keep that file under
 the 200-line cap while still grouping all queue-related methods in
@@ -6,11 +6,11 @@ one place. ``StateStore`` inherits from this class so callers can
 treat the queue API as just another method group.
 
 Slice 5 of P3/9. Adds:
-  * ``queue_path(pid)`` — the on-disk path for ``queues/{pid}.json``
-  * ``queue_exists(pid)`` — True iff that file is present
-  * ``load_queue(pid)`` — parsed dict or None on missing/corrupt
-  * ``save_queue(pid, data)`` — atomic write via tmp+rename
-  * ``list_queues()`` — PIDs for every queue file under ``queues/``
+  * ``queue_path(pid)`` - the on-disk path for ``queues/{pid}.json``
+  * ``queue_exists(pid)`` - True iff that file is present
+  * ``load_queue(pid)`` - parsed dict or None on missing/corrupt
+  * ``save_queue(pid, data)`` - atomic write via tmp+rename
+  * ``list_queues()`` - PIDs for every queue file under ``queues/``
 
 Why a separate API rather than re-using ``load_aux``/``save_aux``:
 the on-disk layout is different (subdirectory ``queues/`` rather
@@ -30,7 +30,7 @@ class QueueAPI:
     Expects ``self._state_dir`` to be set by the host class
     (``StateStore``). Tests can construct a ``StateStore`` with a
     ``state_dir`` override and exercise the queue methods on the
-    same instance — isolation flows through naturally.
+    same instance - isolation flows through naturally.
     """
 
     _state_dir: Path  # provided by StateStore.__init__
@@ -77,7 +77,7 @@ class QueueAPI:
         written ``queues/{pid}.json`` that the next process startup
         would mis-parse. Creates the ``queues/`` subdirectory if
         missing. Same semantics as ``save_aux`` and
-        ``save_partition`` — indented JSON for human-readable git
+        ``save_partition`` - indented JSON for human-readable git
         diffs, ``default=str`` so callers don't have to convert
         datetime values manually.
 

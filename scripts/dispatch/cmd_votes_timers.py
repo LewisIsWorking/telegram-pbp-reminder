@@ -95,12 +95,12 @@ def handle(ctx: dict) -> bool:
             total = sum(len(v) for v in results.values())
             winners = [vote["options"][int(k) - 1] for k, v in results.items() if len(v) == best_count]
 
-            lines = [f"🗳️ Vote closed — {vote['question']}", ""]
+            lines = [f"🗳️ Vote closed - {vote['question']}", ""]
             for i, option in enumerate(vote["options"], 1):
                 voters = results.get(str(i), [])
                 count = len(voters)
                 marker = " 👑" if count == best_count and count > 0 else ""
-                voter_names = ", ".join(voters) if voters else "—"
+                voter_names = ", ".join(voters) if voters else "-"
                 lines.append(f"  {i}. {option}: {count} ({voter_names}){marker}")
             lines.append("")
             if len(winners) == 1:

@@ -14,10 +14,10 @@ as ``scheduled/schedule_post``.
 That means it owns a bot-sent message id, and there are exactly two places
 a new id has to be registered or it silently breaks:
 
-* ``state.PARTITIONS`` — a key absent there is discarded on every save, so
+* ``state.PARTITIONS`` - a key absent there is discarded on every save, so
   the id never survives to the next run and the post can never delete its
   predecessor. This is what duplicated the schedule post for two days.
-* ``posting/bot_sent_state_scan`` — the registry rebuilds from state each
+* ``posting/bot_sent_state_scan`` - the registry rebuilds from state each
   run (fresh checkout every time), and ``perform_guarded_delete`` refuses
   any id it does not know.
 
@@ -29,7 +29,7 @@ Selection rule
 Largest shortfall against the campaign's own target wins. Ties break on the
 lower fill ratio, so a 1-of-2 campaign outranks a 5-of-6 with the same gap
 of one. Campaigns with ``recruitment`` in ``disabled_features`` are never
-picked — C08 Theria is currently in that state and would otherwise win on
+picked - C08 Theria is currently in that state and would otherwise win on
 shortfall every single day.
 """
 
@@ -88,7 +88,7 @@ def recruit_tier(pair: dict, config: dict) -> int | None:
 
     The precedence matters. Reading the disabled flag first would make an
     explicit tier unreachable, which is exactly the config C10 and C08 are
-    in — both were hard-excluded on 2026-08-15 and are now tiered instead.
+    in - both were hard-excluded on 2026-08-15 and are now tiered instead.
     """
     if "recruit_tier" in pair:
         return pair["recruit_tier"]
@@ -140,7 +140,7 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
     ⭐ Returns the CAMPAIGN as well as the words (changed 2026-08-17, when
     the post moved from the GM queue into the campaign's own chat topic).
     A bare string names its campaign only in prose, so the caller had to
-    find the destination some other way — and the only way available is to
+    find the destination some other way - and the only way available is to
     run ``pick_recruit_pair`` a second time, deriving the same answer twice
     and trusting the two to agree. The message and its destination are one
     decision, so they are one return value.
@@ -159,14 +159,14 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
 
     seats = "seat" if missing == 1 else "seats"
     # Counted within the eligible tier only. Counting every short campaign
-    # would advertise a number the GM cannot act on — the lower tiers are
+    # would advertise a number the GM cannot act on - the lower tiers are
     # full, and anything in a higher tier is not open for recruiting yet.
     eligible = _eligible_pairs(config, state)
     tier = recruit_tier(pair, config)
 
     # ⭐ Written for PLAYERS, not the GM (reworded 2026-08-17, when the post
     # moved into each campaign's own chat topic). The old copy opened
-    # "Recruit for this next" — an instruction addressed to Lewis, perfectly
+    # "Recruit for this next" - an instruction addressed to Lewis, perfectly
     # clear in the GM queue and addressed to nobody in a room full of
     # players. Same facts, turned to face the people who can actually act
     # on them by inviting someone.
@@ -180,8 +180,8 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
         lines.append(roster_line)
     if tier:
         # Tiers are internal scheduling. A player needs neither the word
-        # "tier" nor the number — only that it is open now.
-        lines.append("📌 Now open for new players — the campaigns ahead of "
+        # "tier" nor the number - only that it is open now.
+        lines.append("📌 Now open for new players - the campaigns ahead of "
                      "it are full.")
     if len(eligible) > 1:
         lines.append(f"↗ Know someone? This is the biggest gap of "

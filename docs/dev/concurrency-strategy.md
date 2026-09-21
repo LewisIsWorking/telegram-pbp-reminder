@@ -1,4 +1,4 @@
-## Concurrency strategy — design doc for ROADMAP P3/10
+## Concurrency strategy - design doc for ROADMAP P3/10
 
 Status: **draft for review**. Implementation has not started.
 
@@ -32,7 +32,7 @@ it can fail:
 **F1. Two processes outside CI.** A maintenance script and the bot
 running on different machines (e.g. Lewis runs `purge_gm_queue_history.py`
 locally while the hourly cron fires on GitHub) both read+write the
-same state files. The CI concurrency group doesn't help — only one
+same state files. The CI concurrency group doesn't help - only one
 side of the race is in CI.
 
 **F2. The CI guarantee is weaker than it looks.** GitHub Actions
@@ -40,7 +40,7 @@ queues runs by start time, but:
 
 * A `workflow_dispatch` triggered while a scheduled run is *still
   pushing its state-commit* enters the queue *after* the scheduled
-  run technically "finished" — but before the push has propagated.
+  run technically "finished" - but before the push has propagated.
   The new run reads a stale `main`, computes diffs from it, and
   pushes a state commit that effectively rewinds the previous run's
   changes. Recovery requires `git pull --rebase`, which the
@@ -65,7 +65,7 @@ Three real events worth recording:
 1. **State auto-commit conflicts.** During the 200-line refactor, my
    pushes regularly raced the bot's hourly state auto-commits.
    Resolution was always `git pull --rebase` and re-push. Annoying,
-   not dangerous — git's rebase semantics correctly identified the
+   not dangerous - git's rebase semantics correctly identified the
    non-conflicting changes in each.
 
 2. **The 2026-05-08 deletion incident.** Not strictly concurrency,
@@ -87,7 +87,7 @@ Three real events worth recording:
 
 ### Three options
 
-**Option A — Lockfile per partition.**
+**Option A - Lockfile per partition.**
 
 Each partition file (`live.json`, `players.json`, `queues/{pid}.json`,
 `bot_sent_ids.json`, etc.) gets a sibling `.lock` file. Acquire the
@@ -106,7 +106,7 @@ data/state/live.json.lock        # OS-level advisory lock
   does). Defends against F3 (in-process) trivially. Works regardless
   of whether the writer is in CI or not.
 
-* **Cons:** Doesn't help F2 — git pushes are not lock-aware. A run
+* **Cons:** Doesn't help F2 - git pushes are not lock-aware. A run
   that holds the lock locally is invisible to another machine that
   cloned the repo. So this option fixes within-machine races but not
   the actual incident shape (machine A pushes, machine B's clone is
@@ -115,7 +115,7 @@ data/state/live.json.lock        # OS-level advisory lock
 * **Effort:** Small. Slice 8 of `StateStore` adds the locking
   primitive. Each partition's read/write goes through it.
 
-**Option B — Git-as-source-of-truth with optimistic concurrency.**
+**Option B - Git-as-source-of-truth with optimistic concurrency.**
 
 Treat the working-tree state files as a *cache* and the `main` branch
 as the canonical state. Every save:
@@ -127,22 +127,22 @@ as the canonical state. Every save:
    the diff, retry. Up to N retries before bailing.
 
 * **Pros:** Solves F1 and F2 directly. Multiple machines, multiple
-  CI runs, manual scripts — all cooperate via git's existing
+  CI runs, manual scripts - all cooperate via git's existing
   optimistic-concurrency model. No new lock files, no new failure
   modes. Git already handles "merge non-conflicting changes" cleanly.
 
-* **Cons:** State writes now require network I/O on every save —
+* **Cons:** State writes now require network I/O on every save -
   ~2-5 seconds added to every bot run. CI has a single state commit
   at end-of-run anyway, so the *net* cost is small there, but
   ad-hoc scripts (`purge_gm_queue_history.py`, dev iteration) get
   visibly slower. Also, "pull-rebase, re-apply diff" is non-trivial
-  for nested-dict changes — a clean diff/patch model on JSON
+  for nested-dict changes - a clean diff/patch model on JSON
   (RFC 6902 patches?) would help.
 
 * **Effort:** Medium. The pull-rebase is a one-liner; the re-apply
   logic isn't.
 
-**Option C — Telegram pinned-message as canonical state.**
+**Option C - Telegram pinned-message as canonical state.**
 
 The bot already pins per-thread queue messages. Extend the pattern:
 the bot also pins a JSON-serialised state blob in the bot topic.
@@ -159,7 +159,7 @@ Files in `data/state/` become a local cache.
 * **Cons:** Telegram message size cap is 4096 chars; current
   combined state is ~20 KB JSON. Would need either compression
   (gzip + base64 ≈ 4× expansion, no) or sharding (one pinned message
-  per partition, ~5 pins, each <4 KB after stripping whitespace —
+  per partition, ~5 pins, each <4 KB after stripping whitespace -
   feasible but ugly). Also: the bot becomes dependent on Telegram
   for read availability, which inverts the current model where state
   is repo-local.
@@ -170,7 +170,7 @@ Files in `data/state/` become a local cache.
 
 ### Recommendation
 
-**[STATUS — 2026-05-10]** Slice 8 of P3/9 shipped with `threading.
+**[STATUS - 2026-05-10]** Slice 8 of P3/9 shipped with `threading.
 Lock` rather than `filelock`. The recommendation below is what was
 originally proposed; the section that follows it ("What slice 8
 actually landed") is what's actually in production. Both are kept
@@ -181,19 +181,19 @@ as a follow-up if F2 actually bites.**
 
 The reasoning:
 
-* F3 (in-process) needs Option A regardless — locking primitives in
+* F3 (in-process) needs Option A regardless - locking primitives in
   `StateStore` are good for their own sake (concurrent saves within
   one run, or across threads if we ever go async).
 * F1 (different machines, shared FS) is rare in practice. Lewis's
   laptop and CI don't share a FS. The only "two machines" scenario
-  is two GitHub Actions runners — and the `concurrency: pbp-checker`
+  is two GitHub Actions runners - and the `concurrency: pbp-checker`
   group prevents that today.
 * F2 (CI guarantee weakness) is the real risk, but it's also the
   rarest. The bot writes state ~3 KB/run. The window for racing
   state commits is the few seconds between `_save_to_files` finish
   and `git push` returning. Fixed by Option B (`pull --rebase`
   before push), but Option B's overall cost is high.
-* The deletion incident shape was *not* a race — it was a single
+* The deletion incident shape was *not* a race - it was a single
   process doing the wrong thing. The safeguard already fixed that
   class.
 
@@ -230,21 +230,21 @@ risk reduction today.
 
 **What it covers:**
 
-* F3 (in-process concurrency) — fully. If/when threading or async
+* F3 (in-process concurrency) - fully. If/when threading or async
   arrives, the serialisation primitive is in place.
-* Foundation for slice 10 (read-modify-write API) — the locks are
+* Foundation for slice 10 (read-modify-write API) - the locks are
   the right shape for a future RMW context manager.
 
 **What it does NOT cover:**
 
-* F1 (different machines, shared FS) — in-process locks are
+* F1 (different machines, shared FS) - in-process locks are
   invisible across processes. Would need `filelock` or `fcntl.flock`
   to address. Deferred because F1 doesn't apply to this deployment
   (GitHub Actions VMs are isolated, no shared FS scenario).
-* F2 (CI commit-window race) — neither in-process nor file locks
+* F2 (CI commit-window race) - neither in-process nor file locks
   help. Option B (`pull --rebase` before push) would; still treated
   as a known limitation per the original recommendation.
-* Read-modify-write atomicity — a reader holding stale data can
+* Read-modify-write atomicity - a reader holding stale data can
   still overwrite a concurrent writer's update. Deferred to slice
   10 (P3/10).
 
@@ -253,7 +253,7 @@ risk reduction today.
 1. Add `filelock` package to `requirements.txt` (~30 sec install,
    pure Python, no native deps).
 2. Wrap each `with self._locks.held(...)` in a parallel `with
-   FileLock(path.with_suffix('.json.lock'))`. Defence in depth —
+   FileLock(path.with_suffix('.json.lock'))`. Defence in depth -
    the existing in-process lock stays for F3 protection in the
    same process, the file lock adds cross-process protection.
 3. Add `*.lock` to `.gitignore`.
@@ -274,5 +274,5 @@ Effort estimate: ~45-60 min if needed.
    wrapper (~30 lines, more code to maintain)?
 3. **Implementation timing.** Land in `StateStore` slice 8 (after
    the read/write paths are unified) or as a separate effort
-   alongside? I lean slice 8 — keeps the locking and the I/O in
+   alongside? I lean slice 8 - keeps the locking and the I/O in
    one place, in one PR, easier to review.

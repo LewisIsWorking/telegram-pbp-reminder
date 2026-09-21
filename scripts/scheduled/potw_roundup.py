@@ -54,11 +54,11 @@ def build_roundup_text(awarded: list[dict], now: datetime,
     be tested against a history fixture on their own.
     """
     ranked = sorted(awarded, key=lambda a: a["winner"]["avg_gap_hours"])
-    lines = [f"🏆 Players of the Week — {potw_schedule.week_key(now)}", ""]
+    lines = [f"🏆 Players of the Week - {potw_schedule.week_key(now)}", ""]
     for item in ranked:
         w = item["winner"]
         lines.append(
-            f"{item['campaign']}: {helpers.player_mention(w)} — "
+            f"{item['campaign']}: {helpers.player_mention(w)} - "
             f"{helpers.posts_str(w['post_count'])}, "
             f"avg gap {w['avg_gap_hours']:.1f}h"
             f"{streak_note((streaks or {}).get(item['pid'], 0))}"

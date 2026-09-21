@@ -98,7 +98,7 @@ def tg_importing_modules() -> list[str]:
 def tg_mock():
     """Yield a ``MagicMock`` standing in for telegram in EVERY module.
 
-    History — this fixture used to hand-list its patch targets, and
+    History - this fixture used to hand-list its patch targets, and
     drifted badly: it named 8 modules while 56 import ``telegram as tg``.
     Any test using it against one of the other 48 asserted on a mock the
     code never touched, so ``assert not tg_mock.send_message.called``
@@ -109,8 +109,8 @@ def tg_mock():
     Rather than patch 56 module attributes (correct, but it tripled suite
     runtime), this swaps the callables on the **shared telegram module
     object**. Every module does ``import telegram as tg``, and nothing
-    anywhere does ``from telegram import <name>`` — verified by the guard
-    test — so they all hold a reference to that one object. Swapping its
+    anywhere does ``from telegram import <name>`` - verified by the guard
+    test - so they all hold a reference to that one object. Swapping its
     attributes therefore reaches all of them at once, covers modules
     added in future with no registration step, and is O(1).
     """

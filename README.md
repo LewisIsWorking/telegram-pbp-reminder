@@ -105,7 +105,7 @@ Every file held to a strict 200-line maximum.
 2. Add the bot to your supergroup (forum topics enabled).
 3. Fork this repo, add secrets (`TELEGRAM_BOT_TOKEN`, `GIST_TOKEN`, `GIST_ID`).
 4. Edit `config.json` with your group ID and topic IDs.
-5. Push — the bot starts running on the next hourly cron.
+5. Push - the bot starts running on the next hourly cron.
 
 See [Setup Guide](docs/setup.md) for detailed instructions.
 

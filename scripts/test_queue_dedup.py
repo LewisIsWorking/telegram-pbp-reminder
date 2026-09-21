@@ -33,7 +33,7 @@ class TestMarkRepliedReturnBool:
         monkeypatch.setattr(queue_io, "_QUEUES_DIR", tmp_path)
         log_entry = {"msg_id": "42", "via": "reply"}
         queue_io.mark_replied("100", "msg:42", None, log_entry)
-        # Second call with same mid_key — must dedup.
+        # Second call with same mid_key - must dedup.
         result = queue_io.mark_replied("100", "msg:42", None,
                                        {"msg_id": "42", "via": "reply",
                                         "extra": "would-be-dup"})
@@ -99,7 +99,7 @@ class TestRecordReplyDefensiveDedup:
         assert len(state["queue_archive"]) == 2
 
     def test_no_msg_id_skips_dedup_check(self):
-        """Old call sites without msg_id behave as before — always append."""
+        """Old call sites without msg_id behave as before - always append."""
         from commands.queue_stats import record_reply
         state = {}
         for _ in range(3):

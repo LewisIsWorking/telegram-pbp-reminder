@@ -1,4 +1,4 @@
-"""Tests extracted from test_branch_gaps.py — bin 14.
+"""Tests extracted from test_branch_gaps.py - bin 14.
 
 Sections in this file:
   - boons/hero_point.py
@@ -158,7 +158,7 @@ def test_process_hero_campaign_callback_no_pending():
 def test_pending_hero_points_survives_state_round_trip(tmp_path):
     """Regression: the picker writes pending_hero_points; it MUST persist.
 
-    The bot runs on an hourly cron — the button is created on one run and
+    The bot runs on an hourly cron - the button is created on one run and
     tapped (handled) on a later run, so the pending entry has to survive a
     save/load cycle. Before pending_hero_points was added to the queue
     partition, save() silently dropped it and every Hero Point button was
@@ -180,7 +180,7 @@ def test_pending_hero_points_survives_state_round_trip(tmp_path):
         reloaded = state_mod._load_from_files()
 
     assert reloaded.get("pending_hero_points", {}).get("U1"), \
-        "pending_hero_points was dropped on save — button would be a no-op"
+        "pending_hero_points was dropped on save - button would be a no-op"
 
     # And the reloaded pending entry actually lets the callback fire.
     cb = {"data": "herocampaign:U1:100", "from": {"id": "U1"},

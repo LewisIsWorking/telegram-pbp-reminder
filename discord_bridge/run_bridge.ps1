@@ -5,7 +5,7 @@
 # NOTE: discord.py writes its INFO logs (e.g. "logging in using static token")
 # to STDERR, not stdout. Under `$ErrorActionPreference = 'Stop'` PowerShell
 # promotes any native-process stderr output to a *terminating* NativeCommandError
-# — so the launcher used to abort (killing the bridge) the instant the bridge
+# - so the launcher used to abort (killing the bridge) the instant the bridge
 # logged its first healthy startup line. Keep Stop for the setup below, but run
 # the bridge itself under 'Continue' and disable native-command error promotion
 # so stderr logging is captured, not fatal.

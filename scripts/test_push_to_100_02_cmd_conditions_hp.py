@@ -1,4 +1,4 @@
-"""Tests extracted from test_push_to_100.py — bin 2.
+"""Tests extracted from test_push_to_100.py - bin 2.
 
 Sections in this file:
   - cmd_conditions_hp.py

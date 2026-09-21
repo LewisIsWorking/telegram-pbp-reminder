@@ -13,7 +13,7 @@ recorded as deleted is still in the group.
 Why this exists. On 2026-08-16 Lewis found an ``Unreplied: 2`` post from
 2026-08-03 still sitting in the C06 topic. The bot's audit trail said it
 had deleted that message on 2026-08-06. Nothing in the repo disagreed,
-because every artefact in the repo was derived from the same belief —
+because every artefact in the repo was derived from the same belief -
 the state file, the audit log and the tests all agreed with each other
 and all of them were wrong.
 
@@ -22,7 +22,7 @@ offline detector (``test_no_delete_attempted_past_the_wall.py``) catches
 the one mechanism we now understand: a delete attempted past Telegram's
 48-hour wall. This tool catches the mechanisms we do not understand yet,
 because it asks the only authority that cannot be wrong about whether a
-message exists — Telegram.
+message exists - Telegram.
 
 Run it after any change to the delete/pin lifecycle, and periodically.
 
@@ -70,7 +70,7 @@ _PAUSE = 0.35
 def claimed_deleted(rows, since: str | None) -> list[tuple[int, str]]:
     """Return (message_id, timestamp) for every delete the bot called a success.
 
-    Deduplicated on message_id, keeping the most recent claim — an ID may
+    Deduplicated on message_id, keeping the most recent claim - an ID may
     be attempted more than once, and the last word is the one the bot is
     currently standing behind.
     """
@@ -155,7 +155,7 @@ def main() -> int:
         # Never let a skipped check read as a pass. See
         # a-failure-must-say-whose-fault-it-is.
         print(f"⚠️  {unknown} could not be checked (network / rate limit). "
-              f"This run did NOT cover them — re-run to close the gap.")
+              f"This run did NOT cover them - re-run to close the gap.")
     if foreign:
         print(f"\n🚨 {len(foreign)} of these were NOT sent by the bot. A "
               f"delete was attempted against someone else's message; find "
@@ -165,9 +165,9 @@ def main() -> int:
     if survivors:
         print("\nThese messages are still in the group and the bot believes "
               "they are gone. It cannot remove them itself once they are "
-              "past 48h — delete them by hand:")
+              "past 48h - delete them by hand:")
         for mid, _, facts in survivors:
-            print(f"  https://t.me/Path_Wars/{mid} — "
+            print(f"  https://t.me/Path_Wars/{mid} - "
                   f"{facts.get('preview') or '(no text recorded)'}")
         return 1
     return 0

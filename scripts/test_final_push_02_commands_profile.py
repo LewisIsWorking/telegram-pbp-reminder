@@ -1,17 +1,17 @@
-"""Tests extracted from test_final_push.py — bin 2.
+"""Tests extracted from test_final_push.py - bin 2.
 
 Sections in this file:
-  - commands/profile.py:57-59 — days ago and unknown
-  - dispatch/router.py:181-182 — exception isolation
-  - dispatch/tracking.py:175-182 — warned comeback
-  - dispatch/cmd_player.py:118-119 — chooseboon executes
-  - helpers/dc_lookup.py:110-112 — adjustment
-  - helpers/mechanics.py:124 — red icon
-  - helpers/time_utils.py:110 — until date parse
-  - helpers/dice.py:80 — non-kept die stringified
+  - commands/profile.py:57-59 - days ago and unknown
+  - dispatch/router.py:181-182 - exception isolation
+  - dispatch/tracking.py:175-182 - warned comeback
+  - dispatch/cmd_player.py:118-119 - chooseboon executes
+  - helpers/dc_lookup.py:110-112 - adjustment
+  - helpers/mechanics.py:124 - red icon
+  - helpers/time_utils.py:110 - until date parse
+  - helpers/dice.py:80 - non-kept die stringified
 """
 """
-Definitive final coverage push — verified to actually hit each line.
+Definitive final coverage push - verified to actually hit each line.
 Uses real function calls with minimal/no mocking where possible.
 """
 import sys, os, json, pytest
@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 
 
-# ── commands/profile.py:57-59 — days ago and unknown ────────────────────────
+# ── commands/profile.py:57-59 - days ago and unknown ────────────────────────
 def test_profile_days_ago_real():
     from commands.profile import build_profile
     two_days_ago = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
@@ -71,7 +71,7 @@ def test_profile_unknown_real():
 
 
 
-# ── dispatch/router.py:181-182 — exception isolation ────────────────────────
+# ── dispatch/router.py:181-182 - exception isolation ────────────────────────
 def test_router_exception_real():
     from dispatch.router import process_updates
     maps = MagicMock()
@@ -86,7 +86,7 @@ def test_router_exception_real():
 
 
 
-# ── dispatch/tracking.py:175-182 — warned comeback ──────────────────────────
+# ── dispatch/tracking.py:175-182 - warned comeback ──────────────────────────
 def test_tracking_warned_comeback_real():
     from dispatch.tracking import track_message
     now = datetime.now(timezone.utc)
@@ -116,7 +116,7 @@ def test_tracking_warned_comeback_real():
 
 
 
-# ── dispatch/cmd_player.py:118-119 — chooseboon executes ────────────────────
+# ── dispatch/cmd_player.py:118-119 - chooseboon executes ────────────────────
 def test_cmd_player_chooseboon_path():
     from boons.handler import choose_boon_by_text
     state = {
@@ -133,7 +133,7 @@ def test_cmd_player_chooseboon_path():
 
 
 
-# ── helpers/dc_lookup.py:110-112 — adjustment ───────────────────────────────
+# ── helpers/dc_lookup.py:110-112 - adjustment ───────────────────────────────
 def test_dc_lookup_real():
     from helpers_pkg.dc_lookup import dc_lookup, _DC_ADJUSTMENTS
     for key in _DC_ADJUSTMENTS:
@@ -143,14 +143,14 @@ def test_dc_lookup_real():
 
 
 
-# ── helpers/mechanics.py:124 — red icon ────────────────────────────────────
+# ── helpers/mechanics.py:124 - red icon ────────────────────────────────────
 def test_hp_icon_red_real():
     from helpers_pkg.mechanics import hp_status_icon
     assert hp_status_icon(2, 10) == "🔴"  # 20% ≤ 25%
 
 
 
-# ── helpers/time_utils.py:110 — until date parse ────────────────────────────
+# ── helpers/time_utils.py:110 - until date parse ────────────────────────────
 def test_parse_until_real():
     from helpers_pkg.time_utils import parse_away_duration
     now = datetime(2026, 4, 3, 12, 0, 0)  # naive
@@ -159,7 +159,7 @@ def test_parse_until_real():
 
 
 
-# ── helpers/dice.py:80 — non-kept die stringified ───────────────────────────
+# ── helpers/dice.py:80 - non-kept die stringified ───────────────────────────
 def test_dice_real():
     from helpers_pkg.dice import roll_dice
     result = roll_dice("4d6kh3")

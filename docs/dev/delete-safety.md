@@ -1,4 +1,4 @@
-# Delete safety — how the bot is prevented from deleting non-bot messages
+# Delete safety - how the bot is prevented from deleting non-bot messages
 
 This document is the single reference for the deletion safeguard added
 after the **2026-05-08 incident**, in which the bot deleted around 200
@@ -10,7 +10,7 @@ Telegram message, read this first.
 
 ---
 
-## The incident — cautionary tale
+## The incident - cautionary tale
 
 A maintenance script (`scripts/maintenance/purge_gm_queue_history.py`)
 was written to clean up orphaned bot pin messages by sweeping a range
@@ -27,16 +27,16 @@ for mid in range(START, END + 1):
 ```
 
 The accompanying comment claimed *"Bot can only delete its own
-messages — others silently fail"*. That comment was wrong. **A bot
+messages - others silently fail"*. That comment was wrong. **A bot
 with admin + delete permissions in a group can delete any message in
 that group**, regardless of who posted it. There is no Telegram-side
 flag or default that limits a bot to its own messages.
 
 When the script ran with `START=151518, END=151741` (224 IDs), the
-Telegram API obediently deleted everything in that range — the bot's
+Telegram API obediently deleted everything in that range - the bot's
 old pins, but also Tal'lysae's posts, Ji Yun's fulu request, Ryo
 Yamakawa's questions, and the GM's replies. ~200 player and GM
-messages, gone, in a single 11-second sweep. There is no recovery —
+messages, gone, in a single 11-second sweep. There is no recovery -
 Telegram does not retain deleted message content.
 
 The bot itself was working correctly throughout. The hourly scheduled
@@ -79,18 +79,18 @@ Caller                     telegram.delete_message
 Three production files compose the safeguard, all in
 `scripts/posting/`:
 
-* **`bot_sent_registry.py`** — owns the registry. Public API is
+* **`bot_sent_registry.py`** - owns the registry. Public API is
   `record_sent(mid)`, `is_bot_sent(mid)`, and `record_many(ids)`.
   Persists to `data/state/bot_sent_ids.json` (sorted JSON list of
   ints, append-only). On first read in a fresh process, calls
   `_backfill_locked` to seed the registry from `live.json` and
   `queues/*.json` (so the bot doesn't refuse to delete its own
   pre-registry pins).
-* **`bot_sent_state_scan.py`** — pure helpers that pull bot-sent IDs
+* **`bot_sent_state_scan.py`** - pure helpers that pull bot-sent IDs
   out of the various state-file shapes (`gm_queue_history`,
   `topic_queues[*].msg_ids`, `caught_up_msg_id`, etc.). New state
   fields that store bot-sent IDs need to be picked up here.
-* **`safe_delete.py`** — the guards. `perform_guarded_delete(chat_id,
+* **`safe_delete.py`** - the guards. `perform_guarded_delete(chat_id,
   message_id, post_fn)` is the one place in the codebase that may
   pass `"deleteMessage"` as a method name, and `perform_guarded_unpin`
   is the one place that may pass `"unpinChatMessage"`. Each checks the
@@ -109,7 +109,7 @@ work.
 
 The rule "the bot may only act on messages it sent" is not delete-only.
 A bot with admin rights can **unpin any message in the group**, not just
-its own — Telegram has no "own-messages-only" flag for `unpinChatMessage`
+its own - Telegram has no "own-messages-only" flag for `unpinChatMessage`
 any more than it does for `deleteMessage`. A stale or crossed
 `message_id` reaching the unpin call silently clears a GM's or player's
 *manual* pin.
@@ -118,7 +118,7 @@ So `unpin_message` routes through `perform_guarded_unpin`, which applies
 the identical `is_bot_sent` check before calling `unpinChatMessage`. The
 callers only ever pass IDs the bot pinned itself (`poll_message_id`,
 `last_queue_pin_id`, a batch/slot `pin_id`), and those IDs are recorded
-at send time — so legitimate unpins pass, and only a non-bot ID is
+at send time - so legitimate unpins pass, and only a non-bot ID is
 refused. If you add a new place that unpins, do **not** reach for
 `unpinAllChatMessages`/`unpinAllForumTopicMessages` (they clear pins the
 bot never created); unpin a specific bot-sent ID through `unpin_message`.
@@ -160,7 +160,7 @@ def send_my_new_thing(chat_id, ...):
     return mid
 ```
 
-The lazy import inside the function is intentional — it avoids
+The lazy import inside the function is intentional - it avoids
 circular imports between `telegram.py` and `posting/`.
 
 ### Adding a new state field that stores a bot-sent ID
@@ -169,7 +169,7 @@ If you add a new state field in `live.json` or `queues/{pid}.json`
 that holds a bot-sent message ID, **also add it to**
 `scripts/posting/bot_sent_state_scan.py` so the next process startup
 picks it up via backfill. Without that, a process restart followed by
-a delete attempt for the new field would refuse and log a refusal —
+a delete attempt for the new field would refuse and log a refusal -
 which is the correct fail-safe but probably not what you wanted.
 
 ### Maintenance scripts that delete messages
@@ -203,7 +203,7 @@ record_sent(154321)  # known bot-sent ID
 ```
 
 Now `tg.delete_message(chat_id, 154321)` will go through. Use this
-sparingly and with intent — every manual `record_sent` is a place
+sparingly and with intent - every manual `record_sent` is a place
 where the registry might disagree with reality.
 
 ---
@@ -218,7 +218,7 @@ and asserts:
    `tg.delete_message` (the right answer) or editing the allow-list
    with a justification (forces review).
 2. **No file constructs an `api.telegram.org/.../deleteMessage`
-   URL** — the exact pattern the original purge script used to
+   URL** - the exact pattern the original purge script used to
    bypass the guard.
 3. **Only `posting/safe_delete.py` may call any function with
    `"deleteMessage"` as the first positional argument.** Catches
@@ -241,7 +241,7 @@ missing/corrupt state files.
 
 ## Soft-success semantics in `_post` (added 2026-05-10)
 
-The layer below `safe_delete` — `telegram._post` — distinguishes
+The layer below `safe_delete` - `telegram._post` - distinguishes
 *hard failures* (network errors, rate-limit-after-retry,
 unrecognised error bodies; returns `None`) from *soft successes*
 (Telegram says the desired end state is already achieved, e.g.
@@ -264,7 +264,7 @@ box tests in `scripts/test_telegram_03_suppress.py` lock the
 behaviour and guard against regression.
 
 Why this matters for the incident: the original purge script
-wouldn't have benefited from soft-success semantics — it bypassed
+wouldn't have benefited from soft-success semantics - it bypassed
 `safe_delete` entirely by POSTing to the API directly. The
 safeguard's first principle ("the registry gates every delete")
 is what prevents a recurrence; the soft-success refinement is a
@@ -276,15 +276,15 @@ as "delete failed."
 
 ## Related
 
-* `scripts/posting/bot_sent_registry.py` — the registry module
-* `scripts/posting/safe_delete.py` — the guard module (also hosts
+* `scripts/posting/bot_sent_registry.py` - the registry module
+* `scripts/posting/safe_delete.py` - the guard module (also hosts
   `perform_pin`, the audited pin path)
-* `scripts/posting/bot_sent_state_scan.py` — backfill helpers
-* `scripts/posting/pin_audit.py` — forensic trail of every pin/unpin
+* `scripts/posting/bot_sent_state_scan.py` - backfill helpers
+* `scripts/posting/pin_audit.py` - forensic trail of every pin/unpin
   the bot performs (`data/state/pin_audit_log.json`); complements the
   refusal log by also recording *successful* actions and their call site
-* `scripts/maintenance/purge_gm_queue_history.py` — reference
+* `scripts/maintenance/purge_gm_queue_history.py` - reference
   template for safe maintenance scripts that delete
-* `docs/dev/ROADMAP.md` — entries P1/3, P1/4, P1/5 track the
+* `docs/dev/ROADMAP.md` - entries P1/3, P1/4, P1/5 track the
   safeguard rollout
-* `docs/dev/REFACTOR_PROGRESS.md` — post-incident addendum at end
+* `docs/dev/REFACTOR_PROGRESS.md` - post-incident addendum at end

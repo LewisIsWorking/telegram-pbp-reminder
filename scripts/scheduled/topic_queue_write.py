@@ -36,13 +36,13 @@ def _post_thread_queue(group_id: int, thread_id: str,
     """
     fingerprint = build_topic_fingerprint(entries)
     # Retry deleting anything a previous run failed to remove, every run,
-    # before deciding whether to skip — so lingering orphans get swept
+    # before deciding whether to skip - so lingering orphans get swept
     # even when the queue content hasn't changed. See L28.
     retry_pending_deletes(slot, group_id)
     existing = SinglePin.read_batch(slot)
     unchanged = fingerprint == slot.get("fingerprint", "")
     if unchanged and not existing.is_empty and not batch_is_stale(slot, now):
-        return  # No change and still young enough to delete later — skip
+        return  # No change and still young enough to delete later - skip
 
     chunks = format_topic_queue(entries, now)
 
@@ -92,7 +92,7 @@ def _post_thread_queue(group_id: int, thread_id: str,
 
     # Delete the previous batch so the topic only ever shows the freshest
     # queue, unpinning the bot's own pin first. A failed delete is parked in
-    # pending_delete and retried on the next run rather than being abandoned —
+    # pending_delete and retried on the next run rather than being abandoned -
     # that abandonment was the 2026-05-28 C01 orphan (see L28).
     #
     # When the slot has no tracked IDs there is nothing of *ours* to unpin, so
@@ -109,7 +109,7 @@ def _post_thread_queue(group_id: int, thread_id: str,
             print(f"Topic queue prev-delete queued for retry: "
                   f"thread={thread_id} undeleted={failed}")
 
-    # An age-only refresh must not ping the players — the content they
+    # An age-only refresh must not ping the players - the content they
     # already saw has not changed, and a silent repost is the price of
     # keeping the message deletable. A real content change notifies as
     # it always did.

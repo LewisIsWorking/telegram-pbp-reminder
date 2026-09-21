@@ -100,17 +100,18 @@ def handle(ctx: dict) -> bool:
         raw_args = parsed["raw_text"][4:].strip()
         if not raw_args:
             tg.send_message(group_id, thread_id,  # pragma: no cover
-                            "Usage: /npc <name> — <description>\n"
-                            "e.g. /npc Gorund — Dwarven blacksmith, owes party a favour")
+                            "Usage: /npc <name> - <description>\n"
+                            "e.g. /npc Gorund - Dwarven blacksmith, owes party a favour")
         else:
             npcs = state.setdefault("npcs", {}).setdefault(pid, [])
             if len(npcs) >= _MAX_NPCS_PER_CAMPAIGN:
                 tg.send_message(group_id, thread_id,  # pragma: no cover
                                 f"Maximum {_MAX_NPCS_PER_CAMPAIGN} NPCs. Use /delnpc <N> to remove.")
             else:
-                # Split on em-dash or double-hyphen
-                if " — " in raw_args:
-                    name, desc = raw_args.split(" — ", 1)
+                # Split on an em dash (phones make one from "--"; escaped because
+                # the repo holds no em dash characters), a double hyphen or " - ".
+                if " \u2014 " in raw_args:
+                    name, desc = raw_args.split(" \u2014 ", 1)
                 elif " -- " in raw_args:
                     name, desc = raw_args.split(" -- ", 1)  # pragma: no cover
                 elif " - " in raw_args:

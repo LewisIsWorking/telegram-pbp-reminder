@@ -1,4 +1,4 @@
-"""Midweek Player of the Week standings — "who is winning right now".
+"""Midweek Player of the Week standings - "who is winning right now".
 
 Fires on ``POTW_COUNTDOWN_WEEKDAY`` (Thursday) at or after
 ``POTW_POST_HOUR``, giving players a few days' notice that Monday's award
@@ -7,7 +7,7 @@ is coming and something concrete to chase.
 Deliberately reuses ``potw._gather_potw_candidates`` and the same
 ``min(avg_gap_hours)`` selection the award itself uses, rather than
 reimplementing the ranking. If those two ever diverged, the Thursday post
-would name a leader the Monday award then contradicts — the most
+would name a leader the Monday award then contradicts - the most
 corrosive thing a standings post can do. Sharing the function makes that
 impossible by construction.
 
@@ -61,24 +61,24 @@ def _standings_for(config: dict, state: dict, maps, now: datetime) -> list[dict]
 def build_countdown_text(rows: list[dict], days_to_go: int) -> str:
     """Render the standings body.
 
-    Shows the leader and, where there is one, the closest challenger — the
+    Shows the leader and, where there is one, the closest challenger - the
     gap between those two is the whole point of posting this at all.
     """
-    lines = [f"⏳ Player of the Week — {days_to_go} days to go", ""]
+    lines = [f"⏳ Player of the Week - {days_to_go} days to go", ""]
     for row in rows:
         lead = row["leader"]
         lines.append(f"{row['campaign']}")
-        lines.append(f"  🥇 {helpers.player_mention(lead)} — "
+        lines.append(f"  🥇 {helpers.player_mention(lead)} - "
                      f"avg gap {lead['avg_gap_hours']:.1f}h "
                      f"({helpers.posts_str(lead['post_count'])})")
         chase = row["runner_up"]
         if chase:
             behind = chase["avg_gap_hours"] - lead["avg_gap_hours"]
-            lines.append(f"  🥈 {helpers.player_mention(chase)} — "
+            lines.append(f"  🥈 {helpers.player_mention(chase)} - "
                          f"avg gap {chase['avg_gap_hours']:.1f}h "
                          f"(+{behind:.1f}h behind)")
     lines.append("")
-    lines.append("Awarded Monday to the most consistent poster — "
+    lines.append("Awarded Monday to the most consistent poster - "
                  "smallest average gap between posts, not the biggest "
                  "wall of text. Still anyone's.")
     return "\n".join(lines)
@@ -99,7 +99,7 @@ def post_potw_countdown(config: dict, state: dict, *,
 
     rows = _standings_for(config, state, maps or build_topic_maps(config), now)
     if not rows:
-        # Nobody qualifies anywhere — say nothing rather than post an
+        # Nobody qualifies anywhere - say nothing rather than post an
         # empty scoreboard that reads like the feature is broken.
         return
 

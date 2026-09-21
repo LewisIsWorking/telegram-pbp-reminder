@@ -30,10 +30,10 @@ def _at_risk_status(player: dict, config: dict) -> str | None:
     """Return an at-risk marker string for a player, or None.
 
     Uses last_warned_week (set by scheduled.alerts.check_player_activity):
-      * 3 \u2014 received the week-3 'auto-removal in 1 week' warning.
-      * 2 \u2014 received the week-2 silent-for-too-long warning.
-      * 1 \u2014 received the gentle week-1 ping. Not 'at risk' yet.
-      * 0 / missing \u2014 nothing issued.
+      * 3 - received the week-3 'auto-removal in 1 week' warning.
+      * 2 - received the week-2 silent-for-too-long warning.
+      * 1 - received the gentle week-1 ping. Not 'at risk' yet.
+      * 0 / missing - nothing issued.
 
     Permanent players are never warned for removal (the alerts logic
     skips removal for them), so they never qualify as at-risk here.
@@ -152,7 +152,7 @@ def build_footer(state: dict, pid_to_code: dict[str, str],
             risk = _at_risk_status(player, config) or ""
             age = f"{days}d ago" if days is not None else "?"
             warned = player.get("last_warned_week", 0)
-            lines.append(f"  {risk} {code} {name} \u2014 last post {age} "
+            lines.append(f"  {risk} {code} {name} - last post {age} "
                          f"(week-{warned} warning issued)")
     joined = _recent_history(state, now, "join")
     left = _recent_history(state, now, "leave")
@@ -183,7 +183,7 @@ def build_roster_players(config: dict, state: dict) -> str:
                                  else 9999))
 
     n_pairs = len(list(config.get("topic_pairs", [])))
-    lines = [f"\U0001f4cb Player Roster \u2014 {len(rows)} unique players "
+    lines = [f"\U0001f4cb Player Roster - {len(rows)} unique players "
              f"across {n_pairs} campaigns\n"]
     for r in rows:
         camps = " ".join(sorted(set(r["campaigns"])))

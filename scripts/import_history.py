@@ -154,7 +154,7 @@ def import_messages(export_path: str, *, dry_run: bool = False) -> dict:
 
             with open(log_file, "a", encoding="utf-8") as f:
                 if is_new:
-                    f.write(f"# {campaign_name} — {month_str}\n\n")
+                    f.write(f"# {campaign_name} - {month_str}\n\n")
                     f.write("*PBP transcript archived by PathWarsNudge bot.*\n\n---\n\n")
 
                 for msg in month_msgs:

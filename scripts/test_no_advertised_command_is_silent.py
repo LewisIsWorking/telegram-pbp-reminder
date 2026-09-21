@@ -3,7 +3,7 @@
 The bug this prevents
 ---------------------
 Lewis tapped ``/rosterplayers`` from the command menu and nothing
-happened. Not an error, not a usage message — nothing, which from the
+happened. Not an error, not a usage message - nothing, which from the
 outside is indistinguishable from the bot being down.
 
 ``/rosterplayers`` was registered in three of the five places a command
@@ -12,7 +12,7 @@ needs to exist:
 ===================================== ==========================
 place                                 had it?
 ===================================== ==========================
-``set_commands.py`` (the menu)        yes — so it was tappable
+``set_commands.py`` (the menu)        yes - so it was tappable
 ``dispatch/cmd_info.py`` (handler)    yes
 ``router._READ_CMDS``                 **no**
 ``bot_topic.no_campaign``             **no**
@@ -28,7 +28,7 @@ broken command rather than a missing registration.
 
 Why a registration cross-check was not enough
 ---------------------------------------------
-The obvious guard — "every menu command appears in ``_READ_CMDS``" — is
+The obvious guard - "every menu command appears in ``_READ_CMDS``" - is
 wrong, because write commands legitimately are not read commands. Any
 rule stated over the *registries* has to encode which category each
 command belongs to, and that mapping is the thing that was wrong in the
@@ -40,7 +40,7 @@ answers passes; a write command that explains where it works passes;
 only a command that swallows the message fails. That holds no matter how
 the registries are reorganised.
 
-Unrecognised commands must stay silent — other bots share this group,
+Unrecognised commands must stay silent - other bots share this group,
 and answering ``/somethingelse@OtherBot`` would interrupt every one.
 """
 
@@ -80,7 +80,7 @@ def _say(text: str, monkeypatch) -> list[str]:
 
     Patches ``telegram.send_message`` on the module object rather than
     per-importer. Every dispatch module does ``import telegram as tg``
-    and calls ``tg.send_message``, so one patch covers all of them —
+    and calls ``tg.send_message``, so one patch covers all of them -
     a hand-listed set of patch targets is how an earlier fixture came to
     assert against a mock the code never touched.
 
@@ -120,7 +120,7 @@ class TestDiscovery:
     def test_the_menu_is_populated(self):
         menu = _menu_commands()
         assert len(menu) > 50, (
-            f"only {len(menu)} menu commands found — set_commands has "
+            f"only {len(menu)} menu commands found - set_commands has "
             f"probably moved, which would make this guard vacuous")
 
     def test_the_reported_command_is_in_the_menu(self):
@@ -162,7 +162,7 @@ class TestTheRosterFamily:
         replies = _say(cmd, monkeypatch)
         assert replies, f"{cmd} said nothing"
         assert "needs to know which campaign" not in replies[0], (
-            f"{cmd} is cross-campaign and takes no pid — it must answer "
+            f"{cmd} is cross-campaign and takes no pid - it must answer "
             f"here, not be deflected to a campaign topic")
 
     @pytest.mark.parametrize("cmd", ["/rostercampaigns", "/rosterplayers",

@@ -63,7 +63,7 @@ def format_event(name: str, before_channel, after_channel) -> str | None:
     """Return the message text for a voice-state transition, or None.
 
     None means "not a channel change" (e.g. a mute/deafen/stream toggle that
-    fires the same event) — those are ignored so we only post real movements.
+    fires the same event) - those are ignored so we only post real movements.
     """
     b = before_channel.name if before_channel else None
     a = after_channel.name if after_channel else None
@@ -81,7 +81,7 @@ def main() -> None:  # pragma: no cover - requires live Discord gateway
     import discord  # lazy: keeps the module importable without the dep
 
     # Windows consoles default to cp1252, which can't encode the emoji/Unicode
-    # in event lines (and Discord names) — printing one would raise
+    # in event lines (and Discord names) - printing one would raise
     # UnicodeEncodeError on every event. Force UTF-8 so logging never crashes
     # the handler. (The Telegram send is unaffected; it's a separate path.)
     for stream in (sys.stdout, sys.stderr):
@@ -115,7 +115,7 @@ def main() -> None:  # pragma: no cover - requires live Discord gateway
         print(f"Voice bridge online as {client.user} -> "
               f"Telegram chat {chat_id}, topic {topic_id}", flush=True)
         # List every server the bot is in, so you can copy the right id into
-        # DISCORD_GUILD_ID. (TheGrandExplorers is in 2 servers — only one
+        # DISCORD_GUILD_ID. (TheGrandExplorers is in 2 servers - only one
         # should be bridged.)
         for g in client.guilds:
             bridged = (not guild_filter) or str(g.id) == guild_filter
@@ -123,7 +123,7 @@ def main() -> None:  # pragma: no cover - requires live Discord gateway
                   f"-> {'BRIDGING' if bridged else 'ignored'}", flush=True)
         if len(client.guilds) > 1 and not guild_filter:
             print("  WARNING: bot is in multiple servers and DISCORD_GUILD_ID "
-                  "is unset — voice events from ALL of them will be bridged. "
+                  "is unset - voice events from ALL of them will be bridged. "
                   "Set DISCORD_GUILD_ID to restrict to one.", flush=True)
 
     @client.event
@@ -135,7 +135,7 @@ def main() -> None:  # pragma: no cover - requires live Discord gateway
         text = format_event(member.display_name, before.channel, after.channel)
         if not text:
             return
-        # tg.send_message is a blocking requests call — run it off the event
+        # tg.send_message is a blocking requests call - run it off the event
         # loop so it never stalls the gateway heartbeat.
         await asyncio.get_running_loop().run_in_executor(
             None, tg.send_message, chat_id, topic_id, text)

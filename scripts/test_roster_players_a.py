@@ -1,4 +1,4 @@
-"""Tests for /rosterplayers (Shape 2) — bin A: aggregation and table.
+"""Tests for /rosterplayers (Shape 2) - bin A: aggregation and table.
 
 Covers the cross-campaign player aggregation and table output.
 At-risk and history-footer cases live in test_roster_players_b.py

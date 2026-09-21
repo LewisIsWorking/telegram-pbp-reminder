@@ -123,7 +123,7 @@ not measuring the code.**
 ### Fixed
 
 ⛔⛔ **Posting deleted everything a GM had set about a player, and had done for
-months.** `_track_player` did `state["players"][key] = {...}` — a wholesale
+months.** `_track_player` did `state["players"][key] = {...}` - a wholesale
 replace of the record with the eight fields the bot observes. Anything else on
 it was discarded on that player's next message.
 
@@ -168,7 +168,7 @@ somebody else's silence and sweep him for it. ⚠️ This does not weaken
 
 ### Verification
 
-**7 mutations, 7 killed** — restoring the wholesale replace, stopping the
+**7 mutations, 7 killed** - restoring the wholesale replace, stopping the
 observed fields winning, and both directions of the proxy `max()`.
 
 ⚠️ Two survived the first pass, both fixture weaknesses worth naming:
@@ -195,7 +195,7 @@ Full suite **2809 passed**.
 ⛔⛔ `watch()` called `notify()` on **every** repair attempt, ungated. The
 watchdog runs twice an hour, so a day of downtime was **48 Telegram messages**.
 Each one is an unrecorded bot message, which becomes **permanently undeletable
-after 48 hours** — precisely the thing the preflight gate pauses posting to
+after 48 hours** - precisely the thing the preflight gate pauses posting to
 avoid. The gate was saying *"any message sent now would have its id lost"* while
 the watchdog beside it sent 48 of them.
 
@@ -216,7 +216,7 @@ via `send_alert(..., extra=...)` instead of being a second message.
 
 ### Verification
 
-**6 mutations, 6 killed** — restoring the ungated notify, bypassing the cadence,
+**6 mutations, 6 killed** - restoring the ungated notify, bypassing the cadence,
 dropping the repair outcome from the alert, and rationing the *repair* along
 with the message.
 
@@ -274,7 +274,7 @@ survive.
 
 ### Verification
 
-**8 mutations, 8 killed** — including reverting `actions` to `read` (the real
+**8 mutations, 8 killed** - including reverting `actions` to `read` (the real
 403), preferring the PAT, an empty automatic token shadowing the PAT, and the
 403 message no longer naming the fix.
 
@@ -332,7 +332,7 @@ multiplying a broken run. The API version had no such protection.
 
 ### Verification
 
-**9 mutations, 9 killed** — removing the cooldown, widening it to a day,
+**9 mutations, 9 killed** - removing the cooldown, widening it to a day,
 treating never-dispatched as just-dispatched, an unreadable heartbeat reading
 as healthy, and leaving a naive timestamp without a timezone.
 
@@ -344,7 +344,7 @@ Full suite **2785 passed**.
 
 ### Added
 
-**`tools/external_heartbeat.py` — run the bot from outside GitHub, because
+**`tools/external_heartbeat.py` - run the bot from outside GitHub, because
 GitHub's scheduler is the fault.**
 
 ⛔⛔ **The watchdog cannot save the bot from this one, and that is the point.**
@@ -392,7 +392,7 @@ multiply a broken run.
 
 ### Verification
 
-**7 mutations, 7 killed** — including counting `skipped` as a run, no history
+**7 mutations, 7 killed** - including counting `skipped` as a run, no history
 reading as healthy, and picking the oldest run instead of the newest.
 
 ⚠️ One survived the first pass: widening `QUIET_AFTER` to ten hours. The
@@ -419,7 +419,7 @@ fuse**, and the 36h republish in `topic_queue_age` existed only to keep
 relighting it. That mitigation cannot survive a missed run:
 
 ```
-175996, 175998, 176000 — 57.5h old, deleted 0 of 3, orphaned 3 of 3
+175996, 175998, 176000 - 57.5h old, deleted 0 of 3, orphaned 3 of 3
 ```
 
 ⭐⭐ **The question never asked was: can this delete possibly succeed?** When
@@ -522,7 +522,7 @@ that skipped every scheduled run earlier the same day.
 
 ### Notes
 
-⛔ **Three messages were permanently orphaned by the outage** — 175996, 175998,
+⛔ **Three messages were permanently orphaned by the outage** - 175996, 175998,
 176000, all 57.5h old when anything ran again. Recorded as a **separate, dated
 set**, because the existing list means "already broken when the guard was
 written" and these mean the guard was working and the code was correct: the bot
@@ -564,15 +564,15 @@ say**. A watchdog that dispatches on a stale heartbeat would have carried the
 bot straight through 2026-08-31: the schedule branch was dead, the dispatch
 branch was not.
 
-- **`.github/workflows/watchdog.yml`** — a **separate workflow file** with its
+- **`.github/workflows/watchdog.yml`** - a **separate workflow file** with its
   own schedule (`7,37`). 4.64.1 put the watchdog inside `pbp-reminder.yml`,
   which covers a mis-gated job but **not a broken `on:` block**: a YAML error
   or bad cron there means nothing in the file runs, watchdog included. It now
   shares nothing with what it monitors except the repository, and it is not in
   the `pbp-checker` concurrency group, because a stuck main run must not be
   able to block the thing that notices stuck main runs.
-- **`preflight/self_repair.py`** — decides and dispatches.
-- **`preflight/watchdog.py`** — extracted when `gate.py` reached 211 lines.
+- **`preflight/self_repair.py`** - decides and dispatches.
+- **`preflight/watchdog.py`** - extracted when `gate.py` reached 211 lines.
 
 ### The rules that keep it from making things worse
 
@@ -633,7 +633,7 @@ had not been replaced because nothing had run since it was posted.
 
 ### Added
 
-- **`test_schedule_conditions_match_the_crons.py`** — asserts the relationship
+- **`test_schedule_conditions_match_the_crons.py`** - asserts the relationship
   in **both** directions: every job must name a cron that exists in the
   `schedule` block, and every declared cron must be claimed by a job.
   ⚠️ The guard written in #75 checked the cron **minutes** and not the wiring
@@ -644,7 +644,7 @@ had not been replaced because nothing had run since it was posted.
   **no cron literal**, so it cannot be disarmed by the class of mistake it
   exists to catch. It runs `preflight.gate --watch`: reads the committed
   heartbeat, alerts if state has stopped persisting, holds `contents: read`
-  only, and deliberately **does not write a heartbeat** — writing one would
+  only, and deliberately **does not write a heartbeat** - writing one would
   refresh the very signal that proves the outage.
 - Tests pinning all three watchdog properties, added after a mutation tried to
   give it a cron literal and found nothing to fail against.
@@ -717,7 +717,7 @@ The roster names it inline and does not stay quiet when it fails:
 
 ### Verification
 
-**10 mutations, 10 killed** — including a broken proxy returning `None`, the
+**10 mutations, 10 killed** - including a broken proxy returning `None`, the
 proxy becoming a blanket exemption, accepting a cross-campaign proxy, following
 the chain instead of one hop, and dropping the roster note.
 
@@ -846,7 +846,7 @@ One line in `queue_silence._idle_campaigns`:
 
 ```python
 if last_dt is None:
-    continue  # never posted / untracked — neither silent nor caught up
+    continue  # never posted / untracked - neither silent nor caught up
 ```
 
 ⛔ The docstring on `caught_up_campaigns` promised the opposite: *"Ensures every
@@ -861,7 +861,7 @@ in this repo.
 correctly with no special case to forget:
 
 ```
-  ☠️ 🚦 C10: The Junction — no posts yet 🔗 https://t.me/Path_Wars/146645
+  ☠️ 🚦 C10: The Junction - no posts yet 🔗 https://t.me/Path_Wars/146645
 ```
 
 ⭐ The line deliberately carries **no age**. `silent_campaigns` feeds the
@@ -1229,12 +1229,12 @@ Six production files cleared by extraction, never by trimming comments:
 
 | was | now | extracted to |
 |---|---|---|
-| `state.py` 225 | 136 | `state_schema.py` — the partition map and defaults, pure data |
-| `commands/roster.py` 216 | 120 | `commands/roster_members.py` — who counts as on a roster |
-| `dispatch/bot_topic.py` 214 | 190 | `dispatch/bot_topic_dice.py` — `/roll` and `/dc` |
-| `scheduled/topic_queue_poster.py` 207 | 124 | `scheduled/topic_queue_write.py` — the per-thread write path |
-| `scheduled/session_poll.py` 205 | 153 | `scheduled/session_poll_roster.py` — roster and link helpers |
-| `scheduled/potw.py` 204 | 179 | `scheduled/potw_candidates.py` — eligibility |
+| `state.py` 225 | 136 | `state_schema.py` - the partition map and defaults, pure data |
+| `commands/roster.py` 216 | 120 | `commands/roster_members.py` - who counts as on a roster |
+| `dispatch/bot_topic.py` 214 | 190 | `dispatch/bot_topic_dice.py` - `/roll` and `/dc` |
+| `scheduled/topic_queue_poster.py` 207 | 124 | `scheduled/topic_queue_write.py` - the per-thread write path |
+| `scheduled/session_poll.py` 205 | 153 | `scheduled/session_poll_roster.py` - roster and link helpers |
+| `scheduled/potw.py` 204 | 179 | `scheduled/potw_candidates.py` - eligibility |
 
 `bot_topic_dice` took `/roll` and `/dc` specifically because they are the only
 contextless branches that are unconditionally terminal. `/mystats`, `/me` and
@@ -1242,7 +1242,7 @@ contextless branches that are unconditionally terminal. `/mystats`, `/me` and
 lifting those would have meant inventing a handled/not-handled protocol.
 
 **`telegram.py` resisted every attempt and is documented rather than forced.** Every
-function needs `_post`, so an extracted module must import back — a cycle. Moving
+function needs `_post`, so an extracted module must import back - a cycle. Moving
 `_post` out instead breaks `test_telegram_01_misc`, which asserts on
 `telegram.TELEGRAM_API` after `init()`. A function-local import to dodge the cycle
 resolves to the **mock** telegram module `conftest` installs into `sys.modules`. It
@@ -1251,7 +1251,7 @@ needs a deliberate transport-layer refactor, not a slice.
 `test_file_length_limit.py` guards it as a **ratchet, not an exemption**: listed files
 may not grow, must be removed from the list once cleared, and the list may not gain
 entries. A frozen ceiling would permit regrowth to the worst-ever length.
-Mutation-proven — padding a file to 271 lines fails it by name.
+Mutation-proven - padding a file to 271 lines fails it by name.
 
 2132 tests passing.
 
@@ -1261,7 +1261,7 @@ Mutation-proven — padding a file to 271 lines fails it by name.
 
 ### Added
 
-**Recruit tiers — reserve campaigns wait their turn instead of being excluded.**
+**Recruit tiers - reserve campaigns wait their turn instead of being excluded.**
 
 Asked for after the hard exclusion landed: C10 should appear, but only once every
 other campaign has six players; C08 only once C10 is full.
@@ -1283,7 +1283,7 @@ looked correct while never firing.
 
 The post now says which tier it is drawing from when it is not the normal one:
 
-    📌 Reserve campaign — every campaign in tier 0 and below is full.
+    📌 Reserve campaign - every campaign in tier 0 and below is full.
 
 and the "N campaigns currently recruiting" count covers the **eligible tier only**,
 since a number that includes queued reserves is one the GM cannot act on.
@@ -1320,7 +1320,7 @@ the same flag. That is the intended meaning of the flag rather than a side effec
 
 ### Added
 
-**"Recruit for this next" — a daily post naming the campaign most in need of players.**
+**"Recruit for this next" - a daily post naming the campaign most in need of players.**
 
 Requested as a sibling to the queue focus message. Where that one names the campaign
 most in need of a *reply*, this names the one most in need of *new players*, in the
@@ -1342,14 +1342,14 @@ broken on the lower fill ratio so a 1-of-2 outranks a 5-of-6 with the same gap.
 **Campaigns with `recruitment` in `disabled_features` are excluded.** This is the
 part that matters: C08 Theria sits at 0/4 and would otherwise win every single day,
 which is precisely the campaign Lewis has switched recruitment off for. Mutation-proven
-— deleting the flag check fails two tests by name.
+- deleting the flag check fails two tests by name.
 
 Config: `recruit_focus_enabled` (default true) to switch it off.
 
 ### Notes
 
-Two state keys were registered in both places a bot-sent id has to exist —
-`state.PARTITIONS` and `posting/bot_sent_state_scan` — which are the exact two
+Two state keys were registered in both places a bot-sent id has to exist -
+`state.PARTITIONS` and `posting/bot_sent_state_scan` - which are the exact two
 omissions that duplicated the schedule post for two days in 4.54.1/4.54.2. Both
 guards from that fix pass.
 
@@ -1545,7 +1545,7 @@ Five were pre-existing, found by the new guard:
 
 | key | consequence |
 |---|---|
-| `last_pin_digest` | identical shape — daily pin digest reposted every tick |
+| `last_pin_digest` | identical shape - daily pin digest reposted every tick |
 | `last_pin_alert_ts` | non-bot pin alerts re-fired |
 | `poll_identified_voters` | voter identification lost |
 | `availability` | **`/available` player data silently lost** |
@@ -1556,7 +1556,7 @@ discarded every run.
 
 ### Added
 
-- **`scripts/test_state_keys_are_declared.py`** — scans production source for
+- **`scripts/test_state_keys_are_declared.py`** - scans production source for
   keys **written** to `state` and fails if any is missing from `PARTITIONS`.
   Writes only: a key that is merely *read* needs no entry, which is why the
   legacy migration reads (`gm_queue`, `gm_reply_log`, `paused`, …) are
@@ -1564,7 +1564,7 @@ discarded every run.
   key is not the same as it surviving the partition filter.
 
   The existing `test_state_schema.py` guards *files*, not keys, and
-  `pytest.skip`s when `data/state/` is absent — so an undeclared key was never
+  `pytest.skip`s when `data/state/` is absent - so an undeclared key was never
   in its scope. This one is key-level and cannot skip.
 
 Mutation-proven: un-registering `schedule_post_msg_id` fails three tests
@@ -1583,7 +1583,7 @@ Root cause is mine, and it is the second instance of the same class as the
 know about cannot be deleted.**
 
 `post_schedule` stores `state["schedule_post_msg_id"]`, but I never added that
-field to `posting/bot_sent_state_scan.py` — despite that module's docstring
+field to `posting/bot_sent_state_scan.py` - despite that module's docstring
 stating the contract outright:
 
 > When new fields are added to `live.json` ... that store a bot-sent message
@@ -1592,14 +1592,14 @@ stating the contract outright:
 
 Every Actions run is a fresh checkout, so `bot_sent_ids.json` does not survive
 and the registry rebuilds from `backfill_from_state`. An unknown ID is absent
-from the registry, so `perform_guarded_delete` **refuses** it — behaving
-exactly as designed — and the previous post is never removed.
+from the registry, so `perform_guarded_delete` **refuses** it - behaving
+exactly as designed - and the previous post is never removed.
 
 The failure is quiet in the worst way: the guard was right, the refusal was
 correct, and the only visible symptom was duplicate posts hours later.
 
 - `schedule_post_msg_id` added to `extract_ids_from_live`.
-- **`test_bot_sent_scan_covers_state.py`** — a guard so the next `_msg_id`
+- **`test_bot_sent_scan_covers_state.py`** - a guard so the next `_msg_id`
   field cannot slip the same gap. It scans production source for state keys
   ending in `_msg_id` / `_message_id` and fails if any is unknown to the scan
   module, with an allowlist for player/GM ids the bot must *never* delete.
@@ -1621,7 +1621,7 @@ now delegates to it.
   `scheduled/message_milestones.py` and `boons/hero_point.py`, so the weekly
   digest, message milestones and the MVP hero-point claim move with it. The
   claim *must* follow its MVP post, and the others are the same weekly-summary
-  family — but say the word if you want them split back out.
+  family - but say the word if you want them split back out.
 
 ---
 
@@ -1629,7 +1629,7 @@ now delegates to it.
 
 ### Added
 
-**Tests for `/sessionplayed` and `/swimmingdone`, which had none — including
+**Tests for `/sessionplayed` and `/swimmingdone`, which had none - including
 their GM authorisation check.**
 
 `dispatch/gm_poll_cmds.py` was **78% `# pragma: no cover`** (63 lines). The
@@ -1641,7 +1641,7 @@ entire bodies of both commands were excluded line by line, *including*:
 
 `grep -rn "sessionplayed\|swimmingdone" test_*.py` returned nothing. Zero
 tests, zero coverage visibility, on an auth gate whose commands mutate
-`session_happened` — the flag that silences poll pings for a whole week.
+`session_happened` - the flag that silences poll pings for a whole week.
 **An auth bypass there was invisible.**
 
 Also untested and fully excluded: `handle_poll_closed` in
@@ -1649,24 +1649,24 @@ Also untested and fully excluded: `handle_poll_closed` in
 closes, plus the vote-retraction and revoting branches of
 `handle_poll_answer`.
 
-- `scripts/test_gm_poll_cmds.py` — 19 tests. Auth tests assert on **both**
+- `scripts/test_gm_poll_cmds.py` - 19 tests. Auth tests assert on **both**
   halves: that the refusal is sent *and* that state was not mutated. Asserting
   only the message would still pass if the command fell through and wrote the
   state anyway.
-- `scripts/test_poll_router_closed.py` — 26 tests. Built around matching the
+- `scripts/test_poll_router_closed.py` - 26 tests. Built around matching the
   right poll: correct campaign, not a sibling, swimming kept independent,
   unknown ids touching nothing.
 - Each negative has a positive counterpart (`test_gm_is_allowed`) proving the
-  fixture can fire — the pattern from 4.53.2.
+  fixture can fire - the pattern from 4.53.2.
 
 ### Changed
 
-- **94 `# pragma: no cover` removed** — all 63 from `gm_poll_cmds.py` and all
+- **94 `# pragma: no cover` removed** - all 63 from `gm_poll_cmds.py` and all
   31 from `poll_router.py`. Both files now measure **100% (131 statements,
   0 missed)** with no exclusions. Repo total: 503 → 409.
 
 Verified by mutation: deleting both `if user_id not in gm_ids` checks fails
-three tests, and the run log shows `Bot topic: /swimmingdone W14 by Mallory` —
+three tests, and the run log shows `Bot topic: /swimmingdone W14 by Mallory` -
 the non-GM executing the command.
 
 ---
@@ -1686,18 +1686,18 @@ one of the other 48 asserted on a mock the code never touched, so
 
 passed regardless of what the code did.
 
-Demonstrated by deleting the POTW Monday gate outright — **the suite
+Demonstrated by deleting the POTW Monday gate outright - **the suite
 stayed green.** A guard that cannot fail is not a guard.
 
 The fixture now swaps the callables on the **shared `telegram` module
 object** instead of patching modules one by one. Every module reaches
 telegram through that single object, so one swap covers all of them,
-including any added later — there is no list to keep in sync. It is also
+including any added later - there is no list to keep in sync. It is also
 O(1): patching all 56 individually was correct but tripled suite runtime.
 
-- `test_tg_mock_coverage.py` — guards the guard. Checks discovery still
-  finds the real modules, that the swap covers the actual senders, and —
-  the part that matters — that calls made through several different
+- `test_tg_mock_coverage.py` - guards the guard. Checks discovery still
+  finds the real modules, that the swap covers the actual senders, and -
+  the part that matters - that calls made through several different
   modules genuinely land on the mock. Coverage alone would not be enough:
   a fixture that patched *nothing* would still satisfy every `not called`
   assertion in the suite, so the positive direction is asserted too.
@@ -1707,7 +1707,7 @@ O(1): patching all 56 individually was correct but tripled suite runtime.
 - POTW and countdown fixtures given real campaigns and qualifying posts
   so they *can* fire, plus `test_monday_DOES_fire`,
   `test_countdown_DOES_post_on_thursday` and
-  `test_roundup_DOES_post_when_there_are_winners` as counterweights —
+  `test_roundup_DOES_post_when_there_are_winners` as counterweights -
   the earlier drafts used `topic_pairs: []`, so nothing could ever be
   sent and the negative assertions were true for the wrong reason.
 
@@ -1727,14 +1727,14 @@ next to each time says which. 08:00 UTC reads as 09:00 BST in August and
 08:00 GMT in December.
 
 **Only the rendering changed.** Every gate, every cron trigger and every
-stored timestamp is still UTC — a test pins the POTW row to
+stored timestamp is still UTC - a test pins the POTW row to
 `POTW_WEEKDAY`/`POTW_POST_HOUR` so converting the display can never drag
 a gate with it. Times are built as real datetimes and converted, rather
 than having an hour added, so the DST changeover and any day rollover
 are handled by the zone rather than by arithmetic that is wrong for half
 the year.
 
-- `scheduled/local_time.py` — conversion helper. Degrades to UTC with a
+- `scheduled/local_time.py` - conversion helper. Degrades to UTC with a
   log line if the zone cannot be loaded, rather than raising: this runs
   inside the scheduled-jobs loop and a tz lookup is not worth taking a
   whole run down for.
@@ -1743,7 +1743,7 @@ the year.
   fails locally.
 - **"Schedule post" added to `QUEUE_CHECKS`.** It advertises a :00/:30
   cadence and shows a countdown, but the half-past pass only ran
-  `("Queue reminder", "Queue nudge")` — so its timer would have read as
+  `("Queue reminder", "Queue nudge")` - so its timer would have read as
   expired for half of every hour. Caught by the existing
   `test_queue_checks_are_real_labels` guard, which then required the spy
   registering too.
@@ -1763,22 +1763,22 @@ next due, and the next cron tick.
 Built as **one** message rather than a separate schedule and timer. An
 accurate "next fire" timer has to refresh every run anyway (the cron
 ticks at :00 and :30), and since the post deletes its predecessor,
-refreshing costs no clutter — the topic always holds exactly one. That
+refreshing costs no clutter - the topic always holds exactly one. That
 also means one lifecycle and one thing to delete.
 
 Delete-and-repost rather than `editMessageText`, deliberately: editing
 would leave it drifting up the topic as other posts arrive, whereas
 reposting keeps it at the bottom where a glance finds it.
 
-- `scheduled/schedule_table.py` — the fixed-clock schedule as data,
+- `scheduled/schedule_table.py` - the fixed-clock schedule as data,
   reading its hours from the same config keys and `helpers` constants the
   jobs read, so the post cannot advertise a time a job does not use.
-- `scheduled/schedule_post.py` — renders and replaces the post.
-- `telegram.send_message_id(..., silent=True)` — new opt-in parameter
+- `scheduled/schedule_post.py` - renders and replaces the post.
+- `telegram.send_message_id(..., silent=True)` - new opt-in parameter
   setting `disable_notification`. Defaults to False so every existing
   caller is unchanged. Without it this post would notify 48 times a day.
 - Disable with `"schedule_post_enabled": false` in config.
-- `test_schedule_post.py` — 19 tests.
+- `test_schedule_post.py` - 19 tests.
 
 ### Fixed
 
@@ -1786,12 +1786,12 @@ reposting keeps it at the bottom where a glance finds it.
 passed vacuously.**
 
 The fixture patched `topic_queue_poster`, `gm_queue_history`,
-`posting.sender` and `posting.message_batch` — but not `scheduled.potw`.
+`posting.sender` and `posting.message_batch` - but not `scheduled.potw`.
 Any test asserting `not tg_mock.send_message_id.called` against a POTW
 path was therefore checking a mock the code never touched.
 
 Proven by mutation: deleting the POTW Monday gate entirely left the suite
-green. Two causes, both fixed — the fixture now also patches `potw`,
+green. Two causes, both fixed - the fixture now also patches `potw`,
 `potw_roundup`, `potw_countdown` and `schedule_post`, and the POTW
 fixtures were given a real campaign and qualifying posts so they *can*
 award. Re-running the same mutation now fails exactly the two intended
@@ -1807,7 +1807,7 @@ cannot silently go hollow again.
 **Silent and Caught up sections now read longest-idle first.**
 
 Reported from queue #1327, whose Caught up section read `21h, 0h, 2h, 5h,
-4d 2h, 1h` — that is `config["topic_pairs"]` order, not age order.
+4d 2h, 1h` - that is `config["topic_pairs"]` order, not age order.
 `silent_campaigns` and `caught_up_campaigns` built their lists by
 appending in iteration order and never sorted, while `campaign_age_lines`
 ten lines below them in the same module already did
@@ -1825,7 +1825,7 @@ read as though C01 at 21h were the worst.
 **"Oldest campaign" callout on an empty queue.**
 
 A populated queue ends with the "Reply to this next" focus message, built
-from unreplied entries — so an empty queue pointed nowhere. When there is
+from unreplied entries - so an empty queue pointed nowhere. When there is
 nothing to reply to, the caught-up notification now names the single
 campaign that has gone longest without any post.
 
@@ -1833,14 +1833,14 @@ Ranking is just "longest since last post", so a silent campaign outranks
 a caught-up one without a special rule: 9d beats 21h because it is a
 bigger number, not because of which section it is in.
 
-`test_queue_silence_ordering.py` — 10 tests, fixtured with the exact
+`test_queue_silence_ordering.py` - 10 tests, fixtured with the exact
 campaign ages from the reported queue.
 
 ### Not a bug (investigated)
 
 Silent campaigns **do** already count GM posts. `dispatch/tracking.py`
 writes `state["topics"][pid]["last_message_time"]` for every non-bot
-message, GM included — local state shows C09's entry stamped with
+message, GM included - local state shows C09's entry stamped with
 `last_user=Path`, the GM account. The one genuine gap is that posts in a
 campaign's **chat** topic are not counted, because chat topics are not in
 `pbp_topic_ids` and `parse_message` rejects them. That is arguably
@@ -1863,7 +1863,7 @@ real, from one gate:
 - **It fired on player activity.** A week with fewer than
   `POTW_MIN_POSTS` qualifying posts hit `continue` **without stamping**
   `last_potw`. The gate stayed open, so the award went off on the first
-  tick after someone posted enough to qualify — exactly the reported
+  tick after someone posted enough to qualify - exactly the reported
   symptom.
 - **Every campaign drifted separately**, since `last_potw` is per-pid, so
   awards scattered across all seven days.
@@ -1875,22 +1875,22 @@ late.
 
 ### Added
 
-- **Weekly roundup** (`scheduled/potw_roundup.py`) — one summary of every
+- **Weekly roundup** (`scheduled/potw_roundup.py`) - one summary of every
   campaign's winner to the bot topic, ranked by average gap. Additive
   rather than a replacement: the per-campaign messages must stay because
   `boons/handler.py` edits each one in place when its winner claims, keyed
   by pid in `pending_potw_boons`.
-- **Midweek standings** (`scheduled/potw_countdown.py`) — Thursday post
+- **Midweek standings** (`scheduled/potw_countdown.py`) - Thursday post
   showing the current leader and the closest chaser per campaign, with
   the gap between them. Reuses `potw._gather_potw_candidates` and the same
   `min(avg_gap_hours)` selection as the award, so Thursday can never name
   a leader that Monday then contradicts.
-- `scheduled/potw_schedule.py` — shared week key and weekday gate, so the
+- `scheduled/potw_schedule.py` - shared week key and weekday gate, so the
   award and its countdown cannot disagree about what "this week" means.
 - New tunables, overridable from the config settings block:
   `potw_weekday` (0 = Monday), `potw_countdown_weekday` (3 = Thursday),
   `potw_post_hour` (9 UTC).
-- `test_potw_monday_schedule.py` — 18 tests.
+- `test_potw_monday_schedule.py` - 18 tests.
 
 `POTW_INTERVAL_DAYS` is retained but no longer decides when the award
 fires; older state and config settings blocks still reference it.
@@ -1898,7 +1898,7 @@ fires; older state and config settings blocks still reference it.
 
 ### Fixed
 
-**Old "Unreplied:" posts stopped being deleted — a type mismatch, not a
+**Old "Unreplied:" posts stopped being deleted - a type mismatch, not a
 logic error.**
 
 C05 Grand Explorers accumulated three live queue posts (04/08, 06/08,
@@ -1906,19 +1906,19 @@ C05 Grand Explorers accumulated three live queue posts (04/08, 06/08,
 
 `parse_message` returns Telegram's raw `message_thread_id`, which is an
 **int**, and that int is stored verbatim on every queue entry. The
-per-topic poster used it as the key into `cq["topic_queues"]` — but that
+per-topic poster used it as the key into `cq["topic_queues"]` - but that
 dict is persisted as JSON, and **JSON object keys are always strings**.
 So `queues.setdefault(51357, ...)` never matched the on-disk `"51357"`
 slot. A fresh empty slot was handed to the poster, `existing.is_empty`
 was True, and the previous batch was never deleted.
 
 The save then wrote the int key back out as a *second* string key,
-overwriting the real slot — which is why the L28 `pending_delete` retry
+overwriting the real slot - which is why the L28 `pending_delete` retry
 sweep could not rescue it either. The stranded IDs were gone from state
 entirely, so nothing ever tried to delete them again.
 
 Invisible to the suite because every existing test passes `thread_id` as
-a string (see `test_topic_queue_retry.py`) — the one type production
+a string (see `test_topic_queue_retry.py`) - the one type production
 never supplies.
 
 - `_threads_from_scanned` now stringifies at the boundary.
@@ -1927,7 +1927,7 @@ never supplies.
   for one thread, the int-keyed slot is the newer one and stays live; the
   stranded string-keyed IDs are parked in `pending_delete` so the
   existing retry sweep removes them rather than dropping them.
-- `test_topic_queue_key_type.py` — 7 tests, including an end-to-end
+- `test_topic_queue_key_type.py` - 7 tests, including an end-to-end
   reproduction of the orphan and the duplicate-key merge.
 
 **No change to deletion safety.** The bot still deletes only IDs in the
@@ -1950,19 +1950,19 @@ bot's pin activity was invisible unless you read the `pin_audit_log.json`
 file directly. Two new scheduled tasks (in `scheduled/pin_report.py`,
 dispatched from `checker.py`) surface it in your bot topic:
 
-- **Daily digest** — once a day (at `pin_digest_hour`, default
-  `diagnostic_hour` = 8), a standalone "📌 Pin activity — last 24h"
+- **Daily digest** - once a day (at `pin_digest_hour`, default
+  `diagnostic_hour` = 8), a standalone "📌 Pin activity - last 24h"
   message: how many messages the bot pinned, unpinned, and deleted, and
   whether any touched a message the bot didn't make.
-- **Real-time non-bot alert** — every run, if the bot pinned/unpinned/
+- **Real-time non-bot alert** - every run, if the bot pinned/unpinned/
   deleted a message it did **not** send, it immediately posts a "🚨 PIN
   GUARD ALERT" naming the message id, action, and call site. In normal
   operation the bot only ever touches its own pins, so this should never
-  fire — if it does, it's the vanishing-pin bug caught in the act.
+  fire - if it does, it's the vanishing-pin bug caught in the act.
 
 To power the alert, audit entries now carry a `bot_owned` flag
 (`is_bot_sent` at action time; unpins/deletes already knew it from the
-guard, and the unguarded pin path now checks explicitly — so a bot
+guard, and the unguarded pin path now checks explicitly - so a bot
 pinning a message it never sent is caught). New state keys:
 `last_pin_digest`, `last_pin_alert_ts`.
 
@@ -1982,7 +1982,7 @@ manually pinned a message the *bot* had sent, the bot deleting that
 message during queue eviction removes the pin with no unpin call at all.
 `perform_guarded_delete` now records every delete (success, failure, or
 guard-refusal) to the same audit, so a vanished pin's id will always
-show up — as an `unpin` or a `delete`. The cap rose 800 → 3000 rows
+show up - as an `unpin` or a `delete`. The cap rose 800 → 3000 rows
 (deletes are higher-volume) to retain ~two weeks of activity, and
 `record_action` is now best-effort (swallows its own exceptions) so a
 logging failure can never break an actual pin/unpin/delete.
@@ -2006,10 +2006,10 @@ A GM/player manual pin was reported as still disappearing despite the
 registry unpin guard, and only the bot has pin rights in that group.
 An exhaustive trace of every pin/unpin path found they all operate on
 bot-owned ids and the guard has never once fired (no `refusal_log.json`
-ever created) — so the code, as written, cannot unpin a non-bot
+ever created) - so the code, as written, cannot unpin a non-bot
 message. To get ground truth instead of another speculative fix, the
-bot now records **every** pin and unpin it performs — success, failure,
-or guard-refusal — with the resolved originating call site
+bot now records **every** pin and unpin it performs - success, failure,
+or guard-refusal - with the resolved originating call site
 (`file:line`), to a bounded, committed `pin_audit_log.json`. Previously
 only *refused* unpins were logged; successful ones left no trace, which
 was exactly the blind spot. Next time a pin vanishes we can check the
@@ -2034,7 +2034,7 @@ was the only campaign running in a separate group (`group_id`
 `-1003496373617`); its `topic_pair` has been deleted from `config.json`
 and the `C01 ↔ C11` `linked_polls` link severed so C01's vote
 notifications no longer render a stale C11 tally block. No code change
-was needed — the ingestion/queue/poll logic is all config-driven, so
+was needed - the ingestion/queue/poll logic is all config-driven, so
 dropping the pair fully untracks the campaign (no more queue entries,
 polls, roster, warnings, or recruitment attempts against an
 unreachable group). Orphaned C11 state under `data/state` is inert once
@@ -2050,7 +2050,7 @@ the pair is gone and is left untouched.
 
 `unpin_message` used to POST `unpinChatMessage` for whatever message ID
 a caller handed it. Because a bot with admin rights can unpin **any**
-message in a group (Telegram has no "only my own messages" restriction —
+message in a group (Telegram has no "only my own messages" restriction -
 the same reality behind the 2026-05-08 delete incident), a stale or
 crossed ID silently cleared a GM's or player's *manual* pin.
 
@@ -2058,7 +2058,7 @@ crossed ID silently cleared a GM's or player's *manual* pin.
 which applies the same bot-sent-registry check that already guards
 deletion: an ID the bot never recorded sending is refused before any
 HTTP request, with a diagnostic line and a refusal-log entry. Legitimate
-unpins are unaffected — the callers only pass IDs the bot pinned itself
+unpins are unaffected - the callers only pass IDs the bot pinned itself
 (`poll_message_id`, `last_queue_pin_id`, batch/slot `pin_id`), all of
 which are recorded at send time.
 
@@ -2078,10 +2078,10 @@ guard. PATCH bump (4.51.8).
 The last two files over the project's 200-line limit were split by pure
 extraction (no behaviour change):
 
-- `boons/handler.py` (214 → 138) — boon-resolution logic (result
+- `boons/handler.py` (214 → 138) - boon-resolution logic (result
   formatting, campaign-name resolution, storage, `_resolve_boon`) moved
   to new `boons/resolution.py` (101).
-- `scheduled/potw.py` (205 → 169) — transcript post-link lookup
+- `scheduled/potw.py` (205 → 169) - transcript post-link lookup
   (`_find_player_post_links`, `_ENTRY_RE`, `_LOGS_DIR`) moved to new
   `scheduled/potw_links.py` (57).
 
@@ -2099,7 +2099,7 @@ reads it). Full suite green (1753 passed).
 The weekly MVP announcement is followed by a Hero Point picker with
 inline buttons, but those buttons depend on a callback that can lag
 behind the hourly cron. The prize line now reads "Claim it with the
-buttons below — or type `/heropoint <campaign>` if they don't respond,"
+buttons below - or type `/heropoint <campaign>` if they don't respond,"
 making the already-shipped typed command (4.51.x) discoverable at the
 moment the user needs it. Covered by `test_checker_roster_b.py`.
 
@@ -2108,7 +2108,7 @@ moment the user needs it. Covered by `test_checker_roster_b.py`.
 **Text file I/O now always uses `encoding="utf-8"`.**
 
 `open()`, `Path.read_text()` and `Path.write_text()` without an
-explicit `encoding=` use the *platform default* — utf-8 on the Linux
+explicit `encoding=` use the *platform default* - utf-8 on the Linux
 CI runner, but cp1252 on a Windows dev box. The bot writes UTF-8
 transcripts (em-dashes, accented player names, emoji), so on Windows
 the round-trip mangled those characters: ~7 tests failed locally
@@ -2123,7 +2123,7 @@ just Linux.
 
 ### Added
 
-**`test_encoding_hygiene.py` — regression guard.**
+**`test_encoding_hygiene.py` - regression guard.**
 
 An AST-based test that walks the source tree and fails if any
 text-mode `open`/`read_text`/`write_text` omits `encoding=`. Prevents
@@ -2154,11 +2154,11 @@ per-topic clear is ever needed, `unpinAllForumTopicMessages`.
 **Bot unpinned posts it didn't own.**
 
 Lewis reported the nudge bot was unpinning messages that weren't its
-own — GM-pinned posts disappeared from PBP topics.
+own - GM-pinned posts disappeared from PBP topics.
 
 Root cause: `_post_thread_queue` (in `scheduled/topic_queue_poster.py`)
-took an empty-slot branch — hit the *first* time a thread's queue is
-posted, or any run after a clear reset the slot — that called
+took an empty-slot branch - hit the *first* time a thread's queue is
+posted, or any run after a clear reset the slot - that called
 `tg.unpin_all_messages(group_id, thread_id)`. That helper invokes
 Telegram's `unpinAllChatMessages`, which **unpins every pinned message
 in the entire group** and silently ignores the `message_thread_id`
@@ -2188,18 +2188,18 @@ Regression tests added in `test_topic_queue.py`:
 **(Supersedes 4.51.1, whose diagnosis was wrong.)**
 
 Lewis reported that a `📋 Unreplied: 5` message in C01 stayed visible
-after `📋 Unreplied: 8` replaced it — the old queue wasn't deleted even
+after `📋 Unreplied: 8` replaced it - the old queue wasn't deleted even
 though new messages had arrived and a new queue had posted.
 
 4.51.1 misdiagnosed this as Telegram's 48h delete window (the message
 "aging out" after sitting unchanged) and added a 36h forced-refresh.
 That was wrong: the queue *was* actively reposting, so it wasn't
-sitting static — the delete itself was failing and being abandoned.
+sitting static - the delete itself was failing and being abandoned.
 
 Real cause: `_post_thread_queue` called `existing.delete_all()`, and
 on any failure it logged the failed ID and then overwrote the slot
 with only the freshly-posted message. The failed ID was dropped, so
-no later run ever retried it — one failed delete became a permanent
+no later run ever retried it - one failed delete became a permanent
 orphan, with new queues stacking on top. `_clear_thread_queue` had
 the same flaw. `MessageBatch.delete_all` was explicitly designed to
 return failed IDs *for retry*, but the callers never honoured it.
@@ -2207,7 +2207,7 @@ return failed IDs *for retry*, but the callers never honoured it.
 The fix parks failed-delete IDs in a new slot field `pending_delete`
 and re-attempts them at the top of every post/clear run until they
 succeed. The bot is a group admin, so its own messages have no 48h
-delete limit — a retry always eventually wins. A failure that was a
+delete limit - a retry always eventually wins. A failure that was a
 bot-sent-registry refusal also self-heals: the registry backfill now
 reads `pending_delete`, so the ID is registered and the next retry
 passes the guard.
@@ -2220,11 +2220,11 @@ passes the guard.
 
 ### Code changes
 
-* `scripts/scheduled/topic_queue_state.py` — replaced the staleness
+* `scripts/scheduled/topic_queue_state.py` - replaced the staleness
   helpers with `queue_pending_deletes(slot, ids)` (dedup-append failed
   IDs) and `retry_pending_deletes(slot, group_id)` (re-attempt parked
   IDs, keep only those still failing).
-* `scripts/scheduled/topic_queue_poster.py` — `_post_thread_queue` and
+* `scripts/scheduled/topic_queue_poster.py` - `_post_thread_queue` and
   `_clear_thread_queue` now call `retry_pending_deletes` first (sweeps
   orphans every run, even when content is unchanged) and carry any
   failed delete forward via `queue_pending_deletes` instead of
@@ -2234,14 +2234,14 @@ passes the guard.
   parked orphans (no current batch). The central-registry migration
   registration was extracted to `topic_queue_migration.py` to keep the
   poster under the 200-line cap.
-* `scripts/posting/bot_sent_state_scan.py` — registry backfill now
+* `scripts/posting/bot_sent_state_scan.py` - registry backfill now
   reads `pending_delete` so a registry-refused delete can recover.
-* `scripts/scheduled/topic_queue_migration.py` (new) — holds the
+* `scripts/scheduled/topic_queue_migration.py` (new) - holds the
   migration registration extracted from the poster.
 
 ### Tests
 
-1740 passing (was 1726). New: `test_topic_queue_retry.py` (7 tests —
+1740 passing (was 1726). New: `test_topic_queue_retry.py` (7 tests -
 failed delete parked not abandoned, success leaves no pending, pending
 retried on the unchanged/skip path, orphan clears on a later run,
 clear-path carry-forward, clear preserves existing pending, inactive
@@ -2249,7 +2249,7 @@ thread with only orphans gets swept); pending-delete helper tests in
 `test_topic_queue_state.py`; a backfill test in `test_bot_sent_registry.py`.
 The 4.51.1 staleness tests were removed.
 
-The existing C01 orphan (156513) is Lewis's manual cleanup — the bot
+The existing C01 orphan (156513) is Lewis's manual cleanup - the bot
 never auto-deletes orphans. This stops new ones and lets already-
 tracked failures self-clear.
 
@@ -2288,13 +2288,13 @@ deletes always succeed and the orphan window is closed.
 
 Code changes:
 
-* `scripts/scheduled/topic_queue_state.py` — new
+* `scripts/scheduled/topic_queue_state.py` - new
   `can_skip_repost(slot, fingerprint, existing, now)` helper and a
   private `_msg_age_hours`. Skip is allowed only when the queue is
   unchanged AND the tracked message is younger than
   `_REFRESH_AFTER_HOURS` (36). Unknown age (legacy slot, missing or
   unparseable `last_posted_at`) → never skip, force a refresh.
-* `scripts/scheduled/topic_queue_poster.py` — `_post_thread_queue`
+* `scripts/scheduled/topic_queue_poster.py` - `_post_thread_queue`
   swaps its inline `fingerprint == … and not is_empty` skip check
   for `can_skip_repost(...)`. File stays at the 200-line cap (the
   import extends an existing line; the condition is a 1-for-1 swap).
@@ -2304,14 +2304,14 @@ Behaviour deltas:
 * A genuinely stuck per-topic queue (GM hasn't replied, players
   haven't posted) now re-posts its pinned message roughly once a
   day instead of sitting silently. This is mild extra noise but
-  only happens for stale queues — exactly when surfacing the
-  pending state is useful — and it's the mechanism that keeps the
+  only happens for stale queues - exactly when surfacing the
+  pending state is useful - and it's the mechanism that keeps the
   message deletable.
 * Legacy slots (pre-`last_posted_at` schema) re-post once on first
   encounter to acquire a timestamp, then age-check normally.
 
 Tests: 1734 passing (was 1726; +8 new in `test_topic_queue_state.py`
-covering the staleness gate — unchanged+fresh skips, fingerprint
+covering the staleness gate - unchanged+fresh skips, fingerprint
 change forces repost, empty batch, stale-past-threshold, just-under
 threshold, missing/unparseable/naive timestamps). Two existing
 `TestPostThreadQueue` skip tests updated: one gains a fresh
@@ -2319,10 +2319,10 @@ threshold, missing/unparseable/naive timestamps). Two existing
 migrating-repost behaviour.
 
 The pre-existing orphaned message in C01 (156513) is Lewis's manual
-cleanup — the bot does not auto-delete orphans (hard rule). This
+cleanup - the bot does not auto-delete orphans (hard rule). This
 fix stops new ones from forming.
 
-Version: PATCH — a bug fix. The periodic re-post of stuck queues is
+Version: PATCH - a bug fix. The periodic re-post of stuck queues is
 a side effect of the correctness fix, not a new feature.
 
 See L28 in `docs/dev/REFACTOR_PROGRESS.md` for the 48h-window
@@ -2338,7 +2338,7 @@ analysis and why a forced-refresh cadence is the right shape.
 
 Cannon (player in C05/MW) flagged on 2026-05-19 that the pinned
 per-topic queue messages in the RP channels were a "brick of meta
-information" — immersion-breaking, dominated by the age-icon
+information" - immersion-breaking, dominated by the age-icon
 legend and the quote/preview snippets. The visible body of every
 pinned queue was:
 
@@ -2358,9 +2358,9 @@ GM is already in that conversation; the quote is redundant.
 
 The fix ships a two-tier display:
 
-* **Bot-topic GM Queue** (Lewis's workspace) — unchanged. Verbose
+* **Bot-topic GM Queue** (Lewis's workspace) - unchanged. Verbose
   by design; the quote, the legend, the all-time counter all stay.
-* **Per-topic pinned queue** (each PBP channel) — slimmed hard:
+* **Per-topic pinned queue** (each PBP channel) - slimmed hard:
 
 ```
 📋 Unreplied: 2
@@ -2371,7 +2371,7 @@ The fix ships a two-tier display:
 Dropped from the per-topic format: the separator line, the age
 legend, the numbered prefix, the message-id brackets, the
 quote/preview text, the 🔗 link emoji. Kept: count header, link
-(Lewis hard requirement — every entry has its own jumpable link),
+(Lewis hard requirement - every entry has its own jumpable link),
 age icon (urgency hint at a glance), first name (channel context
 means full names aren't needed).
 
@@ -2384,7 +2384,7 @@ per-topic queue transitions from non-empty to empty:
 @alice @bob @charlie @dave @ryo @anthony
 ```
 
-All active-roster players (non-perm-recent + perm — the same set
+All active-roster players (non-perm-recent + perm - the same set
 ``commands.roster._active_players`` returns) get an @-mention. This
 fires Telegram notifications on every transition, which is
 intentional: the bot's purpose is GM accountability AND nudging
@@ -2394,24 +2394,24 @@ including ``state=None`` from tests): falls back to a bare
 
 ### Code changes
 
-* `scripts/commands/topic_queue_format.py` — rewrote
+* `scripts/commands/topic_queue_format.py` - rewrote
   ``format_topic_queue`` for the slim shape. New helper
   ``_format_topic_line`` builds the per-entry line. Dropped imports
   of ``format_queue_line`` and ``short_preview`` from
   ``queue_format`` (no longer needed). Dropped ``_AGE_LEGEND`` and
   ``_SEPARATOR`` constants.
-* `scripts/scheduled/per_topic_caught_up.py` (new, 68 lines) —
+* `scripts/scheduled/per_topic_caught_up.py` (new, 68 lines) -
   single source of truth for the caught-up message text. Exposes
   ``build_caught_up_text(pid, state, config)`` which handles both
   the bare and the tagged forms. Lazy-imports ``_active_players``
   from ``commands.roster`` to avoid circular import at module load.
-* `scripts/scheduled/topic_queue_poster.py` — threaded ``state``
+* `scripts/scheduled/topic_queue_poster.py` - threaded ``state``
   through ``post_topic_queues`` (keyword-only, optional) and
   ``_clear_thread_queue`` (with ``pid`` and ``config`` siblings).
   Replaced the hardcoded ``"━━━\n✅ All caught up!"`` with a call
   to ``build_caught_up_text``. File stays at the 200-line cap by
   trimming previously-verbose docstrings.
-* `scripts/scheduled/queue_reminder.py` — passes ``state=state``
+* `scripts/scheduled/queue_reminder.py` - passes ``state=state``
   through to ``post_topic_queues``. Single-line touch.
 
 ### Tests
@@ -2423,13 +2423,13 @@ including ``state=None`` from tests): falls back to a bare
   (state=None fallback, 0-active fallback, with-roster nudge,
   per-record perm flag inclusion, config-list perm inclusion,
   cross-campaign isolation).
-* `scripts/test_topic_queue.py` — four assertions updated for the
+* `scripts/test_topic_queue.py` - four assertions updated for the
   new format: ``test_entry_with_link`` (no 🔗), the renamed
   ``test_multiple_entries_no_numbered_prefix`` (no 01/02), the
   renamed ``test_age_legend_removed`` (legend absent), and
   ``test_splits_long_message`` (500 entries to overflow instead of
   60-with-quotes since per-line size dropped).
-* `scripts/test_topic_queue_b.py` — four ``_clear_thread_queue``
+* `scripts/test_topic_queue_b.py` - four ``_clear_thread_queue``
   call sites updated to pass the new ``pid=, state=None, config={}``
   keyword arguments. The existing assertions (caught-up sent,
   prior caught-up deleted, slot cleared, msg_ids removed) still
@@ -2448,7 +2448,7 @@ including ``state=None`` from tests): falls back to a bare
   caught-up message), the active roster gets @-mentioned. For
   campaigns with 4–6 active players this fires that many
   notifications per transition. Bots that respect mute settings
-  will respect them here too — Telegram's normal mention rules
+  will respect them here too - Telegram's normal mention rules
   apply, and players who don't want pings can mute the topic.
 * Bot-topic GM Queue (``scheduled/queue_reminder.py``) and its
   caught-up notification (``scheduled/queue_caught_up.py``) are
@@ -2480,8 +2480,8 @@ Lewis reported on 2026-05-17 (twice in close succession) that the
 roster output wasn't accounting for Anthony, Horia, and Ryo as
 permanent players, even though memory entry #17 captured the rule
 "A/H/R are always perm in every campaign they're in." The previous
-fix path — use `/setpermanent` in each PBP topic to flip the
-per-record flag — was high-friction (one command per
+fix path - use `/setpermanent` in each PBP topic to flip the
+per-record flag - was high-friction (one command per
 user-per-campaign) and prone to drift when new enrolments arrived
 with the default `permanent=False`.
 
@@ -2505,35 +2505,35 @@ when scanning. Two labelled sections make the split unambiguous.
 
 ### Code changes
 
-* **New** `scripts/players/permanence.py` (53 lines) — single source
+* **New** `scripts/players/permanence.py` (53 lines) - single source
   of truth for `is_permanent(player, config)`. Returns True when
   EITHER `player["permanent"]` is True OR `player["user_id"]` is in
   `config["permanent_user_ids"]`. Tolerates int/str user_id
   mismatches, missing config keys, missing user_id fields.
-* `scripts/commands/roster.py` — `_active_players` and
+* `scripts/commands/roster.py` - `_active_players` and
   `_split_active` now take a `config` parameter and delegate to
   `is_permanent`. `build_roster_campaign` renders Current/Perm as
   two separate sections, omitting either when empty. Inline
   `[perm]` tag removed.
-* `scripts/commands/roster_players.py` — `_at_risk_status`,
+* `scripts/commands/roster_players.py` - `_at_risk_status`,
   `_aggregate_by_user`, and `build_footer` all thread `config`
   through. The cross-campaign player table's `permanent: bool`
   flag now reads from `is_permanent` rather than the raw per-record
   field.
-* `scripts/commands/roster_views.py` — the `/rosterall` aggregator
+* `scripts/commands/roster_views.py` - the `/rosterall` aggregator
   passes `config` to `_aggregate_by_user` and `build_footer`.
-* `scripts/scheduled/maintenance.py:check_recruitment_needs` —
+* `scripts/scheduled/maintenance.py:check_recruitment_needs` -
   recruitment alert's perm-split now uses `is_permanent(p, config)`
   for both the count partition AND the inline `[perm]` tag in the
   roster listing.
-* `scripts/scheduled/alerts.py:check_player_activity` — the
+* `scripts/scheduled/alerts.py:check_player_activity` - the
   auto-removal block (`if not player.get("permanent")...`) and the
   week-3 warning suppression both delegate to `is_permanent`. This
   means A/H/R are now never auto-removed and never receive the
   week-3 warning, even when their per-record flag is unset.
-* `scripts/scheduled/roster_nudge.py` — both `_active_players`
+* `scripts/scheduled/roster_nudge.py` - both `_active_players`
   callers pass `config`.
-* `config.json` — new `permanent_user_ids` key with three IDs.
+* `config.json` - new `permanent_user_ids` key with three IDs.
 
 ### Tests
 
@@ -2558,21 +2558,21 @@ cap; `scheduled/maintenance.py` at exactly 200,
 
 ### Behaviour deltas
 
-* `/roster` overview — same X/Y +Z perm format; Z now includes A/H/R
+* `/roster` overview - same X/Y +Z perm format; Z now includes A/H/R
   automatically. C00 (which currently shows 4/6 with no perm)
   will show 3/6 +1 perm or similar depending on which of A/H/R are
   enrolled.
-* `/roster C00` drill-down — Current and Perm now appear as two
+* `/roster C00` drill-down - Current and Perm now appear as two
   separate labelled sections. Inline `[perm]` tag is gone.
-* `/rostercampaigns`, `/rosterall` — same section split applies to
+* `/rostercampaigns`, `/rosterall` - same section split applies to
   every block.
-* `/rosterplayers` — the `[perm]` tag in the cross-campaign player
+* `/rosterplayers` - the `[perm]` tag in the cross-campaign player
   table still appears for visual consistency; the underlying perm
   classification now uses `is_permanent`.
-* Recruitment alert (`📢 ... needs N more players!`) — same
+* Recruitment alert (`📢 ... needs N more players!`) - same
   `Current roster (X/Y +Z perm):` format; perm count now folds in
   A/H/R automatically.
-* Inactivity alerts (`scheduled/alerts.py`) — A/H/R now skip both
+* Inactivity alerts (`scheduled/alerts.py`) - A/H/R now skip both
   the week-3 warning and the 4-week auto-removal, matching the
   rule from memory #17. Other (per-record-flagged) perm players
   unchanged.
@@ -2610,7 +2610,7 @@ it wasn't. Root cause: pre-fix, the caught-up branches in
 `tg.send_message`, bypassing the rolling-history machinery in
 `gm_queue_history.post_and_persist`. The previous GM Queue batch
 stayed in `state["gm_queue_history"]` with no trigger to evict it
-until a NEW real queue post arrived — and even then, only the
+until a NEW real queue post arrived - and even then, only the
 queue batch would be evicted, leaving the now-stale "All caught
 up!" message orphaned in chat alongside the new queue.
 
@@ -2621,19 +2621,19 @@ machinery, with a new `pin: bool = True` parameter on
 
 Code changes:
 
-* `scripts/scheduled/gm_queue_history.py:post_and_persist` — new
+* `scripts/scheduled/gm_queue_history.py:post_and_persist` - new
   `pin: bool = True` keyword parameter forwarded to `post_batch`.
   When False, the returned batch has `pin_id=None`, and
   `state["last_queue_pin_id"]` is set to None accordingly. Previous
   pin (if any) is still unpinned so the bot topic doesn't
   accumulate stale notifications.
-* `scripts/scheduled/queue_caught_up.py` (new, 37 lines) — sibling
+* `scripts/scheduled/queue_caught_up.py` (new, 37 lines) - sibling
   helper module exposing `post_caught_up(state, group_id, bot_topic)`
   and the `CAUGHT_UP_TEXT` constant. The helper exists only to dedupe
   the call from both empty-queue branches in `queue_reminder.py`,
   but lives in its own file so `queue_reminder.py` stays under the
   200-line cap.
-* `scripts/scheduled/queue_reminder.py` — both "All caught up!"
+* `scripts/scheduled/queue_reminder.py` - both "All caught up!"
   branches (line-68 production path and line-73 defensive path)
   now call `_post_caught_up(state, group_id, bot_topic)` (aliased
   from `queue_caught_up.post_caught_up`) instead of
@@ -2652,7 +2652,7 @@ Tests:
   - `pin=False` still unpins the PREVIOUS pin so old pin notifications
     don't accumulate
   - `pin=True` (default) preserves pre-fix behaviour exactly
-* `scripts/test_queue_reminder_caught_up_a.py` and `_b.py` — the two
+* `scripts/test_queue_reminder_caught_up_a.py` and `_b.py` - the two
   failing "message sent" tests updated to patch `_post_caught_up`
   directly (the deeper `post_and_persist` chain is covered by the
   helper module's tests, so duplicating that mock here would just
@@ -2667,7 +2667,7 @@ safeguard, which is correct: the message is bot-sent and trackable.
 
 Version: PATCH because the visible message text is unchanged and
 the only behaviour change is "the previous queue actually
-disappears now" — a bug fix, not a new feature.
+disappears now" - a bug fix, not a new feature.
 
 See L25 in `docs/dev/REFACTOR_PROGRESS.md` for the lesson about
 batch-machinery being the right abstraction for ANY bot-topic
@@ -2748,7 +2748,7 @@ fires). No state-schema changes; no migrations.
 
 See L24 in `docs/dev/REFACTOR_PROGRESS.md` for the three-spot
 sweep needed when the perm-split rule changes (overview, per-
-campaign drill-down, recruitment alert — all read the same flag,
+campaign drill-down, recruitment alert - all read the same flag,
 all need the same shape).
 
 ---
@@ -2805,7 +2805,7 @@ global. Fixing the data is on Lewis's plate and outside this
 commit's scope.
 
 Version: PATCH bump because the displayed icon for current data
-doesn't change — the fix is semantic correctness for future
+doesn't change - the fix is semantic correctness for future
 state. No state-schema changes, no migrations.
 
 See L23 in `docs/dev/REFACTOR_PROGRESS.md` for the three-role
@@ -2843,39 +2843,39 @@ User-facing changes:
 
 Code changes:
 
-- `scripts/scheduled/potw.py` — boon_text rewritten; inline
+- `scripts/scheduled/potw.py` - boon_text rewritten; inline
   buttons construction removed; send_message_with_buttons →
   send_message_id.
-- `scripts/boons/reminders.py` — three reminder texts updated.
-- `scripts/dispatch/cmd_player.py` — `/chooseboon` handler removed;
+- `scripts/boons/reminders.py` - three reminder texts updated.
+- `scripts/dispatch/cmd_player.py` - `/chooseboon` handler removed;
   module docstring updated; unused `choose_boon_by_text` import
   removed.
-- `scripts/dispatch/bot_topic.py` — `/chooseboon` handler removed.
-- `scripts/dispatch/router.py` — `/chooseboon` text-command branch
+- `scripts/dispatch/bot_topic.py` - `/chooseboon` handler removed.
+- `scripts/dispatch/router.py` - `/chooseboon` text-command branch
   removed; `process_boon_callback` dispatch in the callback_query
   handler removed (hero-point callbacks still handled); unused
   `process_boon_callback` import removed.
-- `scripts/dispatch/help_text.py` — `/chooseboon <N>` line dropped.
-- `scripts/parsing/message.py` — the `/chooseboon`-specific
+- `scripts/dispatch/help_text.py` - `/chooseboon <N>` line dropped.
+- `scripts/parsing/message.py` - the `/chooseboon`-specific
   sentinel-pid special-case removed; main-chat messages with no
   thread_id now rejected uniformly.
-- `scripts/set_commands.py` — `("chooseboon", "...")` entry removed.
+- `scripts/set_commands.py` - `("chooseboon", "...")` entry removed.
 
 Not touched: the `choose_boon_by_text` and `process_boon_callback`
 functions in `scripts/boons/handler.py` remain in place and are
 still exported from `boons/__init__.py`. They have no production
 callers after this commit but their tests continue to pass, which
-is why they stay — removing them would balloon the scope of this
+is why they stay - removing them would balloon the scope of this
 change into a multi-file test cleanup. Future work can excise the
 dead functions if desired.
 
 Known UX gap (one-time, deliberate): players who tap one of the
 inline buttons on a POTW message posted before this commit will
-see no response — the bot now silently ignores `boon:` callbacks.
+see no response - the bot now silently ignores `boon:` callbacks.
 Old POTW messages will become inert relics in chat history. This
 is acceptable because (a) future POTW messages don't have buttons,
 (b) the website is the documented path going forward, and (c)
-adding a "that command moved — use the website" reply would mean
+adding a "that command moved - use the website" reply would mean
 keeping the entire callback-dispatch path alive just for the
 degraded case.
 
@@ -2884,7 +2884,7 @@ shape of the POTW announcement and the loss of `/chooseboon`).
 No state-schema changes; no migrations needed.
 
 Tests: 1696 passing (was 1698; two obsolete tests deleted with
-explanatory comments — `test_process_updates_boon_callback` and
+explanatory comments - `test_process_updates_boon_callback` and
 `test_chooseboon_executes`). Every file remains under the 200-line
 cap. See L22 in `docs/dev/REFACTOR_PROGRESS.md` for the learning.
 
@@ -2896,17 +2896,17 @@ cap. See L22 in `docs/dev/REFACTOR_PROGRESS.md` for the learning.
 
 **`scripts/test_core_coverage.py` split by subject-under-test**
 (`test_core_queue.py`, `test_core_markdone.py`,
-`test_core_state.py`, `test_core_scheduled.py` — all new)
+`test_core_state.py`, `test_core_scheduled.py` - all new)
 
 The single 514-line `test_core_coverage.py` violated the 200-line
 budget and grouped tests for six unrelated modules under one file.
 The author had already drawn topic boundaries with section-divider
 comments; the split honours those exact cut points:
 
-- `test_core_queue.py` (126 lines) — `commands/queue.py`
-- `test_core_markdone.py` (151 lines) — `commands/markdone.py`
-- `test_core_state.py` (51 lines) — `state.py` file-I/O paths
-- `test_core_scheduled.py` (194 lines) — `scheduled/{session_poll,queue_reminder,potw}.py` guard tests
+- `test_core_queue.py` (126 lines) - `commands/queue.py`
+- `test_core_markdone.py` (151 lines) - `commands/markdone.py`
+- `test_core_state.py` (51 lines) - `state.py` file-I/O paths
+- `test_core_scheduled.py` (194 lines) - `scheduled/{session_poll,queue_reminder,potw}.py` guard tests
 
 No test bodies changed. Each new file's docstring describes its
 scope. Full suite still 1509 passing; no behaviour change. Closes
@@ -3054,7 +3054,7 @@ paths, `get_alltime_clears` filter behaviour, and the
 Only the last three queue post batches are kept in the GM Queue topic.
 When a fourth batch is posted, every Telegram message in the oldest
 batch is deleted so the topic stays scannable. A *batch* is the full
-set of messages produced by a single queue post — long queues that
+set of messages produced by a single queue post - long queues that
 overflow Telegram's 4096-char limit count as one batch and evict
 together. State lives in `state["gm_queue_history"]` (live partition);
 `MAX_KEPT_BATCHES = 3`. The legacy `last_queue_pin_id` is kept and
@@ -3099,9 +3099,9 @@ next workflow run.
 **`/roster` command** (`commands/roster.py`, `dispatch/cmd_info.py`, `dispatch/bot_topic.py`)
 
 Available to everyone from any topic including the bot topic.
-- `/roster` — all campaigns ordered fewest to most active players (last 30d),
+- `/roster` - all campaigns ordered fewest to most active players (last 30d),
   shown as `4/6`, `8/6` etc with ✅ at target and ⚠️ below
-- `/roster C04` or `/roster 04` — current active players + full join/leave history
+- `/roster C04` or `/roster 04` - current active players + full join/leave history
 
 **Player join/leave history** (`players/history.py`)
 
@@ -3116,9 +3116,9 @@ The bot resolves whichever topic you're in back to the canonical campaign.
 
 **Hero Point campaign picker for MVP of the Week** (`boons/hero_point.py`)
 
-After the leaderboard MVP is announced, the bot posts inline buttons — one per
+After the leaderboard MVP is announced, the bot posts inline buttons - one per
 campaign the winner is active in. Tapping one posts `✅ +1 Hero Point for
-Magni Watch — Chase` to the bot topic.
+Magni Watch - Chase` to the bot topic.
 
 **Silent campaign links** (`scheduled/queue_silence.py`)
 
@@ -3133,7 +3133,7 @@ gaps, so failures are diagnosable without opening GitHub Actions.
 ### Fixed
 
 - `_voter_mention` now flags missing usernames visibly as
-  `Christopher (⚠️ username unknown — uid 8787586972)` instead of silently
+  `Christopher (⚠️ username unknown - uid 8787586972)` instead of silently
   using the display name as if it were a username
 - Christopher (@Sestina_The_Banner_Witch) corrected in C01 `poll_user_names`
 - C00 Riddleport COMBAT topic corrected (145053 → 133428)
@@ -3152,21 +3152,21 @@ gaps, so failures are diagnosable without opening GitHub Actions.
 
 Available to everyone. Two modes:
 
-- `/roster` — all campaigns ordered fewest to most active players (last 30
+- `/roster` - all campaigns ordered fewest to most active players (last 30
   days), with ✅ at 6+ and ⚠️ + deficit count below target
-- `/roster C04` or `/roster 04` — drill-down for one campaign: current
+- `/roster C04` or `/roster 04` - drill-down for one campaign: current
   active players plus full join/leave history with dates
 
 **Player join/leave history log** (`players/history.py`)
 
-New `state["player_history"]` list — a permanent append-only audit log of
+New `state["player_history"]` list - a permanent append-only audit log of
 every join and leave event, with timestamp, player name, username, and
 campaign pid. Events recorded:
 
-- **join** — when a player is added via `/addplayer`
-- **join** — when a previously removed player posts again (rejoin)
-- **leave** — when a player is kicked via `/kick`
-- **leave** — when a player is auto-removed after 3 weeks of inactivity
+- **join** - when a player is added via `/addplayer`
+- **join** - when a previously removed player posts again (rejoin)
+- **leave** - when a player is kicked via `/kick`
+- **leave** - when a player is auto-removed after 3 weeks of inactivity
 
 History only starts accumulating from this release onward.
 
@@ -3185,7 +3185,7 @@ Every entry in the GM queue now shows its Telegram message ID in brackets:
 02 [2062] 🌱 1h. THE FUN UNCLE: "Like me, did you die...
 ```
 
-Use `/markdone 1970` to clear by ID — safe against renumbering regardless
+Use `/markdone 1970` to clear by ID - safe against renumbering regardless
 of how many other entries are cleared beforehand. To clear multiple entries
 atomically use `/markdone 1970 2062` (space-separated IDs or numbers).
 
@@ -3239,7 +3239,7 @@ for 10 or more days, it now appears at the bottom of the GM queue:
 
 ```
 ━━ 💤 Silent campaigns ━━
-  🟫 🦄 C08: Theria — no posts for 14d
+  🟫 🦄 C08: Theria - no posts for 14d
 ```
 
 Uses the same age icons as the queue. Campaigns with any unreplied entries are
@@ -3269,7 +3269,7 @@ Also corrected "PBP topic" → "RP topic" in the same line.
 Every PBP thread now receives a unique, flavour-specific message when it
 crosses a 500-post milestone, instead of the generic fallback. Messages
 are written specifically for each campaign's setting, characters, lore,
-and tone — 50 messages per thread, covering milestones 500 through 25,000.
+and tone - 50 messages per thread, covering milestones 500 through 25,000.
 
 Messages are stored in per-campaign JSON files under `data/milestone_messages/`:
 
@@ -3307,7 +3307,7 @@ pinned poll message, so players can tap through to vote immediately.
 
 When a completely unrecognised UID votes in a poll, the bot posts an
 immediate warning to the bot topic: `⚠️ Unknown voter in C01 poll: uid
-999888 — They voted but aren't on the roster.` The known-check now also
+999888 - They voted but aren't on the roster.` The known-check now also
 covers `poll_user_names` keys, so named-but-unrostered voters (PathWars,
 Elinoa, Christopher) no longer trigger it.
 
@@ -3340,7 +3340,7 @@ labelled in C11 `poll_user_names`. All three cleared from `poll_unknown_voters`.
 
 ## [4.36.0] - 2026-04-09
 
-### Fixed — Per-topic queue posted to wrong thread in multi-topic campaigns
+### Fixed - Per-topic queue posted to wrong thread in multi-topic campaigns
 
 **Root cause:** `topic_queue_poster.py` used the canonical campaign pid as both
 the state key and the Telegram destination thread. For campaigns with multiple
@@ -3371,7 +3371,7 @@ and truncates at 120 characters (was 90).
 
 ## [4.35.0] - 2026-04-08
 
-### Fixed — Poll week number, date drift in vote notifications, per-campaign message links, rate limiting
+### Fixed - Poll week number, date drift in vote notifications, per-campaign message links, rate limiting
 
 **Poll week number on Sunday** (`scheduled/session_poll.py`)
 
@@ -3395,7 +3395,7 @@ stored options for the voter label too.
 
 C11 (Dark Pockets) lives in a separate private group. The queue scanner
 was hardcoding `t.me/Path_Wars/…` for all campaigns. Added `_build_link`
-which checks `pair.get("group_username")` — if absent, builds a
+which checks `pair.get("group_username")` - if absent, builds a
 `t.me/c/{digits}/…` private-group link instead.
 
 **Telegram rate limiting** (`scheduled/topic_queue_poster.py`)
@@ -3406,7 +3406,7 @@ rate-limit warnings. Added 1s sleep between each campaign post/clear.
 **C09 combat topic** (`config.json`)
 
 Topic `142887` (Metal City Stargazers COMBAT) added to C09
-`pbp_topic_ids` — it's a PBP split topic, not a separate campaign.
+`pbp_topic_ids` - it's a PBP split topic, not a separate campaign.
 
 **Per-topic queue preview length** (`commands/topic_queue_format.py`)
 
@@ -3423,7 +3423,7 @@ range used for Patrick's placeholder UID, in addition to `9000000xxx`.
 
 ## [4.34.0] - 2026-04-06
 
-### Added — Per-topic pinned queue + telegram.delete_message
+### Added - Per-topic pinned queue + telegram.delete_message
 
 **Per-topic pinned queue** (`commands/topic_queue_format.py`, `scheduled/topic_queue_poster.py`)
 
@@ -3432,8 +3432,8 @@ topic's unreplied entries. The message uses the same age-icon scale and
 entry format as the bot-topic queue but omits the campaign header (you're
 already in context). State is stored per campaign in the existing
 `data/state/queues/{pid}.json` files as two new fields:
-- `topic_msg_id` — message_id of the current pinned message
-- `topic_fingerprint` — change-detection string; post is skipped if unchanged
+- `topic_msg_id` - message_id of the current pinned message
+- `topic_fingerprint` - change-detection string; post is skipped if unchanged
 
 Lifecycle per hourly run:
 - Entries exist, no pin → post and pin (with notification)
@@ -3446,14 +3446,14 @@ Lifecycle per hourly run:
 New `delete_message(chat_id, message_id)` helper added to `telegram.py`
 and registered in `conftest.py`'s mock.
 
-**`/markdone` context-awareness** — no code change required. The existing
+**`/markdone` context-awareness** - no code change required. The existing
 `pid`-scoped dispatch already scopes entry numbers to the current PBP
 topic when the command is used there, and requires a campaign name arg
 when used from the bot topic.
 
 ### Changed
 
-`scheduled/queue_reminder.py` — calls `post_topic_queues(config, scanned, now)`
+`scheduled/queue_reminder.py` - calls `post_topic_queues(config, scanned, now)`
 immediately after `scan_transcripts` on every hourly tick, before the
 bot-topic fingerprint check. Per-topic queue maintenance is therefore
 independent of whether the bot-topic queue changes.
@@ -3462,12 +3462,12 @@ independent of whether the bot-topic queue changes.
 
 ## [4.33.0] - 2026-03-31
 
-### Changed — 22-tier age icon scale
+### Changed - 22-tier age icon scale
 
 Completely redesigned queue age icons. Old 9-tier circle scale replaced
 with a 22-tier system:
 
-**Under 24h — growth sequence:**
+**Under 24h - growth sequence:**
 | Icon | Age |
 |---|---|
 | 🆕 | < 1h |
@@ -3475,7 +3475,7 @@ with a 22-tier system:
 | 🌿 | 6–12h |
 | 🌳 | 12–24h |
 
-**Days 1–16 — one icon per day (circle then square per colour):**
+**Days 1–16 - one icon per day (circle then square per colour):**
 🟢 🟩 🟡 🟨 🟠 🟧 🔴 🟥 🟣 🟪 🔵 🟦 🟤 🟫 ⚫ ⬛
 
 **Beyond day 16:**
@@ -3491,7 +3491,7 @@ Queue header legend and week welcome legend both updated.
 
 ## [4.32.0] - 2026-03-31
 
-### Fixed — Forum topic header false-positive in reply tracking
+### Fixed - Forum topic header false-positive in reply tracking
 
 Every message in a Telegram forum topic technically has `reply_to_message`
 set to the topic's root/header message (same ID as `message_thread_id`,
@@ -3504,26 +3504,26 @@ to player messages, recording `msg=40585` (thread ID) for every GM post.
 
 Confirmed working: reply to Kibwe message 140732 correctly recorded.
 
-### Fixed — `/chooseboon` and all commands silently dropped from chat topics
+### Fixed - `/chooseboon` and all commands silently dropped from chat topics
 
 `chat_topic_id` was not included in `to_canonical` mapping in
 `topic_maps.py`. Messages from chat topics (e.g. 21528 = Kibwe chat)
 were dropped before reaching any command handler. Added chat topic ID
 to the canonical map so commands work from either chat or PBP topics.
 
-### Fixed — Media group deduplication in GM queue
+### Fixed - Media group deduplication in GM queue
 
 Telegram sends each image in a multi-photo post as a separate update
 with the same `media_group_id`. Only the first message of a group is
-now queued — subsequent images are skipped. `media_group_id` stored
+now queued - subsequent images are skipped. `media_group_id` stored
 in queue entries. Cleaned 2 existing Kibwe duplicates (140503, 140504).
 
-### Fixed — `/markdone` accepts full t.me URLs
+### Fixed - `/markdone` accepts full t.me URLs
 
-`/markdone https://t.me/Path_Wars/40585/139231` now works — the trailing
+`/markdone https://t.me/Path_Wars/40585/139231` now works - the trailing
 message ID is extracted from the URL automatically.
 
-### Added — GM Queue sequential position numbers
+### Added - GM Queue sequential position numbers
 
 Each queue entry is now prefixed with its position across all campaigns:
 ```
@@ -3532,29 +3532,29 @@ Each queue entry is now prefixed with its position across all campaigns:
 ```
 Kibwe (priority) always starts at 01. Resets on each post.
 
-### Changed — Queue preview length: 5 → 15 words
+### Changed - Queue preview length: 5 → 15 words
 
 Message previews in the GM queue now show 15 words instead of 5.
 
-### Added — GM Queue #N counter
+### Added - GM Queue #N counter
 
 Queue header now shows `📋 GM Queue #N` where N increments on every post.
 Stored in `state["queue_post_count"]`.
 
-### Added — Campaign emojis in queue section headers
+### Added - Campaign emojis in queue section headers
 
 Each campaign section prefixed with its emoji matching the Telegram chat:
 `C00 💰 C01 📆 C04 🔍 C05 🔭 C06 🦠 C07 ⭐️ C08 🦄 C09 🤖 C11 🌑`
 Stored as `emoji` field in `config.json` `topic_pairs`.
 
-### Added — Queue auto-pin / unpin
+### Added - Queue auto-pin / unpin
 
 After each queue reminder post, the first message is pinned to the bot
 topic and the previously pinned queue message is unpinned. Tracked in
 `state["last_queue_pin_id"]`. New `telegram.send_message_id()` and
 `telegram.unpin_message()`.
 
-### Added — Age legend in every queue header
+### Added - Age legend in every queue header
 
 `Age: 🟢 <6h  🟡 1d  🟠 2d  🔴 3d  🟣 5d  🔵 7d  🟤 14d  ⚫ 30d+`
 
@@ -3564,16 +3564,16 @@ topic and the previously pinned queue message is unpinned. Tracked in
 
 ## [4.31.0] - 2026-03-31
 
-### Added — Queue reminder auto-pins latest post, unpins previous
+### Added - Queue reminder auto-pins latest post, unpins previous
 
 After each queue reminder is sent, the first message is pinned to the
 bot topic and the previously pinned queue message is unpinned. Tracked
 in `state["last_queue_pin_id"]`.
 
-New `telegram.send_message_id()` — like `send_message` but returns the
+New `telegram.send_message_id()` - like `send_message` but returns the
 message_id. New `telegram.unpin_message()`.
 
-### Added — Age legend in every queue reminder header
+### Added - Age legend in every queue reminder header
 
 Every queue post now opens with:
 ```
@@ -3582,9 +3582,9 @@ C06:35 C09:17 ...
 Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
 ```
 
-### Verified — Reply tracking working correctly
+### Verified - Reply tracking working correctly
 
-Tested with 6 manual replies to Grand Explorers entries — all captured
+Tested with 6 manual replies to Grand Explorers entries - all captured
 in `data/state/queues/51357.json` reply_log with `via=reply`. Pre-link-era
 entries (player=?) record the message ID correctly even without a live
 queue entry to resolve the player name from.
@@ -3593,12 +3593,12 @@ queue entry to resolve the player name from.
 
 ## [4.30.0] - 2026-03-30
 
-### Refactored — Per-Campaign Queue Partitions
+### Refactored - Per-Campaign Queue Partitions
 
 Each campaign now has its own queue file at `data/state/queues/{pid}.json`
 instead of all campaigns sharing keys in `queue.json`.
 
-**Before:** `state["gm_queue_replied"]["40585"]` — shared dict, capped at
+**Before:** `state["gm_queue_replied"]["40585"]` - shared dict, capped at
 2000 entries, cross-campaign eviction possible.
 
 **After:** `data/state/queues/40585.json`:
@@ -3612,15 +3612,15 @@ instead of all campaigns sharing keys in `queue.json`.
 ```
 
 **Benefits:**
-- `replied` has no cap — every reply is remembered forever
-- `reply_log` is per-campaign — full searchable audit trail
+- `replied` has no cap - every reply is remembered forever
+- `reply_log` is per-campaign - full searchable audit trail
 - No cross-campaign contamination or eviction
 - `queue.json` slimmed to: `queue_history`, `queue_archive`, `pending_potw_boons`
 
 **Migration:** 8 campaigns migrated from `gm_queue_replied` on deploy.
 `data/` commit in the hourly workflow already covers `data/state/queues/`.
 
-**New module:** `commands/queue_io.py` — load/save/mark_replied/migrate
+**New module:** `commands/queue_io.py` - load/save/mark_replied/migrate
 per-campaign queue files. All queue touches in `tracking.py`,
 `queue_scan.py`, and `markdone.py` now route through this module.
 
@@ -3630,16 +3630,16 @@ per-campaign queue files. All queue touches in `tracking.py`,
 
 ## [4.29.0] - 2026-03-30
 
-### Fixed — Queue showing too few entries (floor too aggressive)
+### Fixed - Queue showing too few entries (floor too aggressive)
 
 `queue_scan_floor` was set to `2026-03-30` (today), suppressing all
 messages before today including legitimate recent ones. Reset to
-`2026-03-16` (2 weeks ago) — kills the ancient 29d backlog but restores
+`2026-03-16` (2 weeks ago) - kills the ancient 29d backlog but restores
 🔵🟣🔴 entries from the past fortnight.
 
 The real fix is a proper reply audit trail (below) rather than a floor.
 
-### Added — GM Reply Audit Log (`gm_reply_log`)
+### Added - GM Reply Audit Log (`gm_reply_log`)
 
 Every GM reply-to event is now permanently recorded in
 `state["gm_reply_log"]` (queue partition, capped at 500):
@@ -3653,7 +3653,7 @@ Every GM reply-to event is now permanently recorded in
 `"via"` is `"reply"` for Telegram reply-to events and `"markdone"` for
 manual clears. Provides a searchable history of all GM responses.
 
-### Added — `/markdone` GM Command
+### Added - `/markdone` GM Command
 
 Manually clear queue entries the bot missed (e.g. pre-history replies,
 or messages handled outside Telegram's reply-to feature):
@@ -3673,28 +3673,28 @@ Each clear is written to `gm_reply_log` for audit purposes.
 
 ## [4.28.0] - 2026-03-30
 
-### Fixed — Queue nudges re-firing every hour
+### Fixed - Queue nudges re-firing every hour
 
 `queue_nudged` state had 73 stale `pid:timestamp` keys from an old format.
-The current code uses `pid:username` keys — the formats never matched, so
+The current code uses `pid:username` keys - the formats never matched, so
 every run treated all players as un-nudged and fired again. Fixed by
 clearing stale keys and pre-marking the current backlog players.
 
-### Fixed — Telegram rate limiting (HTTP 429)
+### Fixed - Telegram rate limiting (HTTP 429)
 
 Queue nudge fired 16 messages in rapid succession, hitting Telegram's
 burst limit. `telegram._post` now retries once on 429, waiting the
 `retry_after` duration from the response before retrying.
 
-### Added — Daily Diagnostic
+### Added - Daily Diagnostic
 
-`scheduled/diagnostic.py` + `scheduled/diagnostic_analysis.py` — runs
+`scheduled/diagnostic.py` + `scheduled/diagnostic_analysis.py` - runs
 at `diagnostic_hour` (default 8am UTC) daily. Fetches the last 25
 GitHub Actions run logs, scans for rate limits, errors, warnings,
 unknown voters, queue peaks, and posts a summary to the bot topic:
 
 ```
-🔍 Daily Diagnostic — 2026-03-31
+🔍 Daily Diagnostic - 2026-03-31
 ⚠️ 1 issue type(s) found across 22 hourly runs
   ⚠️ Rate limited ×3
 Activity:
@@ -3708,7 +3708,7 @@ Activity:
 
 ## [4.27.0] - 2026-03-30
 
-### Fixed — Queue scanner flooding with 29-day-old entries
+### Fixed - Queue scanner flooding with 29-day-old entries
 
 After the v4.26.0 queue clearing fix (GM messages no longer wipe pending
 entries), all previously-suppressed transcript entries flooded back into
@@ -3716,17 +3716,17 @@ the queue. Entries going back 29 days appeared because the transcript
 scanner had no knowledge of which ones had genuinely been replied to
 before reply-to tracking was introduced.
 
-**Fix:** `queue_scan_floor` state key — the scanner ignores any transcript
+**Fix:** `queue_scan_floor` state key - the scanner ignores any transcript
 entry older than this date. Set to `2026-03-30` on deployment, giving a
 clean slate. Future sessions build a clean `gm_queue_replied` record.
 
-### Fixed — Missing links in queue nudge warnings
+### Fixed - Missing links in queue nudge warnings
 
-The `⚠️ @PathWars — X's message is Nh old!` warnings posted to the
+The `⚠️ @PathWars - X's message is Nh old!` warnings posted to the
 bot topic now include a direct 🔗 link to the oldest message from that
 player when available.
 
-### Changed — Age icon scale: 9 tiers (added ⚫ 30d+)
+### Changed - Age icon scale: 9 tiers (added ⚫ 30d+)
 
 | Icon | Age |
 |---|---|
@@ -3745,53 +3745,53 @@ player when available.
 ---
 ## [4.26.0] - 2026-03-30
 
-### Fixed — GM Queue Clearing Bug
+### Fixed - GM Queue Clearing Bug
 
 **The GM queue was clearing all entries whenever the GM sent any message
 in a topic, not just when they replied to a specific message.**
 
 Root cause: `queue_scan.py` reset `pending = []` on any GM transcript
-entry. Fixed to `pass` — the scanner now only filters entries via
+entry. Fixed to `pass` - the scanner now only filters entries via
 `gm_queue_replied` state, which is populated exclusively by direct
 Telegram reply-to events.
 
-### Added — POTW History
+### Added - POTW History
 
 Every Player of the Week event is now permanently recorded in
 `state["potw_history"]` with: week, campaign, winner ID/name, post count,
 average gap, all 4 boons offered, and chosen boon (backfilled by
 `_store_boon` on pick). 9 historical records backfilled from `player_boons`.
 
-### Added — POTW Streaks
+### Added - POTW Streaks
 
-`scheduled/potw_streaks.py` — campaign and community consecutive-week
+`scheduled/potw_streaks.py` - campaign and community consecutive-week
 win streaks with milestone announcements:
 - Campaign: 2 / 3 / 5 / 10 weeks → posted in campaign chat topic
 - Community: 2 / 3 / 5 weeks → posted in bot topic
 
-### Added — Week Welcome Post
+### Added - Week Welcome Post
 
-`scheduled/week_welcome.py` — "🗳️ Welcome to Week X/YYYY!" posted to bot
+`scheduled/week_welcome.py` - "🗳️ Welcome to Week X/YYYY!" posted to bot
 topic each Sunday at `poll_post_hour` UTC alongside the session polls.
 
-### Added — Swimming Poll
+### Added - Swimming Poll
 
-`scheduled/swimming_poll.py` — weekly poll in the Dark Pockets group
+`scheduled/swimming_poll.py` - weekly poll in the Dark Pockets group
 main chat (topic 1). Sunday start, pinned, daily pings, Mon–Sun options
 with multiple choice. 7 swimmers; IDs auto-captured on first vote.
 
-### Changed — Queue Reminder Doubled
+### Changed - Queue Reminder Doubled
 
-`queue_daily_hours: [9, 21]` — queue reminder now posts at 9am **and**
+`queue_daily_hours: [9, 21]` - queue reminder now posts at 9am **and**
 9pm UTC daily (was 9am only). Tracking upgraded from date string to
 slot-based (`last_queue_daily_slots`) so both daily slots fire reliably.
 
-### Refactored — `boons/display.py`
+### Refactored - `boons/display.py`
 
 `build_boons` and `build_boons_all` extracted from `boons/handler.py`
 into new `boons/display.py` to keep handler under 200 lines.
 
-### Fixed — `@BotName` suffix in command arguments
+### Fixed - `@BotName` suffix in command arguments
 
 `/chooseboon`, `/scene`, `/pause`, `/kick`, `/addplayer` all used
 fixed-length slices on `raw_text`, which included the `@BotName` suffix
@@ -3799,43 +3799,43 @@ that Telegram appends in groups (e.g. `/chooseboon@PathWarsNudgeBot 1`).
 Fixed with `_arg(raw_text, n)` helper in `cmd_gm.py` and equivalent
 regex strip in `cmd_player.py`.
 
-### Added — Documentation
+### Added - Documentation
 
 Four new docs files:
-- `docs/behaviour.md` — intended behaviour for all major features
-- `docs/gm-queue.md` — queue mechanics, clearing rules, reminders
-- `docs/polls.md` — session polls, swimming poll, cross-notifications
-- `docs/potw.md` — POTW selection, boons, streaks, history
+- `docs/behaviour.md` - intended behaviour for all major features
+- `docs/gm-queue.md` - queue mechanics, clearing rules, reminders
+- `docs/polls.md` - session polls, swimming poll, cross-notifications
+- `docs/potw.md` - POTW selection, boons, streaks, history
 
 102 production files, 454 tests passing.
 
 ---
 ## [4.25.0] - 2026-03-29
 
-### Fixed — Poll notification phrasing
+### Fixed - Poll notification phrasing
 
 Vote notifications now read `"voted X in C01"` instead of
-`"voted X (C01)"` — the campaign is part of the verb phrase,
+`"voted X (C01)"` - the campaign is part of the verb phrase,
 making it unambiguous which poll the voter participated in.
 
 Before: `🗳️ @DragonFox2000 (C01) voted Friday`
 After:  `🗳️ @DragonFox2000 voted Friday in C01`
 
-### Added — C11 Weekly Day Poll (manual trigger)
+### Added - C11 Weekly Day Poll (manual trigger)
 
 Utility path established for posting a dated day-of-week poll
 directly via the Telegram API when the weekly result shows a
 clear winner (e.g. "Weekday") and a follow-up specific-day
 poll is needed mid-week without waiting for Sunday.
 
-First use: C11 Week 13/52 — Mon 30 March to Sun 5 April,
+First use: C11 Week 13/52 - Mon 30 March to Sun 5 April,
 posted and pinned to the Dark Pockets chat manually after
 the Weekday option won the weekly session poll.
 
 ---
 ## [4.24.0] - 2026-03-29
 
-### Added — Auto-Capture Unknown Poll Voter IDs
+### Added - Auto-Capture Unknown Poll Voter IDs
 
 When a `poll_answer` arrives from a Telegram user ID that is not in a
 campaign's `poll_user_ids` list (e.g. a player with a placeholder ID),
@@ -3850,9 +3850,9 @@ placeholders. Where there's a 1:1 match it auto-promotes. `--commit`
 writes the result to `config.json` and clears the capture buffer.
 
 This resolved Jack (`6452663252`) and Natasha (`8018921976`) automatically
-after this week's C11 poll — no manual ID lookup required.
+after this week's C11 poll - no manual ID lookup required.
 
-### Changed — Poll Notifications: @mention + Campaign Code
+### Changed - Poll Notifications: @mention + Campaign Code
 
 Vote notifications now show `@username (CODE)` instead of just first name:
 ```
@@ -3862,18 +3862,18 @@ C11: Weekday: 1
 ```
 Username resolved from: player registry → `poll_user_names` config → first name.
 
-### Changed — C11 Poll: Monday–Sunday
+### Changed - C11 Poll: Monday–Sunday
 
 C11 (Dark Pockets) poll options updated from Fri/Sat/Sun/Weekday/Can't
 to the full week: Mon / Tue / Wed / Thu / Fri / Sat / Sun / Can't make it.
 
-### Fixed — Raw UID in Ping ("8030796908" instead of "@Sparkleslayer")
+### Fixed - Raw UID in Ping ("8030796908" instead of "@Sparkleslayer")
 
 Added `poll_user_names: {uid: username}` config field. When a player is
 in `poll_user_ids` but not in the PBP player registry, their username is
 looked up from this map instead of falling back to the raw numeric ID.
 
-### Added — `promote_poll_voters.py`
+### Added - `promote_poll_voters.py`
 
 One-shot utility script (96 lines) to promote unknown voter IDs from
 state into config after a vote session.
@@ -3881,7 +3881,7 @@ state into config after a vote session.
 ---
 ## [4.23.0] - 2026-03-29
 
-### Fixed — Test Suite Contamination (22 failing tests in combined run)
+### Fixed - Test Suite Contamination (22 failing tests in combined run)
 
 Running `pytest scripts/` collected 454 tests but only 432 passed.
 22 tests in `test_checker.py` failed when preceded by the campaign_table
@@ -3891,12 +3891,12 @@ test files, while passing in isolation.
 which does `import telegram as tg` at module level. When pytest collected
 test files alphabetically, `campaign_table` ran first and bound `tg` to the
 real `telegram` module. `test_checker.py` installed its own mock via
-`sys.modules["telegram"] = _mock_tg` — a *different* object. Subsequent
+`sys.modules["telegram"] = _mock_tg` - a *different* object. Subsequent
 calls from checker tests that passed through `campaign_table`'s `tg` binding
 hit the real (unconfigured) module, raising `Invalid URL` errors that were
 swallowed by try/except, silently zeroing the sent-message count.
 
-**Fix:** `conftest.py` (new) — pytest loads this before collecting any test
+**Fix:** `conftest.py` (new) - pytest loads this before collecting any test
 module. It installs the complete mock telegram (9 functions: `send_message`,
 `send_poll`, `pin_message`, `message_link`, etc.) into `sys.modules` once,
 as the single authoritative mock. All modules that `import telegram` at any
@@ -3910,7 +3910,7 @@ Suite: 432 → 454 passing (all 454 pass in combined and isolated runs).
 ---
 ## [4.22.0] - 2026-03-29
 
-### Changed — Poll Overhaul: Sunday Start, Pinned, Daily Links, New Options
+### Changed - Poll Overhaul: Sunday Start, Pinned, Daily Links, New Options
 
 **Both C01 and C11 polls now:**
 - Start early Sunday (7am UTC) and run all week (Mon–Sun)
@@ -3925,39 +3925,39 @@ Suite: 432 → 454 passing (all 454 pass in combined and isolated runs).
 `Friday / Saturday / Sunday / Weekday / Can't make it`
 
 **New in `telegram.py`:**
-- `pin_message(chat_id, message_id)` — pins via `pinChatMessage`
-- `message_link(group_id, topic_id, message_id, group_username)` — builds
+- `pin_message(chat_id, message_id)` - pins via `pinChatMessage`
+- `message_link(group_id, topic_id, message_id, group_username)` - builds
   `t.me/Username/topic/msg` for public groups or `t.me/c/digits/msg` for private
 
 **Vote storage** changed from `{"friday": [], "saturday": [], "cant": []}` to
 `{"0": [], "1": [], "2": []}` (option index → uid list). Supports any poll
 shape without code changes. Old state auto-migrates.
 
-**`poll_result.py`** — finds winner by max votes across any-length option list;
+**`poll_result.py`** - finds winner by max votes across any-length option list;
 all-time history tracked by option index.
 
-**`session_poll_build.py`** — `sunday_week_key()` replaces Mon-based week key;
+**`session_poll_build.py`** - `sunday_week_key()` replaces Mon-based week key;
 `option_tally()` and `build_history_str()` work with index-based votes.
 
 ---
 ## [4.21.0] - 2026-03-29
 
-### Added — C11 Dark Pockets: Multi-Group Campaign Support
+### Added - C11 Dark Pockets: Multi-Group Campaign Support
 
 C11 (Dark Pockets) runs in a separate Telegram group. Full integration:
 
-**1. PBP tracking** — C11's PBP topic (`1242`) is now a tracked campaign.
+**1. PBP tracking** - C11's PBP topic (`1242`) is now a tracked campaign.
 Post timestamps, activity, queue scan, transcripts all work the same as
 every other campaign. Players are added to the roster as they post.
 
-**2. Weekly session poll** — C11 gets its own native Telegram poll, posted
+**2. Weekly session poll** - C11 gets its own native Telegram poll, posted
 to its chat topic (`1068`) in the Dark Pockets group. Differences from C01:
-- `poll_any_day: true` — poll posts and pings run any day of the week,
+- `poll_any_day: true` - poll posts and pings run any day of the week,
   not just Mon–Fri
-- `allows_multiple_answers: true` — multiple choice
+- `allows_multiple_answers: true` - multiple choice
 - Configurable options: Friday / Saturday / Sunday / Weekday / Can't make it
 
-**3. Cross-campaign live vote notifications** — when anyone votes in
+**3. Cross-campaign live vote notifications** - when anyone votes in
 either C01 or C11's poll, both chat topics receive a tally update
 immediately:
 ```
@@ -3967,33 +3967,33 @@ C11: 2 Fri / 1 Sat
 ```
 Both campaigns list both tallies. All four combinations notify both chats.
 
-### Changed — Multi-Group Architecture
+### Changed - Multi-Group Architecture
 
 The bot now operates across multiple Telegram groups simultaneously:
 
-- `helpers_pkg/groups.py` (new) — `group_id_for_campaign`,
+- `helpers_pkg/groups.py` (new) - `group_id_for_campaign`,
   `linked_poll_codes`, `all_group_ids`, `pid_for_code`
-- `helpers_pkg/topic_maps.py` — `TopicMaps` gains `to_group` dict
+- `helpers_pkg/topic_maps.py` - `TopicMaps` gains `to_group` dict
   (pid → group_id); `build_topic_maps` populates it from pair-level
   `group_id` overrides
-- `parsing/message.py` — `parse_message(msg, maps)` replaces
+- `parsing/message.py` - `parse_message(msg, maps)` replaces
   `parse_message(msg, group_id, maps)`; verifies group via `maps.to_group`
-- `dispatch/router.py` — multi-group aware; routes `poll_answer` by
+- `dispatch/router.py` - multi-group aware; routes `poll_answer` by
   `poll_id` (not by campaign assumption); passes correct `group_id`
   per-campaign to all downstream handlers
-- `dispatch/poll_notify.py` (new) — `notify_vote` posts combined tally
+- `dispatch/poll_notify.py` (new) - `notify_vote` posts combined tally
   to own + all linked campaigns' chat topics on every vote
-- `scheduled/session_poll.py` — fully rewritten; iterates all hybrid
+- `scheduled/session_poll.py` - fully rewritten; iterates all hybrid
   campaigns; per-code state slot; stores `poll_id` for answer matching
-- `scheduled/session_poll_build.py` (new) — pure message builders
+- `scheduled/session_poll_build.py` (new) - pure message builders
   extracted from `session_poll.py` (poll options, ping text, history)
-- `scheduled/poll_result.py` — rewritten to iterate all hybrid campaigns
+- `scheduled/poll_result.py` - rewritten to iterate all hybrid campaigns
   and announce in each campaign's own group
-- `telegram.py` — `send_poll` now returns `(message_id, poll_id)` tuple
-- `state["session_poll"]` — migrated from flat dict to `{code: slot}` map;
+- `telegram.py` - `send_poll` now returns `(message_id, poll_id)` tuple
+- `state["session_poll"]` - migrated from flat dict to `{code: slot}` map;
   backwards-compat migration runs automatically on first load
 
-### Updated — config.json
+### Updated - config.json
 
 ```json
 C01: { "linked_polls": ["C11"] }
@@ -4014,7 +4014,7 @@ Production files: 92 → 96. Suite: 436 passing.
 ---
 ## [4.20.0] - 2026-03-29
 
-### Changed — Queue Entry Age Icons: 3 Tiers → 5 Tiers
+### Changed - Queue Entry Age Icons: 3 Tiers → 5 Tiers
 
 The GM reply queue previously used only 3 icons. Long-overdue messages
 all showed the same 🔴, making it impossible to tell a 2-day-old entry
@@ -4032,13 +4032,13 @@ New scale:
 
 Applies to both the `/queue` command and the daily queue reminder post.
 
-### Refactored — `queue_format.py` Shared Helpers
+### Refactored - `queue_format.py` Shared Helpers
 
 Extracted `entry_age_icon`, `age_str`, and `short_preview` from
 `commands/queue.py` and `scheduled/queue_reminder.py` (both had identical
 copies) into a new `commands/queue_format.py` module. DRY, SOLID.
 
-### Added — Queue Format Tests
+### Added - Queue Format Tests
 
 42 new tests in `test_queue_format.py`: full parametrized coverage of all
 8 icon tiers including boundary values, `age_str` formatting, and
@@ -4046,15 +4046,15 @@ copies) into a new `commands/queue_format.py` module. DRY, SOLID.
 
 Suite: 394 → 436 tests.
 
-### Updated — Docs
+### Updated - Docs
 
-- `docs/architecture.md` — `queue_format.py` and `test_queue_format.py` added
-- `ROADMAP.md` — C11 Dark Pockets multi-group feature spec added
+- `docs/architecture.md` - `queue_format.py` and `test_queue_format.py` added
+- `ROADMAP.md` - C11 Dark Pockets multi-group feature spec added
 
 ---
 ## [4.19.0] - 2026-03-27
 
-### Fixed — Silent Data Loss: 17 State Keys Missing from Partitions
+### Fixed - Silent Data Loss: 17 State Keys Missing from Partitions
 
 The file-primary state introduced in v4.18.0 had a critical gap: 17 keys
 written by active bot features were not mapped to any partition file, so
@@ -4065,7 +4065,7 @@ the next load from files.
 
 | Key | Written by |
 |---|---|
-| `characters` | `/setchar` — all character names |
+| `characters` | `/setchar` - all character names |
 | `away` | `/away`, `/back` |
 | `paused_campaigns` | `/pause`, `/resume` |
 | `current_scenes` | `/scene` |
@@ -4080,11 +4080,11 @@ the next load from files.
 appropriate existing partitions. `_load_from_files` is tolerant of a
 missing `trackers.json` for backwards compatibility with v4.18 checkouts.
 
-### Added — State Tests (expanded)
+### Added - State Tests (expanded)
 
 `test_state.py` replaced by two files under 200 lines:
-- `test_state_partitions.py` — 11 tests (partition contract, critical key placement)
-- `test_state_io.py` — 11 tests (round-trip, missing files, public API, save guard)
+- `test_state_partitions.py` - 11 tests (partition contract, critical key placement)
+- `test_state_io.py` - 11 tests (round-trip, missing files, public API, save guard)
 - Regression test: `characters` survives file round-trip
 
 Suite: 384 → 394 tests.
@@ -4092,7 +4092,7 @@ Suite: 384 → 394 tests.
 ---
 ## [4.18.0] - 2026-03-27
 
-### Changed — State Persistence: File-Primary with Gist Backup
+### Changed - State Persistence: File-Primary with Gist Backup
 
 The bot's state is now stored in versioned JSON files in the repository
 instead of a single GitHub Gist blob. The Gist is still written on every
@@ -4114,33 +4114,33 @@ git history, are diffable, and load faster with no API round-trip needed.
 if no source loaded successfully (existing data-protection behaviour
 preserved).
 
-### Added — State Tests
+### Added - State Tests
 
 12 new tests in `test_state.py`: partition contract, file round-trip,
 partial-file fallback, save guard, default backfill.
 
 Suite: 372 → 384 tests.
 
-### Added — Migration Script
+### Added - Migration Script
 
-`scripts/migrate_gist_to_files.py` — one-time script used to perform the
+`scripts/migrate_gist_to_files.py` - one-time script used to perform the
 migration. Validates all gist keys are mapped, writes partition files,
 and produces a `manifest.json` with metadata.
 
-### Changed — Workflow
+### Changed - Workflow
 
 - `pip install pytest` added to dependencies (was running test files
   directly with `python`, now uses `pytest -q` consistently)
 - All 7 test files enumerated explicitly in the test step
 - Commit step message updated to reflect state files being committed
 
-### Changed — File-Primary State (Data Migration)
+### Changed - File-Primary State (Data Migration)
 
 State is now stored in four JSON files in the repo (`data/state/`)
 instead of a single flat GitHub Gist blob.
 
 **Before:** every hourly run read and wrote a 121 KB JSON blob to the
-gist. All 42 keys — hot operational data and cold history alike — in one
+gist. All 42 keys - hot operational data and cold history alike - in one
 file with no git history.
 
 **After:**
@@ -4158,15 +4158,15 @@ so the transition is zero-downtime.
 
 Files are committed to the repo by the existing hourly workflow step
 (`git add data/ && git commit`), giving every state change a full git
-history — diffable, auditable, and recoverable.
+history - diffable, auditable, and recoverable.
 
-### Added — Migration Script
+### Added - Migration Script
 
-`scripts/migrate_gist_to_files.py` — one-time script used to seed the
+`scripts/migrate_gist_to_files.py` - one-time script used to seed the
 partition files from the live gist. Validates all keys are mapped and
 prints a summary. Safe to re-run if needed.
 
-### Added — State Tests
+### Added - State Tests
 
 12 new tests in `test_state.py`:
 - Partition contract (no key in two partitions, all DEFAULT_STATE keys mapped)
@@ -4176,7 +4176,7 @@ prints a summary. Safe to re-run if needed.
 
 Suite: 372 → 384 tests.
 
-### Changed — Workflow
+### Changed - Workflow
 
 - Added `pytest` to `pip install` in `pbp-reminder.yml`
 - Replaced chained `python test_X.py &&` calls with a single
@@ -4185,7 +4185,7 @@ Suite: 372 → 384 tests.
 ---
 ## [4.17.0] - 2026-03-27
 
-### Fixed — Campaign Table Alignment
+### Fixed - Campaign Table Alignment
 
 The weekly Campaign Overview table was rendering as mangled,
 misaligned text because it was sent without a parse mode, causing
@@ -4203,12 +4203,12 @@ Telegram to use a proportional font where spaces collapse.
 - Extracted `_collect_rows`, `_count_week_posts`, and `_build_warning`
   into named helper functions (SOLID / single-responsibility)
 
-### Added — Campaign Table Tests
+### Added - Campaign Table Tests
 
 33 new tests across two new files:
-- `test_campaign_table.py` — integration tests (HTML structure,
+- `test_campaign_table.py` - integration tests (HTML structure,
   column alignment, queue indicator, warning banner)
-- `test_campaign_table_unit.py` — unit tests for `_calc_age`,
+- `test_campaign_table_unit.py` - unit tests for `_calc_age`,
   `_health_icon`, `_truncate`, `_count_week_posts`
 
 Suite: 339 → 372 tests.
@@ -4216,25 +4216,25 @@ Suite: 339 → 372 tests.
 ---
 ## [4.16.0] - 2026-03-27
 
-### Added — Daily State Backup
+### Added - Daily State Backup
 
 Full gist state now backed up daily to `data/state_backup.json`.
 Auto-committed to the repo by the existing workflow, creating a
 git history of every state change. Protects against gist corruption.
 
-### Added — Campaign Helpers Module
+### Added - Campaign Helpers Module
 
 New `helpers_pkg/campaigns.py` centralizing all campaign config
 lookups. Refactored 10 files from repeated for/if/break patterns
 to single-line calls: `get_label`, `get_code`, `iter_campaigns`,
 `is_excluded`, `is_hybrid`, `is_priority`.
 
-### Fixed — Roster Label Bug
+### Fixed - Roster Label Bug
 
 Variable shadowing caused `Party roster for #04: Bruce` instead
 of the campaign name. Renamed player loop variable.
 
-### Updated — README
+### Updated - README
 
 Added 14 missing features to the table, 7 new commands,
 data storage documentation, corrected file/test counts.
@@ -4242,7 +4242,7 @@ data storage documentation, corrected file/test counts.
 ---
 ## [4.15.0] - 2026-03-26
 
-### DF Session Poll — Full Feature
+### DF Session Poll - Full Feature
 
 Native Telegram poll posted weekly in the DF chat topic.
 
@@ -4257,7 +4257,7 @@ Native Telegram poll posted weekly in the DF chat topic.
 
 **Result announcement:**
 ```
-🎲 Week 14/52 — Friday wins!
+🎲 Week 14/52 - Friday wins!
 See you Friday night!
 (1 can't make either)
 
@@ -4266,7 +4266,7 @@ All-time: Fridays 8/13, Saturdays 5/13
 
 **Ping format:**
 ```
-🗳️ Week 14/52 — Vote in the poll above!
+🗳️ Week 14/52 - Vote in the poll above!
 1/4 voted.
 
 Waiting on:
@@ -4276,7 +4276,7 @@ Waiting on:
 
 **All-voted confirmation:**
 ```
-✅ Week 14/52 — All 4 players have voted!
+✅ Week 14/52 - All 4 players have voted!
 ```
 
 **Other poll features:**
@@ -4292,7 +4292,7 @@ Extracted `poll_result.py` for Friday announcement.
 ---
 ## [4.14.0] - 2026-03-26
 
-### Added — DF Session Poll
+### Added - DF Session Poll
 
 Weekly poll in the Doomsday Funtime chat topic:
 - Posts Monday, daily reminders through Friday
@@ -4302,17 +4302,17 @@ Weekly poll in the Doomsday Funtime chat topic:
 - Only pings players who haven't voted yet
 - Resets automatically each week
 
-### Improved — Campaign Overview Table
+### Improved - Campaign Overview Table
 
 - Renamed "Active" → "Players", added "Total" column (registered)
 - Color legend at bottom: 🟢 <1d  🟡 1-3d  🟠 3-5d  🔴 5d+
 - Footer: which campaign needs players most (excludes DF as hybrid)
-- DF flagged `hybrid_live` in config — excluded from "needs players"
+- DF flagged `hybrid_live` in config - excluded from "needs players"
 
 ---
 ## [4.13.0] - 2026-03-26
 
-### Added — Player Registry & Character Names
+### Added - Player Registry & Character Names
 
 **Player Registry** (`commands/player_registry.py`):
 - Every player gets a permanent campaign ID on first post
@@ -4336,7 +4336,7 @@ Weekly poll in the Doomsday Funtime chat topic:
 - Campaign code in header: `Party roster for C05: Grand Explorers`
 - Fixed: player count only counts players who have posted
 
-### Added — Weekly Campaign Table
+### Added - Weekly Campaign Table
 
 Posted weekly to bot topic, sorted by active players:
 ```
@@ -4346,17 +4346,17 @@ Campaign           Code Active Week  Last
 🟢 Kibwe             C06     7    36   0h
 ```
 
-### Improved — Visual Separators
+### Improved - Visual Separators
 
 Every bot message starts with `━━━━━━━━━━━━━━━━` for clear
 visual breaks between consecutive messages in Telegram.
 
-### Fixed — Duplicate Nudges
+### Fixed - Duplicate Nudges
 
 Nudge now fires once per player per campaign, not per message.
-Shows count: `⚠️ @PathWars — Dima's message in C07 is 48h old! (3 messages)`
+Shows count: `⚠️ @PathWars - Dima's message in C07 is 48h old! (3 messages)`
 
-### Improved — Comeback Alerts
+### Improved - Comeback Alerts
 
 Pings both GM and the returning player:
 ```
@@ -4371,7 +4371,7 @@ Extracted `dispatch/comeback.py` for comeback alert logic.
 ---
 ## [4.12.0] - 2026-03-22
 
-### Queue — Maximum Value Update
+### Queue - Maximum Value Update
 
 **Header**: Per-campaign count summary for instant triage:
 `📋 Unreplied: 11 | ✅ 6 cleared today`
@@ -4403,7 +4403,7 @@ Reply to them first to keep pace up.
 - **Reply streak**: Queue header shows `✅ 3 cleared today` as motivation.
 - **Estimated reply time**: `/waiting` shows "GM usually replies in ~12h"
   so players know what to expect.
-- **`/queuestats`**: GM productivity dashboard — cleared today, this week,
+- **`/queuestats`**: GM productivity dashboard - cleared today, this week,
   and average reply time per campaign.
 
 ### Queue Visibility
@@ -4422,29 +4422,29 @@ All files under 200 lines.
 ---
 ## [4.10.0] - 2026-03-20
 
-### Added — Player-Facing Queue (/waiting)
+### Added - Player-Facing Queue (/waiting)
 
 Players can see what the GM owes them:
 - `/waiting` in a PBP topic: your unreplied messages in that campaign
 - `/waiting` from the bot topic: cross-campaign summary
 
-### Added — Session Counter (/session)
+### Added - Session Counter (/session)
 
 Auto-increments when the GM posts on a new calendar day.
-- `/session` — shows current session number
-- `/session set 272` — initialize or correct (GM only)
+- `/session` - shows current session number
+- `/session set 272` - initialize or correct (GM only)
 
-### Added — Campaign Health Dashboard (/health)
+### Added - Campaign Health Dashboard (/health)
 
 Color-coded overview of all campaigns at a glance:
 ```
-🟢 C9: Metal City S45 — 22/wk, 6p, last 3h
-🟡 C6: Kibwe S88 — 8/wk, 6p, last 1d 📋3
-🔴 C1: Doomsday Funtime S272 — 3/wk, 5p, last 3d 📋2
+🟢 C9: Metal City S45 - 22/wk, 6p, last 3h
+🟡 C6: Kibwe S88 - 8/wk, 6p, last 1d 📋3
+🔴 C1: Doomsday Funtime S272 - 3/wk, 5p, last 3d 📋2
 ```
 Shows posts/week, player count, last post age, queue count.
 
-### Added — Comeback Alert
+### Added - Comeback Alert
 
 When a player breaks a 5+ day silence, the bot topic gets:
 ```
@@ -4460,7 +4460,7 @@ When a player breaks a 5+ day silence, the bot topic gets:
 ---
 ## [4.9.0] - 2026-03-20
 
-### Overhauled — GM Reply Queue
+### Overhauled - GM Reply Queue
 
 Major upgrade to the queue system, now the bot's flagship feature.
 
@@ -4498,7 +4498,7 @@ when you clear everything.
 ---
 ## [4.8.1] - 2026-03-20
 
-### Added — Tests for v4.4-4.8 Features
+### Added - Tests for v4.4-4.8 Features
 
 New test suite `test_new_features.py` covering 16 tests:
 queue (build, entries), reactions (add, remove, display), timeline
@@ -4507,7 +4507,7 @@ campaign resolution (exact, prefix, not found), queue reminder (skip empty).
 
 CI workflow now runs 4 test suites (357 total: 286 + 37 + 18 + 16).
 
-### Updated — README
+### Updated - README
 
 Documented all features added in v4.4-4.8: `/search`, `/queue`,
 `/reactions`, `/timeline`, `/event`, `/available`, `bot_topic_id` config,
@@ -4517,7 +4517,7 @@ daily queue reminder. Updated features table (23 entries), file structure
 ---
 ## [4.8.0] - 2026-03-20
 
-### Added — Cross-Campaign Timeline
+### Added - Cross-Campaign Timeline
 
 `/timeline` shows a chronological feed of events across all campaigns.
 Works from both PBP topics and the bot channel.
@@ -4534,18 +4534,18 @@ GMs can log story beats with `/event`:
 /timeline
 📅 Cross-Campaign Timeline:
 
-📜 Mar 20 — [Doomsday Funtime] The party enters the Temple of Pharasma
-🏅 Mar 18 — [Metal City] POTW: Metal City (W12)
-🏅 Mar 18 — [Theria] POTW: Theria (W12)
-👋 Mar 17 — [Kibwe] Anthony removed
-🏅 Mar 11 — [Kibwe] POTW: Kibwe (W11)
-🎬 Oct 06 — [Theria] Campaign started
+📜 Mar 20 - [Doomsday Funtime] The party enters the Temple of Pharasma
+🏅 Mar 18 - [Metal City] POTW: Metal City (W12)
+🏅 Mar 18 - [Theria] POTW: Theria (W12)
+👋 Mar 17 - [Kibwe] Anthony removed
+🏅 Mar 11 - [Kibwe] POTW: Kibwe (W11)
+🎬 Oct 06 - [Theria] Campaign started
 ```
 
 ---
 ## [4.7.1] - 2026-03-19
 
-### Added — Daily Queue Reminder With Message Links
+### Added - Daily Queue Reminder With Message Links
 
 The bot posts a daily reminder to the bot topic showing all unreplied
 player messages with direct links to each message:
@@ -4567,7 +4567,7 @@ Tap any link to jump straight to the message and reply.
 ---
 ## [4.7.0] - 2026-03-19
 
-### Added — Reaction Tracking
+### Added - Reaction Tracking
 
 The bot now tracks emoji reactions on PBP messages. View stats with
 `/reactions` (or `/reactions kibwe` from the bot channel):
@@ -4580,7 +4580,7 @@ Top reactors:
 Popular: x15  x8  x5
 ```
 
-### Added — Player Availability
+### Added - Player Availability
 
 Players can mark which days they're available to post:
 
@@ -4595,11 +4595,11 @@ Helps the GM and other players know when to expect responses.
 ---
 ## [4.6.0] - 2026-03-19
 
-### Added — GM Reply Queue
+### Added - GM Reply Queue
 
 `/queue` shows all player messages the GM hasn't replied to, across
 all campaigns. Messages are only cleared when the GM uses Telegram's
-reply feature on that specific message — general narrative posts
+reply feature on that specific message - general narrative posts
 don't clear anything.
 
 ```
@@ -4622,25 +4622,25 @@ GM-only. Works from bot topic and PBP topics.
 ---
 ## [4.5.2] - 2026-03-19
 
-### Changed — Boon Auto-Select Extended to 7 Days
+### Changed - Boon Auto-Select Extended to 7 Days
 
 Auto-selection was at 48 hours, now 7 days. Reminder timeline:
 
-- **24h** — gentle reminder
-- **3 days** — second nudge
-- **6 days** — last chance
-- **7 days** — auto-selects boon #1
+- **24h** - gentle reminder
+- **3 days** - second nudge
+- **6 days** - last chance
+- **7 days** - auto-selects boon #1
 
 ---
 ## [4.5.1] - 2026-03-19
 
-### Added — Boon Reminders and Confirmations
+### Added - Boon Reminders and Confirmations
 
 Unclaimed POTW boons now get reminders at 12h and 24h:
 
 ```
-🎁 @Player — you have an unclaimed boon for Kibwe!
-⚠️ @Player — pick your boon for Kibwe! Auto-selects in 24h.
+🎁 @Player - you have an unclaimed boon for Kibwe!
+⚠️ @Player - pick your boon for Kibwe! Auto-selects in 24h.
 ```
 
 At 48h, auto-pick fires with a notification:
@@ -4655,17 +4655,17 @@ Boon confirmations now post to the bot topic with campaign name:
 ✅ Link chose boon #2 for Theria: The crystal hums...
 ```
 
-### Fixed — Per-Update Error Isolation
+### Fixed - Per-Update Error Isolation
 
 One crashed command can no longer take down the entire bot. The
-update processing loop now wraps each message in try/except — a
+update processing loop now wraps each message in try/except - a
 bad command gets logged, skipped, and the offset advances. Previously
 a single TypeError blocked all processing for 5 hours.
 
 ---
 ## [4.5.0] - 2026-03-18
 
-### Changed — All Bot Output Moved to Bot Topic
+### Changed - All Bot Output Moved to Bot Topic
 
 Every scheduled bot post now goes to the Bot Tips & Commands topic
 instead of campaign chat topics. Campaign chats are now purely
@@ -4680,7 +4680,7 @@ Falls back to campaign chat topics if `bot_topic_id` is not configured.
 ---
 ## [4.4.4] - 2026-03-18
 
-### Fixed — /roll and /dc Now Work From Bot Channel
+### Fixed - /roll and /dc Now Work From Bot Channel
 
 These commands don't need campaign context but were being ignored
 when sent from the Bot Tips & Commands topic. Now both work directly:
@@ -4693,7 +4693,7 @@ when sent from the Bot Tips & Commands topic. Now both work directly:
 ---
 ## [4.4.3] - 2026-03-18
 
-### Fixed — /roll Broken With @botname Suffix
+### Fixed - /roll Broken With @botname Suffix
 
 Telegram appends `@PathWarsNudgeBot` to commands selected from the menu.
 The roll handler was stripping a hardcoded 5 characters (`/roll`) from
@@ -4712,7 +4712,7 @@ parsing the dice expression. All roll formats work:
 ---
 ## [4.4.2] - 2026-03-17
 
-### Added — MVP Win Tracking
+### Added - MVP Win Tracking
 
 The weekly leaderboard now tracks how many times each player has won
 MVP of the Week. Repeat winners show their total:
@@ -4726,13 +4726,13 @@ Historical wins backfilled from the weekly archive (W07-W12).
 ---
 ## [4.4.1] - 2026-03-17
 
-### Fixed — /search Now Blocks Creatures and Hazards
+### Fixed - /search Now Blocks Creatures and Hazards
 
 Players could look up monster stat blocks and spoil encounters.
 Creatures and hazards are now excluded at both the Elasticsearch query
 level and client-side as a safety net.
 
-### Fixed — Auto-Removal Always Notifies
+### Fixed - Auto-Removal Always Notifies
 
 The GM bottleneck suppression (v4.2.0) was incorrectly skipping 4-week
 auto-removals. Now:
@@ -4744,7 +4744,7 @@ The group always needs to know when a player drops off the roster.
 ---
 ## [4.4.0] - 2026-03-16
 
-### Added — Bot Channel Commands
+### Added - Bot Channel Commands
 
 All read-only commands now work from the Bot Tips & Commands topic.
 Specify a campaign name as an argument:
@@ -4761,7 +4761,7 @@ the campaign name, the bot lists all available campaigns.
 
 Write commands (combat, notes, HP, etc.) still only work from PBP topics.
 
-### Added — Archives of Nethys Search
+### Added - Archives of Nethys Search
 
 `/search [query]` searches AoN's Elasticsearch API and returns up to
 5 results with name, level, rarity, summary, and link. Works from
@@ -4776,18 +4776,18 @@ any topic.
 ---
 ## [4.3.0] - 2026-03-16
 
-### Changed — Tips Post to Dedicated Bot Topic
+### Changed - Tips Post to Dedicated Bot Topic
 
 Tips and command hints now post to the new Bot Tips & Commands topic
 instead of randomly pinging PBP game chats. Changelog posts also go
 here now. Configure via `bot_topic_id` in config.json.
 
-### Changed — Once Per Day Alert Maximum
+### Changed - Once Per Day Alert Maximum
 
 Topic silence alerts now fire at most once every 24 hours per campaign
 (previously every 12 hours). Less noise, same information.
 
-### Changed — Alert Threshold Raised to 24h
+### Changed - Alert Threshold Raised to 24h
 
 `alert_after_hours` bumped from 12 to 24. A campaign needs a full day
 of silence before the first alert fires, not half a day.
@@ -4795,16 +4795,16 @@ of silence before the first alert fires, not half a day.
 ---
 ## [4.2.0] - 2026-03-13
 
-### Added — GM Bottleneck Suppression
+### Added - GM Bottleneck Suppression
 
 If the GM hasn't posted in a campaign for 3+ days, the bot stops nagging
-players about inactivity. No warnings, no auto-removals — nothing until
+players about inactivity. No warnings, no auto-removals - nothing until
 the GM posts again. Players can't do anything if the GM is the bottleneck.
 
 Topic silence alerts still fire (useful for the GM to see), with the
 existing "GM hasn't posted in Xd Yh" note appended.
 
-### Added — GM Inactivity Note on Alerts
+### Added - GM Inactivity Note on Alerts
 
 All inactivity alerts and player warnings now append a note when the GM
 isn't the last poster:
@@ -4816,7 +4816,7 @@ GM hasn't posted in 5d 2h.
 Appears on topic silence alerts, 1/2/3 week player warnings, and
 4-week auto-removal messages. Skipped when the GM was the last to post.
 
-### Fixed — Pace Report Counting Raw Messages Instead of Sessions
+### Fixed - Pace Report Counting Raw Messages Instead of Sessions
 
 The weekly pace report was counting every individual Telegram message,
 not posting sessions. A single PBP scene posted line-by-line (50 messages
@@ -4825,12 +4825,12 @@ in 2 hours) showed as "50 posts" instead of "~5 sessions."
 `pace_split()` now uses `deduplicate_posts()` to collapse messages within
 10 minutes into a single session, matching how rosters already count.
 
-### Added — Kibwe PBP 2/2 Topic
+### Added - Kibwe PBP 2/2 Topic
 
 Topic 137075 added to Kibwe's tracked PBP topics. Posts from both topics
 merge under the canonical ID for stats, rosters, POTW, and transcripts.
 
-### Changed — 200-Line Limit Enforced on All Files
+### Changed - 200-Line Limit Enforced on All Files
 
 Extracted `compat.py` (test aliases) from `checker.py` and
 `import_formatting.py` from `import_history.py`. All 69 production
@@ -4839,9 +4839,9 @@ files now at or under 200 lines with zero exceptions.
 ---
 ## [4.1.1] - 2026-03-06
 
-### Fixed — CRITICAL: State Wipe on Failed Gist Load
+### Fixed - CRITICAL: State Wipe on Failed Gist Load
 
-On March 5 at ~12:00 UTC, all bot state was wiped — 43 players and 952
+On March 5 at ~12:00 UTC, all bot state was wiped - 43 players and 952
 messages across 8 campaigns lost. Root cause: `state.py` `load()` returned
 empty `DEFAULT_STATE` on a transient gist API failure, then `save()` wrote
 that empty state back, overwriting everything.
@@ -4849,16 +4849,16 @@ that empty state back, overwriting everything.
 Two concurrent workflow runs (schedule + dynamic trigger) likely caused the
 gist read to fail or race.
 
-**Fix 1 — Fail-safe state loading (`state.py`):**
+**Fix 1 - Fail-safe state loading (`state.py`):**
 - `load()` now aborts the run (`SystemExit(1)`) if the gist can't be read,
   instead of silently returning empty state
 - `save()` refuses to write unless a `_loaded_from_gist` flag confirms data
   was actually loaded from the gist
 - A transient error now safely kills the run instead of nuking all data
 
-**Fix 2 — Concurrency control (`pbp-reminder.yml`):**
+**Fix 2 - Concurrency control (`pbp-reminder.yml`):**
 - Added `concurrency: group: pbp-checker` so two workflow runs can never
-  touch the gist simultaneously — the second run queues until the first finishes
+  touch the gist simultaneously - the second run queues until the first finishes
 
 **State restored** from last good gist revision (Mar 5 11:14, 43 players,
 952 messages) via the gist API, with the current offset preserved.
@@ -4866,7 +4866,7 @@ gist read to fail or race.
 ---
 ## [4.1.0] - 2026-03-05
 
-### Added — Telegram Command Menu
+### Added - Telegram Command Menu
 
 Registered a `/` command autocomplete menu via `setMyCommands`. Two scopes:
 - **All group members** (31 commands): read-only player commands
@@ -4874,7 +4874,7 @@ Registered a `/` command autocomplete menu via `setMyCommands`. Two scopes:
 
 Run `scripts/set_commands.py` after adding new commands to update the menu.
 
-### Fixed — POTW Boon Buttons
+### Fixed - POTW Boon Buttons
 
 Boon inline keyboard buttons silently failed because Telegram requires
 `answerCallbackQuery` within ~10 seconds, but the bot runs hourly via cron.
@@ -4885,13 +4885,13 @@ Boon inline keyboard buttons silently failed because Telegram requires
 - POTW announcement now includes "/chooseboon N" fallback instructions
 - Auto-expiry at 48h also strips the keyboard
 
-### Fixed — Per-Campaign GM Appearing Twice in Roster
+### Fixed - Per-Campaign GM Appearing Twice in Roster
 
 Link (`@Linksanelf2006`) showed as both "GM" and "Link" in the Theria roster.
 `post_roster_summary` iterated all players without filtering GMs, then added
 GM entries separately. Added `if uid in gm_ids: continue` to the player loop.
 
-### Updated — README
+### Updated - README
 
 Rewrote to reflect modular codebase: 9-package architecture diagram,
 full 69-file structure with descriptions, 18-entry feature table,
@@ -4900,7 +4900,7 @@ live dashboard URL, 11 previously missing commands documented.
 ---
 ## [4.0.0] - 2026-03-04
 
-### Refactored — Complete Codebase Modularization
+### Refactored - Complete Codebase Modularization
 
 Refactored `checker.py` from a single 5,155-line file into 69 production
 files across 9 packages. Every file held to a strict 200-line maximum.
@@ -4918,7 +4918,7 @@ files across 9 packages. Every file held to a strict 200-line maximum.
 | 6 | 23 scheduled tasks → 13 modules | 1,625 |
 | 7 | Command router → dispatch system (11 modules) + players | 1,355 |
 | 8 | helpers.py (864 lines) → 8 submodules | 864 |
-| 9-10 | Final cleanup, compat aliases, 200-line enforcement | — |
+| 9-10 | Final cleanup, compat aliases, 200-line enforcement | - |
 
 **Result:** `checker.py` went from 5,155 lines to 126 (orchestrator only).
 `helpers.py` went from 864 lines to 49 (re-export facade).
@@ -4938,30 +4938,30 @@ scripts/
   transcript/         4 files  (PBP logging)
 ```
 
-### Fixed — GM Excluded From Player Counts
+### Fixed - GM Excluded From Player Counts
 
 The GM was counted as a player everywhere, inflating party sizes by 1.
 Fixed in 7 locations: every `player_count = len(players)` now filters GMs.
 
-### Fixed — Per-Campaign GM Support
+### Fixed - Per-Campaign GM Support
 
 Added `gm_user_ids` per topic_pair in config, replacing the global GM list
 for that campaign only. Link (`@Linksanelf2006`, user ID `7863964681`)
 configured as Theria's GM.
 
-### Added — Boon Storage System
+### Added - Boon Storage System
 
 - `/chooseboon N` text fallback for broken inline buttons
 - `/boons` shows your boons in the current campaign
 - `/boonsall` shows all boons across campaigns
 - Boons stored in state with date, campaign, week number
 
-### Added — Anniversary Next-Up Countdown
+### Added - Anniversary Next-Up Countdown
 
 Anniversary messages now include "Next up: Campaign X (Nd away)" showing
 which campaign's anniversary is coming next.
 
-### Fixed — Slash Command Parsing
+### Fixed - Slash Command Parsing
 
 Commands with `@botname` suffix (e.g. `/status@PathWarsNudgeBot`) now
 strip the suffix correctly. Fixed `/lootlist` and other commands that
@@ -4970,7 +4970,7 @@ weren't responding in group chats.
 ---
 ## [3.1.2] - 2026-02-28
 
-### Improved — Weekly Leaderboard
+### Improved - Weekly Leaderboard
 
 - **Week number**: Header now shows ISO week number (e.g. "Week 9")
 - **Weekly totals**: Summary line with total posts (player/GM split) across all active campaigns
@@ -4979,10 +4979,10 @@ weren't responding in group chats.
 ---
 ## [3.1.1] - 2026-02-28
 
-### Improved — Transcript Readability
+### Improved - Transcript Readability
 
 - **Day separators**: `### 📅 Wednesday, Feb 26` inserted when the date changes within a week
-- **Silence gap markers**: `*— 18h of silence —*` shown for 12+ hour gaps (48h+ shown in days)
+- **Silence gap markers**: `*- 18h of silence -*` shown for 12+ hour gaps (48h+ shown in days)
 - **Quote formatting**: PBP `>` and `>> -` syntax rendered as proper markdown blockquotes
 - **Mechanical content styling**: Dice rolls, DCs, and hit results styled in italics
 - **Monthly stats footer**: Completed months get a `📊 Month Summary` with message counts, active days, word count, and most active posters
@@ -4996,7 +4996,7 @@ weren't responding in group chats.
 ---
 ## [3.1.0] - 2026-02-28
 
-### Improved — Reading Experience
+### Improved - Reading Experience
 
 #### /recap overhaul
 - **Character names**: Shows character names (e.g. `Cardigan`) instead of player names
@@ -5028,18 +5028,18 @@ weren't responding in group chats.
 ---
 ## [3.0.0] - 2026-02-28
 
-### Changed — Combat System Rebuild (Foundry-compatible)
+### Changed - Combat System Rebuild (Foundry-compatible)
 
 Rebuilt the combat tracker to complement Foundry VTT rather than replace it.
 Foundry handles mechanics; the bot handles async turn coordination.
 
 #### New workflow
-1. `/combat Ogre, 2 Skeletons` — starts combat with named enemy roster
+1. `/combat Ogre, 2 Skeletons` - starts combat with named enemy roster
 2. Players post their actions naturally (bot tracks who's posted)
 3. **Auto-notify**: GM gets pinged when all players have acted
-4. `/next` — advance phase (players→enemies→next round). No more `/round N phase`
-5. `/clog The ogre crits Cardigan!` — log key combat moments
-6. `/endcombat` — end combat with a log summary
+4. `/next` - advance phase (players→enemies→next round). No more `/round N phase`
+5. `/clog The ogre crits Cardigan!` - log key combat moments
+6. `/endcombat` - end combat with a log summary
 
 #### New commands
 - `/combat [enemies]` (GM): start combat with optional enemy list
@@ -5068,7 +5068,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.9.0] - 2026-02-28
 
-### Added — HP Tracker, Progress Clocks & Status Integration
+### Added - HP Tracker, Progress Clocks & Status Integration
 
 #### HP Tracker (combat management)
 - `/hp set [name] <current>/<max>` (GM): set up enemy HP with visual bars
@@ -5101,17 +5101,17 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.8.0] - 2026-02-28
 
-### Added — NPC Tracker & Condition Tracker
+### Added - NPC Tracker & Condition Tracker
 
 #### NPC tracker
-- `/npc [name] — <desc>` (GM): add NPC with name and description
-- `/npcs`: view all tracked NPCs — a living dramatis personae
+- `/npc [name] - <desc>` (GM): add NPC with name and description
+- `/npcs`: view all tracked NPCs - a living dramatis personae
 - `/delnpc <N>` (GM): remove an NPC
 - Supports em-dash, double-hyphen, or single-hyphen separators
 - Max 40 NPCs per campaign
 
 #### Condition tracker
-- `/condition <target> — <effect> [| duration]` (GM): track buffs/debuffs
+- `/condition <target> - <effect> [| duration]` (GM): track buffs/debuffs
 - `/conditions`: view all active conditions with targets and durations
 - `/endcondition <N>` (GM): remove a specific condition
 - `/clearconditions` (GM): wipe all conditions (e.g. after combat ends)
@@ -5124,7 +5124,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.7.0] - 2026-02-28
 
-### Added — DC Lookup, Pins & Loot Tracker
+### Added - DC Lookup, Pins & Loot Tracker
 
 #### `/dc` command (everyone)
 - PF2e DC lookup: `/dc 5` shows all DCs for level 5, `/dc 5 hard` for specific
@@ -5151,7 +5151,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.6.0] - 2026-02-27
 
-### Added — Quest Tracker & GM Dashboard
+### Added - Quest Tracker & GM Dashboard
 
 #### Quest tracking
 - `/quest <text>` (GM): add active quest/objective
@@ -5173,21 +5173,21 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.5.0] - 2026-02-27
 
-### Added — Dice Roller
+### Added - Dice Roller
 - `/roll <dice> [label]`: roll dice with Pathfinder-standard notation
-  - `1d20+5 Stealth` — attack/skill rolls with labels
-  - `2d6+3` — damage rolls with modifiers
-  - `4d6kh3` — keep highest (ability scores)
-  - `2d20kl1` — keep lowest (disadvantage)
+  - `1d20+5 Stealth` - attack/skill rolls with labels
+  - `2d6+3` - damage rolls with modifiers
+  - `4d6kh3` - keep highest (ability scores)
+  - `2d20kl1` - keep lowest (disadvantage)
   - Multiple dice groups: `1d20+5 2d6+3`
-- Uses character name when configured (e.g. "🎲 Cardigan — Stealth:")
+- Uses character name when configured (e.g. "🎲 Cardigan - Stealth:")
 - Strikethrough on dropped dice in keep-highest/lowest rolls
 - 1 new daily tip, 12 new tests (222 total)
 
 ---
 ## [2.4.0] - 2026-02-27
 
-### Added — Absence Tracking & Recap
+### Added - Absence Tracking & Recap
 
 #### `/away` command
 - Players declare absences: `/away 3 days vacation`, `/away 2 weeks`,
@@ -5204,7 +5204,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 
 #### `/recap [N]` command
 - Shows the last N transcript entries (default 10, max 25)
-- Reads from `data/pbp_logs/` archive files — works with historical imports
+- Reads from `data/pbp_logs/` archive files - works with historical imports
 - Compact format: `[date time] Name: message snippet`
 - Spans multiple month files if needed
 
@@ -5217,7 +5217,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.3.0] - 2026-02-27
 
-### Added — Word Count Tracking
+### Added - Word Count Tracking
 - Every PBP message now tracks word count per-user per-campaign
 - `/mystats` shows total words written and average words per post
 - `/profile` shows word counts per-campaign and total across all campaigns
@@ -5228,7 +5228,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 ---
 ## [2.2.1] - 2026-02-27
 
-### Changed — Dashboard v2
+### Changed - Dashboard v2
 - Rebuilt GitHub Pages dashboard with summary cards (campaigns, posts, players, avg gap)
 - Week selector filter to view any archived week
 - Sortable campaign table with column headers
@@ -5237,7 +5237,7 @@ Foundry handles mechanics; the bot handles async turn coordination.
 - Week-over-week trend percentages with colour coding
 - Mobile-responsive layout (2-column summary on small screens)
 
-### Changed — Cleaner alerts
+### Changed - Cleaner alerts
 - Removed `/pause` suggestion from silence alerts and pace drop alerts (less noise)
 
 ---
@@ -5247,18 +5247,18 @@ Foundry handles mechanics; the bot handles async turn coordination.
 Activity insights. Track posting patterns and view cross-campaign player
 profiles. Know when your campaigns are most active.
 
-### Added — Activity tracking
+### Added - Activity tracking
 - Every message now records hour-of-day and day-of-week counters in
   `activity_hours` and `activity_days` state fields. Lightweight
   permanent counters (24 hour buckets + 7 day buckets per user per
   campaign) that never need pruning.
 
-### Added — `/activity` command
+### Added - `/activity` command
 - Shows campaign-level posting patterns: busiest days (bar chart),
   busiest time blocks, peak hour, and top 3 most active posters.
 - Available to all players and GMs.
 
-### Added — `/profile` command
+### Added - `/profile` command
 - Cross-campaign player lookup: `/profile @alice` or `/profile Alice`.
 - Shows every campaign the player is in: post counts, character names,
   last activity, and active streaks.
@@ -5281,14 +5281,14 @@ profiles. Know when your campaigns are most active.
 Scene markers and GM notes. GMs can now mark narrative scene boundaries
 in transcripts and maintain persistent notes per campaign.
 
-### Added — Scene markers
+### Added - Scene markers
 - **`/scene <name>`** (GM only): marks a scene boundary in the campaign's
   transcript file with a styled divider. Scene name stored in state and
   displayed in `/status` and `/campaign` output.
 - Transcript entries: `### 🎭 Scene: <name>` with timestamp, surrounded
   by horizontal rules for clear visual separation.
 
-### Added — GM notes
+### Added - GM notes
 - **`/note <text>`** (GM only): adds a persistent note to the campaign.
   Max 20 notes per campaign. Timestamped on creation.
 - **`/notes`** (everyone): view all GM notes for the current campaign,
@@ -5316,7 +5316,7 @@ cards, week filtering, sortable columns, and click-to-expand player
 drill-downs. Smart alerts detect pace drops (>40% week-over-week) and
 total silence (48h+ from everyone including GM).
 
-### Added — Dashboard v2
+### Added - Dashboard v2
 - **Summary cards**: campaigns, weekly posts, active players, avg response gap.
 - **Week filter**: dropdown to view any archived week's data.
 - **Sortable columns**: click any table header to sort asc/desc.
@@ -5327,12 +5327,12 @@ total silence (48h+ from everyone including GM).
 - **Trend arrows**: week-over-week change shown with colour-coded percentages.
 - **Mobile-responsive**: works on phone screens with adapted grid layout.
 
-### Added — Player breakdown in archive
+### Added - Player breakdown in archive
 - `player_breakdown` field in `weekly_archive.json` stores per-player
   stats for each week: posts, sessions (unique days), and avg gap.
 - Powers the dashboard drill-down feature.
 
-### Added — Smart alerts
+### Added - Smart alerts
 - **Pace drop detection**: if a campaign's posts drop >40% vs the
   previous week (minimum 5 posts/week baseline), a gentle alert is sent
   to the chat topic. Weekly cadence, won't spam.
@@ -5342,7 +5342,7 @@ total silence (48h+ from everyone including GM).
 - Both gated behind `smart_alerts` feature flag (enabled by default,
   disable per-campaign via `disabled_features`).
 
-### Added — New daily tips
+### Added - New daily tips
 - Tip explaining smart alerts and how to silence them with `/pause`.
 - Tip explaining the `/overview` command for cross-campaign monitoring.
 
@@ -5353,12 +5353,12 @@ total silence (48h+ from everyone including GM).
 Character awareness. Campaigns can now map player IDs to character names.
 Characters appear in rosters, `/mystats`, `/party`, and transcripts.
 
-### Added — `/party` command
+### Added - `/party` command
 - Shows the in-fiction party: character names, who plays them, activity status.
 - Active vs inactive breakdown.
 - Requires `characters` config on the campaign's topic_pair.
 
-### Added — Character names throughout
+### Added - Character names throughout
 - **Roster summaries**: player lines show "Alice (Cardigan)" when configured.
 - **`/mystats`**: header shows "playing Cardigan" when configured.
 - **Transcripts**: log entries show "**Alice** (Cardigan)" for player messages.
@@ -5380,7 +5380,7 @@ Characters appear in rosters, `/mystats`, `/party`, and transcripts.
 Message milestone celebrations. The bot now celebrates every 500th PBP
 message per campaign and every 5,000th message across all campaigns.
 
-### Added — Message milestones
+### Added - Message milestones
 - Campaign milestones: every 500 messages (500, 1000, 1500, ...) posted
   to the campaign's chat topic with a unique icon per tier.
 - Global milestones: every 5,000 messages across all campaigns, posted
@@ -5410,7 +5410,7 @@ New `/catchup` command shows players what happened since they last posted.
 Perfect for PBP where you might come back after a few days to find 30+ new
 messages across multiple people.
 
-### Added — `/catchup` command
+### Added - `/catchup` command
 - Shows how many messages were posted since your last one and who posted them.
 - Tells you if combat started while you were away (round, phase).
 - Handles edge cases: no history, just posted, nobody posted since you.
@@ -5429,14 +5429,14 @@ messages across multiple people.
 GM roster management commands. GMs can now manually add and remove players
 from campaign tracking without waiting for automatic processes.
 
-### Added — `/kick` command (GM only)
+### Added - `/kick` command (GM only)
 - `/kick @username` or `/kick PlayerName` removes a player from this
   campaign's roster immediately.
 - Player is moved to the removed list (same as auto-removal at 4 weeks).
 - Kicked players can rejoin by posting in PBP again.
 - Matches by username, first name, or full name (case-insensitive).
 
-### Added — `/addplayer` command (GM only)
+### Added - `/addplayer` command (GM only)
 - `/addplayer @username Player Name` pre-registers a player on the roster
   before they've posted.
 - Creates a placeholder entry that updates with full stats on first post.
@@ -5460,7 +5460,7 @@ Historical transcript backfill. A new import script reads Telegram Desktop
 JSON exports and populates the transcript archive with all past PBP messages.
 Also adds Theria (C08) to the tracked campaigns with per-campaign GM support.
 
-### Added — History Import
+### Added - History Import
 - `scripts/import_history.py`: imports historical PBP messages from Telegram
   Desktop JSON exports into the same `data/pbp_logs/` format the live bot uses.
 - Supports `--dry-run` to preview without writing files.
@@ -5468,7 +5468,7 @@ Also adds Theria (C08) to the tracked campaigns with per-campaign GM support.
 - Handles Telegram's mixed text/entity format, media detection, GM tagging.
 - 16 tests for the import script.
 
-### Added — Theria (C08)
+### Added - Theria (C08)
 - New campaign: PBP topic 107151, Chat topic 107141, started 2025-10-06.
 - Disabled features: warnings, recruitment (not Lewis's campaign).
 - Per-campaign `gm_user_ids` override: when a campaign has its own `gm_user_ids`
@@ -5486,10 +5486,10 @@ Also adds Theria (C08) to the tracked campaigns with per-campaign GM support.
 
 ### Summary
 PBP transcript archiving. Every message in every PBP topic is now logged to
-persistent markdown files in the repo — a complete, readable backup of every
+persistent markdown files in the repo - a complete, readable backup of every
 campaign's story. If Telegram dies, the campaigns live on.
 
-### Added — PBP Transcript Archive
+### Added - PBP Transcript Archive
 - Every non-command message in every PBP topic is now appended to a monthly
   markdown transcript file at `data/pbp_logs/{CampaignName}/{YYYY-MM}.md`.
 - Transcripts include: timestamp, player/GM name, role tag, message text.
@@ -5507,7 +5507,7 @@ The transcript files are standard markdown, readable directly on GitHub or any
 markdown viewer. Each monthly file has a header and chronological entries:
 
 ```
-# Doomsday Funtime — 2026-02
+# Doomsday Funtime - 2026-02
 
 *PBP transcript archived by PathWarsNudge bot.*
 
@@ -5542,7 +5542,7 @@ GM tools and personal history. GMs can now pause/resume inactivity tracking
 for breaks between arcs or holidays. Players can view their 8-week posting
 history as a text sparkline chart.
 
-### Added — New Commands
+### Added - New Commands
 - **/myhistory**: Shows a text sparkline of your weekly post counts over
   the last 8 weeks. Includes total posts, peak week, current week, and
   trend direction. The sparkline uses Unicode block characters (▁▂▃▄▅▆▇█)
@@ -5574,21 +5574,21 @@ Streaks, celebrations, and cross-campaign intelligence. The bot now celebrates
 posting milestones, shows streaks in rosters and leaderboards, and posts a
 compact weekly digest with health-scored campaign summaries.
 
-### Added — Streak Milestones
+### Added - Streak Milestones
 - The bot automatically celebrates when a player crosses a streak milestone:
   7, 14, 30, 60, or 90 consecutive days of posting. Each milestone has a
   unique message (scaling from 🔥 to 👑). Milestones are tracked per player
   per campaign and never posted twice for the same milestone. The streak must
-  be continuous — missing a single day resets it.
+  be continuous - missing a single day resets it.
 
-### Added — Streak in Roster & Leaderboard
+### Added - Streak in Roster & Leaderboard
 - **Roster**: Each player's entry now shows their current streak with a 🔥
   emoji if 2+ days. Adds one line to roster blocks only when relevant.
 - **Leaderboard**: New "🔥 Longest Active Streaks" section at the bottom of
   the weekly leaderboard. Shows top 5 players across all campaigns, with
   streak length and campaign name.
 
-### Added — Weekly Digest
+### Added - Weekly Digest
 - A compact one-line-per-campaign newsletter posted to the leaderboard topic
   once per week. Each line shows: health icon (🟢🟡🟠🔴 based on post volume),
   campaign name, post count with trend arrow, party size, active combat flag,
@@ -5616,30 +5616,30 @@ Player self-service update. Three new commands let players check their own stats
 inspect combat status, and discover features through daily tips. Plus a roadmap,
 versioning pipeline, and 20 new tests.
 
-### Added — New Commands
+### Added - New Commands
 - **/mystats** (alias: **/me**): Players type `/mystats` in any PBP topic to see
   their personal stats: total posts, posting sessions, average gap between posts,
   weekly activity count, last post time, and current posting streak. Works for both
-  players and GMs. No need to wait for roster day — check any time.
+  players and GMs. No need to wait for roster day - check any time.
 - **/whosturn**: Anyone can check combat status on demand. Shows: current round,
   whose phase it is (players/enemies), who has already acted (✅), and who the party
   is waiting on (⏳). During enemy phase, shows "Waiting for GM." Works outside the
   ping timer schedule so players can check without waiting for the automatic ping.
 
-### Added — Daily Tips
+### Added - Daily Tips
 - The bot now posts one random tip per day to a randomly chosen PBP chat topic.
   Each tip explains a bot feature (commands, combat tracking, POTW, streaks, etc).
   Tips rotate through all 12 entries before repeating, so every feature gets explained.
   This helps players who don't read GitHub or the issues topic discover what the bot
   can do. Tips are posted with HTML formatting for readability.
 
-### Added — Posting Streaks
+### Added - Posting Streaks
 - The bot now tracks consecutive days with posts and displays the streak in `/mystats`.
   A "streak" means posting at least once per day with no gaps. Posts yesterday count
   as maintaining the streak. Streak resets if you miss a day. Shows 🔥 emoji for
   streaks of 2+ days.
 
-### Added — Infrastructure
+### Added - Infrastructure
 - **ROADMAP.md**: Full feature roadmap through v1.4.0+ with planned features
   (streaks leaderboard, weekly digest, campaign health scoring, dashboard improvements,
   GM tools, smart alerts, character awareness, AI summaries) and status tracking.
@@ -5668,19 +5668,19 @@ versioning pipeline, and 20 new tests.
 First versioned release. Consolidates all prior refactoring work (sessions 1–4)
 plus today's new features into a stable, tested baseline.
 
-### Added — New Features
+### Added - New Features
 - **/campaign command**: Type `/campaign` in any PBP topic to get a full scoreboard:
   campaign age, party size, weekly pace with trend arrows, complete roster with
   per-player stats (total posts, sessions, weekly count, average gap, last post),
   at-risk player warnings, and active combat state. This replaces the need to wait
-  for scheduled roster/pace reports — players can check on demand.
-- **/status command**: Quick health snapshot — party size, last post time, posts
+  for scheduled roster/pace reports - players can check on demand.
+- **/status command**: Quick health snapshot - party size, last post time, posts
   this week, at-risk players, combat state.
 - **/help command**: Lists all bot features and GM commands in-chat.
 - **Per-campaign feature toggles**: Add `"disabled_features": ["potw", "recruitment"]`
   to any campaign in config to turn off specific features per campaign. Valid toggles:
   alerts, warnings, roster, potw, pace, recruitment, combat, anniversary.
-- **Config validation on startup**: Bot checks config structure before running —
+- **Config validation on startup**: Bot checks config structure before running -
   catches bad group_id, duplicate topic IDs, unknown feature names, malformed dates.
   Errors prevent the run; warnings are logged but continue.
 - **Archive dashboard** (docs/index.html): Interactive web dashboard for
@@ -5691,7 +5691,7 @@ plus today's new features into a stable, tested baseline.
   topic automatically after each push.
 - **Versioning**: Semver-based VERSION file and CHANGELOG.md.
 
-### Added — Code Quality
+### Added - Code Quality
 - **87 tests** (32 helpers, 55 checker) covering: message parsing, combat state
   machine, boon selection/expiry, player warnings and removal, leaderboard stats,
   anniversary detection, recruitment checks, feature toggles, config validation,
@@ -5709,7 +5709,7 @@ plus today's new features into a stable, tested baseline.
 - `pbp_summary_feature.py`: Unused 206-line AI summary prototype. The `/campaign`
   command now fills this role without requiring an API key.
 
-### Architecture (for reference — pre-v1.0.0 refactoring)
+### Architecture (for reference - pre-v1.0.0 refactoring)
 The codebase was restructured across 4 sessions from a single 1,200-line file into:
 - `checker.py` (1,468 lines, 27 functions): All bot features and orchestration.
 - `helpers.py` (418 lines, 28 functions): Pure utilities, constants, config loading.

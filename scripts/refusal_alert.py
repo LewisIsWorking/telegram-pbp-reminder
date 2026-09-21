@@ -22,7 +22,7 @@ classes call for opposite responses:
 
 ⚠️ Until 2026-08-16 this file asserted the first explanation for every
 entry. When ``stuck_deletes`` started routing give-ups through the same
-log, the alert announced 11 of them as registry refusals — and every one
+log, the alert announced 11 of them as registry refusals - and every one
 of those IDs was in the registry. Reusing the transport was right;
 reusing the explanation sent the operator to the wrong runbook. If a
 third reason is ever added, give it its own section here.
@@ -49,7 +49,7 @@ def _registry_section(entries: list) -> list:
     """A delete the bot-sent registry rejected. A code or backfill fault.
 
     \u2b50 Each entry is resolved to its sender and text. A registry refusal
-    on a BOT message is a bookkeeping slip \u2014 backfill missed a state
+    on a BOT message is a bookkeeping slip - backfill missed a state
     field. A registry refusal on a PLAYER's message is the guard stopping
     the thing it was built to stop, and is an incident. Under the old
     format both arrived as a bare ``mid=`` and read identically, which
@@ -60,13 +60,13 @@ def _registry_section(entries: list) -> list:
 
     if alarming:
         out = [f"\U0001f6a8 Registry refusals: {len(entries)} "
-               f"\u2014 {len(alarming)} NOT sent by the bot",
+               f"- {len(alarming)} NOT sent by the bot",
                "Something asked the bot to delete a message it did not "
                "send. The guard refused, so nothing was lost, but the "
                "attempt itself should not have happened. Find the caller."]
     else:
         out = [f"\U0001f6d1 Registry refusals: {len(entries)} "
-               f"\u2014 all are bot messages",
+               f"- all are bot messages",
                "The bot tried to delete its own messages that the registry "
                "does not list, so backfill missed a state field or a "
                "sender skipped record_sent. Nothing was at risk. "
@@ -92,7 +92,7 @@ def _undeletable_section(entries: list) -> list:
         facts = describe(mid)
         # The text matters here too: it is how Lewis decides whether a
         # stranded post is worth walking to the topic for.
-        out.append(f"\u2022 https://t.me/Path_Wars/{mid} \u2014 "
+        out.append(f"\u2022 https://t.me/Path_Wars/{mid} - "
                    f"{facts.get('preview') or '(no text recorded)'}")
     if len(entries) > 25:
         out.append(f"\u2026 and {len(entries) - 25} more "

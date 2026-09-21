@@ -1,4 +1,4 @@
-"""test_roster.py — bin 2.
+"""test_roster.py - bin 2.
 
   - commands/roster.py
 """

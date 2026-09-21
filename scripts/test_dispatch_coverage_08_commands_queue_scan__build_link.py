@@ -1,8 +1,8 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 8.
+"""Tests extracted from test_dispatch_coverage.py - bin 8.
 
 Sections in this file:
   - commands/queue_scan._build_link
-  - dispatch/cmd_gm.py — /setpermanent and /unsetpermanent
+  - dispatch/cmd_gm.py - /setpermanent and /unsetpermanent
 """
 """
 Coverage tests for:
@@ -116,7 +116,7 @@ def test_build_link_private_group_empty_username():
 
 
 
-# ── dispatch/cmd_gm.py — /setpermanent and /unsetpermanent ──────────────────
+# ── dispatch/cmd_gm.py - /setpermanent and /unsetpermanent ──────────────────
 
 def _gm_ctx(cmd: str, state: dict) -> dict:
     """Build a minimal GM ctx for cmd_gm tests."""
@@ -169,7 +169,7 @@ def test_setpermanent_unknown_player():
     state = {"players": {}, "paused_campaigns": {}}
     ctx = _gm_ctx("/setpermanent @nobody", state)
     result = handle(ctx)
-    assert result is True  # handled but not found — sends error msg
+    assert result is True  # handled but not found - sends error msg
 
 
 def test_setpermanent_no_arg():
@@ -177,5 +177,5 @@ def test_setpermanent_no_arg():
     state = {"players": {}, "paused_campaigns": {}}
     ctx = _gm_ctx("/setpermanent", state)
     result = handle(ctx)
-    assert result is True  # handled — sends usage msg
+    assert result is True  # handled - sends usage msg
 

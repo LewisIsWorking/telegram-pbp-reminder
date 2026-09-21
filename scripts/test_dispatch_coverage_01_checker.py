@@ -1,4 +1,4 @@
-"""Tests extracted from test_dispatch_coverage.py — bin 1.
+"""Tests extracted from test_dispatch_coverage.py - bin 1.
 
 Sections in this file:
   - checker.py

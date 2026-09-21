@@ -8,12 +8,12 @@ own campaign.
 Format:
   🗳️ @username voted Friday in C01
 
-  C01 — 2/3 voted  |  waiting: @Alice @Bob
+  C01 - 2/3 voted  |  waiting: @Alice @Bob
     Friday:         1  @PathWars
     Either:         2  @Elinoa @Selenor
     → Either leads
 
-  C11 — 7/8 voted  |  waiting: @molluggg
+  C11 - 7/8 voted  |  waiting: @molluggg
     2026-04-13 Mon: 4  @NJ @Craig @Jack @Sparkleslayer
     → 2026-04-13 leads
 """
@@ -33,13 +33,13 @@ def _voter_mention(uid: str, name: str, config: dict, state: dict) -> str:
             if u:
                 return f"@{u}"
             first = p.get("first_name", name)
-            return f"{first} (⚠️ username unknown — uid {uid})"
+            return f"{first} (⚠️ username unknown - uid {uid})"
     for pair in config.get("topic_pairs", []):
         names = pair.get("poll_user_names", {})
         if uid in names:
             uname = names[uid]
             return f"@{uname}"
-    return f"{name} (⚠️ username unknown — uid {uid})"
+    return f"{name} (⚠️ username unknown - uid {uid})"
 
 
 def _options_for_code(config: dict, code: str,
@@ -181,5 +181,5 @@ def identify_unknown_voter(uid: str, username: str, first_name: str,
     if bot_topic and group_id:
         tg.send_message(group_id, bot_topic,
                         f"✅ Identified {code} unknown voter: "
-                        f"@{username} ({first_name}) — uid {uid}\n"
+                        f"@{username} ({first_name}) - uid {uid}\n"
                         f"Will be auto-promoted on next workflow run.")

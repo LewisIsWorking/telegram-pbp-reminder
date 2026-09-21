@@ -55,9 +55,9 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
             state.get("poll_history", {}).get(code, {}), options
         )
         emoji = pair.get("emoji", "🗳️")
-        question = f"{emoji} {code} Week {week_num}/52 — When are we playing?"
+        question = f"{emoji} {code} Week {week_num}/52 - When are we playing?"
         multi = pair.get("allows_multiple_answers", False)
-        # open_period: 6 days (518400s) — poll auto-closes Saturday night
+        # open_period: 6 days (518400s) - poll auto-closes Saturday night
         result = tg.send_poll(gid, poll_tid, question, options,
                               is_anonymous=False,
                               allows_multiple_answers=multi,
@@ -77,7 +77,7 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
             tg.pin_message(gid, msg_id)
 
         if hist_str:
-            # History recap is a reminder-style post, not the poll itself —
+            # History recap is a reminder-style post, not the poll itself -
             # route it to the nudge topic alongside the daily ping. The poll
             # widget already carries the same history in its explanation popup.
             tg.send_message(gid, nudge_tid,
@@ -96,17 +96,17 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
             poll = polls[code]
             print(f"Session poll posted + pinned: {code} week {week_key}")
         else:
-            print(f"Session poll FAILED for {code} week {week_key} — will retry next run")
+            print(f"Session poll FAILED for {code} week {week_key} - will retry next run")
 
     # Don't ping before poll is up
     if poll.get("week_iso") != week_key:
         return
 
-    # Session already happened — no more pings this week
+    # Session already happened - no more pings this week
     if poll.get("session_happened"):
         return  # pragma: no cover
 
-    # Daily ping — once per calendar day (ordinal)
+    # Daily ping - once per calendar day (ordinal)
     today_ord = now.toordinal()
     if today_ord <= poll.get("last_ping_day", -1):
         return  # pragma: no cover
@@ -115,7 +115,7 @@ def _post_one(config: dict, state: dict, pair: dict, now: datetime) -> None:
     voted_uids = poll.get("voted_uids", [])
     unvoted = _unvoted_mentions(roster, voted_uids)
 
-    # Re-pin the poll on every daily ping — guards against other messages
+    # Re-pin the poll on every daily ping - guards against other messages
     # (e.g. Matrix bridge) overriding the pin
     poll_msg_id = poll.get("poll_message_id")
     if poll_msg_id:

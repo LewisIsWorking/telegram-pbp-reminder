@@ -37,7 +37,7 @@ def build_session(pid: str, campaign_name: str, state: dict,
     if count == 0:
         return f"No sessions tracked yet for {label}. Use /session set N to initialize."
 
-    return f"📖 {label} — Session {count}"
+    return f"📖 {label} - Session {count}"
 
 
 def set_session(pid: str, campaign_name: str, number: int,

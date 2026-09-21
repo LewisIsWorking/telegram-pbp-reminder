@@ -59,7 +59,7 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
     months_to_scan = [prev_month, month] if prev_month != month else [month]
     result = {}
 
-    # Floor timestamp — ignore entries older than this (ISO date string YYYY-MM-DD)
+    # Floor timestamp - ignore entries older than this (ISO date string YYYY-MM-DD)
     floor_date = None
     if state:
         floor_date = state.get("queue_scan_floor")
@@ -106,7 +106,7 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
         if helpers.is_excluded(config, pid):
             continue
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
-        # Per-campaign group — C11 and future cross-group campaigns differ.
+        # Per-campaign group - C11 and future cross-group campaigns differ.
         # campaign_link_target ensures a cross-group campaign does NOT inherit
         # the global group_username (which would point links at the wrong group).
         camp_group_id, camp_group_user = campaign_link_target(config, pair)
@@ -140,7 +140,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                 while i < len(lines) and not _ENTRY_RE.match(lines[i]):
                     if lines[i].startswith("## ") or lines[i].startswith("### "):
                         break
-                    if lines[i].startswith("*—") and "silence" in lines[i]:
+                    # Old transcripts are verbatim and keep their em dashes.
+                    if lines[i].startswith(("*\u2014", "*-")) and "silence" in lines[i]:
                         break
                     content_lines.append(lines[i])
                     i += 1
@@ -148,7 +149,7 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                 preview = "\n".join(content_lines).strip()
 
                 if is_gm:
-                    # A GM message does NOT clear pending entries — only a direct
+                    # A GM message does NOT clear pending entries - only a direct
                     # reply (tracked via gm_queue_replied in state) clears a specific
                     # player message. A GM posting generally shouldn't wipe the queue.
                     pass

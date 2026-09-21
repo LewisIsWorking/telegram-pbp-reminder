@@ -24,12 +24,12 @@ from scheduled.potw_candidates import _gather_potw_candidates  # noqa: F401
 
 
 def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
-    """Award Player of the Week — Monday only, once per calendar week.
+    """Award Player of the Week - Monday only, once per calendar week.
 
     Fires on ``POTW_WEEKDAY`` at or after ``POTW_POST_HOUR`` UTC, guarded
     per campaign by an ISO week key. Previously this used a rolling
     ``interval_elapsed`` gate which drifted later each week and, on a
-    quiet week, fired on the first tick after someone posted — see
+    quiet week, fired on the first tick after someone posted - see
     ``scheduled.potw_schedule`` for the full rationale.
 
     Every enabled campaign is evaluated in the same pass, so the awards
@@ -85,7 +85,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
         if not candidates:
             # Stamp even with no winner. The old code `continue`d without
             # stamping, which left the gate open so the award fired on the
-            # first tick after someone posted — the "goes off at random"
+            # first tick after someone posted - the "goes off at random"
             # bug. A quiet week is now simply a week with no award.
             week_stamps[pid] = potw_schedule.week_key(now)
             print(f"No POTW candidates for {name} (need {helpers.POTW_MIN_POSTS}+ posts)")
@@ -120,7 +120,7 @@ def player_of_the_week(config: dict, state: dict, *, now: datetime | None = None
             boon_text += f"\n{i + 1}. {b}\n"
         # User-facing boon selection moved entirely to the website on
         # 2026-05-11. Players log in at the URL below to claim. The
-        # bot no longer accepts /chooseboon or inline-button taps —
+        # bot no longer accepts /chooseboon or inline-button taps -
         # see commands/help_text.py removal and dispatch/* handler
         # removals in the same commit.
         boon_text += ("\nLog in to claim your boon: "

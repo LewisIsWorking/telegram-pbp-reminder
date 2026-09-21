@@ -22,7 +22,7 @@ def _log(event: str, pid: str, user_id: str,
         "username": username,
         "at":       datetime.now(timezone.utc).isoformat(),
     })
-    print(f"Player history: {event} — {name} in pid {pid}")
+    print(f"Player history: {event} - {name} in pid {pid}")
 
 
 def post_roster(pid: str, config: dict, state: dict) -> None:

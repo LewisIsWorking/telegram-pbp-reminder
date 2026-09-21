@@ -1,4 +1,4 @@
-"""Slice 7 of P3/9 — migration registry regression tests.
+"""Slice 7 of P3/9 - migration registry regression tests.
 
 Asserts that every production migration is registered in the central
 state_store.migration_registry, and that the registry's mechanics
@@ -65,7 +65,7 @@ def test_known_production_migrations_are_registered() -> None:
 
 
 def test_no_unexpected_migrations_registered() -> None:
-    """Registry contains only the known migrations — no orphans.
+    """Registry contains only the known migrations - no orphans.
 
     Catches the inverse: someone adds a registration but forgets to
     update the test's _KNOWN_MIGRATIONS set. Forces the test to be
@@ -97,7 +97,7 @@ def test_every_migration_has_callable_fn_and_description() -> None:
         )
         assert migration.description.strip(), (
             f"Migration {migration.target}/{migration.name} has empty "
-            f"description — future maintainers won't know what schema "
+            f"description - future maintainers won't know what schema "
             f"bump it encodes. Add one."
         )
 

@@ -1,20 +1,20 @@
-"""StateStore class — slice 1: aux-file load/save with atomic writes.
+"""StateStore class - slice 1: aux-file load/save with atomic writes.
 
 The class lives here; the package ``__init__.py`` re-exports it.
 
 Slice 1 scope (delivered):
   * Atomic writes (tmp + rename) on every ``save_aux``.
   * Single configurable root (default: ``<repo_root>/data/state``).
-  * Test isolation via constructor parameter — no module-level
+  * Test isolation via constructor parameter - no module-level
     monkeypatch dance.
   * Graceful handling of missing/corrupt aux files (returns the
     caller-supplied default rather than raising).
 
 Slice 1 NON-scope (planned for later slices):
-  * ``load_partition`` / ``save_partition`` — slice 3-4.
-  * ``load_queue`` / ``save_queue`` — slice 5.
-  * Migration registry — slice 7.
-  * Per-partition locks for concurrency — slice 8 (P3/10).
+  * ``load_partition`` / ``save_partition`` - slice 3-4.
+  * ``load_queue`` / ``save_queue`` - slice 5.
+  * Migration registry - slice 7.
+  * Per-partition locks for concurrency - slice 8 (P3/10).
 
 Usage::
 
@@ -102,7 +102,7 @@ class StateStore(QueueAPI, PartitionAPI):
 
         Returns the parsed JSON, or ``default`` if the file is
         missing or unparseable. A corrupt file produces a stderr
-        message but does not raise — callers always get a usable
+        message but does not raise - callers always get a usable
         value. This matches the contract that ``bot_sent_registry``
         and ``refusal_log`` already had with their direct-file I/O,
         so the migration is behaviour-preserving.

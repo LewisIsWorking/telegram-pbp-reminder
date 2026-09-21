@@ -1,5 +1,5 @@
 """
-Tests for campaign_table.py — per-line format (no column alignment).
+Tests for campaign_table.py - per-line format (no column alignment).
 """
 
 import sys

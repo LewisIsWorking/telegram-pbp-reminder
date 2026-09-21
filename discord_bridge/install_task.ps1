@@ -4,7 +4,7 @@
 # Usage (from anywhere):
 #   powershell -ExecutionPolicy Bypass -File discord_bridge\install_task.ps1
 #
-# Re-running is safe — it overwrites the existing task (-Force).
+# Re-running is safe - it overwrites the existing task (-Force).
 $ErrorActionPreference = "Stop"
 $dir      = Split-Path -Parent $MyInvocation.MyCommand.Path
 $launcher = Join-Path $dir "run_bridge.ps1"

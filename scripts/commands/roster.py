@@ -1,8 +1,8 @@
-"""/roster — campaign player overview and per-campaign history.
+"""/roster - campaign player overview and per-campaign history.
 
-/roster          — all campaigns ordered fewest to most active players
-/roster C04      — drill-down: current players + join/leave history for C04
-/roster 04       — same, with or without the C prefix
+/roster          - all campaigns ordered fewest to most active players
+/roster C04      - drill-down: current players + join/leave history for C04
+/roster 04       - same, with or without the C prefix
 """
 
 from datetime import datetime, timezone, timedelta
@@ -35,7 +35,7 @@ def build_roster_overview(config: dict, state: dict) -> str:
         non_perm, perm = _split_active(_active_players(pid, state, config), config)
         target = pair.get("roster_target") or effective_target(config, state)
         rows.append((len(non_perm), len(perm), code, name, target))
-    # Warnings first (non-perm vs target — perm players don't count
+    # Warnings first (non-perm vs target - perm players don't count
     # toward the target per Lewis's 2026-05-12 clarification), then by
     # non-perm count ascending so the most under-staffed campaigns
     # appear first within the warning group.
@@ -47,17 +47,17 @@ def build_roster_overview(config: dict, state: dict) -> str:
     for non_perm_n, perm_n, code, name, target in rows:
         # Icon gates on NON-PERM count only. Permanent players are full
         # members (counted in the roster, never auto-kicked, shown with
-        # [perm] tags) but they don't fill "out of 6" slots — the X/Y
+        # [perm] tags) but they don't fill "out of 6" slots - the X/Y
         # target measures non-perm activity. A campaign at "4/6 +2 perm"
         # is still under-staffed: it needs 6 non-perm active players,
         # not 6 total. See L20 + L23 in REFACTOR_PROGRESS.md.
         icon = "✅" if non_perm_n >= target else "⚠️"
         label = f"{code}: {name}" if code else name
-        # Format: "4/6 +2 perm" — X non-perm, Y target, Z perm padding.
+        # Format: "4/6 +2 perm" - X non-perm, Y target, Z perm padding.
         # The "+Z perm" suffix is omitted when there are no perm players
         # so campaigns without a perm slot read cleanly as "X/Y".
         perm_suffix = f" +{perm_n} perm" if perm_n else ""
-        lines.append(f"{icon} {label} — {non_perm_n}/{target}{perm_suffix}")
+        lines.append(f"{icon} {label} - {non_perm_n}/{target}{perm_suffix}")
     return "\n".join(lines)
 
 
@@ -72,13 +72,13 @@ def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
     target = pair.get("roster_target") or effective_target(config, state)
     combined = len(non_perm) + len(perm)
     # Icon gates on NON-PERM count only (perm players don't count toward
-    # the target). Same rationale as build_roster_overview — see comment
+    # the target). Same rationale as build_roster_overview - see comment
     # there and L23 in REFACTOR_PROGRESS.md.
     icon = "✅" if len(non_perm) >= target else "⚠️"
     perm_suffix = f" +{len(perm)} perm" if perm else ""
     # Split the names list into Current (non-perm) and Perm sections.
     # Lewis requested this on 2026-05-17 after spotting the C00 drill-
-    # down listing 4 players as "Current:" when 3 were perm — the [perm]
+    # down listing 4 players as "Current:" when 3 were perm - the [perm]
     # inline tag was easy to miss when scanning. Two sections (omitted
     # when empty) make the split visually unambiguous. See L26.
     def _name_line(p: dict) -> str:

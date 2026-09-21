@@ -1,4 +1,4 @@
-"""test_roster.py — bin 3.
+"""test_roster.py - bin 3.
 
   - players/history.py
 """
