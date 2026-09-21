@@ -338,7 +338,8 @@
         "2026-09-16T18:26:41+00:00",
         "2026-09-16T19:02:00+00:00",
         "2026-09-16T22:32:55+00:00",
-        "2026-09-17T18:53:33+00:00"
+        "2026-09-17T18:53:33+00:00",
+        "2026-09-21T08:26:39+00:00"
       ]
     },
     "66154": {
@@ -557,7 +558,7 @@
       "8379380933": 5,
       "8701042661": 25,
       "7919488992": 2,
-      "138025700": 8
+      "138025700": 9
     },
     "40585": {
       "6144366145": 143,
@@ -1341,7 +1342,8 @@
         "3": 4,
         "18": 2,
         "19": 1,
-        "22": 1
+        "22": 1,
+        "8": 1
       }
     },
     "51357": {
@@ -2173,7 +2175,7 @@
         "0": 1
       },
       "138025700": {
-        "0": 4,
+        "0": 5,
         "2": 3,
         "3": 1
       }
@@ -3871,6 +3873,25 @@
         "The DC of your next skill check is reduced by 1."
       ],
       "boon_chosen": null
+    },
+    {
+      "week": "W39",
+      "year": 2026,
+      "date": "2026-09-21",
+      "campaign": "Metal City",
+      "campaign_pid": "107171",
+      "user_id": "8701042661",
+      "first_name": "Diabla \"Bella\" Alzarin",
+      "username": "exspiravit_1",
+      "post_count": 6,
+      "avg_gap_h": 18.2,
+      "boons_offered": [
+        "Your reflection in a suit of armor shows the room behind you. Something moves.",
+        "A mirror in an abandoned room shows a reflection that's slightly different from reality.",
+        "The stonework here is slightly different. Recent construction. Worth investigating.",
+        "+1 circumstance bonus to your next saving throw."
+      ],
+      "boon_chosen": null
     }
   ],
   "thread_message_counts": {
@@ -3928,6 +3949,9 @@
     "133428": {},
     "146645": {
       "1698524397": 1
+    },
+    "107171": {
+      "138025700": 1
     }
   }
 }
