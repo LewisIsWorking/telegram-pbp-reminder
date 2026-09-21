@@ -35,6 +35,10 @@ PARTITIONS: dict[str, list[str]] = {
         # and repost: the hourly-repost bug back again, with all the unit
         # tests passing because they never save.
         "gm_queue_texts",
+        # Consecutive quick queue re-checks (scheduled/queue_refire.py). Must be
+        # declared: an undeclared key is discarded on save, the chain would
+        # never count past 1, and MAX_CHAIN would never stop anything.
+        "queue_refire_chain",
         # Added 2026-08-11. These four were written by new features but
         # never listed here, so _save_to_files silently dropped them every
         # run (see the note at the top of this file: keys not listed are
@@ -135,7 +139,7 @@ DEFAULT_STATE: dict = {
     "last_queue_daily_slots": [], "swimming_poll": {},
     "queue_scan_floor": None, "last_diagnostic": None,
     "last_queue_pin_id": None, "queue_post_count": 0,
-    "gm_queue_history": [], "gm_queue_texts": [],
+    "gm_queue_history": [], "gm_queue_texts": [], "queue_refire_chain": 0,
     "potw_week": {}, "last_potw_roundup": None,
     "last_potw_countdown": None, "schedule_post_msg_id": None,
     "schedule_post_chat_id": None,
