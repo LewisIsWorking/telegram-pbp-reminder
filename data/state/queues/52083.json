@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 180377,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-09-19T14:09:30+00:00",
-      "preview": "\"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -448,7 +438,9 @@
     "msg:179957",
     "2026-09-16 18:53:18",
     "msg:180077",
-    "2026-09-16 22:40:32"
+    "2026-09-16 22:40:32",
+    "msg:180377",
+    "2026-09-19 14:09:30"
   ],
   "reply_log": [
     {
@@ -2444,19 +2436,26 @@
       "player": "Anthony",
       "preview": "Livy's probably going to buy an armored coat and a commercial force field upgrad",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-22T23:50:37+00:00",
+      "pid": "52083",
+      "msg_id": "180377",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-19 14:09:30",
-      "msg_ids": [
-        180790
-      ],
-      "last_posted_at": "2026-09-22T04:15:24.240658+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 180922,
+      "caught_up_at": "2026-09-22T23:57:53.278798+00:00"
     },
     "145045": {
       "msg_ids": [],
