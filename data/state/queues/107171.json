@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 180074,
-      "thread_id": 142887,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-16T22:32:55+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 180416,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -464,7 +455,9 @@
     "msg:179961",
     "2026-09-16 19:02:00",
     "msg:180236",
-    "2026-09-17 18:53:33"
+    "2026-09-17 18:53:33",
+    "msg:180074",
+    "2026-09-16 22:32:55"
   ],
   "reply_log": [
     {
@@ -2441,6 +2434,15 @@
       "player": "Ryo",
       "preview": "He spits in her direction as he holsters his gun.\n\n\"Always did forget I was also",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-22T01:23:39+00:00",
+      "pid": "107171",
+      "msg_id": "180074",
+      "thread_id": 142887,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2457,14 +2459,12 @@
       "caught_up_at": "2026-09-19T14:15:22.809492+00:00"
     },
     "142887": {
-      "fingerprint": "2026-09-16 22:32:55",
-      "msg_ids": [
-        180618
-      ],
-      "last_posted_at": "2026-09-20T19:02:14.798032+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 180777,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-22T02:15:19.568552+00:00"
     }
   }
 }
