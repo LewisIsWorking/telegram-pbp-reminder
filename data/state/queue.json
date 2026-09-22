@@ -1190,7 +1190,11 @@
       "2026-09-03T05:00:27.171404+00:00",
       "2026-09-04T21:00:53.807136+00:00",
       "2026-09-06T17:20:00.264501+00:00",
-      "2026-09-06T18:04:51.881462+00:00"
+      "2026-09-06T18:04:51.881462+00:00",
+      "2026-09-22T23:35:05.387701+00:00",
+      "2026-09-22T23:35:06.161252+00:00",
+      "2026-09-22T23:35:06.165256+00:00",
+      "2026-09-22T23:35:06.171421+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -1940,34 +1944,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-08-26T06:59:35.924278+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "175070"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-26T06:59:35.926348+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "175071"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-08-26T06:59:35.936897+00:00",
-      "player": "Cannon",
-      "preview": "Nadya turns lazily and shoots an attempt at a charming smile",
-      "msg_id": "174978"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-08-26T06:59:35.939359+00:00",
-      "player": "Cannon",
-      "preview": "\"Technically we're supposed to avoid deaths, otherwise the g",
-      "msg_id": "174979"
-    },
     {
       "pid": "76799",
       "time": "2026-08-26T06:59:35.941794+00:00",
@@ -3339,6 +3315,34 @@
       "player": "Anthony",
       "preview": "Livy's probably going to buy an armored coat and a commercia",
       "msg_id": "180077"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-09-22T23:35:05.387701+00:00",
+      "player": "Horia",
+      "preview": "the party waits for an irl session to happen",
+      "msg_id": "180822"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-09-22T23:35:06.161252+00:00",
+      "player": "Anthony",
+      "preview": "the party waits for an irl session to happen",
+      "msg_id": "180886"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-09-22T23:35:06.165256+00:00",
+      "player": "Horia",
+      "preview": "[media]",
+      "msg_id": "180888"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-09-22T23:35:06.171421+00:00",
+      "player": "Horia",
+      "preview": "we will delete them when we get an irl session",
+      "msg_id": "180892"
     }
   ],
   "pending_potw_boons": {

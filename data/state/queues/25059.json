@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 180822,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-09-22T10:11:55+00:00",
-      "preview": "the party waits for an irl session to happen",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -490,7 +480,15 @@
     "msg:177097",
     "2026-09-05 04:00:19",
     "msg:177114",
-    "2026-09-05 08:39:19"
+    "2026-09-05 08:39:19",
+    "msg:180822",
+    "2026-09-22 10:11:55",
+    "msg:180886",
+    "2026-09-22 23:21:37",
+    "msg:180888",
+    "2026-09-22 23:24:28",
+    "msg:180892",
+    "2026-09-22 23:25:40"
   ],
   "reply_log": [
     {
@@ -2643,17 +2641,51 @@
       "player": "Dalaxiss",
       "preview": "Katmidlar seems to be interested in this conversation as well.\n\"Maybe i dont get",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-22T23:21:26+00:00",
+      "pid": "25059",
+      "msg_id": "180822",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "the party waits for an irl session to happen",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-22T23:24:48+00:00",
+      "pid": "25059",
+      "msg_id": "180886",
+      "thread_id": 25059,
+      "player": "Anthony",
+      "preview": "the party waits for an irl session to happen",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-22T23:24:51+00:00",
+      "pid": "25059",
+      "msg_id": "180888",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-22T23:27:27+00:00",
+      "pid": "25059",
+      "msg_id": "180892",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "we will delete them when we get an irl session",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-09-22 10:11:55",
-      "msg_ids": [
-        180826
-      ],
-      "last_posted_at": "2026-09-22T10:17:32.512290+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 180903,
+      "caught_up_at": "2026-09-22T23:35:06.171708+00:00"
     }
   }
 }
