@@ -27,7 +27,7 @@ SENDERS = {
     "preflight/alerting.py": "bot_health",
     "scheduled/diagnostic.py": "bot_health",
     "scheduled/alerts.py": "activity",
-    "scheduled/roster_nudge.py": "activity",
+    "scheduled/roster_nudge.py": "roster_overview",
     "scheduled/maintenance.py": "activity",
     "scheduled/smart_alerts.py": "activity",
     "scheduled/reports.py": "activity",
@@ -90,3 +90,32 @@ def test_pin_digest_actually_posts_to_the_routed_topic(monkeypatch):
            "notification_routes": {"pins": {"chat_id": -7, "thread_id": 70}}}
     pr.run_daily_pin_digest(cfg, {}, now=datetime(2026, 7, 15, 8, tzinfo=timezone.utc))
     assert tg.send_message.call_args[0][:2] == (-7, 70)
+
+
+def test_the_live_destinations_are_the_ones_lewis_named():
+    """Lewis, 2026-09-23. Changing one of these should be deliberate."""
+    routes = CONFIG["notification_routes"]
+    assert (routes["pace_report"]["chat_id"], routes["pace_report"]["thread_id"]) \
+        == (-1004303231713, 1430)        # t.me/NudgeBotNotifications/1430
+    assert (routes["roster_overview"]["chat_id"], routes["roster_overview"]["thread_id"]) \
+        == (CONFIG["group_id"], 119703)  # t.me/Path_Wars/119703
+
+
+def test_pace_report_and_roster_overview_use_their_own_routes():
+    reports = (SCRIPTS / "scheduled/reports.py").read_text(encoding="utf-8")
+    pace = reports[reports.index("def post_pace_report"):]
+    assert 'route(config, "pace_report")' in pace
+    nudge = (SCRIPTS / "scheduled/roster_nudge.py").read_text(encoding="utf-8")
+    assert 'route(config, "roster_overview")' in nudge
+
+
+def test_player_inactivity_posts_in_the_campaign_chat_topic():
+    """Warnings and removals go where the player and the table will see
+    them (Lewis, 2026-09-23), never to a routed or bot topic."""
+    body = (SCRIPTS / "scheduled/alerts.py").read_text(encoding="utf-8")
+    fn = body[body.index('    """Warn inactive players at 1/2/3 weeks'):]
+    sends = re.findall(r"tg\.send_message\(([^\n]*)", fn)
+    assert len(sends) == 2, sends
+    for args in sends:
+        assert args.startswith("group_id_for_campaign(config, str(pbp_topic_id)), chat_topic_id,")
+    assert "route(config" not in fn

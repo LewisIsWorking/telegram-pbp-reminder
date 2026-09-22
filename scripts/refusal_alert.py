@@ -64,7 +64,8 @@ def _registry_section(entries: list) -> list:
                f"- {len(alarming)} NOT sent by the bot",
                "Something asked the bot to delete a message it did not "
                "send. The guard refused, so nothing was lost, but the "
-               "attempt itself should not have happened. Find the caller."]
+               "attempt itself should not have happened. Find the caller "
+               "per docs/dev/delete-safety.md."]
     else:
         out = [f"\U0001f6d1 Registry refusals: {len(entries)} "
                f"- all are bot messages",
