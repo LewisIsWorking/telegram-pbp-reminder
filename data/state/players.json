@@ -121,16 +121,6 @@
       "last_post_time": "2026-09-06T20:09:25+00:00",
       "last_warned_week": 1
     },
-    "107151:1698524397": {
-      "user_id": "1698524397",
-      "first_name": "Path",
-      "last_name": "Wars",
-      "username": "PathWars",
-      "campaign_name": "Theria",
-      "pbp_topic_id": "107151",
-      "last_post_time": "2026-08-25T08:36:47+00:00",
-      "last_warned_week": 0
-    },
     "40585:7130942567": {
       "user_id": "7130942567",
       "first_name": "Buffet",
@@ -656,6 +646,12 @@
       "first_name": "Supreme",
       "username": "thesupremegaiety",
       "campaign_name": "Metal City"
+    },
+    "107151:1698524397": {
+      "removed_at": "2026-09-22T09:15:24.595590+00:00",
+      "first_name": "Path",
+      "username": "PathWars",
+      "campaign_name": "Theria"
     }
   },
   "player_registry": {
@@ -1850,6 +1846,14 @@
       "name": "Supreme",
       "username": "thesupremegaiety",
       "at": "2026-09-21T18:00:27.902024+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "107151",
+      "user_id": "1698524397",
+      "name": "Path",
+      "username": "PathWars",
+      "at": "2026-09-22T09:15:25.124119+00:00"
     }
   ],
   "player_boons": {
