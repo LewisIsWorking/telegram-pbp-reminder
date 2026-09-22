@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 180077,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-09-16T22:40:32+00:00",
-      "preview": "Livy's probably going to buy an armored coat and a commercial force field upgrade to go with it.\n(220 credits total)",
-      "media_group_id": null
-    },
-    {
       "message_id": 180377,
       "thread_id": 52083,
       "user_id": "6144366145",
@@ -455,7 +446,9 @@
     "msg:179605",
     "2026-09-16 12:33:20",
     "msg:179957",
-    "2026-09-16 18:53:18"
+    "2026-09-16 18:53:18",
+    "msg:180077",
+    "2026-09-16 22:40:32"
   ],
   "reply_log": [
     {
@@ -2442,17 +2435,26 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-22T04:11:44+00:00",
+      "pid": "52083",
+      "msg_id": "180077",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy's probably going to buy an armored coat and a commercial force field upgrad",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-16 22:40:32|2026-09-19 14:09:30",
+      "fingerprint": "2026-09-19 14:09:30",
       "msg_ids": [
-        180648
+        180790
       ],
-      "last_posted_at": "2026-09-21T03:00:27.963928+00:00",
+      "last_posted_at": "2026-09-22T04:15:24.240658+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-09-16T19:15:20.261449+00:00"
     },
