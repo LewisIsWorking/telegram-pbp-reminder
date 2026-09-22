@@ -40,7 +40,7 @@ keeps the guard's invariant - "every ID we delete is one we recorded
 sending or knowingly added" - intact.
 """
 
-from posting.bot_sent_registry import is_bot_sent
+from posting.sent_by_chat import is_bot_sent_in
 from posting.refusal_log import record_refusal
 from posting.pin_audit import record_action
 from posting.stuck_deletes import is_hopeless, note_failed_delete
@@ -98,7 +98,7 @@ def perform_guarded_delete(chat_id: int, message_id: int, post_fn) -> bool:
         # Already given up on. Skip the HTTP call, and keep returning
         # False so callers still treat the message as present - it is.
         return False
-    if not is_bot_sent(message_id):
+    if not is_bot_sent_in(chat_id, message_id):
         print(f"[delete_message] REFUSED chat={chat_id} mid={message_id}: "
               f"not in bot_sent_ids registry. The bot only deletes messages "
               f"it sent. To force-add a known bot-sent ID, call "
@@ -142,7 +142,7 @@ def perform_guarded_unpin(chat_id: int, message_id: int, post_fn) -> bool:
     is suppressed: Telegram auto-unpins expired polls, so the pin may
     already be gone and that is success, not failure.
     """
-    if not is_bot_sent(message_id):
+    if not is_bot_sent_in(chat_id, message_id):
         print(f"[unpin_message] REFUSED chat={chat_id} mid={message_id}: "
               f"not in bot_sent_ids registry. The bot only unpins messages "
               f"it sent. To force-add a known bot-sent ID, call "
@@ -180,5 +180,5 @@ def perform_pin(chat_id: int, message_id: int, post_fn,
     # bot_owned=False here would mean the bot pinned a message it never
     # sent - the exact anomaly the non-bot alert exists to catch.
     record_action("pin", chat_id, message_id, ok=ok,
-                  bot_owned=is_bot_sent(message_id))
+                  bot_owned=is_bot_sent_in(chat_id, message_id))
     return ok

@@ -23,6 +23,7 @@ from datetime import datetime, timezone
 from helpers_pkg.groups import group_id_for_campaign, linked_poll_codes, pid_for_code
 from scheduled.session_poll_build import poll_options_for
 from dispatch.poll_tally import build_tally_block
+from helpers_pkg.routes import route
 
 
 def _voter_mention(uid: str, name: str, config: dict, state: dict) -> str:
@@ -141,8 +142,7 @@ def capture_unknown_voter(uid: str, code: str,
     if uid not in bucket:
         bucket.append(uid)
         print(f"Unknown voter captured: {uid} in {code}")
-        bot_topic = config.get("bot_topic_id")
-        group_id = config.get("group_id")
+        group_id, bot_topic = route(config, "poll_admin")
         if bot_topic and group_id:
             sp_opts = state.get("session_poll", {}).get(code, {}).get("options", [])
             voted = [sp_opts[i] for i in (option_ids or []) if i < len(sp_opts)]
@@ -176,8 +176,7 @@ def identify_unknown_voter(uid: str, username: str, first_name: str,
         return
     identified[uid] = {"username": username, "first_name": first_name, "code": code}
     print(f"Identified unknown voter {uid} as @{username} in {code}")
-    bot_topic = config.get("bot_topic_id")
-    group_id = config.get("group_id")
+    group_id, bot_topic = route(config, "poll_admin")
     if bot_topic and group_id:
         tg.send_message(group_id, bot_topic,
                         f"✅ Identified {code} unknown voter: "

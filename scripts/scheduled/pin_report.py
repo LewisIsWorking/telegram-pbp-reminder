@@ -29,6 +29,7 @@ from scheduled.due import is_due
 
 import telegram as tg
 from posting import pin_audit
+from helpers_pkg.routes import route
 
 
 def _format_digest(window: list) -> str:
@@ -63,8 +64,7 @@ def run_daily_pin_digest(config: dict, state: dict, *,
     today = now.date().isoformat()
     if not is_due(now, hour, state.get("last_pin_digest")):
         return
-    bot_topic = config.get("bot_topic_id")
-    group_id = config.get("group_id")
+    group_id, bot_topic = route(config, "pins")
     if not (bot_topic and group_id):
         return
     cutoff = (now - timedelta(hours=24)).isoformat()
@@ -89,8 +89,7 @@ def _format_alert(nonbot: list) -> str:
 def alert_non_bot_pin_actions(config: dict, state: dict, *,
                               now: datetime | None = None, **_kw) -> None:
     """Alert immediately on any pin/unpin/delete of a non-bot message."""
-    bot_topic = config.get("bot_topic_id")
-    group_id = config.get("group_id")
+    group_id, bot_topic = route(config, "pins")
     if not (bot_topic and group_id):
         return
     marker = state.get("last_pin_alert_ts", "")

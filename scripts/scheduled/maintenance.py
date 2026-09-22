@@ -9,6 +9,7 @@ from helpers import (
 )
 import telegram as tg
 from players.permanence import is_permanent
+from helpers_pkg.routes import route
 
 
 def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -130,8 +131,7 @@ def cleanup_timestamps(state: dict) -> None:
 
 def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """If a campaign has fewer than helpers.REQUIRED_PLAYERS, post a notice."""
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)

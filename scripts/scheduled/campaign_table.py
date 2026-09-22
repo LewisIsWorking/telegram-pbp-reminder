@@ -13,6 +13,7 @@ from datetime import datetime, timezone, timedelta
 import helpers
 import telegram as tg
 from commands.queue_format import entry_age_icon
+from helpers_pkg.routes import route
 
 # Last post age -> health icon uses the same 22-tier GM queue scale
 # (entry_age_icon from commands/queue_format.py, input in hours)
@@ -119,7 +120,7 @@ def _build_warning(rows: list[dict]) -> list[str]:
 def post_campaign_table(config: dict, state: dict, *,
                         now: datetime | None = None, **_kw) -> None:
     """Post the weekly campaign table to the bot topic."""
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     if not bot_topic:
         return
     now = now or datetime.now(timezone.utc)
@@ -127,7 +128,7 @@ def post_campaign_table(config: dict, state: dict, *,
     if last and not helpers.interval_elapsed(last, 6.5, now):
         return
     table = build_campaign_table(config, state, now)
-    if tg.send_message(config["group_id"], bot_topic,
+    if tg.send_message(group_id, bot_topic,
                        f"━━━━━━━━━━━━━━━━\n{table}",
                        parse_mode="HTML"):
         state["last_campaign_table"] = now.isoformat()

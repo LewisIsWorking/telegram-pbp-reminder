@@ -91,8 +91,8 @@ def send_message_id(chat_id: int, thread_id: int | None, text: str,
     if not result:
         return None
     mid = result.get("message_id")
-    from posting.bot_sent_registry import record_sent
-    record_sent(mid, text, thread_id, "message")
+    from posting.sent_by_chat import record_sent_in
+    record_sent_in(chat_id, mid, text, thread_id, "message")
     return mid
 
 
@@ -111,8 +111,8 @@ def send_message_with_buttons(
     if not result:
         return None
     mid = result["message_id"]
-    from posting.bot_sent_registry import record_sent
-    record_sent(mid, text, thread_id, "buttons")
+    from posting.sent_by_chat import record_sent_in
+    record_sent_in(chat_id, mid, text, thread_id, "buttons")
     return mid
 
 
@@ -162,8 +162,8 @@ def send_poll(chat_id: int, thread_id: int | None, question: str,
     if not result:
         return None
     mid = result.get("message_id")
-    from posting.bot_sent_registry import record_sent
-    record_sent(mid, question, thread_id, "poll")
+    from posting.sent_by_chat import record_sent_in
+    record_sent_in(chat_id, mid, question, thread_id, "poll")
     return (mid, result.get("poll", {}).get("id", ""))
 
 

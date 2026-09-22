@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import telegram as tg
 from commands.roster import build_roster_overview, _active_players, _TARGET
 from helpers_pkg.listing import listed_pairs
+from helpers_pkg.routes import route
 
 _INTERVAL_DAYS = 3
 _NUDGE_KEY = "last_roster_nudge"
@@ -63,8 +64,7 @@ def post_roster_nudge(config: dict, state: dict, *,
     if not roster_changed and not interval_elapsed:
         return
 
-    group_id = config.get("group_id")
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     if not group_id or not bot_topic:
         return  # pragma: no cover
 

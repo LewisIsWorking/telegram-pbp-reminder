@@ -6,12 +6,12 @@ import helpers
 from helpers import build_topic_maps, fmt_date, posts_str
 from commands.campaign import roster_user_stats, roster_block
 import telegram as tg
+from helpers_pkg.routes import route
 
 
 def post_roster_summary(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post a summary of all tracked players per campaign to CHAT topics."""
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)
@@ -90,8 +90,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
 
 def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post weekly pace comparison: posts/day this week vs last week, split GM/players."""
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)

@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 import helpers
 from helpers import build_topic_maps, fmt_date
 import telegram as tg
+from helpers_pkg.routes import route
 
 
 def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -13,8 +14,7 @@ def check_pace_drop(config: dict, state: dict, *, now: datetime | None = None, m
     Checks once per week (tied to archive cadence). Sends a gentle nudge
     to the campaign's chat topic so the GM is aware without being pushy.
     """
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
     maps = maps or build_topic_maps(config)
 
@@ -78,8 +78,7 @@ def check_conversation_dying(config: dict, state: dict, *, now: datetime | None 
     fires once when a campaign crosses the 48h threshold, suggesting the
     campaign may need attention or a deliberate pause.
     """
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
     maps = maps or build_topic_maps(config)
     threshold = timedelta(hours=48)

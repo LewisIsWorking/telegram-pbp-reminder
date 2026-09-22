@@ -10,6 +10,7 @@ import requests
 
 sys.path.insert(0, "scripts")
 from helpers_pkg.config import load_config
+from helpers_pkg.routes import route
 
 token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 sha = os.environ.get("GITHUB_SHA", "?")[:8]
@@ -31,8 +32,7 @@ except Exception as e:
     detail = f"(could not read output: {e})"
 
 config = load_config()
-gid = config["group_id"]
-tid = config.get("bot_topic_id")
+gid, tid = route(config, "bot_health")
 
 if tid and token:
     text = f"\u26a0\ufe0f Tests failed on push (sha: {sha})\n\n{detail}"

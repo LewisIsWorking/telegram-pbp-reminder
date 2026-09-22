@@ -64,7 +64,7 @@ def _post_returning(body: str, status: int = 400):
 
 def test_refused_delete_reports_failure(clean_stuck, monkeypatch):
     """Telegram saying it will not delete must NOT read as success."""
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     body = '{"ok":false,"description":"Bad Request: message can\'t be deleted"}'
     with patch.object(safe_delete, "record_action"):
         result = perform_guarded_delete(CHAT, MID, _post_returning(body))
@@ -75,7 +75,7 @@ def test_refused_delete_reports_failure(clean_stuck, monkeypatch):
 
 def test_refused_delete_is_counted_for_retry(clean_stuck, monkeypatch):
     """A failure must leave a trace, or nothing can ever retry it."""
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     body = '{"ok":false,"description":"Bad Request: message can\'t be deleted"}'
     with patch.object(safe_delete, "record_action"):
         perform_guarded_delete(CHAT, MID, _post_returning(body))
@@ -91,7 +91,7 @@ def test_audit_records_ok_false_on_refusal(clean_stuck, monkeypatch):
     Before the fix its outcome column had exactly one value across 1393
     rows. A trail that cannot record a negative is not evidence.
     """
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     body = '{"ok":false,"description":"Bad Request: message can\'t be deleted"}'
     with patch.object(safe_delete, "record_action") as audit:
         perform_guarded_delete(CHAT, MID, _post_returning(body))
@@ -108,7 +108,7 @@ def test_already_gone_still_counts_as_success(pattern, clean_stuck, monkeypatch)
     the outcome the caller wanted. Regressing them brings back the
     2026-05-10 bug: GM queue batches stuck past max_kept.
     """
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     body = f'{{"ok":false,"description":"Bad Request: {pattern}"}}'
     with patch.object(safe_delete, "record_action"):
         assert perform_guarded_delete(CHAT, MID, _post_returning(body)) is True
@@ -135,7 +135,7 @@ def test_the_guard_can_fail(clean_stuck, monkeypatch):
     suppression tuple and asserts the outcome flips to the wrong answer,
     which is what the whole file exists to prevent.
     """
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     monkeypatch.setattr(
         safe_delete, "ALREADY_GONE_ERRORS",
         ALREADY_GONE_ERRORS + ("message can't be deleted",))
