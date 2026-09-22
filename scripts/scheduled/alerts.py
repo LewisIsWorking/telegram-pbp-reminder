@@ -11,12 +11,12 @@ from players.proxy import effective_post_time, is_proxied
 from players.retire import retire_seat
 from scheduled.gm_bottleneck import gm_last_post, gm_note
 from scheduled.inactivity_policy import sweep_and_warn
+from helpers_pkg.routes import route
 
 
 def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Send alerts to campaigns inactive beyond alert_after_hours."""
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     alert_hours = config.get("alert_after_hours", 4)
     now = now or datetime.now(timezone.utc)
 
@@ -87,8 +87,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
     because nagging a player and sweeping a dead seat are different acts
     with different audiences. See ``scheduled/inactivity_policy``.
     """
-    group_id = config["group_id"]
-    bot_topic = config.get("bot_topic_id")
+    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
 
     # Build lookup: canonical pbp_topic_id -> chat_topic_id

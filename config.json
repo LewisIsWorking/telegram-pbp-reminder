@@ -198,6 +198,10 @@
   "_debug_topic_note": "Nudge Bot Notifications -> topic 767, \"The Bot is Dead\". Verbose preflight diagnostics land here. Lewis 2026-09-04: as much detail as we want, because it is a log rather than a player-facing topic.",
   "debug_chat_id": -1004303231713,
   "debug_topic_id": 767,
+  "_notification_routes_note": "GM-facing message families moved out of the Path Wars bot topic (137393) on Lewis's request, 2026-09-22. Each names a chat and topic in Nudge Bot Notifications. A family not listed here still posts to the bot topic. See scripts/helpers_pkg/routes.py.",
+  "notification_routes": {
+    "bot_health": {"chat_id": -1004303231713, "thread_id": 767}
+  },
   "recruit_mirror_chat_id": -1004303231713,
   "recruit_mirror_thread_id": 50,
   "gm_user_id": 1698524397

@@ -130,7 +130,7 @@ def test_stuck_deletes_tags_its_give_ups(tmp_path, monkeypatch):
 def test_registry_refusal_keeps_the_default_reason(tmp_path, monkeypatch):
     """safe_delete's own refusal path must stay tagged as registry."""
     from posting import safe_delete
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: False)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: False)
     with patch.object(safe_delete, "record_action"), \
             patch.object(safe_delete, "record_refusal") as rec:
         safe_delete.perform_guarded_delete(-1001, 12345, lambda *a, **k: None)

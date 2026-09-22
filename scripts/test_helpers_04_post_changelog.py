@@ -30,13 +30,14 @@ def _run_all():
     print(f"\n{passed} passed, {failed} failed out of {passed + failed}")
     return failed
 
-def test_changelog_read_latest_entry():
+def test_changelog_read_latest_entry(tmp_path):
     from pathlib import Path
     sys.path.insert(0, str(Path(__file__).parent))
     from post_changelog import read_latest_entry, markdown_to_telegram
 
-    # Create a minimal test changelog
-    test_path = Path("/tmp/test_changelog.md")
+    # Create a minimal test changelog. tmp_path, not /tmp: /tmp does not
+    # exist on Windows, so this failed on every local run there.
+    test_path = tmp_path / "test_changelog.md"
     test_path.write_text(
         "# Changelog\n\n"
         "## [2.0.0] - 2026-03-01\n\n"
@@ -48,7 +49,6 @@ def test_changelog_read_latest_entry():
     assert "2.0.0" in header
     assert "New feature" in body
     assert "Old feature" not in body
-    test_path.unlink()
 
 def test_changelog_markdown_to_telegram():
     from pathlib import Path

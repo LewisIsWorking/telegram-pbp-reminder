@@ -107,8 +107,11 @@ def _production_record_sent_calls():
         for node in ast.walk(tree):
             if (isinstance(node, ast.Call)
                     and isinstance(node.func, ast.Name)
-                    and node.func.id == "record_sent"):
-                yield rel, node.lineno, len(node.args) + len(node.keywords)
+                    and node.func.id in ("record_sent", "record_sent_in")):
+                # record_sent_in (2026-09-22) takes the chat first, so its
+                # description starts one argument later.
+                extra = 1 if node.func.id == "record_sent_in" else 0
+                yield rel, node.lineno, len(node.args) + len(node.keywords) - extra
 
 
 def test_every_production_send_passes_a_description():

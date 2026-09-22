@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 import telegram as tg
 from dispatch.poll_notify import notify_vote, capture_unknown_voter
 from scheduled.session_poll_build import votes_to_option_label
+from helpers_pkg.routes import route
 
 
 def build_poll_id_map(state: dict) -> dict[str, str]:
@@ -39,8 +40,7 @@ def handle_poll_closed(poll: dict, config: dict, state: dict) -> None:
         if slot.get("poll_id") == poll_id:
             slot["session_happened"] = True
             total = poll.get("total_voter_count", 0)
-            bot_topic = config.get("bot_topic_id")
-            group_id = config["group_id"]
+            group_id, bot_topic = route(config, "poll_admin")
             if bot_topic:
                 tg.send_message(group_id, bot_topic,
                                 f"📊 {code} poll closed - {total} voted. "
@@ -53,8 +53,7 @@ def handle_poll_closed(poll: dict, config: dict, state: dict) -> None:
     if swim.get("poll_id") == poll_id:
         swim["session_happened"] = True
         total = poll.get("total_voter_count", 0)
-        bot_topic = config.get("bot_topic_id")
-        group_id = config["group_id"]
+        group_id, bot_topic = route(config, "poll_admin")
         if bot_topic:
             tg.send_message(group_id, bot_topic,
                             f"📊 Swimming poll closed - {total} voted.")

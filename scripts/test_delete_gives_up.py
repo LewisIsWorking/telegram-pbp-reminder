@@ -56,7 +56,7 @@ def _post_returning(body: str):
 
 def _refuse_n_times(n: int, stuck, monkeypatch):
     """Drive n refused deletes for MID through the production path."""
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     with patch.object(safe_delete, "record_action"), \
             patch.object(safe_delete, "record_refusal"):
         for _ in range(n):
@@ -107,7 +107,7 @@ def test_attempts_are_tracked_per_message(clean_stuck, monkeypatch):
 
 def test_giving_up_alerts_exactly_once(clean_stuck, monkeypatch):
     """The operator must hear about it, and must hear about it once."""
-    monkeypatch.setattr(safe_delete, "is_bot_sent", lambda mid: True)
+    monkeypatch.setattr(safe_delete, "is_bot_sent_in", lambda chat, mid: True)
     with patch.object(safe_delete, "record_action"), \
             patch("posting.stuck_deletes.record_refusal") as alert:
         for _ in range(clean_stuck.MAX_ATTEMPTS + 3):

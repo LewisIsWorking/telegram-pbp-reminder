@@ -63,6 +63,7 @@ def _fetch_run_log(run_id: int) -> str:
 
 from scheduled.diagnostic_analysis import _analyse_logs, _build_report, _ERROR_PATTERNS, _INFO_PATTERNS
 from scheduled.schedule_delivery import report_line
+from helpers_pkg.routes import route
 
 # Run-list page size. Must stay above SCHEDULED_RUNS_PER_DAY or the
 # delivery count silently truncates; test_schedule_delivery.py fails if it
@@ -84,8 +85,7 @@ def run_daily_diagnostic(config: dict, state: dict, *,
                   state.get("last_diagnostic")):
         return
 
-    bot_topic = config.get("bot_topic_id")
-    group_id  = config["group_id"]
+    group_id, bot_topic = route(config, "bot_health")
     if not bot_topic:
         return
 

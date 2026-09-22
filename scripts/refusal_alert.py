@@ -39,6 +39,7 @@ if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
 from helpers_pkg.config import load_config
+from helpers_pkg.routes import route
 from posting import message_facts as mf
 from posting.message_facts import describe, one_line
 from posting.refusal_log import (REASON_REGISTRY, REASON_UNDELETABLE,
@@ -142,8 +143,7 @@ def main() -> int:
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     sha = os.environ.get("GITHUB_SHA", "?")[:8]
     config = load_config()
-    gid = config.get("group_id")
-    tid = config.get("bot_topic_id")
+    gid, tid = route(config, "bot_health")
 
     if not (token and gid and tid):
         # Don't crash CI just because alert can't be posted.

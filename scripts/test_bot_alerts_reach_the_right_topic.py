@@ -36,13 +36,21 @@ class TestTheDestinationsStayApart:
         assert label == "debug"
         assert (chat, thread) == (-1004303231713, 767)
 
-    def test_alerts_still_go_to_the_bot_topic(self):
-        """⭐ Can-fail counterpart: proves the two are actually different
-        destinations and not both reading one config key."""
+    def test_alerts_follow_the_bot_health_route(self):
+        """⭐ Can-fail counterpart: the alert reads its OWN config key.
+
+        Until 2026-09-22 this pinned the alert to the Path Wars bot topic
+        (137393). Lewis then moved bot-health messages out of that topic
+        (helpers_pkg/routes.py), and the route is configured to the same
+        debug topic. So the proof that these are separate keys is now that
+        the alert follows ``notification_routes`` and nothing else."""
+        from helpers_pkg.config import load_config
+        from helpers_pkg.routes import route
         alerting.notify("x")
         chat, thread, label = self.sent[0]
         assert label == "alert"
-        assert (chat, thread) == (-1001661053273, 137393)
+        assert (chat, thread) == route(load_config(), "bot_health")
+        assert (chat, thread) != (-1001661053273, 137393)
 
 
 class TestSendReportsFailureHonestly:

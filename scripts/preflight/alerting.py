@@ -61,7 +61,8 @@ def notify(text: str) -> None:
     """
     from helpers_pkg.config import load_config
     config = load_config()
-    _send(config.get("group_id"), config.get("bot_topic_id"), text, "alert")
+    from helpers_pkg.routes import route
+    _send(*route(config, "bot_health"), text, "alert")
 
 
 def notify_debug(text: str) -> None:
