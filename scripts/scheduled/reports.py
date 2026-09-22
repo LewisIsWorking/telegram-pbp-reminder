@@ -32,6 +32,10 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         topic_timestamps = helpers.get_topic_timestamps(state, pid)
 
         if not players and not counts:
+            # Nothing to report is a completed check, so stamp it. Skipping
+            # without a stamp froze Theria at 2026-09-08 and made the
+            # diagnostic call the whole job overdue forever.
+            state["last_roster"][pid] = now.isoformat()
             continue
 
         lines = []
@@ -109,6 +113,7 @@ def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, 
         gm_ids = helpers.gm_ids_for_campaign(config, pid)
 
         if not topic_timestamps:
+            state["last_pace"][pid] = now.isoformat()  # checked; see post_roster_summary
             continue
 
         pace = helpers.pace_split(topic_timestamps, gm_ids, now)  # pragma: no cover
