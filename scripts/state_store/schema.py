@@ -54,6 +54,13 @@ AUX_FILES = (
     ("bot_sent_ids", "Registry of message IDs the bot has sent. Used by "
                      "posting.safe_delete to refuse non-bot deletes. "
                      "Owner: posting.bot_sent_registry."),
+    ("bot_sent_ids_by_chat", "The same registry, per chat, for the chats "
+                             "config names as separate destinations (Nudge "
+                             "Bot Notifications). Message IDs are unique "
+                             "only within a chat, so an ID sent there must "
+                             "never authorise a delete in the main group. "
+                             "Owner: posting.sent_by_chat. Added 2026-09-22. "
+                             "Optional - absent until the first such send."),
     ("refusal_log", "Append-only log of safe_delete refusals. Owner: "
                     "posting.refusal_log. Optional - absent until first "
                     "refusal occurs."),
