@@ -114,8 +114,20 @@ def test_long_refusal_list_truncated_in_body(monkeypatch):
     assert rc == 0
 
 
-def test_format_alert_includes_doc_pointer():
-    """The alert message points the operator at the right doc."""
+@pytest.mark.parametrize("origin", ["bot", "unknown"])
+def test_format_alert_includes_doc_pointer(monkeypatch, origin):
+    """Both branches point the operator at the right doc.
+
+    ⚠️ Until 2026-09-23 this passed only inside the full suite: another
+    test left mid 99 recorded as bot-sent, so it always took the "bot"
+    branch. Run alone, 99 was unknown, it took the "NOT sent by the bot"
+    branch, and that branch, the serious one, had no doc pointer. The
+    origin is now pinned per case instead of inherited from test order.
+    """
+    import posting.message_facts as mf
+    facts = {"origin": mf.BOT if origin == "bot" else "unknown", "sender": None,
+             "when": None, "thread_id": None, "preview": "", "source": "test"}
+    monkeypatch.setattr(refusal_alert, "describe", lambda mid: facts)
     refusals = [
         {"timestamp": "2026-05-09T10:00:00+00:00",
          "chat_id": -1001, "message_id": 99},

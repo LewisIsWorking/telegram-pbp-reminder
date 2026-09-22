@@ -64,7 +64,7 @@ def post_roster_nudge(config: dict, state: dict, *,
     if not roster_changed and not interval_elapsed:
         return
 
-    group_id, bot_topic = route(config, "activity")
+    group_id, bot_topic = route(config, "roster_overview")
     if not group_id or not bot_topic:
         return  # pragma: no cover
 

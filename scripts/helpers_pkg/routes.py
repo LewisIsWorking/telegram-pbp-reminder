@@ -25,7 +25,9 @@ wrong the moment the destination is elsewhere.
 # a typo that would otherwise silently fall back to the bot topic.
 ROUTES = {
     "bot_health": "CI failures, posting paused, delete refusals, daily diagnostic",
-    "activity": "Inactivity, roster, recruitment, pace and campaign-table reports",
+    "activity": "Campaign silence, party roster, recruitment, pace-drop and campaign-table reports",
+    "pace_report": "The weekly pace report, one per campaign (Lewis, 2026-09-23)",
+    "roster_overview": "The Campaign Roster post, target vs active players (Lewis, 2026-09-23)",
     "pins": "The daily pin digest and the non-bot pin alert",
     "poll_admin": "Unknown voters, identified voters, polls closed",
 }

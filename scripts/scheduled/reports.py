@@ -94,7 +94,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
 
 def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
     """Post weekly pace comparison: posts/day this week vs last week, split GM/players."""
-    group_id, bot_topic = route(config, "activity")
+    group_id, bot_topic = route(config, "pace_report")
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)

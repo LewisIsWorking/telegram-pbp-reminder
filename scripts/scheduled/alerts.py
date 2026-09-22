@@ -12,6 +12,7 @@ from players.retire import retire_seat
 from scheduled.gm_bottleneck import gm_last_post, gm_note
 from scheduled.inactivity_policy import sweep_and_warn
 from helpers_pkg.routes import route
+from helpers_pkg.groups import group_id_for_campaign
 
 
 def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -86,8 +87,11 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
     The two halves are gated separately (``warnings`` and ``removals``),
     because nagging a player and sweeping a dead seat are different acts
     with different audiences. See ``scheduled/inactivity_policy``.
+
+    ⭐ Posted in the campaign's own CHAT topic, where the player and the
+    table will see it (Lewis, 2026-09-23). They went to the Path Wars bot
+    topic before, where the people they are about never look.
     """
-    group_id, bot_topic = route(config, "activity")
     now = now or datetime.now(timezone.utc)
 
     # Build lookup: canonical pbp_topic_id -> chat_topic_id
@@ -149,7 +153,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                 )
                 message += gm_note(config, state, pbp_topic_id, now)
                 print(f"Removing {first_name} from {campaign} ({days_inactive}d)")
-                tg.send_message(group_id, bot_topic or chat_topic_id, message)
+                tg.send_message(group_id_for_campaign(config, str(pbp_topic_id)), chat_topic_id, message)
                 players_to_remove.append(player_key)
             continue
 
@@ -176,7 +180,7 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
                 )
                 message += gm_note(config, state, pbp_topic_id, now)
                 print(f"Warning {first_name} in {campaign}: week {week_mark}")
-                if tg.send_message(group_id, bot_topic or chat_topic_id, message):
+                if tg.send_message(group_id_for_campaign(config, str(pbp_topic_id)), chat_topic_id, message):
                     player["last_warned_week"] = week_mark
                 break  # One warning per player per run
 

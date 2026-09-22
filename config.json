@@ -200,7 +200,9 @@
   "debug_topic_id": 767,
   "_notification_routes_note": "GM-facing message families moved out of the Path Wars bot topic (137393) on Lewis's request, 2026-09-22. Each names a chat and topic in Nudge Bot Notifications. A family not listed here still posts to the bot topic. See scripts/helpers_pkg/routes.py.",
   "notification_routes": {
-    "bot_health": {"chat_id": -1004303231713, "thread_id": 767}
+    "bot_health": {"chat_id": -1004303231713, "thread_id": 767},
+    "pace_report": {"chat_id": -1004303231713, "thread_id": 1430},
+    "roster_overview": {"chat_id": -1001661053273, "thread_id": 119703}
   },
   "recruit_mirror_chat_id": -1004303231713,
   "recruit_mirror_thread_id": 50,
