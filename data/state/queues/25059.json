@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 180822,
+      "thread_id": 25059,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-09-22T10:11:55+00:00",
+      "preview": "the party waits for an irl session to happen",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2637,9 +2647,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-22 10:11:55",
+      "msg_ids": [
+        180826
+      ],
+      "last_posted_at": "2026-09-22T10:17:32.512290+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
