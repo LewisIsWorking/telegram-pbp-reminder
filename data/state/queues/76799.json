@@ -9,6 +9,15 @@
       "time": "2026-09-22T19:14:08+00:00",
       "preview": "Nah I'll save it for when that thing gets down",
       "media_group_id": null
+    },
+    {
+      "message_id": 181022,
+      "thread_id": 144765,
+      "user_id": "8969117742",
+      "user_name": "Volf",
+      "time": "2026-09-23T18:42:47+00:00",
+      "preview": "I think so lol, the fumble is for range attack with a throwing weapon",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2687,9 +2696,11 @@
       "caught_up_at": null
     },
     "144765": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-23 18:42:47",
+      "msg_ids": [
+        181024
+      ],
+      "last_posted_at": "2026-09-23T19:15:24.971366+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
