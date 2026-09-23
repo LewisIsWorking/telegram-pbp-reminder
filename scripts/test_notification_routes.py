@@ -9,7 +9,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -59,9 +59,52 @@ def test_config_routes_are_known_and_complete():
     routes = CONFIG.get("notification_routes") or {}
     for name, entry in routes.items():
         assert name in ROUTES, f"unknown route {name!r} in config.json"
-        assert entry.get("chat_id") and entry.get("thread_id"), (
-            f"route {name!r} needs a chat_id AND a thread_id: senders skip "
-            f"when the topic is empty")
+        assert entry.get("chat_id") and (entry.get("thread_id") or entry.get("campaigns")), (
+            f"route {name!r} needs a chat_id AND a thread_id (or per-campaign "
+            f"topics): senders skip when the topic is empty")
+        codes = {p.get("code") for p in CONFIG["topic_pairs"]}
+        for code in (entry.get("campaigns") or {}):
+            assert code in codes, f"route {name!r} names unknown campaign {code!r}"
+
+
+def test_roster_summary_goes_to_each_campaigns_own_topic():
+    """Lewis, 2026-09-23: one roster topic per campaign in Nudge Bot
+    Notifications. C08 and C10 have none, so they fall through."""
+    from helpers_pkg.routes import campaign_route
+    notif = -1004303231713
+    assert campaign_route(CONFIG, "roster_summary", "66154") == (notif, 1444)  # C00
+    assert campaign_route(CONFIG, "roster_summary", "25059") == (notif, 1448)  # C01
+    assert campaign_route(CONFIG, "roster_summary", "107171") == (notif, 1456)  # C09
+    assert campaign_route(CONFIG, "roster_summary", "107151") is None  # C08, no topic
+    assert campaign_route(CONFIG, "roster_summary", "146645") is None  # C10, no topic
+
+
+def test_a_campaign_route_that_is_not_configured_moves_nothing():
+    from helpers_pkg.routes import campaign_route
+    cfg = {**BASE, "topic_pairs": [{"code": "C01", "pbp_topic_ids": [25059]}]}
+    assert campaign_route(cfg, "roster_summary", "25059") is None
+
+
+@patch("scheduled.reports.tg")
+@patch("scheduled.reports.helpers")
+def test_the_roster_summary_is_actually_sent_to_the_campaign_topic(helpers, tg):
+    from scheduled.reports import post_roster_summary
+    helpers.feature_enabled.return_value = True
+    helpers.interval_elapsed.return_value = True
+    helpers.players_by_campaign.return_value = {"25059": [{"user_id": "1", "username": "p"}]}
+    helpers.player_full_name.return_value = "Player One"
+    helpers.get_label.return_value = "C01"
+    helpers.REQUIRED_PLAYERS = 6
+    cfg = {**BASE, "topic_pairs": [{"code": "C01", "pbp_topic_ids": [25059]}],
+           "notification_routes": {"roster_summary": {"chat_id": -7, "campaigns": {"C01": 71}}}}
+    state = {"last_roster": {}, "message_counts": {"25059": {"1": 3}}}
+    maps = MagicMock(to_chat={"25059": 21514}, to_name={"25059": "DF"})
+    helpers.get_topic_timestamps.return_value = {"1": ["2026-09-22T10:00:00+00:00"]}
+    helpers.gm_ids_for_campaign.return_value = []
+    helpers.get_characters.return_value = {}
+    with patch("commands.player_registry.get_or_assign_id", return_value=1):
+        post_roster_summary(cfg, state, now=datetime(2026, 9, 23, tzinfo=timezone.utc), maps=maps)
+    assert tg.send_message.call_args[0][:2] == (-7, 71)
 
 
 @pytest.mark.parametrize("rel,name", sorted(SENDERS.items()))

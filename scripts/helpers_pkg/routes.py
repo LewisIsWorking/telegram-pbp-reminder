@@ -26,11 +26,35 @@ wrong the moment the destination is elsewhere.
 ROUTES = {
     "bot_health": "CI failures, posting paused, delete refusals, daily diagnostic",
     "activity": "Campaign silence, party roster, recruitment, pace-drop and campaign-table reports",
-    "pace_report": "The weekly pace report, one per campaign (Lewis, 2026-09-23)",
+    "roster_summary": "The per-campaign party roster, one topic per campaign (Lewis, 2026-09-23)",
+    "pace_report":"The weekly pace report, one per campaign (Lewis, 2026-09-23)",
     "roster_overview": "The Campaign Roster post, target vs active players (Lewis, 2026-09-23)",
     "pins": "The daily pin digest and the non-bot pin alert",
     "poll_admin": "Unknown voters, identified voters, polls closed",
 }
+
+
+def campaign_route(config: dict, name: str, pid: str) -> tuple[int, int] | None:
+    """``(chat_id, thread_id)`` for one campaign's copy of a message, or None.
+
+    For families posted once per campaign, where each campaign has its own
+    topic (Lewis, 2026-09-23: a roster topic per campaign). Configured as
+
+        "roster_summary": {"chat_id": -100..., "campaigns": {"C00": 1444}}
+
+    keyed by campaign CODE, which is what a human reads in config. None
+    means this campaign has no topic of its own: the caller keeps doing
+    whatever it did before, so an unlisted campaign moves nowhere.
+    """
+    if name not in ROUTES:
+        raise KeyError(f"unknown notification route {name!r}")
+    entry = (config.get("notification_routes") or {}).get(name) or {}
+    code = next((p.get("code") for p in config.get("topic_pairs", [])
+                 if str(p["pbp_topic_ids"][0]) == str(pid)), None)
+    thread = (entry.get("campaigns") or {}).get(code) if code else None
+    if entry.get("chat_id") and thread:
+        return int(entry["chat_id"]), int(thread)
+    return None
 
 
 def route(config: dict, name: str) -> tuple[int | None, int | None]:
