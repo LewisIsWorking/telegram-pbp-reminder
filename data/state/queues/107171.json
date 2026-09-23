@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 181044,
+      "thread_id": 107171,
+      "user_id": "8701042661",
+      "user_name": "Diabla \"Bella\" Alzarin",
+      "time": "2026-09-23T20:56:59+00:00",
+      "preview": "\"Where do they teach you to fly a ship like that?\"\n\nBella runs up to pat Zels on the back (with very little awareness of her own strength), once she's sure they're safe.\n\n\"I was sure we were getting out of there in escape pods, if at all.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2454,10 +2464,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 180977,
+      "fingerprint": "2026-09-23 20:56:59",
+      "msg_ids": [
+        181046
+      ],
+      "last_posted_at": "2026-09-23T20:58:19.745823+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-23T02:50:22.429224+00:00"
     },
