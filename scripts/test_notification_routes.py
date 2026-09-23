@@ -69,14 +69,14 @@ def test_config_routes_are_known_and_complete():
 
 def test_roster_summary_goes_to_each_campaigns_own_topic():
     """Lewis, 2026-09-23: one roster topic per campaign in Nudge Bot
-    Notifications. C08 and C10 have none, so they fall through."""
+    Notifications; C08 and C10 added the same day."""
     from helpers_pkg.routes import campaign_route
     notif = -1004303231713
     assert campaign_route(CONFIG, "roster_summary", "66154") == (notif, 1444)  # C00
     assert campaign_route(CONFIG, "roster_summary", "25059") == (notif, 1448)  # C01
     assert campaign_route(CONFIG, "roster_summary", "107171") == (notif, 1456)  # C09
-    assert campaign_route(CONFIG, "roster_summary", "107151") is None  # C08, no topic
-    assert campaign_route(CONFIG, "roster_summary", "146645") is None  # C10, no topic
+    assert campaign_route(CONFIG, "roster_summary", "107151") == (notif, 1493)  # C08
+    assert campaign_route(CONFIG, "roster_summary", "146645") == (notif, 1495)  # C10
 
 
 def test_a_campaign_route_that_is_not_configured_moves_nothing():
