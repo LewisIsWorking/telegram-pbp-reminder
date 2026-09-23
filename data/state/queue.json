@@ -905,7 +905,10 @@
       "2026-09-17T18:12:10.473421+00:00",
       "2026-09-17T18:12:10.480823+00:00",
       "2026-09-19T14:15:22.808734+00:00",
-      "2026-09-22T02:15:19.566073+00:00"
+      "2026-09-22T02:15:19.566073+00:00",
+      "2026-09-23T02:50:22.420041+00:00",
+      "2026-09-23T02:50:22.425247+00:00",
+      "2026-09-23T02:50:22.428329+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1948,27 +1951,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-08-26T13:33:39.800477+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight asks a mountain spirit to set the enemies alight. T",
-      "msg_id": "175222"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-08-26T13:33:39.804426+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Yeah . . So sounds like, try and beat the pirates up as fas",
-      "msg_id": "175211"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-26T20:33:10.274493+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "175418"
-    },
     {
       "pid": "51357",
       "time": "2026-08-26T20:33:10.278452+00:00",
@@ -3347,6 +3329,27 @@
       "player": "Anthony",
       "preview": "\"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRI",
       "msg_id": "180377"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-23T02:50:22.420041+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "It takes a while of running around like a headless chicken f",
+      "msg_id": "180416"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-23T02:50:22.425247+00:00",
+      "player": "Laetheron",
+      "preview": "Arktos rushes to the helm, trying to get the ship out of dod",
+      "msg_id": "180472"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-23T02:50:22.428329+00:00",
+      "player": "Ryo",
+      "preview": "[media]",
+      "msg_id": "180661"
     }
   ],
   "pending_potw_boons": {
