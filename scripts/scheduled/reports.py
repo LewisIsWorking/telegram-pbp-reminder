@@ -6,7 +6,7 @@ import helpers
 from helpers import build_topic_maps, fmt_date, posts_str
 from commands.campaign import roster_user_stats, roster_block
 import telegram as tg
-from helpers_pkg.routes import route
+from helpers_pkg.routes import campaign_route, route
 
 
 def post_roster_summary(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -88,7 +88,9 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
         message = f"━━━━━━━━━━━━━━━━\nParty roster for {label}:\n\n" + "\n\n".join(lines) + footer
 
         print(f"Posting roster for {name}")
-        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
+        chat, thread = (campaign_route(config, "roster_summary", pid)
+                        or (group_id, bot_topic or chat_topic_id))
+        if tg.send_message(chat, thread, message):
             state["last_roster"][pid] = now.isoformat()
 
 
