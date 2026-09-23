@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 180857,
-      "thread_id": 76799,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-09-22T19:14:08+00:00",
-      "preview": "Nah I'll save it for when that thing gets down",
-      "media_group_id": null
-    },
-    {
       "message_id": 181022,
       "thread_id": 144765,
       "user_id": "8969117742",
@@ -495,7 +486,9 @@
     "msg:180234",
     "2026-09-17 18:50:59",
     "msg:180454",
-    "2026-09-19 15:50:30"
+    "2026-09-19 15:50:30",
+    "msg:180857",
+    "2026-09-22 19:14:08"
   ],
   "reply_log": [
     {
@@ -2680,20 +2673,27 @@
       "player": "Volf",
       "preview": "Oh I didn't know we have any",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-23T20:36:00+00:00",
+      "pid": "76799",
+      "msg_id": "180857",
+      "thread_id": 76799,
+      "player": "Volf",
+      "preview": "Nah I'll save it for when that thing gets down",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-09-22 19:14:08",
-      "msg_ids": [
-        180859
-      ],
-      "last_posted_at": "2026-09-22T20:00:31.472938+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181037,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-23T20:40:05.712433+00:00"
     },
     "144765": {
       "fingerprint": "2026-09-23 18:42:47",
