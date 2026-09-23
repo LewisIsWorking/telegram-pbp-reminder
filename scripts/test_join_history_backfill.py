@@ -82,10 +82,18 @@ class TestTheyAreStillSeated:
         path = os.path.join(_ROOT, "data", "state", "players.json")
         with open(path, encoding="utf-8") as handle:
             players = json.load(handle).get("players", {})
+        # ⛔ 2026-09-23: a player who has since LEFT is not a backfill error.
+        # Paul Rowan's seat was retired by the inactivity sweep and this went
+        # red on every push, although retire_seat had written his leave. The
+        # leave is matched by pid and user_id, never by name: the backfill
+        # recorded "Paul Rowan" while the bot records first names ("Paul").
+        leaves = {(e.get("pid"), e.get("user_id"))
+                  for e in _history() if e.get("event") == "leave"
+                  and e.get("at", "") > "2026-08-26"}
         for name, (pid, _at) in BACKFILLED.items():
             entry = next(e for e in _joins() if e["name"] == name)
             key = f"{pid}:{entry['user_id']}"
-            assert key in players, (
-                f"{name} has a join event but no seat at {key}; either the "
-                f"backfill invented them or they have since left, in which "
-                f"case a leave event should exist too")
+            left = (pid, entry["user_id"]) in leaves
+            assert key in players or left, (
+                f"{name} has a join event but no seat at {key} and no later "
+                f"leave event; the backfill may have invented them")
