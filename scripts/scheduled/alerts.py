@@ -11,13 +11,12 @@ from players.proxy import effective_post_time, is_proxied
 from players.retire import retire_seat
 from scheduled.gm_bottleneck import gm_last_post, gm_note
 from scheduled.inactivity_policy import sweep_and_warn
-from helpers_pkg.routes import route
 from helpers_pkg.groups import group_id_for_campaign
 
 
 def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
-    """Send alerts to campaigns inactive beyond alert_after_hours."""
-    group_id, bot_topic = route(config, "activity")
+    """Alert campaigns silent past alert_after_hours, in their own chat topic
+    (Lewis, 2026-09-23: it is for that table, not the Path Wars bot topic)."""
     alert_hours = config.get("alert_after_hours", 4)
     now = now or datetime.now(timezone.utc)
 
@@ -71,7 +70,7 @@ def check_and_alert(config: dict, state: dict, *, now: datetime | None = None, m
         message += gm_note(config, state, pid, now)
 
         print(f"Sending alert for {name}: {time_str} inactive")
-        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
+        if tg.send_message(group_id_for_campaign(config, str(pid)), chat_topic_id, message):
             state["last_alerts"][pid] = now.isoformat()
 
 _INACTIVITY_TEMPLATES = {

@@ -26,7 +26,6 @@ SENDERS = {
     "refusal_alert.py": "bot_health",
     "preflight/alerting.py": "bot_health",
     "scheduled/diagnostic.py": "bot_health",
-    "scheduled/alerts.py": "activity",
     "scheduled/roster_nudge.py": "roster_overview",
     "scheduled/maintenance.py": "activity",
     "scheduled/smart_alerts.py": "activity",
@@ -119,3 +118,12 @@ def test_player_inactivity_posts_in_the_campaign_chat_topic():
     for args in sends:
         assert args.startswith("group_id_for_campaign(config, str(pbp_topic_id)), chat_topic_id,")
     assert "route(config" not in fn
+
+
+def test_campaign_silence_alert_posts_in_the_campaign_chat_topic():
+    """Lewis, 2026-09-23: "No new posts in Kibwe PBP" belongs in Kibwe chat."""
+    body = (SCRIPTS / "scheduled/alerts.py").read_text(encoding="utf-8")
+    fn = body[body.index("def check_and_alert"):body.index("_INACTIVITY_TEMPLATES")]
+    sends = re.findall(r"tg\.send_message\(([^\n]*)", fn)
+    assert sends == ["group_id_for_campaign(config, str(pid)), chat_topic_id, message):"], sends
+    assert "route(config" not in body
