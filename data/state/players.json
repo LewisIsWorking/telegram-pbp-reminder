@@ -91,16 +91,6 @@
       "last_post_time": "2026-09-22T23:21:37+00:00",
       "last_warned_week": 0
     },
-    "51357:6144366145": {
-      "user_id": "6144366145",
-      "first_name": "Anthony",
-      "last_name": "NegetZ",
-      "username": "MrNegetZ",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-08-26T19:51:00+00:00",
-      "last_warned_week": 3
-    },
     "66154:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -648,6 +638,12 @@
       "first_name": "Paul",
       "username": "WeebArtist",
       "campaign_name": "Hopeful End-Times"
+    },
+    "51357:6144366145": {
+      "removed_at": "2026-09-23T20:20:42.717525+00:00",
+      "first_name": "Anthony",
+      "username": "MrNegetZ",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -1865,6 +1861,14 @@
       "name": "Paul",
       "username": "WeebArtist",
       "at": "2026-09-23T15:00:22.303748+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "6144366145",
+      "name": "Anthony",
+      "username": "MrNegetZ",
+      "at": "2026-09-23T20:20:43.480731+00:00"
     }
   ],
   "player_boons": {
