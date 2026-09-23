@@ -74,8 +74,9 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
                 stats = roster_user_stats(raw_ts, gm_count, now)  # pragma: no cover
                 lines.insert(0, roster_block("#00: GM", "", stats))  # pragma: no cover
 
-        if not lines:
-            continue  # pragma: no cover
+        if not lines:  # players, but none active: still a completed check
+            state["last_roster"][pid] = now.isoformat()
+            continue
 
         player_count = active_player_count
         footer = f"\n\n━━━\n\n📋 {label} Party Size\n"
@@ -130,8 +131,9 @@ def post_pace_report(config: dict, state: dict, *, now: datetime | None = None, 
         last_avg = last_week / 7.0  # pragma: no cover
   # pragma: no cover
         # Determine trend  # pragma: no cover
-        if last_avg == 0 and this_avg == 0:  # pragma: no cover
-            continue  # No data  # pragma: no cover
+        if last_avg == 0 and this_avg == 0:  # silent two weeks: still a completed check
+            state["last_pace"][pid] = now.isoformat()
+            continue
         icon = helpers.trend_icon(int(this_avg * 100), int(last_avg * 100))  # pragma: no cover
   # pragma: no cover
         this_week_start = fmt_date(week_ago)  # pragma: no cover
