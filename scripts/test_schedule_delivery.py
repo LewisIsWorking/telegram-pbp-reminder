@@ -125,5 +125,17 @@ class TestTheLineCarriesItsBasis:
                            page_size=100)
         assert "at least" not in line
 
+    def test_a_full_page_that_reaches_past_the_window_is_a_real_count(self):
+        # ⛔ 2026-09-23: "12 of 48 (25%), at least: the run list hit its
+        # page limit" when the page of 100 went back three days. Every run
+        # in the window was on it, so 12 was the measurement, not a floor.
+        page = [_run(i * 2) for i in range(12)] + [_run(30 + i) for i in range(88)]
+        line = report_line(page, _NOW, page_size=100)
+        assert "at least" not in line and "12 of 48" in line
+
+    def test_a_push_run_marks_how_far_the_page_reaches(self):
+        page = [_run(i * 0.1) for i in range(49)] + [_run(5, event="push")]
+        assert "at least" in report_line(page, _NOW, page_size=50)
+
     def test_no_schedule_configured_says_that_rather_than_zero_percent(self):
         assert "no schedule" in delivery_line(0, 0)

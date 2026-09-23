@@ -94,5 +94,30 @@ def report_line(runs: list, now: datetime, *, page_size: int | None = None,
                 hours: int = 24) -> str:
     """The scheduler line for the daily diagnostic."""
     delivered = delivered_in_window(runs, now, hours)
-    capped = page_size is not None and len(runs) >= page_size
+    # ⛔ 2026-09-23: A FULL PAGE IS NOT A TRUNCATED COUNT. This used to be
+    # `len(runs) >= page_size`, and the page of 100 is full on every day the
+    # workflow has ever run 100 times, so the diagnostic said "at least" on a
+    # real 12 of 48 and made GitHub dropping three quarters of the schedule
+    # read as a measurement problem. The page only cuts the count short when
+    # its OLDEST run is still inside the window; if the page reaches back
+    # past the window, every run in the window is on it.
+    capped = (page_size is not None and len(runs) >= page_size
+              and _oldest_is_inside(runs, now - timedelta(hours=hours)))
     return delivery_line(delivered, expected_in_window(hours), capped=capped)
+
+
+def _oldest_is_inside(runs: list, cutoff: datetime) -> bool:
+    """True when the earliest run on the page started after ``cutoff``.
+
+    Any event counts here, not only ``schedule``: the question is how far
+    back the PAGE reaches, and a push run marks that just as well. An
+    unreadable timestamp is treated as inside, so doubt keeps "at least".
+    """
+    stamps = []
+    for run in runs:
+        try:
+            stamps.append(datetime.fromisoformat(
+                (run.get("created_at") or "").replace("Z", "+00:00")))
+        except ValueError:
+            return True
+    return not stamps or min(stamps) > cutoff
