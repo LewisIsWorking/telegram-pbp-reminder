@@ -251,16 +251,6 @@
       "last_post_time": "2026-09-10T04:33:25+00:00",
       "last_warned_week": 1
     },
-    "52083:8471667081": {
-      "user_id": "8471667081",
-      "first_name": "Paul",
-      "last_name": "Rowan",
-      "username": "WeebArtist",
-      "campaign_name": "Hopeful End-Times",
-      "pbp_topic_id": "52083",
-      "last_post_time": "2026-08-26T14:29:12+00:00",
-      "last_warned_week": 3
-    },
     "66154:8525518483": {
       "user_id": "8525518483",
       "first_name": "Fuzzy",
@@ -652,6 +642,12 @@
       "first_name": "Path",
       "username": "PathWars",
       "campaign_name": "Theria"
+    },
+    "52083:8471667081": {
+      "removed_at": "2026-09-23T15:00:20.814527+00:00",
+      "first_name": "Paul",
+      "username": "WeebArtist",
+      "campaign_name": "Hopeful End-Times"
     }
   },
   "player_registry": {
@@ -1854,6 +1850,14 @@
       "name": "Path",
       "username": "PathWars",
       "at": "2026-09-22T09:15:25.124119+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "52083",
+      "user_id": "8471667081",
+      "name": "Paul",
+      "username": "WeebArtist",
+      "at": "2026-09-23T15:00:22.303748+00:00"
     }
   ],
   "player_boons": {
