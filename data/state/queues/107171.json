@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 181058,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-09-23T21:40:53+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -449,7 +439,9 @@
     "msg:181044",
     "2026-09-23 20:56:59",
     "msg:181057",
-    "2026-09-23 21:40:50"
+    "2026-09-23 21:40:50",
+    "msg:181058",
+    "2026-09-23 21:40:53"
   ],
   "reply_log": [
     {
@@ -2480,20 +2472,27 @@
       "player": "Laetheron",
       "preview": "Realizing that Zels is a more experienced pilot, Arktos drifts aside and lets th",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-24T19:14:33+00:00",
+      "pid": "107171",
+      "msg_id": "181058",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-23 21:40:53",
-      "msg_ids": [
-        181156
-      ],
-      "last_posted_at": "2026-09-24T19:08:33.414509+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181168,
       "pending_delete": [],
-      "caught_up_at": "2026-09-23T02:50:22.429224+00:00"
+      "caught_up_at": "2026-09-24T19:16:09.218642+00:00"
     },
     "142887": {
       "fingerprint": "",
