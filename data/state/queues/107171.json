@@ -2,24 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 181044,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-09-23T20:56:59+00:00",
-      "preview": "\"Where do they teach you to fly a ship like that?\"\n\nBella runs up to pat Zels on the back (with very little awareness of her own strength), once she's sure they're safe.\n\n\"I was sure we were getting out of there in escape pods, if at all.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 181057,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-09-23T21:40:50+00:00",
-      "preview": "Realizing that Zels is a more experienced pilot, Arktos drifts aside and lets them take care of piloting the ship. They instead rush across the ship applying quick fixes to any damaged systems needed to make a getaway.",
-      "media_group_id": null
-    },
-    {
       "message_id": 181058,
       "thread_id": 107171,
       "user_id": "8117756377",
@@ -463,7 +445,11 @@
     "msg:180472",
     "2026-09-19 21:27:22",
     "msg:180661",
-    "2026-09-21 08:26:39"
+    "2026-09-21 08:26:39",
+    "msg:181044",
+    "2026-09-23 20:56:59",
+    "msg:181057",
+    "2026-09-23 21:40:50"
   ],
   "reply_log": [
     {
@@ -2476,17 +2462,35 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-24T18:58:22+00:00",
+      "pid": "107171",
+      "msg_id": "181044",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Where do they teach you to fly a ship like that?\"\n\nBella runs up to pat Zels on",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-24T19:00:20+00:00",
+      "pid": "107171",
+      "msg_id": "181057",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Realizing that Zels is a more experienced pilot, Arktos drifts aside and lets th",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-23 20:56:59|2026-09-23 21:40:50|2026-09-23 21:40:53",
+      "fingerprint": "2026-09-23 21:40:53",
       "msg_ids": [
-        181059
+        181156
       ],
-      "last_posted_at": "2026-09-23T22:00:24.241742+00:00",
+      "last_posted_at": "2026-09-24T19:08:33.414509+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-23T02:50:22.429224+00:00"
