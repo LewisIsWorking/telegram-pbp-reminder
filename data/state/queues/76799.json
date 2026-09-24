@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 181022,
-      "thread_id": 144765,
-      "user_id": "8969117742",
-      "user_name": "Volf",
-      "time": "2026-09-23T18:42:47+00:00",
-      "preview": "I think so lol, the fumble is for range attack with a throwing weapon",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -488,7 +478,9 @@
     "msg:180454",
     "2026-09-19 15:50:30",
     "msg:180857",
-    "2026-09-22 19:14:08"
+    "2026-09-22 19:14:08",
+    "msg:181022",
+    "2026-09-23 18:42:47"
   ],
   "reply_log": [
     {
@@ -2682,6 +2674,15 @@
       "player": "Volf",
       "preview": "Nah I'll save it for when that thing gets down",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-24T03:48:07+00:00",
+      "pid": "76799",
+      "msg_id": "181022",
+      "thread_id": 144765,
+      "player": "Volf",
+      "preview": "I think so lol, the fumble is for range attack with a throwing weapon",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -2696,14 +2697,12 @@
       "caught_up_at": "2026-09-23T20:40:05.712433+00:00"
     },
     "144765": {
-      "fingerprint": "2026-09-23 18:42:47",
-      "msg_ids": [
-        181024
-      ],
-      "last_posted_at": "2026-09-23T19:15:24.971366+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181089,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-24T04:30:27.474254+00:00"
     }
   }
 }
