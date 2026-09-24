@@ -9,7 +9,7 @@ from helpers import (
 )
 import telegram as tg
 from players.permanence import is_permanent
-from helpers_pkg.routes import route
+from helpers_pkg.groups import group_id_for_campaign
 
 
 def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -130,8 +130,7 @@ def cleanup_timestamps(state: dict) -> None:
 
 
 def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
-    """If a campaign has fewer than helpers.REQUIRED_PLAYERS, post a notice."""
-    group_id, bot_topic = route(config, "activity")
+    """Post a short-of-players notice in the campaign's own chat topic (Lewis, 2026-09-24)."""
     now = now or datetime.now(timezone.utc)
 
     maps = maps or build_topic_maps(config)
@@ -196,5 +195,5 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
         )
 
         print(f"Recruitment notice for {name}: {non_perm_count}/{target}" + (f" +{perm_count} perm" if perm_count else ""))
-        if tg.send_message(group_id, bot_topic or chat_topic_id, message):
+        if tg.send_message(group_id_for_campaign(config, str(pid)), chat_topic_id, message):
             state["last_recruitment_check"][pid] = now.isoformat()

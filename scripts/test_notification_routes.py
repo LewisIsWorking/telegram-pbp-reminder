@@ -27,7 +27,6 @@ SENDERS = {
     "preflight/alerting.py": "bot_health",
     "scheduled/diagnostic.py": "bot_health",
     "scheduled/roster_nudge.py": "roster_overview",
-    "scheduled/maintenance.py": "activity",
     "scheduled/smart_alerts.py": "activity",
     "scheduled/reports.py": "activity",
     "scheduled/campaign_table.py": "activity",
@@ -169,4 +168,12 @@ def test_campaign_silence_alert_posts_in_the_campaign_chat_topic():
     fn = body[body.index("def check_and_alert"):body.index("_INACTIVITY_TEMPLATES")]
     sends = re.findall(r"tg\.send_message\(([^\n]*)", fn)
     assert sends == ["group_id_for_campaign(config, str(pid)), chat_topic_id, message):"], sends
+    assert "route(config" not in body
+
+
+def test_recruitment_notice_posts_in_the_campaign_chat_topic():
+    """Lewis, 2026-09-24: "needs N more players" is for the table."""
+    body = (SCRIPTS / "scheduled/maintenance.py").read_text(encoding="utf-8")
+    fn = body[body.index("def check_recruitment_needs"):]
+    assert "tg.send_message(group_id_for_campaign(config, str(pid)), chat_topic_id, message)" in fn
     assert "route(config" not in body
