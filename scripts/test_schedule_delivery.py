@@ -139,3 +139,31 @@ class TestTheLineCarriesItsBasis:
 
     def test_no_schedule_configured_says_that_rather_than_zero_percent(self):
         assert "no schedule" in delivery_line(0, 0)
+
+
+class TestCoverageIsWhatTheDiagnosticReports:
+    """⭐ 2026-09-25: GitHub's cron sends about a quarter of its runs and the
+    VPS backstop covers the rest, so the daily line warned every day about
+    something already handled. It now leads with slot coverage."""
+
+    def test_backstop_runs_cover_the_slots_github_missed(self):
+        runs = ([_run(h, event="workflow_dispatch") for h in range(0, 24)]
+                + [_run(h + 0.5) for h in range(0, 24)])
+        line = report_line(runs, _NOW, page_size=100)
+        assert line.startswith("🕒") and "48 of 48 half-hour slots" in line
+        assert "cron sent 24 of 48" in line and "Expected" not in line
+
+    def test_a_real_gap_still_warns(self):
+        runs = [_run(h, event="workflow_dispatch") for h in range(0, 24)]
+        line = report_line(runs, _NOW, page_size=100)
+        assert line.startswith("⚠️") and "24 of 48 half-hour slots" in line
+        assert "VPS backstop" in line and "heartbeat.log" in line
+
+    def test_pull_request_runs_do_not_cover_a_slot(self):
+        from scheduled.schedule_delivery import covered_slots
+        runs = [_run(1, event="pull_request"), _run(2, event="push")]
+        assert covered_slots(runs, _NOW) == 1
+
+    def test_two_runs_in_one_slot_count_once(self):
+        from scheduled.schedule_delivery import covered_slots
+        assert covered_slots([_run(1.0), _run(1.1, event="workflow_dispatch")], _NOW) == 1

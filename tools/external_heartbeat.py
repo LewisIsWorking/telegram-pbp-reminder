@@ -49,8 +49,9 @@ no trace to misread.
 
 ⚠️ The fetch is **unauthenticated** (the repo is public), so the token is
 needed only for the dispatch itself. `raw.githubusercontent.com` is
-CDN-cached for a few minutes, which is irrelevant against a 45 minute
-threshold.
+CDN-cached for a few minutes. Against the 20 minute threshold that can make a
+fresh heartbeat look a few minutes older, so a run that landed 16 to 20 minutes
+ago may still get a spare dispatch: harmless, and cheaper than a missed slot.
 
 ## Cost on the VPS, measured not estimated
 
@@ -60,8 +61,8 @@ heartbeat fetch          ~452 ms, 200 bytes
 peak heap                ~1.5 MiB
 ```
 
-At one check every 15 minutes: **~0.8s CPU per hour** (0.02% of one
-core), **~19 KB/day** of traffic, and nothing resident between runs.
+At two checks an hour (:13 and :43): **~0.4s CPU per hour**, **~10 KB/day** of
+traffic, and nothing resident between runs.
 
 ## Setting it up
 
@@ -72,7 +73,7 @@ install -m 600 /dev/null ~/.pathwars-dispatch-token
 echo 'ghp_xxx' > ~/.pathwars-dispatch-token
 
 crontab -e
-*/15 * * * * GITHUB_TOKEN=$(cat ~/.pathwars-dispatch-token) \\
+13,43 * * * * GITHUB_TOKEN=$(cat ~/.pathwars-dispatch-token) \\
     /usr/bin/python3 /opt/pathwars/external_heartbeat.py >> /var/log/pathwars-heartbeat.log 2>&1
 ```
 """
@@ -90,15 +91,22 @@ WORKFLOW = "pbp-reminder.yml"
 HEARTBEAT_URL = (f"https://raw.githubusercontent.com/{REPO}/main/"
                  f"data/ci_heartbeat.json")
 
-# The bot asks for a run every 30 minutes. 45 gives one missed slot of
-# grace before an outsider steps in, so normal jitter costs nothing.
-QUIET_AFTER = timedelta(minutes=45)
+# ⭐ 2026-09-25: THIS SCRIPT IS NOW THE SCHEDULER, GitHub's cron the backup.
+# GitHub delivered 79 of ~336 scheduled runs in the week to 2026-09-25 (23%),
+# and the ones it did send started 7 to 34 minutes late. So cron runs this at
+# the bot's own slots, :13 and :43, and it fires unless a run landed in the
+# last 20 minutes (i.e. GitHub DID deliver this slot). It used to wait 45
+# minutes, which turned every missed half-hour slot into a skipped one: the
+# bot ran about hourly. A late GitHub run can still double up with a
+# dispatch; the concurrency group serialises them, and a spare run is cheap.
+QUIET_AFTER = timedelta(minutes=20)
 
 # ⛔ Never dispatch more often than this, whatever the heartbeat says.
 # If the bot is running but its PUSH is broken, the heartbeat never
 # refreshes and nothing this script does will fix it. Without a floor it
 # would fire every single tick, multiplying a broken run forever.
-DISPATCH_COOLDOWN = timedelta(minutes=30)
+# Under 30 minutes, so the :13 and :43 slots can both fire.
+DISPATCH_COOLDOWN = timedelta(minutes=25)
 
 MARKER = Path(os.environ.get("PATHWARS_MARKER",
                              Path.home() / ".pathwars-last-dispatch"))
