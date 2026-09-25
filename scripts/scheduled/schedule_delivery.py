@@ -90,9 +90,37 @@ def delivery_line(delivered: int, expected: int, *, capped: bool = False) -> str
             f"posting; the state-commit step is not the fault.")
 
 
+# Runs that actually do the bot's work. pull_request runs only test.
+_WORKING_EVENTS = ("schedule", "workflow_dispatch", "push")
+
+
+def covered_slots(runs: list, now: datetime, hours: int = 24) -> int:
+    """How many of the window's half-hour slots had at least one working run.
+
+    ⭐ Added 2026-09-25. GitHub's cron delivers about a quarter of what it is
+    asked for, and the VPS backstop (tools/external_heartbeat.py) covers the
+    rest. So "scheduled runs delivered" warned every day about something
+    already handled, while the number that matters - did the bot run every
+    half hour, from any source - was never reported.
+    """
+    seen = set()
+    for run in runs:
+        if run.get("event") not in _WORKING_EVENTS:
+            continue
+        try:
+            started = datetime.fromisoformat(
+                (run.get("created_at") or "").replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        age = (now - started).total_seconds()
+        if 0 <= age < hours * 3600:
+            seen.add(int(age // 1800))
+    return len(seen)
+
+
 def report_line(runs: list, now: datetime, *, page_size: int | None = None,
                 hours: int = 24) -> str:
-    """The scheduler line for the daily diagnostic."""
+    """The scheduler line for the daily diagnostic: coverage first, cron second."""
     delivered = delivered_in_window(runs, now, hours)
     # ⛔ 2026-09-23: A FULL PAGE IS NOT A TRUNCATED COUNT. This used to be
     # `len(runs) >= page_size`, and the page of 100 is full on every day the
@@ -103,7 +131,21 @@ def report_line(runs: list, now: datetime, *, page_size: int | None = None,
     # past the window, every run in the window is on it.
     capped = (page_size is not None and len(runs) >= page_size
               and _oldest_is_inside(runs, now - timedelta(hours=hours)))
-    return delivery_line(delivered, expected_in_window(hours), capped=capped)
+    expected = expected_in_window(hours)
+    if capped or expected <= 0:
+        return delivery_line(delivered, expected, capped=capped)
+    slots = hours * 2
+    covered = covered_slots(runs, now, hours)
+    ratio = covered / slots
+    ok = ratio >= HEALTHY_DELIVERY
+    text = (f"{'🕒' if ok else '⚠️'} Schedule: {covered} of {slots} half-hour slots "
+            f"had a run ({ratio:.0%}). GitHub's own cron sent {delivered} of "
+            f"{expected}; the VPS backstop covers the rest.")
+    if ok:
+        return text
+    return (text + f" Expected {HEALTHY_DELIVERY:.0%}+: the bot is running less "
+            f"often than it should. Check the VPS backstop (its crontab and "
+            f"/var/log/pathwars-heartbeat.log) as well as GitHub.")
 
 
 def _oldest_is_inside(runs: list, cutoff: datetime) -> bool:

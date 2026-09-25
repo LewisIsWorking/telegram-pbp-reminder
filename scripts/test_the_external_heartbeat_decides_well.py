@@ -57,10 +57,19 @@ class TestItStaysQuietWhenTheBotIsRunning:
         # ⛔ The test above reads QUIET_AFTER, so it moves WITH the
         # constant and cannot detect the constant changing. A mutation
         # widening it to ten hours survived until this existed.
-        assert _mins(30) < QUIET_AFTER <= timedelta(hours=2), (
-            f"QUIET_AFTER is {QUIET_AFTER}; below 30m it fights normal "
-            f"scheduling, above 2h the bot can sit dead through most of "
-            f"the headroom before the 48h message wall.")
+        # ⭐ 2026-09-25: the lower bound moved from 30m to 15m on purpose. The
+        # VPS is now the scheduler, checking at :13 and :43, so the window
+        # must be UNDER the 30 minute slot gap or a slot GitHub missed is
+        # never covered. Too short, and it fires on a run still finishing.
+        assert _mins(15) <= QUIET_AFTER < _mins(30), (
+            f"QUIET_AFTER is {QUIET_AFTER}; at 30m or more a missed slot is "
+            f"skipped, under 15m it dispatches on top of runs in flight.")
+
+    def test_both_slots_in_an_hour_can_fire(self):
+        # Checked at :13 and :43, 30 minutes apart: a cooldown of 30 or more
+        # would silently halve the schedule.
+        assert DISPATCH_COOLDOWN < _mins(30)
+        assert should_dispatch(QUIET_AFTER + _mins(1), _mins(30))
 
 
 class TestTheCooldownStopsItMultiplyingABrokenRun:
