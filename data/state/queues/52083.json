@@ -2,21 +2,21 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 181143,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-09-24T12:43:19+00:00",
-      "preview": "Lai's head is on a swivel taking everything in",
-      "media_group_id": null
-    },
-    {
       "message_id": 181270,
       "thread_id": 52083,
       "user_id": "8097377199",
       "user_name": "Terra",
       "time": "2026-09-25T13:24:48+00:00",
       "preview": "\"What's the plan? The actual plan...we can't just go through the front now can we?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 181297,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-09-25T18:18:18+00:00",
+      "preview": "\"With my \u2605SUPER IDOL PRESENCE\u2605  we surely CAN!\"",
       "media_group_id": null
     }
   ],
@@ -459,7 +459,9 @@
     "msg:180077",
     "2026-09-16 22:40:32",
     "msg:180377",
-    "2026-09-19 14:09:30"
+    "2026-09-19 14:09:30",
+    "msg:181143",
+    "2026-09-24 12:43:19"
   ],
   "reply_log": [
     {
@@ -2464,17 +2466,26 @@
       "player": "Anthony",
       "preview": "\"\u2605OK\u2605! I think we're all set and ready! \u2605LET'S GO DO SOM CRIMES\u2605!!\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-25T18:16:33+00:00",
+      "pid": "52083",
+      "msg_id": "181143",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai's head is on a swivel taking everything in",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-24 12:43:19|2026-09-25 13:24:48",
+      "fingerprint": "2026-09-25 13:24:48|2026-09-25 18:18:18",
       "msg_ids": [
-        181272
+        181299
       ],
-      "last_posted_at": "2026-09-25T13:30:25.750613+00:00",
+      "last_posted_at": "2026-09-25T18:25:09.000589+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
