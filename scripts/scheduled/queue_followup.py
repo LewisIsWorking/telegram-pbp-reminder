@@ -47,7 +47,7 @@ def build_followup(config: dict, state: dict, scanned: dict,
     means no unreplied entries AND no campaign with a recorded last
     post. A caller should treat "" as "append nothing", not as an error.
     """
-    focus = build_focus_message(config, scanned, priority_map, now)
+    focus = build_focus_message(config, scanned, priority_map, now, state=state)
     if focus:
         return focus
     return oldest_campaign_line(config, state, scanned, now) or ""

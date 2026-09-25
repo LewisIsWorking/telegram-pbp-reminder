@@ -50,7 +50,7 @@ def send_focus_dm(config: dict, state: dict, scanned: dict,
     if not gm_uid:
         return False
 
-    key = focus_key(scanned, priority_map)
+    key = focus_key(scanned, priority_map, config=config, state=state, now=now)
     if key is None:
         # Nothing owed. Forget the last target, so that if the same message
         # is somehow the focus again later it is announced rather than
@@ -61,7 +61,7 @@ def send_focus_dm(config: dict, state: dict, scanned: dict,
     if state.get(STATE_KEY) == key:
         return False
 
-    text = build_focus_message(config, scanned, priority_map, now)
+    text = build_focus_message(config, scanned, priority_map, now, state=state)
     if not text:
         return False
 
