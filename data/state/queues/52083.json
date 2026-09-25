@@ -9,6 +9,15 @@
       "time": "2026-09-24T12:43:19+00:00",
       "preview": "Lai's head is on a swivel taking everything in",
       "media_group_id": null
+    },
+    {
+      "message_id": 181270,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-09-25T13:24:48+00:00",
+      "preview": "\"What's the plan? The actual plan...we can't just go through the front now can we?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2461,11 +2470,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-24 12:43:19",
+      "fingerprint": "2026-09-24 12:43:19|2026-09-25 13:24:48",
       "msg_ids": [
-        181145
+        181272
       ],
-      "last_posted_at": "2026-09-24T13:00:22.007032+00:00",
+      "last_posted_at": "2026-09-25T13:30:25.750613+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
