@@ -1,9 +1,9 @@
 {
   "topics": {
     "52083": {
-      "last_message_time": "2026-09-22T23:53:37+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-09-24T12:43:19+00:00",
+      "last_user": "Terra",
+      "last_user_id": "8097377199",
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
@@ -25,7 +25,7 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-09-23T21:40:53+00:00",
+      "last_message_time": "2026-09-24T19:39:40+00:00",
       "last_user": "Laetheron",
       "last_user_id": "8117756377",
       "campaign_name": "Metal City"
@@ -69,15 +69,15 @@
   },
   "last_alerts": {
     "52083": "2026-09-24T00:21:12.415036+00:00",
-    "66154": "2026-09-24T00:21:12.415036+00:00",
-    "51357": "2026-09-23T15:00:20.814527+00:00",
-    "25059": "2026-09-23T23:40:55.189933+00:00",
+    "66154": "2026-09-25T00:45:27.602746+00:00",
+    "51357": "2026-09-24T15:00:30.156982+00:00",
+    "25059": "2026-09-25T00:45:27.602746+00:00",
     "107171": "2026-09-23T01:45:16.864992+00:00",
-    "40585": "2026-09-22T23:35:06.171708+00:00",
-    "76799": "2026-09-21T23:15:26.098034+00:00",
-    "107151": "2026-09-24T04:30:27.474254+00:00",
+    "40585": "2026-09-24T21:45:23.880869+00:00",
+    "76799": "2026-09-25T04:15:29.121082+00:00",
+    "107151": "2026-09-25T05:15:24.440146+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00",
-    "146645": "2026-09-24T04:30:27.474254+00:00"
+    "146645": "2026-09-25T05:15:24.440146+00:00"
   },
   "last_roster": {
     "25059": "2026-09-23T02:50:22.429224+00:00",
@@ -107,7 +107,7 @@
     "40585": "2026-09-20T00:30:17.461203+00:00",
     "51357": "2026-09-20T00:30:17.461203+00:00",
     "25059": "2026-09-20T14:30:17.653503+00:00",
-    "66154": "2026-09-17T11:30:20.943250+00:00",
+    "66154": "2026-09-24T11:45:20.083402+00:00",
     "52083": "2026-09-20T00:30:17.461203+00:00",
     "107171": "2026-09-22T17:30:27.056922+00:00",
     "107151": "2026-09-22T22:47:27.903565+00:00",
@@ -128,7 +128,7 @@
   "last_roster_snapshot": "C01:5/6|C00:3/6|C04:5/6|C05:4/6|C06:6/6|C07:3/6|C09:4/6|C10:1/6|C08:0/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": null
+    "last_at": "2026-09-25T00:45:27.602746+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-09-18T12:45:27.152795+00:00",
@@ -158,7 +158,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-09-20T00:30:17.461203+00:00",
-  "last_daily_tip": "2026-09-23T11:30:25.471195+00:00",
+  "last_daily_tip": "2026-09-24T09:59:10.325463+00:00",
   "used_tip_indices": [
     4,
     22,
@@ -168,13 +168,17 @@
     2,
     35,
     28,
-    18
+    18,
+    5
   ],
   "last_pace_drop_check": "2026-09-20T00:30:17.461203+00:00",
   "dying_alerts_sent": {
     "1242": "active",
     "107151": "active",
-    "146645": "active"
+    "146645": "active",
+    "51357": "active",
+    "25059": "active",
+    "66154": "active"
   },
   "last_campaign_table": "2026-09-19T20:38:03.883717+00:00",
   "session_poll": {
@@ -195,7 +199,7 @@
         "1698524397",
         "8880317264"
       ],
-      "last_ping_day": 739883,
+      "last_ping_day": 739884,
       "votes": {
         "2": [
           "8902183011",
@@ -229,9 +233,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-09-23T04:17:16.728264+00:00",
-  "last_queue_daily": "2026-09-23",
-  "last_queue_fingerprint": "107171:2026-09-23 20:56:59|107171:2026-09-23 21:40:50|107171:2026-09-23 21:40:53|silent:146645",
+  "last_state_backup": "2026-09-24T04:30:27.474254+00:00",
+  "last_queue_daily": "2026-09-24",
+  "last_queue_fingerprint": "107171:2026-09-24 19:23:03|107171:2026-09-24 19:39:40|52083:2026-09-24 12:43:19|silent:146645",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -307,8 +311,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-09-20",
   "last_queue_daily_slots": [
-    "2026-09-17:09",
-    "2026-09-17:21",
     "2026-09-18:09",
     "2026-09-18:21",
     "2026-09-19:09",
@@ -320,7 +322,9 @@
     "2026-09-22:09",
     "2026-09-22:21",
     "2026-09-23:09",
-    "2026-09-23:21"
+    "2026-09-23:21",
+    "2026-09-24:09",
+    "2026-09-24:21"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -331,21 +335,21 @@
     "session_happened": true
   },
   "queue_scan_floor": null,
-  "last_diagnostic": "2026-09-23",
-  "last_queue_pin_id": 181090,
-  "queue_post_count": 1828,
+  "last_diagnostic": "2026-09-24",
+  "last_queue_pin_id": 181200,
+  "queue_post_count": 1835,
   "gm_queue_history": [
     {
       "msg_ids": [
-        181090,
-        181091
+        181200,
+        181201
       ],
-      "pin_id": 181090
+      "pin_id": 181200
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1828 - Unreplied: 3 | \u2705 1 today | \ud83c\udfc6 1912 all-time\nC09:3\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 05:30 BST\n\u23ed Next check ~05:43 BST\n\u2501\u2501 \ud83e\udd16 C09: Metal City (3) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~2h)\n01 [181044] \ud83c\udf3f 7h. Diabla \"Bella\" Alzarin: \"Where do they teach you to fly a ship like that?\" Bella runs up to... \ud83d\udd17 https://t.me/Path_Wars/107171/181044\n02 [181057] \ud83c\udf3f 6h. Laetheron: Realizing that Zels is a more experienced pilot, Arktos drifts aside and lets them take... \ud83d\udd17 https://t.me/Path_Wars/107171/181057\n03 [181058] \ud83c\udf3f 6h. Laetheron: *[image]* \ud83d\udd17 https://t.me/Path_Wars/107171/181058\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe3 \ud83d\udea6 C10: The Junction - no posts for 9d 4h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe2 \ud83d\udd2d C05: Grand Explorers - last post 1d 14h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83d\udfe2 \ud83d\udcc6 C01: Doomsday Funtime - last post 1d 5h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83d\udfe2 \ud83d\udcb0 C00: Riddleport - last post 1d 4h ago \ud83d\udd17 https://t.me/Path_Wars/66154\n  \ud83d\udfe2 \u2b50\ufe0f C07: Hopeful End-Times - last post 1d 4h ago \ud83d\udd17 https://t.me/Path_Wars/52083\n  \ud83c\udf3f \ud83e\udda0 C06: Kibwe - last post 7h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udd95 \ud83d\udd0d C04: Magni Guard - last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/76799",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udd16 C09: Metal City\n\u23f3 Oldest message waiting 7h (3 unreplied in this campaign).\n\u2197 Diabla \"Bella\" Alzarin: \"Where do they teach you to fly a ship like that?\" Bella runs up to pat Zels on...\n\ud83d\udd17 https://t.me/Path_Wars/107171/181044"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1835 - Unreplied: 3 | \ud83c\udfc6 1915 all-time\nC07:1 C09:2\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 06:15 BST\n\u23ed Next check ~06:43 BST\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (1) \u2501\u2501 @PathWars \u26a1Terra (~24h)\n01 [181143] \ud83c\udf33 16h. Terra: Lai's head is on a swivel taking everything in \ud83d\udd17 https://t.me/Path_Wars/52083/181143\n\u2501\u2501 \ud83e\udd16 C09: Metal City (2) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~1h)\n02 [181183] \ud83c\udf3f 9h. Diabla \"Bella\" Alzarin: Bella looks a bit pale after the travel. The space-time-warping procedure has given her brain... \ud83d\udd17 https://t.me/Path_Wars/107171/181183\n03 [181189] \ud83c\udf3f 9h. Laetheron: \"Hopefully. We may as well run a scan, but unless we were followed, we ought... \ud83d\udd17 https://t.me/Path_Wars/107171/181189\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfea \ud83d\udea6 C10: The Junction - no posts for 10d 5h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe9 \ud83d\udd2d C05: Grand Explorers - last post 2d 14h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83d\udfe9 \ud83d\udcc6 C01: Doomsday Funtime - last post 2d 5h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83d\udfe9 \ud83d\udcb0 C00: Riddleport - last post 2d 5h ago \ud83d\udd17 https://t.me/Path_Wars/66154\n  \ud83d\udfe2 \ud83e\udda0 C06: Kibwe - last post 1d 8h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83d\udfe2 \ud83d\udd0d C04: Magni Guard - last post 1d 1h ago \ud83d\udd17 https://t.me/Path_Wars/76799",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \u2b50\ufe0f C07: Hopeful End-Times\n\u23f3 Oldest message waiting 16h (1 unreplied in this campaign).\n\u2197 Terra: Lai's head is on a swivel taking everything in\n\ud83d\udd17 https://t.me/Path_Wars/52083/181143"
   ],
   "queue_refire_chain": 0,
   "potw_week": {
@@ -361,23 +365,23 @@
   },
   "last_potw_roundup": "2026-W39",
   "last_potw_countdown": "2026-W38",
-  "schedule_post_msg_id": 1509,
+  "schedule_post_msg_id": 1549,
   "schedule_post_chat_id": -1004303231713,
-  "last_pin_digest": "2026-09-23",
-  "last_pin_alert_ts": "2026-09-24T04:30:36.748129+00:00",
+  "last_pin_digest": "2026-09-24",
+  "last_pin_alert_ts": "2026-09-25T04:15:34.118638+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 180985,
-  "last_recruit_focus": "2026-09-23T04:17:16.728264+00:00",
-  "recruit_focus_at": "2026-09-23T04:17:16.728264+00:00",
+  "recruit_focus_msg_id": 181093,
+  "last_recruit_focus": "2026-09-24T04:30:27.474254+00:00",
+  "recruit_focus_at": "2026-09-24T04:30:27.474254+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 180985,
+      "message_id": 181093,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 1460,
+      "message_id": 1510,
       "auto_delete": false
     }
   ],
@@ -401,7 +405,7 @@
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
       "last_post_time": "2026-09-10T04:39:33+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "76799:8353586922": {
       "user_id": "8353586922",
@@ -482,7 +486,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-09-17T21:18:01+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "51357:7454623139": {
       "user_id": "7454623139",
@@ -521,7 +525,7 @@
       "username": "StorybookRhizome",
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
-      "last_post_time": "2026-09-23T21:40:53+00:00",
+      "last_post_time": "2026-09-24T19:39:40+00:00",
       "last_warned_week": 0
     },
     "51357:7130942567": {
@@ -571,8 +575,8 @@
       "username": "Saiminaminah",
       "campaign_name": "Hopeful End-Times",
       "pbp_topic_id": "52083",
-      "last_post_time": "2026-09-16T00:23:06+00:00",
-      "last_warned_week": 1
+      "last_post_time": "2026-09-24T12:43:19+00:00",
+      "last_warned_week": 0
     },
     "107171:8379380933": {
       "user_id": "8379380933",
@@ -582,7 +586,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-09-10T23:47:01+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "107171:8701042661": {
       "user_id": "8701042661",
@@ -591,7 +595,7 @@
       "username": "exspiravit_1",
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
-      "last_post_time": "2026-09-23T20:56:59+00:00",
+      "last_post_time": "2026-09-24T19:23:03+00:00",
       "last_warned_week": 0
     },
     "76799:8969117742": {
@@ -622,7 +626,7 @@
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
       "last_post_time": "2026-09-10T04:33:25+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "66154:8525518483": {
       "user_id": "8525518483",
@@ -632,7 +636,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-09-17T16:19:48+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "66154:1358791105": {
       "user_id": "1358791105",
@@ -642,7 +646,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-09-18T04:56:55+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "146645:6144366145": {
       "user_id": "6144366145",
@@ -1417,7 +1421,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.902136+00:00"
       },
       "8787586972": {
@@ -3594,7 +3598,10 @@
       "2026-09-22T02:15:19.566073+00:00",
       "2026-09-23T02:50:22.420041+00:00",
       "2026-09-23T02:50:22.425247+00:00",
-      "2026-09-23T02:50:22.428329+00:00"
+      "2026-09-23T02:50:22.428329+00:00",
+      "2026-09-24T19:08:30.207655+00:00",
+      "2026-09-24T19:08:30.212925+00:00",
+      "2026-09-24T19:16:09.216150+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -4639,27 +4646,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-08-26T20:33:10.282817+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "175415"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-26T20:33:10.287730+00:00",
-      "player": "Cannon",
-      "preview": "[media]",
-      "msg_id": "175412"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-08-26T20:33:10.295747+00:00",
-      "player": "Anthony",
-      "preview": "Rubel looks to the others after defeating his foe. When the ",
-      "msg_id": "175482"
-    },
     {
       "pid": "51357",
       "time": "2026-08-26T20:33:10.297882+00:00",
@@ -6038,6 +6024,27 @@
       "player": "Volf",
       "preview": "I think so lol, the fumble is for range attack with a throwi",
       "msg_id": "181022"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-24T19:08:30.207655+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Where do they teach you to fly a ship like that?\"\n\nBella ru",
+      "msg_id": "181044"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-24T19:08:30.212925+00:00",
+      "player": "Laetheron",
+      "preview": "Realizing that Zels is a more experienced pilot, Arktos drif",
+      "msg_id": "181057"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-09-24T19:16:09.216150+00:00",
+      "player": "Laetheron",
+      "preview": "[media]",
+      "msg_id": "181058"
     }
   ],
   "pending_potw_boons": {
@@ -6053,7 +6060,7 @@
       ],
       "base_message": "Player of the Week for Metal City: Diabla \"Bella\" Alzarin (@exspiravit_1)!\n(2026-09-14 (W38) to 2026-09-21 (W39))\n\n6 posts this week with an average gap of 18.2h between posts. The most consistent driver of the story.",
       "posted_at": "2026-09-21T09:15:17.919232+00:00",
-      "reminders_sent": 1
+      "reminders_sent": 2
     }
   },
   "pending_hero_points": {
@@ -6208,11 +6215,6 @@
     },
     "52083": {
       "1698524397": [
-        "2026-09-09T18:30:32+00:00",
-        "2026-09-09T21:50:54+00:00",
-        "2026-09-10T00:41:42+00:00",
-        "2026-09-10T02:26:32+00:00",
-        "2026-09-10T03:30:39+00:00",
         "2026-09-10T15:49:06+00:00",
         "2026-09-12T21:22:14+00:00",
         "2026-09-13T17:25:28+00:00",
@@ -6234,10 +6236,10 @@
         "2026-09-19T14:09:30+00:00"
       ],
       "8097377199": [
-        "2026-09-09T18:33:16+00:00",
         "2026-09-10T21:59:27+00:00",
         "2026-09-15T18:29:19+00:00",
-        "2026-09-16T00:23:06+00:00"
+        "2026-09-16T00:23:06+00:00",
+        "2026-09-24T12:43:19+00:00"
       ],
       "138025700": [
         "2026-09-10T04:39:33+00:00"
@@ -6264,10 +6266,6 @@
     },
     "107171": {
       "1698524397": [
-        "2026-09-10T03:24:53+00:00",
-        "2026-09-10T03:26:45+00:00",
-        "2026-09-10T03:27:06+00:00",
-        "2026-09-10T03:28:05+00:00",
         "2026-09-13T18:37:52+00:00",
         "2026-09-13T18:38:37+00:00",
         "2026-09-13T18:42:33+00:00",
@@ -6384,7 +6382,16 @@
         "2026-09-23T01:54:42+00:00",
         "2026-09-23T02:13:55+00:00",
         "2026-09-23T02:14:13+00:00",
-        "2026-09-23T02:25:54+00:00"
+        "2026-09-23T02:25:54+00:00",
+        "2026-09-24T18:58:22+00:00",
+        "2026-09-24T19:00:20+00:00",
+        "2026-09-24T19:14:33+00:00",
+        "2026-09-24T19:14:51+00:00",
+        "2026-09-24T19:15:05+00:00",
+        "2026-09-24T19:15:17+00:00",
+        "2026-09-24T19:15:25+00:00",
+        "2026-09-24T19:15:46+00:00",
+        "2026-09-24T19:15:58+00:00"
       ],
       "8117756377": [
         "2026-09-15T17:08:09+00:00",
@@ -6393,7 +6400,8 @@
         "2026-09-15T17:08:12+00:00",
         "2026-09-19T21:27:22+00:00",
         "2026-09-23T21:40:50+00:00",
-        "2026-09-23T21:40:53+00:00"
+        "2026-09-23T21:40:53+00:00",
+        "2026-09-24T19:39:40+00:00"
       ],
       "8701042661": [
         "2026-09-15T19:53:19+00:00",
@@ -6412,7 +6420,8 @@
         "2026-09-16T18:20:39+00:00",
         "2026-09-16T18:35:54+00:00",
         "2026-09-19T14:52:55+00:00",
-        "2026-09-23T20:56:59+00:00"
+        "2026-09-23T20:56:59+00:00",
+        "2026-09-24T19:23:03+00:00"
       ],
       "8379380933": [
         "2026-09-10T23:47:01+00:00"
@@ -6483,20 +6492,6 @@
     },
     "76799": {
       "1698524397": [
-        "2026-09-09T11:09:30+00:00",
-        "2026-09-09T11:10:09+00:00",
-        "2026-09-09T11:10:57+00:00",
-        "2026-09-09T11:13:04+00:00",
-        "2026-09-09T11:13:13+00:00",
-        "2026-09-09T11:14:11+00:00",
-        "2026-09-09T11:18:36+00:00",
-        "2026-09-09T11:18:43+00:00",
-        "2026-09-10T01:52:56+00:00",
-        "2026-09-10T02:13:16+00:00",
-        "2026-09-10T02:17:24+00:00",
-        "2026-09-10T02:20:13+00:00",
-        "2026-09-10T02:20:33+00:00",
-        "2026-09-10T02:24:50+00:00",
         "2026-09-13T14:36:33+00:00",
         "2026-09-13T14:56:37+00:00",
         "2026-09-13T15:03:06+00:00",
@@ -6534,11 +6529,6 @@
         "2026-09-24T03:48:18+00:00"
       ],
       "1358791105": [
-        "2026-09-09T12:04:11+00:00",
-        "2026-09-09T12:05:11+00:00",
-        "2026-09-10T03:49:36+00:00",
-        "2026-09-10T03:51:07+00:00",
-        "2026-09-10T03:51:26+00:00",
         "2026-09-10T04:35:19+00:00",
         "2026-09-14T07:50:41+00:00",
         "2026-09-14T07:52:12+00:00"
@@ -6588,7 +6578,7 @@
       "8383886822": 18,
       "6144366145": 112,
       "5443237599": 11,
-      "8097377199": 49,
+      "8097377199": 50,
       "8471667081": 1
     },
     "66154": {
@@ -6634,15 +6624,15 @@
     },
     "107171": {
       "6134825204": 8,
-      "1698524397": 658,
+      "1698524397": 667,
       "7863964681": 40,
       "7077683276": 27,
-      "8117756377": 55,
+      "8117756377": 56,
       "8383886822": 23,
       "8748487163": 21,
       "8787586972": 24,
       "8379380933": 5,
-      "8701042661": 26,
+      "8701042661": 27,
       "7919488992": 2,
       "138025700": 9
     },
@@ -6900,7 +6890,7 @@
       "8097377199": {
         "21": 4,
         "1": 1,
-        "12": 6,
+        "12": 7,
         "13": 5,
         "2": 1,
         "4": 3,
@@ -7313,8 +7303,8 @@
         "7": 7,
         "16": 14,
         "17": 63,
-        "18": 93,
-        "19": 55,
+        "18": 94,
+        "19": 63,
         "23": 23,
         "12": 20,
         "5": 10,
@@ -7332,7 +7322,7 @@
         "11": 1,
         "2": 10,
         "4": 2,
-        "19": 1,
+        "19": 2,
         "15": 5,
         "17": 6,
         "12": 1,
@@ -7421,7 +7411,7 @@
         "15": 1,
         "12": 1,
         "18": 4,
-        "19": 3,
+        "19": 4,
         "11": 2,
         "17": 11,
         "14": 1,
@@ -7972,7 +7962,7 @@
         "5": 8,
         "6": 10,
         "0": 5,
-        "3": 5,
+        "3": 6,
         "4": 1
       },
       "8471667081": {
@@ -8198,7 +8188,7 @@
       "1698524397": {
         "5": 48,
         "6": 217,
-        "3": 25,
+        "3": 34,
         "0": 135,
         "1": 89,
         "4": 18,
@@ -8210,7 +8200,7 @@
         "2": 8,
         "1": 20,
         "0": 5,
-        "3": 1
+        "3": 2
       },
       "7077683276": {
         "5": 1,
@@ -8267,7 +8257,8 @@
         "6": 1,
         "0": 2,
         "1": 2,
-        "2": 17
+        "2": 17,
+        "3": 1
       },
       "7919488992": {
         "5": 1,
@@ -8519,7 +8510,7 @@
       "5190471248": 219,
       "7863964681": 362,
       "5443237599": 39,
-      "8097377199": 686,
+      "8097377199": 695,
       "8471667081": 1
     },
     "66154": {
@@ -8562,8 +8553,8 @@
       "8880317264": 143
     },
     "107171": {
-      "1698524397": 7303,
-      "8117756377": 1280,
+      "1698524397": 7402,
+      "8117756377": 1302,
       "7077683276": 435,
       "6134825204": 198,
       "7863964681": 1373,
@@ -8571,7 +8562,7 @@
       "8748487163": 1391,
       "8787586972": 952,
       "8379380933": 129,
-      "8701042661": 836,
+      "8701042661": 953,
       "7919488992": 184,
       "138025700": 152
     },
@@ -8621,7 +8612,7 @@
   "session_counts": {
     "51357": 50,
     "40585": 117,
-    "107171": 57,
+    "107171": 58,
     "107151": 30,
     "25059": 61,
     "76799": 50,
@@ -8634,7 +8625,7 @@
   "session_last_day": {
     "51357": "2026-09-22",
     "40585": "2026-09-23",
-    "107171": "2026-09-23",
+    "107171": "2026-09-24",
     "107151": "2026-05-05",
     "25059": "2026-09-22",
     "76799": "2026-09-24",
@@ -10019,7 +10010,7 @@
       "1698524397": 1
     },
     "144765": {
-      "8969117742": 1
+      "1698524397": 3
     },
     "51357": {
       "1698524397": 1
@@ -10037,7 +10028,7 @@
       "1698524397": 1
     },
     "52083": {
-      "1698524397": 3
+      "8097377199": 1
     },
     "145045": {
       "1698524397": 1
@@ -10046,7 +10037,7 @@
       "1698524397": 1
     },
     "107171": {
-      "8117756377": 2
+      "8117756377": 1
     },
     "142887": {
       "1698524397": 1
@@ -10063,9 +10054,6 @@
     },
     "75843": {
       "1698524397": 1
-    },
-    "144765": {
-      "1698524397": 3
     }
   },
   "clocks": {},
@@ -10107,7 +10095,6 @@
       }
     ]
   },
-  "last_focus_dm_key": "https://t.me/Path_Wars/107171/181044",
-  "_backup_timestamp": "2026-09-24T04:30:27.474254+00:00",
+  "_backup_timestamp": "2026-09-25T05:15:24.440146+00:00",
   "_backup_version": "4.70.2"
 }
