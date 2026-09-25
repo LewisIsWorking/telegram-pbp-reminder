@@ -10,6 +10,9 @@ Selection rule:
      if any prioritised campaign has unreplied entries, the choice is made
      among those only. A prioritised campaign is therefore never passed over
      because some other campaign has an older message.
+  3. Otherwise a silent or caught-up campaign (nothing unreplied) goes first
+     when it has gone longer without a post than the oldest message has been
+     waiting (2026-09-25). See ``pick_idle_focus``.
 
 The message is appended to the queue's own message batch, so it is deleted
 along with that batch on the next post (``MAX_KEPT_BATCHES = 1``). That
@@ -57,7 +60,35 @@ def pick_focus_pid(scanned: dict, priority_map: dict) -> str | None:
     return min(pool, key=sort_key)
 
 
-def focus_key(scanned: dict, priority_map: dict) -> str | None:
+def pick_idle_focus(config: dict, state: dict | None, scanned: dict,
+                    priority_map: dict, now: datetime):
+    """The silent or caught-up campaign that should go first, or None.
+
+    Lewis, 2026-09-25: a campaign nobody is waiting on can still need the GM
+    more than the oldest unreplied message does. So it competes on the same
+    clock: hours since its last post against hours the oldest message has
+    waited, and the longer wait wins. A tie goes to the waiting message.
+
+    Only when the queue has entries: an empty queue already ends with the
+    "Oldest campaign" callout, and two "go here next" lines would disagree.
+    A prioritised campaign with entries still wins outright. A campaign with
+    no recorded post (``days=inf``) never competes, or it would win forever.
+    """
+    pid = pick_focus_pid(scanned, priority_map)
+    if state is None or not pid or pid in priority_map:
+        return None
+    from scheduled.queue_silence_rows import idle_campaigns
+    rows = [r for r in idle_campaigns(config, state, scanned, now)
+            if r.ever_posted and r.days != float("inf")]
+    if not rows:
+        return None
+    row = max(rows, key=lambda r: r.days)
+    waited = _wait_hours(_oldest_entry(scanned[pid]["entries"]), now)
+    return row if row.days * 24 > waited else None
+
+
+def focus_key(scanned: dict, priority_map: dict, *, config: dict | None = None,
+              state: dict | None = None, now: datetime | None = None) -> str | None:
     """A stable identity for the current focus target, or None if there is none.
 
     Used by ``queue_focus_dm`` to tell "the target moved" from "the same target
@@ -67,21 +98,48 @@ def focus_key(scanned: dict, priority_map: dict) -> str | None:
 
     ⚠️ Identifies the MESSAGE, not the campaign. Answering the oldest message in
     a campaign keeps the same campaign in focus but moves the target to its next
-    oldest, and that is exactly a change worth announcing.
+    oldest, and that is exactly a change worth announcing. An idle campaign in
+    focus is keyed by campaign, which stays put until someone posts there.
     """
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
         return None
+    if config is not None and now is not None:
+        row = pick_idle_focus(config, state, scanned, priority_map, now)
+        if row:
+            return f"idle:{row.pid}"
     entry = _oldest_entry(scanned[pid]["entries"])
     return entry.get("link") or f"{pid}@{entry.get('time', '')}"
 
 
+def _idle_focus_message(row, scanned: dict, pid: str, now: datetime) -> str:
+    """The focus message when a silent or caught-up campaign goes first."""
+    from scheduled.queue_silence_rows import callout_phrase
+    waiting = age_str(_wait_hours(_oldest_entry(scanned[pid]["entries"]), now))
+    quiet = callout_phrase(row)
+    lines = ["━━━━━━━━━━━━━━━━",
+             f"🎯 Post here next: {row.icon} {row.prefix}{row.label}",
+             f"⏳ {quiet[0].upper()}{quiet[1:]}, longer than the oldest reply "
+             f"owed anywhere ({waiting}).",
+             "Nobody is waiting on you there, so it needs you to get it moving."]
+    if row.link.strip():
+        lines.append(row.link.strip())
+    return "\n".join(lines)
+
+
 def build_focus_message(config: dict, scanned: dict, priority_map: dict,
-                        now: datetime) -> str:
-    """Build the focus message, or '' when there is nothing to point at."""
+                        now: datetime, state: dict | None = None) -> str:
+    """Build the focus message, or '' when there is nothing to point at.
+
+    Pass ``state`` so silent and caught-up campaigns can go first; without it
+    only unreplied messages compete, as before 2026-09-25.
+    """
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
         return ""
+    row = pick_idle_focus(config, state, scanned, priority_map, now)
+    if row:
+        return _idle_focus_message(row, scanned, pid, now)
 
     data = scanned[pid]
     entry = _oldest_entry(data["entries"])
