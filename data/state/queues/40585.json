@@ -18,12 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 181523,
+      "message_id": 181537,
       "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-27T14:00:42+00:00",
-      "preview": "\"I can't do anything about those runes, unless you want Little Dread over there to bash the door down.\"",
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-09-27T15:58:02+00:00",
+      "preview": "Daichi running towards the first table says:\n\"I can disarm these! If they don't kill me first!\"",
       "media_group_id": null
     }
   ],
@@ -1131,7 +1131,9 @@
     "msg:180302",
     "2026-09-18 14:18:36",
     "msg:180343",
-    "2026-09-19 00:21:32"
+    "2026-09-19 00:21:32",
+    "msg:181523",
+    "2026-09-27 14:00:42"
   ],
   "reply_log": [
     {
@@ -6324,6 +6326,15 @@
       "player": "Alastair",
       "preview": "\"Uh... hi,\" Zerius waves awkwardly with his sword hand. Little Dread, the 'bulet",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-27T15:55:15+00:00",
+      "pid": "40585",
+      "msg_id": "181523",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "\"I can't do anything about those runes, unless you want Little Dread over there ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6338,11 +6349,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-09-27 14:00:42",
+      "fingerprint": "2026-09-27 15:58:02",
       "msg_ids": [
-        181525
+        181544
       ],
-      "last_posted_at": "2026-09-27T14:16:12.457907+00:00",
+      "last_posted_at": "2026-09-27T18:38:34.588526+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
