@@ -261,16 +261,6 @@
       "last_post_time": "2026-09-18T04:56:55+00:00",
       "last_warned_week": 1
     },
-    "146645:6144366145": {
-      "user_id": "6144366145",
-      "first_name": "Anthony",
-      "last_name": "NegetZ",
-      "username": "MrNegetZ",
-      "campaign_name": "The Junction",
-      "pbp_topic_id": "146645",
-      "last_post_time": "2026-08-30T15:44:59+00:00",
-      "last_warned_week": 3
-    },
     "40585:6023408187": {
       "user_id": "6023408187",
       "first_name": "Caelum",
@@ -644,6 +634,12 @@
       "first_name": "Anthony",
       "username": "MrNegetZ",
       "campaign_name": "Grand Explorers"
+    },
+    "146645:6144366145": {
+      "removed_at": "2026-09-27T18:46:11.223724+00:00",
+      "first_name": "Anthony",
+      "username": "MrNegetZ",
+      "campaign_name": "The Junction"
     }
   },
   "player_registry": {
@@ -1869,6 +1865,14 @@
       "name": "Anthony",
       "username": "MrNegetZ",
       "at": "2026-09-23T20:20:43.480731+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "146645",
+      "user_id": "6144366145",
+      "name": "Anthony",
+      "username": "MrNegetZ",
+      "at": "2026-09-27T18:46:12.650189+00:00"
     }
   ],
   "player_boons": {
