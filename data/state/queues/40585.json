@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 181523,
+      "thread_id": 40585,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-27T14:00:42+00:00",
+      "preview": "\"I can't do anything about those runes, unless you want Little Dread over there to bash the door down.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6329,9 +6338,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-27 14:00:42",
+      "msg_ids": [
+        181525
+      ],
+      "last_posted_at": "2026-09-27T14:16:12.457907+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
