@@ -64,7 +64,9 @@ def _quiet_seats(pid: str, state: dict, active: list) -> list:
 def _campaign_block(pair: dict, config: dict, state: dict,
                     asof: datetime.datetime) -> list[str]:
     pid = str(pair["pbp_topic_ids"][0])
-    active = _active_players(pid, state, config)
+    # ⛔ Pass asof: without it the header counted "active" against the report's
+    # clock and each campaign against the real one (2026-09-28, tests aged out).
+    active = _active_players(pid, state, config, now=asof)
     target = pair.get("roster_target") or effective_target(config, state)
     code = pair.get("code", "")
     label = f"{code}: {pair.get('name', '')}" if code else pair.get("name", "")
