@@ -29,7 +29,8 @@ _ACTIVE_DAYS = 30
 RECRUIT_LADDER = (6, 8)
 
 
-def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
+def _active_players(pid: str, state: dict, config: dict,
+                    now: datetime | None = None) -> list[dict]:
     """Return players considered part of the campaign's active roster.
 
     Inclusion rules (in priority order):
@@ -56,7 +57,9 @@ def _active_players(pid: str, state: dict, config: dict) -> list[dict]:
     bypass as an over-counting bug. Recorded in REFACTOR_PROGRESS.md
     as L20 to prevent a repeat.
     """
-    cutoff = datetime.now(timezone.utc) - timedelta(days=_ACTIVE_DAYS)
+    # ``now`` defaults to the real clock. A caller building a report "as of"
+    # a moment passes that moment, so the whole report shares one clock.
+    cutoff = (now or datetime.now(timezone.utc)) - timedelta(days=_ACTIVE_DAYS)
     result = []
     for p in state.get("players", {}).values():
         if str(p.get("pbp_topic_id", "")) != pid:
