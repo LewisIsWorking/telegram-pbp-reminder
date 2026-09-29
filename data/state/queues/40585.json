@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 181537,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-09-27T15:58:02+00:00",
-      "preview": "Daichi running towards the first table says:\n\"I can disarm these! If they don't kill me first!\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1133,7 +1124,9 @@
     "msg:180343",
     "2026-09-19 00:21:32",
     "msg:181523",
-    "2026-09-27 14:00:42"
+    "2026-09-27 14:00:42",
+    "msg:181537",
+    "2026-09-27 15:58:02"
   ],
   "reply_log": [
     {
@@ -6335,6 +6328,15 @@
       "player": "Alastair",
       "preview": "\"I can't do anything about those runes, unless you want Little Dread over there ",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-29T03:11:28+00:00",
+      "pid": "40585",
+      "msg_id": "181537",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi running towards the first table says:\n\"I can disarm these! If they don't ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6349,13 +6351,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-09-27 15:58:02",
-      "msg_ids": [
-        181544
-      ],
-      "last_posted_at": "2026-09-27T18:38:34.588526+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181731,
+      "caught_up_at": "2026-09-29T03:13:20.058226+00:00"
     }
   }
 }
