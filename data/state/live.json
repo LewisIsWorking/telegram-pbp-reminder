@@ -1,5 +1,5 @@
 {
-  "offset": 619363173,
+  "offset": 619363208,
   "topics": {
     "52083": {
       "last_message_time": "2026-09-27T06:59:58+00:00",
@@ -8,7 +8,7 @@
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-09-22T23:47:21+00:00",
+      "last_message_time": "2026-09-29T04:58:22+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Riddleport"
@@ -26,9 +26,9 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-09-24T19:39:40+00:00",
-      "last_user": "Laetheron",
-      "last_user_id": "8117756377",
+      "last_message_time": "2026-09-29T05:05:32+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
@@ -88,7 +88,7 @@
     "107171": "2026-09-29T03:50:55.100617+00:00",
     "40585": "2026-09-29T03:50:55.100617+00:00",
     "76799": "2026-09-29T03:50:55.100617+00:00",
-    "107151": "2026-09-26T04:45:31.504403+00:00",
+    "107151": "2026-09-29T05:13:15.633938+00:00",
     "1242": "2026-07-06T04:16:24.180955+00:00",
     "146645": "2026-09-26T15:15:19.480982+00:00"
   },
@@ -181,8 +181,6 @@
   "dying_alerts_sent": {
     "1242": "active",
     "107151": "active",
-    "66154": "active",
-    "107171": "active",
     "76799": "active",
     "146645": "active"
   },
@@ -241,7 +239,7 @@
   },
   "last_state_backup": "2026-09-28T06:45:23.827669+00:00",
   "last_queue_daily": "2026-09-28",
-  "last_queue_fingerprint": "107171:2026-09-24 19:23:03|107171:2026-09-24 19:39:40|52083:2026-09-25 13:24:48|52083:2026-09-25 18:18:18|52083:2026-09-27 06:16:20|52083:2026-09-27 06:59:58|silent:66154",
+  "last_queue_fingerprint": "107171:2026-09-24 19:39:40|52083:2026-09-25 13:24:48|52083:2026-09-25 18:18:18|52083:2026-09-27 06:16:20|52083:2026-09-27 06:59:58",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -342,22 +340,22 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-09-28",
-  "last_queue_pin_id": 181769,
-  "queue_post_count": 1855,
+  "last_queue_pin_id": 181808,
+  "queue_post_count": 1856,
   "gm_queue_history": [
     {
       "msg_ids": [
-        181769,
-        181770
+        181808,
+        181809
       ],
-      "pin_id": 181769
+      "pin_id": 181808
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1855 - Unreplied: 6 | \u2705 1 today | \ud83c\udfc6 1918 all-time\nC09:2 C07:4\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 05:43 BST\n\u23ed Next check ~06:13 BST\n\u2501\u2501 \ud83e\udd16 C09: Metal City (2) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~1h)\n01 [181183] \ud83d\udfe8 4d 9h. Diabla \"Bella\" Alzarin: Bella looks a bit pale after the travel. The space-time-warping procedure has given her brain... \ud83d\udd17 https://t.me/Path_Wars/107171/181183\n02 [181189] \ud83d\udfe8 4d 9h. Laetheron: \"Hopefully. We may as well run a scan, but unless we were followed, we ought... \ud83d\udd17 https://t.me/Path_Wars/107171/181189\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (4) \u2501\u2501 @PathWars \u26a1Anthony (~22h)\n03 [181270] \ud83d\udfe1 3d 15h. Terra: \"What's the plan? The actual plan...we can't just go through the front now can we?\" \ud83d\udd17 https://t.me/Path_Wars/52083/181270\n04 [181297] \ud83d\udfe1 3d 10h. Anthony NegetZ: \"With my \u2605SUPER IDOL PRESENCE\u2605 we surely CAN!\" \ud83d\udd17 https://t.me/Path_Wars/52083/181297\n05 [181476] \ud83d\udfe2 1d 22h. Terra: Lai blinks slowly processing what the two said and looks back at the marble building... \ud83d\udd17 https://t.me/Path_Wars/52083/181476\n06 [181482] \ud83d\udfe2 1d 21h. Ryo Yamakawa: Rune frowns, nodding his head in agreement. Sitting down on a slightly cleaner part of... \ud83d\udd17 https://t.me/Path_Wars/52083/181482\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe7 \ud83d\udcb0 C00: Riddleport - no posts for 6d 4h \ud83d\udd17 https://t.me/Path_Wars/66154\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe1 \ud83d\udea6 C10: The Junction - last post 3d 8h ago \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83d\udfe1 \ud83d\udd0d C04: Magni Guard - last post 3d 8h ago \ud83d\udd17 https://t.me/Path_Wars/76799\n  \ud83c\udf31 \ud83e\udda0 C06: Kibwe - last post 1h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udd95 \ud83d\udd2d C05: Grand Explorers - last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83c\udd95 \ud83d\udcc6 C01: Doomsday Funtime - last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/25059",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Post here next: \ud83d\udfe7 \ud83d\udcb0 C00: Riddleport\n\u23f3 No posts for 6d 4h, longer than the oldest reply owed anywhere (4d 9h).\nNobody is waiting on you there, so it needs you to get it moving.\n\ud83d\udd17 https://t.me/Path_Wars/66154"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1856 - Unreplied: 5 | \u2705 2 today | \ud83c\udfc6 1919 all-time\nC09:1 C07:4\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 06:13 BST\n\u23ed Next check ~06:43 BST\n\u2501\u2501 \ud83e\udd16 C09: Metal City (1) \u2501\u2501 @PathWars \u26a1Diabla \"Bella\" Alzarin (~1h)\n01 [181189] \ud83d\udfe8 4d 9h. Laetheron: \"Hopefully. We may as well run a scan, but unless we were followed, we ought... \ud83d\udd17 https://t.me/Path_Wars/107171/181189\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (4) \u2501\u2501 @PathWars \u26a1Anthony (~22h)\n02 [181270] \ud83d\udfe1 3d 15h. Terra: \"What's the plan? The actual plan...we can't just go through the front now can we?\" \ud83d\udd17 https://t.me/Path_Wars/52083/181270\n03 [181297] \ud83d\udfe1 3d 10h. Anthony NegetZ: \"With my \u2605SUPER IDOL PRESENCE\u2605 we surely CAN!\" \ud83d\udd17 https://t.me/Path_Wars/52083/181297\n04 [181476] \ud83d\udfe2 1d 22h. Terra: Lai blinks slowly processing what the two said and looks back at the marble building... \ud83d\udd17 https://t.me/Path_Wars/52083/181476\n05 [181482] \ud83d\udfe2 1d 22h. Ryo Yamakawa: Rune frowns, nodding his head in agreement. Sitting down on a slightly cleaner part of... \ud83d\udd17 https://t.me/Path_Wars/52083/181482\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe1 \ud83d\udea6 C10: The Junction - last post 3d 9h ago \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83d\udfe1 \ud83d\udd0d C04: Magni Guard - last post 3d 9h ago \ud83d\udd17 https://t.me/Path_Wars/76799\n  \ud83c\udf31 \ud83e\udda0 C06: Kibwe - last post 2h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udf31 \ud83d\udd2d C05: Grand Explorers - last post 1h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83c\udf31 \ud83d\udcc6 C01: Doomsday Funtime - last post 1h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83c\udd95 \ud83d\udcb0 C00: Riddleport - last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/66154",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83e\udd16 C09: Metal City\n\u23f3 Oldest message waiting 4d 9h (1 unreplied in this campaign).\n\u2197 Laetheron: \"Hopefully. We may as well run a scan, but unless we were followed, we ought to have some...\n\ud83d\udd17 https://t.me/Path_Wars/107171/181189"
   ],
-  "queue_refire_chain": 0,
+  "queue_refire_chain": 1,
   "potw_week": {
     "25059": "2026-W40",
     "66154": "2026-W40",
@@ -371,10 +369,10 @@
   },
   "last_potw_roundup": "2026-W39",
   "last_potw_countdown": "2026-W38",
-  "schedule_post_msg_id": 1767,
+  "schedule_post_msg_id": 1768,
   "schedule_post_chat_id": -1004303231713,
   "last_pin_digest": "2026-09-28",
-  "last_pin_alert_ts": "2026-09-29T04:20:56.469159+00:00",
+  "last_pin_alert_ts": "2026-09-29T05:13:25.457171+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 181588,
   "last_recruit_focus": "2026-09-28T06:45:23.827669+00:00",
