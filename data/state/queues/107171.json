@@ -18,6 +18,15 @@
       "time": "2026-09-29T19:22:49+00:00",
       "preview": "\"Hm. . . Do we have to think about that? Can't we just go land already?\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 182008,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-09-29T20:28:10+00:00",
+      "preview": "\"Suppose that it's something that could wait until after we dock.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2517,11 +2526,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-24 19:39:40|2026-09-29 19:22:49",
+      "fingerprint": "2026-09-24 19:39:40|2026-09-29 19:22:49|2026-09-29 20:28:10",
       "msg_ids": [
-        182001
+        182010
       ],
-      "last_posted_at": "2026-09-29T19:37:08.366766+00:00",
+      "last_posted_at": "2026-09-29T20:43:26.001477+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-24T19:16:09.218642+00:00"
