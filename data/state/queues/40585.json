@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 181941,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-29T14:25:06+00:00",
-      "preview": "Actions:\n\nZerius: Tandem Movement 3x (90ft west for Zerius, 105ft west for Little Dread)",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1135,7 +1126,9 @@
     "msg:181523",
     "2026-09-27 14:00:42",
     "msg:181537",
-    "2026-09-27 15:58:02"
+    "2026-09-27 15:58:02",
+    "msg:181941",
+    "2026-09-29 14:25:06"
   ],
   "reply_log": [
     {
@@ -6346,20 +6339,27 @@
       "player": "Anthony",
       "preview": "Daichi running towards the first table says:\n\"I can disarm these! If they don't ",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-29T15:40:53+00:00",
+      "pid": "40585",
+      "msg_id": "181941",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Actions:\n\nZerius: Tandem Movement 3x (90ft west for Zerius, 105ft west for Littl",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-09-29 14:25:06",
-      "msg_ids": [
-        181951
-      ],
-      "last_posted_at": "2026-09-29T15:13:30.902445+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181968,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-29T15:43:25.133947+00:00"
     },
     "40585": {
       "fingerprint": "",
