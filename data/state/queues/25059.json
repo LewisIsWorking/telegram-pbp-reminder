@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 181824,
-      "thread_id": 25059,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-09-29T10:58:28+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -498,7 +488,9 @@
     "msg:180888",
     "2026-09-22 23:24:28",
     "msg:180892",
-    "2026-09-22 23:25:40"
+    "2026-09-22 23:25:40",
+    "msg:181824",
+    "2026-09-29 10:58:28"
   ],
   "reply_log": [
     {
@@ -2687,17 +2679,24 @@
       "player": "Horia",
       "preview": "we will delete them when we get an irl session",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-29T13:03:06+00:00",
+      "pid": "25059",
+      "msg_id": "181824",
+      "thread_id": 25059,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-09-29 10:58:28",
-      "msg_ids": [
-        181827
-      ],
-      "last_posted_at": "2026-09-29T11:13:24.465694+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181893,
+      "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   }
 }

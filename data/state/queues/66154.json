@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 181832,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-29T11:29:58+00:00",
-      "preview": "Rin is on the door, politely and apologetically checking every guest as they come in. He wears the ring. His shadow seems to be bored, having his arms crossed throughout as Rin is the picture of the most apologetic door-boy in existence.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -270,7 +260,9 @@
     "msg:180248",
     "2026-09-17 21:18:01",
     "msg:180268",
-    "2026-09-18 04:56:55"
+    "2026-09-18 04:56:55",
+    "msg:181832",
+    "2026-09-29 11:29:58"
   ],
   "reply_log": [
     {
@@ -1463,20 +1455,27 @@
       "player": "Alastair",
       "preview": "Shadow, doding the an thrown by Tater, with a grumble, slips back underneath Rin",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-29T13:04:01+00:00",
+      "pid": "66154",
+      "msg_id": "181832",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin is on the door, politely and apologetically checking every guest as they com",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-09-29 11:29:58",
-      "msg_ids": [
-        181834
-      ],
-      "last_posted_at": "2026-09-29T11:43:25.549904+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 181894,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   }
 }
