@@ -1,6 +1,25 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 181939,
+      "thread_id": 144765,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-29T14:20:14+00:00",
+      "preview": "Round 2 Actions for Steele:\n\n1/2: Strike Hard. Anyone can take it. (No reaction cost since I'm subsidising it)\n3: No action taken, end turn.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 181940,
+      "thread_id": 76799,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-09-29T14:21:09+00:00",
+      "preview": "Steele points her sword at the kobold. \"Shoot the bastard down!\" she commands.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2689,17 +2708,21 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-29 14:21:09",
+      "msg_ids": [
+        181949
+      ],
+      "last_posted_at": "2026-09-29T15:13:28.420885+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
     },
     "144765": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-09-29 14:20:14",
+      "msg_ids": [
+        181947
+      ],
+      "last_posted_at": "2026-09-29T15:13:25.907072+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
