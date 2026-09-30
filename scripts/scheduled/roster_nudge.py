@@ -12,23 +12,23 @@ _NUDGE_KEY = "last_roster_nudge"
 _SNAP_KEY = "last_roster_snapshot"
 
 
-def _roster_snapshot(config: dict, state: dict) -> str:
+def _roster_snapshot(config: dict, state: dict, now: datetime | None = None) -> str:
     """Build a compact string summarising current roster counts per campaign."""
     parts = []
     for pair in listed_pairs(config):
         pid = str(pair["pbp_topic_ids"][0])
-        count = len(_active_players(pid, state, config))
+        count = len(_active_players(pid, state, config, now=now))
         target = pair.get("roster_target", _TARGET)
         parts.append(f"{pair.get('code',pid)}:{count}/{target}")
     return "|".join(parts)
 
 
-def _needs_nudge(config: dict, state: dict) -> bool:
+def _needs_nudge(config: dict, state: dict, now: datetime | None = None) -> bool:
     """Return True if any campaign is below its target."""
     for pair in listed_pairs(config):
         pid = str(pair["pbp_topic_ids"][0])
         target = pair.get("roster_target", _TARGET)
-        if len(_active_players(pid, state, config)) < target:
+        if len(_active_players(pid, state, config, now=now)) < target:
             return True
     return False
 
@@ -41,11 +41,11 @@ def post_roster_nudge(config: dict, state: dict, *,
     """
     now = now or datetime.now(timezone.utc)
 
-    if not _needs_nudge(config, state):
-        state[_SNAP_KEY] = _roster_snapshot(config, state)
+    if not _needs_nudge(config, state, now):
+        state[_SNAP_KEY] = _roster_snapshot(config, state, now)
         return
 
-    snapshot = _roster_snapshot(config, state)
+    snapshot = _roster_snapshot(config, state, now)
     last_snap = state.get(_SNAP_KEY)
     roster_changed = snapshot != last_snap
 
@@ -68,6 +68,6 @@ def post_roster_nudge(config: dict, state: dict, *,
     if not group_id or not bot_topic:
         return  # pragma: no cover
 
-    tg.send_message(group_id, bot_topic, build_roster_overview(config, state))
+    tg.send_message(group_id, bot_topic, build_roster_overview(config, state, now))
     state[_NUDGE_KEY] = now.isoformat()
     print("Roster nudge posted")

@@ -38,10 +38,10 @@ def test_the_switch_reads_disabled_features():
 
 
 def test_the_roster_overview_and_nudge_leave_the_test_campaign_out():
-    assert "Tongs Testing" not in build_roster_overview(_config(), _state())
-    assert "C99" not in roster_nudge._roster_snapshot(_config(), _state())
+    assert "Tongs Testing" not in build_roster_overview(_config(), _state(), NOW)
+    assert "C99" not in roster_nudge._roster_snapshot(_config(), _state(), NOW)
     # The real campaign is at its target, and the empty test one no longer counts.
-    assert roster_nudge._needs_nudge(_config(), _state()) is False
+    assert roster_nudge._needs_nudge(_config(), _state(), NOW) is False
 
 
 def test_the_digest_leaderboard_and_community_roster_leave_it_out():
