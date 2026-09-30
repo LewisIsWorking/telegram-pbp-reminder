@@ -65,7 +65,7 @@ class TestTheSeatIsCountedThroughItsProxy:
         # ⭐⭐ The bug. Horia at 28.84d is outside the 30d window on his
         # own posting only just, and inside week 4 for removal.
         state = _state(_horia(played_by="MrNegetZ"), _anthony())
-        names = {p["first_name"] for p in _active_players(_PID, state, {})}
+        names = {p["first_name"] for p in _active_players(_PID, state, {}, now=_NOW)}
         assert names == {"Horia", "Anthony"}
 
     def test_the_effective_time_is_the_proxy_s(self):
@@ -96,7 +96,7 @@ class TestItIsARedirectionNotAnExemption:
         # For the proxy to drag him down, he has to be quiet too.
         state = _state(_horia(days=50, played_by="MrNegetZ"),
                        _anthony(days=40))
-        assert _active_players(_PID, state, {}) == []
+        assert _active_players(_PID, state, {}, now=_NOW) == []
 
     # ⭐ The other half of this rule (an ACTIVE seat must not be dragged
     # down by a quiet proxy) lives in
@@ -121,7 +121,7 @@ class TestABrokenPointerMustNotGrantImmortality:
 
     def test_a_seat_with_a_broken_proxy_still_ages_out(self):
         state = _state(_seat("Ghost", "Gone", 400, played_by="Nobody"))
-        assert _active_players(_PID, state, {}) == []
+        assert _active_players(_PID, state, {}, now=_NOW) == []
 
     def test_a_proxy_in_a_different_campaign_does_not_count(self):
         # ⚠️ Activity in another game is not evidence this character is
@@ -144,7 +144,7 @@ class TestABrokenPointerMustNotGrantImmortality:
         state = _state(a, b)
         assert effective_post_time(a, _PID, state).isoformat() == _ago(50)
         assert effective_post_time(b, _PID, state).isoformat() == _ago(50)
-        assert _active_players(_PID, state, {}) == []
+        assert _active_players(_PID, state, {}, now=_NOW) == []
 
 
 class TestTheRosterSaysWhy:
@@ -164,7 +164,7 @@ class TestTheRosterSaysWhy:
                 "pbp_topic_ids": [int(_PID)]}
         state = _state(_horia(played_by="MrNegetZ"), _anthony())
         state["player_history"] = []
-        text = build_roster_campaign(pair, {"group_id": -100}, state)
+        text = build_roster_campaign(pair, {"group_id": -100}, state, now=_NOW)
         assert "Horia" in text and "[played by @MrNegetZ]" in text
 
     def test_an_unresolved_proxy_says_it_is_not_covering_anything(self):
@@ -193,7 +193,7 @@ class TestPermanentIsUnchanged:
         # can-fail counterpart for the whole file: the older rule must
         # not have been disturbed by threading a new one through it.
         state = _state(_seat("Perm", "perm", 400, permanent=True))
-        assert len(_active_players(_PID, state, {})) == 1
+        assert len(_active_players(_PID, state, {}, now=_NOW)) == 1
 
     def test_the_window_is_still_thirty_days(self):
         assert _ACTIVE_DAYS == 30

@@ -26,13 +26,13 @@ def _find_pair(arg: str, config: dict) -> dict | None:
     return None
 
 
-def build_roster_overview(config: dict, state: dict) -> str:
+def build_roster_overview(config: dict, state: dict, now: datetime | None = None) -> str:
     rows = []
     for pair in listed_pairs(config):
         code = pair.get("code", "")
         name = pair.get("name", "")
         pid = str(pair["pbp_topic_ids"][0])
-        non_perm, perm = _split_active(_active_players(pid, state, config), config)
+        non_perm, perm = _split_active(_active_players(pid, state, config, now=now), config)
         target = pair.get("roster_target") or effective_target(config, state)
         rows.append((len(non_perm), len(perm), code, name, target))
     # Warnings first (non-perm vs target - perm players don't count
@@ -61,13 +61,14 @@ def build_roster_overview(config: dict, state: dict) -> str:
     return "\n".join(lines)
 
 
-def build_roster_campaign(pair: dict, config: dict, state: dict) -> str:
+def build_roster_campaign(pair: dict, config: dict, state: dict,
+                          now: datetime | None = None) -> str:
     code = pair.get("code", "")
     name = pair.get("name", "")
     pid = str(pair["pbp_topic_ids"][0])
     label = f"{code}: {name}" if code else name
 
-    players = _active_players(pid, state, config)
+    players = _active_players(pid, state, config, now=now)  # now=None: the real clock
     non_perm, perm = _split_active(players, config)
     target = pair.get("roster_target") or effective_target(config, state)
     combined = len(non_perm) + len(perm)
