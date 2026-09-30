@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 182008,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-09-29T20:28:10+00:00",
-      "preview": "\"Suppose that it's something that could wait until after we dock.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -457,7 +447,9 @@
     "msg:181189",
     "2026-09-24 19:39:40",
     "msg:181993",
-    "2026-09-29 19:22:49"
+    "2026-09-29 19:22:49",
+    "msg:182008",
+    "2026-09-29 20:28:10"
   ],
   "reply_log": [
     {
@@ -2524,20 +2516,27 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"Hm. . . Do we have to think about that? Can't we just go land already?\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-30T07:55:31+00:00",
+      "pid": "107171",
+      "msg_id": "182008",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Suppose that it's something that could wait until after we dock.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-29 20:28:10",
-      "msg_ids": [
-        182074
-      ],
-      "last_posted_at": "2026-09-30T07:51:14.109079+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182080,
       "pending_delete": [],
-      "caught_up_at": "2026-09-24T19:16:09.218642+00:00"
+      "caught_up_at": "2026-09-30T07:58:49.790029+00:00"
     },
     "142887": {
       "fingerprint": "",
