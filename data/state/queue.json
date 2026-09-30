@@ -1448,7 +1448,8 @@
       "2026-09-19T15:15:18.985305+00:00",
       "2026-09-19T22:30:16.715717+00:00",
       "2026-09-23T20:40:05.710028+00:00",
-      "2026-09-24T04:30:27.472153+00:00"
+      "2026-09-24T04:30:27.472153+00:00",
+      "2026-09-30T07:43:21.464345+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1960,13 +1961,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-08-27T06:06:20.956330+00:00",
-      "player": "Ryo",
-      "preview": "\"Tardy? How was I tardy when I was here the whole time? Some",
-      "msg_id": "175636"
-    },
     {
       "pid": "76799",
       "time": "2026-08-27T06:06:20.958928+00:00",
@@ -3359,6 +3353,13 @@
       "player": "Alastair",
       "preview": "Actions:\n\nZerius: Tandem Movement 3x (90ft west for Zerius, ",
       "msg_id": "181941"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-09-30T07:43:21.464345+00:00",
+      "player": "Alastair",
+      "preview": "Round 2 Actions for Steele:\n\n1/2: Strike Hard. Anyone can ta",
+      "msg_id": "181939"
     }
   ],
   "pending_potw_boons": {},
