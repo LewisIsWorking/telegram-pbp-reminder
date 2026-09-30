@@ -2,24 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 181189,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-09-24T19:39:40+00:00",
-      "preview": "\"Hopefully. We may as well run a scan, but unless we were followed, we ought to have some measure of safety here.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 181993,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-09-29T19:22:49+00:00",
-      "preview": "\"Hm. . . Do we have to think about that? Can't we just go land already?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 182008,
       "thread_id": 107171,
       "user_id": "8117756377",
@@ -471,7 +453,11 @@
     "msg:181058",
     "2026-09-23 21:40:53",
     "msg:181183",
-    "2026-09-24 19:23:03"
+    "2026-09-24 19:23:03",
+    "msg:181189",
+    "2026-09-24 19:39:40",
+    "msg:181993",
+    "2026-09-29 19:22:49"
   ],
   "reply_log": [
     {
@@ -2520,17 +2506,35 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "Bella looks a bit pale after the travel. The space-time-warping procedure has gi",
       "via": "reply"
+    },
+    {
+      "t": "2026-09-30T07:47:52+00:00",
+      "pid": "107171",
+      "msg_id": "181189",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Hopefully. We may as well run a scan, but unless we were followed, we ought to ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-09-30T07:48:01+00:00",
+      "pid": "107171",
+      "msg_id": "181993",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"Hm. . . Do we have to think about that? Can't we just go land already?\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-09-24 19:39:40|2026-09-29 19:22:49|2026-09-29 20:28:10",
+      "fingerprint": "2026-09-29 20:28:10",
       "msg_ids": [
-        182010
+        182074
       ],
-      "last_posted_at": "2026-09-29T20:43:26.001477+00:00",
+      "last_posted_at": "2026-09-30T07:51:14.109079+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-24T19:16:09.218642+00:00"
