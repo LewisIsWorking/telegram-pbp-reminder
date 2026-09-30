@@ -161,16 +161,6 @@
       "last_post_time": "2026-09-08T00:27:14+00:00",
       "last_warned_week": 3
     },
-    "25059:8880317264": {
-      "user_id": "8880317264",
-      "first_name": "PJ",
-      "last_name": "",
-      "username": "PiJ4God",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-09-02T18:34:36+00:00",
-      "last_warned_week": 3
-    },
     "76799:7454623139": {
       "user_id": "7454623139",
       "first_name": "Cannon",
@@ -219,7 +209,7 @@
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
       "last_post_time": "2026-09-23T18:42:47+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "76799:1358791105": {
       "user_id": "1358791105",
@@ -636,6 +626,12 @@
       "first_name": "Caelum",
       "username": "Thien_Ming",
       "campaign_name": "Kibwe"
+    },
+    "25059:8880317264": {
+      "removed_at": "2026-09-30T18:43:28.164457+00:00",
+      "first_name": "PJ",
+      "username": "PiJ4God",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -1877,6 +1873,14 @@
       "name": "Caelum",
       "username": "Thien_Ming",
       "at": "2026-09-29T17:43:26.602052+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "8880317264",
+      "name": "PJ",
+      "username": "PiJ4God",
+      "at": "2026-09-30T18:43:29.874037+00:00"
     }
   ],
   "player_boons": {
