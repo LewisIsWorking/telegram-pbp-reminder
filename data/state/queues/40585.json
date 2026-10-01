@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 182193,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-10-01T04:46:23+00:00",
-      "preview": "Retconned",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1137,7 +1128,9 @@
     "msg:181537",
     "2026-09-27 15:58:02",
     "msg:181941",
-    "2026-09-29 14:25:06"
+    "2026-09-29 14:25:06",
+    "msg:182193",
+    "2026-10-01 04:46:23"
   ],
   "reply_log": [
     {
@@ -6357,20 +6350,27 @@
       "player": "Alastair",
       "preview": "Actions:\n\nZerius: Tandem Movement 3x (90ft west for Zerius, 105ft west for Littl",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-01T04:53:10+00:00",
+      "pid": "40585",
+      "msg_id": "182193",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Retconned",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-10-01 04:46:23",
-      "msg_ids": [
-        182200
-      ],
-      "last_posted_at": "2026-10-01T04:51:01.864065+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182209,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-10-01T04:58:40.135207+00:00"
     },
     "40585": {
       "fingerprint": "",
