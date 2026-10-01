@@ -1798,7 +1798,11 @@
       "2026-09-16T19:15:20.258794+00:00",
       "2026-09-22T04:15:20.492611+00:00",
       "2026-09-22T23:57:53.276182+00:00",
-      "2026-09-25T18:25:05.584382+00:00"
+      "2026-09-25T18:25:05.584382+00:00",
+      "2026-10-01T11:43:15.761166+00:00",
+      "2026-10-01T11:43:15.765726+00:00",
+      "2026-10-01T11:43:15.768119+00:00",
+      "2026-10-01T11:43:15.770462+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -1966,34 +1970,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-08-30T17:18:10.795314+00:00",
-      "player": "Horia",
-      "preview": "Getting a session next week",
-      "msg_id": "176233"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-08-30T17:18:10.797806+00:00",
-      "player": "Terra",
-      "preview": "\"It's...made out of wood?\" Lai replies confused \"still don't",
-      "msg_id": "175703"
-    },
-    {
-      "pid": "146645",
-      "time": "2026-08-30T17:18:11.234975+00:00",
-      "player": "Anthony",
-      "preview": "No",
-      "msg_id": "176283"
-    },
-    {
-      "pid": "146645",
-      "time": "2026-08-30T17:40:43.549749+00:00",
-      "player": "Anthony",
-      "preview": "Don't",
-      "msg_id": "176285"
-    },
     {
       "pid": "146645",
       "time": "2026-08-30T17:40:43.553104+00:00",
@@ -3365,6 +3341,34 @@
       "player": "Alastair",
       "preview": "Retconned",
       "msg_id": "182193"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-10-01T11:43:15.761166+00:00",
+      "player": "Terra",
+      "preview": "\"What's the plan? The actual plan...we can't just go through",
+      "msg_id": "181270"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-10-01T11:43:15.765726+00:00",
+      "player": "Ryo",
+      "preview": "Rune frowns, nodding his head in agreement. Sitting down on ",
+      "msg_id": "181482"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-10-01T11:43:15.768119+00:00",
+      "player": "Anthony",
+      "preview": "\"With my \u2605SUPER IDOL PRESENCE\u2605  we surely CAN!\"",
+      "msg_id": "181297"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-10-01T11:43:15.770462+00:00",
+      "player": "Terra",
+      "preview": "Lai blinks slowly processing what the two said and looks bac",
+      "msg_id": "181476"
     }
   ],
   "pending_potw_boons": {},

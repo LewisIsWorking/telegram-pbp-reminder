@@ -1,43 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 181270,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-09-25T13:24:48+00:00",
-      "preview": "\"What's the plan? The actual plan...we can't just go through the front now can we?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 181297,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-09-25T18:18:18+00:00",
-      "preview": "\"With my \u2605SUPER IDOL PRESENCE\u2605  we surely CAN!\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 181476,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-09-27T06:16:20+00:00",
-      "preview": "Lai blinks slowly processing what the two said and looks back at the marble building \"Surely it won't be that easy?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 181482,
-      "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-09-27T06:59:58+00:00",
-      "preview": "Rune frowns, nodding his head in agreement. Sitting down on a slightly cleaner part of the concrete ledge he absent-mindedly pulls out a drumstick and starts twirling it between his fingers while trying to think on what they should do.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -479,7 +442,15 @@
     "msg:180377",
     "2026-09-19 14:09:30",
     "msg:181143",
-    "2026-09-24 12:43:19"
+    "2026-09-24 12:43:19",
+    "msg:181270",
+    "2026-09-25 13:24:48",
+    "msg:181482",
+    "2026-09-27 06:59:58",
+    "msg:181297",
+    "2026-09-25 18:18:18",
+    "msg:181476",
+    "2026-09-27 06:16:20"
   ],
   "reply_log": [
     {
@@ -2493,19 +2464,53 @@
       "player": "Terra",
       "preview": "Lai's head is on a swivel taking everything in",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-01T11:33:57+00:00",
+      "pid": "52083",
+      "msg_id": "181270",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"What's the plan? The actual plan...we can't just go through the front now can w",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-01T11:34:25+00:00",
+      "pid": "52083",
+      "msg_id": "181482",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "Rune frowns, nodding his head in agreement. Sitting down on a slightly cleaner p",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-01T11:34:54+00:00",
+      "pid": "52083",
+      "msg_id": "181297",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "\"With my \u2605SUPER IDOL PRESENCE\u2605  we surely CAN!\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-01T11:35:13+00:00",
+      "pid": "52083",
+      "msg_id": "181476",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai blinks slowly processing what the two said and looks back at the marble buil",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-09-25 13:24:48|2026-09-25 18:18:18|2026-09-27 06:16:20|2026-09-27 06:59:58",
-      "msg_ids": [
-        182090
-      ],
-      "last_posted_at": "2026-09-30T10:13:26.825470+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182260,
+      "caught_up_at": "2026-10-01T11:43:15.770880+00:00"
     },
     "145045": {
       "msg_ids": [],
