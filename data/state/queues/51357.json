@@ -1,16 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 182147,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-01T00:41:14+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -381,7 +371,9 @@
     "msg:179516",
     "2026-09-15 19:34:55",
     "msg:179592",
-    "2026-09-16 10:29:20"
+    "2026-09-16 10:29:20",
+    "msg:182147",
+    "2026-10-01 00:41:14"
   ],
   "reply_log": [
     {
@@ -2019,19 +2011,26 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-01T02:41:28+00:00",
+      "pid": "51357",
+      "msg_id": "182147",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-10-01 00:41:14",
-      "msg_ids": [
-        182151
-      ],
-      "last_posted_at": "2026-10-01T00:43:24.516104+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182164,
+      "caught_up_at": "2026-10-01T02:43:20.068606+00:00",
       "pending_delete": []
     },
     "145040": {
