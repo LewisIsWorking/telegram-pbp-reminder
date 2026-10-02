@@ -189,7 +189,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-09-10T23:47:01+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "107171:8701042661": {
       "user_id": "8701042661",
@@ -309,6 +309,16 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-10-01T00:41:14+00:00",
+      "last_warned_week": 0
+    },
+    "25059:8255519522": {
+      "user_id": "8255519522",
+      "first_name": "Theaitetos",
+      "last_name": "",
+      "username": "Theaitetus",
+      "campaign_name": "Doomsday Funtime",
+      "pbp_topic_id": "25059",
+      "last_post_time": "2026-10-02T00:29:53+00:00",
       "last_warned_week": 0
     }
   },
@@ -830,6 +840,11 @@
         "id": 9,
         "name": "PJ",
         "joined": "2026-08-03T07:56:42.553973+00:00"
+      },
+      "8255519522": {
+        "id": 10,
+        "name": "Theaitetos",
+        "joined": "2026-10-02T00:43:22.163561+00:00"
       }
     },
     "66154": {
@@ -1893,6 +1908,14 @@
       "name": "Anthony",
       "username": "MrNegetZ",
       "at": "2026-10-01T00:43:19.022681+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "25059",
+      "user_id": "8255519522",
+      "name": "Theaitetos",
+      "username": "Theaitetus",
+      "at": "2026-10-02T00:43:21.485764+00:00"
     }
   ],
   "player_boons": {

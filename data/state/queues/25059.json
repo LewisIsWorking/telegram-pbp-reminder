@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 182346,
+      "thread_id": 25059,
+      "user_id": "8255519522",
+      "user_name": "Theaitetos",
+      "time": "2026-10-02T00:29:53+00:00",
+      "preview": "Melody: \"This is exciting, a real adventure!\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2714,10 +2724,12 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 182340,
+      "fingerprint": "2026-10-02 00:29:53",
+      "msg_ids": [
+        182350
+      ],
+      "last_posted_at": "2026-10-02T00:43:25.139940+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-10-01T22:21:08.753485+00:00"
     }
   }
