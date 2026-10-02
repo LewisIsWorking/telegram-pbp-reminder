@@ -25,6 +25,15 @@
       "time": "2026-10-02T08:08:39+00:00",
       "preview": "A1-3: Stride a total of 90 feet",
       "media_group_id": null
+    },
+    {
+      "message_id": 182416,
+      "thread_id": 40585,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-10-02T14:54:11+00:00",
+      "preview": ".",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6384,9 +6393,11 @@
       "caught_up_at": "2026-10-01T04:58:40.135207+00:00"
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-10-02 14:54:11",
+      "msg_ids": [
+        182418
+      ],
+      "last_posted_at": "2026-10-02T15:13:30.746802+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
