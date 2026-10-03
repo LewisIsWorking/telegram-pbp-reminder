@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 182373,
-      "thread_id": 137075,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-10-02T08:08:39+00:00",
-      "preview": "A1-3: Stride a total of 90 feet",
-      "media_group_id": null
-    },
-    {
       "message_id": 182416,
       "thread_id": 40585,
       "user_id": "7130942567",
@@ -1148,7 +1139,9 @@
     "msg:181941",
     "2026-09-29 14:25:06",
     "msg:182193",
-    "2026-10-01 04:46:23"
+    "2026-10-01 04:46:23",
+    "msg:182373",
+    "2026-10-02 08:08:39"
   ],
   "reply_log": [
     {
@@ -6377,20 +6370,27 @@
       "player": "Alastair",
       "preview": "Retconned",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-03T03:05:25+00:00",
+      "pid": "40585",
+      "msg_id": "182373",
+      "thread_id": 137075,
+      "player": "Ryo",
+      "preview": "A1-3: Stride a total of 90 feet",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-10-02 08:08:39",
-      "msg_ids": [
-        182380
-      ],
-      "last_posted_at": "2026-10-02T08:13:29.146759+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182458,
       "pending_delete": [],
-      "caught_up_at": "2026-10-01T04:58:40.135207+00:00"
+      "caught_up_at": "2026-10-03T03:13:17.729380+00:00"
     },
     "40585": {
       "fingerprint": "2026-10-02 14:54:11",
