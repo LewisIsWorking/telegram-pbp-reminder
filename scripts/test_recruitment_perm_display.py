@@ -34,8 +34,19 @@ def _add_player(state, uid, name, permanent=False):
 
 def _recruit_msgs():
     return [m for m in _sent_messages
-            if "needs" in m.get("text", "")
-            and "more player" in m.get("text", "")]
+            if "This table has room" in m.get("text", "")]
+
+
+import pytest
+import scheduled.recruit_focus as recruit_focus
+
+
+@pytest.fixture(autouse=True)
+def _no_focus_advert(monkeypatch):
+    """These tests cover the per-campaign notice, so the single test campaign
+    must not be the one the daily recruit-focus advert already covers (that
+    case stands down, and has its own test below)."""
+    monkeypatch.setattr(recruit_focus, "pick_recruit_pair", lambda config, state: None)
 
 
 def test_recruitment_alert_shows_perm_suffix_when_perm_present():
@@ -51,9 +62,8 @@ def test_recruitment_alert_shows_perm_suffix_when_perm_present():
     msgs = _recruit_msgs()
     assert len(msgs) == 1, f"Expected one alert, got {len(msgs)}"
     text = msgs[0]["text"]
-    assert "needs 1 more player!" in text, text
-    assert "Current roster (5/6 +1 perm):" in text, text
-    assert "[perm]" in text
+    assert "1 seat open (5/6 players +1 perm)." in text, text
+    assert "@permy" in text, text
 
 
 def test_recruitment_alert_omits_suffix_when_no_perms():
@@ -67,10 +77,8 @@ def test_recruitment_alert_omits_suffix_when_no_perms():
     msgs = _recruit_msgs()
     assert len(msgs) == 1
     text = msgs[0]["text"]
-    assert "Current roster (4/6):" in text, text
-    assert "+0 perm" not in text
-    assert "[perm]" not in text
-    assert "needs 2 more players!" in text
+    assert "2 seats open (4/6 players)." in text, text
+    assert "perm" not in text
 
 
 def test_recruitment_alert_skipped_when_non_perm_at_target():
@@ -100,5 +108,34 @@ def test_recruitment_alert_fires_when_perms_pad_to_old_target():
     msgs = _recruit_msgs()
     assert len(msgs) == 1
     text = msgs[0]["text"]
-    assert "needs 3 more players!" in text, text
-    assert "Current roster (3/6 +3 perm):" in text, text
+    assert "3 seats open (3/6 players +3 perm)." in text, text
+
+
+def test_notice_stands_down_for_the_campaign_the_focus_advert_covers(monkeypatch):
+    """Lewis, 2026-10-03: "We have 2 different posts doing the same chat,
+    the top post is better." The campaign the daily recruit-focus advert
+    already names gets no second notice."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    _add_player(state, "1", "Solo", permanent=False)
+    pair = config["topic_pairs"][0]
+    monkeypatch.setattr(recruit_focus, "pick_recruit_pair", lambda c, s: pair)
+    checker.check_recruitment_needs(config, state, now=datetime.now(timezone.utc))
+    assert _sent_messages == []
+
+
+def test_notice_uses_the_focus_advert_layout():
+    """Same separator, header, seat line and players line as the advert."""
+    _reset()
+    config = _make_config()
+    state = _make_state()
+    _add_player(state, "1", "Solo", permanent=False)
+    checker.check_recruitment_needs(config, state, now=datetime.now(timezone.utc))
+    text = _recruit_msgs()[0]["text"]
+    lines = text.split("\n")
+    assert lines[0] == "━" * 16, lines
+    assert lines[1].startswith("🧭 This table has room: "), lines
+    assert lines[2] == "⏳ 5 seats open (1/6 players).", lines
+    assert lines[3] == "👥 Current players: @solo", lines
+    assert "📢" not in text and "needs" not in text

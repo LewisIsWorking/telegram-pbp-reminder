@@ -150,7 +150,9 @@ def test_check_anniversaries_wrong_day():
     checker.check_anniversaries(config, state, now=now)
     assert len(_sent_messages) == 0
 
-def test_check_recruitment_fires_when_short():
+def test_check_recruitment_fires_when_short(monkeypatch):
+    import scheduled.recruit_focus as recruit_focus
+    monkeypatch.setattr(recruit_focus, "pick_recruit_pair", lambda c, s: None)
     _reset()
     now = datetime.now(timezone.utc)
     config = _make_config()
@@ -165,9 +167,9 @@ def test_check_recruitment_fires_when_short():
     }
 
     checker.check_recruitment_needs(config, state, now=now)
-    recruit_msgs = [m for m in _sent_messages if "needs" in m.get("text", "") and "more player" in m.get("text", "")]
+    recruit_msgs = [m for m in _sent_messages if "This table has room" in m.get("text", "")]
     assert len(recruit_msgs) == 1
-    assert "5 more players" in recruit_msgs[0]["text"]
+    assert "5 seats open" in recruit_msgs[0]["text"]
 
 def test_check_recruitment_skips_full_roster():
     _reset()
@@ -185,5 +187,5 @@ def test_check_recruitment_skips_full_roster():
         }
 
     checker.check_recruitment_needs(config, state, now=now)
-    recruit_msgs = [m for m in _sent_messages if "needs" in m.get("text", "") and "more player" in m.get("text", "")]
+    recruit_msgs = [m for m in _sent_messages if "This table has room" in m.get("text", "")]
     assert len(recruit_msgs) == 0

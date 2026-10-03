@@ -10,6 +10,7 @@ from helpers import (
 import telegram as tg
 from players.permanence import is_permanent
 from helpers_pkg.groups import group_id_for_campaign
+from scheduled.recruit_notice import pair_for, recruit_notice_text
 
 
 def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = None, maps=None) -> None:
@@ -43,6 +44,9 @@ def archive_weekly_data(config: dict, state: dict, *, now: datetime | None = Non
 
     maps = build_topic_maps(config)
     all_campaigns = helpers.players_by_campaign(state)
+    from scheduled.recruit_focus import pick_recruit_pair
+    focus = pick_recruit_pair(config, state)
+    focus_pid = str(focus["pbp_topic_ids"][0]) if focus else None
 
     for pid, name in maps.to_name.items():
         topic_timestamps = helpers.get_topic_timestamps(state, pid)
@@ -135,6 +139,9 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
 
     maps = maps or build_topic_maps(config)
     all_campaigns = helpers.players_by_campaign(state)
+    from scheduled.recruit_focus import pick_recruit_pair
+    focus = pick_recruit_pair(config, state)
+    focus_pid = str(focus["pbp_topic_ids"][0]) if focus else None
 
     for pid, chat_topic_id in maps.to_chat.items():
         name = maps.to_name[pid]
@@ -170,29 +177,16 @@ def check_recruitment_needs(config: dict, state: dict, *, now: datetime | None =
             state["last_recruitment_check"][pid] = now.isoformat()
             continue
 
-        # Build roster display. Format: "Current roster (X/Y +Z perm):"
-        # with non-perm count vs target, perm count as informational
-        # suffix. Each listed player gets a "[perm]" tag if applicable
-        # so the GM can see at a glance which slots are perm.
-        if non_gm:
-            roster_lines = "\n".join(
-                f"- {helpers.player_mention(p)}"
-                + (" [perm]" if is_permanent(p, config) else "")
-                for p in non_gm
-            )
-            perm_suffix = f" +{perm_count} perm" if perm_count else ""
-            roster_section = (
-                f"Current roster ({non_perm_count}/{target}{perm_suffix}):"
-                f"\n{roster_lines}"
-            )
-        else:
-            roster_section = f"Current roster: 0/{target} (no active players)"
-
-        message = (
-            f"📢 {name} needs {needed} more player{'s' if needed != 1 else ''}!\n\n"
-            f"{roster_section}\n\n"
-            f"Know anyone who'd like to join? Send them to the recruitment topic!"
-        )
+        # ⛔ One advert per table (Lewis, 2026-10-03: "We have 2 different
+        # posts doing the same chat, the top post is better"). The daily
+        # recruit-focus advert already covers the neediest campaign, so this
+        # notice stands down for it, and everywhere else it uses the same
+        # layout as that advert.
+        pair = pair_for(config, pid)
+        if focus_pid == str(pid):
+            continue
+        message = recruit_notice_text(pair or {"name": name}, config, non_gm,
+                                      needed, non_perm_count, perm_count, target)
 
         print(f"Recruitment notice for {name}: {non_perm_count}/{target}" + (f" +{perm_count} perm" if perm_count else ""))
         if tg.send_message(group_id_for_campaign(config, str(pid)), chat_topic_id, message):
