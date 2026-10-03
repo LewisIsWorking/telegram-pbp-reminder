@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 181940,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-09-29T14:21:09+00:00",
-      "preview": "Steele points her sword at the kobold. \"Shoot the bastard down!\" she commands.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -492,7 +482,9 @@
     "msg:181022",
     "2026-09-23 18:42:47",
     "msg:181939",
-    "2026-09-29 14:20:14"
+    "2026-09-29 14:20:14",
+    "msg:181940",
+    "2026-09-29 14:21:09"
   ],
   "reply_log": [
     {
@@ -2704,20 +2696,27 @@
       "player": "Alastair",
       "preview": "Round 2 Actions for Steele:\n\n1/2: Strike Hard. Anyone can take it. (No reaction ",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-03T17:08:05+00:00",
+      "pid": "76799",
+      "msg_id": "181940",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "Steele points her sword at the kobold. \"Shoot the bastard down!\" she commands.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-09-29 14:21:09",
-      "msg_ids": [
-        182425
-      ],
-      "last_posted_at": "2026-10-02T16:13:30.009344+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182542,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-10-03T17:13:22.791515+00:00"
     },
     "144765": {
       "fingerprint": "",
