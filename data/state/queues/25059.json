@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 182346,
-      "thread_id": 25059,
-      "user_id": "8255519522",
-      "user_name": "Theaitetos",
-      "time": "2026-10-02T00:29:53+00:00",
-      "preview": "Melody: \"This is exciting, a real adventure!\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -504,7 +494,9 @@
     "msg:182321",
     "2026-10-01 22:03:33",
     "msg:182322",
-    "2026-10-01 22:03:49"
+    "2026-10-01 22:03:49",
+    "msg:182346",
+    "2026-10-02 00:29:53"
   ],
   "reply_log": [
     {
@@ -2720,17 +2712,24 @@
       "player": "Horia",
       "preview": ".",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-03T05:41:25+00:00",
+      "pid": "25059",
+      "msg_id": "182346",
+      "thread_id": 25059,
+      "player": "Theaitetos",
+      "preview": "Melody: \"This is exciting, a real adventure!\"",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-10-02 00:29:53",
-      "msg_ids": [
-        182350
-      ],
-      "last_posted_at": "2026-10-02T00:43:25.139940+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-10-01T22:21:08.753485+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 182480,
+      "caught_up_at": "2026-10-03T05:43:16.270679+00:00"
     }
   }
 }
