@@ -300,6 +300,16 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-10-02T00:29:53+00:00",
       "last_warned_week": 0
+    },
+    "25059:6482311444": {
+      "user_id": "6482311444",
+      "first_name": "Moss",
+      "last_name": "",
+      "username": "Mossssssssssssssssssssssssss",
+      "campaign_name": "Doomsday Funtime",
+      "pbp_topic_id": "25059",
+      "last_post_time": "2026-10-04T01:09:45+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -500,12 +510,6 @@
       "first_name": "Ryo",
       "username": "RyoYamakawa",
       "campaign_name": "Riddleport"
-    },
-    "25059:6482311444": {
-      "removed_at": "2026-08-25T08:40:09.325178+00:00",
-      "first_name": "Moss",
-      "username": "Mossssssssssssssssssssssssss",
-      "campaign_name": "Doomsday Funtime"
     },
     "25059:138025700": {
       "removed_at": "2026-08-25T08:40:09.325178+00:00",
@@ -837,6 +841,11 @@
         "id": 10,
         "name": "Theaitetos",
         "joined": "2026-10-02T00:43:22.163561+00:00"
+      },
+      "6482311444": {
+        "id": 11,
+        "name": "Moss",
+        "joined": "2026-10-04T01:13:19.117010+00:00"
       }
     },
     "66154": {
@@ -1924,6 +1933,14 @@
       "name": "Dalaxiss",
       "username": "Dalaxiss",
       "at": "2026-10-03T08:43:18.439677+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "25059",
+      "user_id": "6482311444",
+      "name": "Moss",
+      "username": "Mossssssssssssssssssssssssss",
+      "at": "2026-10-04T01:13:17.999582+00:00"
     }
   ],
   "player_boons": {
