@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 182740,
-      "thread_id": 22566,
-      "user_id": "6482311444",
-      "user_name": "Moss",
-      "time": "2026-10-04T01:09:45+00:00",
-      "preview": "We fight the zombies!",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -506,7 +496,9 @@
     "msg:182322",
     "2026-10-01 22:03:49",
     "msg:182346",
-    "2026-10-02 00:29:53"
+    "2026-10-02 00:29:53",
+    "msg:182740",
+    "2026-10-04 01:09:45"
   ],
   "reply_log": [
     {
@@ -2731,6 +2723,15 @@
       "player": "Theaitetos",
       "preview": "Melody: \"This is exciting, a real adventure!\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-04T01:38:43+00:00",
+      "pid": "25059",
+      "msg_id": "182740",
+      "thread_id": 22566,
+      "player": "Moss",
+      "preview": "We fight the zombies!",
+      "via": "reply"
     }
   ],
   "topic_queues": {
@@ -2742,11 +2743,11 @@
       "caught_up_at": "2026-10-03T05:43:16.270679+00:00"
     },
     "22566": {
-      "msg_ids": [
-        182747
-      ],
-      "fingerprint": "2026-10-04 01:09:45",
-      "last_posted_at": "2026-10-04T01:13:26.354340+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 182757,
+      "caught_up_at": "2026-10-04T01:43:22.262280+00:00"
     }
   }
 }
