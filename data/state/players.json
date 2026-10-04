@@ -101,16 +101,6 @@
       "last_post_time": "2026-09-29T15:45:15+00:00",
       "last_warned_week": 0
     },
-    "51357:7454623139": {
-      "user_id": "7454623139",
-      "first_name": "Cannon",
-      "last_name": "McMahon",
-      "username": "ArtyArtillery",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-09-06T20:09:25+00:00",
-      "last_warned_week": 3
-    },
     "40585:7130942567": {
       "user_id": "7130942567",
       "first_name": "Buffet",
@@ -642,6 +632,12 @@
       "first_name": "Dalaxiss",
       "username": "Dalaxiss",
       "campaign_name": "Doomsday Funtime"
+    },
+    "51357:7454623139": {
+      "removed_at": "2026-10-04T20:13:16.998371+00:00",
+      "first_name": "Cannon",
+      "username": "ArtyArtillery",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -1941,6 +1937,14 @@
       "name": "Moss",
       "username": "Mossssssssssssssssssssssssss",
       "at": "2026-10-04T01:13:17.999582+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "7454623139",
+      "name": "Cannon",
+      "username": "ArtyArtillery",
+      "at": "2026-10-04T20:13:17.625230+00:00"
     }
   ],
   "player_boons": {
