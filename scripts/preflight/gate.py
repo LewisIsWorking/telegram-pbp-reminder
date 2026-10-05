@@ -49,6 +49,8 @@ from preflight.run_history import (RUNS_TO_INSPECT,  # noqa: F401,E402
 from preflight.prior_runs import (broken_hours,  # noqa: E402
                                   consecutive_failures, explain, halt_reasons,
                                   should_alert)
+from preflight.state_jobs import (judged_conclusions,  # noqa: E402
+                                  make_fetch_jobs)
 
 
 def publish_halt(halt: bool) -> None:
@@ -109,7 +111,10 @@ def main() -> int:
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     token = os.environ.get("GITHUB_TOKEN", "")
     runs = fetch_runs(repo, token) if repo and token else None
-    conclusions = None if runs is None else [r.get("conclusion") for r in runs]
+    # Judged by the state-pushing jobs, so a test job GitHub never picked
+    # up does not count as lost state (2026-10-05, preflight/state_jobs).
+    conclusions = None if runs is None else judged_conclusions(
+        runs, make_fetch_jobs(repo, token))
     if conclusions is None:
         # Not evidence of health, so it cannot clear the heartbeat's verdict.
         # It simply contributes nothing.

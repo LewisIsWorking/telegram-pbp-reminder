@@ -114,6 +114,9 @@ class TestMain:
         # Bot is Dead" topic from CI, twice, before anyone noticed.
         self.debugs = []
         monkeypatch.setattr(gate, "notify_debug", self.debugs.append)
+        # No real jobs lookups: unread jobs leave each run's conclusion as is.
+        monkeypatch.setattr(gate, "make_fetch_jobs",
+                            lambda repo, token: lambda run_id: None)
 
     def _run_with(self, conclusions, monkeypatch):
         """Drive main() from a list of conclusions, newest first.
