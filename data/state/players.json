@@ -300,6 +300,16 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-10-04T01:09:45+00:00",
       "last_warned_week": 0
+    },
+    "66154:8836746655": {
+      "user_id": "8836746655",
+      "first_name": "aSly",
+      "last_name": "Cow",
+      "username": "aslycow",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-10-05T12:22:13+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -904,6 +914,11 @@
         "id": 11,
         "name": "Alastair Tan",
         "joined": "2026-08-30T17:18:10.379510+00:00"
+      },
+      "8836746655": {
+        "id": 12,
+        "name": "aSly",
+        "joined": "2026-10-05T12:43:20.551774+00:00"
       }
     },
     "76799": {
@@ -1945,6 +1960,14 @@
       "name": "Cannon",
       "username": "ArtyArtillery",
       "at": "2026-10-04T20:13:17.625230+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "8836746655",
+      "name": "aSly",
+      "username": "aslycow",
+      "at": "2026-10-05T12:43:19.763835+00:00"
     }
   ],
   "player_boons": {
