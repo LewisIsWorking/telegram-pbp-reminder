@@ -11,12 +11,12 @@
       "media_group_id": null
     },
     {
-      "message_id": 182197,
+      "message_id": 183020,
       "thread_id": 66154,
       "user_id": "1358791105",
       "user_name": "Alastair",
-      "time": "2026-10-01T04:49:46+00:00",
-      "preview": "Rin has to tiptoe to whisper into Davy's ears. \"Umm... see anything weird?\" He tries to avoid eye contact, considering how weird his eyes are.",
+      "time": "2026-10-05T02:36:26+00:00",
+      "preview": "The shadow flips the bird at Davy. Rin shakes his head vigorously and nervously. \n\n\"Shadows move all the time, right?! I mean, it's what happens when someone's blocking light, so if the guy moves, the shadow does so, right?\n\nHe also raises his little leg to stamp on the ground just the once. \"Knock it off,\" he hisses under his breath.",
       "media_group_id": null
     }
   ],
@@ -281,7 +281,9 @@
     "msg:180268",
     "2026-09-18 04:56:55",
     "msg:181832",
-    "2026-09-29 11:29:58"
+    "2026-09-29 11:29:58",
+    "msg:182197",
+    "2026-10-01 04:49:46"
   ],
   "reply_log": [
     {
@@ -1483,17 +1485,26 @@
       "player": "Alastair",
       "preview": "Rin is on the door, politely and apologetically checking every guest as they com",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-05T02:30:17+00:00",
+      "pid": "66154",
+      "msg_id": "182197",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin has to tiptoe to whisper into Davy's ears. \"Umm... see anything weird?\" He t",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-09-29 15:45:15|2026-10-01 04:49:46",
+      "fingerprint": "2026-09-29 15:45:15|2026-10-05 02:36:26",
       "msg_ids": [
-        182791
+        183022
       ],
-      "last_posted_at": "2026-10-04T05:43:21.085658+00:00",
+      "last_posted_at": "2026-10-05T02:43:22.500315+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
