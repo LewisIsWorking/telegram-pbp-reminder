@@ -300,6 +300,16 @@
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-05T12:22:13+00:00",
       "last_warned_week": 0
+    },
+    "66154:138025700": {
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "last_name": "Yamakawa",
+      "username": "RyoYamakawa",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-10-06T04:20:05+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -493,12 +503,6 @@
       "removed_at": "2026-08-05T17:47:58.130043+00:00",
       "first_name": "Bre",
       "username": "BreIrish",
-      "campaign_name": "Riddleport"
-    },
-    "66154:138025700": {
-      "removed_at": "2026-08-25T08:40:09.325178+00:00",
-      "first_name": "Ryo",
-      "username": "RyoYamakawa",
       "campaign_name": "Riddleport"
     },
     "25059:138025700": {
@@ -863,7 +867,7 @@
       },
       "138025700": {
         "id": 3,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-03-27T17:19:51.259920+00:00"
       },
       "7961602816": {
@@ -1972,6 +1976,14 @@
       "name": "Laetheron",
       "username": "StorybookRhizome",
       "at": "2026-10-06T00:43:25.412663+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-10-06T04:43:16.916588+00:00"
     }
   ],
   "player_boons": {
