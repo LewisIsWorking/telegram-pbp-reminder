@@ -21,7 +21,8 @@ def fetch_updates(api_base: str, offset: int) -> list:
                 "limit": PAGE_LIMIT,
                 "timeout": 5,
                 "allowed_updates": json.dumps(
-                    ["message", "callback_query", "message_reaction",
+                    ["message", "edited_message", "callback_query",
+                     "message_reaction",
                      "poll_answer", "poll"]
                 ),
             },

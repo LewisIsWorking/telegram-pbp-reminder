@@ -91,6 +91,17 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 process_hero_campaign_callback(cb, config, state)
                 continue
 
+            # An edit only rewrites the transcript entry (2026-10-06): it is
+            # not a new post, so nothing else below may see it.
+            edited = update.get("edited_message")
+            if edited:
+                parsed_edit = parse_message(edited, maps)
+                if parsed_edit:
+                    from transcript.edits import apply_edit
+                    apply_edit(parsed_edit, helpers.gm_ids_for_campaign(
+                        config, parsed_edit["pid"]), config)
+                continue
+
             if update.get("message_reaction"):
                 from commands.reactions import process_reaction
                 process_reaction(update, config, state, maps)
