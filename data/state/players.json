@@ -310,6 +310,16 @@
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-06T04:20:05+00:00",
       "last_warned_week": 0
+    },
+    "66154:8994358370": {
+      "user_id": "8994358370",
+      "first_name": "Peter",
+      "last_name": "",
+      "username": "Amazing316",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-10-06T10:19:58+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -919,6 +929,11 @@
         "id": 12,
         "name": "aSly",
         "joined": "2026-10-05T12:43:20.551774+00:00"
+      },
+      "8994358370": {
+        "id": 13,
+        "name": "Peter",
+        "joined": "2026-10-06T10:43:21.163996+00:00"
       }
     },
     "76799": {
@@ -1984,6 +1999,14 @@
       "name": "Ryo",
       "username": "RyoYamakawa",
       "at": "2026-10-06T04:43:16.916588+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "8994358370",
+      "name": "Peter",
+      "username": "Amazing316",
+      "at": "2026-10-06T10:43:20.418851+00:00"
     }
   ],
   "player_boons": {
