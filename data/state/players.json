@@ -320,6 +320,16 @@
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-06T10:19:58+00:00",
       "last_warned_week": 0
+    },
+    "66154:7437909735": {
+      "user_id": "7437909735",
+      "first_name": "Loren",
+      "last_name": "",
+      "username": "Caecgirl",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-10-06T18:20:14+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -934,6 +944,11 @@
         "id": 13,
         "name": "Peter",
         "joined": "2026-10-06T10:43:21.163996+00:00"
+      },
+      "7437909735": {
+        "id": 14,
+        "name": "Loren",
+        "joined": "2026-10-06T18:43:24.854516+00:00"
       }
     },
     "76799": {
@@ -2007,6 +2022,14 @@
       "name": "Peter",
       "username": "Amazing316",
       "at": "2026-10-06T10:43:20.418851+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "7437909735",
+      "name": "Loren",
+      "username": "Caecgirl",
+      "at": "2026-10-06T18:43:23.797110+00:00"
     }
   ],
   "player_boons": {
