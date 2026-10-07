@@ -51,13 +51,12 @@ import sys
 import time
 from pathlib import Path
 
-import requests
-
 _SCRIPTS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
 from posting.message_facts import BOT, describe, one_line  # noqa: E402
+from posting.message_probe import message_exists  # noqa: E402
 
 GROUP_ID = -1001661053273  # Path Wars group
 _AUDIT = Path(_SCRIPTS_DIR).parent / "data" / "state" / "pin_audit_log.json"
@@ -90,25 +89,12 @@ def claimed_deleted(rows, since: str | None) -> list[tuple[int, str]]:
 
 
 def still_exists(api: str, message_id: int) -> bool | None:
-    """True if the message is still in the group, None if undeterminable."""
-    try:
-        r = requests.post(f"{api}/setMessageReaction",
-                          json={"chat_id": GROUP_ID,
-                                "message_id": message_id,
-                                "reaction": []}, timeout=20).json()
-    except requests.RequestException as e:
-        print(f"  {message_id}: network error, skipped ({e})")
-        return None
-    if r.get("ok"):
-        return True
-    description = r.get("description", "")
-    if "not found" in description:
-        return False
-    if "FLOOD" in description.upper() or "Too Many" in description:
-        print(f"  {message_id}: rate limited, skipped ({description})")
-        return None
-    # Any other error still proves Telegram found the message.
-    return True
+    """True if the message is still in the group, None if undeterminable.
+
+    The probe itself lives in ``posting.message_probe`` so the GM queue
+    can ask the same question about deleted player posts.
+    """
+    return message_exists(api, GROUP_ID, message_id)
 
 
 def main() -> int:
