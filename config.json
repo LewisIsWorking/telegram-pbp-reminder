@@ -91,7 +91,8 @@
         137075
       ],
       "code": "C06",
-      "queue_priority": 2,
+      "queue_priority": 0,
+      "queue_always_first": true,
       "emoji": "\ud83e\udda0"
     },
     {

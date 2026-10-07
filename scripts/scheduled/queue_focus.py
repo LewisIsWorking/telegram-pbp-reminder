@@ -13,6 +13,9 @@ Selection rule:
   3. Otherwise a silent or caught-up campaign (nothing unreplied) goes first
      when it has gone longer without a post than the oldest message has been
      waiting (2026-09-25). See ``pick_idle_focus``.
+  0. Before all of these, a campaign flagged ``queue_always_first`` that has
+     gone quiet is the focus whatever else is waiting (2026-10-07). See
+     ``scheduled/queue_always_first.py``.
 
 The message is appended to the queue's own message batch, so it is deleted
 along with that batch on the next post (``MAX_KEPT_BATCHES = 1``). That
@@ -24,6 +27,7 @@ from datetime import datetime, timezone
 
 import helpers
 from commands.queue_format import age_str, short_preview
+from scheduled.queue_always_first import always_first_message, pick_always_first
 
 
 def _oldest_entry(entries: list) -> dict:
@@ -101,6 +105,10 @@ def focus_key(scanned: dict, priority_map: dict, *, config: dict | None = None,
     oldest, and that is exactly a change worth announcing. An idle campaign in
     focus is keyed by campaign, which stays put until someone posts there.
     """
+    if config is not None and now is not None:
+        first = pick_always_first(config, state, scanned, now)
+        if first:
+            return f"idle:{first.pid}"
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
         return None
@@ -134,6 +142,9 @@ def build_focus_message(config: dict, scanned: dict, priority_map: dict,
     Pass ``state`` so silent and caught-up campaigns can go first; without it
     only unreplied messages compete, as before 2026-09-25.
     """
+    first = pick_always_first(config, state, scanned, now)
+    if first:
+        return always_first_message(first)
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
         return ""
