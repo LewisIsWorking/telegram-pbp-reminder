@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 
 import helpers
 from commands.queue_scan import scan_transcripts
+from commands.queue_prune import drop_deleted
 from commands.queue_format import (
     entry_age_icon, age_str, short_preview, NO_PRIORITY, build_priority_map,
 )
@@ -12,7 +13,7 @@ from commands.queue_format import (
 def build_queue(config: dict, state: dict) -> str:
     """Build /queue: unreplied messages, campaigns sorted by oldest."""
     now = datetime.now(timezone.utc)
-    scanned = scan_transcripts(config, state)
+    scanned = drop_deleted(config, state, scan_transcripts(config, state), now)
     if not scanned:
         return "All caught up! No unreplied player messages."
 
