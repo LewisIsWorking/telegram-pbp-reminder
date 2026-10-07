@@ -89,9 +89,25 @@ def parse_message(msg: dict, maps) -> dict | None:
         "text": _lower,
         "raw_text": raw_text,
         "media_type": media_type,
+        "media_file_id": _media_file_id(msg),
         "caption": caption,
         "chat_topic_id": maps.to_chat.get(maps.to_canonical[thread_id_str], thread_id),
     }
+
+
+def _media_file_id(msg: dict) -> str | None:
+    """Telegram file_id of a posted image, so it can be fetched later.
+
+    Photos: the last PhotoSize is the largest. Documents count only when
+    Telegram says they are images (a PNG sent "as file").
+    """
+    photos = msg.get("photo")
+    if photos:
+        return photos[-1].get("file_id")
+    doc = msg.get("document") or {}
+    if str(doc.get("mime_type", "")).startswith("image/"):
+        return doc.get("file_id")
+    return None
 
 
 def _detect_media(msg: dict) -> str | None:

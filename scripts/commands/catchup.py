@@ -11,6 +11,7 @@ from pathlib import Path
 import helpers
 from helpers import timestamps_in_window, posts_str
 from combat.display import format_elapsed
+from transcript.formatting import strip_file_tags
 
 _LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
 
@@ -54,7 +55,7 @@ def _get_recent_transcript_posts(campaign_name: str, since: datetime,
             char_name = m.group(2).strip() if m.group(2) else None
             is_gm = bool(m.group(3))
             timestamp = m.group(4).strip()
-            content = m.group(5).strip()
+            content = strip_file_tags(m.group(5)).strip()
 
             if timestamp <= since_str:
                 continue
