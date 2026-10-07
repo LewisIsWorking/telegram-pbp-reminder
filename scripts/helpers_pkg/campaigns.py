@@ -57,7 +57,7 @@ def is_hybrid(config: dict, pid: str) -> bool:
 def is_priority(config: dict, pid: str) -> bool:
     """Check if campaign is queue-priority (pinned to top)."""
     pair = get_pair(config, pid)  # pragma: no cover
-    return bool(pair.get("queue_priority")) if pair else False  # pragma: no cover
+    return pair.get("queue_priority") not in (None, False) if pair else False  # pragma: no cover
 
 
 def is_excluded(config: dict, pid: str) -> bool:

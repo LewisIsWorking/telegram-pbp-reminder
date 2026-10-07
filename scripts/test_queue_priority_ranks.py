@@ -83,11 +83,12 @@ def test_config_ranks_are_ordered_as_intended():
     ranks = {p["code"]: p.get("queue_priority")
              for p in _pairs() if p.get("queue_priority") is not None}
     assert ranks.get("C01") == 2, ranks
-    assert ranks.get("C06") == 2, ranks
-    # C10 must outrank both once it is added to config.
+    # Lewis, 2026-10-07: "We should ALWAYS prioritise Kibwe." C06 is rank 0,
+    # ahead of everything; C10 still outranks C01.
+    assert ranks.get("C06") == 0, ranks
+    assert ranks["C06"] == min(ranks.values()), ranks
     if "C10" in ranks:
         assert ranks["C10"] < ranks["C01"], ranks
-        assert ranks["C10"] < ranks["C06"], ranks
 
 
 def test_no_configured_rank_collides_with_the_sentinel():
