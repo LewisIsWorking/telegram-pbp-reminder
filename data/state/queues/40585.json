@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 183543,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-07T13:53:43+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
       "message_id": 183559,
       "thread_id": 137075,
       "user_id": "6144366145",
@@ -1176,7 +1167,9 @@
     "msg:183459",
     "2026-10-07 03:24:32",
     "msg:183500",
-    "2026-10-07 04:13:23"
+    "2026-10-07 04:13:23",
+    "msg:183543",
+    "2026-10-07 13:53:43"
   ],
   "reply_log": [
     {
@@ -6450,17 +6443,26 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-07T21:43:18.765278+00:00",
+      "pid": "40585",
+      "msg_id": "183543",
+      "thread_id": "137075",
+      "player": "Anthony NegetZ",
+      "preview": "*[image]* Daichi:\nA1 and 2: Stride towards the bottom table\nA3: Take cover behin",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-10-07 13:53:43|2026-10-07 17:39:01|2026-10-07 17:41:15|2026-10-07 17:56:54",
+      "fingerprint": "2026-10-07 17:39:01|2026-10-07 17:41:15|2026-10-07 17:56:54",
       "msg_ids": [
-        183576
+        183666
       ],
-      "last_posted_at": "2026-10-07T18:13:25.041774+00:00",
+      "last_posted_at": "2026-10-07T21:43:23.117444+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
