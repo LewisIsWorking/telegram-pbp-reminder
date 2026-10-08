@@ -104,3 +104,35 @@ def test_linked_ids_are_fetched_once_per_run():
         fetch.assert_called_once()
     finally:
         coo_link.reset()
+
+
+# ── @ComeOnOverBot posts it when COO can (Lewis, 2026-10-08) ──────────────
+
+def test_comeonoverbot_posts_it_and_the_nudge_bot_stays_quiet():
+    state = {}
+    with patch.object(coo_link, "post_as_comeonoverbot", return_value=True) as coo, \
+         patch.object(coo_link.tg, "send_message") as send:
+        assert coo_link.nudge_if_unlinked(_parsed(), state, CONFIG, MAPS,
+                                          linked=lambda: set())
+    assert coo.call_args.args[1] == 555
+    send.assert_not_called()
+    assert "7" in state["coo_link_nudges"]
+
+
+def test_post_as_comeonoverbot_sends_the_player_and_topic_with_the_key():
+    env = {"PATHWARS_BOT_READ_KEY": "k", "COO_SERVER_URL": "https://coo/"}
+    post = MagicMock(return_value=SimpleNamespace(status_code=200))
+    assert coo_link.post_as_comeonoverbot(_parsed(), 555, post=post, env=env)
+    assert post.call_args.args[0] == "https://coo/api/pathwars/link-nudge"
+    assert post.call_args.kwargs["json"] == {"name": "KP", "username": "kp", "threadId": 555}
+    assert post.call_args.kwargs["headers"] == {"X-PathWars-Bot-Key": "k"}
+
+
+def test_post_as_comeonoverbot_is_false_whenever_coo_did_not_post():
+    env = {"PATHWARS_BOT_READ_KEY": "k"}
+    assert coo_link.post_as_comeonoverbot(_parsed(), 1, post=MagicMock(), env={}) is False
+    for status in (503, 502, 401):
+        answered = MagicMock(return_value=SimpleNamespace(status_code=status))
+        assert coo_link.post_as_comeonoverbot(_parsed(), 1, post=answered, env=env) is False
+    down = MagicMock(side_effect=requests.ConnectionError())
+    assert coo_link.post_as_comeonoverbot(_parsed(), 1, post=down, env=env) is False
