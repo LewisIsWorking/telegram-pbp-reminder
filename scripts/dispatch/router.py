@@ -124,6 +124,9 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
 
             parsed = parse_message(msg, maps)
             if not parsed:
+                # Outside every campaign topic: still recorded and told to link COO (2026-10-08)
+                from players.group_members import on_group_post
+                on_group_post(msg, config, state, maps)
                 continue
 
             pid = parsed["pid"]
