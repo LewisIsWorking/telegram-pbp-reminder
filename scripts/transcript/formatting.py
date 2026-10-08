@@ -28,6 +28,18 @@ _MECHANICAL_PATTERNS = re.compile(
 )
 
 
+# Telegram file_ids are URL-safe base64. Anything else is not written, so a
+# hostile value can never close the HTML comment early.
+_FILE_ID_OK = re.compile(r"^[A-Za-z0-9_-]{1,256}$")
+# The hidden tag after a media marker: *[image]*<!-- file:AgACAgQAAx... -->
+FILE_TAG_RE = re.compile(r"<!-- file:([A-Za-z0-9_-]+) -->")
+
+
+def strip_file_tags(text: str) -> str:
+    """Drop the hidden file tags, for text that is shown back to players."""
+    return FILE_TAG_RE.sub("", text)
+
+
 def format_transcript_content(text: str) -> str:
     """Format message content with blockquotes and mechanical styling."""
     lines = text.split("\n")
@@ -84,6 +96,9 @@ def format_log_entry(parsed: dict, gm_ids: set, char_name: str | None = None) ->
             parts.append(f"*[{media[9:]}]*")  # pragma: no cover
         else:
             parts.append(f"*[{media}]*")
+        file_id = parsed.get("media_file_id")
+        if file_id and _FILE_ID_OK.match(file_id):
+            parts[-1] += f"<!-- file:{file_id} -->"
     if raw:
         parts.append(format_transcript_content(raw))
     elif caption:

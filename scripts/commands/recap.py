@@ -10,6 +10,7 @@ from pathlib import Path
 
 import helpers
 from combat.display import format_elapsed
+from transcript.formatting import strip_file_tags
 
 _LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
 
@@ -67,7 +68,7 @@ def build_recap(pid: str, campaign_name: str, config: dict, count: int = 10) -> 
             char_name = m.group(2).strip() if m.group(2) else None
             is_gm = bool(m.group(3))
             timestamp = m.group(4).strip()
-            content = m.group(5).strip()
+            content = strip_file_tags(m.group(5)).strip()
             file_entries.append((timestamp, name, char_name, is_gm, content, "msg"))
 
         file_entries.sort(key=lambda x: x[0])
