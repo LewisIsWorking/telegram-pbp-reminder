@@ -40,6 +40,7 @@ import telegram as tg
 from commands.roster import _active_players
 from commands.roster_members import effective_target
 from scheduled.recruit_link import recruit_link
+from scheduled.recruit_reach_line import reach_line
 from scheduled.recruit_roster_line import current_players_line
 
 _GATE_HOURS = 24
@@ -116,13 +117,6 @@ def _eligible_pairs(config: dict, state: dict) -> list[dict]:
     return short[min(short)]
 
 
-def _short_anywhere(config: dict, state: dict) -> int:
-    """How many recruitable campaigns are short, across EVERY tier."""
-    return sum(1 for pair in config.get("topic_pairs", [])
-               if recruit_tier(pair, config) is not None
-               and _shortfall(pair, state, config)[0] > 0)
-
-
 def pick_recruit_pair(config: dict, state: dict) -> dict | None:
     """The campaign most in need of players, or None if all are full.
 
@@ -190,18 +184,10 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
         # "tier" nor the number - only that it is open now.
         lines.append("📌 Now open for new players - the campaigns ahead of "
                      "it are full.")
-    if len(eligible) > 1:
-        lines.append(f"↗ Know someone? This is the biggest gap of "
-                     f"{len(eligible)} campaigns currently recruiting.")
-    elif _short_anywhere(config, state) > 1:
-        # Alone in its tier is not alone overall. Kibwe (tier -1) was
-        # posted as "the only campaign currently below target" on
-        # 2026-10-08 while C10 and C08 were both short in later tiers.
-        lines.append("↗ Know someone? This table is first in line for new "
-                     "players.")
-    else:
-        lines.append("↗ Know someone? This is the only campaign currently "
-                     "below target.")
+    short_total = sum(1 for p in config.get("topic_pairs", [])
+                      if recruit_tier(p, config) is not None
+                      and _shortfall(p, state, config)[0] > 0)
+    lines.append(reach_line(len(eligible), short_total))
 
     # ⛔ The CHAT topic, not the pbp topic (Lewis, 2026-09-02). Why, and
     # why it matters most in the mirror copy: scheduled/recruit_link.py.
