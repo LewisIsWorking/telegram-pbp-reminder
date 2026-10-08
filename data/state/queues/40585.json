@@ -16,42 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 183559,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-07T17:39:01+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 183560,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-07T17:41:15+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 183566,
-      "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-07T17:56:54+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 183705,
-      "thread_id": 40585,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-10-08T02:38:19+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1178,7 +1142,19 @@
     "msg:183500",
     "2026-10-07 04:13:23",
     "msg:183543",
-    "2026-10-07 13:53:43"
+    "2026-10-07 13:53:43",
+    "msg:183559",
+    "2026-10-07 17:39:01",
+    "msg:183735",
+    "2026-10-08 05:55:22",
+    "msg:183560",
+    "2026-10-07 17:41:15",
+    "msg:183566",
+    "2026-10-07 17:56:54",
+    "msg:183705",
+    "2026-10-08 02:38:19",
+    "msg:183743",
+    "2026-10-08 06:00:09"
   ],
   "reply_log": [
     {
@@ -6461,29 +6437,79 @@
       "player": "Anthony NegetZ",
       "preview": "*[image]* Daichi:\nA1 and 2: Stride towards the bottom table\nA3: Take cover behin",
       "via": "markdone"
+    },
+    {
+      "t": "2026-10-08T05:55:22+00:00",
+      "pid": "40585",
+      "msg_id": "183559",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-08T05:55:43+00:00",
+      "pid": "40585",
+      "msg_id": "183735",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-08T05:55:49+00:00",
+      "pid": "40585",
+      "msg_id": "183560",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-08T05:58:52+00:00",
+      "pid": "40585",
+      "msg_id": "183566",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-08T06:03:21+00:00",
+      "pid": "40585",
+      "msg_id": "183705",
+      "thread_id": 40585,
+      "player": "Buffet",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-08T06:13:14+00:00",
+      "pid": "40585",
+      "msg_id": "183743",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-10-07 17:39:01|2026-10-07 17:41:15|2026-10-07 17:56:54",
-      "msg_ids": [
-        183666
-      ],
-      "last_posted_at": "2026-10-07T21:43:23.117444+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 183748,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-10-08T06:13:19.800292+00:00"
     },
     "40585": {
-      "fingerprint": "2026-10-08 02:38:19",
-      "msg_ids": [
-        183710
-      ],
-      "last_posted_at": "2026-10-08T02:43:29.573787+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 183750,
+      "caught_up_at": "2026-10-08T06:13:19.800292+00:00"
     }
   },
   "probed": {
