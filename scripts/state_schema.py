@@ -118,6 +118,9 @@ PARTITIONS: dict[str, list[str]] = {
         # be gone by the next run, which is the same bug the
         # timeline_events note above records.
         "recruitment_log",
+        # Added 2026-10-08: when each unlinked player was last told to link
+        # COO (players/coo_link.py). Undeclared, every post would nudge again.
+        "coo_link_nudges",
     ],
 }
 

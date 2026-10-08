@@ -54,6 +54,9 @@ def track_message(parsed: dict, state: dict, config: dict,
     # Player-level tracking (skip GM)
     if user_id and user_id not in gm_ids:
         _track_player(parsed, state, config, gm_ids, maps)
+        # No linked COO account means no Foundry login and no sheet (2026-10-08)
+        from players.coo_link import nudge_if_unlinked
+        nudge_if_unlinked(parsed, state, config, maps)
         # Add to GM reply queue (non-command player posts need a GM reply)
         if not text.startswith("/"):
             msg_id = parsed.get("message_id")
