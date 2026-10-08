@@ -178,7 +178,7 @@ def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
     roster_line = current_players_line(players)
     if roster_line:
         lines.append(roster_line)
-    if tier:
+    if tier and tier > 0:
         # Tiers are internal scheduling. A player needs neither the word
         # "tier" nor the number - only that it is open now.
         lines.append("📌 Now open for new players - the campaigns ahead of "
