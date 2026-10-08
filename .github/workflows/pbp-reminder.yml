@@ -98,8 +98,10 @@ jobs:
           exit $EXIT_CODE
 
       # Only this step gets the real credential, and it runs no tests.
+      # Push to main only (2026-10-08): a red PR is the PR doing its job,
+      # and it alerted the bot topic about an abandoned branch (#134).
       - name: Alert on test failure
-        if: failure() && steps.tests.outcome == 'failure'
+        if: failure() && steps.tests.outcome == 'failure' && github.event_name == 'push'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
