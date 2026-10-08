@@ -1,6 +1,25 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 184195,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-10-08T23:28:19+00:00",
+      "preview": "\"An interesting city to be sure.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 184196,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-10-08T23:30:58+00:00",
+      "preview": "\"Shall we get going then? We have a meeting to get to, I believe.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2542,10 +2561,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 183983,
+      "fingerprint": "2026-10-08 23:28:19|2026-10-08 23:30:58",
+      "msg_ids": [
+        184199
+      ],
+      "last_posted_at": "2026-10-08T23:43:33.251373+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-10-08T12:13:21.691593+00:00"
     },
@@ -2559,6 +2580,7 @@
     }
   },
   "probed": {
-    "182679": "2026-10-08T11:43:20.864138+00:00"
+    "184195": "2026-10-08T23:43:21.680650+00:00",
+    "184196": "2026-10-08T23:43:21.680650+00:00"
   }
 }
