@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 182398,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-10-02T13:33:45+00:00",
-      "preview": "\"Nothing...\" Lai said looking at the building from the outside \"I don't trust that",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -460,7 +450,9 @@
     "msg:181297",
     "2026-09-25 18:18:18",
     "msg:181476",
-    "2026-09-27 06:16:20"
+    "2026-09-27 06:16:20",
+    "msg:182398",
+    "2026-10-02 13:33:45"
   ],
   "reply_log": [
     {
@@ -2510,19 +2502,26 @@
       "player": "Terra",
       "preview": "Lai blinks slowly processing what the two said and looks back at the marble buil",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-08T10:02:02+00:00",
+      "pid": "52083",
+      "msg_id": "182398",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"Nothing...\" Lai said looking at the building from the outside \"I don't trust th",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-10-02 13:33:45",
-      "msg_ids": [
-        183445
-      ],
-      "last_posted_at": "2026-10-07T02:43:20.846298+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-10-01T11:43:15.770880+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 183857,
+      "caught_up_at": "2026-10-08T10:13:19.495023+00:00"
     },
     "145045": {
       "msg_ids": [],
