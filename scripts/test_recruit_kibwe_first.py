@@ -58,3 +58,19 @@ def test_real_config_puts_kibwe_first_at_six():
               if p.get("code") != "C06"]
     assert kibwe["roster_target"] == 6
     assert kibwe["recruit_tier"] < min(others)
+
+
+def test_kibwe_advert_does_not_claim_to_be_the_only_short_campaign():
+    """Posted 2026-10-08 with C10 and C08 both short in later tiers."""
+    from scheduled.recruit_focus import build_recruit_message
+    text, _pair_ = build_recruit_message(_cfg_with_kibwe(),
+                                         _state(**{"500": 5, "100": 1, "200": 0}))
+    assert "only campaign currently below target" not in text
+    assert "first in line for new players" in text
+
+
+def test_only_campaign_line_kept_when_it_is_true():
+    from scheduled.recruit_focus import build_recruit_message
+    text, _pair_ = build_recruit_message(_cfg_with_kibwe(),
+                                         _state(**{"500": 5, "100": 6, "200": 6}))
+    assert "only campaign currently below target" in text
