@@ -320,6 +320,16 @@
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-06T18:20:14+00:00",
       "last_warned_week": 0
+    },
+    "66154:5443237599": {
+      "user_id": "5443237599",
+      "first_name": "Horia",
+      "last_name": "Constantinescu",
+      "username": "Nemesiux",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-10-08T17:50:37+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -591,12 +601,6 @@
       "removed_at": "2026-09-14T16:00:20.805364+00:00",
       "first_name": "Sasuken09",
       "username": "Sasuken09",
-      "campaign_name": "Riddleport"
-    },
-    "66154:5443237599": {
-      "removed_at": "2026-09-19T21:30:18.190951+00:00",
-      "first_name": "Horia",
-      "username": "Nemesiux",
       "campaign_name": "Riddleport"
     },
     "107171:7919488992": {
@@ -873,7 +877,7 @@
     "66154": {
       "5443237599": {
         "id": 1,
-        "name": "Horia Constantinescu",
+        "name": "Horia",
         "joined": "2026-03-27T17:19:51.259630+00:00"
       },
       "6134825204": {
@@ -2034,6 +2038,14 @@
       "name": "Ryo",
       "username": "RyoYamakawa",
       "at": "2026-10-08T04:43:23.716285+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "5443237599",
+      "name": "Horia",
+      "username": "Nemesiux",
+      "at": "2026-10-08T18:13:21.374675+00:00"
     }
   ],
   "player_boons": {
@@ -2484,7 +2496,7 @@
     "6144366145": {
       "name": "Anthony",
       "username": "MrNegetZ",
-      "last": "2026-10-08T17:36:36+00:00"
+      "last": "2026-10-08T17:49:21+00:00"
     },
     "1358791105": {
       "name": "Alastair",
@@ -2494,7 +2506,7 @@
     "5443237599": {
       "name": "Horia",
       "username": "Nemesiux",
-      "last": "2026-10-08T17:40:11+00:00"
+      "last": "2026-10-08T17:49:39+00:00"
     },
     "1883964048": {
       "name": "KP",
