@@ -93,6 +93,9 @@ PARTITIONS: dict[str, list[str]] = {
         "player_boons", "mvp_wins", "characters", "away",
         # /available - player-entered data that was being discarded.
         "availability",
+        # Added 2026-10-08: anyone posting in the group outside a campaign
+        # topic (players/group_members.py). COO reads it so they can link.
+        "group_members",
     ],
     "queue": [
         "queue_history", "queue_archive", "pending_potw_boons",

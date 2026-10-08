@@ -11,6 +11,9 @@ and again WHENEVER they ask for a sheet, a character or Foundry.
 the bot's read key, once per run. No key or no answer means nobody is
 nudged: telling a linked player to link would be worse than silence.
 
+⭐ The nudge is posted by @ComeOnOverBot through COO (Lewis, 2026-10-08),
+and by this bot only when COO cannot.
+
 ⚠️ A repeat ask is answered at most once per ``ASK_COOLDOWN``, so a
 player chatting about their sheet gets one reply, not one per message.
 """
@@ -72,6 +75,30 @@ def nudge_text(parsed: dict) -> str:
             "3. Press Play on your campaign. Your sheet is made when you join.")
 
 
+def post_as_comeonoverbot(parsed: dict, thread, post=requests.post,
+                          env=os.environ) -> bool:
+    """Ask COO to post the nudge as @ComeOnOverBot (Lewis, 2026-10-08).
+
+    False on anything but a 200, and the caller then posts it itself: no
+    key, COO down, no ComeOnOverBot token (503) or Telegram refusing (502).
+    """
+    key = env.get("PATHWARS_BOT_READ_KEY", "").strip()
+    if not key:
+        return False
+    base = env.get("COO_SERVER_URL", DEFAULT_SERVER).rstrip("/")
+    body = {"name": parsed.get("user_name", ""),
+            "username": parsed.get("username") or None, "threadId": thread}
+    try:
+        response = post(f"{base}/api/pathwars/link-nudge", json=body,
+                        headers={KEY_HEADER: key}, timeout=20)
+    except requests.RequestException as e:
+        print(f"COO link nudge: server unreachable ({type(e).__name__})")
+        return False
+    if response.status_code != 200:
+        print(f"COO link nudge: server answered {response.status_code}")
+    return response.status_code == 200
+
+
 def _due(parsed: dict, last: str | None) -> bool:
     if last is None:
         return True
@@ -94,7 +121,8 @@ def nudge_if_unlinked(parsed: dict, state: dict, config: dict, maps,
     if not _due(parsed, nudges.get(user_id)):
         return False
     thread = maps.to_chat.get(parsed["pid"]) or parsed.get("thread_id")
-    if not tg.send_message(config["group_id"], thread, nudge_text(parsed)):
+    if not (post_as_comeonoverbot(parsed, thread)
+            or tg.send_message(config["group_id"], thread, nudge_text(parsed))):
         return False
     nudges[user_id] = parsed["msg_time_iso"]
     return True
