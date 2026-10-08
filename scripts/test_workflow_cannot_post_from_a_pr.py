@@ -134,6 +134,14 @@ class TestAFailingSuiteFailsTheBuild:
             "the alert step is not conditioned on failure, so it either "
             "never runs or runs on every green build")
 
+    def test_the_alert_is_for_pushes_only(self):
+        # ⛔ 2026-10-08: a failing PR (#134, closed unmerged) posted
+        # "Tests failed on push" to the bot topic, so it read as main
+        # being red. An allowlist, like the job conditions above.
+        condition = str(self._alert_step().get("if", ""))
+        assert "github.event_name == 'push'" in condition, (
+            f"the alert step can fire for a pull_request: {condition}")
+
     def test_the_pytest_step_holds_no_real_credential(self):
         # ⛔⛔ 2026-09-04: the suite posted 14 fixture-filled diagnostics
         # into the live debug topic from CI, because the pytest step
