@@ -30,6 +30,20 @@ def _real_reply_id(msg: dict) -> int | None:
     return r_id  # pragma: no cover
 
 
+def reply_user(msg: dict) -> dict | None:
+    """The Telegram user who wrote the message this one genuinely replies to.
+
+    Added 2026-10-12 for ``/extrasheet C06`` sent as a reply to a player.
+    ⚠️ Goes through ``_real_reply_id`` on purpose: in a forum topic every
+    message "replies" to the topic header, whose author is whoever made
+    the topic, so reading ``reply_to_message.from`` directly would grant
+    that person the sheet instead.
+    """
+    if _real_reply_id(msg) is None:
+        return None
+    return msg["reply_to_message"].get("from")
+
+
 def parse_message(msg: dict, maps) -> dict | None:
     """Validate and extract fields from a Telegram message. Returns None if skipped."""
     chat_id = msg.get("chat", {}).get("id")
@@ -77,6 +91,7 @@ def parse_message(msg: dict, maps) -> dict | None:
         "message_id": msg.get("message_id"),
         "reply_to_message_id": _real_reply_id(msg),
         "reply_to_date": msg.get("reply_to_message", {}).get("date"),
+        "reply_to_user": reply_user(msg),
         "media_group_id": msg.get("media_group_id"),
         "pid": maps.to_canonical[thread_id_str],
         "campaign_name": maps.to_name[maps.to_canonical[thread_id_str]],
