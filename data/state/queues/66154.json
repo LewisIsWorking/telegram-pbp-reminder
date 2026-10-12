@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 183020,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-10-05T02:36:26+00:00",
-      "preview": "The shadow flips the bird at Davy. Rin shakes his head vigorously and nervously. \n\n\"Shadows move all the time, right?! I mean, it's what happens when someone's blocking light, so if the guy moves, the shadow does so, right?\n\nHe also raises his little leg to stamp on the ground just the once. \"Knock it off,\" he hisses under his breath.",
-      "media_group_id": null
-    },
-    {
       "message_id": 183133,
       "thread_id": 66154,
       "user_id": "8836746655",
@@ -330,7 +321,9 @@
     "msg:182197",
     "2026-10-01 04:49:46",
     "msg:181973",
-    "2026-09-29 15:45:15"
+    "2026-09-29 15:45:15",
+    "msg:183020",
+    "2026-10-05 02:36:26"
   ],
   "reply_log": [
     {
@@ -1550,24 +1543,32 @@
       "player": "Anthony",
       "preview": "Filiaur will blend in with the other players and enter the tournament. She can s",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-12T09:39:51+00:00",
+      "pid": "66154",
+      "msg_id": "183020",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "The shadow flips the bird at Davy. Rin shakes his head vigorously and nervously.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-05 02:36:26|2026-10-05 12:22:13|2026-10-06 02:50:34|2026-10-06 04:20:05|2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37",
+      "fingerprint": "2026-10-05 12:22:13|2026-10-06 02:50:34|2026-10-06 04:20:05|2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37",
       "msg_ids": [
-        184602
+        184835
       ],
-      "last_posted_at": "2026-10-11T19:13:26.930618+00:00",
+      "last_posted_at": "2026-10-12T09:43:21.119503+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "183020": "2026-10-12T08:43:20.021366+00:00",
     "183133": "2026-10-12T08:43:20.021366+00:00",
     "183235": "2026-10-12T08:43:20.021366+00:00",
     "183260": "2026-10-12T08:43:20.021366+00:00",
