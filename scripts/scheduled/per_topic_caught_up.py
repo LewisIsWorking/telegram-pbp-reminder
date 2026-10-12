@@ -4,9 +4,13 @@ The per-topic pinned queue lifecycle (managed by
 ``scheduled/topic_queue_poster.py``) emits a caught-up message when
 the thread transitions from "unreplied" to "everyone replied."
 
-Format (Lewis 2026-05-19, Option A - full pings):
+Format (Lewis 2026-05-19, Option A - full pings; numbered 2026-10-12):
     📋 All caught up. Time for players to post!
-    @user1 @user2 @user3 ...
+    1. Alice (@alice)
+    2. Bob (@bob)
+
+Numbered, one per line, because Lewis asked (2026-10-12): the old
+space-joined line ran four names together and was hard to scan.
 
 Active roster = ``commands.roster._active_players(pid, state, config)``
 which returns non-perm-recent + perm players (everyone counted on
@@ -64,5 +68,6 @@ def build_caught_up_text(pid: str, state: dict | None,
     active = _active_players(pid, state, config)
     if not active:
         return _BARE_CAUGHT_UP
-    mentions = " ".join(helpers.player_mention(p) for p in active)
-    return f"{_NUDGE_HEADER}\n{mentions}"
+    lines = [f"{i}. {helpers.player_mention(p)}"
+             for i, p in enumerate(active, start=1)]
+    return "\n".join([_NUDGE_HEADER, *lines])
