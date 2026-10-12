@@ -1,6 +1,16 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 184931,
+      "thread_id": 76799,
+      "user_id": "8353586922",
+      "user_name": "Chase",
+      "time": "2026-10-12T17:49:27+00:00",
+      "preview": "The detective approaches the suspects with caution. His eyes flick to the spider distrustfully. Determining them to be neutralized, he nods. \n\n\"Suspects down without casualty. Perhaps someone with full sized cuffs should detain them.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -2733,9 +2743,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-10-12 17:49:27",
+      "msg_ids": [
+        184933
+      ],
+      "last_posted_at": "2026-10-12T17:52:51.622060+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -2750,6 +2762,6 @@
     }
   },
   "probed": {
-    "183292": "2026-10-12T08:43:20.021366+00:00"
+    "184931": "2026-10-12T17:52:48.983834+00:00"
   }
 }
