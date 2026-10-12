@@ -149,7 +149,7 @@ class TestCaughtUpBuilder:
         assert out == "📋 All caught up here."
 
     def test_with_active_players_tags_them_with_nudge(self):
-        """Non-empty roster → full nudge header + space-joined mentions."""
+        """Non-empty roster → full nudge header + numbered mentions."""
         from scheduled.per_topic_caught_up import build_caught_up_text
         state = _state_with(
             _player("1", "alice"),
