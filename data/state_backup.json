@@ -7,15 +7,15 @@
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-10-12T09:39:51+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-10-13T10:17:12+00:00",
+      "last_user": "aSly",
+      "last_user_id": "8836746655",
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-10-06T03:38:45+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-10-13T05:32:58+00:00",
+      "last_user": "Ryo",
+      "last_user_id": "138025700",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -25,21 +25,21 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-10-10T21:28:52+00:00",
-      "last_user": "Diabla \"Bella\" Alzarin",
-      "last_user_id": "8701042661",
+      "last_message_time": "2026-10-13T06:04:23+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-10-12T09:34:16+00:00",
+      "last_message_time": "2026-10-13T01:42:00+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
     },
     "76799": {
-      "last_message_time": "2026-10-12T08:43:44+00:00",
-      "last_user": "Path",
-      "last_user_id": "1698524397",
+      "last_message_time": "2026-10-12T17:49:27+00:00",
+      "last_user": "Chase",
+      "last_user_id": "8353586922",
       "campaign_name": "Magni Guard"
     },
     "107151": {
@@ -68,16 +68,16 @@
     }
   },
   "last_alerts": {
-    "52083": "2026-10-12T11:13:23.807823+00:00",
+    "52083": "2026-10-13T11:13:25.622938+00:00",
     "66154": "2026-10-11T18:43:25.548407+00:00",
     "51357": "2026-10-12T04:43:23.700327+00:00",
-    "25059": "2026-10-11T13:43:21.649079+00:00",
-    "107171": "2026-10-11T21:43:16.878590+00:00",
+    "25059": "2026-10-12T14:13:19.599656+00:00",
+    "107171": "2026-10-12T21:43:20.874125+00:00",
     "40585": "2026-10-12T01:43:22.446111+00:00",
     "76799": "2026-10-11T11:13:21.465221+00:00",
-    "107151": "2026-10-12T11:13:23.807823+00:00",
+    "107151": "2026-10-13T11:13:25.622938+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00",
-    "146645": "2026-10-12T11:13:23.807823+00:00"
+    "146645": "2026-10-13T11:13:25.622938+00:00"
   },
   "last_roster": {
     "25059": "2026-10-11T05:13:24.429477+00:00",
@@ -125,11 +125,11 @@
   },
   "combat": {},
   "last_leaderboard": "2026-10-08T02:43:23.838609+00:00",
-  "last_roster_nudge": "2026-10-12T00:31:20.616566+00:00",
-  "last_roster_snapshot": "C01:4/6|C00:8/6|C04:4/6|C05:3/6|C06:5/6|C07:3/6|C09:3/6|C10:0/6|C08:0/6",
+  "last_roster_nudge": "2026-10-13T05:43:24.760260+00:00",
+  "last_roster_snapshot": "C01:4/6|C00:8/6|C04:4/6|C05:4/6|C06:5/6|C07:3/6|C09:3/6|C10:0/6|C08:0/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-10-12T04:43:23.700327+00:00"
+    "last_at": "2026-10-13T05:43:24.760260+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-10-02T13:43:21.744361+00:00",
@@ -159,7 +159,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-10-11T01:13:25.768536+00:00",
-  "last_daily_tip": "2026-10-12T01:43:22.446111+00:00",
+  "last_daily_tip": "2026-10-12T23:51:00.800751+00:00",
   "used_tip_indices": [
     4,
     22,
@@ -189,13 +189,13 @@
     31,
     32,
     8,
-    7
+    7,
+    36
   ],
   "last_pace_drop_check": "2026-10-11T01:13:25.768536+00:00",
   "dying_alerts_sent": {
     "1242": "active",
     "107151": "active",
-    "51357": "active",
     "146645": "active",
     "52083": "active",
     "25059": "active"
@@ -219,7 +219,7 @@
         "1698524397",
         "1883964048"
       ],
-      "last_ping_day": 739901,
+      "last_ping_day": 739902,
       "votes": {
         "1": [
           "8255519522"
@@ -253,9 +253,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-10-11T11:13:21.465221+00:00",
-  "last_queue_daily": "2026-10-12",
-  "last_queue_fingerprint": "107171:2026-10-08 23:28:19|107171:2026-10-08 23:30:58|107171:2026-10-10 21:28:52|66154:2026-10-05 12:22:13|66154:2026-10-06 02:50:34|66154:2026-10-06 04:20:05|66154:2026-10-06 10:19:58|66154:2026-10-06 18:20:14|66154:2026-10-08 17:50:37|silent:146645|51357",
+  "last_state_backup": "2026-10-12T11:13:23.807823+00:00",
+  "last_queue_daily": "2026-10-13",
+  "last_queue_fingerprint": "51357:2026-10-13 05:32:58|66154:2026-10-06 10:19:58|66154:2026-10-06 18:20:14|66154:2026-10-08 17:50:37|66154:2026-10-13 10:17:12|76799:2026-10-12 17:49:27|silent:146645|52083",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -335,8 +335,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-10-11",
   "last_queue_daily_slots": [
-    "2026-10-05:21",
-    "2026-10-06:09",
     "2026-10-06:21",
     "2026-10-07:09",
     "2026-10-07:21",
@@ -348,7 +346,9 @@
     "2026-10-10:21",
     "2026-10-11:09",
     "2026-10-11:21",
-    "2026-10-12:09"
+    "2026-10-12:09",
+    "2026-10-12:21",
+    "2026-10-13:09"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -359,21 +359,21 @@
     "session_happened": true
   },
   "queue_scan_floor": null,
-  "last_diagnostic": "2026-10-12",
-  "last_queue_pin_id": 184837,
-  "queue_post_count": 1939,
+  "last_diagnostic": "2026-10-13",
+  "last_queue_pin_id": 185150,
+  "queue_post_count": 1953,
   "gm_queue_history": [
     {
       "msg_ids": [
-        184837,
-        184839
+        185150,
+        185151
       ],
-      "pin_id": 184837
+      "pin_id": 185150
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1939 - Unreplied: 9 | \u2705 10 today | \ud83c\udfc6 1965 all-time\nC00:6 C09:3\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 12:13 BST\n\u23ed Next check ~12:43 BST\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (6) \u2501\u2501 @PathWars \u26a1aSly (~4h)\n01 [183133] \ud83d\udfe7 6d 22h. aSly Cow: Marlo feels a small, timid tug on the cuff of his sleeve and, looking down,... \ud83d\udd17 https://t.me/Path_Wars/66154/183133\n02 [183235] \ud83d\udfe7 6d 8h. Anthony NegetZ: Filiaur will enter with the casino chips the party got from Beltias. They were made... \ud83d\udd17 https://t.me/Path_Wars/66154/183235\n03 [183260] \ud83d\udfe7 6d 6h. Ryo Yamakawa: Rax sighs as he makes his way into the Silver Succubi. He had received a... \ud83d\udd17 https://t.me/Path_Wars/66154/183260\n04 [183308] \ud83d\udfe7 6d 0h. Peter: As the resident muscle, Ryder will be at the door. Used to being a bouncer,... \ud83d\udd17 https://t.me/Path_Wars/66154/183308\n05 [183329] \ud83d\udfe0 5d 16h. Loren: Miracle Max pushes through the doors of the Silver Succubi, a well-worn backpack slung over... \ud83d\udd17 https://t.me/Path_Wars/66154/183329\n06 [184174] \ud83d\udfe1 3d 17h. Horia Constantinescu: Necrila will stand near the imp and stare at him. The imp would get the... \ud83d\udd17 https://t.me/Path_Wars/66154/184174\n\u2501\u2501 \ud83e\udd16 C09: Metal City (3) \u2501\u2501 @PathWars \u26a1Laetheron (~13h)\n07 [184195] \ud83d\udfe1 3d 11h. Laetheron: \"An interesting city to be sure.\" *(edited)* \ud83d\udd17 https://t.me/Path_Wars/107171/184195\n08 [184196] \ud83d\udfe1 3d 11h. Laetheron: \"Shall we get going then? We have a meeting to get to, I believe.\" \ud83d\udd17 https://t.me/Path_Wars/107171/184196\n09 [184476] \ud83d\udfe2 1d 13h. Diabla \"Bella\" Alzarin: \"I guess we do? Either way: Yeah, let's go.\" \ud83d\udd17 https://t.me/Path_Wars/107171/184476\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe7 \ud83d\udd2d C05: Grand Explorers - no posts for 6d 7h \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83d\udfe7 \ud83d\udea6 C10: The Junction - no posts for 6d 1h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe8 \u2b50\ufe0f C07: Hopeful End-Times - last post 4d 1h ago \ud83d\udd17 https://t.me/Path_Wars/52083\n  \ud83d\udfe1 \ud83d\udcc6 C01: Doomsday Funtime - last post 3d 22h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83c\udf31 \ud83d\udd0d C04: Magni Guard - last post 2h ago \ud83d\udd17 https://t.me/Path_Wars/76799\n  \ud83c\udf31 \ud83e\udda0 C06: Kibwe - last post 1h ago \ud83d\udd17 https://t.me/Path_Wars/40585",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83d\udcb0 C00: Riddleport\n\u23f3 Oldest message waiting 6d 22h (6 unreplied in this campaign).\n\u2197 aSly Cow: Marlo feels a small, timid tug on the cuff of his sleeve and, looking down, sees the top...\n\ud83d\udd17 https://t.me/Path_Wars/66154/183133"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #1953 - Unreplied: 6 | \u2705 10 today | \ud83c\udfc6 1977 all-time\nC00:4 C04:1 C05:1\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 12:13 BST\n\u23ed Next check ~12:43 BST\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (4) \u2501\u2501 @PathWars \u26a1aSly (~4h)\n01 [183308] \ud83d\udd34 7d 0h. Peter: As the resident muscle, Ryder will be at the door. Used to being a bouncer,... \ud83d\udd17 https://t.me/Path_Wars/66154/183308\n02 [183329] \ud83d\udfe7 6d 16h. Loren: Miracle Max pushes through the doors of the Silver Succubi, a well-worn backpack slung over... \ud83d\udd17 https://t.me/Path_Wars/66154/183329\n03 [184174] \ud83d\udfe8 4d 17h. Horia Constantinescu: Necrila will stand near the imp and stare at him. The imp would get the... \ud83d\udd17 https://t.me/Path_Wars/66154/184174\n04 [185144] \ud83c\udd95 0h. aSly Cow: Anxious nods, flinching only the tiniest amount as Marlo pats her on the head. \u201cY-yes,... \ud83d\udd17 https://t.me/Path_Wars/66154/185144\n\u2501\u2501 \ud83d\udd0d C04: Magni Guard (1) \u2501\u2501 @PathWars \u26a1Cannon (~13h)\n05 [184931] \ud83c\udf33 17h. Chase Darkthorne: The detective approaches the suspects with caution. His eyes flick to the spider distrustfully. Determining... \ud83d\udd17 https://t.me/Path_Wars/76799/184931\n\u2501\u2501 \ud83d\udd2d C05: Grand Explorers (1) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n06 [185097] \ud83c\udf31 5h. Ryo Yamakawa: \"Perhaps we should make haste. It seems this place is not very welcoming and I'd... \ud83d\udd17 https://t.me/Path_Wars/51357/185097\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udd34 \ud83d\udea6 C10: The Junction - no posts for 7d 1h \ud83d\udd17 https://t.me/Path_Wars/146645\n  \ud83d\udfe0 \u2b50\ufe0f C07: Hopeful End-Times - no posts for 5d 1h \ud83d\udd17 https://t.me/Path_Wars/52083\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe8 \ud83d\udcc6 C01: Doomsday Funtime - last post 4d 22h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83c\udf3f \ud83e\udda0 C06: Kibwe - last post 9h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udf31 \ud83e\udd16 C09: Metal City - last post 5h ago \ud83d\udd17 https://t.me/Path_Wars/107171",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Post here next: \ud83d\udd34 \ud83d\udea6 C10: The Junction\n\u23f3 No posts for 7d 1h, longer than the oldest reply owed anywhere (7d 0h).\nNobody is waiting on you there, so it needs you to get it moving.\n\ud83d\udd17 https://t.me/Path_Wars/146645"
   ],
   "queue_refire_chain": 0,
   "potw_week": {
@@ -389,23 +389,23 @@
   },
   "last_potw_roundup": "2026-W39",
   "last_potw_countdown": "2026-W38",
-  "schedule_post_msg_id": 2644,
+  "schedule_post_msg_id": 2707,
   "schedule_post_chat_id": -1004303231713,
-  "last_pin_digest": "2026-10-12",
-  "last_pin_alert_ts": "2026-10-12T10:43:28.751985+00:00",
+  "last_pin_digest": "2026-10-13",
+  "last_pin_alert_ts": "2026-10-13T10:28:56.846035+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 184576,
-  "last_recruit_focus": "2026-10-11T11:13:21.465221+00:00",
-  "recruit_focus_at": "2026-10-11T11:13:21.465221+00:00",
+  "recruit_focus_msg_id": 184857,
+  "last_recruit_focus": "2026-10-12T11:13:23.807823+00:00",
+  "recruit_focus_at": "2026-10-12T11:13:23.807823+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 184576,
+      "message_id": 184857,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 2586,
+      "message_id": 2645,
       "auto_delete": false
     }
   ],
@@ -438,7 +438,7 @@
       "username": "ChaseDarkthorne",
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
-      "last_post_time": "2026-10-06T09:04:24+00:00",
+      "last_post_time": "2026-10-12T17:49:27+00:00",
       "last_warned_week": 0
     },
     "40585:138025700": {
@@ -479,7 +479,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-10-07T17:56:54+00:00",
+      "last_post_time": "2026-10-12T15:24:44+00:00",
       "last_warned_week": 0
     },
     "1242:6464119705": {
@@ -510,7 +510,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-06T02:50:34+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "40585:7130942567": {
       "user_id": "7130942567",
@@ -519,7 +519,7 @@
       "username": "buffetraider",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-10-08T02:38:19+00:00",
+      "last_post_time": "2026-10-13T00:29:54+00:00",
       "last_warned_week": 0
     },
     "1242:7820428748": {
@@ -630,7 +630,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-09-21T08:26:39+00:00",
-      "last_warned_week": 2
+      "last_warned_week": 3
     },
     "40585:1358791105": {
       "user_id": "1358791105",
@@ -639,7 +639,7 @@
       "username": "altan19931993",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-10-08T12:21:09+00:00",
+      "last_post_time": "2026-10-13T00:36:48+00:00",
       "last_warned_week": 0
     },
     "51357:5443237599": {
@@ -689,7 +689,7 @@
       "username": "aslycow",
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
-      "last_post_time": "2026-10-05T12:22:13+00:00",
+      "last_post_time": "2026-10-13T10:17:12+00:00",
       "last_warned_week": 0
     },
     "66154:138025700": {
@@ -699,7 +699,7 @@
       "username": "RyoYamakawa",
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
-      "last_post_time": "2026-10-06T04:20:05+00:00",
+      "last_post_time": "2026-10-13T05:28:29+00:00",
       "last_warned_week": 0
     },
     "66154:8994358370": {
@@ -710,7 +710,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-06T10:19:58+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "66154:7437909735": {
       "user_id": "7437909735",
@@ -730,6 +730,16 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-08T17:50:37+00:00",
+      "last_warned_week": 0
+    },
+    "51357:138025700": {
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "last_name": "Yamakawa",
+      "username": "RyoYamakawa",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-10-13T05:32:58+00:00",
       "last_warned_week": 0
     }
   },
@@ -986,12 +996,6 @@
       "username": "ArtyArtillery",
       "campaign_name": "Theria"
     },
-    "51357:138025700": {
-      "removed_at": "2026-09-14T13:45:19.744445+00:00",
-      "first_name": "Ryo",
-      "username": "RyoYamakawa",
-      "campaign_name": "Grand Explorers"
-    },
     "52083:5443237599": {
       "removed_at": "2026-09-14T16:00:20.805364+00:00",
       "first_name": "Horia",
@@ -1128,7 +1132,7 @@
       },
       "6144366145": {
         "id": 3,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-03-27T14:23:08.283060+00:00"
       },
       "7863964681": {
@@ -1138,7 +1142,7 @@
       },
       "7130942567": {
         "id": 5,
-        "name": "Buffet Raider",
+        "name": "Buffet",
         "joined": "2026-03-27T16:19:57.449069+00:00"
       },
       "5443237599": {
@@ -1163,7 +1167,7 @@
       },
       "1358791105": {
         "id": 10,
-        "name": "Alastair Tan",
+        "name": "Alastair",
         "joined": "2026-09-15T14:30:23.662663+00:00"
       }
     },
@@ -1294,7 +1298,7 @@
       },
       "138025700": {
         "id": 3,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-03-27T17:19:51.259920+00:00"
       },
       "7961602816": {
@@ -1344,7 +1348,7 @@
       },
       "8836746655": {
         "id": 12,
-        "name": "aSly Cow",
+        "name": "aSly",
         "joined": "2026-10-05T12:43:20.551774+00:00"
       },
       "8994358370": {
@@ -1366,7 +1370,7 @@
       },
       "8353586922": {
         "id": 2,
-        "name": "Chase Darkthorne",
+        "name": "Chase",
         "joined": "2026-03-29T00:31:35.507919+00:00"
       },
       "7863964681": {
@@ -1428,12 +1432,12 @@
       },
       "138025700": {
         "id": 5,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-03-29T16:09:28.392175+00:00"
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:28.392197+00:00"
       },
       "8511309197": {
@@ -1490,7 +1494,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.902136+00:00"
       },
       "8787586972": {
@@ -2461,6 +2465,14 @@
       "name": "Minork",
       "username": "Minork_Estra",
       "at": "2026-10-08T23:51:09.005913+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-10-13T05:43:23.441469+00:00"
     }
   ],
   "player_boons": {
@@ -2906,12 +2918,12 @@
     "7437909735": {
       "name": "Loren",
       "username": "Caecgirl",
-      "last": "2026-10-11T04:54:45+00:00"
+      "last": "2026-10-13T04:55:48+00:00"
     },
     "6144366145": {
       "name": "Anthony",
       "username": "MrNegetZ",
-      "last": "2026-10-11T23:20:35+00:00"
+      "last": "2026-10-13T04:45:59+00:00"
     },
     "1358791105": {
       "name": "Alastair",
@@ -2921,7 +2933,7 @@
     "5443237599": {
       "name": "Horia",
       "username": "Nemesiux",
-      "last": "2026-10-11T21:42:48+00:00"
+      "last": "2026-10-13T08:32:50+00:00"
     },
     "1883964048": {
       "name": "KP",
@@ -2936,7 +2948,7 @@
     "7130942567": {
       "name": "Buffet",
       "username": "buffetraider",
-      "last": "2026-10-09T15:07:34+00:00"
+      "last": "2026-10-12T13:08:16+00:00"
     },
     "8117756377": {
       "name": "Laetheron",
@@ -2946,7 +2958,7 @@
     "138025700": {
       "name": "Ryo",
       "username": "RyoYamakawa",
-      "last": "2026-10-12T09:49:26+00:00"
+      "last": "2026-10-13T07:20:57+00:00"
     },
     "7454623139": {
       "name": "Cannon",
@@ -2956,7 +2968,7 @@
     "8097377199": {
       "name": "Terra",
       "username": "Saiminaminah",
-      "last": "2026-10-12T10:08:32+00:00"
+      "last": "2026-10-13T07:45:23+00:00"
     },
     "8750531522": {
       "name": "Conch",
@@ -2966,7 +2978,7 @@
     "8836746655": {
       "name": "aSly",
       "username": "aslycow",
-      "last": "2026-10-10T01:40:04+00:00"
+      "last": "2026-10-13T10:17:49+00:00"
     },
     "8994358370": {
       "name": "Peter",
@@ -2986,7 +2998,7 @@
     "6482311444": {
       "name": "Moss",
       "username": "Mossssssssssssssssssssssssss",
-      "last": "2026-10-11T04:05:14+00:00"
+      "last": "2026-10-12T18:02:52+00:00"
     },
     "5029858993": {
       "name": "Sasuken09",
@@ -2997,6 +3009,26 @@
       "name": "Dalaxiss",
       "username": "Dalaxiss",
       "last": "2026-10-12T09:38:15+00:00"
+    },
+    "8768573953": {
+      "name": "Ivan",
+      "username": "",
+      "last": "2026-10-12T11:47:43+00:00"
+    },
+    "8921841066": {
+      "name": "lev",
+      "username": "timur_vgrp",
+      "last": "2026-10-12T11:33:27+00:00"
+    },
+    "8621383223": {
+      "name": "vlad",
+      "username": "andrey_8ue",
+      "last": "2026-10-12T14:01:20+00:00"
+    },
+    "8255519522": {
+      "name": "Theaitetos",
+      "username": "Theaitetus",
+      "last": "2026-10-12T21:42:16+00:00"
     }
   },
   "queue_history": {
@@ -3192,11 +3224,6 @@
       "2026-10-01T04:50:56.902742+00:00"
     ],
     "40585": [
-      "2026-04-10T03:07:33.235633+00:00",
-      "2026-04-10T03:07:33.237937+00:00",
-      "2026-04-10T03:07:33.239164+00:00",
-      "2026-04-10T03:07:33.240377+00:00",
-      "2026-04-10T10:24:19.714178+00:00",
       "2026-04-10T10:24:19.717178+00:00",
       "2026-04-10T11:20:01.511520+00:00",
       "2026-04-10T11:20:01.513230+00:00",
@@ -3691,7 +3718,12 @@
       "2026-10-12T08:43:20.006989+00:00",
       "2026-10-12T09:43:17.815430+00:00",
       "2026-10-12T09:43:17.822453+00:00",
-      "2026-10-12T09:43:17.829343+00:00"
+      "2026-10-12T09:43:17.829343+00:00",
+      "2026-10-12T23:43:21.243737+00:00",
+      "2026-10-12T23:43:21.269057+00:00",
+      "2026-10-13T00:37:31.710974+00:00",
+      "2026-10-13T00:37:31.747008+00:00",
+      "2026-10-13T01:13:16.453079+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -3918,7 +3950,10 @@
       "2026-09-30T07:51:08.237602+00:00",
       "2026-09-30T07:51:08.242920+00:00",
       "2026-09-30T07:58:49.788100+00:00",
-      "2026-10-08T12:13:21.688403+00:00"
+      "2026-10-08T12:13:21.688403+00:00",
+      "2026-10-13T05:43:23.433691+00:00",
+      "2026-10-13T05:43:23.441224+00:00",
+      "2026-10-13T06:13:21.098194+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -4591,7 +4626,11 @@
       "2026-09-29T13:13:24.297733+00:00",
       "2026-10-05T02:43:20.308751+00:00",
       "2026-10-05T08:43:18.766241+00:00",
-      "2026-10-12T09:43:17.838666+00:00"
+      "2026-10-12T09:43:17.838666+00:00",
+      "2026-10-13T02:10:52.409240+00:00",
+      "2026-10-13T02:10:52.413693+00:00",
+      "2026-10-13T04:13:16.147695+00:00",
+      "2026-10-13T05:43:24.759210+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -4982,90 +5021,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-09-06T18:04:51.881462+00:00",
-      "player": "Dalaxiss",
-      "preview": "Katmidlar seems to be interested in this conversation as wel",
-      "msg_id": "177114"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T11:15:20.689773+00:00",
-      "player": "Cannon",
-      "preview": "\"Good. Last thing I need as people trying to get a lesson on",
-      "msg_id": "175170"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T18:09:12.673534+00:00",
-      "player": "Alastair",
-      "preview": "The sides of Steele's grey lips raise, to a smile that hints",
-      "msg_id": "175173"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T18:09:12.676428+00:00",
-      "player": "Cannon",
-      "preview": "\"Knock out the kobolds who took these hostages before they f",
-      "msg_id": "175176"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T18:09:12.679072+00:00",
-      "player": "Ryo",
-      "preview": "\"I see...\"\n\nKitt takes a moment to consider it before noddin",
-      "msg_id": "175204"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T18:09:12.681670+00:00",
-      "player": "Volf",
-      "preview": "*I give an approving nod steele*\nIt looks like we're on evic",
-      "msg_id": "175237"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T18:09:12.684251+00:00",
-      "player": "Cannon",
-      "preview": "\"You should have joined a little earlier. We had to kill bas",
-      "msg_id": "175423"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-07T18:09:12.686935+00:00",
-      "player": "Alastair",
-      "preview": "\"An entire zoo...\"\n\nSteele trails off, as a droplet of saliv",
-      "msg_id": "175621"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:09:12.689166+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight regards the portal to the shadow lands with a grim ",
-      "msg_id": "177150"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:09:12.691424+00:00",
-      "player": "Laetheron",
-      "preview": "\"Is everyone prepared? The Shadow Lands aren't a nice place ",
-      "msg_id": "177151"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:09:12.693618+00:00",
-      "player": "Cannon",
-      "preview": "\"Even if we were unready, I do not think we have time to cha",
-      "msg_id": "177353"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:15:46.923636+00:00",
-      "player": "Cannon",
-      "preview": "Illiani channels the life-energies from her body into the wo",
-      "msg_id": "175407"
-    },
     {
       "pid": "51357",
       "time": "2026-09-07T18:15:46.928111+00:00",
@@ -6381,6 +6336,90 @@
       "player": "Alastair",
       "preview": "The shadow flips the bird at Davy. Rin shakes his head vigor",
       "msg_id": "183020"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-12T23:43:21.243737+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "184916"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-12T23:43:21.269057+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "184918"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-13T00:37:31.710974+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "184917"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-13T00:37:31.747008+00:00",
+      "player": "Buffet",
+      "preview": "Tarsus moves over to the table in the center of the room, at",
+      "msg_id": "185008"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-13T01:13:16.453079+00:00",
+      "player": "Alastair",
+      "preview": "Actions:\n\n3: Tandem Movement again (105 ft for Eidolon, 90 f",
+      "msg_id": "185015"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-13T02:10:52.409240+00:00",
+      "player": "aSly",
+      "preview": "Marlo feels a small, timid tug on the cuff of his sleeve and",
+      "msg_id": "183133"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-13T02:10:52.413693+00:00",
+      "player": "Ryo",
+      "preview": "Rax sighs as he makes his way into the Silver Succubi. He ha",
+      "msg_id": "183260"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-13T04:13:16.147695+00:00",
+      "player": "Anthony",
+      "preview": "Filiaur will enter with the casino chips the party got from ",
+      "msg_id": "183235"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-10-13T05:43:23.433691+00:00",
+      "player": "Laetheron",
+      "preview": "\"An interesting city to be sure.\"",
+      "msg_id": "184195"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-10-13T05:43:23.441224+00:00",
+      "player": "Laetheron",
+      "preview": "\"Shall we get going then? We have a meeting to get to, I bel",
+      "msg_id": "184196"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-13T05:43:24.759210+00:00",
+      "player": "Ryo",
+      "preview": "Rax frowns as he resists with all his might to not use his s",
+      "msg_id": "185094"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-10-13T06:13:21.098194+00:00",
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"I guess we do? Either way: Yeah, let's go.\"",
+      "msg_id": "184476"
     }
   ],
   "pending_potw_boons": {},
@@ -6419,7 +6458,6 @@
   "post_timestamps": {
     "40585": {
       "1698524397": [
-        "2026-09-27T15:55:15+00:00",
         "2026-09-28T20:25:48+00:00",
         "2026-09-29T03:11:28+00:00",
         "2026-09-29T03:11:45+00:00",
@@ -6523,24 +6561,56 @@
         "2026-10-12T09:32:50+00:00",
         "2026-10-12T09:33:12+00:00",
         "2026-10-12T09:33:46+00:00",
-        "2026-10-12T09:34:16+00:00"
+        "2026-10-12T09:34:16+00:00",
+        "2026-10-12T23:24:25+00:00",
+        "2026-10-12T23:24:53+00:00",
+        "2026-10-13T00:15:29+00:00",
+        "2026-10-13T00:15:39+00:00",
+        "2026-10-13T00:16:10+00:00",
+        "2026-10-13T00:16:26+00:00",
+        "2026-10-13T00:16:52+00:00",
+        "2026-10-13T00:17:02+00:00",
+        "2026-10-13T00:17:11+00:00",
+        "2026-10-13T00:19:39+00:00",
+        "2026-10-13T00:20:00+00:00",
+        "2026-10-13T00:20:23+00:00",
+        "2026-10-13T00:20:36+00:00",
+        "2026-10-13T00:20:55+00:00",
+        "2026-10-13T00:21:01+00:00",
+        "2026-10-13T00:22:25+00:00",
+        "2026-10-13T00:31:47+00:00",
+        "2026-10-13T00:32:15+00:00",
+        "2026-10-13T00:59:29+00:00",
+        "2026-10-13T00:59:44+00:00",
+        "2026-10-13T01:38:47+00:00",
+        "2026-10-13T01:38:58+00:00",
+        "2026-10-13T01:39:00+00:00",
+        "2026-10-13T01:39:11+00:00",
+        "2026-10-13T01:39:18+00:00",
+        "2026-10-13T01:40:34+00:00",
+        "2026-10-13T01:40:40+00:00",
+        "2026-10-13T01:41:52+00:00",
+        "2026-10-13T01:42:00+00:00"
       ],
       "7130942567": [
         "2026-10-02T14:54:11+00:00",
-        "2026-10-08T02:38:19+00:00"
+        "2026-10-08T02:38:19+00:00",
+        "2026-10-13T00:29:54+00:00"
       ],
       "6144366145": [
-        "2026-09-27T15:58:02+00:00",
         "2026-10-07T13:53:43+00:00",
         "2026-10-07T17:39:01+00:00",
         "2026-10-07T17:41:15+00:00",
-        "2026-10-07T17:56:54+00:00"
+        "2026-10-07T17:56:54+00:00",
+        "2026-10-12T15:22:55+00:00",
+        "2026-10-12T15:24:10+00:00",
+        "2026-10-12T15:24:44+00:00"
       ],
       "1358791105": [
-        "2026-09-27T14:00:42+00:00",
         "2026-09-29T14:25:06+00:00",
         "2026-10-01T04:46:23+00:00",
-        "2026-10-08T12:21:09+00:00"
+        "2026-10-08T12:21:09+00:00",
+        "2026-10-13T00:36:48+00:00"
       ],
       "138025700": [
         "2026-10-02T08:08:39+00:00",
@@ -6573,13 +6643,17 @@
         "2026-10-01T04:43:43+00:00",
         "2026-10-06T03:37:25+00:00",
         "2026-10-06T03:37:55+00:00",
-        "2026-10-06T03:38:45+00:00"
+        "2026-10-06T03:38:45+00:00",
+        "2026-10-13T04:34:50+00:00"
       ],
       "6144366145": [
         "2026-10-01T00:41:14+00:00"
       ],
       "7130942567": [
         "2026-10-01T04:29:41+00:00"
+      ],
+      "138025700": [
+        "2026-10-13T05:32:58+00:00"
       ]
     },
     "52083": {
@@ -6634,7 +6708,10 @@
         "2026-09-30T07:48:01+00:00",
         "2026-09-30T07:55:31+00:00",
         "2026-10-08T12:11:13+00:00",
-        "2026-10-08T12:11:58+00:00"
+        "2026-10-08T12:11:58+00:00",
+        "2026-10-13T05:28:33+00:00",
+        "2026-10-13T05:30:46+00:00",
+        "2026-10-13T06:04:23+00:00"
       ],
       "8117756377": [
         "2026-09-29T20:28:10+00:00",
@@ -6680,17 +6757,23 @@
         "2026-09-29T13:04:01+00:00",
         "2026-10-05T02:30:17+00:00",
         "2026-10-05T08:43:08+00:00",
-        "2026-10-12T09:39:51+00:00"
+        "2026-10-12T09:39:51+00:00",
+        "2026-10-13T02:02:03+00:00",
+        "2026-10-13T02:06:44+00:00",
+        "2026-10-13T03:53:29+00:00",
+        "2026-10-13T05:37:39+00:00"
       ],
       "6144366145": [
         "2026-09-29T15:45:15+00:00",
         "2026-10-06T02:50:34+00:00"
       ],
       "8836746655": [
-        "2026-10-05T12:22:13+00:00"
+        "2026-10-05T12:22:13+00:00",
+        "2026-10-13T10:17:12+00:00"
       ],
       "138025700": [
-        "2026-10-06T04:20:05+00:00"
+        "2026-10-06T04:20:05+00:00",
+        "2026-10-13T05:28:29+00:00"
       ],
       "8994358370": [
         "2026-10-06T10:19:58+00:00"
@@ -6722,7 +6805,8 @@
         "2026-10-04T06:29:07+00:00"
       ],
       "8353586922": [
-        "2026-10-06T09:04:24+00:00"
+        "2026-10-06T09:04:24+00:00",
+        "2026-10-12T17:49:27+00:00"
       ]
     },
     "146645": {
@@ -6746,11 +6830,11 @@
       "8471667081": 1
     },
     "66154": {
-      "138025700": 16,
+      "138025700": 17,
       "7961602816": 6,
       "5443237599": 30,
       "6134825204": 16,
-      "1698524397": 390,
+      "1698524397": 394,
       "8203214315": 16,
       "6717906753": 11,
       "6144366145": 21,
@@ -6758,15 +6842,15 @@
       "5029858993": 4,
       "8525518483": 13,
       "1358791105": 13,
-      "8836746655": 1,
+      "8836746655": 2,
       "8994358370": 1,
       "7437909735": 1
     },
     "51357": {
       "7863964681": 26,
-      "1698524397": 518,
+      "1698524397": 519,
       "7454623139": 40,
-      "138025700": 20,
+      "138025700": 21,
       "6144366145": 39,
       "894369591": 8,
       "8511309197": 4,
@@ -6792,7 +6876,7 @@
     },
     "107171": {
       "6134825204": 8,
-      "1698524397": 673,
+      "1698524397": 676,
       "7863964681": 40,
       "7077683276": 27,
       "8117756377": 59,
@@ -6805,9 +6889,9 @@
       "138025700": 9
     },
     "40585": {
-      "6144366145": 148,
-      "1698524397": 2405,
-      "7130942567": 70,
+      "6144366145": 151,
+      "1698524397": 2434,
+      "7130942567": 71,
       "138025700": 88,
       "5443237599": 49,
       "7842002561": 41,
@@ -6815,12 +6899,12 @@
       "7863964681": 60,
       "6023408187": 62,
       "1395063293": 16,
-      "1358791105": 11
+      "1358791105": 12
     },
     "76799": {
       "1698524397": 654,
       "138025700": 28,
-      "8353586922": 55,
+      "8353586922": 56,
       "7454623139": 66,
       "7863964681": 30,
       "8787586972": 27,
@@ -7085,11 +7169,11 @@
     "66154": {
       "1698524397": {
         "1": 20,
-        "3": 7,
+        "3": 8,
         "4": 47,
         "23": 12,
         "0": 14,
-        "2": 22,
+        "2": 24,
         "7": 6,
         "9": 5,
         "21": 8,
@@ -7104,7 +7188,7 @@
         "14": 34,
         "17": 12,
         "6": 28,
-        "5": 4
+        "5": 5
       },
       "138025700": {
         "2": 2,
@@ -7114,7 +7198,8 @@
         "4": 2,
         "11": 1,
         "19": 1,
-        "1": 1
+        "1": 1,
+        "5": 1
       },
       "5443237599": {
         "9": 2,
@@ -7204,7 +7289,8 @@
         "2": 1
       },
       "8836746655": {
-        "12": 1
+        "12": 1,
+        "10": 1
       },
       "8994358370": {
         "10": 1
@@ -7293,7 +7379,7 @@
         "0": 1,
         "5": 8,
         "12": 1,
-        "17": 4,
+        "17": 5,
         "18": 2,
         "3": 6,
         "14": 2,
@@ -7495,8 +7581,8 @@
         "19": 63,
         "23": 23,
         "12": 22,
-        "5": 11,
-        "6": 4,
+        "5": 13,
+        "6": 5,
         "10": 11
       },
       "8117756377": {
@@ -7642,7 +7728,7 @@
         "6": 50,
         "7": 11,
         "11": 20,
-        "4": 6,
+        "4": 7,
         "10": 3
       },
       "6144366145": {
@@ -7681,7 +7767,8 @@
         "23": 1,
         "0": 2,
         "17": 1,
-        "13": 1
+        "13": 1,
+        "5": 1
       },
       "894369591": {
         "19": 1,
@@ -7751,9 +7838,9 @@
     "40585": {
       "1698524397": {
         "21": 75,
-        "23": 45,
-        "0": 60,
-        "1": 96,
+        "23": 47,
+        "0": 78,
+        "1": 105,
         "2": 122,
         "3": 155,
         "7": 158,
@@ -7846,7 +7933,7 @@
         "3": 4,
         "13": 1,
         "14": 4,
-        "0": 1,
+        "0": 2,
         "2": 1
       },
       "5443237599": {
@@ -7889,7 +7976,7 @@
         "10": 1
       },
       "6144366145": {
-        "15": 7,
+        "15": 10,
         "16": 9,
         "17": 24,
         "13": 3,
@@ -7942,7 +8029,7 @@
       "1358791105": {
         "14": 7,
         "3": 1,
-        "0": 1,
+        "0": 2,
         "4": 1,
         "12": 1
       }
@@ -8169,7 +8256,7 @@
       "1698524397": {
         "5": 22,
         "6": 82,
-        "1": 70,
+        "1": 74,
         "0": 74,
         "2": 68,
         "3": 11,
@@ -8179,7 +8266,7 @@
         "5": 2,
         "6": 3,
         "2": 2,
-        "1": 2,
+        "1": 3,
         "0": 2,
         "4": 1
       },
@@ -8244,7 +8331,8 @@
         "4": 1
       },
       "8836746655": {
-        "0": 1
+        "0": 1,
+        "1": 1
       },
       "8994358370": {
         "1": 1
@@ -8286,7 +8374,7 @@
         "3": 4
       },
       "8353586922": {
-        "0": 16,
+        "0": 17,
         "1": 21,
         "6": 8,
         "4": 5,
@@ -8400,7 +8488,7 @@
         "6": 217,
         "3": 36,
         "0": 135,
-        "1": 90,
+        "1": 93,
         "4": 18,
         "2": 100
       },
@@ -8484,7 +8572,7 @@
       "1698524397": {
         "5": 38,
         "6": 95,
-        "1": 96,
+        "1": 97,
         "2": 81,
         "0": 133,
         "3": 48,
@@ -8509,7 +8597,7 @@
       },
       "138025700": {
         "6": 2,
-        "1": 4,
+        "1": 5,
         "0": 12,
         "2": 1
       },
@@ -8554,8 +8642,8 @@
       "1698524397": {
         "5": 258,
         "6": 419,
-        "0": 410,
-        "1": 490,
+        "0": 412,
+        "1": 517,
         "2": 264,
         "3": 92,
         "4": 353
@@ -8590,7 +8678,7 @@
         "2": 5,
         "3": 4,
         "6": 14,
-        "1": 12,
+        "1": 13,
         "4": 14,
         "5": 2
       },
@@ -8614,7 +8702,7 @@
       "6144366145": {
         "1": 22,
         "4": 18,
-        "0": 17,
+        "0": 20,
         "5": 17,
         "2": 32,
         "3": 6,
@@ -8639,7 +8727,7 @@
         "3": 1
       },
       "1358791105": {
-        "1": 3,
+        "1": 4,
         "2": 3,
         "3": 3,
         "5": 1,
@@ -8730,8 +8818,8 @@
       "8471667081": 1
     },
     "66154": {
-      "1698524397": 5997,
-      "138025700": 668,
+      "1698524397": 6387,
+      "138025700": 796,
       "5443237599": 1318,
       "7961602816": 181,
       "6134825204": 187,
@@ -8742,7 +8830,7 @@
       "5029858993": 189,
       "8525518483": 221,
       "1358791105": 718,
-      "8836746655": 62,
+      "8836746655": 139,
       "8994358370": 69,
       "7437909735": 126
     },
@@ -8751,7 +8839,7 @@
       "7454623139": 1595,
       "7863964681": 672,
       "138025700": 728,
-      "8353586922": 1595,
+      "8353586922": 1629,
       "8787586972": 896,
       "8729190676": 102,
       "8969117742": 406,
@@ -8773,7 +8861,7 @@
       "8255519522": 7
     },
     "107171": {
-      "1698524397": 7505,
+      "1698524397": 7657,
       "8117756377": 1328,
       "7077683276": 435,
       "6134825204": 198,
@@ -8787,10 +8875,10 @@
       "138025700": 152
     },
     "51357": {
-      "1698524397": 9314,
+      "1698524397": 9381,
       "6144366145": 451,
       "7454623139": 994,
-      "138025700": 380,
+      "138025700": 468,
       "894369591": 362,
       "8511309197": 391,
       "8117756377": 967,
@@ -8799,17 +8887,17 @@
       "5443237599": 4
     },
     "40585": {
-      "1698524397": 34598,
+      "1698524397": 34887,
       "138025700": 1459,
       "7077683276": 1102,
       "7863964681": 2003,
-      "7130942567": 1147,
+      "7130942567": 1172,
       "5443237599": 738,
       "7842002561": 1260,
       "6144366145": 1080,
       "6023408187": 547,
       "1395063293": 1028,
-      "1358791105": 513
+      "1358791105": 528
     },
     "1242": {
       "1698524397": 3295,
@@ -8830,26 +8918,26 @@
     }
   },
   "session_counts": {
-    "51357": 53,
-    "40585": 127,
-    "107171": 61,
+    "51357": 54,
+    "40585": 128,
+    "107171": 62,
     "107151": 30,
     "25059": 66,
     "76799": 54,
-    "66154": 42,
+    "66154": 43,
     "52083": 59,
     "1242": 34,
     "146645": 6,
     "75843": 2
   },
   "session_last_day": {
-    "51357": "2026-10-06",
-    "40585": "2026-10-12",
-    "107171": "2026-10-08",
+    "51357": "2026-10-13",
+    "40585": "2026-10-13",
+    "107171": "2026-10-13",
     "107151": "2026-05-05",
     "25059": "2026-10-08",
     "76799": "2026-10-12",
-    "66154": "2026-10-12",
+    "66154": "2026-10-13",
     "52083": "2026-10-08",
     "1242": "2026-06-29",
     "146645": "2026-10-06",
@@ -10216,7 +10304,7 @@
   ],
   "thread_message_counts": {
     "66154": {
-      "1698524397": 1
+      "8836746655": 1
     },
     "25059": {
       "1698524397": 1
@@ -10225,13 +10313,13 @@
       "1698524397": 1
     },
     "76799": {
-      "1698524397": 2
+      "8353586922": 1
     },
     "144765": {
       "1698524397": 1
     },
     "51357": {
-      "1698524397": 3
+      "138025700": 1
     },
     "56842": {
       "1698524397": 8
@@ -10240,11 +10328,10 @@
       "1698524397": 1
     },
     "40585": {
-      "1698524397": 4
+      "1698524397": 6
     },
     "137075": {
-      "138025700": 3,
-      "1698524397": 5
+      "1698524397": 9
     },
     "52083": {
       "1698524397": 1
@@ -10256,7 +10343,7 @@
       "1698524397": 1
     },
     "107171": {
-      "8701042661": 1
+      "1698524397": 1
     },
     "142887": {
       "1698524397": 1
@@ -10314,6 +10401,6 @@
       }
     ]
   },
-  "_backup_timestamp": "2026-10-12T11:13:23.807823+00:00",
+  "_backup_timestamp": "2026-10-13T11:13:25.622938+00:00",
   "_backup_version": "4.70.2"
 }
