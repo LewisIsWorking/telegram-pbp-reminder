@@ -918,7 +918,9 @@
       "2026-09-30T07:51:08.237602+00:00",
       "2026-09-30T07:51:08.242920+00:00",
       "2026-09-30T07:58:49.788100+00:00",
-      "2026-10-08T12:13:21.688403+00:00"
+      "2026-10-08T12:13:21.688403+00:00",
+      "2026-10-13T05:43:23.433691+00:00",
+      "2026-10-13T05:43:23.441224+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -1594,7 +1596,8 @@
       "2026-10-12T09:43:17.838666+00:00",
       "2026-10-13T02:10:52.409240+00:00",
       "2026-10-13T02:10:52.413693+00:00",
-      "2026-10-13T04:13:16.147695+00:00"
+      "2026-10-13T04:13:16.147695+00:00",
+      "2026-10-13T05:43:24.759210+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1985,27 +1988,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:09:12.689166+00:00",
-      "player": "Laetheron",
-      "preview": "Twilight regards the portal to the shadow lands with a grim ",
-      "msg_id": "177150"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:09:12.691424+00:00",
-      "player": "Laetheron",
-      "preview": "\"Is everyone prepared? The Shadow Lands aren't a nice place ",
-      "msg_id": "177151"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:09:12.693618+00:00",
-      "player": "Cannon",
-      "preview": "\"Even if we were unready, I do not think we have time to cha",
-      "msg_id": "177353"
-    },
     {
       "pid": "51357",
       "time": "2026-09-07T18:15:46.923636+00:00",
@@ -3384,6 +3366,27 @@
       "player": "Anthony",
       "preview": "Filiaur will enter with the casino chips the party got from ",
       "msg_id": "183235"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-10-13T05:43:23.433691+00:00",
+      "player": "Laetheron",
+      "preview": "\"An interesting city to be sure.\"",
+      "msg_id": "184195"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-10-13T05:43:23.441224+00:00",
+      "player": "Laetheron",
+      "preview": "\"Shall we get going then? We have a meeting to get to, I bel",
+      "msg_id": "184196"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-13T05:43:24.759210+00:00",
+      "player": "Ryo",
+      "preview": "Rax frowns as he resists with all his might to not use his s",
+      "msg_id": "185094"
     }
   ],
   "pending_potw_boons": {},

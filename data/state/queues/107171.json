@@ -2,24 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 184195,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-10-08T23:28:19+00:00",
-      "preview": "\"An interesting city to be sure.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 184196,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-10-08T23:30:58+00:00",
-      "preview": "\"Shall we get going then? We have a meeting to get to, I believe.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 184476,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -479,7 +461,11 @@
     "msg:182008",
     "2026-09-29 20:28:10",
     "msg:182679",
-    "2026-10-03 23:02:41"
+    "2026-10-03 23:02:41",
+    "msg:184195",
+    "2026-10-08 23:28:19",
+    "msg:184196",
+    "2026-10-08 23:30:58"
   ],
   "reply_log": [
     {
@@ -2564,17 +2550,35 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"So . . This is a mostly-normal sort of place, right? Like we don't need to keep",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-13T05:28:33+00:00",
+      "pid": "107171",
+      "msg_id": "184195",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"An interesting city to be sure.\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-13T05:30:46+00:00",
+      "pid": "107171",
+      "msg_id": "184196",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Shall we get going then? We have a meeting to get to, I believe.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-10-08 23:28:19|2026-10-08 23:30:58|2026-10-10 21:28:52",
+      "fingerprint": "2026-10-10 21:28:52",
       "msg_ids": [
-        184849
+        185108
       ],
-      "last_posted_at": "2026-10-12T09:51:01.666871+00:00",
+      "last_posted_at": "2026-10-13T05:43:37.752039+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-10-08T12:13:21.691593+00:00"
@@ -2589,8 +2593,6 @@
     }
   },
   "probed": {
-    "184195": "2026-10-13T03:49:57.679744+00:00",
-    "184196": "2026-10-13T03:49:57.679744+00:00",
-    "184476": "2026-10-12T23:16:16.910943+00:00"
+    "184476": "2026-10-13T05:43:24.760260+00:00"
   }
 }

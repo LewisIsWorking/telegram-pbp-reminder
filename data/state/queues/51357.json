@@ -1,6 +1,16 @@
 {
   "pid": "51357",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 185097,
+      "thread_id": 51357,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-10-13T05:32:58+00:00",
+      "preview": "\"Perhaps we should make haste. It seems this place is not very welcoming and I'd rather deal with what we came here for and leave before we find out what it does with unwelcome guests.\"\n\nWith that Cyrus hefts his shield and moves to the front of the party, leaving space beside him for one who is more skilled at navigating a place such as this to walk beside, even if it means being a bit off the path himself depending on the width of the path ahead.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -2037,9 +2047,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-10-13 05:32:58",
+      "msg_ids": [
+        185106
+      ],
+      "last_posted_at": "2026-10-13T05:43:31.798198+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null,
       "pending_delete": []
@@ -2060,5 +2072,8 @@
       "pending_delete": [],
       "caught_up_at": null
     }
+  },
+  "probed": {
+    "185097": "2026-10-13T05:43:24.760260+00:00"
   }
 }
