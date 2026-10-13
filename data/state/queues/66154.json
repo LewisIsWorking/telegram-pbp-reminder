@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 183235,
-      "thread_id": 66154,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-06T02:50:34+00:00",
-      "preview": "Filiaur will enter with the casino chips the party got from Beltias. They were made for this after all.",
-      "media_group_id": null
-    },
-    {
       "message_id": 183308,
       "thread_id": 66154,
       "user_id": "8994358370",
@@ -309,7 +300,9 @@
     "msg:183133",
     "2026-10-05 12:22:13",
     "msg:183260",
-    "2026-10-06 04:20:05"
+    "2026-10-06 04:20:05",
+    "msg:183235",
+    "2026-10-06 02:50:34"
   ],
   "reply_log": [
     {
@@ -1556,24 +1549,32 @@
       "player": "Ryo",
       "preview": "Rax sighs as he makes his way into the Silver Succubi. He had received a messeng",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-13T03:53:29+00:00",
+      "pid": "66154",
+      "msg_id": "183235",
+      "thread_id": 66154,
+      "player": "Anthony",
+      "preview": "Filiaur will enter with the casino chips the party got from Beltias. They were m",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-06 02:50:34|2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37",
+      "fingerprint": "2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37",
       "msg_ids": [
-        185054
+        185062
       ],
-      "last_posted_at": "2026-10-13T02:10:54.644976+00:00",
+      "last_posted_at": "2026-10-13T04:13:18.044579+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "183235": "2026-10-13T03:49:57.679744+00:00",
     "183308": "2026-10-13T03:49:57.679744+00:00",
     "183329": "2026-10-13T03:49:57.679744+00:00",
     "184174": "2026-10-12T22:13:21.112355+00:00"
