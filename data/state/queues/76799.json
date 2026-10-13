@@ -1,16 +1,6 @@
 {
   "pid": "76799",
-  "unreplied": [
-    {
-      "message_id": 184931,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-10-12T17:49:27+00:00",
-      "preview": "The detective approaches the suspects with caution. His eyes flick to the spider distrustfully. Determining them to be neutralized, he nods. \n\n\"Suspects down without casualty. Perhaps someone with full sized cuffs should detain them.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -498,7 +488,9 @@
     "msg:182796",
     "2026-10-04 06:29:07",
     "msg:183292",
-    "2026-10-06 09:04:24"
+    "2026-10-06 09:04:24",
+    "msg:184931",
+    "2026-10-12 17:49:27"
   ],
   "reply_log": [
     {
@@ -2737,20 +2729,27 @@
       "player": "Chase",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-13T13:54:07+00:00",
+      "pid": "76799",
+      "msg_id": "184931",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "The detective approaches the suspects with caution. His eyes flick to the spider",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-10-12 17:49:27",
-      "msg_ids": [
-        184933
-      ],
-      "last_posted_at": "2026-10-12T17:52:51.622060+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 185176,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-10-13T14:13:22.075323+00:00"
     },
     "144765": {
       "fingerprint": "",

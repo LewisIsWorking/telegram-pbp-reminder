@@ -1465,7 +1465,8 @@
       "2026-09-30T07:43:21.464345+00:00",
       "2026-10-03T17:13:22.788631+00:00",
       "2026-10-12T08:43:20.016131+00:00",
-      "2026-10-12T08:51:17.709652+00:00"
+      "2026-10-12T08:51:17.709652+00:00",
+      "2026-10-13T14:13:22.073046+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -1989,13 +1990,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-09-07T18:15:46.928111+00:00",
-      "player": "Cannon",
-      "preview": "damage total is 13 piercing and 12 spirit (the two hits are ",
-      "msg_id": "175421"
-    },
     {
       "pid": "40585",
       "time": "2026-09-08T01:30:22.387375+00:00",
@@ -3388,6 +3382,13 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "\"I guess we do? Either way: Yeah, let's go.\"",
       "msg_id": "184476"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-10-13T14:13:22.073046+00:00",
+      "player": "Chase",
+      "preview": "The detective approaches the suspects with caution. His eyes",
+      "msg_id": "184931"
     }
   ],
   "pending_potw_boons": {},
