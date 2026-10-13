@@ -231,16 +231,6 @@
       "last_post_time": "2026-10-13T00:36:48+00:00",
       "last_warned_week": 0
     },
-    "51357:5443237599": {
-      "user_id": "5443237599",
-      "first_name": "Horia",
-      "last_name": "Constantinescu",
-      "username": "Nemesiux",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-09-15T19:34:55+00:00",
-      "last_warned_week": 3
-    },
     "51357:6144366145": {
       "user_id": "6144366145",
       "first_name": "Anthony",
@@ -668,6 +658,12 @@
       "first_name": "Minork",
       "username": "Minork_Estra",
       "campaign_name": "Metal City"
+    },
+    "51357:5443237599": {
+      "removed_at": "2026-10-13T20:13:27.526259+00:00",
+      "first_name": "Horia",
+      "username": "Nemesiux",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -2062,6 +2058,14 @@
       "name": "Ryo",
       "username": "RyoYamakawa",
       "at": "2026-10-13T05:43:23.441469+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "5443237599",
+      "name": "Horia",
+      "username": "Nemesiux",
+      "at": "2026-10-13T20:13:28.220851+00:00"
     }
   ],
   "player_boons": {
