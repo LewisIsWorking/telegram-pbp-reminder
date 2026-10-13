@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 185015,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-10-13T00:36:48+00:00",
-      "preview": "Actions:\n\n3: Tandem Movement again (105 ft for Eidolon, 90 ft for Zerius, both west)",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1186,7 +1177,9 @@
     "msg:184917",
     "2026-10-12 15:24:10",
     "msg:185008",
-    "2026-10-13 00:29:54"
+    "2026-10-13 00:29:54",
+    "msg:185015",
+    "2026-10-13 00:36:48"
   ],
   "reply_log": [
     {
@@ -6631,20 +6624,27 @@
       "player": "Buffet",
       "preview": "Tarsus moves over to the table in the center of the room, attempting to get some",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-13T00:59:29+00:00",
+      "pid": "40585",
+      "msg_id": "185015",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Actions:\n\n3: Tandem Movement again (105 ft for Eidolon, 90 ft for Zerius, both w",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-10-13 00:36:48",
-      "msg_ids": [
-        185016
-      ],
-      "last_posted_at": "2026-10-13T00:37:36.260710+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 185025,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-10-13T01:13:16.454912+00:00"
     },
     "40585": {
       "fingerprint": "",
