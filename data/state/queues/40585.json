@@ -18,12 +18,12 @@
       "preview": "[media]"
     },
     {
-      "message_id": 184917,
+      "message_id": 185015,
       "thread_id": 137075,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-12T15:24:10+00:00",
-      "preview": "[media]",
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-10-13T00:36:48+00:00",
+      "preview": "Actions:\n\n3: Tandem Movement again (105 ft for Eidolon, 90 ft for Zerius, both west)",
       "media_group_id": null
     }
   ],
@@ -1182,7 +1182,11 @@
     "msg:184916",
     "2026-10-12 15:22:55",
     "msg:184918",
-    "2026-10-12 15:24:44"
+    "2026-10-12 15:24:44",
+    "msg:184917",
+    "2026-10-12 15:24:10",
+    "msg:185008",
+    "2026-10-13 00:29:54"
   ],
   "reply_log": [
     {
@@ -6609,17 +6613,35 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-13T00:15:39+00:00",
+      "pid": "40585",
+      "msg_id": "184917",
+      "thread_id": 137075,
+      "player": "Anthony",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-13T00:31:47+00:00",
+      "pid": "40585",
+      "msg_id": "185008",
+      "thread_id": 137075,
+      "player": "Buffet",
+      "preview": "Tarsus moves over to the table in the center of the room, attempting to get some",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-10-12 15:24:10",
+      "fingerprint": "2026-10-13 00:36:48",
       "msg_ids": [
-        184983
+        185016
       ],
-      "last_posted_at": "2026-10-12T23:43:25.992101+00:00",
+      "last_posted_at": "2026-10-13T00:37:36.260710+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -6633,6 +6655,6 @@
     }
   },
   "probed": {
-    "184917": "2026-10-12T21:43:20.874125+00:00"
+    "185015": "2026-10-13T00:37:31.759878+00:00"
   }
 }
