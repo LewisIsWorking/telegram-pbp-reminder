@@ -2,30 +2,12 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 183133,
-      "thread_id": 66154,
-      "user_id": "8836746655",
-      "user_name": "aSly",
-      "time": "2026-10-05T12:22:13+00:00",
-      "preview": "Marlo feels a small, timid tug on the cuff of his sleeve and, looking down, sees the top of a pointed purple hat with a thin brim, obscuring his view of the poppet beneath it. \n\nAnxious: \n\"Umm... I-I haven't picked up anything from any guests so far, sir... B-But I'll keep trying!\" She says, nervous but determined to do her job well.",
-      "media_group_id": null
-    },
-    {
       "message_id": 183235,
       "thread_id": 66154,
       "user_id": "6144366145",
       "user_name": "Anthony",
       "time": "2026-10-06T02:50:34+00:00",
       "preview": "Filiaur will enter with the casino chips the party got from Beltias. They were made for this after all.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 183260,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-10-06T04:20:05+00:00",
-      "preview": "Rax sighs as he makes his way into the Silver Succubi. He had received a messenger at his shop letting him know the rest had finished their preparations earlier than anticipated so he was needed to be there for the attack. If that was all he wouldn't be grumpy but the note had also said to not wear his usual garb as it was too recognizable. So here he is in a simple long-sleeved tunic and leather vest, leather pants and boot. A slightly oversized eyepatch hiding his clockwork eye and two flask p",
       "media_group_id": null
     },
     {
@@ -323,7 +305,11 @@
     "msg:181973",
     "2026-09-29 15:45:15",
     "msg:183020",
-    "2026-10-05 02:36:26"
+    "2026-10-05 02:36:26",
+    "msg:183133",
+    "2026-10-05 12:22:13",
+    "msg:183260",
+    "2026-10-06 04:20:05"
   ],
   "reply_log": [
     {
@@ -1552,26 +1538,42 @@
       "player": "Alastair",
       "preview": "The shadow flips the bird at Davy. Rin shakes his head vigorously and nervously.",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-13T02:02:03+00:00",
+      "pid": "66154",
+      "msg_id": "183133",
+      "thread_id": 66154,
+      "player": "aSly",
+      "preview": "Marlo feels a small, timid tug on the cuff of his sleeve and, looking down, sees",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-13T02:06:44+00:00",
+      "pid": "66154",
+      "msg_id": "183260",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "Rax sighs as he makes his way into the Silver Succubi. He had received a messeng",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-05 12:22:13|2026-10-06 02:50:34|2026-10-06 04:20:05|2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37",
+      "fingerprint": "2026-10-06 02:50:34|2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37",
       "msg_ids": [
-        184835
+        185054
       ],
-      "last_posted_at": "2026-10-12T09:43:21.119503+00:00",
+      "last_posted_at": "2026-10-13T02:10:54.644976+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "183133": "2026-10-12T21:43:20.874125+00:00",
     "183235": "2026-10-12T21:43:20.874125+00:00",
-    "183260": "2026-10-12T21:43:20.874125+00:00",
     "183308": "2026-10-12T21:43:20.874125+00:00",
     "183329": "2026-10-12T21:43:20.874125+00:00",
     "184174": "2026-10-12T22:13:21.112355+00:00"
