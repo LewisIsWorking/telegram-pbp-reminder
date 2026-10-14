@@ -1986,17 +1986,11 @@
       "2026-08-30T17:40:43.549749+00:00",
       "2026-08-30T17:40:43.553104+00:00",
       "2026-09-13T19:44:19.742594+00:00",
-      "2026-09-14T23:58:25.438374+00:00"
+      "2026-09-14T23:58:25.438374+00:00",
+      "2026-10-14T18:43:20.580162+00:00"
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-09-08T01:30:22.387375+00:00",
-      "player": "Buffet",
-      "preview": "Tarsus will move along the wall to get a closer look at the ",
-      "msg_id": "177564"
-    },
     {
       "pid": "51357",
       "time": "2026-09-08T01:30:22.389941+00:00",
@@ -3389,6 +3383,13 @@
       "player": "Chase",
       "preview": "The detective approaches the suspects with caution. His eyes",
       "msg_id": "184931"
+    },
+    {
+      "pid": "146645",
+      "time": "2026-10-14T18:43:20.580162+00:00",
+      "player": "",
+      "preview": "",
+      "msg_id": "185512"
     }
   ],
   "pending_potw_boons": {},
