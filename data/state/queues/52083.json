@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 185263,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-13T23:26:24+00:00",
+      "preview": "\"Hmm... Nothing my \u2605SUPER IDOL HACKS\u2605 can't take care of then!?\"\nLivy says as she strikes a pose",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -2517,9 +2527,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-10-13 23:26:24",
+      "msg_ids": [
+        185267
+      ],
+      "last_posted_at": "2026-10-14T00:13:29.067775+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2538,6 +2550,6 @@
     }
   },
   "probed": {
-    "182398": "2026-10-08T05:43:20.339774+00:00"
+    "185263": "2026-10-14T00:13:23.177850+00:00"
   }
 }
