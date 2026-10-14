@@ -1,25 +1,5 @@
 [
   {
-    "timestamp": "2026-09-12T19:15:25.381394+00:00",
-    "action": "unpin",
-    "chat_id": -1001661053273,
-    "message_id": 178454,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "gm_queue_history.py:120"
-  },
-  {
-    "timestamp": "2026-09-12T19:15:25.778314+00:00",
-    "action": "delete",
-    "chat_id": -1001661053273,
-    "message_id": 178454,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "message_batch.py:60"
-  },
-  {
     "timestamp": "2026-09-12T19:15:26.157711+00:00",
     "action": "delete",
     "chat_id": -1001661053273,
@@ -29994,6 +29974,26 @@
     "action": "delete",
     "chat_id": -1004303231713,
     "message_id": 2773,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-10-14T11:43:55.831758+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 185157,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "recruit_focus_post.py:171"
+  },
+  {
+    "timestamp": "2026-10-14T11:43:56.951714+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 2774,
     "ok": true,
     "refused": false,
     "bot_owned": true,
