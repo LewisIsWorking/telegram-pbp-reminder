@@ -9,6 +9,15 @@
       "time": "2026-10-13T05:32:58+00:00",
       "preview": "\"Perhaps we should make haste. It seems this place is not very welcoming and I'd rather deal with what we came here for and leave before we find out what it does with unwelcome guests.\"\n\nWith that Cyrus hefts his shield and moves to the front of the party, leaving space beside him for one who is more skilled at navigating a place such as this to walk beside, even if it means being a bit off the path himself depending on the width of the path ahead.",
       "media_group_id": null
+    },
+    {
+      "message_id": 185286,
+      "thread_id": 51357,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-10-14T05:59:35+00:00",
+      "preview": "Twilight tries following where their instincts lead, using their experience in the wilderness to help navigate.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2047,11 +2056,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-10-13 05:32:58",
+      "fingerprint": "2026-10-13 05:32:58|2026-10-14 05:59:35",
       "msg_ids": [
-        185106
+        185292
       ],
-      "last_posted_at": "2026-10-13T05:43:31.798198+00:00",
+      "last_posted_at": "2026-10-14T06:11:22.417957+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null,
       "pending_delete": []
@@ -2074,6 +2083,7 @@
     }
   },
   "probed": {
-    "185097": "2026-10-14T01:12:44.737988+00:00"
+    "185097": "2026-10-14T01:12:44.737988+00:00",
+    "185286": "2026-10-14T06:11:15.147114+00:00"
   }
 }
