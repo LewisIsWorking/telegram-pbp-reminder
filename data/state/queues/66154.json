@@ -45,6 +45,15 @@
       "time": "2026-10-14T01:46:35+00:00",
       "preview": "Rin pouts, staring up at Davy for a moment before his weird eyes shoot back down. \"He's not a curse, he's a very good shadow!\"\n\nA pause. The shadow flips two birds at Davy.\n\n\"Well, mostly good.\"\n\nThe shadow changes two birds to a singular thumbs-up.",
       "media_group_id": null
+    },
+    {
+      "message_id": 185601,
+      "thread_id": 66154,
+      "user_id": "8994358370",
+      "user_name": "Peter",
+      "time": "2026-10-15T19:20:53+00:00",
+      "preview": "Ryder nods that he understands. \"You got it boss. Hey, I've been at a couple of these but never in one like some of these folks. How's it work?\" He then looks around the room for anyone suspicious.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1615,21 +1624,22 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-08 17:50:37|2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35",
+      "fingerprint": "2026-10-08 17:50:37|2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53",
       "msg_ids": [
-        185567
+        185603
       ],
-      "last_posted_at": "2026-10-15T08:51:09.727041+00:00",
+      "last_posted_at": "2026-10-15T19:43:32.072658+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "184174": "2026-10-15T13:13:22.433694+00:00",
-    "185144": "2026-10-15T13:13:22.433694+00:00",
-    "185216": "2026-10-15T13:13:22.433694+00:00",
-    "185223": "2026-10-15T13:13:22.433694+00:00",
-    "185276": "2026-10-15T16:13:29.283279+00:00"
+    "184174": "2026-10-15T19:43:22.076119+00:00",
+    "185144": "2026-10-15T19:43:22.076119+00:00",
+    "185216": "2026-10-15T19:43:22.076119+00:00",
+    "185223": "2026-10-15T19:43:22.076119+00:00",
+    "185276": "2026-10-15T16:13:29.283279+00:00",
+    "185601": "2026-10-15T19:43:22.076119+00:00"
   }
 }
