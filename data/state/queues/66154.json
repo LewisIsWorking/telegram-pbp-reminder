@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 183308,
-      "thread_id": 66154,
-      "user_id": "8994358370",
-      "user_name": "Peter",
-      "time": "2026-10-06T10:19:58+00:00",
-      "preview": "As the resident muscle, Ryder will be at the door. Used to being a bouncer, the job seemed a natural fit for him. But occasionally he will be caught daydreaming about having his own ship and crew. There are even a few fleeting thoughts of becoming the Hurricane King. A few street urchins try to slip in but thean let's out a growl to let them know the score.",
-      "media_group_id": null
-    },
-    {
       "message_id": 183329,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -340,7 +331,9 @@
     "msg:183235",
     "2026-10-06 02:50:34",
     "msg:185094",
-    "2026-10-13 05:28:29"
+    "2026-10-13 05:28:29",
+    "msg:183308",
+    "2026-10-06 10:19:58"
   ],
   "reply_log": [
     {
@@ -1605,24 +1598,32 @@
       "player": "Ryo",
       "preview": "Rax frowns as he resists with all his might to not use his sword-cane, the cane ",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-15T08:16:22+00:00",
+      "pid": "66154",
+      "msg_id": "183308",
+      "thread_id": 66154,
+      "player": "Peter",
+      "preview": "As the resident muscle, Ryder will be at the door. Used to being a bouncer, the ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-06 10:19:58|2026-10-06 18:20:14|2026-10-08 17:50:37|2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35",
+      "fingerprint": "2026-10-06 18:20:14|2026-10-08 17:50:37|2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35",
       "msg_ids": [
-        185278
+        185561
       ],
-      "last_posted_at": "2026-10-14T02:08:34.083857+00:00",
+      "last_posted_at": "2026-10-15T08:43:31.091406+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "183308": "2026-10-15T07:13:19.701594+00:00",
     "183329": "2026-10-15T07:13:19.701594+00:00",
     "184174": "2026-10-15T07:13:19.701594+00:00",
     "185144": "2026-10-15T07:13:19.701594+00:00",
