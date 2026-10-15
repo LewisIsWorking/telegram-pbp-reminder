@@ -18,6 +18,15 @@
       "time": "2026-10-14T05:59:35+00:00",
       "preview": "Twilight tries following where their instincts lead, using their experience in the wilderness to help navigate.",
       "media_group_id": null
+    },
+    {
+      "message_id": 185542,
+      "thread_id": 51357,
+      "user_id": "7130942567",
+      "user_name": "Buffet",
+      "time": "2026-10-15T06:28:07+00:00",
+      "preview": "Alitheia glances back at the dormant archway.\n\"At least we won't have to worry about any more of them sneaking past us. Light-based magics are dulled here but I'll do what I can.\"\nShe checks her shield strap and readies her battle standard, then follows after Twilight.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2056,11 +2065,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-10-13 05:32:58|2026-10-14 05:59:35",
+      "fingerprint": "2026-10-13 05:32:58|2026-10-14 05:59:35|2026-10-15 06:28:07",
       "msg_ids": [
-        185292
+        185544
       ],
-      "last_posted_at": "2026-10-14T06:11:22.417957+00:00",
+      "last_posted_at": "2026-10-15T07:13:31.833049+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null,
       "pending_delete": []
@@ -2084,6 +2093,7 @@
   },
   "probed": {
     "185097": "2026-10-15T01:13:26.029515+00:00",
-    "185286": "2026-10-15T00:43:25.267631+00:00"
+    "185286": "2026-10-15T07:13:19.701594+00:00",
+    "185542": "2026-10-15T07:13:19.701594+00:00"
   }
 }
