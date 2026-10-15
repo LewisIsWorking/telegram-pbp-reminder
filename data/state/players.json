@@ -191,16 +191,6 @@
       "last_post_time": "2026-09-29T14:21:09+00:00",
       "last_warned_week": 2
     },
-    "66154:8525518483": {
-      "user_id": "8525518483",
-      "first_name": "Fuzzy",
-      "last_name": "",
-      "username": "fuzzystudios",
-      "campaign_name": "Riddleport",
-      "pbp_topic_id": "66154",
-      "last_post_time": "2026-09-17T16:19:48+00:00",
-      "last_warned_week": 3
-    },
     "66154:1358791105": {
       "user_id": "1358791105",
       "first_name": "Alastair",
@@ -668,6 +658,12 @@
       "first_name": "Horia",
       "username": "Nemesiux",
       "campaign_name": "Grand Explorers"
+    },
+    "66154:8525518483": {
+      "removed_at": "2026-10-15T16:43:29.631259+00:00",
+      "first_name": "Fuzzy",
+      "username": "fuzzystudios",
+      "campaign_name": "Riddleport"
     }
   },
   "player_registry": {
@@ -2078,6 +2074,14 @@
       "name": "Laetheron",
       "username": "StorybookRhizome",
       "at": "2026-10-14T06:11:13.732958+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "66154",
+      "user_id": "8525518483",
+      "name": "Fuzzy",
+      "username": "fuzzystudios",
+      "at": "2026-10-15T16:43:30.397826+00:00"
     }
   ],
   "player_boons": {
