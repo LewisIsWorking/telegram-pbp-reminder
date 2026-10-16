@@ -9,6 +9,15 @@
       "time": "2026-10-13T23:26:24+00:00",
       "preview": "\"Hmm... Nothing my \u2605SUPER IDOL HACKS\u2605 can't take care of then!?\"\nLivy says as she strikes a pose",
       "media_group_id": null
+    },
+    {
+      "message_id": 185671,
+      "thread_id": 52083,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-10-16T14:23:51+00:00",
+      "preview": "Roneles turns to Livy and says \"Did I ever tell you what the definition of insanity is? Insanity is doing the exact same thing over and over again, expecting stuff to change. That is crazy.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2527,11 +2536,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-10-13 23:26:24",
+      "fingerprint": "2026-10-13 23:26:24|2026-10-16 14:23:51",
       "msg_ids": [
-        185588
+        185677
       ],
-      "last_posted_at": "2026-10-15T12:43:25.094605+00:00",
+      "last_posted_at": "2026-10-16T14:43:40.030144+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2550,6 +2559,7 @@
     }
   },
   "probed": {
-    "185263": "2026-10-16T08:13:30.193741+00:00"
+    "185263": "2026-10-16T14:43:24.637758+00:00",
+    "185671": "2026-10-16T14:43:24.637758+00:00"
   }
 }
