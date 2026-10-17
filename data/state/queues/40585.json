@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 185903,
-      "thread_id": 40585,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-17T16:13:00+00:00",
-      "preview": "Daichi will see how the table reacts and say: \n\"GUYS don't do any SUDDEN movements. Move carefully, there's only 1 table left.\"",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1195,7 +1186,9 @@
     "2026-10-17 16:02:57",
     "msg:185885",
     "2026-10-17 16:09:07",
-    "msg:185886"
+    "msg:185886",
+    "msg:185903",
+    "2026-10-17 16:13:00"
   ],
   "reply_log": [
     {
@@ -6685,6 +6678,15 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-17T16:13:51+00:00",
+      "pid": "40585",
+      "msg_id": "185903",
+      "thread_id": 40585,
+      "player": "Anthony",
+      "preview": "Daichi will see how the table reacts and say: \n\"GUYS don't do any SUDDEN movemen",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6699,13 +6701,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-10-17 16:13:00",
-      "msg_ids": [
-        185906
-      ],
-      "last_posted_at": "2026-10-17T16:13:21.058334+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 185926,
+      "caught_up_at": "2026-10-17T16:20:54.652132+00:00"
     }
   },
   "probed": {
