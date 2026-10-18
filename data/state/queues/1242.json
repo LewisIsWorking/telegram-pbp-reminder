@@ -1,16 +1,6 @@
 {
   "pid": "1242",
-  "unreplied": [
-    {
-      "message_id": 2988,
-      "thread_id": 1242,
-      "user_id": "8018921976",
-      "user_name": "Natasha",
-      "time": "2026-10-18T10:18:46+00:00",
-      "preview": "What has happened since we met?",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -305,7 +295,9 @@
     "msg:2978",
     "2026-10-18 09:21:43",
     "msg:2980",
-    "2026-10-18 09:28:50"
+    "2026-10-18 09:28:50",
+    "msg:2988",
+    "2026-10-18 10:18:46"
   ],
   "reply_log": [
     {
@@ -1777,20 +1769,27 @@
       "player": "Natasha",
       "preview": "Lovely jubbly, ill have to ask my team for important plot points \ud83e\udee0",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-18T11:01:14+00:00",
+      "pid": "1242",
+      "msg_id": "2988",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "What has happened since we met?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "2026-10-18 10:18:46",
-      "msg_ids": [
-        2989
-      ],
-      "last_posted_at": "2026-10-18T10:21:12.490201+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 2992,
       "pending_delete": [],
-      "caught_up_at": "2026-10-18T10:13:18.513398+00:00"
+      "caught_up_at": "2026-10-18T11:01:14.355287+00:00"
     },
     "1825": {
       "msg_ids": [],
