@@ -14,6 +14,7 @@ import helpers
 import telegram as tg
 from commands.queue_format import entry_age_icon
 from helpers_pkg.routes import route
+from helpers_pkg.tracked_since import clamp_last_post
 
 # Last post age -> health icon uses the same 22-tier GM queue scale
 # (entry_age_icon from commands/queue_format.py, input in hours)
@@ -75,7 +76,7 @@ def _collect_rows(config: dict, state: dict,
         week_posts = _count_week_posts(topic_ts, week_ago)
 
         topic     = state.get("topics", {}).get(pid, {})
-        last_time = topic.get("last_message_time")
+        last_time = _tracked_last(_pair, topic.get("last_message_time"))
         age, hours_val = _calc_age(last_time, now)
 
         queue = len(scanned.get(pid, {}).get("entries", []))
@@ -133,6 +134,14 @@ def post_campaign_table(config: dict, state: dict, *,
                        parse_mode="HTML"):
         state["last_campaign_table"] = now.isoformat()
         print("Posted weekly campaign table")
+
+
+def _tracked_last(pair: dict, last_time: str | None) -> str | None:
+    """The last post, never older than the pair's tracked_since."""
+    if not last_time:
+        return last_time
+    clamped = clamp_last_post(pair, datetime.fromisoformat(last_time))
+    return clamped.isoformat()
 
 
 def _calc_age(last_time: str | None, now: datetime) -> tuple[str, float]:

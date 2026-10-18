@@ -12,6 +12,7 @@ from pathlib import Path
 
 import helpers
 from helpers_pkg.groups import campaign_link_target
+from helpers_pkg.tracked_since import before_tracking
 
 _LOGS_DIR = Path(__file__).parent.parent.parent / "data" / "pbp_logs"
 _IDS_FILE = Path(__file__).parent.parent.parent / "data" / "message_ids.json"
@@ -78,20 +79,8 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
 
     # Load message_id → thread_id from persisted queue files (authoritative)
     # This handles multi-topic campaigns (C00, C05, C06) correctly
-    thread_lookup: dict[str, str] = {}
-    from commands.queue_io import load as _load_queue
-    for pid in _all_pids():
-        cq = _load_queue(pid)
-        for e in cq.get("unreplied", []):
-            mid = e.get("message_id")
-            tid = e.get("thread_id")
-            if mid and tid:
-                thread_lookup[str(mid)] = str(tid)
-        for e in cq.get("reply_log", []):
-            mid = e.get("msg_id")
-            tid = e.get("thread_id")
-            if mid and tid:
-                thread_lookup[str(mid)] = str(tid)
+    from commands.queue_thread_lookup import thread_lookup_from_queues
+    thread_lookup = thread_lookup_from_queues()
 
     # Load message_id lookup for backfilled links (timestamp → message_id)
     import json
@@ -154,8 +143,10 @@ def scan_transcripts(config: dict, state: dict | None = None) -> dict:
                     # player message. A GM posting generally shouldn't wipe the queue.
                     pass
                 else:
-                    # Skip entries before the scan floor (suppresses pre-fix backlog)
-                    if floor_date and timestamp[:10] < floor_date:
+                    # Skip entries before the scan floor (suppresses pre-fix
+                    # backlog) or before the campaign's tracked_since (C11)
+                    if ((floor_date and timestamp[:10] < floor_date)
+                            or before_tracking(pair, timestamp)):
                         i += 1
                         continue
                     # Check inline msg# tag first, then lookup file

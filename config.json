@@ -137,6 +137,32 @@
       "recruit_tier": 1
     },
     {
+      "name": "Dark Pockets",
+      "code": "C11",
+      "group_id": -1003496373617,
+      "chat_topic_id": 2321,
+      "pbp_topic_ids": [
+        1242
+      ],
+      "created": "2026-03-29",
+      "tracked_since": "2026-10-18",
+      "emoji": "\ud83c\udf11",
+      "disabled_features": [
+        "recruitment",
+        "alerts",
+        "smart_alerts",
+        "warnings",
+        "removals",
+        "roster",
+        "potw",
+        "pace",
+        "anniversary",
+        "combat",
+        "listing"
+      ],
+      "_note": "Back 2026-10-18 for the GM queue and the 'Post here next' / longest-waiting focus only (Lewis). Separate group; the bot is an admin there. Everything that posts into the group or counts its players is off. tracked_since stops the bot's last-seen post (2026-06-29, before it was removed from the group) reading as 100+ days of silence. Retired 2026-07-07 in #22; see CHANGELOG 4.71.0."
+    },
+    {
       "name": "Theria",
       "chat_topic_id": 107141,
       "combat_topic_id": 174683,
