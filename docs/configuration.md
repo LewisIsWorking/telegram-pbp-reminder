@@ -47,6 +47,7 @@ Fields set inside each entry in `topic_pairs`:
 | `queue_exclude`          | `true` - campaign is excluded from the GM reply queue entirely |
 | `gm_user_ids`            | **Replaces** the global GM list for this campaign only - see [Per-campaign GMs](#per-campaign-gms) |
 | `disabled_features`      | Feature names switched off for this campaign (e.g. `["warnings", "recruitment"]`) |
+| `tracked_since`          | `YYYY-MM-DD`: the day the bot started (or restarted) seeing the campaign. Silence and unreplied entries are not counted from before it (e.g. C11) |
 | `roster_target`          | Target player count; overrides the default used by `/roster` and the roster nudge |
 | `nudge_topic_id`         | Topic to send session-poll nudges to (defaults to the poll topic) |
 | `poll_roster_filter`     | `true` - opt in to poll-roster filtering (see `commands/roster.py`) |
@@ -104,23 +105,40 @@ C08's queue file (`data/state/queues/107151.json`) still holds ~180 historical
 were added. They are **inert** - `queue_exclude` means nothing reads or reports
 them. Do not mistake that count for a live backlog.
 
-### Example: C11 Dark Pockets (separate group, linked poll)
+### Example: C11 Dark Pockets (separate group, GM queue only)
+
+Retired 2026-07-07 (#22) when the bot was removed from its group, and
+re-added 2026-10-18 so its RP topic takes part in the GM reply queue and the
+"Post here next" / longest-waiting focus. It competes on age alone (no
+`queue_priority`), and everything that would post into its group or count its
+players is switched off. The poll link with C01 was **not** restored.
 
 ```json
 {
   "name": "Dark Pockets",
   "code": "C11",
   "group_id": -1003496373617,
-  "chat_topic_id": 1068,
+  "chat_topic_id": 2321,
   "pbp_topic_ids": [1242],
-  "hybrid_live": true,
-  "poll_any_day": true,
-  "allows_multiple_answers": true,
-  "poll_options": ["Friday", "Saturday", "Sunday", "Weekday", "Can't make it"],
-  "linked_polls": ["C01"],
-  "created": "2026-03-29"
+  "created": "2026-03-29",
+  "tracked_since": "2026-10-18",
+  "disabled_features": ["recruitment", "alerts", "smart_alerts", "warnings",
+                        "removals", "roster", "potw", "pace", "anniversary",
+                        "combat", "listing"]
 }
 ```
+
+`tracked_since` (`YYYY-MM-DD`, midnight UTC) is for a campaign the bot could
+not see for a while. Its last post is never read as older than that day, and
+no transcript entry from before it counts as an unreplied message. Without it,
+C11's last-seen post (2026-06-29) would read as 100+ days of silence and win
+"Post here next" on every queue until someone posted there. Leave it out for a
+campaign the bot has always seen.
+
+⚠️ A campaign in a separate group only works while the bot is in that group
+**and can read every message** (an admin, or privacy mode off). Check with
+`getChatMember`; the bot was an administrator there with privacy mode off on
+2026-10-18.
 
 ---
 

@@ -11,6 +11,60 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.71.0] - 2026-10-18
+
+### Added
+
+**C11 Dark Pockets is back in the GM queue.** Lewis:
+
+> *"I want to get reminders when C11's RP topic is the longest waiting topic."*
+
+C11 was retired in 4.51.9 (#22) because the bot had been removed from its
+group. It is in the group again: on 2026-10-18 `getChatMember` returned
+`administrator`, and the bot has privacy mode off, so it sees every message.
+Until now those messages were read and dropped, because no configured
+campaign lived in that group.
+
+The pair is back with RP topic `1242` only, chat topic `2321` (the value it
+had at retirement; `1068` was its first, changed 2026-04-29). It takes part
+in the GM reply queue, the per-topic queue post and the "Reply to this next" /
+"Post here next" focus, which is what sends the reminder.
+
+* **No `queue_priority`.** C10 has one, but a priority makes a campaign jump
+  the age queue, which is not what was asked for: C11 should be named when
+  it is the longest waiting, and on age alone it is.
+* **Everything that posts into its group or counts its players is off:**
+  recruitment, alerts, smart alerts, warnings, removals, roster, POTW, pace,
+  anniversary, combat and listing. Not `hybrid_live`, so no session poll, and
+  the `linked_polls` link with C01 was **not** restored.
+
+### Fixed (before it could happen)
+
+⛔ **Re-adding C11 alone would have made it "Post here next" forever.** The
+bot's state still holds C11's last post from 2026-06-29. A caught-up campaign
+competes for the focus on hours since its last post, so C11 would have read
+as silent for 110 days and beaten every real unreplied message until someone
+posted there. Those months were not silence; they were months the bot could
+not see.
+
+New per-campaign `tracked_since` (`YYYY-MM-DD`, midnight UTC; see
+`helpers_pkg/tracked_since.py`). A campaign's last post is never read as
+older than that day, in the queue's silent and caught-up sections, the focus
+and the weekly campaign table. No transcript entry from before it counts as
+an unreplied message. C11's queue file had no unreplied entries left, so
+nothing from June was waiting to resurface, and the floor keeps it that way.
+
+### Internal
+
+* `"listing"` added to the config validator's known features. C99 has used
+  it since 2026-09-21 and warned about itself on every run.
+* `commands/queue_thread_lookup.py` extracted from `commands/queue_scan.py`,
+  which was at the 200-line limit.
+* `test_c11_tracked_since.py`: the guard, a control showing the same state
+  without it does win the focus, and the shape of the live C11 entry.
+
+---
+
 ## [4.70.2] - 2026-09-02
 
 ### Fixed

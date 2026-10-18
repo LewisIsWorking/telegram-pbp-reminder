@@ -34,6 +34,7 @@ from datetime import datetime
 from typing import NamedTuple
 
 import helpers
+from helpers_pkg.tracked_since import clamp_last_post
 from commands.queue_format import entry_age_icon
 
 # A campaign idle this long reads as "silent" rather than "caught up".
@@ -125,7 +126,8 @@ def latest_last_post(state: dict, pair: dict) -> datetime | None:
             continue
         if latest is None or dt > latest:
             latest = dt
-    return latest
+    # A campaign re-added after a gap starts its silent clock at tracked_since
+    return clamp_last_post(pair, latest)
 
 
 def topic_link(config: dict, pair: dict, pid: str) -> str:

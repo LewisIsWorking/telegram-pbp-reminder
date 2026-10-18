@@ -9,6 +9,7 @@ from datetime import datetime, timezone, timedelta
 
 from helpers_pkg.constants import *
 from helpers_pkg.time_utils import timestamps_in_window
+from helpers_pkg.tracked_since import config_issues as tracked_since_issues
 
 
 def load_config() -> dict:
@@ -138,15 +139,18 @@ def validate_config(config: dict) -> list[str]:
         # gating both the 1/2/3-week nudges and the 4-week sweep, so C08
         # accumulated five dead seats. "smart_alerts" was used in code
         # and missing here, so disabling it warned about itself.
+        # "listing" (C99, 2026-09-21) was read by helpers_pkg/listing.py but
+        # missing here, so C99 warned about itself on every run.
         valid_features = {"roster", "potw", "pace", "recruitment", "combat",
                           "anniversary", "alerts", "warnings", "removals",
-                          "smart_alerts"}
+                          "smart_alerts", "listing"}
         disabled = pair.get("disabled_features", [])
         for feat in disabled:
             if feat not in valid_features:
                 issues.append(f"WARNING: {label} unknown feature '{feat}' in disabled_features "
                               f"(valid: {', '.join(sorted(valid_features))})")
 
+        issues.extend(tracked_since_issues(pair, label))
         # Validate created date format if present
         created = pair.get("created")
         if created:
