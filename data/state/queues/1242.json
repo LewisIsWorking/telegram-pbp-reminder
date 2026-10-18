@@ -1,6 +1,16 @@
 {
   "pid": "1242",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 2980,
+      "thread_id": 1242,
+      "user_id": "8018921976",
+      "user_name": "Natasha",
+      "time": "2026-10-18T09:28:50+00:00",
+      "preview": "Lovely jubbly, ill have to ask my team for important plot points \ud83e\udee0",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -291,7 +301,9 @@
     "msg:2968",
     "2026-10-18 08:33:31",
     "msg:2972",
-    "2026-10-18 08:36:47"
+    "2026-10-18 08:36:47",
+    "msg:2978",
+    "2026-10-18 09:21:43"
   ],
   "reply_log": [
     {
@@ -1745,16 +1757,27 @@
       "player": "Natasha",
       "preview": "What for?",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-18T09:27:56+00:00",
+      "pid": "1242",
+      "msg_id": "2978",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Do you not have powers to kill? Or any special abilities?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 2977,
+      "fingerprint": "2026-10-18 09:28:50",
+      "msg_ids": [
+        2981
+      ],
+      "last_posted_at": "2026-10-18T09:43:28.739998+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-10-18T08:48:19.350397+00:00"
     },
@@ -1768,6 +1791,6 @@
     }
   },
   "probed": {
-    "2972": "2026-10-18T08:40:42.816551+00:00"
+    "2980": "2026-10-18T09:43:19.914038+00:00"
   }
 }
