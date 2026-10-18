@@ -330,6 +330,16 @@
       "pbp_topic_id": "52083",
       "last_post_time": "2026-10-16T14:23:51+00:00",
       "last_warned_week": 0
+    },
+    "1242:8018921976": {
+      "user_id": "8018921976",
+      "first_name": "Natasha",
+      "last_name": "",
+      "username": "NitNatty",
+      "campaign_name": "Dark Pockets",
+      "pbp_topic_id": "1242",
+      "last_post_time": "2026-10-18T08:36:47+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -416,12 +426,6 @@
       "first_name": "Link",
       "username": "Linksanelf2006",
       "campaign_name": "Metal City"
-    },
-    "1242:8018921976": {
-      "removed_at": "2026-05-31T14:39:55.513006+00:00",
-      "first_name": "Natasha",
-      "username": "NitNatty",
-      "campaign_name": "Dark Pockets"
     },
     "40585:7863964681": {
       "removed_at": "2026-05-31T15:34:57.610512+00:00",
@@ -1115,7 +1119,7 @@
     "1242": {
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-31T01:36:15.011175+00:00"
       },
       "503940482": {
@@ -2094,6 +2098,14 @@
       "name": "Horia",
       "username": "Nemesiux",
       "at": "2026-10-16T14:43:23.343197+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "1242",
+      "user_id": "8018921976",
+      "name": "Natasha",
+      "username": "NitNatty",
+      "at": "2026-10-18T08:40:40.793888+00:00"
     }
   ],
   "player_boons": {

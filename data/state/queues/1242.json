@@ -1,6 +1,16 @@
 {
   "pid": "1242",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 2972,
+      "thread_id": 1242,
+      "user_id": "8018921976",
+      "user_name": "Natasha",
+      "time": "2026-10-18T08:36:47+00:00",
+      "preview": "What for?",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:1242",
     "2026-03-14 09:11:59",
@@ -283,7 +293,13 @@
     "msg:2683",
     "2026-06-09 20:52:07",
     "msg:2743",
-    "2026-06-22 12:13:14"
+    "2026-06-22 12:13:14",
+    "msg:2961",
+    "2026-10-18 08:25:53",
+    "msg:2965",
+    "2026-10-18 08:32:58",
+    "msg:2968",
+    "2026-10-18 08:33:31"
   ],
   "reply_log": [
     {
@@ -1701,15 +1717,44 @@
       "player": "Poo",
       "preview": "Torture trank \ud83d\ude2d",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-18T08:27:04+00:00",
+      "pid": "1242",
+      "msg_id": "2961",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Feyre must have got hit on the head as she doesn't remember the last few hours",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-18T08:34:39+00:00",
+      "pid": "1242",
+      "msg_id": "2965",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Who are you again? Remind me ...",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-18T08:35:12+00:00",
+      "pid": "1242",
+      "msg_id": "2968",
+      "thread_id": 1242,
+      "player": "Natasha",
+      "preview": "Why do you have a rifle on your back?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "1242": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-10-18 08:36:47",
+      "msg_ids": [
+        2974
+      ],
+      "last_posted_at": "2026-10-18T08:40:49.182859+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -1722,5 +1767,8 @@
       "pending_delete": [],
       "caught_up_at": null
     }
+  },
+  "probed": {
+    "2972": "2026-10-18T08:40:42.816551+00:00"
   }
 }
