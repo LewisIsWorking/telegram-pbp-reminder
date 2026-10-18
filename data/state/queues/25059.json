@@ -1,6 +1,25 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 186249,
+      "thread_id": 25059,
+      "user_id": "6482311444",
+      "user_name": "Moss",
+      "time": "2026-10-18T13:31:05+00:00",
+      "preview": "(except carnon who is on the ceiling)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 186250,
+      "thread_id": 25059,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-18T13:32:04+00:00",
+      "preview": "(and Alisee who's on the ground)",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2736,9 +2755,11 @@
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-10-18 13:31:05|2026-10-18 13:32:04",
+      "msg_ids": [
+        186266
+      ],
+      "last_posted_at": "2026-10-18T13:43:25.769080+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2749,5 +2770,9 @@
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
+  },
+  "probed": {
+    "186249": "2026-10-18T13:43:19.512410+00:00",
+    "186250": "2026-10-18T13:43:19.512410+00:00"
   }
 }
