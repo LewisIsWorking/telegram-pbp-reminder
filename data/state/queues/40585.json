@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 186318,
-      "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-10-18T22:13:25+00:00",
-      "preview": "With a loud sigh, Zerius puts away his sword and shield. The little bulette eidolon squeaks in some relief.\n\n\"Anyways, nice to meet you all. I'm Zerius, a sort-of spirit that was summoned here. It must be really bad if I was dragged all the way from the Gravelands to be here. The little guy over there is called Little Dread. He doesn't bite.\"\n\nThe bulette raises a paw.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1205,7 +1196,9 @@
     "msg:186006",
     "2026-10-17 16:41:44",
     "msg:186021",
-    "2026-10-17 16:47:48"
+    "2026-10-17 16:47:48",
+    "msg:186318",
+    "2026-10-18 22:13:25"
   ],
   "reply_log": [
     {
@@ -6740,6 +6733,15 @@
       "player": "Anthony",
       "preview": "After Dissarms the last table he'll say:\n\"Fucking hell finally!\" \nDaichi sits do",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-19T09:45:33+00:00",
+      "pid": "40585",
+      "msg_id": "186318",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "With a loud sigh, Zerius puts away his sword and shield. The little bulette eido",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6754,13 +6756,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-10-18 22:13:25",
-      "msg_ids": [
-        186326
-      ],
-      "last_posted_at": "2026-10-18T22:21:18.443324+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-10-17T16:20:54.652132+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 186371,
+      "caught_up_at": "2026-10-19T10:13:17.806723+00:00"
     }
   },
   "probed": {
