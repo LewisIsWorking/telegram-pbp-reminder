@@ -1215,7 +1215,9 @@
       "2026-10-01T22:21:08.747854+00:00",
       "2026-10-01T22:21:08.752203+00:00",
       "2026-10-03T05:43:16.264896+00:00",
-      "2026-10-04T01:43:22.259844+00:00"
+      "2026-10-04T01:43:22.259844+00:00",
+      "2026-10-19T11:13:13.625842+00:00",
+      "2026-10-19T11:13:13.632407+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -2001,20 +2003,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-09-09T21:56:35.145134+00:00",
-      "player": "Anthony",
-      "preview": "Livy will also make a weapon out of these monster parts (sin",
-      "msg_id": "176736"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-09-10T01:30:18.633596+00:00",
-      "player": "Anthony",
-      "preview": "She'll also recharge batteries.",
-      "msg_id": "176749"
-    },
     {
       "pid": "76799",
       "time": "2026-09-10T02:30:17.270793+00:00",
@@ -3400,6 +3388,20 @@
       "player": "Alastair",
       "preview": "With a loud sigh, Zerius puts away his sword and shield. The",
       "msg_id": "186318"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-10-19T11:13:13.625842+00:00",
+      "player": "Moss",
+      "preview": "(except carnon who is on the ceiling)",
+      "msg_id": "186249"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-10-19T11:13:13.632407+00:00",
+      "player": "Anthony",
+      "preview": "(and Alisee who's on the ground)",
+      "msg_id": "186250"
     }
   ],
   "pending_potw_boons": {

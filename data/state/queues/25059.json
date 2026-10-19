@@ -2,24 +2,6 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 186249,
-      "thread_id": 25059,
-      "user_id": "6482311444",
-      "user_name": "Moss",
-      "time": "2026-10-18T13:31:05+00:00",
-      "preview": "(except carnon who is on the ceiling)",
-      "media_group_id": null
-    },
-    {
-      "message_id": 186250,
-      "thread_id": 25059,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-18T13:32:04+00:00",
-      "preview": "(and Alisee who's on the ground)",
-      "media_group_id": null
-    },
-    {
       "message_id": 186272,
       "thread_id": 25059,
       "user_id": "6482311444",
@@ -535,7 +517,11 @@
     "msg:182346",
     "2026-10-02 00:29:53",
     "msg:182740",
-    "2026-10-04 01:09:45"
+    "2026-10-04 01:09:45",
+    "msg:186249",
+    "2026-10-18 13:31:05",
+    "msg:186250",
+    "2026-10-18 13:32:04"
   ],
   "reply_log": [
     {
@@ -2769,15 +2755,33 @@
       "player": "Moss",
       "preview": "We fight the zombies!",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-19T10:57:12+00:00",
+      "pid": "25059",
+      "msg_id": "186249",
+      "thread_id": 25059,
+      "player": "Moss",
+      "preview": "(except carnon who is on the ceiling)",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-19T10:57:45+00:00",
+      "pid": "25059",
+      "msg_id": "186250",
+      "thread_id": 25059,
+      "player": "Anthony",
+      "preview": "(and Alisee who's on the ground)",
+      "via": "reply"
     }
   ],
   "topic_queues": {
     "25059": {
-      "fingerprint": "2026-10-18 13:31:05|2026-10-18 13:32:04|2026-10-18 13:47:07|2026-10-18 14:01:47",
+      "fingerprint": "2026-10-18 13:47:07|2026-10-18 14:01:47",
       "msg_ids": [
-        186290
+        186380
       ],
-      "last_posted_at": "2026-10-18T14:08:33.796163+00:00",
+      "last_posted_at": "2026-10-19T11:13:23.509006+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2790,8 +2794,6 @@
     }
   },
   "probed": {
-    "186249": "2026-10-19T08:13:25.555979+00:00",
-    "186250": "2026-10-19T08:13:25.555979+00:00",
     "186272": "2026-10-19T08:13:25.555979+00:00",
     "186285": "2026-10-19T08:13:25.555979+00:00"
   }
