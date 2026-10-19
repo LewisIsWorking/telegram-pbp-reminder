@@ -1219,7 +1219,8 @@
       "2026-10-19T11:13:13.625842+00:00",
       "2026-10-19T11:13:13.632407+00:00",
       "2026-10-19T15:13:21.459850+00:00",
-      "2026-10-19T15:13:21.464275+00:00"
+      "2026-10-19T15:13:21.464275+00:00",
+      "2026-10-19T16:13:18.615600+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -2005,13 +2006,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-09-10T02:30:17.278956+00:00",
-      "player": "Alastair",
-      "preview": "Steele is about to repeat her rank for the Changer, but not ",
-      "msg_id": "177931"
-    },
     {
       "pid": "52083",
       "time": "2026-09-10T02:30:17.283436+00:00",
@@ -3404,6 +3398,13 @@
       "player": "Theaitetos",
       "preview": "Melody casts a 40ft-long illusory wall of stone in front of ",
       "msg_id": "186285"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-10-19T16:13:18.615600+00:00",
+      "player": "Theaitetos",
+      "preview": "Can't place/paint things in Foundry without the GM present.",
+      "msg_id": "186408"
     }
   ],
   "pending_potw_boons": {
