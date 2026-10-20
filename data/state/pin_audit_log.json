@@ -1,15 +1,5 @@
 [
   {
-    "timestamp": "2026-09-19T00:36:21.745109+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 1273,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
     "timestamp": "2026-09-19T01:30:27.819790+00:00",
     "action": "delete",
     "chat_id": -1004303231713,
@@ -29994,6 +29984,16 @@
     "action": "delete",
     "chat_id": -1004303231713,
     "message_id": 3133,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-10-20T06:33:27.785355+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 3141,
     "ok": true,
     "refused": false,
     "bot_owned": true,
