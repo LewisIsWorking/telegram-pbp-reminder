@@ -36,6 +36,7 @@ from typing import NamedTuple
 import helpers
 from helpers_pkg.tracked_since import clamp_last_post
 from commands.queue_format import entry_age_icon
+from scheduled.queue_player_count import player_count_tag
 
 # A campaign idle this long reads as "silent" rather than "caught up".
 SILENCE_THRESHOLD_DAYS = 5
@@ -62,6 +63,8 @@ class IdleRow(NamedTuple):
     age: str
     link: str
     ever_posted: bool
+    # " 👥 4/6 ⚠️", see scheduled/queue_player_count.py. Last, with a default.
+    players: str = ""
 
 
 def age_str(hours: float) -> str:
@@ -187,5 +190,6 @@ def idle_campaigns(config: dict, state: dict,
             age=age,
             link=topic_link(config, pair, pid),
             ever_posted=last_dt is not None,
+            players=player_count_tag(config, state, pair, now),
         ))
     return rows
