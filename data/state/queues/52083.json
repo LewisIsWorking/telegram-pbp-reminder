@@ -9,6 +9,24 @@
       "time": "2026-10-13T23:26:24+00:00",
       "preview": "\"Hmm... Nothing my \u2605SUPER IDOL HACKS\u2605 can't take care of then!?\"\nLivy says as she strikes a pose",
       "media_group_id": null
+    },
+    {
+      "message_id": 186544,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-20T01:03:24+00:00",
+      "preview": "\"\u2605SO\u2605!!!\nI'm going to stream real quick... \nI'll let you guys handle the \u2605DOOR\u2605 while I use my \u2605SUPER IDOL CHARM\u2605 on the reception desk people.\"\nLivy brings out her camera bot and starts heading towards the entrance to the reception.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 186546,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-10-20T01:09:14+00:00",
+      "preview": "\"She's... streaming?\" Lai whispers to Roneles and Nikk-Nakk \"Won't that be bad?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2538,11 +2556,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-10-13 23:26:24",
+      "fingerprint": "2026-10-13 23:26:24|2026-10-20 01:03:24|2026-10-20 01:09:14",
       "msg_ids": [
-        186337
+        186556
       ],
-      "last_posted_at": "2026-10-19T04:43:34.850399+00:00",
+      "last_posted_at": "2026-10-20T01:13:26.591200+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2561,6 +2579,8 @@
     }
   },
   "probed": {
-    "185263": "2026-10-19T23:13:31.924518+00:00"
+    "185263": "2026-10-19T23:13:31.924518+00:00",
+    "186544": "2026-10-20T01:13:20.838352+00:00",
+    "186546": "2026-10-20T01:13:20.838352+00:00"
   }
 }
