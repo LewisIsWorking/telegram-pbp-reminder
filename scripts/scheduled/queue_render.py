@@ -34,6 +34,18 @@ def build_streak(state: dict, now) -> str:
     return streak
 
 
+def queue_fingerprint(scanned: dict) -> str:
+    """One string per queue state: changes exactly when an entry comes or goes.
+
+    Extracted from ``queue_reminder`` on 2026-10-20 to make room there for
+    the GM posting-rate lines (``scheduled/gm_post_rate.py``).
+    """
+    parts = [f"{pid}:{entry['time']}"
+             for pid in sorted(scanned.keys())
+             for entry in scanned[pid]["entries"]]
+    return "|".join(parts) if parts else "empty"
+
+
 def build_summary(scanned: dict, sorted_pids: list) -> str:
     """Return the per-campaign count line, e.g. 'C01:3 C07:9 C05:6'."""
     parts = []

@@ -11,6 +11,40 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.72.0] - 2026-10-20
+
+### Added
+
+**The GM queue post now shows the GM's posting rate and how fast the queue
+is clearing.** Lewis:
+
+> *"It would be good if the bot posted to the GM queue topic about MY post
+> number per day (the rate of clearing the queue) kinda thing."*
+
+Two lines under the queue post's header, in the GM queue topic:
+
+```
+✍️ GM posts: 6 today | 9 yesterday | 7.4/day (7d)
+📉 Queue 17 -> 12 since yesterday (5 fewer)
+```
+
+* **Posts** come from `post_timestamps`, which the bot already records for
+  every message in a campaign's RP topics (kept 15 days). Only the global
+  `gm_user_ids` count, so Theria's own GM is not mixed in. Raw messages,
+  not the leaderboard's deduplicated sessions.
+* **Days** are Europe/London calendar days. The 7-day average covers the
+  seven complete days before today.
+* **Queue change** needed new history: each run records the unreplied count
+  in the new `gm_queue_size_log` state key (48 hours kept) and compares with
+  the newest reading at least 24 hours old. A reading older than 36 hours
+  is not used, so for the first day after this ships (or after a long
+  outage) the queue line is simply left out. It reads `📈 ... (N more)` when
+  the queue grew and `➖ Queue N, same as yesterday` when level.
+* Part of the existing post, not a new one, so nothing extra is sent: the
+  hourly in-place refresh keeps the numbers current without a repost.
+* `queue_fingerprint` moved from `queue_reminder` to `queue_render` to keep
+  `queue_reminder` under 200 lines.
+
 ## [4.71.0] - 2026-10-18
 
 ### Added
