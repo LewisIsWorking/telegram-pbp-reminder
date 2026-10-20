@@ -16,6 +16,15 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 186682,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-20T14:42:49+00:00",
+      "preview": "Daichi also needs to refocus 2 focus points...",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6756,14 +6765,16 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 186371,
+      "fingerprint": "2026-10-20 14:42:49",
+      "msg_ids": [
+        186683
+      ],
+      "last_posted_at": "2026-10-20T14:43:38.162955+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-10-19T10:13:17.806723+00:00"
     }
   },
   "probed": {
-    "186318": "2026-10-19T04:43:20.886647+00:00"
+    "186682": "2026-10-20T14:43:31.796134+00:00"
   }
 }
