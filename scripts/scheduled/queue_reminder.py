@@ -21,8 +21,9 @@ from scheduled.queue_refresh import (checked_line, next_check_line,
                                      refresh_in_place)
 from scheduled.queue_render import (
     build_streak, build_summary, build_momentum_map, build_header,
-    chunk_messages, build_body_lines,
+    chunk_messages, build_body_lines, queue_fingerprint,
 )
+from scheduled.gm_post_rate import rate_lines, record_queue_size
 
 
 def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = None, **_kw) -> None:
@@ -35,13 +36,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     # Maintain per-topic pinned queues - always runs, independent of bot-topic posting
     post_topic_queues(config, scanned, now, state=state)
 
-    # Build a fingerprint of the current queue state
-    fingerprint_parts = []
-    for pid in sorted(scanned.keys()):
-        data = scanned[pid]
-        for entry in data["entries"]:
-            fingerprint_parts.append(f"{pid}:{entry['time']}")
-    fingerprint = "|".join(fingerprint_parts) if fingerprint_parts else "empty"
+    # Every run, empty queue included, so "since yesterday" has a reading.
+    record_queue_size(state, scanned, now)
+    fingerprint = queue_fingerprint(scanned)
 
     # Only post if queue changed since last post, OR it's a scheduled reminder hour
     # queue_daily_hours: list of UTC hours to post (e.g. [9, 21])
@@ -135,6 +132,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         """
         lines = [build_header(queue_num, total, streak, summary),
                  checked_line(now), next_check_line(now)]
+        lines.extend(rate_lines(config, state, total, now))
         lines.extend(build_body_lines(config, state, scanned, sorted_pids,
                                       priority_pids, momentum_map, now))
         if silent_lines:

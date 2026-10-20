@@ -96,6 +96,9 @@ PARTITIONS: dict[str, list[str]] = {
         # Added 2026-10-08: anyone posting in the group outside a campaign
         # topic (players/group_members.py). COO reads it so they can link.
         "group_members",
+        # Added 2026-10-20: unreplied count per run, for the queue post's
+        # "Queue 17 -> 12 since yesterday" (scheduled/gm_post_rate.py).
+        "gm_queue_size_log",
     ],
     "queue": [
         "queue_history", "queue_archive", "pending_potw_boons",
