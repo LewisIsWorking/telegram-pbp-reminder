@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 
 import helpers
 from commands.queue_format import format_queue_line
+from scheduled.queue_player_count import pair_for_pid, player_count_tag
 
 AGE_LEGEND = ("Age: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d "
               "🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d 🟤14d 🟫15d ⚫16d ⬛17d "
@@ -143,7 +144,9 @@ def build_body_lines(config: dict, state: dict, scanned: dict,
         fast_key = code if code else name
         fast = f" ⚡{momentum_map[fast_key]}" if fast_key in momentum_map else ""
         emoji_prefix = f"{emoji} " if emoji else ""
-        lines.append(f"━━ {pin}{emoji_prefix}{label} ({len(entries)}){scene_str} ━━ {gm}{fast}")
+        players = player_count_tag(config, state, pair_for_pid(config, pid), now)
+        lines.append(f"━━ {pin}{emoji_prefix}{label} ({len(entries)}){players}"
+                     f"{scene_str} ━━ {gm}{fast}")
         for entry in entries:
             hours = 0
             try:

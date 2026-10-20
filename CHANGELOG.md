@@ -11,6 +11,36 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.73.0] - 2026-10-20
+
+### Added
+
+**The GM queue post now shows each campaign's player count.** Lewis:
+
+> *"Can we add campaign player counts to the GM queue?"*
+
+Every campaign line carries a `👥` tag: the section headers of campaigns
+with unreplied posts, and the Silent and Caught up rows.
+
+```
+━━ 💰 C00: Riddleport (9) 👥 7/6 ━━ @PathWars
+  🟢 C06: Kibwe 👥 5/6 ⚠️ - last post 1d 4h ago
+```
+
+* **The target is always 6** (Lewis: more than 6 is good). `⚠️` only below
+  6; `6/6` and `7/6` carry no warning. A per-campaign `roster_target` and
+  the recruiting ladder's 8 are deliberately not used here.
+* **The count is `/roster`'s**: players who posted in the last 30 days
+  (proxies followed), measured as of the queue's own clock. Permanent
+  players do not fill the target, as in `/roster`, and show as `+1p`.
+* **A campaign that never recruits** (`recruitment` disabled, no
+  `recruit_tier`, e.g. C11) shows a bare `👥 1`, with no target to miss.
+* **Not part of the queue fingerprint**, so a count change never reposts
+  or notifies on its own. It appears at the next in-place refresh or
+  repost.
+
+---
+
 ## [4.72.0] - 2026-10-20
 
 ### Added

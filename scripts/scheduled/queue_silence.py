@@ -25,7 +25,8 @@ _SILENCE_THRESHOLD_DAYS = SILENCE_THRESHOLD_DAYS
 
 def _line(row) -> str:
     """Render one row as a queue line."""
-    return f"  {row.icon} {row.prefix}{row.label} - {phrase(row)}{row.link}"
+    return (f"  {row.icon} {row.prefix}{row.label}{row.players} - "
+            f"{phrase(row)}{row.link}")
 
 
 def _sorted_lines(rows) -> list[str]:
