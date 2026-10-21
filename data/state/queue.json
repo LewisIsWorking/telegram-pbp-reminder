@@ -189,7 +189,9 @@
       "2026-09-16T10:30:35.521101+00:00",
       "2026-09-17T02:13:44.120919+00:00",
       "2026-10-01T02:43:20.066979+00:00",
-      "2026-10-01T04:50:56.902742+00:00"
+      "2026-10-01T04:50:56.902742+00:00",
+      "2026-10-21T12:50:08.458954+00:00",
+      "2026-10-21T12:50:08.462176+00:00"
     ],
     "40585": [
       "2026-04-11T04:40:43.701902+00:00",
@@ -2012,20 +2014,6 @@
   },
   "queue_archive": [
     {
-      "pid": "52083",
-      "time": "2026-09-12T21:30:21.103702+00:00",
-      "player": "Terra",
-      "preview": "Lai looks at nikk-nakk then the others in the room:\n\nI can't",
-      "msg_id": "177992"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-13T14:45:19.403446+00:00",
-      "player": "Alastair",
-      "preview": "Action Plan: (if starting 1 grid east of Kitt)\n\n1: Move 2 S,",
-      "msg_id": "178096"
-    },
-    {
       "pid": "76799",
       "time": "2026-09-13T15:45:24.845545+00:00",
       "player": "Ryo",
@@ -3410,6 +3398,20 @@
       "player": "Horia",
       "preview": "Necrila will stand near the imp and stare at him. The imp wo",
       "msg_id": "184174"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-10-21T12:50:08.458954+00:00",
+      "player": "Ryo",
+      "preview": "\"Perhaps we should make haste. It seems this place is not ve",
+      "msg_id": "185097"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-10-21T12:50:08.462176+00:00",
+      "player": "Laetheron",
+      "preview": "Twilight tries following where their instincts lead, using t",
+      "msg_id": "185286"
     }
   ],
   "pending_potw_boons": {

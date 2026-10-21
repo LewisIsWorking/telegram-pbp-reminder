@@ -2,24 +2,6 @@
   "pid": "51357",
   "unreplied": [
     {
-      "message_id": 185097,
-      "thread_id": 51357,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-10-13T05:32:58+00:00",
-      "preview": "\"Perhaps we should make haste. It seems this place is not very welcoming and I'd rather deal with what we came here for and leave before we find out what it does with unwelcome guests.\"\n\nWith that Cyrus hefts his shield and moves to the front of the party, leaving space beside him for one who is more skilled at navigating a place such as this to walk beside, even if it means being a bit off the path himself depending on the width of the path ahead.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 185286,
-      "thread_id": 51357,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-10-14T05:59:35+00:00",
-      "preview": "Twilight tries following where their instincts lead, using their experience in the wilderness to help navigate.",
-      "media_group_id": null
-    },
-    {
       "message_id": 185542,
       "thread_id": 51357,
       "user_id": "7130942567",
@@ -412,7 +394,11 @@
     "msg:182147",
     "2026-10-01 00:41:14",
     "msg:182177",
-    "2026-10-01 04:29:41"
+    "2026-10-01 04:29:41",
+    "msg:185097",
+    "2026-10-13 05:32:58",
+    "msg:185286",
+    "2026-10-14 05:59:35"
   ],
   "reply_log": [
     {
@@ -2068,17 +2054,35 @@
       "player": "Buffet",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-21T12:46:33+00:00",
+      "pid": "51357",
+      "msg_id": "185097",
+      "thread_id": 51357,
+      "player": "Ryo",
+      "preview": "\"Perhaps we should make haste. It seems this place is not very welcoming and I'd",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-21T12:48:51+00:00",
+      "pid": "51357",
+      "msg_id": "185286",
+      "thread_id": 51357,
+      "player": "Laetheron",
+      "preview": "Twilight tries following where their instincts lead, using their experience in t",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-10-13 05:32:58|2026-10-14 05:59:35|2026-10-15 06:28:07|2026-10-21 12:34:31",
+      "fingerprint": "2026-10-15 06:28:07|2026-10-21 12:34:31",
       "msg_ids": [
-        186971
+        186982
       ],
-      "last_posted_at": "2026-10-21T12:38:23.271222+00:00",
+      "last_posted_at": "2026-10-21T12:50:14.387059+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null,
       "pending_delete": []
@@ -2101,8 +2105,6 @@
     }
   },
   "probed": {
-    "185097": "2026-10-21T12:46:03.845805+00:00",
-    "185286": "2026-10-21T12:46:03.845805+00:00",
     "185542": "2026-10-21T12:46:03.845805+00:00",
     "186968": "2026-10-21T12:38:18.617928+00:00"
   }
