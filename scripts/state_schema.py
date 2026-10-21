@@ -87,6 +87,11 @@ PARTITIONS: dict[str, list[str]] = {
         # keep. Losing this key would make the weekly gate see "never
         # run" on every tick and post the roster every hour.
         "last_community_roster",
+        # Added 2026-10-21 with the weekly recruitment DM. The timestamp is
+        # the weekly gate; the picks ({pid: iso}) are the tie-break, so the
+        # campaign picked longest ago wins a tie. Undeclared, both would be
+        # discarded on save and the GM would be DMed every hour.
+        "last_weekly_recruit", "weekly_recruit_picks",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
@@ -157,4 +162,5 @@ DEFAULT_STATE: dict = {
     "recruit_focus_msg_id": None, "last_recruit_focus": None,
     "recruit_focus_at": None, "recruit_focus_posts": [],
     "last_community_roster": None,
+    "last_weekly_recruit": None, "weekly_recruit_picks": {},
 }

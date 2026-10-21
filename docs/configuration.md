@@ -53,6 +53,8 @@ Fields set inside each entry in `topic_pairs`:
 | `poll_roster_filter`     | `true` - opt in to poll-roster filtering (see `commands/roster.py`) |
 | `created`                | Campaign start date `YYYY-MM-DD`, used by `/campaign` and the timeline |
 | `recruit_tier`           | Which recruitment queue this campaign draws from. See [Recruitment tiers](#recruitment-tiers) |
+| `discord_ad`             | Path of the campaign's Discord ad under PathWarsWiki `Writerside/topics/`, linked by the [weekly recruitment DM](behaviour.md#weekly-recruitment-dm-gm-only) |
+| `weekly_recruit`         | `false` - never pick this campaign for the weekly recruitment DM (`recruitment` in `disabled_features` also skips it) |
 
 ### Recruitment tiers
 
