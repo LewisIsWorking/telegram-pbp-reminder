@@ -7,15 +7,15 @@
       "campaign_name": "Hopeful End-Times"
     },
     "66154": {
-      "last_message_time": "2026-10-20T03:39:59+00:00",
-      "last_user": "Horia",
-      "last_user_id": "5443237599",
+      "last_message_time": "2026-10-21T14:05:43+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Riddleport"
     },
     "51357": {
-      "last_message_time": "2026-10-15T06:28:07+00:00",
-      "last_user": "Buffet",
-      "last_user_id": "7130942567",
+      "last_message_time": "2026-10-21T12:52:41+00:00",
+      "last_user": "Path",
+      "last_user_id": "1698524397",
       "campaign_name": "Grand Explorers"
     },
     "25059": {
@@ -25,13 +25,13 @@
       "campaign_name": "Doomsday Funtime"
     },
     "107171": {
-      "last_message_time": "2026-10-13T06:04:23+00:00",
+      "last_message_time": "2026-10-21T13:18:12+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Metal City"
     },
     "40585": {
-      "last_message_time": "2026-10-19T23:14:22+00:00",
+      "last_message_time": "2026-10-21T11:25:46+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Kibwe"
@@ -68,16 +68,16 @@
     }
   },
   "last_alerts": {
-    "52083": "2026-10-19T16:43:36.561041+00:00",
-    "66154": "2026-10-19T21:43:18.998406+00:00",
-    "51357": "2026-10-20T07:43:21.614500+00:00",
-    "25059": "2026-10-17T15:13:21.828697+00:00",
-    "107171": "2026-10-20T07:43:21.614500+00:00",
+    "52083": "2026-10-21T04:43:02.876081+00:00",
+    "66154": "2026-10-21T03:43:22.176489+00:00",
+    "51357": "2026-10-21T07:43:30.428749+00:00",
+    "25059": "2026-10-20T23:43:22.060482+00:00",
+    "107171": "2026-10-21T07:43:30.428749+00:00",
     "40585": "2026-10-17T08:43:22.162846+00:00",
-    "76799": "2026-10-19T22:13:18.563178+00:00",
-    "107151": "2026-10-20T14:13:24.702489+00:00",
+    "76799": "2026-10-20T22:13:22.799755+00:00",
+    "107151": "2026-10-21T14:17:40.105828+00:00",
     "1242": "2026-07-06T21:42:01.884061+00:00",
-    "146645": "2026-10-19T20:43:17.887914+00:00"
+    "146645": "2026-10-20T21:13:20.822786+00:00"
   },
   "last_roster": {
     "25059": "2026-10-20T05:59:45.102402+00:00",
@@ -89,7 +89,7 @@
     "76799": "2026-10-20T05:59:45.102402+00:00",
     "107151": "2026-10-20T05:59:45.102402+00:00",
     "1242": "2026-07-06T04:16:24.180955+00:00",
-    "146645": "2026-10-17T17:08:55.030084+00:00"
+    "146645": "2026-10-20T18:13:28.143362+00:00"
   },
   "last_potw": {
     "66154": "2026-06-01T05:48:30.651000+00:00",
@@ -109,8 +109,8 @@
     "25059": "2026-10-18T15:13:19.948302+00:00",
     "66154": "2026-10-15T12:43:18.743722+00:00",
     "52083": "2026-10-18T01:43:23.796943+00:00",
-    "107171": "2026-10-13T18:43:23.330135+00:00",
-    "107151": "2026-10-14T00:13:23.177850+00:00",
+    "107171": "2026-10-20T18:43:31.430873+00:00",
+    "107151": "2026-10-21T00:43:19.378475+00:00",
     "1242": "2026-06-30T12:53:55.877976+00:00",
     "146645": "2026-10-18T15:13:19.948302+00:00"
   },
@@ -129,7 +129,7 @@
   "last_roster_snapshot": "C01:4/6|C00:7/6|C04:4/6|C05:4/6|C06:5/6|C07:4/6|C09:2/6|C10:0/6|C08:0/6",
   "gm_escalation": {
     "level": 1,
-    "last_at": "2026-10-20T10:13:24.248986+00:00"
+    "last_at": "2026-10-21T11:13:24.223101+00:00"
   },
   "last_recruitment_check": {
     "25059": "2026-10-16T14:13:20.307589+00:00",
@@ -159,7 +159,7 @@
     "global": 15000
   },
   "last_weekly_digest": "2026-10-18T01:43:23.796943+00:00",
-  "last_daily_tip": "2026-10-20T10:13:24.248986+00:00",
+  "last_daily_tip": "2026-10-21T08:43:25.055508+00:00",
   "used_tip_indices": [
     4,
     22,
@@ -198,15 +198,15 @@
     33,
     23,
     27,
-    16
+    16,
+    14
   ],
   "last_pace_drop_check": "2026-10-18T01:43:23.796943+00:00",
   "dying_alerts_sent": {
     "1242": "active",
     "107151": "active",
-    "107171": "active",
     "146645": "active",
-    "51357": "active"
+    "76799": "active"
   },
   "last_campaign_table": "2026-10-15T22:13:23.158873+00:00",
   "session_poll": {
@@ -258,9 +258,9 @@
       "votes": {}
     }
   },
-  "last_state_backup": "2026-10-19T13:43:30.017204+00:00",
-  "last_queue_daily": "2026-10-20",
-  "last_queue_fingerprint": "51357:2026-10-13 05:32:58|51357:2026-10-14 05:59:35|51357:2026-10-15 06:28:07|52083:2026-10-13 23:26:24|52083:2026-10-20 01:03:24|52083:2026-10-20 01:09:14|52083:2026-10-20 03:25:43|52083:2026-10-20 04:07:27|52083:2026-10-20 04:17:58|66154:2026-10-08 17:50:37|66154:2026-10-13 10:17:12|66154:2026-10-13 17:42:28|66154:2026-10-13 17:48:02|66154:2026-10-14 01:46:35|66154:2026-10-15 19:20:53|66154:2026-10-15 20:51:28|66154:2026-10-20 02:21:57|66154:2026-10-20 03:39:59|76799:2026-10-13 20:25:52|76799:2026-10-18 22:11:04|silent:107171|146645",
+  "last_state_backup": "2026-10-20T14:13:24.702489+00:00",
+  "last_queue_daily": "2026-10-21",
+  "last_queue_fingerprint": "52083:2026-10-13 23:26:24|52083:2026-10-20 01:03:24|52083:2026-10-20 01:09:14|52083:2026-10-20 03:25:43|52083:2026-10-20 04:07:27|52083:2026-10-20 04:17:58|66154:2026-10-13 17:42:28|66154:2026-10-13 17:48:02|66154:2026-10-14 01:46:35|66154:2026-10-15 19:20:53|66154:2026-10-15 20:51:28|66154:2026-10-20 02:21:57|66154:2026-10-20 03:39:59|66154:2026-10-21 11:45:22|76799:2026-10-13 20:25:52|76799:2026-10-18 22:11:04|silent:146645",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -340,8 +340,6 @@
   "poll_unknown_voters": {},
   "last_week_welcome": "sun2026-10-18",
   "last_queue_daily_slots": [
-    "2026-10-13:21",
-    "2026-10-14:09",
     "2026-10-14:21",
     "2026-10-15:09",
     "2026-10-15:21",
@@ -353,7 +351,9 @@
     "2026-10-18:21",
     "2026-10-19:09",
     "2026-10-19:21",
-    "2026-10-20:09"
+    "2026-10-20:09",
+    "2026-10-20:21",
+    "2026-10-21:09"
   ],
   "swimming_poll": {
     "week_iso": "sun2026-06-28",
@@ -364,25 +364,23 @@
     "session_happened": true
   },
   "queue_scan_floor": null,
-  "last_diagnostic": "2026-10-20",
-  "last_queue_pin_id": 186630,
-  "queue_post_count": 2009,
+  "last_diagnostic": "2026-10-21",
+  "last_queue_pin_id": 187030,
+  "queue_post_count": 2025,
   "gm_queue_history": [
     {
       "msg_ids": [
-        186630,
-        186631,
-        186632
+        187030,
+        187031
       ],
-      "pin_id": 186630
+      "pin_id": 187030
     }
   ],
   "gm_queue_texts": [
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #2009 - Unreplied: 20 | \ud83c\udfc6 2008 all-time\nC00:9 C05:3 C04:2 C07:6\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 15:13 BST\n\u23ed Next check ~15:43 BST\n\u270d\ufe0f GM posts: 13 today | 6 yesterday | 22.1/day (7d)\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (9) \u2501\u2501 @PathWars \u26a1aSly (~5h)\n01 [184174] \ud83d\udd35 11d 20h. Horia Constantinescu: Necrila will stand near the imp and stare at him. The imp would get the... \ud83d\udd17 https://t.me/Path_Wars/66154/184174\n02 [185144] \ud83d\udd34 7d 3h. aSly Cow: Anxious nods, flinching only the tiniest amount as Marlo pats her on the head. \u201cY-yes,... \ud83d\udd17 https://t.me/Path_Wars/66154/185144\n03 [185216] \ud83d\udfe7 6d 20h. Loren: *[image]*<!-- file:AgACAgEAAx0CYwGpWQABAtOAas5thIfHNAYqm-NKWdVa2LAQJ_0AAiINaxuSEHFGiKkFSMzN86QBAAMCAANtAAM9BA --> i \ud83d\udd17 https://t.me/Path_Wars/66154/185216\n04 [185223] \ud83d\udfe7 6d 20h. Loren: Miracle Max glanced up from his game, his eyes wandering across the tournament hall. Something... \ud83d\udd17 https://t.me/Path_Wars/66154/185223\n05 [185276] \ud83d\udfe7 6d 12h. Alastair Tan: Rin pouts, staring up at Davy for a moment before his weird eyes shoot back... \ud83d\udd17 https://t.me/Path_Wars/66154/185276\n06 [185601] \ud83d\udfe8 4d 18h. Peter: Ryder nods that he understands. \"You got it boss. Hey, I've been at a couple... \ud83d\udd17 https://t.me/Path_Wars/66154/185601\n07 [185608] \ud83d\udfe8 4d 17h. Loren: Miracle Max looks down at Grudge, then at his backpack, then back at Grudge. He... \ud83d\udd17 https://t.me/Path_Wars/66154/185608\n08 [186561] \ud83c\udf3f 11h. Ryo Yamakawa: Rax, unable to resist any longer, smacks the back of Cardigan's left knee with his... \ud83d\udd17 https://t.me/Path_Wars/66154/186561\n09 [186576] \ud83c\udf3f 10h. Horia Constantinescu: As Rax does that he can feel a malicious intent coming from Necrila as she... \ud83d\udd17 https://t.me/Path_Wars/66154/186576\n\u2501\u2501 \ud83d\udd2d C05: Grand Explorers (3) \u2501\u2501 @PathWars \u26a1Ryo (~1h)\n10 [185097] \ud83d\udd34 7d 8h. Ryo Yamakawa: \"Perhaps we should make haste. It seems this place is not very welcoming and I'd... \ud83d\udd17 https://t.me/Path_Wars/51357/185097\n11 [185286] \ud83d\udfe7 6d 8h. Laetheron: Twilight tries following where their instincts lead, using their experience in the wilderness to help... \ud83d\udd17 https://t.me/Path_Wars/51357/185286\n12 [185542] \ud83d\udfe0 5d 7h. Buffet Raider: Alitheia glances back at the dormant archway. \"At least we won't have to worry about... \ud83d\udd17 https://t.me/Path_Wars/51357/185542\n\u2501\u2501 \ud83d\udd0d C04: Magni Guard (2) \u2501\u2501 @PathWars \u26a1Cannon (~7h)\n13 [185241] \ud83d\udfe7 6d 17h. Cannon McMahon: Nadya moves in to quickly check on the kobold and (to a lesser extent) the... \ud83d\udd17 https://t.me/Path_Wars/76799/185241\n14 [186315] \ud83d\udfe2 1d 16h. Alastair Tan: (I believe I have rope, C04 doesn't seem to be showing anything) Steele reaches into... \ud83d\udd17 https://t.me/Path_Wars/76799/186315\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (6) \u2501\u2501 @PathWars \u26a1Terra (~2.4d)\n15 [185263] \ud83d\udfe7 6d 14h. Anthony NegetZ: \"Hmm... Nothing my \u2605SUPER IDOL HACKS\u2605 can't take care of then!?\" Livy says as she... \ud83d\udd17 https://t.me/Path_Wars/52083/185263\n16 [186544] \ud83c\udf33 13h. Anthony NegetZ: \"\u2605SO\u2605!!! I'm going to stream real quick... I'll let you guys handle the \u2605DOOR\u2605 while... \ud83d\udd17 https://t.me/Path_Wars/52083/186544\n17 [186546] \ud83c\udf33 13h. Terra: \"She's... streaming?\" Lai whispers to Roneles and Nikk-Nakk \"Won't that be bad?\" \ud83d\udd17 https://t.me/Path_Wars/52083/186546\n18 [186574] \ud83c\udf3f 10h. Terra: *[image]*<!-- file:AgACAgUAAx0CYwGpWQABAtjOatbfNzcVcuVXAhJlHYTtEM_0DdkAAvEZaxvOV7hWr88wR7C5lJwBAAMCAANtAAM9BA --> what do i see? or patrol patterns with the drones \ud83d\udd17 https://t.me/Path_Wars/52083/186574\n19 [186586] \ud83c\udf3f 10h. Horia Constantinescu: Roneles responds by saying \"Chat is this real?!\" as well as \" Chat we are... \ud83d\udd17 https://t.me/Path_Wars/52083/186586\n20 [186592] \ud83c\udf3f 9h. Terra: \"We are about to be one of those old human videos...what was it? 'Chinese liveleeks?'... \ud83d\udd17 https://t.me/Path_Wars/52083/186592\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udd34 \ud83e\udd16 C09: Metal City - no posts for 7d 8h \ud83d\udd17 https://t.me/Path_Wars/107171\n",
-    "  \ud83d\udfe0 \ud83d\udea6 C10: The Junction - no posts for 5d 19h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe9 \ud83c\udf11 C11: Dark Pockets - last post 2d 3h ago \ud83d\udd17 https://t.me/c/3496373617/1242\n  \ud83c\udf33 \ud83d\udcc6 C01: Doomsday Funtime - last post 14h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83c\udf33 \ud83e\udda0 C06: Kibwe - last post 14h ago \ud83d\udd17 https://t.me/Path_Wars/40585",
-    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Post here next: \ud83c\udf33 \ud83e\udda0 C06: Kibwe\n\ud83d\udccc Always first, and quiet for 14h.\nNothing there is marked unreplied, so check whether the next move is yours.\n\ud83d\udd17 https://t.me/Path_Wars/40585"
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udccb GM Queue #2025 - Unreplied: 16 | \u2705 9 today | \ud83c\udfc6 2018 all-time\nC00:8 C04:2 C07:6\nAge: \ud83c\udd95<1h \ud83c\udf316h \ud83c\udf3f12h \ud83c\udf331d \ud83d\udfe22d \ud83d\udfe93d \ud83d\udfe14d \ud83d\udfe85d \ud83d\udfe06d \ud83d\udfe77d \ud83d\udd348d \ud83d\udfe59d \ud83d\udfe310d \ud83d\udfea11d \ud83d\udd3512d \ud83d\udfe613d \ud83d\udfe414d \ud83d\udfeb15d \u26ab16d \u2b1b17d \ud83d\udc8021d \u2620\ufe0f25d\n\ud83d\udd52 Checked 15:17 BST\n\u23ed Next check ~15:43 BST\n\u270d\ufe0f GM posts: 14 today | 18 yesterday | 19.3/day (7d)\n\ud83d\udcc9 Queue 20 -> 16 since yesterday (4 fewer)\n\u2501\u2501 \ud83d\udcb0 C00: Riddleport (8) \ud83d\udc65 7/6 \u2501\u2501 @PathWars \u26a1aSly (~5h)\n01 [185216] \ud83d\udd34 7d 20h. Loren: *[image]*<!-- file:AgACAgEAAx0CYwGpWQABAtOAas5thIfHNAYqm-NKWdVa2LAQJ_0AAiINaxuSEHFGiKkFSMzN86QBAAMCAANtAAM9BA --> i \ud83d\udd17 https://t.me/Path_Wars/66154/185216\n02 [185223] \ud83d\udd34 7d 20h. Loren: Miracle Max glanced up from his game, his eyes wandering across the tournament hall. Something... \ud83d\udd17 https://t.me/Path_Wars/66154/185223\n03 [185276] \ud83d\udd34 7d 12h. Alastair Tan: Rin pouts, staring up at Davy for a moment before his weird eyes shoot back... \ud83d\udd17 https://t.me/Path_Wars/66154/185276\n04 [185601] \ud83d\udfe0 5d 18h. Peter: Ryder nods that he understands. \"You got it boss. Hey, I've been at a couple... \ud83d\udd17 https://t.me/Path_Wars/66154/185601\n05 [185608] \ud83d\udfe0 5d 17h. Loren: Miracle Max looks down at Grudge, then at his backpack, then back at Grudge. He... \ud83d\udd17 https://t.me/Path_Wars/66154/185608\n06 [186561] \ud83d\udfe2 1d 11h. Ryo Yamakawa: Rax, unable to resist any longer, smacks the back of Cardigan's left knee with his... \ud83d\udd17 https://t.me/Path_Wars/66154/186561\n07 [186576] \ud83d\udfe2 1d 10h. Horia Constantinescu: As Rax does that he can feel a malicious intent coming from Necrila as she... \ud83d\udd17 https://t.me/Path_Wars/66154/186576\n08 [186913] \ud83c\udf31 2h. Horia Constantinescu: \"Necrila\" responds in infernal but with a necril accent and says: \"When you are free... \ud83d\udd17 https://t.me/Path_Wars/66154/186913\n\u2501\u2501 \ud83d\udd0d C04: Magni Guard (2) \ud83d\udc65 4/6 \u26a0\ufe0f \u2501\u2501 @PathWars \u26a1Cannon (~7h)\n09 [185241] \ud83d\udd34 7d 17h. Cannon McMahon: Nadya moves in to quickly check on the kobold and (to a lesser extent) the... \ud83d\udd17 https://t.me/Path_Wars/76799/185241\n10 [186315] \ud83d\udfe9 2d 16h. Alastair Tan: (I believe I have rope, C04 doesn't seem to be showing anything) Steele reaches into... \ud83d\udd17 https://t.me/Path_Wars/76799/186315\n\u2501\u2501 \u2b50\ufe0f C07: Hopeful End-Times (6) \ud83d\udc65 4/6 \u26a0\ufe0f \u2501\u2501 @PathWars \u26a1Terra (~2.4d)\n11 [185263] \ud83d\udd34 7d 14h. Anthony NegetZ: \"Hmm... Nothing my \u2605SUPER IDOL HACKS\u2605 can't take care of then!?\" Livy says as she... \ud83d\udd17 https://t.me/Path_Wars/52083/185263\n12 [186544] \ud83d\udfe2 1d 13h. Anthony NegetZ: \"\u2605SO\u2605!!! I'm going to stream real quick... I'll let you guys handle the \u2605DOOR\u2605 while... \ud83d\udd17 https://t.me/Path_Wars/52083/186544\n13 [186546] \ud83d\udfe2 1d 13h. Terra: \"She's... streaming?\" Lai whispers to Roneles and Nikk-Nakk \"Won't that be bad?\" \ud83d\udd17 https://t.me/Path_Wars/52083/186546\n14 [186574] \ud83d\udfe2 1d 10h. Terra: *[image]*<!-- file:AgACAgUAAx0CYwGpWQABAtjOatbfNzcVcuVXAhJlHYTtEM_0DdkAAvEZaxvOV7hWr88wR7C5lJwBAAMCAANtAAM9BA --> what do i see? or patrol patterns with the drones \ud83d\udd17 https://t.me/Path_Wars/52083/186574\n15 [186586] \ud83d\udfe2 1d 10h. Horia Constantinescu: Roneles responds by saying \"Chat is this real?!\" as well as \" Chat we are... \ud83d\udd17 https://t.me/Path_Wars/52083/186586\n16 [186592] \ud83d\udfe2 1d 9h. Terra: \"We are about to be one of those old human videos...what was it? 'Chinese liveleeks?'... \ud83d\udd17 https://t.me/Path_Wars/52083/186592\n\u2501\u2501 \ud83d\udca4 Silent campaigns \u2501\u2501\n  \ud83d\udfe7 \ud83d\udea6 C10: The Junction \ud83d\udc65 0/6 \u26a0\ufe0f - no posts for 6d 19h \ud83d\udd17 https://t.me/Path_Wars/146645\n\u2501\u2501 \u2705 Caught up \u2501\u2501\n  \ud83d\udfe1 \ud83c\udf11 C11: Dark Pockets \ud83d\udc65 1 - last post 3d 3h ago \ud83d\udd17 https://t.me/c/3496373617/1242\n  \ud83d\udfe2 \ud83d\udcc6 C01: Doomsday Funtime \ud83d\udc65 4/6 \u26a0\ufe0f - last post 1d 15h ago \ud83d\udd17 https://t.me/Path_Wars/25059\n  \ud83c\udf31 \ud83e\udda0 C06: Kibwe \ud83d\udc65 5/6 \u26a0\ufe0f - last post 2h ago \ud83d\udd17 https://t.me/Path_Wars/40585\n  \ud83c\udf31 \ud83d\udd2d C05: Grand Explorers \ud83d\udc65 4/6 \u26a0\ufe0f - last post 1h ago \ud83d\udd17 https://t.me/Path_Wars/51357\n  \ud83c\udd95 \ud83e\udd16 C09: Metal City \ud83d\udc65 2/6 \u26a0\ufe0f - last post 0h ago \ud83d\udd17 https://t.me/Path_Wars/107171",
+    "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83c\udfaf Reply to this next: \ud83d\udcb0 C00: Riddleport\n\u23f3 Oldest message waiting 7d 20h (8 unreplied in this campaign).\n\u2197 Loren: *[image]*<!-- file:AgACAgEAAx0CYwGpWQABAtOAas5thIfHNAYqm-NKWdVa2LAQJ_0AAiINaxuSEHFGiKkFSMzN86QBAAMCAANtAAM9BA --> i\n\ud83d\udd17 https://t.me/Path_Wars/66154/185216"
   ],
-  "queue_refire_chain": 0,
+  "queue_refire_chain": 1,
   "potw_week": {
     "25059": "2026-W43",
     "66154": "2026-W43",
@@ -396,27 +394,31 @@
   },
   "last_potw_roundup": "2026-W43",
   "last_potw_countdown": "2026-W38",
-  "schedule_post_msg_id": 3158,
+  "schedule_post_msg_id": 3231,
   "schedule_post_chat_id": -1004303231713,
-  "last_pin_digest": "2026-10-20",
-  "last_pin_alert_ts": "2026-10-20T14:13:30.734650+00:00",
+  "last_pin_digest": "2026-10-21",
+  "last_pin_alert_ts": "2026-10-21T14:17:46.469879+00:00",
   "poll_identified_voters": {},
-  "recruit_focus_msg_id": 186395,
-  "last_recruit_focus": "2026-10-19T13:43:30.017204+00:00",
-  "recruit_focus_at": "2026-10-19T13:43:30.017204+00:00",
+  "recruit_focus_msg_id": 186675,
+  "last_recruit_focus": "2026-10-20T14:13:24.702489+00:00",
+  "recruit_focus_at": "2026-10-20T14:13:24.702489+00:00",
   "recruit_focus_posts": [
     {
       "chat_id": -1001661053273,
-      "message_id": 186395,
+      "message_id": 186675,
       "auto_delete": true
     },
     {
       "chat_id": -1004303231713,
-      "message_id": 3087,
+      "message_id": 3159,
       "auto_delete": false
     }
   ],
   "last_community_roster": "2026-10-18T15:13:19.948302+00:00",
+  "last_weekly_recruit": "2026-10-21T14:09:53.852414+00:00",
+  "weekly_recruit_picks": {
+    "107171": "2026-10-21T14:09:53.852414+00:00"
+  },
   "players": {
     "25059:5443237599": {
       "user_id": "5443237599",
@@ -465,7 +467,7 @@
       "username": "Nemesiux",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-09-16T18:27:42+00:00",
+      "last_post_time": "2026-10-21T02:00:47+00:00",
       "last_warned_week": 0,
       "played_by": "MrNegetZ"
     },
@@ -486,7 +488,7 @@
       "username": "MrNegetZ",
       "campaign_name": "Kibwe",
       "pbp_topic_id": "40585",
-      "last_post_time": "2026-10-17T16:47:48+00:00",
+      "last_post_time": "2026-10-21T10:26:52+00:00",
       "last_warned_week": 0
     },
     "1242:6464119705": {
@@ -517,7 +519,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-06T02:50:34+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "40585:7130942567": {
       "user_id": "7130942567",
@@ -587,7 +589,7 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-10-10T21:28:52+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "76799:8969117742": {
       "user_id": "8969117742",
@@ -617,7 +619,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-14T01:46:35+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "40585:1358791105": {
       "user_id": "1358791105",
@@ -636,8 +638,8 @@
       "username": "MrNegetZ",
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
-      "last_post_time": "2026-10-01T00:41:14+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-10-21T12:34:31+00:00",
+      "last_warned_week": 0
     },
     "25059:8255519522": {
       "user_id": "8255519522",
@@ -667,7 +669,7 @@
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
       "last_post_time": "2026-10-13T10:17:12+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "66154:138025700": {
       "user_id": "138025700",
@@ -706,7 +708,7 @@
       "username": "Nemesiux",
       "campaign_name": "Riddleport",
       "pbp_topic_id": "66154",
-      "last_post_time": "2026-10-20T03:39:59+00:00",
+      "last_post_time": "2026-10-21T11:45:22+00:00",
       "last_warned_week": 0
     },
     "51357:138025700": {
@@ -717,7 +719,7 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-10-13T05:32:58+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "51357:8117756377": {
       "user_id": "8117756377",
@@ -727,7 +729,7 @@
       "campaign_name": "Grand Explorers",
       "pbp_topic_id": "51357",
       "last_post_time": "2026-10-14T05:59:35+00:00",
-      "last_warned_week": 0
+      "last_warned_week": 1
     },
     "52083:5443237599": {
       "user_id": "5443237599",
@@ -1124,7 +1126,7 @@
     "40585": {
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-26T22:59:46.875788+00:00"
       },
       "7077683276": {
@@ -1139,7 +1141,7 @@
       },
       "6144366145": {
         "id": 3,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-03-27T14:23:08.283060+00:00"
       },
       "7863964681": {
@@ -1154,7 +1156,7 @@
       },
       "5443237599": {
         "id": 6,
-        "name": "Horia Constantinescu",
+        "name": "Horia",
         "joined": "2026-03-29T16:09:31.920136+00:00"
       },
       "7842002561": {
@@ -1295,7 +1297,7 @@
     "66154": {
       "5443237599": {
         "id": 1,
-        "name": "Horia Constantinescu",
+        "name": "Horia",
         "joined": "2026-03-27T17:19:51.259630+00:00"
       },
       "6134825204": {
@@ -1320,7 +1322,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-27T17:19:51.259987+00:00"
       },
       "8203214315": {
@@ -1444,7 +1446,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:28.392197+00:00"
       },
       "8511309197": {
@@ -1454,7 +1456,7 @@
       },
       "6144366145": {
         "id": 7,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-04-28T09:00:48.800641+00:00"
       },
       "7130942567": {
@@ -1501,7 +1503,7 @@
       },
       "1698524397": {
         "id": 0,
-        "name": "GM",
+        "name": "Path",
         "joined": "2026-03-29T16:09:32.902136+00:00"
       },
       "8787586972": {
@@ -2973,22 +2975,22 @@
     "7437909735": {
       "name": "Loren",
       "username": "Caecgirl",
-      "last": "2026-10-20T00:27:27+00:00"
+      "last": "2026-10-20T21:27:17+00:00"
     },
     "6144366145": {
       "name": "Anthony",
       "username": "MrNegetZ",
-      "last": "2026-10-20T13:16:22+00:00"
+      "last": "2026-10-21T14:12:11+00:00"
     },
     "1358791105": {
       "name": "Alastair",
       "username": "altan19931993",
-      "last": "2026-10-19T10:59:49+00:00"
+      "last": "2026-10-21T13:41:38+00:00"
     },
     "5443237599": {
       "name": "Horia",
       "username": "Nemesiux",
-      "last": "2026-10-20T05:42:02+00:00"
+      "last": "2026-10-21T03:40:00+00:00"
     },
     "1883964048": {
       "name": "KP",
@@ -3013,17 +3015,17 @@
     "138025700": {
       "name": "Ryo",
       "username": "RyoYamakawa",
-      "last": "2026-10-20T08:29:12+00:00"
+      "last": "2026-10-21T02:29:47+00:00"
     },
     "7454623139": {
       "name": "Cannon",
       "username": "ArtyArtillery",
-      "last": "2026-10-18T04:49:15+00:00"
+      "last": "2026-10-21T01:22:45+00:00"
     },
     "8097377199": {
       "name": "Terra",
       "username": "Saiminaminah",
-      "last": "2026-10-20T13:16:05+00:00"
+      "last": "2026-10-21T09:31:51+00:00"
     },
     "8750531522": {
       "name": "Conch",
@@ -3053,7 +3055,7 @@
     "6482311444": {
       "name": "Moss",
       "username": "Mossssssssssssssssssssssssss",
-      "last": "2026-10-20T13:06:28+00:00"
+      "last": "2026-10-20T21:29:38+00:00"
     },
     "5029858993": {
       "name": "Sasuken09",
@@ -3127,6 +3129,282 @@
     [
       "2026-10-20T14:13:24.702489+00:00",
       20
+    ],
+    [
+      "2026-10-20T14:43:31.796134+00:00",
+      21
+    ],
+    [
+      "2026-10-20T14:44:19.619735+00:00",
+      21
+    ],
+    [
+      "2026-10-20T14:51:29.648858+00:00",
+      21
+    ],
+    [
+      "2026-10-20T14:53:25.367031+00:00",
+      21
+    ],
+    [
+      "2026-10-20T15:01:05.042789+00:00",
+      21
+    ],
+    [
+      "2026-10-20T15:43:19.202766+00:00",
+      20
+    ],
+    [
+      "2026-10-20T15:51:11.488595+00:00",
+      20
+    ],
+    [
+      "2026-10-20T16:13:25.080708+00:00",
+      20
+    ],
+    [
+      "2026-10-20T16:43:26.803173+00:00",
+      20
+    ],
+    [
+      "2026-10-20T17:00:39.734480+00:00",
+      20
+    ],
+    [
+      "2026-10-20T17:30:00.128183+00:00",
+      20
+    ],
+    [
+      "2026-10-20T18:13:28.143362+00:00",
+      20
+    ],
+    [
+      "2026-10-20T18:43:31.430873+00:00",
+      20
+    ],
+    [
+      "2026-10-20T19:13:29.365220+00:00",
+      20
+    ],
+    [
+      "2026-10-20T19:43:27.241701+00:00",
+      20
+    ],
+    [
+      "2026-10-20T20:13:24.302049+00:00",
+      20
+    ],
+    [
+      "2026-10-20T20:34:02.934732+00:00",
+      20
+    ],
+    [
+      "2026-10-20T20:50:33.029009+00:00",
+      20
+    ],
+    [
+      "2026-10-20T21:13:20.822786+00:00",
+      20
+    ],
+    [
+      "2026-10-20T21:43:19.374524+00:00",
+      20
+    ],
+    [
+      "2026-10-20T22:13:22.799755+00:00",
+      20
+    ],
+    [
+      "2026-10-20T22:43:20.375815+00:00",
+      20
+    ],
+    [
+      "2026-10-20T23:13:27.325550+00:00",
+      20
+    ],
+    [
+      "2026-10-20T23:43:22.060482+00:00",
+      20
+    ],
+    [
+      "2026-10-20T23:51:54.782527+00:00",
+      20
+    ],
+    [
+      "2026-10-21T00:06:36.694883+00:00",
+      20
+    ],
+    [
+      "2026-10-21T00:43:19.378475+00:00",
+      21
+    ],
+    [
+      "2026-10-21T00:51:08.600269+00:00",
+      21
+    ],
+    [
+      "2026-10-21T01:13:22.186114+00:00",
+      21
+    ],
+    [
+      "2026-10-21T01:43:18.011126+00:00",
+      21
+    ],
+    [
+      "2026-10-21T02:13:18.380414+00:00",
+      22
+    ],
+    [
+      "2026-10-21T02:21:05.287223+00:00",
+      22
+    ],
+    [
+      "2026-10-21T02:43:16.068040+00:00",
+      22
+    ],
+    [
+      "2026-10-21T03:13:25.190734+00:00",
+      22
+    ],
+    [
+      "2026-10-21T03:43:22.176489+00:00",
+      22
+    ],
+    [
+      "2026-10-21T04:13:21.852444+00:00",
+      22
+    ],
+    [
+      "2026-10-21T04:43:02.876081+00:00",
+      22
+    ],
+    [
+      "2026-10-21T04:43:36.331876+00:00",
+      22
+    ],
+    [
+      "2026-10-21T05:13:27.633493+00:00",
+      22
+    ],
+    [
+      "2026-10-21T05:16:09.372548+00:00",
+      22
+    ],
+    [
+      "2026-10-21T05:43:23.551368+00:00",
+      22
+    ],
+    [
+      "2026-10-21T06:13:23.576574+00:00",
+      22
+    ],
+    [
+      "2026-10-21T06:43:23.120542+00:00",
+      22
+    ],
+    [
+      "2026-10-21T07:13:25.399279+00:00",
+      22
+    ],
+    [
+      "2026-10-21T07:43:30.428749+00:00",
+      22
+    ],
+    [
+      "2026-10-21T08:13:21.169043+00:00",
+      22
+    ],
+    [
+      "2026-10-21T08:43:25.055508+00:00",
+      22
+    ],
+    [
+      "2026-10-21T09:13:18.920823+00:00",
+      21
+    ],
+    [
+      "2026-10-21T09:21:00.561608+00:00",
+      20
+    ],
+    [
+      "2026-10-21T09:28:46.157975+00:00",
+      20
+    ],
+    [
+      "2026-10-21T10:06:25.708508+00:00",
+      20
+    ],
+    [
+      "2026-10-21T10:33:15.308230+00:00",
+      21
+    ],
+    [
+      "2026-10-21T10:40:58.530785+00:00",
+      21
+    ],
+    [
+      "2026-10-21T11:13:24.223101+00:00",
+      21
+    ],
+    [
+      "2026-10-21T11:31:28.406685+00:00",
+      20
+    ],
+    [
+      "2026-10-21T11:39:18.442039+00:00",
+      20
+    ],
+    [
+      "2026-10-21T12:08:46.371483+00:00",
+      20
+    ],
+    [
+      "2026-10-21T12:16:29.410613+00:00",
+      20
+    ],
+    [
+      "2026-10-21T12:38:18.617928+00:00",
+      21
+    ],
+    [
+      "2026-10-21T12:46:03.845805+00:00",
+      21
+    ],
+    [
+      "2026-10-21T12:50:08.463279+00:00",
+      19
+    ],
+    [
+      "2026-10-21T12:57:53.052530+00:00",
+      17
+    ],
+    [
+      "2026-10-21T13:05:33.298195+00:00",
+      17
+    ],
+    [
+      "2026-10-21T13:15:06.051027+00:00",
+      17
+    ],
+    [
+      "2026-10-21T13:43:21.581688+00:00",
+      17
+    ],
+    [
+      "2026-10-21T13:50:58.720145+00:00",
+      17
+    ],
+    [
+      "2026-10-21T14:01:12.448621+00:00",
+      17
+    ],
+    [
+      "2026-10-21T14:09:53.852414+00:00",
+      16
+    ],
+    [
+      "2026-10-21T14:17:40.105828+00:00",
+      16
     ]
   ],
   "queue_history": {
@@ -3319,13 +3597,13 @@
       "2026-09-16T10:30:35.521101+00:00",
       "2026-09-17T02:13:44.120919+00:00",
       "2026-10-01T02:43:20.066979+00:00",
-      "2026-10-01T04:50:56.902742+00:00"
+      "2026-10-01T04:50:56.902742+00:00",
+      "2026-10-21T12:50:08.458954+00:00",
+      "2026-10-21T12:50:08.462176+00:00",
+      "2026-10-21T12:57:53.045652+00:00",
+      "2026-10-21T12:57:53.050309+00:00"
     ],
     "40585": [
-      "2026-04-10T20:12:25.326369+00:00",
-      "2026-04-10T20:12:25.327795+00:00",
-      "2026-04-10T20:12:25.329013+00:00",
-      "2026-04-11T04:40:43.700010+00:00",
       "2026-04-11T04:40:43.701902+00:00",
       "2026-04-11T04:40:43.703789+00:00",
       "2026-04-11T05:31:55.085785+00:00",
@@ -3821,7 +4099,11 @@
       "2026-10-17T17:08:54.594406+00:00",
       "2026-10-17T17:08:54.615744+00:00",
       "2026-10-17T17:08:54.642051+00:00",
-      "2026-10-19T10:13:17.801724+00:00"
+      "2026-10-19T10:13:17.801724+00:00",
+      "2026-10-20T15:43:19.199434+00:00",
+      "2026-10-21T09:13:18.918409+00:00",
+      "2026-10-21T09:21:00.558002+00:00",
+      "2026-10-21T11:31:28.404685+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -4740,7 +5022,9 @@
       "2026-10-13T04:13:16.147695+00:00",
       "2026-10-13T05:43:24.759210+00:00",
       "2026-10-15T08:43:28.706327+00:00",
-      "2026-10-15T08:51:07.724014+00:00"
+      "2026-10-15T08:51:07.724014+00:00",
+      "2026-10-21T12:08:46.362193+00:00",
+      "2026-10-21T14:09:53.846665+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -5140,76 +5424,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-09-10T16:22:59.094954+00:00",
-      "player": "Terra",
-      "preview": "Lai puts down the ukelele and pulls out his pistol from his ",
-      "msg_id": "177344"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-09-11T16:44:28.718885+00:00",
-      "player": "Alastair",
-      "preview": "\"I'm... just really bad at walking. Sometimes,\" Rin mumbled,",
-      "msg_id": "177376"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-09-12T19:37:17.032492+00:00",
-      "player": "Alastair",
-      "preview": "Rin nods with a small, weak grin. His shadow shakes his head",
-      "msg_id": "177609"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-09-12T20:30:39.788462+00:00",
-      "player": "Fuzzy",
-      "preview": "Well, it sure beats paperwork!\n\nSo who are we lighting up?",
-      "msg_id": "177721"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-09-12T21:30:21.100643+00:00",
-      "player": "Fuzzy",
-      "preview": "So... What did he do to piss off the boss?",
-      "msg_id": "178495"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-09-12T21:30:21.103702+00:00",
-      "player": "Terra",
-      "preview": "Lai looks at nikk-nakk then the others in the room:\n\nI can't",
-      "msg_id": "177992"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-13T14:45:19.403446+00:00",
-      "player": "Alastair",
-      "preview": "Action Plan: (if starting 1 grid east of Kitt)\n\n1: Move 2 S,",
-      "msg_id": "178096"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-13T15:45:24.845545+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "178103"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-13T15:45:24.967818+00:00",
-      "player": "Alastair",
-      "preview": "[media]",
-      "msg_id": "178097"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-13T15:45:24.970411+00:00",
-      "player": "Alastair",
-      "preview": "[media]",
-      "msg_id": "178098"
-    },
     {
       "pid": "76799",
       "time": "2026-09-13T16:15:03.080235+00:00",
@@ -6539,6 +6753,76 @@
       "player": "Moss",
       "preview": "[media]",
       "msg_id": "186429"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-20T15:43:19.199434+00:00",
+      "player": "Anthony",
+      "preview": "Daichi also needs to refocus 2 focus points...",
+      "msg_id": "186682"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-21T09:13:18.918409+00:00",
+      "player": "Anthony",
+      "preview": "After the group rests Daichi will say:\n\"Yeah we aint got tim",
+      "msg_id": "186764"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-21T09:21:00.558002+00:00",
+      "player": "Horia",
+      "preview": "Lorn says \"On it\"",
+      "msg_id": "186781"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-10-21T11:31:28.404685+00:00",
+      "player": "Anthony",
+      "preview": "[media]",
+      "msg_id": "186857"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-21T12:08:46.362193+00:00",
+      "player": "Horia",
+      "preview": "Necrila will stand near the imp and stare at him. The imp wo",
+      "msg_id": "184174"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-10-21T12:50:08.458954+00:00",
+      "player": "Ryo",
+      "preview": "\"Perhaps we should make haste. It seems this place is not ve",
+      "msg_id": "185097"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-10-21T12:50:08.462176+00:00",
+      "player": "Laetheron",
+      "preview": "Twilight tries following where their instincts lead, using t",
+      "msg_id": "185286"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-10-21T12:57:53.045652+00:00",
+      "player": "Buffet",
+      "preview": "Alitheia glances back at the dormant archway.\n\"At least we w",
+      "msg_id": "185542"
+    },
+    {
+      "pid": "51357",
+      "time": "2026-10-21T12:57:53.050309+00:00",
+      "player": "Anthony",
+      "preview": "\"Let's keep moving then... I don't think we'll want to exten",
+      "msg_id": "186968"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-10-21T14:09:53.846665+00:00",
+      "player": "aSly",
+      "preview": "Anxious nods, flinching only the tiniest amount as Marlo pat",
+      "msg_id": "185144"
     }
   ],
   "pending_potw_boons": {
@@ -6786,7 +7070,19 @@
         "2026-10-19T09:45:33+00:00",
         "2026-10-19T23:13:33+00:00",
         "2026-10-19T23:14:19+00:00",
-        "2026-10-19T23:14:22+00:00"
+        "2026-10-19T23:14:22+00:00",
+        "2026-10-20T14:20:24+00:00",
+        "2026-10-20T14:35:26+00:00",
+        "2026-10-20T15:29:54+00:00",
+        "2026-10-20T15:35:45+00:00",
+        "2026-10-20T15:36:08+00:00",
+        "2026-10-21T09:12:15+00:00",
+        "2026-10-21T09:13:42+00:00",
+        "2026-10-21T09:14:21+00:00",
+        "2026-10-21T09:15:57+00:00",
+        "2026-10-21T09:16:07+00:00",
+        "2026-10-21T09:16:46+00:00",
+        "2026-10-21T11:25:46+00:00"
       ],
       "7130942567": [
         "2026-10-08T02:38:19+00:00",
@@ -6807,7 +7103,10 @@
         "2026-10-17T16:30:02+00:00",
         "2026-10-17T16:30:21+00:00",
         "2026-10-17T16:41:44+00:00",
-        "2026-10-17T16:47:48+00:00"
+        "2026-10-17T16:47:48+00:00",
+        "2026-10-20T14:42:49+00:00",
+        "2026-10-21T00:27:01+00:00",
+        "2026-10-21T10:26:52+00:00"
       ],
       "1358791105": [
         "2026-10-08T12:21:09+00:00",
@@ -6819,14 +7118,18 @@
         "2026-10-12T09:30:20+00:00",
         "2026-10-12T09:30:21+00:00",
         "2026-10-12T09:30:21+00:00"
+      ],
+      "5443237599": [
+        "2026-10-21T02:00:47+00:00"
       ]
     },
     "51357": {
       "1698524397": [
-        "2026-10-06T03:37:25+00:00",
-        "2026-10-06T03:37:55+00:00",
-        "2026-10-06T03:38:45+00:00",
-        "2026-10-13T04:34:50+00:00"
+        "2026-10-13T04:34:50+00:00",
+        "2026-10-21T12:46:33+00:00",
+        "2026-10-21T12:48:51+00:00",
+        "2026-10-21T12:51:19+00:00",
+        "2026-10-21T12:52:41+00:00"
       ],
       "7130942567": [
         "2026-10-15T06:28:07+00:00"
@@ -6836,6 +7139,9 @@
       ],
       "8117756377": [
         "2026-10-14T05:59:35+00:00"
+      ],
+      "6144366145": [
+        "2026-10-21T12:34:31+00:00"
       ]
     },
     "52083": {
@@ -6901,7 +7207,8 @@
         "2026-10-08T12:11:58+00:00",
         "2026-10-13T05:28:33+00:00",
         "2026-10-13T05:30:46+00:00",
-        "2026-10-13T06:04:23+00:00"
+        "2026-10-13T06:04:23+00:00",
+        "2026-10-21T13:18:12+00:00"
       ],
       "8117756377": [
         "2026-10-08T23:28:19+00:00",
@@ -6922,21 +7229,18 @@
         "2026-10-13T03:53:29+00:00",
         "2026-10-13T05:37:39+00:00",
         "2026-10-15T08:16:22+00:00",
-        "2026-10-15T08:44:54+00:00"
-      ],
-      "6144366145": [
-        "2026-10-06T02:50:34+00:00"
+        "2026-10-15T08:44:54+00:00",
+        "2026-10-21T11:39:39+00:00",
+        "2026-10-21T14:05:43+00:00"
       ],
       "8836746655": [
         "2026-10-13T10:17:12+00:00"
       ],
       "138025700": [
-        "2026-10-06T04:20:05+00:00",
         "2026-10-13T05:28:29+00:00",
         "2026-10-20T02:21:57+00:00"
       ],
       "8994358370": [
-        "2026-10-06T10:19:58+00:00",
         "2026-10-15T19:20:53+00:00"
       ],
       "7437909735": [
@@ -6947,7 +7251,8 @@
       ],
       "5443237599": [
         "2026-10-08T17:50:37+00:00",
-        "2026-10-20T03:39:59+00:00"
+        "2026-10-20T03:39:59+00:00",
+        "2026-10-21T11:45:22+00:00"
       ]
     },
     "76799": {
@@ -6965,7 +7270,6 @@
         "2026-10-13T20:25:52+00:00"
       ],
       "8353586922": [
-        "2026-10-06T09:04:24+00:00",
         "2026-10-12T17:49:27+00:00"
       ],
       "1358791105": [
@@ -6974,7 +7278,6 @@
     },
     "146645": {
       "1698524397": [
-        "2026-10-06T09:19:30+00:00",
         "2026-10-14T18:34:19+00:00",
         "2026-10-14T18:34:26+00:00",
         "2026-10-14T18:34:35+00:00",
@@ -7040,9 +7343,9 @@
     "66154": {
       "138025700": 18,
       "7961602816": 6,
-      "5443237599": 31,
+      "5443237599": 32,
       "6134825204": 16,
-      "1698524397": 396,
+      "1698524397": 398,
       "8203214315": 16,
       "6717906753": 11,
       "6144366145": 21,
@@ -7056,10 +7359,10 @@
     },
     "51357": {
       "7863964681": 26,
-      "1698524397": 519,
+      "1698524397": 523,
       "7454623139": 40,
       "138025700": 21,
-      "6144366145": 39,
+      "6144366145": 40,
       "894369591": 8,
       "8511309197": 4,
       "8117756377": 52,
@@ -7084,7 +7387,7 @@
     },
     "107171": {
       "6134825204": 8,
-      "1698524397": 676,
+      "1698524397": 677,
       "7863964681": 40,
       "7077683276": 27,
       "8117756377": 59,
@@ -7097,11 +7400,11 @@
       "138025700": 9
     },
     "40585": {
-      "6144366145": 159,
-      "1698524397": 2514,
+      "6144366145": 162,
+      "1698524397": 2526,
       "7130942567": 71,
       "138025700": 88,
-      "5443237599": 49,
+      "5443237599": 50,
       "7842002561": 41,
       "7077683276": 49,
       "7863964681": 60,
@@ -7391,11 +7694,11 @@
         "18": 10,
         "8": 18,
         "15": 16,
-        "11": 7,
+        "11": 8,
         "13": 7,
         "16": 13,
         "19": 39,
-        "14": 34,
+        "14": 35,
         "17": 12,
         "6": 28,
         "5": 5
@@ -7416,7 +7719,7 @@
         "0": 3,
         "1": 3,
         "18": 3,
-        "11": 1,
+        "11": 2,
         "15": 1,
         "19": 6,
         "6": 2,
@@ -7792,7 +8095,7 @@
         "8": 28,
         "15": 99,
         "20": 26,
-        "13": 8,
+        "13": 9,
         "14": 41,
         "9": 5,
         "7": 10,
@@ -7935,7 +8238,7 @@
         "21": 23,
         "22": 13,
         "18": 7,
-        "12": 13,
+        "12": 17,
         "9": 37,
         "15": 7,
         "17": 18,
@@ -7966,7 +8269,8 @@
         "11": 1,
         "5": 5,
         "19": 1,
-        "0": 1
+        "0": 1,
+        "12": 1
       },
       "7454623139": {
         "0": 3,
@@ -8067,15 +8371,15 @@
         "7": 158,
         "22": 43,
         "12": 73,
-        "9": 42,
+        "9": 48,
         "8": 117,
         "10": 61,
         "13": 124,
-        "14": 75,
-        "15": 188,
+        "14": 77,
+        "15": 191,
         "20": 104,
         "19": 97,
-        "11": 101,
+        "11": 102,
         "17": 89,
         "5": 62,
         "16": 118,
@@ -8176,7 +8480,8 @@
         "21": 4,
         "4": 1,
         "5": 1,
-        "18": 2
+        "18": 2,
+        "2": 1
       },
       "7842002561": {
         "22": 3,
@@ -8201,7 +8506,7 @@
         "16": 17,
         "17": 24,
         "13": 3,
-        "14": 2,
+        "14": 3,
         "3": 4,
         "9": 3,
         "7": 12,
@@ -8213,9 +8518,10 @@
         "19": 9,
         "21": 10,
         "22": 5,
-        "0": 2,
+        "0": 3,
         "6": 4,
-        "11": 2
+        "11": 2,
+        "10": 1
       },
       "6023408187": {
         "1": 5,
@@ -8483,7 +8789,7 @@
         "6": 82,
         "1": 74,
         "0": 74,
-        "2": 68,
+        "2": 70,
         "3": 13,
         "4": 2
       },
@@ -8500,7 +8806,7 @@
         "6": 8,
         "1": 5,
         "0": 7,
-        "2": 1,
+        "2": 2,
         "3": 1
       },
       "7961602816": {
@@ -8723,7 +9029,7 @@
         "0": 135,
         "1": 93,
         "4": 18,
-        "2": 100
+        "2": 101
       },
       "8117756377": {
         "5": 8,
@@ -8806,7 +9112,7 @@
         "5": 38,
         "6": 95,
         "1": 97,
-        "2": 81,
+        "2": 85,
         "0": 133,
         "3": 48,
         "4": 13
@@ -8817,7 +9123,7 @@
         "6": 1,
         "0": 5,
         "4": 1,
-        "2": 9,
+        "2": 10,
         "3": 1
       },
       "7454623139": {
@@ -8876,8 +9182,8 @@
         "5": 331,
         "6": 420,
         "0": 416,
-        "1": 517,
-        "2": 265,
+        "1": 522,
+        "2": 272,
         "3": 93,
         "4": 353
       },
@@ -8917,7 +9223,7 @@
       },
       "5443237599": {
         "1": 14,
-        "2": 4,
+        "2": 5,
         "4": 7,
         "5": 10,
         "3": 1,
@@ -8933,11 +9239,11 @@
         "6": 14
       },
       "6144366145": {
-        "1": 22,
+        "1": 23,
         "4": 18,
         "0": 20,
         "5": 25,
-        "2": 32,
+        "2": 34,
         "3": 6,
         "6": 15
       },
@@ -9053,9 +9359,9 @@
       "8471667081": 1
     },
     "66154": {
-      "1698524397": 6590,
+      "1698524397": 6780,
       "138025700": 881,
-      "5443237599": 1351,
+      "5443237599": 1410,
       "7961602816": 181,
       "6134825204": 187,
       "6717906753": 302,
@@ -9096,7 +9402,7 @@
       "8255519522": 40
     },
     "107171": {
-      "1698524397": 7657,
+      "1698524397": 7697,
       "8117756377": 1328,
       "7077683276": 435,
       "6134825204": 198,
@@ -9110,8 +9416,8 @@
       "138025700": 152
     },
     "51357": {
-      "1698524397": 9381,
-      "6144366145": 451,
+      "1698524397": 9584,
+      "6144366145": 481,
       "7454623139": 994,
       "138025700": 468,
       "894369591": 362,
@@ -9122,14 +9428,14 @@
       "5443237599": 4
     },
     "40585": {
-      "1698524397": 35720,
+      "1698524397": 36028,
       "138025700": 1459,
       "7077683276": 1102,
       "7863964681": 2003,
       "7130942567": 1172,
-      "5443237599": 738,
+      "5443237599": 742,
       "7842002561": 1260,
-      "6144366145": 1122,
+      "6144366145": 1167,
       "6023408187": 547,
       "1395063293": 1028,
       "1358791105": 597
@@ -9153,26 +9459,26 @@
     }
   },
   "session_counts": {
-    "51357": 54,
-    "40585": 133,
-    "107171": 62,
+    "51357": 55,
+    "40585": 135,
+    "107171": 63,
     "107151": 30,
     "25059": 68,
     "76799": 55,
-    "66154": 44,
+    "66154": 45,
     "52083": 60,
     "1242": 35,
     "146645": 7,
     "75843": 3
   },
   "session_last_day": {
-    "51357": "2026-10-13",
-    "40585": "2026-10-19",
-    "107171": "2026-10-13",
+    "51357": "2026-10-21",
+    "40585": "2026-10-21",
+    "107171": "2026-10-21",
     "107151": "2026-05-05",
     "25059": "2026-10-19",
     "76799": "2026-10-13",
-    "66154": "2026-10-15",
+    "66154": "2026-10-21",
     "52083": "2026-10-17",
     "1242": "2026-10-18",
     "146645": "2026-10-14",
@@ -10558,7 +10864,7 @@
   ],
   "thread_message_counts": {
     "66154": {
-      "5443237599": 1
+      "1698524397": 1
     },
     "25059": {
       "1698524397": 1
@@ -10573,7 +10879,7 @@
       "1698524397": 1
     },
     "51357": {
-      "7130942567": 1
+      "1698524397": 2
     },
     "56842": {
       "1698524397": 8
@@ -10582,7 +10888,7 @@
       "1698524397": 1
     },
     "40585": {
-      "1698524397": 2
+      "1698524397": 1
     },
     "137075": {
       "1698524397": 1
@@ -10655,6 +10961,6 @@
       }
     ]
   },
-  "_backup_timestamp": "2026-10-20T14:13:24.702489+00:00",
-  "_backup_version": "4.72.0"
+  "_backup_timestamp": "2026-10-21T14:17:40.105828+00:00",
+  "_backup_version": "4.74.0"
 }
