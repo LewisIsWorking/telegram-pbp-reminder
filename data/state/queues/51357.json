@@ -27,6 +27,15 @@
       "time": "2026-10-15T06:28:07+00:00",
       "preview": "Alitheia glances back at the dormant archway.\n\"At least we won't have to worry about any more of them sneaking past us. Light-based magics are dulled here but I'll do what I can.\"\nShe checks her shield strap and readies her battle standard, then follows after Twilight.",
       "media_group_id": null
+    },
+    {
+      "message_id": 186968,
+      "thread_id": 51357,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-21T12:34:31+00:00",
+      "preview": "\"Let's keep moving then... I don't think we'll want to extend our stay too much\"\nRubel follows behind Cyrus, looking for anything that might attack us (Scouting + Trap Finder).",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2065,11 +2074,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-10-13 05:32:58|2026-10-14 05:59:35|2026-10-15 06:28:07",
+      "fingerprint": "2026-10-13 05:32:58|2026-10-14 05:59:35|2026-10-15 06:28:07|2026-10-21 12:34:31",
       "msg_ids": [
-        186823
+        186971
       ],
-      "last_posted_at": "2026-10-21T08:43:29.501283+00:00",
+      "last_posted_at": "2026-10-21T12:38:23.271222+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null,
       "pending_delete": []
@@ -2094,6 +2103,7 @@
   "probed": {
     "185097": "2026-10-21T06:43:23.120542+00:00",
     "185286": "2026-10-21T06:43:23.120542+00:00",
-    "185542": "2026-10-21T06:43:23.120542+00:00"
+    "185542": "2026-10-21T06:43:23.120542+00:00",
+    "186968": "2026-10-21T12:38:18.617928+00:00"
   }
 }
