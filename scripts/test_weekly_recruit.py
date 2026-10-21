@@ -132,7 +132,7 @@ def test_the_message_names_the_campaign_counts_slots_and_ad():
     assert "make it a bit better" in text
     assert "Not picked for weekly recruitment before." in text
     assert "Also below 6: C01 4/6" in text
-    assert "—" not in text
+    assert chr(0x2014) not in text
 
 
 def test_the_message_says_when_it_was_last_picked():
