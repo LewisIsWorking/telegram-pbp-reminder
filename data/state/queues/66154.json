@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 184174,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-10-08T17:50:37+00:00",
-      "preview": "Necrila will stand near the imp and stare at him. The imp would get the feeling that another being far stronger than Necrila is watching him.",
-      "media_group_id": null
-    },
-    {
       "message_id": 185144,
       "thread_id": 66154,
       "user_id": "8836746655",
@@ -80,6 +71,15 @@
       "user_name": "Horia",
       "time": "2026-10-20T03:39:59+00:00",
       "preview": "As Rax does that he can feel a malicious intent coming from Necrila as she gives him the dead stare from afar. Like a parent animal ready to kill whatever touches their youngs.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 186913,
+      "thread_id": 66154,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-10-21T11:45:22+00:00",
+      "preview": "\"Necrila\" responds in infernal but with a necril accent and says:\n \"When you are free of your debt devil. \nSeek the oracle if you wish to improve your current position in the world. The payment is just having the will and want to face the truth\" and then Necrila goes back to her feral stance watching over the crowd.",
       "media_group_id": null
     }
   ],
@@ -362,7 +362,9 @@
     "msg:183308",
     "2026-10-06 10:19:58",
     "msg:183329",
-    "2026-10-06 18:20:14"
+    "2026-10-06 18:20:14",
+    "msg:184174",
+    "2026-10-08 17:50:37"
   ],
   "reply_log": [
     {
@@ -1645,24 +1647,32 @@
       "player": "Loren",
       "preview": "Miracle Max pushes through the doors of the Silver Succubi, a well-worn backpack",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-21T11:39:39+00:00",
+      "pid": "66154",
+      "msg_id": "184174",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "Necrila will stand near the imp and stare at him. The imp would get the feeling ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-08 17:50:37|2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59",
+      "fingerprint": "2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22",
       "msg_ids": [
-        186578
+        186926
       ],
-      "last_posted_at": "2026-10-20T03:43:21.604638+00:00",
+      "last_posted_at": "2026-10-21T12:08:50.607475+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "184174": "2026-10-21T06:43:23.120542+00:00",
     "185144": "2026-10-21T06:43:23.120542+00:00",
     "185216": "2026-10-21T06:43:23.120542+00:00",
     "185223": "2026-10-21T06:43:23.120542+00:00",
@@ -1670,6 +1680,7 @@
     "185601": "2026-10-21T06:43:23.120542+00:00",
     "185608": "2026-10-21T08:13:21.169043+00:00",
     "186561": "2026-10-21T10:06:25.708508+00:00",
-    "186576": "2026-10-21T11:13:24.223101+00:00"
+    "186576": "2026-10-21T11:13:24.223101+00:00",
+    "186913": "2026-10-21T12:08:46.371483+00:00"
   }
 }
