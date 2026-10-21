@@ -82,6 +82,10 @@ INTERVAL_JOBS: list[IntervalJob] = [
     # scheduled/community_roster.py:INTERVAL_DAYS. Added 2026-08-30.
     IntervalJob("last_community_roster", 7, "Community roster",
                 ("Community roster",)),
+    # scheduled/weekly_recruit.py:INTERVAL_DAYS. Added 2026-10-21: the
+    # GM's weekly DM naming the one campaign most in need of players.
+    IntervalJob("last_weekly_recruit", 7, "Weekly recruitment",
+                ("Weekly recruitment",)),
 ]
 
 

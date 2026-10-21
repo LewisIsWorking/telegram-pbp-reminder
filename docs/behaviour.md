@@ -269,6 +269,45 @@ cd scripts && python -m recruiting.roster_basis
 
 ---
 
+## Weekly Recruitment DM (GM only)
+
+Lewis, 2026-10-21: campaigns really want 6 players, but recruiting every
+campaign under 6 at once would mean constant recruiting. So once every 7
+days the bot DMs the GM (`gm_user_id`, the same route as the "Reply to this
+next" focus DM) naming **one** campaign: the one most in need.
+
+```
+📣 Weekly recruitment: C09 Metal City
+👥 Active players: 2/6 (4 short)
+🎯 Suggested Open Slots: 5
+📝 Discord ad: https://github.com/LewisIsWorking/PathWarsWiki/blob/main/Writerside/topics/C09-Metal-City-Stargazing/C09-Discord-Advert.md
+🧩 Multi-campaign ad: https://github.com/LewisIsWorking/PathWarsWiki/blob/main/Writerside/topics/Other-campaigns/Multi-discord-ad.md
+✏️ Refresh the ad's facts (open slots, level, schedule) and make it a bit better than last time.
+🕰 Not picked for weekly recruitment before.
+Also below 6: C01 4/6, C04 4/6, C05 4/6, C07 4/6, C06 5/6
+```
+
+- **Active** is a record in `players` (players.json) for the campaign's
+  canonical pbp topic, GMs excluded. Removed players are already out.
+- **Skipped:** campaigns at 6 or more, and campaigns marked as not
+  recruiting (`recruitment` in `disabled_features`, or
+  `"weekly_recruit": false` on the pair).
+- **Furthest below 6 wins.** Ties go to the campaign picked longest ago
+  (never picked first), then config order.
+- **Open Slots is shortfall + 1**, never 0, so the party survives a drop-off.
+- **The ad link** comes from the pair's `discord_ad` (a path under
+  PathWarsWiki `Writerside/topics/`).
+- **State:** `last_weekly_recruit` is the weekly gate, stamped only on a
+  confirmed DM (or when every campaign is full); `weekly_recruit_picks`
+  (`{pid: iso}`) records each pick for the tie-break.
+- Runs inside the hourly `pbp-reminder.yml` pass. Off switch:
+  `weekly_recruit_enabled: false`.
+
+This is not the daily player-facing recruit advert (`recruit_focus`), which
+posts in each campaign's chat topic and measures by `/roster`'s 30-day rule.
+
+---
+
 ## Weekly Welcome
 
 On Sunday at `poll_post_hour` UTC, the bot posts a "Welcome to Week X"

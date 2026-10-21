@@ -11,6 +11,44 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.74.0] - 2026-10-21
+
+### Added
+
+**A weekly recruitment DM to the GM for the one campaign most in need.**
+Lewis:
+
+> *"a weekly recruitment for the most in need campaign"*
+
+Campaigns want 6 players, but recruiting every campaign under 6 at once
+would mean constant recruiting. Once every 7 days the bot DMs the GM:
+
+```
+📣 Weekly recruitment: C09 Metal City
+👥 Active players: 2/6 (4 short)
+🎯 Suggested Open Slots: 5
+📝 Discord ad: https://github.com/LewisIsWorking/PathWarsWiki/blob/main/Writerside/topics/C09-Metal-City-Stargazing/C09-Discord-Advert.md
+🧩 Multi-campaign ad: https://github.com/LewisIsWorking/PathWarsWiki/blob/main/Writerside/topics/Other-campaigns/Multi-discord-ad.md
+✏️ Refresh the ad's facts (open slots, level, schedule) and make it a bit better than last time.
+🕰 Not picked for weekly recruitment before.
+Also below 6: C01 4/6, C04 4/6, C05 4/6, C07 4/6, C06 5/6
+```
+
+* **Furthest below 6 wins**, counting records in `players` (GMs out).
+  Ties go to the campaign picked longest ago, then config order.
+* **Skips** full campaigns and any with `recruitment` disabled or
+  `"weekly_recruit": false`.
+* **Open Slots = shortfall + 1**, never 0.
+* **New config:** `discord_ad` per campaign (set for every campaign with an
+  ad page), `weekly_recruit` opt-out, `weekly_recruit_enabled` off switch.
+* **New state:** `last_weekly_recruit` (the gate, stamped only on a
+  confirmed DM) and `weekly_recruit_picks` (the tie-break).
+* Runs in the existing hourly pass; no new workflow.
+
+See [behaviour.md](docs/behaviour.md#weekly-recruitment-dm-gm-only).
+
+---
+
 ## [4.73.0] - 2026-10-20
 
 ### Added
