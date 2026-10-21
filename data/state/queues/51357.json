@@ -1,25 +1,6 @@
 {
   "pid": "51357",
-  "unreplied": [
-    {
-      "message_id": 185542,
-      "thread_id": 51357,
-      "user_id": "7130942567",
-      "user_name": "Buffet",
-      "time": "2026-10-15T06:28:07+00:00",
-      "preview": "Alitheia glances back at the dormant archway.\n\"At least we won't have to worry about any more of them sneaking past us. Light-based magics are dulled here but I'll do what I can.\"\nShe checks her shield strap and readies her battle standard, then follows after Twilight.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 186968,
-      "thread_id": 51357,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-10-21T12:34:31+00:00",
-      "preview": "\"Let's keep moving then... I don't think we'll want to extend our stay too much\"\nRubel follows behind Cyrus, looking for anything that might attack us (Scouting + Trap Finder).",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137595",
     "2026-03-16 16:01:09",
@@ -398,7 +379,11 @@
     "msg:185097",
     "2026-10-13 05:32:58",
     "msg:185286",
-    "2026-10-14 05:59:35"
+    "2026-10-14 05:59:35",
+    "msg:185542",
+    "2026-10-15 06:28:07",
+    "msg:186968",
+    "2026-10-21 12:34:31"
   ],
   "reply_log": [
     {
@@ -2072,19 +2057,35 @@
       "player": "Laetheron",
       "preview": "Twilight tries following where their instincts lead, using their experience in t",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-21T12:51:19+00:00",
+      "pid": "51357",
+      "msg_id": "185542",
+      "thread_id": 51357,
+      "player": "Buffet",
+      "preview": "Alitheia glances back at the dormant archway.\n\"At least we won't have to worry a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-10-21T12:52:41+00:00",
+      "pid": "51357",
+      "msg_id": "186968",
+      "thread_id": 51357,
+      "player": "Anthony",
+      "preview": "\"Let's keep moving then... I don't think we'll want to extend our stay too much\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "51357": {
-      "fingerprint": "2026-10-15 06:28:07|2026-10-21 12:34:31",
-      "msg_ids": [
-        186982
-      ],
-      "last_posted_at": "2026-10-21T12:50:14.387059+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 186991,
+      "caught_up_at": "2026-10-21T12:57:53.052530+00:00",
       "pending_delete": []
     },
     "145040": {
