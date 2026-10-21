@@ -25,6 +25,15 @@
       "time": "2026-10-21T00:27:01+00:00",
       "preview": "After the group rests Daichi will say:\n\"Yeah we aint got time for this... Fierce, Lorn, help me get that shit open\"\nDaichi will aid anyone trying to force open the door/pannel (idk which one we need to force open to open the actual door) He also has a crowbar.",
       "media_group_id": null
+    },
+    {
+      "message_id": 186781,
+      "thread_id": 40585,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-10-21T02:00:47+00:00",
+      "preview": "Lorn says \"On it\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6776,16 +6785,17 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-10-21 00:27:01",
+      "fingerprint": "2026-10-21 00:27:01|2026-10-21 02:00:47",
       "msg_ids": [
-        186766
+        186785
       ],
-      "last_posted_at": "2026-10-21T00:43:36.067839+00:00",
+      "last_posted_at": "2026-10-21T02:13:26.001636+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-10-20T15:43:19.202766+00:00"
     }
   },
   "probed": {
-    "186764": "2026-10-21T00:43:19.378475+00:00"
+    "186764": "2026-10-21T00:43:19.378475+00:00",
+    "186781": "2026-10-21T02:13:18.380414+00:00"
   }
 }
