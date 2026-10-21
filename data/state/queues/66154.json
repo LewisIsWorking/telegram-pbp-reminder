@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 185144,
-      "thread_id": 66154,
-      "user_id": "8836746655",
-      "user_name": "aSly",
-      "time": "2026-10-13T10:17:12+00:00",
-      "preview": "Anxious nods, flinching only the tiniest amount as Marlo pats her on the head. \n\n\u201cY-yes, sir!\u201d She gives a tiny salute, and goes to leave before remembering something at the last moment. \n\n\u201cWait, I made some extra trinkets for our friends, in case something goes wrong. Who should I give them to?\u201d \n\nShe holds up four Potency Crystals (from Thaumaturge + Talisman Dabbler Dedication), each no larger than a fingernail and glowing with a faint violet light.",
-      "media_group_id": null
-    },
-    {
       "message_id": 185216,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -364,7 +355,9 @@
     "msg:183329",
     "2026-10-06 18:20:14",
     "msg:184174",
-    "2026-10-08 17:50:37"
+    "2026-10-08 17:50:37",
+    "msg:185144",
+    "2026-10-13 10:17:12"
   ],
   "reply_log": [
     {
@@ -1656,24 +1649,32 @@
       "player": "Horia",
       "preview": "Necrila will stand near the imp and stare at him. The imp would get the feeling ",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-21T14:05:43+00:00",
+      "pid": "66154",
+      "msg_id": "185144",
+      "thread_id": 66154,
+      "player": "aSly",
+      "preview": "Anxious nods, flinching only the tiniest amount as Marlo pats her on the head. \n",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-13 10:17:12|2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22",
+      "fingerprint": "2026-10-13 17:42:28|2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22",
       "msg_ids": [
-        186926
+        187028
       ],
-      "last_posted_at": "2026-10-21T12:08:50.607475+00:00",
+      "last_posted_at": "2026-10-21T14:09:56.204922+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "185144": "2026-10-21T12:46:03.845805+00:00",
     "185216": "2026-10-21T12:46:03.845805+00:00",
     "185223": "2026-10-21T12:46:03.845805+00:00",
     "185276": "2026-10-21T09:21:00.561608+00:00",
