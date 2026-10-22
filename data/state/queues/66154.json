@@ -63,6 +63,15 @@
       "time": "2026-10-21T11:45:22+00:00",
       "preview": "\"Necrila\" responds in infernal but with a necril accent and says:\n \"When you are free of your debt devil. \nSeek the oracle if you wish to improve your current position in the world. The payment is just having the will and want to face the truth\" and then Necrila goes back to her feral stance watching over the crowd.",
       "media_group_id": null
+    },
+    {
+      "message_id": 187318,
+      "thread_id": 66154,
+      "user_id": "7437909735",
+      "user_name": "Loren",
+      "time": "2026-10-22T22:57:32+00:00",
+      "preview": "Miracle Max's eyes follow the chain of nods around the hall. Davy to Grudge, Grudge to Marlo, and then the poppet and the fellow with the clockwork arm. Well, well. Either this was the most elaborate greeting ritual he'd ever seen, or somebody was running a little operation behind the house's back. His grin widened. Rule #1: Never let a good con go to waste.\n\nThen he spotted the sailor at the bar, still nursing the same full mug.\n\nMax's grin faltered for a moment. He leaned back in his chair, st",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -350,7 +359,9 @@
     "msg:185144",
     "2026-10-13 10:17:12",
     "msg:185216",
-    "2026-10-13 17:42:28"
+    "2026-10-13 17:42:28",
+    "msg:187317",
+    "2026-10-22 22:53:39"
   ],
   "reply_log": [
     {
@@ -1660,17 +1671,26 @@
       "player": "Loren",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-22T23:13:23.901766+00:00",
+      "pid": "66154",
+      "msg_id": "187317",
+      "thread_id": "66154",
+      "player": "Loren",
+      "preview": "Miracle Max's eyes follow the chain of nods around the hall. Davy to Grudge, Gru",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22",
+      "fingerprint": "2026-10-13 17:48:02|2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32",
       "msg_ids": [
-        187260
+        187322
       ],
-      "last_posted_at": "2026-10-22T16:30:10.673621+00:00",
+      "last_posted_at": "2026-10-22T23:13:27.359846+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
@@ -1683,6 +1703,7 @@
     "185608": "2026-10-22T21:43:16.370347+00:00",
     "186561": "2026-10-22T17:13:26.488271+00:00",
     "186576": "2026-10-22T18:13:22.553380+00:00",
-    "186913": "2026-10-22T19:13:27.017677+00:00"
+    "186913": "2026-10-22T19:13:27.017677+00:00",
+    "187318": "2026-10-22T23:13:23.901766+00:00"
   }
 }
