@@ -320,6 +320,16 @@
       "pbp_topic_id": "1242",
       "last_post_time": "2026-10-18T10:18:46+00:00",
       "last_warned_week": 0
+    },
+    "107171:8076901165": {
+      "user_id": "8076901165",
+      "first_name": "Datfurryboi34",
+      "last_name": "",
+      "username": "Furryboi34",
+      "campaign_name": "Metal City",
+      "pbp_topic_id": "107171",
+      "last_post_time": "2026-10-22T16:27:27+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -1106,6 +1116,11 @@
         "id": 11,
         "name": "Ryo Yamakawa",
         "joined": "2026-09-14T04:00:53.039553+00:00"
+      },
+      "8076901165": {
+        "id": 12,
+        "name": "Datfurryboi34",
+        "joined": "2026-10-22T16:30:05.972746+00:00"
       }
     },
     "1242": {
@@ -2114,6 +2129,14 @@
       "name": "Volf",
       "username": "RexVolf",
       "at": "2026-10-21T18:43:28.271775+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "107171",
+      "user_id": "8076901165",
+      "name": "Datfurryboi34",
+      "username": "Furryboi34",
+      "at": "2026-10-22T16:30:05.131455+00:00"
     }
   ],
   "player_boons": {
@@ -3190,6 +3213,10 @@
     ],
     [
       "2026-10-22T16:13:25.260588+00:00",
+      19
+    ],
+    [
+      "2026-10-22T16:30:05.972832+00:00",
       19
     ]
   ]
