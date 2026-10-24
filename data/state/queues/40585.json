@@ -1208,7 +1208,9 @@
     "msg:186857",
     "2026-10-21 10:26:52",
     "msg:187075",
-    "2026-10-21 16:08:21"
+    "2026-10-21 16:08:21",
+    "msg:187232",
+    "2026-10-22 13:54:25"
   ],
   "reply_log": [
     {
@@ -6797,6 +6799,15 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-10-24T02:29:48+00:00",
+      "pid": "40585",
+      "msg_id": "187232",
+      "thread_id": "40585",
+      "player": "?",
+      "preview": "",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6814,8 +6825,8 @@
       "fingerprint": "",
       "msg_ids": [],
       "last_posted_at": null,
-      "caught_up_msg_id": 187236,
-      "caught_up_at": "2026-10-22T14:13:18.076847+00:00"
+      "caught_up_msg_id": null,
+      "caught_up_at": null
     }
   },
   "probed": {
