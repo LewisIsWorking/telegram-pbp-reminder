@@ -49,6 +49,9 @@ EVERYONE_COMMANDS = [
     ("boonsall", "View all your boons"),
     # "chooseboon" entry removed 2026-05-11 - boon selection moved to the website.
     ("pick", "Vote in an active poll"),
+    # Added 2026-10-12. Everyone: a player grants themself, and the GM
+    # names a player (/extrasheet @user C06). dispatch/cmd_extrasheet.py.
+    ("extrasheet", "Make a second character sheet here (2 max)"),
     ("search", "Search Archives of Nethys"),
     ("reactions", "Reaction stats for a campaign"),
     ("timeline", "Cross-campaign event timeline"),
