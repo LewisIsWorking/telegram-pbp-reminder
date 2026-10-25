@@ -25,6 +25,51 @@
       "time": "2026-10-25T18:29:10+00:00",
       "preview": "[media]",
       "media_group_id": null
+    },
+    {
+      "message_id": 187560,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-25T21:35:47+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 187562,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-25T21:37:04+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 187563,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-25T21:38:15+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 187564,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-25T21:38:48+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 187566,
+      "thread_id": 40585,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-10-25T21:39:46+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6831,16 +6876,21 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-10-25 18:29:10",
+      "fingerprint": "2026-10-25 18:29:10|2026-10-25 21:35:47|2026-10-25 21:37:04|2026-10-25 21:38:15|2026-10-25 21:38:48|2026-10-25 21:39:46",
       "msg_ids": [
-        187550
+        187567
       ],
-      "last_posted_at": "2026-10-25T18:43:22.147907+00:00",
+      "last_posted_at": "2026-10-25T21:43:24.532965+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
   },
   "probed": {
-    "187547": "2026-10-25T18:43:18.319797+00:00"
+    "187547": "2026-10-25T18:43:18.319797+00:00",
+    "187560": "2026-10-25T21:43:18.970674+00:00",
+    "187562": "2026-10-25T21:43:18.970674+00:00",
+    "187563": "2026-10-25T21:43:18.970674+00:00",
+    "187564": "2026-10-25T21:43:18.970674+00:00",
+    "187566": "2026-10-25T21:43:18.970674+00:00"
   }
 }
