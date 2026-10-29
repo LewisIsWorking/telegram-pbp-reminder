@@ -48,6 +48,7 @@ from posting import pin_audit as _pa
 from posting import sent_log as _sl
 from posting import sent_by_chat as _sbc
 from posting import stuck_deletes as _sd
+from players import extra_sheets as _xs
 from state_store import StateStore
 
 
@@ -75,6 +76,10 @@ _sl._store = _TEST_STORE
 # sent_by_chat, added 2026-09-22: bot-sent IDs for chats other than the
 # main group. Every routed notification writes here.
 _sbc._store = _TEST_STORE
+# extra_sheets, added 2026-10-12 with /extrasheet. ComeOnOverUno reads the
+# real file and Tongs offers a second sheet from it, so a fixture grant
+# leaking there would hand a real player a sheet nobody gave them.
+_xs._store = _TEST_STORE
 # ⛔ queue_io, added 2026-08-27 after the WORST leak of the lot reached
 # real players. Any test calling track_message with a non-GM user records
 # an unreplied entry, and those went into the REAL data/state/queues/.
