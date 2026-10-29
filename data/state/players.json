@@ -1,15 +1,5 @@
 {
   "players": {
-    "25059:5443237599": {
-      "user_id": "5443237599",
-      "first_name": "Horia",
-      "last_name": "Constantinescu",
-      "username": "Nemesiux",
-      "campaign_name": "Doomsday Funtime",
-      "pbp_topic_id": "25059",
-      "last_post_time": "2026-10-01T22:03:49+00:00",
-      "last_warned_week": 3
-    },
     "76799:8353586922": {
       "user_id": "8353586922",
       "first_name": "Chase",
@@ -670,6 +660,12 @@
       "first_name": "Ryo",
       "username": "RyoYamakawa",
       "campaign_name": "Hopeful End-Times"
+    },
+    "25059:5443237599": {
+      "removed_at": "2026-10-29T22:43:25.354496+00:00",
+      "first_name": "Horia",
+      "username": "Nemesiux",
+      "campaign_name": "Doomsday Funtime"
     }
   },
   "player_registry": {
@@ -2141,6 +2137,14 @@
       "name": "Ryo",
       "username": "RyoYamakawa",
       "at": "2026-10-25T07:13:22.472277+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "25059",
+      "user_id": "5443237599",
+      "name": "Horia",
+      "username": "Nemesiux",
+      "at": "2026-10-29T22:43:25.912306+00:00"
     }
   ],
   "player_boons": {
@@ -2755,14 +2759,6 @@
   },
   "gm_queue_size_log": [
     [
-      "2026-10-27T22:13:22.765365+00:00",
-      27
-    ],
-    [
-      "2026-10-27T22:43:25.145183+00:00",
-      27
-    ],
-    [
       "2026-10-27T23:13:27.878656+00:00",
       27
     ],
@@ -3164,6 +3160,10 @@
     ],
     [
       "2026-10-29T21:59:04.351794+00:00",
+      27
+    ],
+    [
+      "2026-10-29T22:43:25.354496+00:00",
       27
     ]
   ]
