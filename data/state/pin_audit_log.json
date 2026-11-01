@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-10-04T10:43:23.231045+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2149,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-04T11:13:27.532625+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2150,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-04T11:43:23.293813+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2151,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-04T11:43:56.843733+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2152,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
     "timestamp": "2026-10-04T12:13:22.355136+00:00",
     "action": "delete",
     "chat_id": -1004303231713,
@@ -29994,6 +29954,46 @@
     "action": "delete",
     "chat_id": -1004303231713,
     "message_id": 3845,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-11-01T07:13:34.100699+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 187520,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:73"
+  },
+  {
+    "timestamp": "2026-11-01T07:13:37.587696+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 188103,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:77"
+  },
+  {
+    "timestamp": "2026-11-01T07:13:38.449193+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 188103,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:122"
+  },
+  {
+    "timestamp": "2026-11-01T07:13:39.953130+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 3846,
     "ok": true,
     "refused": false,
     "bot_owned": true,
