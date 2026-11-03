@@ -69,7 +69,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-10-18T13:32:04+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "40585:7130942567": {
       "user_id": "7130942567",
@@ -189,7 +189,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-10-19T15:20:00+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "25059:6482311444": {
       "user_id": "6482311444",
@@ -199,7 +199,7 @@
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
       "last_post_time": "2026-10-19T16:42:25+00:00",
-      "last_warned_week": 1
+      "last_warned_week": 2
     },
     "66154:8836746655": {
       "user_id": "8836746655",
@@ -299,6 +299,16 @@
       "campaign_name": "Metal City",
       "pbp_topic_id": "107171",
       "last_post_time": "2026-10-22T16:27:27+00:00",
+      "last_warned_week": 0
+    },
+    "25059:5443237599": {
+      "user_id": "5443237599",
+      "first_name": "Horia",
+      "last_name": "Constantinescu",
+      "username": "Nemesiux",
+      "campaign_name": "Doomsday Funtime",
+      "pbp_topic_id": "25059",
+      "last_post_time": "2026-11-03T16:38:43+00:00",
       "last_warned_week": 0
     }
   },
@@ -651,12 +661,6 @@
       "username": "RyoYamakawa",
       "campaign_name": "Hopeful End-Times"
     },
-    "25059:5443237599": {
-      "removed_at": "2026-10-29T22:43:25.354496+00:00",
-      "first_name": "Horia",
-      "username": "Nemesiux",
-      "campaign_name": "Doomsday Funtime"
-    },
     "66154:6144366145": {
       "removed_at": "2026-11-03T03:13:26.997399+00:00",
       "first_name": "Anthony",
@@ -809,7 +813,7 @@
     "25059": {
       "5443237599": {
         "id": 1,
-        "name": "Horia Constantinescu",
+        "name": "Horia",
         "joined": "2026-03-27T17:19:50.742597+00:00"
       },
       "1698524397": {
@@ -2149,6 +2153,14 @@
       "name": "Anthony",
       "username": "MrNegetZ",
       "at": "2026-11-03T03:13:27.546244+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "25059",
+      "user_id": "5443237599",
+      "name": "Horia",
+      "username": "Nemesiux",
+      "at": "2026-11-03T16:44:16.722931+00:00"
     }
   ],
   "player_boons": {
@@ -2769,10 +2781,6 @@
   },
   "gm_queue_size_log": [
     [
-      "2026-11-01T16:43:23.743843+00:00",
-      20
-    ],
-    [
       "2026-11-01T17:13:23.859364+00:00",
       20
     ],
@@ -3215,6 +3223,10 @@
     [
       "2026-11-03T16:36:34.705249+00:00",
       17
+    ],
+    [
+      "2026-11-03T16:44:19.624845+00:00",
+      18
     ]
   ]
 }
