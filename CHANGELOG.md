@@ -11,6 +11,27 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.75.0] - 2026-11-03
+
+### Added
+
+**The GM queue footer names the oldest post waiting, as well as the pick.**
+"🎯 Post here next" (or "Reply to this next") is the PRIORITY pick: Kibwe
+always first, prioritised campaigns jump the age queue, a silent campaign
+can win. Under it a new line gives the CHRONOLOGICAL next, the single
+oldest unreplied post in any campaign:
+
+```
+⏳ Oldest waiting: 🛡 C04: Magni Guard, Mira, 20d 17h
+🔗 https://t.me/Path_Wars/...
+```
+
+When the pick already is that post, one line says so instead
+("⏳ That is also the oldest post waiting anywhere."). No line when nothing
+is waiting. The pick and its "Post here next" label are unchanged, so
+`pbp_queue.py` and the focus DM key are unaffected.
+Tests: `test_queue_focus_oldest_waiting.py`.
+
 ## [4.74.0] - 2026-10-21
 
 ### Added

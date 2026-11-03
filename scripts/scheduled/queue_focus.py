@@ -17,31 +17,25 @@ Selection rule:
      gone quiet is the focus whatever else is waiting (2026-10-07). See
      ``scheduled/queue_always_first.py``.
 
+Below the pick, an "Oldest waiting" line names the single oldest unreplied
+post across every campaign (Lewis, 2026-11-03): the pick is the PRIORITY
+next, that line is the CHRONOLOGICAL next. When both are the same post, one
+line says so instead. See ``scheduled/queue_oldest_waiting.py``.
+
 The message is appended to the queue's own message batch, so it is deleted
 along with that batch on the next post (``MAX_KEPT_BATCHES = 1``). That
 matters - a focus message that outlived its queue would keep pointing at a
 message the GM has already answered.
 """
 
-from datetime import datetime, timezone
+from datetime import datetime
 
-import helpers
 from commands.queue_format import age_str, short_preview
 from scheduled.queue_always_first import always_first_message, pick_always_first
-
-
-def _oldest_entry(entries: list) -> dict:
-    """Return the entry with the earliest timestamp."""
-    return min(entries, key=lambda e: e.get("time", "9999"))
-
-
-def _wait_hours(entry: dict, now: datetime) -> float:
-    """Hours since the entry was posted; 0 when the timestamp is unparseable."""
-    try:
-        posted = datetime.strptime(entry["time"], "%Y-%m-%d %H:%M:%S")
-        return helpers.hours_since(now, posted.replace(tzinfo=timezone.utc))
-    except (ValueError, KeyError):
-        return 0.0
+from scheduled.queue_oldest_waiting import (  # noqa: F401 (re-exported)
+    OLDEST_LABEL, SAME_POST_LINE, campaign_label as _campaign_label,
+    oldest_entry as _oldest_entry, oldest_waiting_lines, pick_oldest_waiting,
+    wait_hours as _wait_hours)
 
 
 def pick_focus_pid(scanned: dict, priority_map: dict) -> str | None:
@@ -144,22 +138,18 @@ def build_focus_message(config: dict, scanned: dict, priority_map: dict,
     """
     first = pick_always_first(config, state, scanned, now)
     if first:
-        return always_first_message(first)
+        return "\n".join([always_first_message(first),
+                          *oldest_waiting_lines(config, scanned, now)])
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
         return ""
     row = pick_idle_focus(config, state, scanned, priority_map, now)
     if row:
-        return _idle_focus_message(row, scanned, pid, now)
+        return "\n".join([_idle_focus_message(row, scanned, pid, now),
+                          *oldest_waiting_lines(config, scanned, now)])
 
     data = scanned[pid]
     entry = _oldest_entry(data["entries"])
-    code = data.get("code", "")
-    name = data.get("campaign", "")
-    label = f"{code}: {name}" if code else name
-    emoji = next((p.get("emoji", "") for p in config.get("topic_pairs", [])
-                  if p.get("code") == code), "")
-    emoji_prefix = f"{emoji} " if emoji else ""
 
     waiting = age_str(_wait_hours(entry, now))
     count = len(data["entries"])
@@ -167,7 +157,7 @@ def build_focus_message(config: dict, scanned: dict, priority_map: dict,
     preview = short_preview(entry.get("preview", ""), words=18)
 
     lines = ["━━━━━━━━━━━━━━━━",
-             f"🎯 Reply to this next: {emoji_prefix}{label}"]
+             f"🎯 Reply to this next: {_campaign_label(config, data)}"]
     if pid in priority_map:
         lines.append("📌 Prioritised campaign, so it jumps the age queue.")
     lines.append(f"⏳ Oldest message waiting {waiting} "
@@ -176,4 +166,5 @@ def build_focus_message(config: dict, scanned: dict, priority_map: dict,
     link = entry.get("link", "")
     if link:
         lines.append(f"🔗 {link}")
+    lines.extend(oldest_waiting_lines(config, scanned, now, focus_entry=entry))
     return "\n".join(lines)
