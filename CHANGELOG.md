@@ -11,6 +11,14 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.76.1] - 2026-11-03
+
+### Changed
+
+**The always-first wait is 18 hours (was 24h).** C06, C01 and C10 now go
+first once they have been quiet for 18 hours, still in rank order.
+Tests: `test_always_first_ranked.py` pins it (quiet 17h does not win, 19h does).
+
 ## [4.76.0] - 2026-11-03
 
 ### Changed
