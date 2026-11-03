@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 186561,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-10-20T02:21:57+00:00",
-      "preview": "Rax, unable to resist any longer, smacks the back of Cardigan's left knee with his metal arm with enough force to make it sting without causing real damage.\n\n\"Enough of the fake pirate talk already. We got business to handle. And speaking of business, since I don't know most of the people working with us anymore I need some direction as to where I might be needed. Preferably not on the tables, I don't gamble. Bad for business to be wasting money on such things.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 186576,
       "thread_id": 66154,
       "user_id": "5443237599",
@@ -342,7 +333,9 @@
     "msg:185601",
     "2026-10-15 19:20:53",
     "msg:185608",
-    "2026-10-15 20:51:28"
+    "2026-10-15 20:51:28",
+    "msg:186561",
+    "2026-10-20 02:21:57"
   ],
   "reply_log": [
     {
@@ -1697,24 +1690,32 @@
       "player": "Loren",
       "preview": "Miracle Max looks down at Grudge, then at his backpack, then back at Grudge. He ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-03T19:01:15+00:00",
+      "pid": "66154",
+      "msg_id": "186561",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "Rax, unable to resist any longer, smacks the back of Cardigan's left knee with h",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
+      "fingerprint": "2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
       "msg_ids": [
-        188477
+        188495
       ],
-      "last_posted_at": "2026-11-03T18:52:31.700991+00:00",
+      "last_posted_at": "2026-11-03T19:07:35.713755+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "186561": "2026-11-03T16:44:19.624845+00:00",
     "186576": "2026-11-03T16:44:19.624845+00:00",
     "186913": "2026-11-03T13:34:44.441478+00:00",
     "187318": "2026-11-03T15:05:05.621144+00:00",
