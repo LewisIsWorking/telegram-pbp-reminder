@@ -1,9 +1,10 @@
-"""C06, C01 and C10 all go first after 24 quiet hours, in rank order.
+"""C06, C01 and C10 all go first after 18 quiet hours, in rank order.
 
 Lewis, 2026-11-03: "C01, C06 and C10 I think they should all be 24 hours.
-C06 > C01 > C10." So all three carry ``queue_always_first``, the idle wait
-is 24h for each, and when several could be the focus the rank decides, not
-which has been quiet longest. A prioritised campaign with a real owed reply
+C06 > C01 > C10." So all three carry ``queue_always_first``, and when
+several could be the focus the rank decides, not which has been quiet
+longest. Later the same day Lewis cut the idle wait from 24h to 18h, so 17
+quiet hours is not enough and 19 is. A prioritised campaign with a real owed reply
 still competes by the same rank, so an owed C01 reply beats a quiet C10, and
 a quiet C06 beats an owed C01 reply.
 """
@@ -60,20 +61,20 @@ def _key(scanned, state):
     return focus_key(scanned, RANKS, config=CONFIG, state=state, now=NOW)
 
 
-def test_the_idle_wait_is_24_hours():
-    assert ALWAYS_FIRST_IDLE_HOURS == 24
+def test_the_idle_wait_is_18_hours():
+    assert ALWAYS_FIRST_IDLE_HOURS == 18
 
 
-def test_c01_quiet_23h_does_not_jump_an_owed_reply_elsewhere():
-    priority, _ = _focus(C07_OWED, _state(C01=23))
+def test_c01_quiet_17h_does_not_jump_an_owed_reply_elsewhere():
+    priority, _ = _focus(C07_OWED, _state(C01=17))
     assert "C07: Hopeful End-Times" in priority
 
 
-def test_c01_quiet_25h_goes_first_over_an_owed_non_priority_reply():
-    priority, text = _focus(C07_OWED, _state(C01=25))
+def test_c01_quiet_19h_goes_first_over_an_owed_non_priority_reply():
+    priority, text = _focus(C07_OWED, _state(C01=19))
     assert "Post here next" in priority and "C01: Doomsday Funtime" in priority
     assert "C07: Hopeful End-Times" in text.split(OLDEST_LABEL, 1)[1]
-    assert _key(C07_OWED, _state(C01=25)) == "idle:25059"
+    assert _key(C07_OWED, _state(C01=19)) == "idle:25059"
 
 
 def test_c10_goes_first_too():
