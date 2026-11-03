@@ -148,6 +148,8 @@
     {
       "name": "Dark Pockets",
       "code": "C11",
+      "queue_priority": 3,
+      "queue_always_first": true,
       "discord_ad": "C11-Dark-Pockets/C11-Discord-ad.md",
       "group_id": -1003496373617,
       "chat_topic_id": 2321,
