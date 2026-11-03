@@ -15,26 +15,44 @@ A topic_pair with ``queue_always_first: true`` is handled in two ways:
 
 The wait stops a turn the GM just handed to the players from jumping
 straight back to the top of the queue.
+
+Lewis, 2026-11-03: "C01, C06 and C10 I think they should all be 24 hours.
+C06 > C01 > C10." So all three are flagged, the wait is 24h, and the RANK
+(``queue_priority``) decides: among quiet flagged campaigns the lowest rank
+wins, not the quietest, and a prioritised campaign with a real owed reply
+competes on the same rank. A quiet C06 beats an owed C01 reply; an owed C01
+reply beats a quiet C10. A tie in rank goes to the owed reply.
 """
 
 from datetime import datetime
 
-ALWAYS_FIRST_IDLE_HOURS = 12
+from commands.queue_format import build_priority_map
+
+ALWAYS_FIRST_IDLE_HOURS = 24
 
 
 def pick_always_first(config: dict, state: dict | None, scanned: dict,
                       now: datetime):
     """The quiet always-first campaign that should be the focus, or None.
 
-    Several qualify only if several are flagged; the quietest wins.
+    The lowest ``queue_priority`` rank wins among those that qualify (then the
+    quietest). None when a prioritised campaign with an owed reply ranks as
+    high or higher, so the usual pick names that reply instead.
     """
     if state is None:
         return None
     from scheduled.queue_silence_rows import idle_campaigns
+    ranks = build_priority_map(config)
     rows = [r for r in idle_campaigns(config, state, scanned, now)
             if r.pair.get("queue_always_first") and r.ever_posted
             and r.days * 24 >= ALWAYS_FIRST_IDLE_HOURS]
-    return max(rows, key=lambda r: r.days) if rows else None
+    if not rows:
+        return None
+    best = min(rows, key=lambda r: (ranks.get(r.pid, float("inf")), -r.days))
+    owed = [ranks[p] for p, d in scanned.items() if d.get("entries") and p in ranks]
+    if owed and min(owed) <= ranks.get(best.pid, float("inf")):
+        return None
+    return best
 
 
 def always_first_message(row) -> str:

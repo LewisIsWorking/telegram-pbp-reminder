@@ -26,7 +26,8 @@
       ],
       "code": "C01",
       "discord_ad": "C01-Doomsday-Funtime/C01-Discord-advertisement.md",
-      "queue_priority": 2,
+      "queue_priority": 1,
+      "queue_always_first": true,
       "hybrid_live": true,
       "linked_polls": [],
       "poll_options": [
@@ -136,7 +137,8 @@
         146645
       ],
       "code": "C10",
-      "queue_priority": 1,
+      "queue_priority": 2,
+      "queue_always_first": true,
       "emoji": "\ud83d\udea6",
       "disabled_features": [
         "recruitment"

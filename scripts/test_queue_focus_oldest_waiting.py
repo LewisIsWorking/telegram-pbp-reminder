@@ -65,7 +65,7 @@ def _priority_part(text):
 
 def test_always_first_pick_also_names_the_oldest_post_waiting():
     """Today's case: Kibwe is the priority, C04's 20d 17h post is the oldest."""
-    text = _focus(_scanned(), _state(kibwe_quiet_hours=14))
+    text = _focus(_scanned(), _state(kibwe_quiet_hours=25))
     assert "🎯 Post here next" in text and "C06: Kibwe" in text
     oldest = text.split(OLDEST_LABEL, 1)[1]
     assert "🛡 C04: Magni Guard" in oldest
@@ -75,10 +75,10 @@ def test_always_first_pick_also_names_the_oldest_post_waiting():
 
 
 def test_the_priority_pick_is_unchanged_by_the_new_line():
-    text = _focus(_scanned(), _state(kibwe_quiet_hours=14))
+    text = _focus(_scanned(), _state(kibwe_quiet_hours=25))
     assert "C04" not in _priority_part(text)
     key = focus_key(_scanned(), build_priority_map(CONFIG), config=CONFIG,
-                    state=_state(kibwe_quiet_hours=14), now=NOW)
+                    state=_state(kibwe_quiet_hours=25), now=NOW)
     assert key == "idle:40585"
 
 
@@ -116,4 +116,4 @@ def test_pick_oldest_waiting_crosses_campaigns():
 
 def test_the_old_label_stays_for_tools_that_look_for_it():
     """pbp_queue.py and the DM key read the message; keep the priority label."""
-    assert "🎯 Post here next" in _focus(_scanned(), _state(kibwe_quiet_hours=14))
+    assert "🎯 Post here next" in _focus(_scanned(), _state(kibwe_quiet_hours=25))
