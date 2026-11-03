@@ -82,13 +82,13 @@ def _pairs():
 def test_config_ranks_are_ordered_as_intended():
     ranks = {p["code"]: p.get("queue_priority")
              for p in _pairs() if p.get("queue_priority") is not None}
-    assert ranks.get("C01") == 2, ranks
     # Lewis, 2026-10-07: "We should ALWAYS prioritise Kibwe." C06 is rank 0,
-    # ahead of everything; C10 still outranks C01.
+    # ahead of everything. 2026-11-03: "C06 > C01 > C10."
     assert ranks.get("C06") == 0, ranks
     assert ranks["C06"] == min(ranks.values()), ranks
+    assert ranks.get("C01") == 1, ranks
     if "C10" in ranks:
-        assert ranks["C10"] < ranks["C01"], ranks
+        assert ranks["C01"] < ranks["C10"], ranks
 
 
 def test_no_configured_rank_collides_with_the_sentinel():

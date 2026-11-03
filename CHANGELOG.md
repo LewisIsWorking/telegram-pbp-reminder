@@ -11,6 +11,25 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.76.0] - 2026-11-03
+
+### Changed
+
+**C06, C01 and C10 all go first after 24 quiet hours, in that order.**
+Lewis:
+
+> *"C01, C06 and C10 I think they should all be 24 hours. C06 > C01 > C10."*
+
+- Ranks: C06 0, C01 1 (was 2), C10 2 (was 1). C01 and C10 now carry
+  `queue_always_first` as C06 does.
+- The always-first wait is 24h (was 12h) for all three.
+- The rank decides when several could be the focus: among quiet flagged
+  campaigns the lowest rank wins, not the quietest, and a prioritised
+  campaign with a real owed reply competes on the same rank. A quiet C06
+  beats an owed C01 reply; an owed C01 reply beats a quiet C10. Owed replies
+  in other campaigns lose to any of them, as before.
+Tests: `test_always_first_ranked.py`.
+
 ## [4.75.0] - 2026-11-03
 
 ### Added
