@@ -1623,7 +1623,8 @@
       "2026-10-22T16:30:05.128900+00:00",
       "2026-10-22T23:13:23.901766+00:00",
       "2026-11-03T01:43:21.675350+00:00",
-      "2026-11-03T17:22:00.824947+00:00"
+      "2026-11-03T17:22:00.824947+00:00",
+      "2026-11-03T18:00:22.749721+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -2024,13 +2025,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-09-14T23:58:25.421630+00:00",
-      "player": "Alastair",
-      "preview": "(Retcon)\nSteele marches in, shouting, \"Surrender! You're out",
-      "msg_id": "178938"
-    },
     {
       "pid": "66154",
       "time": "2026-09-14T23:58:25.425547+00:00",
@@ -3423,6 +3417,13 @@
       "player": "Alastair",
       "preview": "Rin pouts, staring up at Davy for a moment before his weird ",
       "msg_id": "185276"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-11-03T18:00:22.749721+00:00",
+      "player": "Peter",
+      "preview": "Ryder nods that he understands. \"You got it boss. Hey, I've ",
+      "msg_id": "185601"
     }
   ],
   "pending_potw_boons": {},

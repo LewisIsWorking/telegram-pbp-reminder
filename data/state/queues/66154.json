@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 185601,
-      "thread_id": 66154,
-      "user_id": "8994358370",
-      "user_name": "Peter",
-      "time": "2026-10-15T19:20:53+00:00",
-      "preview": "Ryder nods that he understands. \"You got it boss. Hey, I've been at a couple of these but never in one like some of these folks. How's it work?\" He then looks around the room for anyone suspicious.",
-      "media_group_id": null
-    },
-    {
       "message_id": 185608,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -356,7 +347,9 @@
     "msg:185223",
     "2026-10-13 17:48:02",
     "msg:185276",
-    "2026-10-14 01:46:35"
+    "2026-10-14 01:46:35",
+    "msg:185601",
+    "2026-10-15 19:20:53"
   ],
   "reply_log": [
     {
@@ -1693,24 +1686,32 @@
       "player": "Alastair",
       "preview": "Rin pouts, staring up at Davy for a moment before his weird eyes shoot back down",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-03T17:37:21+00:00",
+      "pid": "66154",
+      "msg_id": "185601",
+      "thread_id": 66154,
+      "player": "Peter",
+      "preview": "Ryder nods that he understands. \"You got it boss. Hey, I've been at a couple of ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
+      "fingerprint": "2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
       "msg_ids": [
-        188441
+        188457
       ],
-      "last_posted_at": "2026-11-03T17:22:02.604787+00:00",
+      "last_posted_at": "2026-11-03T18:00:25.739097+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "185601": "2026-11-03T13:34:44.441478+00:00",
     "185608": "2026-11-03T13:34:44.441478+00:00",
     "186561": "2026-11-03T16:44:19.624845+00:00",
     "186576": "2026-11-03T16:44:19.624845+00:00",
