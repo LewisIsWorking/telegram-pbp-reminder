@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 185276,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-10-14T01:46:35+00:00",
-      "preview": "Rin pouts, staring up at Davy for a moment before his weird eyes shoot back down. \"He's not a curse, he's a very good shadow!\"\n\nA pause. The shadow flips two birds at Davy.\n\n\"Well, mostly good.\"\n\nThe shadow changes two birds to a singular thumbs-up.",
-      "media_group_id": null
-    },
-    {
       "message_id": 185601,
       "thread_id": 66154,
       "user_id": "8994358370",
@@ -363,7 +354,9 @@
     "msg:187317",
     "2026-10-22 22:53:39",
     "msg:185223",
-    "2026-10-13 17:48:02"
+    "2026-10-13 17:48:02",
+    "msg:185276",
+    "2026-10-14 01:46:35"
   ],
   "reply_log": [
     {
@@ -1691,24 +1684,32 @@
       "player": "Loren",
       "preview": "Miracle Max glanced up from his game, his eyes wandering across the tournament h",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-03T17:21:57+00:00",
+      "pid": "66154",
+      "msg_id": "185276",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin pouts, staring up at Davy for a moment before his weird eyes shoot back down",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-14 01:46:35|2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
+      "fingerprint": "2026-10-15 19:20:53|2026-10-15 20:51:28|2026-10-20 02:21:57|2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
       "msg_ids": [
-        188346
+        188441
       ],
-      "last_posted_at": "2026-11-03T05:43:24.020292+00:00",
+      "last_posted_at": "2026-11-03T17:22:02.604787+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "185276": "2026-11-03T15:05:05.621144+00:00",
     "185601": "2026-11-03T13:34:44.441478+00:00",
     "185608": "2026-11-03T13:34:44.441478+00:00",
     "186561": "2026-11-03T16:44:19.624845+00:00",
