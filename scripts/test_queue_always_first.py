@@ -43,7 +43,8 @@ def test_the_enemy_phase_case_puts_kibwe_first():
     """Kibwe quiet 56h after the GM's own post, C07 owed 4 days: Kibwe wins."""
     text = _focus(C07_WAITING, _state(kibwe_quiet_hours=56))
     assert "Post here next" in text and "C06: Kibwe" in text
-    assert "Always first" in text and "C07" not in text
+    priority = text.split("⏳ Oldest waiting")[0]   # the footer also names the oldest post
+    assert "Always first" in text and "C07" not in priority
 
 
 def test_focus_key_agrees_with_the_message():
