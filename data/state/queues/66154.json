@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 186576,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-10-20T03:39:59+00:00",
-      "preview": "As Rax does that he can feel a malicious intent coming from Necrila as she gives him the dead stare from afar. Like a parent animal ready to kill whatever touches their youngs.",
-      "media_group_id": null
-    },
-    {
       "message_id": 186913,
       "thread_id": 66154,
       "user_id": "5443237599",
@@ -335,7 +326,9 @@
     "msg:185608",
     "2026-10-15 20:51:28",
     "msg:186561",
-    "2026-10-20 02:21:57"
+    "2026-10-20 02:21:57",
+    "msg:186576",
+    "2026-10-20 03:39:59"
   ],
   "reply_log": [
     {
@@ -1699,24 +1692,32 @@
       "player": "Ryo",
       "preview": "Rax, unable to resist any longer, smacks the back of Cardigan's left knee with h",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-03T19:13:21+00:00",
+      "pid": "66154",
+      "msg_id": "186576",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "As Rax does that he can feel a malicious intent coming from Necrila as she gives",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-20 03:39:59|2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
+      "fingerprint": "2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 05:30:58",
       "msg_ids": [
-        188495
+        188504
       ],
-      "last_posted_at": "2026-11-03T19:07:35.713755+00:00",
+      "last_posted_at": "2026-11-03T19:14:14.278685+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "186576": "2026-11-03T16:44:19.624845+00:00",
     "186913": "2026-11-03T13:34:44.441478+00:00",
     "187318": "2026-11-03T15:05:05.621144+00:00",
     "188344": "2026-11-03T18:43:21.338203+00:00"
