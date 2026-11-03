@@ -124,13 +124,14 @@ class TestTheLiveEntry:
         assert pair["pbp_topic_ids"] == [1242]
         assert ts.tracked_since(pair) is not None
 
-    def test_it_is_in_the_queue_on_age_not_priority(self):
-        # Lewis asked for a reminder when it is the LONGEST waiting. A
-        # queue_priority would make it jump the queue instead.
+    def test_it_is_in_the_queue_ranked_after_c10(self):
+        # Until 2026-11-03 C11 was in the queue on age alone. Then Lewis:
+        # "C11 should be added to the next priority of the priority queue:
+        # C06 > C01 > C10 > C11". See test_always_first_c11.py.
         _, pair = self._pair()
         assert not pair.get("queue_exclude")
-        assert "queue_priority" not in pair
-        assert not pair.get("queue_always_first")
+        assert pair.get("queue_priority") == 3
+        assert pair.get("queue_always_first") is True
 
     def test_nothing_that_posts_into_the_group_or_counts_its_players_is_on(self):
         _, pair = self._pair()

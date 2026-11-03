@@ -11,6 +11,21 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.77.0] - 2026-11-03
+
+### Changed
+
+**C11 Dark Pockets goes first too, after C10: C06 > C01 > C10 > C11.** Lewis:
+
+> *"C11 should be added to the next priority of the priority queue: C06 > C01 > C10 > C11"*
+
+- C11 gets `queue_priority: 3` and `queue_always_first`. After 18 quiet
+  hours it is the focus over owed replies in non-priority campaigns, but a
+  quiet C06, C01 or C10 still wins over it.
+- C11 runs in its own group, so its always-first link is
+  `t.me/c/3496373617/1242`. The links were already group-aware; the test
+  pins it.
+Tests: `test_always_first_c11.py` (uses the real config.json).
 ## [4.76.1] - 2026-11-03
 
 ### Changed
