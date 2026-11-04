@@ -20,12 +20,12 @@
       "media_group_id": null
     },
     {
-      "message_id": 188535,
+      "message_id": 188581,
       "thread_id": 66154,
       "user_id": "7437909735",
       "user_name": "Loren",
-      "time": "2026-11-03T20:04:57+00:00",
-      "preview": "holds up his wrist",
+      "time": "2026-11-04T02:41:15+00:00",
+      "preview": "Miracle Max looks from the brass seal to the woman holding it, then back to Grudge. He gives his backpack a reassuring pat before reaching into his purse.\n\"Gold, silver, contracts, and a little bloodletting. My kind of establishment.\"\nHe counts out the gold and silver, setting them on the table. Before offering his wrist, however, he gives the contract a curious look.\n\"One small question. When you say kissed out, are we talking metaphorically, magically, or should I be expecting someone with ver",
       "media_group_id": null
     }
   ],
@@ -330,7 +330,9 @@
     "msg:186576",
     "2026-10-20 03:39:59",
     "msg:188344",
-    "2026-11-03 05:30:58"
+    "2026-11-03 05:30:58",
+    "msg:188535",
+    "2026-11-03 20:04:57"
   ],
   "reply_log": [
     {
@@ -1712,17 +1714,26 @@
       "player": "Loren",
       "preview": "Miracle Max watches the little mechanical moth settle beside his chips. He picks",
       "via": "markdone"
+    },
+    {
+      "t": "2026-11-04T02:43:18.775070+00:00",
+      "pid": "66154",
+      "msg_id": "188535",
+      "thread_id": "66154",
+      "player": "Loren",
+      "preview": "holds up his wrist",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-03 20:04:57",
+      "fingerprint": "2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-04 02:41:15",
       "msg_ids": [
-        188573
+        188582
       ],
-      "last_posted_at": "2026-11-04T00:43:29.773411+00:00",
+      "last_posted_at": "2026-11-04T02:43:22.425586+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
@@ -1731,6 +1742,6 @@
   "probed": {
     "186913": "2026-11-04T02:13:30.322606+00:00",
     "187318": "2026-11-03T21:43:33.669665+00:00",
-    "188535": "2026-11-03T20:13:40.080296+00:00"
+    "188581": "2026-11-04T02:43:18.775070+00:00"
   }
 }
