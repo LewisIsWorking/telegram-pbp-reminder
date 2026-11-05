@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-10-09T12:43:36.929522+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2468,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-09T13:13:29.141806+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2469,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-09T13:43:28.323957+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2470,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-09T14:13:31.977212+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 2471,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
     "timestamp": "2026-10-09T14:43:29.321210+00:00",
     "action": "delete",
     "chat_id": -1004303231713,
@@ -29994,6 +29954,46 @@
     "action": "delete",
     "chat_id": -1004303231713,
     "message_id": 4114,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "schedule_post.py:182"
+  },
+  {
+    "timestamp": "2026-11-05T07:21:02.636488+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 188506,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:105"
+  },
+  {
+    "timestamp": "2026-11-05T07:21:03.167841+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 188506,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-11-05T07:21:04.759619+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 188726,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-11-05T07:21:07.488239+00:00",
+    "action": "delete",
+    "chat_id": -1004303231713,
+    "message_id": 4115,
     "ok": true,
     "refused": false,
     "bot_owned": true,
