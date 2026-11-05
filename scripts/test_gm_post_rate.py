@@ -109,7 +109,10 @@ class TestQueueChangeLine:
             "➖ Queue 4, same as yesterday")
 
     def test_rate_lines_skip_the_queue_line_without_history(self):
-        assert len(rate.rate_lines(_cfg(), {}, 3, NOW)) == 1
+        lines = rate.rate_lines(_cfg(), {}, 3, NOW)
+        assert not any("Queue" in line for line in lines), lines
+        # Posts line, then the ETA line (see test_queue_eta.py).
+        assert len(lines) == 2 and lines[1].startswith("⏱"), lines
 
 
 class TestOnTheQueuePost:

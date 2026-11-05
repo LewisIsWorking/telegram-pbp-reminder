@@ -15,7 +15,7 @@ from scheduled.queue_silence import (
 )
 from scheduled.gm_queue_history import post_and_persist
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
-from scheduled.queue_followup import build_followup
+from scheduled.queue_followup import build_followup, followup_messages
 from scheduled.queue_focus_dm import send_focus_dm
 from scheduled.queue_refresh import (checked_line, next_check_line,
                                      refresh_in_place)
@@ -148,11 +148,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
             lines.extend(caught_up_lines)
         msgs = chunk_messages(lines, "\n".join(lines))
         # The "go here next" follow-up, in the same batch so it is evicted
-        # with the queue it describes. build_followup picks between the reply
-        # focus and the oldest-campaign callout; see its docstring.
-        focus = build_followup(config, state, scanned, priority_map, now)
-        if focus:
-            msgs.append(focus)
+        # and edited with the queue it describes: one message, or two when
+        # the pick and the oldest post are in different campaigns.
+        msgs.extend(followup_messages(config, state, scanned, priority_map, now))
         return msgs
 
     count = state.get("queue_post_count", 0)

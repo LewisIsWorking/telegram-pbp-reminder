@@ -35,6 +35,7 @@ from datetime import datetime, timedelta
 
 import helpers
 from scheduled.local_time import to_local
+from scheduled.queue_eta import eta_line
 
 LOG_KEY = "gm_queue_size_log"
 KEEP_HOURS = 48
@@ -105,9 +106,13 @@ def queue_change_line(state: dict, total: int, now: datetime) -> str | None:
 
 
 def rate_lines(config: dict, state: dict, total: int, now: datetime) -> list:
-    """Both lines, ready to go under the queue post's header."""
+    """The rate lines, ready to go under the queue post's header.
+
+    The third, the ETA to clear the queue, lives in ``scheduled.queue_eta``.
+    """
     lines = [posts_line(config, state, now)]
-    change = queue_change_line(state, total, now)
-    if change:
-        lines.append(change)
+    for extra in (queue_change_line(state, total, now),
+                  eta_line(state, total, now)):
+        if extra:
+            lines.append(extra)
     return lines

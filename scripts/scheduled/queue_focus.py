@@ -135,18 +135,34 @@ def build_focus_message(config: dict, scanned: dict, priority_map: dict,
 
     Pass ``state`` so silent and caught-up campaigns can go first; without it
     only unreplied messages compete, as before 2026-09-25.
+
+    Always ONE text, pick and oldest-waiting lines together. The DM wants
+    that. The queue post splits them by campaign; see
+    ``queue_followup.followup_messages``.
+    """
+    pick, _pid, oldest = focus_parts(config, scanned, priority_map, now,
+                                     state=state)
+    return "\n".join([pick, *oldest]) if pick else ""
+
+
+def focus_parts(config: dict, scanned: dict, priority_map: dict,
+                now: datetime, state: dict | None = None):
+    """(pick text, pick pid, oldest-waiting lines), or ("", None, []).
+
+    The focus message before it is joined, so a caller can tell whether the
+    priority pick and the oldest post waiting are in the same campaign.
     """
     first = pick_always_first(config, state, scanned, now)
     if first:
-        return "\n".join([always_first_message(first),
-                          *oldest_waiting_lines(config, scanned, now)])
+        return (always_first_message(first), first.pid,
+                oldest_waiting_lines(config, scanned, now))
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
-        return ""
+        return "", None, []
     row = pick_idle_focus(config, state, scanned, priority_map, now)
     if row:
-        return "\n".join([_idle_focus_message(row, scanned, pid, now),
-                          *oldest_waiting_lines(config, scanned, now)])
+        return (_idle_focus_message(row, scanned, pid, now), row.pid,
+                oldest_waiting_lines(config, scanned, now))
 
     data = scanned[pid]
     entry = _oldest_entry(data["entries"])
@@ -166,5 +182,5 @@ def build_focus_message(config: dict, scanned: dict, priority_map: dict,
     link = entry.get("link", "")
     if link:
         lines.append(f"🔗 {link}")
-    lines.extend(oldest_waiting_lines(config, scanned, now, focus_entry=entry))
-    return "\n".join(lines)
+    return ("\n".join(lines), pid,
+            oldest_waiting_lines(config, scanned, now, focus_entry=entry))
