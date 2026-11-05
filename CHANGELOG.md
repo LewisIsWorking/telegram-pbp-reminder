@@ -11,6 +11,37 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.78.0] - 2026-11-05
+
+### Added
+
+**The GM queue post shows an ETA to clear the queue.** Lewis:
+
+> *"It would be nice based on GM posting pace if we sent another message that would say ETA of the queue being cleared."*
+
+- A third rate line: `⏱ ETA to clear: ~1.4 days (15 unreplied, ~11 cleared/day)`,
+  in hours under a day. The pace is replies CLEARED per day (GM replies and
+  `/markdone`, from `queue_history`) over the seven complete London days
+  before today, not GM posts: one post can answer several players, or none.
+- No line on an empty queue; "none, no clears in the last 7 days" with no
+  recent clears. New posts keep arriving, so it is the time to clear today's
+  backlog at the current pace, not a promise the queue will be empty then.
+Tests: `test_queue_eta.py`.
+
+### Changed
+
+**The queue footer is two messages when it names two campaigns.** Lewis:
+
+> *"Could these messages be 2 split messages when they are 2 different campaigns but 1 unified message when they are the same campaign?"*
+
+- "Post here next" / "Reply to this next" and "⏳ Oldest waiting" go out as
+  two messages when they are in different campaigns, one when they are the
+  same. The DM keeps the single message.
+- The second message is part of the queue's own batch, so it is edited in
+  place and deleted with the queue. When the split comes or goes, the batch
+  size changes and the queue reposts, evicting the old batch whole.
+Tests: `test_queue_footer_split.py`.
+
 ## [4.77.0] - 2026-11-03
 
 ### Changed
