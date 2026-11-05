@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 188682,
-      "thread_id": 40585,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-05T01:08:04+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1237,7 +1228,9 @@
     "msg:188162",
     "2026-11-01 17:42:28",
     "msg:188258",
-    "2026-11-02 23:30:13"
+    "2026-11-02 23:30:13",
+    "msg:188682",
+    "2026-11-05 01:08:04"
   ],
   "reply_log": [
     {
@@ -6916,6 +6909,15 @@
       "player": "Buffet",
       "preview": "\"Thank you. This has been a long day already.\"\nTarsus refocuses while Tal'lysae ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-05T01:50:11+00:00",
+      "pid": "40585",
+      "msg_id": "188682",
+      "thread_id": 40585,
+      "player": "Ryo",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -6930,13 +6932,11 @@
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "2026-11-05 01:08:04",
-      "msg_ids": [
-        188684
-      ],
-      "last_posted_at": "2026-11-05T01:13:27.563362+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 188711,
+      "caught_up_at": "2026-11-05T01:52:28.760657+00:00"
     }
   },
   "probed": {
