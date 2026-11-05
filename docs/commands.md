@@ -35,6 +35,7 @@ The bot responds to these commands in any monitored PBP topic:
 - `/boonsall` - View all your boons across campaigns.
 - `/chooseboon <N>` - Choose a POTW boon by number.
 - `/pick <choice>` - Vote in an active poll.
+- `/extrasheet [C06]` - Let yourself make a second character sheet in this campaign's Foundry world (2 at most, one grant per campaign). Works in the campaign's topic or its chat; name the campaign anywhere else. Written to `data/state/extra_sheets.json`, which ComeOnOverUno passes to Tongs.
 - `/search <query>` - Search Archives of Nethys (spells, feats, items - no creatures).
 - `/reactions` - Reaction stats for the current campaign.
 - `/timeline` - Cross-campaign event timeline.
@@ -80,6 +81,7 @@ Without it the sync does nothing. `COO_SERVER_URL` overrides the server address.
 - `/markdone [N|msg_id|url|all]` - Manually clear queue entries. Accepts queue position, message ID, full t.me link, or "all".
 - `/kick @player` - Remove a player from tracking.
 - `/addplayer @user Name` - Pre-register a player before they post.
+- `/extrasheet @user C06` - Give a player their second character sheet in C06. Or send `/extrasheet C06` as a reply to one of their messages.
 - `/scene <n>` - Mark a scene boundary in the transcript.
 - `/note <text>` - Add a persistent GM note (max 20 per campaign).
 - `/delnote <N>` - Delete a GM note by number.

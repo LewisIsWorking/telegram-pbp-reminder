@@ -16,6 +16,7 @@ from commands.markdone import handle_markdone as _handle_markdone
 from dispatch import cmd_conditions_hp, cmd_clocks, cmd_votes_timers
 from dispatch import cmd_player
 from dispatch import cmd_heropoint
+from dispatch import cmd_extrasheet
 from dispatch.tracking import track_message
 from dispatch.bot_topic import handle_bot_topic_cmd
 from dispatch.help_text import _HELP_TEXT
@@ -28,7 +29,7 @@ _HANDLERS = [
     cmd_trackers.handle, cmd_trackers_items.handle,
     cmd_conditions_hp.handle, cmd_clocks.handle,
     cmd_votes_timers.handle, cmd_player.handle,
-    cmd_heropoint.handle,
+    cmd_heropoint.handle, cmd_extrasheet.handle,
     _handle_markdone,
 ]
 
@@ -108,6 +109,11 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 continue
 
             if not msg:
+                continue
+
+            # /extrasheet outside the pbp topics: a chat topic or the bot
+            # topic, which never reach _HANDLERS below (2026-10-12).
+            if cmd_extrasheet.handle_outside(msg, config, state, maps):
                 continue
 
             # Bot topic (main group only)
