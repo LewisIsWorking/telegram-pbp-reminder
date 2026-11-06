@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 186546,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-10-20T01:09:14+00:00",
-      "preview": "\"She's... streaming?\" Lai whispers to Roneles and Nikk-Nakk \"Won't that be bad?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 186586,
       "thread_id": 52083,
       "user_id": "5443237599",
@@ -488,7 +479,9 @@
     "msg:186544",
     "2026-10-20 01:03:24",
     "msg:186574",
-    "2026-10-20 03:25:43"
+    "2026-10-20 03:25:43",
+    "msg:186546",
+    "2026-10-20 01:09:14"
   ],
   "reply_log": [
     {
@@ -2583,17 +2576,26 @@
       "player": "Terra",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-06T01:54:57+00:00",
+      "pid": "52083",
+      "msg_id": "186546",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"She's... streaming?\" Lai whispers to Roneles and Nikk-Nakk \"Won't that be bad?\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-10-20 01:09:14|2026-10-20 04:07:27|2026-10-20 04:17:58",
+      "fingerprint": "2026-10-20 04:07:27|2026-10-20 04:17:58",
       "msg_ids": [
-        188827
+        188839
       ],
-      "last_posted_at": "2026-11-05T22:41:10.075885+00:00",
+      "last_posted_at": "2026-11-06T01:55:34.192581+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2612,7 +2614,6 @@
     }
   },
   "probed": {
-    "186546": "2026-11-05T21:51:00.017574+00:00",
     "186586": "2026-11-06T01:13:25.424899+00:00",
     "186592": "2026-11-05T21:51:00.017574+00:00"
   }
