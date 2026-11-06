@@ -9,6 +9,15 @@
       "time": "2026-10-20T04:17:58+00:00",
       "preview": "\"We are about to be one of those old human videos...what was it? 'Chinese liveleeks?' \" Lai muses",
       "media_group_id": null
+    },
+    {
+      "message_id": 188859,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-11-06T04:38:14+00:00",
+      "preview": "\"I still don't trust those drones but i can see cameras on the lobby ceiling\" Lai says to the group \"And on top of that our cover is already blown if there is a stream\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2593,11 +2602,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-10-20 04:17:58",
+      "fingerprint": "2026-10-20 04:17:58|2026-11-06 04:38:14",
       "msg_ids": [
-        188846
+        188861
       ],
-      "last_posted_at": "2026-11-06T02:06:58.486292+00:00",
+      "last_posted_at": "2026-11-06T04:43:29.951100+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     },
@@ -2616,6 +2625,7 @@
     }
   },
   "probed": {
-    "186592": "2026-11-06T04:13:25.474314+00:00"
+    "186592": "2026-11-06T04:13:25.474314+00:00",
+    "188859": "2026-11-06T04:43:25.083879+00:00"
   }
 }
