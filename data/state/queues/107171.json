@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 187257,
-      "thread_id": 107171,
-      "user_id": "8076901165",
-      "user_name": "Datfurryboi34",
-      "time": "2026-10-22T16:27:27+00:00",
-      "preview": "(Question, Who is in the game and is active? and who is playing what?)",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -473,7 +463,9 @@
     "msg:187157",
     "2026-10-22 02:14:16",
     "msg:187158",
-    "2026-10-22 02:15:15"
+    "2026-10-22 02:15:15",
+    "msg:187257",
+    "2026-10-22 16:27:27"
   ],
   "reply_log": [
     {
@@ -2612,20 +2604,27 @@
       "player": "Laetheron",
       "preview": "\"But we've kept the Professor waiting long enough, so let us speak more on the w",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-07T15:57:41+00:00",
+      "pid": "107171",
+      "msg_id": "187257",
+      "thread_id": 107171,
+      "player": "Datfurryboi34",
+      "preview": "(Question, Who is in the game and is active? and who is playing what?)",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-10-22 16:27:27",
-      "msg_ids": [
-        189011
-      ],
-      "last_posted_at": "2026-11-07T15:56:05.294991+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 189024,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-11-07T16:03:39.445103+00:00"
     },
     "142887": {
       "fingerprint": "",
