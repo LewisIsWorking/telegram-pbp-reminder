@@ -62,3 +62,19 @@ def test_another_prioritised_campaign_beats_c09():
               "entries": [_entry("2026-11-06 02:00:00")]},
     }
     assert pick_focus_pid(scanned, build_priority_map(config)) == c10
+
+
+def test_oldest_waiting_line_stays_chronological():
+    """Lewis: "we shouldn't mess with the chronological queue". C09 jumps the
+    priority pick, but the "Oldest waiting" line still names the older C00 post."""
+    from scheduled.queue_oldest_waiting import pick_oldest_waiting
+    config = _config()
+    c09, c00 = _pid(config, "C09"), _pid(config, "C00")
+    scanned = {
+        c09: {"code": "C09", "campaign": "Metal City",
+              "entries": [_entry("2026-11-01 02:00:00")]},
+        c00: {"code": "C00", "campaign": "Riddleport",
+              "entries": [_entry("2026-10-01 02:00:00")]},
+    }
+    picked = pick_oldest_waiting(scanned)
+    assert picked[0] == c00
