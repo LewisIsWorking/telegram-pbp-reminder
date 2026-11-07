@@ -11,6 +11,16 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.79.0] - 2026-11-07
+
+### Changed
+
+**C09 joins the priority queue, last in line.** Lewis:
+
+> *"Maybe actually we put C09 in the priority queue but only if everything else doesn't have anything queued?"*
+
+C09 (Metal City) runs very close to the book, so its replies are quick to write. It now has `queue_priority: 4`: it is picked only when C06, C01, C10 and C11 have nothing owed, and then ahead of every unranked campaign (C00, C07 and the rest), whatever their age. It is not flagged `queue_always_first`, so a quiet C09 never jumps the queue. Tests: `test_queue_priority_c09.py`.
+
 ## [4.78.0] - 2026-11-05
 
 ### Added
