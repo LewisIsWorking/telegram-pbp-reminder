@@ -927,7 +927,8 @@
       "2026-10-13T05:43:23.441224+00:00",
       "2026-10-13T06:13:21.098194+00:00",
       "2026-11-07T15:41:11.952947+00:00",
-      "2026-11-07T15:48:14.556610+00:00"
+      "2026-11-07T15:48:14.556610+00:00",
+      "2026-11-07T15:56:02.422943+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -2041,13 +2042,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "66154",
-      "time": "2026-09-15T18:10:43.896462+00:00",
-      "player": "Alastair",
-      "preview": "Rin mutters, looking away. \"Some... things. I just focus and",
-      "msg_id": "179123"
-    },
     {
       "pid": "66154",
       "time": "2026-09-15T18:10:43.898674+00:00",
@@ -3440,6 +3434,13 @@
       "player": "Laetheron",
       "preview": "\"I for one always appreciate another helping hand and mind.\"",
       "msg_id": "187157"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-11-07T15:56:02.422943+00:00",
+      "player": "Laetheron",
+      "preview": "\"But we've kept the Professor waiting long enough, so let us",
+      "msg_id": "187158"
     }
   ],
   "pending_potw_boons": {},
