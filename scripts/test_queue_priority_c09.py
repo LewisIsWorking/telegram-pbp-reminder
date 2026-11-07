@@ -1,9 +1,7 @@
-"""C09 is the last prioritised campaign (Lewis, 2026-11-07).
+"""C09 is the last prioritised campaign.
 
-"Maybe actually we put C09 in the priority queue but only if everything else
-doesn't have anything queued?" C09 runs very close to the book, so its replies
-are quick to write. It sorts after every other prioritised campaign but ahead
-of the unranked ones (C00, C07 and the rest), whatever their age.
+It sorts after every other prioritised campaign but ahead of the unranked
+ones, whatever their age.
 """
 import json
 import os
@@ -65,8 +63,8 @@ def test_another_prioritised_campaign_beats_c09():
 
 
 def test_oldest_waiting_line_stays_chronological():
-    """Lewis: "we shouldn't mess with the chronological queue". C09 jumps the
-    priority pick, but the "Oldest waiting" line still names the older C00 post."""
+    """C09 jumps the priority pick, but the "Oldest waiting" line still names
+    the older C00 post."""
     from scheduled.queue_oldest_waiting import pick_oldest_waiting
     config = _config()
     c09, c00 = _pid(config, "C09"), _pid(config, "C00")
