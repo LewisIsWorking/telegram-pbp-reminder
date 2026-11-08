@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 186913,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-10-21T11:45:22+00:00",
-      "preview": "\"Necrila\" responds in infernal but with a necril accent and says:\n \"When you are free of your debt devil. \nSeek the oracle if you wish to improve your current position in the world. The payment is just having the will and want to face the truth\" and then Necrila goes back to her feral stance watching over the crowd.",
-      "media_group_id": null
-    },
-    {
       "message_id": 187318,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -62,6 +53,15 @@
       "user_name": "Alastair",
       "time": "2026-11-08T02:21:17+00:00",
       "preview": "For a moment, Rin's shadow doesn't move, before he seems to react to the sudden change in lightning, and shifts himself to be properly shaped based on the lighting.\n\nRin continues to smile awkwardly. \"Sorry. I'm not good with lights.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 189179,
+      "thread_id": 66154,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-11-08T19:40:04+00:00",
+      "preview": "Necrila responds \"My father will reach Magnimar in due time. You shall find him there. \n\nMany factions including your NE fiend cousins seek to cause trouble on this planet. \n\nIn the days of old the planes stood united against such dangers and must stand once again united or face oblivion.",
       "media_group_id": null
     }
   ],
@@ -368,7 +368,9 @@
     "msg:188344",
     "2026-11-03 05:30:58",
     "msg:188535",
-    "2026-11-03 20:04:57"
+    "2026-11-03 20:04:57",
+    "msg:186913",
+    "2026-10-21 11:45:22"
   ],
   "reply_log": [
     {
@@ -1759,29 +1761,38 @@
       "player": "Loren",
       "preview": "holds up his wrist",
       "via": "markdone"
+    },
+    {
+      "t": "2026-11-08T19:19:32+00:00",
+      "pid": "66154",
+      "msg_id": "186913",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "\"Necrila\" responds in infernal but with a necril accent and says:\n \"When you are",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-21 11:45:22|2026-10-22 22:57:32|2026-11-04 02:41:15|2026-11-04 10:59:07|2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17",
+      "fingerprint": "2026-10-22 22:57:32|2026-11-04 02:41:15|2026-11-04 10:59:07|2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04",
       "msg_ids": [
-        189086
+        189181
       ],
-      "last_posted_at": "2026-11-08T02:43:22.045703+00:00",
+      "last_posted_at": "2026-11-08T19:40:58.577732+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "186913": "2026-11-08T18:43:17.913018+00:00",
     "187318": "2026-11-08T14:13:26.561959+00:00",
     "188581": "2026-11-08T18:43:17.913018+00:00",
     "188605": "2026-11-08T15:43:19.729392+00:00",
     "188689": "2026-11-08T16:43:26.356052+00:00",
     "188704": "2026-11-08T16:43:26.356052+00:00",
-    "189081": "2026-11-08T15:43:19.729392+00:00"
+    "189081": "2026-11-08T15:43:19.729392+00:00",
+    "189179": "2026-11-08T19:40:55.941403+00:00"
   }
 }
