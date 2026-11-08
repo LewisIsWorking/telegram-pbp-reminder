@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 189053,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-11-07T17:49:46+00:00",
-      "preview": "\"That is . . Neat, if maybe a little fucked up. I'm glad it's not in an actual like, meeting room or anything. This place looks nice enough.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -475,7 +465,9 @@
     "msg:187158",
     "2026-10-22 02:15:15",
     "msg:187257",
-    "2026-10-22 16:27:27"
+    "2026-10-22 16:27:27",
+    "msg:189053",
+    "2026-11-07 17:49:46"
   ],
   "reply_log": [
     {
@@ -2623,20 +2615,27 @@
       "player": "Datfurryboi34",
       "preview": "(Question, Who is in the game and is active? and who is playing what?)",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-08T02:54:51+00:00",
+      "pid": "107171",
+      "msg_id": "189053",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "\"That is . . Neat, if maybe a little fucked up. I'm glad it's not in an actual l",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-07 17:49:46",
-      "msg_ids": [
-        189055
-      ],
-      "last_posted_at": "2026-11-07T18:13:23.835840+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 189098,
       "pending_delete": [],
-      "caught_up_at": "2026-11-07T16:03:39.445103+00:00"
+      "caught_up_at": "2026-11-08T03:13:24.346134+00:00"
     },
     "142887": {
       "fingerprint": "",
