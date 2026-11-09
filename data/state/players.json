@@ -310,6 +310,16 @@
       "pbp_topic_id": "25059",
       "last_post_time": "2026-11-05T14:31:57+00:00",
       "last_warned_week": 0
+    },
+    "107171:138025700": {
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "last_name": "Yamakawa",
+      "username": "RyoYamakawa",
+      "campaign_name": "Metal City",
+      "pbp_topic_id": "107171",
+      "last_post_time": "2026-11-09T13:00:55+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -642,12 +652,6 @@
       "first_name": "Fuzzy",
       "username": "fuzzystudios",
       "campaign_name": "Riddleport"
-    },
-    "107171:138025700": {
-      "removed_at": "2026-10-19T08:43:23.411235+00:00",
-      "first_name": "Ryo",
-      "username": "RyoYamakawa",
-      "campaign_name": "Metal City"
     },
     "76799:8969117742": {
       "removed_at": "2026-10-21T18:43:27.458102+00:00",
@@ -1106,7 +1110,7 @@
       },
       "138025700": {
         "id": 11,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-09-14T04:00:53.039553+00:00"
       },
       "8076901165": {
@@ -2161,6 +2165,14 @@
       "name": "Horia",
       "username": "Nemesiux",
       "at": "2026-11-03T16:44:16.722931+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "107171",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-11-09T13:13:21.705181+00:00"
     }
   ],
   "player_boons": {
@@ -2621,7 +2633,7 @@
     "6144366145": {
       "name": "Anthony",
       "username": "MrNegetZ",
-      "last": "2026-11-09T12:27:45+00:00"
+      "last": "2026-11-09T12:58:30+00:00"
     },
     "1358791105": {
       "name": "Alastair",
@@ -2790,10 +2802,6 @@
     }
   },
   "gm_queue_size_log": [
-    [
-      "2026-11-07T12:43:26.825060+00:00",
-      12
-    ],
     [
       "2026-11-07T13:13:25.690235+00:00",
       12
@@ -3269,6 +3277,10 @@
     [
       "2026-11-09T12:43:23.697309+00:00",
       8
+    ],
+    [
+      "2026-11-09T13:13:23.240502+00:00",
+      9
     ]
   ]
 }

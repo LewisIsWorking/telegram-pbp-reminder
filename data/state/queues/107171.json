@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 189242,
+      "thread_id": 107171,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-11-09T13:00:55+00:00",
+      "preview": "\"This professor better be worth my time. Finally get my revenge and freedom only to be stuck on some random errand looking for a guy I don't know while looking at some ugly shit trying to pass itself off as some trendy, bougie cafe.\"\n\nZels looks around in disgust before setting his eyes to trying to scan the crowd.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2630,10 +2640,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 189098,
+      "fingerprint": "2026-11-09 13:00:55",
+      "msg_ids": [
+        189246
+      ],
+      "last_posted_at": "2026-11-09T13:13:28.424326+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-08T03:13:24.346134+00:00"
     },
@@ -2647,6 +2659,6 @@
     }
   },
   "probed": {
-    "189053": "2026-11-08T00:33:06.064501+00:00"
+    "189242": "2026-11-09T13:13:23.240502+00:00"
   }
 }
