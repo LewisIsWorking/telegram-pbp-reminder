@@ -13,7 +13,7 @@ from scheduled.queue_silence import (
     silent_rows, silent_lines_for, silent_ids, caught_up_campaigns,
     campaign_age_lines,
 )
-from scheduled.gm_queue_history import post_and_persist
+from scheduled.gm_queue_history import post_and_persist, retry_evictions
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_followup import build_followup, followup_messages
 from scheduled.queue_focus_dm import send_focus_dm
@@ -159,6 +159,7 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         # notifying anyone. Any failure to edit cleanly reposts below.
         if refresh_in_place(state, group_id, _render(count),
                             edit=tg.edit_message):
+            retry_evictions(state, group_id)  # a failed delete, retried
             print(f"Queue reminder: refreshed in place ({total} unreplied)")
             return
         print("Queue reminder: could not refresh in place, reposting")

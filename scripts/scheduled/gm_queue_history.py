@@ -79,6 +79,21 @@ def append_and_evict(state: dict, group_id: int,
     raw[:] = QueueHistory.to_dicts(updated)
 
 
+def retry_evictions(state: dict, group_id: int) -> None:
+    """Retry deleting old batches that a previous post failed to delete.
+
+    Without this the retry only ran on the next NEW post. An unchanged
+    queue is edited in place instead, so after one failed delete
+    (2026-11-10, "Connection reset by peer") the old queue stayed visible
+    beside the new one until the queue happened to change.
+    """
+    raw = state.get("gm_queue_history") or []
+    if len(raw) <= MAX_KEPT_BATCHES:
+        return
+    kept = _history.evict_overflow(QueueHistory.from_dicts(raw), group_id)
+    raw[:] = QueueHistory.to_dicts(kept)
+
+
 def post_and_persist(state: dict, group_id: int, bot_topic: int,
                      msgs: list[str], *,
                      pin: bool = True) -> tuple[bool, int | None]:
