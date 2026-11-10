@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 187318,
-      "thread_id": 66154,
-      "user_id": "7437909735",
-      "user_name": "Loren",
-      "time": "2026-10-22T22:57:32+00:00",
-      "preview": "Miracle Max's eyes follow the chain of nods around the hall. Davy to Grudge, Grudge to Marlo, and then the poppet and everyone else. Well, well. Either this was the most elaborate greeting ritual he'd ever seen, or somebody was running a little operation behind the house's back. His grin widened. Rule #1: Never let a good con go to waste.\n\nThen he spotted the sailor at the bar, still nursing the same full mug.\n\nMax's grin faltered for a moment. He leaned back in his chair, studying the man with ",
-      "media_group_id": null
-    },
-    {
       "message_id": 188581,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -370,7 +361,9 @@
     "msg:188535",
     "2026-11-03 20:04:57",
     "msg:186913",
-    "2026-10-21 11:45:22"
+    "2026-10-21 11:45:22",
+    "msg:187318",
+    "2026-10-22 22:57:32"
   ],
   "reply_log": [
     {
@@ -1770,24 +1763,32 @@
       "player": "Horia",
       "preview": "\"Necrila\" responds in infernal but with a necril accent and says:\n \"When you are",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-10T05:25:57+00:00",
+      "pid": "66154",
+      "msg_id": "187318",
+      "thread_id": 66154,
+      "player": "Loren",
+      "preview": "Miracle Max's eyes follow the chain of nods around the hall. Davy to Grudge, Gru",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-10-22 22:57:32|2026-11-04 02:41:15|2026-11-04 10:59:07|2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04",
+      "fingerprint": "2026-11-04 02:41:15|2026-11-04 10:59:07|2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04",
       "msg_ids": [
-        189181
+        189390
       ],
-      "last_posted_at": "2026-11-08T19:40:58.577732+00:00",
+      "last_posted_at": "2026-11-10T05:31:38.594262+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "187318": "2026-11-10T03:18:27.606747+00:00",
     "188581": "2026-11-10T02:13:21.880748+00:00",
     "188605": "2026-11-10T05:18:05.569075+00:00",
     "188689": "2026-11-09T23:43:23.769769+00:00",
