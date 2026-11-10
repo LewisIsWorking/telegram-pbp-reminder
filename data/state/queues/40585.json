@@ -16,6 +16,42 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 189454,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-11-10T16:17:00+00:00",
+      "preview": "Ji Yun bit the tip of his finger and used the blood to draw a spell onto the black tiger painting. Then he chanted, \u201cWith blood as guide, soul as pact, and heaven and earth as witness, I curse you to fall back into reincarnation.\u201d",
+      "media_group_id": null
+    },
+    {
+      "message_id": 189456,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-11-10T16:17:15+00:00",
+      "preview": "[media]",
+      "media_group_id": null
+    },
+    {
+      "message_id": 189457,
+      "thread_id": 137075,
+      "user_id": "6023408187",
+      "user_name": "Caelum",
+      "time": "2026-11-10T16:23:08+00:00",
+      "preview": "Act together: Jiyun use Incarnate Eldamon > Hou(death eldamon) use Inexorable Demise on Dr.Nutty, Eidolon move.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 189458,
+      "thread_id": 137075,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-11-10T16:28:57+00:00",
+      "preview": "Daichi's going to do some recall knowledge to figure out what the fuck this room is about",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6924,9 +6960,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-11-10 16:17:00|2026-11-10 16:17:15|2026-11-10 16:23:08|2026-11-10 16:28:57",
+      "msg_ids": [
+        189463
+      ],
+      "last_posted_at": "2026-11-10T16:43:37.847846+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -6940,6 +6978,9 @@
     }
   },
   "probed": {
-    "188682": "2026-11-05T01:13:24.868621+00:00"
+    "189454": "2026-11-10T16:43:33.093868+00:00",
+    "189456": "2026-11-10T16:43:33.093868+00:00",
+    "189457": "2026-11-10T16:43:33.093868+00:00",
+    "189458": "2026-11-10T16:43:33.093868+00:00"
   }
 }
