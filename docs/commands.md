@@ -70,6 +70,8 @@ from ComeOnOverUno, matched by its `code`, and:
 - pings the linked players still to act in the campaign's `combat_topic_id` when a round's allies
   phase starts, naming them by Telegram id so a player with no username is notified too;
 - reminds whoever is still waiting every `combat_ping_hours`, skipping anyone `/away`;
+- once a day, lists anyone waiting 24 hours or more in the GM queue topic, unpinged, so the
+  GM can message them directly (`scheduled/turn_digest.py`);
 - ignores chat messages as turns, because Foundry says who has acted;
 - ends its combat when Foundry ends that encounter.
 
