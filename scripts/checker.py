@@ -37,12 +37,11 @@ from scheduled.community_roster import post_community_roster
 from scheduled.milestones import check_streak_milestones, check_anniversaries
 from scheduled.message_milestones import check_message_milestones
 from scheduled.leaderboard import post_campaign_leaderboard
-from scheduled.maintenance import (
-    archive_weekly_data, cleanup_timestamps, check_recruitment_needs,
-)
+from scheduled.maintenance import archive_weekly_data, cleanup_timestamps, check_recruitment_needs
 from scheduled.smart_alerts import check_pace_drop, check_conversation_dying
 from scheduled.digest import post_weekly_digest
 from scheduled.combat_ping import check_combat_turns, check_expired_timers
+from scheduled.turn_digest import post_turn_digest
 from combat.foundry_sync import sync_foundry_encounters
 from combat.inventory_records import sync_foundry_inventories
 from scheduled.queue_reminder import post_queue_reminder
@@ -100,6 +99,7 @@ def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:
         ("Foundry encounters", sync_foundry_encounters),
         ("Foundry inventories", sync_foundry_inventories),
         ("Combat pings", check_combat_turns),
+        ("Turn digest", post_turn_digest),
         ("Leaderboard", post_campaign_leaderboard),
         ("Weekly digest", post_weekly_digest),
         ("Recruitment", check_recruitment_needs),

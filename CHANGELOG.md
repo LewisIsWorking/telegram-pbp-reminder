@@ -11,6 +11,19 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.80.0] - 2026-11-10
+
+### Added
+
+**A daily GM digest of combat turns that have waited 24 hours or more.**
+
+- Once a day, the GM queue topic gets one line per player whose combat turn has
+  been waiting at least 24 hours, with the campaign, the wait and a link to the
+  combat topic, so the GM knows who might want a direct message.
+- Names are plain text, so the digest never pings players again. The 4-hourly
+  turn pings in the combat topic are unchanged.
+- Anyone `/away` is left out, and nothing is posted when no turn is overdue.
+
 ## [4.79.0] - 2026-11-07
 
 ### Changed

@@ -18,6 +18,7 @@ from scheduled.maintenance import (
 from scheduled.smart_alerts import check_pace_drop, check_conversation_dying
 from scheduled.digest import post_weekly_digest
 from scheduled.combat_ping import check_combat_turns, check_expired_timers
+from scheduled.turn_digest import post_turn_digest
 
 __all__ = [
     "post_daily_tip",
@@ -32,4 +33,5 @@ __all__ = [
     "check_pace_drop", "check_conversation_dying",
     "post_weekly_digest",
     "check_combat_turns", "check_expired_timers",
+    "post_turn_digest",
 ]
