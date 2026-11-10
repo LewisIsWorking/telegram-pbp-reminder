@@ -37,9 +37,7 @@ from scheduled.community_roster import post_community_roster
 from scheduled.milestones import check_streak_milestones, check_anniversaries
 from scheduled.message_milestones import check_message_milestones
 from scheduled.leaderboard import post_campaign_leaderboard
-from scheduled.maintenance import (
-    archive_weekly_data, cleanup_timestamps, check_recruitment_needs,
-)
+from scheduled.maintenance import archive_weekly_data, cleanup_timestamps, check_recruitment_needs
 from scheduled.smart_alerts import check_pace_drop, check_conversation_dying
 from scheduled.digest import post_weekly_digest
 from scheduled.combat_ping import check_combat_turns, check_expired_timers
