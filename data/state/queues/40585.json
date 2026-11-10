@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 189454,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-11-10T16:17:00+00:00",
-      "preview": "Ji Yun bit the tip of his finger and used the blood to draw a spell onto the black tiger painting. Then he chanted, \u201cWith blood as guide, soul as pact, and heaven and earth as witness, I curse you to fall back into reincarnation.\u201d",
-      "media_group_id": null
-    },
-    {
       "message_id": 189456,
       "thread_id": 137075,
       "user_id": "6023408187",
@@ -1266,7 +1257,9 @@
     "msg:188258",
     "2026-11-02 23:30:13",
     "msg:188682",
-    "2026-11-05 01:08:04"
+    "2026-11-05 01:08:04",
+    "msg:189454",
+    "2026-11-10 16:17:00"
   ],
   "reply_log": [
     {
@@ -6954,17 +6947,26 @@
       "player": "Ryo",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-10T19:15:05+00:00",
+      "pid": "40585",
+      "msg_id": "189454",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Ji Yun bit the tip of his finger and used the blood to draw a spell onto the bla",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-11-10 16:17:00|2026-11-10 16:17:15|2026-11-10 16:23:08|2026-11-10 16:28:57",
+      "fingerprint": "2026-11-10 16:17:15|2026-11-10 16:23:08|2026-11-10 16:28:57",
       "msg_ids": [
-        189463
+        189497
       ],
-      "last_posted_at": "2026-11-10T16:43:37.847846+00:00",
+      "last_posted_at": "2026-11-10T19:15:49.790018+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -6978,7 +6980,6 @@
     }
   },
   "probed": {
-    "189454": "2026-11-10T16:43:33.093868+00:00",
     "189456": "2026-11-10T16:43:33.093868+00:00",
     "189457": "2026-11-10T16:43:33.093868+00:00",
     "189458": "2026-11-10T16:43:33.093868+00:00"
