@@ -11,6 +11,16 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.80.1] - 2026-11-10
+
+### Fixed
+
+**An old GM queue post could stay visible beside the new one.**
+
+- If deleting the previous queue failed (a dropped connection, say), the bot kept it to retry, but only retried when it next posted a NEW queue.
+- While the queue stayed the same, every run edited it in place instead, so the old post sat there until something changed.
+- Unchanged runs now retry the delete too.
+
 ## [4.80.0] - 2026-11-10
 
 ### Added

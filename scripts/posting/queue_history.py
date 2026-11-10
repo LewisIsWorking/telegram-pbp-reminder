@@ -59,7 +59,18 @@ class QueueHistory:
             new: The freshly-posted batch to append at the tail.
             group_id: Telegram group ID for delete calls.
         """
-        working: list[MessageBatch] = list(batches) + [new]
+        return self.evict_overflow(list(batches) + [new], group_id)
+
+    def evict_overflow(self, batches: list[MessageBatch],
+                       group_id: int) -> list[MessageBatch]:
+        """Delete every batch beyond ``max_kept``, keeping any that fail.
+
+        ``append_with_retry`` without the append. A refresh that edits the
+        queue in place calls this so a delete that failed on the last post
+        is retried now, not only when the queue next changes (2026-11-10:
+        a reset connection left an old queue up for hours of edits).
+        """
+        working: list[MessageBatch] = list(batches)
         retained: list[MessageBatch] = []
         while len(working) > self.max_kept:
             candidate = working.pop(0)
