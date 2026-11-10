@@ -241,16 +241,6 @@
       "last_post_time": "2026-11-08T19:40:04+00:00",
       "last_warned_week": 0
     },
-    "51357:138025700": {
-      "user_id": "138025700",
-      "first_name": "Ryo",
-      "last_name": "Yamakawa",
-      "username": "RyoYamakawa",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-10-13T05:32:58+00:00",
-      "last_warned_week": 3
-    },
     "51357:8117756377": {
       "user_id": "8117756377",
       "first_name": "Laetheron",
@@ -666,6 +656,12 @@
       "first_name": "Chase",
       "username": "ChaseDarkthorne",
       "campaign_name": "Magni Guard"
+    },
+    "51357:138025700": {
+      "removed_at": "2026-11-10T05:37:05.079167+00:00",
+      "first_name": "Ryo",
+      "username": "RyoYamakawa",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -2177,6 +2173,14 @@
       "name": "Chase",
       "username": "ChaseDarkthorne",
       "at": "2026-11-09T18:43:25.423124+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-11-10T05:37:05.579253+00:00"
     }
   ],
   "player_boons": {
@@ -3273,6 +3277,10 @@
     [
       "2026-11-10T05:31:35.950855+00:00",
       7
+    ],
+    [
+      "2026-11-10T05:37:05.079167+00:00",
+      6
     ]
   ]
 }

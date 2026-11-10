@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 188581,
-      "thread_id": 66154,
-      "user_id": "7437909735",
-      "user_name": "Loren",
-      "time": "2026-11-04T02:41:15+00:00",
-      "preview": "Miracle Max looks from the brass seal to the woman holding it, then back to Grudge. He gives his backpack a reassuring pat before reaching into his purse.\n\"Gold, silver, contracts, and a little bloodletting. My kind of establishment.\"\nHe counts out the gold and silver, setting them on the table. Before offering his wrist, however, he gives the contract a curious look.\n\"One small question. When you say kissed out, are we talking metaphorically, magically, or should I be expecting someone with ver",
-      "media_group_id": null
-    },
-    {
       "message_id": 188605,
       "thread_id": 66154,
       "user_id": "8994358370",
@@ -363,7 +354,9 @@
     "msg:186913",
     "2026-10-21 11:45:22",
     "msg:187318",
-    "2026-10-22 22:57:32"
+    "2026-10-22 22:57:32",
+    "msg:188581",
+    "2026-11-04 02:41:15"
   ],
   "reply_log": [
     {
@@ -1772,24 +1765,32 @@
       "player": "Loren",
       "preview": "Miracle Max's eyes follow the chain of nods around the hall. Davy to Grudge, Gru",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-10T05:35:37+00:00",
+      "pid": "66154",
+      "msg_id": "188581",
+      "thread_id": 66154,
+      "player": "Loren",
+      "preview": "Miracle Max looks from the brass seal to the woman holding it, then back to Grud",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-04 02:41:15|2026-11-04 10:59:07|2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04",
+      "fingerprint": "2026-11-04 10:59:07|2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04",
       "msg_ids": [
-        189390
+        189405
       ],
-      "last_posted_at": "2026-11-10T05:31:38.594262+00:00",
+      "last_posted_at": "2026-11-10T05:37:07.974636+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "188581": "2026-11-10T02:13:21.880748+00:00",
     "188605": "2026-11-10T05:18:05.569075+00:00",
     "188689": "2026-11-09T23:43:23.769769+00:00",
     "188704": "2026-11-09T23:43:23.769769+00:00",
