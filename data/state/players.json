@@ -221,16 +221,6 @@
       "last_post_time": "2026-11-08T19:40:04+00:00",
       "last_warned_week": 0
     },
-    "51357:8117756377": {
-      "user_id": "8117756377",
-      "first_name": "Laetheron",
-      "last_name": "",
-      "username": "StorybookRhizome",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-10-14T05:59:35+00:00",
-      "last_warned_week": 3
-    },
     "52083:5443237599": {
       "user_id": "5443237599",
       "first_name": "Horia",
@@ -658,6 +648,12 @@
       "first_name": "Cannon",
       "username": "ArtyArtillery",
       "campaign_name": "Magni Guard"
+    },
+    "51357:8117756377": {
+      "removed_at": "2026-11-11T06:12:03.208306+00:00",
+      "first_name": "Laetheron",
+      "username": "StorybookRhizome",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -2201,6 +2197,14 @@
       "name": "Cannon",
       "username": "ArtyArtillery",
       "at": "2026-11-10T21:13:21.360153+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "8117756377",
+      "name": "Laetheron",
+      "username": "StorybookRhizome",
+      "at": "2026-11-11T06:12:03.935924+00:00"
     }
   ],
   "player_boons": {
@@ -3348,6 +3352,10 @@
     ],
     [
       "2026-11-11T05:43:24.997228+00:00",
+      8
+    ],
+    [
+      "2026-11-11T06:12:03.208306+00:00",
       8
     ]
   ]
