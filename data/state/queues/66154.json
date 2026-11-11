@@ -38,15 +38,6 @@
       "media_group_id": null
     },
     {
-      "message_id": 189606,
-      "thread_id": 66154,
-      "user_id": "7437909735",
-      "user_name": "Loren",
-      "time": "2026-11-11T03:20:44+00:00",
-      "preview": "Miracle Max glances sideways at Jorrik, his nose wrinkling slightly.\n\n\"Well, that's an interesting combination of smells you got there. i have a defunking potion here somewhere...\" glances at grudge. \"We can discuss business later.  Anyhow, can I help you with something, friend? Or are we just comparing questionable lifestyle choices?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 189616,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -376,7 +367,9 @@
     "msg:188581",
     "2026-11-04 02:41:15",
     "msg:188605",
-    "2026-11-04 10:59:07"
+    "2026-11-04 10:59:07",
+    "msg:189606",
+    "2026-11-11 03:20:44"
   ],
   "reply_log": [
     {
@@ -1803,17 +1796,26 @@
       "player": "Peter",
       "preview": "Ryder nods. \"Good to know. I think I like it already.\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-11T09:43:19.345880+00:00",
+      "pid": "66154",
+      "msg_id": "189606",
+      "thread_id": "66154",
+      "player": "Loren",
+      "preview": "Miracle Max glances sideways at Jorrik, his nose wrinkling slightly.\n\n\"Well, tha",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04|2026-11-11 03:20:44|2026-11-11 03:59:34|2026-11-11 04:06:53",
+      "fingerprint": "2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04|2026-11-11 03:59:34|2026-11-11 04:06:53",
       "msg_ids": [
-        189624
+        189650
       ],
-      "last_posted_at": "2026-11-11T04:43:22.495141+00:00",
+      "last_posted_at": "2026-11-11T09:43:21.814148+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
@@ -1824,7 +1826,6 @@
     "188704": "2026-11-11T07:13:22.534116+00:00",
     "189081": "2026-11-11T06:12:03.208306+00:00",
     "189179": "2026-11-11T09:13:31.115724+00:00",
-    "189606": "2026-11-11T03:43:18.393660+00:00",
     "189616": "2026-11-11T04:43:18.558071+00:00",
     "189617": "2026-11-11T04:43:18.558071+00:00"
   }
