@@ -16,24 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 189456,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-11-10T16:17:15+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 189457,
-      "thread_id": 137075,
-      "user_id": "6023408187",
-      "user_name": "Caelum",
-      "time": "2026-11-10T16:23:08+00:00",
-      "preview": "Act together: Jiyun use Incarnate Eldamon > Hou(death eldamon) use Inexorable Demise on Dr.Nutty, Eidolon move.",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1252,7 +1234,11 @@
     "msg:189454",
     "2026-11-10 16:17:00",
     "msg:189458",
-    "2026-11-10 16:28:57"
+    "2026-11-10 16:28:57",
+    "msg:189456",
+    "2026-11-10 16:17:15",
+    "msg:189457",
+    "2026-11-10 16:23:08"
   ],
   "reply_log": [
     {
@@ -6958,20 +6944,36 @@
       "player": "Anthony",
       "preview": "Daichi's going to do some recall knowledge to figure out what the fuck this room",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-11T00:40:02+00:00",
+      "pid": "40585",
+      "msg_id": "189456",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-11T00:40:34+00:00",
+      "pid": "40585",
+      "msg_id": "189457",
+      "thread_id": 137075,
+      "player": "Caelum",
+      "preview": "Act together: Jiyun use Incarnate Eldamon > Hou(death eldamon) use Inexorable De",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-11-10 16:17:15|2026-11-10 16:23:08",
-      "msg_ids": [
-        189533
-      ],
-      "last_posted_at": "2026-11-11T00:04:50.587524+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 189551,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-11-11T00:52:20.990592+00:00"
     },
     "40585": {
       "fingerprint": "",
