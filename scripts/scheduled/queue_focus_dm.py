@@ -32,11 +32,35 @@ supersedes it. Tracking DM deletions would also pull in the whole orphan and
 ⚠️ Only the focus message is sent, never the quiet-campaign fallback that
 ``queue_followup`` substitutes when nothing is owed a reply. That fallback is a
 different message, it is not urgent, and it is not what was asked for.
+
+⏱️ **At most one DM every 2 hours.** Lewis, 2026-11-11: "The bot DMs me the GM
+queue a little bit too much ... a max of 1 message per hour or 2 hours would be
+better as it would cut the messages in half". The target can flip back and
+forth between two campaigns within an hour, and each flip was a DM. A change
+inside the gap is not lost: the key is only recorded when a DM is sent, so the
+first run after the gap sends whatever the target is by then.
 """
+
+from datetime import datetime, timedelta
 
 from scheduled.queue_focus import build_focus_message, focus_key
 
 STATE_KEY = "last_focus_dm_key"
+SENT_AT_KEY = "last_focus_dm_at"
+MIN_GAP = timedelta(hours=2)
+
+
+def _too_soon(state: dict, now) -> bool:
+    """True if the last focus DM went out less than MIN_GAP ago."""
+    raw = state.get(SENT_AT_KEY)
+    if not raw:
+        return False
+    try:
+        last = datetime.fromisoformat(raw)
+    except (TypeError, ValueError):
+        # A corrupt stamp must not silence the DM for good.
+        return False
+    return now - last < MIN_GAP
 
 
 def send_focus_dm(config: dict, state: dict, scanned: dict,
@@ -61,6 +85,9 @@ def send_focus_dm(config: dict, state: dict, scanned: dict,
     if state.get(STATE_KEY) == key:
         return False
 
+    if _too_soon(state, now):
+        return False
+
     text = build_focus_message(config, scanned, priority_map, now, state=state)
     if not text:
         return False
@@ -71,4 +98,5 @@ def send_focus_dm(config: dict, state: dict, scanned: dict,
     if not send(gm_uid, None, text):
         return False
     state[STATE_KEY] = key
+    state[SENT_AT_KEY] = now.isoformat()
     return True

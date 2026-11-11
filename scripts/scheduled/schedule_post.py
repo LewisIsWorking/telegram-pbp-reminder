@@ -45,6 +45,17 @@ def next_tick(now: datetime) -> datetime:
     return (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
 
 
+def _take_down(config: dict, state: dict) -> None:
+    """Delete the last schedule post, if there is one, and forget it."""
+    prev = state.get("schedule_post_msg_id")
+    if not prev:
+        return
+    prev_chat = state.get("schedule_post_chat_id") or config["group_id"]
+    if tg.delete_message(prev_chat, prev):
+        state.pop("schedule_post_msg_id", None)
+        state.pop("schedule_post_chat_id", None)
+
+
 def schedule_destination(config: dict) -> tuple[int, int | None] | None:
     """``(chat_id, thread_id)`` for the schedule post, or None if unset.
 
@@ -160,6 +171,11 @@ def post_schedule(config: dict, state: dict, *,
     if not destination:
         return
     if not config.get("schedule_post_enabled", True):
+        # Switched off (Lewis, 2026-11-11: "I don't really need the Bot's
+        # schedule"). Take down the last copy too, or it would sit there
+        # with a "Next run" that never comes. Forget it only once the
+        # delete worked, so a failed delete is retried next run.
+        _take_down(config, state)
         return
     chat_id, thread_id = destination
 

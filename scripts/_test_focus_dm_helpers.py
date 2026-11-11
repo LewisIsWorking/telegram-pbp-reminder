@@ -7,6 +7,8 @@ test_focus_message_is_dmed_on_change.py and test_focus_dm_key_and_wiring.py.
 from datetime import datetime, timedelta, timezone
 
 NOW = datetime(2026, 9, 13, 12, 0, tzinfo=timezone.utc)
+# Past the 2-hour gap between focus DMs (queue_focus_dm.MIN_GAP).
+LATER = NOW + timedelta(hours=2)
 GM = 1698524397
 
 MAGNI_OLDEST = "https://t.me/Path_Wars/144765/178096"
