@@ -15,7 +15,7 @@ The key itself and the wiring into the real queue post are in
 test_focus_dm_key_and_wiring.py.
 """
 
-from _test_focus_dm_helpers import (GM, MAGNI_NEXT, MAGNI_OLDEST, NOW, RIDDLE,
+from _test_focus_dm_helpers import (GM, LATER, MAGNI_NEXT, MAGNI_OLDEST, NOW, RIDDLE,
                                     Send, config, entry, scanned,
                                     two_campaigns)
 from scheduled.queue_focus_dm import STATE_KEY, send_focus_dm
@@ -90,7 +90,7 @@ class TestItFiresAgainWhenTheTargetMoves:
         after = scanned(("144765", "Magni Guard", "C04", [entry(MAGNI_NEXT, 60)]),
                         ("66154", "Riddleport", "C00", [entry(RIDDLE, 40)]))
         send_focus_dm(config(), state, before, {}, NOW, send=send)
-        send_focus_dm(config(), state, after, {}, NOW, send=send)
+        send_focus_dm(config(), state, after, {}, LATER, send=send)
 
         assert len(send.calls) == 2
         assert "C04: Magni Guard" in send.calls[1][2], "campaign must be unchanged"
@@ -101,7 +101,7 @@ class TestItFiresAgainWhenTheTargetMoves:
         send_focus_dm(config(), state, two_campaigns(), {}, NOW, send=send)
         cleared = two_campaigns()
         del cleared["144765"]
-        send_focus_dm(config(), state, cleared, {}, NOW, send=send)
+        send_focus_dm(config(), state, cleared, {}, LATER, send=send)
         assert len(send.calls) == 2
         assert "C00: Riddleport" in send.calls[1][2]
 
@@ -112,7 +112,7 @@ class TestItFiresAgainWhenTheTargetMoves:
         send_focus_dm(config(), state, queue, {}, NOW, send=send)
         send_focus_dm(config(), state, {}, {}, NOW, send=send)
         assert STATE_KEY not in state
-        send_focus_dm(config(), state, queue, {}, NOW, send=send)
+        send_focus_dm(config(), state, queue, {}, LATER, send=send)
         assert len(send.calls) == 2
 
 

@@ -11,6 +11,19 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.81.0] - 2026-11-11
+
+### Changed
+
+**The GM's "reply to this next" DM now comes at most once every 2 hours.**
+
+- When the next reply flipped between two campaigns, each flip sent a new DM, sometimes several in an hour.
+- A change inside the 2 hours is not lost: the first run after the gap sends whatever is next by then.
+
+**The bot schedule post is switched off.**
+
+- Switching it off now also deletes the last copy, instead of leaving it up with a "Next run" that never comes.
+
 ## [4.80.1] - 2026-11-10
 
 ### Fixed
