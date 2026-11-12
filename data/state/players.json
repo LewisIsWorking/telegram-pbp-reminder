@@ -91,16 +91,6 @@
       "last_post_time": "2026-11-12T04:39:14+00:00",
       "last_warned_week": 0
     },
-    "51357:7130942567": {
-      "user_id": "7130942567",
-      "first_name": "Buffet",
-      "last_name": "Raider",
-      "username": "buffetraider",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-10-15T06:28:07+00:00",
-      "last_warned_week": 3
-    },
     "52083:8097377199": {
       "user_id": "8097377199",
       "first_name": "Terra",
@@ -653,6 +643,12 @@
       "removed_at": "2026-11-11T06:12:03.208306+00:00",
       "first_name": "Laetheron",
       "username": "StorybookRhizome",
+      "campaign_name": "Grand Explorers"
+    },
+    "51357:7130942567": {
+      "removed_at": "2026-11-12T06:43:23.452980+00:00",
+      "first_name": "Buffet",
+      "username": "buffetraider",
       "campaign_name": "Grand Explorers"
     }
   },
@@ -2205,6 +2201,14 @@
       "name": "Laetheron",
       "username": "StorybookRhizome",
       "at": "2026-11-11T06:12:03.935924+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "7130942567",
+      "name": "Buffet",
+      "username": "buffetraider",
+      "at": "2026-11-12T06:43:24.111372+00:00"
     }
   ],
   "player_boons": {
@@ -2835,10 +2839,6 @@
   },
   "gm_queue_size_log": [
     [
-      "2026-11-10T06:43:17.860633+00:00",
-      6
-    ],
-    [
       "2026-11-10T07:13:25.741592+00:00",
       6
     ],
@@ -3300,6 +3300,10 @@
     ],
     [
       "2026-11-12T06:13:19.790514+00:00",
+      8
+    ],
+    [
+      "2026-11-12T06:43:23.452980+00:00",
       8
     ]
   ]
