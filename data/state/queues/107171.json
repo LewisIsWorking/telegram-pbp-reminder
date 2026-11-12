@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 189713,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-11-12T04:39:14+00:00",
+      "preview": "Arktos scans the UI for a place to input a code. Upon finding it, they type in \"incredulous static\".",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2652,10 +2662,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 189540,
+      "fingerprint": "2026-11-12 04:39:14",
+      "msg_ids": [
+        189717
+      ],
+      "last_posted_at": "2026-11-12T04:43:23.839239+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-11T00:09:32.043752+00:00"
     },
@@ -2669,6 +2681,6 @@
     }
   },
   "probed": {
-    "189523": "2026-11-11T00:01:43.685668+00:00"
+    "189713": "2026-11-12T04:43:18.290686+00:00"
   }
 }
