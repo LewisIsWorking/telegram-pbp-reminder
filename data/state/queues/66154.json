@@ -2,24 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 188689,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-05T01:19:29+00:00",
-      "preview": "Rax eyes the strange woman in front of him for a moment, not expecting such an outburst of threats of violence from them. Yet another mystery among many that have quickly piled up in the last couple of days. And just as soon as the threatening aura showed itself it subsided and they were trying to play it off.\n\n\"Rightttt... Well, like I said, I don't gamble so I guess I'll just wander for now and see if I catch anything suspicious.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 188704,
-      "thread_id": 66154,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-05T01:26:52+00:00",
-      "preview": "Right as he was about to walk away Cardigan put their hand on his arm, stopping him in his tracks. Glancing back he sees the strange sparkle in their eyes and groans as soon as the words come out of their mouth.\n\n\"Uh huh, sure I am.\"\n\nRax gently pulls his arm away and starts to wander the casino, staying close to the tables and within sight of Marlo and the gathered assortment of various visitors to the casino.",
-      "media_group_id": null
-    },
-    {
       "message_id": 189081,
       "thread_id": 66154,
       "user_id": "1358791105",
@@ -369,7 +351,11 @@
     "msg:188605",
     "2026-11-04 10:59:07",
     "msg:189606",
-    "2026-11-11 03:20:44"
+    "2026-11-11 03:20:44",
+    "msg:188689",
+    "2026-11-05 01:19:29",
+    "msg:188704",
+    "2026-11-05 01:26:52"
   ],
   "reply_log": [
     {
@@ -1805,25 +1791,41 @@
       "player": "Loren",
       "preview": "Miracle Max glances sideways at Jorrik, his nose wrinkling slightly.\n\n\"Well, tha",
       "via": "markdone"
+    },
+    {
+      "t": "2026-11-13T03:17:52+00:00",
+      "pid": "66154",
+      "msg_id": "188689",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "Rax eyes the strange woman in front of him for a moment, not expecting such an o",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-13T03:19:04+00:00",
+      "pid": "66154",
+      "msg_id": "188704",
+      "thread_id": 66154,
+      "player": "Ryo",
+      "preview": "Right as he was about to walk away Cardigan put their hand on his arm, stopping ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-05 01:19:29|2026-11-05 01:26:52|2026-11-08 02:21:17|2026-11-08 19:40:04|2026-11-11 03:59:34|2026-11-11 04:06:53",
+      "fingerprint": "2026-11-08 02:21:17|2026-11-08 19:40:04|2026-11-11 03:59:34|2026-11-11 04:06:53",
       "msg_ids": [
-        189819
+        189873
       ],
-      "last_posted_at": "2026-11-12T22:13:19.797776+00:00",
+      "last_posted_at": "2026-11-13T03:20:06.624247+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "188689": "2026-11-12T21:43:20.843018+00:00",
-    "188704": "2026-11-12T21:43:20.843018+00:00",
     "189081": "2026-11-13T02:06:29.167065+00:00",
     "189179": "2026-11-12T22:43:18.477242+00:00",
     "189616": "2026-11-13T00:46:31.668568+00:00",
