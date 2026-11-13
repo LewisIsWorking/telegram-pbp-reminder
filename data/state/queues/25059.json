@@ -1,6 +1,16 @@
 {
   "pid": "25059",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 189891,
+      "thread_id": 22566,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-11-13T08:01:54+00:00",
+      "preview": "Yes please",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -2885,14 +2895,16 @@
       "caught_up_at": null
     },
     "22566": {
-      "msg_ids": [],
-      "fingerprint": "",
-      "last_posted_at": null,
+      "msg_ids": [
+        189895
+      ],
+      "fingerprint": "2026-11-13 08:01:54",
+      "last_posted_at": "2026-11-13T08:43:23.852733+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
   },
   "probed": {
-    "188765": "2026-11-06T22:43:16.879903+00:00"
+    "189891": "2026-11-13T08:43:21.480681+00:00"
   }
 }
