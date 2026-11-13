@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 189880,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-11-13T04:16:19+00:00",
+      "preview": "\"Hmm, perhaps it's under his name?\" Arktos tries again with that in mind.",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2663,10 +2673,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 189867,
+      "fingerprint": "2026-11-13 04:16:19",
+      "msg_ids": [
+        189883
+      ],
+      "last_posted_at": "2026-11-13T04:43:23.160651+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-13T03:12:30.926687+00:00"
     },
@@ -2680,6 +2692,6 @@
     }
   },
   "probed": {
-    "189713": "2026-11-12T23:43:21.443363+00:00"
+    "189880": "2026-11-13T04:43:18.905860+00:00"
   }
 }
