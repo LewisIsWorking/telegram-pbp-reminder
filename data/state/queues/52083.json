@@ -9,6 +9,24 @@
       "time": "2026-11-07T16:21:31+00:00",
       "preview": "Lai stands there and waits for orders",
       "media_group_id": null
+    },
+    {
+      "message_id": 189922,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-11-13T13:39:56+00:00",
+      "preview": "\"Wait... Are we \u2605LIVE\u2605!?\"\n\nLivy checks the camerabot she was fiddling with and probably accidentaly pressed the stream button or something.\n\n\"\u2605WOW\u2605 We are! Hello chat! \u2605SUPER IDOL LIVY\u2605 here! \n\u2605SO\u2605! I didn't mean to actually stream yet... I was just testing out some new \u2605CAMERA EQUIPEMENT\u2605 i got. \u2605BUT\u2605!! I'll tell you all a \u2605SECRET\u2605! \nYou guys know that, for my \u2605SUPER IDOL WORLD TOUR\u2605 i need some money right. \u2605SO!\u2605 I was actually going to this bank here to ask for a \u2605LOAN\u2605!\nThey could \u2605SPONSOR M",
+      "media_group_id": null
+    },
+    {
+      "message_id": 189923,
+      "thread_id": 52083,
+      "user_id": "6144366145",
+      "user_name": "Anthony",
+      "time": "2026-11-13T13:43:06+00:00",
+      "preview": "Livy's then going to do some hand signals towards Rune ( @RyoYamakawa ), probably signaling him to do something with the door... \nBut since she doesn't know sign language it's pretty much giberish to him.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2615,11 +2633,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-07 16:21:31",
+      "fingerprint": "2026-11-07 16:21:31|2026-11-13 13:39:56|2026-11-13 13:43:06",
       "msg_ids": [
-        189725
+        189925
       ],
-      "last_posted_at": "2026-11-12T04:51:01.654368+00:00",
+      "last_posted_at": "2026-11-13T13:43:28.274817+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-07T14:20:21.047586+00:00"
     },
@@ -2638,6 +2656,8 @@
     }
   },
   "probed": {
-    "189034": "2026-11-13T10:43:23.392339+00:00"
+    "189034": "2026-11-13T10:43:23.392339+00:00",
+    "189922": "2026-11-13T13:43:24.044284+00:00",
+    "189923": "2026-11-13T13:43:24.044284+00:00"
   }
 }
