@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 189713,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-11-12T04:39:14+00:00",
-      "preview": "Arktos scans the UI for a place to input a code. Upon finding it, they type in \"incredulous static\".",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -481,7 +471,9 @@
     "msg:189242",
     "2026-11-09 13:00:55",
     "msg:189523",
-    "2026-11-10 23:53:04"
+    "2026-11-10 23:53:04",
+    "msg:189713",
+    "2026-11-12 04:39:14"
   ],
   "reply_log": [
     {
@@ -2656,20 +2648,27 @@
       "player": "Laetheron",
       "preview": "Arktos floats over to the console and quickly inputs the given reservation and c",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-13T03:11:54+00:00",
+      "pid": "107171",
+      "msg_id": "189713",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "Arktos scans the UI for a place to input a code. Upon finding it, they type in \"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-12 04:39:14",
-      "msg_ids": [
-        189717
-      ],
-      "last_posted_at": "2026-11-12T04:43:23.839239+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 189867,
       "pending_delete": [],
-      "caught_up_at": "2026-11-11T00:09:32.043752+00:00"
+      "caught_up_at": "2026-11-13T03:12:30.926687+00:00"
     },
     "142887": {
       "fingerprint": "",
