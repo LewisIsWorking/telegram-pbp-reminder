@@ -1,16 +1,6 @@
 {
   "pid": "52083",
-  "unreplied": [
-    {
-      "message_id": 189923,
-      "thread_id": 52083,
-      "user_id": "6144366145",
-      "user_name": "Anthony",
-      "time": "2026-11-13T13:43:06+00:00",
-      "preview": "Livy's then going to do some hand signals/sign language towards Rune ( @RyoYamakawa ), probably signaling him to do something with the door... \nBut since she doesn't know sign language or any sort of common hand signal convention... It's pretty much giberish to him.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -482,7 +472,9 @@
     "msg:189034",
     "2026-11-07 16:21:31",
     "msg:189922",
-    "2026-11-13 13:39:56"
+    "2026-11-13 13:39:56",
+    "msg:189923",
+    "2026-11-13 13:43:06"
   ],
   "reply_log": [
     {
@@ -2631,19 +2623,26 @@
       "player": "Anthony",
       "preview": "\"Wait... Are we \u2605LIVE\u2605!?\"\n\nLivy checks the camerabot she was fiddling with and p",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-14T10:21:47+00:00",
+      "pid": "52083",
+      "msg_id": "189923",
+      "thread_id": 52083,
+      "player": "Anthony",
+      "preview": "Livy's then going to do some hand signals/sign language towards Rune ( @RyoYamak",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-13 13:43:06",
-      "msg_ids": [
-        190117
-      ],
-      "last_posted_at": "2026-11-14T10:13:24.066998+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-11-07T14:20:21.047586+00:00"
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 190131,
+      "caught_up_at": "2026-11-14T10:30:09.037611+00:00"
     },
     "145045": {
       "msg_ids": [],

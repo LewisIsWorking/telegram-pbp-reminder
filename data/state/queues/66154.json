@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 189081,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-08T02:21:17+00:00",
-      "preview": "For a moment, Rin's shadow doesn't move, before he seems to react to the sudden change in lightning, and shifts himself to be properly shaped based on the lighting.\n\nRin continues to smile awkwardly. \"Sorry. I'm not good with lights.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 189179,
       "thread_id": 66154,
       "user_id": "5443237599",
@@ -355,7 +346,9 @@
     "msg:188689",
     "2026-11-05 01:19:29",
     "msg:188704",
-    "2026-11-05 01:26:52"
+    "2026-11-05 01:26:52",
+    "msg:189081",
+    "2026-11-08 02:21:17"
   ],
   "reply_log": [
     {
@@ -1809,24 +1802,32 @@
       "player": "Ryo",
       "preview": "Right as he was about to walk away Cardigan put their hand on his arm, stopping ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-14T10:25:34+00:00",
+      "pid": "66154",
+      "msg_id": "189081",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "For a moment, Rin's shadow doesn't move, before he seems to react to the sudden ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-08 02:21:17|2026-11-08 19:40:04|2026-11-11 03:59:34|2026-11-11 04:06:53",
+      "fingerprint": "2026-11-08 19:40:04|2026-11-11 03:59:34|2026-11-11 04:06:53",
       "msg_ids": [
-        189873
+        190129
       ],
-      "last_posted_at": "2026-11-13T03:20:06.624247+00:00",
+      "last_posted_at": "2026-11-14T10:30:11.268608+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "189081": "2026-11-14T10:13:19.144227+00:00",
     "189179": "2026-11-14T05:21:30.152733+00:00",
     "189616": "2026-11-14T08:13:23.202520+00:00",
     "189617": "2026-11-14T08:13:23.202520+00:00"
