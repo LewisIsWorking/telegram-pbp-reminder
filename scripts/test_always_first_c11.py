@@ -64,9 +64,15 @@ def test_a_quiet_c11_beats_an_owed_non_priority_reply():
     assert focus_key(C07_OWED, RANKS, config=CONFIG, state=state, now=NOW) == f"idle:{PIDS['C11']}"
 
 
-def test_a_quiet_c11_loses_to_a_quiet_c10():
-    first = pick_always_first(CONFIG, _state(C10=31, C11=200), C07_OWED, NOW)
+def test_a_quiet_c11_loses_to_a_quiet_c10_when_the_queue_is_clear():
+    first = pick_always_first(CONFIG, _state(C10=31, C11=200), {}, NOW)
     assert first.pid == PIDS["C10"]
+
+
+def test_a_quiet_c10_sits_out_while_any_reply_is_owed():
+    """Lewis, 2026-11-14: C10 only jumps the queue when it is empty."""
+    first = pick_always_first(CONFIG, _state(C10=31, C11=200), C07_OWED, NOW)
+    assert first.pid == PIDS["C11"]
 
 
 def test_c11_quiet_29h_does_not_jump_an_owed_reply():
