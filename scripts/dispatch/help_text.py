@@ -61,6 +61,7 @@ _HELP_TEXT = (
     "/timer <duration> [reason] - Set a response deadline\n"
     "/canceltimer - Cancel the active timer\n"
     "/gm - GM dashboard: all campaigns at a glance\n"
+    "/extrasheet @player C06 - Give a player a 2nd sheet\n"
     "\n"
     "Everyone:\n"
     "/help - Show this message\n"
@@ -93,6 +94,7 @@ _HELP_TEXT = (
     "/recap [N] - Show last N transcript entries (default 10)\n"
     "/roll <dice> [label] - Roll dice (e.g. 1d20+5 Stealth)\n"
     "/heropoint <campaign> - MVP: claim your weekly Hero Point\n"
+    "/extrasheet - Make a 2nd character sheet here (2 max)\n"
     "/boons - View your held boons in this campaign\n"
     "/boonsall - View all your boons across all campaigns"
 )
