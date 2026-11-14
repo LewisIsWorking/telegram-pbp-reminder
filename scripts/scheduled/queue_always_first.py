@@ -31,6 +31,8 @@ chronological queue is empty". A pair with ``queue_always_first_when_clear``
 (C10) only qualifies while no campaign has an owed reply. Its rank still
 orders it against the others (C06 > C01 > C10 > C11) when it does qualify,
 read from its own ``queue_priority`` since the priority map leaves it out.
+This is the lowest priority tier. Lewis, same day: C06 Kibwe joins it once
+the campaign ends and goes into sandbox mode (set the flag on C06 then).
 """
 
 from datetime import datetime
