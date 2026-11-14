@@ -1,16 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 189891,
-      "thread_id": 22566,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-13T08:01:54+00:00",
-      "preview": "Yes please",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -533,7 +523,9 @@
     "msg:188557",
     "2026-11-03 22:26:19",
     "msg:188765",
-    "2026-11-05 14:31:57"
+    "2026-11-05 14:31:57",
+    "msg:189891",
+    "2026-11-13 08:01:54"
   ],
   "reply_log": [
     {
@@ -2884,6 +2876,15 @@
       "player": "Horia",
       "preview": "I can't right now",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-14T04:45:24+00:00",
+      "pid": "25059",
+      "msg_id": "189891",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "Yes please",
+      "via": "reply"
     }
   ],
   "topic_queues": {
@@ -2895,13 +2896,11 @@
       "caught_up_at": null
     },
     "22566": {
-      "msg_ids": [
-        189895
-      ],
-      "fingerprint": "2026-11-13 08:01:54",
-      "last_posted_at": "2026-11-13T08:43:23.852733+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 190078,
+      "caught_up_at": "2026-11-14T04:45:51.574405+00:00"
     }
   },
   "probed": {
