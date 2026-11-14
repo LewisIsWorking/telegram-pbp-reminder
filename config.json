@@ -140,6 +140,7 @@
       "code": "C10",
       "queue_priority": 2,
       "queue_always_first": true,
+      "queue_always_first_when_clear": true,
       "emoji": "\ud83d\udea6",
       "disabled_features": [
         "recruitment"

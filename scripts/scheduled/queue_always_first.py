@@ -25,6 +25,12 @@ reply beats a quiet C10. A tie in rank goes to the owed reply.
 
 Later on 2026-11-03 Lewis cut the wait to 18 hours for all three, and on
 2026-11-14 he raised it to 30 hours.
+
+Lewis, 2026-11-14: "the junction should only be in the priority queue if the
+chronological queue is empty". A pair with ``queue_always_first_when_clear``
+(C10) only qualifies while no campaign has an owed reply. Its rank still
+orders it against the others (C06 > C01 > C10 > C11) when it does qualify,
+read from its own ``queue_priority`` since the priority map leaves it out.
 """
 
 from datetime import datetime
@@ -46,14 +52,22 @@ def pick_always_first(config: dict, state: dict | None, scanned: dict,
         return None
     from scheduled.queue_silence_rows import idle_campaigns
     ranks = build_priority_map(config)
+    queue_clear = not any(d.get("entries") for d in scanned.values())
     rows = [r for r in idle_campaigns(config, state, scanned, now)
             if r.pair.get("queue_always_first") and r.ever_posted
-            and r.days * 24 >= ALWAYS_FIRST_IDLE_HOURS]
+            and r.days * 24 >= ALWAYS_FIRST_IDLE_HOURS
+            and (queue_clear or not r.pair.get("queue_always_first_when_clear"))]
     if not rows:
         return None
-    best = min(rows, key=lambda r: (ranks.get(r.pid, float("inf")), -r.days))
+
+    def rank(r):
+        qp = r.pair.get("queue_priority")
+        own = qp if isinstance(qp, int) and not isinstance(qp, bool) else float("inf")
+        return ranks.get(r.pid, own)
+
+    best = min(rows, key=lambda r: (rank(r), -r.days))
     owed = [ranks[p] for p, d in scanned.items() if d.get("entries") and p in ranks]
-    if owed and min(owed) <= ranks.get(best.pid, float("inf")):
+    if owed and min(owed) <= rank(best):
         return None
     return best
 
