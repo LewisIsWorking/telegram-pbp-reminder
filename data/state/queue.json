@@ -1881,7 +1881,9 @@
       "2026-11-06T01:55:30.073341+00:00",
       "2026-11-06T02:06:54.709750+00:00",
       "2026-11-07T14:20:21.037409+00:00",
-      "2026-11-07T14:20:21.047212+00:00"
+      "2026-11-07T14:20:21.047212+00:00",
+      "2026-11-14T10:13:19.123740+00:00",
+      "2026-11-14T10:13:19.143988+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -2060,20 +2062,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-09-16T19:15:19.363038+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "Sprinting into the room, Bella practically throws the Kusari",
-      "msg_id": "179827"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-09-16T19:15:20.215659+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Oh- Goddammit. We probably don't want them to get away, huh",
-      "msg_id": "179901"
-    },
     {
       "pid": "40585",
       "time": "2026-09-16T19:15:20.225363+00:00",
@@ -3459,6 +3447,20 @@
       "player": "Moss",
       "preview": "we've reached levels of spam that shouldn't be possible",
       "msg_id": "190109"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-11-14T10:13:19.123740+00:00",
+      "player": "Terra",
+      "preview": "Lai stands there and waits for orders",
+      "msg_id": "189034"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-11-14T10:13:19.143988+00:00",
+      "player": "Anthony",
+      "preview": "\"Wait... Are we \u2605LIVE\u2605!?\"\n\nLivy checks the camerabot she was",
+      "msg_id": "189922"
     }
   ],
   "pending_potw_boons": {},
