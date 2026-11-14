@@ -1242,7 +1242,8 @@
       "2026-11-04T17:43:18.002575+00:00",
       "2026-11-04T17:43:18.005872+00:00",
       "2026-11-07T04:43:16.951313+00:00",
-      "2026-11-14T04:45:51.573015+00:00"
+      "2026-11-14T04:45:51.573015+00:00",
+      "2026-11-14T09:43:19.132721+00:00"
     ],
     "76799": [
       "2026-03-22T16:07:31.369661+00:00",
@@ -2059,13 +2060,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-09-16T18:15:20.004998+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"It'd be nice not to kill them, I think. Could help us get a",
-      "msg_id": "179818"
-    },
     {
       "pid": "107171",
       "time": "2026-09-16T19:15:19.363038+00:00",
@@ -3458,6 +3452,13 @@
       "player": "Laetheron",
       "preview": "\"Hmm, perhaps it's under his name?\" Arktos tries again with ",
       "msg_id": "189880"
+    },
+    {
+      "pid": "25059",
+      "time": "2026-11-14T09:43:19.132721+00:00",
+      "player": "Moss",
+      "preview": "we've reached levels of spam that shouldn't be possible",
+      "msg_id": "190109"
     }
   ],
   "pending_potw_boons": {},
