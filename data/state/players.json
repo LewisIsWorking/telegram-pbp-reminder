@@ -270,6 +270,16 @@
       "pbp_topic_id": "40585",
       "last_post_time": "2026-11-10T16:23:08+00:00",
       "last_warned_week": 0
+    },
+    "52083:138025700": {
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "last_name": "Yamakawa",
+      "username": "RyoYamakawa",
+      "campaign_name": "Hopeful End-Times",
+      "pbp_topic_id": "52083",
+      "last_post_time": "2026-11-14T14:05:19+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -603,12 +613,6 @@
       "username": "RexVolf",
       "campaign_name": "Magni Guard"
     },
-    "52083:138025700": {
-      "removed_at": "2026-10-25T07:13:21.828736+00:00",
-      "first_name": "Ryo",
-      "username": "RyoYamakawa",
-      "campaign_name": "Hopeful End-Times"
-    },
     "66154:6144366145": {
       "removed_at": "2026-11-03T03:13:26.997399+00:00",
       "first_name": "Anthony",
@@ -755,7 +759,7 @@
       },
       "138025700": {
         "id": 3,
-        "name": "Ryo Yamakawa",
+        "name": "Ryo",
         "joined": "2026-03-29T16:09:32.414427+00:00"
       },
       "8383886822": {
@@ -2209,6 +2213,14 @@
       "name": "Buffet",
       "username": "buffetraider",
       "at": "2026-11-12T06:43:24.111372+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "52083",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-11-14T14:13:21.173563+00:00"
     }
   ],
   "player_boons": {
@@ -2669,7 +2681,7 @@
     "6144366145": {
       "name": "Anthony",
       "username": "MrNegetZ",
-      "last": "2026-11-14T04:40:30+00:00"
+      "last": "2026-11-14T13:51:23+00:00"
     },
     "1358791105": {
       "name": "Alastair",
@@ -2838,10 +2850,6 @@
     }
   },
   "gm_queue_size_log": [
-    [
-      "2026-11-12T13:44:47.134831+00:00",
-      8
-    ],
     [
       "2026-11-12T14:13:22.695963+00:00",
       8
@@ -3285,6 +3293,10 @@
     [
       "2026-11-14T13:43:19.132422+00:00",
       4
+    ],
+    [
+      "2026-11-14T14:13:22.461329+00:00",
+      6
     ]
   ]
 }

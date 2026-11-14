@@ -9,6 +9,24 @@
       "time": "2026-11-14T11:06:33+00:00",
       "preview": "Lai nods and watches the drones, carefully",
       "media_group_id": null
+    },
+    {
+      "message_id": 190148,
+      "thread_id": 52083,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-11-14T13:46:02+00:00",
+      "preview": "Rune keeps track of the on-going conversations as best as he can, nodding his head in affirmation whenever he's addressed for his part of the job. He was just about to go set his rifle off to the side, hidden from normal view when Livy started waving her hands wildly. Having seen this type of thing a few times in the more recent past, since he left his home, he was used to it. Sighing he gave the one sign even an idiot knows, an ok.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 190150,
+      "thread_id": 52083,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-11-14T14:05:19+00:00",
+      "preview": "Going back to what he was doing he set his rifle in a safe space and pulled out his pass. He looks to Nikk-Nakk then the others and nods his head, ready to move in and get the others inside.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2648,11 +2666,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-14 11:06:33",
+      "fingerprint": "2026-11-14 11:06:33|2026-11-14 13:46:02|2026-11-14 14:05:19",
       "msg_ids": [
-        190138
+        190154
       ],
-      "last_posted_at": "2026-11-14T11:43:25.752785+00:00",
+      "last_posted_at": "2026-11-14T14:13:29.273840+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-14T10:30:09.037611+00:00"
     },
@@ -2671,6 +2689,8 @@
     }
   },
   "probed": {
-    "190136": "2026-11-14T11:43:21.998760+00:00"
+    "190136": "2026-11-14T11:43:21.998760+00:00",
+    "190148": "2026-11-14T14:13:22.461329+00:00",
+    "190150": "2026-11-14T14:13:22.461329+00:00"
   }
 }
