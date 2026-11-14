@@ -59,7 +59,7 @@ def test_a_turn_just_handed_to_players_does_not_jump_the_queue():
 
 
 def test_kibwe_shows_even_with_nothing_owed_anywhere():
-    assert "C06: Kibwe" in _focus({}, _state(kibwe_quiet_hours=30))
+    assert "C06: Kibwe" in _focus({}, _state(kibwe_quiet_hours=36))
 
 
 def test_unreplied_kibwe_beats_another_prioritised_campaign():

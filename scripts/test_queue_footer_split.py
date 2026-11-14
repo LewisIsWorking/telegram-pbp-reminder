@@ -61,7 +61,7 @@ def _footer(scanned, state):
 
 def test_two_campaigns_make_two_messages():
     """Kibwe quiet is the pick, C04's post is the oldest: two messages."""
-    msgs = _footer(_scanned(), _state(kibwe_quiet_hours=25))
+    msgs = _footer(_scanned(), _state(kibwe_quiet_hours=36))
     assert len(msgs) == 2, msgs
     pick, oldest = msgs
     assert "🎯 Post here next" in pick and "C06: Kibwe" in pick
@@ -80,14 +80,14 @@ def test_the_same_campaign_stays_one_message():
 
 def test_split_texts_join_back_into_the_unified_focus():
     """The DM still gets one message, with the same words in it."""
-    state = _state(kibwe_quiet_hours=25)
+    state = _state(kibwe_quiet_hours=36)
     msgs = _footer(_scanned(), state)
     assert "\n".join(msgs) == build_focus_message(
         CONFIG, _scanned(), build_priority_map(CONFIG), NOW, state=state)
 
 
 def test_no_oldest_post_is_one_message():
-    msgs = _footer({}, _state(kibwe_quiet_hours=30))
+    msgs = _footer({}, _state(kibwe_quiet_hours=36))
     assert len(msgs) == 1 and "C06: Kibwe" in msgs[0]
     assert OLDEST_LABEL not in msgs[0]
 
@@ -113,7 +113,7 @@ def _post(state):
 
 
 def test_the_queue_post_carries_both_messages_in_its_batch():
-    state = _state(kibwe_quiet_hours=25)
+    state = _state(kibwe_quiet_hours=36)
     batch = _post(state)[0]
     assert "Post here next" in batch[-2] and batch[-1].startswith(OLDEST_LABEL)
     # Tracked with the queue, so it is edited and evicted with it.
