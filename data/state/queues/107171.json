@@ -1,6 +1,16 @@
 {
   "pid": "107171",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 190160,
+      "thread_id": 107171,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-11-14T14:22:29+00:00",
+      "preview": "As they were guided to the table by the green lights Zels watched the various anacites they passed, shaking his head in disgust at how they fail to understand what this sort of space is meant for. As they drew closer to the their table he didn't know what he was expecting but for no one to be there, that was a surprise.\n\n\"Late to his own meeting, not something I would expect from a guy like that.\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -2674,10 +2684,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 190088,
+      "fingerprint": "2026-11-14 14:22:29",
+      "msg_ids": [
+        190162
+      ],
+      "last_posted_at": "2026-11-14T14:28:18.424773+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-14T05:21:30.152733+00:00"
     },
@@ -2691,6 +2703,6 @@
     }
   },
   "probed": {
-    "189880": "2026-11-13T23:13:20.312868+00:00"
+    "190160": "2026-11-14T14:28:13.657110+00:00"
   }
 }
