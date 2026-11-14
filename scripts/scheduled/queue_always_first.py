@@ -23,14 +23,15 @@ wins, not the quietest, and a prioritised campaign with a real owed reply
 competes on the same rank. A quiet C06 beats an owed C01 reply; an owed C01
 reply beats a quiet C10. A tie in rank goes to the owed reply.
 
-Later on 2026-11-03 Lewis cut the wait to 18 hours for all three.
+Later on 2026-11-03 Lewis cut the wait to 18 hours for all three, and on
+2026-11-14 he raised it to 30 hours.
 """
 
 from datetime import datetime
 
 from commands.queue_format import build_priority_map
 
-ALWAYS_FIRST_IDLE_HOURS = 18
+ALWAYS_FIRST_IDLE_HOURS = 30
 
 
 def pick_always_first(config: dict, state: dict | None, scanned: dict,

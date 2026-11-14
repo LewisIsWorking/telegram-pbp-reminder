@@ -11,6 +11,16 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.81.1] - 2026-11-14
+
+### Changed
+
+**The always-first wait is 30 hours (was 18h).** C06, C01, C10 and C11 now go
+first once they have been quiet for 30 hours, still in rank order. A campaign
+the GM has just posted in stays out of the focus for longer, so owed replies
+elsewhere get their turn first.
+Tests: `test_always_first_ranked.py` and `test_always_first_c11.py` pin it (quiet 29h does not win, 31h does).
+
 ## [4.81.0] - 2026-11-11
 
 ### Changed
