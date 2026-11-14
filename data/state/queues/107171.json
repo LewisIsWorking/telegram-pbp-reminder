@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 189880,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-11-13T04:16:19+00:00",
-      "preview": "\"Hmm, perhaps it's under his name?\" Arktos tries again with that in mind.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -483,7 +473,9 @@
     "msg:189523",
     "2026-11-10 23:53:04",
     "msg:189713",
-    "2026-11-12 04:39:14"
+    "2026-11-12 04:39:14",
+    "msg:189880",
+    "2026-11-13 04:16:19"
   ],
   "reply_log": [
     {
@@ -2667,20 +2659,27 @@
       "player": "Laetheron",
       "preview": "Arktos scans the UI for a place to input a code. Upon finding it, they type in \"",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-14T05:06:45+00:00",
+      "pid": "107171",
+      "msg_id": "189880",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"Hmm, perhaps it's under his name?\" Arktos tries again with that in mind.",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-13 04:16:19",
-      "msg_ids": [
-        189883
-      ],
-      "last_posted_at": "2026-11-13T04:43:23.160651+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 190088,
       "pending_delete": [],
-      "caught_up_at": "2026-11-13T03:12:30.926687+00:00"
+      "caught_up_at": "2026-11-14T05:21:30.152733+00:00"
     },
     "142887": {
       "fingerprint": "",
