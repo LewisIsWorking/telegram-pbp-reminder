@@ -9,6 +9,15 @@
       "time": "2026-11-14T14:22:29+00:00",
       "preview": "As they were guided to the table by the green lights Zels watched the various anacites they passed, shaking his head in disgust at how they fail to understand what this sort of space is meant for. As they drew closer to the their table he didn't know what he was expecting but for no one to be there, that was a surprise.\n\n\"Late to his own meeting, not something I would expect from a guy like that.\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 190344,
+      "thread_id": 107171,
+      "user_id": "8701042661",
+      "user_name": "Diabla \"Bella\" Alzarin",
+      "time": "2026-11-16T16:49:13+00:00",
+      "preview": "Bella does not seem at all bothered by their host's apparent tardiness - Up until sitting down at their table, she looks over the entire locale without making it too noticable,\n\n\"How do they even make money?\"\n\nShe asks quietly - just to not be in earshot of the other patrons that she's, by proxy, gossiping about,\n\n\"Is the food also served in a different cyber-dimension?\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2684,11 +2693,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-14 14:22:29",
+      "fingerprint": "2026-11-14 14:22:29|2026-11-16 16:49:13",
       "msg_ids": [
-        190296
+        190346
       ],
-      "last_posted_at": "2026-11-16T02:43:35.344176+00:00",
+      "last_posted_at": "2026-11-16T17:13:30.130607+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-14T05:21:30.152733+00:00"
@@ -2703,6 +2712,7 @@
     }
   },
   "probed": {
-    "190160": "2026-11-16T16:43:39.024958+00:00"
+    "190160": "2026-11-16T16:43:39.024958+00:00",
+    "190344": "2026-11-16T17:13:24.048215+00:00"
   }
 }
