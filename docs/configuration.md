@@ -32,7 +32,7 @@ Top-level settings:
 The ComeOnOverUno server (COO) is the source of truth for which Path Wars
 campaigns exist and their Telegram topics. The shared loader,
 `helpers_pkg.config.load_config`, reads
-`GET {COO_SERVER_URL}/api/pathwars/campaigns` once per process with the
+`GET {COO_SERVER_URL}/api/pathwars/campaign-links` once per process with the
 `PATHWARS_BOT_READ_KEY` secret (the same key as `/api/pathwars/linked`) and
 lays it over `topic_pairs` (`scripts/helpers_pkg/coo_campaigns.py`). Every
 script that loads config gets it: the checker, preflight, the alert scripts,

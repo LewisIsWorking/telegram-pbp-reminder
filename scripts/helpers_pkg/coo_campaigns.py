@@ -30,7 +30,9 @@ import requests
 
 from combat.foundry_sync import DEFAULT_SERVER, KEY_HEADER
 
-PATH = "/api/pathwars/campaigns"
+# /api/pathwars/campaigns was already taken on COO. 404 means the server
+# has no bot key configured, 401 a wrong key: both fall back.
+PATH = "/api/pathwars/campaign-links"
 
 _fetched: dict = {}
 

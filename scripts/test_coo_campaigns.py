@@ -91,7 +91,8 @@ def test_new_coo_campaign_gets_a_default_pair(capsys):
 
 
 @pytest.mark.parametrize("over", [{"pbpTopicIds": []}, {"chatTopicId": None},
-                                  {"status": "archived"}])
+                                  {"status": "archived"},
+                                  {"status": "closed"}])
 def test_new_coo_campaign_that_cannot_run_is_skipped(over, capsys):
     out = _apply(_coo(), _coo("C12", **{"pbpTopicIds": [500],
                                         "chatTopicId": 501, **over}))
@@ -147,6 +148,8 @@ def _raises(*a, **k):
     (MagicMock(), {}, "no read key"),
     (_raises, ENV, "server unreachable (ConnectionError)"),
     (lambda *a, **k: _response(500), ENV, "server answered 500"),
+    (lambda *a, **k: _response(404), ENV, "server answered 404"),
+    (lambda *a, **k: _response(401), ENV, "server answered 401"),
     (lambda *a, **k: _response(bad_json=True), ENV, "malformed"),
     (lambda *a, **k: _response(body={"code": "C01"}), ENV, "malformed"),
     (lambda *a, **k: _response(body=["C01"]), ENV, "malformed"),
@@ -170,7 +173,7 @@ def test_the_request_uses_the_read_key_header():
     get = MagicMock(return_value=_response(body=[_coo()]))
     out = _run(get)
     url = get.call_args.args[0]
-    assert url == "https://coo.test/api/pathwars/campaigns"
+    assert url == "https://coo.test/api/pathwars/campaign-links"
     assert list(get.call_args.kwargs["headers"].values()) == ["k"]
     assert _pair(out, "C01")["name"] == "New Name"
 
