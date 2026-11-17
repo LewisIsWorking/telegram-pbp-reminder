@@ -22,7 +22,12 @@ a separate edit. Queue order, polls and every other bot setting are
 unchanged. If ComeOnOver cannot be reached, the bot carries on with its own
 list exactly as before.
 
----
+## [4.82.1] - 2026-11-17
+
+### Changed
+
+**Party rosters post once a week.** Each campaign's roster summary now comes
+round every 7 days instead of every 3, so the notification topics are quieter.
 
 ## [4.82.0] - 2026-11-14
 
