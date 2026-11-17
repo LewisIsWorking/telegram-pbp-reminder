@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 190344,
-      "thread_id": 107171,
-      "user_id": "8701042661",
-      "user_name": "Diabla \"Bella\" Alzarin",
-      "time": "2026-11-16T16:49:13+00:00",
-      "preview": "Bella does not seem at all bothered by their host's apparent tardiness - Up until sitting down at their table, she looks over the entire locale without making it too noticable,\n\n\"How do they even make money?\"\n\nShe asks quietly - just to not be in earshot of the other patrons that she's, by proxy, gossiping about,\n\n\"Is the food also served in a different cyber-dimension?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 190378,
       "thread_id": 107171,
       "user_id": "8117756377",
@@ -505,7 +496,9 @@
     "msg:189880",
     "2026-11-13 04:16:19",
     "msg:190160",
-    "2026-11-14 14:22:29"
+    "2026-11-14 14:22:29",
+    "msg:190344",
+    "2026-11-16 16:49:13"
   ],
   "reply_log": [
     {
@@ -2707,17 +2700,26 @@
       "player": "Ryo",
       "preview": "As they were guided to the table by the green lights Zels watched the various an",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-17T19:00:34+00:00",
+      "pid": "107171",
+      "msg_id": "190344",
+      "thread_id": 107171,
+      "player": "Diabla \"Bella\" Alzarin",
+      "preview": "Bella does not seem at all bothered by their host's apparent tardiness - Up unti",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-16 16:49:13|2026-11-17 07:33:14|2026-11-17 07:34:10",
+      "fingerprint": "2026-11-17 07:33:14|2026-11-17 07:34:10",
       "msg_ids": [
-        190455
+        190464
       ],
-      "last_posted_at": "2026-11-17T18:57:45.347746+00:00",
+      "last_posted_at": "2026-11-17T19:04:32.835014+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-14T05:21:30.152733+00:00"
@@ -2732,7 +2734,6 @@
     }
   },
   "probed": {
-    "190344": "2026-11-17T17:43:25.998605+00:00",
     "190378": "2026-11-17T13:43:28.333707+00:00",
     "190379": "2026-11-17T13:43:28.333707+00:00"
   }
