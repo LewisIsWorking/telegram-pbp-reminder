@@ -18,6 +18,24 @@
       "time": "2026-11-16T16:49:13+00:00",
       "preview": "Bella does not seem at all bothered by their host's apparent tardiness - Up until sitting down at their table, she looks over the entire locale without making it too noticable,\n\n\"How do they even make money?\"\n\nShe asks quietly - just to not be in earshot of the other patrons that she's, by proxy, gossiping about,\n\n\"Is the food also served in a different cyber-dimension?\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 190378,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-11-17T07:33:14+00:00",
+      "preview": "\"It's not very like the Professor to be this late, hmm. Suppose something's holding them up?\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 190379,
+      "thread_id": 107171,
+      "user_id": "8117756377",
+      "user_name": "Laetheron",
+      "time": "2026-11-17T07:34:10+00:00",
+      "preview": "\"Well, I'd guess not serving food would save on costs. Certainly an interesting choice however.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2693,11 +2711,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-14 14:22:29|2026-11-16 16:49:13",
+      "fingerprint": "2026-11-14 14:22:29|2026-11-16 16:49:13|2026-11-17 07:33:14|2026-11-17 07:34:10",
       "msg_ids": [
-        190346
+        190382
       ],
-      "last_posted_at": "2026-11-16T17:13:30.130607+00:00",
+      "last_posted_at": "2026-11-17T07:43:26.839820+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-14T05:21:30.152733+00:00"
@@ -2713,6 +2731,8 @@
   },
   "probed": {
     "190160": "2026-11-17T05:13:24.475083+00:00",
-    "190344": "2026-11-17T05:13:24.475083+00:00"
+    "190344": "2026-11-17T05:13:24.475083+00:00",
+    "190378": "2026-11-17T07:43:20.326807+00:00",
+    "190379": "2026-11-17T07:43:20.326807+00:00"
   }
 }
