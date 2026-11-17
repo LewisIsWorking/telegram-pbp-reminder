@@ -936,7 +936,9 @@
       "2026-11-13T03:12:30.924160+00:00",
       "2026-11-14T05:21:30.150700+00:00",
       "2026-11-17T18:57:40.682390+00:00",
-      "2026-11-17T19:04:29.246656+00:00"
+      "2026-11-17T19:04:29.246656+00:00",
+      "2026-11-17T19:12:38.049911+00:00",
+      "2026-11-17T19:12:38.055626+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -2072,20 +2074,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-09-17T18:12:10.473421+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "180207"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-09-17T18:12:10.480823+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "179961"
-    },
     {
       "pid": "107171",
       "time": "2026-09-19T14:15:22.808734+00:00",
@@ -3471,6 +3459,20 @@
       "player": "Diabla \"Bella\" Alzarin",
       "preview": "Bella does not seem at all bothered by their host's apparent",
       "msg_id": "190344"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-11-17T19:12:38.049911+00:00",
+      "player": "Laetheron",
+      "preview": "\"It's not very like the Professor to be this late, hmm. Supp",
+      "msg_id": "190378"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-11-17T19:12:38.055626+00:00",
+      "player": "Laetheron",
+      "preview": "\"Well, I'd guess not serving food would save on costs. Certa",
+      "msg_id": "190379"
     }
   ],
   "pending_potw_boons": {},
