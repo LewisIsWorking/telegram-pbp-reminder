@@ -1,25 +1,6 @@
 {
   "pid": "25059",
-  "unreplied": [
-    {
-      "message_id": 190432,
-      "thread_id": 22566,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-17T18:35:44+00:00",
-      "preview": "it is so joeover",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190436,
-      "thread_id": 22566,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-17T18:38:59+00:00",
-      "preview": "[media]",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137625",
     "2026-03-16 17:53:18",
@@ -554,7 +535,11 @@
     "msg:190179",
     "2026-11-14 14:56:36",
     "msg:190431",
-    "2026-11-17 18:35:41"
+    "2026-11-17 18:35:41",
+    "msg:190432",
+    "2026-11-17 18:35:44",
+    "msg:190436",
+    "2026-11-17 18:38:59"
   ],
   "reply_log": [
     {
@@ -2959,6 +2944,24 @@
       "player": "Horia",
       "preview": "bro responded to me by using claude",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:45:12+00:00",
+      "pid": "25059",
+      "msg_id": "190432",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "it is so joeover",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:45:27+00:00",
+      "pid": "25059",
+      "msg_id": "190436",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_queues": {
@@ -2970,13 +2973,11 @@
       "caught_up_at": null
     },
     "22566": {
-      "msg_ids": [
-        190437
-      ],
-      "fingerprint": "2026-11-17 18:35:44|2026-11-17 18:38:59",
-      "last_posted_at": "2026-11-17T18:42:53.460725+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": "2026-11-14T04:45:51.574405+00:00"
+      "msg_ids": [],
+      "fingerprint": "",
+      "last_posted_at": null,
+      "caught_up_msg_id": 190448,
+      "caught_up_at": "2026-11-17T18:47:16.788873+00:00"
     }
   },
   "probed": {
