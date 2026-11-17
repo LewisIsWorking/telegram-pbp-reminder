@@ -2,30 +2,21 @@
   "pid": "25059",
   "unreplied": [
     {
-      "message_id": 190177,
+      "message_id": 190432,
       "thread_id": 22566,
       "user_id": "5443237599",
       "user_name": "Horia",
-      "time": "2026-11-14T14:56:22+00:00",
+      "time": "2026-11-17T18:35:44+00:00",
+      "preview": "it is so joeover",
+      "media_group_id": null
+    },
+    {
+      "message_id": 190436,
+      "thread_id": 22566,
+      "user_id": "5443237599",
+      "user_name": "Horia",
+      "time": "2026-11-17T18:38:59+00:00",
       "preview": "[media]",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190178,
-      "thread_id": 22566,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-14T14:56:31+00:00",
-      "preview": "What kind of spam?",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190179,
-      "thread_id": 22566,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-14T14:56:36+00:00",
-      "preview": "Uhh no",
       "media_group_id": null
     }
   ],
@@ -555,7 +546,15 @@
     "msg:189891",
     "2026-11-13 08:01:54",
     "msg:190109",
-    "2026-11-14 09:38:21"
+    "2026-11-14 09:38:21",
+    "msg:190177",
+    "2026-11-14 14:56:22",
+    "msg:190178",
+    "2026-11-14 14:56:31",
+    "msg:190179",
+    "2026-11-14 14:56:36",
+    "msg:190431",
+    "2026-11-17 18:35:41"
   ],
   "reply_log": [
     {
@@ -2924,6 +2923,42 @@
       "player": "Moss",
       "preview": "we've reached levels of spam that shouldn't be possible",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:23:03+00:00",
+      "pid": "25059",
+      "msg_id": "190177",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "[media]",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:23:19+00:00",
+      "pid": "25059",
+      "msg_id": "190178",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "What kind of spam?",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:23:25+00:00",
+      "pid": "25059",
+      "msg_id": "190179",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "Uhh no",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:38:04+00:00",
+      "pid": "25059",
+      "msg_id": "190431",
+      "thread_id": 22566,
+      "player": "Horia",
+      "preview": "bro responded to me by using claude",
+      "via": "reply"
     }
   ],
   "topic_queues": {
@@ -2936,17 +2971,16 @@
     },
     "22566": {
       "msg_ids": [
-        190421
+        190437
       ],
-      "fingerprint": "2026-11-14 14:56:22|2026-11-14 14:56:31|2026-11-14 14:56:36",
-      "last_posted_at": "2026-11-17T16:13:38.611351+00:00",
+      "fingerprint": "2026-11-17 18:35:44|2026-11-17 18:38:59",
+      "last_posted_at": "2026-11-17T18:42:53.460725+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-14T04:45:51.574405+00:00"
     }
   },
   "probed": {
-    "190177": "2026-11-17T17:43:25.998605+00:00",
-    "190178": "2026-11-17T17:43:25.998605+00:00",
-    "190179": "2026-11-17T17:43:25.998605+00:00"
+    "190432": "2026-11-17T18:42:50.718723+00:00",
+    "190436": "2026-11-17T18:42:50.718723+00:00"
   }
 }
