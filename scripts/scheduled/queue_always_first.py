@@ -24,7 +24,7 @@ competes on the same rank. A quiet C06 beats an owed C01 reply; an owed C01
 reply beats a quiet C10. A tie in rank goes to the owed reply.
 
 Later on 2026-11-03 Lewis cut the wait to 18 hours for all three, and on
-2026-11-14 he raised it to 30 hours.
+2026-11-14 he raised it to 30 hours, and on 2026-11-17 to 48 hours.
 
 Lewis, 2026-11-14: "the junction should only be in the priority queue if the
 chronological queue is empty". A pair with ``queue_always_first_when_clear``
@@ -39,7 +39,7 @@ from datetime import datetime
 
 from commands.queue_format import build_priority_map
 
-ALWAYS_FIRST_IDLE_HOURS = 30
+ALWAYS_FIRST_IDLE_HOURS = 48
 
 
 def pick_always_first(config: dict, state: dict | None, scanned: dict,

@@ -64,13 +64,13 @@ def test_a_quiet_c10_does_not_jump_an_owed_reply():
 
 
 def test_a_quiet_c10_goes_first_when_nothing_is_owed():
-    first = pick_always_first(CONFIG, _state(C10=31), {}, NOW)
+    first = pick_always_first(CONFIG, _state(C10=49), {}, NOW)
     assert first is not None and first.pid == PIDS["C10"]
 
 
 def test_with_nothing_owed_c06_and_c01_still_outrank_c10():
-    assert pick_always_first(CONFIG, _state(C01=31, C10=200), {}, NOW).pid == PIDS["C01"]
-    assert pick_always_first(CONFIG, _state(C06=31, C10=200), {}, NOW).pid == PIDS["C06"]
+    assert pick_always_first(CONFIG, _state(C01=49, C10=200), {}, NOW).pid == PIDS["C01"]
+    assert pick_always_first(CONFIG, _state(C06=49, C10=200), {}, NOW).pid == PIDS["C06"]
 
 
 def test_an_owed_c10_reply_waits_its_turn_by_age():

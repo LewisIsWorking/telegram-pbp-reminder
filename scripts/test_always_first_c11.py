@@ -2,7 +2,7 @@
 
 Lewis, 2026-11-03: "C11 should be added to the next priority of the
 priority queue: C06 > C01 > C10 > C11". So C11 carries rank 3 and
-``queue_always_first``, and follows the same 30-hour rule as the other three.
+``queue_always_first``, and follows the same 48-hour rule as the other three.
 
 C11 runs in its own Telegram group (-1003496373617), not Path_Wars, so these
 tests use the REAL config.json pairs and also check that the always-first
@@ -55,7 +55,7 @@ def test_real_config_ranks_c06_c01_c10_c11_all_always_first():
 
 
 def test_a_quiet_c11_beats_an_owed_non_priority_reply():
-    state = _state(C11=31)
+    state = _state(C11=49)
     first = pick_always_first(CONFIG, state, C07_OWED, NOW)
     assert first is not None and first.pid == PIDS["C11"]
     text = build_focus_message(CONFIG, C07_OWED, RANKS, NOW, state=state)
@@ -65,22 +65,22 @@ def test_a_quiet_c11_beats_an_owed_non_priority_reply():
 
 
 def test_a_quiet_c11_loses_to_a_quiet_c10_when_the_queue_is_clear():
-    first = pick_always_first(CONFIG, _state(C10=31, C11=200), {}, NOW)
+    first = pick_always_first(CONFIG, _state(C10=49, C11=200), {}, NOW)
     assert first.pid == PIDS["C10"]
 
 
 def test_a_quiet_c10_sits_out_while_any_reply_is_owed():
     """Lewis, 2026-11-14: C10 only jumps the queue when it is empty."""
-    first = pick_always_first(CONFIG, _state(C10=31, C11=200), C07_OWED, NOW)
+    first = pick_always_first(CONFIG, _state(C10=49, C11=200), C07_OWED, NOW)
     assert first.pid == PIDS["C11"]
 
 
-def test_c11_quiet_29h_does_not_jump_an_owed_reply():
-    assert pick_always_first(CONFIG, _state(C11=29), C07_OWED, NOW) is None
+def test_c11_quiet_47h_does_not_jump_an_owed_reply():
+    assert pick_always_first(CONFIG, _state(C11=47), C07_OWED, NOW) is None
 
 
 def test_c11_always_first_message_links_to_its_own_group():
-    first = pick_always_first(CONFIG, _state(C11=31), C07_OWED, NOW)
+    first = pick_always_first(CONFIG, _state(C11=49), C07_OWED, NOW)
     msg = always_first_message(first)
     assert "https://t.me/c/3496373617/1242" in msg
     assert "Path_Wars" not in msg
