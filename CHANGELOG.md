@@ -11,6 +11,21 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.82.0] - 2026-11-14
+
+### Changed
+
+**C10 The Junction only goes first when nothing else is owed.** A quiet C10
+used to jump ahead of owed replies in other campaigns after 30 hours. Now it
+only becomes "Post here next" when the chronological queue is empty, and an
+owed C10 reply waits its turn by age instead of by rank. With nothing owed,
+it still ranks after C06 and C01 and before C11.
+New config flag `queue_always_first_when_clear` (set on C10 only).
+
+**The always-first wait is 48 hours (was 30h).** Lewis, 2026-11-17. C06, C01,
+C10 and C11 go first only after 48 quiet hours, still in rank order.
+Tests: `test_always_first_c10_when_clear.py`; `test_always_first_c11.py` and `test_queue_priority_c09.py` updated.
+
 ## [4.81.1] - 2026-11-14
 
 ### Changed

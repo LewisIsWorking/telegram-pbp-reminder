@@ -52,14 +52,28 @@ def test_c09_beats_an_older_c00_reply():
 
 def test_another_prioritised_campaign_beats_c09():
     config = _config()
-    c09, c10 = _pid(config, "C09"), _pid(config, "C10")
+    c09, c11 = _pid(config, "C09"), _pid(config, "C11")
     scanned = {
         c09: {"code": "C09", "campaign": "Metal City",
               "entries": [_entry("2026-10-01 02:00:00")]},
-        c10: {"code": "C10", "campaign": "The Junction",
+        c11: {"code": "C11", "campaign": "Dark Pockets",
               "entries": [_entry("2026-11-06 02:00:00")]},
     }
-    assert pick_focus_pid(scanned, build_priority_map(config)) == c10
+    assert pick_focus_pid(scanned, build_priority_map(config)) == c11
+
+
+def test_an_owed_c10_reply_no_longer_beats_c09():
+    """Lewis, 2026-11-14: C10 only jumps the queue when it is empty, so an
+    owed C10 reply has no rank and the older prioritised C09 reply wins."""
+    config = _config()
+    c09, c10 = _pid(config, "C09"), _pid(config, "C10")
+    scanned = {
+        c09: {"code": "C09", "campaign": "Metal City",
+              "entries": [_entry("2026-11-06 02:00:00")]},
+        c10: {"code": "C10", "campaign": "The Junction",
+              "entries": [_entry("2026-10-01 02:00:00")]},
+    }
+    assert pick_focus_pid(scanned, build_priority_map(config)) == c09
 
 
 def test_oldest_waiting_line_stays_chronological():

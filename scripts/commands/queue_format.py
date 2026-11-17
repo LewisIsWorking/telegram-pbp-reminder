@@ -22,9 +22,16 @@ def build_priority_map(config: dict) -> dict[str, int]:
 
     Shared by commands/queue.py and scheduled/queue_reminder.py, which built
     this identically before 2026-07-30.
+
+    A pair with ``queue_always_first_when_clear`` is left out (Lewis,
+    2026-11-14: C10 should only jump the queue when the chronological queue
+    is empty). Its owed replies wait their turn by age like any other, and
+    its rank is only used by ``scheduled/queue_always_first.py``.
     """
     priority_map: dict[str, int] = {}
     for pair in config.get("topic_pairs", []):
+        if pair.get("queue_always_first_when_clear"):
+            continue
         qp = pair.get("queue_priority")
         if qp is not None and qp is not False:
             pid_str = str(pair["pbp_topic_ids"][0])
