@@ -202,11 +202,13 @@
     {
       "name": "Tongs Testing",
       "code": "C99",
-      "chat_topic_id": 75843,
+      "group_id": -1004303231713,
+      "group_username": "NudgeBotNotifications",
+      "chat_topic_id": 4629,
       "pbp_topic_ids": [
-        75843
+        4629
       ],
-      "combat_topic_id": 75843,
+      "combat_topic_id": 4629,
       "created": "2026-09-21",
       "queue_exclude": true,
       "disabled_features": [

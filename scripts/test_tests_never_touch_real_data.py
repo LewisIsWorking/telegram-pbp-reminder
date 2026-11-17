@@ -40,7 +40,8 @@ _DATA = os.path.join(_ROOT, "data")
 # config. All three are real history: 1242 is C11 Dark Pockets (retired
 # in #22), 1825 and 145053 are earlier topics. Measured 2026-08-27.
 # ⚠️ 100 is deliberately NOT here. It never existed; it is the fixture.
-HISTORICAL_TOPIC_IDS = {"1242", "1825", "145053"}
+# 75843: C99 Tongs Testing's old topic in the Path Wars group, before it moved to its own topic (2026-11-17).
+HISTORICAL_TOPIC_IDS = {"1242", "1825", "145053", "75843"}
 
 
 def _fingerprint() -> dict:

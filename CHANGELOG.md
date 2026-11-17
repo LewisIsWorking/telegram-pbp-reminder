@@ -11,6 +11,14 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.82.2] - 2026-11-17
+
+### Changed
+
+**The Tongs test campaign has moved out of the Path Wars group.** Its test
+posts now go to the bot's notifications group, so the Path Wars group only
+sees release news in that topic.
+
 ## [4.82.1] - 2026-11-17
 
 ### Changed
