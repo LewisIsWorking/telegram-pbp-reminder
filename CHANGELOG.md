@@ -11,6 +11,13 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.82.1] - 2026-11-17
+
+### Changed
+
+**Party rosters post once a week.** Each campaign's roster summary now comes
+round every 7 days instead of every 3, so the notification topics are quieter.
+
 ## [4.82.0] - 2026-11-14
 
 ### Changed
