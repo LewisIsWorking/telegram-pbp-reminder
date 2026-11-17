@@ -59,6 +59,15 @@ def test_get_or_assign_id_gm():
     state = {}
     pid = get_or_assign_id("100", "GM1", "Lewis", True, state)
     assert pid == 0
+    # GMs keep the GM roster label, not the Telegram first name (PW-DATA-01).
+    assert state["player_registry"]["100"]["GM1"]["name"] == "GM"
+
+
+def test_get_or_assign_id_gm_existing_keeps_roster_label():
+    state = {"player_registry": {"100": {"GM1": {"id": 0, "name": "Path", "joined": "2026-01-01T00:00:00+00:00"}}}}
+    pid = get_or_assign_id("100", "GM1", "Path", True, state)
+    assert pid == 0
+    assert state["player_registry"]["100"]["GM1"]["name"] == "GM"
 
 
 def test_get_or_assign_id_player():

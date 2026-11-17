@@ -12,6 +12,9 @@ from datetime import datetime, timezone
 
 import helpers
 
+GM_PLAYER_ID = 0
+GM_DISPLAY_NAME = "GM"
+
 
 def get_or_assign_id(pid: str, user_id: str, user_name: str,
                      is_gm: bool, state: dict) -> int:
@@ -20,13 +23,15 @@ def get_or_assign_id(pid: str, user_id: str, user_name: str,
     campaign = registry.setdefault(pid, {})
 
     if user_id in campaign:
-        # Update name if changed
-        campaign[user_id]["name"] = user_name
-        return campaign[user_id]["id"]
+        # Update name if changed, but a GM keeps the GM roster label: a
+        # GM post is not the character name, so the Telegram first name
+        # must not overwrite the GM display name (PW-DATA-01).
+        campaign[user_id]["name"] = GM_DISPLAY_NAME if is_gm else user_name
+        return campaign[user_id]["id"];
 
     # Assign new ID
     if is_gm:
-        player_id = 0
+        player_id = GM_PLAYER_ID
     else:
         existing_ids = [entry["id"] for entry in campaign.values()]
         # Next available non-zero ID
@@ -36,7 +41,7 @@ def get_or_assign_id(pid: str, user_id: str, user_name: str,
 
     campaign[user_id] = {
         "id": player_id,
-        "name": user_name,
+        "name": GM_DISPLAY_NAME if is_gm else user_name,
         "joined": datetime.now(timezone.utc).isoformat(),
     }
 
