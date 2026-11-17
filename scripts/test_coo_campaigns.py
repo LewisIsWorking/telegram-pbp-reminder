@@ -188,9 +188,3 @@ def test_fetched_once_per_run():
     finally:
         coo_campaigns.reset()
 
-
-def test_the_checker_run_goes_through_the_overlay():
-    import checker
-    import inspect
-    assert "coo_campaigns.apply(helpers.load_config()" in \
-        inspect.getsource(checker.main)

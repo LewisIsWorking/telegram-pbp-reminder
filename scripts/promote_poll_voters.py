@@ -16,6 +16,8 @@ import json
 import sys
 from pathlib import Path
 
+from helpers_pkg.config_load import load_raw_config
+
 ROOT   = Path(__file__).parent.parent
 CONFIG = ROOT / "config.json"
 STATE  = ROOT / "data" / "state" / "live.json"
@@ -31,7 +33,9 @@ def _is_placeholder(uid: int) -> bool:
 
 def main() -> None:  # pragma: no cover
     commit = "--commit" in sys.argv
-    config = json.loads(CONFIG.read_text(encoding="utf-8"))
+    # ⛔ Raw config.json, never load_config: this file is written back
+    # below, and COO's campaign names and topic ids must not end up in it.
+    config = load_raw_config(CONFIG)
     state  = json.loads(STATE.read_text(encoding="utf-8"))
 
     unknown_by_code = state.get("poll_unknown_voters", {})

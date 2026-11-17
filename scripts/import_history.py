@@ -22,8 +22,8 @@ LOGS_DIR = ROOT_DIR / "data" / "pbp_logs"
 CONFIG_PATH = ROOT_DIR / "config.json"
 
 def load_config() -> dict:
-    with open(CONFIG_PATH, encoding="utf-8") as f:
-        return json.load(f)
+    from helpers_pkg.config import load_raw_config, with_coo_campaigns
+    return with_coo_campaigns(load_raw_config(CONFIG_PATH))
 
 def build_thread_map(config: dict) -> dict:
     """Map thread_id (int) → campaign name for all PBP topics."""

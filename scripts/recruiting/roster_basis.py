@@ -162,7 +162,8 @@ def main(argv: list, now: datetime.datetime | None = None,
     this is testable without a coverage pragma.
     """
     root = repo_root()
-    config = json.loads((root / "config.json").read_text(encoding="utf-8"))
+    from helpers_pkg.config import load_raw_config, with_coo_campaigns
+    config = with_coo_campaigns(load_raw_config(root / "config.json"))
     positional = [a for a in argv[1:] if not a.startswith("--")]
     if "--asof" in argv:
         positional = [a for a in positional

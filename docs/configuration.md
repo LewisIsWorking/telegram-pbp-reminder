@@ -30,10 +30,19 @@ Top-level settings:
 ### Campaigns come from COO
 
 The ComeOnOverUno server (COO) is the source of truth for which Path Wars
-campaigns exist and their Telegram topics. Once per hourly run,
-`checker.py` reads `GET {COO_SERVER_URL}/api/pathwars/campaigns` with the
+campaigns exist and their Telegram topics. The shared loader,
+`helpers_pkg.config.load_config`, reads
+`GET {COO_SERVER_URL}/api/pathwars/campaigns` once per process with the
 `PATHWARS_BOT_READ_KEY` secret (the same key as `/api/pathwars/linked`) and
-lays it over `topic_pairs` (`scripts/helpers_pkg/coo_campaigns.py`):
+lays it over `topic_pairs` (`scripts/helpers_pkg/coo_campaigns.py`). Every
+script that loads config gets it: the checker, preflight, the alert scripts,
+`import_history` and `recruiting.roster_basis`. The watchdog workflow has no
+key on purpose and uses config.json, since it must work when everything
+else is down.
+
+`load_raw_config` returns config.json with no overlay. Anything that writes
+config.json back (today `promote_poll_voters.py`) must use it, so COO's
+values never end up in the file.
 
 - **Matched by `code`.** `name`, `pbp_topic_ids`, `chat_topic_id` and
   `combat_topic_id` come from COO; every other field below stays from

@@ -12,11 +12,10 @@ from helpers_pkg.time_utils import timestamps_in_window
 from helpers_pkg.tracked_since import config_issues as tracked_since_issues
 
 
-def load_config() -> dict:
-    """Load and return the config.json file."""
-    with open(CONFIG_PATH, encoding="utf-8") as f:  # pragma: no cover
-        return json.load(f)  # pragma: no cover
-
+# The loaders live in config_load.py (200-line limit); imported from here
+# because every caller already uses ``helpers_pkg.config.load_config``.
+from helpers_pkg.config_load import (  # noqa: E402,F401
+    load_config, load_raw_config, with_coo_campaigns)
 
 
 _SETTINGS_MAP = {

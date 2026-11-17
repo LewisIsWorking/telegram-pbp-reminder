@@ -105,6 +105,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
+          # The campaign list comes from COO in every script (2026-11-17).
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
         run: python3 scripts/ci_alert.py
 
       # ⛔ The backstop for every write path nobody has enumerated.
@@ -199,6 +201,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          # The campaign list comes from COO in every script (2026-11-17).
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
         run: cd scripts && python -m preflight.gate
 
       - name: Update bot command menu
@@ -224,6 +228,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
+          # The campaign list comes from COO in every script (2026-11-17).
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
         run: cd scripts && python refusal_alert.py
 
       - name: Commit data (archive + transcripts + state)
@@ -311,6 +317,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          # The campaign list comes from COO in every script (2026-11-17).
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
         run: cd scripts && python -m preflight.gate
 
       - name: Run queue-only checker
@@ -321,6 +329,8 @@ jobs:
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
           QUEUE_REFIRE_RUN: ${{ inputs.refire }}
+          # The campaign list comes from COO in every script (2026-11-17).
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
         run: cd scripts && python checker.py --queue-only
 
       - name: Commit data (archive + transcripts + state)
