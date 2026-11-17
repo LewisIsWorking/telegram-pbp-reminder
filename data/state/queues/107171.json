@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 190160,
-      "thread_id": 107171,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-14T14:22:29+00:00",
-      "preview": "As they were guided to the table by the green lights Zels watched the various anacites they passed, shaking his head in disgust at how they fail to understand what this sort of space is meant for. As they drew closer to the their table he didn't know what he was expecting but for no one to be there, that was a surprise.\n\n\"Late to his own meeting, not something I would expect from a guy like that.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 190344,
       "thread_id": 107171,
       "user_id": "8701042661",
@@ -512,7 +503,9 @@
     "msg:189713",
     "2026-11-12 04:39:14",
     "msg:189880",
-    "2026-11-13 04:16:19"
+    "2026-11-13 04:16:19",
+    "msg:190160",
+    "2026-11-14 14:22:29"
   ],
   "reply_log": [
     {
@@ -2705,17 +2698,26 @@
       "player": "Laetheron",
       "preview": "\"Hmm, perhaps it's under his name?\" Arktos tries again with that in mind.",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-17T18:54:12+00:00",
+      "pid": "107171",
+      "msg_id": "190160",
+      "thread_id": 107171,
+      "player": "Ryo",
+      "preview": "As they were guided to the table by the green lights Zels watched the various an",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-14 14:22:29|2026-11-16 16:49:13|2026-11-17 07:33:14|2026-11-17 07:34:10",
+      "fingerprint": "2026-11-16 16:49:13|2026-11-17 07:33:14|2026-11-17 07:34:10",
       "msg_ids": [
-        190382
+        190455
       ],
-      "last_posted_at": "2026-11-17T07:43:26.839820+00:00",
+      "last_posted_at": "2026-11-17T18:57:45.347746+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-14T05:21:30.152733+00:00"
@@ -2730,7 +2732,6 @@
     }
   },
   "probed": {
-    "190160": "2026-11-17T17:43:25.998605+00:00",
     "190344": "2026-11-17T17:43:25.998605+00:00",
     "190378": "2026-11-17T13:43:28.333707+00:00",
     "190379": "2026-11-17T13:43:28.333707+00:00"
