@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 189179,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-08T19:40:04+00:00",
-      "preview": "Necrila responds \"My father will reach Magnimar in due time. You shall find him there. \n\nMany factions including your NE fiendish cousins seek to cause trouble on this planet.  Their actions will only wake up The Beast or release Oblivion on us all\n\nIn the days of old the planes stood united against such dangers and must fight together once again or face oblivion alone.\n\nThe price for the absolute truth we all shall face it together whatever you like it or not.\n\nThis truth you shall hear it only",
-      "media_group_id": null
-    },
-    {
       "message_id": 189616,
       "thread_id": 66154,
       "user_id": "7437909735",
@@ -348,7 +339,9 @@
     "msg:188704",
     "2026-11-05 01:26:52",
     "msg:189081",
-    "2026-11-08 02:21:17"
+    "2026-11-08 02:21:17",
+    "msg:189179",
+    "2026-11-08 19:40:04"
   ],
   "reply_log": [
     {
@@ -1811,24 +1804,32 @@
       "player": "Alastair",
       "preview": "For a moment, Rin's shadow doesn't move, before he seems to react to the sudden ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-17T19:44:35+00:00",
+      "pid": "66154",
+      "msg_id": "189179",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "Necrila responds \"My father will reach Magnimar in due time. You shall find him ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-08 19:40:04|2026-11-11 03:59:34|2026-11-11 04:06:53",
+      "fingerprint": "2026-11-11 03:59:34|2026-11-11 04:06:53",
       "msg_ids": [
-        190407
+        190487
       ],
-      "last_posted_at": "2026-11-17T11:13:25.905044+00:00",
+      "last_posted_at": "2026-11-17T20:13:32.547232+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "189179": "2026-11-17T15:13:21.819552+00:00",
     "189616": "2026-11-17T17:43:25.998605+00:00",
     "189617": "2026-11-17T17:43:25.998605+00:00"
   }
