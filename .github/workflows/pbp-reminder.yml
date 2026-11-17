@@ -41,6 +41,13 @@ on:
   # job may run for this event; see the run job's condition.
   pull_request:
     branches: [main]
+  # Lewis, 2026-11-17: the cloud Claude session must be able to refresh the
+  # bot on demand. Its GitHub App may not start workflow_dispatch (403), but
+  # it may send a repository_dispatch, so a "refresh" event runs the same
+  # full pass as a manual run:
+  #   gh api -X POST repos/LewisIsWorking/telegram-pbp-reminder/dispatches -f event_type=refresh
+  repository_dispatch:
+    types: [refresh]
   workflow_dispatch: # Allow manual trigger for testing
     inputs:
       refire:
@@ -164,6 +171,7 @@ jobs:
     if: >-
       github.event_name == 'push'
       || github.event_name == 'workflow_dispatch'
+      || (github.event_name == 'repository_dispatch' && github.event.action == 'refresh')
       || (github.event_name == 'schedule' && github.event.schedule == '13 * * * *')
     steps:
       # `ref: main` instead of the default (which checks out GITHUB_SHA,
