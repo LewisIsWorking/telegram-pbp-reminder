@@ -92,6 +92,12 @@ PARTITIONS: dict[str, list[str]] = {
         # campaign picked longest ago wins a tie. Undeclared, both would be
         # discarded on save and the GM would be DMed every hour.
         "last_weekly_recruit", "weekly_recruit_picks",
+        # Added 2026-11-17: {pid: {count, since}}, when each campaign was
+        # first seen at its current player count. The recruit pick's
+        # tiebreak ("fewest players, for longest"). Undeclared, every
+        # clock would restart on each run and the tiebreak would be
+        # config order again.
+        "recruit_count_since",
     ],
     "players": [
         "players", "removed_players", "player_registry", "player_history",
@@ -163,4 +169,5 @@ DEFAULT_STATE: dict = {
     "recruit_focus_at": None, "recruit_focus_posts": [],
     "last_community_roster": None,
     "last_weekly_recruit": None, "weekly_recruit_picks": {},
+    "recruit_count_since": {},
 }

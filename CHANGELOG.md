@@ -11,6 +11,13 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.82.3] - 2026-11-17
+
+### Changed
+
+**When two campaigns need the same number of players, the recruitment pick
+now favours the one that has waited longest** at its current player count.
+
 ## [4.82.2] - 2026-11-17
 
 ### Changed

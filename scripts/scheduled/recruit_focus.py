@@ -24,22 +24,36 @@ a new id has to be registered or it silently breaks:
 Both are covered by ``test_state_keys_are_declared`` and
 ``test_bot_sent_scan_covers_state``, which fail if either is missed.
 
-Selection rule
---------------
-Largest shortfall against the campaign's own target wins. Ties break on the
-lower fill ratio, so a 1-of-2 campaign outranks a 5-of-6 with the same gap
-of one. Campaigns with ``recruitment`` in ``disabled_features`` are never
-picked - C08 Theria is currently in that state and would otherwise win on
-shortfall every single day.
-"""
+Selection rule (``scheduled/recruit_pick``)
+-------------------------------------------
+"Fewest players, for longest" (Lewis, 2026-11-17). Within the eligible
+tier:
 
-from datetime import datetime, timezone
+1. Largest shortfall against the campaign's own target wins.
+2. Ties go to the campaign that has been stuck at its current player count
+   the longest. ``recruit_count_since`` ({pid: {"count", "since"}}) records
+   when each campaign was first seen at its count; any change to the count
+   restarts that clock, and a campaign with no record starts it now (never
+   back-dated).
+3. Then the lower fill ratio, so a 1-of-2 campaign outranks a 5-of-6 with
+   the same gap of one. Before 2026-11-17 this was the only tiebreak, and
+   with every target at 6 it never separated anyone, so the pick fell to
+   config order.
+4. Then config order.
+
+Tiers are unchanged: a later tier is only considered once every lower tier
+is full. Campaigns with ``recruitment`` in ``disabled_features`` and no
+explicit tier are never picked.
+"""
 
 import helpers
 import telegram as tg
-from commands.roster import _active_players
-from commands.roster_members import effective_target
 from scheduled.recruit_link import recruit_link
+# The selection half lives in recruit_pick (split out 2026-11-17 for the
+# file length limit); imported back so every existing caller and patch of
+# ``recruit_focus.pick_recruit_pair`` / ``recruit_tier`` keeps working.
+from scheduled.recruit_pick import (  # noqa: F401
+    _eligible_pairs, _shortfall, pick_recruit_pair, recruit_tier)
 from scheduled.recruit_roster_line import current_players_line
 
 _GATE_HOURS = 24
@@ -55,83 +69,6 @@ _AT_KEY = "recruit_focus_at"
 # load-bearing because message ids are unique per chat, not globally.
 # Added 2026-08-18 with the Nudge Bot Notifications mirror.
 _POSTS_KEY = "recruit_focus_posts"
-
-
-def _shortfall(pair: dict, state: dict,
-               config: dict) -> tuple[int, list[dict], int]:
-    """Return (missing, seated_players, target) for one campaign.
-
-    ⭐ Returns the PLAYERS, not a count of them (changed 2026-08-29, when
-    the advert began naming them). Counting here and resolving the names
-    somewhere else means two ``_active_players`` calls deciding the same
-    question, and a post that says "4/6" above five names is wrong in a
-    way that reads as correct. The signature was widened rather than
-    added to so every caller had to look at what it now receives.
-    """
-    pid = str(pair["pbp_topic_ids"][0])
-    # Ladder default; an explicit per-pair roster_target still wins.
-    target = pair.get("roster_target") or effective_target(config, state)
-    players = _active_players(pid, state, config)
-    return target - len(players), players, target
-
-
-def recruit_tier(pair: dict, config: dict) -> int | None:
-    """Which queue this campaign recruits from, or None for never.
-
-    Tiers let a campaign wait its turn instead of being excluded outright
-    (Lewis, 2026-08-15): **a tier only becomes eligible once every campaign
-    in every lower tier is full.**
-
-      * explicit ``recruit_tier`` on the pair wins
-      * else ``recruitment`` in ``disabled_features`` means **never**
-      * else tier 0, the normal queue
-
-    The precedence matters. Reading the disabled flag first would make an
-    explicit tier unreachable, which is exactly the config C10 and C08 are
-    in - both were hard-excluded on 2026-08-15 and are now tiered instead.
-    """
-    if "recruit_tier" in pair:
-        return pair["recruit_tier"]
-    pid = str(pair["pbp_topic_ids"][0])
-    if not helpers.feature_enabled(config, pid, "recruitment"):
-        return None
-    return 0
-
-
-def _eligible_pairs(config: dict, state: dict) -> list[dict]:
-    """Pairs in the lowest tier that still has a shortfall.
-
-    Every campaign below that tier is full by construction, which is what
-    makes the tier eligible at all.
-    """
-    short: dict[int, list] = {}
-    for pair in config.get("topic_pairs", []):
-        tier = recruit_tier(pair, config)
-        if tier is None:
-            continue
-        if _shortfall(pair, state, config)[0] > 0:
-            short.setdefault(tier, []).append(pair)
-    if not short:
-        return []
-    return short[min(short)]
-
-
-def pick_recruit_pair(config: dict, state: dict) -> dict | None:
-    """The campaign most in need of players, or None if all are full.
-
-    Mirrors ``queue_focus.pick_focus_pid``: one winner, chosen by a stated
-    rule, so the GM is given a single action rather than a league table.
-    Within the eligible tier, largest shortfall wins, then lowest fill
-    ratio.
-    """
-    candidates = []
-    for pair in _eligible_pairs(config, state):
-        missing, players, target = _shortfall(pair, state, config)
-        ratio = len(players) / target if target else 1.0
-        candidates.append((-missing, ratio, pair))
-    if not candidates:
-        return None
-    return min(candidates, key=lambda c: (c[0], c[1]))[2]
 
 
 def build_recruit_message(config: dict, state: dict) -> tuple[str, dict | None]:
