@@ -11,6 +11,19 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.83.0] - 2026-11-17
+
+### Changed
+
+**The campaign list now follows ComeOnOver.** Which campaigns the bot looks
+after, their names and their Telegram topics are now read from ComeOnOver
+every hour, so a new campaign or a moved topic there reaches the bot without
+a separate edit. Queue order, polls and every other bot setting are
+unchanged. If ComeOnOver cannot be reached, the bot carries on with its own
+list exactly as before.
+
+---
+
 ## [4.82.0] - 2026-11-14
 
 ### Changed

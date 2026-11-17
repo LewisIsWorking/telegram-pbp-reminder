@@ -20,6 +20,7 @@ import telegram as tg
 import state as state_store
 
 from helpers import build_topic_maps
+from helpers_pkg import coo_campaigns
 
 # --- Dispatch ---
 from dispatch.router import process_updates
@@ -153,7 +154,7 @@ def main(queue_only: bool = False) -> None:
     tg.init(telegram_token)
     state_store.init(gist_token, gist_id)
 
-    config = helpers.load_config()
+    config = coo_campaigns.apply(helpers.load_config(), helpers.validate_config)
     helpers.load_settings(config)
 
     issues = helpers.validate_config(config)

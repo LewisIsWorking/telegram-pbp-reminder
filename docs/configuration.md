@@ -27,6 +27,31 @@ Top-level settings:
 | `queue_daily_hours` | [9, 21] | UTC hours to post the GM queue reminder daily  |
 | `diagnostic_hour`   | 8       | UTC hour to run the daily bot health diagnostic |
 
+### Campaigns come from COO
+
+The ComeOnOverUno server (COO) is the source of truth for which Path Wars
+campaigns exist and their Telegram topics. Once per hourly run,
+`checker.py` reads `GET {COO_SERVER_URL}/api/pathwars/campaigns` with the
+`PATHWARS_BOT_READ_KEY` secret (the same key as `/api/pathwars/linked`) and
+lays it over `topic_pairs` (`scripts/helpers_pkg/coo_campaigns.py`):
+
+- **Matched by `code`.** `name`, `pbp_topic_ids`, `chat_topic_id` and
+  `combat_topic_id` come from COO; every other field below stays from
+  config.json. A field COO sends as null keeps the config.json value.
+- **The first `pbp_topic_ids` entry stays first.** It is the campaign's key
+  in state. If COO does not list it at all, the pair keeps its config.json
+  ids and the run prints a line.
+- **COO's `status`** (`active`, `archived`, `closed`) is carried through as
+  `status` on the pair. Nothing is removed for being archived or closed.
+- **A campaign only COO knows** gets a pair with just those fields, if it is
+  active and has a PbP topic and a chat topic. Otherwise it is skipped.
+- **A pair COO does not list** is kept unchanged.
+- **Fallback:** with no key, COO unreachable, a non-200, a malformed answer,
+  or an overlay that would fail `validate_config`, config.json is used
+  exactly as written. Each prints one `COO campaigns:` line in the run log.
+
+COO's field names are read in one function, `parse_campaigns`.
+
 ### Per-campaign topic_pair fields
 
 Fields set inside each entry in `topic_pairs`:

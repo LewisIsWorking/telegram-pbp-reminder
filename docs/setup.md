@@ -84,7 +84,7 @@ Key fields:
 - **gm_user_ids**: Array of GM Telegram user IDs. GMs are excluded from player stats.
 - **leaderboard_topic_id**: Topic ID for the cross-campaign leaderboard (or `null` to disable).
 - **bot_topic_id**: Topic ID for the dedicated bot channel. All scheduled output (rosters, alerts, tips, POTW, etc.) posts here instead of campaign chats. Also enables `/search`, `/queue`, `/timeline` from the bot channel. Set to `null` to post in campaign chat topics instead.
-- **topic_pairs**: One entry per campaign. Each needs a name, a chat topic, and one or more PBP topics.
+- **topic_pairs**: One entry per campaign. Each needs a name, a chat topic, and one or more PBP topics. With `PATHWARS_BOT_READ_KEY` set, the campaign list and topics are read from COO each run and laid over these entries, matched by `code` (see [Campaigns come from COO](configuration.md#campaigns-come-from-coo)).
 - **created**: Campaign start date for anniversary alerts (optional, `YYYY-MM-DD`).
 - **gm_user_ids** (per-campaign): Optional override that replaces the global GM list for this campaign only. Useful when a campaign has a different GM.
 - **characters** (per-campaign): Optional mapping of `"user_id": "Character Name"`. Enables `/party` command and shows character names in rosters, stats, and transcripts.

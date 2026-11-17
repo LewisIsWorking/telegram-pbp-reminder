@@ -86,6 +86,7 @@ Every file held to a strict 200-line maximum.
 | [Setup Guide](docs/setup.md)                   | Create bot, find topic IDs, configure, deploy     |
 | [Commands](docs/commands.md)                   | All player and GM commands                        |
 | [Configuration](docs/configuration.md)         | config.json reference                             |
+| [Campaigns from COO](docs/configuration.md#campaigns-come-from-coo) | Path Wars campaign list and topics come from COO |
 | [Data Storage](docs/data-storage.md)           | Where data lives, backup strategy                 |
 | [Architecture](docs/architecture.md)           | File structure, multi-topic campaigns             |
 | [Intended Behaviour](docs/behaviour.md)        | How features work and why                         |
