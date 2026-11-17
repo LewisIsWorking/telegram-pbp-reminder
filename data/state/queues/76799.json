@@ -9,6 +9,15 @@
       "time": "2026-11-17T22:17:09+00:00",
       "preview": "We here",
       "media_group_id": null
+    },
+    {
+      "message_id": 190527,
+      "thread_id": 76799,
+      "user_id": "1281212645",
+      "user_name": "Felix",
+      "time": "2026-11-17T23:03:35+00:00",
+      "preview": "Tekuam appears as a tall and thin human in hide armor. Their skin is tanned like they spend a lot of time outside with long dark hair they enjoy braiding into different designs. Together with their Leshy familiar Tree Twig, they protect the wilder areas in and around the city. You may find them sleeping in trees, selling the occasional trinket made of woven vines and grass, or visiting temples of various mortal born gods",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2776,11 +2785,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-17 22:17:09",
+      "fingerprint": "2026-11-17 22:17:09|2026-11-17 23:03:35",
       "msg_ids": [
-        190519
+        190528
       ],
-      "last_posted_at": "2026-11-17T22:19:54.359830+00:00",
+      "last_posted_at": "2026-11-17T23:07:47.057465+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -2795,6 +2804,7 @@
     }
   },
   "probed": {
-    "190515": "2026-11-17T22:19:51.410830+00:00"
+    "190515": "2026-11-17T22:19:51.410830+00:00",
+    "190527": "2026-11-17T23:07:43.908763+00:00"
   }
 }
