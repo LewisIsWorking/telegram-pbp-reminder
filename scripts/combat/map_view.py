@@ -3,7 +3,7 @@
 Lewis: "Building a Foundry screenshot tool that's player view / party view could be really good for telegram based
 combat visualising and strategy", then "make sure it sees through a token's vision".
 
-``/map`` draws what the whole party sees; ``/map Zerius`` only what Zerius sees. The scene comes from the COO server
+``/map`` draws what the caller's own character sees, ``/map Zerius`` what Zerius sees; never the whole party's view (Lewis, 2026-11-18). The scene comes from the COO server
 (``api/pathwars/scene/{code}``, the bot's read key, as for encounters), which reads the campaign's Foundry world and
 sends only what players could see. Drawing is map_draw.py. Art comes from the public Foundry server.
 
