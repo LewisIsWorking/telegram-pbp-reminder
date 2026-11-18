@@ -88,17 +88,23 @@ def send_photo(chat_id: int, thread_id: int | None, jpeg: bytes, text: str, post
 
 
 def post_map(config: dict, pid: str, code: str, wanted: str, group_id: int, reply_topic: int,
-             scene=fetch_scene, fetch=None, send=send_photo) -> bool:
-    """Draw and post the map to the campaign's combat topic (else where it was asked). False when there is none."""
+             scene=fetch_scene, fetch=None, send=send_photo, quiet: bool = False) -> bool:
+    """Draw and post the map to the campaign's combat topic (else where it was asked). False when there is none.
+
+    `quiet` (the turn-end map, combat/turn_maps.py): a failure only returns False, so a fight with no map never
+    posts an error after every turn.
+    """
     pair = next((p for p in config.get("topic_pairs", []) if str(p["pbp_topic_ids"][0]) == pid), {})
     topic = pair.get("combat_topic_id") or reply_topic
     view, why = scene(code)
     if view is None:
-        tg.send_message(group_id, reply_topic, f"🗺️ {why}")
+        if not quiet:
+            tg.send_message(group_id, reply_topic, f"🗺️ {why}")
         return False
     try:
         jpeg = draw_map(view, fetch or make_fetch(), wanted)
     except ValueError:
-        tg.send_message(group_id, reply_topic, f"🗺️ {code}'s map has no tokens on it.")
+        if not quiet:
+            tg.send_message(group_id, reply_topic, f"🗺️ {code}'s map has no tokens on it.")
         return False
     return send(group_id, topic, jpeg, caption(code, view, wanted))

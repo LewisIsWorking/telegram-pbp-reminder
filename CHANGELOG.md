@@ -22,6 +22,10 @@ creatures out of sight are not drawn. Columns and rows are
 labelled, so a post can say "move to AG76". Use /map Name to see through one
 character's eyes. The map is as of the bot's last run.
 
+**In a Foundry fight, each player gets a map once their turn ends**, posted
+to the combat topic and showing only what their own token can see. One per
+player per round, within half an hour of the turn.
+
 ## [4.82.3] - 2026-11-17
 
 ### Changed

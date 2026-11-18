@@ -131,6 +131,9 @@ def sync_foundry_encounters(config: dict, state: dict, *, now: datetime, maps=No
         return
     # 📜 The wiki's record of each fight (2026-09-17); see encounter_records.
     encounter_records.save_records(config, state, encounters)
+    # 🗺️ A map from each player's own token once their turn ends (2026-11-18), see turn_maps.
+    from combat.turn_maps import post_turn_maps
+    post_turn_maps(config, state, encounters)
     for pid in reconcile(config, state, encounters, now):
         combat = state["combat"][pid]
         if combat["current_phase"] == "players":

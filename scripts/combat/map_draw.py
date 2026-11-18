@@ -47,6 +47,11 @@ def viewers_of(view: dict, wanted: str = "") -> list:
     fighting = {o["tokenId"] for o in ((view.get("combat") or {}).get("order") or [])}
     in_fight = [t for t in party if t["id"] in fighting]
     if wanted.strip():
+        # A token named exactly (the turn-end map, 2026-11-18) is that token alone: "Kibwe the Bold" must not also
+        # match every token with "the" in its name.
+        exact = [t for t in party if (t.get("name") or "").strip().lower() == wanted.strip().lower()]
+        if exact:
+            return exact
         rx = re.compile("|".join(re.escape(w) for w in wanted.split()), re.I)
         named = [t for t in party if rx.search(t.get("name") or "")]
         return named or in_fight or party
