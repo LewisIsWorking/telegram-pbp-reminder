@@ -37,6 +37,12 @@ def _font(size: int):
     return ImageFont.load_default(size)
 
 
+def named_on(view: dict, wanted: str) -> bool:
+    """Whether a party token on the map answers to `wanted`, so it can be looked through."""
+    rx = re.compile("|".join(re.escape(w) for w in wanted.split()), re.I)
+    return any(t.get("party") and rx.search(t.get("name") or "") for t in view["tokens"])
+
+
 def viewers_of(view: dict, wanted: str = "") -> list:
     """The party tokens /map looks through: those named in `wanted`, else the whole party.
 

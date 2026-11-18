@@ -26,6 +26,10 @@ character's eyes. The map is as of the bot's last run.
 to the combat topic and showing only what their own token can see. One per
 player per round, within half an hour of the turn.
 
+**/map Name works outside a fight too**, answered where you asked, showing
+only what that character can see. A name not on the map is said, never
+swapped for the whole party's view.
+
 ## [4.82.3] - 2026-11-17
 
 ### Changed

@@ -19,7 +19,7 @@ from PIL import Image
 
 import telegram as tg
 from combat.foundry_sync import DEFAULT_SERVER, KEY_HEADER
-from combat.map_draw import draw_map
+from combat.map_draw import draw_map, named_on
 
 FOUNDRY = "https://foundry.cooserver.duckdns.org/"
 MAX_ASSET = 25_000_000  # bytes; a map larger than this is not worth the run's memory
@@ -95,11 +95,17 @@ def post_map(config: dict, pid: str, code: str, wanted: str, group_id: int, repl
     posts an error after every turn.
     """
     pair = next((p for p in config.get("topic_pairs", []) if str(p["pbp_topic_ids"][0]) == pid), {})
-    topic = pair.get("combat_topic_id") or reply_topic
     view, why = scene(code)
     if view is None:
         if not quiet:
             tg.send_message(group_id, reply_topic, f"🗺️ {why}")
+        return False
+    # 🧭 2026-11-18: /map works outside a fight too, answered where it was asked; a fight's map goes to its combat topic.
+    topic = (pair.get("combat_topic_id") if view.get("combat") else None) or reply_topic
+    # One character's map (Lewis: one character's view) never falls back to the party's: say so instead.
+    if wanted.strip() and not named_on(view, wanted):
+        if not quiet:
+            tg.send_message(group_id, reply_topic, f"🗺️ No party character called {wanted.strip()} is on {code}'s map.")
         return False
     try:
         jpeg = draw_map(view, fetch or make_fetch(), wanted)

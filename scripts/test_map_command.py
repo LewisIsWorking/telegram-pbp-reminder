@@ -158,3 +158,20 @@ def test_no_map_is_said_in_chat_not_posted_silently():
                            send=lambda *a: (_ for _ in ()).throw(AssertionError("must not post")))
     assert not ok
     assert any("no Foundry map" in m.get("text", "") for m in _sent_messages)
+
+
+def test_outside_a_fight_the_map_answers_where_it_was_asked():
+    sent = []
+    view = _view()
+    view["combat"] = None
+    assert map_view.post_map(CONFIG, "40585", "C06", "Zerius", -100, 21528, scene=lambda code: (view, ""),
+                             fetch=lambda src: None, send=lambda *a: sent.append(a) or True)
+    assert sent[0][1] == 21528 and "what Zerius can see" in sent[0][3]
+
+
+def test_a_character_not_on_the_map_is_said_never_swapped_for_the_party():
+    _sent_messages.clear()
+    ok = map_view.post_map(CONFIG, "40585", "C06", "Nobody", -100, 21528, scene=lambda code: (_view(), ""),
+                           send=lambda *a: (_ for _ in ()).throw(AssertionError("must not post the party's view")))
+    assert not ok
+    assert any("No party character called Nobody" in m.get("text", "") for m in _sent_messages)
