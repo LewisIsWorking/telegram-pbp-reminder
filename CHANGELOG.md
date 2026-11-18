@@ -17,7 +17,8 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 **/map posts the battle map from Foundry to your campaign's combat topic.**
 It shows only what the party's tokens can see: walls block sight, darkness
-limits it, and creatures out of sight are not drawn. Columns and rows are
+limits it, each token sees only in front of it (its vision cone), and
+creatures out of sight are not drawn. Columns and rows are
 labelled, so a post can say "move to AG76". Use /map Name to see through one
 character's eyes. The map is as of the bot's last run.
 

@@ -68,6 +68,31 @@ def test_naming_a_token_looks_through_that_token_only():
     assert [t["name"] for t in viewers_of(view, "nobody")] == ["Zerius", "Lorn"]
 
 
+def test_an_open_room_is_seen_to_every_corner():
+    """2026-11-18: rays sorted in two angle ranges made the polygon cross itself and blacked out a wedge."""
+    from combat.map_vision import vision_mask
+    view = _view(tokens=[_token("Zerius", 10, 4, party=True)])
+    g = view["scene"]["grid"]["size"]
+    mask = vision_mask(view, view["tokens"], (20 * g, 10 * g), (0, 0))
+    assert all(mask.getpixel((x, y)) == 255 for x in range(5, 20 * g, g) for y in range(5, 10 * g, g))
+
+
+def test_a_160_degree_cone_sees_ahead_not_behind():
+    """Rotation 0 looks down the map in Foundry; the token's own square is always seen."""
+    from combat.map_vision import vision_mask
+    view = _view(tokens=[_token("Zerius", 10, 4, party=True)])
+    view["tokens"][0].update(sight={"enabled": True, "range": 0, "angle": 160}, rotation=0)
+    g = view["scene"]["grid"]["size"]
+    mask = vision_mask(view, view["tokens"], (20 * g, 10 * g), (0, 0))
+    cx, cy = 10 * g + g // 2, 4 * g + g // 2
+    assert mask.getpixel((cx, cy + 3 * g)) == 255   # three squares in front
+    assert mask.getpixel((cx, cy - 3 * g)) == 0     # three squares behind
+    assert mask.getpixel((cx, cy - g // 4)) == 255  # its own square
+    view["tokens"][0]["rotation"] = 180
+    turned = vision_mask(view, view["tokens"], (20 * g, 10 * g), (0, 0))
+    assert turned.getpixel((cx, cy - 3 * g)) == 255 and turned.getpixel((cx, cy + 3 * g)) == 0
+
+
 def test_in_a_combat_the_party_is_whoever_of_it_is_fighting():
     view = _view(tokens=[_token("Zerius", 2, 5, party=True), _token("Jiufeng", 19, 9, party=True)])
     view["combat"]["order"] = [{"tokenId": "Zerius", "defeated": False}]

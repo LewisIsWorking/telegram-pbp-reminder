@@ -6,7 +6,9 @@ tokens see, and no creature outside it.
 How: rays from the token's centre towards every wall corner (and a hair either side), each stopped by the nearest
 sight-blocking wall, give the line-of-sight polygon (the standard visibility-polygon method Foundry uses too). In a lit
 scene (global light on, darkness inside its range) that polygon is the vision. In the dark it is cut down to the token's
-own sight range plus any light source's radius.
+own sight range plus any light source's radius. A token's vision cone (sight.angle, 160 on most Path Wars tokens since
+Lewis asked for it on 2026-11-18) cuts it down again to what is in front of the token, as Foundry's LimitedAnglePolygon
+does: centred on rotation + 90 degrees (rotation 0 looks down the map), and the token's own square always seen.
 Simplified on purpose (each errs towards showing LESS): one-way walls and limited/proximity walls block both ways,
 darkvision beyond the token's configured sight range is ignored, fog of war (areas seen before) is not shown.
 """
@@ -39,12 +41,24 @@ def sight_polygon(ox, oy, segments, limit):
             a = math.atan2(py - oy, px - ox)
             angles.update((a - 1e-4, a, a + 1e-4))
     angles.update(i * math.tau / 180 for i in range(180))  # round the edge of the range, and open ground
+    # ⚠️ Sorted in ONE range (-pi..pi], or the polygon crosses itself. 2026-11-18: the even rays ran 0..2pi while the
+    # corners ran -pi..pi, and an open room came out with a black wedge (and could show squares behind a wall).
     pts = []
-    for a in sorted(angles):
+    for a in sorted({math.atan2(math.sin(a), math.cos(a)) for a in angles}):
         dx, dy = math.cos(a), math.sin(a)
         t = _ray(ox, oy, dx, dy, segments, limit)
         pts.append((ox + dx * t, oy + dy * t))
     return pts
+
+
+def cone_polygon(ox, oy, rotation, angle, far):
+    """The token's vision cone as a polygon, or None for a full circle. Foundry: aMin = rotation + 90 - angle / 2."""
+    if not angle or angle >= 360:
+        return None
+    a0 = math.radians(rotation + 90 - angle / 2)
+    steps = max(8, int(angle / 3))
+    return [(ox, oy)] + [(ox + far * math.cos(a0 + math.radians(angle) * i / steps),
+                          oy + far * math.sin(a0 + math.radians(angle) * i / steps)) for i in range(steps + 1)]
 
 
 def scene_is_lit(environment):
@@ -79,15 +93,27 @@ def vision_mask(d, viewers, size, origin):
     for t in viewers:
         ox, oy = t['x'] + t['w'] * g / 2, t['y'] + t['h'] * g / 2
         poly = [(x - x0, y - y0) for (x, y) in sight_polygon(ox, oy, segments, far)]
-        if lit:
+        sight = t.get('sight') or {}
+        cone = cone_polygon(ox - x0, oy - y0, t.get('rotation') or 0, sight.get('angle') or 360, far)
+        if lit and cone is None:
             draw.polygon(poly, fill=255)
             continue
-        # Dark: line of sight AND (own sight range OR inside a light).
         los = Image.new('L', size, 0)
         ImageDraw.Draw(los).polygon(poly, fill=255)
+        if cone is not None:  # line of sight AND (in front of the token OR its own square)
+            front = Image.new('L', size, 0)
+            fd = ImageDraw.Draw(front)
+            fd.polygon(cone, fill=255)
+            own = t['w'] * g / 2
+            fd.ellipse([ox - x0 - own, oy - y0 - own, ox - x0 + own, oy - y0 + own], fill=255)
+            los = ImageChops.multiply(los, front)
+        if lit:
+            mask.paste(255, (0, 0), los)
+            continue
+        # Dark: line of sight AND (own sight range OR inside a light).
         reach = Image.new('L', size, 0)
         rd = ImageDraw.Draw(reach)
-        r = ((t.get('sight') or {}).get('range') or 0) * px_per_ft + t['w'] * g / 2
+        r = (sight.get('range') or 0) * px_per_ft + t['w'] * g / 2
         if r > 0:
             rd.ellipse([ox - x0 - r, oy - y0 - r, ox - x0 + r, oy - y0 + r], fill=255)
         for l in lights:
