@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 190493,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-17T20:17:45+00:00",
-      "preview": "Necrila's eyes flash for a second with a grey flame-like effect before returning to their original colour.\n\nNecrila says, \"I see. I apologize for thinking you were related. My father knows more about your kind than I do. I am merely a combat void shell.\"\n\nNecrila looks at Cardigan from a distance while speaking to Itchy and says, \"My father is offering you a choice, imp crimelord. You can remain in this cage and wait for doom, or fulfil your duty as a devil and aid my father in restoring order t",
-      "media_group_id": null
-    },
-    {
       "message_id": 190507,
       "thread_id": 66154,
       "user_id": "5443237599",
@@ -354,7 +345,9 @@
     "msg:189616",
     "2026-11-11 03:59:34",
     "msg:189617",
-    "2026-11-11 04:06:53"
+    "2026-11-11 04:06:53",
+    "msg:190493",
+    "2026-11-17 20:17:45"
   ],
   "reply_log": [
     {
@@ -1844,24 +1837,32 @@
       "player": "Loren",
       "preview": "Miracle Max glances at the untouched glass, then up at Jorrik. A faint smile cre",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T22:45:04+00:00",
+      "pid": "66154",
+      "msg_id": "190493",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "Necrila's eyes flash for a second with a grey flame-like effect before returning",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-17 20:17:45|2026-11-17 20:50:25|2026-11-18 04:58:31",
+      "fingerprint": "2026-11-17 20:50:25|2026-11-18 04:58:31",
       "msg_ids": [
-        190715
+        190762
       ],
-      "last_posted_at": "2026-11-18T21:21:56.510298+00:00",
+      "last_posted_at": "2026-11-18T22:47:22.455138+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "190493": "2026-11-18T20:53:36.609646+00:00",
     "190507": "2026-11-18T21:45:09.457447+00:00",
     "190559": "2026-11-18T17:43:20.494332+00:00"
   }
