@@ -72,7 +72,7 @@ _HELP_TEXT = (
     "/myhistory - 8-week posting sparkline\n"
     "/whosturn - Who has acted in combat and who hasn't\n"
     "/combatlog - View combat log entries\n"
-    "/map [Name] - The battle map, as the party (or one character) sees it\n"
+    "/map [Name] - The battle map, as your character (or Name) sees it\n"
     "/catchup - What happened since you last posted\n"
     "/party - In-fiction party composition\n"
     "/notes - View GM notes for this campaign\n"

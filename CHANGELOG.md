@@ -16,19 +16,18 @@ Versioning: [Semantic Versioning](https://semver.org/).
 ### Added
 
 **/map posts the battle map from Foundry to your campaign's combat topic.**
-It shows only what the party's tokens can see: walls block sight, darkness
-limits it, each token sees only in front of it (its vision cone), and
-creatures out of sight are not drawn. Columns and rows are
-labelled, so a post can say "move to AG76". Use /map Name to see through one
-character's eyes. The map is as of the bot's last run.
+It shows only what one character can see, your own unless you name
+another (/map Name): walls block sight, darkness limits it, each token sees
+only in front of it (its vision cone), and creatures out of sight are not
+drawn. Columns and rows are labelled, so a post can say "move to AG76". The
+map is as of the bot's last run.
 
 **In a Foundry fight, each player gets a map once their turn ends**, posted
 to the combat topic and showing only what their own token can see. One per
 player per round, within half an hour of the turn.
 
-**/map Name works outside a fight too**, answered where you asked, showing
-only what that character can see. A name not on the map is said, never
-swapped for the whole party's view.
+**/map works outside a fight too**, answered where you asked. A name not
+on the map is said, and the map is never the whole party's view.
 
 **/map is in everyone's command menu and /help now**, not only the GMs'.
 
