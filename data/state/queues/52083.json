@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 190136,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-11-14T11:06:33+00:00",
-      "preview": "Lai nods and watches the drones, carefully",
-      "media_group_id": null
-    },
-    {
       "message_id": 190148,
       "thread_id": 52083,
       "user_id": "138025700",
@@ -502,7 +493,9 @@
     "msg:189922",
     "2026-11-13 13:39:56",
     "msg:189923",
-    "2026-11-13 13:43:06"
+    "2026-11-13 13:43:06",
+    "msg:190136",
+    "2026-11-14 11:06:33"
   ],
   "reply_log": [
     {
@@ -2660,17 +2653,26 @@
       "player": "Anthony",
       "preview": "Livy's then going to do some hand signals/sign language towards Rune ( @RyoYamak",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T21:27:47+00:00",
+      "pid": "52083",
+      "msg_id": "190136",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai nods and watches the drones, carefully",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-14 11:06:33|2026-11-14 13:46:02|2026-11-14 14:05:19",
+      "fingerprint": "2026-11-14 13:46:02|2026-11-14 14:05:19",
       "msg_ids": [
-        190416
+        190727
       ],
-      "last_posted_at": "2026-11-17T14:43:33.875606+00:00",
+      "last_posted_at": "2026-11-18T21:29:43.053558+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-14T10:30:09.037611+00:00"
     },
@@ -2689,7 +2691,6 @@
     }
   },
   "probed": {
-    "190136": "2026-11-18T16:13:31.729827+00:00",
     "190148": "2026-11-18T18:28:26.665554+00:00",
     "190150": "2026-11-18T18:28:26.665554+00:00"
   }
