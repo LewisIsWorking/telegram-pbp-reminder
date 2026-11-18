@@ -16,8 +16,8 @@ Versioning: [Semantic Versioning](https://semver.org/).
 ### Added
 
 **/map posts the battle map from Foundry to your campaign's combat topic.**
-It shows only what one character can see, your own unless you name
-another (/map Name): walls block sight, darkness limits it, each token sees
+It shows only what your own character can see (GMs can name any
+character with /map Name): walls block sight, darkness limits it, each token sees
 only in front of it (its vision cone), and creatures out of sight are not
 drawn. Columns and rows are labelled, so a post can say "move to AG76". The
 map is as of the bot's last run.

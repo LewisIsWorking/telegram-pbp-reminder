@@ -87,6 +87,21 @@ def send_photo(chat_id: int, thread_id: int | None, jpeg: bytes, text: str, post
     return r.status_code == 200
 
 
+def whose_map(config: dict, state: dict, pid: str, uid: str, gm_ids, asked: str) -> tuple[str, str]:
+    """(character to look through, "") or ("", why not). A player sees ONLY their own character (Lewis, 2026-11-18:
+    "Only their own"); a GM may name anyone."""
+    import helpers
+    asked = asked.strip()
+    if str(uid) in {str(g) for g in gm_ids or []}:
+        return (asked, "") if asked else ("", "🗺️ Whose view? Use /map Name, e.g. /map Zerius.")
+    own = helpers.character_name(config, pid, uid, state)
+    if not own:
+        return "", "🗺️ I don't know your character in this campaign yet. Ask a GM to set it with /setchar."
+    if asked and asked.lower() not in own.lower():
+        return "", f"🗺️ You can only see through your own character, {html.escape(own)}. Use /map on its own."
+    return own, ""
+
+
 def post_map(config: dict, pid: str, code: str, wanted: str, group_id: int, reply_topic: int,
              scene=fetch_scene, fetch=None, send=send_photo, quiet: bool = False) -> bool:
     """Draw and post the map to the campaign's combat topic (else where it was asked). False when there is none.
