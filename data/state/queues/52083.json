@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 190148,
-      "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-14T13:46:02+00:00",
-      "preview": "Rune keeps track of the on-going conversations as best as he can, nodding his head in affirmation whenever he's addressed for his part of the job. He was just about to go set his rifle off to the side, hidden from normal view when Livy started waving her hands wildly. Having seen this type of thing a few times in the more recent past, since he left his home, he was used to it. Sighing he gave the one sign even an idiot knows, an ok.",
-      "media_group_id": null
-    },
-    {
       "message_id": 190150,
       "thread_id": 52083,
       "user_id": "138025700",
@@ -495,7 +486,9 @@
     "msg:189923",
     "2026-11-13 13:43:06",
     "msg:190136",
-    "2026-11-14 11:06:33"
+    "2026-11-14 11:06:33",
+    "msg:190148",
+    "2026-11-14 13:46:02"
   ],
   "reply_log": [
     {
@@ -2662,17 +2655,26 @@
       "player": "Terra",
       "preview": "Lai nods and watches the drones, carefully",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T21:37:22+00:00",
+      "pid": "52083",
+      "msg_id": "190148",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "Rune keeps track of the on-going conversations as best as he can, nodding his he",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-14 13:46:02|2026-11-14 14:05:19",
+      "fingerprint": "2026-11-14 14:05:19",
       "msg_ids": [
-        190727
+        190734
       ],
-      "last_posted_at": "2026-11-18T21:29:43.053558+00:00",
+      "last_posted_at": "2026-11-18T21:37:28.884602+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-14T10:30:09.037611+00:00"
     },
@@ -2691,7 +2693,6 @@
     }
   },
   "probed": {
-    "190148": "2026-11-18T18:28:26.665554+00:00",
     "190150": "2026-11-18T18:28:26.665554+00:00"
   }
 }
