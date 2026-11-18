@@ -131,16 +131,6 @@
       "last_post_time": "2026-11-18T05:16:18+00:00",
       "last_warned_week": 0
     },
-    "51357:6144366145": {
-      "user_id": "6144366145",
-      "first_name": "Anthony",
-      "last_name": "NegetZ",
-      "username": "MrNegetZ",
-      "campaign_name": "Grand Explorers",
-      "pbp_topic_id": "51357",
-      "last_post_time": "2026-10-21T12:34:31+00:00",
-      "last_warned_week": 3
-    },
     "25059:8255519522": {
       "user_id": "8255519522",
       "first_name": "Theaitetos",
@@ -660,6 +650,12 @@
       "first_name": "Horia",
       "username": "Nemesiux",
       "campaign_name": "Hopeful End-Times"
+    },
+    "51357:6144366145": {
+      "removed_at": "2026-11-18T12:43:17.165588+00:00",
+      "first_name": "Anthony",
+      "username": "MrNegetZ",
+      "campaign_name": "Grand Explorers"
     }
   },
   "player_registry": {
@@ -2264,6 +2260,14 @@
       "name": "Alastair",
       "username": "altan19931993",
       "at": "2026-11-18T05:28:33.107534+00:00"
+    },
+    {
+      "event": "leave",
+      "pid": "51357",
+      "user_id": "6144366145",
+      "name": "Anthony",
+      "username": "MrNegetZ",
+      "at": "2026-11-18T12:43:17.619446+00:00"
     }
   ],
   "player_boons": {
@@ -3417,6 +3421,10 @@
     ],
     [
       "2026-11-18T12:20:57.972008+00:00",
+      14
+    ],
+    [
+      "2026-11-18T12:43:17.165588+00:00",
       14
     ]
   ]
