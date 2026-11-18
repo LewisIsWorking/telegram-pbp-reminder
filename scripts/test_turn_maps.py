@@ -42,4 +42,5 @@ def test_a_token_named_exactly_is_seen_through_alone():
     view = {"tokens": [{"id": "a", "name": "Kibwe the Bold", "party": True}, {"id": "b", "name": "Ana the Red", "party": True}],
             "combat": {"order": []}}
     assert [t["id"] for t in viewers_of(view, "Kibwe the Bold")] == ["a"]
-    assert {t["id"] for t in viewers_of(view, "the")} == {"a", "b"}, "a partial name still matches as before"
+    assert len(viewers_of(view, "the")) == 1, "a loose name is still ONE character, never a group"
+    assert [t["id"] for t in viewers_of(view, "Ana Red")] == ["b"], "the most words matched wins"

@@ -68,7 +68,7 @@ def make_fetch(get=requests.get):
 
 def caption(code: str, view: dict, wanted: str) -> str:
     combat = view.get("combat")
-    whose = f"what {html.escape(wanted.strip())} can see" if wanted.strip() else "what the party can see"
+    whose = f"what {html.escape(wanted.strip())} can see"
     when = f", round {combat['round']}" if combat and combat.get("round") else ""
     return f"🗺️ <b>{html.escape(code)}</b>: {html.escape(view['scene']['name'])}{when}\nShowing {whose}."
 
@@ -102,8 +102,12 @@ def post_map(config: dict, pid: str, code: str, wanted: str, group_id: int, repl
         return False
     # 🧭 2026-11-18: /map works outside a fight too, answered where it was asked; a fight's map goes to its combat topic.
     topic = (pair.get("combat_topic_id") if view.get("combat") else None) or reply_topic
-    # One character's map (Lewis: one character's view) never falls back to the party's: say so instead.
-    if wanted.strip() and not named_on(view, wanted):
+    # Always one character's view, never the party's (Lewis, 2026-11-18): no name, or one not on the map, is said instead.
+    if not wanted.strip():
+        if not quiet:
+            tg.send_message(group_id, reply_topic, "🗺️ Whose view? Use /map Name, e.g. /map Zerius.")
+        return False
+    if not named_on(view, wanted):
         if not quiet:
             tg.send_message(group_id, reply_topic, f"🗺️ No party character called {wanted.strip()} is on {code}'s map.")
         return False

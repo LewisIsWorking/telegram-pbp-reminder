@@ -71,12 +71,15 @@ def handle(ctx: dict) -> bool:
         handle_search(query, gid, reply, tg)
         return True
 
-    # 🗺️ The battle map as the party sees it, from Foundry (2026-11-18). "/map Zerius" shows Zerius's view only.
+    # 🗺️ The battle map from Foundry (2026-11-18), always ONE character's view (Lewis: "You should never see the
+    #    party's view with these commands"). "/map Zerius" is Zerius's; a plain /map is the caller's own character.
     if cmd == "/map":
         from combat.map_view import post_map
         pair = next((p for p in config.get("topic_pairs", []) if str(p["pbp_topic_ids"][0]) == pid), {})
         raw = ctx["parsed"].get("raw_text") or ctx["text"]
-        post_map(config, pid, pair.get("code", ""), raw[4:].strip(), gid, reply)
+        import helpers
+        wanted = raw[4:].strip() or helpers.character_name(config, pid, uid, state) or ""
+        post_map(config, pid, pair.get("code", ""), wanted, gid, reply)
         return True
 
     if cmd == "/registry":

@@ -57,10 +57,12 @@ def viewers_of(view: dict, wanted: str = "") -> list:
         # match every token with "the" in its name.
         exact = [t for t in party if (t.get("name") or "").strip().lower() == wanted.strip().lower()]
         if exact:
-            return exact
+            return exact[:1]
         rx = re.compile("|".join(re.escape(w) for w in wanted.split()), re.I)
-        named = [t for t in party if rx.search(t.get("name") or "")]
-        return named or in_fight or party
+        # ONE character, never a group (2026-11-18: never the party's view): the best match, most words matched first.
+        named = sorted((t for t in party if rx.search(t.get("name") or "")),
+                       key=lambda t: -len(rx.findall(t.get("name") or "")))
+        return named[:1] or in_fight or party
     return in_fight or party
 
 

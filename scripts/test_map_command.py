@@ -143,13 +143,13 @@ CONFIG = {"group_id": -100, "topic_pairs": [
 
 def test_the_map_goes_to_the_combat_topic_with_scene_and_round():
     sent = []
-    ok = map_view.post_map(CONFIG, "40585", "C06", "", -100, 21528, scene=lambda code: (_view(), ""),
+    ok = map_view.post_map(CONFIG, "40585", "C06", "Zerius", -100, 21528, scene=lambda code: (_view(), ""),
                            fetch=lambda src: None, send=lambda *a: sent.append(a) or True)
     assert ok
     group, topic, jpeg, text = sent[0]
     assert (group, topic) == (-100, 137075)
     assert jpeg[:2] == b"\xff\xd8"
-    assert "C06 | Temple" in text and "round 3" in text and "what the party can see" in text
+    assert "C06 | Temple" in text and "round 3" in text and "what Zerius can see" in text
 
 
 def test_no_map_is_said_in_chat_not_posted_silently():
@@ -175,3 +175,24 @@ def test_a_character_not_on_the_map_is_said_never_swapped_for_the_party():
                            send=lambda *a: (_ for _ in ()).throw(AssertionError("must not post the party's view")))
     assert not ok
     assert any("No party character called Nobody" in m.get("text", "") for m in _sent_messages)
+
+
+def test_no_name_is_asked_for_never_the_partys_view():
+    _sent_messages.clear()
+    ok = map_view.post_map(CONFIG, "40585", "C06", "", -100, 21528, scene=lambda code: (_view(), ""),
+                           send=lambda *a: (_ for _ in ()).throw(AssertionError("must not post the party's view")))
+    assert not ok
+    assert any("Whose view?" in m.get("text", "") for m in _sent_messages)
+
+
+def test_a_plain_map_is_the_callers_own_character(monkeypatch):
+    from dispatch import cmd_info_ext
+    calls = []
+    monkeypatch.setattr(map_view, "post_map", lambda config, pid, code, wanted, gid, reply: calls.append(wanted) or True)
+    config = {"group_id": -100, "topic_pairs": [{"code": "C06", "pbp_topic_ids": [40585], "characters": {"9": "Kibwe"}}]}
+    ctx = {"cmd_word": "/map", "group_id": -100, "reply_topic": 1, "pid": "40585", "campaign_name": "C06", "user_id": "9",
+           "user_name": "P", "state": {}, "config": config, "gm_ids": [], "parsed": {"raw_text": "/map"}, "text": "/map"}
+    assert cmd_info_ext.handle(ctx)
+    ctx["parsed"]["raw_text"] = "/map Zerius"
+    cmd_info_ext.handle(ctx)
+    assert calls == ["Kibwe", "Zerius"]

@@ -26,7 +26,7 @@ EVERYONE_COMMANDS = [
     ("whosturn", "Who hasn't acted in combat"),
     ("combatlog", "Combat round history"),
     # 🗺️ Moved from the GM list 2026-11-18: any player whose token is on the map may look.
-    ("map", "Battle map: what the party sees (/map Name for one character)"),
+    ("map", "Battle map, as your character sees it (/map Name for another)"),
     ("catchup", "What happened since you left"),
     ("recap", "Recent transcript entries"),
     ("summary", "Campaign summary dashboard"),
