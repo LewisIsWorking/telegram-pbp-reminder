@@ -108,6 +108,9 @@ def handle_addplayer(pid: str, campaign_name: str, raw_args: str,
                 del state["removed_players"][rkey]
                 break
 
+    from commands.player_registry import get_or_assign_id
+    get_or_assign_id(pid, placeholder_id, display_name, False, state)
+
     tg.send_message(group_id, thread_id,
                     f"\u2705 {display_name} (@{username}) added to {campaign_name} roster.\n"
                     f"Their tracking will update with full stats when they first post.")
