@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 190507,
-      "thread_id": 66154,
-      "user_id": "5443237599",
-      "user_name": "Horia",
-      "time": "2026-11-17T20:50:25+00:00",
-      "preview": "Necrila tilts her head as if his response seems childish to her. She grabs her cloak of heads and stares at the imp.\n\n\"My father spent six months in Cheliax. He has dealt with your kind before. He befriended some of your kind and devoured those who lied to him. Should you ever seek to harm his children, he will punish you by turning you into a Void Fiend They are the most malicious of our kind to the point that, the divine has made sure few know their name.\n\nIf it is a contract with this void sh",
-      "media_group_id": null
-    },
-    {
       "message_id": 190559,
       "thread_id": 66154,
       "user_id": "1358791105",
@@ -347,7 +338,9 @@
     "msg:189617",
     "2026-11-11 04:06:53",
     "msg:190493",
-    "2026-11-17 20:17:45"
+    "2026-11-17 20:17:45",
+    "msg:190507",
+    "2026-11-17 20:50:25"
   ],
   "reply_log": [
     {
@@ -1846,24 +1839,32 @@
       "player": "Horia",
       "preview": "Necrila's eyes flash for a second with a grey flame-like effect before returning",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T22:52:19+00:00",
+      "pid": "66154",
+      "msg_id": "190507",
+      "thread_id": 66154,
+      "player": "Horia",
+      "preview": "Necrila tilts her head as if his response seems childish to her. She grabs her c",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-17 20:50:25|2026-11-18 04:58:31",
+      "fingerprint": "2026-11-18 04:58:31",
       "msg_ids": [
-        190762
+        190770
       ],
-      "last_posted_at": "2026-11-18T22:47:22.455138+00:00",
+      "last_posted_at": "2026-11-18T22:53:48.521167+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
     }
   },
   "probed": {
-    "190507": "2026-11-18T21:45:09.457447+00:00",
     "190559": "2026-11-18T17:43:20.494332+00:00"
   }
 }
