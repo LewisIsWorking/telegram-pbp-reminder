@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 190571,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-18T05:15:30+00:00",
-      "preview": "Actions:\n\n1. Raise the Walls (Exemplar class action) on Fierce Leopard (@PathWars Apply the status effect to that PC)\n2. Tandem Movement (Zerius 30 ft south, Little Dread 35 ft south)\n3. Stride (Zerius 25 ft south)",
-      "media_group_id": null
-    },
-    {
       "message_id": 190572,
       "thread_id": 40585,
       "user_id": "1358791105",
@@ -1258,7 +1249,9 @@
     "msg:189457",
     "2026-11-10 16:23:08",
     "msg:189560",
-    "2026-11-11 01:16:17"
+    "2026-11-11 01:16:17",
+    "msg:190571",
+    "2026-11-18 05:15:30"
   ],
   "reply_log": [
     {
@@ -6991,20 +6984,27 @@
       "player": "Anthony",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T12:57:57+00:00",
+      "pid": "40585",
+      "msg_id": "190571",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "Actions:\n\n1. Raise the Walls (Exemplar class action) on Fierce Leopard (@PathWar",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-11-18 05:15:30",
-      "msg_ids": [
-        190577
-      ],
-      "last_posted_at": "2026-11-18T05:20:58.653218+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 190634,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-11-18T13:13:23.966446+00:00"
     },
     "40585": {
       "fingerprint": "2026-11-18 05:16:18",
@@ -7017,7 +7017,6 @@
     }
   },
   "probed": {
-    "190571": "2026-11-18T11:43:20.746882+00:00",
     "190572": "2026-11-18T11:43:20.746882+00:00"
   }
 }
