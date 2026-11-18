@@ -37,7 +37,7 @@ def fetch_scene(code: str, get=requests.get, env=os.environ) -> tuple[dict | Non
         print(f"/map: server unreachable ({type(e).__name__})")
         return None, "The server did not answer, so there is no map right now."
     if r.status_code == 404:
-        return None, f"{code} has no Foundry map to show."
+        return None, f"{code} has no active Foundry scene to show."
     if r.status_code != 200:
         print(f"/map: server answered {r.status_code}")
         return None, "The server could not read the map right now."
@@ -124,7 +124,7 @@ def post_map(config: dict, pid: str, code: str, wanted: str, group_id: int, repl
         return False
     if not named_on(view, wanted):
         if not quiet:
-            tg.send_message(group_id, reply_topic, f"🗺️ No party character called {wanted.strip()} is on {code}'s map.")
+            tg.send_message(group_id, reply_topic, f"🗺️ {wanted.strip()} has no token on {code}'s active scene, so there is no map to show.")
         return False
     try:
         jpeg = draw_map(view, fetch or make_fetch(), wanted)

@@ -18,7 +18,7 @@ def test_a_character_not_on_the_map_is_said_never_swapped_for_the_party():
     ok = map_view.post_map(CONFIG, "40585", "C06", "Nobody", -100, 21528, scene=lambda code: (_view(), ""),
                            send=lambda *a: (_ for _ in ()).throw(AssertionError("must not post the party's view")))
     assert not ok
-    assert any("No party character called Nobody" in m.get("text", "") for m in _sent_messages)
+    assert any("Nobody has no token on C06's active scene" in m.get("text", "") for m in _sent_messages)
 
 
 def test_no_name_is_asked_for_never_the_partys_view():

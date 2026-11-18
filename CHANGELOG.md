@@ -26,7 +26,9 @@ map is as of the bot's last run.
 to the combat topic and showing only what their own token can see. One per
 player per round, within half an hour of the turn.
 
-**/map works outside a fight too**, answered where you asked. A name not
+**/map works outside a fight too**, answered where you asked. It only
+ever shows the scene active in Foundry, and only if your character's token
+is on it. A name not
 on the map is said, and the map is never the whole party's view.
 
 **/map is in everyone's command menu and /help now**, not only the GMs'.

@@ -129,7 +129,7 @@ def test_fetch_scene_reads_the_campaigns_view_with_the_bots_key():
 
 
 def test_fetch_scene_says_why_there_is_no_map():
-    assert map_view.fetch_scene("C06", get=lambda *a, **k: _Resp(404), env=ENV)[1] == "C06 has no Foundry map to show."
+    assert map_view.fetch_scene("C06", get=lambda *a, **k: _Resp(404), env=ENV)[1] == "C06 has no active Foundry scene to show."
     assert "key" in map_view.fetch_scene("C06", env={})[1]
 
     def down(*a, **k):
