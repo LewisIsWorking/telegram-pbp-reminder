@@ -1,16 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 190559,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-18T04:58:31+00:00",
-      "preview": "Rin lowers his head. \"I'm sorry, I'll try to do better next time,\" he apologises.\n\nThe shadow crosses his arms, still angled.",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -340,7 +330,9 @@
     "msg:190493",
     "2026-11-17 20:17:45",
     "msg:190507",
-    "2026-11-17 20:50:25"
+    "2026-11-17 20:50:25",
+    "msg:190559",
+    "2026-11-18 04:58:31"
   ],
   "reply_log": [
     {
@@ -1848,20 +1840,27 @@
       "player": "Horia",
       "preview": "Necrila tilts her head as if his response seems childish to her. She grabs her c",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T23:01:26+00:00",
+      "pid": "66154",
+      "msg_id": "190559",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin lowers his head. \"I'm sorry, I'll try to do better next time,\" he apologises",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-18 04:58:31",
-      "msg_ids": [
-        190770
-      ],
-      "last_posted_at": "2026-11-18T22:53:48.521167+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 190778,
       "pending_delete": [],
-      "caught_up_at": "2026-09-29T13:13:24.298123+00:00"
+      "caught_up_at": "2026-11-18T23:02:12.458558+00:00"
     }
   },
   "probed": {
