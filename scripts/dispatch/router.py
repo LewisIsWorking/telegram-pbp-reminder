@@ -54,6 +54,8 @@ _READ_CMDS = frozenset({
     # test_every_command_is_reachable.py fails if a command reaches some
     # of those registries and not the rest.
     "/recruitads", "/recruityield", "/recruitposted", "/recruitjoined",
+    # 🗺️ 2026-11-18: the battle map (combat/map_view.py). It posts to the combat topic itself.
+    "/map",
 })
 
 

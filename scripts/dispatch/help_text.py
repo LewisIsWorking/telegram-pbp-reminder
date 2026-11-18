@@ -22,6 +22,7 @@ _HELP_TEXT = (
     "/round <N> <players|enemies> - Set specific round and phase\n"
     "/next - Advance to next phase (players→enemies→next round)\n"
     "/endcombat - End combat (shows log summary)\n"
+    "/map - Battle map from Foundry, as the party sees it (/map Name: one view)\n"
     "/enemies [list] - View or set enemy roster\n"
     "/clog <event> - Add combat log entry\n"
     "/pause [reason] - Pause inactivity tracking (planned breaks)\n"

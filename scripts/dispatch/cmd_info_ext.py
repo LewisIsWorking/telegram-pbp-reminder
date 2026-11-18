@@ -71,6 +71,14 @@ def handle(ctx: dict) -> bool:
         handle_search(query, gid, reply, tg)
         return True
 
+    # 🗺️ The battle map as the party sees it, from Foundry (2026-11-18). "/map Zerius" shows Zerius's view only.
+    if cmd == "/map":
+        from combat.map_view import post_map
+        pair = next((p for p in config.get("topic_pairs", []) if str(p["pbp_topic_ids"][0]) == pid), {})
+        raw = ctx["parsed"].get("raw_text") or ctx["text"]
+        post_map(config, pid, pair.get("code", ""), raw[4:].strip(), gid, reply)
+        return True
+
     if cmd == "/registry":
         from commands.player_registry import build_registry
         tg.send_message(gid, reply, build_registry(pid, name, config, state))

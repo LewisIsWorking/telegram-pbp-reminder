@@ -97,6 +97,7 @@ GM_COMMANDS = [
     ("next", "Advance combat phase"),
     ("endcombat", "End combat tracking"),
     ("enemies", "Set enemy roster"),
+    ("map", "Battle map: what the party sees (/map Name for one)"),
     ("clock", "Create a progress clock"),
     ("tick", "Advance a clock"),
     ("untick", "Reverse a clock tick"),
