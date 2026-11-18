@@ -16,6 +16,24 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
+    },
+    {
+      "message_id": 190571,
+      "thread_id": 137075,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-11-18T05:15:30+00:00",
+      "preview": "Actions:\n\n1. Raise the Walls (Exemplar class action) on Fierce Leopard (@PathWars Apply the status effect to that PC)\n2. Tandem Movement (Zerius 30 ft south, Little Dread 35 ft south)\n3. Stride (Zerius 25 ft south)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 190572,
+      "thread_id": 40585,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-11-18T05:16:18+00:00",
+      "preview": "Zerius and his little bulette eidolon move forward, taking their spots near the dwarf, setting up flanking attempts from others.",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6979,22 +6997,27 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-11-18 05:15:30",
+      "msg_ids": [
+        190577
+      ],
+      "last_posted_at": "2026-11-18T05:20:58.653218+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
     },
     "40585": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
+      "fingerprint": "2026-11-18 05:16:18",
+      "msg_ids": [
+        190579
+      ],
+      "last_posted_at": "2026-11-18T05:21:00.638527+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
   },
   "probed": {
-    "189560": "2026-11-11T01:43:19.899220+00:00"
+    "190571": "2026-11-18T05:20:55.034162+00:00",
+    "190572": "2026-11-18T05:20:55.034162+00:00"
   }
 }
