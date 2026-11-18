@@ -196,7 +196,6 @@
       "2026-10-21T12:57:53.050309+00:00"
     ],
     "40585": [
-      "2026-04-13T17:27:18.282187+00:00",
       "2026-04-13T17:27:18.284902+00:00",
       "2026-04-13T18:29:01.040220+00:00",
       "2026-04-13T18:29:01.042587+00:00",
@@ -695,7 +694,8 @@
       "2026-11-11T00:04:47.839865+00:00",
       "2026-11-11T00:52:20.980883+00:00",
       "2026-11-11T00:52:20.988532+00:00",
-      "2026-11-11T02:03:15.019975+00:00"
+      "2026-11-11T02:03:15.019975+00:00",
+      "2026-11-18T13:13:23.950718+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -1661,7 +1661,10 @@
       "2026-11-11T09:43:19.345880+00:00",
       "2026-11-13T03:20:04.853366+00:00",
       "2026-11-13T03:20:04.856965+00:00",
-      "2026-11-14T10:30:09.034431+00:00"
+      "2026-11-14T10:30:09.034431+00:00",
+      "2026-11-17T20:13:29.680829+00:00",
+      "2026-11-18T20:53:36.607344+00:00",
+      "2026-11-18T21:21:54.037652+00:00"
     ],
     "52083": [
       "2026-03-24T10:19:47.990308+00:00",
@@ -1895,7 +1898,10 @@
       "2026-11-07T14:20:21.047212+00:00",
       "2026-11-14T10:13:19.123740+00:00",
       "2026-11-14T10:13:19.143988+00:00",
-      "2026-11-14T10:30:09.029517+00:00"
+      "2026-11-14T10:30:09.029517+00:00",
+      "2026-11-18T21:29:38.102592+00:00",
+      "2026-11-18T21:37:23.502737+00:00",
+      "2026-11-18T21:38:33.695475+00:00"
     ],
     "1242": [
       "2026-03-31T01:36:15.010934+00:00",
@@ -2074,55 +2080,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-09-19T14:15:22.808734+00:00",
-      "player": "Ryo",
-      "preview": "He spits in her direction as he holsters his gun.\n\n\"Always d",
-      "msg_id": "180236"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-19T15:15:18.979052+00:00",
-      "player": "Volf",
-      "preview": "Rex unimpressed by his last performance . Attempts to shoot ",
-      "msg_id": "180235"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-19T15:15:18.985305+00:00",
-      "player": "Volf",
-      "preview": "Rex attempts to fire more bolts at the spider. However he mi",
-      "msg_id": "180234"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-09-19T22:30:16.715717+00:00",
-      "player": "Volf",
-      "preview": "Oh I didn't know we have any",
-      "msg_id": "180454"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-09-20T07:45:22.504530+00:00",
-      "player": "Buffet",
-      "preview": "[media]",
-      "msg_id": "180302"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-09-22T00:15:22.032132+00:00",
-      "player": "Alastair",
-      "preview": "\"Uh... hi,\" Zerius waves awkwardly with his sword hand. Litt",
-      "msg_id": "180343"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-09-22T02:15:19.566073+00:00",
-      "player": "Ryo",
-      "preview": "[media]",
-      "msg_id": "180074"
-    },
     {
       "pid": "52083",
       "time": "2026-09-22T04:15:20.492611+00:00",
@@ -3473,6 +3430,55 @@
       "player": "Laetheron",
       "preview": "\"Well, I'd guess not serving food would save on costs. Certa",
       "msg_id": "190379"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-11-17T20:13:29.680829+00:00",
+      "player": "Horia",
+      "preview": "Necrila responds \"My father will reach Magnimar in due time.",
+      "msg_id": "189179"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-11-18T13:13:23.950718+00:00",
+      "player": "Alastair",
+      "preview": "Actions:\n\n1. Raise the Walls (Exemplar class action) on Fier",
+      "msg_id": "190571"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-11-18T20:53:36.607344+00:00",
+      "player": "Loren",
+      "preview": "o'",
+      "msg_id": "189616"
+    },
+    {
+      "pid": "66154",
+      "time": "2026-11-18T21:21:54.037652+00:00",
+      "player": "Loren",
+      "preview": "Miracle Max glances at the untouched glass, then up at Jorri",
+      "msg_id": "189617"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-11-18T21:29:38.102592+00:00",
+      "player": "Terra",
+      "preview": "Lai nods and watches the drones, carefully",
+      "msg_id": "190136"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-11-18T21:37:23.502737+00:00",
+      "player": "Ryo",
+      "preview": "Rune keeps track of the on-going conversations as best as he",
+      "msg_id": "190148"
+    },
+    {
+      "pid": "52083",
+      "time": "2026-11-18T21:38:33.695475+00:00",
+      "player": "Ryo",
+      "preview": "Going back to what he was doing he set his rifle in a safe s",
+      "msg_id": "190150"
     }
   ],
   "pending_potw_boons": {},
