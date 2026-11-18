@@ -25,6 +25,8 @@ EVERYONE_COMMANDS = [
     ("party", "Party roster and activity"),
     ("whosturn", "Who hasn't acted in combat"),
     ("combatlog", "Combat round history"),
+    # 🗺️ Moved from the GM list 2026-11-18: any player whose token is on the map may look.
+    ("map", "Battle map: what the party sees (/map Name for one character)"),
     ("catchup", "What happened since you left"),
     ("recap", "Recent transcript entries"),
     ("summary", "Campaign summary dashboard"),
@@ -97,7 +99,6 @@ GM_COMMANDS = [
     ("next", "Advance combat phase"),
     ("endcombat", "End combat tracking"),
     ("enemies", "Set enemy roster"),
-    ("map", "Battle map: what the party sees (/map Name for one)"),
     ("clock", "Create a progress clock"),
     ("tick", "Advance a clock"),
     ("untick", "Reverse a clock tick"),

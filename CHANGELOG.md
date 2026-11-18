@@ -30,6 +30,8 @@ player per round, within half an hour of the turn.
 only what that character can see. A name not on the map is said, never
 swapped for the whole party's view.
 
+**/map is in everyone's command menu and /help now**, not only the GMs'.
+
 ## [4.82.3] - 2026-11-17
 
 ### Changed
