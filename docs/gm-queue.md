@@ -70,6 +70,29 @@ Age: 🟢<6h 🟡1d 🟠2d 🔴3d 🟣5d 🔵7d 🟤14d ⚫30d+
 - **15-word previews** - enough context to recognise the message
 - **Pinned** - latest queue post is always pinned in the bot topic
 
+### Silent campaigns are in the age order (2026-11-19)
+
+A silent campaign (no message in any of its RP topics for 5 days or more) is a
+section of the body, ranked by age alongside the campaigns owed a reply:
+
+```
+━━ 🛡 C04: Magni Guard (1) ━━ @PathWars
+01 [178096] 🟥 8d 5h. Mira: Do we take the north gate? 🔗 https://t.me/...
+━━ 💤 🗺 C05: Grand Explorers (silent) 👥 4/6 ━━ @PathWars
+  🟧 no posts for 6d 3h 🔗 https://t.me/Path_Wars/...
+━━ 🎲 C00: Riddleport (1) ━━ @PathWars
+02 [177600] 🟩 2d 0h. Bram: I'll check the docks. 🔗 https://t.me/...
+```
+
+- Its age is the time since its last post; a waiting campaign's is how long
+  its oldest unreplied post has waited. The longer one goes higher.
+- `queue_priority` rank still comes first for both, so a prioritised silent
+  campaign jumps the age queue like a prioritised campaign with a reply owed.
+- A campaign with no recorded post goes last in its rank tier.
+- It takes no position number, so `/markdone N` is unaffected.
+- The old separate "💤 Silent campaigns" section is gone. See
+  `scheduled/queue_silent_body.py`.
+
 ## Viewing the queue
 
 `/queue` - posts the full queue sorted by:
@@ -352,6 +375,11 @@ Selection rule (`scheduled/queue_focus.py`):
 3. Between prioritised campaigns, lower rank number wins first, then age.
    So C10 (rank 1) beats C01/C06 (rank 2) whenever C10 is waiting, and when
    C10 is caught up the rank-2 pair take over.
+4. A campaign with nothing unreplied becomes "🎯 Post here next" when it has
+   gone longer without a post than the winning reply has waited. A silent one
+   (5 days or more) also keeps its `queue_priority` rank, so it competes on
+   exactly the same footing as a campaign owed a reply (2026-11-19). See
+   `scheduled/queue_idle_focus.py`.
 
 The follow-up is appended to the queue's own message batch, so it is deleted
 together with that queue on the next post. That is deliberate: a focus message
