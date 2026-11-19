@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 import helpers
 from commands.queue_format import format_queue_line
 from scheduled.queue_player_count import pair_for_pid, player_count_tag
+from scheduled.queue_silent_body import silent_section_lines
 
 AGE_LEGEND = ("Age: 🆕<1h 🌱6h 🌿12h 🌳1d 🟢2d 🟩3d 🟡4d 🟨5d 🟠6d 🟧7d "
               "🔴8d 🟥9d 🟣10d 🟪11d 🔵12d 🟦13d 🟤14d 🟫15d ⚫16d ⬛17d "
@@ -120,15 +121,25 @@ def _gm_mentions(config: dict, state: dict, pid: str) -> str:
 
 def build_body_lines(config: dict, state: dict, scanned: dict,
                      sorted_pids: list, priority_pids: set,
-                     momentum_map: dict, now) -> list:
-    """One section per campaign with unreplied entries, in ``sorted_pids`` order.
+                     momentum_map: dict, now, silent: dict | None = None) -> list:
+    """One section per campaign in ``sorted_pids`` order.
+
+    A pid found in ``silent`` (pid -> silent row) is a silent campaign and
+    gets the short section from ``queue_silent_body``; every other pid is a
+    campaign with unreplied entries. See ``queue_silent_body.queue_order``.
 
     Entry numbering runs across the whole body rather than restarting per
     campaign, because ``/markdone N`` takes that number.
     """
+    silent = silent or {}
     lines = []
     entry_num = 1
     for pid in sorted_pids:
+        if pid in silent:
+            pin = "📌 " if pid in priority_pids else ""
+            lines.extend(silent_section_lines(silent[pid], pin,
+                                              _gm_mentions(config, state, pid)))
+            continue
         data = scanned[pid]
         entries = data["entries"]
         name = data["campaign"]

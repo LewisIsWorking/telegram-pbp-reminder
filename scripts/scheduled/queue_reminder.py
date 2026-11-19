@@ -13,6 +13,7 @@ from scheduled.queue_silence import (
     silent_rows, silent_lines_for, silent_ids, caught_up_campaigns,
     campaign_age_lines,
 )
+from scheduled.queue_silent_body import queue_order
 from scheduled.gm_queue_history import post_and_persist, retry_evictions
 from scheduled.queue_caught_up import post_caught_up as _post_caught_up
 from scheduled.queue_followup import build_followup, followup_messages
@@ -119,6 +120,8 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         return (priority_map.get(pid, NO_PRIORITY), oldest)
 
     sorted_pids = sorted(scanned.keys(), key=sort_key)
+    # Silent campaigns share the body's age order. See queue_silent_body.
+    body_pids = queue_order(scanned, rows, priority_map, now)
     streak = build_streak(state, now)
     summary = build_summary(scanned, sorted_pids)
     momentum_map = build_momentum_map(state, config)
@@ -133,11 +136,10 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
         lines = [build_header(queue_num, total, streak, summary),
                  checked_line(now), next_check_line(now)]
         lines.extend(rate_lines(config, state, total, now))
-        lines.extend(build_body_lines(config, state, scanned, sorted_pids,
-                                      priority_pids, momentum_map, now))
-        if silent_lines:
-            lines.append("━━ 💤 Silent campaigns ━━")
-            lines.extend(silent_lines)
+        # Silent campaigns are body sections now, not a section of their own.
+        lines.extend(build_body_lines(config, state, scanned, body_pids,
+                                      priority_pids, momentum_map, now,
+                                      silent={r.pid: r for r in rows}))
         # Caught-up campaigns (no unreplied entries, posted recently). Kept OUT
         # of the fingerprint: their ages tick every hour, so including them
         # would re-post the queue continuously. Moving in/out of caught-up
