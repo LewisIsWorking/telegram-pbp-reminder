@@ -9,6 +9,15 @@
       "time": "2026-11-18T12:05:17+00:00",
       "preview": "Zels frowns as he seems lost in thought for a moment before speaking up.\n\n\"What time was the reservation made for anyways? 'cause these guys sure as hell were late getting here.\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 190875,
+      "thread_id": 107171,
+      "user_id": "8701042661",
+      "user_name": "Diabla \"Bella\" Alzarin",
+      "time": "2026-11-19T15:12:08+00:00",
+      "preview": "\"Iii have no idea. I also have no idea what time it /is/ here. .\"\n\"It's just as likely that the sun is gone cause it's night, and that the sun is gone cause this place doesn't have one.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2728,11 +2737,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-18 12:05:17",
+      "fingerprint": "2026-11-18 12:05:17|2026-11-19 15:12:08",
       "msg_ids": [
-        190615
+        190876
       ],
-      "last_posted_at": "2026-11-18T12:13:23.934538+00:00",
+      "last_posted_at": "2026-11-19T15:13:24.520106+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-17T19:12:38.059209+00:00"
@@ -2747,6 +2756,7 @@
     }
   },
   "probed": {
-    "190613": "2026-11-19T12:43:23.621968+00:00"
+    "190613": "2026-11-19T12:43:23.621968+00:00",
+    "190875": "2026-11-19T15:13:17.747213+00:00"
   }
 }
