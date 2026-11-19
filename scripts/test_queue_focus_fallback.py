@@ -108,7 +108,7 @@ class TestTheClearedQueueStillPoints:
         # It is a "go here next" instruction, so it belongs after the
         # listing it draws its conclusion from.
         combined = "\n".join(_post({}, _state()))
-        assert combined.index("Oldest campaign") > combined.index("Silent campaigns")
+        assert combined.index("Oldest campaign") > combined.index("C05: Grand Explorers (silent)")
 
     def test_the_longest_idle_campaign_wins_not_the_first_listed(self):
         # ⚠️ C09 is listed first in config. Ranking must be by idle time.
