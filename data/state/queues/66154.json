@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 190791,
+      "thread_id": 66154,
+      "user_id": "7437909735",
+      "user_name": "Loren",
+      "time": "2026-11-18T23:56:17+00:00",
+      "preview": "Miracle Max looks down at Jorrik's outstretched palm, then fishes a silver piece from his purse and places it in the waiting hand.\n\n\"Well, I can't fault a man for charging for his services. Information is a valuable commodity, after all.\"\n\nHe gives his backpack a fond pat.\n\n\"Medicine, indeed. Remedies, tonics, experimental concoctions. A little something for whatever happens to ail you. You'd be surprised what a good potion can do. Sometimes even the mostly dead can make a comeback.\"\n\nHis eyes d",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1855,15 +1865,17 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 190778,
+      "fingerprint": "2026-11-18 23:56:17",
+      "msg_ids": [
+        190799
+      ],
+      "last_posted_at": "2026-11-19T00:13:25.461282+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-18T23:02:12.458558+00:00"
     }
   },
   "probed": {
-    "190559": "2026-11-18T17:43:20.494332+00:00"
+    "190791": "2026-11-19T00:13:23.577353+00:00"
   }
 }

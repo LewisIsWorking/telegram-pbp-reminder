@@ -1,6 +1,16 @@
 {
   "pid": "52083",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 190792,
+      "thread_id": 52083,
+      "user_id": "8097377199",
+      "user_name": "Terra",
+      "time": "2026-11-18T23:56:26+00:00",
+      "preview": "\"If we are moving we should move now the door is out of sight from the drones, and move inconspicuously\"",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:52083",
     "msg:137496",
@@ -2671,10 +2681,12 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 190742,
+      "fingerprint": "2026-11-18 23:56:26",
+      "msg_ids": [
+        190801
+      ],
+      "last_posted_at": "2026-11-19T00:13:29.744140+00:00",
+      "caught_up_msg_id": null,
       "caught_up_at": "2026-11-18T21:38:33.695673+00:00"
     },
     "145045": {
@@ -2692,6 +2704,6 @@
     }
   },
   "probed": {
-    "190150": "2026-11-18T18:28:26.665554+00:00"
+    "190792": "2026-11-19T00:13:23.577353+00:00"
   }
 }
