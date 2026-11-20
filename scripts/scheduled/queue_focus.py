@@ -129,10 +129,15 @@ def focus_parts(config: dict, scanned: dict, priority_map: dict,
     The focus message before it is joined, so a caller can tell whether the
     priority pick and the oldest post waiting are in the same campaign.
     """
+    # 💤 Silent campaigns compete for "Oldest waiting" too (Lewis, 2026-11-20).
+    silent = []
+    if state is not None:
+        from scheduled.queue_silence import silent_rows
+        silent = silent_rows(config, state, scanned, now)
     first = pick_always_first(config, state, scanned, now)
     if first:
         return (always_first_message(first), first.pid,
-                oldest_waiting_lines(config, scanned, now))
+                oldest_waiting_lines(config, scanned, now, silent=silent, focus_pid=first.pid))
     pid = pick_focus_pid(scanned, priority_map)
     if not pid:
         return "", None, []
@@ -141,7 +146,7 @@ def focus_parts(config: dict, scanned: dict, priority_map: dict,
         return (idle_focus_message(row, scanned, pid, now,
                                    on_rank=won_on_rank(row, priority_map)),
                 row.pid,
-                oldest_waiting_lines(config, scanned, now))
+                oldest_waiting_lines(config, scanned, now, silent=silent, focus_pid=row.pid))
 
     data = scanned[pid]
     entry = _oldest_entry(data["entries"])
@@ -162,4 +167,4 @@ def focus_parts(config: dict, scanned: dict, priority_map: dict,
     if link:
         lines.append(f"🔗 {link}")
     return ("\n".join(lines), pid,
-            oldest_waiting_lines(config, scanned, now, focus_entry=entry))
+            oldest_waiting_lines(config, scanned, now, focus_entry=entry, silent=silent))
