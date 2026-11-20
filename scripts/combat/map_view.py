@@ -70,7 +70,11 @@ def caption(code: str, view: dict, wanted: str) -> str:
     combat = view.get("combat")
     whose = f"what {html.escape(wanted.strip())} can see"
     when = f", round {combat['round']}" if combat and combat.get("round") else ""
-    return f"🗺️ <b>{html.escape(code)}</b>: {html.escape(view['scene']['name'])}{when}\nShowing {whose}."
+    scene = view["scene"]["name"]
+    prefix = f"{code} |"  # Foundry scenes are named "C06 | 10/The Sun Temple"; do not say C06 twice (2026-11-20)
+    if scene.upper().startswith(prefix.upper()):
+        scene = scene[len(prefix):].strip()
+    return f"🗺️ <b>{html.escape(code)}</b>: {html.escape(scene)}{when}\nShowing {whose}."
 
 
 def send_photo(chat_id: int, thread_id: int | None, jpeg: bytes, text: str, post=requests.post,
