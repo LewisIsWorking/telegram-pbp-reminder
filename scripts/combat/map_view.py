@@ -73,10 +73,13 @@ def caption(code: str, view: dict, wanted: str) -> str:
     return f"🗺️ <b>{html.escape(code)}</b>: {html.escape(view['scene']['name'])}{when}\nShowing {whose}."
 
 
-def send_photo(chat_id: int, thread_id: int | None, jpeg: bytes, text: str, post=requests.post) -> bool:
+def send_photo(chat_id: int, thread_id: int | None, jpeg: bytes, text: str, post=requests.post,
+               reply_to: int | None = None) -> bool:
     data = {"chat_id": chat_id, "caption": text, "parse_mode": "HTML"}
     if thread_id is not None:
         data["message_thread_id"] = thread_id
+    if reply_to:  # 2026-11-20: post-map.yml can answer a player's message (a screenshot, say)
+        data["reply_to_message_id"] = reply_to
     try:
         r = post(f"{tg.TELEGRAM_API}/sendPhoto", data=data, files={"photo": ("map.jpg", jpeg, "image/jpeg")}, timeout=60)
     except requests.RequestException as e:
