@@ -11,6 +11,14 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.84.2] - 2026-11-20
+
+### Fixed
+
+**/map draws only what that character can see.** Allies behind their vision
+cone, or out of their sight, are no longer drawn on the map.
+Tests: `test_map_hides_out_of_cone.py`.
+
 ## [4.84.1] - 2026-11-20
 
 ### Fixed
