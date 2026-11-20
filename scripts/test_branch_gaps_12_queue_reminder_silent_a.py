@@ -68,7 +68,7 @@ def _mention_config():
 # ─── queue_reminder silent section integration ────────────────────────────────
 
 def test_queue_reminder_appends_silent_section():
-    """Silent campaigns are appended at the bottom of the GM queue message."""
+    """Silent campaigns are listed in the GM queue body (2026-11-19)."""
     from scheduled.queue_reminder import post_queue_reminder
     now = datetime(2026, 4, 15, 10, 0, tzinfo=timezone.utc)
     t = (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M:%S")
@@ -100,7 +100,7 @@ def test_queue_reminder_appends_silent_section():
          patch("scheduled.queue_reminder.tg.unpin_message"):
         post_queue_reminder(config, state, now=now)
     combined = "\n".join(sent_texts)
-    assert "Silent campaigns" in combined
+    assert "C08: Silent (silent)" in combined
     assert "C08: Silent" in combined
     assert "no posts for 12d" in combined
 
@@ -170,7 +170,7 @@ def test_queue_reminder_posts_when_only_silent():
          patch("scheduled.queue_reminder.tg.unpin_message"):
         post_queue_reminder(config, state, now=now)
     combined = "\n".join(sent_texts)
-    assert "Silent campaigns" in combined
+    assert "C08: Silent (silent)" in combined
     assert "C08: Silent" in combined
 
 def test_queue_reminder_silent_included_in_fingerprint():

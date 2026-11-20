@@ -2,30 +2,21 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 190136,
+      "message_id": 190792,
       "thread_id": 52083,
       "user_id": "8097377199",
       "user_name": "Terra",
-      "time": "2026-11-14T11:06:33+00:00",
-      "preview": "Lai nods and watches the drones, carefully",
+      "time": "2026-11-18T23:56:26+00:00",
+      "preview": "\"If we are moving we should move now the door is out of sight from the drones, and move inconspicuously\"",
       "media_group_id": null
     },
     {
-      "message_id": 190148,
+      "message_id": 191050,
       "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-14T13:46:02+00:00",
-      "preview": "Rune keeps track of the on-going conversations as best as he can, nodding his head in affirmation whenever he's addressed for his part of the job. He was just about to go set his rifle off to the side, hidden from normal view when Livy started waving her hands wildly. Having seen this type of thing a few times in the more recent past, since he left his home, he was used to it. Sighing he gave the one sign even an idiot knows, an ok.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190150,
-      "thread_id": 52083,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-14T14:05:19+00:00",
-      "preview": "Going back to what he was doing he set his rifle in a safe space and pulled out his pass. He looks to Nikk-Nakk then the others and nods his head, ready to move in and get the others inside.",
+      "user_id": "8583905719",
+      "user_name": "Salaezar",
+      "time": "2026-11-20T02:33:30+00:00",
+      "preview": "The group is approached by a human in his late 20's whose eyes seem to show the passage of time and experience more time than his body. His hair is black and a little unkempt but is stand out feature is piercing green eyes. He had a large rifle slung across his back and is wearing a harness with neatly stowed toolkits for what looks like several different jobs. You notice he avoids looking at Vesk for to long and his eyes change from anger to calm several times before he looks away. He says in a",
       "media_group_id": null
     }
   ],
@@ -502,7 +493,13 @@
     "msg:189922",
     "2026-11-13 13:39:56",
     "msg:189923",
-    "2026-11-13 13:43:06"
+    "2026-11-13 13:43:06",
+    "msg:190136",
+    "2026-11-14 11:06:33",
+    "msg:190148",
+    "2026-11-14 13:46:02",
+    "msg:190150",
+    "2026-11-14 14:05:19"
   ],
   "reply_log": [
     {
@@ -2660,19 +2657,46 @@
       "player": "Anthony",
       "preview": "Livy's then going to do some hand signals/sign language towards Rune ( @RyoYamak",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-18T21:27:47+00:00",
+      "pid": "52083",
+      "msg_id": "190136",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "Lai nods and watches the drones, carefully",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-18T21:37:22+00:00",
+      "pid": "52083",
+      "msg_id": "190148",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "Rune keeps track of the on-going conversations as best as he can, nodding his he",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-18T21:37:38+00:00",
+      "pid": "52083",
+      "msg_id": "190150",
+      "thread_id": 52083,
+      "player": "Ryo",
+      "preview": "Going back to what he was doing he set his rifle in a safe space and pulled out ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-14 11:06:33|2026-11-14 13:46:02|2026-11-14 14:05:19",
+      "fingerprint": "2026-11-18 23:56:26|2026-11-20 02:33:30",
       "msg_ids": [
-        190416
+        191052
       ],
-      "last_posted_at": "2026-11-17T14:43:33.875606+00:00",
+      "last_posted_at": "2026-11-20T02:34:00.557871+00:00",
       "caught_up_msg_id": null,
-      "caught_up_at": "2026-11-14T10:30:09.037611+00:00"
+      "caught_up_at": "2026-11-18T21:38:33.695673+00:00"
     },
     "145045": {
       "msg_ids": [],
@@ -2689,8 +2713,7 @@
     }
   },
   "probed": {
-    "190136": "2026-11-18T10:13:28.685734+00:00",
-    "190148": "2026-11-18T12:20:57.972008+00:00",
-    "190150": "2026-11-18T12:20:57.972008+00:00"
+    "190792": "2026-11-20T13:13:29.625948+00:00",
+    "191050": "2026-11-20T08:43:22.990524+00:00"
   }
 }

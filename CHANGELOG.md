@@ -11,7 +11,7 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [4.83.0] - 2026-11-18
+## [4.84.0] - 2026-11-20
 
 ### Added
 
@@ -32,6 +32,18 @@ is on it. A name not
 on the map is said, and the map is never the whole party's view.
 
 **/map is in everyone's command menu and /help now**, not only the GMs'.
+
+## [4.83.0] - 2026-11-19
+
+### Changed
+
+**Silent campaigns now sit in the GM queue in age order.** A campaign with no
+posts for 5 days or more used to be listed in its own section under the queue.
+It now takes its place among the campaigns waiting for a reply, ranked by how
+long it has been silent against how long their oldest post has waited.
+Prioritised campaigns still go first, and a silent campaign can be picked as
+the next one to post in on the same terms as a reply.
+Tests: `test_silent_in_chronological_queue.py`.
 
 ## [4.82.3] - 2026-11-17
 

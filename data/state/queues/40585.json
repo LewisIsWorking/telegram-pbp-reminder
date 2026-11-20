@@ -25,6 +25,15 @@
       "time": "2026-11-18T05:16:18+00:00",
       "preview": "Zerius and his little bulette eidolon move forward, taking their spots near the dwarf, setting up flanking attempts from others.",
       "media_group_id": null
+    },
+    {
+      "message_id": 191007,
+      "thread_id": 137075,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-11-20T01:00:09+00:00",
+      "preview": "[media]",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -6999,24 +7008,27 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 190634,
+      "fingerprint": "2026-11-20 01:00:09",
+      "msg_ids": [
+        191010
+      ],
+      "last_posted_at": "2026-11-20T01:13:22.149686+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-18T13:13:23.966446+00:00"
     },
     "40585": {
       "fingerprint": "2026-11-18 05:16:18",
       "msg_ids": [
-        190579
+        190891
       ],
-      "last_posted_at": "2026-11-18T05:21:00.638527+00:00",
+      "last_posted_at": "2026-11-19T17:43:22.128887+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": null
     }
   },
   "probed": {
-    "190572": "2026-11-18T11:43:20.746882+00:00"
+    "190572": "2026-11-20T13:13:29.625948+00:00",
+    "191007": "2026-11-20T07:43:24.066149+00:00"
   }
 }
