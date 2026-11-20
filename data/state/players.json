@@ -340,6 +340,16 @@
       "pbp_topic_id": "107171",
       "last_post_time": "2026-11-20T02:48:37+00:00",
       "last_warned_week": 0
+    },
+    "76799:8353586922": {
+      "user_id": "8353586922",
+      "first_name": "Chase",
+      "last_name": "Darkthorne",
+      "username": "ChaseDarkthorne",
+      "campaign_name": "Magni Guard",
+      "pbp_topic_id": "76799",
+      "last_post_time": "2026-11-20T07:57:29+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -672,12 +682,6 @@
       "first_name": "Anthony",
       "username": "MrNegetZ",
       "campaign_name": "Riddleport"
-    },
-    "76799:8353586922": {
-      "removed_at": "2026-11-09T18:43:24.736250+00:00",
-      "first_name": "Chase",
-      "username": "ChaseDarkthorne",
-      "campaign_name": "Magni Guard"
     },
     "51357:138025700": {
       "removed_at": "2026-11-10T05:37:05.079167+00:00",
@@ -1016,7 +1020,7 @@
       },
       "8353586922": {
         "id": 2,
-        "name": "Chase Darkthorne",
+        "name": "Chase",
         "joined": "2026-03-29T00:31:35.507919+00:00"
       },
       "7863964681": {
@@ -2434,6 +2438,14 @@
       "name": "Salaezar",
       "username": "Salaezar_PW",
       "at": "2026-11-20T03:10:40.824549+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "76799",
+      "user_id": "8353586922",
+      "name": "Chase",
+      "username": "ChaseDarkthorne",
+      "at": "2026-11-20T08:13:20.485690+00:00"
     }
   ],
   "player_boons": {
@@ -3114,14 +3126,6 @@
   },
   "gm_queue_size_log": [
     [
-      "2026-11-18T07:43:25.198471+00:00",
-      13
-    ],
-    [
-      "2026-11-18T08:13:18.380102+00:00",
-      13
-    ],
-    [
       "2026-11-18T08:43:24.431937+00:00",
       13
     ],
@@ -3640,6 +3644,10 @@
     [
       "2026-11-20T07:43:24.066149+00:00",
       25
+    ],
+    [
+      "2026-11-20T08:13:21.954752+00:00",
+      26
     ]
   ]
 }
