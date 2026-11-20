@@ -320,6 +320,16 @@
       "pbp_topic_id": "76799",
       "last_post_time": "2026-11-20T02:15:30+00:00",
       "last_warned_week": 0
+    },
+    "52083:8583905719": {
+      "user_id": "8583905719",
+      "first_name": "Salaezar",
+      "last_name": "",
+      "username": "Salaezar_PW",
+      "campaign_name": "Hopeful End-Times",
+      "pbp_topic_id": "52083",
+      "last_post_time": "2026-11-20T02:33:30+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -842,6 +852,11 @@
         "id": 9,
         "name": "Paul Rowan",
         "joined": "2026-08-26T14:51:13.144999+00:00"
+      },
+      "8583905719": {
+        "id": 10,
+        "name": "Salaezar",
+        "joined": "2026-11-20T02:33:54.646647+00:00"
       }
     },
     "25059": {
@@ -2388,6 +2403,14 @@
       "name": "Salaezar",
       "username": "Salaezar_PW",
       "at": "2026-11-20T02:21:09.245453+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "52083",
+      "user_id": "8583905719",
+      "name": "Salaezar",
+      "username": "Salaezar_PW",
+      "at": "2026-11-20T02:33:54.120496+00:00"
     }
   ],
   "player_boons": {
@@ -3594,6 +3617,10 @@
     [
       "2026-11-20T02:28:53.087988+00:00",
       23
+    ],
+    [
+      "2026-11-20T02:33:54.646717+00:00",
+      24
     ]
   ]
 }

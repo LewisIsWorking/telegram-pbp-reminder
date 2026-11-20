@@ -9,6 +9,15 @@
       "time": "2026-11-18T23:56:26+00:00",
       "preview": "\"If we are moving we should move now the door is out of sight from the drones, and move inconspicuously\"",
       "media_group_id": null
+    },
+    {
+      "message_id": 191050,
+      "thread_id": 52083,
+      "user_id": "8583905719",
+      "user_name": "Salaezar",
+      "time": "2026-11-20T02:33:30+00:00",
+      "preview": "The group is approached by a human in his late 20's whose eyes seem to show the passage of time and experience more time than his body. His hair is black and a little unkempt but is stand out feature is piercing green eyes. He had a large rifle slung across his back and is wearing a harness with neatly stowed toolkits for what looks like several different jobs. You notice he avoids looking at Vesk for to long and his eyes change from anger to calm several times before he looks away. He says in a",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2681,11 +2690,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-18 23:56:26",
+      "fingerprint": "2026-11-18 23:56:26|2026-11-20 02:33:30",
       "msg_ids": [
-        190801
+        191052
       ],
-      "last_posted_at": "2026-11-19T00:13:29.744140+00:00",
+      "last_posted_at": "2026-11-20T02:34:00.557871+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-18T21:38:33.695673+00:00"
     },
@@ -2704,6 +2713,7 @@
     }
   },
   "probed": {
-    "190792": "2026-11-20T00:43:26.846533+00:00"
+    "190792": "2026-11-20T00:43:26.846533+00:00",
+    "191050": "2026-11-20T02:33:54.646717+00:00"
   }
 }
