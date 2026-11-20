@@ -11,6 +11,31 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.85.0] - 2026-11-20
+
+### Changed
+
+**/map crops itself to what the character can see.** The map no longer
+fills half the picture with black: it shows what is in sight, plus one
+square around it. Tests: `test_map_auto_crop.py`.
+
+## [4.84.2] - 2026-11-20
+
+### Fixed
+
+**/map draws only what that character can see.** Allies behind their vision
+cone, or out of their sight, are no longer drawn on the map.
+Tests: `test_map_hides_out_of_cone.py`.
+
+## [4.84.1] - 2026-11-20
+
+### Fixed
+
+**The GM queue's "Oldest waiting" line now counts silent campaigns.** A
+campaign with no posts for 5 days or more has waited since its last post,
+so when that is longer than every unreplied post, it is the one named.
+Tests: `test_oldest_waiting_silent.py`.
+
 ## [4.84.0] - 2026-11-20
 
 ### Added

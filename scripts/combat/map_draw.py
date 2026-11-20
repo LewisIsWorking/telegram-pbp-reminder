@@ -108,7 +108,17 @@ def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int
     img = _background(view, fetch, (x0, y0, x1, y1))
     mask = vision_mask(view, viewers, img.size, (x0 + pad_x, y0 + pad_y))
     img = Image.composite(img, Image.new("RGBA", img.size, DARK), mask)
-    tokens = [t for t in view["tokens"] if t.get("party") or _sees(mask, t, -pad_x - x0, -pad_y - y0, g)]
+    # ✂️ 2026-11-20: crop to what the viewer can see, one square of edge kept, so the map is not half black.
+    #    Lewis: "auto crop, that should be built in as a feature". The token's own square is always in the mask.
+    box = mask.getbbox()
+    if box:
+        cx0, cy0 = max(0, (box[0] // g - 1) * g), max(0, (box[1] // g - 1) * g)
+        cx1, cy1 = min(x1 - x0, -(-box[2] // g + 1) * g), min(y1 - y0, -(-box[3] // g + 1) * g)
+        img, mask = img.crop((cx0, cy0, cx1, cy1)), mask.crop((cx0, cy0, cx1, cy1))
+        x0, y0, x1, y1 = x0 + cx0, y0 + cy0, x0 + cx1, y0 + cy1
+    # 🙈 2026-11-20: only the viewer and what the viewer sees. Party tokens used to be drawn always, even behind the
+    #    viewer's cone; Lewis: "I wouldn't show tokens outside of his cone".
+    tokens = [t for t in view["tokens"] if t in viewers or _sees(mask, t, -pad_x - x0, -pad_y - y0, g)]
     draw = ImageDraw.Draw(img, "RGBA")
     for x in range(0, x1 - x0 + 1, g):
         draw.line([(x, 0), (x, y1 - y0)], fill=(0, 0, 0, 90), width=1)
