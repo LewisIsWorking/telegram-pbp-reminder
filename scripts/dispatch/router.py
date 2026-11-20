@@ -109,6 +109,12 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                 process_reaction(update, config, state, maps)
                 continue
 
+            # 🚪 2026-11-20: a player left the group; tell the campaigns they play in (players/left_notice.py).
+            if update.get("chat_member") or (msg and msg.get("left_chat_member")):
+                from players.left_notice import on_telegram_leave
+                on_telegram_leave(update, config, state)
+                continue
+
             if not msg:
                 continue
 

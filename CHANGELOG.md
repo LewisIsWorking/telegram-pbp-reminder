@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.86.0] - 2026-11-20
+
+### Added
+
+**When a player leaves the Telegram group, each campaign they play in is told in its chat, with the new player count.**
+
 ## [4.85.2] - 2026-11-20
 
 ### Fixed
