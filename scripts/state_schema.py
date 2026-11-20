@@ -100,7 +100,7 @@ PARTITIONS: dict[str, list[str]] = {
         "recruit_count_since",
     ],
     "players": [
-        "players", "removed_players", "player_registry", "player_history",
+        "players", "removed_players", "left_notices", "player_registry", "player_history",
         "player_boons", "mvp_wins", "characters", "away",
         # /available - player-entered data that was being discarded.
         "availability",
@@ -143,7 +143,7 @@ PARTITIONS: dict[str, list[str]] = {
 
 DEFAULT_STATE: dict = {
     "offset": 0, "topics": {}, "last_alerts": {}, "players": {},
-    "removed_players": {}, "player_history": [], "message_counts": {}, "last_roster": {},
+    "removed_players": {}, "left_notices": {}, "player_history": [], "message_counts": {}, "last_roster": {},
     "post_timestamps": {}, "last_potw": {}, "last_pace": {},
     "last_anniversary": {}, "combat": {}, "combat_maps": {}, "pending_potw_boons": {},
     "pending_hero_points": {},
