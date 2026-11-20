@@ -11,6 +11,28 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.84.0] - 2026-11-20
+
+### Added
+
+**/map posts the battle map from Foundry to your campaign's combat topic.**
+It shows only what your own character can see (GMs can name any
+character with /map Name): walls block sight, darkness limits it, each token sees
+only in front of it (its vision cone), and creatures out of sight are not
+drawn. Columns and rows are labelled, so a post can say "move to AG76". The
+map is as of the bot's last run.
+
+**In a Foundry fight, each player gets a map once their turn ends**, posted
+to the combat topic and showing only what their own token can see. One per
+player per round, within half an hour of the turn.
+
+**/map works outside a fight too**, answered where you asked. It only
+ever shows the scene active in Foundry, and only if your character's token
+is on it. A name not
+on the map is said, and the map is never the whole party's view.
+
+**/map is in everyone's command menu and /help now**, not only the GMs'.
+
 ## [4.83.0] - 2026-11-19
 
 ### Changed

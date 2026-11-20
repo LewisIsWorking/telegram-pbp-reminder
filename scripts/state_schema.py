@@ -17,7 +17,7 @@ now guarded by ``test_state_keys_are_declared``.
 PARTITIONS: dict[str, list[str]] = {
     "live": [
         "offset", "topics", "last_alerts", "last_roster", "last_potw",
-        "last_pace", "last_anniversary", "combat", "last_leaderboard",
+        "last_pace", "last_anniversary", "combat", "combat_maps", "last_leaderboard",
         "last_roster_nudge", "last_roster_snapshot", "gm_escalation",
         "last_recruitment_check", "last_archived_week", "celebrated_streaks",
         "celebrated_milestones", "last_weekly_digest", "last_daily_tip",
@@ -145,7 +145,7 @@ DEFAULT_STATE: dict = {
     "offset": 0, "topics": {}, "last_alerts": {}, "players": {},
     "removed_players": {}, "player_history": [], "message_counts": {}, "last_roster": {},
     "post_timestamps": {}, "last_potw": {}, "last_pace": {},
-    "last_anniversary": {}, "combat": {}, "pending_potw_boons": {},
+    "last_anniversary": {}, "combat": {}, "combat_maps": {}, "pending_potw_boons": {},
     "pending_hero_points": {},
     "last_leaderboard": None, "last_recruitment_check": {}, "last_roster_nudge": None, "last_roster_snapshot": None, "gm_escalation": {},
     # Trackers (written by in-game commands)

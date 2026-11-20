@@ -78,7 +78,7 @@ jobs:
       - name: Install dependencies
         # pyyaml is for test_workflow_cannot_post_from_a_pr.py, which
         # parses this file and asserts the job conditions.
-        run: pip install requests pytest pytest-cov tzdata pyyaml
+        run: pip install requests pytest pytest-cov tzdata pyyaml pillow
 
       # ⛔⛔ THE REAL TOKEN IS DELIBERATELY NOT HERE. Split from the
       # alert step on 2026-09-04, after the suite posted 14 fixture-filled
@@ -190,7 +190,7 @@ jobs:
           python-version: '3.14'
 
       - name: Install dependencies
-        run: pip install requests pytest pytest-cov tzdata
+        run: pip install requests pytest pytest-cov tzdata pillow
 
       # Pause posting when state is not reaching the remote (2026-08-19).
       # On 2026-08-18 `main` gained branch protection, the commit step
@@ -309,7 +309,7 @@ jobs:
           python-version: '3.14'
 
       - name: Install dependencies
-        run: pip install requests tzdata
+        run: pip install requests tzdata pillow
 
       # Same gate as the full run. This job is the one that posted the
       # four duplicate "Unreplied: 1" notices on 2026-08-19, so leaving it
