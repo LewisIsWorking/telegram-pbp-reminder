@@ -1,0 +1,35 @@
+# 🗺️ Post one character's battle map on request (2026-11-20). A /map sent through the say endpoint is never seen
+# (Telegram does not deliver a bot's own messages back to it), so Claude or Lewis runs this instead:
+#   gh workflow run post-map.yml -f code=C06 -f name=Kibwe
+# Same post as a GM's /map Name: one character's view, to the campaign's combat topic. Writes no state.
+name: Post a map
+
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'Campaign code, e.g. C06'
+        required: true
+      name:
+        description: 'Whose view (one character, never the party), e.g. Kibwe'
+        required: true
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Install dependencies
+        run: pip install requests tzdata pillow
+      - name: Post the map
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          PATHWARS_BOT_READ_KEY: ${{ secrets.PATHWARS_BOT_READ_KEY }}
+          MAP_CODE: ${{ inputs.code }}
+          MAP_NAME: ${{ inputs.name }}
+        run: cd scripts && python -m combat.post_map_once "$MAP_CODE" "$MAP_NAME"
