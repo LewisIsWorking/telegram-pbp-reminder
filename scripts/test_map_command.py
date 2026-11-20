@@ -150,7 +150,7 @@ def test_the_map_goes_to_the_combat_topic_with_scene_and_round():
     group, topic, jpeg, text = sent[0]
     assert (group, topic) == (-100, 137075)
     assert jpeg[:2] == b"\xff\xd8"
-    assert "C06 | Temple" in text and "round 3" in text and "what Zerius can see" in text
+    assert "<b>C06</b>: Temple, round 3" in text and "round 3" in text and "what Zerius can see" in text
 
 
 def test_no_map_is_said_in_chat_not_posted_silently():

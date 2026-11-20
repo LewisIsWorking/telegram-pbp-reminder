@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.85.2] - 2026-11-20
+
+### Fixed
+
+**Map captions name the campaign once.**
+
 ## [4.85.1] - 2026-11-20
 
 ### Changed
