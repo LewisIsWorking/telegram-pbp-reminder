@@ -11,6 +11,14 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.85.0] - 2026-11-20
+
+### Changed
+
+**/map crops itself to what the character can see.** The map no longer
+fills half the picture with black: it shows what is in sight, plus one
+square around it. Tests: `test_map_auto_crop.py`.
+
 ## [4.84.2] - 2026-11-20
 
 ### Fixed
