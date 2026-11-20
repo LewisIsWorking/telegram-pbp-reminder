@@ -11,6 +11,15 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.84.1] - 2026-11-20
+
+### Fixed
+
+**The GM queue's "Oldest waiting" line now counts silent campaigns.** A
+campaign with no posts for 5 days or more has waited since its last post,
+so when that is longer than every unreplied post, it is the one named.
+Tests: `test_oldest_waiting_silent.py`.
+
 ## [4.84.0] - 2026-11-20
 
 ### Added

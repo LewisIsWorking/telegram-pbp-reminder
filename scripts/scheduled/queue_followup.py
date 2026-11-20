@@ -48,7 +48,7 @@ whole batch is reposted, deleting the old one with it. Nothing is orphaned.
 from datetime import datetime
 
 from scheduled.queue_focus import build_focus_message, focus_parts
-from scheduled.queue_oldest_waiting import pick_oldest_waiting
+from scheduled.queue_oldest_waiting import pick_oldest_any
 from scheduled.queue_silence import oldest_campaign_line
 
 
@@ -80,7 +80,8 @@ def followup_messages(config: dict, state: dict, scanned: dict,
     pick, pick_pid, oldest = focus_parts(config, scanned, priority_map, now,
                                          state=state)
     if pick and oldest:
-        waiting = pick_oldest_waiting(scanned)
+        from scheduled.queue_silence import silent_rows
+        waiting = pick_oldest_any(scanned, silent_rows(config, state, scanned, now), now)
         if waiting is not None and waiting[0] != pick_pid:
             return [pick, "\n".join(oldest)]
     text = build_followup(config, state, scanned, priority_map, now)
