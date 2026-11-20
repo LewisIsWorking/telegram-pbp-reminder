@@ -23,7 +23,8 @@ def fetch_updates(api_base: str, offset: int) -> list:
                 "allowed_updates": json.dumps(
                     ["message", "edited_message", "callback_query",
                      "message_reaction",
-                     "poll_answer", "poll"]
+                     "poll_answer", "poll",
+                     "chat_member"]  # 🚪 leaves (players/left_notice.py); needs the bot to be an admin
                 ),
             },
             timeout=30,
