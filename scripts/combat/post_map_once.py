@@ -71,5 +71,8 @@ if __name__ == "__main__":  # pragma: no cover
     a.add_argument("--reply-to", type=int, default=0)
     a.add_argument("--text", default="")
     x = a.parse_args()
+    import os
+    import telegram as tg
+    tg.init(os.environ.get("TELEGRAM_BOT_TOKEN", ""))  # checker.py does this; without it sendPhoto has no URL
     sys.exit(0 if run(load_config(), x.mode, x.code, x.name, x.expect, x.reply_to, x.text.replace("\\n", "\n"),
                       out="../map.jpg") else 1)
