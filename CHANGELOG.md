@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.85.1] - 2026-11-20
+
+### Changed
+
+**Turn-end maps are paused for now.** /map still works when you ask for it.
+
 ## [4.85.0] - 2026-11-20
 
 ### Changed
