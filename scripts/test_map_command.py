@@ -54,12 +54,13 @@ def _jpeg_pixel(jpeg, xy):
     return Image.open(io.BytesIO(jpeg)).convert("RGB").getpixel(xy)
 
 
-def test_the_map_is_dark_behind_the_wall_and_lit_in_front():
+def test_the_map_is_lit_in_front_of_the_wall_and_cropped_behind_it():
+    """2026-11-20: behind the wall used to be drawn black; the map is now cropped one square past what is seen."""
+    gutter = Image.open(io.BytesIO(draw_map(_view(), lambda src: None, margin=20, max_side=5000))).width - 20 * G
     jpeg = draw_map(_view(walls=[WALL]), lambda src: None, margin=20, max_side=5000)
-    frame = Image.open(io.BytesIO(jpeg)).width - 20 * G
-    behind = _jpeg_pixel(jpeg, (frame + 17 * G + 20, frame + 2 * G + 20))
-    front = _jpeg_pixel(jpeg, (frame + 4 * G + 20, frame + 2 * G + 20))
-    assert sum(behind) < 60 and sum(front) > 60
+    assert Image.open(io.BytesIO(jpeg)).width == gutter + 11 * G
+    front = _jpeg_pixel(jpeg, (gutter + 4 * G + 20, gutter + 2 * G + 20))
+    assert sum(front) > 60
 
 
 def test_naming_a_token_looks_through_that_token_only():
