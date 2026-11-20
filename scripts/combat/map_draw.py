@@ -108,7 +108,9 @@ def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int
     img = _background(view, fetch, (x0, y0, x1, y1))
     mask = vision_mask(view, viewers, img.size, (x0 + pad_x, y0 + pad_y))
     img = Image.composite(img, Image.new("RGBA", img.size, DARK), mask)
-    tokens = [t for t in view["tokens"] if t.get("party") or _sees(mask, t, -pad_x - x0, -pad_y - y0, g)]
+    # 🙈 2026-11-20: only the viewer and what the viewer sees. Party tokens used to be drawn always, even behind the
+    #    viewer's cone; Lewis: "I wouldn't show tokens outside of his cone".
+    tokens = [t for t in view["tokens"] if t in viewers or _sees(mask, t, -pad_x - x0, -pad_y - y0, g)]
     draw = ImageDraw.Draw(img, "RGBA")
     for x in range(0, x1 - x0 + 1, g):
         draw.line([(x, 0), (x, y1 - y0)], fill=(0, 0, 0, 90), width=1)
