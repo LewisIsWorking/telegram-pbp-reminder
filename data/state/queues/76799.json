@@ -164,15 +164,6 @@
       "media_group_id": null
     },
     {
-      "message_id": 191216,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-11-21T05:38:45+00:00",
-      "preview": "\"Hells. Fine. You holy god-loving folks just keep away from me with your magic, and we'll be square.\"\n\nNadya stands back and gives the newcomers an appraising look.\n\n\nShe turns to Kitt.\n\n\"I'm not really seeing anything promising for substitute negotiators, kid. You want to do the talking or should I?\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 191226,
       "thread_id": 76799,
       "user_id": "7454623139",
@@ -188,6 +179,15 @@
       "user_name": "Joseph",
       "time": "2026-11-21T09:54:56+00:00",
       "preview": "Avelik smiles wide and bright at the advice. A simpleton's chuckle escapes through the hand he brings up to cover his mouth. He clears his throat to fix his attitude.\n\n\"Thank you Nadya. OH! I should introduce myself proper now that I'm here! I'm Avelik Granoborn, archeologist and aspiring investigator. Pleased to meet you all!\"\n\nHis attention is pulled between everyone and each person gets a second of a glance as he speaks. He swivels his head so often while speaking that it threatens to twist o",
+      "media_group_id": null
+    },
+    {
+      "message_id": 191272,
+      "thread_id": 76799,
+      "user_id": "138025700",
+      "user_name": "Ryo",
+      "time": "2026-11-21T11:35:39+00:00",
+      "preview": "Kitt pokes their head up and waves at the new arrivals with a cheerful smile.\n\n\"Hello everyone. Thanks for coming to help! Let me just finish wrapping this guy up so he won't bleed out while we're finishing our work. I'm Kitt by the way, from the Chaplain Unit.\"",
       "media_group_id": null
     }
   ],
@@ -688,7 +688,9 @@
     "msg:190918",
     "2026-11-19 18:46:44",
     "msg:190970",
-    "2026-11-19 21:36:18"
+    "2026-11-19 21:36:18",
+    "msg:191216",
+    "2026-11-21 05:38:45"
   ],
   "reply_log": [
     {
@@ -2972,17 +2974,26 @@
       "player": "Felix",
       "preview": "\"So the kobolds are the hostage takers? Who's the hostage?\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-21T11:43:25.301499+00:00",
+      "pid": "76799",
+      "msg_id": "191216",
+      "thread_id": "76799",
+      "player": "Cannon McMahon",
+      "preview": "\"Hells. Fine. You holy god-loving folks just keep away from me with your magic, ",
+      "via": "markdone"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-17 22:17:09|2026-11-17 23:03:35|2026-11-18 05:21:01|2026-11-18 14:25:23|2026-11-18 14:25:24|2026-11-19 19:46:45|2026-11-19 19:51:25|2026-11-19 20:45:12|2026-11-19 21:20:20|2026-11-19 23:08:54|2026-11-20 00:07:13|2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:38:45|2026-11-21 05:57:27|2026-11-21 09:54:56",
+      "fingerprint": "2026-11-17 22:17:09|2026-11-17 23:03:35|2026-11-18 05:21:01|2026-11-18 14:25:23|2026-11-18 14:25:24|2026-11-19 19:46:45|2026-11-19 19:51:25|2026-11-19 20:45:12|2026-11-19 21:20:20|2026-11-19 23:08:54|2026-11-20 00:07:13|2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39",
       "msg_ids": [
-        191265
+        191274
       ],
-      "last_posted_at": "2026-11-21T10:13:25.647543+00:00",
+      "last_posted_at": "2026-11-21T11:43:34.109617+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3000,12 +3011,12 @@
     "190515": "2026-11-21T06:43:34.068892+00:00",
     "190527": "2026-11-21T07:13:27.894210+00:00",
     "190581": "2026-11-21T08:43:18.828847+00:00",
-    "190639": "2026-11-21T05:13:27.258076+00:00",
-    "190640": "2026-11-21T05:13:27.258076+00:00",
+    "190639": "2026-11-21T11:43:25.301499+00:00",
+    "190640": "2026-11-21T11:43:25.301499+00:00",
     "190938": "2026-11-21T09:43:22.934174+00:00",
     "190940": "2026-11-21T09:43:22.934174+00:00",
     "190952": "2026-11-21T09:43:22.934174+00:00",
-    "190961": "2026-11-21T05:13:27.258076+00:00",
+    "190961": "2026-11-21T11:43:25.301499+00:00",
     "190988": "2026-11-21T06:21:06.883768+00:00",
     "190996": "2026-11-21T07:13:27.894210+00:00",
     "191035": "2026-11-21T09:43:22.934174+00:00",
@@ -3016,8 +3027,8 @@
     "191141": "2026-11-21T09:43:22.934174+00:00",
     "191171": "2026-11-21T08:44:17.002327+00:00",
     "191191": "2026-11-21T09:43:22.934174+00:00",
-    "191216": "2026-11-21T05:43:20.883828+00:00",
     "191226": "2026-11-21T06:13:20.506663+00:00",
-    "191261": "2026-11-21T10:13:19.648761+00:00"
+    "191261": "2026-11-21T10:13:19.648761+00:00",
+    "191272": "2026-11-21T11:43:25.301499+00:00"
   }
 }
