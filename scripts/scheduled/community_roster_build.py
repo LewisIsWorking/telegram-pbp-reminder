@@ -28,6 +28,7 @@ import datetime
 
 from commands.roster_members import _active_players, effective_target
 from helpers_pkg.listing import listed_pairs
+from helpers_pkg.party_size import party_count
 from recruiting.roster_basis import (configured_pids, counts, posted_days_ago)
 from scheduled.recruit_roster_line import mention
 
@@ -71,7 +72,7 @@ def _campaign_block(pair: dict, config: dict, state: dict,
     code = pair.get("code", "")
     label = f"{code}: {pair.get('name', '')}" if code else pair.get("name", "")
     emoji = pair.get("emoji", "")
-    head = f"{emoji + ' ' if emoji else ''}{label} - {len(active)}/{target}"
+    head = f"{emoji + ' ' if emoji else ''}{label} - {party_count(len(active), target)}"
 
     lines = [head]
     lines.append(f"   {_named(active)}" if active else "   (nobody seated)")
