@@ -18,15 +18,6 @@
       "preview": "[media]"
     },
     {
-      "message_id": 190572,
-      "thread_id": 40585,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-18T05:16:18+00:00",
-      "preview": "Zerius and his little bulette eidolon move forward, taking their spots near the dwarf, setting up flanking attempts from others.",
-      "media_group_id": null
-    },
-    {
       "message_id": 191007,
       "thread_id": 137075,
       "user_id": "1358791105",
@@ -1260,7 +1251,9 @@
     "msg:189560",
     "2026-11-11 01:16:17",
     "msg:190571",
-    "2026-11-18 05:15:30"
+    "2026-11-18 05:15:30",
+    "msg:190572",
+    "2026-11-18 05:16:18"
   ],
   "reply_log": [
     {
@@ -7002,6 +6995,15 @@
       "player": "Alastair",
       "preview": "Actions:\n\n1. Raise the Walls (Exemplar class action) on Fierce Leopard (@PathWar",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-22T18:03:26+00:00",
+      "pid": "40585",
+      "msg_id": "190572",
+      "thread_id": 40585,
+      "player": "Alastair",
+      "preview": "Zerius and his little bulette eidolon move forward, taking their spots near the ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
@@ -7018,17 +7020,14 @@
       "caught_up_at": "2026-11-18T13:13:23.966446+00:00"
     },
     "40585": {
-      "fingerprint": "2026-11-18 05:16:18",
-      "msg_ids": [
-        191581
-      ],
-      "last_posted_at": "2026-11-22T18:00:40.349091+00:00",
-      "caught_up_msg_id": null,
-      "caught_up_at": null
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 191621,
+      "caught_up_at": "2026-11-22T18:43:28.582207+00:00"
     }
   },
   "probed": {
-    "190572": "2026-11-22T15:43:27.049647+00:00",
     "191007": "2026-11-22T17:13:26.366353+00:00"
   }
 }

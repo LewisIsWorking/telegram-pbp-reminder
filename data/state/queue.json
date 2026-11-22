@@ -196,7 +196,6 @@
       "2026-10-21T12:57:53.050309+00:00"
     ],
     "40585": [
-      "2026-04-13T17:27:18.284902+00:00",
       "2026-04-13T18:29:01.040220+00:00",
       "2026-04-13T18:29:01.042587+00:00",
       "2026-04-14T06:40:18.037595+00:00",
@@ -695,7 +694,8 @@
       "2026-11-11T00:52:20.980883+00:00",
       "2026-11-11T00:52:20.988532+00:00",
       "2026-11-11T02:03:15.019975+00:00",
-      "2026-11-18T13:13:23.950718+00:00"
+      "2026-11-18T13:13:23.950718+00:00",
+      "2026-11-22T18:43:26.394330+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -2088,13 +2088,6 @@
   "queue_archive": [
     {
       "pid": "66154",
-      "time": "2026-09-22T23:50:17.530640+00:00",
-      "player": "Anthony",
-      "preview": "Filiaur... Is already up. And reading... She manages to keep",
-      "msg_id": "180248"
-    },
-    {
-      "pid": "66154",
       "time": "2026-09-22T23:50:17.534769+00:00",
       "player": "Alastair",
       "preview": "Shadow, doding the an thrown by Tater, with a grumble, slips",
@@ -3485,6 +3478,13 @@
       "player": "Cannon McMahon",
       "preview": "\"Hells. Fine. You holy god-loving folks just keep away from ",
       "msg_id": "191216"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-11-22T18:43:26.394330+00:00",
+      "player": "Alastair",
+      "preview": "Zerius and his little bulette eidolon move forward, taking t",
+      "msg_id": "190572"
     }
   ],
   "pending_potw_boons": {},
