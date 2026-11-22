@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 191007,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-20T01:00:09+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1253,7 +1244,9 @@
     "msg:190571",
     "2026-11-18 05:15:30",
     "msg:190572",
-    "2026-11-18 05:16:18"
+    "2026-11-18 05:16:18",
+    "msg:191007",
+    "2026-11-20 01:00:09"
   ],
   "reply_log": [
     {
@@ -7004,20 +6997,27 @@
       "player": "Alastair",
       "preview": "Zerius and his little bulette eidolon move forward, taking their spots near the ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-22T19:05:28+00:00",
+      "pid": "40585",
+      "msg_id": "191007",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-11-20 01:00:09",
-      "msg_ids": [
-        191281
-      ],
-      "last_posted_at": "2026-11-21T13:13:30.111372+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 191647,
       "pending_delete": [],
-      "caught_up_at": "2026-11-18T13:13:23.966446+00:00"
+      "caught_up_at": "2026-11-22T19:21:28.911363+00:00"
     },
     "40585": {
       "fingerprint": "",
