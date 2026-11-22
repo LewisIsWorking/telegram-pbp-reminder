@@ -24,10 +24,13 @@ from helpers_pkg.groups import group_id_for_campaign, linked_poll_codes, pid_for
 from scheduled.session_poll_build import poll_options_for
 from dispatch.poll_tally import build_tally_block
 from helpers_pkg.routes import route
+from helpers_pkg.gm import gm_mention
 
 
 def _voter_mention(uid: str, name: str, config: dict, state: dict) -> str:
     """Return '@username' if known, else a flagged fallback so missing usernames are visible."""
+    if gm := gm_mention(uid, config):
+        return gm
     for p in state.get("players", {}).values():
         if str(p.get("user_id", "")) == uid:
             u = p.get("username", "")
@@ -133,6 +136,8 @@ def capture_unknown_voter(uid: str, code: str,
                  if p.get("code") == code), None)
     if not pair:
         return
+    if gm_mention(uid, config):
+        return  # the GM is never a roster slot to fill (2026-11-22)
     known = {str(u) for u in pair.get("poll_user_ids", [])}
     # Also treat poll_user_names keys as known
     known |= set(pair.get("poll_user_names", {}).keys())
@@ -171,6 +176,8 @@ def identify_unknown_voter(uid: str, username: str, first_name: str,
     if uid not in bucket:
         return
     state["poll_unknown_voters"][code] = [u for u in bucket if u != uid]
+    if gm_mention(uid, config):
+        return  # a GM captured before 2026-11-22: dropped quietly, never promoted to a player slot
     identified = state.setdefault("poll_identified_voters", {})
     if uid in identified:
         return

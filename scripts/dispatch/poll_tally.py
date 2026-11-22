@@ -9,6 +9,9 @@ voting progress, and the waiting list for each campaign.
 
 def _uid_mention(uid: str, config: dict, state: dict) -> str:
     """Return @username or first name for a voter UID."""
+    from helpers_pkg.gm import gm_mention
+    if gm := gm_mention(uid, config):
+        return gm
     for p in state.get("players", {}).values():
         if str(p.get("user_id", "")) == uid:  # pragma: no cover
             u = p.get("username", "")  # pragma: no cover

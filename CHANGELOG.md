@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.86.1] - 2026-11-22
+
+### Fixed
+
+**The GM's own session poll vote is shown as the GM, not as an unknown voter.**
+
 ## [4.86.0] - 2026-11-20
 
 ### Added
