@@ -58,6 +58,7 @@ _MAX_CFG = {
 _EVENT_DRIVEN = {
     "Topic alerts": "fires when a topic passes alert_after_hours of silence",
     "Player activity": "recomputes from transcripts every run",
+    "GM-wait unsweep": "runs once, on the first run after 4.87.1",
     "Boon expiry": "fires when a pending boon passes its expiry",
     "Roster nudge": "fires when a roster falls below its target",
     "GM escalation": "fires when a queue entry passes the escalation age",

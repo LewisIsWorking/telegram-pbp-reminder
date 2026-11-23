@@ -11,6 +11,14 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.87.1] - 2026-11-23
+
+### Fixed
+
+**Only a GM silence of a week or more comes off a player's inactivity clock** (it was three days, which would have stopped the sweep in any game where the GM posts every few days). The bot now also remembers GM silences from the transcripts, not just the last 15 days.
+
+**Four Grand Explorers players removed while the game waited on the GM are back on the roster.**
+
 ## [4.87.0] - 2026-11-23
 
 ### Changed

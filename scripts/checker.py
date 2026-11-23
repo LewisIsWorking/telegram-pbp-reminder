@@ -18,7 +18,6 @@ from datetime import datetime, timezone
 import helpers
 import telegram as tg
 import state as state_store
-
 from helpers import build_topic_maps
 
 # --- Dispatch ---
@@ -27,6 +26,7 @@ from dispatch.router import process_updates
 # --- Scheduled tasks (used by _run_checks) ---
 from scheduled.tips import post_daily_tip
 from scheduled.alerts import check_and_alert, check_player_activity
+from players.unsweep import restore_gm_wait_sweeps
 from scheduled.reports import post_roster_summary, post_pace_report
 from scheduled.potw import player_of_the_week
 from scheduled.potw_countdown import post_potw_countdown
@@ -85,6 +85,7 @@ def _run_checks(config: dict, bot_state: dict, only: tuple = ()) -> None:
 
     checks = [
         ("Topic alerts", check_and_alert),
+        ("GM-wait unsweep", restore_gm_wait_sweeps),  # one-off, before the sweep (2026-11-23)
         ("Player activity", check_player_activity),
         ("Roster summary", post_roster_summary),
         ("Player of the Week", player_of_the_week),
