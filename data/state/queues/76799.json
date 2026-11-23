@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 191387,
-      "thread_id": 76799,
-      "user_id": "9231217046",
-      "user_name": "Joseph",
-      "time": "2026-11-22T02:59:29+00:00",
-      "preview": "\"OH! Me me! I'm pretty good at getting into places I shouldn't be. Not like the best in the world but pretty good!\"\n\nAgain, the enthusiasm is drowning the subtlety one would expect of a glorified grave robber. Yet the young man's hand is raised with glee all-the-same.\n\nHe stares in awe at B\u00e1yakan and breathes out a 'Woooww,' from seeing him. His manners return and his eyes divert back to the others.\n\n\"I could try to help! I've got some experience breaking locks too; even brought my tools in case",
-      "media_group_id": null
-    },
-    {
       "message_id": 191388,
       "thread_id": 76799,
       "user_id": "9010956720",
@@ -680,7 +671,9 @@
     "msg:191372",
     "2026-11-22 02:19:08",
     "msg:191386",
-    "2026-11-22 02:55:30"
+    "2026-11-22 02:55:30",
+    "msg:191387",
+    "2026-11-22 02:59:29"
   ],
   "reply_log": [
     {
@@ -3252,17 +3245,26 @@
       "player": "Chase",
       "preview": "Flapping up to Kitt's shoulder, B\u00e1yakan lands briefly to join the huddle.\n\nWith ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T06:15:02+00:00",
+      "pid": "76799",
+      "msg_id": "191387",
+      "thread_id": 76799,
+      "player": "Joseph",
+      "preview": "\"OH! Me me! I'm pretty good at getting into places I shouldn't be. Not like the ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22|2026-11-23 05:13:25|2026-11-23 05:14:09|2026-11-23 05:16:08",
+      "fingerprint": "2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22|2026-11-23 05:13:25|2026-11-23 05:14:09|2026-11-23 05:16:08",
       "msg_ids": [
-        192239
+        192245
       ],
-      "last_posted_at": "2026-11-23T06:13:26.739486+00:00",
+      "last_posted_at": "2026-11-23T06:15:46.473909+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3277,7 +3279,6 @@
     }
   },
   "probed": {
-    "191387": "2026-11-23T04:15:00.732815+00:00",
     "191388": "2026-11-23T04:15:00.732815+00:00",
     "191465": "2026-11-23T06:13:21.034706+00:00",
     "191879": "2026-11-23T02:13:24.651833+00:00",
