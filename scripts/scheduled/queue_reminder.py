@@ -9,6 +9,7 @@ from commands.queue_prune import drop_deleted
 from commands.queue_format import NO_PRIORITY, build_priority_map
 from scheduled.due import latest_due_slot
 from scheduled.topic_queue_poster import post_topic_queues
+from scheduled.queue_reactions import sync_queue_reactions
 from scheduled.queue_silence import (
     silent_rows, silent_lines_for, silent_ids, caught_up_campaigns,
     campaign_age_lines,
@@ -34,8 +35,9 @@ def post_queue_reminder(config: dict, state: dict, *, now: datetime | None = Non
     now = now or datetime.now(timezone.utc)
     scanned = drop_deleted(config, state, scan_transcripts(config, state), now)
 
-    # Maintain per-topic pinned queues - always runs, independent of bot-topic posting
+    # Per-topic pinned queues and the 👀/✍ reactions: always run.
     post_topic_queues(config, scanned, now, state=state)
+    sync_queue_reactions(config, state, scanned, now)
 
     # Every run, empty queue included, so "since yesterday" has a reading.
     record_queue_size(state, scanned, now)

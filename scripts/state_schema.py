@@ -35,6 +35,9 @@ PARTITIONS: dict[str, list[str]] = {
         # and repost: the hourly-repost bug back again, with all the unit
         # tests passing because they never save.
         "gm_queue_texts",
+        # 👀/✍ the bot has set on each queued post (scheduled/queue_reactions.py).
+        # Undeclared, every run would re-send every reaction.
+        "queue_reactions",
         # Consecutive quick queue re-checks (scheduled/queue_refire.py). Must be
         # declared: an undeclared key is discarded on save, the chain would
         # never count past 1, and MAX_CHAIN would never stop anything.

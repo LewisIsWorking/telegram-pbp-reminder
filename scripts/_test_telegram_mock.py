@@ -121,5 +121,15 @@ def _mock_delete(chat_id: int, message_id: int) -> bool:
 
 _mock_tg.delete_message = _mock_delete
 
+
+def _mock_raw_post(method: str, payload: dict, label: str = "request",
+                   suppress_errors: tuple = ()) -> bool:
+    """``telegram._post``, called directly by scheduled/queue_reactions.py
+    (setMessageReaction has no wrapper: telegram.py is at its length ratchet)."""
+    return True
+
+
+_mock_tg._post = _mock_raw_post
+
 # Register before any test module is imported
 sys.modules["telegram"] = _mock_tg
