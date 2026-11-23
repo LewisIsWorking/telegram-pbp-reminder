@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.87.2] - 2026-11-23
+
+### Fixed
+
+**Roster counts no longer drop players who are waiting on the GM.** A week or more of GM silence no longer counts against a player's 30-day activity window on the roster, matching the inactivity sweep.
+
 ## [4.87.1] - 2026-11-23
 
 ### Fixed
