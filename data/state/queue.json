@@ -1539,7 +1539,8 @@
       "2026-11-23T04:58:22.203517+00:00",
       "2026-11-23T05:03:54.990937+00:00",
       "2026-11-23T05:03:55.575199+00:00",
-      "2026-11-23T05:03:55.578135+00:00"
+      "2026-11-23T05:03:55.578135+00:00",
+      "2026-11-23T05:12:36.982199+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2116,13 +2117,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-10-03T05:43:16.264896+00:00",
-      "player": "Theaitetos",
-      "preview": "Melody: \"This is exciting, a real adventure!\"",
-      "msg_id": "182346"
-    },
     {
       "pid": "40585",
       "time": "2026-10-03T07:43:27.148923+00:00",
@@ -3515,6 +3509,13 @@
       "player": "Cannon",
       "preview": "\"If someone kept you out of the hells, that puts a lot into ",
       "msg_id": "191300"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T05:12:36.982199+00:00",
+      "player": "Ryo",
+      "preview": "\"Thanks for the offer, but I'm almost done actually. But we ",
+      "msg_id": "191321"
     }
   ],
   "pending_potw_boons": {},

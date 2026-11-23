@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 191321,
-      "thread_id": 76799,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-21T21:50:57+00:00",
-      "preview": "\"Thanks for the offer, but I'm almost done actually. But we will probably need help later. The workers have been surprisingly resourceful in setting up traps in here.\"\n\nKitt wipes their brow causing their eyebrow piercings to lightly rings out as they get tapped by the ring on his hand. They inspect the work before grabbing one last bandage and deftly tying it onto the kobold worker's leg.\n\n\"All done!\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 191347,
       "thread_id": 76799,
       "user_id": "9010956720",
@@ -695,7 +686,9 @@
     "msg:191299",
     "2026-11-21 18:15:02",
     "msg:191300",
-    "2026-11-21 18:26:27"
+    "2026-11-21 18:26:27",
+    "msg:191321",
+    "2026-11-21 21:50:57"
   ],
   "reply_log": [
     {
@@ -3213,17 +3206,26 @@
       "player": "Cannon",
       "preview": "\"If someone kept you out of the hells, that puts a lot into place. Pretty common",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:09:33+00:00",
+      "pid": "76799",
+      "msg_id": "191321",
+      "thread_id": 76799,
+      "player": "Ryo",
+      "preview": "\"Thanks for the offer, but I'm almost done actually. But we will probably need h",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22",
+      "fingerprint": "2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22",
       "msg_ids": [
-        192161
+        192168
       ],
-      "last_posted_at": "2026-11-23T05:04:00.922884+00:00",
+      "last_posted_at": "2026-11-23T05:12:40.918605+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3238,7 +3240,6 @@
     }
   },
   "probed": {
-    "191321": "2026-11-23T04:44:05.457825+00:00",
     "191347": "2026-11-23T02:21:14.340951+00:00",
     "191359": "2026-11-23T02:21:14.340951+00:00",
     "191371": "2026-11-23T03:13:58.581859+00:00",
