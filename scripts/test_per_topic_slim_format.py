@@ -65,13 +65,10 @@ class TestSlimLineFormat:
         assert "preview" not in out
 
     def test_entries_are_numbered_like_the_main_queue(self):
-        """Since 2026-11-23 each line starts 01, 02, ... like the bot-topic
-        GM Queue, so a long topic list can be referred to by position."""
+        """Each line starts 01, 02, ... like the bot-topic GM Queue."""
         from commands.topic_queue_format import format_topic_queue
-        out = "\n".join(format_topic_queue([_e("A"), _e("B")], _NOW))
-        lines = out.splitlines()
-        assert lines[1].startswith("01 ↗ A · ")
-        assert lines[2].startswith("02 ↗ B · ")
+        lines = "\n".join(format_topic_queue([_e("A"), _e("B")], _NOW)).splitlines()
+        assert lines[1].startswith("01 ↗ A · ") and lines[2].startswith("02 ↗ B · ")
 
     def test_no_age_legend(self):
         """The big Age: 🆕<1h 🌱6h 🌿12h … brick is gone. Header is
