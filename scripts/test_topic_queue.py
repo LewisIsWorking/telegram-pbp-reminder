@@ -65,13 +65,12 @@ class TestFormatTopicQueue:
         out = self._full([self._e()])
         assert "t.me/" not in out
 
-    def test_multiple_entries_no_numbered_prefix(self):
-        # Slim format drops 01/02 numbering - ↗ prefix is the cue.
+    def test_multiple_entries_are_numbered(self):
+        # Numbered 01, 02 like the bot-topic GM Queue (2026-11-23).
         entries = [self._e("Alice"), self._e("Bob", "2026-04-05 09:00:00")]
         result = self._full(entries)
         assert "📋 Unreplied: 2" in result
-        assert "↗ Alice" in result and "↗ Bob" in result
-        assert "01" not in result and "02" not in result
+        assert "01 ↗ Alice" in result and "02 ↗ Bob" in result
 
     def test_missing_time_falls_back_to_new_icon(self):
         result = self._full([{"name": "C", "preview": "x", "link": ""}])

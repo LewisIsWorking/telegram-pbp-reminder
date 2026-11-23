@@ -64,12 +64,11 @@ class TestSlimLineFormat:
         assert "master" not in out
         assert "preview" not in out
 
-    def test_no_numbered_prefix(self):
-        """01/02/03 numbering is bot-topic territory. Per-topic the
-        ↗ prefix carries the visual cue."""
+    def test_entries_are_numbered_like_the_main_queue(self):
+        """Each line starts 01, 02, ... like the bot-topic GM Queue."""
         from commands.topic_queue_format import format_topic_queue
-        out = "\n".join(format_topic_queue([_e("A"), _e("B")], _NOW))
-        assert "01" not in out and "02" not in out
+        lines = "\n".join(format_topic_queue([_e("A"), _e("B")], _NOW)).splitlines()
+        assert lines[1].startswith("01 ↗ A · ") and lines[2].startswith("02 ↗ B · ")
 
     def test_no_age_legend(self):
         """The big Age: 🆕<1h 🌱6h 🌿12h … brick is gone. Header is
@@ -96,7 +95,7 @@ class TestSlimLineFormat:
         assert "↗ Ryo · 🌱 1h" in out
         # No mid-dot followed by whitespace/EOL.
         for line in out.splitlines():
-            if line.startswith("↗"):
+            if "↗" in line:
                 assert not line.rstrip().endswith("·")
 
 
