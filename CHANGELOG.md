@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.87.0] - 2026-11-23
+
+### Changed
+
+**Days the GM is silent no longer count towards a player's 4-week inactivity limit.** When the GM goes three days or more without posting in a campaign, that time is taken off every player's clock there, so nobody is removed from a game for waiting on the GM. The removal message still shows the real number of days.
+
 ## [4.86.1] - 2026-11-22
 
 ### Fixed
