@@ -120,3 +120,11 @@ def test_tracking_records_gm_posts_before_appending_the_timestamp():
 def test_the_state_key_is_declared_so_it_is_saved():
     from state_schema import PARTITIONS
     assert any("gm_silences" in keys for keys in PARTITIONS.values())
+
+
+def test_a_gm_posting_every_four_days_does_not_stop_the_sweep(monkeypatch):
+    # ⛔ At the first threshold (3 days) this kept every quiet player forever.
+    state = _state(days_quiet=30)
+    _gm_posts(state, *range(1, 33, 4))
+    _sweep(monkeypatch, state)
+    assert f"{_PID}:RyoYamakawa" not in state["players"]

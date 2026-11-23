@@ -22,7 +22,9 @@ from datetime import datetime, timedelta
 import helpers
 from scheduled.gm_bottleneck import gm_last_post
 
-GM_SILENCE_DAYS = 3  # the same line scheduled/alerts.py calls the GM bottleneck
+# ⛔ Was 3 for its first day. At 3, a GM posting every 4 days would take every day off every
+# clock and nobody would ever be swept. A week of GM silence is the GM holding the game up.
+GM_SILENCE_DAYS = 7
 KEEP_DAYS = 120
 
 

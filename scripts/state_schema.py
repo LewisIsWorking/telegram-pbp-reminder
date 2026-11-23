@@ -123,6 +123,8 @@ PARTITIONS: dict[str, list[str]] = {
         # Added 2026-11-23: GM silences, taken off players' 4-week clocks
         # (scheduled/gm_silence.py). Undeclared, it would be dropped on save.
         "gm_silences",
+        # 2026-11-23: players/unsweep.py runs once; this marks it done.
+        "gm_wait_unsweep_done",
     ],
     "trackers": [
         "clocks", "conditions", "hp_tracker", "loot", "npcs",
