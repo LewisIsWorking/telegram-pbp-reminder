@@ -2,24 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 191347,
-      "thread_id": 76799,
-      "user_id": "9010956720",
-      "user_name": "Inquisitor Azrael Staine",
-      "time": "2026-11-22T01:31:54+00:00",
-      "preview": "Staine walks up behind Kitt, briefly watching them tend to the kobold before nodding. He turns and addresses Nadya.\n\n\"Have you already established contact with the kobolds? Do we\u2014\" Staine is interrupted by a sudden fit of dry, heaving coughs. \"Do we... have anyone skilled in infiltration?\" He asks, looking around at the others.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191359,
-      "thread_id": 76799,
-      "user_id": "8940117861",
-      "user_name": "Freck",
-      "time": "2026-11-22T01:45:19+00:00",
-      "preview": "A light, hissing laugh erupted from Tasivata. Gesticulating down at her heavy armour and her rather large and unusual form, \"What do you think my friend? Leaning back against a wall, her tail scratched into the stone, as she looked about the rest of the party.",
-      "media_group_id": null
-    },
-    {
       "message_id": 191371,
       "thread_id": 76799,
       "user_id": "7454623139",
@@ -134,6 +116,33 @@
       "user_name": "Inquisitor Azrael Staine",
       "time": "2026-11-23T05:01:22+00:00",
       "preview": "\"Unusual?\" Raziel hisses, narrowing his eyes at the golem. \n\nStaine raises his hand to the bird, gently pressing the backside of his hand against the side of Raziels face, before answering Charger's question. \"I uproot evil wherever I find it while preserving the lives of those who are good and righteous. That is to say, I am blessed with divine magic and can heal with it, though nowadays I find myself using my sword more so than my magic.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192176,
+      "thread_id": 76799,
+      "user_id": "1281212645",
+      "user_name": "Felix",
+      "time": "2026-11-23T05:13:25+00:00",
+      "preview": "*Tekuam does use a two action Heal on the spider*",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192177,
+      "thread_id": 76799,
+      "user_id": "1281212645",
+      "user_name": "Felix",
+      "time": "2026-11-23T05:14:09+00:00",
+      "preview": "*14 points of healing*",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192178,
+      "thread_id": 76799,
+      "user_id": "9010956720",
+      "user_name": "Inquisitor Azrael Staine",
+      "time": "2026-11-23T05:16:08+00:00",
+      "preview": "\"Yes,\" Azrael answers. \"I'm fine.\"",
       "media_group_id": null
     }
   ],
@@ -688,7 +697,11 @@
     "msg:191300",
     "2026-11-21 18:26:27",
     "msg:191321",
-    "2026-11-21 21:50:57"
+    "2026-11-21 21:50:57",
+    "msg:191347",
+    "2026-11-22 01:31:54",
+    "msg:191359",
+    "2026-11-22 01:45:19"
   ],
   "reply_log": [
     {
@@ -3215,17 +3228,35 @@
       "player": "Ryo",
       "preview": "\"Thanks for the offer, but I'm almost done actually. But we will probably need h",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:12:44+00:00",
+      "pid": "76799",
+      "msg_id": "191347",
+      "thread_id": 76799,
+      "player": "Inquisitor Azrael Staine",
+      "preview": "Staine walks up behind Kitt, briefly watching them tend to the kobold before nod",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:13:08+00:00",
+      "pid": "76799",
+      "msg_id": "191359",
+      "thread_id": 76799,
+      "player": "Freck",
+      "preview": "A light, hissing laugh erupted from Tasivata. Gesticulating down at her heavy ar",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22",
+      "fingerprint": "2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22|2026-11-23 05:13:25|2026-11-23 05:14:09|2026-11-23 05:16:08",
       "msg_ids": [
-        192168
+        192180
       ],
-      "last_posted_at": "2026-11-23T05:12:40.918605+00:00",
+      "last_posted_at": "2026-11-23T05:20:24.925676+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3240,8 +3271,6 @@
     }
   },
   "probed": {
-    "191347": "2026-11-23T02:21:14.340951+00:00",
-    "191359": "2026-11-23T02:21:14.340951+00:00",
     "191371": "2026-11-23T03:13:58.581859+00:00",
     "191372": "2026-11-23T03:13:58.581859+00:00",
     "191386": "2026-11-23T04:15:00.732815+00:00",
@@ -3254,6 +3283,9 @@
     "192024": "2026-11-23T04:15:00.732815+00:00",
     "192067": "2026-11-23T04:29:52.033515+00:00",
     "192144": "2026-11-23T04:58:22.203816+00:00",
-    "192156": "2026-11-23T05:03:55.578353+00:00"
+    "192156": "2026-11-23T05:03:55.578353+00:00",
+    "192176": "2026-11-23T05:20:17.379298+00:00",
+    "192177": "2026-11-23T05:20:17.379298+00:00",
+    "192178": "2026-11-23T05:20:17.379298+00:00"
   }
 }

@@ -1540,7 +1540,9 @@
       "2026-11-23T05:03:54.990937+00:00",
       "2026-11-23T05:03:55.575199+00:00",
       "2026-11-23T05:03:55.578135+00:00",
-      "2026-11-23T05:12:36.982199+00:00"
+      "2026-11-23T05:12:36.982199+00:00",
+      "2026-11-23T05:20:16.767445+00:00",
+      "2026-11-23T05:20:16.775509+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2117,20 +2119,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-10-03T07:43:27.148923+00:00",
-      "player": "Buffet",
-      "preview": ".",
-      "msg_id": "182416"
-    },
-    {
-      "pid": "76799",
-      "time": "2026-10-03T17:13:22.788631+00:00",
-      "player": "Alastair",
-      "preview": "Steele points her sword at the kobold. \"Shoot the bastard do",
-      "msg_id": "181940"
-    },
     {
       "pid": "40585",
       "time": "2026-10-03T18:43:15.799504+00:00",
@@ -3516,6 +3504,20 @@
       "player": "Ryo",
       "preview": "\"Thanks for the offer, but I'm almost done actually. But we ",
       "msg_id": "191321"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T05:20:16.767445+00:00",
+      "player": "Inquisitor Azrael Staine",
+      "preview": "Staine walks up behind Kitt, briefly watching them tend to t",
+      "msg_id": "191347"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T05:20:16.775509+00:00",
+      "player": "Freck",
+      "preview": "A light, hissing laugh erupted from Tasivata. Gesticulating ",
+      "msg_id": "191359"
     }
   ],
   "pending_potw_boons": {},
