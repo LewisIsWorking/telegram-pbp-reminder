@@ -380,6 +380,46 @@
       "pbp_topic_id": "76799",
       "last_post_time": "2026-11-23T02:06:55+00:00",
       "last_warned_week": 0
+    },
+    "51357:138025700": {
+      "user_id": "138025700",
+      "first_name": "Ryo",
+      "last_name": "",
+      "username": "RyoYamakawa",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-10-13T05:37:05.079167+00:00",
+      "last_warned_week": 0
+    },
+    "51357:8117756377": {
+      "user_id": "8117756377",
+      "first_name": "Laetheron",
+      "last_name": "",
+      "username": "StorybookRhizome",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-10-14T06:12:03.208306+00:00",
+      "last_warned_week": 0
+    },
+    "51357:7130942567": {
+      "user_id": "7130942567",
+      "first_name": "Buffet",
+      "last_name": "",
+      "username": "buffetraider",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-10-15T06:43:23.452980+00:00",
+      "last_warned_week": 0
+    },
+    "51357:6144366145": {
+      "user_id": "6144366145",
+      "first_name": "Anthony",
+      "last_name": "",
+      "username": "MrNegetZ",
+      "campaign_name": "Grand Explorers",
+      "pbp_topic_id": "51357",
+      "last_post_time": "2026-10-21T12:43:17.165588+00:00",
+      "last_warned_week": 0
     }
   },
   "removed_players": {
@@ -707,41 +747,17 @@
       "username": "MrNegetZ",
       "campaign_name": "Riddleport"
     },
-    "51357:138025700": {
-      "removed_at": "2026-11-10T05:37:05.079167+00:00",
-      "first_name": "Ryo",
-      "username": "RyoYamakawa",
-      "campaign_name": "Grand Explorers"
-    },
     "66154:8836746655": {
       "removed_at": "2026-11-10T10:43:20.030948+00:00",
       "first_name": "aSly",
       "username": "aslycow",
       "campaign_name": "Riddleport"
     },
-    "51357:8117756377": {
-      "removed_at": "2026-11-11T06:12:03.208306+00:00",
-      "first_name": "Laetheron",
-      "username": "StorybookRhizome",
-      "campaign_name": "Grand Explorers"
-    },
-    "51357:7130942567": {
-      "removed_at": "2026-11-12T06:43:23.452980+00:00",
-      "first_name": "Buffet",
-      "username": "buffetraider",
-      "campaign_name": "Grand Explorers"
-    },
     "52083:5443237599": {
       "removed_at": "2026-11-17T04:13:27.412649+00:00",
       "first_name": "Horia",
       "username": "Nemesiux",
       "campaign_name": "Hopeful End-Times"
-    },
-    "51357:6144366145": {
-      "removed_at": "2026-11-18T12:43:17.165588+00:00",
-      "first_name": "Anthony",
-      "username": "MrNegetZ",
-      "campaign_name": "Grand Explorers"
     },
     "107171:8076901165": {
       "removed_at": "2026-11-19T16:43:23.506080+00:00",
@@ -2505,6 +2521,38 @@
       "name": "John",
       "username": "",
       "at": "2026-11-23T02:13:23.759398+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "138025700",
+      "name": "Ryo",
+      "username": "RyoYamakawa",
+      "at": "2026-11-23T02:47:42.349390+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "8117756377",
+      "name": "Laetheron",
+      "username": "StorybookRhizome",
+      "at": "2026-11-23T02:47:42.349417+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "7130942567",
+      "name": "Buffet",
+      "username": "buffetraider",
+      "at": "2026-11-23T02:47:42.349434+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "51357",
+      "user_id": "6144366145",
+      "name": "Anthony",
+      "username": "MrNegetZ",
+      "at": "2026-11-23T02:47:42.349458+00:00"
     }
   ],
   "player_boons": {
@@ -2965,12 +3013,12 @@
     "6144366145": {
       "name": "Anthony",
       "username": "MrNegetZ",
-      "last": "2026-11-22T19:18:42+00:00"
+      "last": "2026-11-23T02:42:41+00:00"
     },
     "1358791105": {
       "name": "Alastair",
       "username": "altan19931993",
-      "last": "2026-11-22T08:38:58+00:00"
+      "last": "2026-11-23T02:41:18+00:00"
     },
     "5443237599": {
       "name": "Horia",
@@ -3000,7 +3048,7 @@
     "138025700": {
       "name": "Ryo",
       "username": "RyoYamakawa",
-      "last": "2026-11-23T01:07:13+00:00"
+      "last": "2026-11-23T02:45:29+00:00"
     },
     "7454623139": {
       "name": "Cannon",
@@ -3194,10 +3242,6 @@
     }
   },
   "gm_queue_size_log": [
-    [
-      "2026-11-21T02:43:22.460266+00:00",
-      28
-    ],
     [
       "2026-11-21T02:51:09.883314+00:00",
       28
@@ -3692,6 +3736,10 @@
     ],
     [
       "2026-11-23T02:39:06.982161+00:00",
+      42
+    ],
+    [
+      "2026-11-23T02:47:41.838878+00:00",
       42
     ]
   ]
