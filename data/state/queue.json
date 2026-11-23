@@ -1542,7 +1542,10 @@
       "2026-11-23T05:03:55.578135+00:00",
       "2026-11-23T05:12:36.982199+00:00",
       "2026-11-23T05:20:16.767445+00:00",
-      "2026-11-23T05:20:16.775509+00:00"
+      "2026-11-23T05:20:16.775509+00:00",
+      "2026-11-23T06:13:21.026479+00:00",
+      "2026-11-23T06:13:21.031395+00:00",
+      "2026-11-23T06:13:21.034390+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2119,27 +2122,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-10-03T18:43:15.799504+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "182560"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-10-04T01:43:22.259844+00:00",
-      "player": "Moss",
-      "preview": "We fight the zombies!",
-      "msg_id": "182740"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-10-05T02:43:20.308751+00:00",
-      "player": "Alastair",
-      "preview": "Rin has to tiptoe to whisper into Davy's ears. \"Umm... see a",
-      "msg_id": "182197"
-    },
     {
       "pid": "66154",
       "time": "2026-10-05T08:43:18.766241+00:00",
@@ -3518,6 +3500,27 @@
       "player": "Freck",
       "preview": "A light, hissing laugh erupted from Tasivata. Gesticulating ",
       "msg_id": "191359"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T06:13:21.026479+00:00",
+      "player": "Cannon",
+      "preview": "\"We've been taking it one room at a time. As for infiltratio",
+      "msg_id": "191371"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T06:13:21.031395+00:00",
+      "player": "Cannon",
+      "preview": "\"I'm pretty certain there's only one way to get at the last ",
+      "msg_id": "191372"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T06:13:21.034390+00:00",
+      "player": "Chase",
+      "preview": "Flapping up to Kitt's shoulder, B\u00e1yakan lands briefly to joi",
+      "msg_id": "191386"
     }
   ],
   "pending_potw_boons": {},

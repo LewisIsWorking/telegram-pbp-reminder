@@ -2,33 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 191371,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-11-22T02:18:20+00:00",
-      "preview": "\"We've been taking it one room at a time. As for infiltration, this isn't the kind of situation where my experience is helpful. The little bat sprite over there has been pretty quiet so far.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191372,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-11-22T02:19:08+00:00",
-      "preview": "\"I'm pretty certain there's only one way to get at the last group, though. We did some sneaking around earlier and got about as far as we could with it.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191386,
-      "thread_id": 76799,
-      "user_id": "8353586922",
-      "user_name": "Chase",
-      "time": "2026-11-22T02:55:30+00:00",
-      "preview": "Flapping up to Kitt's shoulder, B\u00e1yakan lands briefly to join the huddle.\n\nWith a toothy grin, he nods, \"I can be quiet at need. Bigger folk do not look down often. These construction workers do not seem to be an exception.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 191387,
       "thread_id": 76799,
       "user_id": "9231217046",
@@ -701,7 +674,13 @@
     "msg:191347",
     "2026-11-22 01:31:54",
     "msg:191359",
-    "2026-11-22 01:45:19"
+    "2026-11-22 01:45:19",
+    "msg:191371",
+    "2026-11-22 02:18:20",
+    "msg:191372",
+    "2026-11-22 02:19:08",
+    "msg:191386",
+    "2026-11-22 02:55:30"
   ],
   "reply_log": [
     {
@@ -3246,17 +3225,44 @@
       "player": "Freck",
       "preview": "A light, hissing laugh erupted from Tasivata. Gesticulating down at her heavy ar",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:43:05+00:00",
+      "pid": "76799",
+      "msg_id": "191371",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"We've been taking it one room at a time. As for infiltration, this isn't the ki",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:46:37+00:00",
+      "pid": "76799",
+      "msg_id": "191372",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"I'm pretty certain there's only one way to get at the last group, though. We di",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T06:09:39+00:00",
+      "pid": "76799",
+      "msg_id": "191386",
+      "thread_id": 76799,
+      "player": "Chase",
+      "preview": "Flapping up to Kitt's shoulder, B\u00e1yakan lands briefly to join the huddle.\n\nWith ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22|2026-11-23 05:13:25|2026-11-23 05:14:09|2026-11-23 05:16:08",
+      "fingerprint": "2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22|2026-11-23 05:13:25|2026-11-23 05:14:09|2026-11-23 05:16:08",
       "msg_ids": [
-        192180
+        192239
       ],
-      "last_posted_at": "2026-11-23T05:20:24.925676+00:00",
+      "last_posted_at": "2026-11-23T06:13:26.739486+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3271,12 +3277,9 @@
     }
   },
   "probed": {
-    "191371": "2026-11-23T03:13:58.581859+00:00",
-    "191372": "2026-11-23T03:13:58.581859+00:00",
-    "191386": "2026-11-23T04:15:00.732815+00:00",
     "191387": "2026-11-23T04:15:00.732815+00:00",
     "191388": "2026-11-23T04:15:00.732815+00:00",
-    "191465": "2026-11-22T23:43:26.113940+00:00",
+    "191465": "2026-11-23T06:13:21.034706+00:00",
     "191879": "2026-11-23T02:13:24.651833+00:00",
     "191880": "2026-11-23T02:13:24.651833+00:00",
     "192012": "2026-11-23T04:05:34.688370+00:00",
