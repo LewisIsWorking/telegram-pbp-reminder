@@ -1519,7 +1519,9 @@
       "2026-11-23T04:05:34.680704+00:00",
       "2026-11-23T04:15:00.375735+00:00",
       "2026-11-23T04:15:44.300332+00:00",
-      "2026-11-23T04:18:23.958873+00:00"
+      "2026-11-23T04:18:23.958873+00:00",
+      "2026-11-23T04:24:37.705350+00:00",
+      "2026-11-23T04:24:37.711471+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2096,20 +2098,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-09-27T18:38:31.680103+00:00",
-      "player": "Alastair",
-      "preview": "\"I can't do anything about those runes, unless you want Litt",
-      "msg_id": "181523"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-09-29T03:13:20.055635+00:00",
-      "player": "Anthony",
-      "preview": "Daichi running towards the first table says:\n\"I can disarm t",
-      "msg_id": "181537"
-    },
     {
       "pid": "107171",
       "time": "2026-09-29T05:13:15.633608+00:00",
@@ -3495,6 +3483,20 @@
       "player": "",
       "preview": "",
       "msg_id": "190640"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:24:37.705350+00:00",
+      "player": "Zalaralith",
+      "preview": "A strange Aiuverian man comes running in with a bow and arro",
+      "msg_id": "190938"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:24:37.711471+00:00",
+      "player": "Zalaralith",
+      "preview": "he is currently pointing his bow straight downward while cat",
+      "msg_id": "190940"
     }
   ],
   "pending_potw_boons": {},

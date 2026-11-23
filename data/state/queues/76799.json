@@ -2,24 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 190938,
-      "thread_id": 76799,
-      "user_id": "9118715778",
-      "user_name": "Zalaralith",
-      "time": "2026-11-19T19:46:45+00:00",
-      "preview": "A strange Aiuverian man comes running in with a bow and arrow drawn. He's a bit nervous and says \"Z-Zal reporting for duty!\" He has an average height but is somewhat thin, he is wearing a fancy looking shirt and pants, blue with a silver trim and silver buttons. He has spent his life excelling at doing what he is told and being where he should be, but now that he is outside of a classroom or a debutant ball he looks and feels hopelessly out of place. On his back is a quiver that holds down a thi",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190940,
-      "thread_id": 76799,
-      "user_id": "9118715778",
-      "user_name": "Zalaralith",
-      "time": "2026-11-19T19:51:25+00:00",
-      "preview": "he is currently pointing his bow straight downward while catching his breath",
-      "media_group_id": null
-    },
-    {
       "message_id": 190952,
       "thread_id": 76799,
       "user_id": "1281212645",
@@ -808,7 +790,11 @@
     "msg:190639",
     "2026-11-18 14:25:23",
     "msg:190640",
-    "2026-11-18 14:25:24"
+    "2026-11-18 14:25:24",
+    "msg:190938",
+    "2026-11-19 19:46:45",
+    "msg:190940",
+    "2026-11-19 19:51:25"
   ],
   "reply_log": [
     {
@@ -3146,17 +3132,35 @@
       "player": "?",
       "preview": "",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:22:54+00:00",
+      "pid": "76799",
+      "msg_id": "190938",
+      "thread_id": 76799,
+      "player": "Zalaralith",
+      "preview": "A strange Aiuverian man comes running in with a bow and arrow drawn. He's a bit ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:23:04+00:00",
+      "pid": "76799",
+      "msg_id": "190940",
+      "thread_id": 76799,
+      "player": "Zalaralith",
+      "preview": "he is currently pointing his bow straight downward while catching his breath",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-19 19:46:45|2026-11-19 19:51:25|2026-11-19 20:45:12|2026-11-19 21:20:20|2026-11-19 23:08:54|2026-11-20 00:07:13|2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39|2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43",
+      "fingerprint": "2026-11-19 20:45:12|2026-11-19 21:20:20|2026-11-19 23:08:54|2026-11-20 00:07:13|2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39|2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43",
       "msg_ids": [
-        192040
+        192050
       ],
-      "last_posted_at": "2026-11-23T04:18:27.520569+00:00",
+      "last_posted_at": "2026-11-23T04:24:42.233433+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3171,8 +3175,6 @@
     }
   },
   "probed": {
-    "190938": "2026-11-22T23:43:26.113940+00:00",
-    "190940": "2026-11-22T23:43:26.113940+00:00",
     "190952": "2026-11-22T23:43:26.113940+00:00",
     "190961": "2026-11-23T01:40:07.687768+00:00",
     "190988": "2026-11-23T02:16:52.557607+00:00",
