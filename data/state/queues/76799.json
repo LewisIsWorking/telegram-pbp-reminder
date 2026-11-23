@@ -2,33 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 191289,
-      "thread_id": 76799,
-      "user_id": "8583905719",
-      "user_name": "Salaezar",
-      "time": "2026-11-21T15:55:10+00:00",
-      "preview": "\"Greeting's all, we have quite the ensemble here.\" Investigator Tomes says. \"How I've come to join is another story. Natalya you are correct it might not be the exact place for me but I owe Sgt. Alistair Lade a return favour. He helped me out of a situation I was in from my last job.\" as he begins talking with his hands.\n\n\"Since we are waiting might as well get it out so you all don't get the wrong idea.\" he says looking around. \"I was investigating indiscretions of Lord Barnaby Pedantry. I had ",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191299,
-      "thread_id": 76799,
-      "user_id": "1281212645",
-      "user_name": "Felix",
-      "time": "2026-11-21T18:15:02+00:00",
-      "preview": "*Tekuam walks over to Kitt* \"would you like a hand with your injured person? Should be able to stop him from bleeding if nothing else\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191300,
-      "thread_id": 76799,
-      "user_id": "7454623139",
-      "user_name": "Cannon",
-      "time": "2026-11-21T18:26:27+00:00",
-      "preview": "\"If someone kept you out of the hells, that puts a lot into place. Pretty common 'recruitment' tactic. Magnimar may not have too many laws, but the chelaxians up top definitely have rules the rest of us aren't supposed to break. Not too many noble toes to step on inside this construction site, but do keep the property damage down anyway if you can.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 191321,
       "thread_id": 76799,
       "user_id": "138025700",
@@ -161,6 +134,15 @@
       "user_name": "Cannon",
       "time": "2026-11-23T04:55:39+00:00",
       "preview": "Nadya looks down and shrugs with the hint of a smile.\n\n\"Yeah, kid... That's why I'm working here instead of rotting in the hells.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192156,
+      "thread_id": 76799,
+      "user_id": "9010956720",
+      "user_name": "Inquisitor Azrael Staine",
+      "time": "2026-11-23T05:01:22+00:00",
+      "preview": "\"Unusual?\" Raziel hisses, narrowing his eyes at the golem. \n\nStaine raises his hand to the bird, gently pressing the backside of his hand against the side of Raziels face, before answering Charger's question. \"I uproot evil wherever I find it while preserving the lives of those who are good and righteous. That is to say, I am blessed with divine magic and can heal with it, though nowadays I find myself using my sword more so than my magic.\"",
       "media_group_id": null
     }
   ],
@@ -707,7 +689,13 @@
     "msg:191261",
     "2026-11-21 09:54:56",
     "msg:191272",
-    "2026-11-21 11:35:39"
+    "2026-11-21 11:35:39",
+    "msg:191289",
+    "2026-11-21 15:55:10",
+    "msg:191299",
+    "2026-11-21 18:15:02",
+    "msg:191300",
+    "2026-11-21 18:26:27"
   ],
   "reply_log": [
     {
@@ -3198,17 +3186,44 @@
       "player": "Ryo",
       "preview": "Kitt pokes their head up and waves at the new arrivals with a cheerful smile.\n\n\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:59:06+00:00",
+      "pid": "76799",
+      "msg_id": "191289",
+      "thread_id": 76799,
+      "player": "Salaezar",
+      "preview": "\"Greeting's all, we have quite the ensemble here.\" Investigator Tomes says. \"How",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:01:44+00:00",
+      "pid": "76799",
+      "msg_id": "191299",
+      "thread_id": 76799,
+      "player": "Felix",
+      "preview": "*Tekuam walks over to Kitt* \"would you like a hand with your injured person? Sho",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T05:03:20+00:00",
+      "pid": "76799",
+      "msg_id": "191300",
+      "thread_id": 76799,
+      "player": "Cannon",
+      "preview": "\"If someone kept you out of the hells, that puts a lot into place. Pretty common",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39",
+      "fingerprint": "2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14|2026-11-23 04:55:39|2026-11-23 05:01:22",
       "msg_ids": [
-        192146
+        192161
       ],
-      "last_posted_at": "2026-11-23T04:58:27.150179+00:00",
+      "last_posted_at": "2026-11-23T05:04:00.922884+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3223,9 +3238,6 @@
     }
   },
   "probed": {
-    "191289": "2026-11-22T23:43:26.113940+00:00",
-    "191299": "2026-11-23T02:16:52.557607+00:00",
-    "191300": "2026-11-23T02:16:52.557607+00:00",
     "191321": "2026-11-23T04:44:05.457825+00:00",
     "191347": "2026-11-23T02:21:14.340951+00:00",
     "191359": "2026-11-23T02:21:14.340951+00:00",
@@ -3240,6 +3252,7 @@
     "192012": "2026-11-23T04:05:34.688370+00:00",
     "192024": "2026-11-23T04:15:00.732815+00:00",
     "192067": "2026-11-23T04:29:52.033515+00:00",
-    "192144": "2026-11-23T04:58:22.203816+00:00"
+    "192144": "2026-11-23T04:58:22.203816+00:00",
+    "192156": "2026-11-23T05:03:55.578353+00:00"
   }
 }

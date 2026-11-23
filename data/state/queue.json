@@ -1536,7 +1536,10 @@
       "2026-11-23T04:51:13.308227+00:00",
       "2026-11-23T04:54:38.032373+00:00",
       "2026-11-23T04:54:38.040119+00:00",
-      "2026-11-23T04:58:22.203517+00:00"
+      "2026-11-23T04:58:22.203517+00:00",
+      "2026-11-23T05:03:54.990937+00:00",
+      "2026-11-23T05:03:55.575199+00:00",
+      "2026-11-23T05:03:55.578135+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2113,27 +2116,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "25059",
-      "time": "2026-10-01T22:21:08.747854+00:00",
-      "player": "Horia",
-      "preview": "[media]",
-      "msg_id": "182321"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-10-01T22:21:08.752203+00:00",
-      "player": "Horia",
-      "preview": ".",
-      "msg_id": "182322"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-10-03T03:13:17.727644+00:00",
-      "player": "Ryo",
-      "preview": "A1-3: Stride a total of 90 feet",
-      "msg_id": "182373"
-    },
     {
       "pid": "25059",
       "time": "2026-10-03T05:43:16.264896+00:00",
@@ -3512,6 +3494,27 @@
       "player": "Ryo",
       "preview": "Kitt pokes their head up and waves at the new arrivals with ",
       "msg_id": "191272"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T05:03:54.990937+00:00",
+      "player": "Salaezar",
+      "preview": "\"Greeting's all, we have quite the ensemble here.\" Investiga",
+      "msg_id": "191289"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T05:03:55.575199+00:00",
+      "player": "Felix",
+      "preview": "*Tekuam walks over to Kitt* \"would you like a hand with your",
+      "msg_id": "191299"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T05:03:55.578135+00:00",
+      "player": "Cannon",
+      "preview": "\"If someone kept you out of the hells, that puts a lot into ",
+      "msg_id": "191300"
     }
   ],
   "pending_potw_boons": {},
