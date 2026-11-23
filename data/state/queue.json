@@ -1527,7 +1527,9 @@
       "2026-11-23T04:29:52.033260+00:00",
       "2026-11-23T04:34:13.527033+00:00",
       "2026-11-23T04:39:49.139617+00:00",
-      "2026-11-23T04:39:49.146939+00:00"
+      "2026-11-23T04:39:49.146939+00:00",
+      "2026-11-23T04:44:05.451167+00:00",
+      "2026-11-23T04:44:05.457491+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2104,20 +2106,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-09-30T07:51:08.242920+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "\"Hm. . . Do we have to think about that? Can't we just go la",
-      "msg_id": "181993"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-09-30T07:58:49.788100+00:00",
-      "player": "Laetheron",
-      "preview": "\"Suppose that it's something that could wait until after we ",
-      "msg_id": "182008"
-    },
     {
       "pid": "51357",
       "time": "2026-10-01T02:43:20.066979+00:00",
@@ -3503,6 +3491,20 @@
       "player": "Alastair",
       "preview": "\"At ease, Zal.\"",
       "msg_id": "191037"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:44:05.451167+00:00",
+      "player": "Alastair",
+      "preview": "\"At ease, Tasivata,\" Steele's voice sounds slightly surprise",
+      "msg_id": "191039"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:44:05.457491+00:00",
+      "player": "Alastair",
+      "preview": "\"I am Sergeant Steele, and that is Changer. Once we've gathe",
+      "msg_id": "191040"
     }
   ],
   "pending_potw_boons": {},
