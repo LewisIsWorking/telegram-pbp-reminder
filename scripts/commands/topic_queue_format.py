@@ -11,8 +11,11 @@ Format (per Lewis 2026-05-19, after player feedback from Cannon
 about the meta brick in RP channels):
 
     📋 Unreplied: 2
-    ↗ Ryo · 🌳 14h · t.me/Path_Wars/51357/153422
-    ↗ Bruce · 🌳 13h · t.me/Path_Wars/142887/153432
+    01 ↗ Ryo · 🌳 14h · t.me/Path_Wars/51357/153422
+    02 ↗ Bruce · 🌳 13h · t.me/Path_Wars/142887/153432
+
+Numbered 01, 02, ... like the bot-topic GM Queue since 2026-11-23, so a
+long topic list can be talked about by position ("reply to 07").
 
 The link is preserved (Lewis hard requirement - every entry needs
 its own jumpable link), the age icon is preserved (urgency hint),
@@ -43,17 +46,17 @@ def format_topic_queue(entries: list, now: datetime) -> list[str]:
     """
     header = f"📋 Unreplied: {len(entries)}"
     entry_lines = []
-    for entry in entries:
+    for num, entry in enumerate(entries, start=1):
         hours = _entry_hours(entry, now)
-        entry_lines.append(_format_topic_line(entry, hours))
+        entry_lines.append(f"{num:02d} {_format_topic_line(entry, hours)}")
     return _chunk_lines(header, entry_lines)
 
 
 def _format_topic_line(entry: dict, hours: float) -> str:
     """Slim per-entry line: ↗ Firstname · {icon} {age} · {link}.
 
-    Drops the numbered prefix, message-id brackets, and quote/preview
-    text used by the bot-topic format. Players see only what's needed
+    The 01/02 number is added by the caller. Drops the message-id
+    brackets and quote/preview text used by the bot-topic format. Players see only what's needed
     to identify the unreplied message and jump to it. If the entry has
     no link, the line is just "↗ Firstname · {icon} {age}" - no
     trailing separator dangling.

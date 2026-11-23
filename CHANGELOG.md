@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.89.0] - 2026-11-23
+
+### Changed
+
+**Topic queue lists are numbered.** The "📋 Unreplied" list posted in each PBP topic now numbers its entries 01, 02, 03 and so on, like the main GM queue, so a long list is easier to follow.
+
 ## [4.88.0] - 2026-11-23
 
 ### Added
