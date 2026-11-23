@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.88.0] - 2026-11-23
+
+### Added
+
+**The bot now marks queued posts with reactions.** An unreplied player post in a PBP topic gets 👀 from the bot, and once the GM has replied it changes to ✍. A post that leaves the queue without a reply loses its 👀. The first pass over an existing backlog is spread across a few runs.
+
 ## [4.87.2] - 2026-11-23
 
 ### Fixed
