@@ -12,6 +12,7 @@ touching it.
 from datetime import datetime, timezone, timedelta
 from players.permanence import is_permanent
 from players.proxy import effective_post_time
+from scheduled.gm_silence import counted_days
 
 _TARGET = 6
 _ACTIVE_DAYS = 30
@@ -74,8 +75,11 @@ def _active_players(pid: str, state: dict, config: dict,
         # character (2026-09-01). A redirection, not an exemption: if the
         # proxy is quiet, this seat is quiet too. An unresolvable proxy
         # falls back to the seat's own time. See players/proxy.py.
+        # ⭐ GM silences are off the clock here too (2026-11-23), as in the
+        # sweep: C05's four players waiting on the GM read as 0/6.
         last = effective_post_time(p, pid, state)
-        if last is not None and last >= cutoff:
+        if last is not None and (last >= cutoff or counted_days(
+                config, state, pid, last, now or datetime.now(timezone.utc)) < _ACTIVE_DAYS):
             result.append(p)
     return result
 
