@@ -1525,7 +1525,9 @@
       "2026-11-23T04:29:52.022019+00:00",
       "2026-11-23T04:29:52.026945+00:00",
       "2026-11-23T04:29:52.033260+00:00",
-      "2026-11-23T04:34:13.527033+00:00"
+      "2026-11-23T04:34:13.527033+00:00",
+      "2026-11-23T04:39:49.139617+00:00",
+      "2026-11-23T04:39:49.146939+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2102,20 +2104,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "76799",
-      "time": "2026-09-30T07:43:21.464345+00:00",
-      "player": "Alastair",
-      "preview": "Round 2 Actions for Steele:\n\n1/2: Strike Hard. Anyone can ta",
-      "msg_id": "181939"
-    },
-    {
-      "pid": "107171",
-      "time": "2026-09-30T07:51:08.237602+00:00",
-      "player": "Laetheron",
-      "preview": "\"Hopefully. We may as well run a scan, but unless we were fo",
-      "msg_id": "181189"
-    },
     {
       "pid": "107171",
       "time": "2026-09-30T07:51:08.242920+00:00",
@@ -3501,6 +3489,20 @@
       "player": "Freck",
       "preview": "A rather sinewy, beautiful woman slithers in after those fir",
       "msg_id": "190996"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:39:49.139617+00:00",
+      "player": "Salaezar",
+      "preview": "Strolling into the room is a rather average looking human wi",
+      "msg_id": "191035"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:39:49.146939+00:00",
+      "player": "Alastair",
+      "preview": "\"At ease, Zal.\"",
+      "msg_id": "191037"
     }
   ],
   "pending_potw_boons": {},

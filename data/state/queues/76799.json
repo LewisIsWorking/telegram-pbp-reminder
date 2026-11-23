@@ -2,24 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 191035,
-      "thread_id": 76799,
-      "user_id": "8583905719",
-      "user_name": "Salaezar",
-      "time": "2026-11-20T02:15:30+00:00",
-      "preview": "Strolling into the room is a rather average looking human with the exception of eyes and hair that look like they are made from pure gold. Dressed in a pressed cloths under a long jacket with stiff leather pieces with metallic studs, a rapier belted on one hip and a tome on the other. He looks around and heads to the guard in charge and in a melodic voice akin to a heavenly host says \"I hear your looking for investigators\",after which he pulls out a small card and ands it to the guard. \"Hemlock ",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191037,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-20T02:19:02+00:00",
-      "preview": "\"At ease, Zal.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 191039,
       "thread_id": 76799,
       "user_id": "1358791105",
@@ -775,7 +757,11 @@
     "msg:190988",
     "2026-11-19 23:08:54",
     "msg:190996",
-    "2026-11-20 00:07:13"
+    "2026-11-20 00:07:13",
+    "msg:191035",
+    "2026-11-20 02:15:30",
+    "msg:191037",
+    "2026-11-20 02:19:02"
   ],
   "reply_log": [
     {
@@ -3167,17 +3153,35 @@
       "player": "Freck",
       "preview": "A rather sinewy, beautiful woman slithers in after those first two guards. She h",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:38:49+00:00",
+      "pid": "76799",
+      "msg_id": "191035",
+      "thread_id": 76799,
+      "player": "Salaezar",
+      "preview": "Strolling into the room is a rather average looking human with the exception of ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:39:13+00:00",
+      "pid": "76799",
+      "msg_id": "191037",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "\"At ease, Zal.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39|2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14",
+      "fingerprint": "2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39|2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14",
       "msg_ids": [
-        192085
+        192095
       ],
-      "last_posted_at": "2026-11-23T04:34:16.916265+00:00",
+      "last_posted_at": "2026-11-23T04:39:54.304079+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3192,8 +3196,6 @@
     }
   },
   "probed": {
-    "191035": "2026-11-22T23:43:26.113940+00:00",
-    "191037": "2026-11-22T23:43:26.113940+00:00",
     "191039": "2026-11-22T23:43:26.113940+00:00",
     "191040": "2026-11-22T23:43:26.113940+00:00",
     "191075": "2026-11-22T23:43:26.113940+00:00",
