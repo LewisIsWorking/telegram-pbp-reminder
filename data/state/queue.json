@@ -1521,7 +1521,10 @@
       "2026-11-23T04:15:44.300332+00:00",
       "2026-11-23T04:18:23.958873+00:00",
       "2026-11-23T04:24:37.705350+00:00",
-      "2026-11-23T04:24:37.711471+00:00"
+      "2026-11-23T04:24:37.711471+00:00",
+      "2026-11-23T04:29:52.022019+00:00",
+      "2026-11-23T04:29:52.026945+00:00",
+      "2026-11-23T04:29:52.033260+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2098,27 +2101,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "107171",
-      "time": "2026-09-29T05:13:15.633608+00:00",
-      "player": "Diabla \"Bella\" Alzarin",
-      "preview": "Bella looks a bit pale after the travel. The space-time-warp",
-      "msg_id": "181183"
-    },
-    {
-      "pid": "25059",
-      "time": "2026-09-29T13:13:24.294433+00:00",
-      "player": "Horia",
-      "preview": "[media]",
-      "msg_id": "181824"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-09-29T13:13:24.297733+00:00",
-      "player": "Alastair",
-      "preview": "Rin is on the door, politely and apologetically checking eve",
-      "msg_id": "181832"
-    },
     {
       "pid": "40585",
       "time": "2026-09-29T15:43:25.125028+00:00",
@@ -3497,6 +3479,27 @@
       "player": "Zalaralith",
       "preview": "he is currently pointing his bow straight downward while cat",
       "msg_id": "190940"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:29:52.022019+00:00",
+      "player": "Felix",
+      "preview": "*Tekuam walks up, followed by a small Leshy, to the meeting ",
+      "msg_id": "190952"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:29:52.026945+00:00",
+      "player": "Joseph",
+      "preview": "Not long after Zalaralith arrives, Avelik shows up on scene ",
+      "msg_id": "190961"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:29:52.033260+00:00",
+      "player": "Felix",
+      "preview": "*Tekuam gives the golem a pat on the back* \"Very informative",
+      "msg_id": "190988"
     }
   ],
   "pending_potw_boons": {},

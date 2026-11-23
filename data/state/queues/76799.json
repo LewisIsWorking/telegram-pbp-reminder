@@ -2,33 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 190952,
-      "thread_id": 76799,
-      "user_id": "1281212645",
-      "user_name": "Felix",
-      "time": "2026-11-19T20:45:12+00:00",
-      "preview": "*Tekuam walks up, followed by a small Leshy, to the meeting seeing other guards standing around. They look mildly perturbed they were woken up from a nap in a tree* \"The higher ups do know this is out of my area of expertise, but they needed someone with actual charisma down here. I wouldn't mind taking a look at some of those traps either.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190961,
-      "thread_id": 76799,
-      "user_id": "9231217046",
-      "user_name": "Joseph",
-      "time": "2026-11-19T21:20:20+00:00",
-      "preview": "Not long after Zalaralith arrives, Avelik shows up on scene as well. A lightly armored unremarkable human man with a slightly armored coat covering most of his outfit. He smiles widely and offers a jovial \"Hello!\" with too much enthusiasm and not enough introduction.",
-      "media_group_id": null
-    },
-    {
-      "message_id": 190988,
-      "thread_id": 76799,
-      "user_id": "1281212645",
-      "user_name": "Felix",
-      "time": "2026-11-19T23:08:54+00:00",
-      "preview": "*Tekuam gives the golem a pat on the back* \"Very informative, thank you\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 190996,
       "thread_id": 76799,
       "user_id": "8940117861",
@@ -278,6 +251,15 @@
       "user_name": "John",
       "time": "2026-11-23T04:14:43+00:00",
       "preview": "(Morimus  scans around for a bat or a rat to assist him)",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192067,
+      "thread_id": 76799,
+      "user_id": "1281212645",
+      "user_name": "Felix",
+      "time": "2026-11-23T04:29:14+00:00",
+      "preview": "That would be appreciated. What's your name?",
       "media_group_id": null
     }
   ],
@@ -794,7 +776,13 @@
     "msg:190938",
     "2026-11-19 19:46:45",
     "msg:190940",
-    "2026-11-19 19:51:25"
+    "2026-11-19 19:51:25",
+    "msg:190952",
+    "2026-11-19 20:45:12",
+    "msg:190961",
+    "2026-11-19 21:20:20",
+    "msg:190988",
+    "2026-11-19 23:08:54"
   ],
   "reply_log": [
     {
@@ -3150,17 +3138,44 @@
       "player": "Zalaralith",
       "preview": "he is currently pointing his bow straight downward while catching his breath",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:26:59+00:00",
+      "pid": "76799",
+      "msg_id": "190952",
+      "thread_id": 76799,
+      "player": "Felix",
+      "preview": "*Tekuam walks up, followed by a small Leshy, to the meeting seeing other guards ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:27:25+00:00",
+      "pid": "76799",
+      "msg_id": "190961",
+      "thread_id": 76799,
+      "player": "Joseph",
+      "preview": "Not long after Zalaralith arrives, Avelik shows up on scene as well. A lightly a",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-23T04:29:24+00:00",
+      "pid": "76799",
+      "msg_id": "190988",
+      "thread_id": 76799,
+      "player": "Felix",
+      "preview": "*Tekuam gives the golem a pat on the back* \"Very informative, thank you\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-19 20:45:12|2026-11-19 21:20:20|2026-11-19 23:08:54|2026-11-20 00:07:13|2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39|2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43",
+      "fingerprint": "2026-11-20 00:07:13|2026-11-20 02:15:30|2026-11-20 02:19:02|2026-11-20 02:20:15|2026-11-20 02:20:37|2026-11-20 07:57:29|2026-11-20 20:23:45|2026-11-21 02:24:07|2026-11-21 03:05:35|2026-11-21 05:57:27|2026-11-21 09:54:56|2026-11-21 11:35:39|2026-11-21 15:55:10|2026-11-21 18:15:02|2026-11-21 18:26:27|2026-11-21 21:50:57|2026-11-22 01:31:54|2026-11-22 01:45:19|2026-11-22 02:18:20|2026-11-22 02:19:08|2026-11-22 02:55:30|2026-11-22 02:59:29|2026-11-22 03:07:39|2026-11-22 04:20:35|2026-11-23 02:06:40|2026-11-23 02:06:55|2026-11-23 04:05:28|2026-11-23 04:14:43|2026-11-23 04:29:14",
       "msg_ids": [
-        192050
+        192069
       ],
-      "last_posted_at": "2026-11-23T04:24:42.233433+00:00",
+      "last_posted_at": "2026-11-23T04:29:56.459552+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3175,9 +3190,6 @@
     }
   },
   "probed": {
-    "190952": "2026-11-22T23:43:26.113940+00:00",
-    "190961": "2026-11-23T01:40:07.687768+00:00",
-    "190988": "2026-11-23T02:16:52.557607+00:00",
     "190996": "2026-11-23T02:21:14.340951+00:00",
     "191035": "2026-11-22T23:43:26.113940+00:00",
     "191037": "2026-11-22T23:43:26.113940+00:00",
@@ -3205,6 +3217,7 @@
     "191879": "2026-11-23T02:13:24.651833+00:00",
     "191880": "2026-11-23T02:13:24.651833+00:00",
     "192012": "2026-11-23T04:05:34.688370+00:00",
-    "192024": "2026-11-23T04:15:00.732815+00:00"
+    "192024": "2026-11-23T04:15:00.732815+00:00",
+    "192067": "2026-11-23T04:29:52.033515+00:00"
   }
 }
