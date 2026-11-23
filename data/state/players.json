@@ -58,8 +58,8 @@
       "username": "MrNegetZ",
       "campaign_name": "Doomsday Funtime",
       "pbp_topic_id": "25059",
-      "last_post_time": "2026-11-03T22:26:19+00:00",
-      "last_warned_week": 2
+      "last_post_time": "2026-11-23T01:03:41+00:00",
+      "last_warned_week": 0
     },
     "40585:7130942567": {
       "user_id": "7130942567",
@@ -359,6 +359,16 @@
       "campaign_name": "Magni Guard",
       "pbp_topic_id": "76799",
       "last_post_time": "2026-11-22T03:07:39+00:00",
+      "last_warned_week": 0
+    },
+    "66154:8525518483": {
+      "user_id": "8525518483",
+      "first_name": "Fuzzy",
+      "last_name": "",
+      "username": "fuzzystudios",
+      "campaign_name": "Riddleport",
+      "pbp_topic_id": "66154",
+      "last_post_time": "2026-11-23T01:39:07+00:00",
       "last_warned_week": 0
     }
   },
@@ -675,12 +685,6 @@
       "username": "Nemesiux",
       "campaign_name": "Grand Explorers"
     },
-    "66154:8525518483": {
-      "removed_at": "2026-10-15T16:43:29.631259+00:00",
-      "first_name": "Fuzzy",
-      "username": "fuzzystudios",
-      "campaign_name": "Riddleport"
-    },
     "76799:8969117742": {
       "removed_at": "2026-10-21T18:43:27.458102+00:00",
       "first_name": "Volf",
@@ -907,7 +911,7 @@
       },
       "6144366145": {
         "id": 4,
-        "name": "Anthony NegetZ",
+        "name": "Anthony",
         "joined": "2026-05-12T03:18:59.789942+00:00"
       },
       "7554681456": {
@@ -2470,6 +2474,14 @@
       "name": "Inquisitor Azrael Staine",
       "username": "",
       "at": "2026-11-21T02:43:21.702749+00:00"
+    },
+    {
+      "event": "join",
+      "pid": "66154",
+      "user_id": "8525518483",
+      "name": "Fuzzy",
+      "username": "fuzzystudios",
+      "at": "2026-11-23T01:40:05.939599+00:00"
     }
   ],
   "player_boons": {
@@ -2965,12 +2977,12 @@
     "138025700": {
       "name": "Ryo",
       "username": "RyoYamakawa",
-      "last": "2026-11-23T00:52:45+00:00"
+      "last": "2026-11-23T01:07:13+00:00"
     },
     "7454623139": {
       "name": "Cannon",
       "username": "ArtyArtillery",
-      "last": "2026-11-23T01:01:15+00:00"
+      "last": "2026-11-23T01:15:39+00:00"
     },
     "8097377199": {
       "name": "Terra",
@@ -3130,7 +3142,7 @@
     "9010956720": {
       "name": "Inquisitor Azrael Staine",
       "username": "",
-      "last": "2026-11-23T00:58:50+00:00"
+      "last": "2026-11-23T01:29:13+00:00"
     },
     "9038147325": {
       "name": "Omni",
@@ -3145,19 +3157,20 @@
     "9180973223": {
       "name": "John",
       "username": "",
-      "last": "2026-11-22T18:37:55+00:00"
+      "last": "2026-11-23T01:12:57+00:00"
     },
     "8065297729": {
       "name": "\u0414\u0430\u0440\u044c\u044f",
       "username": "DaryaMalysheva_SXi",
       "last": "2026-11-22T03:27:36+00:00"
+    },
+    "292816098": {
+      "name": "\u041b\u0435\u0440\u0430",
+      "username": "dav4lera",
+      "last": "2026-11-23T01:29:34+00:00"
     }
   },
   "gm_queue_size_log": [
-    [
-      "2026-11-21T01:33:12.257027+00:00",
-      27
-    ],
     [
       "2026-11-21T02:13:25.254897+00:00",
       27
@@ -3629,6 +3642,10 @@
     [
       "2026-11-23T01:01:50.088042+00:00",
       42
+    ],
+    [
+      "2026-11-23T01:40:07.687768+00:00",
+      44
     ]
   ]
 }
