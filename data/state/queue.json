@@ -1529,7 +1529,9 @@
       "2026-11-23T04:39:49.139617+00:00",
       "2026-11-23T04:39:49.146939+00:00",
       "2026-11-23T04:44:05.451167+00:00",
-      "2026-11-23T04:44:05.457491+00:00"
+      "2026-11-23T04:44:05.457491+00:00",
+      "2026-11-23T04:45:34.882922+00:00",
+      "2026-11-23T04:45:34.888942+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2106,20 +2108,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "51357",
-      "time": "2026-10-01T02:43:20.066979+00:00",
-      "player": "Anthony",
-      "preview": "[media]",
-      "msg_id": "182147"
-    },
-    {
-      "pid": "51357",
-      "time": "2026-10-01T04:50:56.902742+00:00",
-      "player": "Buffet",
-      "preview": "[media]",
-      "msg_id": "182177"
-    },
     {
       "pid": "40585",
       "time": "2026-10-01T04:58:40.132437+00:00",
@@ -3505,6 +3493,20 @@
       "player": "Alastair",
       "preview": "\"I am Sergeant Steele, and that is Changer. Once we've gathe",
       "msg_id": "191040"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:45:34.882922+00:00",
+      "player": "Chase",
+      "preview": "If there seems to be a wait for backup, the diminutive detec",
+      "msg_id": "191075"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:45:34.888942+00:00",
+      "player": "Cannon",
+      "preview": "\"Alright, that everyone?\"\n\nNadya taps her smoking pipe empty",
+      "msg_id": "191141"
     }
   ],
   "pending_potw_boons": {},
