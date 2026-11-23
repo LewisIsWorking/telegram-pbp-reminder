@@ -10,6 +10,7 @@ from players.permanence import is_permanent
 from players.proxy import effective_post_time, is_proxied
 from players.retire import retire_seat
 from scheduled.gm_bottleneck import gm_last_post, gm_note
+from scheduled.gm_silence import counted_days  # GM silences are off the clock (2026-11-23)
 from scheduled.inactivity_policy import sweep_and_warn
 from helpers_pkg.groups import group_id_for_campaign
 
@@ -128,14 +129,14 @@ def check_player_activity(config: dict, state: dict, *, now: datetime | None = N
         last_post = effective_post_time(player, pbp_topic_id, state)
         if last_post is None:
             continue  # pragma: no cover - no usable timestamp either way
-        elapsed_days = helpers.days_since(now, last_post)
+        elapsed_days = counted_days(config, state, pbp_topic_id, last_post, now)
         current_week = int(elapsed_days / 7)
         last_warned = player.get("last_warned_week", 0)
 
         first_name = player["first_name"]
         campaign = player["campaign_name"]
         mention = helpers.player_mention(player)
-        days_inactive = int(elapsed_days)
+        days_inactive = int(helpers.days_since(now, last_post))  # real days, for the message
         last_date = fmt_date(last_post)
 
         # 4+ weeks: remove. Fires even when the GM is the bottleneck, and

@@ -13,10 +13,10 @@ is blaming them for it. So the 1/2/3 week warnings are suppressed while
 the GM is three or more days quiet, and the alert text carries a note
 saying how long it has been.
 
-⚠️ The 4-week **removal** is deliberately NOT suppressed by this. A seat
-silent for a month is dead whoever is at fault, and leaving it counted
-makes every roster figure wrong. Whose fault it was is a different
-question from whether the seat is still occupied.
+⚠️ The 4-week **removal** is not suppressed by this. A seat silent for a
+month is dead whoever is at fault. ⭐ But since 2026-11-23 the month is
+counted without the days the GM was silent (scheduled/gm_silence.py):
+C05 lost all four players to a sweep while they waited on the GM.
 
 ⛔ These two functions carry ten ``# pragma: no cover`` markers between
 them, inherited unchanged. They are on live branches, not unreachable

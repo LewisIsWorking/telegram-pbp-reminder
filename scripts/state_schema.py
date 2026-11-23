@@ -120,6 +120,9 @@ PARTITIONS: dict[str, list[str]] = {
         "activity_days", "word_counts", "session_counts", "session_last_day",
         "poll_history", "poll_results", "potw_history",
         "thread_message_counts",
+        # Added 2026-11-23: GM silences, taken off players' 4-week clocks
+        # (scheduled/gm_silence.py). Undeclared, it would be dropped on save.
+        "gm_silences",
     ],
     "trackers": [
         "clocks", "conditions", "hp_tracker", "loot", "npcs",

@@ -39,6 +39,11 @@ def track_message(parsed: dict, state: dict, config: dict,
     user_words = state.setdefault("word_counts", {}).setdefault(pid, {})
     user_words[user_id] = user_words.get(user_id, 0) + word_count
 
+    # GM silences come off players' 4-week clocks; read the previous GM post before appending
+    if user_id in gm_ids:
+        from scheduled.gm_silence import record_gm_post
+        record_gm_post(config, state, pid, msg_time_iso)
+
     # Post timestamps (for POTW gap calculation)
     state["post_timestamps"].setdefault(pid, {}).setdefault(user_id, []).append(msg_time_iso)
 
