@@ -52,7 +52,7 @@ The bot responds to these commands in any monitored PBP topic:
 - `/queue` - Unreplied player messages across all campaigns. Messages clear when you reply to them using Telegram's reply feature. Priority campaigns pinned first. Shows player momentum.
 - `/event <text>` - Log a story event to the cross-campaign timeline.
 - `/session set <N>` - Set session counter for the current campaign.
-- `/setchar @username CharacterName` - Set a player's character name (shown on rosters).
+- `/setchar @username CharacterName` - Set a player's character name (shown on rosters). Without one, the bot uses the character COO finds on the campaign's Foundry party sheet for that player (since 4.87.2); a `/setchar` name always wins.
 
 - `/combat [enemies]` - Start combat (e.g. `/combat Ogre, 2 Skeletons`).
 - `/next` - Advance to next phase (players→enemies→next round).

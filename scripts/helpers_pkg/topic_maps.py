@@ -71,8 +71,11 @@ def build_topic_maps(config: dict) -> TopicMaps:
 def get_characters(config: dict, pid: str, state: dict | None = None) -> dict:
     """Return {user_id_str: character_name} for a campaign.
 
-    Checks state['characters'] first (set via /setchar), then config.
+    Config characters first, then COO's names from the Foundry party sheets
+    (players/coo_characters.py, 2026-11-23), then state['characters'] (set
+    via /setchar), each overriding the one before.
     """
+    from players import coo_characters
     result = {}
     # Config characters (base)
     for pair in config.get("topic_pairs", []):
@@ -80,6 +83,10 @@ def get_characters(config: dict, pid: str, state: dict | None = None) -> dict:
         if pid in all_ids:
             chars = pair.get("characters", {})
             result = {str(k): v for k, v in chars.items()}
+            # COO keys a campaign on its first pbp topic, as the state does.
+            first = [str(x) for x in pair.get("pbp_topic_ids", [])][:1]
+            if first:
+                result.update(coo_characters.for_campaign(first[0]))
             break
     # State overrides (from /setchar)
     if state:

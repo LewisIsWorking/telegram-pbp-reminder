@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.87.2] - 2026-11-23
+
+### Fixed
+
+**Rosters, reports and /summary now name each player's character.** Only `/setchar` used to set one, and no campaign had any. The bot now asks ComeOnOver, which reads each campaign's Foundry party sheets, and a GM's `/setchar` still wins.
+
 ## [4.87.1] - 2026-11-23
 
 ### Fixed
