@@ -1531,7 +1531,9 @@
       "2026-11-23T04:44:05.451167+00:00",
       "2026-11-23T04:44:05.457491+00:00",
       "2026-11-23T04:45:34.882922+00:00",
-      "2026-11-23T04:45:34.888942+00:00"
+      "2026-11-23T04:45:34.888942+00:00",
+      "2026-11-23T04:51:13.301962+00:00",
+      "2026-11-23T04:51:13.308227+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2108,20 +2110,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-10-01T04:58:40.132437+00:00",
-      "player": "Alastair",
-      "preview": "Retconned",
-      "msg_id": "182193"
-    },
-    {
-      "pid": "52083",
-      "time": "2026-10-01T11:43:15.761166+00:00",
-      "player": "Terra",
-      "preview": "\"What's the plan? The actual plan...we can't just go through",
-      "msg_id": "181270"
-    },
     {
       "pid": "52083",
       "time": "2026-10-01T11:43:15.765726+00:00",
@@ -3507,6 +3495,20 @@
       "player": "Cannon",
       "preview": "\"Alright, that everyone?\"\n\nNadya taps her smoking pipe empty",
       "msg_id": "191141"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:51:13.301962+00:00",
+      "player": "Inquisitor Azrael Staine",
+      "preview": "\"I'm sorry,\" a soft, almost weak voice is heard. \"that I too",
+      "msg_id": "191171"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-23T04:51:13.308227+00:00",
+      "player": "Inquisitor Azrael Staine",
+      "preview": "[media]",
+      "msg_id": "191191"
     }
   ],
   "pending_potw_boons": {},
