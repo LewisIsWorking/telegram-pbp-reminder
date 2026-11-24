@@ -2,15 +2,6 @@
   "pid": "107171",
   "unreplied": [
     {
-      "message_id": 192329,
-      "thread_id": 107171,
-      "user_id": "8117756377",
-      "user_name": "Laetheron",
-      "time": "2026-11-23T16:45:31+00:00",
-      "preview": "\"I wonder what might have befallen them to be so late. It's quite unusual.\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 192330,
       "thread_id": 107171,
       "user_id": "8117756377",
@@ -530,7 +521,9 @@
     "msg:191060",
     "2026-11-20 02:48:37",
     "msg:192315",
-    "2026-11-23 16:32:18"
+    "2026-11-23 16:32:18",
+    "msg:192329",
+    "2026-11-23 16:45:31"
   ],
   "reply_log": [
     {
@@ -2804,17 +2797,26 @@
       "player": "Ryo",
       "preview": "\"Guess we're stuck here for a while. Might as well get comfortable.\"\n\nZels climb",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T03:38:02+00:00",
+      "pid": "107171",
+      "msg_id": "192329",
+      "thread_id": 107171,
+      "player": "Laetheron",
+      "preview": "\"I wonder what might have befallen them to be so late. It's quite unusual.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-23 16:45:31|2026-11-23 16:46:04|2026-11-23 16:48:53|2026-11-23 16:52:46",
+      "fingerprint": "2026-11-23 16:46:04|2026-11-23 16:48:53|2026-11-23 16:52:46",
       "msg_ids": [
-        192592
+        192600
       ],
-      "last_posted_at": "2026-11-24T03:37:22.730897+00:00",
+      "last_posted_at": "2026-11-24T03:41:55.690462+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-23T02:16:52.557607+00:00"
@@ -2829,7 +2831,6 @@
     }
   },
   "probed": {
-    "192329": "2026-11-23T22:51:59.167982+00:00",
     "192330": "2026-11-23T22:51:59.167982+00:00",
     "192331": "2026-11-23T22:51:59.167982+00:00",
     "192339": "2026-11-23T23:00:02.943365+00:00"
