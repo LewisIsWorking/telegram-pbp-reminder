@@ -1,8 +1,8 @@
 {
-  "offset": 619373870,
+  "offset": 619373875,
   "topics": {
     "52083": {
-      "last_message_time": "2026-11-24T05:33:25+00:00",
+      "last_message_time": "2026-11-24T05:39:24+00:00",
       "last_user": "Path",
       "last_user_id": "1698524397",
       "campaign_name": "Hopeful End-Times"
@@ -250,7 +250,7 @@
   },
   "last_state_backup": "2026-11-24T02:13:21.319474+00:00",
   "last_queue_daily": "2026-11-23",
-  "last_queue_fingerprint": "52083:2026-11-20 02:33:30",
+  "last_queue_fingerprint": "empty",
   "queue_nudged": {
     "52083:Dima": "2026-03-26T19:26:56.571436+00:00",
     "52083:Bruce": "2026-03-26T19:26:56.571436+00:00",
@@ -365,15 +365,14 @@
   },
   "queue_scan_floor": null,
   "last_diagnostic": "2026-11-23",
-  "last_queue_pin_id": 192658,
+  "last_queue_pin_id": null,
   "queue_post_count": 2315,
   "gm_queue_history": [
     {
       "msg_ids": [
-        192658,
-        192659
+        192665
       ],
-      "pin_id": 192658
+      "pin_id": null
     }
   ],
   "gm_queue_texts": [
@@ -452,9 +451,9 @@
       "at": "2026-11-23T04:44:05.457825+00:00"
     },
     "-1001661053273:191050": {
-      "emoji": "\ud83d\udc40",
+      "emoji": "\u270d",
       "pid": "52083",
-      "at": "2026-11-23T04:15:44.302609+00:00"
+      "at": "2026-11-24T05:40:00.142823+00:00"
     },
     "-1001661053273:191075": {
       "emoji": "\u270d",
@@ -719,7 +718,7 @@
   "schedule_post_msg_id": null,
   "schedule_post_chat_id": null,
   "last_pin_digest": "2026-11-23",
-  "last_pin_alert_ts": "2026-11-24T05:34:02.843361+00:00",
+  "last_pin_alert_ts": "2026-11-24T05:40:06.073254+00:00",
   "poll_identified_voters": {},
   "recruit_focus_msg_id": 192472,
   "last_recruit_focus": "2026-11-24T02:13:21.319474+00:00",
