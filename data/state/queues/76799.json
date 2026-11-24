@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 192177,
-      "thread_id": 76799,
-      "user_id": "1281212645",
-      "user_name": "Felix",
-      "time": "2026-11-23T05:14:09+00:00",
-      "preview": "*14 points of healing*",
-      "media_group_id": null
-    },
-    {
       "message_id": 192178,
       "thread_id": 76799,
       "user_id": "9010956720",
@@ -89,6 +80,33 @@
       "user_name": "Joseph",
       "time": "2026-11-24T02:15:16+00:00",
       "preview": "Avelik listens to the odd exchanges from everyone. A kobold speaks, the golem speaks to everyone, someone else talks, somebody else responds to them and the golem; it's a lot to process and that shows on his face. Wide eyes above his agape mouth. This unit might be the death of him.\n\n\"SO! Should we slide the doors open with an air of hospitality while another group sneaks in the other way Doopa mentioned? It would give us a chance to just knock them out instead of killing anyone! Plus we could t",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192482,
+      "thread_id": 76799,
+      "user_id": "1281212645",
+      "user_name": "Felix",
+      "time": "2026-11-24T02:26:15+00:00",
+      "preview": "\"The spider will be fine after its next molt. There are probably more traps between us and Skerix correct? Let me take a look\" Tekuam lets Doopa show them to the traps",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192484,
+      "thread_id": 76799,
+      "user_id": "9180973223",
+      "user_name": "John",
+      "time": "2026-11-24T02:27:18+00:00",
+      "preview": "\"I Could continuously create and summon undead and funnel them into the room as a distraction, But I would also like to know what demands they have made\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192485,
+      "thread_id": 76799,
+      "user_id": "1358791105",
+      "user_name": "Alastair",
+      "time": "2026-11-24T02:30:35+00:00",
+      "preview": "\"A surprise manoeuvre is a good idea,\" nodded the white-furred sergeant.",
       "media_group_id": null
     }
   ],
@@ -675,7 +693,9 @@
     "msg:192156",
     "2026-11-23 05:01:22",
     "msg:192176",
-    "2026-11-23 05:13:25"
+    "2026-11-23 05:13:25",
+    "msg:192177",
+    "2026-11-23 05:14:09"
   ],
   "reply_log": [
     {
@@ -3346,17 +3366,26 @@
       "player": "Felix",
       "preview": "*Tekuam does use a two action Heal on the spider*",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T02:31:20+00:00",
+      "pid": "76799",
+      "msg_id": "192177",
+      "thread_id": 76799,
+      "player": "Felix",
+      "preview": "*14 points of healing*",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-23 05:14:09|2026-11-23 05:16:08|2026-11-23 07:41:56|2026-11-23 07:44:43|2026-11-23 12:57:46|2026-11-23 13:50:36|2026-11-23 16:32:42|2026-11-23 22:45:18|2026-11-23 22:50:49|2026-11-24 02:15:16",
+      "fingerprint": "2026-11-23 05:16:08|2026-11-23 07:41:56|2026-11-23 07:44:43|2026-11-23 12:57:46|2026-11-23 13:50:36|2026-11-23 16:32:42|2026-11-23 22:45:18|2026-11-23 22:50:49|2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
       "msg_ids": [
-        192475
+        192491
       ],
-      "last_posted_at": "2026-11-24T02:18:10.203882+00:00",
+      "last_posted_at": "2026-11-24T02:32:00.009562+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3371,7 +3400,6 @@
     }
   },
   "probed": {
-    "192177": "2026-11-23T23:58:37.363161+00:00",
     "192178": "2026-11-23T23:58:37.363161+00:00",
     "192252": "2026-11-24T02:13:21.319474+00:00",
     "192258": "2026-11-24T02:18:03.626614+00:00",
@@ -3380,6 +3408,9 @@
     "192316": "2026-11-23T22:44:43.221338+00:00",
     "192399": "2026-11-23T22:45:39.260966+00:00",
     "192415": "2026-11-23T22:51:59.167982+00:00",
-    "192473": "2026-11-24T02:18:03.626614+00:00"
+    "192473": "2026-11-24T02:18:03.626614+00:00",
+    "192482": "2026-11-24T02:31:55.091194+00:00",
+    "192484": "2026-11-24T02:31:55.091194+00:00",
+    "192485": "2026-11-24T02:31:55.091194+00:00"
   }
 }
