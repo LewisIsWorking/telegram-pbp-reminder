@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 192482,
-      "thread_id": 76799,
-      "user_id": "1281212645",
-      "user_name": "Felix",
-      "time": "2026-11-24T02:26:15+00:00",
-      "preview": "\"The spider will be fine after its next molt. There are probably more traps between us and Skerix correct? Let me take a look\" Tekuam lets Doopa show them to the traps",
-      "media_group_id": null
-    },
-    {
       "message_id": 192484,
       "thread_id": 76799,
       "user_id": "9180973223",
@@ -26,6 +17,15 @@
       "user_name": "Alastair",
       "time": "2026-11-24T02:30:35+00:00",
       "preview": "\"A surprise manoeuvre is a good idea,\" nodded the white-furred sergeant.",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192553,
+      "thread_id": 76799,
+      "user_id": "9180973223",
+      "user_name": "John",
+      "time": "2026-11-24T03:14:49+00:00",
+      "preview": "\"All  together in the roof right? I would be willing to try to act as a negotiator while others sneak around\"\n\nMorimus ignores Doopas concerns",
       "media_group_id": null
     }
   ],
@@ -632,7 +632,9 @@
     "msg:192415",
     "2026-11-23 22:50:49",
     "msg:192473",
-    "2026-11-24 02:15:16"
+    "2026-11-24 02:15:16",
+    "msg:192482",
+    "2026-11-24 02:26:15"
   ],
   "reply_log": [
     {
@@ -3393,17 +3395,26 @@
       "player": "Joseph",
       "preview": "Avelik listens to the odd exchanges from everyone. A kobold speaks, the golem sp",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T03:14:27+00:00",
+      "pid": "76799",
+      "msg_id": "192482",
+      "thread_id": 76799,
+      "player": "Felix",
+      "preview": "\"The spider will be fine after its next molt. There are probably more traps betw",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
+      "fingerprint": "2026-11-24 02:27:18|2026-11-24 02:30:35|2026-11-24 03:14:49",
       "msg_ids": [
-        192546
+        192554
       ],
-      "last_posted_at": "2026-11-24T03:09:47.345788+00:00",
+      "last_posted_at": "2026-11-24T03:15:54.176981+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3418,8 +3429,8 @@
     }
   },
   "probed": {
-    "192482": "2026-11-24T02:31:55.091194+00:00",
     "192484": "2026-11-24T02:31:55.091194+00:00",
-    "192485": "2026-11-24T02:31:55.091194+00:00"
+    "192485": "2026-11-24T02:31:55.091194+00:00",
+    "192553": "2026-11-24T03:15:50.344329+00:00"
   }
 }
