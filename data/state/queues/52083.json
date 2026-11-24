@@ -9,6 +9,15 @@
       "time": "2026-11-24T14:40:36+00:00",
       "preview": "Lai squints \"what is that?\" He asks feeling the pressure again looking at the human",
       "media_group_id": null
+    },
+    {
+      "message_id": 192814,
+      "thread_id": 52083,
+      "user_id": "8583905719",
+      "user_name": "Salaezar",
+      "time": "2026-11-24T18:49:28+00:00",
+      "preview": "Detonator holds out his comm showing a message on the screen, it shows \u201cHeard you\u2019re looking for a job. Might have something up your alley. Meet here\u201d and there is a location coordinates for this location below.\n\n\u201cAs you can see I don\u2019t know who sent me. I thought it was one of you, guess not. Not sure who it could be but in my previous line of work the shadows giving the orders never had names, plausible deniability. Services are still available if you need them, I got nothing better to do. Bes",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -2703,11 +2712,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-24 14:40:36",
+      "fingerprint": "2026-11-24 14:40:36|2026-11-24 18:49:28",
       "msg_ids": [
-        192784
+        192815
       ],
-      "last_posted_at": "2026-11-24T14:43:26.756152+00:00",
+      "last_posted_at": "2026-11-24T18:52:48.928969+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-24T05:40:00.142823+00:00"
     },
@@ -2726,6 +2735,7 @@
     }
   },
   "probed": {
-    "192782": "2026-11-24T14:43:20.293643+00:00"
+    "192782": "2026-11-24T14:43:20.293643+00:00",
+    "192814": "2026-11-24T18:52:34.500503+00:00"
   }
 }
