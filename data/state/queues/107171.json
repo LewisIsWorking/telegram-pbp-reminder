@@ -1,16 +1,6 @@
 {
   "pid": "107171",
-  "unreplied": [
-    {
-      "message_id": 192331,
-      "thread_id": 107171,
-      "user_id": "8583905719",
-      "user_name": "Salaezar",
-      "time": "2026-11-23T16:48:53+00:00",
-      "preview": "\u201cWell that\u2019s complicated I am both or at least that\u2019s what TALIE my tutor told me.\u201d\n\n\u201cThe person who helped I didn\u2019t get their name but they looked like\u2026\u201d (describes the professor down to the minute details)",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:107171",
     "2025-09-04 20:53:13",
@@ -509,7 +499,9 @@
     "msg:192330",
     "2026-11-23 16:46:04",
     "msg:192339",
-    "2026-11-23 16:52:46"
+    "2026-11-23 16:52:46",
+    "msg:192331",
+    "2026-11-23 16:48:53"
   ],
   "reply_log": [
     {
@@ -2810,20 +2802,27 @@
       "player": "Salaezar",
       "preview": "\u201cI think so, if my description matches the professor\u2019s. You see they helped me o",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T03:49:59+00:00",
+      "pid": "107171",
+      "msg_id": "192331",
+      "thread_id": 107171,
+      "player": "Salaezar",
+      "preview": "\u201cWell that\u2019s complicated I am both or at least that\u2019s what TALIE my tutor told m",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "107171": {
-      "fingerprint": "2026-11-23 16:48:53",
-      "msg_ids": [
-        192608
-      ],
-      "last_posted_at": "2026-11-24T03:47:48.859627+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 192617,
       "pending_delete": [],
-      "caught_up_at": "2026-11-23T02:16:52.557607+00:00"
+      "caught_up_at": "2026-11-24T03:51:30.153255+00:00"
     },
     "142887": {
       "fingerprint": "",
