@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 192415,
-      "thread_id": 76799,
-      "user_id": "9180973223",
-      "user_name": "John",
-      "time": "2026-11-23T22:50:49+00:00",
-      "preview": "\"How did you... How many  Kobolds are up there? And seeing as how they have already killed a few hostage's the only one I would consider taking in alive would be their leader so he can be tried and hung for his crimes\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 192473,
       "thread_id": 76799,
       "user_id": "9231217046",
@@ -646,7 +637,9 @@
     "msg:192316",
     "2026-11-23 16:32:42",
     "msg:192399",
-    "2026-11-23 22:45:18"
+    "2026-11-23 22:45:18",
+    "msg:192415",
+    "2026-11-23 22:50:49"
   ],
   "reply_log": [
     {
@@ -3389,17 +3382,26 @@
       "player": "John",
       "preview": "\"It is my job to do so. Now stop grabbing me so I can do my job\"",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T03:07:03+00:00",
+      "pid": "76799",
+      "msg_id": "192415",
+      "thread_id": 76799,
+      "player": "John",
+      "preview": "\"How did you... How many  Kobolds are up there? And seeing as how they have alre",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-23 22:50:49|2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
+      "fingerprint": "2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
       "msg_ids": [
-        192532
+        192539
       ],
-      "last_posted_at": "2026-11-24T03:04:53.443182+00:00",
+      "last_posted_at": "2026-11-24T03:08:47.039745+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3414,7 +3416,6 @@
     }
   },
   "probed": {
-    "192415": "2026-11-23T22:51:59.167982+00:00",
     "192473": "2026-11-24T02:18:03.626614+00:00",
     "192482": "2026-11-24T02:31:55.091194+00:00",
     "192484": "2026-11-24T02:31:55.091194+00:00",
