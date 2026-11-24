@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 192316,
-      "thread_id": 76799,
-      "user_id": "8583905719",
-      "user_name": "Salaezar",
-      "time": "2026-11-23T16:32:42+00:00",
-      "preview": "\u201cI believe the brutes name, or at least the one I know him by is Charles Burke. Not sure if it\u2019s his real one or not. I didn\u2019t get a chance to question him before I was taken away.\u201d \n\nHe puts his hand to his face and strokes his chin. \u201cKobolds you say well let me tell you about kobolds\u2026\u201d\n\n(OOC: Can I roll for recall knowledge on kobolds)",
-      "media_group_id": null
-    },
-    {
       "message_id": 192399,
       "thread_id": 76799,
       "user_id": "9180973223",
@@ -660,7 +651,9 @@
     "msg:192286",
     "2026-11-23 12:57:46",
     "msg:192294",
-    "2026-11-23 13:50:36"
+    "2026-11-23 13:50:36",
+    "msg:192316",
+    "2026-11-23 16:32:42"
   ],
   "reply_log": [
     {
@@ -3385,17 +3378,26 @@
       "player": "Ryo",
       "preview": "\"You're welcome Doopa. And you can call me Kitt.\"\n\nKitt gives his fellow kobold ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T02:55:44+00:00",
+      "pid": "76799",
+      "msg_id": "192316",
+      "thread_id": 76799,
+      "player": "Salaezar",
+      "preview": "\u201cI believe the brutes name, or at least the one I know him by is Charles Burke. ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-23 16:32:42|2026-11-23 22:45:18|2026-11-23 22:50:49|2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
+      "fingerprint": "2026-11-23 22:45:18|2026-11-23 22:50:49|2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
       "msg_ids": [
-        192518
+        192525
       ],
-      "last_posted_at": "2026-11-24T02:53:19.828316+00:00",
+      "last_posted_at": "2026-11-24T03:01:08.149865+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3410,7 +3412,6 @@
     }
   },
   "probed": {
-    "192316": "2026-11-23T22:44:43.221338+00:00",
     "192399": "2026-11-23T22:45:39.260966+00:00",
     "192415": "2026-11-23T22:51:59.167982+00:00",
     "192473": "2026-11-24T02:18:03.626614+00:00",
