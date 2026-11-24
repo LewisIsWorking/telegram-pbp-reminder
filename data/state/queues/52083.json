@@ -2,15 +2,6 @@
   "pid": "52083",
   "unreplied": [
     {
-      "message_id": 190792,
-      "thread_id": 52083,
-      "user_id": "8097377199",
-      "user_name": "Terra",
-      "time": "2026-11-18T23:56:26+00:00",
-      "preview": "\"If we are moving we should move now the door is out of sight from the drones, and move inconspicuously\"",
-      "media_group_id": null
-    },
-    {
       "message_id": 191050,
       "thread_id": 52083,
       "user_id": "8583905719",
@@ -499,7 +490,9 @@
     "msg:190148",
     "2026-11-14 13:46:02",
     "msg:190150",
-    "2026-11-14 14:05:19"
+    "2026-11-14 14:05:19",
+    "msg:190792",
+    "2026-11-18 23:56:26"
   ],
   "reply_log": [
     {
@@ -2684,17 +2677,26 @@
       "player": "Ryo",
       "preview": "Going back to what he was doing he set his rifle in a safe space and pulled out ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T05:33:25+00:00",
+      "pid": "52083",
+      "msg_id": "190792",
+      "thread_id": 52083,
+      "player": "Terra",
+      "preview": "\"If we are moving we should move now the door is out of sight from the drones, a",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "52083": {
-      "fingerprint": "2026-11-18 23:56:26|2026-11-20 02:33:30",
+      "fingerprint": "2026-11-20 02:33:30",
       "msg_ids": [
-        191952
+        192656
       ],
-      "last_posted_at": "2026-11-23T02:47:48.212333+00:00",
+      "last_posted_at": "2026-11-24T05:33:56.106217+00:00",
       "caught_up_msg_id": null,
       "caught_up_at": "2026-11-18T21:38:33.695673+00:00"
     },
@@ -2713,7 +2715,6 @@
     }
   },
   "probed": {
-    "190792": "2026-11-24T04:57:15.944634+00:00",
     "191050": "2026-11-24T00:43:23.938620+00:00"
   }
 }
