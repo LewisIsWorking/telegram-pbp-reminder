@@ -1555,7 +1555,8 @@
       "2026-11-23T22:49:26.910414+00:00",
       "2026-11-23T22:52:55.294808+00:00",
       "2026-11-23T22:55:33.229613+00:00",
-      "2026-11-23T22:59:06.576780+00:00"
+      "2026-11-23T22:59:06.576780+00:00",
+      "2026-11-24T02:18:03.625409+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2132,13 +2133,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "52083",
-      "time": "2026-10-08T10:13:19.490076+00:00",
-      "player": "Terra",
-      "preview": "\"Nothing...\" Lai said looking at the building from the outsi",
-      "msg_id": "182398"
-    },
     {
       "pid": "107171",
       "time": "2026-10-08T12:13:21.688403+00:00",
@@ -3531,6 +3525,13 @@
       "player": "Inquisitor Azrael Staine",
       "preview": "\"Unusual?\" Raziel hisses, narrowing his eyes at the golem. \n",
       "msg_id": "192156"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-24T02:18:03.625409+00:00",
+      "player": "Felix",
+      "preview": "*Tekuam does use a two action Heal on the spider*",
+      "msg_id": "192176"
     }
   ],
   "pending_potw_boons": {
