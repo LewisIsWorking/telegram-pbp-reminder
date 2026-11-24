@@ -9,6 +9,15 @@
       "time": "2026-11-24T06:39:26+00:00",
       "preview": "Her own bar that was her livelihood before deciding to change career to adventuring",
       "media_group_id": null
+    },
+    {
+      "message_id": 192790,
+      "thread_id": 66154,
+      "user_id": "7437909735",
+      "user_name": "Loren",
+      "time": "2026-11-24T15:52:09+00:00",
+      "preview": "Grudge made it clear that everything stays in the bag.  And being pirates doesnt make you a bad lot.  More interesting if you ask me.\n\nMiracle Max strokes his beard thoughtfully, glancing once more toward the sailor and then toward the one-eyed woman.\n\n\"Four of them, eh? And not a drop between them. Either they're remarkably disciplined drinkers, or remarkably poor pirates.\"\n\nHe gives Jorrik a knowing smile and settles back in his chair.\n\n\"Well, I suppose I'll keep my eyes open. Funny how the pe",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -1909,17 +1918,18 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-24 06:39:26",
+      "fingerprint": "2026-11-24 06:39:26|2026-11-24 15:52:09",
       "msg_ids": [
-        192686
+        192792
       ],
-      "last_posted_at": "2026-11-24T06:43:29.716751+00:00",
+      "last_posted_at": "2026-11-24T16:13:29.433762+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-24T04:57:15.944634+00:00"
     }
   },
   "probed": {
-    "192685": "2026-11-24T12:51:01.894267+00:00"
+    "192685": "2026-11-24T12:51:01.894267+00:00",
+    "192790": "2026-11-24T16:13:21.784223+00:00"
   }
 }
