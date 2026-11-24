@@ -2,15 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 192473,
-      "thread_id": 76799,
-      "user_id": "9231217046",
-      "user_name": "Joseph",
-      "time": "2026-11-24T02:15:16+00:00",
-      "preview": "Avelik listens to the odd exchanges from everyone. A kobold speaks, the golem speaks to everyone, someone else talks, somebody else responds to them and the golem; it's a lot to process and that shows on his face. Wide eyes above his agape mouth. This unit might be the death of him.\n\n\"SO! Should we slide the doors open with an air of hospitality while another group sneaks in the other way Doopa mentioned? It would give us a chance to just knock them out instead of killing anyone! Plus we could t",
-      "media_group_id": null
-    },
-    {
       "message_id": 192482,
       "thread_id": 76799,
       "user_id": "1281212645",
@@ -639,7 +630,9 @@
     "msg:192399",
     "2026-11-23 22:45:18",
     "msg:192415",
-    "2026-11-23 22:50:49"
+    "2026-11-23 22:50:49",
+    "msg:192473",
+    "2026-11-24 02:15:16"
   ],
   "reply_log": [
     {
@@ -3391,17 +3384,26 @@
       "player": "John",
       "preview": "\"How did you... How many  Kobolds are up there? And seeing as how they have alre",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T03:08:58+00:00",
+      "pid": "76799",
+      "msg_id": "192473",
+      "thread_id": 76799,
+      "player": "Joseph",
+      "preview": "Avelik listens to the odd exchanges from everyone. A kobold speaks, the golem sp",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
+      "fingerprint": "2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
       "msg_ids": [
-        192539
+        192546
       ],
-      "last_posted_at": "2026-11-24T03:08:47.039745+00:00",
+      "last_posted_at": "2026-11-24T03:09:47.345788+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3416,7 +3418,6 @@
     }
   },
   "probed": {
-    "192473": "2026-11-24T02:18:03.626614+00:00",
     "192482": "2026-11-24T02:31:55.091194+00:00",
     "192484": "2026-11-24T02:31:55.091194+00:00",
     "192485": "2026-11-24T02:31:55.091194+00:00"
