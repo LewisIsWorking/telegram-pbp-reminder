@@ -944,7 +944,9 @@
       "2026-11-23T02:13:24.649550+00:00",
       "2026-11-23T02:16:51.942039+00:00",
       "2026-11-24T03:37:16.344619+00:00",
-      "2026-11-24T03:41:50.124477+00:00"
+      "2026-11-24T03:41:50.124477+00:00",
+      "2026-11-24T03:47:43.299170+00:00",
+      "2026-11-24T03:47:43.306179+00:00"
     ],
     "107151": [
       "2026-03-22T04:39:47.467798+00:00",
@@ -2150,20 +2152,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "66154",
-      "time": "2026-10-13T02:10:52.409240+00:00",
-      "player": "aSly",
-      "preview": "Marlo feels a small, timid tug on the cuff of his sleeve and",
-      "msg_id": "183133"
-    },
-    {
-      "pid": "66154",
-      "time": "2026-10-13T02:10:52.413693+00:00",
-      "player": "Ryo",
-      "preview": "Rax sighs as he makes his way into the Silver Succubi. He ha",
-      "msg_id": "183260"
-    },
     {
       "pid": "66154",
       "time": "2026-10-13T04:13:16.147695+00:00",
@@ -3549,6 +3537,20 @@
       "player": "Laetheron",
       "preview": "\"I wonder what might have befallen them to be so late. It's ",
       "msg_id": "192329"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-11-24T03:47:43.299170+00:00",
+      "player": "Laetheron",
+      "preview": "\"And hello there, who might you be? A fellow friend of the p",
+      "msg_id": "192330"
+    },
+    {
+      "pid": "107171",
+      "time": "2026-11-24T03:47:43.306179+00:00",
+      "player": "Salaezar",
+      "preview": "\u201cI think so, if my description matches the professor\u2019s. You ",
+      "msg_id": "192339"
     }
   ],
   "pending_potw_boons": {
