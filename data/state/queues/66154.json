@@ -1,25 +1,6 @@
 {
   "pid": "66154",
-  "unreplied": [
-    {
-      "message_id": 191838,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-11-23T01:38:32+00:00",
-      "preview": "\"...man, paperwork to transfer ownership is such a DRAAAAG. Well, at least I'll get paid for the bar in... Uhh... 5 years or so. Yay. Bureaucracy.\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 191839,
-      "thread_id": 66154,
-      "user_id": "8525518483",
-      "user_name": "Fuzzy",
-      "time": "2026-11-23T01:39:07+00:00",
-      "preview": "\"I think this boredom took 5 years off my life.\"",
-      "media_group_id": null
-    }
-  ],
+  "unreplied": [],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -355,7 +336,11 @@
     "msg:190791",
     "2026-11-18 23:56:17",
     "msg:190841",
-    "2026-11-19 03:26:05"
+    "2026-11-19 03:26:05",
+    "msg:191838",
+    "2026-11-23 01:38:32",
+    "msg:191839",
+    "2026-11-23 01:39:07"
   ],
   "reply_log": [
     {
@@ -1890,20 +1875,36 @@
       "player": "Alastair",
       "preview": "Rin looks up for a moment, then shoots his gaze away before eye contact tingles ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T04:55:09+00:00",
+      "pid": "66154",
+      "msg_id": "191838",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "\"...man, paperwork to transfer ownership is such a DRAAAAG. Well, at least I'll ",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-24T04:55:34+00:00",
+      "pid": "66154",
+      "msg_id": "191839",
+      "thread_id": 66154,
+      "player": "Fuzzy",
+      "preview": "\"I think this boredom took 5 years off my life.\"",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-23 01:38:32|2026-11-23 01:39:07",
-      "msg_ids": [
-        192640
-      ],
-      "last_posted_at": "2026-11-24T04:14:55.871795+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 192648,
       "pending_delete": [],
-      "caught_up_at": "2026-11-18T23:02:12.458558+00:00"
+      "caught_up_at": "2026-11-24T04:57:15.944634+00:00"
     }
   },
   "probed": {
