@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 190791,
-      "thread_id": 66154,
-      "user_id": "7437909735",
-      "user_name": "Loren",
-      "time": "2026-11-18T23:56:17+00:00",
-      "preview": "Miracle Max looks down at Jorrik's outstretched palm, then fishes a silver piece from his purse and places it in the waiting hand.\n\n\"Well, I can't fault a man for charging for his services. Information is a valuable commodity, after all.\"\n\nHe gives his backpack a fond pat.\n\n\"Medicine, indeed. Remedies, tonics, experimental concoctions. A little something for whatever happens to ail you. You'd be surprised what a good potion can do. Sometimes even the mostly dead can make a comeback.\"\n\nHis eyes d",
-      "media_group_id": null
-    },
-    {
       "message_id": 190841,
       "thread_id": 66154,
       "user_id": "1358791105",
@@ -369,7 +360,9 @@
     "msg:190507",
     "2026-11-17 20:50:25",
     "msg:190559",
-    "2026-11-18 04:58:31"
+    "2026-11-18 04:58:31",
+    "msg:190791",
+    "2026-11-18 23:56:17"
   ],
   "reply_log": [
     {
@@ -1886,24 +1879,32 @@
       "player": "Alastair",
       "preview": "Rin lowers his head. \"I'm sorry, I'll try to do better next time,\" he apologises",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T04:00:35+00:00",
+      "pid": "66154",
+      "msg_id": "190791",
+      "thread_id": 66154,
+      "player": "Loren",
+      "preview": "Miracle Max looks down at Jorrik's outstretched palm, then fishes a silver piece",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-18 23:56:17|2026-11-19 03:26:05|2026-11-23 01:38:32|2026-11-23 01:39:07",
+      "fingerprint": "2026-11-19 03:26:05|2026-11-23 01:38:32|2026-11-23 01:39:07",
       "msg_ids": [
-        191846
+        192629
       ],
-      "last_posted_at": "2026-11-23T01:40:19.898346+00:00",
+      "last_posted_at": "2026-11-24T04:01:11.702209+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-18T23:02:12.458558+00:00"
     }
   },
   "probed": {
-    "190791": "2026-11-23T22:51:59.167982+00:00",
     "190841": "2026-11-24T02:13:21.319474+00:00",
     "191838": "2026-11-24T02:13:21.319474+00:00",
     "191839": "2026-11-24T02:13:21.319474+00:00"
