@@ -1,6 +1,25 @@
 {
   "pid": "76799",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 192670,
+      "thread_id": 76799,
+      "user_id": "9180973223",
+      "user_name": "John",
+      "time": "2026-11-24T06:00:13+00:00",
+      "preview": "Morimus looks over to the kobold. \n\"You were with the others that took the hostage's correct? \nIf so I need to know if they killed anyone and if you tried any other methods \nto achieve your goals before resorting to ... this.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192671,
+      "thread_id": 76799,
+      "user_id": "9180973223",
+      "user_name": "John",
+      "time": "2026-11-24T06:08:59+00:00",
+      "preview": "@PathWars",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137670",
     "2026-03-16 20:06:25",
@@ -614,7 +633,9 @@
     "msg:192553",
     "2026-11-24 03:14:49",
     "msg:192567",
-    "2026-11-24 03:17:55"
+    "2026-11-24 03:17:55",
+    "msg:192667",
+    "2026-11-24 05:56:12"
   ],
   "reply_log": [
     {
@@ -3420,16 +3441,27 @@
       "player": "John",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T05:58:14+00:00",
+      "pid": "76799",
+      "msg_id": "192667",
+      "thread_id": 76799,
+      "player": "John",
+      "preview": "@PathWars Is going on strike illegal in the city ?",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 192586,
+      "fingerprint": "2026-11-24 06:00:13|2026-11-24 06:08:59",
+      "msg_ids": [
+        192672
+      ],
+      "last_posted_at": "2026-11-24T06:13:20.938893+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-24T03:30:03.415931+00:00"
     },
@@ -3443,6 +3475,7 @@
     }
   },
   "probed": {
-    "192567": "2026-11-24T03:22:57.878365+00:00"
+    "192670": "2026-11-24T06:13:16.979482+00:00",
+    "192671": "2026-11-24T06:13:16.979482+00:00"
   }
 }
