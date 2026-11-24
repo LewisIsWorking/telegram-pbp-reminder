@@ -1,6 +1,16 @@
 {
   "pid": "66154",
-  "unreplied": [],
+  "unreplied": [
+    {
+      "message_id": 192685,
+      "thread_id": 66154,
+      "user_id": "8525518483",
+      "user_name": "Fuzzy",
+      "time": "2026-11-24T06:39:26+00:00",
+      "preview": "Her own bar that was her livelihood before deciding to change career to adventuring",
+      "media_group_id": null
+    }
+  ],
   "replied": [
     "msg:137732",
     "2026-03-17 02:03:01",
@@ -1899,16 +1909,17 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "",
-      "msg_ids": [],
-      "last_posted_at": null,
-      "caught_up_msg_id": 192648,
+      "fingerprint": "2026-11-24 06:39:26",
+      "msg_ids": [
+        192686
+      ],
+      "last_posted_at": "2026-11-24T06:43:29.716751+00:00",
+      "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-24T04:57:15.944634+00:00"
     }
   },
   "probed": {
-    "191838": "2026-11-24T02:13:21.319474+00:00",
-    "191839": "2026-11-24T02:13:21.319474+00:00"
+    "192685": "2026-11-24T06:43:24.499725+00:00"
   }
 }

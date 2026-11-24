@@ -18,6 +18,51 @@
       "time": "2026-11-24T06:08:59+00:00",
       "preview": "@PathWars",
       "media_group_id": null
+    },
+    {
+      "message_id": 192678,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-11-24T06:21:13+00:00",
+      "preview": "\"Unfortunately, we've already found several victims. It's not our job to determine guilt, that's the duty of the Justice Court. Our mission right now is to save the folk inside who have been taken hostage and detain the ones who took them.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192681,
+      "thread_id": 76799,
+      "user_id": "9180973223",
+      "user_name": "John",
+      "time": "2026-11-24T06:26:11+00:00",
+      "preview": "Morimus looks at Nadya \" While that is true, fact of the matter is that ,from what im told, these criminals have all ready resorted to leathal means. As such we are well within our right to use equal if not greater force.\"\n\nHe stops to think for a second\n\n\"This one surrendered and is cooperating with us, it does seem like its drawn to you, do these Kobolds (Pointing up) view you in a positive way? Of course I am not insinuating that you are working with them but just an observation\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192682,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-11-24T06:33:22+00:00",
+      "preview": "Nadya shrugs.\n\n\"It won't be my ass getting dragged to the top of Arvensoar for killing suspects. As for the kobolds, I don't know 'em and we haven't made contact with the ones still inside yet. Doopa's story makes it sound like the remaining ones masterminded the criminal actions the group has taken, so I'm not certain I'll be able to talk them down, but we should definitely try. Avoiding any violence is what's going to keep the innocent lives in there the safest.\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192683,
+      "thread_id": 76799,
+      "user_id": "9180973223",
+      "user_name": "John",
+      "time": "2026-11-24T06:36:04+00:00",
+      "preview": "\"Just so I understand the events that took place, and correct me if Im wrong, The kobolds came into the chaple, took multiple people hostage.\" Then between then and now something happened where some of the hostages where killed and the group fractured\" \n\n\"Am I correct\"",
+      "media_group_id": null
+    },
+    {
+      "message_id": 192684,
+      "thread_id": 76799,
+      "user_id": "7454623139",
+      "user_name": "Cannon",
+      "time": "2026-11-24T06:38:59+00:00",
+      "preview": "\"Nah, the folks we found seemed to have died in the initial event. Maybe they fought back or something, I dunno. Not my job to worry about the dead, just the dying.\"",
+      "media_group_id": null
     }
   ],
   "replied": [
@@ -3456,11 +3501,11 @@
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-24 06:00:13|2026-11-24 06:08:59",
+      "fingerprint": "2026-11-24 06:00:13|2026-11-24 06:08:59|2026-11-24 06:21:13|2026-11-24 06:26:11|2026-11-24 06:33:22|2026-11-24 06:36:04|2026-11-24 06:38:59",
       "msg_ids": [
-        192672
+        192688
       ],
-      "last_posted_at": "2026-11-24T06:13:20.938893+00:00",
+      "last_posted_at": "2026-11-24T06:43:32.824564+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-24T03:30:03.415931+00:00"
@@ -3476,6 +3521,11 @@
   },
   "probed": {
     "192670": "2026-11-24T06:13:16.979482+00:00",
-    "192671": "2026-11-24T06:13:16.979482+00:00"
+    "192671": "2026-11-24T06:13:16.979482+00:00",
+    "192678": "2026-11-24T06:43:24.499725+00:00",
+    "192681": "2026-11-24T06:43:24.499725+00:00",
+    "192682": "2026-11-24T06:43:24.499725+00:00",
+    "192683": "2026-11-24T06:43:24.499725+00:00",
+    "192684": "2026-11-24T06:43:24.499725+00:00"
   }
 }
