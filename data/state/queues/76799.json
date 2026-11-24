@@ -2,33 +2,6 @@
   "pid": "76799",
   "unreplied": [
     {
-      "message_id": 192258,
-      "thread_id": 76799,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-23T07:44:43+00:00",
-      "preview": "\"Anyone see anything of particular relevance to our existing investigation?\"",
-      "media_group_id": null
-    },
-    {
-      "message_id": 192286,
-      "thread_id": 76799,
-      "user_id": "9231217046",
-      "user_name": "Joseph",
-      "time": "2026-11-23T12:57:46+00:00",
-      "preview": "\"It's good to meet you Changer! Happy to see all the new faces I get to work with.\"\n\nAvelik turns his attention to Sergeant Steele and thinking for a moment. His thought process leads to a near vacant state at the sergeant. With a sudden explosion of expression, he blurts out an answer.\n\n\"The structure of the building is incorrect for a headquarters! Something about the Minkain style does not fit the design here or layout or something along those lines. I studied plenty of ruins of civilizations",
-      "media_group_id": null
-    },
-    {
-      "message_id": 192294,
-      "thread_id": 76799,
-      "user_id": "138025700",
-      "user_name": "Ryo",
-      "time": "2026-11-23T13:50:36+00:00",
-      "preview": "\"You're welcome Doopa. And you can call me Kitt.\"\n\nKitt gives his fellow kobold a big smile.",
-      "media_group_id": null
-    },
-    {
       "message_id": 192316,
       "thread_id": 76799,
       "user_id": "8583905719",
@@ -681,7 +654,13 @@
     "msg:192178",
     "2026-11-23 05:16:08",
     "msg:192252",
-    "2026-11-23 07:41:56"
+    "2026-11-23 07:41:56",
+    "msg:192258",
+    "2026-11-23 07:44:43",
+    "msg:192286",
+    "2026-11-23 12:57:46",
+    "msg:192294",
+    "2026-11-23 13:50:36"
   ],
   "reply_log": [
     {
@@ -3379,17 +3358,44 @@
       "player": "Alastair",
       "preview": "\"You may be misreading something, Changer. I have not had a heart rate in a few ",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T02:48:43+00:00",
+      "pid": "76799",
+      "msg_id": "192258",
+      "thread_id": 76799,
+      "player": "Alastair",
+      "preview": "\"Anyone see anything of particular relevance to our existing investigation?\"",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-24T02:51:09+00:00",
+      "pid": "76799",
+      "msg_id": "192286",
+      "thread_id": 76799,
+      "player": "Joseph",
+      "preview": "\"It's good to meet you Changer! Happy to see all the new faces I get to work wit",
+      "via": "reply"
+    },
+    {
+      "t": "2026-11-24T02:52:28+00:00",
+      "pid": "76799",
+      "msg_id": "192294",
+      "thread_id": 76799,
+      "player": "Ryo",
+      "preview": "\"You're welcome Doopa. And you can call me Kitt.\"\n\nKitt gives his fellow kobold ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "76799": {
-      "fingerprint": "2026-11-23 07:44:43|2026-11-23 12:57:46|2026-11-23 13:50:36|2026-11-23 16:32:42|2026-11-23 22:45:18|2026-11-23 22:50:49|2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
+      "fingerprint": "2026-11-23 16:32:42|2026-11-23 22:45:18|2026-11-23 22:50:49|2026-11-24 02:15:16|2026-11-24 02:26:15|2026-11-24 02:27:18|2026-11-24 02:30:35",
       "msg_ids": [
-        192507
+        192518
       ],
-      "last_posted_at": "2026-11-24T02:39:44.116978+00:00",
+      "last_posted_at": "2026-11-24T02:53:19.828316+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": null
@@ -3404,9 +3410,6 @@
     }
   },
   "probed": {
-    "192258": "2026-11-24T02:18:03.626614+00:00",
-    "192286": "2026-11-24T01:43:20.449410+00:00",
-    "192294": "2026-11-24T02:18:03.626614+00:00",
     "192316": "2026-11-23T22:44:43.221338+00:00",
     "192399": "2026-11-23T22:45:39.260966+00:00",
     "192415": "2026-11-23T22:51:59.167982+00:00",

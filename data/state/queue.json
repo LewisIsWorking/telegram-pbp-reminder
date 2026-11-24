@@ -1559,7 +1559,10 @@
       "2026-11-24T02:18:03.625409+00:00",
       "2026-11-24T02:31:55.090950+00:00",
       "2026-11-24T02:36:15.713394+00:00",
-      "2026-11-24T02:39:39.842551+00:00"
+      "2026-11-24T02:39:39.842551+00:00",
+      "2026-11-24T02:53:15.769857+00:00",
+      "2026-11-24T02:53:15.777584+00:00",
+      "2026-11-24T02:53:15.781447+00:00"
     ],
     "66154": [
       "2026-03-23T11:18:51.030037+00:00",
@@ -2136,27 +2139,6 @@
     ]
   },
   "queue_archive": [
-    {
-      "pid": "40585",
-      "time": "2026-10-12T08:13:20.265482+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "184730"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-10-12T08:43:19.999938+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "184734"
-    },
-    {
-      "pid": "40585",
-      "time": "2026-10-12T08:43:20.006989+00:00",
-      "player": "",
-      "preview": "",
-      "msg_id": "184737"
-    },
     {
       "pid": "76799",
       "time": "2026-10-12T08:43:20.016131+00:00",
@@ -3535,6 +3517,27 @@
       "player": "Alastair",
       "preview": "\"You may be misreading something, Changer. I have not had a ",
       "msg_id": "192252"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-24T02:53:15.769857+00:00",
+      "player": "Alastair",
+      "preview": "\"Anyone see anything of particular relevance to our existing",
+      "msg_id": "192258"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-24T02:53:15.777584+00:00",
+      "player": "Joseph",
+      "preview": "\"It's good to meet you Changer! Happy to see all the new fac",
+      "msg_id": "192286"
+    },
+    {
+      "pid": "76799",
+      "time": "2026-11-24T02:53:15.781447+00:00",
+      "player": "Ryo",
+      "preview": "\"You're welcome Doopa. And you can call me Kitt.\"\n\nKitt give",
+      "msg_id": "192294"
     }
   ],
   "pending_potw_boons": {
