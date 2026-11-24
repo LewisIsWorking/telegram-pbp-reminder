@@ -2,15 +2,6 @@
   "pid": "66154",
   "unreplied": [
     {
-      "message_id": 190841,
-      "thread_id": 66154,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-19T03:26:05+00:00",
-      "preview": "Rin looks up for a moment, then shoots his gaze away before eye contact tingles the back of Davy's mind. \n\n\"He's got a lot of strong opinions. Mostly about food, generally about people who make mistakes because they've haven't thought things through because they don't have the... uh...\"\n\nHis voice trails off, before it's interrupted by Shadow's head popping out from the ground.\n\n\"He means stupid people,\" said Shadow, grinning with pearly white 'teeth'.\n\"Shadow, that's rude!\" retorted Rin, poutin",
-      "media_group_id": null
-    },
-    {
       "message_id": 191838,
       "thread_id": 66154,
       "user_id": "8525518483",
@@ -362,7 +353,9 @@
     "msg:190559",
     "2026-11-18 04:58:31",
     "msg:190791",
-    "2026-11-18 23:56:17"
+    "2026-11-18 23:56:17",
+    "msg:190841",
+    "2026-11-19 03:26:05"
   ],
   "reply_log": [
     {
@@ -1888,24 +1881,32 @@
       "player": "Loren",
       "preview": "Miracle Max looks down at Jorrik's outstretched palm, then fishes a silver piece",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-24T04:12:58+00:00",
+      "pid": "66154",
+      "msg_id": "190841",
+      "thread_id": 66154,
+      "player": "Alastair",
+      "preview": "Rin looks up for a moment, then shoots his gaze away before eye contact tingles ",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "66154": {
-      "fingerprint": "2026-11-19 03:26:05|2026-11-23 01:38:32|2026-11-23 01:39:07",
+      "fingerprint": "2026-11-23 01:38:32|2026-11-23 01:39:07",
       "msg_ids": [
-        192629
+        192640
       ],
-      "last_posted_at": "2026-11-24T04:01:11.702209+00:00",
+      "last_posted_at": "2026-11-24T04:14:55.871795+00:00",
       "caught_up_msg_id": null,
       "pending_delete": [],
       "caught_up_at": "2026-11-18T23:02:12.458558+00:00"
     }
   },
   "probed": {
-    "190841": "2026-11-24T02:13:21.319474+00:00",
     "191838": "2026-11-24T02:13:21.319474+00:00",
     "191839": "2026-11-24T02:13:21.319474+00:00"
   }
