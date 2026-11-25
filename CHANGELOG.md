@@ -11,6 +11,16 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.90.0] - 2026-11-25
+
+### Added
+
+**GMs can preview moves on the battle map.** `/map Zerius slide S4, Little Dread S4` draws the live Foundry scene with an arrow and a faded copy of each creature where it would end up, and names the end square (for example C7). A move stops at a wall, the edge of the map or another creature, and the caption says which, with the distance in squares, feet and metres. Directions are N, NE, E, SE, S, SW, W, NW (or north, up, left and so on), and a distance can be given in feet ("south 20 ft"). The picture is sent to the GM in a private message, never to the campaign's topics.
+
+### Fixed
+
+**The map no longer cuts off the last square it can see.** Cropping the map to what a character sees trimmed one seen square from the right and bottom edges instead of keeping one square of border.
+
 ## [4.89.0] - 2026-11-23
 
 ### Changed

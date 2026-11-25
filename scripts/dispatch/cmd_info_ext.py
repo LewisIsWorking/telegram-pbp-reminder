@@ -77,6 +77,13 @@ def handle(ctx: dict) -> bool:
         from combat.map_view import post_map, whose_map
         pair = next((p for p in config.get("topic_pairs", []) if str(p["pbp_topic_ids"][0]) == pid), {})
         raw = ctx["parsed"].get("raw_text") or ctx["text"]
+        # 🧭 2026-11-25: a GM's "/map Zerius slide S4, Little Dread S4" previews the moves, sent to that GM only.
+        from combat.map_moves import parse_moves
+        moves = parse_moves(raw[4:]) if str(uid) in {str(g) for g in gm_ids or []} else None
+        if moves:
+            from combat.map_move_post import post_move_map
+            post_move_map(pair.get("code", ""), moves, uid, gid, reply)
+            return True
         wanted, refusal = whose_map(config, state, pid, uid, gm_ids, raw[4:])
         if refusal:
             tg.send_message(gid, reply, refusal)
