@@ -154,10 +154,11 @@ def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int
     taken = []  # names after all the art, below a token, else above, else further out, until clear
     for name, tx, ty, size in labels:
         tw, th = draw.textlength(name, font=small), small.size + 3
-        lx = tx + size / 2 - tw / 2
+        lx = min(max(2, tx + size / 2 - tw / 2), img.width - tw - 2)  # kept inside the picture (2026-11-25)
         for ly in (ty + size, ty - th, ty + size + th, ty - 2 * th, ty + size + 2 * th, ty - 3 * th):
             box = (lx - 2, ly, lx + tw + 2, ly + th)
-            if not any(box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3] for b in taken):
+            if 0 <= ly and ly + th <= img.height and not any(
+                    box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3] for b in taken):
                 break
         taken.append(box)
         draw.rectangle(box, fill=(0, 0, 0, 170))
