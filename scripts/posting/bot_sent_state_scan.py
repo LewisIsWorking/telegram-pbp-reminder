@@ -19,6 +19,7 @@ def extract_ids_from_live(live: dict) -> list:
     Recognises:
         last_queue_pin_id           legacy single pin (one int)
         schedule_post_msg_id        self-replacing schedule/timer post
+        schedule_post_stale         old schedule posts awaiting a retried delete
         gm_queue_history[*].msg_ids rolling window batch IDs
         gm_queue_history[*].pin_id  pinned-chunk ID inside each batch
     """
@@ -33,6 +34,10 @@ def extract_ids_from_live(live: dict) -> list:
     # posts became three became four, one every 30 minutes.
     if live.get("schedule_post_msg_id"):
         ids.append(live["schedule_post_msg_id"])
+    # Added 2026-11-25 (issue #36): old schedule posts awaiting a retried
+    # delete. Unregistered, the retry would be refused just like the original.
+    for _chat, mid in live.get("schedule_post_stale") or []:
+        ids.append(mid)
     # Added 2026-08-15. Same contract as the schedule post: the recruit
     # focus deletes its own predecessor, and an id missing from the
     # registry gets that delete refused by perform_guarded_delete.

@@ -61,6 +61,10 @@ PARTITIONS: dict[str, list[str]] = {
         # strand a schedule post in the GM queue topic permanently: past
         # 48h Telegram will not let the bot delete it at all.
         "schedule_post_chat_id",
+        # Added 2026-11-25 (issue #36): [chat_id, msg_id] of old schedule
+        # posts whose delete failed, retried every run. Without it a failed
+        # delete left a schedule post nothing remembered.
+        "schedule_post_stale",
         # Pre-existing losses found by the same audit, same mechanism.
         # last_pin_digest is the identical once-per-day shape: pin_report
         # does `if state.get("last_pin_digest") == today: return`, so
@@ -170,7 +174,7 @@ DEFAULT_STATE: dict = {
     "gm_queue_history": [], "gm_queue_texts": [], "queue_refire_chain": 0,
     "potw_week": {}, "last_potw_roundup": None,
     "last_potw_countdown": None, "schedule_post_msg_id": None,
-    "schedule_post_chat_id": None,
+    "schedule_post_chat_id": None, "schedule_post_stale": [],
     "last_pin_digest": None, "last_pin_alert_ts": "",
     "poll_identified_voters": {}, "availability": {}, "timeline_events": {},
     "recruit_focus_msg_id": None, "last_recruit_focus": None,
