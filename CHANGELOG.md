@@ -17,9 +17,13 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 **GMs can preview moves on the battle map.** `/map Zerius slide S4, Little Dread S4` draws the live Foundry scene with an arrow and a faded copy of each creature where it would end up, and names the end square (for example C7). A move stops at a wall, the edge of the map or another creature, and the caption says which, with the distance in squares, feet and metres. Directions are N, NE, E, SE, S, SW, W, NW (or north, up, left and so on), and a distance can be given in feet ("south 20 ft"). The picture is sent to the GM in a private message, never to the campaign's topics.
 
+A **stride** or **step** passes through an ally's square but never ends on one; a slide, push or plain move still stops at any creature. When two tokens share a name, the preview asks which one instead of guessing: name the square too, `Goblin at F6 slide S4` or `Goblin (F6) slide S4`. Only walls that block sight are known to the bot today, so the caption says so; when the server also sends move-only walls, they are used automatically.
+
 ### Fixed
 
 **The map no longer cuts off the last square it can see.** Cropping the map to what a character sees trimmed one seen square from the right and bottom edges instead of keeping one square of border.
+
+**`/map@BotName Zerius` works.** The bot's own name after the command was read as part of the character's name.
 
 ## [4.89.0] - 2026-11-23
 
