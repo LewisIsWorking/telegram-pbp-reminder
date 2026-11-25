@@ -6,6 +6,7 @@ tests pin that contract so a future check added to _run_checks does not
 silently start running every 30 minutes.
 """
 import sys, os
+from contextlib import ExitStack
 from unittest.mock import patch
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -17,32 +18,52 @@ def _cfg():
     return {"group_id": -1001, "bot_topic_id": 999, "topic_pairs": []}
 
 
+# The checks the assertions below name, by the function each label runs.
+_LABEL_OF = {
+    "post_schedule": "Schedule post",
+    "post_queue_reminder": "Queue reminder",
+    "check_queue_nudge": "Queue nudge",
+    "post_daily_tip": "Daily tip",
+    "player_of_the_week": "Player of the Week",
+    "post_campaign_leaderboard": "Leaderboard",
+    "backup_state": "State backup",
+}
+
+# Names _run_checks reads that are not checks.
+_NOT_CHECKS = {"datetime", "now", "timezone", "utc", "build_topic_maps",
+               "Exception", "print"}
+
+
+def _check_names() -> list[str]:
+    """Every check function _run_checks calls, read from its bytecode.
+
+    ⛔ Added 2026-11-25. This helper used to spy on only the seven checks
+    the tests name and let the other ~35 run FOR REAL against the real
+    clock. From 08:00 UTC the real ``run_daily_diagnostic`` was due, and
+    it listed this repo's workflow runs from api.github.com, so these
+    tests made a live network call at some hours of the day and not at
+    others. Every check is a spy now, so nothing real runs at any hour.
+    """
+    return [n for n in checker._run_checks.__code__.co_names
+            if n not in _NOT_CHECKS and callable(getattr(checker, n, None))]
+
+
 def _labels_run(only):
-    """Return the set of check labels _run_checks actually invoked."""
+    """Return what _run_checks actually invoked: a label where the tests
+    name one, the function name otherwise."""
     called = []
 
-    def _spy(label):
+    def _spy(name):
         def _fn(config, bot_state, now=None, maps=None):
-            called.append(label)
+            called.append(_LABEL_OF.get(name, name))
         return _fn
 
-    real = checker._run_checks
-
-    # Patch build_topic_maps so no config plumbing is needed.
-    with patch.object(checker, "build_topic_maps", return_value={}):
-        # Rebuild the checks list with spies by patching each callable
-        # referenced inside _run_checks at module level.
-        import scheduled.queue_reminder as qr
-        import scheduled.queue_nudge as qn
-        import scheduled.tips as tips
-        with patch.object(checker, "post_schedule", _spy("Schedule post")), \
-             patch.object(checker, "post_queue_reminder", _spy("Queue reminder")), \
-             patch.object(checker, "check_queue_nudge", _spy("Queue nudge")), \
-             patch.object(checker, "post_daily_tip", _spy("Daily tip")), \
-             patch.object(checker, "player_of_the_week", _spy("Player of the Week")), \
-             patch.object(checker, "post_campaign_leaderboard", _spy("Leaderboard")), \
-             patch.object(checker, "backup_state", _spy("State backup")):
-            real(_cfg(), {}, only=only)
+    with ExitStack() as stack:
+        stack.enter_context(
+            patch.object(checker, "build_topic_maps", return_value={}))
+        for name in _check_names():
+            stack.enter_context(patch.object(checker, name, _spy(name)))
+        checker._run_checks(_cfg(), {}, only=only)
     return called
 
 
@@ -67,6 +88,14 @@ def test_queue_checks_are_real_labels():
     called = _labels_run(())
     for label in checker.QUEUE_CHECKS:
         assert label in called, f"{label} is not a real check label"
+    # Each label matched exactly one check, so none of them is a typo
+    # that the full pass would hide.
+    assert len(_labels_run(checker.QUEUE_CHECKS)) == len(checker.QUEUE_CHECKS)
+
+
+def test_every_check_is_spied():
+    """The full pass ran only spies: one call per check, none real."""
+    assert len(_labels_run(())) == len(_check_names()) > 30
 
 
 def test_main_passes_queue_only_through():

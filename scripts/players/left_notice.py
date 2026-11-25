@@ -65,7 +65,8 @@ def _display(user: dict) -> str:
     return " ".join(x for x in (user.get("first_name"), user.get("last_name")) if x) or user.get("username") or "?"
 
 
-def on_telegram_leave(update: dict, config: dict, state: dict, send=None) -> bool:
+def on_telegram_leave(update: dict, config: dict, state: dict, send=None,
+                      now: datetime | None = None) -> bool:
     """A chat_member update (bot is admin) or a left_chat_member service message. True when it was a leave."""
     groups = {config["group_id"]} | {p.get("group_id") for p in config.get("topic_pairs", []) if p.get("group_id")}
     cm = update.get("chat_member")
@@ -82,5 +83,5 @@ def on_telegram_leave(update: dict, config: dict, state: dict, send=None) -> boo
         if not user or msg.get("chat", {}).get("id") not in groups:
             return False
     if not user.get("is_bot"):
-        announce_left(config, state, user.get("id"), _display(user), "Telegram group", send=send)
+        announce_left(config, state, user.get("id"), _display(user), "Telegram group", now=now, send=send)
     return True

@@ -54,7 +54,9 @@ def test_a_telegram_chat_member_leave_is_announced():
     state, sent = _state(), []
     update = {"chat_member": {"chat": {"id": -100}, "old_chat_member": {"status": "member"},
                               "new_chat_member": {"status": "left", "user": {"id": 1, "first_name": "Ana"}}}}
-    assert on_telegram_leave(update, CONFIG, state, send=lambda g, t, text: sent.append(text) or True)
+    # ⛔ now=NOW, not the real clock: the fixture's players posted 2-3 days before NOW, so from 30 days after it
+    # (2026-12-20) they had left the active roster and this test failed for real dates, not for a real bug.
+    assert on_telegram_leave(update, CONFIG, state, send=lambda g, t, text: sent.append(text) or True, now=NOW)
     assert sent and sent[0].startswith("🚪 Ana has left the Path Wars Telegram group.")
 
 

@@ -75,9 +75,15 @@ def test_check_combat_turns_no_reping_too_soon():
     checker.check_combat_turns(config, state, now=now)
     assert len(_sent_messages) == 0  # Too soon to reping
 
+# ⛔ A fixed date, not datetime.now(): "two years ago today" is
+# now.replace(year=now.year - 2), which raises ValueError on 29 February,
+# so these tests failed one day in every four years (next: 2028-02-29).
+_ANNIV_NOW = datetime(2026, 4, 3, 12, tzinfo=timezone.utc)
+
+
 def test_check_anniversaries_fires_on_date():
     _reset()
-    now = datetime.now(timezone.utc)
+    now = _ANNIV_NOW
     # Construct a "created" date exactly 2 years ago today
     two_years_ago = now.replace(year=now.year - 2)
     created_str = two_years_ago.strftime("%Y-%m-%d")
@@ -104,7 +110,7 @@ def test_check_anniversaries_posts_to_the_campaign_topic():
     expression and this fails.
     """
     _reset()
-    now = datetime.now(timezone.utc)
+    now = _ANNIV_NOW
     created_str = now.replace(year=now.year - 2).strftime("%Y-%m-%d")
 
     config = _make_config(pairs=[
@@ -122,7 +128,7 @@ def test_check_anniversaries_posts_to_the_campaign_topic():
 
 def test_check_anniversaries_no_duplicate():
     _reset()
-    now = datetime.now(timezone.utc)
+    now = _ANNIV_NOW
     two_years_ago = now.replace(year=now.year - 2)
     created_str = two_years_ago.strftime("%Y-%m-%d")
 
@@ -137,7 +143,7 @@ def test_check_anniversaries_no_duplicate():
 
 def test_check_anniversaries_wrong_day():
     _reset()
-    now = datetime.now(timezone.utc)
+    now = _ANNIV_NOW
     # Use a date that's NOT today - use day=1 to avoid month-length overflow
     wrong_date = now.replace(year=now.year - 1, month=(now.month % 12) + 1, day=1)
     created_str = wrong_date.strftime("%Y-%m-%d")

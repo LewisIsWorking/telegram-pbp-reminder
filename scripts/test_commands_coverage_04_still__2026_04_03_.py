@@ -53,11 +53,30 @@ from scheduled.diagnostic import run_daily_diagnostic, _gh_request, _fetch_run_l
 
 
 def test_diagnostic_skips_wrong_hour():
+    # ⛔ Was hour 10, written when the gate was ``now.hour != 8``. Since
+    # scheduled/due.py (2026-09-06) a late hour is a catch-up run, so hour
+    # 10 went on to call the REAL GitHub API and the result depended on
+    # whether GitHub answered. Before the hour is the only wrong hour now.
     config = {"group_id": -1, "bot_topic_id": 999, "diagnostic_hour": 8}
-    now = datetime(2026, 4, 3, 10, tzinfo=timezone.utc)  # hour=10, not 8
+    now = datetime(2026, 4, 3, 7, 59, tzinfo=timezone.utc)
     state = {}
-    run_daily_diagnostic(config, state, now=now)
+    with patch("scheduled.diagnostic._gh_request") as gh:
+        run_daily_diagnostic(config, state, now=now)
+    gh.assert_not_called()
     assert "last_diagnostic" not in state
+
+
+def test_diagnostic_catches_up_after_its_hour():
+    """A run at 10:00 still does the 08:00 diagnostic (see scheduled/due.py)."""
+    config = {"group_id": -1, "bot_topic_id": 999, "diagnostic_hour": 8}
+    now = datetime(2026, 4, 3, 10, tzinfo=timezone.utc)
+    recent_run = {"created_at": "2026-04-03T09:00:00Z", "id": 1}
+    state = {}
+    with patch("scheduled.diagnostic._gh_request",
+               return_value={"workflow_runs": [recent_run]}), \
+         patch("scheduled.diagnostic._fetch_run_log", return_value=""):
+        run_daily_diagnostic(config, state, now=now)
+    assert state.get("last_diagnostic") == "2026-04-03"
 
 
 def test_diagnostic_skips_already_run():
