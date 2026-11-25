@@ -1,0 +1,1265 @@
+{
+  "code": "C04",
+  "campaign": "Magni Guard",
+  "world": "c04",
+  "date": "2026-11-25",
+  "taken_at": "2026-11-25T06:00:28.302Z",
+  "actors": [
+    {
+      "id": "U45BYn0GI2b24nSq",
+      "name": "Former",
+      "kind": "party",
+      "owners": [],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "xxxPF2ExPARTYxxx",
+      "name": "The Party",
+      "kind": "party",
+      "owners": [],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "kFh0VNgue0KgjPy5",
+      "name": "Akuma",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "gp": 1,
+        "cp": 2,
+        "sp": 2
+      },
+      "items": [
+        {
+          "name": "Arrows",
+          "type": "ammo",
+          "quantity": 10
+        },
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Little Rabbit",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Little Rabbit",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Religious Symbol (Silver)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Scale Mail",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Shortbow",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Signal Whistle",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Writing Set",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "xsLh4sBEiXcTAteq",
+      "name": "Báyakan Tiktik",
+      "kind": "character",
+      "owners": [
+        "ChaseDarkthorne"
+      ],
+      "currency": {
+        "sp": 9,
+        "gp": 8
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Crowbar",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Clothing",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Thieves' Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Whip",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Writing Set",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "z8hmscvXF0loqSWI",
+      "name": "Bemos4",
+      "kind": "character",
+      "owners": [
+        "bemos4"
+      ],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "tAHb9EnhJO0fqTkY",
+      "name": "Changer",
+      "kind": "character",
+      "owners": [],
+      "currency": {},
+      "items": [
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Magazine (Magnetar Rifle)",
+          "type": "ammo",
+          "quantity": 1
+        },
+        {
+          "name": "Magnetar Rifle",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Turret Weapon(Modified with Int)",
+          "type": "weapon",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "ENy7hhrMtkMCBXZp",
+      "name": "Gijō Harmony",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "gp": 4
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Climbing Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Crowbar",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Gi",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Thieves' Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Thieves' Toolkit (Replacement Picks)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "gXySt6rxczUQ5xBC",
+      "name": "Inquisitor Azrael Staine",
+      "kind": "character",
+      "owners": [
+        "MrGentleman"
+      ],
+      "currency": {},
+      "items": [
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Longsword",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Pilgrim's Token",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Religious Text",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Scale Mail",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Steel Shield",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "QFcz9vF4YdDIuQZo",
+      "name": "Joseph",
+      "kind": "character",
+      "owners": [
+        "FlamingReign"
+      ],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "0lxuqkDO5RPY4K4e",
+      "name": "Kitt | Ryo",
+      "kind": "character",
+      "owners": [
+        "RyoYamakawa"
+      ],
+      "currency": {
+        "cp": 8,
+        "gp": 2,
+        "sp": 1
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Basic Crafter's Book",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Musical Instrument (Handheld)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Padded Armor",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Sling",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Sling Bullets",
+          "type": "ammo",
+          "quantity": 20
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Steel Shield",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Thieves' Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Whip",
+          "type": "weapon",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "N8VHpU9rnl122A4b",
+      "name": "Lysandra Dawnstride",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "sp": 8,
+        "gp": 2
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Breastplate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Crowbar",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flyssa",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Grappling Hook",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Javelin",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Longsword",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "5V1QwNMsH3vNG7bm",
+      "name": "Machiq Nirama",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "gp": 2,
+        "sp": 1
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Basic Crafter's Book",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Battery (Commercial)",
+          "type": "ammo",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Buckler",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Coat Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Clothing",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Laser Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rapier",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Repair Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rounds (Cane Pistol)",
+          "type": "ammo",
+          "quantity": 10
+        },
+        {
+          "name": "Rounds (Coat Pistol)",
+          "type": "ammo",
+          "quantity": 10
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "ByzkyQ9447Q352nA",
+      "name": "Morimus",
+      "kind": "character",
+      "owners": [
+        "Slab"
+      ],
+      "currency": {
+        "gp": 1,
+        "sp": 2
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Basic Face Mask",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Baton",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bola",
+          "type": "weapon",
+          "quantity": 3
+        },
+        {
+          "name": "Breastplate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Phase Shield",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "9xYBe1HhpqBdEAKL",
+      "name": "Nadya Rudean",
+      "kind": "character",
+      "owners": [
+        "Cannon_McMahon"
+      ],
+      "currency": {
+        "gp": 45
+      },
+      "items": [
+        {
+          "name": "Alchemist's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Alcohol",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Alcohol",
+          "type": "consumable",
+          "quantity": 4
+        },
+        {
+          "name": "Antidote (Lesser)",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Antiplague (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Armored Coat",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Basic Crafter's Book",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Clothing (Ordinary)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Disguise Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Disguise Kit (Replacement Cosmetics)",
+          "type": "equipment",
+          "quantity": 2
+        },
+        {
+          "name": "Flayleaf",
+          "type": "consumable",
+          "quantity": 3
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Formula Book (Blank)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Lantern (Hooded)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Oil (1 pint)",
+          "type": "consumable",
+          "quantity": 4
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Silvertongue Mutagen (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Silvertongue Mutagen (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Silvertongue Mutagen (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Versatile Vial",
+          "type": "weapon",
+          "quantity": 4
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "S6oBsmN9Bi1JgZle",
+      "name": "Rex",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "pp": 0,
+        "sp": 8,
+        "cp": 0,
+        "gp": 3
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bolts",
+          "type": "ammo",
+          "quantity": 17
+        },
+        {
+          "name": "Breastplate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Crossbow",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Thundermace",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "1zN7zYvHiI0e4oWx",
+      "name": "Steele",
+      "kind": "character",
+      "owners": [
+        "ontos"
+      ],
+      "currency": {},
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Breastplate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Longsword",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Sap",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "dDRPP24ZMsBGBDFk",
+      "name": "Tasivata",
+      "kind": "character",
+      "owners": [
+        "Freck"
+      ],
+      "currency": {},
+      "items": [
+        {
+          "name": "Half Plate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Swordstealer Shield",
+          "type": "shield",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "rVH4x0H3NQYfQycw",
+      "name": "Tekuam",
+      "kind": "character",
+      "owners": [
+        "FelixCited"
+      ],
+      "currency": {
+        "gp": 6
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bola",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hide Armor",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "aU3zhMy503TJccgU",
+      "name": "Yvlon Byres",
+      "kind": "character",
+      "owners": [
+        "0rthus"
+      ],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "qK1yW1LwRCptN2z7",
+      "name": "Zalaralith \"Zal\" di Concordia",
+      "kind": "character",
+      "owners": [
+        "Zalaralith"
+      ],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "Ay7vEGpzOzwOMaPj",
+      "name": "Zilde EvenGuard ➡️ Magni Watch",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "pp": 0,
+        "cp": 0,
+        "gp": 1,
+        "sp": 0
+      },
+      "items": [
+        {
+          "name": "Longsword",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Splint Mail",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Steel Shield",
+          "type": "shield",
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
