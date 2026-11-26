@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-10-28T15:43:33.946822+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 3644,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-28T15:59:48.025454+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 3645,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-28T16:43:31.197921+00:00",
-    "action": "delete",
-    "chat_id": -1001661053273,
-    "message_id": 187709,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "recruit_focus_post.py:171"
-  },
-  {
-    "timestamp": "2026-10-28T16:43:32.259236+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 3646,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
     "timestamp": "2026-10-28T17:13:54.078920+00:00",
     "action": "delete",
     "chat_id": -1004303231713,
@@ -29998,5 +29958,45 @@
     "refused": false,
     "bot_owned": true,
     "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-11-26T00:13:24.054838+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 192759,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:105"
+  },
+  {
+    "timestamp": "2026-11-26T00:13:24.507976+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 192759,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-11-26T00:13:25.704377+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 192975,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-11-26T00:13:30.717275+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 191529,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "session_poll.py:122"
   }
 ]
