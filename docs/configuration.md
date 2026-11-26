@@ -26,6 +26,7 @@ Top-level settings:
 | `poll_post_hour`    | 7       | UTC hour on Sunday to post the weekly poll     |
 | `queue_daily_hours` | [9, 21] | UTC hours to post the GM queue reminder daily  |
 | `diagnostic_hour`   | 8       | UTC hour to run the daily bot health diagnostic |
+| `dual_class_guide_url` | PathWarsWiki's dual class page | Link the bot replies with when someone asks how to dual class; `""` turns the reply off |
 
 ### Per-campaign topic_pair fields
 

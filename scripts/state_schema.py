@@ -146,6 +146,10 @@ PARTITIONS: dict[str, list[str]] = {
         # Added 2026-10-08: when each unlinked player was last told to link
         # COO (players/coo_link.py). Undeclared, every post would nudge again.
         "coo_link_nudges",
+        # Added 2026-11-26: when the dual class guide was last sent per
+        # topic and per player (players/dual_class_help.py). Undeclared,
+        # the cooldown would be forgotten and every ask answered.
+        "dual_class_help",
     ],
 }
 
