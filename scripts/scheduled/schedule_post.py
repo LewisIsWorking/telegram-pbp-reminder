@@ -35,6 +35,7 @@ from datetime import datetime, timedelta, timezone
 import telegram as tg
 from scheduled import local_time
 from scheduled.schedule_intervals import interval_lines
+from scheduled.schedule_post_stale import delete_or_keep, retry_stale, take_down as _take_down
 from scheduled.schedule_table import todays_items, fixed_schedule
 
 
@@ -43,17 +44,6 @@ def next_tick(now: datetime) -> datetime:
     if now.minute < 30:
         return now.replace(minute=30, second=0, microsecond=0)
     return (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
-
-
-def _take_down(config: dict, state: dict) -> None:
-    """Delete the last schedule post, if there is one, and forget it."""
-    prev = state.get("schedule_post_msg_id")
-    if not prev:
-        return
-    prev_chat = state.get("schedule_post_chat_id") or config["group_id"]
-    if tg.delete_message(prev_chat, prev):
-        state.pop("schedule_post_msg_id", None)
-        state.pop("schedule_post_chat_id", None)
 
 
 def schedule_destination(config: dict) -> tuple[int, int | None] | None:
@@ -176,6 +166,7 @@ def post_schedule(config: dict, state: dict, *,
         # with a "Next run" that never comes. Forget it only once the
         # delete worked, so a failed delete is retried next run.
         _take_down(config, state)
+        retry_stale(state)
         return
     chat_id, thread_id = destination
 
@@ -188,13 +179,15 @@ def post_schedule(config: dict, state: dict, *,
     # post written before 2026-08-17 went.
     prev_chat = state.get("schedule_post_chat_id") or config["group_id"]
 
+    retry_stale(state)
     text = build_schedule_text(config, state, now)
     msg_id = tg.send_message_id(chat_id, thread_id, text, silent=True)
     if not msg_id:
         return  # send failed - keep the old one rather than leaving none
+    # ⛔ Issue #36: record the new id BEFORE deleting the old one; see schedule_post_stale.py.
+    state["schedule_post_msg_id"] = msg_id
+    state["schedule_post_chat_id"] = chat_id
     # Delete only after the replacement is up, so a failed send never
     # leaves the destination with no schedule at all.
     if prev:
-        tg.delete_message(prev_chat, prev)
-    state["schedule_post_msg_id"] = msg_id
-    state["schedule_post_chat_id"] = chat_id
+        delete_or_keep(state, prev_chat, prev)

@@ -11,6 +11,12 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.89.1] - 2026-11-25
+
+### Fixed
+
+**The schedule post can no longer leave an old copy behind for good** (issue #36). When deleting the previous schedule post failed, its id was overwritten and forgotten, so two schedules stayed in the topic. The new post is now recorded first, and an old copy that could not be deleted is retried on every run until it goes, or until the bot gives up on it and reports it for deleting by hand.
+
 ## [4.89.0] - 2026-11-23
 
 ### Changed
