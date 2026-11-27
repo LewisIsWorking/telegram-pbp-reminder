@@ -18,6 +18,7 @@ The tests below pin all three.
 """
 
 import os
+import urllib.request
 
 import pytest
 import requests
@@ -73,6 +74,23 @@ class TestEveryEntryPointIsBlocked:
 
     def test_the_guards_own_list_covers_them_all(self):
         assert set(_MUST_BE_BLOCKED) <= set(_BLOCKED)
+
+
+class TestUrllibIsBlockedToo:
+    """⛔ 2026-11-25: the guard covered only ``requests``, and
+    ``scheduled/diagnostic.py`` uses ``urllib``. A test that reached it
+    listed real workflow runs from api.github.com and passed or failed
+    on whether GitHub answered."""
+
+    def test_urlopen_refuses(self):
+        with pytest.raises(RealNetworkCallInTests) as caught:
+            urllib.request.urlopen("https://api.github.com/repos/x", timeout=1)
+        assert "api.github.com" in str(caught.value)
+
+    def test_a_request_object_and_an_opener_of_its_own_refuse(self):
+        req = urllib.request.Request("https://example.com/")
+        with pytest.raises(RealNetworkCallInTests):
+            urllib.request.build_opener().open(req)
 
 
 class TestItCannotBeSwallowed:

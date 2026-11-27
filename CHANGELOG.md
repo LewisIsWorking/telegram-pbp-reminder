@@ -11,6 +11,20 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [4.89.2] - 2026-11-25
+
+### Fixed
+
+**The test suite no longer passes or fails depending on when it runs.** No change to what the bot does in the group.
+
+- `test_diagnostic_skips_wrong_hour` was calling the real GitHub API. Its "wrong hour" (10:00) has been a catch-up hour since the daily diagnostic moved to `is_due`, so the test went on to list this repo's real workflow runs and failed whenever GitHub answered. It now tests 07:59 and never touches GitHub, and a new test pins the 10:00 catch-up.
+- The no-network guard only covered `requests`. It now blocks `urllib` too, which `scheduled/diagnostic.py` and `preflight/self_repair.py` use. That found two more leaking tests in `test_checker_queue_only.py`, which ran about 35 real checks against the real clock and reached GitHub from 08:00 UTC. Every check is a spy there now. The suite runs in about 30 seconds instead of about 75.
+- `test_a_telegram_chat_member_leave_is_announced` would have started failing on 2026-12-20, when its fixture players dropped off the 30-day roster by the real calendar. `on_telegram_leave` now takes `now` like `announce_left` does.
+- Four anniversary tests built "two years ago today" from the real date, which crashes on 29 February. They use a fixed date.
+- `test_known_production_migrations_are_registered` passed only in file order: the registry test fixture left the registry empty after it ran. It now restores the real registrations.
+
+Checked by running the whole suite at 22 faked dates and times (every few hours of a day, month and year ends, 29 February, both clock changes, years ahead) and in 10 random orders. All green.
+
 ## [4.89.0] - 2026-11-23
 
 ### Changed

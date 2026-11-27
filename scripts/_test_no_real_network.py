@@ -47,6 +47,7 @@ restores it afterwards.
 """
 
 import os
+import urllib.request
 
 import requests
 
@@ -114,6 +115,32 @@ def install() -> None:
         if hasattr(requests, name):
             setattr(requests, name, _refuse(name))
     requests.Session.request = _refuse("Session.request")
+    urllib.request.OpenerDirector.open = _refuse_urllib
+
+
+def _refuse_urllib(self, fullurl, *args, **kwargs):
+    """The same refusal for the standard library's HTTP client.
+
+    ⛔⛔ Added 2026-11-25. The guard above only covered ``requests``, and
+    ``scheduled/diagnostic.py`` and ``preflight/self_repair.py`` use
+    ``urllib.request`` instead. ``test_diagnostic_skips_wrong_hour`` walked
+    straight through that gap: it listed this repo's REAL workflow runs
+    from api.github.com and asserted on the answer. It passed when GitHub
+    refused (no network, or the unauthenticated rate limit was spent) and
+    failed when GitHub answered, so it read as a test that fails at some
+    hours of the day.
+
+    ⚠️ Patched on ``OpenerDirector.open`` because ``urlopen`` and every
+    custom opener route through it. A test that patches ``urlopen`` itself
+    (``patch("scheduled.diagnostic.urllib.request.urlopen", ...)``) still
+    replaces this for that test only.
+    """
+    url = getattr(fullurl, "full_url", fullurl)
+    raise RealNetworkCallInTests(
+        f"urllib.request to {url!r} during a test.\n"
+        f"The suite must not reach the network. Stub the call "
+        f"(patch the module's urlopen or the function making it), not "
+        f"this guard.")
 
 
 install()

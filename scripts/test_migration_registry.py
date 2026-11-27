@@ -113,15 +113,27 @@ def clean_registry():
 
     These tests register synthetic migrations and would interfere
     with the production registrations otherwise. ``reset_for_tests``
-    clears the registry; the fixture re-imports the production
-    modules afterward so the rest of the test suite isn't affected.
+    clears the registry; the fixture puts the production registrations
+    back afterward so the rest of the test suite isn't affected.
+
+    ⛔ Restores a snapshot, 2026-11-25. It used to re-run
+    ``_load_production_modules()``, but those modules are already in
+    ``sys.modules``, so importing them again runs nothing and registers
+    nothing. The registry stayed EMPTY after these tests, and
+    ``test_known_production_migrations_are_registered`` passed only
+    because it happens to run first in file order. Shuffled with
+    pytest-randomly it failed on every seed tried.
     """
-    from state_store.migration_registry import reset_for_tests
+    from state_store.migration_registry import (
+        all_migrations, register, reset_for_tests,
+    )
+    _load_production_modules()
+    saved = all_migrations()
     reset_for_tests()
     yield
-    # Re-register production migrations so subsequent tests see them.
     reset_for_tests()
-    _load_production_modules()
+    for migration in saved:
+        register(migration)
 
 
 def test_register_is_idempotent_on_target_and_name(clean_registry) -> None:
