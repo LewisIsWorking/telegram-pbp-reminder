@@ -6,7 +6,8 @@ explaining it by hand. Lewis: have the bot link the guide instead.
 
 A message gets the reply when it:
   - is from a human (never a bot, so the sheet check's "not dual class"
-    lines can never set it off), and not from a GM;
+    lines can never set it off). GMs are answered too (Lewis, 2026-11-27,
+    tested it with "How to Dual class");
   - mentions dual class AND reads like a how-to question or a "can't";
   - does not already point at the wiki, a guide or a link (someone
     answering it, like "there's a guide on the wiki", is left alone).
@@ -91,11 +92,6 @@ def maybe_answer(msg: dict, config: dict, state: dict,
     if chat_id not in all_group_ids(config):
         return False
     user_id = str(sender["id"])
-    gms = {str(g) for g in config.get("gm_user_ids", [])}
-    for pair in config.get("topic_pairs", []):
-        gms.update(str(g) for g in pair.get("gm_user_ids", []))
-    if user_id in gms:
-        return False
     if not is_dual_class_question(msg.get("text") or msg.get("caption") or ""):
         return False
 

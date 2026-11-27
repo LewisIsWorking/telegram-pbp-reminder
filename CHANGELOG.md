@@ -15,7 +15,7 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-**The bot answers "how do I dual class?" with the wiki guide.** When a player asks how to dual class in the group (for example "I can't figure out a way to dual class"), the bot replies with a link to the dual class guide on the Path Wars wiki and the short version of the steps. It answers at most once per topic every 6 hours and once per player a day, never answers GMs, bots or a message that already mentions the wiki or a guide, and answers an ask from an in-character topic in that campaign's chat topic. The link is `dual_class_guide_url` in config.
+**The bot answers "how do I dual class?" with the wiki guide.** When a player asks how to dual class in the group (for example "I can't figure out a way to dual class"), the bot replies with a link to the dual class guide on the Path Wars wiki and the short version of the steps. It answers at most once per topic every 6 hours and once per player a day, never answers bots or a message that already mentions the wiki or a guide, and answers an ask from an in-character topic in that campaign's chat topic. The link is `dual_class_guide_url` in config.
 
 ## [4.89.0] - 2026-11-23
 

@@ -38,7 +38,7 @@ def test_the_real_question_gets_the_guide_in_the_same_topic():
 
 
 def test_genuine_how_to_questions_match():
-    for text in ["How do I dual class?", "how to dual-class in foundry",
+    for text in ["How to Dual class", "How do I dual class?", "how to dual-class in foundry",
                  "Where do I set up my dual class", "help with dualclass pls",
                  "No idea how dual classing works", "can someone dual class me?"]:
         assert dch.is_dual_class_question(text), text
@@ -58,11 +58,11 @@ def test_chatter_answers_and_the_sheet_check_do_not_match():
         assert not dch.is_dual_class_question(text), text
 
 
-def test_bots_gms_and_other_chats_are_ignored():
+def test_bots_and_other_chats_are_ignored_but_gms_are_answered():
     assert not _send({}, _msg(bot=True))[0]
-    assert not _send({}, _msg(user=99))[0]  # global GM
-    assert not _send({}, _msg(user=98))[0]  # a campaign's own GM
     assert not _send({}, _msg(chat=-555))[0]
+    # Lewis tested it as a GM with exactly this, 2026-11-27
+    assert _send({}, _msg("How to Dual class", user=99))[0]
 
 
 def test_one_reply_per_topic_per_six_hours_and_per_player_per_day():
