@@ -88,16 +88,20 @@ def _background(view, fetch, box):
     return out
 
 
-def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int = 1400) -> bytes:
-    """JPEG bytes of the party's view. `fetch(src)` returns a PIL image or None."""
+def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int = 1400, moves=None) -> bytes:
+    """JPEG bytes of the party's view. `fetch(src)` returns a PIL image or None.
+
+    `moves` (map_moves.resolve, GM only, 2026-11-25): the whole scene with no fog, the movers framed with where they end.
+    """
     s, g = view["scene"], view["scene"]["grid"]["size"]
     pad_x = math.ceil(s["width"] * s.get("padding", 0) / g) * g
     pad_y = math.ceil(s["height"] * s.get("padding", 0) / g) * g
-    viewers = viewers_of(view, wanted)
+    viewers = [r["token"] for r in moves] if moves else viewers_of(view, wanted)
     # The frame: the viewers plus everyone in the combat (the server never sends a hidden one), so a foe in sight
     # is not cut off at the edge. One out of sight still is not drawn; it only widens the frame.
     fighting = {o["tokenId"] for o in ((view.get("combat") or {}).get("order") or [])}
-    focus = viewers + [t for t in view["tokens"] if t["id"] in fighting and t not in viewers] or view["tokens"]
+    ghosts = [dict(r["token"], x=r["end"][0], y=r["end"][1]) for r in moves or []]
+    focus = viewers + [t for t in view["tokens"] if t["id"] in fighting and t not in viewers] + ghosts or view["tokens"]
     if not focus:
         raise ValueError("no tokens on the scene")
     x0 = max(0, (min(t["x"] for t in focus) - pad_x - margin * g) // g * g)
@@ -106,14 +110,16 @@ def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int
     y1 = min(s["height"], -(-(max(t["y"] + t["h"] * g for t in focus) - pad_y + margin * g) // g) * g)
 
     img = _background(view, fetch, (x0, y0, x1, y1))
-    mask = vision_mask(view, viewers, img.size, (x0 + pad_x, y0 + pad_y))
+    mask = Image.new("L", img.size, 255) if moves else vision_mask(view, viewers, img.size, (x0 + pad_x, y0 + pad_y))
     img = Image.composite(img, Image.new("RGBA", img.size, DARK), mask)
     # ✂️ 2026-11-20: crop to what the viewer can see, one square of edge kept, so the map is not half black.
     #    Lewis: "auto crop, that should be built in as a feature". The token's own square is always in the mask.
+    #    2026-11-25: the right and bottom edges were rounded the wrong way and cut a seen square off instead of adding one;
+    #    a sight edge lying ON a grid line (box[2] - 1) does not count as seeing the square beyond it.
     box = mask.getbbox()
     if box:
         cx0, cy0 = max(0, (box[0] // g - 1) * g), max(0, (box[1] // g - 1) * g)
-        cx1, cy1 = min(x1 - x0, -(-box[2] // g + 1) * g), min(y1 - y0, -(-box[3] // g + 1) * g)
+        cx1, cy1 = min(x1 - x0, (-(-(box[2] - 1) // g) + 1) * g), min(y1 - y0, (-(-(box[3] - 1) // g) + 1) * g)
         img, mask = img.crop((cx0, cy0, cx1, cy1)), mask.crop((cx0, cy0, cx1, cy1))
         x0, y0, x1, y1 = x0 + cx0, y0 + cy0, x0 + cx1, y0 + cy1
     # 🙈 2026-11-20: only the viewer and what the viewer sees. Party tokens used to be drawn always, even behind the
@@ -142,13 +148,17 @@ def draw_map(view: dict, fetch, wanted: str = "", margin: int = 6, max_side: int
         if t.get("name"):
             labels.append((t["name"][:18], tx, ty, size))
 
+    if moves:  # imported here: map_moves needs col_name from this file
+        from combat.map_move_draw import draw_moves
+        labels += draw_moves(img, view, moves, fetch, (pad_x + x0, pad_y + y0))
     taken = []  # names after all the art, below a token, else above, else further out, until clear
     for name, tx, ty, size in labels:
         tw, th = draw.textlength(name, font=small), small.size + 3
-        lx = tx + size / 2 - tw / 2
+        lx = min(max(2, tx + size / 2 - tw / 2), img.width - tw - 2)  # kept inside the picture (2026-11-25)
         for ly in (ty + size, ty - th, ty + size + th, ty - 2 * th, ty + size + 2 * th, ty - 3 * th):
             box = (lx - 2, ly, lx + tw + 2, ly + th)
-            if not any(box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3] for b in taken):
+            if 0 <= ly and ly + th <= img.height and not any(
+                    box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3] for b in taken):
                 break
         taken.append(box)
         draw.rectangle(box, fill=(0, 0, 0, 170))

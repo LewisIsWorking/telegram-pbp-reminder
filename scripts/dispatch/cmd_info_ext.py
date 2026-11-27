@@ -1,5 +1,7 @@
 """Extended info commands: queue, health, session, waiting, reactions, timeline."""
 
+import re
+
 import telegram as tg
 
 
@@ -76,8 +78,25 @@ def handle(ctx: dict) -> bool:
     if cmd == "/map":
         from combat.map_view import post_map, whose_map
         pair = next((p for p in config.get("topic_pairs", []) if str(p["pbp_topic_ids"][0]) == pid), {})
-        raw = ctx["parsed"].get("raw_text") or ctx["text"]
-        wanted, refusal = whose_map(config, state, pid, uid, gm_ids, raw[4:])
+        # 2026-11-25: "/map@PathWarsBot Zerius" (Telegram adds the bot's name in a group with several bots) read
+        #    "@PathWarsBot Zerius" as the name; the command word is cut off whole now, as /roll does.
+        args = re.sub(r"^/map(@\S+)?", "", ctx["parsed"].get("raw_text") or ctx["text"], flags=re.I)
+        # 🧭 2026-11-25: a GM's "/map Zerius slide S4, Little Dread S4" previews the moves, sent to that GM only.
+        from combat.map_moves import looks_like_moves, parse_moves
+        is_gm = str(uid) in {str(g) for g in gm_ids or []}
+        moves = parse_moves(args) if is_gm else None
+        if moves:
+            from combat.map_move_post import post_move_map
+            post_move_map(pair.get("code", ""), moves, uid, gid, reply)
+            return True
+        if is_gm and looks_like_moves(args):
+            # A move list the GM mistyped must not land in the group as "Zerius slide 4 S has no token" (a plan
+            # the players should not see): the GM is told privately how to write it.
+            from combat.map_move_post import tell_gm_privately
+            tell_gm_privately(uid, gid, reply, "🗺️ I could not read that move list. Write each move as name, "
+                              "direction, distance, split by commas: /map Zerius slide S4, Little Dread E 10 ft")
+            return True
+        wanted, refusal = whose_map(config, state, pid, uid, gm_ids, args)
         if refusal:
             tg.send_message(gid, reply, refusal)
         else:

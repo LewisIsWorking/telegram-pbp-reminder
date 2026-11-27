@@ -72,6 +72,14 @@ def scene_is_lit(environment):
     return (rng.get('min', 0) or 0) <= darkness <= (rng.get('max', 1) if rng.get('max') is not None else 1)
 
 
+def sight_walls(d):
+    """The walls that block sight. Today the server sends only those (2026-11-25); should it ever send every wall with
+    Foundry's own `sight` (0 = none) and `ds` (1 = an open door) for move previews (map_moves.move_walls), a window or
+    an open door must not start blinding the player's map."""
+    return [w for w in d.get('walls') or []
+            if w.get('sight', 1) and not (w.get('door') and w.get('ds') == 1)]
+
+
 def vision_mask(d, viewers, size, origin):
     """An 'L' mask the size of the cropped image: 255 where at least one viewer sees.
 
@@ -83,7 +91,7 @@ def vision_mask(d, viewers, size, origin):
     x0, y0 = origin
     # The scene's own edge blocks sight too, so a polygon never runs off into the padding.
     bx0, by0, bx1, by1 = pad_x, pad_y, pad_x + s['width'], pad_y + s['height']
-    segments = [tuple(w['c']) for w in d.get('walls', [])] + [
+    segments = [tuple(w['c']) for w in sight_walls(d)] + [
         (bx0, by0, bx1, by0), (bx1, by0, bx1, by1), (bx1, by1, bx0, by1), (bx0, by1, bx0, by0)]
     lit = scene_is_lit(s.get('environment')) or not s.get('tokenVision', True)
     far = math.hypot(s['width'], s['height']) * 2
