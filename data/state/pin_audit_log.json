@@ -1,45 +1,5 @@
 [
   {
-    "timestamp": "2026-10-29T00:43:34.794050+00:00",
-    "action": "delete",
-    "chat_id": -1001661053273,
-    "message_id": 187695,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "message_batch.py:60"
-  },
-  {
-    "timestamp": "2026-10-29T00:43:36.012274+00:00",
-    "action": "pin",
-    "chat_id": -1001661053273,
-    "message_id": 187809,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "sender.py:53"
-  },
-  {
-    "timestamp": "2026-10-29T00:43:41.934454+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 3663,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
-    "timestamp": "2026-10-29T00:53:54.394079+00:00",
-    "action": "delete",
-    "chat_id": -1004303231713,
-    "message_id": 3664,
-    "ok": true,
-    "refused": false,
-    "bot_owned": true,
-    "site": "schedule_post.py:182"
-  },
-  {
     "timestamp": "2026-10-29T01:43:29.630610+00:00",
     "action": "delete",
     "chat_id": -1004303231713,
@@ -29998,5 +29958,45 @@
     "refused": false,
     "bot_owned": true,
     "site": "session_poll.py:122"
+  },
+  {
+    "timestamp": "2026-11-27T02:43:35.502015+00:00",
+    "action": "unpin",
+    "chat_id": -1001661053273,
+    "message_id": 192938,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "topic_queue_write.py:105"
+  },
+  {
+    "timestamp": "2026-11-27T02:43:35.824752+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 192938,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "message_batch.py:60"
+  },
+  {
+    "timestamp": "2026-11-27T02:43:36.683432+00:00",
+    "action": "pin",
+    "chat_id": -1001661053273,
+    "message_id": 193048,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "sender.py:53"
+  },
+  {
+    "timestamp": "2026-11-27T02:43:42.642278+00:00",
+    "action": "delete",
+    "chat_id": -1001661053273,
+    "message_id": 192982,
+    "ok": true,
+    "refused": false,
+    "bot_owned": true,
+    "site": "recruit_focus_post.py:171"
   }
 ]
