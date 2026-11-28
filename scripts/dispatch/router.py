@@ -130,6 +130,10 @@ def process_updates(updates: list, config: dict, state: dict) -> int:
                                      _READ_CMDS, _HANDLERS)
                 continue
 
+            # 📘 2026-11-26: "how do I dual class?" gets the wiki guide (players/dual_class_help.py).
+            from players.dual_class_help import maybe_answer as _dual_class_help
+            _dual_class_help(msg, config, state)
+
             parsed = parse_message(msg, maps)
             if not parsed:
                 # Outside every campaign topic: still recorded and told to link COO (2026-10-08)
