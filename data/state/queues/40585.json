@@ -16,15 +16,6 @@
       "user_name": "Caelum",
       "time": "2026-03-31T01:59:58+00:00",
       "preview": "[media]"
-    },
-    {
-      "message_id": 192758,
-      "thread_id": 137075,
-      "user_id": "1358791105",
-      "user_name": "Alastair",
-      "time": "2026-11-24T11:30:01+00:00",
-      "preview": "[media]",
-      "media_group_id": null
     }
   ],
   "replied": [
@@ -1255,7 +1246,9 @@
     "msg:190572",
     "2026-11-18 05:16:18",
     "msg:191007",
-    "2026-11-20 01:00:09"
+    "2026-11-20 01:00:09",
+    "msg:192758",
+    "2026-11-24 11:30:01"
   ],
   "reply_log": [
     {
@@ -7015,20 +7008,27 @@
       "player": "Alastair",
       "preview": "[media]",
       "via": "reply"
+    },
+    {
+      "t": "2026-11-26T21:46:35+00:00",
+      "pid": "40585",
+      "msg_id": "192758",
+      "thread_id": 137075,
+      "player": "Alastair",
+      "preview": "[media]",
+      "via": "reply"
     }
   ],
   "topic_msg_id": null,
   "topic_fingerprint": "",
   "topic_queues": {
     "137075": {
-      "fingerprint": "2026-11-24 11:30:01",
-      "msg_ids": [
-        192975
-      ],
-      "last_posted_at": "2026-11-26T00:13:25.726321+00:00",
-      "caught_up_msg_id": null,
+      "fingerprint": "",
+      "msg_ids": [],
+      "last_posted_at": null,
+      "caught_up_msg_id": 193036,
       "pending_delete": [],
-      "caught_up_at": null
+      "caught_up_at": "2026-11-26T22:13:18.543856+00:00"
     },
     "40585": {
       "fingerprint": "",
@@ -7039,6 +7039,6 @@
     }
   },
   "probed": {
-    "192758": "2026-11-26T01:13:27.749410+00:00"
+    "192758": "2026-11-26T19:43:23.797652+00:00"
   }
 }

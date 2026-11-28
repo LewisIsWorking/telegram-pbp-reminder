@@ -1,0 +1,467 @@
+{
+  "code": "C07",
+  "campaign": "Hopeful End-Times",
+  "world": "c07",
+  "date": "2026-11-26",
+  "taken_at": "2026-11-26T06:02:28.228Z",
+  "actors": [
+    {
+      "id": "xxxPF2ExPARTYxxx",
+      "name": "The Party",
+      "kind": "party",
+      "owners": [
+        "MrNegetZ",
+        "RyoYamakawa",
+        "Terra"
+      ],
+      "currency": {
+        "credits": 1007
+      },
+      "items": [
+        {
+          "name": "(Partial)Monster Parts of Magnetic Storm, 155c",
+          "type": "treasure",
+          "quantity": 1
+        },
+        {
+          "name": "Battery (Commercial)",
+          "type": "ammo",
+          "quantity": 9
+        },
+        {
+          "name": "Hypopen (Commercial)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Medpatch (Commercial)",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Radiation Sweeper",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Silver-Coated Projectile",
+          "type": "treasure",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "Q4eM0pui3rcT4zgP",
+      "name": "★SUPER IDOL LIVY★",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "credits": 3
+      },
+      "items": [
+        {
+          "name": "Autograppler (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Autorecognition Lens",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Battery (Commercial)",
+          "type": "ammo",
+          "quantity": 2
+        },
+        {
+          "name": "Boom Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Cable Line (50 Feet, Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chordpocalypse",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Comm Unit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Container (Ordinary)",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Datapad",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flashlight (Tactical)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hacking Toolkit (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hygiene Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hypopen (Commercial)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Infiltrator's Toolkit (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Medpatch (Commercial)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Microphone",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Nanosuit",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Projectile Ammo",
+          "type": "ammo",
+          "quantity": 37
+        },
+        {
+          "name": "Second Skin",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Semi-Auto Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Spell chip of Sonic Scream (Rank 1)",
+          "type": "consumable",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "t8vmkNAR5mya6Xna",
+      "name": "Lai",
+      "kind": "character",
+      "owners": [
+        "Terra"
+      ],
+      "currency": {
+        "credits": 237
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Battery (Commercial)",
+          "type": "ammo",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Blowgun",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Blowgun Darts",
+          "type": "ammo",
+          "quantity": 9
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Comm Unit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Clothing",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Flight Suit",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hardlight Handwraps (Commercial)",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Hideaway Limb (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Laser Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Throwing Knife",
+          "type": "weapon",
+          "quantity": 2
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "yJTHEl080NgdbbpM",
+      "name": "Roneles",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "credits": 3
+      },
+      "items": [
+        {
+          "name": "Autograppler (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Cable Line  (50 Feet, Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Comm Unit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Container (Ordinary)",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Crowbar",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Canteen",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flash Grenade (Commercial)",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Flashlight (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Frag Grenade (Advanced)",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Hypopen (Commercial)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Maintenance robot Altar Hologram avatar Gremlin Veskarium Imperial Plate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Medpatch (Commercial)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Reusable Grenade Shell(Advanced Frag Grenade)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Sunshades (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "YdzFM3eudNecyeqz",
+      "name": "Rune",
+      "kind": "character",
+      "owners": [
+        "RyoYamakawa"
+      ],
+      "currency": {
+        "gp": 1,
+        "sp": 4
+      },
+      "items": [
+        {
+          "name": "Arc Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Battery (Commercial)",
+          "type": "ammo",
+          "quantity": 10
+        },
+        {
+          "name": "Bipod (Tactical)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Climbing Kit (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Container (Ordinary)",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Canteen",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flashlight (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hygiene Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Infinity Deck",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Microcord Armor",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Projectile Ammo",
+          "type": "ammo",
+          "quantity": 30
+        },
+        {
+          "name": "Shirren-eye Rifle",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Sunshades (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Telepathy Node",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "AXVLl6fTbl8zrF91",
+      "name": "Ryo",
+      "kind": "character",
+      "owners": [
+        "RyoYamakawa"
+      ],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "1i9ubcnDlrwYRwz1",
+      "name": "Skully Fuchsia",
+      "kind": "character",
+      "owners": [
+        "Blazenrend"
+      ],
+      "currency": {},
+      "items": []
+    }
+  ]
+}

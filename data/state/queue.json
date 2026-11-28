@@ -196,7 +196,6 @@
       "2026-10-21T12:57:53.050309+00:00"
     ],
     "40585": [
-      "2026-04-13T18:29:01.042587+00:00",
       "2026-04-14T06:40:18.037595+00:00",
       "2026-04-14T06:40:18.039431+00:00",
       "2026-04-14T06:40:18.041071+00:00",
@@ -695,7 +694,8 @@
       "2026-11-11T02:03:15.019975+00:00",
       "2026-11-18T13:13:23.950718+00:00",
       "2026-11-22T18:43:26.394330+00:00",
-      "2026-11-22T19:21:27.717144+00:00"
+      "2026-11-22T19:21:27.717144+00:00",
+      "2026-11-26T22:13:18.541717+00:00"
     ],
     "107171": [
       "2026-03-21T21:07:13.858338+00:00",
@@ -2162,13 +2162,6 @@
   "queue_archive": [
     {
       "pid": "66154",
-      "time": "2026-10-15T08:43:28.706327+00:00",
-      "player": "Peter",
-      "preview": "As the resident muscle, Ryder will be at the door. Used to b",
-      "msg_id": "183308"
-    },
-    {
-      "pid": "66154",
       "time": "2026-10-15T08:51:07.724014+00:00",
       "player": "Loren",
       "preview": "Miracle Max pushes through the doors of the Silver Succubi, ",
@@ -3559,6 +3552,13 @@
       "player": "John",
       "preview": "@PathWars Is going on strike illegal in the city ?",
       "msg_id": "192667"
+    },
+    {
+      "pid": "40585",
+      "time": "2026-11-26T22:13:18.541717+00:00",
+      "player": "Alastair",
+      "preview": "[media]",
+      "msg_id": "192758"
     }
   ],
   "pending_potw_boons": {
@@ -3574,7 +3574,7 @@
       ],
       "base_message": "Player of the Week for Magni Guard: Inquisitor Azrael Staine (@MrTheGentleman)!\n(2026-11-16 (W47) to 2026-11-23 (W48))\n\n6 posts this week with an average gap of 10.2h between posts. The most consistent driver of the story.",
       "posted_at": "2026-11-23T09:13:27.455434+00:00",
-      "reminders_sent": 1
+      "reminders_sent": 2
     }
   },
   "pending_hero_points": {
