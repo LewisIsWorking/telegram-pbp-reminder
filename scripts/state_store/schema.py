@@ -92,6 +92,13 @@ AUX_FILES = (
                       "that only a human can remove. Added 2026-08-16. "
                       "Optional - absent until the first refused delete, "
                       "which before that date could not be observed."),
+    ("extra_sheets", "Who may make a second character sheet in which "
+                     "campaign: {grants: [{telegram_user_id, campaign, "
+                     "granted_by, at}]}. Owner: players.extra_sheets, "
+                     "written by /extrasheet (dispatch/cmd_extrasheet.py). "
+                     "Read by ComeOnOverUno from GitHub, which tells Tongs; "
+                     "the shape is a contract with it. Added 2026-10-12. "
+                     "Optional - absent until the first grant."),
 )
 
 # Files written once during a one-shot migration or by an external
