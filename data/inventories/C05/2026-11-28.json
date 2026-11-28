@@ -1,0 +1,877 @@
+{
+  "code": "C05",
+  "campaign": "Grand Explorers",
+  "world": "c05",
+  "date": "2026-11-28",
+  "taken_at": "2026-11-28T05:59:20.166Z",
+  "actors": [
+    {
+      "id": "yahbFGcgJzqyqDdy",
+      "name": "Former",
+      "kind": "party",
+      "owners": [],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "xxxPF2ExPARTYxxx",
+      "name": "The Party",
+      "kind": "party",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {},
+      "items": [
+        {
+          "name": "Acid Flask (Lesser)",
+          "type": "weapon",
+          "quantity": 3
+        },
+        {
+          "name": "Antidote (Lesser)",
+          "type": "consumable",
+          "quantity": 3
+        },
+        {
+          "name": "Artisan's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bolan Nogasso's Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Bolan Nogasso's Hide Armor",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Bolan Nogasso's Staff",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Bolts",
+          "type": "ammo",
+          "quantity": 20
+        },
+        {
+          "name": "Cytillesh Oil",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Graveroot",
+          "type": "consumable",
+          "quantity": 3
+        },
+        {
+          "name": "Healing Potion (Lesser)",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Healing Potion (Minor)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Heavy Crossbow",
+          "type": "weapon",
+          "quantity": 2
+        },
+        {
+          "name": "Leather Armor",
+          "type": "armor",
+          "quantity": 4
+        },
+        {
+          "name": "Maestro's Instrument (Lesser)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Magnifying Glass",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Matchstick",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Monster Parts of Shadow of Hunger (13gp)",
+          "type": "treasure",
+          "quantity": 3
+        },
+        {
+          "name": "Nectar of Purification",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Shiver",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Staff",
+          "type": "weapon",
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "id": "gd6LUKyZfF6Bp34K",
+      "name": "Aekold Black-Steel | Horia",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "sp": 3
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Breastplate",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Light Pick",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Light Pick",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Pick",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "xRwK2gQI6HIDkchN",
+      "name": "Alitheia | Buffet Raider",
+      "kind": "character",
+      "owners": [
+        "buffetradier"
+      ],
+      "currency": {},
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chain Mail",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Eye Slash",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Scimitar",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Steel Shield",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "XcP09mfrq0JnYk5M",
+      "name": "Annie Black-Steel | PathWars",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "sp": 5,
+        "gp": 1
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Magnetar Rifle",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Projectile Ammo",
+          "type": "ammo",
+          "quantity": 10
+        },
+        {
+          "name": "Projectile Ammo",
+          "type": "ammo",
+          "quantity": 68
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Studded Leather Armor",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "tiMgPf62aRN9CvwB",
+      "name": "Cyrus | Ryo",
+      "kind": "character",
+      "owners": [],
+      "currency": {},
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chain Mail",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Clothing (Fine)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Crowbar",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Clothing",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Fighting Fan",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Grappling Hook",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Jiu Huan Dao",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Jiu Huan Dao",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 3
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Steel Shield",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Tent (Four-Person)",
+          "type": "equipment",
+          "quantity": 2
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "BVodzxyoYyVkjr4d",
+      "name": "Illiani",
+      "kind": "character",
+      "owners": [],
+      "currency": {},
+      "items": [
+        {
+          "name": "Arrows",
+          "type": "ammo",
+          "quantity": 64
+        },
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Climbing Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Compass",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Composite Shortbow",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Clothing",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 2
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Shortbow",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Thieves' Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Thieves' Toolkit (Replacement Picks)",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "zzTca5B2v6PF9xjW",
+      "name": "Rubel Nelarc the grand explorer",
+      "kind": "character",
+      "owners": [
+        "MrNegetZ"
+      ],
+      "currency": {
+        "cp": 7,
+        "gp": 7,
+        "sp": 5
+      },
+      "items": [
+        {
+          "name": "250 GP = Small= Monster Parts(Slime?)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "45GP of Flesh Golem parts",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Alchemist's Tools",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Animal Staff(Mosquito)",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Antidote (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Antidote (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Antivenom Potion",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bag of Holding (Type I)",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Belt of Good Health",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bloodseeker Beak",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Boots of Elvenkind",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Climbing Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Crowbar (Levered)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger of Venom",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Explorer's Clothing",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Grappling Hook",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Guiding Star",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Hat of the Magi",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healer's Toolkit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Healing Potion (Lesser)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Invisibility Potion(black inky weird)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Leather Lamellar",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Mistform Elixir (Moderate)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Psychic ID card",
+          "type": "equipment",
+          "quantity": 6
+        },
+        {
+          "name": "Rapier(affixed rime crystal)",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 4
+        },
+        {
+          "name": "Repair Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rime Crystal",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Ring of Energy Resistance (Fire)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Ring of Lissala?",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Scraps and cloth",
+          "type": "treasure",
+          "quantity": 1
+        },
+        {
+          "name": "Signal Whistle",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Silvertongue Mutagen (Moderate)",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Skeleton Key",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Starknife",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Starknife",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Tent (Four-Person)",
+          "type": "equipment",
+          "quantity": 2
+        },
+        {
+          "name": "Thieves' Tools",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Type II Bag of Holding = Mission 0 Reward",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 6
+        },
+        {
+          "name": "Wolf Fang",
+          "type": "consumable",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "C3qs6CVCFQ3Iusqq",
+      "name": "Twilight Garden",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "sp": 38,
+        "gp": 4
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Basic Crafter's Book",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Bedroll",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Chalk",
+          "type": "consumable",
+          "quantity": 10
+        },
+        {
+          "name": "Cookware",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flint and Steel",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Formulated Sunlight",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Rations",
+          "type": "consumable",
+          "quantity": 1
+        },
+        {
+          "name": "Rope",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Soap",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Torch",
+          "type": "equipment",
+          "quantity": 5
+        },
+        {
+          "name": "Waterskin",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Writing Set",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "code": "C09",
+  "campaign": "Metal City",
+  "world": "c09",
+  "date": "2026-11-28",
+  "taken_at": "2026-11-28T05:59:20.166Z",
+  "actors": [
+    {
+      "id": "zIw8bwK8IhPzWfVC",
+      "name": "Former",
+      "kind": "party",
+      "owners": [],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "xxxPF2ExPARTYxxx",
+      "name": "The Party",
+      "kind": "party",
+      "owners": [],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "V1FlKQhCBOzyHg0l",
+      "name": "Arktos | @StorybookRhizome",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "sp": 1
+      },
+      "items": [
+        {
+          "name": "Backpack",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Carbon Skin",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Comm Unit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Custom Rig",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flashlight (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Maker's App",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Plasma Caster",
+          "type": "weapon",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "WPaRl8H27H9h4Rvd",
+      "name": "Arktos | @StorybookRhizome's Drone",
+      "kind": "character",
+      "owners": [],
+      "currency": {},
+      "items": []
+    },
+    {
+      "id": "4yj3PttGEazFk4un",
+      "name": "Diabla \"Bella\" Alzarin",
+      "kind": "character",
+      "owners": [],
+      "currency": {
+        "sp": 36
+      },
+      "items": [
+        {
+          "name": "Battle Ribbon",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Clothing (Ordinary)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Container (Ordinary)",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Dagger",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Freebooter Armor",
+          "type": "armor",
+          "quantity": 1
+        },
+        {
+          "name": "Hygiene Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Light Hammer",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Light Hammer",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Light Hammer",
+          "type": "weapon",
+          "quantity": 2
+        },
+        {
+          "name": "Repair Toolkit (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "bNmxQSd7xz7AZdUs",
+      "name": "Zels - Patchwork",
+      "kind": "character",
+      "owners": [
+        "RyoYamakawa"
+      ],
+      "currency": {},
+      "items": [
+        {
+          "name": "Autorecognition Lens",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Autorecognition Lens",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Container (Ordinary)",
+          "type": "backpack",
+          "quantity": 1
+        },
+        {
+          "name": "Data Chip",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Flashlight (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Hygiene Kit",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Irising Shield",
+          "type": "shield",
+          "quantity": 1
+        },
+        {
+          "name": "Main-Gauche",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Maker's App",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Musical Instrument (Handheld, Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Phase Cutlass",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Projectile Ammo",
+          "type": "ammo",
+          "quantity": 24
+        },
+        {
+          "name": "Prosthetic Limb",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Repair Toolkit (Commercial)",
+          "type": "equipment",
+          "quantity": 1
+        },
+        {
+          "name": "Rotating Pistol",
+          "type": "weapon",
+          "quantity": 1
+        },
+        {
+          "name": "Second Skin",
+          "type": "armor",
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
