@@ -6,6 +6,7 @@ import helpers
 from helpers import build_topic_maps, fmt_date, posts_str
 from commands.campaign import roster_user_stats, roster_block
 import telegram as tg
+from helpers_pkg.party_size import party_count
 from helpers_pkg.routes import campaign_route, route
 
 
@@ -80,7 +81,7 @@ def post_roster_summary(config: dict, state: dict, *, now: datetime | None = Non
 
         player_count = active_player_count
         footer = f"\n\n━━━\n\n📋 {label} Party Size\n"
-        footer += f"Party size: {player_count}/{helpers.REQUIRED_PLAYERS}."
+        footer += f"Party size: {party_count(player_count, helpers.REQUIRED_PLAYERS)}."
         if player_count < helpers.REQUIRED_PLAYERS:
             needed = helpers.REQUIRED_PLAYERS - player_count
             s = "s" if needed != 1 else ""
